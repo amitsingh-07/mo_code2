@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
 
-export abstract class Logger {
-  error: any;
-  info: any;
-  warn: any;
-}
+import { Logger } from './logger';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService implements Logger {
-
   error: any;
   info: any;
   warn: any;

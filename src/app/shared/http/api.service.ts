@@ -1,22 +1,22 @@
+import { Injectable } from '@angular/core';
+
+import { ConfigService, IConfig } from './../../config/config.service';
 import { apiConstants } from './api.constants';
 import { BaseService } from './base.service';
-import { HttpService } from './http.service';
-import { ConfigService, Config } from './../../config/config.service';
-import { Injectable } from '@angular/core';
-import { ServerResponse } from './interfaces/server-response.interface';
+import { IServerResponse } from './interfaces/server-response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  config: Config;
+  config: IConfig;
 
   constructor(private configService: ConfigService, private http: BaseService) {
-    this.configService.getConfig().subscribe((data: Config) => this.config = { ...data });
+    this.configService.getConfig().subscribe((data: IConfig) => this.config = { ...data });
   }
 
   getProfile() {
-    this.http.get(`${this.config.apiBaseUrl}/${apiConstants.endpoint.profile}`).subscribe((data: ServerResponse) => {
+    this.http.get(`${this.config.apiBaseUrl}/${apiConstants.endpoint.profile}`).subscribe((data: IServerResponse) => {
       console.log('profile data :' + data);
     });
   }

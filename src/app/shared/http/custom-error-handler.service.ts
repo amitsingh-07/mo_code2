@@ -1,13 +1,13 @@
-import { Error } from './interfaces/error.interface';
 import { Injectable } from '@angular/core';
 import { Response, ResponseOptions } from '@angular/http';
 
+import { IError } from './interfaces/error.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomErrorHandlerService {
-  constructor() { }
+  constructor() {}
 
   tryParseError(error: Response): any {
     try {
@@ -21,26 +21,26 @@ export class CustomErrorHandlerService {
     }
   }
 
-  parseCustomServerError(error: Error): any {
+  parseCustomServerError(error: IError): any {
     const title = error.message;
     let body = '';
     for (const errorMsg of error.error) {
       body += `${errorMsg}. `;
     }
 
-
     return { title, body };
   }
 
-
-  createCustomError(error: Error): Response {
+  createCustomError(error: IError): Response {
     try {
       const parsedError = this.parseCustomServerError(error);
       const responseOptions = new ResponseOptions({
-        body: { error: { title: parsedError.title, message: parsedError.body } },
+        body: {
+          error: { title: parsedError.title, message: parsedError.body }
+        },
         status: 400,
         headers: null,
-        url: null,
+        url: null
       });
       return new Response(responseOptions);
     } catch (ex) {
@@ -48,23 +48,17 @@ export class CustomErrorHandlerService {
         body: { title: 'Unknown Error!', message: 'Unknown Error Occurred.' },
         status: 400,
         headers: null,
-        url: null,
+        url: null
       });
       return new Response(responseOptions);
     }
   }
 
-
-  showToast(error: Error): void {
+  showToast(error: IError): void {
     const parsedError = this.parseCustomServerError(error);
-    /*
-    parsedError.title;
-    parsedError.body;
-    */
   }
 
-
-  parseCustomServerErrorToString(error: Error): string {
+  parseCustomServerErrorToString(error: IError): string {
     this.showToast(error);
     const parsedError = this.createCustomError(error);
     try {

@@ -1,4 +1,4 @@
-export interface ServerResponse {
+export interface IServerResponse {
     data: any;
     error: string[];
     message: string;

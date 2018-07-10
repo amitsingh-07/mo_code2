@@ -1,11 +1,9 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-export interface Config {
+export interface IConfig {
   apiBaseUrl: string;
   useMyInfo: boolean;
 }
@@ -14,17 +12,15 @@ export interface Config {
   providedIn: 'root'
 })
 export class ConfigService {
-
   private configUrl = 'assets/config.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getConfig() {
-    return this.http.get<Config>(this.configUrl)
-      .pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
-      );
+    return this.http.get<IConfig>(this.configUrl).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -35,8 +31,8 @@ export class ConfigService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+      );
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');

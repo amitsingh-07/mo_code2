@@ -1,6 +1,7 @@
-import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Logger } from './logger.service';
+
+import { environment } from './../../../environments/environment';
+import { Logger } from './logger';
 
 export let isDebugMode = environment.isDebugMode;
 
@@ -36,17 +37,17 @@ export class ConsoleLoggerService implements Logger {
   }
 
   e(args?: any): void {
-    const logFn: Function = (console)['error'] || console.log || noop;
+    const logFn: () => any = (console)['error'] || console.log || noop;
     logFn.apply(console, [args]);
   }
 
   i(args?: any): void {
-    const logFn: Function = (console)['info'] || console.log || noop;
+    const logFn: () => any = (console)['info'] || console.log || noop;
     logFn.apply(console, [args]);
   }
 
   w(args?: any): void {
-    const logFn: Function = (console)['warn'] || console.log || noop;
+    const logFn: () => any = (console)['warn'] || console.log || noop;
     logFn.apply(console, [args]);
   }
 }

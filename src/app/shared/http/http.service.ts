@@ -1,16 +1,26 @@
+import { Injectable } from '@angular/core';
+import {
+  Headers,
+  Http,
+  Request,
+  RequestOptions,
+  Response,
+  XHRBackend
+} from '@angular/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { appConstants } from './../../app.constants';
 import { AppModule } from './../../app.module';
 import { HelperService } from './helper.service';
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Headers, Http, Request, RequestOptions, Response, XHRBackend } from '@angular/http';
+
+const HEADER_CONTENT_TYPE = 'Content-Type';
+const HEADER_AUTHORIZATION = 'Authorization';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService extends Http {
-
   helperService: HelperService;
   router: Router;
 
@@ -20,8 +30,10 @@ export class HttpService extends Http {
     this.router = AppModule.injector.get(Router);
   }
 
-  request(url: string | Request, options?: RequestOptions): Observable<Response> {
-
+  request(
+    url: string | Request,
+    options?: RequestOptions
+  ): Observable<Response> {
     if (typeof url === 'string') {
       if (!options) {
         // let's make an option object
@@ -34,17 +46,29 @@ export class HttpService extends Http {
     return super.request(url, options).catch(this.catchAuthError(this));
   }
 
-
   createRequestOptions(options: RequestOptions | Request) {
-    const token: string = localStorage.getItem(appConstants.accessTokenLocalStorage);
-    if (this.helperService.addContentTypeHeader && typeof this.helperService.addContentTypeHeader === 'string') {
-      options.headers.append('Content-Type', this.helperService.addContentTypeHeader);
+    const token: string = localStorage.getItem(
+      appConstants.accessTokenLocalStorage
+    );
+    if (
+      this.helperService.addContentTypeHeader &&
+      typeof this.helperService.addContentTypeHeader === 'string'
+    ) {
+      options.headers.append(
+        HEADER_CONTENT_TYPE,
+        this.helperService.addContentTypeHeader
+      );
     } else {
-      const contentTypeHeader: string = options.headers.get('Content-Type');
+      const contentTypeHeader: string = options.headers.get(
+        HEADER_CONTENT_TYPE
+      );
       if (!contentTypeHeader && this.helperService.addContentTypeHeader) {
-        options.headers.append('Content-Type', appConstants.defaultContentTypeHeader);
+        options.headers.append(
+          HEADER_CONTENT_TYPE,
+          appConstants.defaultContentTypeHeader
+        );
       }
-      options.headers.append('Authorization', token);
+      options.headers.append(HEADER_AUTHORIZATION, token);
     }
   }
 
