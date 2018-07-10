@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { Error } from './interfaces/error.interface';
 import { ServerResponse } from './interfaces/server-response.interface';
-import { appVariables } from './../../app.constants';
+import { appConstants } from './../../app.constants';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
 import { map, filter, switchMap } from 'rxjs/operators';
@@ -115,9 +115,9 @@ export class BaseService {
   }
 
   refreshToken(res: Response) {
-    const token = res.headers.get(appVariables.accessTokenServer);
+    const token = res.headers.get(appConstants.accessTokenServer);
     if (token) {
-      localStorage.setItem(appVariables.accessTokenLocalStorage, `${token}`);
+      localStorage.setItem(appConstants.accessTokenLocalStorage, `${token}`);
     }
   }
 }

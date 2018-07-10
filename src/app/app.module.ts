@@ -23,8 +23,9 @@ export class AppModule {
   /**
      * Allows for retrieving singletons using `AppModule.injector.get(MyService)`
      * This is good to prevent injecting the service as constructor parameter.
-     */static injector: Injector;
-     constructor(injector: Injector) {
+     */
+      static injector: Injector;
+      constructor(injector: Injector) {
       AppModule.injector = injector;
     }
 }

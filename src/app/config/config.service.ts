@@ -7,7 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
 
 export interface Config {
   apiBaseUrl: string;
-  textfile: string;
+  useMyInfo: boolean;
 }
 
 @Injectable({

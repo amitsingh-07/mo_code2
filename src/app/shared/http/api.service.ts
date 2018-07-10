@@ -1,3 +1,4 @@
+import { apiConstants } from './api.constants';
 import { BaseService } from './base.service';
 import { HttpService } from './http.service';
 import { ConfigService, Config } from './../../config/config.service';
@@ -15,7 +16,7 @@ export class ApiService {
   }
 
   getProfile() {
-    this.http.get(`${this.config.apiBaseUrl}/profile`).subscribe((data: ServerResponse) => {
+    this.http.get(`${this.config.apiBaseUrl}/${apiConstants.endpoint.profile}`).subscribe((data: ServerResponse) => {
       console.log('profile data :' + data);
     });
   }

@@ -1,11 +1,9 @@
-export let appVariables = {
+import { apiConstants } from './shared/http/api.constants';
+
+export let appConstants = {
     accessTokenLocalStorage: '',
     defaultContentTypeHeader: '',
     userLocalStorage: '',
-    loginPageUrl: '',
+    loginPageUrl: apiConstants.endpoint.login,
     accessTokenServer: ''
-};
-
-export let appApiResources = {
-    loginUrl: ''
 };

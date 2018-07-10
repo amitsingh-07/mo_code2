@@ -1,4 +1,4 @@
-import { appVariables } from './../../app.constants';
+import { appConstants } from './../../app.constants';
 import { AppModule } from './../../app.module';
 import { HelperService } from './helper.service';
 import { Observable } from 'rxjs';
@@ -36,13 +36,13 @@ export class HttpService extends Http {
 
 
   createRequestOptions(options: RequestOptions | Request) {
-    const token: string = localStorage.getItem(appVariables.accessTokenLocalStorage);
+    const token: string = localStorage.getItem(appConstants.accessTokenLocalStorage);
     if (this.helperService.addContentTypeHeader && typeof this.helperService.addContentTypeHeader === 'string') {
       options.headers.append('Content-Type', this.helperService.addContentTypeHeader);
     } else {
       const contentTypeHeader: string = options.headers.get('Content-Type');
       if (!contentTypeHeader && this.helperService.addContentTypeHeader) {
-        options.headers.append('Content-Type', appVariables.defaultContentTypeHeader);
+        options.headers.append('Content-Type', appConstants.defaultContentTypeHeader);
       }
       options.headers.append('Authorization', token);
     }
@@ -53,9 +53,9 @@ export class HttpService extends Http {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
         // if not authenticated
-        localStorage.removeItem(appVariables.userLocalStorage);
-        localStorage.removeItem(appVariables.accessTokenLocalStorage);
-        this.router.navigate([appVariables.loginPageUrl]);
+        localStorage.removeItem(appConstants.userLocalStorage);
+        localStorage.removeItem(appConstants.accessTokenLocalStorage);
+        this.router.navigate([appConstants.loginPageUrl]);
       }
       return Observable.throw(res);
     };
