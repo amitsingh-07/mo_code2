@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoggerService } from './shared/logger/logger.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'bfa-frontend';
+
+  constructor(private log: LoggerService) {
+    log.i('This is info log');
+    log.e('This is error log');
+    log.w('This is warn log');
+  }
 }
