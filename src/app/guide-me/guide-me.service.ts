@@ -29,4 +29,7 @@ export class GuideMeService {
   getProfileList(): Observable<any> {
     return this.http.get<any>(this.url);
   }
+  // getProfileList(): any {
+  //   return this.apiService.getProfileList();
+  // }
 }

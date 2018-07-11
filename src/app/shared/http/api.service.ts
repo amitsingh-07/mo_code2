@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { ConfigService, IConfig } from './../../config/config.service';
 import { apiConstants } from './api.constants';
@@ -12,12 +13,22 @@ export class ApiService {
   config: IConfig;
 
   constructor(private configService: ConfigService, private http: BaseService) {
-    this.configService.getConfig().subscribe((data: IConfig) => this.config = { ...data });
+    const apiService = this;
+    this.config = {
+      apiBaseUrl: 'http://10.144.196.217:8080',
+      useMyInfo: false
+    };
+
+    this.configService.getConfig()
+    .subscribe((data: IConfig) => {
+      apiService.config = data;
+    });
   }
 
-  getProfile() {
-    this.http.get(`${this.config.apiBaseUrl}/${apiConstants.endpoint.profile}`).subscribe((data: IServerResponse) => {
+  getProfileList() {
+    return this.http.get(`${this.config.apiBaseUrl}/${apiConstants.endpoint.getProfileList}`).subscribe((data: IServerResponse) => {
       console.log('profile data :' + data);
+      return data;
     });
   }
 }

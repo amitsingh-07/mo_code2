@@ -13,7 +13,7 @@
                 <label for="profile_{{i+1}}">
                   <span>{{profiles.name}}</span>
                 </label>
-                <i class="tooltip-icon" (click)="open(content)"></i>
+                <i class="tooltip-icon" (click)="showHelpModal(i)"></i>
               </div>
             <div>
             <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary width100">Continue</button>
