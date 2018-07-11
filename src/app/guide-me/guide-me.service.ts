@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+
+import { ApiService } from './../shared/http/api.service';
 import { GuideMeFormData } from './guide-me-form-data';
 import { Profile } from './profile/profile';
 
@@ -10,26 +12,28 @@ import { Profile } from './profile/profile';
 export class GuideMeService {
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
   private isProfileFormValid: boolean ;
-  private url = '../assets/profile.json';
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, private apiService: ApiService) {
+  }
+
   getProfile(): Profile {
     const myProfile: Profile = {
       myProfile: this.guideMeFormData.myProfile
     };
     return myProfile;
   }
+
   setProfile(data: Profile) {
     this.isProfileFormValid = true;
     this.guideMeFormData.myProfile = data.myProfile;
   }
+
   getGuideMeFormData(): GuideMeFormData {
     // Return the entire GuideMe Form Data
     return this.guideMeFormData;
   }
-  getProfileList(): Observable<any> {
-    return this.http.get<any>(this.url);
+
+  getProfileList() {
+    return this.apiService.getProfileList();
   }
-  // getProfileList(): any {
-  //   return this.apiService.getProfileList();
-  // }
 }

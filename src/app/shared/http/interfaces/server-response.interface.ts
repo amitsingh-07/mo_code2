@@ -1,5 +1,10 @@
+/**
+ *
+ * data: any;
+ * error: string[];
+ * message: string;
+ */
 export interface IServerResponse {
-    data: any;
-    error: string[];
-    message: string;
+    responseMessage: any;
+    objectList: any;
 }
