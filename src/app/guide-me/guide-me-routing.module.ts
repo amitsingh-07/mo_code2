@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ProfileComponent } from './profile/profile.component';
 
-const routes: Routes = [{ path: '', component: ProfileComponent }];
+const routes: Routes = [
+  { path: '', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

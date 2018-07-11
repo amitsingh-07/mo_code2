@@ -1,3 +1,24 @@
-<p>
-  profile works!
-</p>
+<!--Profile Screen-->
+<div class="container" style="margin-top:30px">
+  <div class="row">
+    <div class="col-sm-7">
+      <h2>What's Your Profile? </h2>
+      <h5>Please choose the profile that best describes you.</h5>
+      <div class="profile-image"></div>
+    </div>
+    <div class="col-sm-5">
+        <form name="profileForm" [formGroup]="profileForm" class="bfa-form-group">
+            <div class="form-control" *ngFor="let profiles of profileList; let i = index">
+                <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.name}}" tabindex="{{i+1}}">
+                <label for="profile_{{i+1}}">
+                  <span>{{profiles.name}}</span>
+                </label>
+                <i class="tooltip-icon" (click)="open(content)"></i>
+              </div>
+            <div>
+            <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary width100">Continue</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
