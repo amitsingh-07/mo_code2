@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
+import { LoaderComponent } from './../loader/loader.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
-
-  constructor() { }
+  loadingModalRef: NgbModalRef;
+  constructor(private modalService: NgbModal) { }
 
   /**
    * Add content type to HTTP header
    */
   addContentTypeHeader = true;
 
-  /**
-   * Start ng2-slim-loading-bar progress bar
-   */
-  startLoader() {
-
+  showLoader() {
+    //this.loadingModalRef = this.modalService.open(LoaderComponent);
   }
 
-  /**
-   * Stop ng2-slim-loading-bar progress bar
-   */
-  stopLoader() {
-
+  hideLoader() {
+    //this.loadingModalRef.close();
   }
 }

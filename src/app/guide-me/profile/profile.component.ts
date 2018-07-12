@@ -10,6 +10,17 @@ import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { HeaderService } from './../../shared/header/header.service';
 
+const assetImgPath = './assets/images/';
+
+const profileHelpImages = {
+  helpImg_1: 'profile-parent.png',
+  helpImg_2: 'profile-single-professional.png',
+  helpImg_3: 'profile-married-with-no-kids.png',
+  helpImg_4: 'profile-student.png',
+  helpImg_5: 'profile-retiree.png',
+  helpImg_6: 'profile-homemaker.png',
+};
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -27,7 +38,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
               private modal: NgbModal, public headerService: HeaderService) { }
 
   ngOnInit() {
-    this.headerService.setPageTitle('Profile Component Page');
+    this.headerService.setPageTitle('What\'s Your Profile?');
     this.profileFormValues = this.guideMeService.getGuideMeFormData();
     this.profileForm = new FormGroup({
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
@@ -40,7 +51,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
 
     ref.componentInstance.description = this.profileList[id].description;
     ref.componentInstance.title = this.profileList[id].name;
-    ref.componentInstance.img = 'helpImg_' + (id + 1) + '.jpg';
+    ref.componentInstance.img = assetImgPath + profileHelpImages['helpImg_' + (id + 1)];
   }
 
   save(form): boolean {

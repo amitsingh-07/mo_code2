@@ -7,18 +7,21 @@
       <div class="profile-image"></div>
     </div>
     <div class="col-sm-5">
-        <form name="profileForm" [formGroup]="profileForm" class="bfa-form-group">
-            <div class="form-control" *ngFor="let profiles of profileList; let i = index">
-                <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.name}}" tabindex="{{i+1}}">
-                <label for="profile_{{i+1}}">
-                  <span>{{profiles.name}}</span>
-                </label>
-                <i class="tooltip-icon" (click)="showHelpModal(i)"></i>
-              </div>
-            <div>
-            <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary btn-ftr width100">Continue</button>
+      <form name="profileForm" [formGroup]="profileForm" class="bfa-form-group">
+        <div class="form-container">
+          <div class="form-control" *ngFor="let profiles of profileList; let i = index">
+            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.name}}"
+              tabindex="{{i+1}}">
+            <label for="profile_{{i+1}}">
+              <span>{{profiles.name}}</span>
+            </label>
+            <i class="tooltip-icon" (click)="showHelpModal(i)"></i>
           </div>
-        </form>
+        </div>
+        <div>
+          <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary btn-ftr width100">Continue</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

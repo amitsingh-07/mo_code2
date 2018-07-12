@@ -31,7 +31,7 @@ export class BaseService {
   }
   get(url) {
     // Helper service to start ng2-slim-loading-bar progress bar
-    this.helperService.startLoader();
+    this.helperService.showLoader();
     return this.config$.mergeMap( (config) => {
     return this.http
       .get(`${config.apiBaseUrl}/${url}`)
@@ -43,13 +43,13 @@ export class BaseService {
       )
       .finally(() => {
         // stop ng2-slim-loading-bar progress bar
-        this.helperService.stopLoader();
+        this.helperService.hideLoader();
       });
     });
   }
 
   post(url, postBody: any, options?: RequestOptions) {
-    this.helperService.startLoader();
+    this.helperService.showLoader();
     if (options) {
       return this.http
         .post(url, postBody, options)
@@ -58,7 +58,7 @@ export class BaseService {
         })
         .catch((error: Response) => Observable.throw(error))
         .finally(() => {
-          this.helperService.stopLoader();
+          this.helperService.hideLoader();
         });
     } else {
       return this.http
@@ -68,13 +68,13 @@ export class BaseService {
         })
         .catch((error: Response) => Observable.throw(error))
         .finally(() => {
-          this.helperService.stopLoader();
+          this.helperService.hideLoader();
         });
     }
   }
 
   delete(url, postBody: any) {
-    this.helperService.startLoader();
+    this.helperService.showLoader();
     return this.http
       .delete(url)
       .map((res: Response) => {
@@ -82,12 +82,12 @@ export class BaseService {
       })
       .catch((error: Response) => Observable.throw(error))
       .finally(() => {
-        this.helperService.stopLoader();
+        this.helperService.hideLoader();
       });
   }
 
   put(url, putData) {
-    this.helperService.startLoader();
+    this.helperService.showLoader();
     return this.http
       .put(url, putData)
       .map((res: Response) => {
@@ -95,7 +95,7 @@ export class BaseService {
       })
       .catch((error: Response) => Observable.throw(error))
       .finally(() => {
-        this.helperService.stopLoader();
+        this.helperService.hideLoader();
       });
   }
 
