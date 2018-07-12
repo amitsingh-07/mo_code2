@@ -594,7 +594,7 @@ input[type="checkbox"] {
   }
   .modal {
     position: absolute;
-    transform: translateY(30%);
+    //transform: translateY(30%);
   }
   .modal-open {
     .col-sm-7 {
@@ -627,15 +627,14 @@ input[type="checkbox"] {
   }
   .modal-dialog {
     right: 20%;
-    top: 5%;
+    top: 10%;
   }
   .help-modal-image {
     img {
       border-radius: 50%;
-      width: 200px;
       width: 100%;
-      max-width: 250px;
-      height: 250px;
+      max-width: 200px;
+      height: 200px;
     }
   }
   .help-modal-title {
