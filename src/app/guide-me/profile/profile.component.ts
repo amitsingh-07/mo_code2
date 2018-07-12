@@ -52,7 +52,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
   }
   goToInfo(form) {
     if (this.save(form)) {
-      this.router.navigate(['/guideme/get-started']);
+      this.router.navigate(['../guideme/getstarted']);
     }
   }
 }

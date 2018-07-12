@@ -147,6 +147,34 @@ body {
 .width100 {
   width: 100%;
 }
+#getStrdeForm {
+  .getStrdeForm-flex-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .getStrdeForm-radiogrp {
+    display: flex;
+    justify-content: space-around;
+  }
+  .fxdWdth-btn {
+    .btn {
+      width: 100px;
+      height: 60px;
+      border: 1px solid #8cd7d7;
+      color: #8cd7d7;
+      background: transparent;
+      &.active {
+        border: 1px solid #FFF;
+        color: #FFF;
+        background: transparent;
+      }
+    }
+    .btn-txtWrp {
+      white-space:normal !important;
+      line-height:normal !important;
+    }
+  }
+}
 
 /*Media Queries*/
 /* Smartphones (portrait and landscape) ----------- */
@@ -506,4 +534,6 @@ body {
     }
   }
   
-  
+  .modal-content {
+    background: transparent;
+}
