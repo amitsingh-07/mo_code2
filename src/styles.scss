@@ -33,7 +33,8 @@ body {
     .navbar-nav {
         -ms-flex-direction: row;
         flex-direction: row;
-        float: left;
+        display: flex;
+        align-items: center;
         margin: 0;
     }
   }
@@ -41,8 +42,6 @@ body {
   .navbar {
     background-color: $module-fill-color;
     box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
-    min-height: 84px;
-    line-height: 50px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -64,15 +63,27 @@ body {
     height: 40px;
   }
   .bfa-logo {
-    background-image: url("./assets/images/bfa-logo.jpg");
+    background-image: url("./assets/images/group-6.png");
     width: 110px;
+    margin-top:20px;
   }
   .bfa-back-btn {
-    background-image: url("./assets/images/header-back.jpg");
-    width: 40px;
+    background-image: url("./assets/images/group-16.png");
+    width: 55px;
+    height: 43px;
+  }
+  .bfa-back-btn-mobile {
+    background-image: url("./assets/images/back-new.png");
+    width: 17px;
+    height: 15px;
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    cursor: pointer;
   }
   .logo-line {
     padding: 0 5px;
+    color: #8cd7d7;
   }
   .logo-sub-title {
     line-height: 52px;
@@ -90,7 +101,7 @@ body {
     background-image: url("./assets/images/main_img_profile.png");
   }
   .get-started-image {
-    background-image: url("./assets/images/main_img_getstarted.png");
+    background-image: url("./assets/images/group.png");
   }
   
 /*Form Styles*/
@@ -129,6 +140,7 @@ body {
     box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
     padding: 0.90rem;
   }
+
 }
 
 /*Important Class*/
@@ -139,33 +151,37 @@ body {
 /*Media Queries*/
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-      &.hidden-sm-md {
-        display: none;
+        &.hidden-sm-md {
+          display: none;
+        }
+        &.hidden-lg {
+          display: block;
+        }
+        .navbar {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 50px;
+          line-height: 50px;
+          font-size: 20px;
+        }
+      .navbar-nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
       }
-      &.hidden-lg {
-        display: block;
-      }
-    .navbar {
-      flex-direction: row;
-      text-align: center;
-      min-height: 50px;
-      line-height: 50px;
-      .logo-sub-title {
-        position: absolute;
-        left: 30%;
-      }
-    }
-    .navbar-nav {
-      flex-direction: row;
-    }
 
-    .btn {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      border-radius: 0;
-      margin: 0 -15px;
-    }
+      .btn-ftr {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        border-radius: 0;
+        margin: 0 -15px;
+      }
+      .container-fluid {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
   }
   
   /* Smartphones (landscape) ----------- */
