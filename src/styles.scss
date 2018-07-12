@@ -255,6 +255,12 @@ input[type="checkbox"] {
     margin-bottom: 60px;
     margin-top: 60px;
   }
+  .help-modal-image {
+    img {
+      border-radius: 0 !important;
+    }
+    width: 100%;
+  }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -590,6 +596,55 @@ input[type="checkbox"] {
     position: absolute;
     transform: translateY(30%);
   }
+  .modal-open {
+    .col-sm-7 {
+      opacity: 0;
+    }
+    button.close {
+      background: #FFF;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      opacity: 1;
+      right: 43%;
+      top: 6%;
+    }
+    .modal .close span {
+      width: 18px;
+      height: 18px;
+      color: #cccccc;
+      top: 5px;
+      position: absolute;
+      right: 15px;
+    }
+    .modal-header {
+      justify-content: left;
+      margin-bottom: 20px;
+    }
+    .help-modal-title {
+      color: #FFF !important;
+    }
+  }
+  .modal-dialog {
+    right: 20%;
+    top: 5%;
+  }
+  .help-modal-image {
+    img {
+      border-radius: 50%;
+      width: 200px;
+      width: 100%;
+      max-width: 250px;
+      height: 250px;
+    }
+  }
+  .help-modal-title {
+    background: transparent !important;
+  }
+  .modal-body {
+    background: transparent !important;
+    color: #FFF;
+  }
 }
 
 /* Large screens ----------- */
@@ -653,6 +708,7 @@ input[type="checkbox"] {
 }
 
 .modal {
+  width: 100%;
   .close {
     position: absolute;
     right: 10px;
@@ -668,8 +724,5 @@ input[type="checkbox"] {
     font-size: 22pt;
     font-family: $muli-bold;
     color: $app-backgrnd-colr;
-  }
-  .help-modal-image {
-    width: 100%;
   }
 }
