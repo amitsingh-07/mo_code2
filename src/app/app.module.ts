@@ -1,3 +1,4 @@
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +9,7 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ErrorModalComponent } from './guide-me/error-modal/error-modal.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { LoaderComponent } from './shared/loader/loader.component';
@@ -19,7 +21,8 @@ import { LoggerService } from './shared/logger/logger.service';
     AppComponent,
     HeaderComponent,
     HelpModalComponent,
-    LoaderComponent
+    LoaderComponent,
+    ErrorModalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +35,10 @@ import { LoggerService } from './shared/logger/logger.service';
     HttpModule
   ],
 
-  providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService }],
+  providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService },
+              {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent]
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent]
 })
 
 export class AppModule {

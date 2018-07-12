@@ -126,7 +126,7 @@ input[type="checkbox"] {
   div>input[type='radio']+label {
     margin: 0;
     clear: none;
-    padding: 5px 0 4px 30px;
+    padding: 5px 0 4px 40px;
     cursor: pointer;
     background: url("./assets/images/rectangle-4.png") left center no-repeat;
   }
@@ -250,6 +250,7 @@ input[type="checkbox"] {
   }
   .modal-body {
     border-radius: 0px !important;
+    padding: 15px 25px;
   }
   .form-container {
     margin-bottom: 60px;
@@ -588,7 +589,6 @@ input[type="checkbox"] {
   }
   .modal {
     position: absolute;
-    transform: translateY(30%);
   }
 }
 
@@ -622,6 +622,7 @@ input[type="checkbox"] {
 .modal-body {
   background: white;
   border-radius: 5px;
+  padding: 15px 25px;
 }
 
 .modal-body-title {
@@ -633,6 +634,7 @@ input[type="checkbox"] {
   line-height: normal;
   letter-spacing: -0.2px;
   color: #009999;
+  margin-bottom: 10px;
 }
 
 .modal-body-message {

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 import { ApiService } from './../shared/http/api.service';
+import { FormError } from './get-started/get-started-form/form-error';
+import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
 import { Profile } from './profile/profile';
 
@@ -11,6 +12,7 @@ import { Profile } from './profile/profile';
 })
 export class GuideMeService {
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
+  private formError: any = new FormError();
   private isProfileFormValid: boolean ;
 
   constructor(private http: HttpClient, private apiService: ApiService) {
@@ -27,6 +29,24 @@ export class GuideMeService {
     this.isProfileFormValid = true;
     this.guideMeFormData.myProfile = data.myProfile;
   }
+  getUserInfo(): UserInfo {
+    const userInfoForm: UserInfo = {
+      gender: this.guideMeFormData.gender,
+      dob: this.guideMeFormData.dob,
+      smoker: this.guideMeFormData.smoker,
+      dependent: this.guideMeFormData.dependent
+    };
+    return userInfoForm;
+  }
+
+  setUserInfo(data: UserInfo) {
+    this.isProfileFormValid = true;
+    this.guideMeFormData.gender = data.gender;
+    this.guideMeFormData.dob = data.dob;
+    this.guideMeFormData.smoker = data.smoker;
+    this.guideMeFormData.dependent = data.dependent;
+
+  }
 
   getGuideMeFormData(): GuideMeFormData {
     // Return the entire GuideMe Form Data
@@ -36,4 +56,21 @@ export class GuideMeService {
   getProfileList() {
     return this.apiService.getProfileList();
   }
+
+  currentFormError(form) {
+    const invalid = [];
+    const invalidFormat = [];
+    const controls = form.controls;
+    for (const name in controls) {
+         if (controls[name].invalid) {
+           invalid.push(name);
+           invalidFormat.push(Object.keys(controls[name]['errors']));
+         }
+       }
+    return this.getFormError(invalid[0], invalidFormat[0][0]);
+  }
+
+  getFormError( formCtrlName: string, validation: string): string {
+    return this.formError.formFieldErrors[formCtrlName][validation];
+}
 }

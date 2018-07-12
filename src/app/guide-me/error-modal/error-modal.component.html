@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div>
+  </div>
+  <div class="modal-body">
+    <div class="modal-body-title">{{errorTitle}}</div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <div class="modal-body-message">{{errorMessage}}</div>
+  </div>
+  

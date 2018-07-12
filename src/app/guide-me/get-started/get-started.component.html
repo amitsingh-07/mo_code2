@@ -9,59 +9,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-          <form name="getStartedForm" [formGroup]="getStartedForm" class="bfa-form-group" id="getStartedForm">
-            <div class="getStartedForm-flex-row">
-                <div>I am a</div>
-                <div class="getStartedForm-radiogrp btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
-                <div style="margin-right: 10px;" class="fxdWdth-btn">
-                    <label ngbButtonLabel class="btn-outline-primary">
-                        <input ngbButton type="radio" [value]="1" formControlName="gender"> Male
-                    </label>
-                </div>
-                <div class="fxdWdth-btn">
-                    <label ngbButtonLabel class="btn-outline-primary">
-                        <input ngbButton type="radio" value="middle" formControlName="gender"> Female
-                      </label>
-                </div>
-                </div>  
-            </div>
-            <div class="getStartedForm-flex-row">
-                    <div>Dependents</div>
-                    <div class="getStartedForm-radiogrp btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
-                    <div class="fxdWdth-btn">
-                        <label ngbButtonLabel class="btn-outline-primary">
-                            <input ngbButton type="input" value="dob" formControlName="dob">
-                          </label>
-                    </div>
-                    </div>  
-                </div>
-            <div class="getStartedForm-flex-row">
-                <div>I am a</div>
-                <div class="getStartedForm-radiogrp btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
-                <div style="margin-right: 10px;" class="fxdWdth-btn">
-                    <label ngbButtonLabel class="btn-outline-primary">
-                        <input ngbButton type="radio" [value]="1" formControlName="isSmoker"><span class="btn-txtWrp">Non-Smoker</span>
-                    </label>
-                </div>
-                <div class="fxdWdth-btn">
-                    <label ngbButtonLabel class="btn-outline-primary">
-                        <input ngbButton type="radio" value="middle" formControlName="isSmoker"> Smoker
-                      </label>
-                </div>
-                </div>  
-            </div>
-            <div class="getStartedForm-flex-row">
-                    <div>Dependents</div>
-                    <div class="getStartedForm-radiogrp btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
-                    <div class="fxdWdth-btn">
-                        <label ngbButtonLabel class="btn-outline-primary">
-                            <input ngbButton type="input" value="middle" formControlName="dependents">
-                          </label>
-                    </div>
-                    </div>  
-                </div>
-                
-          </form>
+          <app-get-started-form></app-get-started-form>
       </div>
     </div>
   </div>
