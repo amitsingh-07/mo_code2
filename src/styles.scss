@@ -126,7 +126,7 @@ input[type="checkbox"] {
   div>input[type='radio']+label {
     margin: 0;
     clear: none;
-    padding: 5px 0 4px 30px;
+    padding: 5px 0 4px 40px;
     cursor: pointer;
     background: url("./assets/images/rectangle-4.png") left center no-repeat;
   }
@@ -250,10 +250,17 @@ input[type="checkbox"] {
   }
   .modal-body {
     border-radius: 0px !important;
-  }
+	color: #000;
+	padding: 15px 25px;  }
   .form-container {
     margin-bottom: 60px;
     margin-top: 60px;
+  }
+  .help-modal-image {
+    img {
+      border-radius: 0 !important;
+}
+    width: 100%;
   }
 }
 
@@ -588,7 +595,54 @@ input[type="checkbox"] {
   }
   .modal {
     position: absolute;
-    transform: translateY(30%);
+  }
+  .modal-open {
+    .col-sm-7 {
+      opacity: 0;
+}
+    button.close {
+      background: #FFF;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      opacity: 1;
+      right: 43%;
+      top: 6%;
+    }
+    .modal .close span {
+      width: 18px;
+      height: 18px;
+      color: #cccccc;
+      top: 5px;
+      position: absolute;
+      right: 15px;
+    }
+    .modal-header {
+      justify-content: left;
+      margin-bottom: 20px;
+    }
+    .help-modal-title {
+      color: #FFF !important;
+    }
+  }
+  .modal-dialog {
+    right: 20%;
+    top: 10%;
+  }
+  .help-modal-image {
+    img {
+      border-radius: 50%;
+      width: 100%;
+      max-width: 200px;
+      height: 200px;
+    }
+  }
+  .help-modal-title {
+    background: transparent !important;
+  }
+  .modal-body {
+    background: transparent !important;
+    color: #FFF;
   }
 }
 
@@ -622,6 +676,7 @@ input[type="checkbox"] {
 .modal-body {
   background: white;
   border-radius: 5px;
+  padding: 15px 25px;
 }
 
 .modal-body-title {
@@ -633,6 +688,7 @@ input[type="checkbox"] {
   line-height: normal;
   letter-spacing: -0.2px;
   color: #009999;
+  margin-bottom: 10px;
 }
 
 .modal-body-message {
@@ -653,6 +709,7 @@ input[type="checkbox"] {
 }
 
 .modal {
+  width: 100%;
   .close {
     position: absolute;
     right: 10px;
@@ -669,7 +726,4 @@ input[type="checkbox"] {
     font-family: $muli-bold;
     color: $app-backgrnd-colr;
   }
-  .help-modal-image {
-    width: 100%;
   }
-}

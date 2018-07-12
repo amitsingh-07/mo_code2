@@ -1,3 +1,54 @@
-<p>
-  get-started-form works!
-</p>
+<section class="container-fluid">
+      <div>
+        <div class="doselfCheck setpOneForm">
+            <section>
+            <form name="userInfos" [formGroup]="userInfos">
+               <!--<h2>What's Your Profile</h2>-->
+                <div class="fGroup" >
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">I'm a </label>
+                        <select formControlName="gender" class="form-control col-sm-7">
+                          <option value="">Select</option>
+                          <option value="male" >Male</option>
+                          <option value="female">Female</option>
+                        </select>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">born on </label>
+                            <input class="form-control col-sm-7" placeholder="dd-mm-yyyy"
+                                    name="dp" formControlName="dob" ngbDatepicker #d="ngbDatepicker" myDateFormatter (click)="d.toggle()">
+                      </div>
+                      
+                      <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">and a </label>
+                          <select formControlName="smoker" class="form-control col-sm-7">
+                            <option value="Smoker">Smoker</option>
+                            <option value="Non - Smoker">Non-Smoker</option>
+                          </select>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">I have </label>
+                          <select formControlName="dependent" class="form-control col-sm-7">
+                            <option value="">Dependent</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                          </select>
+                      </div>
+                      
+                      
+                        <p class="depText">Meaning of Dependent</p>
+                      
+                  <button class="btn btn-primary btn-lg col-sm-7 bn" (click)="goToNeed(userInfos)">Let's go</button>
+                </div>
+             </form>
+          
+        </section>
+        </div>
+      </div>
+  </section>
+  
+  {{formValues | json}}
+  

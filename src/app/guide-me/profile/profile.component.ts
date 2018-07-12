@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +24,8 @@ const profileHelpImages = {
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProfileComponent implements IPageComponent, OnInit {
 
@@ -47,7 +48,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
   }
 
   showHelpModal(id) {
-    const ref = this.modal.open(HelpModalComponent);
+    const ref = this.modal.open(HelpModalComponent, { centered: true });
 
     ref.componentInstance.description = this.profileList[id].description;
     ref.componentInstance.title = this.profileList[id].name;
