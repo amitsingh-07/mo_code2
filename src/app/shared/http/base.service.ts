@@ -1,12 +1,14 @@
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 import { Injectable } from '@angular/core';
 import { RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { appConstants } from './../../app.constants';
+import { ConfigService, IConfig } from './../../config/config.service';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
 import { HttpService } from './http.service';
@@ -17,16 +19,22 @@ import { IServerResponse } from './interfaces/server-response.interface';
   providedIn: 'root'
 })
 export class BaseService {
+  config$: Observable<IConfig>;
+
   constructor(
     public http: HttpService,
     public errorHandler: CustomErrorHandlerService,
-    public helperService: HelperService
-  ) {}
+    public helperService: HelperService,
+    public configService: ConfigService
+  ) {
+    this.config$ = this.configService.getConfig();
+  }
   get(url) {
     // Helper service to start ng2-slim-loading-bar progress bar
     this.helperService.startLoader();
+    return this.config$.mergeMap( (config) => {
     return this.http
-      .get(url)
+      .get(`${config.apiBaseUrl}/${url}`)
       .map((res: Response) => {
         return this.handleResponse(res);
       })
@@ -37,6 +45,7 @@ export class BaseService {
         // stop ng2-slim-loading-bar progress bar
         this.helperService.stopLoader();
       });
+    });
   }
 
   post(url, postBody: any, options?: RequestOptions) {

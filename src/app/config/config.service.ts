@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, share } from 'rxjs/operators';
 
 export interface IConfig {
   apiBaseUrl: string;
@@ -14,11 +14,11 @@ export interface IConfig {
 export class ConfigService {
   private configUrl = 'assets/config.json';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getConfig() {
     return this.http.get<IConfig>(this.configUrl).pipe(
-      retry(3), // retry a failed request up to 3 times
+      share(),
       catchError(this.handleError) // then handle the error
     );
   }
