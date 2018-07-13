@@ -48,7 +48,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
   }
 
   showHelpModal(id) {
-    const ref = this.modal.open(HelpModalComponent, { centered: true });
+    const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
 
     ref.componentInstance.description = this.profileList[id].description;
     ref.componentInstance.title = this.profileList[id].name;
