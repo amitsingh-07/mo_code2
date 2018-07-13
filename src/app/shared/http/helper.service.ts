@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { LoaderComponent } from './../loader/loader.component';
-
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
   loadingModalRef: NgbModalRef;
+
   constructor(private modalService: NgbModal) { }
 
   /**

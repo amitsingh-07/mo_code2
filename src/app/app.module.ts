@@ -9,12 +9,12 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ErrorModalComponent } from './guide-me/error-modal/error-modal.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { LoaderComponent } from './shared/loader/loader.component';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
+import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
+import { LoaderComponent } from './shared/modal/loader/loader.component';
 
 @NgModule({
   declarations: [
