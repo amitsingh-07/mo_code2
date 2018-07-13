@@ -9,13 +9,14 @@ import { IPageComponent } from './../../shared/interfaces/page-component.interfa
   styleUrls: ['./get-started.component.scss']
 })
 export class GetStartedComponent implements IPageComponent, OnInit {
-
   pageTitle: string;
 
-  constructor(public headerService: HeaderService) { }
+  constructor(public headerService: HeaderService) {
+    this.pageTitle = 'Get Started';
+   }
 
   ngOnInit() {
-    this.headerService.setPageTitle('Get Started');
+    this.headerService.setPageTitle(this.pageTitle);
   }
 
 }

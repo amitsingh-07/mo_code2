@@ -1,22 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
+@import 'variables';
 /* You can add global styles to this file, and also import other style files */
 
-/* SCSS Variables */
-
-//app background
-$app-backgrnd-colr: #00a7a7;
-$module-fill-color: #FFFFFF;
-$btn-primary-backgrnd-color: #00c5c4;
-$btn-primary-shadow-color: #008b8b;
-//font usage of muli
-$muli-regular: 'Muli',
-sans-serif;
-$muli-light: 'Muli',
-sans-serif;
-$muli-medium: 'Muli',
-sans-serif;
-$muli-bold: 'Muli',
-sans-serif;
 /*Global Styles*/
 
 body {
@@ -32,6 +17,10 @@ body {
   height: 100%;
 }
 
+input::placeholder {
+  color: $app-backgrnd-colr !important;
+}
+
 input[type="radio"],
 input[type="checkbox"] {
   margin-top: 0;
@@ -45,6 +34,38 @@ input[type="checkbox"] {
     align-items: center;
     margin: 0;
   }
+}
+
+.btm-margin-10 {
+  margin-bottom: 10px !important;
+}
+
+.btm-margin-20 {
+  margin-bottom: 20px !important;
+}
+
+.inline-error {
+  color: $inline-error-border-color;
+  border: 1px solid $inline-error-border-color;
+  background: $inline-error-bg-color;
+  border-radius: 4px;
+  * {
+    background: $inline-error-bg-color !important;
+  }
+  input::placeholder {
+    color: $inline-error-border-color !important;
+  }
+  div {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+
+.ic-dp {
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  margin-bottom: 1px;
 }
 
 .navbar {

@@ -1,3 +1,119 @@
+@import '../../../../variables';
 #userInfoForm .col-sm-7 {
-    opacity: 1 !important;
+  opacity: 1 !important;
+}
+
+#dependentDropDown button.btn-dropdown {
+  color: $text-color-secondary;
+  span {
+    color: $app-backgrnd-colr;
+  }
+}
+
+.form-block {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.form-row {
+  width: 100%;
+  margin-bottom: 5px;
+  .form-col-left {
+    width: 40%;
+    display: flex;
+    align-items: center;
+  }
+  .form-col-right {
+    .btn-group-toggle {
+      .fixed-btn-sm {
+        border: 1px solid #8cd7d7;
+        color: #8cd7d7;
+        font-size: 14px;
+      }
+      .fixed-btn-sm {
+        &.active {
+          border: 1px solid #fff;
+          color: #fff;
+          background: transparent;
+        }
+      }
+    }
+    .input-group {
+      width: 250px;
+      margin-bottom: 8px;
+      input{
+        pointer-events: none;
+      }
+      .form-control {
+        border: transparent;
+        color: $app-backgrnd-colr;
+        background: #fff;
+      }
+    }
+    .btn-default {
+      background: #FFF;
+      padding: .90rem;
+      text-align: left;
+    }
+    .btn-default:after {
+      background-image: url('./../../../../assets/images/shape-copy-3.png');
+      width: 16px;
+      height: 10px;
+      border: none;
+      position: absolute;
+      top: 25px;
+      right: 15px;
+    }
+    .input-group-append {
+      .btn-primary {
+        background: #FFF;
+        border: transparent;
+      }
+    }
+    width: 60%;
+  }
+}
+
+.fixed-btn-sm {
+  width: 120px;
+  padding: .90rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+}
+
+.fixed-btn-lg {
+  width: 250px;
+  padding: .90rem;
+}
+
+.bfa-form {
+  .btn-primary {
+    background-color: $btn-primary-backgrnd-color;
+    border-color: $btn-primary-backgrnd-color;
+    padding: 0.90rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #userInfoForm {
+    margin-top: 50px;
+  }
+
+  .fixed-btn-sm {
+    width: 90px;
+    padding: 5px 10px;
+    white-space: normal;
+  }
+  .fixed-btn-lg {
+    width: 190px;
+    padding: .90rem;
+  }
+  .input-group {
+    width: 190px !important;
+  }
+  .btn-ftr-get-started {
+    margin: 0 -30px;
+  }
 }
