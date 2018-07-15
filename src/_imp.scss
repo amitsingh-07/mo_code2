@@ -1,4 +1,4 @@
-.clearfix { @include clearfix; }
+//.clearfix { @include clearfix; }
 
 .is-hidden    { display:    none !important; }
 .is-invisible { visibility: none !important; }
@@ -14,7 +14,14 @@
 .text-center { text-align: center !important; }
 .text-right  { text-align: right  !important; }
 
-.mt0 { margin-top:    0   !important; }
-.mt1 { margin-top:    1em !important; }
-.mb0 { margin-bottom: 0   !important; }
+.width100 { width: 100%; }
+.white-bg { background: #FFF}
+
+.mt0 { margin-top: 0 !important; }
+.mt1 { margin-top: 1em !important; }
+.mt30 { margin-top: 30px !important; }
+.mb0 { margin-bottom: 0 !important; }
 .mb1 { margin-bottom: 1em !important; }
+.mb10 { margin-bottom: 10px !important; }
+.mb20 { margin-bottom: 20px !important; }
+.mr10 { margin-right: 10px !important; }

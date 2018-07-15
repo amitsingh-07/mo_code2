@@ -1,95 +1,87 @@
-<section class="container-fluid">
-  <div>
+<div class="container-fluid">
     <div class="doselfCheck setpOneForm">
-      <section>
         <form id="userInfoForm" name="userInfoForm" [formGroup]="userInfoForm">
-          <div class="bfa-form">
-            <ul class="form-block">
-              <li class="form-row">
-                <div class="form-col-left">
+            <ul class="form__block">
+              <li class="form__row">
+                <div class="form__col--left">
                   <label for="name">I am a</label>
                 </div>
-                <div class="form-col-right">
-                  <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
+                <div class="form__col--right">
+                  <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioBasic">
                     <div style="margin-right: 10px;">
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn-sm">
+                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
                         <input ngbButton formControlName="gender" type="radio" [value]="1"> Male
                       </label>
                     </div>
                     <div>
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn-sm">
+                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
                         <input ngbButton formControlName="gender" type="radio" value="middle"> Female
                       </label>
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="form-row">
-                <div class="form-col-left">
+              <li class="form__row">
+                <div class="form__col--left">
                   <label for="name">Born on</label>
                 </div>
-                <div class="form-col-right">
-                    <div class="input-group" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
+                <div class="form__col--right">
+                  <div class="input-group" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
                     <input readonly class="form-control" placeholder="DD/MM/YYYY" [(ngModel)]="dobValue" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker" required>
                     <div class="input-group-append">
                       <button class="btn btn-primary" (click)="d.toggle()" type="button">
-                        <img class="ic-dp" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/shape.png" />
-                        <img class="ic-dp" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/ic-dp-error.png" />
+                        <img class="date-picker-image--valid" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/shape.png" />
+                        <img class="date-picker-image--invalid" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/ic-dp-error.png" />
                       </button>
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="form-row">
-                <div class="form-col-left">
+              <li class="form__row">
+                <div class="form__col--left">
                   <label for="name">And a</label>
                 </div>
-                <div class="form-col-right">
-                  <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
-                    <div style="margin-right: 10px;">
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn-sm">
+                <div class="form__col--right">
+                  <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioBasic">
+                    <div class="mr10">
+                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
                         <input ngbButton formControlName="smoker" type="radio" [value]="1"> Non - Smoker
                       </label>
                     </div>
                     <div>
-                      <label ngbButtonLabel class="btn-outline-primary fixed-btn-sm">
+                      <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
                         <input ngbButton formControlName="smoker" type="radio" value="middle"> Smoker
                       </label>
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="form-row btm-margin-10">
-                <div class="form-col-left">
+              <li class="form__row mb10">
+                <div class="form__col--left">
                   <label for="name">I have</label>
                 </div>
-                <div class="form-col-right">
+                <div class="form__col--right">
                   <div ngbDropdown class="d-inline-block" id="dependentDropDown">
-                    <button class="btn btn-default fixed-btn-lg btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                    <button class="btn btn-default fixed-btn--lg btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                       <span>{{dependents}}</span> Dependent(s)</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                       <button class="dropdown-item" *ngFor="let count of dependentItems" (click)="selectDependentsCount(count)">{{count}} Dependent(s)</button>
                     </div>
                   </div>
                 </div>
-
               </li>
-              <li class="form-row btm-margin-20">
-                <div class="form-col-left">
+              <li class="form__row mb20">
+                <div class="form__col--left">
                 </div>
-                <div class="form-col-right">
-                    <strong>Meaning of Dependant</strong><br/>
+                <div class="form__col--right">
+                    <strong>Meaning of Dependent</strong><br/>
                     Siblings, Parents, Spouse &amp; Children that I’m supporting
                 </div>
               </li>
             </ul>
             <div>
-              <button type="button" (click)="goToNext(userInfoForm)" class="btn btn-ftr btn-ftr-get-started btn-primary btn-ftr width100">Continue</button>
+              <button type="button" (click)="goToNext(userInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">Continue</button>
             </div>
-          </div>
         </form>
-
-      </section>
     </div>
   </div>
-</section>

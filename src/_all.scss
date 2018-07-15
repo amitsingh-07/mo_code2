@@ -1,4 +1,10 @@
 /*Global Styles*/
+html, body {
+  height: 100%;
+}
+ul, ul li {
+  list-style: none;
+}
 body {
     background-color: $app-backgrnd-colr;
     -webkit-overflow-scrolling: touch;
@@ -6,18 +12,9 @@ body {
     font-family: $muli-regular;
     color: $module-fill-color;
   }
-  
-  html, body {
-    height: 100%;
-  }
- 
-  .ic-dp {
-    width: auto;
-    height: auto;
-    cursor: pointer;
-    margin-bottom: 1px;
-  }
-  
+
+  /*Nav Bar Styles*/
+
   .navbar {
     background-color: $module-fill-color;
     box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
@@ -35,28 +32,24 @@ body {
       justify-content: space-between;
     }
   }
-  
-  .bfa-logo,
-  .bfa-back-btn {
+  .navbar__logo,
+  .navbar__back-btn--web {
     background-repeat: no-repeat;
     display: block;
     height: 40px;
     cursor: pointer;
   }
-  
-  .bfa-logo {
+  .navbar__logo {
     background-image: url("./assets/images/group-6.png");
     width: 110px;
     margin-top: 20px;
   }
-  
-  .bfa-back-btn {
+  .navbar__back-btn--web {
     background-image: url("./assets/images/group-16.png");
     width: 55px;
     height: 43px;
   }
-  
-  .bfa-back-btn-mobile {
+  .navbar__back-btn--mobile {
     background-image: url("./assets/images/back-new.png");
     width: 17px;
     height: 15px;
@@ -65,21 +58,17 @@ body {
     top: 25px;
     cursor: pointer;
   }
-  
-  .logo-line {
+  .navbar__logo__divider {
     padding: 0 5px;
     color: #8cd7d7;
   }
-  
-  .logo-sub-title {
+  .navbar__logo__subtitle {
     line-height: 52px;
     padding-left: 5px;
     font-size: 13px;
     font-weight: 700;
   }
-  
-  .profile-image,
-  .get-started-image {
+  .profile-image, .get-started-image {
     background-repeat: no-repeat;
     display: block;
     height: 320px;
@@ -87,39 +76,5 @@ body {
     margin-top: 50px;
   }
   
-  /*Important Class*/
-  
-  .width100 {
-    width: 100%;
-  }
-  
-  #getStrdeForm {
-    .getStrdeForm-flex-row {
-      display: flex;
-      justify-content: space-between;
-    }
-    .getStrdeForm-radiogrp {
-      display: flex;
-      justify-content: space-around;
-    }
-    .fxdWdth-btn {
-      .btn {
-        width: 100px;
-        height: 60px;
-        border: 1px solid #8cd7d7;
-        color: #8cd7d7;
-        background: transparent;
-        &.active {
-          border: 1px solid #FFF;
-          color: #FFF;
-          background: transparent;
-        }
-      }
-      .btn-txtWrp {
-        white-space: normal !important;
-        line-height: normal !important;
-      }
-    }
-  }
 
   

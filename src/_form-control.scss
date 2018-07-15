@@ -1,6 +1,6 @@
  /*Form Styles*/
   
- .bfa-form-group {
+ .form-group {
     div>input[type='radio']+label {
       margin: 0;
       clear: none;
@@ -37,11 +37,10 @@
     }
     .btn:disabled {
       opacity: 1 !important;
-      background-color: #00a7a7;
-      color: #00c5c4;
+      background-color: $btn-disabled;
+      color: $module-fill-color;
     }
   }
-  
   input::placeholder {
     color: $app-backgrnd-colr !important;
   }
@@ -50,15 +49,7 @@
   input[type="checkbox"] {
     margin-top: 0;
     display: none;
-  } //Navbar styles
-  .btm-margin-10 {
-    margin-bottom: 10px !important;
-  }
-  
-  .btm-margin-20 {
-    margin-bottom: 20px !important;
-  }
-  
+  } 
   .inline-error {
     color: $inline-error-border-color;
     border: 1px solid $inline-error-border-color;
