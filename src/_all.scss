@@ -1,0 +1,125 @@
+/*Global Styles*/
+body {
+    background-color: $app-backgrnd-colr;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: $muli-regular;
+    color: $module-fill-color;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+ 
+  .ic-dp {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    margin-bottom: 1px;
+  }
+  
+  .navbar {
+    background-color: $module-fill-color;
+    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: $app-backgrnd-colr;
+    justify-content: space-between;
+    >.container,
+    >.container-fluid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  
+  .bfa-logo,
+  .bfa-back-btn {
+    background-repeat: no-repeat;
+    display: block;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .bfa-logo {
+    background-image: url("./assets/images/group-6.png");
+    width: 110px;
+    margin-top: 20px;
+  }
+  
+  .bfa-back-btn {
+    background-image: url("./assets/images/group-16.png");
+    width: 55px;
+    height: 43px;
+  }
+  
+  .bfa-back-btn-mobile {
+    background-image: url("./assets/images/back-new.png");
+    width: 17px;
+    height: 15px;
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    cursor: pointer;
+  }
+  
+  .logo-line {
+    padding: 0 5px;
+    color: #8cd7d7;
+  }
+  
+  .logo-sub-title {
+    line-height: 52px;
+    padding-left: 5px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  
+  .profile-image,
+  .get-started-image {
+    background-repeat: no-repeat;
+    display: block;
+    height: 320px;
+    width: 100%;
+    margin-top: 50px;
+  }
+  
+  /*Important Class*/
+  
+  .width100 {
+    width: 100%;
+  }
+  
+  #getStrdeForm {
+    .getStrdeForm-flex-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .getStrdeForm-radiogrp {
+      display: flex;
+      justify-content: space-around;
+    }
+    .fxdWdth-btn {
+      .btn {
+        width: 100px;
+        height: 60px;
+        border: 1px solid #8cd7d7;
+        color: #8cd7d7;
+        background: transparent;
+        &.active {
+          border: 1px solid #FFF;
+          color: #FFF;
+          background: transparent;
+        }
+      }
+      .btn-txtWrp {
+        white-space: normal !important;
+        line-height: normal !important;
+      }
+    }
+  }
+
+  

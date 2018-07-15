@@ -1,0 +1,78 @@
+ /*Form Styles*/
+  
+ .bfa-form-group {
+    div>input[type='radio']+label {
+      margin: 0;
+      clear: none;
+      padding: 5px 0 4px 40px;
+      cursor: pointer;
+      background: url("./assets/images/rectangle-4.png") left center no-repeat;
+    }
+    div>input[type='radio']:checked+label {
+      background-image: url("./assets/images/group-3.png");
+    }
+    .form-control {
+      font-family: $muli-bold;
+      margin-bottom: 10px;
+      position: relative;
+      padding: 0.70rem;
+      .tooltip-icon {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+        background: url("./assets/images/baseline-help-24-px.png") no-repeat;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+      }
+    }
+    .btn {
+      font-family: $muli-bold;
+    }
+    .btn-primary {
+      background-color: $btn-primary-backgrnd-color;
+      border-color: $btn-primary-backgrnd-color;
+      box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
+      padding: 0.90rem;
+    }
+    .btn:disabled {
+      opacity: 1 !important;
+      background-color: #00a7a7;
+      color: #00c5c4;
+    }
+  }
+  
+  input::placeholder {
+    color: $app-backgrnd-colr !important;
+  }
+  
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-top: 0;
+    display: none;
+  } //Navbar styles
+  .btm-margin-10 {
+    margin-bottom: 10px !important;
+  }
+  
+  .btm-margin-20 {
+    margin-bottom: 20px !important;
+  }
+  
+  .inline-error {
+    color: $inline-error-border-color;
+    border: 1px solid $inline-error-border-color;
+    background: $inline-error-bg-color;
+    border-radius: 4px;
+    * {
+      background: $inline-error-bg-color !important;
+    }
+    input::placeholder {
+      color: $inline-error-border-color !important;
+    }
+    div {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+  
