@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { HeaderService } from './../../shared/header/header.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
@@ -6,7 +6,8 @@ import { IPageComponent } from './../../shared/interfaces/page-component.interfa
 @Component({
   selector: 'app-get-started',
   templateUrl: './get-started.component.html',
-  styleUrls: ['./get-started.component.scss']
+  styleUrls: ['./get-started.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GetStartedComponent implements IPageComponent, OnInit {
   pageTitle: string;

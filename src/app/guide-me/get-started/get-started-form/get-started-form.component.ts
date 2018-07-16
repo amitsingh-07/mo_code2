@@ -44,7 +44,6 @@ export class GetStartedFormComponent implements OnInit {
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       smoker: [this.formValues.smoker, Validators.required],
-      //dependent: [this.formValues.dependent, Validators.required]
     });
   }
 
