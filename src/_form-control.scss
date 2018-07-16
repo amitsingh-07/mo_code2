@@ -6,13 +6,14 @@
       clear: none;
       padding: 5px 0 4px 40px;
       cursor: pointer;
-      background: url("./assets/images/rectangle-4.png") left center no-repeat;
+      background: url("./assets/images/checkbox-normal.png") left center no-repeat;
     }
     div>input[type='radio']:checked+label {
-      background-image: url("./assets/images/group-3.png");
+      background-image: url("./assets/images/checkbox-active.png");
     }
     .form-control {
       font-family: $muli-bold;
+      font-size: 1.1rem;
       margin-bottom: 10px;
       position: relative;
       padding: 0.70rem;
@@ -20,7 +21,7 @@
         position: absolute;
         right: 10px;
         top: 18px;
-        background: url("./assets/images/baseline-help-24-px.png") no-repeat;
+        background: url("./assets/images/help-icon.png") no-repeat;
         height: 20px;
         width: 20px;
         cursor: pointer;
@@ -39,10 +40,11 @@
       opacity: 1 !important;
       background-color: $btn-disabled;
       color: $module-fill-color;
+      border-color: transparent;
     }
   }
   input::placeholder {
-    color: $app-backgrnd-colr !important;
+    color: $app-backgrnd-color !important;
   }
   
   input[type="radio"],

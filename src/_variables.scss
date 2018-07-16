@@ -1,8 +1,8 @@
 
 /* SCSS Variables */
 
-//app background
-$app-backgrnd-colr: #00a7a7;
+// app background
+$app-backgrnd-color: #00a7a7;
 $module-fill-color: #FFFFFF;
 $btn-primary-backgrnd-color: #00c5c4;
 $btn-primary-shadow-color: #008b8b;
@@ -11,11 +11,19 @@ $text-color-secondary: #5e5e5e;
 $inline-error-border-color: #e57300;
 $inline-error-bg-color: #fff3e9;
 
-//font usage of muli
+$white-color: #ffffff;
+$black-color: #000000;
+
+// font usage of muli
 $muli: 'Muli',sans-serif;   
 $muli-regular : 'Muli Regular',sans-serif;
 $muli-light: 'Muli Light',sans-serif;
 $muli-bold: 'Muli Bold',sans-serif;
+$muli-semi-bold: 'Muli Semi Bold',sans-serif;
 
-//button colors
+// button colors
 $btn-disabled: #bff1f1;
+
+// modal colors
+$modal-txt-highlight-color: #00a7a7;
+$modal-body-title-color: #009999;

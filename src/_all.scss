@@ -6,7 +6,7 @@ ul, ul li {
   list-style: none;
 }
 body {
-    background-color: $app-backgrnd-colr;
+    background-color: $app-backgrnd-color;
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-family: $muli-regular;
@@ -22,7 +22,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    color: $app-backgrnd-colr;
+    color: $app-backgrnd-color;
     justify-content: space-between;
     >.container,
     >.container-fluid {
@@ -37,20 +37,25 @@ body {
     background-repeat: no-repeat;
     display: block;
     height: 40px;
-    cursor: pointer;
   }
   .navbar__logo {
-    background-image: url("./assets/images/group-6.png");
+    background-image: url("./assets/images/logo.png");
     width: 110px;
     margin-top: 20px;
   }
   .navbar__back-btn--web {
-    background-image: url("./assets/images/group-16.png");
+    background-image: url("./assets/images/back-web.png");
     width: 55px;
     height: 43px;
+    cursor: pointer;
+  }
+  .navbar__back-btn--web {
+    &:hover {
+      background-image: url("./assets/images/back-web-hover.png");
+    }
   }
   .navbar__back-btn--mobile {
-    background-image: url("./assets/images/back-new.png");
+    background-image: url("./assets/images/back-mobile.png");
     width: 17px;
     height: 15px;
     position: absolute;
@@ -68,13 +73,5 @@ body {
     font-size: 13px;
     font-weight: 700;
   }
-  .profile-image, .get-started-image {
-    background-repeat: no-repeat;
-    display: block;
-    height: 320px;
-    width: 100%;
-    margin-top: 50px;
-  }
-  
 
   

@@ -29,8 +29,8 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
     NgbModule.forRoot(),
     AppRoutingModule,
     RouterModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     HttpModule
   ],

@@ -2,16 +2,19 @@
 #userInfoForm .col-sm-7 {
   opacity: 1 !important;
 }
+
 #dependentDropDown button.btn-dropdown {
   color: $text-color-secondary;
-  span {
-    color: $app-backgrnd-colr;
+  span.dependent-count {
+    color: $app-backgrnd-color;
   }
 }
+
 .form__block {
   margin-left: 0;
   padding-left: 0;
 }
+
 .form__row {
   width: 100%;
   margin-bottom: 5px;
@@ -38,12 +41,12 @@
     .input-group {
       width: 250px;
       margin-bottom: 8px;
-      input{
+      input {
         pointer-events: none;
       }
       .form-control {
         border: transparent;
-        color: $app-backgrnd-colr;
+        color: $app-backgrnd-color;
         background: $module-fill-color;
       }
     }
@@ -53,7 +56,7 @@
       text-align: left;
     }
     .btn-default:after {
-      background-image: url('./../../../../assets/images/shape-copy-3.png');
+      background-image: url('./../../../../assets/images/dropdown-icon.png');
       width: 16px;
       height: 10px;
       border: none;
@@ -75,10 +78,10 @@
         }
       }
     }
-
     width: 60%;
   }
 }
+
 #userInfoForm {
   .form__row {
     display: flex;
@@ -103,6 +106,7 @@
     }
   }
 }
+
 .fixed-btn--sm {
   width: 120px;
   padding: .90rem;
@@ -110,7 +114,12 @@
   display: flex;
   justify-content: center;
   height: 50px;
+  margin-bottom: 5px;
+  &:hover, &:active, &:focus {
+    background: transparent !important;
+  } 
 }
+
 .fixed-btn--lg {
   width: 250px;
   padding: .90rem;
@@ -123,6 +132,7 @@
     padding: 0.90rem;
   }
 }
+
 @media (max-width: 480px) {
   #userInfoForm {
     margin-top: 50px;
@@ -142,13 +152,22 @@
   .btn-ftr-get-started {
     margin: 0 -30px;
   }
+  .input-group.date-picker {
+    .dropdown-menu.show {
+      left: inherit !important;
+      right: 0px;
+    }
+  }
 }
-.date-picker-image--valid, .date-picker-image--invalid {
+
+.date-picker-image--valid,
+.date-picker-image--invalid {
   width: auto;
   height: auto;
   cursor: pointer;
   margin-bottom: 1px;
 }
+
 .get-started-image {
   background-repeat: no-repeat;
   display: block;
