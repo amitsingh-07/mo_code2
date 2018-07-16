@@ -1,4 +1,17 @@
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {}
+@import '../../../variables';
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .help-modal-dialog {
+    .help-modal-body {
+      h4 {
+        color: $modal-body-title-color !important;
+        text-transform: capitalize;
+        margin-bottom: 25px;
+        font-size: 18pt;
+        font-family: $muli-semi-bold;
+      }
+    }
+  }
+}
 
 @media only screen and (min-width: 1224px) {
   .modal {
@@ -15,44 +28,55 @@
       margin-bottom: 20px;
     }
     button.close {
-        background: #FFF;
-        border-radius: 50%;
-        height: 50px;
-        width: 50px;
-        opacity: 1;
-        right: 43%;
-        top: 6%;
-        padding: 0px;
-      }
-      button.close span {
-        width: 18px;
-        height: 18px;
-        color: #cccccc;
-        top: 7px;
-        position: absolute;
-        right: 16px;
-      }
-      .help-modal-title {
-        color: #FFF !important;
-      }
+      background: $module-fill-color;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      opacity: 1;
+      right: 43%;
+      top: 6%;
+      padding: 0px;
+    }
+    button.close span {
+      width: 18px;
+      height: 18px;
+      color: #cccccc;
+      top: 7px;
+      position: absolute;
+      right: 18px;
+    }
     .modal-dialog {
       right: 20% !important;
       top: 10% !important;
     }
     .help-modal-image {
-      img {
-        border-radius: 50%;
-        width: 100%;
-        max-width: 200px;
-        height: 200px;
-      }
+      background-size: cover !important;
+      background-position: center !important;
+      height: 223px;
+      width: 223px;
+      border-radius: 50%;
     }
     .help-modal-title {
       background: transparent !important;
+      color: $white-color !important;
+      text-transform: capitalize;
     }
     .help-modal-body {
       background: transparent !important;
-      color: #FFF;
+      color: $white-color;
+      h4 {
+        color: $white-color !important;
+        text-transform: capitalize;
+        margin-bottom: 25px;
+        font-size: 20pt;
+        font-family: $muli-semi-bold;
+      }
+      p {
+        margin-bottom: 20px;
+      }
+      b {
+        color: $modal-txt-highlight-color;
+      }
     }
   }
 }

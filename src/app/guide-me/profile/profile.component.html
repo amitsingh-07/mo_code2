@@ -1,25 +1,25 @@
 <!--Profile Screen-->
-<div class="container" style="margin-top:30px">
+<div class="container mt30">
   <div class="row">
     <div class="col-sm-7 hidden-sm-md">
       <h2>What's Your Profile? </h2>
-      <h5>Please choose the profile that best describes you.</h5>
+      <h6>Please choose the profile that best describes you.</h6>
       <div class="profile-image"></div>
     </div>
     <div class="col-sm-5">
-      <form name="profileForm" [formGroup]="profileForm" class="bfa-form-group">
+      <form name="profileForm" [formGroup]="profileForm" class="form-group" id="profileForm">
         <div class="form-container">
           <div class="form-control" *ngFor="let profiles of profileList; let i = index">
             <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.name}}"
               tabindex="{{i+1}}">
-            <label for="profile_{{i+1}}">
+            <label class="profile__input__lbl" for="profile_{{i+1}}">
               <span>{{profiles.name}}</span>
             </label>
             <i class="tooltip-icon" (click)="showHelpModal(i)"></i>
           </div>
         </div>
         <div>
-          <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary btn-ftr width100">Continue</button>
+          <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary btn__footer--fixed width100">Continue</button>
         </div>
       </form>
     </div>

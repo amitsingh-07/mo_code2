@@ -1,6 +1,7 @@
 export let apiConstants = {
     endpoint : {
         login: 'login',
-        getProfileList: 'insurance-needs-microservice/api/getProfileList'
+        getProfileList: 'account-microservice/api/getProfileTypeList',
+        getProtectionTypesList: 'insurance-needs-microservice/api/getProtectionTypesList'
     }
 };
