@@ -17,8 +17,7 @@ export class ApiService {
 
   getProfileList() {
     const url = '../assets/profile.json';
-    //return this.http.get(apiConstants.endpoint.getProfileList)
-    return this.http.get(url)
+    return this.http.get(apiConstants.endpoint.getProfileList)
     .pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.error instanceof ErrorEvent) {
