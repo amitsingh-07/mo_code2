@@ -16,7 +16,9 @@ export class ApiService {
   constructor(private configService: ConfigService, private http: BaseService, private httpClient: HttpClient) { }
 
   getProfileList() {
-    return this.http.get(apiConstants.endpoint.getProfileList)
+    const url = '../assets/profile.json';
+    //return this.http.get(apiConstants.endpoint.getProfileList)
+    return this.http.get(url)
     .pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.error instanceof ErrorEvent) {
@@ -28,7 +30,6 @@ export class ApiService {
           console.error(
             `Backend returned code ${error.status}, ` + `body was: ${error.error}`
           );
-          const url = '../assets/profile.json';
           return this.httpClient.get<IServerResponse>(url);
         }
         // return an observable with a user-facing error message

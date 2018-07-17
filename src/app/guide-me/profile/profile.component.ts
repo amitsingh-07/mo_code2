@@ -13,9 +13,9 @@ import { HeaderService } from './../../shared/header/header.service';
 const assetImgPath = './assets/images/';
 
 const profileHelpImages = {
-  helpImg_1: 'profile-parent.png',
-  helpImg_2: 'profile-single-professional.png',
-  helpImg_3: 'profile-married-with-no-kids.png',
+  helpImg_1: 'profile-single-professional.png',
+  helpImg_2: 'profile-married-with-no-kids.png',
+  helpImg_3: 'profile-parent.png',
   helpImg_4: 'profile-student.png',
   helpImg_5: 'profile-retiree.png',
   helpImg_6: 'profile-homemaker.png',

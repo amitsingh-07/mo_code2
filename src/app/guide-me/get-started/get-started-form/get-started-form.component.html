@@ -25,12 +25,12 @@
           <div class="form__col--left">
             <label for="name">Born on</label>
           </div>
-          <div  (click)="d.toggle()" id="usrFrmDp" #usrFrmDp class="form__col--right" (document:click)="onClickedOutside($event, d)">
+          <div #usrFrmDp class="form__col--right">
             <div class="input-group date-picker" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
               <input readonly class="form-control" placeholder="DD/MM/YYYY" [(ngModel)]="dobValue" formControlName="dob" name="dp" ngbDatepicker
                 #d="ngbDatepicker" required>
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button (click)="d.toggle()" class="btn btn-primary" type="button">
                   <img class="date-picker-image--valid" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-valid.png"
                   />
                   <img class="date-picker-image--invalid" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-invalid.png"
