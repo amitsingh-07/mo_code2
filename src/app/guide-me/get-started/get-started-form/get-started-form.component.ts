@@ -74,6 +74,7 @@ export class GetStartedFormComponent implements OnInit {
   }
 
   onClickedOutside(e, dp) {
+    /*
     if (!dp.isOpen() || e.target.id === dp
       || (e.target.offsetParent && e.target.offsetParent.localName.includes('ngb-datepicker'))
       || !(e.target.parentElement && e.target.parentElement.parentElement
@@ -83,6 +84,7 @@ export class GetStartedFormComponent implements OnInit {
     if (dp.isOpen() && !this.childOf(e.target, this.usrFrmDp.nativeElement)) {
       dp.close();
     }
+    */
   }
 
   childOf(node, ancestor) {
