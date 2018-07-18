@@ -125,14 +125,6 @@
   padding: .90rem;
 }
 
-#userInfoForm {
-  .btn-primary {
-    background-color: $btn-primary-backgrnd-color;
-    border-color: $btn-primary-backgrnd-color;
-    padding: 0.90rem;
-  }
-}
-
 @media (max-width: 480px) {
   #userInfoForm {
     margin-top: 50px;
@@ -150,7 +142,7 @@
     width: 190px !important;
   }
   .btn-ftr-get-started {
-    margin: 0 -30px;
+    margin: 0 -30px !important;
   }
   .input-group.date-picker {
     .dropdown-menu.show {

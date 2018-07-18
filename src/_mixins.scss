@@ -1,0 +1,142 @@
+// Custom media query mixins
+//--------------------------
+$mobile300-width: 300px;
+$mobile320-width: 320px;
+$mobile325-width: 325px;
+$mobile350-width: 350px;
+$mobile360-width: 360px;
+$mobile480-width: 480px;
+$mobile375-width: 375px;
+$mobile400-width: 400px;
+$mobile414-width: 414px;
+$mobile425-width: 425px;
+$mobile450-width: 450px;
+$mobile475-width: 475px;
+$mobile568-width: 568px;
+$mobile667-width: 667px;
+$phablet7-width: 700px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+// Responsive grid media queries
+@mixin min300max325 {
+  @media (min-width: #{$mobile300-width}) and (max-width: #{$mobile325-width - 1px}) {
+    @content;
+  }
+}
+@mixin min325max350 {
+  @media (min-width: #{$mobile325-width}) and (max-width: #{$mobile350-width - 1px}) {
+    @content;
+  }
+}
+@mixin min350max375 {
+  @media (min-width: #{$mobile350-width}) and (max-width: #{$mobile375-width - 1px}) {
+    @content;
+  }
+}
+@mixin min375max400 {
+  @media (min-width: #{$mobile375-width}) and (max-width: #{$mobile400-width - 1px}) {
+    @content;
+  }
+}
+@mixin min400max425 {
+  @media (min-width: #{$mobile400-width}) and (max-width: #{$mobile425-width - 1px}) {
+    @content;
+  }
+}
+@mixin min425max450 {
+  @media (min-width: #{$mobile425-width}) and (max-width: #{$mobile450-width - 1px}) {
+    @content;
+  }
+}
+@mixin min450max475 {
+  @media (min-width: #{$mobile450-width}) and (max-width: #{$mobile475-width - 1px}) {
+    @content;
+  }
+}
+// Responsive grid media queries
+//iphone screen size are
+@mixin iphone4 {
+  @media (min-width: #{$mobile320-width}) and (max-width: #{$mobile375-width - 1px}) {
+    @content;
+  }
+}
+@mixin iphone5 {
+  @media (min-width: #{$mobile320-width}) and (max-width: #{$mobile375-width - 1px}) {
+    @content;
+  }
+}
+@mixin min360 {
+  @media (min-width: #{$mobile360-width}) {
+    @content;
+  }
+}
+@mixin iphone6 {
+  @media (min-width: #{$mobile375-width}) and (max-width: #{$mobile414-width - 1px}) {
+    @content;
+  }
+}
+@mixin iphone6plus {
+  @media (min-width: #{$mobile414-width}) and (max-width: #{$mobile667-width - 1px}) {
+    @content;
+  }
+}
+@mixin allmobiles {
+  @media (min-width: #{$mobile320-width}) and (max-width: #{$mobile568-width - 1px}) {
+    @content;
+  }
+}
+@mixin phablet6 {
+  @media (min-width: #{$mobile667-width}) and (max-width: #{$phablet7-width - 1px}) {
+    @content;
+  }
+}
+@mixin phablet7 {
+  @media (min-width: #{$phablet7-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+// USAGE
+// .class{
+//  @include tablet {
+//    font-size: 18px;
+//  }
+// }
+//--------------------------
+// Custom media query mixins
+//---------------------------
+
+
+//Responsive font conversion
+//--------------------------
+@function fontRem($size) {
+$remSize: $size / 10px;
+@return #{$remSize}rem;
+}
+@mixin fontSize($size) {
+font-size: $size;
+font-size: fontRem($size);
+}
+//--------------------------
+//Responsive font conversion
+//Responsive Line heights conversion
+//-----------------------------------
+@function lineHeightRem($size) {
+$remSize: $size / 10px;
+@return #{$remSize}rem;
+}
+@mixin lineHeight($size) {
+line-height: $size;
+line-height: lineHeightRem($size);
+}
+//Responsive Line heights conversion
