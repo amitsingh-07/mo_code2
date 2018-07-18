@@ -9,6 +9,7 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FinancialAssessmentModule } from './financial-assessment/financial-assessment.module';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
@@ -32,7 +33,8 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    FinancialAssessmentModule
   ],
 
   providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService },
