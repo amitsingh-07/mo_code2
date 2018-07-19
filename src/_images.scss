@@ -1,6 +1,16 @@
-.profile-image {
-    background-image: url("./assets/images/profile-banner-image.png");
-  }
-.get-started-image {
-    background-image: url("./assets/images/get-started-banner-image.png");
+.banner-image {
+    background-repeat: no-repeat;
+    display: block;
+    height: 320px;
+    width: 100%;
+    margin-top: 50px;
+    &.profile {
+        background-image: url("./assets/images/profile-banner-image.png");
+    }
+    &.get-started {
+        background-image: url("./assets/images/get-started-banner-image.png");
+    }
+    &.choose-protection {
+        background-image: url("./assets/images/protection-need.png");
+    }
 }
