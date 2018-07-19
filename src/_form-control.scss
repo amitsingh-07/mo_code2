@@ -1,14 +1,14 @@
  /*Form Styles*/
 
  /*Check box / Radio Button styles*/
-  input[type='radio']+label {
+  input[type='radio']+label, input[type='checkbox']+label {
     margin: 0;
     clear: none;
     padding: 5px 0 4px 40px;
     cursor: pointer;
     background: url("./assets/images/checkbox-normal.png") left center no-repeat;
   }
-  input[type='radio']:checked+label {
+  input[type='radio']:checked+label, input[type='checkbox']:checked+label {
     background-image: url("./assets/images/checkbox-active.png");
   }
   input[type="radio"],
@@ -18,19 +18,33 @@
   } 
   /*form control styles*/
   .form-control {
-    font-family: $muli-bold;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    position: relative;
-    padding: 0.70rem;
-    .tooltip-icon {
-      position: absolute;
-      right: 10px;
-      top: 18px;
-      background: url("./assets/images/help-icon.png") no-repeat;
-      height: 20px;
-      width: 20px;
-      cursor: pointer;
+    &.profile, &.protection {
+      font-family: $muli-bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      position: relative;
+      padding: 0.70rem;
+      .tooltip-icon {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+        background: url("./assets/images/help-icon.png") no-repeat;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+      }
+    }
+    &.protection {
+      padding:0rem 0.10rem 0.10rem 1rem;
+    }
+    .input-label-strong, .input-label-normal {
+      text-transform: lowercase;
+      color: $text-color-secondary;
+      font-family: $muli-bold;
+    }
+    .input-label-normal {
+      font-family: $muli-regular;
+      @include fontSize(8px);
     }
   }
   /*Input placeholder styles*/
