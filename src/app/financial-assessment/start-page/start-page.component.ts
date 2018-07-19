@@ -11,5 +11,7 @@ export class StartPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  goNext() {
+    console.log('Proceed Button Triggered');
+  }
 }

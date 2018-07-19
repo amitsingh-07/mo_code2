@@ -22,4 +22,18 @@ describe('StartPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should render title in a .Financial-Assessment', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.Financial-Assessment').textContent).toContain('Financial Assessment');
+  }));
+  it('testing the proceed button', async(() => {
+    spyOn(component, 'goNext');
+
+    const button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+
+    fixture.whenStable().then(() => {
+      expect(component.goNext).toHaveBeenCalled();
+    });
+  }));
 });
