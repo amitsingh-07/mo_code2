@@ -1,0 +1,27 @@
+<!--Protection Needs-->
+<div class="container mt30 profile">
+  <div class="row">
+    <div class="col-sm-7 hidden-sm-md">
+      <h2>Protection Needs? </h2>
+        <h6>Here are the protection type(s) recommended for you. Uncheck those that are not a priority.</h6>
+        <div class="banner-image choose-protection"></div>
+    </div>
+    <div class="col-sm-5">
+      <form name="protectionNeedsForm" *ngIf="isFormLoaded" [formGroup]="protectionNeedsForm" id="protectionNeedsForm">
+        <div class="form-container" formArrayName="protectionNeedsArray" >
+          <div class="form-control protection" *ngFor="let protectionNeed of protectionNeedsList; let i = index" [formGroupName]="i">
+            <input id="protectionNeed_{{i+1}}" name="protectionNeed" (change)="changeEvent($event)" formControlName="status" type="checkbox" class="field checkbox" value="{{protectionNeed.protectionType}}"
+              tabindex="{{i+1}}">
+            <label for="protectionNeed_{{i+1}}">
+                <div  class="input-label-strong">{{protectionNeed.protectionType}}</div>
+                <div  class="input-label-normal">{{protectionNeed.protectionDesc}}</div>
+            </label>
+          </div>
+        </div>
+        <div>
+          <button type="button"  (click)="goToSteps(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

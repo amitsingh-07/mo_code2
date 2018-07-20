@@ -1,19 +1,19 @@
 <!--Profile Screen-->
-<div class="container mt30 profile">
+<div class="container mt30">
   <div class="row">
     <div class="col-sm-7 hidden-sm-md">
       <h2>What's Your Profile? </h2>
       <h6>Please choose the profile that best describes you.</h6>
-      <div class="profile-image"></div>
+      <div class="banner-image profile"></div>
     </div>
     <div class="col-sm-5">
       <form name="profileForm" [formGroup]="profileForm" class="form-group" id="profileForm">
         <div class="form-container">
-          <div class="form-control" *ngFor="let profiles of profileList; let i = index">
-            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.name}}"
+          <div class="form-control profile" *ngFor="let profiles of profileList; let i = index">
+            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.id}}"
               tabindex="{{i+1}}">
-            <label class="profile__input__lbl" for="profile_{{i+1}}">
-              <span>{{profiles.name}}</span>
+            <label for="profile_{{i+1}}">
+              <span class="input-label-strong">{{profiles.name}}</span>
             </label>
             <i class="tooltip-icon" (click)="showHelpModal(i)"></i>
           </div>
