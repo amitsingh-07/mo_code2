@@ -1,0 +1,39 @@
+// Button styles
+.btn {
+    @include fontSize(12px);
+    font-family: $muli-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding:0.90rem;
+    border-radius: 5px;
+    border: 0;
+    border: 0 solid transparent;
+    &.btn-primary {
+        background-color: $btn-primary-backgrnd-color;
+        border-color: $btn-primary-backgrnd-color;
+        box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
+        &:hover {
+            background-color: #0de0de;
+        }
+        &:focus {
+            outline: none !important;
+        }
+        &.active {
+            outline: none !important;
+            background: $btn-primary-backgrnd-color !important;
+        }
+    }
+    &:disabled {
+        opacity: 1 !important;
+        background-color: $btn-disabled;
+        color: $module-fill-color;
+        border-color: transparent;
+        &:hover {
+            background-color:$btn-disabled;
+        }
+    }
+    
+}
+
