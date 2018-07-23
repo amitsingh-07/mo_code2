@@ -1,5 +1,5 @@
 @import "../../../_variables.scss";
-.wrapper{
+.block__wrapper{
     position: relative;
     display: block;
     flex-direction:column;
@@ -8,7 +8,7 @@
     flex:1 0 0;
 } 
 
-.carousel-bar-container{
+.block__carousel-bar-container{
     position:relative;
     display:flex;
     justify-content:space-between;
@@ -17,7 +17,7 @@
     padding-top:20px;
     flex:0;
     
-    .carousel-bar{
+    .block__carousel-bar{
         position:relative;
         display:inline-block;
         width:calc(50% - 10px);
@@ -26,12 +26,12 @@
         background-color:$app-backgrnd-secondary-colr;
     }
 
-    .carousel-bar.active{
+    .block__carousel-bar.active{
         opacity:1;
     }
 }
 
-.content{
+.block__content{
     position: relative;
     display: flex;
     width:100%;
@@ -39,76 +39,76 @@
     align-items:center;
     margin-top:15vh;
     
-    .header_img{
+    .img__header-img{
         position:relative;
         display:block;
         width:400px;
         height:380px;
         transition:0.2s;
     }
+    .block__start-text-container{
+        position:relative;
+        display:block;
+        width:85%;
+    
+        .p__step-title {
+            opacity: 0.55;
+            font-family: $muli-regular;
+            font-size: 36px;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: -0.4px;
+            color: #ffffff;
+            margin-bottom:15px;
+        }
+        .p__start-title {
+            font-family: $muli;
+            font-size: 24px;
+            font-weight:600;
+            line-height: normal;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+            margin-bottom:8px;
+        }
+        .p__start-sub-title {
+            font-family: $muli-light;
+            font-size: 18px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.28;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+            margin-bottom:40px;
+        }
+        .button__proceed{
+            width: 179px;
+            height: 60px;
+            border:0px;
+            border-radius: 6px;
+            background-color: #ffffff;
+            box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+            font-family: Muli;
+            font-size: 22px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: -0.2px;
+            text-align: center;
+            color: #00a7a7;
+            cursor: pointer;
+        }
+    }
 }
 
-.start-text-container{
-    position:relative;
-    display:block;
-    width:85%;
-    
-    .Step-1 {
-        opacity: 0.55;
-        font-family: $muli-regular;
-        font-size: 36px;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: -0.4px;
-        color: #ffffff;
-        margin-bottom:15px;
-    }
-    .Financial-Assessment {
-        font-family: $muli;
-        font-size: 24px;
-        font-weight:600;
-        line-height: normal;
-        letter-spacing: -0.3px;
-        color: #ffffff;
-        margin-bottom:8px;
-    }
-    .In-the-next-step-we {
-        font-family: $muli-light;
-        font-size: 18px;
-        font-weight: normal;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.28;
-        letter-spacing: -0.2px;
-        color: #ffffff;
-        margin-bottom:40px;
-    }
-    .Rectangle-2{
-        cursor:pointer;
-        width: 179px;
-        height: 60px;
-        border:0px;
-        border-radius: 6px;
-        background-color: #ffffff;
-        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-        font-family: Muli;
-        font-size: 22px;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: -0.2px;
-        text-align: center;
-        color: #00a7a7;
-    }
-}
 
 
 @media(max-width:$col-md){
-    .content{
+    .block__content{
         margin-top:0px;
-        .header_img{
+        .img__header-img{
             width:80%;
             max-width:300px;
             height:auto;
@@ -117,7 +117,7 @@
         }
     }
 
-    .start-text-container{
+    .block__start-text-container{
         width:100%;
         text-align:center;
         margin:auto;
@@ -127,34 +127,34 @@
 }
 
 @media(max-width:$col-xs){
-    .carousel-bar-container{
+    .block__carousel-bar-container{
         padding-left:10px;
         padding-right:10px;
 
-        .carousel-bar{
+        .block__carousel-bar{
             width:calc(50% - 4px);
         }
     }
 
-    .content{
+    .block__content{
         padding:0px !important;
         
-        .header_img{
+        .img__header-img{
            min-width:200px;
            width:70%; 
         }
-    }
-    
-    .start-text-container{
-        margin-top:2vh;
-        margin-bottom:5vh;
-        .Rectangle-2{
-            position: fixed;
-            width:100%;
-            bottom:0px;
-            left:0px;
-            border-radius:0px;
-        }
 
+        .block__start-text-container{
+            margin-top:2vh;
+            margin-bottom:5vh;
+            .button__proceed{
+                position: fixed;
+                width:100%;
+                bottom:0px;
+                left:0px;
+                border-radius:0px;
+            }
+    
+        }
     }
 }

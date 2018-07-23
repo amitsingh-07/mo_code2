@@ -1,48 +1,60 @@
-.viewport {
+.flex__viewport {
     position: absolute !important;
     display: flex;
     width: 100%;
     height: 100%;
     margin: 0;
 }
-.h-box{
+.flex__box--horz{
     position: relative;
     display: flex;
     flex-direction: row;
 }
-.v-box{
+.flex__box--vert{
     position: relative;
     display: flex;
     flex-direction:column;
 }
 @media(max-width:$col-md){
-    .h-box{
+    .flex__box--horz{
         flex-direction:column;
     }
 }
-.flex-left-align{
+.flex--left-align{
     margin-right:auto;
 }
-.flex-right-align{
+.flex--right-align{
     margin-left:auto;
 }
-.pad-mt-reset{
+@media(max-width:$col-sm){
+    .flex--left-align{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .flex--right-align{
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+.flex--pad-mt-reset{
     padding:0;
     margin:0;
     flex:0 0 100%;
 }
 
-.lg-grow{
+.flex--lg-grow{
     flex-grow:1;
 }
 
 @media(max-width:$col-sm){
-    .sm-grow{
+    .flex--sm-grow{
         flex-grow:1;
     }
 }
 @media(max-width:$col-xs){
-    .xs-grow{
+    .flex--xs-grow{
         flex-grow:1;
     }
 }
