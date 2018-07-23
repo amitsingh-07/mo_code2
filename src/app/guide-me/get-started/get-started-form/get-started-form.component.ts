@@ -40,7 +40,7 @@ export class GetStartedFormComponent implements OnInit {
     this.formValues = this.guideMeService.getGuideMeFormData();
     this.formValues.gender = 'male';
     this.formValues.smoker = 'non-smoker';
-    if (this.formValues.depedent !== null ) {
+    if (this.formValues.dependent !== undefined ) {
       this.selectDependentsCount(this.formValues.dependent);
     }
     this.userInfoForm = this.formBuilder.group({
