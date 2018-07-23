@@ -15,6 +15,7 @@ $mobile475-width: 475px;
 $mobile568-width: 568px;
 $mobile667-width: 667px;
 $phablet7-width: 700px;
+$mobile767-width: 767px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
 // Responsive grid media queries
@@ -50,6 +51,11 @@ $desktop-width: 1024px;
 }
 @mixin min450max475 {
   @media (min-width: #{$mobile450-width}) and (max-width: #{$mobile475-width - 1px}) {
+    @content;
+  }
+}
+@mixin min568max767 {
+  @media (min-width: #{$mobile568-width}) and (max-width: #{$mobile767-width}) {
     @content;
   }
 }
@@ -116,7 +122,6 @@ $desktop-width: 1024px;
 // Custom media query mixins
 //---------------------------
 
-
 //Responsive font conversion
 //--------------------------
 @function fontRem($size) {
@@ -140,3 +145,43 @@ line-height: $size;
 line-height: lineHeightRem($size);
 }
 //Responsive Line heights conversion
+
+
+/* Extra small devices (phones, 600px and down) */
+@mixin ExtraSmallDevice {
+  @media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+    @content;
+  }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@mixin SmallDevice {
+  @media only screen and (min-width: 600px) {
+    @content;
+  }
+}
+ 
+@mixin MediumDevice {
+/* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    @content;
+  } 
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@mixin LargeDevice {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@mixin ExtraLargeDevice {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}

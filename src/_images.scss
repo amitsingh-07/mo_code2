@@ -1,16 +1,26 @@
 .banner-image {
     background-repeat: no-repeat;
     display: block;
-    height: 320px;
+    height: 100%;
     width: 100%;
     margin-top: 50px;
-    &.profile {
-        background-image: url("./assets/images/profile-banner-image.png");
+    background-size: 100%;
+    @include LargeDevice {
+        background-size: 70%;
     }
-    &.get-started {
+    &.profile {
+        background-image: url("./assets/images/profile-image.svg");
+    }
+    &.get-started-image {
         background-image: url("./assets/images/get-started-banner-image.png");
     }
     &.choose-protection {
-        background-image: url("./assets/images/protection-need.png");
+        background-image: url("./assets/images/protection-need.svg");
+    }
+    &.income {
+        background-image: url("./assets/images/income1.svg");
+    }
+    &.expense {
+        background-image: url("./assets/images/expense.svg");
     }
 }

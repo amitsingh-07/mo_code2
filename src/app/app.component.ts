@@ -7,7 +7,7 @@ import { LoggerService } from './shared/logger/logger.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bfa-frontend';
+  title = 'Money Owl';
 
   constructor(private log: LoggerService) {
   }

@@ -69,3 +69,27 @@ input::placeholder {
     border-bottom-right-radius: 4px;
   }
 }
+
+/*Income form block*/
+  .form__block--white {
+    border-radius: 8px;
+    background: $white-color;
+    padding: 0.90rem;
+    .form__block--title {
+      color: $form-block-title-color;
+      font-family: $muli-bold;
+    }
+    .form__block--sub-title {
+      color: $form-block-sub-title-color;
+      font-family: $muli-regular;
+    }
+    &.form__block--white-top {
+      border-bottom-left-radius: 0; 
+      border-bottom-right-radius: 0
+    }
+    &.form__block--white-bottom {
+      border-top-left-radius: 0; 
+      border-top-right-radius: 0; 
+      background: #f4fafb
+    }
+  }
