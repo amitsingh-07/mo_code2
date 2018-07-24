@@ -1,17 +1,24 @@
  /*Form Styles*/
-  
- .form-group {
-    div>input[type='radio']+label {
-      margin: 0;
-      clear: none;
-      padding: 5px 0 4px 40px;
-      cursor: pointer;
-      background: url("./assets/images/checkbox-normal.png") left center no-repeat;
-    }
-    div>input[type='radio']:checked+label {
-      background-image: url("./assets/images/checkbox-active.png");
-    }
-    .form-control {
+
+ /*Check box / Radio Button styles*/
+  input[type='radio']+label, input[type='checkbox']+label {
+    margin: 0;
+    clear: none;
+    padding: 5px 0 4px 40px;
+    cursor: pointer;
+    background: url("./assets/images/checkbox-normal.png") left center no-repeat;
+  }
+  input[type='radio']:checked+label, input[type='checkbox']:checked+label {
+    background-image: url("./assets/images/checkbox-active.png");
+  }
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-top: 0;
+    display: none;
+  } 
+  /*form control styles*/
+  .form-control {
+    &.profile, &.protection {
       font-family: $muli-bold;
       font-size: 1.1rem;
       margin-bottom: 10px;
@@ -27,31 +34,25 @@
         cursor: pointer;
       }
     }
-    .btn {
+    &.protection {
+      padding:0rem 0.10rem 0.10rem 1rem;
+    }
+    .input-label-strong, .input-label-normal {
+      text-transform: lowercase;
+      color: $text-color-secondary;
       font-family: $muli-bold;
     }
-    .btn-primary {
-      background-color: $btn-primary-backgrnd-color;
-      border-color: $btn-primary-backgrnd-color;
-      box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
-      padding: 0.90rem;
-    }
-    .btn:disabled {
-      opacity: 1 !important;
-      background-color: $btn-disabled;
-      color: $module-fill-color;
-      border-color: transparent;
+    .input-label-normal {
+      font-family: $muli-regular;
+      @include fontSize(8px);
     }
   }
+  /*Input placeholder styles*/
   input::placeholder {
     color: $app-backgrnd-color !important;
   }
   
-  input[type="radio"],
-  input[type="checkbox"] {
-    margin-top: 0;
-    display: none;
-  } 
+  /*Inline Error Styles*/
   .inline-error {
     color: $inline-error-border-color;
     border: 1px solid $inline-error-border-color;

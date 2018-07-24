@@ -7,6 +7,7 @@ import { GuideMeRoutingModule } from './/guide-me-routing.module';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
       GetStartedComponent,
       GetStartedFormComponent,
       FinAssessmentComponent,
+      InsureAssessmentComponent,
     ]
 })
 export class GuideMeModule {}
