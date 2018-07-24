@@ -12,7 +12,7 @@
         background-image: url("./assets/images/profile-image.svg");
     }
     &.get-started-image {
-        background-image: url("./assets/images/get-started-banner-image.png");
+        background-image: url("./assets/images/get-started-image.svg");
     }
     &.choose-protection {
         background-image: url("./assets/images/protection-need.svg");
@@ -22,5 +22,11 @@
     }
     &.expense {
         background-image: url("./assets/images/expense.svg");
+    }
+    &.assets {
+        background-image: url("./assets/images/assets.svg");
+    }
+    &.liabilities {
+        background-image: url("./assets/images/liabilities.png");
     }
 }

@@ -24,6 +24,6 @@ export class AssetsComponent implements IPageComponent, OnInit {
   }
   
   goToNext(form) {
-    this.router.navigate(['../guideme/assets']);
+    this.router.navigate(['../guideme/liabilities']);
   }
 }

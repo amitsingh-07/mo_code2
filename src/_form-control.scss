@@ -167,9 +167,6 @@ input::placeholder {
         color: #00a7a7;
         padding-left: 1px;
         background: transparent;
-        &:focus {
-          border:none !important;
-        }
       }
   }
 }

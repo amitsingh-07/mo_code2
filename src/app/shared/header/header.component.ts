@@ -18,7 +18,10 @@ export class HeaderComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);
   }
-
+  setPageTitle(title: string){
+    this.headerService.setPageTitle(title);
+  }
+  
   goBack() {
     this._location.back();
   }
