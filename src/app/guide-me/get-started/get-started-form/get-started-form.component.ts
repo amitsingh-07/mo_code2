@@ -15,7 +15,7 @@ import { GuideMeService } from './../../guide-me.service';
   encapsulation: ViewEncapsulation.None
 })
 export class GetStartedFormComponent implements OnInit {
-  //@ViewChild('usrFrmDp') usrFrmDp: ElementRef;
+  // @ViewChild('usrFrmDp') usrFrmDp: ElementRef;
 
   dobValue;
   pageTitle: string;
