@@ -6,10 +6,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GuideMeRoutingModule } from './/guide-me-routing.module';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [CommonModule, GuideMeRoutingModule, ReactiveFormsModule, NgbModule.forRoot() ],
-  declarations: [ProfileComponent, GetStartedComponent, GetStartedFormComponent]
+  declarations: [ProfileComponent, GetStartedComponent, GetStartedFormComponent, InsureAssessmentComponent]
 })
 export class GuideMeModule {}
