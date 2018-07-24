@@ -18,7 +18,6 @@ export class GetStartedFormComponent implements OnInit {
   //@ViewChild('usrFrmDp') usrFrmDp: ElementRef;
 
   dobValue;
-  pageTitle: string;
   userInfoForm: FormGroup;
   formValues: any;
   dependents = 0;

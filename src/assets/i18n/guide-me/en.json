@@ -1,0 +1,16 @@
+{
+  "PROFILE": {
+    "TITLE": "What's Your Profile?",
+    "DESCRIPTION": "Please choose the profile that best describes you."
+  },
+  "GET_STARTED": {
+      "TITLE": "Get Started",
+      "DESCRIPTION": "Just a few simple questions to get you started.",
+      "I_AM_A": "I am a",
+      "BORN_ON": "Born on",
+      "AND_A": "And a",
+      "I_HAVE": "I have",
+      "DEPENDANT_MEANING_LBL": "Meaning of Dependant",
+      "DEPENDANT_MEANING_DESC": " Siblings, Parents, Spouse &amp; Children that I’m supporting"
+  }
+}

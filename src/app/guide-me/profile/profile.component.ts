@@ -4,6 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
@@ -37,11 +38,13 @@ export class ProfileComponent implements IPageComponent, OnInit {
 
   constructor(
     private guideMeService: GuideMeService, private router: Router,
-    private modal: NgbModal, public headerService: HeaderService) {
-    this.pageTitle = 'What\'s Your Profile?';
+    private modal: NgbModal, public headerService: HeaderService,
+    public readonly translate: TranslateService) {
+    this.pageTitle = this.translate.instant('PROFILE.TITLE');
   }
 
   ngOnInit() {
+    this.translate.use('en');
     this.setPageTitle(this.pageTitle);
     this.profileFormValues = this.guideMeService.getGuideMeFormData();
     this.profileForm = new FormGroup({
