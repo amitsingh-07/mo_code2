@@ -93,3 +93,83 @@ input::placeholder {
       background: #f4fafb
     }
   }
+
+  /* Income, Expneses, Assets, Liabilities form styles */
+  
+.form__block--white {
+  .form__row {
+    display: flex;
+    margin-bottom: 5px;
+    .form__col--left {
+      flex-basis: 50vw;
+      display: flex;
+      align-items: center;
+      label {
+        color: #2d8289;
+        font-family: $muli-semi-bold;
+      }
+      .label--top-title {
+        color:#313644;
+        font-family: $muli-semi-bold;
+      }
+      .label--top-sub-title {
+        color:#5e5e5e;
+        font-family: $muli-regular;
+        @include fontSize(9px);
+      }
+    }
+    .form__col--left-with-hint {
+      flex-basis: 50vw;
+      display: inline-grid;
+      align-items: center;
+      .form__col--left-label-primary {
+        color: #2d8289;
+        font-family: $muli-semi-bold;
+      }
+      .form__col--left--label-secondary {
+        color: #2d8289;
+        font-family: $muli-regular;
+        @include fontSize(9px);
+      }
+    }
+    .form__col--right {
+      flex-basis: 50vw;
+      .text-big {
+          color: #00a7a7;
+          font-family: $muli-semi-bold;
+          @include fontSize(12px);
+      }
+    }
+  }
+  .form__col--right-input-currency {
+      color: #00a7a7;
+      border: 2px solid #c0eded;
+      padding: 0.90rem;
+      border-radius: 6px;
+      position: relative;
+      .fixed-currency {
+        position: absolute;
+        left: 5px;
+        top: 15.5px;
+      }
+      .fixed-tenure {
+        position: absolute;
+        right: 5px;
+        top: 15.5px;
+      }
+      &.readonly {
+        border: 1ps solid #b0dddd;
+        background: #d9f2f2;
+        color: #00a7a7;
+      }
+      input {
+        border: none;
+        color: #00a7a7;
+        padding-left: 1px;
+        background: transparent;
+        &:focus {
+          border:none !important;
+        }
+      }
+  }
+}

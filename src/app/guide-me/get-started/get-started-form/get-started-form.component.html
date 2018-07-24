@@ -71,7 +71,7 @@
                 <button class="btn btn-default fixed-btn--lg btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                   <span class="dependent-count">{{dependents}}</span> Dependent<span *ngIf="dependents > 1">s</span></button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item fixed-btn--lg" *ngFor="let count of dependentItems" (click)="selectDependentsCount(count)">{{count}} Dependent<span *ngIf="count > 1">s</span></button>
+                  <button class="dropdown-item fixed-btn--lg" *ngFor="let count of dependentItems" (click)="selectDependentsCount(count)">{{count}}  Dependent<span *ngIf="count > 1">s</span></button>
                 </div>
               </div>
             </div>

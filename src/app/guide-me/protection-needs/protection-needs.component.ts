@@ -15,57 +15,61 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   protectionNeedsArray: FormArray;
   protectionNeedsList: any[];
   formValues: any;
-  isFormLoaded: boolean ;
+  isFormLoaded: boolean;
   currentFormData: any;
   pageTitle: string;
   constructor(private formBuilder: FormBuilder, private guideMeService: GuideMeService,
-              private router: Router , public headerService: HeaderService) {
-                this.pageTitle = 'Protection Needs';
-              }
+    private router: Router, public headerService: HeaderService) {
+    this.pageTitle = 'Protection Needs';
+  }
 
   ngOnInit() {
-    this.headerService.setPageTitle(this.pageTitle);
-    this.isFormLoaded = false ;
+    this.setPageTitle(this.pageTitle);
+    this.isFormLoaded = false;
     this.protectionNeedsForm = this.formBuilder.group({
       protectionNeedsArray: this.formBuilder.array([])
-        });
+    });
     this.guideMeService.getProtectionNeedsList().subscribe((data) => {
-                                              this.buildForm(data.objectList);
-                                              this.protectionNeedsList = data.objectList;
-                                              }); }
-    buildForm(responseData?) {
+      this.buildForm(data.objectList);
+      this.protectionNeedsList = data.objectList;
+    });
+  }
+
+  setPageTitle(title: string){
+    this.headerService.setPageTitle(title);
+  }
+
+  buildForm(responseData?) {
     this.formValues = this.guideMeService.getProtectionNeeds();
     if (responseData) {
       responseData.forEach((currentValue, index) => {
-           this.protectionNeedsArray = this.protectionNeedsForm.get('protectionNeedsArray') as FormArray;
-           this.protectionNeedsArray.push(this.createItem(currentValue, index));
-                    });
-               }
+        this.protectionNeedsArray = this.protectionNeedsForm.get('protectionNeedsArray') as FormArray;
+        this.protectionNeedsArray.push(this.createItem(currentValue, index));
+      });
+    }
     this.isFormLoaded = true;
+  }
+  createItem(responseObj, i): FormGroup {
+    return this.formBuilder.group({
+      status: this.formValues.protectionNeedData ? this.formValues.protectionNeedData[i].status : true,
+      protectionTypeId: responseObj.protectionTypeId,
+      protectionType: responseObj.protectionType,
+      protectionDesc: responseObj.protectionDesc
+    });
+  }
+  save(form: any) {
+    this.currentFormData = this.protectionNeedsForm.value.protectionNeedsArray;
+    const isChecked = this.currentFormData.some((el) => {
+      return el.status === true;
+    });
+    if (!isChecked) {
+      return false;
     }
-    createItem(responseObj, i): FormGroup {
-      return this.formBuilder.group({
-                  status: this.formValues.protectionNeedData ? this.formValues.protectionNeedData[i].status : true,
-                  protectionTypeId: responseObj.protectionTypeId,
-                  protectionType: responseObj.protectionType,
-                  protectionDesc: responseObj.protectionDesc
-      });
-    }
-    save(form: any) {
-      this.currentFormData = this.protectionNeedsForm.value.protectionNeedsArray;
-      const isChecked = this.currentFormData.some( (el) => {
-        return el.status === true;
-      });
-      if (!isChecked) {
-        return false;
-        }
-      this.guideMeService.setProtectionNeeds(this.currentFormData);
-      return true;
-    }
+    this.guideMeService.setProtectionNeeds(this.currentFormData);
+    return true;
+  }
 
-    goToSteps(form: any) {
-      if (this.save(form)) {
-        this.router.navigate(['../guideme/getstarted']);
-      }
-    }
+  goToNext(form: any) {
+    this.router.navigate(['../guideme/income']);
+  }
 }

@@ -36,17 +36,21 @@ export class ProfileComponent implements IPageComponent, OnInit {
   profileFormValues: any;
 
   constructor(private guideMeService: GuideMeService, private router: Router,
-              private modal: NgbModal, public headerService: HeaderService) {
-                this.pageTitle = 'What\'s Your Profile?';
-              }
+    private modal: NgbModal, public headerService: HeaderService) {
+    this.pageTitle = 'What\'s Your Profile?';
+  }
 
   ngOnInit() {
-    this.headerService.setPageTitle(this.pageTitle);
+    this.setPageTitle(this.pageTitle);
     this.profileFormValues = this.guideMeService.getGuideMeFormData();
     this.profileForm = new FormGroup({
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
     });
     this.guideMeService.getProfileList().subscribe((data) => this.profileList = data.objectList);
+  }
+
+  setPageTitle(title: string){
+    this.headerService.setPageTitle(title);
   }
 
   showHelpModal(id) {
@@ -64,7 +68,8 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.guideMeService.setProfile(this.profileForm.value);
     return true;
   }
-  goToInfo(form) {
+
+  goToNext(form) {
     if (this.save(form)) {
       this.router.navigate(['../guideme/getstarted']);
     }

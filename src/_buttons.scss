@@ -100,6 +100,8 @@
         background: $module-fill-color;
         padding: .90rem;
         text-align: left;
+        @include fontSize(10px);
+        font-family: $muli-regular;
     }
     .btn-default:after {
         background-image: url('./assets/images/dropdown-icon.png');
@@ -113,9 +115,6 @@
     .btn-dropdown {
         color: $text-color-secondary;
         justify-content: start;
-        span.dependent-count {
-          color: $app-backgrnd-color;
-        }
     }
 }
 

@@ -28,6 +28,18 @@
   }
 }
 
+.dropdown-control {
+  .btn-dropdown {
+    span.dependent-count {
+      color: $app-backgrnd-color;
+      margin-right: 4px;
+    }
+  }
+  .dropdown-item {
+    font-family: $muli-light;
+  }
+}
+
 #userInfoForm {
   @include allmobiles {
     //margin-top: 50px;

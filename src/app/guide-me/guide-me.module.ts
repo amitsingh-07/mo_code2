@@ -8,9 +8,13 @@ import { GetStartedFormComponent } from './get-started/get-started-form/get-star
 import { GetStartedComponent } from './get-started/get-started.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { IncomeComponent } from './income/income.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { AssetsComponent } from './assets/assets.component';
+import { LiabilitiesComponent } from './liabilities/liabilities.component';
 
 @NgModule({
   imports: [CommonModule, GuideMeRoutingModule, ReactiveFormsModule, NgbModule.forRoot() ],
-  declarations: [ProfileComponent, GetStartedComponent, GetStartedFormComponent, ProtectionNeedsComponent]
+  declarations: [ProfileComponent, GetStartedComponent, GetStartedFormComponent, ProtectionNeedsComponent, IncomeComponent, ExpensesComponent, AssetsComponent, LiabilitiesComponent]
 })
 export class GuideMeModule {}
