@@ -35,7 +35,8 @@ export class ProfileComponent implements IPageComponent, OnInit {
   helpImg: any[];
   profileFormValues: any;
 
-  constructor(private guideMeService: GuideMeService, private router: Router,
+  constructor(
+    private guideMeService: GuideMeService, private router: Router,
     private modal: NgbModal, public headerService: HeaderService) {
     this.pageTitle = 'What\'s Your Profile?';
   }
@@ -49,7 +50,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.guideMeService.getProfileList().subscribe((data) => this.profileList = data.objectList);
   }
 
-  setPageTitle(title: string){
+  setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
 

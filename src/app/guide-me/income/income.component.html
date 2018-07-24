@@ -23,7 +23,7 @@
                 <div class="label--top-sub-title">What You Earn</div>
               </div>
               <div class="form__col--right text-right">
-                <div class="text-big text-right">$0</div>
+                <div class="text-big text-right">{{incomeTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
               </div>
             </li>
           </ul>
@@ -37,7 +37,7 @@
                   <div class="form__col--right-input-currency">
                     <div class="fixed-currency">$</div>
                     <div>
-                      <input type="text" formControlName="monthlySalary" value="0">
+                      <input type="text" currencyInput maxLength="6" formControlName="monthlySalary" value="0">
                     </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@
                   <div class="form__col--right-input-currency">
                     <div class="fixed-currency">$</div>
                     <div>
-                      <input type="text" formControlName="annualBonus" value="0">
+                      <input type="text" currencyInput maxLength="6" formControlName="annualBonus" value="0">
                     </div>
                   </div>
                 </div>
@@ -68,7 +68,7 @@
                   <div class="form__col--right-input-currency">
                     <div class="fixed-currency">$</div>
                     <div>
-                      <input type="text" formControlName="otherIncome" value="0">
+                      <input type="text" currencyInput maxLength="6" formControlName="otherIncome" value="0">
                     </div>
                     <div class="fixed-tenure">/mth</div>
                   </div>

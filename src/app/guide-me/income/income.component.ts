@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { FormControl, FormGroup, Validators } from '../../../../node_modules/@angular/forms';
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
 
 @Component({
   selector: 'app-income',
@@ -13,14 +14,17 @@ export class IncomeComponent implements IPageComponent, OnInit {
   pageTitle: string;
   incomeForm: FormGroup;
   incomeFormValues: any;
+  incomeTotal: any;
 
-  constructor(private router: Router, public headerService: HeaderService) { 
+  private el: HTMLInputElement;
+
+  constructor(private router: Router, public headerService: HeaderService) {
     this.pageTitle = 'My Income';
     this.incomeFormValues = {
-      'monthlySalary': 0,
-      'annualBonus': 0,
-      'otherIncome': 0
-    }
+      monthlySalary: 0,
+      annualBonus: 0,
+      otherIncome: 0
+    };
   }
 
   ngOnInit() {
@@ -31,8 +35,8 @@ export class IncomeComponent implements IPageComponent, OnInit {
       otherIncome: new FormControl(this.incomeFormValues.otherIncome, Validators.required)
     });
   }
-  
-  setPageTitle(title: string){
+
+  setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
 

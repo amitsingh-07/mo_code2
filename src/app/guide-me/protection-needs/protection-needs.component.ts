@@ -17,10 +17,15 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   formValues: any;
   isFormLoaded: boolean;
   currentFormData: any;
+
   pageTitle: string;
-  constructor(private formBuilder: FormBuilder, private guideMeService: GuideMeService,
+  subTitle: string;
+
+  constructor(
+    private formBuilder: FormBuilder, private guideMeService: GuideMeService,
     private router: Router, public headerService: HeaderService) {
     this.pageTitle = 'Protection Needs';
+    this.subTitle = 'Here are the protection type(s) recommended for you. Uncheck those that are not a priority.';
   }
 
   ngOnInit() {
@@ -35,8 +40,8 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
     });
   }
 
-  setPageTitle(title: string){
-    this.headerService.setPageTitle(title);
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title, this.subTitle);
   }
 
   buildForm(responseData?) {

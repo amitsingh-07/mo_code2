@@ -1,7 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
 import { ApiService } from './../shared/http/api.service';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
@@ -32,6 +31,7 @@ export class GuideMeService {
     this.isProfileFormValid = true;
     this.guideMeFormData.myProfile = data.myProfile;
   }
+
   getUserInfo(): UserInfo {
     const userInfoForm: UserInfo = {
       gender: this.guideMeFormData.gender,
@@ -50,7 +50,6 @@ export class GuideMeService {
     this.guideMeFormData.smoker = data.smoker;
     this.guideMeFormData.customDob = data.customDob;
     this.guideMeFormData.dependent = data.dependent;
-
   }
 
   getGuideMeFormData(): GuideMeFormData {
@@ -73,6 +72,7 @@ export class GuideMeService {
       this.isprotectionNeedFormValid = true;
       this.guideMeFormData.protectionNeedData = data;
   }
+
   getProtectionNeedsList() {
     const userInfoForm: any = {
       profileId: this.guideMeFormData.myProfile,
