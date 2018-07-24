@@ -16,7 +16,7 @@ export class ApiService {
   constructor(private configService: ConfigService, private http: BaseService, private httpClient: HttpClient) { }
 
   getProfileList() {
-    const url = '../assets/profile.json';
+    const url = '../assets/mock-data/profile.json';
     return this.http.get(apiConstants.endpoint.getProfileList)
     .pipe(
       catchError((error: HttpErrorResponse) => {
@@ -51,7 +51,8 @@ export class ApiService {
           console.error(
             `Backend returned code ${error.status}, ` + `body was: ${error.error}`
           );
-          return this.httpClient.post<IServerResponse>(url, userInfoForm);
+          const localUrl = '../assets/mock-data/getProtectionList.json';
+          return this.httpClient.get<IServerResponse>(localUrl);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');
