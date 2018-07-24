@@ -17,7 +17,10 @@ export class GetStartedComponent implements IPageComponent, OnInit {
    }
 
   ngOnInit() {
-    this.headerService.setPageTitle(this.pageTitle);
+    this.setPageTitle(this.pageTitle);
   }
 
+  setPageTitle(title: string){
+    this.headerService.setPageTitle(title);
+  }
 }

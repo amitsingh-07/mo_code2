@@ -40,10 +40,13 @@ export class GetStartedFormComponent implements OnInit {
     this.formValues = this.guideMeService.getGuideMeFormData();
     this.formValues.gender = 'male';
     this.formValues.smoker = 'non-smoker';
+    if (this.formValues.dependent !== undefined ) {
+      this.selectDependentsCount(this.formValues.dependent);
+    }
     this.userInfoForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker, Validators.required]
     });
   }
 
@@ -63,13 +66,14 @@ export class GetStartedFormComponent implements OnInit {
       return false;
     }
     form.value.customDob = this.parserFormatter.format(form.value.dob);
+    form.value.dependent = this.dependents;
     this.guideMeService.setUserInfo(form.value);
     return true;
   }
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['/financial']);
+      this.router.navigate(['../guideme/protectionneeds']);
     }
   }
 

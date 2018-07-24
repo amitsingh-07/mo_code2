@@ -1,12 +1,12 @@
 <!--Profile Screen-->
-<div class="container mt30">
+<div class="container-fluid mt30 pl68 pr68 profile">
   <div class="row">
-    <div class="col-sm-7 hidden-sm-md">
+    <div class="col-lg-7 col-md-6 hidden-sm-md">
       <h2>What's Your Profile? </h2>
       <h6>Please choose the profile that best describes you.</h6>
       <div class="banner-image profile"></div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-lg-5 col-md-6">
       <form name="profileForm" [formGroup]="profileForm" class="form-group" id="profileForm">
         <div class="form-container">
           <div class="form-control profile" *ngFor="let profiles of profileList; let i = index">
@@ -19,45 +19,9 @@
           </div>
         </div>
         <div>
-          <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary btn__footer--fixed width100">Continue</button>
+          <button type="button" [disabled]="!profileForm.valid" (click)="goToNext(profileForm)" class="btn btn-primary btn__footer--fixed width100">Continue</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-
-<!--Choose Protection Screen-->
-<!-- <div class="container mt30">
-    <div class="row">
-      <div class="col-sm-7 hidden-sm-md">
-        <h2>Protection Needs? </h2>
-        <h6>Here are the protection type(s) recommended for you. Uncheck those that are not a priority.</h6>
-        <div class="banner-image choose-protection"></div>
-      </div>
-      <div class="col-sm-5">
-        <form name="protectionForm" [formGroup]="protectionForm" id="protectionForm">
-          <div class="form-container">
-              <div class="form-control protection">
-                <input id="myProtection" name="myProtection" formControlName="myComponent" type="checkbox" class="field checkbox" value="{{protection.name}}"
-                  tabindex="{{i+1}}">
-                <label for="myProtection">
-                  <div  class="input-label-strong">Life Protection</div>
-                  <div  class="input-label-normal">To support your depedents</div>
-                </label>
-              </div>
-              <div class="form-control protection">
-                  <input id="myProtection1" name="myProtection1" formControlName="myComponent" type="checkbox" class="field checkbox" value="{{protection.name}}"
-                    tabindex="{{i+1}}">
-              <label for="myProtection1">
-                  <div  class="input-label-strong">Critical Illness</div>
-                  <div  class="input-label-normal">Eg. Cancer, Heart Attack, Stroke </div>
-              </label>
-              </div>
-          </div>
-          <div>
-            <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary btn__footer--fixed width100">Continue</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div> -->

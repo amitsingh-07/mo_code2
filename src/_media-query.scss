@@ -1,7 +1,6 @@
-
 /*Media Queries*/
 .navbar-nav {
-  @include desktop {
+  @include SmallDevice {
     -ms-flex-direction: row;
     flex-direction: row;
     display: flex;
@@ -10,17 +9,26 @@
   }
 }
 .hidden-sm-md {
-  @include allmobiles {
+  @include ExtraSmallDevice {
+    display: none !important;
+  }
+  @include min568max767 {
     display: none !important;
   }
 }
 .hidden-lg {
-  @include desktop {
+  @include SmallDevice {
+    display: none !important;
+  }
+  @include min568max767 {
     display: none !important;
   }
 }
 .fixed-top {
   @include allmobiles {
+    position: fixed !important;
+  }
+  @include min568max767 {
     position: fixed !important;
   }
 }
@@ -54,12 +62,16 @@
   @include allmobiles {
     padding-left: 15px !important;
     padding-right: 15px !important;
+    position: relative;
+    top: 50px;
+    height: 100%;
+    margin-bottom: 60px;
   }
 }
 .form-container {
   @include allmobiles {
-    margin-bottom: 60px;
-    margin-top: 60px;
+    //margin-bottom: 60px;
+    //margin-top: 60px;
   }
 }
 .modal {

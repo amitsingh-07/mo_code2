@@ -5,6 +5,9 @@ html, body {
 ul, ul li {
   list-style: none;
 }
+*:focus {
+  outline: none;
+}
 body {
     background-color: $app-backgrnd-color;
     -webkit-overflow-scrolling: touch;
@@ -17,7 +20,7 @@ body {
 
   .navbar {
     background-color: $module-fill-color;
-    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: none;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -44,7 +47,7 @@ body {
     margin-top: 20px;
   }
   .navbar__back-btn--web {
-    background-image: url("./assets/images/back-web.png");
+    background-image: url("./assets/images/back-web.svg");
     width: 55px;
     height: 43px;
     cursor: pointer;
@@ -73,5 +76,4 @@ body {
     font-size: 13px;
     font-weight: 700;
   }
-
   
