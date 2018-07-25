@@ -62,7 +62,8 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   }
   createItem(responseObj, i): FormGroup {
     return this.formBuilder.group({
-      status: this.formValues.protectionNeedData ? this.formValues.protectionNeedData[i].status : true,
+      status: (this.formValues.protectionNeedData && this.formValues.protectionNeedData[i])
+        ? this.formValues.protectionNeedData[i].status : true,
       protectionTypeId: responseObj.protectionTypeId,
       protectionType: responseObj.protectionType,
       protectionDesc: responseObj.protectionDesc
