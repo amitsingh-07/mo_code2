@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 
 @Component({
   selector: 'app-liabilities',
@@ -11,7 +11,7 @@ import { HeaderService } from '../../shared/header/header.service';
 export class LiabilitiesComponent implements IPageComponent, OnInit {
   pageTitle: string;
 
-  constructor(private router: Router, public headerService: HeaderService) { 
+  constructor(private router: Router, public headerService: HeaderService) {
     this.pageTitle = 'My Liabilities';
   }
 
@@ -19,7 +19,11 @@ export class LiabilitiesComponent implements IPageComponent, OnInit {
     this.setPageTitle(this.pageTitle);
   }
 
-  setPageTitle(title: string){
+  setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
+  }
+
+  goToNext() {
+    this.router.navigate(['../guideme/assuranceassessment']);
   }
 }

@@ -11,7 +11,7 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 export class AssetsComponent implements IPageComponent, OnInit {
   pageTitle: string;
 
-  constructor(private router: Router, public headerService: HeaderService) { 
+  constructor(private router: Router, public headerService: HeaderService) {
     this.pageTitle = 'My Assets';
   }
 
@@ -19,10 +19,10 @@ export class AssetsComponent implements IPageComponent, OnInit {
     this.setPageTitle(this.pageTitle);
   }
 
-  setPageTitle(title: string){
+  setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
-  
+
   goToNext(form) {
     this.router.navigate(['../guideme/liabilities']);
   }

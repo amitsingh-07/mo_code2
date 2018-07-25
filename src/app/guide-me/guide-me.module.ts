@@ -10,9 +10,11 @@ import { CurrencyInputDirective } from './../shared/directives/currency-input.di
 import { GuideMeRoutingModule } from './/guide-me-routing.module';
 import { AssetsComponent } from './assets/assets.component';
 import { ExpensesComponent } from './expenses/expenses.component';
+import { FinancialAssessmentComponent } from './financial-assessment/financial-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
 import { IncomeComponent } from './income/income.component';
+import { InsuranceAssessmentComponent } from './insurance-assessment/insurance-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
@@ -32,7 +34,9 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     AssetsComponent,
     LiabilitiesComponent,
     CurrencyInputDirective,
-    jqxSliderComponent
+    jqxSliderComponent,
+    FinancialAssessmentComponent,
+    InsuranceAssessmentComponent
   ]
 })
 export class GuideMeModule { }
