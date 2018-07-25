@@ -1,0 +1,11 @@
+{
+  "LABEL": {
+    "CONTINUE": "Continue",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "DEPENDANT": "Dependant",
+    "DEPENDENT": "Dependent",
+    "SMOKER": "Smoker",
+    "NON_SMOKER": "Non - Smoker"
+  }
+}

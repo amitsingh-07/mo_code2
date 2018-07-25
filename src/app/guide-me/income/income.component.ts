@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '../../../../node_modules/@angular/forms';
 import { Router } from '../../../../node_modules/@angular/router';
@@ -8,7 +8,8 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 @Component({
   selector: 'app-income',
   templateUrl: './income.component.html',
-  styleUrls: ['./income.component.scss']
+  styleUrls: ['./income.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class IncomeComponent implements IPageComponent, OnInit {
   pageTitle: string;
@@ -42,5 +43,9 @@ export class IncomeComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
       this.router.navigate(['../guideme/expenses']);
+  }
+
+  sliderOnChange() {
+
   }
 }

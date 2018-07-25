@@ -68,11 +68,16 @@
                   <div class="form__col--right-input-currency">
                     <div class="fixed-currency">$</div>
                     <div>
-                      <input type="text" currencyInput maxLength="6" formControlName="otherIncome" value="0">
+                      <input type="text" currencyInput maxLength="5" formControlName="otherIncome" value="0">
                     </div>
                     <div class="fixed-tenure">/mth</div>
                   </div>
                 </div>
+              </div>
+            </li>
+            <li>
+              <div>
+                <jqxSlider #incomeSlider [height]='60' [min]='0' [max]='99999' [value]='0' [step]='50' [tooltip]='true' [ticksFrequency]='50'></jqxSlider>
               </div>
             </li>
           </ul>

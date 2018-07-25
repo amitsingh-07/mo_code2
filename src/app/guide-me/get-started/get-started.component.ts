@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './../../shared/header/header.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
@@ -12,15 +13,17 @@ import { IPageComponent } from './../../shared/interfaces/page-component.interfa
 export class GetStartedComponent implements IPageComponent, OnInit {
   pageTitle: string;
 
-  constructor(public headerService: HeaderService) {
-    this.pageTitle = 'Get Started';
+  constructor(
+    public headerService: HeaderService,
+    public readonly translate: TranslateService) {
+    this.pageTitle = this.translate.instant('GET_STARTED.TITLE');
    }
 
   ngOnInit() {
     this.setPageTitle(this.pageTitle);
   }
 
-  setPageTitle(title: string){
+  setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
 }
