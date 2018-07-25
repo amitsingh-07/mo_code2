@@ -3,9 +3,11 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RequestOptions, Response } from '@angular/http';
+import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
 
 import { appConstants } from './../../app.constants';
 import { ConfigService, IConfig } from './../../config/config.service';
@@ -21,8 +23,15 @@ import { IServerResponse } from './interfaces/server-response.interface';
 export class BaseService {
   config$: Observable<IConfig>;
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
   constructor(
     public http: HttpService,
+    public httpClient: HttpClient,
     public errorHandler: CustomErrorHandlerService,
     public helperService: HelperService,
     public configService: ConfigService
@@ -32,45 +41,37 @@ export class BaseService {
   get(url) {
     // Helper service to start ng2-slim-loading-bar progress bar
     this.helperService.showLoader();
-    return this.config$.mergeMap( (config) => {
-    return this.http
-      .get(`${config.apiBaseUrl}/${url}`)
-      .map((res: Response) => {
-        return this.handleResponse(res);
-      })
-      .catch((error: Response) =>
-        Observable.throw(this.errorHandler.tryParseError(error))
-      )
-      .finally(() => {
-        // stop ng2-slim-loading-bar progress bar
-        this.helperService.hideLoader();
-      });
+    return this.config$.mergeMap((config) => {
+      return this.http
+        .get(`${config.apiBaseUrl}/${url}`)
+        .map((res: Response) => {
+          return this.handleResponse(res);
+        })
+        .catch((error: Response) =>
+          Observable.throw(this.errorHandler.tryParseError(error))
+        )
+        .finally(() => {
+          // stop ng2-slim-loading-bar progress bar
+          this.helperService.hideLoader();
+        });
     });
   }
 
-  post(url, postBody: any, options?: RequestOptions) {
+  post(url, postBody: any) {
     this.helperService.showLoader();
-    if (options) {
-      return this.http
-        .post(url, postBody, options)
+    return this.config$.mergeMap((config) => {
+      return this.httpClient
+        .post<IServerResponse>(`${config.apiBaseUrl}/${url}`, postBody, this.httpOptions)
+        .pipe(
+          catchError(this.errorHandler.tryParseError)
+        )
         .map((res: Response) => {
           return this.handleResponse(res);
         })
-        .catch((error: Response) => Observable.throw(error))
         .finally(() => {
           this.helperService.hideLoader();
         });
-    } else {
-      return this.http
-        .post(url, postBody)
-        .map((res: Response) => {
-          return this.handleResponse(res);
-        })
-        .catch((error: Response) => Observable.throw(error))
-        .finally(() => {
-          this.helperService.hideLoader();
-        });
-    }
+    });
   }
 
   delete(url, postBody: any) {
@@ -122,23 +123,25 @@ export class BaseService {
     return url + queryString;
   }
 
-  handleResponse(res: Response): IServerResponse {
+  handleResponse(res): IServerResponse {
     // My API sends a new jwt access token with each request,
     // so store it in the local storage, replacing the old one.
     this.refreshToken(res);
-    const data = res.json();
-    if (data.error) {
-      const error: IError = { error: data.error, message: data.message };
+    const data = res;
+    if (data.responseMessage.responseCode < 6000) {
+      const error: IError = {
+        error: data.responseMessage.responseCode,
+        message: data.responseMessage.responseDescription };
       throw new Error(this.errorHandler.parseCustomServerErrorToString(error));
     } else {
       return data;
     }
   }
 
-  refreshToken(res: Response) {
-    const token = res.headers.get(appConstants.accessTokenServer);
-    if (token) {
-      localStorage.setItem(appConstants.accessTokenLocalStorage, `${token}`);
-    }
+  refreshToken(res: IServerResponse) {
+    // const token = res.headers.get(appConstants.accessTokenServer);
+    // if (token) {
+    //   localStorage.setItem(appConstants.accessTokenLocalStorage, `${token}`);
+    // }
   }
 }

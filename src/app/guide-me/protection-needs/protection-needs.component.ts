@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
@@ -23,13 +25,17 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
 
   constructor(
     private formBuilder: FormBuilder, private guideMeService: GuideMeService,
-    private router: Router, public headerService: HeaderService) {
-    this.pageTitle = 'Protection Needs';
-    this.subTitle = 'Here are the protection type(s) recommended for you. Uncheck those that are not a priority.';
+    private router: Router, public headerService: HeaderService,
+    private translate: TranslateService) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('PROTECTION_NEEDS.TITLE');
+      this.subTitle = this.translate.instant('PROTECTION_NEEDS.DESCRIPTION');
+      this.setPageTitle(this.pageTitle, this.subTitle);
+    });
   }
 
   ngOnInit() {
-    this.setPageTitle(this.pageTitle);
     this.isFormLoaded = false;
     this.protectionNeedsForm = this.formBuilder.group({
       protectionNeedsArray: this.formBuilder.array([])
@@ -40,8 +46,8 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
     });
   }
 
-  setPageTitle(title: string) {
-    this.headerService.setPageTitle(title, this.subTitle);
+  setPageTitle(title: string, subTitle: string) {
+    this.headerService.setPageTitle(title, subTitle);
   }
 
   buildForm(responseData?) {
@@ -56,7 +62,8 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   }
   createItem(responseObj, i): FormGroup {
     return this.formBuilder.group({
-      status: this.formValues.protectionNeedData ? this.formValues.protectionNeedData[i].status : true,
+      status: (this.formValues.protectionNeedData && this.formValues.protectionNeedData[i])
+        ? this.formValues.protectionNeedData[i].status : true,
       protectionTypeId: responseObj.protectionTypeId,
       protectionType: responseObj.protectionType,
       protectionDesc: responseObj.protectionDesc
