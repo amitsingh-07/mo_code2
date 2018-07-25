@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '../../../../node_modules/@angular/forms';
@@ -19,8 +20,15 @@ export class IncomeComponent implements IPageComponent, OnInit {
 
   private el: HTMLInputElement;
 
-  constructor(private router: Router, public headerService: HeaderService) {
-    this.pageTitle = 'My Income';
+  constructor(
+    private router: Router, public headerService: HeaderService,
+    private translate: TranslateService) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('MY_INCOME.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
+
     this.incomeFormValues = {
       monthlySalary: 0,
       annualBonus: 0,
@@ -29,7 +37,6 @@ export class IncomeComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.setPageTitle(this.pageTitle);
     this.incomeForm = new FormGroup({
       monthlySalary: new FormControl(this.incomeFormValues.monthlySalary, Validators.required),
       annualBonus: new FormControl(this.incomeFormValues.annualBonus, Validators.required),
@@ -42,7 +49,7 @@ export class IncomeComponent implements IPageComponent, OnInit {
   }
 
   goToNext(form) {
-      this.router.navigate(['../guideme/expenses']);
+    this.router.navigate(['../guideme/expenses']);
   }
 
   sliderOnChange() {
