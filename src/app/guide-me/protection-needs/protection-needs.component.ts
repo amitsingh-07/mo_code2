@@ -76,7 +76,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
 
   goToNext(form: any) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/income']);
+      this.router.navigate(['../guideme/financialassessment']);
     }
   }
 }
