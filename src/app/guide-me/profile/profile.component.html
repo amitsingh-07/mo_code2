@@ -2,7 +2,7 @@
 <div class="container-fluid mt30 pl68 pr68 profile">
   <div class="row">
     <div class="col-lg-7 col-md-6 hidden-sm-md">
-      <h2>{{ 'PROFILE.TITLE' | translate}}</h2>
+      <h2>{{ pageTitle }}</h2>
       <h6>{{ 'PROFILE.DESCRIPTION' | translate}}</h6>
       <div class="banner-image profile"></div>
     </div>
@@ -10,7 +10,8 @@
       <form name="profileForm" [formGroup]="profileForm" class="form-group" id="profileForm">
         <div class="form-container">
           <div class="form-control profile" *ngFor="let profiles of profileList; let i = index">
-            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.name}}"
+            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" 
+              type="radio" class="field radio" value="{{profiles.id}}"
               tabindex="{{i+1}}">
             <label for="profile_{{i+1}}">
               <span class="input-label-strong">{{profiles.name}}</span>
