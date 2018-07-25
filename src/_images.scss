@@ -6,7 +6,7 @@
     margin-top: 50px;
     background-size: 100%;
     @include LargeDevice {
-        background-size: 80%;
+        background-size: 75%;
     }
     &.profile {
         background-image: url("./assets/images/profile-image.svg");

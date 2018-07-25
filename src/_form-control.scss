@@ -4,12 +4,12 @@
  input[type='radio']+label, input[type='checkbox']+label {
   margin: 0;
   clear: none;
-  padding: 5px 0 4px 40px;
+  padding: 2px 0 4px 40px;
   cursor: pointer;
-  background: url("./assets/images/checkbox-normal.png") left center no-repeat;
+  background: url("./assets/images/check-box-normal.svg") left center no-repeat;
 }
 input[type='radio']:checked+label, input[type='checkbox']:checked+label {
-  background-image: url("./assets/images/checkbox-active.png");
+  background-image: url("./assets/images/check-box-select.svg");
 }
 input[type="radio"],
 input[type="checkbox"] {
@@ -20,27 +20,36 @@ input[type="checkbox"] {
 .form-control {
   &.profile, &.protection {
     font-family: $muli-bold;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    @include fontSize(11px);
+    margin-bottom: 16px;
     position: relative;
-    padding: 0.70rem;
+    padding: 0.70rem 0.80rem;
+    border: none;
+    border-radius: 6px;
     .tooltip-icon {
       position: absolute;
-      right: 10px;
-      top: 18px;
-      background: url("./assets/images/help-icon.png") no-repeat;
+      right: 14px;
+      top: 17px;
+      background: url("./assets/images/tooltip-icon.svg") no-repeat;
       height: 20px;
       width: 20px;
       cursor: pointer;
+    }
+    &:last-child {
+      margin-bottom: 30px;
     }
   }
   &.protection {
     padding:0rem 0.10rem 0.10rem 1rem;
   }
   .input-label-strong, .input-label-normal {
-    text-transform: lowercase;
+    text-transform: lowerCacase;
     color: $text-color-secondary;
-    font-family: $muli-bold;
+    color: #313644;
+    font-family: $muli-semi-bold;
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
   .input-label-normal {
     font-family: $muli-regular;
