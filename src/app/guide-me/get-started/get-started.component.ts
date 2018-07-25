@@ -16,12 +16,14 @@ export class GetStartedComponent implements IPageComponent, OnInit {
   constructor(
     public headerService: HeaderService,
     public readonly translate: TranslateService) {
-    this.pageTitle = this.translate.instant('GET_STARTED.TITLE');
-   }
+    this.translate.use('en');
+    this.translate.get('PROFILE').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('GET_STARTED.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
+  }
 
   ngOnInit() {
-    this.translate.use('en');
-    this.setPageTitle(this.pageTitle);
   }
 
   setPageTitle(title: string) {

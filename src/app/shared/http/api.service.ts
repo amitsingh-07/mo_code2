@@ -55,7 +55,7 @@ export class ApiService {
 
   getProtectionNeedsList(userInfoForm) {
     const localUrl = '../assets/mock-data/getProtectionList.json';
-    return this.httpClient.get<IServerResponse>(localUrl);
+    return this.http.post(apiConstants.endpoint.getProtectionTypesList, userInfoForm);
 /*
     return this.httpClient.post<IServerResponse>(
       'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList',

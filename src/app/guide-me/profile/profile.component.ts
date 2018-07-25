@@ -40,12 +40,14 @@ export class ProfileComponent implements IPageComponent, OnInit {
     private guideMeService: GuideMeService, private router: Router,
     private modal: NgbModal, public headerService: HeaderService,
     public readonly translate: TranslateService) {
-    this.pageTitle = this.translate.instant('PROFILE.TITLE');
+    this.translate.get('PROFILE').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('PROFILE.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
   }
 
   ngOnInit() {
     this.translate.use('en');
-    this.setPageTitle(this.pageTitle);
     this.profileFormValues = this.guideMeService.getGuideMeFormData();
     this.profileForm = new FormGroup({
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
