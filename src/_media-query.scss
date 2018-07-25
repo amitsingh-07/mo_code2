@@ -50,6 +50,7 @@
   }
 }
 .btn__footer--fixed {
+  margin-top: 25px !important;
   @include allmobiles {
     position: fixed;
     bottom: 0;

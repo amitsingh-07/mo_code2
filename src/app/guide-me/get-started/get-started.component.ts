@@ -20,6 +20,7 @@ export class GetStartedComponent implements IPageComponent, OnInit {
    }
 
   ngOnInit() {
+    this.translate.use('en');
     this.setPageTitle(this.pageTitle);
   }
 
