@@ -47,7 +47,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  
+
   providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
