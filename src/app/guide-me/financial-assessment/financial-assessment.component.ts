@@ -12,6 +12,7 @@ export class FinancialAssessmentComponent implements OnInit {
 
   ngOnInit() {
   }
+
   goToIncome() {
     this.router.navigate(['../guideme/income']);
   }

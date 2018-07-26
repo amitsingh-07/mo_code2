@@ -70,12 +70,6 @@ export class GetStartedFormComponent implements OnInit {
     return true;
   }
 
-  goToNext(form) {
-    if (this.save(form)) {
-      this.router.navigate(['../guideme/protectionneeds']);
-    }
-  }
-
   onClickedOutside(e, dp) {
     /*
     if (!dp.isOpen() || e.target.id === dp
@@ -98,4 +92,11 @@ export class GetStartedFormComponent implements OnInit {
     }
     return false;
   }
+
+  goToNext(form) {
+    if (this.save(form)) {
+      this.router.navigate(['../guideme/protectionneeds']);
+    }
+  }
+
 }

@@ -15,10 +15,10 @@
     "AND_A": "And a",
     "I_HAVE": "I have",
     "DEPENDANT_MEANING_LBL": "Meaning of Dependant",
-    "DEPENDANT_MEANING_DESC": " Siblings, Parents, Spouse &amp; Children that I’m supporting"
+    "DEPENDANT_MEANING_DESC": " Siblings, Parents, Spouse & Children that I’m supporting"
   },
   "PROTECTION_NEEDS": {
-    "TITLE": "Protection Needs?",
+    "TITLE": "Protection Needs",
     "DESCRIPTION": "Here are the protection type(s) recommended for you. Uncheck those that are not a priority.",
     "BOTTOM_INFO": "We'll guide you through these needs when you tap 'continue'"
   },

@@ -1,4 +1,5 @@
-export class GuideMeFormData {
+import { IMyIncome } from './income/income.interface';
+export class GuideMeFormData implements IMyIncome {
     myProfile: number;
     email: string;
     gender: string;
@@ -7,4 +8,10 @@ export class GuideMeFormData {
     smoker: string;
     dependent: string;
     protectionNeedData: string;
+
+    // My Income
+    monthlySalary: number;
+    annualBonus: number;
+    otherIncome: number;
+
 }

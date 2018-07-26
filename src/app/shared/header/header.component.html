@@ -15,7 +15,7 @@
         </li>
     </ul>
 </nav>
-<nav class="navbar fixed-top hidden-lg">
+<nav *ngIf="showHeader" class="navbar fixed-top hidden-lg">
     <ul class="navbar-nav">
         <li class="nav-item">
             <span class="navbar__back-btn--mobile" (click)="goBack()"></span>

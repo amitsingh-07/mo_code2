@@ -5,6 +5,7 @@ import { ApiService } from './../shared/http/api.service';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
+import { IMyIncome } from './income/income.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
@@ -14,8 +15,9 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 export class GuideMeService {
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
   private formError: any = new FormError();
-  private isProfileFormValid: boolean ;
-  private isprotectionNeedFormValid: boolean;
+  private isProfileFormValid = false;
+  private isProtectionNeedFormValid = false;
+  isMyIncomeFormValid = false;
 
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
@@ -69,8 +71,8 @@ export class GuideMeService {
   }
 
   setProtectionNeeds(data) {
-      this.isprotectionNeedFormValid = true;
-      this.guideMeFormData.protectionNeedData = data;
+    this.isProtectionNeedFormValid = true;
+    this.guideMeFormData.protectionNeedData = data;
   }
 
   getProtectionNeedsList() {
@@ -81,20 +83,52 @@ export class GuideMeService {
     return this.apiService.getProtectionNeedsList(userInfoForm);
   }
 
+  /* FinancialAssessment - Income & Expenses */
+  getMyIncome(): IMyIncome {
+    const MyIncomeForm: IMyIncome = {
+      monthlySalary: this.guideMeFormData.monthlySalary,
+      annualBonus: this.guideMeFormData.annualBonus,
+      otherIncome: this.guideMeFormData.otherIncome
+    };
+    return MyIncomeForm;
+  }
+
+  setMyIncome(data: IMyIncome) {
+    this.isMyIncomeFormValid = true;
+    this.guideMeFormData.monthlySalary = data.monthlySalary;
+    this.guideMeFormData.annualBonus = data.annualBonus;
+    this.guideMeFormData.otherIncome = data.otherIncome;
+  }
+
+  /*Additions of currency Values */
+  additionOfCurrency(formValues) {
+    let sum: any = 0;
+    for (const i in formValues) {
+      if (formValues[i] !== null && formValues[i] !== '' && !isNaN(formValues[i])) {
+        if (i === 'annualBonus') {
+          sum += formValues[i] !== 0 ? formValues[i] / 12 : 0;
+        } else {
+          sum += parseInt(formValues[i], 10);
+        }
+      }
+    }
+    return sum.toFixed();
+  }
+
   currentFormError(form) {
     const invalid = [];
     const invalidFormat = [];
     const controls = form.controls;
     for (const name in controls) {
-         if (controls[name].invalid) {
-           invalid.push(name);
-           invalidFormat.push(Object.keys(controls[name]['errors']));
-         }
-       }
+      if (controls[name].invalid) {
+        invalid.push(name);
+        invalidFormat.push(Object.keys(controls[name]['errors']));
+      }
+    }
     return this.getFormError(invalid[0], invalidFormat[0][0]);
   }
 
-  getFormError( formCtrlName: string, validation: string): string {
+  getFormError(formCtrlName: string, validation: string): string {
     return this.formError.formFieldErrors[formCtrlName][validation];
-}
+  }
 }

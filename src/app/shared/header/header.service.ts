@@ -9,11 +9,13 @@ export class HeaderService {
   private pageSubTitle = new BehaviorSubject('');
   private pageHelpIcon = new Subject<boolean>();
   private mobileModal = new BehaviorSubject(event);
+  private headerVisibility = new BehaviorSubject(true);
 
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
   currentMobileModalEvent = this.mobileModal.asObservable();
+  currentHeaderVisibility = this.headerVisibility.asObservable();
 
   constructor() { }
 
@@ -29,7 +31,14 @@ export class HeaderService {
     } else {
       this.pageHelpIcon.next(false);
     }
+
+    this.headerVisibility.next(true);
   }
+
+  setHeaderVisibility(isVisible: boolean) {
+    this.headerVisibility.next(isVisible);
+  }
+
   showMobilePopUp() {
     console.log('Show Mobile Pop-up');
   }

@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { GuideMeService } from './../guide-me.service';
 import { HeaderService } from './../../shared/header/header.service';
+import { GuideMeService } from './../guide-me.service';
 
 
 @Component({
@@ -17,15 +16,20 @@ import { HeaderService } from './../../shared/header/header.service';
 export class FinAssessmentComponent implements IPageComponent, OnInit {
   pageTitle: string;
 
-  constructor(private guideMeService: GuideMeService, private router: Router,
-              public headerService: HeaderService,
-              public readonly translate: TranslateService) {
-                this.pageTitle = this.translate.instant('FINANCIAL_ASSESSMENT.TITLE');
-              }
+  constructor(
+    private guideMeService: GuideMeService, private router: Router,
+    public headerService: HeaderService,
+    public readonly translate: TranslateService) {
+
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('FINANCIAL_ASSESSMENT.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
+  }
 
   ngOnInit() {
-    this.translate.use('en');
-    this.setPageTitle(this.pageTitle);
+    this.headerService.setHeaderVisibility(false);
   }
 
   setPageTitle(title: string) {
@@ -33,6 +37,6 @@ export class FinAssessmentComponent implements IPageComponent, OnInit {
   }
 
   goNext() {
-    console.log('Proceed Button Triggered');
+    this.router.navigate(['../guideme/income']);
   }
 }
