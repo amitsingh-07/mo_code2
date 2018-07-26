@@ -1,0 +1,30 @@
+<!--Protection Needs-->
+<div class="container-fluid mt30 pl68 pr68" style="top: 80px;">
+  <div class="row">
+    <div class="col-lg-7 col-md-6 hidden-sm-md">
+      <h2>{{ pageTitle }}</h2>
+      <h6>{{ 'PROTECTION_NEEDS.DESCRIPTION' | translate}}</h6>
+      <div class="banner-image choose-protection"></div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <form name="protectionNeedsForm" *ngIf="isFormLoaded" [formGroup]="protectionNeedsForm" id="protectionNeedsForm">
+        <div class="form-container" formArrayName="protectionNeedsArray">
+          <div class="form-control protection" *ngFor="let protectionNeed of protectionNeedsList; let i = index" [formGroupName]="i">
+            <input id="protectionNeed_{{i+1}}" name="protectionNeed" formControlName="status" type="checkbox" class="field checkbox"
+              value="{{protectionNeed.protectionType}}" tabindex="{{i+1}}">
+            <label for="protectionNeed_{{i+1}}">
+              <div class="input-label-strong">{{protectionNeed.protectionType}}</div>
+              <div class="input-label-normal">{{protectionNeed.protectionDesc}}</div>
+            </label>
+          </div>
+        </div>
+        <div class="div__info-bottom hidden-lg">
+          {{ 'PROTECTION_NEEDS.BOTTOM_INFO' | translate }}
+        </div>
+        <div>
+          <button type="button" (click)="goToNext(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

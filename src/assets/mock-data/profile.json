@@ -1,0 +1,32 @@
+{
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  },
+  "objectList": [{
+    "id": 1,
+    "description": "<h4>I'm A Single Professional</h4><p>At this life stage, it is important to protect your earning ability against <b>Critical Illness</b> (e.g. cancer) and <b>Occupational Disability</b>.</p><br /><p><b>Life Protection</b> is necessary if you are supporting a family. A <b>Hospital Plan</b> helps cover high medical costs. <b>Long-Term Care</b> (ElderShield Supplement) is strongly recommended if you are aged 40 and above.</p>",
+    "name": "I'm a single professional"
+  }, {
+    "id": 2,
+    "description": "<h4>I'm Married With No Kids</h4><p>At this life stage, it is important to protect your earning ability against <b>Critical Illness</b> (e.g. cancer) and <b>Occupational Disability</b>.</p><br /><p><b>Life Protection</b> is necessary if you are supporting a family. A <b>Hospital Plan</b> helps cover high medical costs. <b>Long-Term Care</b> (ElderShield Supplement) is strongly recommended if you are aged 40 and above.</p>",
+    "name": "I'm married with no kids"
+  }, {
+    "id": 3,
+    "description": "<h4>I'm A Parent</h4><p>At this life stage, it is important to protect your earning ability against <b>Critical Illness</b> (e.g. cancer) and <b>Occupational Disability</b>.</p><br /><p><b>Life Protection</b> is necessary if you are supporting a family. A <b>Hospital Plan</b> helps cover high medical costs. <b>Long-Term Care</b> (ElderShield Supplement) is strongly recommended if you are aged 40 and above.</p>",
+    "name": "I'm a parent"
+  }, {
+    "id": 4,
+    "description": "<h4>I'm A Student</h4><p>At this life stage, a <b>Hospital Plan</b> is a priority to help cover high medical costs. Eventually when you enter the workforce, you should also consider <b>Life Protection</b> and protect against <b>Critical Illness</b> and <b>Occupational Disability</b>.</p>",
+    "name": "I'm a student"
+  }, {
+    "id": 5,
+    "description": "<h4>I'm A Retiree / Pre-Retiree</h4><p>At this life stage, it is essential to have a good <b>Hospital Plan</b> to help cover high medical costs. <b>Long-Term Care</b> (Eldershield Supplement) is also necessary to cover high costs of caregiving for the future.</p>",
+    "name": "I'm a pre-retiree / retiree"
+  }, {
+    "id": 6,
+    "description": "<h4>I'm A Homemaker</h4><p>As your family depends on you to run the household, it is important for you to consider <b>Life Protection</b>, <b>Hospital Plans</b> and protect against <b>Critical Illness</b>. <b>Long-Term Care</b> (ElderShield Supplement) is strongly recommended if you are aged 40 and above.</p>",
+    "name": "I'm a homemaker"
+  }]
+
+}
