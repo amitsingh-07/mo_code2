@@ -42,16 +42,16 @@ input[type="checkbox"] {
   &.profile {
     .input-label-strong {
       color: #5e5e5e;
+      &:first-letter {
+        text-transform: uppercase !important;
+      }
     }
   }
   .input-label-strong, .input-label-normal {
-    text-transform: lowercase;
+    //text-transform: lowercase;
     color: $text-color-secondary;
     color: #000000;
     font-family: $muli-semi-bold;
-    &::first-letter {
-      text-transform: uppercase;
-    }
   }
   .input-label-normal {
     font-family: $muli-regular;
@@ -59,7 +59,7 @@ input[type="checkbox"] {
     color: #5e5e5e;
   }
   &.protection {
-    padding:0rem 0.10rem 0.10rem 1rem;
+    padding:0.2rem 0.8rem;
   }
   .input-label-normal {
     font-family: $muli-regular;
