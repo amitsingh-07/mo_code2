@@ -42,5 +42,20 @@
     "MONTHLY_INSTALLMENT_HINT": "(E.g. Car, House)",
     "OTHER_EXPENSES": "All Other Expenses",
     "OTHER_EXPENSES_HINT": "(E.g. Food, Household, Bills)"
+  },
+  "FINANCIAL_ASSESSMENT": {
+      "TITLE": "Financial Assessment",
+      "CONTENT_STEP": "Step 1",
+      "CONTENT_TITLE": "Financial Assessment",
+      "CONTENT_DESC": "In the next step, we are going to gather information on your income, expenses, assets and liabilities to determine your insurance needs."
+  },
+  "INSURE_ASSESSMENT": {
+      "TITLE": "Insurance Needs Assessment",
+      "CONTENT_STEP": "Step 2",
+      "CONTENT_TITLE": "Insurance Needs Assessment",
+      "CONTENT_DESC": "In the next step, we will ask you a few simple questions to assess your needs."
+  },
+  "CRITICAL_ILLNESS_ASSESSMENT": {
+      "TITLE": "Critical Illness"
   }
 }
