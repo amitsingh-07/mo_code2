@@ -4,13 +4,15 @@
     <div class="col-lg-7 col-md-6 hidden-sm-md">
       <h2>{{ pageTitle }}</h2>
       <h6>{{ 'PROTECTION_NEEDS.DESCRIPTION' | translate}}</h6>
-      <div class="banner-image choose-protection"></div>
+      <div class="banner-image">
+          <img src="assets/images/protection-need.svg" />
+      </div>
     </div>
     <div class="col-lg-5 col-md-6">
       <form name="protectionNeedsForm" *ngIf="isFormLoaded" [formGroup]="protectionNeedsForm" id="protectionNeedsForm">
         <div class="form-container" formArrayName="protectionNeedsArray">
           <div class="form-control protection" *ngFor="let protectionNeed of protectionNeedsList; let i = index" [formGroupName]="i">
-            <input id="protectionNeed_{{i+1}}" name="protectionNeed" formControlName="status" type="checkbox" class="field checkbox"
+            <input id="protectionNeed_{{i+1}}" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" formControlName="status" type="checkbox" class="field checkbox"
               value="{{protectionNeed.protectionType}}" tabindex="{{i+1}}">
             <label for="protectionNeed_{{i+1}}">
               <div class="input-label-strong">{{protectionNeed.protectionType}}</div>
@@ -22,7 +24,7 @@
           {{ 'PROTECTION_NEEDS.BOTTOM_INFO' | translate }}
         </div>
         <div>
-          <button type="button" (click)="goToNext(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+          <button type="button" [disabled]="!isFormValid" (click)="goToNext(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </form>
     </div>

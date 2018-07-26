@@ -17,9 +17,16 @@
         &:hover {
             background-color: #0de0de;
         }
-        &:focus {
+        &:focus, &:active {
             outline: none !important;
+            background: #00c5c4 !important;
+            border-color: none !important;
         }
+        &.active {
+            outline: none !important;
+            background: $btn-primary-backgrnd-color !important;
+        }
+
         &.active {
             outline: none !important;
             background: $btn-primary-backgrnd-color !important;

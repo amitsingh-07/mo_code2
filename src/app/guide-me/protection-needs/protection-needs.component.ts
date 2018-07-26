@@ -13,6 +13,7 @@ import { GuideMeService } from '../guide-me.service';
   styleUrls: ['./protection-needs.component.scss']
 })
 export class ProtectionNeedsComponent implements IPageComponent, OnInit {
+  isFormValid = true;
   protectionNeedsForm: FormGroup;
   protectionNeedsArray: FormArray;
   protectionNeedsList: any[];
@@ -69,6 +70,9 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
       protectionDesc: responseObj.protectionDesc
     });
   }
+  validateForm(form: any) {
+    this.isFormValid = this.save(form);
+  }
   save(form: any) {
     this.currentFormData = this.protectionNeedsForm.value.protectionNeedsArray;
     const isChecked = this.currentFormData.some((el) => {
@@ -83,7 +87,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
 
   goToNext(form: any) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/financialassessment']);
+      this.router.navigate(['../guideme/financial-assessment']);
     }
   }
 }

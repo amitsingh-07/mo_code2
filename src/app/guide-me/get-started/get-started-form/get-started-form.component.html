@@ -1,97 +1,97 @@
-<div class="container-fluid">
-  <div class="doselfCheck setpOneForm">
-    <form id="userInfoForm" name="userInfoForm" [formGroup]="userInfoForm">
-      <ul class="form__block">
-        <li class="form__row">
-          <div class="form__col--left">
-            <label for="name">{{ 'GET_STARTED.I_AM_A' | translate}}</label>
-          </div>
-          <div class="form__col--right">
-            <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-              <div style="margin-right: 10px;">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" value="male"> {{ 'LABEL.MALE' | translate}}
-                </label>
-              </div>
-              <div>
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" value="female"> {{ 'LABEL.FEMALE' | translate}}
-                </label>
-              </div>
+<div class="doselfCheck setpOneForm">
+  <form id="userInfoForm" name="userInfoForm" [formGroup]="userInfoForm">
+    <ul class="form__block">
+      <li class="form__row">
+        <div class="form__col--left">
+          <label for="name">{{ 'GET_STARTED.I_AM_A' | translate}}</label>
+        </div>
+        <div class="form__col--right">
+          <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+            <div style="margin-right: 10px;">
+              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                <input ngbButton type="radio" value="male"> {{ 'LABEL.MALE' | translate}}
+              </label>
+            </div>
+            <div>
+              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                <input ngbButton type="radio" value="female"> {{ 'LABEL.FEMALE' | translate}}
+              </label>
             </div>
           </div>
-        </li>
-        <li class="form__row">
-          <div class="form__col--left">
-            <label for="name">{{ 'GET_STARTED.BORN_ON' | translate}}</label>
-          </div>
-          <div #usrFrmDp class="form__col--right">
-            <div class="datepicker-control">
-              <div class="input-group date-picker" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
-                <input readonly class="form-control" placeholder="DD/MM/YYYY" formControlName="dob" name="dp" ngbDatepicker
-                  #d="ngbDatepicker" required>
-                <div class="input-group-append">
-                  <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                    <img class="date-picker-image--valid" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-valid.png"
-                    />
-                    <img class="date-picker-image--invalid" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-invalid.png"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="form__row">
-          <div class="form__col--left">
-            <label for="name">{{ 'GET_STARTED.AND_A' | translate}}</label>
-          </div>
-          <div class="form__col--right">
-            <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
-              <div class="mr10">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" value="non-smoker"> {{'LABEL.NON_SMOKER' | translate}}
-                </label>
-              </div>
-              <div>
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                  <input ngbButton type="radio" value="smoker"> {{'LABEL.SMOKER' | translate}}
-                </label>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="form__row mb10">
-          <div class="form__col--left">
-            <label for="name">{{ 'GET_STARTED.I_HAVE' | translate}}</label>
-          </div>
-          <div class="form__col--right">
-            <div class="dropdown-control">
-              <div ngbDropdown class="d-inline-block" id="dependentDropDown">
-                <button class="btn btn-default fixed-btn--lg btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
-                  <span class="dependent-count">{{dependents}}</span> {{'LABEL.DEPENDANT' | translate}}<span *ngIf="dependents > 1">s</span>
+        </div>
+      </li>
+      <li class="form__row">
+        <div class="form__col--left">
+          <label for="name">{{ 'GET_STARTED.BORN_ON' | translate}}</label>
+        </div>
+        <div #usrFrmDp class="form__col--right">
+          <div class="datepicker-control">
+            <div class="input-group date-picker" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
+              <input readonly class="form-control" placeholder="DD/MM/YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
+                required>
+              <div class="input-group-append">
+                <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                  <img class="date-picker-image--valid" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-valid.png"
+                  />
+                  <img class="date-picker-image--invalid" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-invalid.png"
+                  />
                 </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item fixed-btn--lg" *ngFor="let count of dependentItems" (click)="selectDependentsCount(count)">
-                    {{count}} {{'LABEL.DEPENDANT' | translate}}<span *ngIf="count > 1">s</span>
-                  </button>
-                </div>
               </div>
             </div>
           </div>
-        </li>
-        <li class="form__row mb20">
-          <div class="form__col--left">
+        </div>
+      </li>
+      <li class="form__row">
+        <div class="form__col--left">
+          <label for="name">{{ 'GET_STARTED.AND_A' | translate}}</label>
+        </div>
+        <div class="form__col--right">
+          <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
+            <div class="mr10">
+              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                <input ngbButton type="radio" value="non-smoker"> {{'LABEL.NON_SMOKER' | translate}}
+              </label>
+            </div>
+            <div>
+              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                <input ngbButton type="radio" value="smoker"> {{'LABEL.SMOKER' | translate}}
+              </label>
+            </div>
           </div>
-          <div class="form__col--right">
-            <strong>{{ 'GET_STARTED.DEPENDANT_MEANING_LBL' | translate}}</strong>
-            <br/>{{ 'GET_STARTED.DEPENDANT_MEANING_DESC' | translate}}
+        </div>
+      </li>
+      <li class="form__row mb10">
+        <div class="form__col--left">
+          <label for="name">{{ 'GET_STARTED.I_HAVE' | translate}}</label>
+        </div>
+        <div class="form__col--right">
+          <div class="dropdown-control">
+            <div ngbDropdown class="d-inline-block" id="dependentDropDown">
+              <button class="btn btn-default fixed-btn--lg btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                <span class="dependent-count">{{dependents}}</span> {{'LABEL.DEPENDANT' | translate}}
+                <span *ngIf="dependents > 1">s</span>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item fixed-btn--lg" *ngFor="let count of dependentItems" (click)="selectDependentsCount(count)">
+                  {{count}} {{'LABEL.DEPENDANT' | translate}}
+                  <span *ngIf="count > 1">s</span>
+                </button>
+              </div>
+            </div>
           </div>
-        </li>
-      </ul>
-      <div>
-        <button type="button" (click)="goToNext(userInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate}}</button>
-      </div>
-    </form>
-  </div>
+        </div>
+      </li>
+      <li class="form__row mb20">
+        <div class="form__col--left">
+        </div>
+        <div class="form__col--right">
+          <strong>{{ 'GET_STARTED.DEPENDANT_MEANING_LBL' | translate}}</strong>
+          <br/>{{ 'GET_STARTED.DEPENDANT_MEANING_DESC' | translate}}
+        </div>
+      </li>
+    </ul>
+    <div>
+      <button type="button" (click)="goToNext(userInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+    </div>
+  </form>
 </div>

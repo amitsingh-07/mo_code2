@@ -13,7 +13,10 @@ import { IServerResponse } from './interfaces/server-response.interface';
 })
 export class ApiService {
 
-  constructor(private configService: ConfigService, private http: BaseService, private httpClient: HttpClient) { }
+  constructor(
+    private configService: ConfigService,
+    private http: BaseService,
+    private httpClient: HttpClient) { }
 
   getProfileList() {
     const url = '../assets/mock-data/profile.json';
@@ -55,15 +58,17 @@ export class ApiService {
 
   getProtectionNeedsList(userInfoForm) {
     const localUrl = '../assets/mock-data/getProtectionList.json';
-    return this.http.post(apiConstants.endpoint.getProtectionTypesList, userInfoForm);
-/*
-    return this.httpClient.post<IServerResponse>(
-      'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList',
-      userInfoForm)
-      .pipe(
-        catchError(this.handleError)
-      );
-*/
+    const baseUrl = 'http://bfa.ntuclink.cloud';
+
+    return this.httpClient.post(`${baseUrl}/${apiConstants.endpoint.getProtectionTypesList}`, userInfoForm);
+    /*
+        return this.httpClient.post<IServerResponse>(
+          'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList',
+          userInfoForm)
+          .pipe(
+            catchError(this.handleError)
+          );
+    */
     /*
     const url = 'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList';
     return this.http.post(url, userInfoForm)

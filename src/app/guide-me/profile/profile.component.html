@@ -4,14 +4,15 @@
     <div class="col-lg-7 col-md-6 hidden-sm-md">
       <h2>{{ pageTitle }}</h2>
       <h6>{{ 'PROFILE.DESCRIPTION' | translate}}</h6>
-      <div class="banner-image profile"></div>
+      <div class="banner-image">
+        <img src="assets/images/profile-image.svg" />
+      </div>
     </div>
     <div class="col-lg-5 col-md-6">
       <form name="profileForm" [formGroup]="profileForm" class="form-group" id="profileForm">
         <div class="form-container">
           <div class="form-control profile" *ngFor="let profiles of profileList; let i = index">
-            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" 
-              type="radio" class="field radio" value="{{profiles.id}}"
+            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.id}}"
               tabindex="{{i+1}}">
             <label for="profile_{{i+1}}">
               <span class="input-label-strong">{{profiles.name}}</span>

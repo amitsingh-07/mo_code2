@@ -39,17 +39,27 @@ input[type="checkbox"] {
       margin-bottom: 30px;
     }
   }
-  &.protection {
-    padding:0rem 0.10rem 0.10rem 1rem;
+  &.profile {
+    .input-label-strong {
+      color: #5e5e5e;
+    }
   }
   .input-label-strong, .input-label-normal {
-    text-transform: lowerCacase;
+    text-transform: lowercase;
     color: $text-color-secondary;
-    color: #313644;
+    color: #000000;
     font-family: $muli-semi-bold;
     &::first-letter {
       text-transform: uppercase;
     }
+  }
+  .input-label-normal {
+    font-family: $muli-regular;
+    @include fontSize(8px);
+    color: #5e5e5e;
+  }
+  &.protection {
+    padding:0rem 0.10rem 0.10rem 1rem;
   }
   .input-label-normal {
     font-family: $muli-regular;
