@@ -1,5 +1,5 @@
 <!--Assets Screen-->
-<div class="container-fluid mt30 pl68 pr68">
+<div class="container-fluid mt30 pl68 pr68 mb50">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
         <h2>Liabilities </h2>
@@ -19,40 +19,26 @@
             <ul class="form__block--white mb-0 form__block--white-top">
               <li class="form__row">
                 <div class="form__col--left inline-block">
-                  <div class="label--top-title">My Monthly Income</div>
-                  <div class="label--top-sub-title">What You Earn</div>
+                  <div class="label--top-title">My Liabilities</div>
+                  <div class="label--top-sub-title">What You Owe</div>
                 </div>
                 <div class="form__col--right text-right">
-                  <div class="text-big text-right">$0</div>
+                  <div class="text-big text-right">$259,100</div>
                 </div>
               </li>
             </ul>
             <ul class="form__block--white form__block--white-bottom">
               <li class="form__row">
-                <div class="form__col--left">
-                  <label for="name">Monthly Salary</label>
+                <div class="form__col--left-with-hint">
+                  <div class="form__col--left-label-primary">Property Loan</div>
+                  <div class="form__col--left--label-secondary">(Remaining amount)</div>
                 </div>
                 <div class="form__col--right text-right">
-                  <div name="monthlySalary">
-                    <div class="form__col--right-input-currency">
+                  <div name="otherIncome">
+                    <div class="form__col--right-input-currency readonly">
                       <div class="fixed-currency">$</div>
-                      <div>
-                        <input type="text" formControlName="monthlySalary" value="0">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="form__row">
-                <div class="form__col--left">
-                  <label for="name">Annual Bonus</label>
-                </div>
-                <div class="form__col--right text-right">
-                  <div name="annualBonus">
-                    <div class="form__col--right-input-currency">
-                      <div class="fixed-currency">$</div>
-                      <div>
-                        <input type="text" formControlName="annualBonus" value="0">
+                      <div class="text-left">
+                        <input type="text" formControlName="otherIncome" value="200,000">
                       </div>
                     </div>
                   </div>
@@ -60,17 +46,32 @@
               </li>
               <li class="form__row">
                 <div class="form__col--left-with-hint">
-                  <div class="form__col--left-label-primary">Other Income</div>
-                  <div class="form__col--left--label-secondary">(E.g. Rental, Dividend)</div>
+                  <div class="form__col--left-label-primary">Car Loan</div>
+                  <div class="form__col--left--label-secondary">(Remaining amount)</div>
                 </div>
                 <div class="form__col--right text-right">
                   <div name="otherIncome">
-                    <div class="form__col--right-input-currency">
+                    <div class="form__col--right-input-currency readonly">
                       <div class="fixed-currency">$</div>
-                      <div>
-                        <input type="text" formControlName="otherIncome" value="0">
+                      <div class="text-left">
+                        <input type="text" formControlName="otherIncome" value="56,800">
                       </div>
-                      <div class="fixed-tenure">/mth</div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="form__row">
+                <div class="form__col--left-with-hint">
+                  <div class="form__col--left-label-primary">Others</div>
+                  <div class="form__col--left--label-secondary">(E.g. Pesonal Loan, Business Loan)</div>
+                </div>
+                <div class="form__col--right text-right">
+                  <div name="otherIncome">
+                    <div class="form__col--right-input-currency readonly">
+                      <div class="fixed-currency">$</div>
+                      <div class="text-left">
+                        <input type="text" formControlName="otherIncome" value="2,300">
+                      </div>
                     </div>
                   </div>
                 </div>
