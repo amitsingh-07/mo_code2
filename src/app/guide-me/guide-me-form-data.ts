@@ -18,4 +18,12 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses {
     // My Expenses
     monthlyInstallment: number;
     otherExpenses: number;
+
+    // My Assets
+    cash: number;
+    cpf: number;
+    homeProperty: number;
+    investmentProperties: number;
+    investments: number;
+    others: number;
 }

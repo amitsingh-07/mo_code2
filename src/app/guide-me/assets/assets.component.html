@@ -22,10 +22,10 @@
               <li class="form__row">
                   <div class="form__col--left-top">
                       <div class="form__col--left-title">{{ 'MY_ASSETS.MY_ASSETS_FRM_TITLE' | translate}}</div>
-                      <div class="form__col--left-sub-title">{{ 'MY_ASSETS.WHAT_YOU_EARN' | translate}}</div>
+                      <div class="form__col--left-sub-title">{{ 'MY_ASSETS.WHAT_YOU_OWN' | translate}}</div>
                     </div>
                     <div class="form__col--right-top text-right">
-                      <div class="text-big text-right">{{incomeTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      <div class="text-big text-right">{{assetsTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                     </div>
               </li>
             </ul>
@@ -36,10 +36,10 @@
                 </div>
                 <div class="form__col--right text-right">
                   <div name="monthlySalary">
-                    <div class="form__col--right-input-currency readonly">
+                    <div class="form__col--right-input-currency" [ngClass]="{'readonly': cash.value != 0}">
                       <div class="fixed-currency">$</div>
                       <div class="text-left">
-                        <input type="text" formControlName="monthlySalary" value="50,000">
+                          <input type="text" appCurrencyInput maxLength="7" #cash formControlName="cash" value="0">
                       </div>
                     </div>
                   </div>
@@ -51,10 +51,10 @@
                 </div>
                 <div class="form__col--right text-right">
                   <div name="annualBonus">
-                    <div class="form__col--right-input-currency readonly">
+                    <div class="form__col--right-input-currency" [ngClass]="{'readonly': cpf.value != 0}">
                       <div class="fixed-currency">$</div>
                       <div class="text-left">
-                        <input type="text" formControlName="annualBonus" value="75,000">
+                          <input type="text" appCurrencyInput maxLength="7" #cpf formControlName="cpf" value="0">
                       </div>
                     </div>
                   </div>
@@ -66,11 +66,11 @@
                   <div class="form__col--left--label-secondary">{{ 'MY_ASSETS.HOME_PROPERTY_HINT' | translate}}</div>
                 </div>
                 <div class="form__col--right text-right">
-                  <div name="otherIncome">
-                    <div class="form__col--right-input-currency readonly">
+                  <div>
+                    <div class="form__col--right-input-currency" [ngClass]="{'readonly': homeProperty.value != 0}">
                       <div class="fixed-currency">$</div>
                       <div class="text-left">
-                        <input type="text" formControlName="otherIncome" value="350,000">
+                          <input type="text" appCurrencyInput maxLength="7" #homeProperty formControlName="homeProperty" value="0">
                       </div>
                     </div>
                   </div>
@@ -82,11 +82,11 @@
                   <div class="form__col--left--label-secondary">{{ 'MY_ASSETS.INVESTMENT_PROP_HINT' | translate}}</div>
                 </div>
                 <div class="form__col--right text-right">
-                  <div name="otherIncome">
-                    <div class="form__col--right-input-currency">
+                  <div>
+                    <div class="form__col--right-input-currency" [ngClass]="{'readonly': investmentProperties.value != 0}">
                       <div class="fixed-currency">$</div>
                       <div class="text-left">
-                        <input type="text" formControlName="otherIncome" value="0">
+                          <input type="text" appCurrencyInput maxLength="8" #investmentProperties formControlName="investmentProperties" value="0">
                       </div>
                     </div>
                   </div>
@@ -98,11 +98,11 @@
                   <div class="form__col--left--label-secondary">{{ 'MY_ASSETS.INVESTMENTS_HINT' | translate}}</div>
                 </div>
                 <div class="form__col--right text-right">
-                  <div name="otherIncome">
-                    <div class="form__col--right-input-currency readonly">
+                  <div>
+                    <div class="form__col--right-input-currency" [ngClass]="{'readonly': investments.value != 0}">
                       <div class="fixed-currency">$</div>
                       <div class="text-left">
-                        <input type="text" formControlName="otherIncome" value="50,000">
+                          <input type="text" appCurrencyInput maxLength="8" #investments formControlName="investments" value="0">
                       </div>
                     </div>
                   </div>
@@ -114,11 +114,11 @@
                   <div class="form__col--left--label-secondary">{{ 'MY_ASSETS.OTHERS_HINT' | translate}}</div>
                 </div>
                 <div class="form__col--right text-right">
-                  <div name="otherIncome">
-                    <div class="form__col--right-input-currency readonly">
+                  <div>
+                    <div class="form__col--right-input-currency" [ngClass]="{'readonly': others.value != 0}">
                       <div class="fixed-currency">$</div>
                       <div class="text-left">
-                        <input type="text" formControlName="otherIncome" value="7,500">
+                          <input type="text" appCurrencyInput maxLength="7" #others formControlName="others" value="0">
                       </div>
                     </div>
                   </div>
