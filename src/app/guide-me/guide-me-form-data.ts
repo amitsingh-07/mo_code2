@@ -1,5 +1,6 @@
+import { IMyExpenses } from './expenses/expenses.interface';
 import { IMyIncome } from './income/income.interface';
-export class GuideMeFormData implements IMyIncome {
+export class GuideMeFormData implements IMyIncome, IMyExpenses {
     myProfile: number;
     email: string;
     gender: string;
@@ -14,4 +15,15 @@ export class GuideMeFormData implements IMyIncome {
     annualBonus: number;
     otherIncome: number;
 
+    // My Expenses
+    monthlyInstallment: number;
+    otherExpenses: number;
+
+    // My Assets
+    cash: number;
+    cpf: number;
+    homeProperty: number;
+    investmentProperties: number;
+    investments: number;
+    others: number;
 }

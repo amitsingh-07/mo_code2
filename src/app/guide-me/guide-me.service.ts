@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
+import { IMyAssets } from './assets/my-assets.interface';
+import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
@@ -18,6 +20,7 @@ export class GuideMeService {
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
   isMyIncomeFormValid = false;
+  isMyExpensesFormValid = false;
 
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
@@ -83,14 +86,14 @@ export class GuideMeService {
     return this.apiService.getProtectionNeedsList(userInfoForm);
   }
 
-  /* FinancialAssessment - Income & Expenses */
+  /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
   getMyIncome(): IMyIncome {
-    const MyIncomeForm: IMyIncome = {
+    const myIncomeForm: IMyIncome = {
       monthlySalary: this.guideMeFormData.monthlySalary,
       annualBonus: this.guideMeFormData.annualBonus,
       otherIncome: this.guideMeFormData.otherIncome
     };
-    return MyIncomeForm;
+    return myIncomeForm;
   }
 
   setMyIncome(data: IMyIncome) {
@@ -98,6 +101,42 @@ export class GuideMeService {
     this.guideMeFormData.monthlySalary = data.monthlySalary;
     this.guideMeFormData.annualBonus = data.annualBonus;
     this.guideMeFormData.otherIncome = data.otherIncome;
+  }
+
+  getMyExpenses(): IMyExpenses {
+    const myExpensesForm: IMyExpenses = {
+      monthlyInstallment: this.guideMeFormData.monthlyInstallment,
+      otherExpenses: this.guideMeFormData.otherExpenses
+    };
+    return myExpensesForm;
+  }
+
+  setMyExpenses(data: IMyExpenses) {
+    this.isMyExpensesFormValid = true;
+    this.guideMeFormData.monthlyInstallment = data.monthlyInstallment;
+    this.guideMeFormData.otherExpenses = data.otherExpenses;
+  }
+
+  getMyAssets(): IMyAssets {
+    const myAssetsForm: IMyAssets = {
+      cash: this.guideMeFormData.cash,
+      cpf: this.guideMeFormData.cpf,
+      homeProperty: this.guideMeFormData.homeProperty,
+      investmentProperties: this.guideMeFormData.investmentProperties,
+      investments: this.guideMeFormData.investments,
+      others: this.guideMeFormData.others,
+    };
+    return myAssetsForm;
+  }
+
+  setMyAssets(data: IMyAssets) {
+    this.isMyExpensesFormValid = true;
+    this.guideMeFormData.cash = data.cash;
+    this.guideMeFormData.cpf = data.cpf;
+    this.guideMeFormData.homeProperty = data.homeProperty;
+    this.guideMeFormData.investmentProperties = data.investmentProperties;
+    this.guideMeFormData.investments = data.investments;
+    this.guideMeFormData.others = data.others;
   }
 
   /*Additions of currency Values */

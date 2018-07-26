@@ -60,7 +60,7 @@ export class ApiService {
     const localUrl = '../assets/mock-data/getProtectionList.json';
     const baseUrl = 'http://bfa.ntuclink.cloud';
 
-    return this.httpClient.post(`${baseUrl}/${apiConstants.endpoint.getProtectionTypesList}`, userInfoForm);
+    return this.httpClient.post<IServerResponse>(`${baseUrl}/${apiConstants.endpoint.getProtectionTypesList}`, userInfoForm);
     /*
         return this.httpClient.post<IServerResponse>(
           'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList',
