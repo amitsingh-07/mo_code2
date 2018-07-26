@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { GuideMeService } from './../guide-me.service';
 import { HeaderService } from './../../shared/header/header.service';
-
+import { GuideMeService } from './../guide-me.service';
 
 @Component({
   selector: 'app-insure-assessment',
@@ -22,7 +21,6 @@ export class InsureAssessmentComponent implements IPageComponent, OnInit {
               public readonly translate: TranslateService) {
                 this.pageTitle = this.translate.instant('INSURE_ASSESSMENT.TITLE');
               }
-
   ngOnInit() {
     this.translate.use('en');
     this.setPageTitle(this.pageTitle);

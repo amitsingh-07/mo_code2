@@ -100,6 +100,8 @@
         background: $module-fill-color;
         padding: .90rem;
         text-align: left;
+        @include fontSize(10px);
+        font-family: $muli-regular;
     }
     .btn-default:after {
         background-image: url('./assets/images/dropdown-icon.png');
@@ -113,9 +115,45 @@
     .btn-dropdown {
         color: $text-color-secondary;
         justify-content: start;
-        span.dependent-count {
-          color: $app-backgrnd-color;
-        }
     }
 }
 
+/*My Info Button Block*/
+.myinfo__block {
+    padding: 0.70rem;
+    background: $myinfo-block-bg-color;
+    border:1px solid $myinfo-block-brdr-color;
+    position: relative;
+    border-radius: 8px;
+    color: $myinfo-btn-color;
+    margin-bottom: 10px;
+    cursor: pointer;
+    .myinfo__block__btn {
+        position: absolute;
+        right: 0;
+        width: 40px;
+        background: $myinfo-block-btn-bg-color;
+        height: 100%;
+        top: 0;
+        border-radius: 0 8px 8px 0;
+        cursor: pointer;
+        .myinfo__block__btn--arrow {
+            position: absolute;
+            color: $white-color;
+            top: 40%;
+            left: 30%;
+            background-image: url(../src/assets/images/back.png);
+            width: 15px;
+            height: 15px;
+            transform: rotate(-180deg);
+        }
+    }
+    .myinfo__block--title {
+        font-family: $muli-bold;
+        @include fontSize(10px);
+    }
+    .myinfo__block--sub-title {
+        font-family: $muli-regular;
+        @include fontSize(9px);
+    }
+}

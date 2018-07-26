@@ -6,11 +6,19 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HeaderService {
   private pageTitle = new BehaviorSubject('');
+  private pageSubTitle = new BehaviorSubject('');
+
   currentPageTitle = this.pageTitle.asObservable();
+  currentPageSubTitle = this.pageSubTitle.asObservable();
 
   constructor() { }
 
-  setPageTitle(title: string) {
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
     this.pageTitle.next(title);
+    if (subTitle) {
+      this.pageSubTitle.next(subTitle);
+    } else {
+      this.pageSubTitle.next('');
+    }
   }
 }

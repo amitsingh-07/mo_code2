@@ -6,6 +6,7 @@ import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
 import { Profile } from './profile/profile';
+import { ProtectionNeeds } from './protection-needs/protection-needs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class GuideMeService {
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
   private formError: any = new FormError();
   private isProfileFormValid: boolean ;
+  private isprotectionNeedFormValid: boolean;
 
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
@@ -29,10 +31,12 @@ export class GuideMeService {
     this.isProfileFormValid = true;
     this.guideMeFormData.myProfile = data.myProfile;
   }
+
   getUserInfo(): UserInfo {
     const userInfoForm: UserInfo = {
       gender: this.guideMeFormData.gender,
       dob: this.guideMeFormData.dob,
+      customDob: this.guideMeFormData.customDob,
       smoker: this.guideMeFormData.smoker,
       dependent: this.guideMeFormData.dependent
     };
@@ -44,8 +48,8 @@ export class GuideMeService {
     this.guideMeFormData.gender = data.gender;
     this.guideMeFormData.dob = data.dob;
     this.guideMeFormData.smoker = data.smoker;
+    this.guideMeFormData.customDob = data.customDob;
     this.guideMeFormData.dependent = data.dependent;
-
   }
 
   getGuideMeFormData(): GuideMeFormData {
@@ -55,6 +59,26 @@ export class GuideMeService {
 
   getProfileList() {
     return this.apiService.getProfileList();
+  }
+
+  getProtectionNeeds(): ProtectionNeeds {
+    const protectionNeedData: ProtectionNeeds = {
+      protectionNeedData: this.guideMeFormData.protectionNeedData
+    };
+    return protectionNeedData;
+  }
+
+  setProtectionNeeds(data) {
+      this.isprotectionNeedFormValid = true;
+      this.guideMeFormData.protectionNeedData = data;
+  }
+
+  getProtectionNeedsList() {
+    const userInfoForm: any = {
+      profileId: this.guideMeFormData.myProfile,
+      birthDate: this.guideMeFormData.customDob
+    };
+    return this.apiService.getProtectionNeedsList(userInfoForm);
   }
 
   currentFormError(form) {

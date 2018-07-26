@@ -1,72 +1,182 @@
  /*Form Styles*/
 
  /*Check box / Radio Button styles*/
-  input[type='radio']+label, input[type='checkbox']+label {
-    margin: 0;
-    clear: none;
-    padding: 5px 0 4px 40px;
-    cursor: pointer;
-    background: url("./assets/images/checkbox-normal.png") left center no-repeat;
+ input[type='radio']+label, input[type='checkbox']+label {
+  margin: 0;
+  clear: none;
+  padding: 2px 0 4px 40px;
+  cursor: pointer;
+  background: url("./assets/images/check-box-normal.svg") left center no-repeat;
+}
+input[type='radio']:checked+label, input[type='checkbox']:checked+label {
+  background-image: url("./assets/images/check-box-select.svg");
+}
+input[type="radio"],
+input[type="checkbox"] {
+  margin-top: 0;
+  display: none;
+} 
+/*form control styles*/
+.form-control {
+  &.profile, &.protection {
+    font-family: $muli-bold;
+    @include fontSize(11px);
+    margin-bottom: 16px;
+    position: relative;
+    padding: 0.70rem 0.80rem;
+    border: none;
+    border-radius: 6px;
+    .tooltip-icon {
+      position: absolute;
+      right: 14px;
+      top: 17px;
+      background: url("./assets/images/tooltip-icon.svg") no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+    }
+    &:last-child {
+      margin-bottom: 30px;
+    }
   }
-  input[type='radio']:checked+label, input[type='checkbox']:checked+label {
-    background-image: url("./assets/images/checkbox-active.png");
+  &.protection {
+    padding:0rem 0.10rem 0.10rem 1rem;
   }
-  input[type="radio"],
-  input[type="checkbox"] {
-    margin-top: 0;
-    display: none;
-  } 
-  /*form control styles*/
-  .form-control {
-    &.profile, &.protection {
+  .input-label-strong, .input-label-normal {
+    text-transform: lowerCacase;
+    color: $text-color-secondary;
+    color: #313644;
+    font-family: $muli-semi-bold;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  .input-label-normal {
+    font-family: $muli-regular;
+    @include fontSize(8px);
+  }
+}
+/*Input placeholder styles*/
+input::placeholder {
+  color: $app-backgrnd-color !important;
+}
+
+/*Inline Error Styles*/
+.inline-error {
+  color: $inline-error-border-color;
+  border: 1px solid $inline-error-border-color;
+  background: $inline-error-bg-color;
+  border-radius: 4px;
+  * {
+    background: $inline-error-bg-color !important;
+  }
+  input::placeholder {
+    color: $inline-error-border-color !important;
+  }
+  div {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+
+/*Income form block*/
+  .form__block--white {
+    border-radius: 8px;
+    background: $white-color;
+    padding: 0.90rem;
+    .form__block--title {
+      color: $form-block-title-color;
       font-family: $muli-bold;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      position: relative;
-      padding: 0.70rem;
-      .tooltip-icon {
-        position: absolute;
-        right: 10px;
-        top: 18px;
-        background: url("./assets/images/help-icon.png") no-repeat;
-        height: 20px;
-        width: 20px;
-        cursor: pointer;
+    }
+    .form__block--sub-title {
+      color: $form-block-sub-title-color;
+      font-family: $muli-regular;
+    }
+    &.form__block--white-top {
+      border-bottom-left-radius: 0; 
+      border-bottom-right-radius: 0
+    }
+    &.form__block--white-bottom {
+      border-top-left-radius: 0; 
+      border-top-right-radius: 0; 
+      background: #f4fafb
+    }
+  }
+
+  /* Income, Expneses, Assets, Liabilities form styles */
+  
+.form__block--white {
+  .form__row {
+    display: flex;
+    margin-bottom: 5px;
+    .form__col--left {
+      flex-basis: 50vw;
+      display: flex;
+      align-items: center;
+      label {
+        color: #2d8289;
+        font-family: $muli-semi-bold;
+      }
+      .label--top-title {
+        color:#313644;
+        font-family: $muli-semi-bold;
+      }
+      .label--top-sub-title {
+        color:#5e5e5e;
+        font-family: $muli-regular;
+        @include fontSize(9px);
       }
     }
-    &.protection {
-      padding:0rem 0.10rem 0.10rem 1rem;
+    .form__col--left-with-hint {
+      flex-basis: 50vw;
+      display: inline-grid;
+      align-items: center;
+      .form__col--left-label-primary {
+        color: #2d8289;
+        font-family: $muli-semi-bold;
+      }
+      .form__col--left--label-secondary {
+        color: #2d8289;
+        font-family: $muli-regular;
+        @include fontSize(9px);
+      }
     }
-    .input-label-strong, .input-label-normal {
-      text-transform: lowercase;
-      color: $text-color-secondary;
-      font-family: $muli-bold;
-    }
-    .input-label-normal {
-      font-family: $muli-regular;
-      @include fontSize(8px);
-    }
-  }
-  /*Input placeholder styles*/
-  input::placeholder {
-    color: $app-backgrnd-color !important;
-  }
-  
-  /*Inline Error Styles*/
-  .inline-error {
-    color: $inline-error-border-color;
-    border: 1px solid $inline-error-border-color;
-    background: $inline-error-bg-color;
-    border-radius: 4px;
-    * {
-      background: $inline-error-bg-color !important;
-    }
-    input::placeholder {
-      color: $inline-error-border-color !important;
-    }
-    div {
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
+    .form__col--right {
+      flex-basis: 50vw;
+      .text-big {
+          color: #00a7a7;
+          font-family: $muli-semi-bold;
+          @include fontSize(12px);
+      }
     }
   }
-  
+  .form__col--right-input-currency {
+      color: #00a7a7;
+      border: 2px solid #c0eded;
+      padding: 0.90rem;
+      border-radius: 6px;
+      position: relative;
+      .fixed-currency {
+        position: absolute;
+        left: 5px;
+        top: 15.5px;
+      }
+      .fixed-tenure {
+        position: absolute;
+        right: 5px;
+        top: 15.5px;
+      }
+      &.readonly {
+        border: 1ps solid #b0dddd;
+        background: #d9f2f2;
+        color: #00a7a7;
+      }
+      input {
+        border: none;
+        color: #00a7a7;
+        padding-left: 2px;
+        background: transparent;
+      }
+  }
+}
+
