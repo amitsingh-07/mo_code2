@@ -1,5 +1,7 @@
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 
 import { FormControl, FormGroup, Validators } from '../../../../node_modules/@angular/forms';
 import { Router } from '../../../../node_modules/@angular/router';
@@ -15,6 +17,8 @@ import { IMyIncome } from './income.interface';
   encapsulation: ViewEncapsulation.None
 })
 export class IncomeComponent implements IPageComponent, OnInit {
+  @ViewChild('incomeSlider') incomeSlider: jqxSliderComponent;
+
   pageTitle: string;
   incomeForm: FormGroup;
   incomeFormValues: IMyIncome;
@@ -24,7 +28,8 @@ export class IncomeComponent implements IPageComponent, OnInit {
 
   constructor(
     private router: Router, public headerService: HeaderService,
-    private translate: TranslateService, private guideMeService: GuideMeService) {
+    private translate: TranslateService, private guideMeService: GuideMeService,
+    private currencyPipe: CurrencyPipe) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -52,11 +57,25 @@ export class IncomeComponent implements IPageComponent, OnInit {
     this.incomeTotal = this.guideMeService.additionOfCurrency(this.incomeForm.value);
   }
 
+  onSliderChange(event: any): void {
+    const value = this.incomeSlider.getValue();
+    let amount = this.currencyPipe.transform(value, 'USD');
+    if (amount !== null) {
+      amount = amount.split('.')[0].replace('$', '');
+      this.incomeForm.controls['otherIncome'].setValue(amount);
+      this.setFormTotalValue();
+    }
+  }
+
+  updateSlider() {
+    this.incomeSlider.setValue(this.incomeForm.controls['otherIncome'].value);
+  }
+
   /* Onchange Currency Addition */
   @HostListener('input', ['$event'])
-    onChange() {
-       this.setFormTotalValue();
-    }
+  onChange() {
+    this.setFormTotalValue();
+  }
 
   save(form: any) {
     if (form.valid) {
@@ -66,6 +85,8 @@ export class IncomeComponent implements IPageComponent, OnInit {
   }
 
   goToNext(form) {
-    this.router.navigate(['../guideme/expenses']);
+    if (this.save(form)) {
+      this.router.navigate(['../guideme/expenses']);
+    }
   }
 }

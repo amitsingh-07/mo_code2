@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
-import { IMyAssets } from './assets/my-assets.interface';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
 import { IMyIncome } from './income/income.interface';
+import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IMyAssets } from './my-assets/my-assets.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
@@ -124,7 +125,7 @@ export class GuideMeService {
       homeProperty: this.guideMeFormData.homeProperty,
       investmentProperties: this.guideMeFormData.investmentProperties,
       investments: this.guideMeFormData.investments,
-      others: this.guideMeFormData.others,
+      otherAssets: this.guideMeFormData.otherAssets,
     };
     return myAssetsForm;
   }
@@ -136,18 +137,38 @@ export class GuideMeService {
     this.guideMeFormData.homeProperty = data.homeProperty;
     this.guideMeFormData.investmentProperties = data.investmentProperties;
     this.guideMeFormData.investments = data.investments;
-    this.guideMeFormData.others = data.others;
+    this.guideMeFormData.otherAssets = data.otherAssets;
+  }
+
+  getMyLiabilities(): IMyLiabilities {
+    const myAssetsForm: IMyLiabilities = {
+      propertyLoan: this.guideMeFormData.propertyLoan,
+      carLoan: this.guideMeFormData.carLoan,
+      otherLiabilities: this.guideMeFormData.otherLiabilities
+    };
+    return myAssetsForm;
+  }
+
+  setMyLiabilities(data: IMyLiabilities) {
+    this.isMyExpensesFormValid = true;
+    this.guideMeFormData.propertyLoan = data.propertyLoan;
+    this.guideMeFormData.carLoan = data.carLoan;
+    this.guideMeFormData.otherLiabilities = data.otherLiabilities;
   }
 
   /*Additions of currency Values */
   additionOfCurrency(formValues) {
     let sum: any = 0;
     for (const i in formValues) {
-      if (formValues[i] !== null && formValues[i] !== '' && !isNaN(formValues[i])) {
-        if (i === 'annualBonus') {
-          sum += formValues[i] !== 0 ? formValues[i] / 12 : 0;
-        } else {
-          sum += parseInt(formValues[i], 10);
+      if (formValues[i] !== null && formValues[i] !== '') {
+        const Regexp = new RegExp('[,]', 'g');
+        const thisValue = formValues[i].replace(Regexp, '');
+        if (!isNaN(thisValue)) {
+          if (i === 'annualBonus') {
+            sum += thisValue !== 0 ? thisValue / 12 : 0;
+          } else {
+            sum += parseInt(thisValue, 10);
+          }
         }
       }
     }

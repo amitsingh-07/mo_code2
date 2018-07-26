@@ -1,6 +1,6 @@
-import { TranslateService } from '@ngx-translate/core';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
@@ -9,11 +9,11 @@ import { GuideMeService } from './../guide-me.service';
 import { IMyAssets } from './my-assets.interface';
 
 @Component({
-  selector: 'app-assets',
-  templateUrl: './assets.component.html',
-  styleUrls: ['./assets.component.scss']
+  selector: 'app-my-assets',
+  templateUrl: './my-assets.component.html',
+  styleUrls: ['./my-assets.component.scss']
 })
-export class AssetsComponent implements IPageComponent, OnInit {
+export class MyAssetsComponent implements IPageComponent, OnInit {
   pageTitle: string;
   assetsForm: FormGroup;
   assetsFormValues: IMyAssets;
@@ -37,7 +37,7 @@ export class AssetsComponent implements IPageComponent, OnInit {
       homeProperty: new FormControl(this.assetsFormValues.homeProperty, Validators.required),
       investmentProperties: new FormControl(this.assetsFormValues.investmentProperties, Validators.required),
       investments: new FormControl(this.assetsFormValues.investments, Validators.required),
-      others: new FormControl(this.assetsFormValues.others, Validators.required)
+      others: new FormControl(this.assetsFormValues.otherAssets, Validators.required)
     });
 
     this.setFormTotalValue();

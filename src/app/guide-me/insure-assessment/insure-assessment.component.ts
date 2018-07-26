@@ -16,21 +16,21 @@ import { GuideMeService } from './../guide-me.service';
 export class InsureAssessmentComponent implements IPageComponent, OnInit {
   pageTitle: string;
 
-  constructor(private guideMeService: GuideMeService, private router: Router,
-              public headerService: HeaderService,
-              public readonly translate: TranslateService) {
-                this.pageTitle = this.translate.instant('INSURE_ASSESSMENT.TITLE');
-              }
-  ngOnInit() {
+  constructor(
+    private guideMeService: GuideMeService, private router: Router,
+    public headerService: HeaderService,
+    public readonly translate: TranslateService) {
+
     this.translate.use('en');
-    this.setPageTitle(this.pageTitle);
+  }
+  ngOnInit() {
+    this.headerService.setHeaderVisibility(false);
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
   }
 
   goNext() {
-    console.log('Next Page');
+    console.log('goto critical illness page');
   }
 }

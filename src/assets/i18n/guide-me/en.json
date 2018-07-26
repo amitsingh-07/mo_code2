@@ -44,7 +44,7 @@
     "OTHER_EXPENSES_HINT": "(E.g. Food, Household, Bills)"
   },
   "MY_ASSETS": {
-    "TITLE": "Assets",
+    "TITLE": "My Assets",
     "DESCRIPTION": "Help us understand your finances better.",
     "MY_ASSETS_FRM_TITLE": "My Assets",
     "WHAT_YOU_OWN": "What You Own",
@@ -68,7 +68,6 @@
     "PROPERTY_LOAN_HINT": "(Remaining amount)",
     "CAR_LOAN": "Car Loan",
     "CAR_LOAN_HINT": "(Remaining amount)",
-    "MONTHLY_INSTALLMENT_HINT": "(E.g. Car, House)",
     "OTHERS": "Others",
     "OTHERS_HINT": "(E.g. Personal Loan, Business Loan)"
   },
