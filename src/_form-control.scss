@@ -192,12 +192,12 @@ input::placeholder {
       position: relative;
       .fixed-currency {
         position: absolute;
-        left: 5px;
+        left: 10px;
         top: 15.5px;
       }
       .fixed-tenure {
         position: absolute;
-        right: 5px;
+        right: 10px;
         top: 15.5px;
       }
       &.readonly {
@@ -214,7 +214,7 @@ input::placeholder {
         }
         border: none;
         color: #00a7a7;
-        padding-left: 2px;
+        padding-left: 5px;
         background: transparent;
       }
   }
