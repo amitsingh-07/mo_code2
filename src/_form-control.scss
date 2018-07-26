@@ -110,7 +110,16 @@ input::placeholder {
     display: flex;
     margin-bottom: 5px;
     .form__col--left {
-      flex-basis: 50vw;
+      flex-basis: 45vw;
+      margin-right: 5vw;
+      @include allmobiles {
+        flex-basis: 45vw;
+        margin-right: 10vw;
+      }
+      @include tablet {
+        flex-basis: 45vw;
+        margin-right: 5vw;
+      }
       display: flex;
       align-items: center;
       label {
@@ -128,9 +137,18 @@ input::placeholder {
       }
     }
     .form__col--left-with-hint {
-      flex-basis: 50vw;
+      flex-basis: 45vw;
+      margin-right: 5vw;
       display: inline-grid;
       align-items: center;
+      @include allmobiles {
+        flex-basis: 45vw;
+        margin-right: 10vw;
+      }
+      @include tablet {
+        flex-basis: 45vw;
+        margin-right: 5vw;
+      }
       .form__col--left-label-primary {
         color: #2d8289;
         font-family: $muli-semi-bold;
@@ -143,6 +161,12 @@ input::placeholder {
     }
     .form__col--right {
       flex-basis: 50vw;
+      @include allmobiles {
+        flex-basis: 45vw;
+      }
+      @include tablet {
+        flex-basis: 55vw;
+      }
       .text-big {
           color: #00a7a7;
           font-family: $muli-semi-bold;
@@ -172,6 +196,12 @@ input::placeholder {
         color: #00a7a7;
       }
       input {
+        @include allmobiles {
+          width: 100%;
+        }
+        @include tablet {
+          width: 100%;
+        }
         border: none;
         color: #00a7a7;
         padding-left: 2px;
