@@ -14,6 +14,8 @@ body {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-family: $muli-regular;
     color: $module-fill-color;
+    padding:0px;
+    margin:0px;
   }
 
   /*Nav Bar Styles*/
@@ -76,5 +78,15 @@ body {
     padding-left: 5px;
     font-size: 13px;
     font-weight: 700;
+  }
+  .navbar__helpIcon--mobile {
+    position: absolute;
+    display:inline-block;
+    background-image: url("./assets/images/baseline-help-24-px.png");
+    width:20px;
+    height:20px;
+    top:25px;
+    right:13px;
+    z-index:1;
   }
   

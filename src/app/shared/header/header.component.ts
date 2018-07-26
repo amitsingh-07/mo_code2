@@ -14,16 +14,22 @@ export class HeaderComponent implements IPageComponent, OnInit {
 
   pageTitle: string;
   subTitle = '';
+  helpIcon: boolean;
 
   constructor(public headerService: HeaderService, private _location: Location , private router: Router) {  }
 
   ngOnInit() {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.headerService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
+    this.headerService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
   }
 
-  setPageTitle(title: string) {
-    this.headerService.setPageTitle(title, this.subTitle);
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
+    this.headerService.setPageTitle(title, this.subTitle, this.helpIcon);
+  }
+
+  showMobilePopUp() {
+    this.headerService.showMobilePopUp();
   }
 
   goBack() {
