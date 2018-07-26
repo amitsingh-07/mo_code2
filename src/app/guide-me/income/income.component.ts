@@ -57,7 +57,7 @@ export class IncomeComponent implements IPageComponent, OnInit {
     this.incomeTotal = this.guideMeService.additionOfCurrency(this.incomeForm.value);
   }
 
-  onSliderChange(event: any): void {
+  onSliderChange(): void {
     const value = this.incomeSlider.getValue();
     let amount = this.currencyPipe.transform(value, 'USD');
     if (amount !== null) {
