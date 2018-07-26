@@ -24,7 +24,7 @@
   },
   "MY_INCOME": {
     "TITLE": "My Income",
-    "DESCRIPTION": "Help us understand your fiances better.",
+    "DESCRIPTION": "Help us understand your finances better.",
     "MONTHLY_INCOME": "My Monthly Income",
     "WHAT_YOU_EARN": "What You Earn",
     "MONTHLY_SALARY": "Monthly Salary",
@@ -35,13 +35,42 @@
   },
   "MY_EXPENSES": {
     "TITLE": "My Expenses",
-    "DESCRIPTION": "Help us understand your fiances better.",
+    "DESCRIPTION": "Help us understand your finances better.",
     "MONTHLY_EXPENSES": "My Monthly Expenses",
     "WHAT_YOU_SPEND": "What You Spend",
     "MONTHLY_INSTALLMENT": "Monthly Installment",
     "MONTHLY_INSTALLMENT_HINT": "(E.g. Car, House)",
     "OTHER_EXPENSES": "All Other Expenses",
     "OTHER_EXPENSES_HINT": "(E.g. Food, Household, Bills)"
+  },
+  "MY_ASSETS": {
+    "TITLE": "Assets",
+    "DESCRIPTION": "Help us understand your finances better.",
+    "MY_ASSETS_FRM_TITLE": "My Assets",
+    "WHAT_YOU_OWN": "What You Own",
+    "CASH": "Cash",
+    "CPF": "CPF",
+    "HOME_PROPERTY": "Home Property",
+    "HOME_PROPERTY_HINT": "(Market Value)",
+    "INVESTMENT_PROP": "Investment Properties",
+    "INVESTMENT_PROP_HINT": "(Market Value)",
+    "INVESTMENTS": "Investments",
+    "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
+    "OTHERS": "Others",
+    "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)"
+  },
+  "MY_LIABILITIES": {
+    "TITLE": "My Liabilities",
+    "DESCRIPTION": "Help us understand your finances better. ",
+    "MY_LIABILITIES_FRM_TITLE": "My Liabilities",
+    "WHAT_YOU_OWE": "What You Owe",
+    "PROPERTY_LOAN": "Property Loan",
+    "PROPERTY_LOAN_HINT": "(Remaining amount)",
+    "CAR_LOAN": "Car Loan",
+    "CAR_LOAN_HINT": "(Remaining amount)",
+    "MONTHLY_INSTALLMENT_HINT": "(E.g. Car, House)",
+    "OTHERS": "Others",
+    "OTHERS_HINT": "(E.g. Personal Loan, Business Loan)"
   },
   "FINANCIAL_ASSESSMENT": {
       "TITLE": "Financial Assessment",

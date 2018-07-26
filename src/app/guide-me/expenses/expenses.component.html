@@ -5,27 +5,20 @@
       <h2>{{ pageTitle }}</h2>
       <h6>{{ 'MY_EXPENSES.DESCRIPTION' | translate}}</h6>
       <div class="banner-image">
-          <img src="assets/images/expense.svg" />
+        <img src="assets/images/expense.svg" />
       </div>
     </div>
     <div class="col-lg-5 col-md-6">
-      <div class="myinfo__block">
-        <div class="myinfo__block__btn">
-          <span class="myinfo__block__btn--arrow"></span>
-        </div>
-        <div class="myinfo__block--title">{{ 'COMMON.LBL_FILL_VIA_MY_INFO' | translate}}</div>
-        <div class="myinfo__block--sub-title">{{ 'COMMON.LBL_MY_INFO_HELP_DESC' | translate}}</div>
-      </div>
       <div>
         <form id="expensesForm" name="expensesForm" [formGroup]="expensesForm">
           <ul class="form__block--white mb-0 form__block--white-top">
             <li class="form__row">
-              <div class="form__col--left inline-block">
-                <div class="label--top-title">{{ 'MY_EXPENSES.MONTHLY_EXPENSES' | translate}}</div>
-                <div class="label--top-sub-title">{{ 'MY_EXPENSES.WHAT_YOU_SPEND' | translate}}</div>
+              <div class="form__col--left-top">
+                <div class="form__col--left-title">{{ 'MY_EXPENSES.MONTHLY_EXPENSES' | translate}}</div>
+                <div class="form__col--left-sub-title">{{ 'MY_EXPENSES.WHAT_YOU_SPEND' | translate}}</div>
               </div>
-              <div class="form__col--right text-right">
-                <div class="text-big text-right">$0</div>
+              <div class="form__col--right-top text-right">
+                <div class="text-big text-right">{{expensesTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
               </div>
             </li>
           </ul>
@@ -36,11 +29,11 @@
                 <div class="form__col--left--label-secondary">{{ 'MY_EXPENSES.MONTHLY_INSTALLMENT_HINT' | translate}}</div>
               </div>
               <div class="form__col--right text-right">
-                <div name="otherExpenses" formControlName="otherExpenses">
-                  <div class="form__col--right-input-currency">
+                <div>
+                  <div class="form__col--right-input-currency" [ngClass]="{'readonly': monthlyInstallment.value != 0}">
                     <div class="fixed-currency">$</div>
                     <div class="text-left">
-                      <input type="text" value="0">
+                      <input type="text" appCurrencyInput maxLength="5" #monthlyInstallment formControlName="monthlyInstallment" value="0">
                     </div>
                   </div>
                 </div>
@@ -52,11 +45,11 @@
                 <div class="form__col--left--label-secondary">{{ 'MY_EXPENSES.OTHER_EXPENSES_HINT' | translate}}</div>
               </div>
               <div class="form__col--right text-right">
-                <div name="otherExpenses" formControlName="otherExpenses">
-                  <div class="form__col--right-input-currency">
+                <div>
+                  <div class="form__col--right-input-currency" [ngClass]="{'readonly': otherExpenses.value != 0}">
                     <div class="fixed-currency">$</div>
                     <div class="text-left">
-                      <input type="text" value="0">
+                      <input type="text" appCurrencyInput maxLength="5" #otherExpenses formControlName="otherExpenses" value="0">
                     </div>
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
+import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
@@ -18,6 +19,7 @@ export class GuideMeService {
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
   isMyIncomeFormValid = false;
+  isMyExpensesFormValid = false;
 
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
@@ -98,6 +100,20 @@ export class GuideMeService {
     this.guideMeFormData.monthlySalary = data.monthlySalary;
     this.guideMeFormData.annualBonus = data.annualBonus;
     this.guideMeFormData.otherIncome = data.otherIncome;
+  }
+
+  getMyExpenses(): IMyExpenses {
+    const MyExpensesForm: IMyExpenses = {
+      monthlyInstallment: this.guideMeFormData.monthlyInstallment,
+      otherExpenses: this.guideMeFormData.otherExpenses
+    };
+    return MyExpensesForm;
+  }
+
+  setMyExpenses(data: IMyExpenses) {
+    this.isMyExpensesFormValid = true;
+    this.guideMeFormData.monthlyInstallment = data.monthlyInstallment;
+    this.guideMeFormData.otherExpenses = data.otherExpenses;
   }
 
   /*Additions of currency Values */

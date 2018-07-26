@@ -119,6 +119,26 @@ input::placeholder {
   .form__row {
     display: flex;
     margin-bottom: 5px;
+    .form__col--left-top {
+      flex-basis: 60vw;
+      .form__col--left-title {
+        color:#000000;
+        font-family: $muli-semi-bold;
+      }
+      .form__col--left-sub-title {
+        color:#5e5e5e;
+        font-family: $muli-regular;
+        @include fontSize(9px);
+      }
+    }
+    .form__col--right-top {
+      flex-basis: 40vw;
+      .text-big {
+        color: #00a7a7;
+        font-family: $muli-semi-bold;
+        @include fontSize(12px);
+      }
+    }
     .form__col--left {
       flex-basis: 45vw;
       margin-right: 5vw;

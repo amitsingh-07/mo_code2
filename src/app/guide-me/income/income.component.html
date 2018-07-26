@@ -5,7 +5,7 @@
       <h2>{{ pageTitle }}</h2>
       <h6>{{ 'MY_INCOME.DESCRIPTION' | translate}}</h6>
       <div class="banner-image">
-          <img src="assets/images/income1.svg" />
+        <img src="assets/images/income1.svg" />
       </div>
     </div>
     <div class="col-lg-5 col-md-6">
@@ -20,11 +20,11 @@
         <form id="incomeForm" name="incomeForm" [formGroup]="incomeForm">
           <ul class="form__block--white mb-0 form__block--white-top">
             <li class="form__row">
-              <div class="form__col--left inline-block">
-                <div class="label--top-title">{{ 'MY_INCOME.MONTHLY_INCOME' | translate}}</div>
-                <div class="label--top-sub-title">{{ 'MY_INCOME.WHAT_YOU_EARN' | translate}}</div>
+              <div class="form__col--left-top">
+                <div class="form__col--left-title">{{ 'MY_INCOME.MONTHLY_INCOME' | translate}}</div>
+                <div class="form__col--left-sub-title">{{ 'MY_INCOME.WHAT_YOU_EARN' | translate}}</div>
               </div>
-              <div class="form__col--right text-right">
+              <div class="form__col--right-top text-right">
                 <div class="text-big text-right">{{incomeTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
               </div>
             </li>
@@ -36,11 +36,10 @@
               </div>
               <div class="form__col--right text-right">
                 <div name="monthlySalary">
-                  <div class="form__col--right-input-currency">
+                  <div class="form__col--right-input-currency" [ngClass]="{'readonly': monthlySalary.value != 0}">
                     <div class="fixed-currency">$</div>
                     <div class="text-left">
-
-                      <input type="text" appCurrencyInput maxLength="5" formControlName="monthlySalary" value="0">
+                      <input type="text" appCurrencyInput maxLength="5" #monthlySalary formControlName="monthlySalary" value="0">
                     </div>
                   </div>
                 </div>
@@ -52,11 +51,11 @@
               </div>
               <div class="form__col--right text-right">
                 <div name="annualBonus">
-                  <div class="form__col--right-input-currency">
+                  <div class="form__col--right-input-currency" [ngClass]="{'readonly': annualBonus.value != 0}">
                     <div class="fixed-currency">$</div>
                     <div class="text-left">
 
-                      <input type="text" appCurrencyInput maxLength="6" formControlName="annualBonus" value="0">
+                      <input type="text" appCurrencyInput maxLength="6" #annualBonus formControlName="annualBonus" value="0">
                     </div>
                   </div>
                 </div>
@@ -69,11 +68,11 @@
               </div>
               <div class="form__col--right text-right">
                 <div name="otherIncome">
-                  <div class="form__col--right-input-currency">
+                  <div class="form__col--right-input-currency" [ngClass]="{'readonly': otherIncome.value != 0}">
                     <div class="fixed-currency">$</div>
                     <div class="text-left">
 
-                      <input type="text" appCurrencyInput maxLength="4" formControlName="otherIncome" value="0">
+                      <input type="text" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
                     </div>
                     <div class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</div>
                   </div>

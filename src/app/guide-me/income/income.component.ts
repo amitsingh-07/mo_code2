@@ -6,6 +6,7 @@ import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from './../guide-me.service';
+import { IMyIncome } from './income.interface';
 
 @Component({
   selector: 'app-income',
@@ -16,7 +17,7 @@ import { GuideMeService } from './../guide-me.service';
 export class IncomeComponent implements IPageComponent, OnInit {
   pageTitle: string;
   incomeForm: FormGroup;
-  incomeFormValues: any;
+  incomeFormValues: IMyIncome;
   incomeTotal: any;
 
   private el: HTMLInputElement;
