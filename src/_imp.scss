@@ -33,3 +33,37 @@
 .pr68 { padding-right: 68px }
 
 .absolute-top { top: 0 !important}
+
+// Styles for jqxWidgetSlider
+.jqx-fill-state-pressed {
+    border-color: #00a7a7 !important;
+    background: #00a7a7 !important;
+}
+
+.jqx-fill-state-normal {
+    border-color: rgba(0, 167, 167, 0.35) !important;
+    background: rgba(0, 167, 167, 0.35) !important;
+}
+
+.jqx-slider-rangebar {
+    height: 12px !important;
+}
+
+.jqx-rc-all {
+    border-radius: 40px !important;
+}
+
+.jqx-slider-slider-horizontal {
+    margin-top: -5.5px !important;
+    border: 1px solid #99cfce !important;
+    background: #ffffff !important;
+}
+
+.jqx-slider-track-horizontal {
+    height: 12px !important;
+    margin-top: 2px !important;
+}
+
+.jqx-slider-track {
+    width: 96% !important;
+}

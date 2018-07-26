@@ -6,7 +6,6 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { HeaderService } from './../../shared/header/header.service';
 import { GuideMeService } from './../guide-me.service';
 
-
 @Component({
   selector: 'app-fin-assessment',
   templateUrl: './fin-assessment.component.html',
@@ -22,10 +21,6 @@ export class FinAssessmentComponent implements IPageComponent, OnInit {
     public readonly translate: TranslateService) {
 
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('FINANCIAL_ASSESSMENT.TITLE');
-      this.setPageTitle(this.pageTitle);
-    });
   }
 
   ngOnInit() {
@@ -33,7 +28,6 @@ export class FinAssessmentComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
   }
 
   goNext() {

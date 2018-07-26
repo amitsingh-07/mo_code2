@@ -4,5 +4,5 @@ export interface IMyAssets {
     homeProperty: number;
     investmentProperties: number;
     investments: number;
-    others: number;
+    otherAssets: number;
 }

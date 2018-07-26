@@ -55,6 +55,7 @@ export class CurrencyInputDirective implements AfterViewInit {
 
     formatCurrency() {
         let currentElement = this.el.nativeElement.value;
+        currentElement = currentElement.replace(new RegExp('[,]', 'g'), '');
         if (!isNaN(currentElement) && currentElement != null && currentElement !== '') {
             const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
             currentElement = this.decimalPipe.transform((currentElement).replace(Regexp, ''));
