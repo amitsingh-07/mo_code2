@@ -41,10 +41,10 @@
             <li class="form__row">
               <div class="form__col--mid flex__box--vert"> 
                 <label>
-                  I need to cover <span>4</span> time(s) of my annual salary
+                  I need to cover <span>{{ciMultiplier}}</span> time(s) of my annual salary
                 </label>
-                <div class="">
-                  <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [min]='0' [max]='7' [value]='0'
+                <div class="slider_container">
+                  <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [min]='0' [max]='7' [value]='4'
                     [step]='1' [tooltip]='true' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
                   </jqxSlider>
                 </div>

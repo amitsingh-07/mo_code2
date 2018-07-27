@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class HeaderService {
   private pageTitle = new BehaviorSubject('');
   private pageSubTitle = new BehaviorSubject('');
-  private pageHelpIcon = new Subject<boolean>();
+  private pageHelpIcon = new BehaviorSubject(true);
   private mobileModal = new BehaviorSubject(event);
   private headerVisibility = new BehaviorSubject(true);
 

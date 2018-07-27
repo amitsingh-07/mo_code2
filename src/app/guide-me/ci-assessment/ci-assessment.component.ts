@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
@@ -20,10 +21,12 @@ const assetImgPath = './assets/images/';
 })
 
 export class CiAssessmentComponent implements IPageComponent, OnInit {
+  @ViewChild('incomeSlider') incomeSlider: jqxSliderComponent;
   pageTitle: string;
   mobileModalEvent: Event;
   critIllnessForm: FormGroup;
   critIllnessFormValues: any;
+  ciMultiplier = 4;
   retirementAge = 65;
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
   helpModal: Event;
@@ -54,8 +57,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit {
     this.headerService.setPageTitle(title, null, helpIcon);
   }
 
-  selectRetirementAge(in_retirementAge) {
-    this.retirementAge = in_retirementAge;
+  onSliderChange(): void {
+    this.ciMultiplier = this.incomeSlider.getValue();
   }
 
   showMobilePopUp() {

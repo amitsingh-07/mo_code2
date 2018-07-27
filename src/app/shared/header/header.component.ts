@@ -14,7 +14,8 @@ export class HeaderComponent implements IPageComponent, OnInit {
 
   pageTitle: string;
   subTitle = '';
-  helpIcon: boolean;
+  helpIcon = false;
+  // helpIcon: boolean;
   showHeader = true;
 
   constructor(public headerService: HeaderService, private _location: Location , private router: Router) {  }

@@ -1,5 +1,8 @@
-.form__block--white {
+.form__block--white { 
     .form__row{
+        .form__col--left{
+            margin-right:0vw;
+        }
         .form__col--left-retirement-age{
             flex-basis:80vw;
         }
@@ -16,5 +19,6 @@
             background: transparent;
             }
         }
+        
     }
 }
