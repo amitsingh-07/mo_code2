@@ -27,7 +27,7 @@
         <div #usrFrmDp class="form__col--right">
           <div class="datepicker-control">
             <div class="input-group date-picker" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
-              <input readonly class="form-control" placeholder="DD/MM/YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
+              <input class="form-control" placeholder="DD/MM/YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
                 required>
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
