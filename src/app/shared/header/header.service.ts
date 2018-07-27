@@ -14,8 +14,8 @@ export class HeaderService {
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
-  currentMobileModalEvent = this.mobileModal.asObservable();
   currentHeaderVisibility = this.headerVisibility.asObservable();
+  currentMobileModalEvent: any;
 
   constructor() { }
 
@@ -31,7 +31,6 @@ export class HeaderService {
     } else {
       this.pageHelpIcon.next(false);
     }
-
     this.headerVisibility.next(true);
   }
 
@@ -39,7 +38,12 @@ export class HeaderService {
     this.headerVisibility.next(isVisible);
   }
 
-  showMobilePopUp() {
-    console.log('Show Mobile Pop-up');
+  // Showing Mobile PopUp Trigger
+  showMobilePopUp(event) {
+    console.log('Showing Mobile Popup -- Service Call');
+    this.mobileModal.next(event);
+  }
+  initMobilePopUp() {
+    this.currentMobileModalEvent = this.mobileModal.asObservable();
   }
 }

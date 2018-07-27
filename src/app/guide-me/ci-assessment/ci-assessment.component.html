@@ -1,0 +1,78 @@
+<!--Critical Illness Screen-->
+<div class="container-fluid flex__wrapper mt30 pl68 pr68">
+  <div class="row">
+    <div class="col-lg-7 col-md-6 hidden-sm-md">
+      <h2>Critical Illness</h2>
+      <h6>This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.</h6>
+      <div class="banner-image">
+        <img src="assets/images/critical-illness.svg"/>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6">
+      <div>
+        <form id="critIllnessForm" name="critIllnessForm" [formGroup]="critIllnessForm">
+          <ul class="form__block--white mb-0 form__block--white-top">
+            <li class="form__row">
+              <div class="form__col--left inline-block">
+                <div class="label--top-title">Coverage Amount</div>
+                <div class="label--top-sub-title">Based on the information below</div>
+              </div>
+              <div class="form__col--right text-right">
+                <div class="text-big text-right">$405,000</div>
+              </div>
+            </li>
+          </ul>
+          <ul class="form__block--white form__block--white-bottom">
+            <li class="form__row">
+              <div class="form__col--left">
+                <label for="name">Annual Salary</label>
+              </div>
+              <div class="form__col--right text-right">
+                <div name="annualSalary">
+                  <div class="form__col--right-input-currency">
+                    <div class="fixed-currency">$</div>
+                    <div>
+                      <input type="text" currencyInput maxLength="6" formControlName="annualSalary" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="form__row">
+              <div class="form__col--mid flex__box--vert"> 
+                <label>
+                  I need to cover <span>4</span> time(s) of my annual salary
+                </label>
+                <div class="">
+                  <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [min]='0' [max]='7' [value]='0'
+                    [step]='1' [tooltip]='true' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
+                  </jqxSlider>
+                </div>
+              </div>
+            </li>
+            <li class="form__row">
+              <div class="form__col--left form__col--left-retirement-age">
+                <label for="name">Till the retirement age of</label>
+              </div>
+              <div class="form__col--right inline-block">
+                <div class="dropdown-control">
+                    <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
+                        <button class="btn btn-default fixed-btn--sm btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+                          <span class="">{{retirementAge}}</span></button>
+                        <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
+                          <button class="dropdown-item" *ngFor="let count of retirementAgeItems" (click)="selectRetirementAge(count)">{{count}}</button>
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div>
+            <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              id="incomeBtn">Continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

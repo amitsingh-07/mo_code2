@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedComponent } from './get-started/get-started.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'income', component: IncomeComponent },
   { path: 'expenses', component: ExpensesComponent },
   { path: 'assets', component: MyAssetsComponent },
-  { path: 'liabilities', component: LiabilitiesComponent }
+  { path: 'liabilities', component: LiabilitiesComponent },
+  { path: 'ci-assessment', component: CiAssessmentComponent}
 ];
 
 @NgModule({
