@@ -64,6 +64,9 @@
     margin-top: 2px !important;
 }
 
-.jqx-slider-track {
-    width: 96% !important;
+.jqx-slider-tickscontainer, .jqx-slider-track {
+    width: 100% !important;
+}
+.jqx-slider-left + div {
+    width: 93% !important;
 }
