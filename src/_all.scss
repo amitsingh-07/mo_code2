@@ -19,7 +19,12 @@ body {
   }
 
   /*Nav Bar Styles*/
-
+  .container-fluid {
+    margin-top: 30px;
+    padding-left: 68px;
+    padding-right: 68px;
+    margin-bottom: 65px;
+  }
   .navbar {
     background-color: $module-fill-color;
     box-shadow: none;
@@ -46,7 +51,7 @@ body {
   }
   .navbar__logo {
     background-image: url("./assets/images/logo.png");
-    width: 110px;
+    width: 130px;
     margin-top: 20px;
   }
   .navbar__back-btn--web {
