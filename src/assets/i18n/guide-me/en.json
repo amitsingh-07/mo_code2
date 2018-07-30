@@ -1,0 +1,89 @@
+{
+  "COMMON": {
+    "LBL_FILL_VIA_MY_INFO": "Auto fill forms via MyInfo",
+    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data"
+  },
+  "PROFILE": {
+    "TITLE": "What's Your Profile?",
+    "DESCRIPTION": "Please choose the profile that best describes you."
+  },
+  "GET_STARTED": {
+    "TITLE": "Get Started",
+    "DESCRIPTION": "Just a few simple questions to get you started.",
+    "I_AM_A": "I am a",
+    "BORN_ON": "Born on",
+    "AND_A": "And a",
+    "I_HAVE": "I have",
+    "DEPENDANT_MEANING_LBL": "Meaning of Dependant",
+    "DEPENDANT_MEANING_DESC": " Siblings, Parents, Spouse & Children that I’m supporting"
+  },
+  "PROTECTION_NEEDS": {
+    "TITLE": "Protection Needs",
+    "DESCRIPTION": "Here are the protection type(s) recommended for you. Uncheck those that are not a priority.",
+    "BOTTOM_INFO": "We'll guide you through these needs when you tap 'continue'"
+  },
+  "MY_INCOME": {
+    "TITLE": "My Income",
+    "DESCRIPTION": "Help us understand your finances better.",
+    "MONTHLY_INCOME": "My Monthly Income",
+    "WHAT_YOU_EARN": "What You Earn",
+    "MONTHLY_SALARY": "Monthly Salary",
+    "ANNUAL_BONUS": "Annual Bonus",
+    "OTHER_INCOME": "Other Income",
+    "OTHER_INCOME_HINT": "(E.g. Rental, Dividend)",
+    "PER_MONTH": "/mth"
+  },
+  "MY_EXPENSES": {
+    "TITLE": "My Expenses",
+    "DESCRIPTION": "Help us understand your finances better.",
+    "MONTHLY_EXPENSES": "My Monthly Expenses",
+    "WHAT_YOU_SPEND": "What You Spend",
+    "MONTHLY_INSTALLMENT": "Monthly Installment",
+    "MONTHLY_INSTALLMENT_HINT": "(E.g. Car, House)",
+    "OTHER_EXPENSES": "All Other Expenses",
+    "OTHER_EXPENSES_HINT": "(E.g. Food, Household, Bills)"
+  },
+  "MY_ASSETS": {
+    "TITLE": "My Assets",
+    "DESCRIPTION": "Help us understand your finances better.",
+    "MY_ASSETS_FRM_TITLE": "My Assets",
+    "WHAT_YOU_OWN": "What You Own",
+    "CASH": "Cash",
+    "CPF": "CPF",
+    "HOME_PROPERTY": "Home Property",
+    "HOME_PROPERTY_HINT": "(Market Value)",
+    "INVESTMENT_PROP": "Investment Properties",
+    "INVESTMENT_PROP_HINT": "(Market Value)",
+    "INVESTMENTS": "Investments",
+    "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
+    "OTHERS": "Others",
+    "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)"
+  },
+  "MY_LIABILITIES": {
+    "TITLE": "My Liabilities",
+    "DESCRIPTION": "Help us understand your finances better. ",
+    "MY_LIABILITIES_FRM_TITLE": "My Liabilities",
+    "WHAT_YOU_OWE": "What You Owe",
+    "PROPERTY_LOAN": "Property Loan",
+    "PROPERTY_LOAN_HINT": "(Remaining amount)",
+    "CAR_LOAN": "Car Loan",
+    "CAR_LOAN_HINT": "(Remaining amount)",
+    "OTHERS": "Others",
+    "OTHERS_HINT": "(E.g. Personal Loan, Business Loan)"
+  },
+  "FINANCIAL_ASSESSMENT": {
+      "TITLE": "Financial Assessment",
+      "CONTENT_STEP": "Step 1",
+      "CONTENT_TITLE": "Financial Assessment",
+      "CONTENT_DESC": "In the next step, we are going to gather information on your income, expenses, assets and liabilities to determine your insurance needs."
+  },
+  "INSURE_ASSESSMENT": {
+      "TITLE": "Insurance Needs Assessment",
+      "CONTENT_STEP": "Step 2",
+      "CONTENT_TITLE": "Insurance Needs Assessment",
+      "CONTENT_DESC": "In the next step, we will ask you a few simple questions to assess your needs."
+  },
+  "CRITICAL_ILLNESS_ASSESSMENT": {
+      "TITLE": "Critical Illness"
+  }
+}

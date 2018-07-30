@@ -1,0 +1,60 @@
+.flex__viewport {
+    position: absolute !important;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.flex__box--horz{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+.flex__box--vert{
+    position: relative;
+    display: flex;
+    flex-direction:column;
+}
+@media(max-width:$col-md){
+    .flex__box--horz{
+        flex-direction:column;
+    }
+}
+.flex--left-align{
+    margin-right:auto;
+}
+.flex--right-align{
+    margin-left:auto;
+}
+@media(max-width:$col-sm){
+    .flex--left-align{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .flex--right-align{
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+.flex--pad-mt-reset{
+    padding:0;
+    margin:0;
+    flex:0 0 100%;
+}
+
+.flex--lg-grow{
+    flex-grow:1;
+}
+
+@media(max-width:$col-sm){
+    .flex--sm-grow{
+        flex-grow:1;
+    }
+}
+@media(max-width:$col-xs){
+    .flex--xs-grow{
+        flex-grow:1;
+    }
+}

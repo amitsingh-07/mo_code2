@@ -4,6 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
@@ -35,18 +36,28 @@ export class ProfileComponent implements IPageComponent, OnInit {
   helpImg: any[];
   profileFormValues: any;
 
-  constructor(private guideMeService: GuideMeService, private router: Router,
-              private modal: NgbModal, public headerService: HeaderService) {
-                this.pageTitle = 'What\'s Your Profile?';
-              }
+  constructor(
+    private guideMeService: GuideMeService, private router: Router,
+    private modal: NgbModal, public headerService: HeaderService,
+    public readonly translate: TranslateService) {
+
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('PROFILE.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
+  }
 
   ngOnInit() {
-    this.headerService.setPageTitle(this.pageTitle);
     this.profileFormValues = this.guideMeService.getGuideMeFormData();
     this.profileForm = new FormGroup({
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
     });
     this.guideMeService.getProfileList().subscribe((data) => this.profileList = data.objectList);
+  }
+
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title);
   }
 
   showHelpModal(id) {
@@ -64,7 +75,8 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.guideMeService.setProfile(this.profileForm.value);
     return true;
   }
-  goToInfo(form) {
+
+  goToNext(form) {
     if (this.save(form)) {
       this.router.navigate(['../guideme/getstarted']);
     }

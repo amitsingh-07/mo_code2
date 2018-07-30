@@ -1,0 +1,59 @@
+<!--Assets Screen-->
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+          <h2>{{ pageTitle }}</h2>
+          <h6>{{ 'MY_ASSETS.DESCRIPTION' | translate}}</h6>
+        <div class="banner-image">
+            <img src="assets/images/assets.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <div class="myinfo__block">
+          <div class="myinfo__block__btn">
+            <span class="myinfo__block__btn--arrow"></span>
+          </div>
+          <div class="myinfo__block--title">{{ 'COMMON.LBL_FILL_VIA_MY_INFO' | translate}}</div>
+        <div class="myinfo__block--sub-title">{{ 'COMMON.LBL_MY_INFO_HELP_DESC' | translate}}</div>
+      </div>
+        <div>
+          <form id="assetsForm" name="assetsForm" [formGroup]="assetsForm">
+              <div  class="form-with-bg">
+                  <!--Form Header-->
+                  <div class="form-with-bg--header">
+                      <div class="form-group flex-row">
+                        <div class="form-with-bg--header-label">{{ 'MY_ASSETS.MY_ASSETS_FRM_TITLE' | translate}}<div class="form-with-bg--header-sub-label">{{ 'MY_ASSETS.WHAT_YOU_OWN' | translate}}</div></div>
+                        <div class="total">{{assetsTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      </div>
+                    </div>
+                    <!--Form Content-->
+                    <div class="form-with-bg--content">
+                      <div class="form-group flex-row">
+                        <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.CASH' | translate}}</div>
+                        <div name="monthlySalary" class="input-control" [ngClass]="{'readonly': cash.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #cash formControlName="cash" value="0"></div>
+                      </div>
+                      <div class="form-group flex-row">
+                        <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.HOME_PROPERTY' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_ASSETS.HOME_PROPERTY_HINT' | translate}}</div></div>
+                        <div name="annualBonus" class="input-control" [ngClass]="{'readonly': homeProperty.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #homeProperty formControlName="homeProperty" value="0"></div>
+                      </div>
+                      <div class="form-group flex-row">
+                          <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.INVESTMENT_PROP' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_ASSETS.INVESTMENT_PROP_HINT' | translate}}</div></div>
+                          <div class="input-control" [ngClass]="{'readonly': investmentProperties.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="8" #investmentProperties formControlName="investmentProperties" value="0"></div>
+                      </div>
+                      <div class="form-group flex-row">
+                        <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.INVESTMENTS' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_ASSETS.INVESTMENTS_HINT' | translate}}</div></div>
+                        <div class="input-control" [ngClass]="{'readonly': investments.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="8" #investments formControlName="investments" value="0"></div>
+                      </div>
+                      <div class="form-group flex-row">
+                        <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.OTHERS' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_ASSETS.OTHERS_HINT' | translate}}</div></div>
+                        <div class="input-control" [ngClass]="{'readonly': others.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #others formControlName="others" value="0"></div>
+                      </div>
+                    </div>
+                  </div>
+              <button type="button" (click)="goToNext(assetsForm)" class="btn btn__footer--fixed btn-primary width100"
+                id="assetsBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

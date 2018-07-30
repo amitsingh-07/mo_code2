@@ -65,7 +65,7 @@ export class CustomErrorHandlerService {
       return JSON.stringify(this.tryParseError(parsedError));
     } catch (ex) {
       try {
-        return error.error.toString();
+        return error.message.toString();
       } catch (error) {
         return error.toString();
       }

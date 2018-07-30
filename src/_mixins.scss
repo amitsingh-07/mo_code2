@@ -15,6 +15,7 @@ $mobile475-width: 475px;
 $mobile568-width: 568px;
 $mobile667-width: 667px;
 $phablet7-width: 700px;
+$mobile767-width: 767px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
 // Responsive grid media queries
@@ -50,6 +51,11 @@ $desktop-width: 1024px;
 }
 @mixin min450max475 {
   @media (min-width: #{$mobile450-width}) and (max-width: #{$mobile475-width - 1px}) {
+    @content;
+  }
+}
+@mixin min568max767 {
+  @media (min-width: #{$mobile568-width}) and (max-width: #{$mobile767-width}) {
     @content;
   }
 }
@@ -116,7 +122,6 @@ $desktop-width: 1024px;
 // Custom media query mixins
 //---------------------------
 
-
 //Responsive font conversion
 //--------------------------
 @function fontRem($size) {
@@ -140,3 +145,158 @@ line-height: $size;
 line-height: lineHeightRem($size);
 }
 //Responsive Line heights conversion
+
+
+/* Extra small devices (phones, 600px and down) */
+@mixin ExtraSmallDevice {
+  @media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+    @content;
+  }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@mixin SmallDevice {
+  @media only screen and (min-width: 600px) {
+    @content;
+  }
+}
+ 
+@mixin MediumDevice {
+/* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    @content;
+  } 
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@mixin LargeDevice {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@mixin ExtraLargeDevice {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+// Flex box mixins
+//================
+@mixin flex-align($position) {
+	.align-#{$position} {
+		-webkit-box-align: $position;
+		-ms-flex-align: $position;
+		-ms-grid-row-align: $position;
+		-webkit-align-items: $position;
+		align-items: $position;
+		-ms-flex-item-align: $position;
+		-webkit-align-self: $position;
+		align-self: $position;
+	}
+}
+@mixin align-item($position) {
+	.item-#{$position} {
+		-webkit-box-align: $position;
+		-ms-flex-align: $position;
+		-ms-grid-row-align: $position;
+		-webkit-align-items: $position;
+		align-items: $position;
+	}
+}
+@mixin flex-grow($grow) {
+	-webkit-flex-grow: $grow;
+	-ms-flex-grow: $grow;
+	flex-grow: $grow;
+}
+@mixin flex-item($property) {
+	.flex-#{$property} {
+		-webkit-align-items: $property;
+		align-items: $property;
+		-ms-flex-item-align: $property;
+	}
+}
+@mixin fleX($size) {
+	.flex-#{$size} {
+		-webkit-box-flex: $size !important;
+		-ms-flex: $size !important;
+		-webkit-flex: $size !important;
+		flex: $size !important;
+	}
+}
+@mixin flex-basis($size) {
+	.flex-basis-#{$size} {
+		-ms-flex-preferred-size: $size * 1%;
+		-webkit-flex-basis: $size * 1%;
+		-moz-webkit-flex-basis: $size * 1%;
+		flex-basis: $size * 1%;
+	}
+}
+@mixin justify($property) {
+	.justify-#{$property} {
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: $property;
+		-webkit-justify-content: $property;
+	}
+}
+
+.flex {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.space-btwn {
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+
+.space-around {
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
+}
+
+@include flex-align(baseline);
+@include flex-align(flex-end);
+@include flex-align(flex-start);
+@include flex-align(center);
+@include flex-align(stretch);
+
+@include flex-item(baseline);
+@include flex-item(flex-end);
+@include flex-item(flex-start);
+@include flex-item(center);
+@include flex-item(stretch);
+
+@include align-item(baseline);
+@include align-item(flex-end);
+@include align-item(flex-start);
+@include align-item(center);
+@include align-item(stretch);
+
+@include flex-basis(32);
+@include flex-basis(33);
+@include flex-basis(49);
+@include flex-basis(50);
+@include flex-basis(100);
+
+@include fleX(1);
+@include fleX(2);
+@include fleX(4);
+
+@include justify(flex-start);
+@include justify(flex-end);
+@include justify(center);
+@include justify(space-between);
+@include justify(space-around);

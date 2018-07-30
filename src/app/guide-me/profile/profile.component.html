@@ -1,25 +1,25 @@
 <!--Profile Screen-->
-<div class="container mt30 profile">
+<div class="container-fluid profile">
   <div class="row">
-    <div class="col-sm-7 hidden-sm-md">
-      <h2>What's Your Profile? </h2>
-      <h6>Please choose the profile that best describes you.</h6>
-      <div class="profile-image"></div>
+    <div class="col-lg-7 col-md-6 hidden-sm-md">
+      <h2>{{ pageTitle }}</h2>
+      <h6>{{ 'PROFILE.DESCRIPTION' | translate}}</h6>
+      <div class="banner-image">
+        <img src="assets/images/profile-image.svg" />
+      </div>
     </div>
-    <div class="col-sm-5">
-      <form name="profileForm" [formGroup]="profileForm" class="form-group" id="profileForm">
-        <div class="form-container">
-          <div class="form-control" *ngFor="let profiles of profileList; let i = index">
-            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.name}}"
+    <div class="col-lg-5 col-md-6">
+      <form name="profileForm" [formGroup]="profileForm" id="profileForm">
+        <div class="form-group flex-col">
+          <div class="checkbox-button one-label" *ngFor="let profiles of profileList; let i = index">
+            <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.id}}"
               tabindex="{{i+1}}">
-            <label class="profile__input__lbl" for="profile_{{i+1}}">
-              <span>{{profiles.name}}</span>
+            <label for="profile_{{i+1}}">
+              <span class="input-label-strong">{{profiles.name}}</span>
             </label>
             <i class="tooltip-icon" (click)="showHelpModal(i)"></i>
           </div>
-        </div>
-        <div>
-          <button type="button" [disabled]="!profileForm.valid" (click)="goToInfo(profileForm)" class="btn btn-primary btn__footer--fixed width100">Continue</button>
+          <button type="button" [disabled]="!profileForm.valid" (click)="goToNext(profileForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </form>
     </div>
