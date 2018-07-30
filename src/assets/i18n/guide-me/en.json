@@ -83,14 +83,7 @@
       "CONTENT_TITLE": "Insurance Needs Assessment",
       "CONTENT_DESC": "In the next step, we will ask you a few simple questions to assess your needs."
   },
-  "CI_ASSESSMENT": {
-      "TITLE": "Critical Illness",
-      "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.",
-      "COVERAGE_AMT": "Coverage Amount",
-      "COVERAGE_AMT_DESC": "Based on the information below",
-      "ANNUAL_SALARY": "Annual Salary",
-      "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
-      "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
-      "UNTIL_RETIREMENT_AGE": "Till the retirement age of "
+  "CRITICAL_ILLNESS_ASSESSMENT": {
+      "TITLE": "Critical Illness"
   }
 }
