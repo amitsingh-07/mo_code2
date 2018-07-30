@@ -25,6 +25,8 @@
     flex-basis: 20vw;
     color: #00a7a7;
     font-family: $muli-semi-bold;
+    position: relative;
+    top: -18px;
     @include fontSize(12px);
     @extend .block;
     @extend .text-right;
