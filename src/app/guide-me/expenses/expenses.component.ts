@@ -32,8 +32,8 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.expensesFormValues = this.guideMeService.getMyExpenses();
     this.expensesForm = new FormGroup({
-      monthlyInstallment: new FormControl(this.expensesFormValues.monthlyInstallment, Validators.required),
-      otherExpenses: new FormControl(this.expensesFormValues.otherExpenses, Validators.required)
+      monthlyInstallment: new FormControl(this.expensesFormValues.monthlyInstallment),
+      otherExpenses: new FormControl(this.expensesFormValues.otherExpenses)
     });
 
     this.setFormTotalValue();
@@ -50,9 +50,7 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   }
 
   save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setMyIncome(form.value);
-    }
+    this.guideMeService.setMyExpenses(form.value);
     return true;
   }
 
@@ -61,6 +59,8 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   }
 
   goToNext(form) {
-    this.router.navigate(['../guideme/assets']);
+    if (this.save(form)) {
+      this.router.navigate(['../guideme/assets']);
+    }
   }
 }
