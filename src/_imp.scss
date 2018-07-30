@@ -69,4 +69,13 @@
 }
 .jqx-slider-left + div {
     width: 93% !important;
+    @include tablet {
+      width: 90% !important;
+    }
+    @include iPadProLandscape {
+      width: 91% !important;
+    }
+    @include iPadProPortrait {
+        width: 91% !important;
+    }
 }
