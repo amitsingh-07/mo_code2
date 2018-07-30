@@ -100,20 +100,16 @@
       width: 20px;
       cursor: pointer;
     }
-    // &:last-child {
-    //   margin-bottom: 30px;
-    // }
-    .input-label-strong {
-      color: #5e5e5e;
-    }
-  .input-label-strong, .input-label-normal {
-    //text-transform: lowercase;
-    color: $text-color-secondary;
+  .input-label-black, .input-label-grey {
     color: #000000;
-    font-family: $muli-semi-bold;
+    font-family: $muli;
+    @include fontSize(11px);
+  }
+  .input-label-grey {
+    color: #5e5e5e;
   }
   .input-label-normal {
-    font-family: $muli-regular;
+    font-family: $muli;
     @include fontSize(8px);
     color: #5e5e5e;
   }
@@ -129,7 +125,7 @@
  input[type='radio']+label, input[type='checkbox']+label {
   margin: 0;
   clear: none;
-  padding: 2px 0 4px 40px;
+  padding: 2px 0 4px 35px;
   cursor: pointer;
   background: url("./assets/images/check-box-normal.svg") left center no-repeat;
 }
