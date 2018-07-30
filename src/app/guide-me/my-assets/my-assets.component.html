@@ -30,11 +30,15 @@
                     <div class="form-with-bg--content">
                       <div class="form-group flex-row">
                         <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.CASH' | translate}}</div>
-                        <div name="monthlySalary" class="input-control" [ngClass]="{'readonly': cash.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #cash formControlName="cash" value="0"></div>
+                        <div name="cash" class="input-control" [ngClass]="{'readonly': cash.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #cash formControlName="cash" value="0"></div>
+                      </div>
+                      <div class="form-group flex-row">
+                        <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.CPF' | translate}}</div>
+                        <div name="cpf" class="input-control" [ngClass]="{'readonly': cpf.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #cpf formControlName="cpf" value="0"></div>
                       </div>
                       <div class="form-group flex-row">
                         <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.HOME_PROPERTY' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_ASSETS.HOME_PROPERTY_HINT' | translate}}</div></div>
-                        <div name="annualBonus" class="input-control" [ngClass]="{'readonly': homeProperty.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #homeProperty formControlName="homeProperty" value="0"></div>
+                        <div name="homeProperty" class="input-control" [ngClass]="{'readonly': homeProperty.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #homeProperty formControlName="homeProperty" value="0"></div>
                       </div>
                       <div class="form-group flex-row">
                           <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.INVESTMENT_PROP' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_ASSETS.INVESTMENT_PROP_HINT' | translate}}</div></div>
@@ -46,7 +50,7 @@
                       </div>
                       <div class="form-group flex-row">
                         <div class="form-with-bg--content-label" for="name">{{ 'MY_ASSETS.OTHERS' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_ASSETS.OTHERS_HINT' | translate}}</div></div>
-                        <div class="input-control" [ngClass]="{'readonly': others.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #others formControlName="others" value="0"></div>
+                        <div class="input-control" [ngClass]="{'readonly': otherAssets.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #otherAssets formControlName="otherAssets" value="0"></div>
                       </div>
                     </div>
                   </div>
