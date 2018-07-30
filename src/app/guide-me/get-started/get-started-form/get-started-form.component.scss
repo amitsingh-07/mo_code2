@@ -11,6 +11,15 @@
   display: flex;
   margin-bottom: 5px;
   .form__col--left {
+    @include tablet {
+      flex-basis: 20vw;
+    }
+    @include iPadProLandscape {
+      flex-basis: 20vw;
+    }
+    @include iPadProPortrait {
+      flex-basis: 20vw;
+    }
     flex-basis: 40vw;
     display: flex;
     align-items: center;
