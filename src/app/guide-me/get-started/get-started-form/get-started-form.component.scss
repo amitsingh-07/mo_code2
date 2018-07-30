@@ -12,7 +12,7 @@
   margin-bottom: 5px;
   .form__col--left {
     @include tablet {
-      flex-basis: 20vw;
+      flex-basis: 25vw;
     }
     @include iPadProLandscape {
       flex-basis: 20vw;
