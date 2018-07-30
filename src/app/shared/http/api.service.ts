@@ -58,7 +58,7 @@ export class ApiService {
 
   getProtectionNeedsList(userInfoForm) {
     const localUrl = '../assets/mock-data/getProtectionList.json';
-    const baseUrl = 'http://bfa.ntuclink.cloud';
+    const baseUrl = 'http://bfa-uat.ntuclink.cloud';
 
     return this.httpClient.post<IServerResponse>(`${baseUrl}/${apiConstants.endpoint.getProtectionTypesList}`, userInfoForm);
     /*
