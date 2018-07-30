@@ -2,12 +2,10 @@
 .btn {
     @include fontSize(12px);
     font-family: $muli-bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: auto;
     padding:0.90rem;
     border-radius: 5px;
+    text-align: center;
     border: 0;
     border: 0 solid transparent;
     &.btn-primary {
@@ -52,9 +50,9 @@
     font-weight: normal !important;
     width: 128px;
     padding: .90rem;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    @extend .align-center;
+    @extend .flex;
+    @extend .justify-center;
     height: 50px;
     margin-bottom: 5px;
     &.active {
@@ -92,6 +90,9 @@
         background: $module-fill-color !important;
         border: transparent;
         box-shadow: none;
+        @extend .align-center;
+        @extend .flex;
+        @extend .justify-center; 
     }
     }
     .date-picker-image--valid,.date-picker-image--invalid {
@@ -111,13 +112,13 @@
         font-family: $muli-regular;
     }
     .btn-default:after {
-        background-image: url('./assets/images/dropdown-icon.png');
+        background-image: url('./assets/images/dropdown-icon.svg');
         width: 16px;
         height: 10px;
         border: none;
         position: absolute;
-        top: 25px;
-        right: 15px;
+        top: 22px;
+        right: 13px;
     }
     .btn-dropdown {
         color: $text-color-secondary;

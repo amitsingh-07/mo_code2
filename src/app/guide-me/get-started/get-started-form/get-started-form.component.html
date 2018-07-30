@@ -31,9 +31,9 @@
                 required>
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                  <img class="date-picker-image--valid" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-valid.png"
+                  <img class="date-picker-image--valid" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
                   />
-                  <img class="date-picker-image--invalid" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/calendar-icon-invalid.png"
+                  <img class="date-picker-image--invalid" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
                   />
                 </button>
               </div>
