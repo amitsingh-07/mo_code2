@@ -22,11 +22,11 @@
               <div class="form-with-bg--content">
                 <div class="form-group flex-row">
                   <div class="form-with-bg--content-label">{{ 'MY_EXPENSES.MONTHLY_INSTALLMENT' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_EXPENSES.MONTHLY_INSTALLMENT_HINT' | translate}}</div></div>
-                  <div class="input-control" [ngClass]="{'readonly': monthlyInstallment.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #otherExpenses formControlName="otherExpenses" value="0"></div>
+                  <div class="input-control" [ngClass]="{'readonly': monthlyInstallment.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #monthlyInstallment formControlName="monthlyInstallment" value="0"></div>
                 </div>
                 <div class="form-group flex-row">
                   <div class="form-with-bg--content-label">{{ 'MY_EXPENSES.OTHER_EXPENSES' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_EXPENSES.OTHER_EXPENSES_HINT' | translate}}</div></div>
-                  <div class="input-control" [ngClass]="{'readonly': otherExpenses.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #monthlyInstallment formControlName="monthlyInstallment" value="0"></div>
+                  <div class="input-control" [ngClass]="{'readonly': otherExpenses.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #otherExpenses formControlName="otherExpenses" value="0"></div>
                 </div>
               </div>
             </div>

@@ -36,9 +36,9 @@ export class GetStartedFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formValues = this.guideMeService.getGuideMeFormData();
-    this.formValues.gender = 'male';
-    this.formValues.smoker = 'non-smoker';
+    this.formValues = this.guideMeService.getUserInfo();
+    this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
+    this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'non-smoker';
     if (this.formValues.dependent !== undefined ) {
       this.selectDependentsCount(this.formValues.dependent);
     }

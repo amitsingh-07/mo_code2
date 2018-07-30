@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 
@@ -16,7 +16,7 @@ import { IMyIncome } from './income.interface';
   styleUrls: ['./income.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class IncomeComponent implements IPageComponent, OnInit {
+export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   @ViewChild('incomeSlider') incomeSlider: jqxSliderComponent;
 
   pageTitle: string;
@@ -41,12 +41,16 @@ export class IncomeComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.incomeFormValues = this.guideMeService.getMyIncome();
     this.incomeForm = new FormGroup({
-      monthlySalary: new FormControl(this.incomeFormValues.monthlySalary, Validators.required),
-      annualBonus: new FormControl(this.incomeFormValues.annualBonus, Validators.required),
-      otherIncome: new FormControl(this.incomeFormValues.otherIncome, Validators.required)
+      monthlySalary: new FormControl(this.incomeFormValues.monthlySalary),
+      annualBonus: new FormControl(this.incomeFormValues.annualBonus),
+      otherIncome: new FormControl(this.incomeFormValues.otherIncome)
     });
 
     this.setFormTotalValue();
+  }
+
+  ngAfterViewInit() {
+    this.updateSlider();
   }
 
   setPageTitle(title: string) {
@@ -58,18 +62,28 @@ export class IncomeComponent implements IPageComponent, OnInit {
   }
 
   onSliderChange(): void {
-    const value = this.incomeSlider.getValue();
+    const Regexp = new RegExp('[,]', 'g');
+    let value: any = this.incomeSlider.getValue();
+    if (value !== null) {
+    value = value.toString().replace(Regexp, '');
+    }
     let amount = this.currencyPipe.transform(value, 'USD');
     if (amount !== null) {
-      amount = amount.split('.')[0].replace('$', '');
-      this.incomeForm.controls['otherIncome'].setValue(amount);
-      this.setFormTotalValue();
+    amount = amount.split('.')[0].replace('$', '');
+    this.incomeForm.controls['otherIncome'].setValue(amount);
+    this.setFormTotalValue();
     }
-  }
+    }
 
-  updateSlider() {
-    this.incomeSlider.setValue(this.incomeForm.controls['otherIncome'].value);
-  }
+    updateSlider() {
+    const Regexp = new RegExp('[,]', 'g');
+    let sliderValue = this.incomeForm.controls['otherIncome'].value; 
+    if (sliderValue === null) {
+    sliderValue = 0;
+    }
+    sliderValue = sliderValue.replace(Regexp, '');
+    this.incomeSlider.setValue(sliderValue);
+    }
 
   /* Onchange Currency Addition */
   @HostListener('input', ['$event'])
@@ -78,9 +92,7 @@ export class IncomeComponent implements IPageComponent, OnInit {
   }
 
   save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setMyIncome(form.value);
-    }
+    this.guideMeService.setMyIncome(form.value);
     return true;
   }
 

@@ -62,12 +62,6 @@ export class BaseService {
     return this.config$.mergeMap((config) => {
       return this.httpClient
         .post<IServerResponse>(`${config.apiBaseUrl}/${url}`, postBody, this.httpOptions)
-        .pipe(
-          catchError(this.errorHandler.tryParseError)
-        )
-        .map((res: Response) => {
-          return this.handleResponse(res);
-        })
         .finally(() => {
           this.helperService.hideLoader();
         });
