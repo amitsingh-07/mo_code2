@@ -64,10 +64,21 @@
       height: 60px;
       line-height: 28px;
       input {
-        width: 75%;
+        width: 92%;
+        @include allmobiles{
+          width: 90%;
+        }
+        @include tablet{
+          width: 89%;
+        }
         border: none;
         background: transparent;
         color: #00a7a7;
+        text-align: right;
+      }
+      .input-with-suffix {
+        position: absolute;
+        right: 55px;
       }
       .fixed-tenure {
         position: absolute;

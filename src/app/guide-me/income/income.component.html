@@ -38,12 +38,15 @@
                     </div>
                     <div class="form-group flex-row">
                       <div class="form-with-bg--content-label" for="name">{{ 'MY_INCOME.OTHER_INCOME' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_INCOME.OTHER_INCOME_HINT' | translate}}</div></div>
-                      <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}"><span class="fixed-currency">$</span><input type="text" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0"><span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span></div>
+                      <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}"><span class="fixed-currency">$</span><input type="text" class="input-with-suffix" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0"><span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span></div>
                     </div>
+                    
+                    <nouislider #noUiSlider (slide)="onNoUiSliderChange($event)" [config]="someKeyboardConfig" [min]="0" [max]="9999" [step]="50" [tooltips]="[ false ]"></nouislider>
+                      
                   </div>
-                  <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'
+                  <!-- <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'
                     [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
-                  </jqxSlider>
+                  </jqxSlider> -->
                 </div>
                 <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-primary width100"
                 id="incomeBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
