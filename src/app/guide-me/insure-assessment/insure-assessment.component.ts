@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { HeaderService } from './../../shared/header/header.service';
 import { GuideMeService } from './../guide-me.service';
 
 @Component({
