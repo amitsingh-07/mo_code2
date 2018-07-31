@@ -1,7 +1,7 @@
 // Button styles
 .btn {
     @include fontSize(12px);
-    font-family: $muli-bold;
+    font-family: $muli;
     margin: auto;
     padding:0.90rem;
     border-radius: 6px;
