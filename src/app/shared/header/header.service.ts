@@ -8,7 +8,7 @@ export class HeaderService {
   private pageTitle = new BehaviorSubject('');
   private pageSubTitle = new BehaviorSubject('');
   private pageHelpIcon = new Subject<boolean>();
-  private mobileModal = new BehaviorSubject(true);
+  private mobileModal = new BehaviorSubject(event);
   private headerVisibility = new BehaviorSubject(true);
 
   currentPageTitle = this.pageTitle.asObservable();
