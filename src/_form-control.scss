@@ -1,6 +1,7 @@
  /*Form Styles*/
 /*Form Group Styles*/
 .form-with-bg {
+  @include fontSize(11px);
   border-radius: 8px;
   background: #f4fafb;
   .form-with-bg--header {
