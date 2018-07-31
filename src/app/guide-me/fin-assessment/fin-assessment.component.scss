@@ -4,7 +4,7 @@
     display: block;
     flex-direction:column;
     margin:auto;
-    max-width:1024px;
+    padding:0 2%;
     flex:1 0 0;
 } 
 
@@ -138,14 +138,14 @@
 
     .block__content{
         padding:0px !important;
-        
+        top:0px;
         .img__header-img{
            min-width:200px;
            width:70%; 
         }
 
         .block__start-text-container{
-            margin-top:2vh;
+            margin-top:0vh;
             margin-bottom:5vh;
             .button__proceed{
                 position: fixed;

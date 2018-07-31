@@ -17,7 +17,7 @@
         <li class="nav-item">
             <span class="navbar__back-btn--mobile" (click)="goBack()"></span>
             <div class="navbar__title--mobile">{{pageTitle}}</div>
-            <div class="navbar__subtitle--mobile">{{subTitle}}</div>
+            <div  *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
             <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
                 <div class="tooltip-icon"></div> 
             </div>

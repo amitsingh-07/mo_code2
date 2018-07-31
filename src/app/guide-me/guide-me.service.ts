@@ -1,8 +1,8 @@
-import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
+import { CiAssessment } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
@@ -155,6 +155,21 @@ export class GuideMeService {
     this.guideMeFormData.propertyLoan = data.propertyLoan;
     this.guideMeFormData.carLoan = data.carLoan;
     this.guideMeFormData.otherLiabilities = data.otherLiabilities;
+  }
+  getCiAssessment(): CiAssessment {
+    const ciForm: CiAssessment = {
+      ciCoverageAmt: this.guideMeFormData.ciCoverageAmt,
+      // annualSalary: this.guideMeFormData.monthlySalary * 12,
+      annualSalary: 2200 * 12,
+      ciMultiplier: this.guideMeFormData.ciMultiplier,
+      untilRetirementAge: this.guideMeFormData.untilRetirementAge
+    };
+    return ciForm;
+  }
+  setCiAssessment(data: CiAssessment) {
+    this.guideMeFormData.ciCoverageAmt = data.ciCoverageAmt;
+    this.guideMeFormData.ciMultiplier = data.ciMultiplier;
+    this.guideMeFormData.untilRetirementAge = data.untilRetirementAge;
   }
 
   /*Additions of currency Values */
