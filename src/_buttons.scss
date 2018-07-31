@@ -32,11 +32,13 @@
     }
     &:disabled {
         opacity: 1 !important;
-        background-color: $btn-disabled;
-        color: $module-fill-color;
+        background-color: $btn-disabled-bg;
+        color: $btn-disabled-color;
         border-color: transparent;
+        box-shadow: none;
+        border: none;
         &:hover {
-            background-color:$btn-disabled;
+            background-color:$btn-disabled-bg;
         }
     }
     
