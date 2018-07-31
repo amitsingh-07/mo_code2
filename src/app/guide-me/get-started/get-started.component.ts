@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from './../../shared/header/header.service';
+import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from './../../shared/interfaces/page-component.interface';
 
 @Component({

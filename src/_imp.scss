@@ -1,81 +1,190 @@
 //.clearfix { @include clearfix; }
+.is-hidden {
+  display: none !important;
+}
 
-.is-hidden    { display:    none !important; }
-.is-invisible { visibility: none !important; }
+.is-invisible {
+  visibility: none !important;
+}
 
-.block        { display: block        !important; }
-.inline       { display: inline       !important; }
-.inline-block { display: inline-block !important; }
+.block {
+  display: block !important;
+}
 
-.left  { float: left  !important; }
-.right { float: right !important; }
+.inline {
+  display: inline !important;
+}
 
-.text-left   { text-align: left   !important; }
-.text-center { text-align: center !important; }
-.text-right  { text-align: right  !important; }
+.inline-block {
+  display: inline-block !important;
+}
 
-.width100 { width: 100%; }
-.white-bg { background: #FFF}
+.left {
+  float: left !important;
+}
 
-.mt0 { margin-top: 0 !important; }
-.mt1 { margin-top: 1em !important; }
-.mt30 { margin-top: 30px !important; }
-.mb50 { margin-bottom: 50px !important; }
-.mb0 { margin-bottom: 0 !important; }
-.mb1 { margin-bottom: 1em !important; }
-.mb10 { margin-bottom: 10px !important; }
-.mb20 { margin-bottom: 20px !important; }
-.mr10 { margin-right: 10px !important; }
+.right {
+  float: right !important;
+}
 
-.pl0 { padding-left: 0 !important; }
-.pr0 { padding-right: 0 !important; }
-.pl68 { padding-left: 68px }
-.pr68 { padding-right: 68px }
+.text-left {
+  text-align: left !important;
+}
 
-.absolute-top { top: 0 !important}
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.white-bg {
+  background: #FFF
+}
+
+.mt0 {
+  margin-top: 0 !important;
+}
+
+.mt1 {
+  margin-top: 1em !important;
+}
+
+.mt30 {
+  margin-top: 30px !important;
+}
+
+.mb50 {
+  margin-bottom: 50px !important;
+}
+
+.mb0 {
+  margin-bottom: 0 !important;
+}
+
+.mb1 {
+  margin-bottom: 1em !important;
+}
+
+.mb10 {
+  margin-bottom: 10px !important;
+}
+
+.mb20 {
+  margin-bottom: 20px !important;
+}
+
+.mr10 {
+  margin-right: 10px !important;
+}
+
+.pl0 {
+  padding-left: 0 !important;
+}
+
+.pr0 {
+  padding-right: 0 !important;
+}
+
+.pl68 {
+  padding-left: 68px
+}
+
+.pr68 {
+  padding-right: 68px
+}
+
+.absolute-top {
+  top: 0 !important
+}
 
 // Styles for jqxWidgetSlider
 .jqx-fill-state-pressed {
-    border-color: #00a7a7 !important;
-    background: #00a7a7 !important;
+  border-color: #00a7a7 !important;
+  background: #00a7a7 !important;
 }
 
 .jqx-fill-state-normal {
-    border-color: rgba(0, 167, 167, 0.35) !important;
-    background: rgba(0, 167, 167, 0.35) !important;
+  border-color: rgba(0, 167, 167, 0.35) !important;
+  background: rgba(0, 167, 167, 0.35) !important;
 }
 
 .jqx-slider-rangebar {
-    height: 12px !important;
+  height: 12px !important;
 }
 
 .jqx-rc-all {
-    border-radius: 40px !important;
+  border-radius: 40px !important;
 }
 
 .jqx-slider-slider-horizontal {
-    margin-top: -5.5px !important;
-    border: 1px solid #99cfce !important;
-    background: #ffffff !important;
+  margin-top: -5.5px !important;
+  border: 1px solid #99cfce !important;
+  background: #ffffff !important;
 }
 
 .jqx-slider-track-horizontal {
-    height: 12px !important;
-    margin-top: 2px !important;
+  height: 12px !important;
+  margin-top: 2px !important;
 }
 
-.jqx-slider-tickscontainer, .jqx-slider-track {
-    width: 100% !important;
+.jqx-slider-tickscontainer,
+.jqx-slider-track {
+  width: 100% !important;
 }
-.jqx-slider-left + div {
-    width: 93% !important;
-    @include tablet {
-      width: 90% !important;
-    }
-    @include iPadProLandscape {
-      width: 91% !important;
-    }
-    @include iPadProPortrait {
-        width: 91% !important;
-    }
+
+.jqx-slider-left+div {
+  width: 93% !important;
+  @include tablet {
+    width: 90% !important;
+  }
+  @include iPadProLandscape {
+    width: 91% !important;
+  }
+  @include iPadProPortrait {
+    width: 91% !important;
+  }
+}
+
+.noUi-horizontal .noUi-handle {
+  border-radius: 100% !important;
+  width: 25px !important;
+  height: 25px !important;
+  top: -6px !important;
+}
+
+.noUi-connect {
+  background: #00a7a7 !important;
+}
+
+.noUi-base {
+  background: rgba(0, 167, 167, 0.35) !important;
+  border-radius: 15px !important;
+}
+
+.noUi-target {
+  height: 14px !important;
+  border: none !important;
+}
+
+.noUi-connects {
+  border-radius: 15px !important;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+  background: none !important;
+}
+
+.noUi-handle-lower {
+  //display: none !important;
+}
+
+nouislider {
+    padding: 0 !important;
 }
