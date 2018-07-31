@@ -67,8 +67,11 @@
         position: absolute;
         right: 10px;
         width: 90%;
-        top: 14px;
-        @include tablet {
+        @include iPadProLandscape {
+          right: 5px;
+          top: 14px;
+        }
+        @include iPadProPortrait {
           position: absolute;
           right: 5px;
           top: 14px;
@@ -78,7 +81,6 @@
         color: #00a7a7;
         text-align: right;
       }
-
       .input-with-suffix {
         position: absolute;
         right: 55px;
