@@ -1,6 +1,7 @@
  /*Form Styles*/
 /*Form Group Styles*/
 .form-with-bg {
+  @include fontSize(11px);
   border-radius: 8px;
   background: #f4fafb;
   .form-with-bg--header {
@@ -63,10 +64,26 @@
       height: 60px;
       line-height: 28px;
       input {
-        width: 75%;
+        width: 94%;
+        @include allmobiles{
+          width: 90%;
+        }
+        @include tablet{
+          width: 89%;
+        }
         border: none;
         background: transparent;
         color: #00a7a7;
+        text-align: right;
+      }
+      .input-with-suffix {
+        width: 74%;
+        @include allmobiles{
+          width: 55%;
+        }
+        @include tablet{
+          width: 50%;
+        }
       }
       .fixed-tenure {
         position: absolute;
@@ -160,7 +177,7 @@ input::placeholder {
     border-bottom-right-radius: 4px;
   }
 }
-//CI Assessment (Temp)
+
 .form__col--mid{
   label {
     color: #2d8289;
@@ -168,7 +185,7 @@ input::placeholder {
     margin-top:1vh;
     margin-right:5vw;
     @include allmobiles {
-      margin-right:0vw;
+      margin-right:0;
       }
     }
-  }
+ }
