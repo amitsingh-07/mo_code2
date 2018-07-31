@@ -161,3 +161,15 @@ input::placeholder {
     border-bottom-right-radius: 4px;
   }
 }
+
+.form__col--mid{
+  label {
+    color: #2d8289;
+    font-family: $muli-semi-bold;
+    margin-top:1vh;
+    margin-right:5vw;
+    @include allmobiles {
+      margin-right:0;
+      }
+    }
+ }
