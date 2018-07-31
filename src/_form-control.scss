@@ -67,15 +67,6 @@
         position: absolute;
         right: 10px;
         width: 90%;
-        @include iPadProLandscape {
-          right: 5px;
-          top: 14px;
-        }
-        @include iPadProPortrait {
-          position: absolute;
-          right: 5px;
-          top: 14px;
-        }
         border: none;
         background: transparent;
         color: #00a7a7;
@@ -136,7 +127,7 @@
     padding: 0.70rem 0.80rem;
   }
   &.two-label {
-    padding:0.2rem 0.8rem;
+    padding:0.4rem 0.8rem;
   }
 }
 }
