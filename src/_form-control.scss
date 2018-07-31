@@ -64,14 +64,15 @@
       height: 60px;
       line-height: 28px;
       input {
-        width: 75%;
-        width: 92%;
-        @include allmobiles{
-          width: 90%;
-        }
-        @include tablet{
-          width: 89%;
-        }
+        position: absolute;
+        right: 10px;
+        width: 90%;
+        // @include allmobiles{
+        //   width: 90%;
+        // }
+        // @include tablet{
+        //   width: 89%;
+        // }
         border: none;
         background: transparent;
         color: #00a7a7;
@@ -82,14 +83,9 @@
         position: absolute;
         right: 55px;
       }
-
-
-
-
-
       .fixed-tenure {
         position: absolute;
-        top: 15px;
+        top: 14px;
         right: 10px;
       }
       &.readonly {

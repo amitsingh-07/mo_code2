@@ -104,52 +104,52 @@
 }
 
 // Styles for jqxWidgetSlider
-.jqx-fill-state-pressed {
-  border-color: #00a7a7 !important;
-  background: #00a7a7 !important;
-}
+// .jqx-fill-state-pressed {
+//   border-color: #00a7a7 !important;
+//   background: #00a7a7 !important;
+// }
 
-.jqx-fill-state-normal {
-  border-color: rgba(0, 167, 167, 0.35) !important;
-  background: rgba(0, 167, 167, 0.35) !important;
-}
+// .jqx-fill-state-normal {
+//   border-color: rgba(0, 167, 167, 0.35) !important;
+//   background: rgba(0, 167, 167, 0.35) !important;
+// }
 
-.jqx-slider-rangebar {
-  height: 12px !important;
-}
+// .jqx-slider-rangebar {
+//   height: 12px !important;
+// }
 
-.jqx-rc-all {
-  border-radius: 40px !important;
-}
+// .jqx-rc-all {
+//   border-radius: 40px !important;
+// }
 
-.jqx-slider-slider-horizontal {
-  margin-top: -5.5px !important;
-  border: 1px solid #99cfce !important;
-  background: #ffffff !important;
-}
+// .jqx-slider-slider-horizontal {
+//   margin-top: -5.5px !important;
+//   border: 1px solid #99cfce !important;
+//   background: #ffffff !important;
+// }
 
-.jqx-slider-track-horizontal {
-  height: 12px !important;
-  margin-top: 2px !important;
-}
+// .jqx-slider-track-horizontal {
+//   height: 12px !important;
+//   margin-top: 2px !important;
+// }
 
-.jqx-slider-tickscontainer,
-.jqx-slider-track {
-  width: 100% !important;
-}
+// .jqx-slider-tickscontainer,
+// .jqx-slider-track {
+//   width: 100% !important;
+// }
 
-.jqx-slider-left+div {
-  width: 93% !important;
-  @include tablet {
-    width: 90% !important;
-  }
-  @include iPadProLandscape {
-    width: 91% !important;
-  }
-  @include iPadProPortrait {
-    width: 91% !important;
-  }
-}
+// .jqx-slider-left+div {
+//   width: 93% !important;
+//   @include tablet {
+//     width: 90% !important;
+//   }
+//   @include iPadProLandscape {
+//     width: 91% !important;
+//   }
+//   @include iPadProPortrait {
+//     width: 91% !important;
+//   }
+// }
 
 .noUi-horizontal .noUi-handle {
   border-radius: 100% !important;
