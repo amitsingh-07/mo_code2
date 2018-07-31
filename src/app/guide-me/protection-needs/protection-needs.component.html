@@ -10,12 +10,12 @@
     </div>
     <div class="col-lg-5 col-md-6">
       <form name="protectionNeedsForm" *ngIf="isFormLoaded" [formGroup]="protectionNeedsForm" id="protectionNeedsForm">
-        <div class="form-group flex-col" formArrayName="protectionNeedsArray">
+        <div class="form-group mb0 flex-col" formArrayName="protectionNeedsArray">
           <div class="checkbox-button two-label" *ngFor="let protectionNeed of protectionNeedsList; let i = index" [formGroupName]="i">
             <input id="protectionNeed_{{i+1}}" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" formControlName="status" type="checkbox" class="field checkbox"
               value="{{protectionNeed.protectionType}}" tabindex="{{i+1}}">
             <label for="protectionNeed_{{i+1}}">
-              <div class="input-label-strong">{{protectionNeed.protectionType}}</div>
+              <div class="input-label-black">{{protectionNeed.protectionType}}</div>
               <div class="input-label-normal">{{protectionNeed.protectionDesc}}</div>
             </label>
           </div>
