@@ -1,3 +1,4 @@
+import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

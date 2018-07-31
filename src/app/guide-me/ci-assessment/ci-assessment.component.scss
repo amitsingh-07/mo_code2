@@ -1,0 +1,24 @@
+.form__block--white { 
+    .form__row{
+        .form__col--left{
+            margin-right:0vw;
+        }
+        .form__col--left-retirement-age{
+            flex-basis:80vw;
+        }
+        .form__col--right-retirement-age{
+            color: #00a7a7;
+            border: 2px solid #c0eded;
+            padding: 0.90rem;
+            border-radius: 6px;
+            position: relative;
+            input,.custom-select {
+            border: none;
+            color: #00a7a7;
+            padding-left: 2px;
+            background: transparent;
+            }
+        }
+        
+    }
+}
