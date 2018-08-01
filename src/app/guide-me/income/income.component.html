@@ -41,7 +41,7 @@
                       <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}"><span class="fixed-currency">$</span><input type="text" class="input-with-suffix" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0"><span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span></div>
                     </div>
                     
-                    <nouislider #noUiSlider (slide)="onNoUiSliderChange($event)" [config]="someKeyboardConfig" [min]="0" [max]="9999" [step]="50" [tooltips]="[ false ]"></nouislider>
+                    <nouislider #noUiSlider (slide)="onNoUiSliderChange($event)" [config]="incomeSliderConfig" [min]="0" [max]="9999" [step]="50" [tooltips]="[ false ]"></nouislider>
                       
                   </div>
                   <!-- <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'

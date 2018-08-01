@@ -23,19 +23,18 @@
                         <div class="form-with-bg--content">
                           <div class="form-group flex-row">
                             <div class="form-with-bg--content-label" for="name">{{ 'CI_ASSESSMENT.ANNUAL_SALARY' | translate}}</div>
-                            <div name="annualSalary" class="input-control" [ngClass]="{'readonly': annualSalary.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #annualSalary formControlName="annualSalary" value="0"></div>
+                            <div name="annualSalary" class="input-control" [ngClass]="{'readonly': annualSalary.value != 0}"><span class="fixed-currency">$</span><input readonly type="text" appCurrencyInput maxLength="5" #annualSalary formControlName="annualSalary" value="0"></div>
                           </div>
-                          <div class="form-group flex-row">
+                          <div class="form-group flex-row mb50">
                             <div class="form-with-bg--content-label" for="name">
                                 {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_PREFIX' | translate}}
-                                <span>{{ciMultiplier}}</span>
+                                <span class="form-with-bg--content-multiplier">{{ciMultiplier}}</span>
                                 {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_SUFFIX' | translate}} 
                             </div>
                           </div> 
+                          <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" 
+                                    [max]="7" [step]="1" [tooltips]="[ true ]"></nouislider>
                         </div>
-                            <jqxSlider #ciMultiplierSlider (onChange)="onSliderChange()" [height]='60' [width]='"calc(100% - 20px)"' [min]='0' [max]='7' [value]='4'
-                                    [step]='1' [tooltip]='true' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
-                            </jqxSlider>
                         <div class="form-with-bg--content">
                             <div class="form-group flex-row">
                                 <div class="form-with-bg--content-label" for="name">{{ 'CI_ASSESSMENT.UNTIL_RETIREMENT_AGE' | translate}}</div>

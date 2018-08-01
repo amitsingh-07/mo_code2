@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
+import { NouisliderComponent } from 'ng2-nouislider';
 
-import { FormControl, FormGroup, Validators } from '../../../../node_modules/@angular/forms';
+import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms';
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
@@ -20,7 +20,7 @@ const assetImgPath = './assets/images/';
 })
 
 export class CiAssessmentComponent implements IPageComponent, OnInit {
-  @ViewChild('ciMultiplierSlider') ciMultiplierSlider: jqxSliderComponent;
+  @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: string;
   mobileModalEvent: Event;
   ciAssessmentForm: FormGroup;
@@ -32,30 +32,51 @@ export class CiAssessmentComponent implements IPageComponent, OnInit {
   helpModal: Event;
   helpModalTrigger: boolean;
 
-  constructor(private router: Router, public headerService: HeaderService,
-              private translate: TranslateService, private guideMeService: GuideMeService,
-              public modal: NgbModal
-              ) {
-                this.translate.use('en');
-                this.translate.get('COMMON').subscribe((result: string) => {
-                this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
-                this.setPageTitle(this.pageTitle, null, true);
-                });
-                this.ciAssessmentFormValues = {
-                  annualSalary: 0,
-                  coverageMultiplier: 0,
-                  untilRetirementAge: 0,
-                  };
+  ciSliderConfig: any = {
+    behaviour: 'snap',
+    start: 0,
+    connect: [true, false],
+    format: {
+      to: (value) => {
+        return Math.round(value);
+      },
+      from: (value) => {
+        return Math.round(value);
+      }
+    }
+  };
+
+  constructor(
+    private router: Router, public headerService: HeaderService,
+    private translate: TranslateService, private guideMeService: GuideMeService,
+    public modal: NgbModal
+  ) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
+      this.setPageTitle(this.pageTitle, null, true);
+    });
+    this.ciAssessmentFormValues = {
+      annualSalary: 0,
+      coverageMultiplier: 0,
+      untilRetirementAge: 0,
+    };
   }
 
   ngOnInit() {
     this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
+    const monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
+    this.ciAssessmentFormValues.annualSalary = monthlySalary * 12;
+    if (this.ciAssessmentFormValues.ciMultiplier === undefined) {
+      this.ciAssessmentFormValues.ciMultiplier = this.ciMultiplier;
+    }
     this.ciAssessmentForm = new FormGroup({
       coverageAmt: new FormControl(this.ciAssessmentFormValues.coverageAmt),
       annualSalary: new FormControl(this.ciAssessmentFormValues.annualSalary),
       ciMultiplier: new FormControl(this.ciAssessmentFormValues.ciMultiplier),
       untilRetirementAge: new FormControl(this.ciAssessmentFormValues.untilRetirementAge)
     });
+
     console.log(this.ciAssessmentFormValues.annualSalary);
     this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciMultiplier;
     this.headerService.initMobilePopUp();
@@ -66,8 +87,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit {
     this.headerService.setPageTitle(title, null, helpIcon);
   }
 
-  onSliderChange(): void {
-    this.ciMultiplier = this.ciMultiplierSlider.getValue();
+  onSliderChange(value): void {
+    this.ciMultiplier = value;
     this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciMultiplier;
   }
 
@@ -85,15 +106,15 @@ export class CiAssessmentComponent implements IPageComponent, OnInit {
   }
 
   save(form: any) {
-     if (form.valid) {
-       this.guideMeService.setCiAssessment(form.value);
-     }
-     return true;
-   }
+    if (form.valid) {
+      this.guideMeService.setCiAssessment(form.value);
+    }
+    return true;
+  }
 
-   goToNext(form) {
-     if (this.save(form)) {
-       this.router.navigate(['../guideme/occupational-disability']);
-     }
-   }
- }
+  goToNext(form) {
+    if (this.save(form)) {
+      this.router.navigate(['../guideme/occupational-disability']);
+    }
+  }
+}
