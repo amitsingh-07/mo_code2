@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IPageComponent } from './../interfaces/page-component.interface';
@@ -10,7 +10,7 @@ import { HeaderService } from './header.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements IPageComponent, OnInit {
+export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
 
   pageTitle: string;
   subTitle = '';
@@ -24,6 +24,9 @@ export class HeaderComponent implements IPageComponent, OnInit {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.headerService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
     this.headerService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
+  }
+
+  ngAfterViewInit() {
     this.headerService.currentHeaderVisibility.subscribe((showHeader) => this.showHeader = showHeader);
   }
 
