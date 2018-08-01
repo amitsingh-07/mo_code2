@@ -31,7 +31,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   incomeFormValues: IMyIncome;
   incomeTotal: any;
 
-  someKeyboardConfig: any = {
+  incomeSliderConfig: any = {
     behaviour: 'snap',
     start: 0,
     connect: [true, false],
@@ -42,8 +42,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
       from: (value) => {
         return Math.round(value);
       }
-    },
-    onKeydown: this.handleMouseDown
+    }
   };
 
   private el: HTMLInputElement;
@@ -59,10 +58,6 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
       this.pageTitle = this.translate.instant('MY_INCOME.TITLE');
       this.setPageTitle(this.pageTitle);
     });
-  }
-
-  handleMouseDown(event) {
-    console.log(event);
   }
 
   ngOnInit() {
