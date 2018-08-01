@@ -82,8 +82,8 @@ body {
   .navbar__logo__subtitle {
     line-height: 52px;
     padding-left: 5px;
-    @include fontSize(14px);
-    font-family: $muli-bold;
+    @include fontSize(8px);
+    font-family: $muli-semi-bold;
   }
   .navbar__helpIcon--mobile {
     position: absolute;
