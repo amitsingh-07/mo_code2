@@ -28,7 +28,7 @@
     font-family: $muli-semi-bold;
     position: relative;
     top: -13px;
-    @include fontSize(12px);
+    @include fontSize(13px);
     @extend .block;
     @extend .text-right;
     @extend .width100;
