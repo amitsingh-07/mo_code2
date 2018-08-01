@@ -30,6 +30,6 @@ export class InsureAssessmentComponent implements IPageComponent, OnInit {
   }
 
   goNext() {
-    //this.router.navigate(['../guideme/ci-assessment']);
+    this.router.navigate(['../guideme/ci-assessment']);
   }
 }

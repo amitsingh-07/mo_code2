@@ -151,11 +151,13 @@
 //   }
 // }
 
+/* nouiSlider styles */
 .noUi-horizontal .noUi-handle {
   border-radius: 100% !important;
   width: 25px !important;
   height: 25px !important;
   top: -6px !important;
+  cursor: pointer;
 }
 
 .noUi-connect {
@@ -183,4 +185,27 @@
 
 nouislider {
     padding: 0 !important;
+}
+
+/* Base styles for the entire tooltip */
+.noUi-horizontal .noUi-tooltip {
+  width: 50px;
+  border-radius: 10px;
+  color: #00a7a7;
+}
+.noUi-tooltip:before,
+.noUi-tooltip:after,
+  {
+  position: absolute;
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -moz-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
 }

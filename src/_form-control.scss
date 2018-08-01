@@ -12,8 +12,8 @@
     .form-with-bg--header-label {
       flex-basis: 70vw;
       margin-right: 2vw;
-      font-family: $muli-bold;
-      color: #313644;
+      font-family: $muli-semi-bold;
+      color: #000000;
       padding-bottom: 10px;
     }
     .form-with-bg--header-sub-label {
@@ -66,21 +66,26 @@
       input {
         position: absolute;
         right: 10px;
+        top: 14px;
         width: 90%;
         border: none;
         background: transparent;
         color: #00a7a7;
         text-align: right;
       }
+      .fixed-currency {
+        position: absolute;
+        top: 14px;
+      }
       .input-with-suffix {
         position: absolute;
         right: 55px;
         width: 50%;
-        top: 14px;
+        top: 13px;
       }
       .fixed-tenure {
         position: absolute;
-        top: 14px;
+        top: 13px;
         right: 10px;
       }
       &.readonly {
