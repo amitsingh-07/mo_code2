@@ -5,6 +5,8 @@
     "FEMALE": "Female",
     "DEPENDANT": "Dependant",
     "DEPENDENT": "Dependent",
+    "DEPENDANT_PLURAL": "Dependants",
+    "DEPENDENT_PLURAL": "Dependents",
     "SMOKER": "Smoker",
     "NON_SMOKER": "Non - Smoker"
   }
