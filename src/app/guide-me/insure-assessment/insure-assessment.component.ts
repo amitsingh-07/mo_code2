@@ -30,6 +30,6 @@ export class InsureAssessmentComponent implements IPageComponent, OnInit {
   }
 
   goNext() {
-    console.log('goto critical illness page');
+    //this.router.navigate(['../guideme/ci-assessment']);
   }
 }
