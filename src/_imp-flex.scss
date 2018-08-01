@@ -5,6 +5,11 @@
     height: 100%;
     margin: 0;
 }
+
+.flex__wrapper{
+    max-width:1024px;
+}
+
 .flex__box--horz{
     position: relative;
     display: flex;
@@ -39,6 +44,7 @@
 }
 
 .flex--pad-mt-reset{
+    display:block;
     padding:0;
     margin:0;
     flex:0 0 100%;

@@ -32,4 +32,10 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     propertyLoan: number;
     carLoan: number;
     otherLiabilities: number;
+
+    // CI Assessment
+    ciCoverageAmt: number;
+    annualSalary: number;
+    ciMultiplier: number;
+    untilRetirementAge: number;
 }
