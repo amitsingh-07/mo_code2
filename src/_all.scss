@@ -82,7 +82,7 @@ body {
   .navbar__logo__subtitle {
     line-height: 52px;
     padding-left: 5px;
-    @include fontSize(8px);
+    font-size: 14px;
     font-family: $muli-semi-bold;
   }
   .navbar__helpIcon--mobile {
