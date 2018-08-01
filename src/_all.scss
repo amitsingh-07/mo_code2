@@ -83,7 +83,7 @@ body {
     line-height: 52px;
     padding-left: 5px;
     font-size: 13px;
-    font-weight: 700;
+    font-family: Muli;
   }
   .navbar__helpIcon--mobile {
     position: absolute;
@@ -94,5 +94,9 @@ body {
     top:25px;
     right:13px;
     z-index:1;
+  }
+  h6 {
+    font-family: $muli-regular;
+    font-weight: normal;
   }
   
