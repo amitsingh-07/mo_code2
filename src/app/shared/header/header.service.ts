@@ -8,7 +8,7 @@ export class HeaderService {
  private pageTitle = new BehaviorSubject('');
  private pageSubTitle = new BehaviorSubject('');
  private pageHelpIcon = new BehaviorSubject(true);
- private mobileModal = new BehaviorSubject(true);
+ private mobileModal = new BehaviorSubject('');
  private headerVisibility = new BehaviorSubject(true);
 
  currentPageTitle = this.pageTitle.asObservable();
@@ -44,7 +44,5 @@ export class HeaderService {
   console.log('Showing Mobile Popup -- Service Call');
   this.mobileModal.next(event);
  }
- initMobilePopUp() {
-  this.currentMobileModalEvent = this.mobileModal.asObservable();
- }
+
 }

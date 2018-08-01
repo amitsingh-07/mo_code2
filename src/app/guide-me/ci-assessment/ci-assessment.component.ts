@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
@@ -19,7 +19,7 @@ const assetImgPath = './assets/images/';
   encapsulation: ViewEncapsulation.None
 })
 
-export class CiAssessmentComponent implements IPageComponent, OnInit {
+export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewInit {
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: string;
   mobileModalEvent: Event;
@@ -65,7 +65,10 @@ export class CiAssessmentComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
-    const monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
+    let monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
+    if (!monthlySalary) {
+      monthlySalary = 0;
+    }
     this.ciAssessmentFormValues.annualSalary = monthlySalary * 12;
     if (this.ciAssessmentFormValues.ciMultiplier === undefined) {
       this.ciAssessmentFormValues.ciMultiplier = this.ciMultiplier;
@@ -76,11 +79,12 @@ export class CiAssessmentComponent implements IPageComponent, OnInit {
       ciMultiplier: new FormControl(this.ciAssessmentFormValues.ciMultiplier),
       untilRetirementAge: new FormControl(this.ciAssessmentFormValues.untilRetirementAge)
     });
+    this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciAssessmentFormValues.ciMultiplier;
+    this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === 'Clicked') { this.showMobilePopUp(); } });
+  }
 
-    console.log(this.ciAssessmentFormValues.annualSalary);
-    this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciMultiplier;
-    this.headerService.initMobilePopUp();
-    this.headerService.currentMobileModalEvent.subscribe((Event) => this.showMobilePopUp());
+  ngAfterViewInit() {
+    this.ciMultiplierSlider.writeValue(this.ciAssessmentFormValues.ciMultiplier);
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {

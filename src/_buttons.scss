@@ -1,7 +1,7 @@
 // Button styles
 .btn {
     @include fontSize(12px);
-    font-family: $muli;
+    font-family: $muli-regular;
     margin: auto;
     padding:0.90rem;
     border-radius: 6px;
@@ -12,8 +12,9 @@
         background-color: $btn-primary-backgrnd-color;
         border-color: $btn-primary-backgrnd-color;
         box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
+        font-weight: 700;
         &:hover {
-            background-color: #0de0de;
+            background-color: #0de0de;            
         }
         &:focus, &:active {
             outline: none !important;
