@@ -26,6 +26,9 @@
   }
   .form__col--right {
     flex-basis: 60vw;
+    strong {
+      font-family: $muli-semi-bold;
+    }
     .input-group {
       &.inline-error {
         .btn-primary {
