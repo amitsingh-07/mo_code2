@@ -92,5 +92,24 @@
       "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
       "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
       "UNTIL_RETIREMENT_AGE": "Till the retirement age of "
+  },
+  "OCP_DISABILITY": {
+    "TITLE": "Occupational Disability",
+    "DESCRIPTION": "This coverage is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.",
+    "OCP_DISABILITY_FRM_TITLE": "Coverage Amount",
+    "OCP_DISABILITY_HINT": "Based on the information below",
+    "EMPLOYEE_FIELD": "I am a",
+    "PROPERTY_LOAN_HINT": "(Remaining amount)",
+    "RETIREMENT_AGE": "Till the retirement age of",
+    "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
+    "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
+    "MODAL_TITLE": "Occupational Disability",
+    "EMPLOYEE_TYPE":[{"status": "Salaried Employee"},
+                     {"status":"Self-employed"}],
+    "MODAL_DATA":{
+      "title": "Occupational Disability",
+      "description": "<h4>Occupational Disability</h4><p>This is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.</p>",
+      "imageName": "occupationdisability_modal.png"
+    }
   }
 }

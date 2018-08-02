@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
+import { Subscription } from 'rxjs';
 
 import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms';
 import { Router } from '../../../../node_modules/@angular/router';
@@ -19,7 +20,7 @@ const assetImgPath = './assets/images/';
   encapsulation: ViewEncapsulation.None
 })
 
-export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewInit {
+export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewInit, OnDestroy {
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: string;
   mobileModalEvent: Event;
@@ -31,6 +32,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
   helpModal: Event;
   helpModalTrigger: boolean;
+
+  private subscription: Subscription;
 
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -80,7 +83,12 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       untilRetirementAge: new FormControl(this.ciAssessmentFormValues.untilRetirementAge)
     });
     this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciAssessmentFormValues.ciMultiplier;
-    this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === 'Clicked') { this.showMobilePopUp(); } });
+    // tslint:disable-next-line:max-line-length
+    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === this.pageTitle) { this.showMobilePopUp(); } });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   ngAfterViewInit() {

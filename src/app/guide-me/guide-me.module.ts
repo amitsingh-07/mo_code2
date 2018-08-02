@@ -18,6 +18,7 @@ import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
+import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
 
@@ -41,7 +42,8 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     jqxSliderComponent,
     FinAssessmentComponent,
     InsureAssessmentComponent,
-    CiAssessmentComponent
+    CiAssessmentComponent,
+    OcpDisabilityComponent
   ],
   providers: [CurrencyPipe]
 })

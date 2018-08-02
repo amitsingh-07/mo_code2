@@ -39,7 +39,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   }
 
   showMobilePopUp() {
-    this.headerService.showMobilePopUp('Clicked');
+    this.headerService.showMobilePopUp(this.pageTitle);
   }
 
   goBack() {

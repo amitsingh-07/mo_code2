@@ -9,6 +9,7 @@ import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
+import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
 
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'expenses', component: ExpensesComponent },
   { path: 'assets', component: MyAssetsComponent },
   { path: 'liabilities', component: LiabilitiesComponent },
-  { path: 'ci-assessment', component: CiAssessmentComponent}
+  { path: 'ci-assessment', component: CiAssessmentComponent},
+  { path: 'occupational-disability', component: OcpDisabilityComponent}
 ];
 
 @NgModule({
