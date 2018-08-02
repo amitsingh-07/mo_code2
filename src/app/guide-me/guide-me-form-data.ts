@@ -1,6 +1,7 @@
 import { IMyExpenses } from './expenses/expenses.interface';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { ProtectionNeeds } from './protection-needs/protection-needs';
 export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     myProfile: number;
     email: string;
@@ -9,7 +10,7 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     customDob: string;
     smoker: string;
     dependent: string;
-    protectionNeedData: string;
+    protectionNeedData: ProtectionNeeds;
 
     // My Income
     monthlySalary: number;

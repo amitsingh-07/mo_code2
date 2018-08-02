@@ -7,6 +7,7 @@ import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { IMyIncome } from '../income/income.interface';
@@ -144,7 +145,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/ci-assessment']);
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS]);
     }
   }
 }

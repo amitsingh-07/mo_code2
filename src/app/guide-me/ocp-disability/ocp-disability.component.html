@@ -46,9 +46,6 @@
                   <span class="form-with-bg--content-multiplier">{{coveragePercent}}%</span>{{'OCP_DISABILITY.OCP_DISABILITY_MULTI_SUFFIX' | translate}}
                 </div>
               </div>
-              <!-- <jqxSlider #ocpDisabilitySlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='coverageMax' [value]='coverageMax'
-                    [step]='1' [tooltip]='true' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
-                  </jqxSlider>  -->
               <nouislider #ocpDisabilitySlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]='coverageMax'
                 [step]="1" [tooltips]="[ true ]"></nouislider>
               <div class="form-with-bg--content">
