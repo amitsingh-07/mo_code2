@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms'
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { GuideMeService } from './../guide-me.service';
 
@@ -101,7 +102,6 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   }
 
   showMobilePopUp() {
-    console.log('Show Mobile Popup Triggered');
     const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.description = '<h4>Critical Illness</h4><p>This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <b>Critical Illness</b> coverage till their intended retirement age.</p>';
@@ -118,7 +118,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/occupational-disability']);
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY]);
     }
   }
 }

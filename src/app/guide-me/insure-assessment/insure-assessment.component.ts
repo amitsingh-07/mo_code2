@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from './../guide-me.service';
 
 @Component({
@@ -30,6 +31,6 @@ export class InsureAssessmentComponent implements IPageComponent, OnInit {
   }
 
   goNext() {
-    this.router.navigate(['../guideme/ci-assessment']);
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS]);
   }
 }

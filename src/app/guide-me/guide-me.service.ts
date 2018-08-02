@@ -7,22 +7,31 @@ import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
+import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { IMyAssets } from './my-assets/my-assets.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
+const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
+const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
+const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
+const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
+const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
+
 @Injectable({
   providedIn: 'root'
 })
 export class GuideMeService {
+
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
   private formError: any = new FormError();
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
   isMyIncomeFormValid = false;
   isMyExpensesFormValid = false;
+  protectionNeedsPageIndex = 0;
 
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
@@ -206,5 +215,33 @@ export class GuideMeService {
 
   getFormError(formCtrlName: string, validation: string): string {
     return this.formError.formFieldErrors[formCtrlName][validation];
+  }
+
+  getNextProtectionNeedsPage() {
+    const selectedProtectionNeeds = [];
+    const protectionNeeds = this.getProtectionNeeds().protectionNeedData;
+    for (const i of protectionNeeds) {
+      if (protectionNeeds[i].status) {
+        switch (protectionNeeds[i].protectionTypeId) {
+          case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
+            break;
+          case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
+            break;
+          case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
+            break;
+          case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
+            break;
+          case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
+            break;
+        }
+        console.log('selectedProtectionNeeds :' + selectedProtectionNeeds);
+        return selectedProtectionNeeds[this.protectionNeedsPageIndex];
+      }
+    }
   }
 }
