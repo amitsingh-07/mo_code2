@@ -9,7 +9,7 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     dob: string;
     customDob: string;
     smoker: string;
-    dependent: string;
+    dependent: number;
     protectionNeedData: ProtectionNeeds;
 
     // My Income

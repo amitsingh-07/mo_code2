@@ -17,6 +17,8 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
+import { LifeProtectionFormComponent } from './life-protection/life-protection-form/life-protection-form.component';
+import { LifeProtectionComponent } from './life-protection/life-protection.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
@@ -25,8 +27,7 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
   imports: [
     CommonModule, GuideMeRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
     TranslateModule.forChild(SharedModule.getTranslateConfig('guide-me')),
-    NouisliderModule,
-    FormsModule
+    NouisliderModule, FormsModule
   ],
   declarations: [
     ProfileComponent,
@@ -41,7 +42,9 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     jqxSliderComponent,
     FinAssessmentComponent,
     InsureAssessmentComponent,
-    CiAssessmentComponent
+    CiAssessmentComponent,
+    LifeProtectionComponent,
+    LifeProtectionFormComponent
   ],
   providers: [CurrencyPipe]
 })

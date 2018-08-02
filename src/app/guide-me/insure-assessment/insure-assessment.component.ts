@@ -31,6 +31,9 @@ export class InsureAssessmentComponent implements IPageComponent, OnInit {
   }
 
   goNext() {
-    this.router.navigate([GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS]);
+    this.guideMeService.protectionNeedsPageIndex = 0;
+    this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
+      this.guideMeService.protectionNeedsPageIndex++;
+    });
   }
 }

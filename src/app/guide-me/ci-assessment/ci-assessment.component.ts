@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
@@ -7,7 +7,6 @@ import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms'
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { GuideMeService } from './../guide-me.service';
 
@@ -57,6 +56,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
       this.setPageTitle(this.pageTitle, null, true);
     });
+
     this.ciAssessmentFormValues = {
       annualSalary: 0,
       coverageMultiplier: 0,
@@ -88,6 +88,11 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     this.ciMultiplierSlider.writeValue(this.ciAssessmentFormValues.ciMultiplier);
   }
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.guideMeService.protectionNeedsPageIndex--;
+  }
+
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
     this.headerService.setPageTitle(title, null, helpIcon);
   }
@@ -110,15 +115,15 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   }
 
   save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setCiAssessment(form.value);
-    }
+    this.guideMeService.setCiAssessment(form.value);
     return true;
   }
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate([GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY]);
+      this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
+        this.guideMeService.protectionNeedsPageIndex++;
+      });
     }
   }
 }

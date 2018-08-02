@@ -220,9 +220,9 @@ export class GuideMeService {
   getNextProtectionNeedsPage() {
     const selectedProtectionNeeds = [];
     const protectionNeeds = this.getProtectionNeeds().protectionNeedData;
-    for (const i of protectionNeeds) {
-      if (protectionNeeds[i].status) {
-        switch (protectionNeeds[i].protectionTypeId) {
+    for (const thisNeed of protectionNeeds) {
+      if (thisNeed.status) {
+        switch (thisNeed.protectionTypeId) {
           case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
             selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
             break;
@@ -240,8 +240,9 @@ export class GuideMeService {
             break;
         }
         console.log('selectedProtectionNeeds :' + selectedProtectionNeeds);
-        return selectedProtectionNeeds[this.protectionNeedsPageIndex];
       }
     }
+    console.log('selectedProtectionNeeds[this.protectionNeedsPageIndex] :' + selectedProtectionNeeds[this.protectionNeedsPageIndex]);
+    return selectedProtectionNeeds[this.protectionNeedsPageIndex];
   }
 }
