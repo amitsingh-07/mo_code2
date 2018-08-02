@@ -20,6 +20,7 @@ import { LiabilitiesComponent } from './liabilities/liabilities.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { LtcAssessmentComponent } from './ltc-assessment/ltc-assessment.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     jqxSliderComponent,
     FinAssessmentComponent,
     InsureAssessmentComponent,
-    CiAssessmentComponent
+    CiAssessmentComponent,
+    LtcAssessmentComponent
   ],
   providers: [CurrencyPipe]
 })

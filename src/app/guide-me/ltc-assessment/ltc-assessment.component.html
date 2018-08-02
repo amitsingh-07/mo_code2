@@ -1,0 +1,62 @@
+<!--Critical Illness Screen-->
+<div class="container-fluid flex__wrapper">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2>{{ 'LTC_ASSESSMENT.TITLE' | translate}}</h2>
+        <h6>{{ 'LTC_ASSESSMENT.DESCRIPTION' | translate}}</h6>
+        <div class="banner-image">
+          <img src="assets/images/ltc-assessment.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+          <form id="ciAssessmentForm" name="ciAssessmentForm" [formGroup]="ciAssessmentForm">
+              <div  class="form-with-bg">
+                <!--Form Header-->
+                <div class="form-with-bg--header">
+                    <div class="form-group flex-row">
+                      <div class="form-with-bg--header-label">{{ 'CI_ASSESSMENT.COVERAGE_AMT' | translate}}<div class="form-with-bg--header-sub-label">{{ 'CI_ASSESSMENT.COVERAGE_AMT_DESC' | translate}}</div></div>
+                      <div class="total">{{ciCoverageAmt | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                    </div>
+                  </div>
+                  <!--Form Content-->
+                  <div class="form-with-bg--content">
+                    <div class="form-group flex-row">
+                      <div class="form-with-bg--content-label" for="name">{{ 'CI_ASSESSMENT.ANNUAL_SALARY' | translate}}</div>
+                      <div name="annualSalary" class="input-control" [ngClass]="{'readonly': annualSalary.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #annualSalary formControlName="annualSalary" value="0"></div>
+                    </div>
+                    <div class="form-group flex-row">
+                      <div class="form-with-bg--content-label" for="name">
+                          {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_PREFIX' | translate}}
+                          <span>{{ciMultiplier}}</span>
+                          {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_SUFFIX' | translate}} 
+                      </div>
+                    </div> 
+                  </div>
+                      <jqxSlider #ciMultiplierSlider (onChange)="onSliderChange()" [height]='60' [width]='"calc(100% - 20px)"' [min]='0' [max]='7' [value]='4'
+                              [step]='1' [tooltip]='true' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
+                      </jqxSlider>
+                  <div class="form-with-bg--content">
+                      <div class="form-group flex-row">
+                          <div class="form-with-bg--content-label" for="name">{{ 'CI_ASSESSMENT.UNTIL_RETIREMENT_AGE' | translate}}</div>
+                          <div class="form__col--right inline-block">
+                                  <div class="dropdown-control">
+                                      <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
+                                          <button class="btn btn-default fixed-btn--sm btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+                                            <span class="">{{untilRetirementAge}}</span></button>
+                                          <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
+                                            <button class="dropdown-item" *ngFor="let count of retirementAgeItems" (click)="selectRetirementAge(count)">{{count}}</button>
+                                          </div>
+                                        </div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>                      
+                </div>
+                <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-primary width100"
+                id="incomeBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>

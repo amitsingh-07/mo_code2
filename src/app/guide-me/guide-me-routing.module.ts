@@ -8,6 +8,7 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
+import { LtcAssessmentComponent } from './ltc-assessment/ltc-assessment.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'expenses', component: ExpensesComponent },
   { path: 'assets', component: MyAssetsComponent },
   { path: 'liabilities', component: LiabilitiesComponent },
-  { path: 'ci-assessment', component: CiAssessmentComponent}
+  { path: 'ci-assessment', component: CiAssessmentComponent},
+  { path: 'ltc-assessment', component: LtcAssessmentComponent}
 ];
 
 @NgModule({
