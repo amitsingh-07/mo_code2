@@ -92,5 +92,9 @@
       "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
       "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
       "UNTIL_RETIREMENT_AGE": "Till the retirement age of "
+  },
+  "LTC_ASSESSMENT": {
+      "TITLE": "Long Term Care",
+      "DESCRIPTION": "If one is unable to perform at least <b>3 of these activities (washing, feeding, dressing, toileting, mobility and transferring)</b>, he or she is considered severely disabled and would need Long-Term Care with the help of a caregiver.<br> Select the type of caregiver that you prefer."
   }
 }
