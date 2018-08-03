@@ -126,7 +126,10 @@
     .btn-dropdown {
         color: $text-color-secondary;
         justify-content: start;
-    }
+    }    
+ .form--group-dropdown-selected {
+    color: #00a7a7;
+  }
 }
 
 /*My Info Button Block*/
