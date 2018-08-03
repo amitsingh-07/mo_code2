@@ -7,23 +7,33 @@ import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
+import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { IMyAssets } from './my-assets/my-assets.interface';
+import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
+
+const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
+const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
+const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
+const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
+const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuideMeService {
+
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
   private formError: any = new FormError();
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
   isMyIncomeFormValid = false;
   isMyExpensesFormValid = false;
-
+  protectionNeedsPageIndex = 0;
+  isMyOcpDisabilityFormValid = false;
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -172,6 +182,23 @@ export class GuideMeService {
     this.guideMeFormData.untilRetirementAge = data.untilRetirementAge;
   }
 
+  getMyOcpDisability(): IMyOcpDisability {
+    const myOcpDisabilityForm: IMyOcpDisability = {
+      coverageAmount: this.guideMeFormData.coverageAmount,
+      sliderValue: this.guideMeFormData.sliderValue,
+      retirementAge: this.guideMeFormData.retirementAge,
+      selectedEmployee: this.guideMeFormData.selectedEmployee
+    };
+    return myOcpDisabilityForm;
+  }
+
+  setMyOcpDisability(data: IMyOcpDisability) {
+    this.isMyOcpDisabilityFormValid = true;
+    this.guideMeFormData.coverageAmount = data.coverageAmount;
+    this.guideMeFormData.sliderValue = data.sliderValue;
+    this.guideMeFormData.retirementAge = data.retirementAge;
+    this.guideMeFormData.selectedEmployee = data.selectedEmployee;
+  }
   /*Additions of currency Values */
   additionOfCurrency(formValues) {
     let sum: any = 0;
@@ -206,5 +233,38 @@ export class GuideMeService {
 
   getFormError(formCtrlName: string, validation: string): string {
     return this.formError.formFieldErrors[formCtrlName][validation];
+  }
+
+  getNextProtectionNeedsPage() {
+    const selectedProtectionNeeds = [];
+    const protectionNeeds = this.getProtectionNeeds().protectionNeedData;
+    for (const thisNeed of protectionNeeds) {
+      if (thisNeed.status) {
+        switch (thisNeed.protectionTypeId) {
+          case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
+            break;
+          case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
+            break;
+          case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
+            break;
+          case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
+            break;
+          case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
+            break;
+        }
+        console.log('selectedProtectionNeeds :' + selectedProtectionNeeds);
+      }
+    }
+    console.log('selectedProtectionNeeds[this.protectionNeedsPageIndex] :' + selectedProtectionNeeds[this.protectionNeedsPageIndex]);
+    if(this.protectionNeedsPageIndex < selectedProtectionNeeds.length){
+    return selectedProtectionNeeds[this.protectionNeedsPageIndex];
+    } else {
+      return GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE;
+    }
   }
 }

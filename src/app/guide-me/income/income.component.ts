@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms'
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from './../guide-me.service';
 import { IMyIncome } from './income.interface';
 
@@ -125,7 +126,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/expenses']);
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
     }
   }
 }

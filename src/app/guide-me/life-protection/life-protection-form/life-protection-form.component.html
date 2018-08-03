@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <form id="lifeProtectionForm" name="lifeProtectionForm" [formGroup]="lifeProtectionForm">
+
+    <!-- DEPENDENT NAVIGATION -->
+    <div class="dependent-nav">
+      <img class="dep-nav-link" (click)="navigateDependentForm('prev')" [style.visibility]="isNavPrevEnabled ? 'visible' : 'hidden'"
+        src="./assets/images/arrow-left.svg" alt="" />
+      <div>Dependent {{ !isFormControlDisabled ? activeFormIndex+1 : 0}}</div>
+      <img class="dep-nav-link" (click)="navigateDependentForm('next')" [style.visibility]="isNavNextEnabled ? 'visible' : 'hidden'"
+        src="./assets/images/arrow-right.svg" alt="" />
+    </div>
+
+    <!-- DEPENDENT FORMS -->
+    <div class="dep-form-container" [class.show]="activeFormIndex == i" formArrayName="dependents" *ngFor="let item of lifeProtectionForm.get('dependents').controls; let i = index;">
+      <div [formGroupName]="i">
+        <div class="dep-title">Dependent {{ !isFormControlDisabled ? i+1 : 0}}</div>
+        <ul class="form-list">
+          <!-- GENDER -->
+          <li class="row">
+            <div class="col-5">
+              <label for="name">Gender</label>
+            </div>
+            <div class="col-7">
+              <input type="hidden" formControlName="gender" />
+              <div ngbDropdown class="d-inline-block">
+                <button [attr.disabled]="isFormControlDisabled" class="btn btn-default fixed-btn--sm btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                  {{item.controls.gender.value}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item fixed-btn--sm" *ngFor="let option of genderOptions" (click)="setDropDownValue('gender', option, i)">{{option}}</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- RELATIONSHIP -->
+          <li class="row">
+            <div class="col-5">
+              <label for="name">Relationship</label>
+            </div>
+            <div class="col-7">
+              <input type="hidden" formControlName="relationship" />
+              <div ngbDropdown class="d-inline-block">
+                <button [attr.disabled]="isFormControlDisabled" class="btn btn-default fixed-btn--sm btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                  {{item.controls.relationship.value}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item fixed-btn--sm" *ngFor="let option of relationshipOptions" (click)="setDropDownValue('relationship',option, i)">{{option}}</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- Age -->
+          <li class="row">
+            <div class="col-5">
+              <label for="name">Age</label>
+            </div>
+            <div class="col-7">
+              <input type="hidden" formControlName="age" />
+              <div ngbDropdown class="d-inline-block">
+                <button [attr.disabled]="isFormControlDisabled" class="btn btn-default fixed-btn--sm btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                  {{item.controls.age.value}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item fixed-btn--sm" *ngFor="let option of ageOptions" (click)="setDropDownValue('age',option, i)">{{option}}</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- Support Amount -->
+          <li class="row">
+            <div class="col-5">
+              <label for="name">Support Amount</label>
+            </div>
+            <div class="col-7">
+              <input class="form-control" [attr.disabled]="isFormControlDisabled" type="text" formControlName="supportAmount" />
+            </div>
+          </li>
+          <!-- Years Needed -->
+          <li class="row">
+            <div class="col-5">
+              <label for="name">Years Needed</label>
+            </div>
+            <div class="col-7">
+              <input type="hidden" formControlName="yearsNeeded" />
+              <div ngbDropdown class="d-inline-block">
+                <button [attr.disabled]="isFormControlDisabled" class="btn btn-default fixed-btn--sm btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                  {{item.controls.yearsNeeded.value}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item fixed-btn--sm" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">Next Dependent</button>
+    <button id="submitDepFormBtn" [class.show]="!isNavNextEnabled" (click)="submitDependentForm()" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">Continue</button>
+
+    <!-- PAGE INDICATOR -->
+    <div class="page-indicator" *ngIf="!isFormControlDisabled">
+      <span [class.active]="i == activeFormIndex" *ngFor="let item of getPageIndicatorCount(); let i = index;"></span>
+    </div>
+  </form>
+</div>

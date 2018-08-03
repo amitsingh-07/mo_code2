@@ -189,23 +189,22 @@ nouislider {
 
 /* Base styles for the entire tooltip */
 .noUi-horizontal .noUi-tooltip {
-  width: 50px;
-  border-radius: 10px;
+  background-image: url("./assets/images/slider-tooltip.svg");
+  background-color: transparent;
+  height: 44px;
+  width: 52px;
   color: #00a7a7;
+  line-height: 30px;
+  border: none;
 }
-.noUi-tooltip:before,
-.noUi-tooltip:after,
-  {
-  position: absolute;
-  visibility: visible;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
-  -moz-transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, -moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
-  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  pointer-events: none;
+
+.align-items-top {
+  align-items: flex-start !important;
+  .total {
+    font-weight: 600;
+    float: right;
+    text-align: right;
+    position: inherit !important;
+    min-width: 45%;
+  }
 }

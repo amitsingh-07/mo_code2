@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 import { NouisliderModule } from 'ng2-nouislider';
 
 import { SharedModule } from '../shared/shared.module';
@@ -17,7 +16,10 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
+import { LifeProtectionFormComponent } from './life-protection/life-protection-form/life-protection-form.component';
+import { LifeProtectionComponent } from './life-protection/life-protection.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
+import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
 
@@ -38,10 +40,12 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     MyAssetsComponent,
     LiabilitiesComponent,
     CurrencyInputDirective,
-    jqxSliderComponent,
     FinAssessmentComponent,
     InsureAssessmentComponent,
-    CiAssessmentComponent
+    LifeProtectionComponent,
+    LifeProtectionFormComponent,
+    CiAssessmentComponent,
+    OcpDisabilityComponent
   ],
   providers: [CurrencyPipe]
 })
