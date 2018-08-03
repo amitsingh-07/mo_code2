@@ -20,6 +20,20 @@
     display: flex;
     flex-direction:column;
 }
+
+.flex__box--sm-horz{
+    @include allmobiles{
+        flex-direction:row !important;
+        flex-wrap:wrap;
+    }
+}
+
+.flex__box--sm-vert{
+    @include allmobiles{
+        flex-direction:column !important;
+    }
+}
+
 @media(max-width:$col-md){
     .flex__box--horz{
         flex-direction:column;

@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -9,6 +10,7 @@ import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
@@ -21,6 +23,7 @@ export class GuideMeService {
   private formError: any = new FormError();
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
+  private isLongTermCareFormValid = true;
   isMyIncomeFormValid = false;
   isMyExpensesFormValid = false;
 
@@ -170,6 +173,22 @@ export class GuideMeService {
     this.guideMeFormData.ciCoverageAmt = data.ciCoverageAmt;
     this.guideMeFormData.ciMultiplier = data.ciMultiplier;
     this.guideMeFormData.untilRetirementAge = data.untilRetirementAge;
+  }
+
+  getLongTermCare(): LongTermCare {
+    const longTermCareData: LongTermCare = {
+      longTermCareData: this.guideMeFormData.longTermCareData
+    };
+    return longTermCareData;
+  }
+
+  setLongTermCare(data) {
+    this.isLongTermCareFormValid = true;
+    this.guideMeFormData.longTermCareData = data;
+  }
+
+  getLongTermCareList() {
+    return this.apiService.getLongTermCareList();
   }
 
   /*Additions of currency Values */

@@ -38,4 +38,7 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     annualSalary: number;
     ciMultiplier: number;
     untilRetirementAge: number;
+
+    // Long Term Care
+    longTermCareData: string;
 }
