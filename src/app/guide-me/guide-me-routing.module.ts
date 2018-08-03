@@ -1,3 +1,4 @@
+import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.ASSETS, component: MyAssetsComponent },
   { path: GUIDE_ME_ROUTES.LIABILITIES, component: LiabilitiesComponent },
   { path: GUIDE_ME_ROUTES.LIFE_PROTECTION, component: LifeProtectionComponent },
-  { path: GUIDE_ME_ROUTES.CRITICAL_ILLNESS, component: CiAssessmentComponent}
+  { path: GUIDE_ME_ROUTES.CRITICAL_ILLNESS, component: CiAssessmentComponent},
+  { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent}
 ];
 
 @NgModule({
