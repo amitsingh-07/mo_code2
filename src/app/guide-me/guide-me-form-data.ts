@@ -39,4 +39,10 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     annualSalary: number;
     ciMultiplier: number;
     untilRetirementAge: number;
+
+    // Occupational Disability
+    coverageAmount: number;
+    retirementAge: number;
+    selectedEmployee: string;
+    sliderValue: number;
 }

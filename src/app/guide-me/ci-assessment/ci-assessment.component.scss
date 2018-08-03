@@ -19,4 +19,8 @@ app-ci-assessment {
   span.form--group-dropdown-selected {
     color: #00a7a7;
   }
+
+  .dropdown-menu.show {
+    min-width: 100% !important;
+  }
 }

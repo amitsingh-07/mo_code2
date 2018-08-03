@@ -11,6 +11,7 @@ import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { IMyAssets } from './my-assets/my-assets.interface';
+import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
@@ -32,7 +33,7 @@ export class GuideMeService {
   isMyIncomeFormValid = false;
   isMyExpensesFormValid = false;
   protectionNeedsPageIndex = 0;
-
+  isMyOcpDisabilityFormValid = false;
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -181,6 +182,23 @@ export class GuideMeService {
     this.guideMeFormData.untilRetirementAge = data.untilRetirementAge;
   }
 
+  getMyOcpDisability(): IMyOcpDisability {
+    const myOcpDisabilityForm: IMyOcpDisability = {
+      coverageAmount: this.guideMeFormData.coverageAmount,
+      sliderValue: this.guideMeFormData.sliderValue,
+      retirementAge: this.guideMeFormData.retirementAge,
+      selectedEmployee: this.guideMeFormData.selectedEmployee
+    };
+    return myOcpDisabilityForm;
+  }
+
+  setMyOcpDisability(data: IMyOcpDisability) {
+    this.isMyOcpDisabilityFormValid = true;
+    this.guideMeFormData.coverageAmount = data.coverageAmount;
+    this.guideMeFormData.sliderValue = data.sliderValue;
+    this.guideMeFormData.retirementAge = data.retirementAge;
+    this.guideMeFormData.selectedEmployee = data.selectedEmployee;
+  }
   /*Additions of currency Values */
   additionOfCurrency(formValues) {
     let sum: any = 0;
