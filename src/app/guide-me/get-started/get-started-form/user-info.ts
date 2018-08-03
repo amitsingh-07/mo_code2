@@ -3,5 +3,5 @@ export class UserInfo {
         dob: string;
         customDob: string;
         smoker: string;
-        dependent: string;
+        dependent: number;
     }
