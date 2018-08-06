@@ -281,6 +281,10 @@ export class GuideMeService {
       }
     }
     console.log('selectedProtectionNeeds[this.protectionNeedsPageIndex] :' + selectedProtectionNeeds[this.protectionNeedsPageIndex]);
+    if(this.protectionNeedsPageIndex < selectedProtectionNeeds.length){
     return selectedProtectionNeeds[this.protectionNeedsPageIndex];
+    } else {
+      return GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE;
+    }
   }
 }

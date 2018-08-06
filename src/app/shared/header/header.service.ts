@@ -41,7 +41,6 @@ export class HeaderService {
 
     // Showing Mobile PopUp Trigger
     showMobilePopUp(event) {
-        console.log('mobileModal---Added next(event)');
         this.mobileModal.next(event);
     }
 }

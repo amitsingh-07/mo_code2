@@ -57,7 +57,6 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
     this.guideMeService.getLongTermCareList().subscribe((data) => {
       this.buildForm(data.objectList);
       this.longTermCareList = data.objectList; // Getting the information from the API
-      console.log(this.longTermCareList);
     });
     this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === this.pageTitle) { this.showMobilePopUp(); } });
   }
@@ -75,7 +74,6 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
       });
     }
     this.isFormLoaded = true;
-    console.log(this.longTermCareArray);
   }
   createItem(responseObj, i): FormGroup {
     return this.formBuilder.group({

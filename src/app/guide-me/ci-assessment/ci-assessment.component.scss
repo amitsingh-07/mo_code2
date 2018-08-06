@@ -4,20 +4,11 @@ app-ci-assessment {
   .total {
     min-width: 120px;
   }
-  .form-with-bg--content-multiplier {
-    color: #04a6a7;
-    text-decoration: underline;
-    font-family: $muli-bold;
-  }
   .form-with-bg .form-with-bg--content .form-with-bg--content-label {
     flex-basis: 61vw !important;
   }
   #RetirementAgeDropDown button {
     width: 90px;
-  }
-  
-  span.form--group-dropdown-selected {
-    color: #00a7a7;
   }
 
   .dropdown-menu.show {

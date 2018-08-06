@@ -1,5 +1,5 @@
 <!--Critical Illness Screen-->
-<div class="container-fluid flex__wrapper">
+<div class="container-fluid">
         <div class="content">
           <div class="row">
             <div class="col-lg-7 col-md-6 hidden-sm-md">
@@ -14,7 +14,7 @@
                     <div  class="form-with-bg">
                       <!--Form Header-->
                       <div class="form-with-bg--header">
-                          <div class="form-group flex-row">
+                          <div class="form-group flex-row align-items-top">
                             <div class="form-with-bg--header-label">{{ 'CI_ASSESSMENT.COVERAGE_AMT' | translate}}<div class="form-with-bg--header-sub-label">{{ 'CI_ASSESSMENT.COVERAGE_AMT_DESC' | translate}}</div></div>
                             <div class="total">{{ciCoverageAmt | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                           </div>
@@ -28,7 +28,7 @@
                           <div class="form-group flex-row mb50">
                             <div class="form-with-bg--content-label" for="name">
                                 {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_PREFIX' | translate}}
-                                <span class="form-with-bg--content-multiplier">{{ciMultiplier}}</span>
+                                <span class="span--content-inline--underline">{{ciMultiplier}}</span>
                                 {{ 'CI_ASSESSMENT.CI_COVERAGE_MULTI_SUFFIX' | translate}} 
                             </div>
                           </div> 

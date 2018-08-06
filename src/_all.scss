@@ -91,7 +91,7 @@ body {
     background-image: url("./assets/images/baseline-help-24-px.png");
     width:20px;
     height:20px;
-    top:25px;
+    top:22px;
     right:13px;
     z-index:1;
   }
@@ -100,3 +100,8 @@ body {
     font-weight: normal;
   }
   
+  .span--content-inline--underline {
+    color: #04a6a7;
+    text-decoration: underline;
+    font-family: $muli-bold;
+  }

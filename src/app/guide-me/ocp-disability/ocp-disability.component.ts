@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,8 @@ const assetImgPath = './assets/images/';
 @Component({
   selector: 'app-ocp-disability',
   templateUrl: './ocp-disability.component.html',
-  styleUrls: ['./ocp-disability.component.scss']
+  styleUrls: ['./ocp-disability.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('ocpDisabilitySlider') ocpDisabilitySlider: NouisliderComponent;
@@ -33,7 +34,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
   coveragePercent = 75;
   coverageMax = 75;
-  coverageAmount: number;
+  coverageAmount = 0;
   monthlyIncome: IMyIncome;
 
   ciSliderConfig: any = {
@@ -54,15 +55,15 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   constructor(
     private router: Router, public headerService: HeaderService,
-    private guideMeService: GuideMeService, private translate: TranslateService ,
-    public modal: NgbModal , private formBuilder: FormBuilder) {
+    private guideMeService: GuideMeService, private translate: TranslateService,
+    public modal: NgbModal, private formBuilder: FormBuilder) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('OCP_DISABILITY.TITLE');
       this.modalData = this.translate.instant('OCP_DISABILITY.MODAL_DATA');
       this.employeeList = this.translate.instant('OCP_DISABILITY.EMPLOYEE_TYPE');
-      this.defaultEmployee =  this.employeeList[0].status;
+      this.defaultEmployee = this.employeeList[0].status;
       this.setPageTitle(this.pageTitle, null, true);
     });
   }
@@ -76,15 +77,27 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
       this.coveragePercent = this.formValues.sliderValue;
     }
     this.monthlyIncome = this.guideMeService.getMyIncome();
-    this.coverageAmount = (this.monthlyIncome.monthlySalary * this.coveragePercent) / 100 ;
+    this.coverageAmount = (this.monthlyIncome.monthlySalary * this.coveragePercent) / 100;
+    if (!this.coverageAmount) {
+      this.coverageAmount = 0;
+    }
     this.ocpDisabilityForm = this.formBuilder.group({
     });
     // tslint:disable-next-line:max-line-length
-    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === this.pageTitle ) { this.showMobilePopUp1(); } });
+    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+      if (event === this.pageTitle) {
+        this.showMobilePopUp();
+      }
+    });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.guideMeService.protectionNeedsPageIndex--;
   }
 
   selectRetirementAge(age) {
@@ -98,8 +111,8 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   onSliderChange(value) {
-      this.coveragePercent = value;
-      this.coverageAmount = (this.monthlyIncome.monthlySalary * this.coveragePercent) / 100 ;
+    this.coveragePercent = value;
+    this.coverageAmount = (this.monthlyIncome.monthlySalary * this.coveragePercent) / 100;
   }
 
   selectEmployeeType(status, setSlider) {
@@ -113,13 +126,13 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   setSliderValues(value) {
     this.onSliderChange(value);
     this.ocpDisabilitySlider.writeValue(value);
-    this.ocpDisabilitySlider.slider.updateOptions({range: {min: 0, max: value}});
+    this.ocpDisabilitySlider.slider.updateOptions({ range: { min: 0, max: value } });
   }
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
     this.headerService.setPageTitle(title, null, helpIcon);
   }
 
-  showMobilePopUp1() {
+  showMobilePopUp() {
     console.log('Show Mobile Popup Triggered');
     const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
     ref.componentInstance.description = this.modalData.description;
@@ -145,7 +158,9 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate([GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS]);
+      this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
+        this.guideMeService.protectionNeedsPageIndex++;
+      });
     }
   }
 }
