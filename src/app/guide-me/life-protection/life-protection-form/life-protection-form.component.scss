@@ -1,0 +1,106 @@
+.dep-title {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.dependent-nav {
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fff;
+  color: #00c5c4;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.dep-nav-link {
+  cursor: pointer;
+}
+
+.form-list {
+  margin: 0px;
+  padding: 0px;
+}
+
+.form-list>.row {
+  margin-bottom: 10px;
+}
+
+.page-indicator {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 10px 0px 30px 0px;
+}
+
+.page-indicator span {
+  width: 11px;
+  height: 11px;
+  background-color: #73cece;
+  border-radius: 10px;
+  margin-right: 10px;
+  display: block;
+}
+
+.page-indicator span:last-child {
+  margin-right: 0px;
+}
+
+.page-indicator span.active {
+  background-color: #fff;
+}
+
+#lifeprotectionForm {
+  margin: 80px 0px 100px 0px;
+}
+
+.dep-form-container {
+  padding: 20px;
+  background-color: #fff;
+  color: #009999;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+#nextDependentBtn {
+  display: none;
+}
+
+#submitDepFormBtn {
+  display: block;
+}
+
+/* Desktop Overrides */
+
+@media (min-width: 576px) {
+  .dep-form-container {
+    display: none;
+  }
+  .dep-form-container.show {
+    display: block;
+  }
+  .dependent-nav {
+    display: flex;
+  }
+  #nextDependentBtn,
+  #submitDepFormBtn {
+    display: none;
+  }
+  #nextDependentBtn.show,
+  #submitDepFormBtn.show {
+    display: block;
+  }
+  .page-indicator {
+    display: flex;
+  }
+  #lifeprotectionForm {
+    margin: 0px;
+  }
+}

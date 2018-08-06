@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 
@@ -78,7 +79,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/getstarted']);
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.GET_STARTED]);
     }
   }
 }

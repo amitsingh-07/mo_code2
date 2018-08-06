@@ -1,0 +1,21 @@
+.modal__icon-container{
+    position: relative; 
+    display: flex;
+    width:100%;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+
+    .modal__icons{
+        position: relative;
+        display: inline-block;
+        img{
+            position: relative;
+            display:block;
+            width:95px;
+            height:95px;
+            margin-bottom:20px;
+        }
+    }
+}

@@ -1,159 +1,149 @@
  /*Form Styles*/
-/*Form Group Styles*/
-.form-with-bg {
-  @include fontSize(11px);
-  border-radius: 8px;
-  background: #f4fafb;
-  .form-with-bg--header {
-    background: #FFF;
-    padding: 10px 15px 0px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    .form-with-bg--header-label {
-      flex-basis: 70vw;
-      margin-right: 2vw;
-      font-family: $muli-semi-bold;
-      color: #000000;
-      padding-bottom: 10px;
-    }
-    .form-with-bg--header-sub-label {
-      font-family: $muli-regular;
-      color: #5e5e5e !important;
-      @include fontSize(9px);
-    }
-  }
-  .total {
-    flex-basis: 20vw;
-    color: #00a7a7;
-    font-family: $muli-semi-bold;
-    position: relative;
-    top: -13px;
-    @include fontSize(13px);
-    @extend .block;
-    @extend .text-right;
-    @extend .width100;
-  }
-  .form-with-bg--content {
-    padding: 0.90rem;
-    .form-with-bg--content-label {
-      flex-basis: 48vw;
-      margin-right: 2vw;
-      color: #2d8289;
-      font-family: $muli-semi-bold;
-    }
-    .form-with-bg--content-sub-label {
-      font-family: $muli-regular;
-      color: #2d8289;
-      @include fontSize(9px);
-    }
-  } 
-}
-.form-group {
-  display: flex;
-  &.flex-row {
-    flex-direction: row;
-    align-items: center;
-    .input-control{
-      color: #00a7a7;
-      border: 2px solid #c0eded;
-      padding: 0.90rem;
-      border-radius: 6px;
-      width: 40vw;
-      position: relative;
-      background: #FFF;
-      height: 60px;
-      line-height: 28px;
-      input {
-        position: absolute;
-        right: 10px;
-        top: 14px;
-        width: 90%;
-        border: none;
-        background: transparent;
-        color: #00a7a7;
-        text-align: right;
-      }
-      .fixed-currency {
-        position: absolute;
-        top: 14px;
-      }
-      .input-with-suffix {
-        position: absolute;
-        right: 55px;
-        width: 50%;
-        top: 13px;
-      }
-      .fixed-tenure {
-        position: absolute;
-        top: 13px;
-        right: 10px;
-      }
-      &.readonly {
-        /*
+
+ /*Form Group Styles*/
+
+ .form-with-bg {
+   @include fontSize(11px);
+   border-radius: 8px;
+   background: #f4fafb;
+   .form-with-bg--header {
+     background: #FFF;
+     padding: 10px 15px 0px;
+     border-top-left-radius: 8px;
+     border-top-right-radius: 8px;
+     .form-with-bg--header-label {
+       flex-basis: 70vw;
+       margin-right: 2vw;
+       font-family: $muli-semi-bold;
+       color: #000000;
+       padding-bottom: 10px;
+     }
+     .form-with-bg--header-sub-label {
+       font-family: $muli-regular;
+       color: #5e5e5e !important;
+       @include fontSize(9px);
+     }
+   }
+   .total {
+     flex-basis: 20vw;
+     color: #00a7a7;
+     font-family: $muli-semi-bold;
+     position: relative;
+     top: -13px;
+     @include fontSize(13px);
+     @extend .block;
+     @extend .text-right;
+     @extend .width100;
+   }
+   .form-with-bg--content {
+     padding: 0.90rem;
+     .form-with-bg--content-label {
+       flex-basis: 48vw;
+       margin-right: 2vw;
+       color: #2d8289;
+       font-family: $muli-semi-bold;
+     }
+     .form-with-bg--content-sub-label {
+       font-family: $muli-regular;
+       color: #2d8289;
+       @include fontSize(9px);
+     }
+   }
+ }
+
+ .form-group {
+   display: flex;
+   &.flex-row {
+     flex-direction: row;
+     align-items: center;
+     .input-control {
+       color: #00a7a7;
+       border: 2px solid #c0eded;
+       padding: 0.90rem;
+       border-radius: 6px;
+       width: 40vw;
+       position: relative;
+       background: #FFF;
+       height: 60px;
+       line-height: 28px;
+       input {
+         position: absolute;
+         right: 10px;
+         top: 14px;
+         width: 90%;
+         border: none;
+         background: transparent;
+         color: #00a7a7;
+         text-align: right;
+       }
+       .fixed-currency {
+         position: absolute;
+         top: 14px;
+       }
+       .input-with-suffix {
+         position: absolute;
+         right: 55px;
+         width: 50%;
+         top: 13px;
+       }
+       .fixed-tenure {
+         position: absolute;
+         top: 13px;
+         right: 10px;
+       }
+       &.readonly {
+         /*
        border: 1ps solid #b0dddd;
        background: #d9f2f2;
        color: #00a7a7;
        */
+       }
      }
-    }
-  }
-  &.flex-col {
-    flex-direction: column;
-  }
-  .checkbox-button {
-    background: #FFFFFF;
-    font-family: $muli-bold;
-    @include fontSize(11px);
-    margin-bottom: 16px;
-    position: relative;
-    border: none;
-    border-radius: 6px;
-    .tooltip-icon {
-      position: absolute;
-      right: 14px;
-      top: 17px;
-      background: url("./assets/images/tooltip-icon.svg") no-repeat;
-      height: 20px;
-      width: 20px;
-      cursor: pointer;
-    }
-  .input-label-black, .input-label-grey {
-    color: #000000;
-    font-family: $muli;
-    @include fontSize(11px);
-  }
-  .input-label-grey {
-    color: #5e5e5e;
-  }
-  .input-label-normal {
-    font-family: $muli;
-    @include fontSize(8px);
-    color: #5e5e5e;
-  }
-  &.one-label {
-    padding: 0.70rem 0.80rem;
-  }
-  &.two-label {
-    padding:0.4rem 0.8rem;
-  }
-}
-}
+   }
+   &.flex-col {
+     flex-direction: column;
+   }
+   .checkbox-button {
+     background: #FFFFFF;
+     font-family: $muli-bold;
+     @include fontSize(11px);
+     margin-bottom: 16px;
+     position: relative;
+     border: none;
+     border-radius: 6px;
+     .tooltip-icon {
+       position: absolute;
+       right: 14px;
+       top: 17px;
+       background: url("./assets/images/tooltip-icon.svg") no-repeat;
+       height: 20px;
+       width: 20px;
+       cursor: pointer;
+     }
+     .input-label-black,
+     .input-label-grey {
+       color: #000000;
+       font-family: $muli;
+       @include fontSize(11px);
+     }
+     .input-label-grey {
+       color: #5e5e5e;
+     }
+     .input-label-normal {
+       font-family: $muli;
+       @include fontSize(8px);
+       color: #5e5e5e;
+     }
+     &.one-label {
+       padding: 0.70rem 0.80rem;
+     }
+     &.two-label {
+       padding: 0.4rem 0.8rem;
+     }
+   }
+ }
+
  /*Check box / Radio Button styles*/
- input[type='radio']+label, input[type='checkbox']+label {
-  margin: 0;
-  clear: none;
-  padding: 0px 0 4px 35px;
-  cursor: pointer;
-  background: url("./assets/images/check-box-normal.svg") left center no-repeat;
-}
-input[type='radio']:checked+label, input[type='checkbox']:checked+label {
-  background-image: url("./assets/images/check-box-select.svg");
-}
-input[type="radio"],
-input[type="checkbox"] {
-  margin-top: 0;
-  display: none;
-} 
 
 /*Special Radio/Checkbox*/
 .special-radio-button{
@@ -240,33 +230,59 @@ input[type="checkbox"] {
 input::placeholder {
   color: $app-backgrnd-color !important;
 }
+ input[type='radio']+label,
+ input[type='checkbox']+label {
+   margin: 0;
+   clear: none;
+   padding: 0px 0 4px 35px;
+   cursor: pointer;
+   background: url("./assets/images/check-box-normal.svg") left center no-repeat;
+ }
 
-/*Inline Error Styles*/
-.inline-error {
-  color: $inline-error-border-color;
-  border: 1px solid $inline-error-border-color;
-  background: $inline-error-bg-color;
-  border-radius: 4px;
-  * {
-    background: $inline-error-bg-color !important;
-  }
-  input::placeholder {
-    color: $inline-error-border-color !important;
-  }
-  div {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-}
+ input[type='radio']:checked+label,
+ input[type='checkbox']:checked+label {
+   background-image: url("./assets/images/check-box-select.svg");
+ }
 
-.form__col--mid{
-  label {
-    color: #2d8289;
-    font-family: $muli-semi-bold;
-    margin-top:1vh;
-    margin-right:5vw;
-    @include allmobiles {
-      margin-right:0;
-      }
-    }
+ input[type="radio"],
+ input[type="checkbox"] {
+   margin-top: 0;
+   display: none;
+ }
+
+ /*Input placeholder styles*/
+
+ input::placeholder {
+   color: $app-backgrnd-color !important;
+ }
+
+ /*Inline Error Styles*/
+
+ .inline-error {
+   color: $inline-error-border-color;
+   border: 1px solid $inline-error-border-color;
+   background: $inline-error-bg-color;
+   border-radius: 4px;
+   * {
+     background: $inline-error-bg-color !important;
+   }
+   input::placeholder {
+     color: $inline-error-border-color !important;
+   }
+   div {
+     border-top-right-radius: 4px;
+     border-bottom-right-radius: 4px;
+   }
+ }
+
+ .form__col--mid {
+   label {
+     color: #2d8289;
+     font-family: $muli-semi-bold;
+     margin-top: 1vh;
+     margin-right: 5vw;
+     @include allmobiles {
+       margin-right: 0;
+     }
+   }
  }

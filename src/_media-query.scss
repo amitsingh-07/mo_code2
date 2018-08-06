@@ -66,11 +66,17 @@
     padding-left: 15px !important;
     padding-right: 15px !important;
     position: relative;
-    top: 50px;
+    top: 35px;
     height: 100%;
     bottom: 60px;
   }
 }
+.mobile-top-extended{
+  @include allmobiles {
+    top:50px;
+  }
+}
+
 .form-container {
   @include allmobiles {
     //margin-bottom: 60px;

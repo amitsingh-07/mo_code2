@@ -8,8 +8,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '../.
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
 import { GuideMeService } from './../guide-me.service';
 
 const assetImgPath = './assets/images/';
@@ -60,7 +59,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
       this.longTermCareList = data.objectList; // Getting the information from the API
       console.log(this.longTermCareList);
     });
-    this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === 'Clicked') { this.showMobilePopUp(); } });
+    this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === this.pageTitle) { this.showMobilePopUp(); } });
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
@@ -102,9 +101,33 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
 
   showMobilePopUp() {
     console.log('Show Mobile Popup Triggered');
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorTitle = 'Long-Term Care';
-    ref.componentInstance.errorMessage = '<p></p>';
-   }
+    const ref = this.modal.open(MobileModalComponent, { centered: true });
+    ref.componentInstance.mobileTitle = 'Long-Term Care';
+    ref.componentInstance.description =
+    `<p>If one is unable to perform at least 3 of the below activities,
+     he or she is considered severely disabled and would need
+     <span class="modal-text-secondary">Long-Term Care</span>  with the help of a caregiver.</p>`;
+
+    ref.componentInstance.icon_description =
+    `<div class="modal__icon-container">
+      <div  class="modal__icons">
+        <img src="../assets/images/washing.png"/>
+      </div>
+      <div class="modal__icons">
+        <img src="../assets/images/feeding.png"/>
+      </div>
+      <div class="modal__icons">
+        <img src="../assets/images/dressing.png"/>
+      </div>
+      <div class="modal__icons">
+        <img src="../assets/images/toileting.png"/>
+      </div>
+      <div class="modal__icons">
+        <img src="../assets/images/mobility.png"/>
+      </div>
+      <div class="modal__icons">
+        <img src="../assets/images/transferring.png"/>
+      </div>
+    </div>`;
+  }
 }

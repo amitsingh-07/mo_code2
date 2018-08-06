@@ -72,32 +72,56 @@
     "OTHERS_HINT": "(E.g. Personal Loan, Business Loan)"
   },
   "FINANCIAL_ASSESSMENT": {
-      "TITLE": "Financial Assessment",
-      "CONTENT_STEP": "Step 1",
-      "CONTENT_TITLE": "Financial Assessment",
-      "CONTENT_DESC": "In the next step, we are going to gather information on your income, expenses, assets and liabilities to determine your insurance needs."
+    "TITLE": "Financial Assessment",
+    "CONTENT_STEP": "Step 1",
+    "CONTENT_TITLE": "Financial Assessment",
+    "CONTENT_DESC": "In the next step, we are going to gather information on your income, expenses, assets and liabilities to determine your insurance needs."
   },
   "INSURE_ASSESSMENT": {
-      "TITLE": "Insurance Needs Assessment",
-      "CONTENT_STEP": "Step 2",
-      "CONTENT_TITLE": "Insurance Needs Assessment",
-      "CONTENT_DESC": "In the next step, we will ask you a few simple questions to assess your needs."
+    "TITLE": "Insurance Needs Assessment",
+    "CONTENT_STEP": "Step 2",
+    "CONTENT_TITLE": "Insurance Needs Assessment",
+    "CONTENT_DESC": "In the next step, we will ask you a few simple questions to assess your needs."
+  },
+  "LIFE_PROTECTION": {
+    "TITLE": "Critical Illness",
+    "DESCRIPTION": "If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education."
   },
   "CI_ASSESSMENT": {
-      "TITLE": "Critical Illness",
-      "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.",
-      "COVERAGE_AMT": "Coverage Amount",
-      "COVERAGE_AMT_DESC": "Based on the information below",
-      "ANNUAL_SALARY": "Annual Salary",
-      "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
-      "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
-      "UNTIL_RETIREMENT_AGE": "Till the retirement age of "
+    "TITLE": "Critical Illness",
+    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.",
+    "COVERAGE_AMT": "Coverage Amount",
+    "COVERAGE_AMT_DESC": "Based on the information below",
+    "ANNUAL_SALARY": "Annual Salary",
+    "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
+    "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
+    "UNTIL_RETIREMENT_AGE": "Till the retirement age of "
+  },
+  "OCP_DISABILITY": {
+    "TITLE": "Occupational Disability",
+    "DESCRIPTION": "This coverage is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.",
+    "OCP_DISABILITY_FRM_TITLE": "Coverage Amount",
+    "OCP_DISABILITY_HINT": "Based on the information below",
+    "EMPLOYEE_FIELD": "I am a",
+    "PROPERTY_LOAN_HINT": "(Remaining amount)",
+    "RETIREMENT_AGE": "Till the retirement age of",
+    "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
+    "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
+    "MODAL_TITLE": "Occupational Disability",
+    "EMPLOYEE_TYPE":[{"status": "Salaried Employee"},
+                     {"status":"Self-employed"}],
+    "MODAL_DATA":{
+      "title": "Occupational Disability",
+      "description": "<h4>Occupational Disability</h4><p>This is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.</p>",
+      "imageName": "occupationdisability_modal.png"
+    }
   },
   "LTC_ASSESSMENT": {
-      "TITLE": "Long Term Care",
-      "SUB_TITLE": "Select the type of caregiver that you prefer.",
-      "DESCRIPTION_PART1": "If one is unable to perform at least ", 
-      "DESCRIPTION_BOLD": "3 of these activities (washing, feeding, dressing, toileting, mobility and transferring)",
-      "DESCRIPTION_PART2": ", he or she is considered severely disabled and would need Long-Term Care with the help of a caregiver. Select the type of caregiver that you prefer."
+    "TITLE": "Long Term Care",
+    "SUB_TITLE": "Select the type of caregiver that you prefer.",
+    "DESCRIPTION_PART1": "If one is unable to perform at least ", 
+    "DESCRIPTION_BOLD": "3 of these activities (washing, feeding, dressing, toileting, mobility and transferring)",
+    "DESCRIPTION_PART2": ", he or she is considered severely disabled and would need Long-Term Care with the help of a caregiver. Select the type of caregiver that you prefer."
   }
 }
+

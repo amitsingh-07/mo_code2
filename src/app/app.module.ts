@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
@@ -27,6 +28,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     HeaderComponent,
     HelpModalComponent,
+    MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent
   ],
@@ -51,7 +53,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent]
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, MobileModalComponent]
 })
 
 export class AppModule {
