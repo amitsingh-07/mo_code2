@@ -15,9 +15,9 @@
             <div class="special-radio-button hidden" *ngFor="let longTermCare of longTermCareList; let i = index" [formGroupName]="i">
               <input id="longTermCare_{{i+1}}" name="status" formControlName="status" type="radio" class="field radio" value="{{longTermCare.id}}"
               tabindex="{{i+1}}">
-                <label for="longTermCare_{{i+1}}">
+                <label for="longTermCare_{{i+1}}" class="ltc">
                   <div class="input-label-white">{{longTermCare.ltcName}}</div>
-                  <div class="input-label-normal">{{longTermCare.ltcDesc}}</div>
+                  <div class="input-label-top20">{{longTermCare.ltcDesc}}</div>
                 </label>
             </div>
           </div>

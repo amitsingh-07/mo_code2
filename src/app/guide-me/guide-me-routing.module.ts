@@ -6,6 +6,7 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedComponent } from './get-started/get-started.component';
 import { GUIDE_ME_ROUTES } from './guide-me-routes.constants';
+import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.LIFE_PROTECTION, component: LifeProtectionComponent },
   { path: GUIDE_ME_ROUTES.CRITICAL_ILLNESS, component: CiAssessmentComponent},
   { path: GUIDE_ME_ROUTES.LONG_TERM_CARE, component: LtcAssessmentComponent},
-  { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent}
+  { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent},
+  { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent}
 ];
 
 @NgModule({

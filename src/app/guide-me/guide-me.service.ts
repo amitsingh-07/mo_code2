@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -9,6 +8,7 @@ import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
+import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
@@ -33,6 +33,7 @@ export class GuideMeService {
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
   private isLongTermCareFormValid = true;
+  private isHospitalPlanFormValid = true;
   isMyIncomeFormValid = false;
   isMyExpensesFormValid = false;
   protectionNeedsPageIndex = 0;
@@ -217,6 +218,24 @@ export class GuideMeService {
 
   getLongTermCareList() {
     return this.apiService.getLongTermCareList();
+  }
+
+  getHospitalPlan(): HospitalPlan {
+    const hospitalPlanData: HospitalPlan = {
+      hospitalPlanData: this.guideMeFormData.hospitalPlanData
+    };
+    console.log('Testing Hospital Plan');
+    return hospitalPlanData;
+  }
+
+  setHospitalPlan(data) {
+    this.isHospitalPlanFormValid = true;
+    this.guideMeFormData.hospitalPlanData = data;
+  }
+
+  getHospitalPlanList() {
+    console.log('getHospitalPlanList() Running');
+    return this.apiService.getHospitalPlanList();
   }
 
   /*Additions of currency Values */

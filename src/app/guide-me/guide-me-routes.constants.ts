@@ -16,7 +16,7 @@ export const GUIDE_ME_ROUTES = {
   OCCUPATIONAL_DISABILITY: 'occupational-disability',
   HOSPITAL_PLAN: 'hospital-plan',
   LONG_TERM_CARE: 'long-term-care',
-  INSURANCE_RESULTS: 'insurance-results'
+  INSURANCE_RESULTS: 'insurance-results',
 };
 
 export const GUIDE_ME_ROUTE_PATHS = {

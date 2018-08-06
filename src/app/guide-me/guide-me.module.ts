@@ -13,6 +13,7 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
@@ -48,6 +49,7 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     LtcAssessmentComponent,
     CiAssessmentComponent,
     OcpDisabilityComponent,
+    HospitalPlanComponent
   ],
   providers: [CurrencyPipe]
 })
