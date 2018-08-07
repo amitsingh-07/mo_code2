@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LoggerService } from './shared/logger/logger.service';
@@ -14,4 +14,11 @@ export class AppComponent {
   constructor(private log: LoggerService, private translate: TranslateService ) {
     this.translate.setDefaultLang('en');
   }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event: Event) {
+    console.log('Processing beforeunload...');
+    // Do more processing...
+    event.returnValue = true;
+}
 }
