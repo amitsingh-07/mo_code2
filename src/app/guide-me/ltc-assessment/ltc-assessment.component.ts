@@ -98,7 +98,6 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
   }
 
   showMobilePopUp() {
-    console.log('Show Mobile Popup Triggered');
     const ref = this.modal.open(MobileModalComponent, { centered: true });
     ref.componentInstance.mobileTitle = 'Long-Term Care';
     ref.componentInstance.description =
@@ -127,6 +126,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
         <img src="../assets/images/transferring.png"/>
       </div>
     </div>`;
+    this.headerService.showMobilePopUp('removeClicked');
   }
 
   // Testing
