@@ -15,6 +15,7 @@ import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
   LifeProtectionModalComponent
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
+import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
@@ -30,6 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     HeaderComponent,
     HelpModalComponent,
+    MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
     LifeProtectionModalComponent
@@ -55,7 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, LifeProtectionModalComponent]
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, LifeProtectionModalComponent, MobileModalComponent]
 })
 
 export class AppModule {
