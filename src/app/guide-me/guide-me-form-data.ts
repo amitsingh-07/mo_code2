@@ -34,7 +34,7 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     carLoan: number;
     otherLiabilities: number;
 
-    // CI Assessment
+    // Critical Illness Assessment
     ciCoverageAmt: number;
     annualSalary: number;
     ciMultiplier: number;
@@ -45,4 +45,10 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     retirementAge: number;
     selectedEmployee: string;
     sliderValue: number;
+
+    // Long Term Care
+    longTermCareData: string;
+
+    // Hospital Plan
+    hospitalPlanData: string;
 }

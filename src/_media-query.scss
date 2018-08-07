@@ -71,6 +71,18 @@
     bottom: 60px;
   }
 }
+.mobile-top-extended{
+  @include allmobiles {
+    top:50px;
+  }
+  @include min300max350{
+    top:50px;
+    &.more{
+      top:60px;
+    }
+  }
+}
+
 .form-container {
   @include allmobiles {
     //margin-bottom: 60px;

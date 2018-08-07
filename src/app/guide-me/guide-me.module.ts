@@ -13,11 +13,13 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
 import { LifeProtectionFormComponent } from './life-protection/life-protection-form/life-protection-form.component';
 import { LifeProtectionComponent } from './life-protection/life-protection.component';
+import { LtcAssessmentComponent } from './ltc-assessment/ltc-assessment.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -44,8 +46,10 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     InsureAssessmentComponent,
     LifeProtectionComponent,
     LifeProtectionFormComponent,
+    LtcAssessmentComponent,
     CiAssessmentComponent,
-    OcpDisabilityComponent
+    OcpDisabilityComponent,
+    HospitalPlanComponent
   ],
   providers: [CurrencyPipe]
 })
