@@ -1,0 +1,12 @@
+@import '../../../../../variables';
+@import '../../../../../mixins';
+.dependant-profile {
+	@extend .flex;
+	@extent .justify-center;
+	@extend .space-btwn;
+	.dependant-profile-box {
+		background-color: #00c5c4;
+		color: $white-color;
+		padding: 0.90rem;
+	}
+}

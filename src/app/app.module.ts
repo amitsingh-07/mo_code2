@@ -12,8 +12,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
-import { HeaderComponent } from './shared/header/header.component';
+import {
+  LifeProtectionModalComponent
+} from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
@@ -30,7 +33,8 @@ export function createTranslateLoader(http: HttpClient) {
     HelpModalComponent,
     MobileModalComponent,
     LoaderComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    LifeProtectionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, MobileModalComponent]
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, LifeProtectionModalComponent, MobileModalComponent]
 })
 
 export class AppModule {
