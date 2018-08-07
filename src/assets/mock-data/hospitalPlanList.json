@@ -1,0 +1,31 @@
+{
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    },
+    "objectList": [{
+        "id": 1,
+        "hosPlanDesc": "Choose any doctor, Stay in any hospital",
+        "hosPlanName": "Private Hospital"
+    },
+    {
+        "id":2,
+        "hosPlanDesc": "Choose any doctor, Stay in single ward",
+        "hosPlanName": "Government Hospital Ward A"
+    },
+    {
+        "id":3,
+        "hosPlanDesc": "Choose any doctor, Up to 4-bedded ward",
+        "hosPlanName": "Government Hospital Ward B1"
+    },
+    {
+        "id":4,
+        "hosPlanDesc": "Assigned doctor, Up to 9-bedded ward",
+        "hosPlanName": "Government Hospital Ward B2"
+    },
+    {
+        "id":5,
+        "hosPlanDesc": "Option for maternity, Out- patient treatment",
+        "hosPlanName": "Global Healthcare Coverage"
+    }]
+  }
