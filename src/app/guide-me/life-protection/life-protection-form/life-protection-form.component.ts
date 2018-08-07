@@ -72,7 +72,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
           this.dependentFormCount--;
         }
         // set focus to last dependent
-        this.activeFormIndex = this.dependentCount ? this.dependentCount-1 : this.dependentCount;
+        this.activeFormIndex = this.dependentCount ? this.dependentCount - 1 : this.dependentCount;
       }
       this.isFormControlDisabled = (!this.dependentCount) ? true : null;
     }
@@ -99,17 +99,17 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.lifeProtectionForm.controls.dependents['controls'][i].controls[key].setValue(value);
   }
 
-  navigateDependentForm(dir){
+  navigateDependentForm(dir) {
     (dir === 'next') ? this.activeFormIndex++ : this.activeFormIndex--;
     this.updateNavLinks();
   }
 
-  updateNavLinks(){
+  updateNavLinks() {
     this.isNavPrevEnabled = (this.activeFormIndex) ? true : false;
-    this.isNavNextEnabled = ((this.dependentCount > 1) && (this.activeFormIndex < this.dependentCount-1)) ? true : false;
+    this.isNavNextEnabled = ((this.dependentCount > 1) && (this.activeFormIndex < this.dependentCount - 1)) ? true : false;
   }
 
-save() {
+  save() {
     console.log(this.lifeProtectionForm.value.dependents);
     return true;
   }
