@@ -1,5 +1,5 @@
 <!--Long Term Care Screen-->
-<div class="container-fluid flex__wrapper mobile-top-extended">
+<div class="container-fluid mobile-top-extended">
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
@@ -13,7 +13,7 @@
         <form name="longTermCareForm" *ngIf="isFormLoaded" [formGroup]="longTermCareForm" id="longTermCareForm">
           <div class="form-group mb0 flex-col flex__box--sm-horz" formArrayName="longTermCareArray">
             <div class="special-radio-button hidden" *ngFor="let longTermCare of longTermCareList; let i = index" [formGroupName]="i">
-              <input id="longTermCare_{{i+1}}" name="status" formControlName="status" type="radio" class="field radio" value="{{longTermCare.id}}"
+              <input id="longTermCare_{{i+1}}" name="status" (change)="radioTest()" formControlName="status" type="radio" class="field radio" value="{{longTermCare.id}}"
               tabindex="{{i+1}}">
                 <label for="longTermCare_{{i+1}}" class="ltc">
                   <div class="input-label-white">{{longTermCare.ltcName}}</div>

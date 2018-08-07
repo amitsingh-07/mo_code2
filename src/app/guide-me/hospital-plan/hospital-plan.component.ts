@@ -95,4 +95,10 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
       this.router.navigate(['../guideme/long-term-care']);
     }
   }
+
+  // Testing
+  radioTest() {
+    // tslint:disable-next-line:no-commented-code
+    // console.log('Changed');
+  }
 }

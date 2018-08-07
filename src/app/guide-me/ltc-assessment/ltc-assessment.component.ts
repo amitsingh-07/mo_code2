@@ -24,7 +24,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
 
   pageTitle: string;
   pageSubTitle: string;
-  isFormValid = true;// Boolean for preload check
+  isFormValid = true; // Boolean for preload check
   longTermCareArray: FormArray; // Array to do a preload check
   longTermCareForm: FormGroup; // Working FormGroup
   longTermCareFormValues: any;
@@ -127,5 +127,11 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
         <img src="../assets/images/transferring.png"/>
       </div>
     </div>`;
+  }
+
+  // Testing
+  radioTest() {
+    // tslint:disable-next-line:no-commented-code
+    // console.log('Changed');
   }
 }

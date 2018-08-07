@@ -1,5 +1,5 @@
 <!--Hospital Plan Screen-->
-<div class="container-fluid flex__wrapper mobile-top-extended more">
+<div class="container-fluid mobile-top-extended more">
   <div class="content">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
@@ -13,7 +13,7 @@
         <form name="hospitalPlanForm" *ngIf="isFormLoaded" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
           <div class="form-group mb0 flex-col flex__box--sm-horz" formArrayName="hospitalPlanArray">
             <div class="special-radio-button hidden" *ngFor="let hospitalPlan of hospitalPlanList; let i = index" [formGroupName]="i">
-              <input id="hospitalPlan_{{i+1}}" name="status" formControlName="status" type="radio" class="field radio" value="{{hospitalPlan.id}}"
+              <input id="hospitalPlan_{{i+1}}" name="status" (change)="radioTest()" formControlName="status" type="radio" class="field radio" value="{{hospitalPlan.id}}"
               tabindex="{{i+1}}">
                 <label for="hospitalPlan_{{i+1}}">
                   <div class="input-label-white">{{hospitalPlan.hosPlanName}}</div>
