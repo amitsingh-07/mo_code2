@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '../../../../node_modules/@angular/forms';
 import { Router } from '../../../../node_modules/@angular/router';
@@ -34,6 +35,8 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
   isFormLoaded: boolean;
   currentFormData: any;
 
+  private subscription: Subscription;
+
   constructor(
     private formBuilder: FormBuilder, private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
@@ -58,7 +61,15 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
       this.buildForm(data.objectList);
       this.longTermCareList = data.objectList; // Getting the information from the API
     });
-    this.headerService.currentMobileModalEvent.subscribe((event) => { if (event === this.pageTitle) { this.showMobilePopUp(); } });
+    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+      if (event === this.pageTitle) {
+         this.showMobilePopUp();
+      }
+    });
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
@@ -98,14 +109,14 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
   }
 
   showMobilePopUp() {
-    console.log('Show Mobile Popup Triggered');
-    const ref = this.modal.open(MobileModalComponent, { centered: true });
+    const ref = this.modal.open(MobileModalComponent, {
+      centered: true
+    });
     ref.componentInstance.mobileTitle = 'Long-Term Care';
     ref.componentInstance.description =
     `<p>If one is unable to perform at least 3 of the below activities,
      he or she is considered severely disabled and would need
      <span class="modal-text-secondary">Long-Term Care</span>  with the help of a caregiver.</p>`;
-
     ref.componentInstance.icon_description =
     `<div class="modal__icon-container">
       <div  class="modal__icons">
@@ -127,6 +138,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
         <img src="../assets/images/transferring.png"/>
       </div>
     </div>`;
+    this.headerService.showMobilePopUp('removeClicked');
   }
 
   // Testing
