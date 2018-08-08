@@ -15,10 +15,10 @@ export class HelperService {
   addContentTypeHeader = true;
 
   showLoader() {
-    //this.loadingModalRef = this.modalService.open(LoaderComponent);
+    // this.loadingModalRef = this.modalService.open(LoaderComponent);
   }
 
   hideLoader() {
-    //this.loadingModalRef.close();
+    // this.loadingModalRef.close();
   }
 }

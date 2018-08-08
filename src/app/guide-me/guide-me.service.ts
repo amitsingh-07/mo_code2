@@ -42,10 +42,9 @@ export class GuideMeService {
   }
 
   getProfile(): Profile {
-    const myProfile: Profile = {
+    return {
       myProfile: this.guideMeFormData.myProfile
     };
-    return myProfile;
   }
 
   setProfile(data: Profile) {
@@ -54,14 +53,13 @@ export class GuideMeService {
   }
 
   getUserInfo(): UserInfo {
-    const userInfoForm: UserInfo = {
+    return {
       gender: this.guideMeFormData.gender,
       dob: this.guideMeFormData.dob,
       customDob: this.guideMeFormData.customDob,
       smoker: this.guideMeFormData.smoker,
       dependent: this.guideMeFormData.dependent
     };
-    return userInfoForm;
   }
 
   setUserInfo(data: UserInfo) {
@@ -83,10 +81,9 @@ export class GuideMeService {
   }
 
   getProtectionNeeds(): ProtectionNeeds {
-    const protectionNeedData: ProtectionNeeds = {
+    return {
       protectionNeedData: this.guideMeFormData.protectionNeedData
     };
-    return protectionNeedData;
   }
 
   setProtectionNeeds(data) {
@@ -104,12 +101,11 @@ export class GuideMeService {
 
   /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
   getMyIncome(): IMyIncome {
-    const myIncomeForm: IMyIncome = {
+    return {
       monthlySalary: this.guideMeFormData.monthlySalary,
       annualBonus: this.guideMeFormData.annualBonus,
       otherIncome: this.guideMeFormData.otherIncome
     };
-    return myIncomeForm;
   }
 
   setMyIncome(data: IMyIncome) {
@@ -120,11 +116,10 @@ export class GuideMeService {
   }
 
   getMyExpenses(): IMyExpenses {
-    const myExpensesForm: IMyExpenses = {
+    return {
       monthlyInstallment: this.guideMeFormData.monthlyInstallment,
       otherExpenses: this.guideMeFormData.otherExpenses
     };
-    return myExpensesForm;
   }
 
   setMyExpenses(data: IMyExpenses) {
@@ -134,7 +129,7 @@ export class GuideMeService {
   }
 
   getMyAssets(): IMyAssets {
-    const myAssetsForm: IMyAssets = {
+    return {
       cash: this.guideMeFormData.cash,
       cpf: this.guideMeFormData.cpf,
       homeProperty: this.guideMeFormData.homeProperty,
@@ -142,7 +137,6 @@ export class GuideMeService {
       investments: this.guideMeFormData.investments,
       otherAssets: this.guideMeFormData.otherAssets,
     };
-    return myAssetsForm;
   }
 
   setMyAssets(data: IMyAssets) {
@@ -156,12 +150,11 @@ export class GuideMeService {
   }
 
   getMyLiabilities(): IMyLiabilities {
-    const myAssetsForm: IMyLiabilities = {
+    return {
       propertyLoan: this.guideMeFormData.propertyLoan,
       carLoan: this.guideMeFormData.carLoan,
       otherLiabilities: this.guideMeFormData.otherLiabilities
     };
-    return myAssetsForm;
   }
 
   setMyLiabilities(data: IMyLiabilities) {
@@ -171,14 +164,13 @@ export class GuideMeService {
     this.guideMeFormData.otherLiabilities = data.otherLiabilities;
   }
   getCiAssessment(): CiAssessment {
-    const ciForm: CiAssessment = {
+    return {
       ciCoverageAmt: this.guideMeFormData.ciCoverageAmt,
       // annualSalary: this.guideMeFormData.monthlySalary * 12,
       annualSalary: 2200 * 12,
       ciMultiplier: this.guideMeFormData.ciMultiplier,
       untilRetirementAge: this.guideMeFormData.untilRetirementAge
     };
-    return ciForm;
   }
   setCiAssessment(data: CiAssessment) {
     this.guideMeFormData.ciCoverageAmt = data.ciCoverageAmt;
@@ -187,13 +179,12 @@ export class GuideMeService {
   }
 
   getMyOcpDisability(): IMyOcpDisability {
-    const myOcpDisabilityForm: IMyOcpDisability = {
+    return {
       coverageAmount: this.guideMeFormData.coverageAmount,
       sliderValue: this.guideMeFormData.sliderValue,
       retirementAge: this.guideMeFormData.retirementAge,
       selectedEmployee: this.guideMeFormData.selectedEmployee
     };
-    return myOcpDisabilityForm;
   }
 
   setMyOcpDisability(data: IMyOcpDisability) {
@@ -205,10 +196,9 @@ export class GuideMeService {
   }
 
   getLongTermCare(): LongTermCare {
-    const longTermCareData: LongTermCare = {
+    return {
       longTermCareData: this.guideMeFormData.longTermCareData
     };
-    return longTermCareData;
   }
 
   setLongTermCare(data) {
@@ -221,11 +211,9 @@ export class GuideMeService {
   }
 
   getHospitalPlan(): HospitalPlan {
-    const hospitalPlanData: HospitalPlan = {
+    return {
       hospitalPlanData: this.guideMeFormData.hospitalPlanData
     };
-    console.log('Testing Hospital Plan');
-    return hospitalPlanData;
   }
 
   setHospitalPlan(data) {
@@ -234,7 +222,6 @@ export class GuideMeService {
   }
 
   getHospitalPlanList() {
-    console.log('getHospitalPlanList() Running');
     return this.apiService.getHospitalPlanList();
   }
 
@@ -300,7 +287,7 @@ export class GuideMeService {
       }
     }
     console.log('selectedProtectionNeeds[this.protectionNeedsPageIndex] :' + selectedProtectionNeeds[this.protectionNeedsPageIndex]);
-    if(this.protectionNeedsPageIndex < selectedProtectionNeeds.length){
+    if (this.protectionNeedsPageIndex < selectedProtectionNeeds.length) {
     return selectedProtectionNeeds[this.protectionNeedsPageIndex];
     } else {
       return GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE;

@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ const assetImgPath = './assets/images/';
   encapsulation: ViewEncapsulation.None
 })
 
-export class LtcAssessmentComponent implements IPageComponent, OnInit {
+export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy {
 
   pageTitle: string;
   pageSubTitle: string;
