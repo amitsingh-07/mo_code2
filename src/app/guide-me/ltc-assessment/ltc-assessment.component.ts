@@ -25,6 +25,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
 
   pageTitle: string;
   pageSubTitle: string;
+  modalData: any;
   isFormValid = true; // Boolean for preload check
   longTermCareArray: FormArray; // Array to do a preload check
   longTermCareForm: FormGroup; // Working FormGroup
@@ -46,6 +47,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('LTC_ASSESSMENT.TITLE');
       this.pageSubTitle = this.translate.instant('LTC_ASSESSMENT.SUB_TITLE');
+      this.modalData = this.translate.instant('LTC_ASSESSMENT.MODAL_DATA');
       this.setPageTitle(this.pageTitle, this.pageSubTitle, true);
     });
    }
@@ -67,7 +69,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
       }
     });
   }
-  
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -112,32 +114,9 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit {
     const ref = this.modal.open(MobileModalComponent, {
       centered: true
     });
-    ref.componentInstance.mobileTitle = 'Long-Term Care';
-    ref.componentInstance.description =
-    `<p>If one is unable to perform at least 3 of the below activities,
-     he or she is considered severely disabled and would need
-     <span class="modal-text-secondary">Long-Term Care</span>  with the help of a caregiver.</p>`;
-    ref.componentInstance.icon_description =
-    `<div class="modal__icon-container">
-      <div  class="modal__icons">
-        <img src="../assets/images/washing.png"/>
-      </div>
-      <div class="modal__icons">
-        <img src="../assets/images/feeding.png"/>
-      </div>
-      <div class="modal__icons">
-        <img src="../assets/images/dressing.png"/>
-      </div>
-      <div class="modal__icons">
-        <img src="../assets/images/toileting.png"/>
-      </div>
-      <div class="modal__icons">
-        <img src="../assets/images/mobility.png"/>
-      </div>
-      <div class="modal__icons">
-        <img src="../assets/images/transferring.png"/>
-      </div>
-    </div>`;
+    ref.componentInstance.mobileTitle = this.modalData.TITLE;
+    ref.componentInstance.description = this.modalData.DESCRIPTION;
+    ref.componentInstance.icon_description = this.modalData.LOGO_DESCRIPTION;
     this.headerService.showMobilePopUp('removeClicked');
   }
 
