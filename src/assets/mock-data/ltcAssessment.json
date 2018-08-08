@@ -1,0 +1,23 @@
+{
+    "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+    },
+    "objectList": [{
+      "id": 1,
+      "ltcDesc": "Fully cared for at home by family",
+      "ltcName": "Family Member"
+    }, {
+      "id": 2,
+      "ltcDesc": "Fully cared for at home by helper",
+      "ltcName": "Domestic Helper"
+    }, {
+      "id": 3,
+      "ltcDesc": "Daycare at a facility by nurses, Night care at home by family",
+      "ltcName": "Daycare Support"
+    }, {
+      "id": 4,
+      "ltcDesc": "Fully cared for at a facility by nurses",
+      "ltcName": "Nursing Home"
+    }]
+  }

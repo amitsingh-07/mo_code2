@@ -1,6 +1,7 @@
 import { IMyExpenses } from './expenses/expenses.interface';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { ProtectionNeeds } from './protection-needs/protection-needs';
 export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     myProfile: number;
     email: string;
@@ -8,8 +9,8 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     dob: string;
     customDob: string;
     smoker: string;
-    dependent: string;
-    protectionNeedData: string;
+    dependent: number;
+    protectionNeedData: ProtectionNeeds;
 
     // My Income
     monthlySalary: number;
@@ -33,9 +34,21 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     carLoan: number;
     otherLiabilities: number;
 
-    // CI Assessment
+    // Critical Illness Assessment
     ciCoverageAmt: number;
     annualSalary: number;
     ciMultiplier: number;
     untilRetirementAge: number;
+
+    // Occupational Disability
+    coverageAmount: number;
+    retirementAge: number;
+    selectedEmployee: string;
+    sliderValue: number;
+
+    // Long Term Care
+    longTermCareData: string;
+
+    // Hospital Plan
+    hospitalPlanData: string;
 }

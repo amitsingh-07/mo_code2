@@ -7,31 +7,44 @@ import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
 import { GuideMeFormData } from './guide-me-form-data';
+import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
+import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
+import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
+
+const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
+const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
+const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
+const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
+const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuideMeService {
+
   private guideMeFormData: GuideMeFormData = new GuideMeFormData();
   private formError: any = new FormError();
   private isProfileFormValid = false;
   private isProtectionNeedFormValid = false;
+  private isLongTermCareFormValid = true;
+  private isHospitalPlanFormValid = true;
   isMyIncomeFormValid = false;
   isMyExpensesFormValid = false;
-
+  protectionNeedsPageIndex = 0;
+  isMyOcpDisabilityFormValid = false;
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
   getProfile(): Profile {
-    const myProfile: Profile = {
+    return {
       myProfile: this.guideMeFormData.myProfile
     };
-    return myProfile;
   }
 
   setProfile(data: Profile) {
@@ -40,14 +53,13 @@ export class GuideMeService {
   }
 
   getUserInfo(): UserInfo {
-    const userInfoForm: UserInfo = {
+    return {
       gender: this.guideMeFormData.gender,
       dob: this.guideMeFormData.dob,
       customDob: this.guideMeFormData.customDob,
       smoker: this.guideMeFormData.smoker,
       dependent: this.guideMeFormData.dependent
     };
-    return userInfoForm;
   }
 
   setUserInfo(data: UserInfo) {
@@ -69,10 +81,9 @@ export class GuideMeService {
   }
 
   getProtectionNeeds(): ProtectionNeeds {
-    const protectionNeedData: ProtectionNeeds = {
+    return {
       protectionNeedData: this.guideMeFormData.protectionNeedData
     };
-    return protectionNeedData;
   }
 
   setProtectionNeeds(data) {
@@ -90,12 +101,11 @@ export class GuideMeService {
 
   /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
   getMyIncome(): IMyIncome {
-    const myIncomeForm: IMyIncome = {
+    return {
       monthlySalary: this.guideMeFormData.monthlySalary,
       annualBonus: this.guideMeFormData.annualBonus,
       otherIncome: this.guideMeFormData.otherIncome
     };
-    return myIncomeForm;
   }
 
   setMyIncome(data: IMyIncome) {
@@ -106,11 +116,10 @@ export class GuideMeService {
   }
 
   getMyExpenses(): IMyExpenses {
-    const myExpensesForm: IMyExpenses = {
+    return {
       monthlyInstallment: this.guideMeFormData.monthlyInstallment,
       otherExpenses: this.guideMeFormData.otherExpenses
     };
-    return myExpensesForm;
   }
 
   setMyExpenses(data: IMyExpenses) {
@@ -120,7 +129,7 @@ export class GuideMeService {
   }
 
   getMyAssets(): IMyAssets {
-    const myAssetsForm: IMyAssets = {
+    return {
       cash: this.guideMeFormData.cash,
       cpf: this.guideMeFormData.cpf,
       homeProperty: this.guideMeFormData.homeProperty,
@@ -128,7 +137,6 @@ export class GuideMeService {
       investments: this.guideMeFormData.investments,
       otherAssets: this.guideMeFormData.otherAssets,
     };
-    return myAssetsForm;
   }
 
   setMyAssets(data: IMyAssets) {
@@ -142,12 +150,11 @@ export class GuideMeService {
   }
 
   getMyLiabilities(): IMyLiabilities {
-    const myAssetsForm: IMyLiabilities = {
+    return {
       propertyLoan: this.guideMeFormData.propertyLoan,
       carLoan: this.guideMeFormData.carLoan,
       otherLiabilities: this.guideMeFormData.otherLiabilities
     };
-    return myAssetsForm;
   }
 
   setMyLiabilities(data: IMyLiabilities) {
@@ -157,19 +164,65 @@ export class GuideMeService {
     this.guideMeFormData.otherLiabilities = data.otherLiabilities;
   }
   getCiAssessment(): CiAssessment {
-    const ciForm: CiAssessment = {
+    return {
       ciCoverageAmt: this.guideMeFormData.ciCoverageAmt,
       // annualSalary: this.guideMeFormData.monthlySalary * 12,
       annualSalary: 2200 * 12,
       ciMultiplier: this.guideMeFormData.ciMultiplier,
       untilRetirementAge: this.guideMeFormData.untilRetirementAge
     };
-    return ciForm;
   }
   setCiAssessment(data: CiAssessment) {
     this.guideMeFormData.ciCoverageAmt = data.ciCoverageAmt;
     this.guideMeFormData.ciMultiplier = data.ciMultiplier;
     this.guideMeFormData.untilRetirementAge = data.untilRetirementAge;
+  }
+
+  getMyOcpDisability(): IMyOcpDisability {
+    return {
+      coverageAmount: this.guideMeFormData.coverageAmount,
+      sliderValue: this.guideMeFormData.sliderValue,
+      retirementAge: this.guideMeFormData.retirementAge,
+      selectedEmployee: this.guideMeFormData.selectedEmployee
+    };
+  }
+
+  setMyOcpDisability(data: IMyOcpDisability) {
+    this.isMyOcpDisabilityFormValid = true;
+    this.guideMeFormData.coverageAmount = data.coverageAmount;
+    this.guideMeFormData.sliderValue = data.sliderValue;
+    this.guideMeFormData.retirementAge = data.retirementAge;
+    this.guideMeFormData.selectedEmployee = data.selectedEmployee;
+  }
+
+  getLongTermCare(): LongTermCare {
+    return {
+      longTermCareData: this.guideMeFormData.longTermCareData
+    };
+  }
+
+  setLongTermCare(data) {
+    this.isLongTermCareFormValid = true;
+    this.guideMeFormData.longTermCareData = data;
+  }
+
+  getLongTermCareList() {
+    return this.apiService.getLongTermCareList();
+  }
+
+  getHospitalPlan(): HospitalPlan {
+    return {
+      hospitalPlanData: this.guideMeFormData.hospitalPlanData
+    };
+  }
+
+  setHospitalPlan(data) {
+    this.isHospitalPlanFormValid = true;
+    this.guideMeFormData.hospitalPlanData = data;
+  }
+
+  getHospitalPlanList() {
+    return this.apiService.getHospitalPlanList();
   }
 
   /*Additions of currency Values */
@@ -206,5 +259,38 @@ export class GuideMeService {
 
   getFormError(formCtrlName: string, validation: string): string {
     return this.formError.formFieldErrors[formCtrlName][validation];
+  }
+
+  getNextProtectionNeedsPage() {
+    const selectedProtectionNeeds = [];
+    const protectionNeeds = this.getProtectionNeeds().protectionNeedData;
+    for (const thisNeed of protectionNeeds) {
+      if (thisNeed.status) {
+        switch (thisNeed.protectionTypeId) {
+          case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
+            break;
+          case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
+            break;
+          case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
+            break;
+          case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
+            break;
+          case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
+            break;
+        }
+        console.log('selectedProtectionNeeds :' + selectedProtectionNeeds);
+      }
+    }
+    console.log('selectedProtectionNeeds[this.protectionNeedsPageIndex] :' + selectedProtectionNeeds[this.protectionNeedsPageIndex]);
+    if (this.protectionNeedsPageIndex < selectedProtectionNeeds.length) {
+    return selectedProtectionNeeds[this.protectionNeedsPageIndex];
+    } else {
+      return GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE;
+    }
   }
 }
