@@ -1,36 +1,40 @@
-<div class="container" style="margin-top:30px;">
-  <div class="content">
-    <div class="row">
-      <div class="col-sm-7 hidden-sm-md">
-        <div>
-          <h2>{{pageTitle}}</h2>
-          <h6>{{ 'LIFE_PROTECTION.DESCRIPTION' | translate}}</h6>
-
-          <div class="row">
-            <div class="col-sm-3">I have</div>
-            <div class="col-sm-9">
+<!--Life Protection Screen-->
+<div class="container-fluid">
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-7 col-md-6 hidden-sm-md">
+         
+            <h2>{{pageTitle}}</h2>
+            <h6>{{ 'LIFE_PROTECTION.DESCRIPTION' | translate}}</h6>
+  
+            <div class="form-group flex-row mt30">
               <form [formGroup]="lpDependentCountForm">
+              <label class="mr100">I have</label>
+              <div class="dropdown-control grey">
+                               
                 <input type="hidden" formControlName="dependentCount" />
-                <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-default fixed-btn--lg btn-dropdown" ngbDropdownToggle>
-                    <span>{{lpDependentCountForm.controls.dependentCount.value}}</span>&nbsp;Dependent<span *ngIf="lpDependentCountForm.controls.dependentCount.value > 1">s</span>
-                  </button>
-                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button class="dropdown-item fixed-btn--lg" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
+                <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
+                    <button class="btn btn-default fixed-btn--md" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+                        <span>{{lpDependentCountForm.controls.dependentCount.value}}</span>&nbsp;Dependent<span *ngIf="lpDependentCountForm.controls.dependentCount.value > 1">s</span>
+                      </button>
+                    <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
+                        <button class="dropdown-item fixed-btn--lg" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
+                    </div>
                   </div>
-                </div>
-              </form>
+             
+              </div>
+            </form>
             </div>
-          </div>
-          <div class="banner-image">
-            <img src="assets/images/life-protection.png" />
-          </div>
+            <div class="banner-image">
+              <img src="assets/images/life-protection.svg" />
+            </div>
+          
+  
         </div>
-
-      </div>
-      <div class="col-sm-5">
-        <app-life-protection-form [dependentCount]="lpDependentCountForm.controls.dependentCount.value"></app-life-protection-form>
+        <div class="col-lg-5 col-md-6">
+          <app-life-protection-form [dependentCount]="lpDependentCountForm.controls.dependentCount.value"></app-life-protection-form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  

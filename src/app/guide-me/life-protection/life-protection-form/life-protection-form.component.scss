@@ -1,3 +1,4 @@
+@import '../../../../mixins';
 .dep-title {
   font-size: 16px;
   color: #000;
@@ -104,3 +105,65 @@
     margin: 0px;
   }
 }
+
+#lifeProtectionForm {
+@media (min-width: 600px) {
+.form-with-bg{
+    display:none;
+  }
+  .form-with-bg.show{
+    display:block;
+  }
+  }
+     .dropdown-control {
+       border: 2px solid #c0eded;
+       border-radius: 6px;
+       position: relative;
+       width: 41vw;
+       @include tablet {
+        width: 45vw;
+       }
+       @include tablet {
+        width: 45vw;
+       }
+       @include iPadProPortrait {
+        width: 45vw;
+       }
+       .arrow {
+        background-image: url('../../../../assets/images/dropdown-icon.svg');
+        width: 16px;
+        height: 10px;
+        border: none;
+        position: absolute;
+        top: 23px;
+        right: 10px;
+        z-index: 100;
+       }
+       position: relative;
+       background: #FFF;
+       height: 60px;
+       line-height: 21px;
+       cursor: pointer;
+       .dropdown-toggle {
+        width: 200px;
+        padding: 0.90rem;
+        @include allmobiles {
+          width: 100px;
+        }
+        @include tablet {
+          width: 100px;
+        }
+        @include iPadProPortrait {
+          width: 130px;
+        }
+       }
+       .dropdown-toggle::after {
+        background-image: none !important;
+        border: none !important;
+    }
+     }
+     }
+
+     .show {
+     display: block;
+     }
