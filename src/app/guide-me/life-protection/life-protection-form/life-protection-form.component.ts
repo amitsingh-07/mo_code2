@@ -136,3 +136,4 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     return Array(count).map((x, i) => i);
   }
 }
+
