@@ -72,6 +72,13 @@
   }
 }
 
+/*Fixed button Medium*/
+
+.fixed-btn--md {
+  width: 170px;
+  padding: .90rem;
+}
+
 /*Fixed button large*/
 
 .fixed-btn--lg {
@@ -182,5 +189,35 @@
   .myinfo__block--sub-title {
     font-family: $muli-regular;
     @include fontSize(9px);
+  }
+}
+
+/*Next Button Styles*/
+
+.next-btn {
+  background: #FFFFFF;
+  padding: 0.90rem;
+  text-align: center;
+  color: $app-backgrnd-color;
+  font-family: $muli-semi-bold;
+  position: relative;
+  border-radius: 6px;
+  @include fontSize(12px);
+  cursor: pointer;
+  .next-arrow,
+  .prev-arrow {
+    position: absolute;
+    right: 15px;
+    background: url("./assets/images/back-mobile.png") no-repeat;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+  }
+  .next-arrow {
+    transform: rotate(180deg);
+  }
+  .prev-arrow {
+    left: 15px;
+    top: 20px;
   }
 }

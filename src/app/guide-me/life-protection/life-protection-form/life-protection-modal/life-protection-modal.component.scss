@@ -1,0 +1,68 @@
+@import '../../../../../variables';
+@import '../../../../../mixins';
+.modal-body {
+  width: 400px;
+  margin: 0 auto;
+  @include allmobiles {
+    width: 100%;
+  }
+}
+
+.dependant-profile {
+  @extend .flex;
+  @extend .space-btwn;
+  .dependant-profile-box {
+    background-color: #00c5c4;
+    color: $white-color;
+    width: 95px;
+    height: 100px;
+    padding: 10px;
+    @extend .align-center;
+    @extend .flex;
+    @extend .justify-center;
+    flex-direction: column;
+    border-radius: 6px;
+    font-family: $muli-bold;
+    .dependant-profile-spouse-image {
+      display: inline-block;
+      width: 47px;
+      height: 46px;
+      background: url("../../../../../assets/images/spouse.svg");
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.dependant-profile-desc {
+  padding: 15px;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #00a7a7;
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 15px;
+  position: relative;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #00a7a7;
+  position: absolute;
+  top: -15px;
+  left: 10%;
+}
+
+.child {
+  .arrow-up {
+    left: 46%;
+  }
+}
+
+.family {
+  .arrow-up {
+    left: 83%;
+  }
+}

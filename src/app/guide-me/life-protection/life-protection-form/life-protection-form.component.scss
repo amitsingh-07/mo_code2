@@ -1,3 +1,5 @@
+@import '../../../../variables';
+@import '../../../../mixins';
 .dep-title {
   font-size: 16px;
   color: #000;
@@ -102,5 +104,142 @@
   }
   #lifeprotectionForm {
     margin: 0px;
+  }
+}
+
+#lifeProtectionForm {
+  .form-with-bg {
+    position: relative;
+    .overlay-block {
+      height: 100%;
+      position: absolute;
+      background: #000000;
+      opacity: 0.5;
+      z-index: 2;
+      width: 100%;
+      display: none;
+    }
+  }
+  @media (min-width: 600px) {
+    .form-with-bg {
+      display: none;
+    }
+    .form-with-bg.show {
+      display: block;
+    }
+    .education-support-details {
+      .form-with-bg {
+        display: block;
+      }
+    }
+  }
+  .dropdown-control {
+    .btn-dropdown {
+      color: #00a7a7;
+    }
+    border: 2px solid #c0eded;
+    border-radius: 6px;
+    position: relative;
+    width: 41vw;
+    &:after {
+      background-image: url('../../../../assets/images/dropdown-icon.svg');
+      width: 16px;
+      height: 10px;
+      border: none;
+      position: absolute;
+      top: 23px;
+      right: 10px;
+    }
+    @include tablet {
+      width: 45vw;
+    }
+    @include tablet {
+      width: 45vw;
+    }
+    @include iPadProPortrait {
+      width: 45vw;
+    }
+    position: relative;
+    background: #FFF;
+    height: 60px;
+    line-height: 21px;
+    cursor: pointer;
+    .dropdown-toggle {
+      width: 200px;
+      padding: 0.90rem;
+      padding-right: 0;
+      @include allmobiles {
+        width: 130px;
+      }
+      @include tablet {
+        width: 120px;
+      }
+      @include iPadProPortrait {
+        width: 130px;
+      }
+    }
+    .dropdown-toggle::after {
+      //background-image: none !important;
+      //border: none !important;
+    }
+  }
+  @include allmobiles {
+    a.link {
+      text-decoration: underline !important;
+      color: #2d8289 !important;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 100px;
+    }
+  }
+}
+
+@include allmobiles {
+  .form-with-bg {
+    margin-bottom: 15px;
+  }
+}
+
+.education-support {
+  background-color: #2d8289;
+  padding: 0.90rem;
+  border-radius: 6px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  position: relative;
+  margin-top: -7px;
+  input[type='checkbox']+label {
+    background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
+  }
+  input[type='checkbox']:checked+label {
+    background-image: url("../../../../assets/images/check-box-select.svg");
+  }
+}
+
+.education-support-details {
+  .form-with-bg {
+    padding: 0.90rem;
+    label {
+      font-family: $muli-semi-bold;
+      font-size: 18px;
+    }
+    &.dark {
+      background: #276f75;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      position: relative;
+      margin-top: -7px;
+      .form-with-bg--content-label {
+        flex-basis: 48vw;
+        margin-right: 2vw;
+        color: #ffffff;
+        font-family: "Muli Semi Bold", sans-serif;
+        position: relative;
+        font-size: 18px;
+      }
+      .dropdown-control {
+        border: none !important;
+      }
+    }
   }
 }

@@ -1,8 +1,12 @@
 import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { GuideMeService } from './../../guide-me.service';
+import {
+  LifeProtectionModalComponent
+} from './../../life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 
 @Component({
   selector: 'app-life-protection-form',
@@ -22,26 +26,43 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   activeFormIndex;
   isNavPrevEnabled;
   isNavNextEnabled;
+  dependentCountOptions = [0, 1, 2, 3, 4, 5];
   genderOptions = ['Male', 'Female'];
   relationshipOptions = ['Dad', 'Mother', 'Spouse', 'Child'];
   ageOptions = ['18', '19', '20', '21', '22'];
   yearsNeededOptions = ['20', '30', '40', '50'];
 
   constructor(
-    private router: Router, private guideMeService: GuideMeService,
+    private router: Router,
+    private guideMeService: GuideMeService,
+    public modal: NgbModal,
     private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.lifeProtectionForm = this.formBuilder.group({
-      dependents: this.formBuilder.array([this.createDependentForm()])
+      dependents: this.formBuilder.array([this.createDependentForm()]),
+      dependentCountMobile: this.dependentCount
     });
     this.activeFormIndex = 0;
-    //this.dependentFormCount = this.guideMeService.getUserInfo().dependent;
+    //this.dependentFormCount = this.dependentCount;
     this.refreshDependentForm();
   }
 
   ngOnChanges() {
+    this.refreshDependentForm();
+  }
+
+  showLifeProtectionModal() {
+    const ref = this.modal.open(LifeProtectionModalComponent, {
+      centered: true,
+      windowClass: 'help-modal-dialog'
+    });
+  }
+
+  setDropDownDependentCount(value, i) {
+    this.lifeProtectionForm.controls.dependentCountMobile.setValue(value);
+    this.dependentCount = value;
     this.refreshDependentForm();
   }
 
@@ -72,7 +93,9 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       relationship: this.relationshipOptions[0],
       age: this.ageOptions[0],
       supportAmount: '',
-      yearsNeeded: this.yearsNeededOptions[0]
+      yearsNeeded: this.yearsNeededOptions[0],
+      otherIncome: '',
+      educationSupport: false
     });
   }
 

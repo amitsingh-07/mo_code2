@@ -36,8 +36,8 @@ describe('LtcAssessmentComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     // tslint:disable-next-line:max-line-length
     expect(compiled.querySelector('h6').textContent).toContain(`If one is unable to perform at least 3 of these activities
-    (washing, feeding, dressing, toileting, mobility and transferring), he or she is considered severely disabled and would need 
-    Long-Term Care with the help of a caregiver. Select the type of caregiver that you prefer.`);
+    (washing, feeding, dressing, toileting, mobility and transferring), he or she is considered severely disabled and would need
+     Long-Term Care with the help of a caregiver. Select the type of caregiver that you prefer.`);
   }));
 
   // User can select a long term care standard by clicking on the respective type.
