@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
@@ -38,6 +39,8 @@ export class BaseService {
   ) {
     this.config$ = this.configService.getConfig();
   }
+
+  /*
   get(url) {
     // Helper service to start ng2-slim-loading-bar progress bar
     this.helperService.showLoader();
@@ -55,6 +58,24 @@ export class BaseService {
           this.helperService.hideLoader();
         });
     });
+  }
+  */
+
+  get(url) {
+    // Helper service to start ng2-slim-loading-bar progress bar
+    this.helperService.showLoader();
+    return this.http
+      .get(`${environment.apiBaseUrl}/${url}`)
+      .map((res: Response) => {
+        return this.handleResponse(res);
+      })
+      .catch((error: Response) =>
+        Observable.throw(this.errorHandler.tryParseError(error))
+      )
+      .finally(() => {
+        // stop ng2-slim-loading-bar progress bar
+        this.helperService.hideLoader();
+      });
   }
 
   post(url, postBody: any) {
@@ -125,7 +146,8 @@ export class BaseService {
     if (data.responseMessage.responseCode < 6000) {
       const error: IError = {
         error: data.responseMessage.responseCode,
-        message: data.responseMessage.responseDescription };
+        message: data.responseMessage.responseDescription
+      };
       throw new Error(this.errorHandler.parseCustomServerErrorToString(error));
     } else {
       return data;
