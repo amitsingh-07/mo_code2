@@ -104,3 +104,16 @@ body {
     text-decoration: underline;
     font-family: $muli-bold;
   }
+  .modal-backdrop.show {
+    opacity: 0.8;
+}
+.modal .close span {
+    position: absolute !important;
+    right: 8px !important;
+    top: 15px !important;
+    text-shadow: none !important;
+    background: url("./assets/images/close-button-dark.svg") !important;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat !important;
+}

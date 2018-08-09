@@ -9,8 +9,9 @@
 }
 .form__row {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 17px;
   .form__col--left {
+  font-size: 18px;
     @include tablet {
       flex-basis: 25vw;
     }
@@ -28,6 +29,7 @@
     flex-basis: 60vw;
     strong {
       font-family: $muli-semi-bold;
+      font-size: 17px;
     }
     .input-group {
       &.inline-error {
@@ -58,6 +60,8 @@
   }
 }
 .fixed-btn--sm {
+  font-size: 16px;
+  line-height: normal;
   @include tablet {
     width: 100px;
     white-space: normal;
@@ -70,19 +74,19 @@
 }
 .fixed-btn--lg {
   @include allmobiles {
-    width: 210px;
+    width: 217px;
     padding: .90rem;
   }
   @include tablet {
-    width: 210px;
+    width: 217px;
   }
 }
 .input-group {
   @include allmobiles {
-    width: 210px !important;
+    width: 217px !important;
   }
   @include tablet {
-    width: 210px !important;
+    width: 217px !important;
   }
 }
 .input-group.date-picker {

@@ -7,7 +7,7 @@
         </div>
         <div class="form__col--right">
           <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-            <div style="margin-right: 10px;">
+            <div style="margin-right: 17px;">
               <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
                 <input ngbButton type="radio" value="male"> {{ 'LABEL.MALE' | translate}}
               </label>
@@ -47,7 +47,7 @@
         </div>
         <div class="form__col--right">
           <div class="btn-group btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
-            <div class="mr10">
+            <div style="margin-right: 17px;">
               <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
                 <input ngbButton type="radio" value="non-smoker"> {{'LABEL.NON_SMOKER' | translate}}
               </label>
@@ -62,10 +62,10 @@
       </li>
       <li class="form__row mb10">
         <div class="form__col--left">
-          <label for="name">{{ 'GET_STARTED.I_HAVE' | translate}}</label>
+          <label style="position: relative; margin-top: -85px" for="name">{{ 'GET_STARTED.I_HAVE' | translate}}</label>
         </div>
         <div class="form__col--right">
-          <div class="dropdown-control">
+          <div class="dropdown-control" style="margin-bottom: 22px">
             <div ngbDropdown class="d-inline-block" id="dependentDropDown">
               <button class="btn btn-default fixed-btn--lg btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                 <span class="dependent-count">{{dependents}}</span>
@@ -81,15 +81,16 @@
               </div>
             </div>
           </div>
+          <div>
+          <strong>{{ 'GET_STARTED.DEPENDANT_MEANING_LBL' | translate}}</strong>
+          <br/>{{ 'GET_STARTED.DEPENDANT_MEANING_DESC' | translate}}
+        </div>
         </div>
       </li>
       <li class="form__row mb20">
         <div class="form__col--left">
         </div>
-        <div class="form__col--right">
-          <strong>{{ 'GET_STARTED.DEPENDANT_MEANING_LBL' | translate}}</strong>
-          <br/>{{ 'GET_STARTED.DEPENDANT_MEANING_DESC' | translate}}
-        </div>
+        
       </li>
     </ul>
     <div>
