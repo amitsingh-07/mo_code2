@@ -1,14 +1,17 @@
-import { Component, EventEmitter, Input, Output, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from './../../guide-me.service';
 import {
   LifeProtectionModalComponent
 } from './../../life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
+
+const Regexp = new RegExp('[,]', 'g');
 
 @Component({
   selector: 'app-life-protection-form',
@@ -37,12 +40,26 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   ageOptions = ['18', '19', '20', '21', '22', '23', '24', '25', '26'];
   yearsNeededOptions = ['20', '30', '40', '50'];
 
+  dependentSliderConfig: any = {
+    behaviour: 'snap',
+    start: 0,
+    connect: [true, false],
+    format: {
+      to: (value) => {
+        return Math.round(value);
+      },
+      from: (value) => {
+        return Math.round(value);
+      }
+    }
+  };
+
   constructor(
     private router: Router,
     private guideMeService: GuideMeService,
     public modal: NgbModal,
     public translate: TranslateService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder, private currencyPipe: CurrencyPipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.supportAmountTitle = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_TITLE');
@@ -61,6 +78,28 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.refreshDependentForm();
+  }
+
+  onNoUiSliderChange(sliderValue, index) {
+    let value = sliderValue;
+    if (value !== null) {
+      value = value.toString().replace(Regexp, '');
+    }
+    let amount = this.currencyPipe.transform(value, 'USD');
+    if (amount !== null) {
+      amount = amount.split('.')[0].replace('$', '');
+      this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].setValue(amount);
+    }
+  }
+
+  updateSlider(index) {
+    // this.lifeProtectionForm.controls.dependents['controls'][index]['otherIncome'].setValue(amount);
+    // if (sliderValue === null) {
+    //   sliderValue = 0;
+    // }
+    // sliderValue = (sliderValue + '').replace(Regexp, '');
+    // this.noUiSlider.writeValue(sliderValue);
+
   }
 
   showLifeProtectionModal() {
@@ -105,7 +144,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       supportAmount: '',
       yearsNeeded: this.yearsNeededOptions[0],
       otherIncome: '',
-      educationSupport: false
+      educationSupport: false,
+      supportAmountRange: 0
     });
   }
 

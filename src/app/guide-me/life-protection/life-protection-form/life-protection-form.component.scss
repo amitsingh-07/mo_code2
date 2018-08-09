@@ -1,244 +1,248 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-.dep-title {
-  font-size: 16px;
-  color: #000;
-  margin-bottom: 30px;
-  font-weight: bold;
-}
-
-.dependent-nav {
-  display: none;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #fff;
-  color: #00c5c4;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.dep-nav-link {
-  cursor: pointer;
-}
-
-.form-list {
-  margin: 0px;
-  padding: 0px;
-}
-
-.form-list>.row {
-  margin-bottom: 10px;
-}
-
-.page-indicator {
-  display: none;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: nowrap;
-  align-items: center;
-  margin: 10px 0px 30px 0px;
-}
-
-.page-indicator span {
-  width: 11px;
-  height: 11px;
-  background-color: #73cece;
-  border-radius: 10px;
-  margin-right: 10px;
-  display: block;
-}
-
-.page-indicator span:last-child {
-  margin-right: 0px;
-}
-
-.page-indicator span.active {
-  background-color: #fff;
-}
-
-#lifeprotectionForm {
-  margin: 80px 0px 100px 0px;
-}
-
-.dep-form-container {
-  padding: 20px;
-  background-color: #fff;
-  color: #009999;
-  box-sizing: border-box;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-#nextDependentBtn {
-  display: none;
-}
-
-#submitDepFormBtn {
-  display: block;
-}
-
-/* Desktop Overrides */
-
-@media (min-width: 576px) {
-  .dep-form-container {
-    display: none;
-  }
-  .dep-form-container.show {
-    display: block;
+app-life-protection-form {
+  .dep-title {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 30px;
+    font-weight: bold;
   }
   .dependent-nav {
-    display: flex;
-  }
-  #nextDependentBtn,
-  #submitDepFormBtn {
     display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #fff;
+    color: #00c5c4;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
   }
-  #nextDependentBtn.show,
-  #submitDepFormBtn.show {
-    display: block;
+  .dep-nav-link {
+    cursor: pointer;
+  }
+  .form-list {
+    margin: 0px;
+    padding: 0px;
+  }
+  .form-list>.row {
+    margin-bottom: 10px;
   }
   .page-indicator {
-    display: flex;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 10px 0px 30px 0px;
+  }
+  .page-indicator span {
+    width: 11px;
+    height: 11px;
+    background-color: #73cece;
+    border-radius: 10px;
+    margin-right: 10px;
+    display: block;
+  }
+  .page-indicator span:last-child {
+    margin-right: 0px;
+  }
+  .page-indicator span.active {
+    background-color: #fff;
   }
   #lifeprotectionForm {
-    margin: 0px;
+    margin: 80px 0px 100px 0px;
   }
-}
-
-#lifeProtectionForm {
-  .form-with-bg {
-    position: relative;
-    .overlay-block {
-      height: 100%;
-      position: absolute;
-      background: #000000;
-      opacity: 0.5;
-      z-index: 2;
-      width: 100%;
+  .dep-form-container {
+    padding: 20px;
+    background-color: #fff;
+    color: #009999;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  #nextDependentBtn {
+    display: none;
+  }
+  #submitDepFormBtn {
+    display: block;
+  }
+  /* Desktop Overrides */
+  @media (min-width: 576px) {
+    .dep-form-container {
       display: none;
     }
-  }
-  @media (min-width: 600px) {
-    .form-with-bg {
-      display: none;
-    }
-    .form-with-bg.show {
+    .dep-form-container.show {
       display: block;
     }
-    .education-support-details {
-      .form-with-bg {
-        display: block;
-      }
+    .dependent-nav {
+      display: flex;
+    }
+    #nextDependentBtn,
+    #submitDepFormBtn {
+      display: none;
+    }
+    #nextDependentBtn.show,
+    #submitDepFormBtn.show {
+      display: block;
+    }
+    .page-indicator {
+      display: flex;
+    }
+    #lifeprotectionForm {
+      margin: 0px;
     }
   }
-  .dropdown-control {
-    .btn-dropdown {
-      color: #00a7a7;
-    }
-    border: 2px solid #c0eded;
-    border-radius: 6px;
-    position: relative;
-    width: 41vw;
-    &:after {
-      background-image: url('../../../../assets/images/dropdown-icon.svg');
-      width: 16px;
-      height: 10px;
-      border: none;
+  #lifeProtectionForm {
+    .help-icon {
+      background-image: url("../../../../assets/images/help-icon.png");
       position: absolute;
-      top: 23px;
       right: 10px;
-    }
-    @include tablet {
-      width: 45vw;
-    }
-    @include tablet {
-      width: 45vw;
-    }
-    @include iPadProPortrait {
-      width: 45vw;
-    }
-    position: relative;
-    background: #FFF;
-    height: 60px;
-    line-height: 21px;
-    cursor: pointer;
-    .dropdown-toggle {
-      width: 200px;
-      padding: 0.90rem;
-      padding-right: 0;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
       @include allmobiles {
-        width: 130px;
+        top: 15px;
+        right: 45px;
+      }
+    }
+    .form-with-bg {
+      position: relative;
+      .overlay-block {
+        height: 100%;
+        position: absolute;
+        background: #000000;
+        opacity: 0.5;
+        z-index: 2;
+        width: 100%;
+        display: none;
+      }
+    }
+    @media (min-width: 600px) {
+      .form-with-bg {
+        display: none;
+      }
+      .form-with-bg.show {
+        display: block;
+      }
+      .education-support-details {
+        .form-with-bg {
+          display: block;
+        }
+      }
+    }
+    .dropdown-control {
+      .btn-dropdown {
+        color: #00a7a7;
+      }
+      border: 2px solid #c0eded;
+      border-radius: 6px;
+      position: relative;
+      width: 41vw;
+      &:after {
+        background-image: url('../../../../assets/images/dropdown-icon.svg');
+        width: 16px;
+        height: 10px;
+        border: none;
+        position: absolute;
+        top: 23px;
+        right: 10px;
       }
       @include tablet {
-        width: 120px;
+        width: 45vw;
+      }
+      @include tablet {
+        width: 45vw;
       }
       @include iPadProPortrait {
-        width: 130px;
+        width: 45vw;
+      }
+      position: relative;
+      background: #FFF;
+      height: 60px;
+      line-height: 21px;
+      cursor: pointer;
+      .dropdown-toggle {
+        width: 200px;
+        padding: 0.90rem;
+        padding-right: 0;
+        @include allmobiles {
+          width: 130px;
+        }
+        @include tablet {
+          width: 120px;
+        }
+        @include iPadProPortrait {
+          width: 130px;
+        }
+      }
+      .dropdown-toggle::after {
+        //background-image: none !important;
+        //border: none !important;
+      }
+      .dropdown-menu.show {
+        width: 200px;
+      }
+      @include allmobiles {
+        .dropdown-menu.show {
+          width: 130px;
+        }
       }
     }
-    .dropdown-toggle::after {
-      //background-image: none !important;
-      //border: none !important;
+    @include allmobiles {
+      a.link {
+        text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+      }
     }
   }
   @include allmobiles {
-    a.link {
-      text-decoration: underline !important;
-      color: #2d8289 !important;
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 100px;
+    .form-with-bg {
+      margin-bottom: 15px;
     }
   }
-}
-
-@include allmobiles {
-  .form-with-bg {
-    margin-bottom: 15px;
-  }
-}
-
-.education-support {
-  background-color: #2d8289;
-  padding: 0.90rem;
-  border-radius: 6px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  position: relative;
-  margin-top: -7px;
-  input[type='checkbox']+label {
-    background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
-  }
-  input[type='checkbox']:checked+label {
-    background-image: url("../../../../assets/images/check-box-select.svg");
-  }
-}
-
-.education-support-details {
-  .form-with-bg {
+  .education-support {
+    background-color: #2d8289;
     padding: 0.90rem;
-    label {
-      font-family: $muli-semi-bold;
-      font-size: 18px;
+    border-radius: 6px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    position: relative;
+    margin-top: -7px;
+    input[type='checkbox']+label {
+      background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
     }
-    &.dark {
-      background: #276f75;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      position: relative;
-      margin-top: -7px;
-      .form-with-bg--content-label {
-        flex-basis: 48vw;
-        margin-right: 2vw;
-        color: #ffffff;
-        font-family: "Muli Semi Bold", sans-serif;
-        position: relative;
+    input[type='checkbox']:checked+label {
+      background-image: url("../../../../assets/images/check-box-select.svg");
+    }
+  }
+  .education-support-details {
+    .form-with-bg {
+      padding: 0.90rem;
+      label {
+        font-family: $muli-semi-bold;
         font-size: 18px;
       }
-      .dropdown-control {
-        border: none !important;
+      &.dark {
+        background: #276f75;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        position: relative;
+        margin-top: -7px;
+        .form-with-bg--content-label {
+          flex-basis: 48vw;
+          margin-right: 2vw;
+          color: #ffffff;
+          font-family: "Muli Semi Bold", sans-serif;
+          position: relative;
+          font-size: 18px;
+        }
+        .dropdown-control {
+          border: none !important;
+        }
       }
     }
   }
