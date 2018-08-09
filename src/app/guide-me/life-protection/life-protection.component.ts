@@ -33,7 +33,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.headerService.setPageTitle(this.pageTitle);
 
-    const dependantCount = this.guideMeService.getUserInfo().dependent;
+    const dependantCount = this.guideMeService.getUserInfo().dependent ? this.guideMeService.getUserInfo().dependent : 0;
     this.lpDependentCountForm = this.formBuilder.group({
       dependentCount: dependantCount
     });

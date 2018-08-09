@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   supportAmountTitle: string;
   supportAmountMessage: string;
   @Input('dependentCount') dependentCount;
-  dependentFormCount = 0;
+  dependentFormCount = 1;
+  @Output() dependentCountChange = new EventEmitter<boolean>();
   pageTitle: string;
   lifeProtectionForm: FormGroup;
   dependents: FormArray;
@@ -33,7 +34,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   dependentCountOptions = [0, 1, 2, 3, 4, 5];
   genderOptions = ['Male', 'Female'];
   relationshipOptions = ['Dad', 'Mother', 'Spouse', 'Child'];
-  ageOptions = ['18', '19', '20', '21', '22'];
+  ageOptions = ['18', '19', '20', '21', '22', '23', '24', '25', '26'];
   yearsNeededOptions = ['20', '30', '40', '50'];
 
   constructor(
@@ -51,8 +52,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.lifeProtectionForm = this.formBuilder.group({
-      dependents: this.formBuilder.array([this.createDependentForm()]),
-      dependentCountMobile: this.dependentCount
+      dependents: this.formBuilder.array([this.createDependentForm()])
     });
     this.activeFormIndex = 0;
     //this.dependentFormCount = this.dependentCount;
@@ -71,8 +71,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   setDropDownDependentCount(value, i) {
-    this.lifeProtectionForm.controls.dependentCountMobile.setValue(value);
     this.dependentCount = value;
+    this.dependentCountChange.emit(value);
     this.refreshDependentForm();
   }
 
@@ -101,7 +101,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     return this.formBuilder.group({
       gender: this.genderOptions[0],
       relationship: this.relationshipOptions[0],
-      age: this.ageOptions[0],
+      age: 24,
       supportAmount: '',
       yearsNeeded: this.yearsNeededOptions[0],
       otherIncome: '',
@@ -149,7 +149,12 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   getPageIndicatorCount() {
-    const count = this.lifeProtectionForm.controls.dependents['controls'].length - 1;
+    const count = this.lifeProtectionForm.controls.dependents['controls'].length;
     return Array(count).map((x, i) => i);
+  }
+
+
+  isChild(age){
+    return age <= 23;
   }
 }
