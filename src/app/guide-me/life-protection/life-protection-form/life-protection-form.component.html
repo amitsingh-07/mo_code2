@@ -75,12 +75,12 @@
             </div>
             <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}">
               <span class="fixed-currency">$</span>
-              <input [attr.disabled]="isFormControlDisabled" type="text" class="input-with-suffix" (change)="updateSlider()" appCurrencyInput
-                maxLength="4" #otherIncome formControlName="otherIncome" value="0">
+              <input [attr.disabled]="isFormControlDisabled" type="text" class="input-with-suffix" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
+                maxLength="5" #otherIncome formControlName="otherIncome" value="0">
               <span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span>
             </div>
           </div>
-          <nouislider [disabled]="isFormControlDisabled" [(ngModel)]="supportAmountRange" formControlName="supportAmountRange"  #noUiSlider (slide)="onNoUiSliderChange($event, i)" [config]="dependentSliderConfig" [min]="0" [max]="99999" [step]="50" [tooltips]="[ false ]"></nouislider>
+          <nouislider [disabled]="isFormControlDisabled" formControlName="supportAmountRange"  #noUiSlider (slide)="onNoUiSliderChange($event, i)" [config]="dependentSliderConfig" [min]="0" [max]="99999" [step]="50" [tooltips]="[ false ]"></nouislider>
           <div class="form-group flex-row">
             <div class="form-with-bg--content-label" for="name">
               <a href="#" class="link">Years Needed</a>

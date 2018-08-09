@@ -131,6 +131,14 @@ app-life-protection-form {
         }
       }
     }
+    .input-control input{
+      &:disabled {
+        cursor: not-allowed;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
     .dropdown-control {
       .btn-dropdown {
         color: #00a7a7;
@@ -174,6 +182,12 @@ app-life-protection-form {
         }
         @include iPadProPortrait {
           width: 130px;
+        }
+        &:disabled {
+          cursor: not-allowed;
+          &:hover {
+            background-color: transparent;
+          }
         }
       }
       .dropdown-toggle::after {

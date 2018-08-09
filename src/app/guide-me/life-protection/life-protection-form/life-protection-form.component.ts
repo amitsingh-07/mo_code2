@@ -15,6 +15,8 @@ import {
 } from './../../life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 
 const Regexp = new RegExp('[,]', 'g');
+const MAX_YEARS_NEEDED = 100;
+const MAX_AGE = 100;
 
 @Component({
   selector: 'app-life-protection-form',
@@ -39,9 +41,9 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   isNavNextEnabled;
   dependentCountOptions = [0, 1, 2, 3, 4, 5];
   genderOptions = ['Male', 'Female'];
-  relationshipOptions = ['Dad', 'Mother', 'Spouse', 'Child'];
-  ageOptions = ['18', '19', '20', '21', '22', '23', '24', '25', '26'];
-  yearsNeededOptions = ['20', '30', '40', '50'];
+  relationshipOptions = ['Spouse', 'Sibling', 'Parent', 'Children'];
+  ageOptions;
+  yearsNeededOptions;
 
   dependentSliderConfig: any = {
     behaviour: 'snap',
@@ -69,6 +71,9 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       this.supportAmountTitle = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_TITLE');
       this.supportAmountMessage = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_MESSAGE');
     });
+
+    this.yearsNeededOptions = Array(MAX_YEARS_NEEDED).fill(0).map((e, i) => i );
+    this.ageOptions = Array(MAX_AGE).fill(0).map((e, i) => i );
   }
 
   ngOnInit() {
@@ -96,14 +101,13 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     }
   }
 
-  updateSlider(index) {
-    // this.lifeProtectionForm.controls.dependents['controls'][index]['otherIncome'].setValue(amount);
-    // if (sliderValue === null) {
-    //   sliderValue = 0;
-    // }
-    // sliderValue = (sliderValue + '').replace(Regexp, '');
-    // this.noUiSlider.writeValue(sliderValue);
-
+  updateSlider(slider, index) {
+    let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].value;
+    if (sliderValue === null) {
+      sliderValue = 0;
+    }
+    sliderValue = (sliderValue + '').replace(Regexp, '');
+    slider.writeValue(sliderValue);
   }
 
   showLifeProtectionModal() {
@@ -198,8 +202,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     return Array(count).map((x, i) => i);
   }
 
-
-  isChild(age){
+  isChild(age) {
     return age <= 23;
   }
 }
