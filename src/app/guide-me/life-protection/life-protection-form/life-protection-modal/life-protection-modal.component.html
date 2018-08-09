@@ -10,35 +10,19 @@
   </button>
   <div class="modal-body-message">
     <p>Click on your dependant’s profile type for a general guideline on the years needed.</p>
-    <div class="dependant-profile pl0">
-      <div class="dependant-profile-box">
-        <div class="dependant-profile-spouse-image"></div>
-        Spouse
-      </div>
-      <div class="dependant-profile-box">
-        <div class="dependant-profile-child-image"></div>
-        Child
-      </div>
-
-      <div class="dependant-profile-box">
-        <div class="dependant-profile-family-image"></div>
-        Family
-      </div>
-
+    <div class="dependant-profile pl0" >
+      <div class="dependant-profile-box" *ngFor="let profile of profileType" (click)="showMessage(profile)">
+          <div class="dependant-profile-{{profile}}-image" ></div>
+          {{profile}}
+        </div>
     </div>
 
-    <div class="dependant-profile-desc spouse">
-      Years Needed = 85 – Spouse’s Current Age
-      <div class="arrow-up"></div>
-    </div>
-    <div class="dependant-profile-desc child">
-      Years Needed = Child’s Age of Starting Work – Child’s Current Age
-      <div class="arrow-up"></div>
-    </div>
-    <div class="dependant-profile-desc family">
-      Years Needed = 85 – Parent/Sibling’s Current Age
-      <div class="arrow-up"></div>
-    </div>
+    <ng-container *ngFor="let years of yearsNeeded">
+    <div *ngIf="years.className == selectedOption" class="dependant-profile-desc {{years.className}}">
+        {{years.message}}
+        <div class="arrow-up"></div>
+      </div>
+    </ng-container>
     <!-- <div class="dependant-profile pl0 ex1">
 <label for="spouse" class="dependant-profile-box">
 							<div class="dependant-profile-spouse-image"></div>

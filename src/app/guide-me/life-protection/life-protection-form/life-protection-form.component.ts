@@ -3,6 +3,8 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { TranslateService } from '@ngx-translate/core';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from './../../guide-me.service';
 import {
   LifeProtectionModalComponent
@@ -17,6 +19,8 @@ import {
 })
 
 export class LifeProtectionFormComponent implements OnInit, OnChanges {
+  supportAmountTitle: string;
+  supportAmountMessage: string;
   @Input('dependentCount') dependentCount;
   dependentFormCount = 0;
   pageTitle: string;
@@ -36,7 +40,13 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     private router: Router,
     private guideMeService: GuideMeService,
     public modal: NgbModal,
+    public translate: TranslateService,
     private formBuilder: FormBuilder) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.supportAmountTitle = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_TITLE');
+      this.supportAmountMessage = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_MESSAGE');
+    });
   }
 
   ngOnInit() {
@@ -113,6 +123,13 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.updateNavLinks();
   }
 
+  showLifeProtectionSupportAmountModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.supportAmountTitle;
+    ref.componentInstance.errorMessage = this.supportAmountMessage;
+    return false;
+  }
+
   updateNavLinks() {
     this.isNavPrevEnabled = (this.activeFormIndex) ? true : false;
     this.isNavNextEnabled = ((this.dependentCount > 1) && (this.activeFormIndex < this.dependentCount - 1)) ? true : false;
@@ -136,4 +153,3 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     return Array(count).map((x, i) => i);
   }
 }
-
