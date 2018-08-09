@@ -1,10 +1,13 @@
+import { Component, EventEmitter, Input, Output, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
+
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from './../../guide-me.service';
 import {
@@ -59,6 +62,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     private guideMeService: GuideMeService,
     public modal: NgbModal,
     public translate: TranslateService,
+    private formBuilder: FormBuilder) {
     private formBuilder: FormBuilder, private currencyPipe: CurrencyPipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -144,6 +148,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       supportAmount: '',
       yearsNeeded: this.yearsNeededOptions[0],
       otherIncome: '',
+      educationSupport: false
       educationSupport: false,
       supportAmountRange: 0
     });

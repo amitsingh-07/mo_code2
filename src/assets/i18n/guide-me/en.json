@@ -93,7 +93,12 @@
     {"id": 0 , "className": "spouse" , "message": "Years Needed = 85 – Spouse’s Current Age" },
     {"id": 1 , "className": "child" , "message": "Years Needed = Child’s Age of Starting Work – Child’s Current Age" },
     {"id": 2 , "className": "family" , "message": "Years Needed = 85 – Parent/Sibling’s Current Age" }
-    ]
+    ],
+    "MODAL_DATA":{
+      "title": "Life Protection",
+      "description": "<h4>Life Protection</h4><p>If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.</p>",
+      "imageName": "lifeProtection_modal.png"
+    }
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
