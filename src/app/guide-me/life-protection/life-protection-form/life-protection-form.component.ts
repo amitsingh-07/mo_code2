@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -153,8 +153,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     return Array(count).map((x, i) => i);
   }
 
-
-  isChild(age){
+  isChild(age) {
     return age <= 23;
   }
 }
