@@ -119,10 +119,10 @@
               <div class="dropdown-control">
                 <!-- <button class="arrow" type="button"></button> -->
                 <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
-                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-default btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>Medicine
+                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-default btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportCourse.value}}
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button class="dropdown-item" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
+                    <button class="dropdown-item" *ngFor="let option of eduSupportCourse" (click)="setDropDownValue('eduSupportCourse',option, i)">{{option}}</button>
                   </div>
                 </div>
               </div>
@@ -132,10 +132,10 @@
               <div class="dropdown-control">
                 <!-- <button class="arrow" type="button"></button> -->
                 <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
-                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-default btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>Singapore
+                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-default btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportCountry.value}}
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button class="dropdown-item" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
+                    <button class="dropdown-item" *ngFor="let option of eduSupportCountry" (click)="setDropDownValue('eduSupportCountry',option, i)">{{option}}</button>
                   </div>
                 </div>
               </div>
@@ -145,10 +145,10 @@
               <div class="dropdown-control">
                 <!-- <button class="arrow" type="button"></button> -->
                 <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
-                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-default btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>Singaporean
+                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-default btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportNationality.value}}
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button class="dropdown-item" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
+                    <button class="dropdown-item" *ngFor="let option of eduSupportNationality" (click)="setDropDownValue('eduSupportNationality',option, i)">{{option}}</button>
                   </div>
                 </div>
               </div>
