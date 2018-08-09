@@ -60,17 +60,17 @@
     }
     button.close span {
       width: 25px;
-    height: 25px;
-    color: #bfbfbf;
-    top: -3px;
-    position: absolute;
-    right: 17px;
-    font-weight: normal;
-    font-size: 50px;
+      height: 25px;
+      background: url("../../../assets/images/close-button-dark.svg");
+      position: absolute;
+      right: 8px;
+      top: 16px;
+      background-repeat: no-repeat;
     }
     .modal-dialog {
       right: 20% !important;
-      top: 10% !important;
+      top: 0 !important;
+      overflow: hidden;
     }
     .help-modal-image {
       background-size: cover !important;
