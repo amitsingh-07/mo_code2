@@ -7,11 +7,9 @@
   <div class="form-group flex-row mt30 hidden-lg">
     <label style="flex:1">I have</label>
     <div class="dropdown-control">
-      <input type="hidden" formControlName="dependentCountMobile" />
       <div ngbDropdown class="d-inline-block" id="dependentCountMobile">
         <button class="btn btn-default fixed-btn--md" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-          <span>{{lifeProtectionForm.controls.dependentCountMobile.value}}</span>&nbsp;Dependent
-          <span *ngIf="lifeProtectionForm.controls.dependentCountMobile.value > 1">s</span>
+          <span>{{dependentCount}}</span>&nbsp;Dependent<span *ngIf="dependentCount > 1">s</span>
         </button>
         <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
           <button class="dropdown-item fixed-btn--lg" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
@@ -26,7 +24,7 @@
       <div>
         <div class="form-with-bg--header">
           <div class="form-group flex-row">
-            <div class="form-with-bg--header-single-label">Dependant {{ !isFormControlDisabled ? i+1 : 0}}</div>
+            <div class="form-with-bg--header-single-label">Dependent {{ !isFormControlDisabled ? i+1 : 0}}</div>
           </div>
         </div>
         <!--Form Content-->
@@ -101,19 +99,19 @@
           </div>
         </div>
       </div>
-
-      <div>
+      
+      <div *ngIf="isChild(item.controls.age.value)">
         <div class="education-support">
           <div class="checkbox-button one-label">
-            <input id="educationSupport" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
+            <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
               value="Education Support <br> I want to fund this child for a university education if i pass away">
-            <label for="educationSupport">
+            <label for="educationSupport{{i}}">
               <div>Education Support
                 <br> I want to fund this child for a university education if i pass away</div>
             </label>
           </div>
         </div>
-        <div class="education-support-details">
+        <div class="education-support-details" *ngIf="item.controls.educationSupport.value">
           <div class="form-with-bg dark">
             <label>He / She will be studying: </label>
             <div class="form-group flex-row">

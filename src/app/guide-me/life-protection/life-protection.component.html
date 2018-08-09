@@ -12,8 +12,7 @@
               <input type="hidden" formControlName="dependentCount" />
               <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
                 <button class="btn btn-default fixed-btn--md" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-                  <span>{{lpDependentCountForm.controls.dependentCount.value}}</span>&nbsp;Dependent
-                  <span *ngIf="lpDependentCountForm.controls.dependentCount.value > 1">s</span>
+                  <span>{{lpDependentCountForm.controls.dependentCount.value}}</span>&nbsp;Dependent<span *ngIf="lpDependentCountForm.controls.dependentCount.value > 1">s</span>
                 </button>
                 <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
                   <button class="dropdown-item fixed-btn--lg" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
@@ -27,7 +26,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <app-life-protection-form [dependentCount]="lpDependentCountForm.controls.dependentCount.value"></app-life-protection-form>
+        <app-life-protection-form [(dependentCount)]="lpDependentCountForm.controls.dependentCount.value"></app-life-protection-form>
       </div>
     </div>
   </div>
