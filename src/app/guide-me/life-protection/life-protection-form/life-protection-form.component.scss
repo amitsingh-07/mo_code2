@@ -115,7 +115,8 @@ app-life-protection-form {
         opacity: 0.5;
         z-index: 2;
         width: 100%;
-        display: none;
+        border-radius: 8px;
+        //display: none;
       }
     }
     @media (min-width: 600px) {
@@ -225,6 +226,7 @@ app-life-protection-form {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
+    z-index: 3;
     margin-top: -7px;
     input[type='checkbox']+label {
       background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
@@ -234,6 +236,8 @@ app-life-protection-form {
     }
   }
   .education-support-details {
+    position: relative;
+    z-index: 3;
     .form-with-bg {
       padding: 0.90rem;
       label {
