@@ -25,7 +25,6 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: string;
   mobileModalEvent: Event;
-  pageDescription: string;
   ciAssessmentForm: FormGroup;
   ciAssessmentFormValues: any;
   ciCoverageAmt: any;
@@ -59,7 +58,6 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
       this.setPageTitle(this.pageTitle, null, true);
-      this.pageDescription = this.translate.instant('CI_ASSESSMENT.DESCRIPTION');
     });
     this.ciAssessmentFormValues = {
       annualSalary: 0,
