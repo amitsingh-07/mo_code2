@@ -165,6 +165,9 @@
         margin-right:auto;
         margin-left:5.5px;
       }
+      &:last-child() {
+        margin-bottom:50px;
+      }
     }
     
     &.one-label {
