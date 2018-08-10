@@ -107,6 +107,16 @@
   top: 0 !important
 }
 
+//Base Styles for mobile only
+@include allmobiles {
+  .sm-mb0 {
+    margin-bottom: 0 !important;
+  }
+  .sm-mb50 {
+    margin-bottom: 50px !important;
+  }
+}
+
 // Styles for jqxWidgetSlider
 // .jqx-fill-state-pressed {
 //   border-color: #00a7a7 !important;

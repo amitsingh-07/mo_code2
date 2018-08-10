@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@include allmobiles {
   .help-modal-dialog {
     .help-modal-body {
       h4 {
@@ -12,18 +12,21 @@
       }
     }
   }
+    button.close span {
+      width: 25px !important;
+      height: 25px !important;
+      background: url("../../../assets/images/close-button-dark.svg") !important;
+      position: absolute !important;
+      right: 15px !important;
+      top: 25px !important;
+      background-repeat: no-repeat !important;
+    }
+    .modal .close {
+      opacity: 1;
+    }
 }
 
 @media only screen and (min-width: 600px) {
-  .modal-backdrop {
-    &.show {
-    opacity: 0.8;
-  }
-  }
-  .modal-content {
-    position: absolute;
-    top: 0;
-  }
   .modal-content {
     @include tablet {
       left: 15%;
@@ -60,17 +63,17 @@
     }
     button.close span {
       width: 25px;
-    height: 25px;
-    color: #bfbfbf;
-    top: -3px;
-    position: absolute;
-    right: 17px;
-    font-weight: normal;
-    font-size: 50px;
+      height: 25px;
+      background: url("../../../assets/images/close-button-dark.svg");
+      position: absolute;
+      right: 8px;
+      top: 16px;
+      background-repeat: no-repeat;
     }
     .modal-dialog {
       right: 20% !important;
-      top: 10% !important;
+      top: 0 !important;
+      overflow: hidden;
     }
     .help-modal-image {
       background-size: cover !important;
@@ -87,6 +90,7 @@
     .help-modal-body {
       background: transparent !important;
       color: $white-color;
+      padding: 30px 25px;
       h4 {
         color: $white-color !important;
         text-transform: capitalize;

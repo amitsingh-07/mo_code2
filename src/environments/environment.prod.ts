@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  isDebugMode: false
+  isDebugMode: false,
+  apiBaseUrl: 'http://bfa-uat.ntuclink.cloud'
 };
