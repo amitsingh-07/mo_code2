@@ -1,0 +1,28 @@
+{
+   "responseMessage":{
+      "responseCode":6000,
+      "responseDescription":"Successful response"
+   },
+   "objectList":[
+      {
+         "id":1,
+         "careGiverType":"Family Member",
+         "careGiverDescription":"Fully cared for at home by family"
+      },
+      {
+         "id":2,
+         "careGiverType":"Domestic Helper",
+         "careGiverDescription":"Fully cared for at home by helper"
+      },
+      {
+         "id":3,
+         "careGiverType":"Daycare Support",
+         "careGiverDescription":"Daycare at a facility by nurses, Night care at home by family"
+      },
+      {
+         "id":4,
+         "careGiverType":"Nursing Home",
+         "careGiverDescription":"Fully cared for at a facility by nurses"
+      }
+   ]
+}

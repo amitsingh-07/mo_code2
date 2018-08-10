@@ -78,8 +78,8 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
     return this.formBuilder.group({
       status: (this.formValues.hospitalPlanData && this.formValues.hospitalPlanData[i]) ? this.formValues.hospitalPlanData[i].status : true,
       id: responseObj.id,
-      hosPlanName: responseObj.hosPlanName,
-      hosPlanDesc: responseObj.hosPlanDesc
+      hospitalClass: responseObj.hospitalClass,
+      hospitalClassDescription: responseObj.hospitalClassDescription
     });
   }
 
@@ -92,7 +92,9 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/long-term-care']);
+      this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
+        this.guideMeService.protectionNeedsPageIndex++;
+      });
     }
   }
 

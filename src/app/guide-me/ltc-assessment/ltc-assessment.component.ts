@@ -92,8 +92,8 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
     return this.formBuilder.group({
       status: (this.formValues.longTermCareData && this.formValues.longTermCareData[i]) ? this.formValues.longTermCareData[i].status : true,
       id: responseObj.id,
-      ltcName: responseObj.ltcName,
-      ltcDesc: responseObj.ltcDesc
+      careGiverType: responseObj.careGiverType,
+      careGiverDescription: responseObj.careGiverDescription
     });
   }
 
@@ -106,7 +106,9 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/occupational-disability']);
+      this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
+        this.guideMeService.protectionNeedsPageIndex++;
+      });
     }
   }
 
