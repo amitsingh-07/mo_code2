@@ -30,6 +30,11 @@
       background: $btn-primary-backgrnd-color !important;
     }
   }
+  &.btn-save {
+    background-color: transparent;
+    border: 1px solid #4d898d;
+    color: #FFF;
+  }
   &:disabled {
     opacity: 1 !important;
     background-color: $btn-disabled-bg;

@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -71,8 +71,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       this.supportAmountMessage = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_MESSAGE');
     });
 
-    this.yearsNeededOptions = Array(MAX_YEARS_NEEDED).fill(0).map((e, i) => i );
-    this.ageOptions = Array(MAX_AGE).fill(0).map((e, i) => i );
+    this.yearsNeededOptions = Array(MAX_YEARS_NEEDED).fill(0).map((e, i) => i);
+    this.ageOptions = Array(MAX_AGE).fill(0).map((e, i) => i);
   }
 
   ngOnInit() {
@@ -111,8 +111,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
 
   showLifeProtectionModal() {
     const ref = this.modal.open(LifeProtectionModalComponent, {
-      centered: true,
-      windowClass: 'help-modal-dialog'
+      centered: true
     });
   }
 
@@ -125,7 +124,14 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   refreshDependentForm() {
     if (this.lifeProtectionForm) {
       // no of existing form less than selected dependent count
-      if (this.dependentFormCount <= this.dependentCount) {
+      if (this.dependentCount === 0) {
+        this.lifeProtectionForm = this.formBuilder.group({
+          dependents: this.formBuilder.array([this.createDependentForm()])
+        });
+        this.activeFormIndex = 0;
+        this.dependentFormCount = 1;
+        this.isFormControlDisabled = true;
+      } else if (this.dependentFormCount <= this.dependentCount) {
         while (this.dependentFormCount < this.dependentCount) {
           this.lifeProtectionForm.controls.dependents['controls'].push(this.createDependentForm());
           this.dependentFormCount++;
@@ -155,7 +161,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       supportAmountRange: 0,
       eduSupportCourse: this.eduSupportCourse[0],
       eduSupportCountry: this.eduSupportCountry[0],
-      eduSupportNationality: this.eduSupportNationality[0]
+      eduSupportNationality: this.eduSupportNationality[0],
+      eduFormSaved: false
     });
   }
 

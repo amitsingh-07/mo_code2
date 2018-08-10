@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -60,6 +60,11 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
     });
   }
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.guideMeService.protectionNeedsPageIndex--;
+  }
+
   setPageTitle(title: string, subTitle?: string) {
     this.headerService.setPageTitle(title, subTitle, false);
   }
@@ -92,7 +97,9 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/long-term-care']);
+      this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
+        this.guideMeService.protectionNeedsPageIndex++;
+      });
     }
   }
 

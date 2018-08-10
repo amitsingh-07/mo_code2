@@ -23,6 +23,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
   pageTitle: string;
   lpDependentCountForm;
   modalData: any;
+  modalImage: 'occupationdisability_modal.png';
 
   dependentCountOptions = [0, 1, 2, 3, 4, 5];
 

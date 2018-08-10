@@ -19,7 +19,7 @@
   </div>
   <div class="form-with-bg" [class.show]="activeFormIndex == i" formArrayName="dependents" *ngFor="let item of lifeProtectionForm.get('dependents').controls; let i = index;">
     <div [formGroupName]="i">
-      <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value"></div>
+      <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value && !item.controls.eduFormSaved.value"></div>
       <!--Form Header-->
       <div>
         <div class="form-with-bg--header">
@@ -100,18 +100,18 @@
         </div>
       </div>
       
-      <div *ngIf="isChild(item.controls.age.value)">
+      <div *ngIf="isChild(item.controls.age.value)" class="education-support-wrapper" [class.education-checked]="item.controls.educationSupport.value && !item.controls.eduFormSaved.value">
         <div class="education-support">
           <div class="checkbox-button one-label">
             <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
-              value="Education Support <br> I want to fund this child for a university education if i pass away">
+              (change)="item.controls.eduFormSaved.value = false;" value="Education Support <br> I want to fund this child for a university education if i pass away">
             <label for="educationSupport{{i}}">
               <div>Education Support
                 <br> I want to fund this child for a university education if i pass away</div>
             </label>
           </div>
         </div>
-        <div class="education-support-details" *ngIf="item.controls.educationSupport.value">
+        <div class="education-support-details" *ngIf="item.controls.educationSupport.value && !item.controls.eduFormSaved.value">
           <div class="form-with-bg dark">
             <label>He / She will be studying: </label>
             <div class="form-group flex-row">
@@ -152,6 +152,10 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div>
+              <button class="btn btn-save width100 mt5" id="btnSaveEduSupport{{i}}" (click)="item.controls.eduFormSaved.value = true;" >{{ 'LABEL.SAVE' | translate }}</button>
+              <input name="eduFormSaved" formControlName="eduFormSaved" type="hidden">
             </div>
           </div>
         </div>

@@ -1,13 +1,17 @@
 {
-  "LABEL": {
-    "CONTINUE": "Continue",
-    "MALE": "Male",
-    "FEMALE": "Female",
-    "DEPENDANT": "Dependant",
-    "DEPENDENT": "Dependent",
-    "DEPENDANT_PLURAL": "Dependants",
-    "DEPENDENT_PLURAL": "Dependents",
-    "SMOKER": "Smoker",
-    "NON_SMOKER": "Non - Smoker"
-  }
+	"LABEL": {
+		"GENDER": "Gender",
+		"CONTINUE": "Continue",
+		"MALE": "Male",
+		"FEMALE": "Female",
+		"DEPENDANT": "Dependant",
+		"DEPENDENT": "Dependent",
+		"DEPENDANT_PLURAL": "Dependants",
+		"DEPENDENT_PLURAL": "Dependents",
+		"SMOKER": "Smoker",
+		"NON_SMOKER": "Non - Smoker",
+		"RELATIONSHIP": "Relationship",
+    "AGE": "Age",
+    "SAVE": "Save"
+	}
 }
