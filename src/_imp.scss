@@ -109,10 +109,22 @@
 
 //Base Styles for mobile only
 @include allmobiles {
+  .sm-pb0 {
+    padding-bottom:0px !important;
+  }
+  .sm-pb50 {
+    padding-bottom:50px !important;
+  }
+  .sm-pb60 {
+    padding-bottom:60px !important;
+  }
   .sm-mb0 {
-    margin-bottom: 0 !important;
+    margin-bottom: 0px !important;
   }
   .sm-mb50 {
+    margin-bottom: 50px !important;
+  }
+  .sm-mb60 {
     margin-bottom: 50px !important;
   }
 }

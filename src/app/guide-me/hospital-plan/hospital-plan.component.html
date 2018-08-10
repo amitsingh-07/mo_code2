@@ -11,7 +11,7 @@
       </div>
       <div class="col-lg-5 col-md-6 flex--pad-mt-reset">
         <form name="hospitalPlanForm" *ngIf="isFormLoaded" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
-          <div class="form-group mb0 sm-mb50 flex-col flex__box--sm-horz" formArrayName="hospitalPlanArray">
+          <div class="form-group mb0 sm-pd60 flex-col flex__box--sm-horz" formArrayName="hospitalPlanArray">
             <div class="special-radio-button hidden" *ngFor="let hospitalPlan of hospitalPlanList; let i = index" [formGroupName]="i">
               <input id="hospitalPlan_{{i+1}}" name="status" (change)="radioTest()" formControlName="status" type="radio" class="field radio" value="{{hospitalPlan.id}}"
               tabindex="{{i+1}}">
