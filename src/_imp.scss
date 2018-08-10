@@ -83,6 +83,10 @@
   margin-right: 10px !important;
 }
 
+.mr100 {
+  margin-right: 100px !important;
+}
+
 .pl0 {
   padding-left: 0 !important;
 }
@@ -101,6 +105,16 @@
 
 .absolute-top {
   top: 0 !important
+}
+
+//Base Styles for mobile only
+@include allmobiles {
+  .sm-mb0 {
+    margin-bottom: 0 !important;
+  }
+  .sm-mb50 {
+    margin-bottom: 50px !important;
+  }
 }
 
 // Styles for jqxWidgetSlider
