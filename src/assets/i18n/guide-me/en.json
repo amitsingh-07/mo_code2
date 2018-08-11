@@ -31,7 +31,7 @@
     "ANNUAL_BONUS": "Annual Bonus",
     "OTHER_INCOME": "Other Income",
     "OTHER_INCOME_HINT": "(E.g. Rental, Dividend)",
-    "PER_MONTH": "/mth"
+    "PER_MONTH": "/ mth"
   },
   "MY_EXPENSES": {
     "TITLE": "My Expenses",
@@ -86,23 +86,39 @@
   "LIFE_PROTECTION": {
     "TITLE": "Life Protection",
     "DESCRIPTION": "If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.",
-    "SUPPORT_AMOUNT_TITLE":"Support Amount",
+    "SUPPORT_AMOUNT_TITLE": "Support Amount",
     "SUPPORT_AMOUNT_MESSAGE": "This refers to the amount you require to support this dependant on a monthly basis.",
     "PROFILE_TYPE": ["spouse", "child", "family"],
-    "YEARS_NEEDED": [
-    {"id": 0 , "className": "spouse" , "message": "Years Needed = 85 – Spouse’s Current Age" },
-    {"id": 1 , "className": "child" , "message": "Years Needed = Child’s Age of Starting Work – Child’s Current Age" },
-    {"id": 2 , "className": "family" , "message": "Years Needed = 85 – Parent/Sibling’s Current Age" }
+    "YEARS_NEEDED": [{
+        "id": 0,
+        "className": "spouse",
+        "message": "Years Needed = 85 – Spouse’s Current Age"
+      },
+      {
+        "id": 1,
+        "className": "child",
+        "message": "Years Needed = Child’s Age of Starting Work – Child’s Current Age"
+      },
+      {
+        "id": 2,
+        "className": "family",
+        "message": "Years Needed = 85 – Parent/Sibling’s Current Age"
+      }
     ],
-    "MODAL_DATA":{
+    "MODAL_DATA": {
       "title": "Life Protection",
       "description": "<h4>Life Protection</h4><p>If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.</p>",
       "imageName": "lifeProtection_modal.png"
-    }
+    },
+    "I_HAVE": "I have",
+    "LBL_SUPPORT_AMOUNT": "Support Amount",
+    "LBL_YEARS_NEEDED": "Years Needed",
+    "LBL_NEXT_DEPENDANT": "Next Dependant",
+    "RELATIONSHIP_OPTIONS": ["Spouse", "Sibling", "Parent", "Children"]
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
-    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.",
+    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <strong>Critical Illness</strong> coverage till their intended retirement age.",
     "COVERAGE_AMT": "Coverage Amount",
     "COVERAGE_AMT_DESC": "Based on the information below",
     "ANNUAL_SALARY": "Annual Salary",
@@ -121,9 +137,14 @@
     "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
     "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
     "MODAL_TITLE": "Occupational Disability",
-    "EMPLOYEE_TYPE":[{"status": "Salaried Employee"},
-                     {"status":"Self-employed"}],
-    "MODAL_DATA":{
+    "EMPLOYEE_TYPE": [{
+        "status": "Salaried Employee"
+      },
+      {
+        "status": "Self-employed"
+      }
+    ],
+    "MODAL_DATA": {
       "title": "Occupational Disability",
       "description": "<h4>Occupational Disability</h4><p>This is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.</p>",
       "imageName": "occupationdisability_modal.png"
@@ -132,10 +153,10 @@
   "LTC_ASSESSMENT": {
     "TITLE": "Long Term Care",
     "SUB_TITLE": "Select the type of caregiver that you prefer.",
-    "DESCRIPTION_PART1": "If one is unable to perform at least ", 
+    "DESCRIPTION_PART1": "If one is unable to perform at least ",
     "DESCRIPTION_BOLD": "3 of these activities (washing, feeding, dressing, toileting, mobility and transferring)",
     "DESCRIPTION_PART2": ", he or she is considered severely disabled and would need Long-Term Care with the help of a caregiver. Select the type of caregiver that you prefer.",
-    "MODAL_DATA":{
+    "MODAL_DATA": {
       "TITLE": "Long-Term Care",
       "DESCRIPTION": "<p>If one is unable to perform at least 3 of the below activities, he or she is considered severely disabled and would need <span class=\"modal-text-secondary\">Long-Term Care</span> with the help of a caregiver.</p>",
       "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"../assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/transferring.png\"/></div>\n</div>"
@@ -147,4 +168,3 @@
     "DESCRIPTION": "Select the type of hospital plan that you prefer."
   }
 }
-

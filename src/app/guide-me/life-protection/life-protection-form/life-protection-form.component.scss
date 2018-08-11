@@ -115,7 +115,7 @@ app-life-protection-form {
         opacity: 0.5;
         z-index: 2;
         width: 100%;
-        display: none;
+        border-radius: 7px;
       }
     }
     @media (min-width: 600px) {
@@ -131,11 +131,16 @@ app-life-protection-form {
         }
       }
     }
-    .input-control input{
-      &:disabled {
-        cursor: not-allowed;
-        &:hover {
-          background-color: transparent;
+    .input-control {
+      @include allmobiles() {
+        width: 51vw !important;
+      }
+      input {
+        &:disabled {
+          cursor: not-allowed;
+          &:hover {
+            background-color: transparent;
+          }
         }
       }
     }
@@ -146,7 +151,7 @@ app-life-protection-form {
       border: 2px solid #c0eded;
       border-radius: 6px;
       position: relative;
-      width: 41vw;
+      width: 43vw;
       &:after {
         background-image: url('../../../../assets/images/dropdown-icon.svg');
         width: 16px;
@@ -175,7 +180,7 @@ app-life-protection-form {
         padding: 0.90rem;
         padding-right: 0;
         @include allmobiles {
-          width: 130px;
+          width: 150px;
         }
         @include tablet {
           width: 120px;
@@ -197,11 +202,6 @@ app-life-protection-form {
       .dropdown-menu.show {
         width: 200px;
       }
-      @include allmobiles {
-        .dropdown-menu.show {
-          width: 130px;
-        }
-      }
     }
     @include allmobiles {
       a.link {
@@ -218,6 +218,18 @@ app-life-protection-form {
       margin-bottom: 15px;
     }
   }
+  .education-support-wrapper {
+    @include allmobiles {
+      &.education-checked {
+        position: relative !important;
+      }
+    }
+    &.education-checked {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
   .education-support {
     background-color: #2d8289;
     padding: 0.90rem;
@@ -225,6 +237,7 @@ app-life-protection-form {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
+    z-index: 3;
     margin-top: -7px;
     input[type='checkbox']+label {
       background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
@@ -234,11 +247,18 @@ app-life-protection-form {
     }
   }
   .education-support-details {
+    position: relative;
+    z-index: 3;
     .form-with-bg {
       padding: 0.90rem;
       label {
         font-family: $muli-semi-bold;
         font-size: 18px;
+      }
+      @include allmobiles {
+        .dropdown-menu.show {
+          width: 130px;
+        }
       }
       &.dark {
         background: #276f75;
