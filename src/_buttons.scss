@@ -1,7 +1,7 @@
 // Button styles
 .btn {
-  @include fontSize(12px);
-  font-family: $muli-regular;
+  font-size: 22px;
+  font-family: $muli-semi-bold;
   margin: auto;
   padding: 0.90rem;
   border-radius: 6px;
@@ -12,7 +12,6 @@
     background-color: $btn-primary-backgrnd-color;
     border-color: $btn-primary-backgrnd-color;
     box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
-    font-weight: 700;
     &:hover {
       background-color: #0de0de;
     }
@@ -30,6 +29,11 @@
       outline: none !important;
       background: $btn-primary-backgrnd-color !important;
     }
+  }
+  &.btn-save {
+    background-color: transparent;
+    border: 1px solid #4d898d;
+    color: #FFF;
   }
   &:disabled {
     opacity: 1 !important;
@@ -70,6 +74,13 @@
     background: transparent !important;
     border-color: $fixed-btn-txt-color;
   }
+}
+
+/*Fixed button Medium*/
+
+.fixed-btn--md {
+  width: 170px;
+  padding: .90rem;
 }
 
 /*Fixed button large*/
@@ -182,5 +193,35 @@
   .myinfo__block--sub-title {
     font-family: $muli-regular;
     @include fontSize(9px);
+  }
+}
+
+/*Next Button Styles*/
+
+.next-btn {
+  background: #FFFFFF;
+  padding: 0.90rem;
+  text-align: center;
+  color: $app-backgrnd-color;
+  font-family: $muli-semi-bold;
+  position: relative;
+  border-radius: 6px;
+  @include fontSize(12px);
+  cursor: pointer;
+  .next-arrow,
+  .prev-arrow {
+    position: absolute;
+    right: 15px;
+    background: url("./assets/images/back-mobile.png") no-repeat;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+  }
+  .next-arrow {
+    transform: rotate(180deg);
+  }
+  .prev-arrow {
+    left: 15px;
+    top: 20px;
   }
 }

@@ -1,12 +1,19 @@
-import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from './../../guide-me.service';
 import {
   LifeProtectionModalComponent
 } from './../../life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
+
+const Regexp = new RegExp('[,]', 'g');
+const MAX_YEARS_NEEDED = 100;
+const MAX_AGE = 100;
 
 @Component({
   selector: 'app-life-protection-form',
@@ -17,8 +24,11 @@ import {
 })
 
 export class LifeProtectionFormComponent implements OnInit, OnChanges {
+  supportAmountTitle: string;
+  supportAmountMessage: string;
   @Input('dependentCount') dependentCount;
-  dependentFormCount = 0;
+  dependentFormCount = 1;
+  @Output() dependentCountChange = new EventEmitter<boolean>();
   pageTitle: string;
   lifeProtectionForm: FormGroup;
   dependents: FormArray;
@@ -26,16 +36,43 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   activeFormIndex;
   isNavPrevEnabled;
   isNavNextEnabled;
+  dependentCountOptions = [0, 1, 2, 3, 4, 5];
   genderOptions = ['Male', 'Female'];
-  relationshipOptions = ['Dad', 'Mother', 'Spouse', 'Child'];
-  ageOptions = ['18', '19', '20', '21', '22'];
-  yearsNeededOptions = ['20', '30', '40', '50'];
+  relationshipOptions = ['Spouse', 'Sibling', 'Parent', 'Children'];
+  ageOptions;
+  yearsNeededOptions;
+  eduSupportCourse = ['Medicine', 'Non-Medicine'];
+  eduSupportCountry = ['Singapore', 'USA', 'United Kingdom', 'Australia'];
+  eduSupportNationality = ['Singaporean', 'Singapore PR', 'Foreigner'];
+
+  dependentSliderConfig: any = {
+    behaviour: 'snap',
+    start: 0,
+    connect: [true, false],
+    format: {
+      to: (value) => {
+        return Math.round(value);
+      },
+      from: (value) => {
+        return Math.round(value);
+      }
+    }
+  };
 
   constructor(
     private router: Router,
     private guideMeService: GuideMeService,
     public modal: NgbModal,
-    private formBuilder: FormBuilder) {
+    public translate: TranslateService,
+    private formBuilder: FormBuilder, private currencyPipe: CurrencyPipe) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.supportAmountTitle = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_TITLE');
+      this.supportAmountMessage = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_MESSAGE');
+    });
+
+    this.yearsNeededOptions = Array(MAX_YEARS_NEEDED).fill(0).map((e, i) => i);
+    this.ageOptions = Array(MAX_AGE).fill(0).map((e, i) => i);
   }
 
   ngOnInit() {
@@ -51,17 +88,50 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.refreshDependentForm();
   }
 
+  onNoUiSliderChange(sliderValue, index) {
+    let value = sliderValue;
+    if (value !== null) {
+      value = value.toString().replace(Regexp, '');
+    }
+    let amount = this.currencyPipe.transform(value, 'USD');
+    if (amount !== null) {
+      amount = amount.split('.')[0].replace('$', '');
+      this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].setValue(amount);
+    }
+  }
+
+  updateSlider(slider, index) {
+    let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].value;
+    if (sliderValue === null) {
+      sliderValue = 0;
+    }
+    sliderValue = (sliderValue + '').replace(Regexp, '');
+    slider.writeValue(sliderValue);
+  }
+
   showLifeProtectionModal() {
     const ref = this.modal.open(LifeProtectionModalComponent, {
-      centered: true,
-      windowClass: 'help-modal-dialog'
+      centered: true
     });
+  }
+
+  setDropDownDependentCount(value, i) {
+    this.dependentCount = value;
+    this.dependentCountChange.emit(value);
+    this.refreshDependentForm();
   }
 
   refreshDependentForm() {
     if (this.lifeProtectionForm) {
       // no of existing form less than selected dependent count
-      if (this.dependentFormCount <= this.dependentCount) {
+      if (this.dependentCount === 0) {
+        this.lifeProtectionForm = this.formBuilder.group({
+          dependents: this.formBuilder.array([this.createDependentForm()])
+        });
+        this.activeFormIndex = 0;
+        this.dependentFormCount = 1;
+        this.isFormControlDisabled = true;
+      } else if (this.dependentFormCount <= this.dependentCount) {
         while (this.dependentFormCount < this.dependentCount) {
           this.lifeProtectionForm.controls.dependents['controls'].push(this.createDependentForm());
           this.dependentFormCount++;
@@ -83,10 +153,16 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     return this.formBuilder.group({
       gender: this.genderOptions[0],
       relationship: this.relationshipOptions[0],
-      age: this.ageOptions[0],
+      age: 24,
       supportAmount: '',
       yearsNeeded: this.yearsNeededOptions[0],
-      otherIncome: ''
+      otherIncome: '',
+      educationSupport: false,
+      supportAmountRange: 0,
+      eduSupportCourse: this.eduSupportCourse[0],
+      eduSupportCountry: this.eduSupportCountry[0],
+      eduSupportNationality: this.eduSupportNationality[0],
+      eduFormSaved: false
     });
   }
 
@@ -102,6 +178,13 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   navigateDependentForm(dir) {
     (dir === 'next') ? this.activeFormIndex++ : this.activeFormIndex--;
     this.updateNavLinks();
+  }
+
+  showLifeProtectionSupportAmountModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.supportAmountTitle;
+    ref.componentInstance.errorMessage = this.supportAmountMessage;
+    return false;
   }
 
   updateNavLinks() {
@@ -123,7 +206,11 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   getPageIndicatorCount() {
-    const count = this.lifeProtectionForm.controls.dependents['controls'].length - 1;
+    const count = this.lifeProtectionForm.controls.dependents['controls'].length;
     return Array(count).map((x, i) => i);
+  }
+
+  isChild(age) {
+    return age <= 23;
   }
 }
