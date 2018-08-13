@@ -19,7 +19,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit {
   assetsForm: FormGroup;
   assetsFormValues: IMyAssets;
   assetsTotal: any;
-
+  
   constructor(
     private router: Router, public headerService: HeaderService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
