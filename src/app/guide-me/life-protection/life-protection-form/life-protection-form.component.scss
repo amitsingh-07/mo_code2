@@ -63,18 +63,6 @@ app-life-protection-form {
     }
   }
   #lifeProtectionForm {
-    .help-icon {
-      background-image: url("../../../../assets/images/help-icon.png");
-      position: absolute;
-      right: 10px;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      @include allmobiles {
-        top: 15px;
-        right: 45px;
-      }
-    }
     .form-group-with-bg {
       position: relative;
       .overlay-block {
@@ -177,6 +165,7 @@ app-life-protection-form {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
+    font-size: 16px;
     z-index: 3;
     margin-top: -7px;
     input[type='checkbox']+label {
@@ -184,6 +173,16 @@ app-life-protection-form {
     }
     input[type='checkbox']:checked+label {
       background-image: url("../../../../assets/images/check-box-select.svg");
+    }
+    .title {
+      font-family: $muli-bold;
+      position: relative;
+      top: -7px;
+    }
+    .sub-title {
+      position: relative;
+      top: -4px;
+      font-family: $muli-regular;
     }
   }
   .education-support-details {
@@ -202,7 +201,7 @@ app-life-protection-form {
       }
       &.dark {
         .flex-row {
-          margin-bottom: 10px;
+          margin-bottom: 15px;
         }
         background: #276f75;
         border-top-left-radius: 0;

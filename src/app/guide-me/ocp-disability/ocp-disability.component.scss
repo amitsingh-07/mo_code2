@@ -1,25 +1,9 @@
 @import '../../../variables';
 @import '../../../mixins';
 app-ocp-disability {
-  // .form-with-bg .form-with-bg--content .form-with-bg--content-label {
-  //   flex-basis: 60vw !important;
-  // }
-  // #employeeDropDown {
-  //   .btn-dropdown {
-  //     width: 196px !important;
-  //   }
-  //   .dropdown-menu {
-  //     min-width: 196px !important;
-  //   }
-  // }
-  // #retirementAgeDropDown {
-  //   .btn-dropdown {
-  //     width: 90px !important;
-  //   }
-  //   .dropdown-menu {
-  //     min-width: 90px !important;
-  //   }
-  // }
+  .dropdown-control .btn-dropdown:after {
+    top: 24px;
+}
   nouislider {
     margin-right: 1rem !important;
   }
@@ -35,6 +19,6 @@ app-ocp-disability {
     font-weight: normal;
     margin-top: -10px;
     color: #2d8288;
-    @include fontSize(10px);
+    font-size: 16px;
   }
 }
