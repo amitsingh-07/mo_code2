@@ -5,9 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { HeaderService } from './../../shared/header/header.service';
-import { IPageComponent } from './../../shared/interfaces/page-component.interface';
-import { GuideMeService } from './../guide-me.service';
+import { HeaderService } from '../../shared/header/header.service';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GuideMeService } from '../guide-me.service';
 
 const assetImgPath = './assets/images/';
 
@@ -70,7 +70,6 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
     this.lpDependentCountForm.controls.dependentCount.setValue(value);
   }
   showMobilePopUp() {
-    console.log('Show Mobile Popup Triggered');
     const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
     ref.componentInstance.description = this.modalData.description;
     ref.componentInstance.title = this.modalData.title;

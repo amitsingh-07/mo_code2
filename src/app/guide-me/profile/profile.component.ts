@@ -8,9 +8,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { LoggerService } from '../../shared/logger/logger.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 const assetImgPath = './assets/images/';
 
@@ -40,7 +42,8 @@ export class ProfileComponent implements IPageComponent, OnInit {
   constructor(
     private guideMeService: GuideMeService, private router: Router,
     private modal: NgbModal, public headerService: HeaderService,
-    public readonly translate: TranslateService) {
+    public readonly translate: TranslateService, public authService: AuthenticationService,
+    public log: LoggerService) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -54,7 +57,9 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.profileForm = new FormGroup({
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
     });
-    this.guideMeService.getProfileList().subscribe((data) => this.profileList = data.objectList);
+    this.authService.authenticate().subscribe((token) => {
+      this.guideMeService.getProfileList().subscribe((data) => this.profileList = data.objectList);
+    });
   }
 
   setPageTitle(title: string) {

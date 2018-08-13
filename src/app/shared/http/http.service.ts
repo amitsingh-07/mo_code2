@@ -10,8 +10,8 @@ import {
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { appConstants } from './../../app.constants';
-import { AppModule } from './../../app.module';
+import { appConstants } from '../../app.constants';
+import { AppModule } from '../../app.module';
 import { HelperService } from './helper.service';
 
 const HEADER_CONTENT_TYPE = 'Content-Type';
