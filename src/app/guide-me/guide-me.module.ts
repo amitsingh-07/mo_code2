@@ -6,8 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 
 import { SharedModule } from '../shared/shared.module';
-import { CurrencyInputDirective } from './../shared/directives/currency-input.directive';
-import { GuideMeRoutingModule } from './/guide-me-routing.module';
+import { CurrencyInputDirective } from '../shared/directives/currency-input.directive';
+import { GuideMeRoutingModule } from './guide-me-routing.module';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
@@ -24,6 +24,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { InsuranceResultsComponent } from './insurance-results/insurance-results.component';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     LtcAssessmentComponent,
     CiAssessmentComponent,
     OcpDisabilityComponent,
-    HospitalPlanComponent
+    HospitalPlanComponent,
+    InsuranceResultsComponent
   ],
   providers: [CurrencyPipe]
 })

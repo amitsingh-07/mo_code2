@@ -17,10 +17,10 @@
   }
 }
 .hidden-lg {
-  @include SmallDevice {
+  @include LargeDevice {
     display: none !important;
   }
-  @include min568max767 {
+  @include MediumDevice {
     display: none !important;
   }
 }
@@ -34,10 +34,20 @@
   @include min568max767 {
     position: fixed !important;
     box-shadow: none;
+    font-size: 24px !important;
+    font-family: $muli-semi-bold;
   }
 }
 .navbar {
   @include allmobiles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+  }
+  @include min568max767 {
     display: flex;
     justify-content: center;
     align-items: center;

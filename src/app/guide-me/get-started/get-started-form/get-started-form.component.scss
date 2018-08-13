@@ -3,45 +3,18 @@
 #userInfoForm .col-sm-7 {
   opacity: 1 !important;
 }
-.form__block {
-  margin-left: 0;
-  padding-left: 0;
+strong {
+  font-family: $muli-semi-bold;
+  font-size: 17px;
 }
-.form__row {
-  display: flex;
-  margin-bottom: 17px;
-  .form__col--left {
-  font-size: 18px;
-    @include tablet {
-      flex-basis: 25vw;
-    }
-    @include iPadProLandscape {
-      flex-basis: 20vw;
-    }
-    @include iPadProPortrait {
-      flex-basis: 20vw;
-    }
-    flex-basis: 40vw;
-    display: flex;
-    align-items: center;
-  }
-  .form__col--right {
-    flex-basis: 60vw;
-    strong {
-      font-family: $muli-semi-bold;
-      font-size: 17px;
-    }
-    .input-group {
-      &.inline-error {
-        .btn-primary {
-          background: transparent !important;
-          border: transparent;
-        }
-      }
+.input-group {
+  &.inline-error {
+    .btn-primary {
+      background: transparent !important;
+      border: transparent;
     }
   }
 }
-
 .dropdown-control {
   .btn-dropdown {
     span.dependent-count {
@@ -58,37 +31,14 @@
   @include allmobiles {
     //margin-top: 50px;
   }
-}
-.fixed-btn--sm {
-  font-size: 16px;
-  line-height: normal;
-  @include tablet {
-    width: 100px;
-    white-space: normal;
-  }
-  @include allmobiles {
-    width: 100px;
-    padding: 5px 10px;
-    white-space: normal;
+  .flex-col-6 {
+    label {
+      white-space: normal;
+      line-height: normal;
+    }
   }
 }
-.fixed-btn--lg {
-  @include allmobiles {
-    width: 217px;
-    padding: .90rem;
-  }
-  @include tablet {
-    width: 217px;
-  }
-}
-.input-group {
-  @include allmobiles {
-    width: 217px !important;
-  }
-  @include tablet {
-    width: 217px !important;
-  }
-}
+
 .input-group.date-picker {
   .dropdown-menu.show {
     @include allmobiles {
@@ -109,5 +59,3 @@
   width: 480px;
   margin-top: 50px;
 }
-
-

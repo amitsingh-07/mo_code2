@@ -1,3 +1,4 @@
+import { InsuranceResultsComponent } from './insurance-results/insurance-results.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.CRITICAL_ILLNESS, component: CiAssessmentComponent},
   { path: GUIDE_ME_ROUTES.LONG_TERM_CARE, component: LtcAssessmentComponent},
   { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent},
-  { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent}
+  { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent},
+  { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent}
 ];
 
 @NgModule({

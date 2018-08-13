@@ -1,4 +1,3 @@
-import { environment } from './../../../environments/environment';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
@@ -10,8 +9,8 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 
-import { appConstants } from './../../app.constants';
-import { ConfigService, IConfig } from './../../config/config.service';
+import { environment } from '../../../environments/environment';
+import { ConfigService, IConfig } from '../../config/config.service';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
 import { HttpService } from './http.service';
@@ -26,7 +25,8 @@ export class BaseService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/json',
+      // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJub3JtYWxfdXNlciIsInJvbGVzIjoiUk9MRV9VU0VSLCIsImlhdCI6MTUzMzkwMzU3NywiaXNzIjoiQXV0aG9yaXphdGlvbiIsImV4cCI6MTUzNDQxNjIxN30.Og7tGptG2BUONwxVXLn1EbcAedP7f-MXgi556uZjrl4'
     })
   };
 
@@ -62,31 +62,24 @@ export class BaseService {
   */
 
   get(url) {
-    // Helper service to start ng2-slim-loading-bar progress bar
     this.helperService.showLoader();
-    return this.http
-      .get(`${environment.apiBaseUrl}/${url}`)
-      .map((res: Response) => {
-        return this.handleResponse(res);
-      })
-      .catch((error: Response) =>
-        Observable.throw(this.errorHandler.tryParseError(error))
-      )
+    return this.httpClient
+      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`, this.httpOptions)
       .finally(() => {
-        // stop ng2-slim-loading-bar progress bar
         this.helperService.hideLoader();
-      });
+      })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
   }
 
   post(url, postBody: any) {
     this.helperService.showLoader();
-    return this.config$.mergeMap((config) => {
-      return this.httpClient
-        .post<IServerResponse>(`${config.apiBaseUrl}/${url}`, postBody, this.httpOptions)
-        .finally(() => {
-          this.helperService.hideLoader();
-        });
-    });
+    return this.httpClient
+      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}`, postBody, this.httpOptions)
+      .finally(() => {
+        this.helperService.hideLoader();
+      });
   }
 
   delete(url, postBody: any) {
