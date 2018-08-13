@@ -4,13 +4,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 
-import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms';
-import { Router } from '../../../../node_modules/@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { GuideMeService } from './../guide-me.service';
+import { GuideMeService } from '../guide-me.service';
 
 const assetImgPath = './assets/images/';
 

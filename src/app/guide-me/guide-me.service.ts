@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiService } from './../shared/http/api.service';
+import { ApiService } from '../shared/http/api.service';
 import { CiAssessment } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
@@ -283,14 +283,13 @@ export class GuideMeService {
             selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
             break;
         }
-        console.log('selectedProtectionNeeds :' + selectedProtectionNeeds);
       }
     }
-    console.log('selectedProtectionNeeds[this.protectionNeedsPageIndex] :' + selectedProtectionNeeds[this.protectionNeedsPageIndex]);
+
     if (this.protectionNeedsPageIndex < selectedProtectionNeeds.length) {
-    return selectedProtectionNeeds[this.protectionNeedsPageIndex];
-    } else {
-      return GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE;
-    }
+      return selectedProtectionNeeds[this.protectionNeedsPageIndex];
+      } else {
+        return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
+      }
   }
 }

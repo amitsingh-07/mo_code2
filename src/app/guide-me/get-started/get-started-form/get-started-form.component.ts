@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { GUIDE_ME_ROUTE_PATHS } from '../../guide-me-routes.constants';
-import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
-import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
-import { GuideMeService } from './../../guide-me.service';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
+import { GuideMeService } from '../../guide-me.service';
 
 @Component({
   selector: 'app-get-started-form',

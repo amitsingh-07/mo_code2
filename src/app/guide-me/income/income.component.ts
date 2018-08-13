@@ -3,12 +3,12 @@ import { AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsul
 import { TranslateService } from '@ngx-translate/core';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 
-import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms';
-import { Router } from '../../../../node_modules/@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
-import { GuideMeService } from './../guide-me.service';
+import { GuideMeService } from '../guide-me.service';
 import { IMyIncome } from './income.interface';
 
 const Regexp = new RegExp('[,]', 'g');
@@ -71,7 +71,6 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
 
     this.setFormTotalValue();
     this.noUiSlider.registerOnTouched(() => {
-      console.log('inside touched listener');
       return 0;
     });
   }

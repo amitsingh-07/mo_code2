@@ -6,10 +6,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { GuideMeService } from './../../guide-me.service';
+import { GuideMeService } from '../../guide-me.service';
 import {
   LifeProtectionModalComponent
-} from './../../life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
+} from './life-protection-modal/life-protection-modal.component';
 
 const Regexp = new RegExp('[,]', 'g');
 const MAX_YEARS_NEEDED = 100;
@@ -193,7 +193,6 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   save() {
-    console.log(this.lifeProtectionForm.value.dependents);
     return true;
   }
 

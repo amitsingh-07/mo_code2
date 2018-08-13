@@ -88,6 +88,16 @@
     "DESCRIPTION": "If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.",
     "SUPPORT_AMOUNT_TITLE": "Support Amount",
     "SUPPORT_AMOUNT_MESSAGE": "This refers to the amount you require to support this dependant on a monthly basis.",
+    "I_HAVE": "I have",
+    "LBL_NEXT_DEPENDANT": "Next Dependant",
+    "RELATIONSHIP_OPTIONS": ["Spouse", "Sibling", "Parent", "Children"],
+    "EDUCATION_SUPPORT_TITLE": "Education Support",
+    "EDUCATION_SUPPORT_DESC": "I want to fund this child for a university education if i pass away",
+    "EDUCATION_SUPPORT_SUBTITLE": "He / She will be studying:",
+    "EDUCATION_SUPPORT_COURSE": "Course",
+    "EDUCATION_SUPPORT_COUNTRY": "Country",
+    "EDUCATION_SUPPORT_NATIONALITY": "Nationality",
+    "YEARS_MODAL_DESC": "Click on your dependant’s profile type for a general guideline on the years needed.",
     "PROFILE_TYPE": ["spouse", "child", "family"],
     "YEARS_NEEDED": [{
         "id": 0,
@@ -109,12 +119,7 @@
       "title": "Life Protection",
       "description": "<h4>Life Protection</h4><p>If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.</p>",
       "imageName": "lifeProtection_modal.png"
-    },
-    "I_HAVE": "I have",
-    "LBL_SUPPORT_AMOUNT": "Support Amount",
-    "LBL_YEARS_NEEDED": "Years Needed",
-    "LBL_NEXT_DEPENDANT": "Next Dependant",
-    "RELATIONSHIP_OPTIONS": ["Spouse", "Sibling", "Parent", "Children"]
+    }
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",

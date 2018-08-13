@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DebugElement } from '../../../../node_modules/@angular/core';
-import { By } from '../../../../node_modules/@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { HospitalPlanComponent } from './hospital-plan.component';
 
 describe('HospitalPlanComponent', () => {

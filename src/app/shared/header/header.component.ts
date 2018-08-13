@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IPageComponent } from './../interfaces/page-component.interface';
+import { IPageComponent } from '../interfaces/page-component.interface';
 import { HeaderService } from './header.service';
 
 @Component({
