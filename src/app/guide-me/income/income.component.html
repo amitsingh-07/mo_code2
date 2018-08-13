@@ -18,27 +18,54 @@
           <div class="myinfo__block--sub-title">{{ 'COMMON.LBL_MY_INFO_HELP_DESC' | translate}}</div>
         </div>
           <form id="incomeForm" name="incomeForm" [formGroup]="incomeForm">
-              <div  class="form-with-bg">
+              <div  class="form-group-with-bg">
                 <!--Form Header-->
-                <div class="form-with-bg--header">
-                    <div class="form-group flex-row">
-                      <div class="form-with-bg--header-label">{{ 'MY_INCOME.MONTHLY_INCOME' | translate}}<div class="form-with-bg--header-sub-label">{{ 'MY_INCOME.WHAT_YOU_EARN' | translate}}</div></div>
+                <div class="form-group-with-bg--header">
+                    <div class="flex-row">
+                      <div class="flex-col-9">
+                      <div class="form-group-with-bg--header-label">{{ 'MY_INCOME.MONTHLY_INCOME' | translate}}<div class="form-group-with-bg--header-sub-label">{{ 'MY_INCOME.WHAT_YOU_EARN' | translate}}</div></div>
+                      </div>
+                      <div class="flex-col-3">
                       <div class="total">{{incomeTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                    </div>
                     </div>
                   </div>
                   <!--Form Content-->
-                  <div class="form-with-bg--content">
-                    <div class="form-group flex-row">
-                      <div class="form-with-bg--content-label" for="name">{{ 'MY_INCOME.MONTHLY_SALARY' | translate}}</div>
-                      <div name="monthlySalary" class="input-control" [ngClass]="{'readonly': monthlySalary.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #monthlySalary formControlName="monthlySalary" value="0"></div>
+                  <div class="form-group-with-bg--content">
+                    <div class="flex-row">
+                        <div class="flex-col-6">
+                      <div class="form-group-with-bg--content-label" for="name">{{ 'MY_INCOME.MONTHLY_SALARY' | translate}}</div>
+                      </div>
+                      <div class="flex-col-6">
+                        <div class="form-control">
+                        <i>$</i>
+                        <div name="monthlySalary" [ngClass]="{'readonly': monthlySalary.value != 0}"><input  class="input-control" type="text" appCurrencyInput maxLength="5" #monthlySalary formControlName="monthlySalary" value="0"></div>
+                        </div>
                     </div>
-                    <div class="form-group flex-row">
-                      <div class="form-with-bg--content-label" for="name">{{ 'MY_INCOME.ANNUAL_BONUS' | translate}}</div>
-                      <div name="annualBonus" class="input-control" [ngClass]="{'readonly': annualBonus.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="6" #annualBonus formControlName="annualBonus" value="0"></div>
                     </div>
-                    <div class="form-group flex-row">
-                      <div class="form-with-bg--content-label" for="name">{{ 'MY_INCOME.OTHER_INCOME' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_INCOME.OTHER_INCOME_HINT' | translate}}</div></div>
-                      <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}"><span class="fixed-currency">$</span><input type="text" class="input-with-suffix" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0"><span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span></div>
+                    <div class="flex-row">
+                        <div class="flex-col-6">
+                      <div class="form-group-with-bg--content-label" for="name">{{ 'MY_INCOME.ANNUAL_BONUS' | translate}}</div>
+                    </div>
+                    <div class="flex-col-6">
+                      <div class="form-control">
+                          <i>$</i>
+                        <div name="annualBonus" [ngClass]="{'readonly': annualBonus.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="6" #annualBonus formControlName="annualBonus" value="0"></div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="flex-row">
+                        <div class="flex-col-6">
+                      <div class="form-group-with-bg--content-label" for="name">{{ 'MY_INCOME.OTHER_INCOME' | translate}}<div class="form-group-with-bg--content-sub-label">{{ 'MY_INCOME.OTHER_INCOME_HINT' | translate}}</div></div>
+                    </div>
+                    <div class="flex-col-6">
+                      <!-- <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}">$<input type="text" class="input-with-suffix" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0"><span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span></div> -->
+                      <div class="form-control form-control-right">
+                          <i>$</i>
+                          <input type="text" class="input-control" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
+                          <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
+                        </div>
+                    </div>
                     </div>
                     
                     <nouislider #noUiSlider (slide)="onNoUiSliderChange($event)" [config]="incomeSliderConfig" [min]="0" [max]="9999" [step]="50" [tooltips]="[ false ]"></nouislider>
