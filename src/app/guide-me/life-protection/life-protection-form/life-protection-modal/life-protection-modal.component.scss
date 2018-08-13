@@ -23,12 +23,28 @@
     flex-direction: column;
     border-radius: 6px;
     font-family: $muli-bold;
-    .dependant-profile-spouse-image {
+    cursor: pointer;
+    &.active {
+        background-color: #00a7a7;
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.17);
+    }
+    .dependant-profile-spouse-image,.dependant-profile-child-image,.dependant-profile-family-image  {
       display: inline-block;
       width: 47px;
       height: 46px;
       background: url("../../../../../assets/images/spouse.svg");
       background-repeat: no-repeat;
+       background-position: 0 9px;
+    }
+    .dependant-profile-child-image {
+       background: url("../../../../../assets/images/child.svg");
+       background-repeat: no-repeat;
+       background-position: 3px 1px;
+    }
+    .dependant-profile-family-image {
+       background: url("../../../../../assets/images/family.svg");
+       background-repeat: no-repeat;
+       background-position: 0 10px;
     }
   }
 }
@@ -40,8 +56,11 @@
   background-color: #00a7a7;
   width: 100%;
   border-radius: 6px;
-  margin-top: 15px;
+  margin-top: 25px;
   position: relative;
+  height: 68px;
+  @extend .flex;
+  @extend .align-center;
 }
 
 .arrow-up {
@@ -51,7 +70,7 @@
   border-right: 15px solid transparent;
   border-bottom: 15px solid #00a7a7;
   position: absolute;
-  top: -15px;
+  top: -13px;
   left: 10%;
 }
 

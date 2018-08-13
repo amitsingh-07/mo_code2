@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -50,7 +50,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
       this.modalData = this.translate.instant('LTC_ASSESSMENT.MODAL_DATA');
       this.setPageTitle(this.pageTitle, this.pageSubTitle, true);
     });
-   }
+  }
 
   ngOnInit() {
     this.isFormLoaded = false;
@@ -65,13 +65,18 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
     });
     this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
-         this.showMobilePopUp();
+        this.showMobilePopUp();
       }
     });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.guideMeService.protectionNeedsPageIndex--;
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {

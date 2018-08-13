@@ -6,19 +6,24 @@
         <h2>{{pageTitle}}</h2>
         <h6>{{ 'LIFE_PROTECTION.DESCRIPTION' | translate}}</h6>
         <form [formGroup]="lpDependentCountForm">
-          <div class="form-group flex-row mt30">
-            <label class="mr100">I have</label>
+          <div class="form-group row mt30 dependent-count">
+            <div class="col-lg-4 col-md-6">
+              <label>{{ 'LIFE_PROTECTION.I_HAVE' | translate}}</label>
+            </div>
+            <div class="col-lg-4 col-md-6">
             <div class="dropdown-control">
               <input type="hidden" formControlName="dependentCount" />
-              <div ngbDropdown class="d-inline-block" id="RetirementAgeDropDown">
-                <button class="btn btn-default fixed-btn--md" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-                  <span>{{lpDependentCountForm.controls.dependentCount.value}}</span>&nbsp;Dependent<span *ngIf="lpDependentCountForm.controls.dependentCount.value > 1">s</span>
+              <div ngbDropdown id="RetirementAgeDropDown">
+                <button class="btn btn-dropdown grey" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+                  <span>{{lpDependentCountForm.controls.dependentCount.value}}</span>&nbsp;{{ 'LABEL.DEPENDANT' | translate}}<span *ngIf="lpDependentCountForm.controls.dependentCount.value > 1">s</span>
                 </button>
                 <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item fixed-btn--lg" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
+                  <button class="dropdown-item" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="col-lg-4 col-md-6 hidden-sm-md"></div>
           </div>
         </form>
         <div class="banner-image">

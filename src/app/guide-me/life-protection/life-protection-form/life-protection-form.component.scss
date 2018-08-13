@@ -1,32 +1,17 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 app-life-protection-form {
-  .dep-title {
-    font-size: 16px;
-    color: #000;
-    margin-bottom: 30px;
-    font-weight: bold;
-  }
-  .dependent-nav {
-    display: none;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #fff;
-    color: #00c5c4;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  .dep-nav-link {
-    cursor: pointer;
-  }
-  .form-list {
-    margin: 0px;
-    padding: 0px;
-  }
-  .form-list>.row {
-    margin-bottom: 10px;
+  .dependent-count {
+   &.flex-row {
+      @extend .align-center;
+      @include allmobiles {
+        margin-top: 0 !important;
+        margin-bottom: 10px;
+      }
+    }
+    .dropdown-control {
+      border: none !important;
+    }
   }
   .page-indicator {
     display: none;
@@ -53,14 +38,6 @@ app-life-protection-form {
   #lifeprotectionForm {
     margin: 80px 0px 100px 0px;
   }
-  .dep-form-container {
-    padding: 20px;
-    background-color: #fff;
-    color: #009999;
-    box-sizing: border-box;
-    border-radius: 10px;
-    margin-bottom: 15px;
-  }
   #nextDependentBtn {
     display: none;
   }
@@ -69,15 +46,7 @@ app-life-protection-form {
   }
   /* Desktop Overrides */
   @media (min-width: 576px) {
-    .dep-form-container {
-      display: none;
-    }
-    .dep-form-container.show {
-      display: block;
-    }
-    .dependent-nav {
-      display: flex;
-    }
+    
     #nextDependentBtn,
     #submitDepFormBtn {
       display: none;
@@ -106,7 +75,7 @@ app-life-protection-form {
         right: 45px;
       }
     }
-    .form-with-bg {
+    .form-group-with-bg {
       position: relative;
       .overlay-block {
         height: 100%;
@@ -115,27 +84,32 @@ app-life-protection-form {
         opacity: 0.5;
         z-index: 2;
         width: 100%;
-        display: none;
+        border-radius: 7px;
       }
     }
     @media (min-width: 600px) {
-      .form-with-bg {
+      .form-group-with-bg {
         display: none;
       }
-      .form-with-bg.show {
+      .form-group-with-bg.show {
         display: block;
       }
       .education-support-details {
-        .form-with-bg {
+        .form-group-with-bg {
           display: block;
         }
       }
     }
-    .input-control input{
-      &:disabled {
-        cursor: not-allowed;
-        &:hover {
-          background-color: transparent;
+    .input-control {
+      @include allmobiles() {
+        //width: 51vw !important;
+      }
+      input {
+        &:disabled {
+          cursor: not-allowed;
+          &:hover {
+            background-color: transparent;
+          }
         }
       }
     }
@@ -143,10 +117,9 @@ app-life-protection-form {
       .btn-dropdown {
         color: #00a7a7;
       }
-      border: 2px solid #c0eded;
       border-radius: 6px;
       position: relative;
-      width: 41vw;
+      //width: 43vw;
       &:after {
         background-image: url('../../../../assets/images/dropdown-icon.svg');
         width: 16px;
@@ -156,50 +129,17 @@ app-life-protection-form {
         top: 23px;
         right: 10px;
       }
-      @include tablet {
-        width: 45vw;
-      }
-      @include tablet {
-        width: 45vw;
-      }
-      @include iPadProPortrait {
-        width: 45vw;
-      }
       position: relative;
       background: #FFF;
-      height: 60px;
-      line-height: 21px;
       cursor: pointer;
       .dropdown-toggle {
-        width: 200px;
         padding: 0.90rem;
         padding-right: 0;
-        @include allmobiles {
-          width: 130px;
-        }
-        @include tablet {
-          width: 120px;
-        }
-        @include iPadProPortrait {
-          width: 130px;
-        }
         &:disabled {
           cursor: not-allowed;
           &:hover {
             background-color: transparent;
           }
-        }
-      }
-      .dropdown-toggle::after {
-        //background-image: none !important;
-        //border: none !important;
-      }
-      .dropdown-menu.show {
-        width: 200px;
-      }
-      @include allmobiles {
-        .dropdown-menu.show {
-          width: 130px;
         }
       }
     }
@@ -214,8 +154,20 @@ app-life-protection-form {
     }
   }
   @include allmobiles {
-    .form-with-bg {
+    .form-group-with-bg {
       margin-bottom: 15px;
+    }
+  }
+  .education-support-wrapper {
+    @include allmobiles {
+      &.education-checked {
+        position: relative !important;
+      }
+    }
+    &.education-checked {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
     }
   }
   .education-support {
@@ -225,6 +177,7 @@ app-life-protection-form {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
+    z-index: 3;
     margin-top: -7px;
     input[type='checkbox']+label {
       background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
@@ -234,19 +187,29 @@ app-life-protection-form {
     }
   }
   .education-support-details {
-    .form-with-bg {
+    position: relative;
+    z-index: 3;
+    .form-group-with-bg {
       padding: 0.90rem;
       label {
         font-family: $muli-semi-bold;
         font-size: 18px;
       }
+      @include allmobiles {
+        .dropdown-menu.show {
+          width: 130px;
+        }
+      }
       &.dark {
+        .flex-row {
+          margin-bottom: 10px;
+        }
         background: #276f75;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         position: relative;
         margin-top: -7px;
-        .form-with-bg--content-label {
+        .form-group-with-bg--content-label {
           flex-basis: 48vw;
           margin-right: 2vw;
           color: #ffffff;
@@ -260,4 +223,7 @@ app-life-protection-form {
       }
     }
   }
+}
+.dependent-count {
+  @extend .align-center;
 }

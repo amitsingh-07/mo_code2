@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/map';
 
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -58,6 +58,11 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
       this.buildForm(data.objectList);
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.guideMeService.protectionNeedsPageIndex--;
   }
 
   setPageTitle(title: string, subTitle?: string) {
