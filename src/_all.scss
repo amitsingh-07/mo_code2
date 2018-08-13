@@ -17,7 +17,16 @@ body {
     padding:0px;
     margin:0px;
   }
-
+  
+  /*Heading Styles*/
+  h2 {
+    font-family: $muli-semi-bold;
+    font-size: 36px;
+  }
+  h6 {
+    font-family: $muli-regular;
+    font-size: 18px;
+  }
   /*Nav Bar Styles*/
   .container-fluid {
     margin-top: 50px;
@@ -95,10 +104,7 @@ body {
     right:13px;
     z-index:1;
   }
-  h6 {
-    font-family: $muli-regular;
-    font-size: 18px;
-  }
+  
   .span--content-inline--underline {
     color: #04a6a7;
     text-decoration: underline;
