@@ -4,12 +4,12 @@
   </div>
 </div>
 <div class="modal-body white-bg">
-  <div class="modal-body-title">Years Needed</div>
+  <div class="modal-body-title">{{ 'LABEL.YEARS_NEEDED' | translate}}</div>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true"></span>
   </button>
   <div class="modal-body-message">
-    <p>Click on your dependant’s profile type for a general guideline on the years needed.</p>
+    <p>{{ 'LIFE_PROTECTION.YEARS_MODAL_DESC' | translate}}</p>
     <div class="dependant-profile pl0" >
       <div class="dependant-profile-box" [ngClass]="{'active': selectedOption==profile}" *ngFor="let profile of profileType" (click)="showMessage(profile)">
           <div class="dependant-profile-{{profile}}-image" ></div>

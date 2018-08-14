@@ -1,5 +1,5 @@
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -12,15 +12,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
-// tslint:disable-next-line:max-line-length
-import { LifeProtectionModalComponent } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
+import {
+  LifeProtectionModalComponent
+} from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { JwtInterceptor } from './shared/http/auth/jwt.interceptor';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 
+// tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/app/', '.json');
 }
@@ -54,7 +57,12 @@ export function createTranslateLoader(http: HttpClient) {
   ],
 
   providers: [NgbActiveModal, { provide: LoggerService, useClass: ConsoleLoggerService },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent],
   entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, LifeProtectionModalComponent, MobileModalComponent]
 })

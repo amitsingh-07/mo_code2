@@ -2,11 +2,11 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
-import { GuideMeService } from './../guide-me.service';
+import { GuideMeService } from '../guide-me.service';
 import { IMyLiabilities } from './liabilities.interface';
 
 @Component({

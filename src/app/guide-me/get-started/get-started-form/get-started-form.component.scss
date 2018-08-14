@@ -1,11 +1,12 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+app-get-started-form {
 #userInfoForm .col-sm-7 {
   opacity: 1 !important;
 }
 strong {
   font-family: $muli-semi-bold;
-  font-size: 17px;
+  font-size: 16px;
 }
 .input-group {
   &.inline-error {
@@ -20,6 +21,9 @@ strong {
     span.dependent-count {
       color: $app-backgrnd-color;
       margin-right: 4px;
+      + span {
+        color: #5e5e5e;
+      }
     }
   }
   .dropdown-item {
@@ -38,7 +42,11 @@ strong {
     }
   }
 }
-
+#userInfoForm .flex-col-5 {
+  label {
+    font-size: 18px;
+  }
+}
 .input-group.date-picker {
   .dropdown-menu.show {
     @include allmobiles {
@@ -58,4 +66,5 @@ strong {
   height: 350px;
   width: 480px;
   margin-top: 50px;
+}
 }

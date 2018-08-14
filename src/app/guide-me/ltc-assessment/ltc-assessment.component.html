@@ -10,10 +10,10 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6 flex--pad-mt-reset">
-        <form name="longTermCareForm" *ngIf="isFormLoaded" [formGroup]="longTermCareForm" id="longTermCareForm">
-          <div class="form-group mb0 flex-col flex__box--sm-horz" formArrayName="longTermCareArray">
-            <div class="special-radio-button hidden" *ngFor="let longTermCare of longTermCareList; let i = index" [formGroupName]="i">
-              <input id="longTermCare_{{i+1}}" name="status" (change)="radioTest()" formControlName="status" type="radio" class="field radio" value="{{longTermCare.id}}"
+        <form name="longTermCareForm" [formGroup]="longTermCareForm" id="longTermCareForm">
+          <div class="form-group mb0 flex-col flex__box--sm-horz">
+            <div class="special-radio-button hidden" *ngFor="let longTermCare of longTermCareList; let i = index">
+              <input id="longTermCare_{{i+1}}" name="careGiverType" formControlName="careGiverType" type="radio" class="field radio" value="{{longTermCare.id}}"
               tabindex="{{i+1}}">
                 <label for="longTermCare_{{i+1}}" class="ltc">
                   <div class="input-label-white">{{longTermCare.careGiverType}}</div>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div>
-            <button type="button" [disabled]="!isFormValid" (click)="goToNext(longTermCareForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <button type="button" [disabled]="!longTermCareForm.valid" (click)="goToNext(longTermCareForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>
       </div>

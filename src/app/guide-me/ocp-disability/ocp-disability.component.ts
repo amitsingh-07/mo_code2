@@ -133,7 +133,6 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   showMobilePopUp() {
-    console.log('Show Mobile Popup Triggered');
     const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
     ref.componentInstance.description = this.modalData.description;
     ref.componentInstance.title = this.modalData.title;

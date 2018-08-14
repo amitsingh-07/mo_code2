@@ -6,13 +6,13 @@
   </div>
   <div class="flex-row dependent-count mt30 hidden-lg">
     <div class="flex-col-6">
-    <label>I have</label>
+    <label>{{ 'LIFE_PROTECTION.I_HAVE' | translate}}</label>
     </div>
     <div class="flex-col-6">
     <div class="dropdown-control">
       <div ngbDropdown id="dependentCountMobile">
         <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-          <span>{{dependentCount}}</span>&nbsp;Dependent<span *ngIf="dependentCount > 1">s</span>
+          <span>{{dependentCount}}</span>&nbsp;{{ 'LABEL.DEPENDANT' | translate}}<span *ngIf="dependentCount > 1">s</span>
         </button>
         <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
           <button class="dropdown-item" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
@@ -28,14 +28,14 @@
       <div>
         <div class="form-group-with-bg--header">
           <div class="flex-row">
-            <div class="form-group-with-bg--header-single-label">Dependent {{ !isFormControlDisabled ? i+1 : 0}}</div>
+            <div class="form-group-with-bg--header-single-label">{{ 'LABEL.DEPENDANT' | translate}} {{ !isFormControlDisabled ? i+1 : 0}}</div>
           </div>
         </div>
         <!--Form Content-->
         <div class="form-group-with-bg--content">
           <div class="flex-row">
             <div class="flex-col-6">
-              <div class="form-group-with-bg--content-label" for="name">Gender</div>
+              <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.GENDER' | translate}}</div>
             </div>
             <div class="flex-col-6">
               <div class="dropdown-control">
@@ -52,7 +52,7 @@
           </div>
           <div class="flex-row">
               <div class="flex-col-6">
-            <div class="form-group-with-bg--content-label" for="name">Relationship</div>
+            <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.RELATIONSHIP' | translate}}</div>
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
@@ -69,7 +69,7 @@
           </div>
           <div class="flex-row">
               <div class="flex-col-6">
-            <div class="form-group-with-bg--content-label" for="name">Age</div>
+            <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.AGE' | translate}}</div>
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
@@ -87,12 +87,12 @@
           <div class="flex-row">
               <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">
-              <a href="#" class="link">Support Amount</a>
+              <a href="#" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</a>
               <span class="help-icon" (click)="showLifeProtectionSupportAmountModal()"></span>
             </div>
             </div>
             <div class="flex-col-6">
-            <div class="form-control form-control-right">
+            <div class="form-control form-control-right" [attr.disabled]="isFormControlDisabled">
                 <i>$</i>
                 <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
                 maxLength="5" #otherIncome formControlName="otherIncome" value="0">
@@ -104,7 +104,7 @@
           <div class="flex-row">
               <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">
-              <a href="#" class="link">Years Needed</a>
+              <a href="#" class="link">{{ 'LABEL.YEARS_NEEDED' | translate}}</a>
               <span class="help-icon" (click)="showLifeProtectionModal()"></span>
             </div>
             </div>
@@ -129,17 +129,17 @@
               <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
                 (change)="item.controls.eduFormSaved.value = false;" value="Education Support <br> I want to fund this child for a university education if i pass away">
               <label for="educationSupport{{i}}">
-                <div>Education Support
-                  <br> I want to fund this child for a university education if i pass away</div>
+                <div class="title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}}</div>
+                  <div class="sub-title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_DESC' | translate}}</div>
               </label>
             </div>
           </div>
           <div class="education-support-details" *ngIf="item.controls.educationSupport.value && !item.controls.eduFormSaved.value">
             <div class="form-group-with-bg dark">
-              <label>He / She will be studying: </label>
+              <label>{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}} </label>
               <div class="flex-row">
                 <div class="flex-col-6">
-                <div class="form-group-with-bg--content-label" for="name">Course</div>
+                <div class="form-group-with-bg--content-label" for="name">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_COURSE' | translate}}</div>
               </div>
               <div class="flex-col-6">
                 <div class="dropdown-control">
@@ -156,7 +156,7 @@
               </div>
               <div class="flex-row">
                   <div class="flex-col-6">
-                <div class="form-group-with-bg--content-label" for="name">Country</div>
+                <div class="form-group-with-bg--content-label" for="name">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_COUNTRY' | translate}}</div>
                 </div>
                 <div class="flex-col-6">
                 <div class="dropdown-control">
@@ -173,7 +173,7 @@
               </div>
               <div class="flex-row">
                   <div class="flex-col-6">
-                <div class="form-group-with-bg--content-label" for="name">Nationality</div>
+                <div class="form-group-with-bg--content-label" for="name">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_NATIONALITY' | translate}}</div>
                 </div>
                 <div class="flex-col-6">
                 <div class="dropdown-control">
@@ -188,7 +188,7 @@
                 </div>
               </div>
               </div>
-              <div>
+              <div class="hidden-sm-md">
                 <button class="btn btn-save width100 mt5" id="btnSaveEduSupport{{i}}" (click)="item.controls.eduFormSaved.value = true;" >{{ 'LABEL.SAVE' | translate }}</button>
                 <input name="eduFormSaved" formControlName="eduFormSaved" type="hidden">
               </div>
@@ -198,8 +198,8 @@
     </div>
   </div>
   <!-- Action Buttons -->
-  <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">Next Dependent</button>
-  <button id="submitDepFormBtn" [class.show]="!isNavNextEnabled" (click)="submitDependentForm()" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">Continue</button>
+  <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LIFE_PROTECTION.LBL_NEXT_DEPENDANT' | translate }}</button>
+  <button id="submitDepFormBtn" [class.show]="!isNavNextEnabled" (click)="submitDependentForm()" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate }}</button>
 
   <!-- PAGE INDICATOR -->
   <div class="page-indicator" *ngIf="!isFormControlDisabled">
