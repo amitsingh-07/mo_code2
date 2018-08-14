@@ -132,8 +132,53 @@
   }
 }
 
-/*Dependentant Count Button Styles*/
+/* Add Coverage Button Block*/
+.addCover__block{
+  padding: 0.90rem;
+  background: $myinfo-block-bg-color;
+  border: 1px solid $myinfo-block-brdr-color;
+  position: relative;
+  border-radius: 8px;
+  color: $myinfo-btn-color;
+  justify-content:center;
+  align-items:center;
+  max-width:400px;
+  width:80%;
+  min-width:337px;
+  @include allmobiles{
+    width:100% !important;
+    min-width:0px;
+  }
+  .addCover__block__btn {
+    position: absolute;
+    right: 0;
+    width: 50px;
+    background: $myinfo-block-btn-bg-color;
+    height: 100%;
+    top: 0;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    .addCover__block__btn--plus {
+      position: absolute;
+      color: $white-color;
+      top:50%;
+      left:55%;
+      background-image:url(../src/assets/images/plus-white.svg);
+      background-repeat:no-repeat;
+      width:20px;
+      height:20px;
+      transform:translate(-50%,-50%);
+    }
+  }
+  .addCover__block--title {
+    width: calc(100% - 50px + 0.9rem);
+    padding-right:5px;
+    font-family: $muli-bold;
+    font-size: 18px;
+  }
+}
 
+/*Dependentant Count Button Styles*/
 .dependent-count--btn {
   background: #FFFFFF;
   padding: 0.90rem;
@@ -159,5 +204,116 @@
   .dependent-count--btn--prev-arrow {
     left: 15px;
     top: 20px;
+  }
+}
+
+/*Insurance Results*/
+.result__wrapper{
+  width:100%;
+  @include allmobiles{
+  }
+}
+.result__block{
+  display:inline-flex !important;
+  align-items:center;
+  background-color: $white-color;
+  width:160px;
+  height:268px;
+  padding:20px 8px 40px 8px;
+  border-radius:8px;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+  overflow:hidden;
+  z-index:2;
+  margin-bottom:20px;
+  margin-right:18px;
+  &:last-child(){
+    margin-right:0px;
+  }
+  @include allmobiles{
+    width:calc(50% - 10px);
+    &:nth-child(even) {
+      margin-left:0px;
+      margin-right:0px;
+    }
+    &:nth-child(odd) {
+      margin-left:0px;
+    }
+    &:nth-child(odd):last-child(){
+      margin-right:auto;
+    }
+  }
+  @include min300max325{
+    height:250px;
+  }
+  .result__block--icon{
+    position: relative;
+    display: inline-block;
+    height:45px;
+    margin-bottom:12px;
+  }
+  .result__block--title{
+    max-width:80%;
+    color: $teal-color;
+    opacity: 0.75;
+    font-family: $muli;
+    @include fontSize(12px);
+    text-align:center;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+  .result__block--data{
+    color: $teal-color;
+    font-family: $muli-bold;
+    @include fontSize(23px);
+    text-align:center;
+    font-stretch:normal;
+    line-height: 1.0;
+    letter-spacing: -0.4px;
+    @include min300max325 {
+      @include fontSize(21px);
+    }
+  }
+  .result__block--postfix{
+    color:$teal-color;
+    line-height:1.0;
+  }
+  .result__block--viewDed-btn{
+    position: absolute;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    height:40px;
+    bottom: 0px; 
+    width:100%;
+    color: $white-color;
+    background-color: $btn-secondary-backgrnd-color;
+    z-index:0;
+    cursor: pointer;
+  }
+}
+.continue__btn{
+  position: relative;
+  display: inline-block;
+  width:80%;
+  max-width: 372px;
+  background-color:$btn-primary-backgrnd-color;
+  color:$white-color;
+  border-radius: 6px;
+  box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+  padding:16px 25px;
+  letter-spacing:-0.2px;
+  font-family:$muli-semi-bold;
+  @include fontSize(13px);
+  text-align:center;
+  @include allmobiles {
+    position: fixed;
+    width:100%;
+    bottom:0px;
+    left:0px;
+    max-width:100%;
+    border-radius:0px;
+    z-index:5;
+    @include fontSize(12px);
   }
 }

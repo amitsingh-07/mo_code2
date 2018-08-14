@@ -171,5 +171,19 @@
     "TITLE": "Hospital Plan",
     "SUB_TITLE": "Select the type of hospital plan that you prefer.",
     "DESCRIPTION": "Select the type of hospital plan that you prefer."
+  },
+  "INSURANCE_RESULTS": {
+    "TITLE": "Insurance Results",
+    "STATIC_DESCRIPTION": "In the final step, we will be sharing with you the coverage you need based on our assessment",
+    "COVERAGE_YOU_NEED": "Coverage You Need",
+    "ADD_COVERAGE": {
+      "LBL": "Add Existing Coverage For More Accurate Result"
+    },
+    "PROCEED": {
+      "LBL": "Continue To Recommendation"
+    },
+    "RESULT_BLOCK": {
+      "VIEW_DETAILS": "View Details"
+    }
   }
 }
