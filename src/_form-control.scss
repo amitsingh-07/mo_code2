@@ -119,8 +119,8 @@
        color: #5e5e5e;
      }
      .input-label-normal {
-       font-family: $muli;
-       @include fontSize(8px);
+       font-family: $muli-regular;
+       font-size: 16px;
        color: #5e5e5e;
      }
      &.one-label {
