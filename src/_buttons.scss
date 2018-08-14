@@ -53,7 +53,7 @@
 .fixed-btn--sm {
   border: 1px solid $fixed-btn-brdr-color;
   color: $fixed-btn-txt-color;
-  @include fontSize(9px);
+  font-size: 16px;
   font-family: $muli-regular;
   font-weight: normal !important;
   //width: 133px;
@@ -62,7 +62,7 @@
   @extend .flex;
   @extend .justify-center;
   height: 50px;
-  margin-bottom: 5px;
+  //margin-bottom: 5px;
   &.active {
     border: 1px solid $module-fill-color !important;
     color: $module-fill-color !important;
@@ -94,18 +94,19 @@
 /*My Info Button Block*/
 
 .myinfo__block {
-  padding: 0.70rem;
+  padding: 0.90rem;
   background: $myinfo-block-bg-color;
   border: 1px solid $myinfo-block-brdr-color;
   position: relative;
   border-radius: 8px;
   color: $myinfo-btn-color;
   margin-bottom: 10px;
+  color: #e57300;
   cursor: pointer;
   .myinfo__block__btn {
     position: absolute;
     right: 0;
-    width: 40px;
+    width: 50px;
     background: $myinfo-block-btn-bg-color;
     height: 100%;
     top: 0;
@@ -115,20 +116,19 @@
       position: absolute;
       color: $white-color;
       top: 40%;
-      left: 30%;
-      background-image: url(../src/assets/images/back.png);
+      left: 37%;
+      background-image: url(../src/assets/images/right-arrow.svg);
       width: 15px;
       height: 15px;
-      transform: rotate(-180deg);
     }
   }
   .myinfo__block--title {
     font-family: $muli-bold;
-    @include fontSize(10px);
+    font-size: 18px;
   }
   .myinfo__block--sub-title {
     font-family: $muli-regular;
-    @include fontSize(9px);
+    font-size: 16px;
   }
 }
 
@@ -142,7 +142,7 @@
   font-family: $muli-semi-bold;
   position: relative;
   border-radius: 6px;
-  @include fontSize(12px);
+  font-size: 22px;
   cursor: pointer;
   .dependent-count--btn--next-arrow,
   .dependent-count--btn--prev-arrow {

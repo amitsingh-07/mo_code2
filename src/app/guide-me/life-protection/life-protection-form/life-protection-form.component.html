@@ -92,7 +92,7 @@
             </div>
             </div>
             <div class="flex-col-6">
-            <div class="form-control form-control-right">
+            <div class="form-control form-control-right" [attr.disabled]="isFormControlDisabled">
                 <i>$</i>
                 <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
                 maxLength="5" #otherIncome formControlName="otherIncome" value="0">
@@ -129,8 +129,8 @@
               <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
                 (change)="item.controls.eduFormSaved.value = false;" value="Education Support <br> I want to fund this child for a university education if i pass away">
               <label for="educationSupport{{i}}">
-                <div>{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}}
-                  <br>{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_DESC' | translate}}</div>
+                <div class="title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}}</div>
+                  <div class="sub-title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_DESC' | translate}}</div>
               </label>
             </div>
           </div>
