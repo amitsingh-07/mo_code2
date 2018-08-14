@@ -23,7 +23,7 @@
   </div>
   <div class="form-group-with-bg" [class.show]="activeFormIndex == i" formArrayName="dependents" *ngFor="let item of lifeProtectionForm.get('dependents').controls; let i = index;">
     <div [formGroupName]="i">
-      <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value"></div>
+      <!-- <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value"></div> -->
       <!--Form Header-->
       <div>
         <div class="form-group-with-bg--header">
@@ -123,7 +123,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="isChild(item.controls.age.value)" class="education-support-wrapper" [class.education-checked]="item.controls.educationSupport.value">
+      <div *ngIf="isChild(item.controls.age.value)">
           <div class="education-support">
             <div class="checkbox-button one-label">
               <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
