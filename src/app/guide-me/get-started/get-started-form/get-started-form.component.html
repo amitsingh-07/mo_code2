@@ -7,7 +7,7 @@
         </div>
         <div class="flex-col-7">
           <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-            <div class="flex-row">
+            <div class="flex-row mb0">
             <div class="flex-col-6">
               <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
                 <input ngbButton type="radio" value="male"> {{ 'LABEL.MALE' | translate}}
@@ -28,7 +28,7 @@
         </div>
         <div #usrFrmDp class="flex-col-7">
           <div class="datepicker-control">
-            <div class="input-group date-picker" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
+            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
                 required>
               <div class="input-group-append">
@@ -49,7 +49,7 @@
         </div>
         <div class="flex-col-7">
           <div class="btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
-              <div class="flex-row">
+              <div class="flex-row mb0">
               <div class="flex-col-6">
               <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
                 <input ngbButton type="radio" value="non-smoker"> {{'LABEL.NON_SMOKER' | translate}}
@@ -72,7 +72,7 @@
         <div class="flex-col-7">
           <div class="dropdown-control">
             <div ngbDropdown id="dependentDropDown">
-              <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+              <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
                 <span class="dependent-count">{{dependents}}</span>
                 <span *ngIf="dependents <= 1">{{'LABEL.DEPENDANT' | translate}}</span>
                 <span *ngIf="dependents > 1">{{'LABEL.DEPENDANT_PLURAL' | translate}}</span>
