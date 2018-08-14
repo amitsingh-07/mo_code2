@@ -6,7 +6,7 @@ import { isDebugMode } from '../app/shared/logger/console-logger.service';
 export const environment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'http://bfa.ntuclink.cloud'
+  apiBaseUrl: 'http://bfa-uat.ntuclink.cloud'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

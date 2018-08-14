@@ -5,27 +5,27 @@
     },
     "objectList": [{
         "id": 1,
-        "hosPlanDesc": "Choose any doctor, Stay in any hospital",
-        "hosPlanName": "Private Hospital"
+        "hospitalClassDescription": "Choose any doctor, Stay in any hospital",
+        "hospitalClass": "Private Hospital"
     },
     {
         "id":2,
-        "hosPlanDesc": "Choose any doctor, Stay in single ward",
-        "hosPlanName": "Government Hospital Ward A"
+        "hospitalClassDescription": "Choose any doctor, Stay in single ward",
+        "hospitalClass": "Government Hospital Ward A"
     },
     {
         "id":3,
-        "hosPlanDesc": "Choose any doctor, Up to 4-bedded ward",
-        "hosPlanName": "Government Hospital Ward B1"
+        "hospitalClassDescription": "Choose any doctor, Up to 4-bedded ward",
+        "hospitalClass": "Government Hospital Ward B1"
     },
     {
         "id":4,
-        "hosPlanDesc": "Assigned doctor, Up to 9-bedded ward",
-        "hosPlanName": "Government Hospital Ward B2"
+        "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward",
+        "hospitalClass": "Government Hospital Ward B2"
     },
     {
         "id":5,
-        "hosPlanDesc": "Option for maternity, Out- patient treatment",
-        "hosPlanName": "Global Healthcare Coverage"
+        "hospitalClassDescription": "Option for maternity, Out- patient treatment",
+        "hospitalClass": "Global Healthcare Coverage"
     }]
   }
