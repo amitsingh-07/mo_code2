@@ -5,19 +5,19 @@
     },
     "objectList": [{
       "id": 1,
-      "ltcDesc": "Fully cared for at home by family",
-      "ltcName": "Family Member"
+      "careGiverDescription": "Fully cared for at home by family",
+      "careGiverType": "Family Member"
     }, {
       "id": 2,
-      "ltcDesc": "Fully cared for at home by helper",
-      "ltcName": "Domestic Helper"
+      "careGiverDescription": "Fully cared for at home by helper",
+      "careGiverType": "Domestic Helper"
     }, {
       "id": 3,
-      "ltcDesc": "Daycare at a facility by nurses, Night care at home by family",
-      "ltcName": "Daycare Support"
+      "careGiverDescription": "Daycare at a facility by nurses, Night care at home by family",
+      "careGiverType": "Daycare Support"
     }, {
       "id": 4,
-      "ltcDesc": "Fully cared for at a facility by nurses",
-      "ltcName": "Nursing Home"
+      "careGiverDescription": "Fully cared for at a facility by nurses",
+      "careGiverType": "Nursing Home"
     }]
   }

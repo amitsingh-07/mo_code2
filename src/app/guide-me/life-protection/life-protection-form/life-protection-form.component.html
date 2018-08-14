@@ -23,7 +23,7 @@
   </div>
   <div class="form-group-with-bg" [class.show]="activeFormIndex == i" formArrayName="dependents" *ngFor="let item of lifeProtectionForm.get('dependents').controls; let i = index;">
     <div [formGroupName]="i">
-      <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value && !item.controls.eduFormSaved.value"></div>
+      <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value"></div>
       <!--Form Header-->
       <div>
         <div class="form-group-with-bg--header">
@@ -123,18 +123,18 @@
           </div>
         </div>
       </div>
-      <div *ngIf="isChild(item.controls.age.value)" class="education-support-wrapper" [class.education-checked]="item.controls.educationSupport.value && !item.controls.eduFormSaved.value">
+      <div *ngIf="isChild(item.controls.age.value)" class="education-support-wrapper" [class.education-checked]="item.controls.educationSupport.value">
           <div class="education-support">
             <div class="checkbox-button one-label">
               <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
-                (change)="item.controls.eduFormSaved.value = false;" value="Education Support <br> I want to fund this child for a university education if i pass away">
+                value="Education Support <br> I want to fund this child for a university education if i pass away">
               <label for="educationSupport{{i}}">
                 <div class="title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}}</div>
                   <div class="sub-title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_DESC' | translate}}</div>
               </label>
             </div>
           </div>
-          <div class="education-support-details" *ngIf="item.controls.educationSupport.value && !item.controls.eduFormSaved.value">
+          <div class="education-support-details" *ngIf="item.controls.educationSupport.value">
             <div class="form-group-with-bg dark">
               <label>{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}} </label>
               <div class="flex-row">
@@ -187,10 +187,6 @@
                   </div>
                 </div>
               </div>
-              </div>
-              <div class="hidden-sm-md">
-                <button class="btn btn-save width100 mt5" id="btnSaveEduSupport{{i}}" (click)="item.controls.eduFormSaved.value = true;" >{{ 'LABEL.SAVE' | translate }}</button>
-                <input name="eduFormSaved" formControlName="eduFormSaved" type="hidden">
               </div>
             </div>
           </div>
