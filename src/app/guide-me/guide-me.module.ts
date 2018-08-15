@@ -25,6 +25,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { InsuranceResultComponent } from './insurance-results/insurance-result/insurance-result.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     CiAssessmentComponent,
     OcpDisabilityComponent,
     HospitalPlanComponent,
-    InsuranceResultsComponent
+    InsuranceResultsComponent,
+    InsuranceResultComponent
   ],
   providers: [CurrencyPipe]
 })
