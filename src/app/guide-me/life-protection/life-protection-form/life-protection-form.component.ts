@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -192,12 +192,13 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.isNavNextEnabled = ((this.dependentCount > 1) && (this.activeFormIndex < this.dependentCount - 1)) ? true : false;
   }
 
-  save() {
+  save(form: any) {
+    this.guideMeService.setLifeProtection(form.value);
     return true;
   }
 
-  submitDependentForm() {
-    if (this.save()) {
+  submitDependentForm(form) {
+    if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
         this.guideMeService.protectionNeedsPageIndex++;
       });

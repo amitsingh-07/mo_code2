@@ -99,6 +99,17 @@ export class GuideMeService {
     return this.apiService.getProtectionNeedsList(userInfoForm);
   }
 
+  getLifeProtection() {
+    return {
+      lifeProtectionData: this.guideMeFormData.lifeProtectionData
+    };
+  }
+
+  setLifeProtection(data) {
+    console.log('dependent set');
+    this.guideMeFormData.lifeProtectionData = data;
+  }
+
   /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
   getMyIncome(): IMyIncome {
     return {
