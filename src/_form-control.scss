@@ -96,7 +96,7 @@
      background: #FFFFFF;
      font-family: $muli-bold;
      font-size: 18px;
-     margin-bottom: 16px;
+     margin-bottom: 10px;
      position: relative;
      border: none;
      border-radius: 6px;
@@ -404,7 +404,7 @@
 
 .form-control {
   width: 100%;
-  border: 2px solid #c0eded;
+  border: 1px solid #94CCCC;
   border-radius: 6px;
   position: relative;
   padding: 0.90rem;
@@ -423,6 +423,7 @@
       right: 12px;
       transform: translate(0, -50%);
       top: 50%;
+      color: #2D8288;
     }
   }
   .input-control {

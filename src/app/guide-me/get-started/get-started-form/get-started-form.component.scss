@@ -1,6 +1,16 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 app-get-started-form {
+  .flex-col-5 {
+    font-size: 18px !important;
+    font-family: $muli-semi-bold !important;
+  }
+  .flex-col-6 {
+    label {
+    white-space: normal ;
+      line-height: normal;
+    }
+  }
 #userInfoForm .col-sm-7 {
   opacity: 1 !important;
 }
@@ -37,14 +47,9 @@ strong {
   }
   .flex-col-6 {
     label {
-      white-space: normal;
+    white-space: normal !important;
       line-height: normal;
     }
-  }
-}
-#userInfoForm .flex-col-5 {
-  label {
-    font-size: 18px;
   }
 }
 .input-group.date-picker {
