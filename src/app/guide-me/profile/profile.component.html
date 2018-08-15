@@ -2,10 +2,10 @@
 <div class="container-fluid profile">
   <div class="row">
     <div class="col-lg-7 col-md-6 hidden-sm-md">
-      <h2>{{ pageTitle }}</h2>
-      <h6>{{ 'PROFILE.DESCRIPTION' | translate}}</h6>
+      <h2 id="prfH2">{{ pageTitle }}</h2>
+      <h6 id="prfH6">{{ 'PROFILE.DESCRIPTION' | translate}}</h6>
       <div class="banner-image">
-        <img src="assets/images/profile-image.svg" />
+        <img src="assets/images/profile-image.svg" id="prfImgBnr"/>
       </div>
     </div>
     <div class="col-lg-5 col-md-6">
@@ -14,12 +14,12 @@
           <div class="checkbox-button one-label" *ngFor="let profiles of profileList; let i = index">
             <input id="profile_{{i+1}}" name="myProfile" formControlName="myProfile" type="radio" class="field radio" value="{{profiles.id}}"
               tabindex="{{i+1}}">
-            <label for="profile_{{i+1}}">
+            <label for="profile_{{i+1}}" id="prfLbl1">
               <span class="input-label-grey">{{profiles.name}}</span>
             </label>
-            <i class="tooltip-icon" (click)="showHelpModal(i)"></i>
+            <i class="tooltip-icon" (click)="showHelpModal(i)" id="prfTltp"></i>
           </div>
-          <button type="button" [disabled]="!profileForm.valid" (click)="goToNext(profileForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+          <button type="button" [disabled]="!profileForm.valid" (click)="goToNext(profileForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </form>
     </div>
