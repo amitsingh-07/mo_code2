@@ -34,6 +34,7 @@ export class GetStartedFormComponent implements OnInit {
     const today: Date = new Date();
     config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.outsideDays = 'collapsed';
   }
 
   ngOnInit() {
