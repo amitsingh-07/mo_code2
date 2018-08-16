@@ -448,9 +448,15 @@
     }
   }
 }
-.dropdown-toggle:disabled {
-  color: #bff1f1 !important;
-  border-color: #bff1f1 !important;
+.dropdown-toggle {
+  &:disabled {
+    color: #bff1f1 !important;
+    border-color: #bff1f1 !important;
+    &::after {
+      opacity: 0.1;
+      filter: alpha(opacity=10);
+    }
+  }
 }
 .form-control {
   &.disabled {
