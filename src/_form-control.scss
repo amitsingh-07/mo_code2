@@ -450,9 +450,17 @@
 }
 .dropdown-toggle:disabled {
   color: #bff1f1 !important;
-        border-color: #bff1f1 !important;
+  border-color: #bff1f1 !important;
 }
-.form-control :disabled, .input-control:disabled ~ i.left, .input-control:disabled + i.right {
-  color: #bff1f1 !important;
-        border-color: #bff1f1 !important;
+.form-control {
+  &.disabled {
+    border-color: #bff1f1 !important;
+    i, input {
+      color: #bff1f1 !important;
+    }
+  }
+}
+.label-bold {
+  font-family: $muli-semi-bold;
+  font-size: 18px;
 }
