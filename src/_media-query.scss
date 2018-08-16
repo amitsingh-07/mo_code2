@@ -86,6 +86,9 @@
     bottom: 60px;
   }
 }
+.top--limited{
+  top:30px;
+}
 .mobile-top-extended{
   @include allmobiles {
     top:50px;

@@ -23,9 +23,6 @@ describe('CiAssessmentComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
   it('should render CIAssessment title in a h2', async(() => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('Critical Illness');

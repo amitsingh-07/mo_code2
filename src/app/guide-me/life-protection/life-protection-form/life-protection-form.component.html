@@ -188,7 +188,7 @@
   </div>
   <!-- Action Buttons -->
   <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LIFE_PROTECTION.LBL_NEXT_DEPENDANT' | translate }}</button>
-  <button id="submitDepFormBtn" [class.show]="!isNavNextEnabled" (click)="submitDependentForm()" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate }}</button>
+  <button id="submitDepFormBtn" [class.show]="!isNavNextEnabled" (click)="submitDependentForm(lifeProtectionForm)" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate }}</button>
 
   <!-- PAGE INDICATOR -->
   <div class="page-indicator" *ngIf="!isFormControlDisabled">
