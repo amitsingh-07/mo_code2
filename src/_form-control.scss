@@ -360,7 +360,7 @@
     width: 100%;
   }
   .dropdown-menu.show {
-    width: 100%;
+    min-width: 100%;
   }
   .btn-dropdown {
     background: $module-fill-color;
