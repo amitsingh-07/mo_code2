@@ -7,7 +7,7 @@
         {
             "protectionTypeId": 1,
             "protectionType": "Life Protection",
-            "protectionDesc": "To Support your dependants"
+            "protectionDesc": "To support your dependants"
         },
         {
             "protectionTypeId": 2,
@@ -22,7 +22,7 @@
         {
             "protectionTypeId": 4,
             "protectionType": "Hospital Plan",
-            "protectionDesc": "Ease high cost hospital bills"
+            "protectionDesc": "Ease high cost of hospital bills"
         },
         {
             "protectionTypeId": 5,

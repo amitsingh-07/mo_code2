@@ -96,7 +96,7 @@
      background: #FFFFFF;
      font-family: $muli-bold;
      font-size: 18px;
-     margin-bottom: 16px;
+     margin-bottom: 10px;
      position: relative;
      border: none;
      border-radius: 6px;
@@ -119,8 +119,8 @@
        color: #5e5e5e;
      }
      .input-label-normal {
-       font-family: $muli;
-       @include fontSize(8px);
+       font-family: $muli-regular;
+       font-size: 16px;
        color: #5e5e5e;
      }
      &.one-label {
@@ -365,7 +365,7 @@
   .btn-dropdown {
     background: $module-fill-color;
     padding: .90rem;
-    border: 2px solid #c0eded;
+    border: 1px solid #94CCCC;
     text-align: left;
     font-size: 16px;
     font-family: $muli-regular;
@@ -404,7 +404,7 @@
 
 .form-control {
   width: 100%;
-  border: 2px solid #c0eded;
+  border: 1px solid #94CCCC;
   border-radius: 6px;
   position: relative;
   padding: 0.90rem;
@@ -423,6 +423,7 @@
       right: 12px;
       transform: translate(0, -50%);
       top: 50%;
+      color: #2D8288;
     }
   }
   .input-control {
@@ -447,11 +448,25 @@
     }
   }
 }
-.dropdown-toggle:disabled {
-  color: #bff1f1 !important;
-        border-color: #bff1f1 !important;
+.dropdown-toggle {
+  &:disabled {
+    color: #bff1f1 !important;
+    border-color: #bff1f1 !important;
+    &::after {
+      opacity: 0.1;
+      filter: alpha(opacity=10);
+    }
+  }
 }
-.form-control :disabled, .input-control:disabled ~ i.left, .input-control:disabled + i.right {
-  color: #bff1f1 !important;
-        border-color: #bff1f1 !important;
+.form-control {
+  &.disabled {
+    border-color: #bff1f1 !important;
+    i, input {
+      color: #bff1f1 !important;
+    }
+  }
+}
+.label-bold {
+  font-family: $muli-semi-bold;
+  font-size: 18px;
 }

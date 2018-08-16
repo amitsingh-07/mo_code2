@@ -1,33 +1,31 @@
 {
-   "responseMessage":{
-      "responseCode":6000,
-      "responseDescription":"Successful response"
-   },
-   "objectList":[
-      {
-         "id":1,
-         "hospitalClass":"Private Hospital",
-         "hospitalClassDescription":"Choose any doctor, Stay in any hospital"
-      },
-      {
-         "id":2,
-         "hospitalClass":"Government Hospital Ward A",
-         "hospitalClassDescription":"Choose any doctor, Stay in single ward"
-      },
-      {
-         "id":3,
-         "hospitalClass":"Government Hospital Ward B1",
-         "hospitalClassDescription":"Choose any doctor, Up to 4-bedded ward"
-      },
-      {
-         "id":4,
-         "hospitalClass":"Government Hospital Ward B2/C",
-         "hospitalClassDescription":"Assigned doctor, Up to 9-bedded ward"
-      },
-      {
-         "id":5,
-         "hospitalClass":"Global Healthcare Coverage",
-         "hospitalClassDescription":"Option for maternity, Outpatient treatment"
-      }
-   ]
-}
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    },
+    "objectList": [{
+        "id": 1,
+        "hospitalClassDescription": "Choose any doctor, Stay in any hospital",
+        "hospitalClass": "Private Hospital"
+    },
+    {
+        "id":2,
+        "hospitalClassDescription": "Choose any doctor, Stay in single ward",
+        "hospitalClass": "Government Hospital Ward A"
+    },
+    {
+        "id":3,
+        "hospitalClassDescription": "Choose any doctor, Up to 4-bedded ward",
+        "hospitalClass": "Government Hospital Ward B1"
+    },
+    {
+        "id":4,
+        "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward",
+        "hospitalClass": "Government Hospital Ward B2"
+    },
+    {
+        "id":5,
+        "hospitalClassDescription": "Option for maternity, Out- patient treatment",
+        "hospitalClass": "Global Healthcare Coverage"
+    }]
+  }

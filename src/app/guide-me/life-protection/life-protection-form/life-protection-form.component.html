@@ -6,7 +6,7 @@
   </div>
   <div class="flex-row dependent-count mt30 hidden-lg">
     <div class="flex-col-6">
-    <label>{{ 'LIFE_PROTECTION.I_HAVE' | translate}}</label>
+    <label class="label-bold">{{ 'LIFE_PROTECTION.I_HAVE' | translate}}</label>
     </div>
     <div class="flex-col-6">
     <div class="dropdown-control">
@@ -23,7 +23,7 @@
   </div>
   <div class="form-group-with-bg" [class.show]="activeFormIndex == i" formArrayName="dependents" *ngFor="let item of lifeProtectionForm.get('dependents').controls; let i = index;">
     <div [formGroupName]="i">
-      <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value && !item.controls.eduFormSaved.value"></div>
+      <!-- <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value"></div> -->
       <!--Form Header-->
       <div>
         <div class="form-group-with-bg--header">
@@ -39,7 +39,6 @@
             </div>
             <div class="flex-col-6">
               <div class="dropdown-control">
-                <span class="arrow"></span>
                 <div ngbDropdown id="RetirementAgeDropDown">
                   <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.gender.value}}
                   </button>
@@ -56,7 +55,6 @@
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
-              <span class="arrow"></span>
               <div ngbDropdown id="RetirementAgeDropDown">
                 <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.relationship.value}}
                 </button>
@@ -73,7 +71,6 @@
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
-              <span class="arrow"></span>
               <div ngbDropdown id="RetirementAgeDropDown">
                 <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.age.value}}
                 </button>
@@ -92,8 +89,8 @@
             </div>
             </div>
             <div class="flex-col-6">
-            <div class="form-control form-control-right" [attr.disabled]="isFormControlDisabled">
-                <i>$</i>
+            <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
+                <i class="fixed-currency">$</i>
                 <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
                 maxLength="5" #otherIncome formControlName="otherIncome" value="0">
                 <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
@@ -110,7 +107,6 @@
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
-              <!-- <button class="arrow" type="button"></button> -->
               <div ngbDropdown id="RetirementAgeDropDown">
                 <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.yearsNeeded.value}}
                 </button>
@@ -123,18 +119,18 @@
           </div>
         </div>
       </div>
-      <div *ngIf="isChild(item.controls.age.value)" class="education-support-wrapper" [class.education-checked]="item.controls.educationSupport.value && !item.controls.eduFormSaved.value">
+      <div *ngIf="isChild(item.controls.age.value)">
           <div class="education-support">
             <div class="checkbox-button one-label">
               <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport" formControlName="educationSupport" type="checkbox" class="field checkbox"
-                (change)="item.controls.eduFormSaved.value = false;" value="Education Support <br> I want to fund this child for a university education if i pass away">
+                value="Education Support <br> I want to fund this child for a university education if i pass away">
               <label for="educationSupport{{i}}">
                 <div class="title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}}</div>
                   <div class="sub-title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_DESC' | translate}}</div>
               </label>
             </div>
           </div>
-          <div class="education-support-details" *ngIf="item.controls.educationSupport.value && !item.controls.eduFormSaved.value">
+          <div class="education-support-details" *ngIf="item.controls.educationSupport.value">
             <div class="form-group-with-bg dark">
               <label>{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}} </label>
               <div class="flex-row">
@@ -143,7 +139,6 @@
               </div>
               <div class="flex-col-6">
                 <div class="dropdown-control">
-                  <!-- <button class="arrow" type="button"></button> -->
                   <div ngbDropdown id="RetirementAgeDropDown">
                     <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportCourse.value}}
                     </button>
@@ -160,7 +155,6 @@
                 </div>
                 <div class="flex-col-6">
                 <div class="dropdown-control">
-                  <!-- <button class="arrow" type="button"></button> -->
                   <div ngbDropdown id="RetirementAgeDropDown">
                     <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportCountry.value}}
                     </button>
@@ -177,7 +171,6 @@
                 </div>
                 <div class="flex-col-6">
                 <div class="dropdown-control">
-                  <!-- <button class="arrow" type="button"></button> -->
                   <div ngbDropdown id="RetirementAgeDropDown">
                     <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportNationality.value}}
                     </button>
@@ -187,10 +180,6 @@
                   </div>
                 </div>
               </div>
-              </div>
-              <div class="hidden-sm-md">
-                <button class="btn btn-save width100 mt5" id="btnSaveEduSupport{{i}}" (click)="item.controls.eduFormSaved.value = true;" >{{ 'LABEL.SAVE' | translate }}</button>
-                <input name="eduFormSaved" formControlName="eduFormSaved" type="hidden">
               </div>
             </div>
           </div>
