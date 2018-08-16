@@ -27,6 +27,16 @@
   float: right !important;
 }
 
+.center {
+  justify-content:center;
+  align-items:center;
+}
+.sm-flex-left {
+  @include allmobiles{
+    justify-content:flex-start;
+  }
+}
+
 .text-left {
   text-align: left !important;
 }
@@ -63,10 +73,6 @@
   margin-top: 30px !important;
 }
 
-.mb50 {
-  margin-bottom: 50px !important;
-}
-
 .mb0 {
   margin-bottom: 0 !important;
 }
@@ -81,6 +87,26 @@
 
 .mb20 {
   margin-bottom: 20px !important;
+}
+
+.mb25 {
+  margin-bottom: 25px !important;
+}
+
+.mb30 {
+  margin-bottom: 30px !important;
+}
+
+.mb40{
+  margin-bottom: 40px !important;
+}
+
+.mb50 {
+  margin-bottom: 50px !important;
+}
+
+.mb90 {
+  margin-bottom: 90px !important;
 }
 
 .mr10 {
@@ -117,10 +143,34 @@
 
 //Base Styles for mobile only
 @include allmobiles {
+  .sm-pb0 {
+    padding-bottom:0px !important;
+  }
+  .sm-pb50 {
+    padding-bottom:50px !important;
+  }
+  .sm-pb60 {
+    padding-bottom:60px !important;
+  }
+  .sm-mt50 {
+    margin-top: 50px !important;
+  }
   .sm-mb0 {
-    margin-bottom: 0 !important;
+    margin-bottom: 0px !important;
+  }
+  .sm-mb10 {
+    margin-bottom:10px !important;
+  }
+  .sm-mb15 {
+    margin-bottom:15px !important;
+  }
+  .sm-mb20 {
+    margin-bottom: 20px !important;
   }
   .sm-mb50 {
+    margin-bottom: 50px !important;
+  }
+  .sm-mb60 {
     margin-bottom: 50px !important;
   }
 }

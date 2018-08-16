@@ -1,4 +1,4 @@
-import { InsuranceResultsComponent } from './insurance-results/insurance-results.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { GUIDE_ME_ROUTES } from './guide-me-routes.constants';
 import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
+import { InsuranceResultsComponent } from './insurance-results/insurance-results.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
 import { LifeProtectionComponent } from './life-protection/life-protection.component';

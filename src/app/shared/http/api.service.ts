@@ -41,7 +41,7 @@ export class ApiService {
   }
 
   getLongTermCareList() {
-    const url = '../assets/mock-data/ltcAssessment.json';
+    const url = '../assets/mock-data/careGiverList.json';
     // -- Once the API is implemented on to grab the LongTermCareList
     // return this.http.get(apiConstants.endpoint.getLongTermCareList)
     // -- Local url
@@ -94,12 +94,11 @@ export class ApiService {
   }
 
   getProtectionNeedsList(userInfoForm) {
-    const localUrl = '../assets/mock-data/getProtectionList.json';
+    let localUrl = '../assets/mock-data/getProtectionList.json';
     const baseUrl = 'http://bfa-uat.ntuclink.cloud';
-
     // return this.httpClient.post<IServerResponse>(`${baseUrl}/${apiConstants.endpoint.getProtectionTypesList}`, userInfoForm);
-    return this.http.post(apiConstants.endpoint.getProtectionTypesList, userInfoForm);
-    
+    // return this.http.post(apiConstants.endpoint.getProtectionTypesList, userInfoForm);
+
     /**
         return this.httpClient.post<IServerResponse>(
           'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList',
@@ -108,8 +107,8 @@ export class ApiService {
             catchError(this.handleError)
           );
     */
-    /*
-    const url = 'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList';
+    //const url = 'http://10.144.196.217:8080/insurance-needs-microservice/api/getProtectionTypesList';
+    const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     return this.http.post(url, userInfoForm)
     .pipe(
       // tslint:disable-next-line:no-identical-functions
@@ -130,6 +129,5 @@ export class ApiService {
         return throwError('Something bad happened; please try again later.');
       })
     );
-    */
   }
 }
