@@ -1,12 +1,5 @@
 @import "../../../_variables.scss";
-.block__wrapper{
-    position: relative;
-    display: block;
-    flex-direction:column;
-    margin:auto;
-    padding:0 2%;
-    flex:1 0 0;
-} 
+@import "../../../_mixins.scss";
 
 .block__carousel-bar-container{
     position:relative;
@@ -14,18 +7,15 @@
     justify-content:space-between;
     width:calc(100%);
     margin:auto;
-    padding-top:20px;
-    flex:0;
     
     .block__carousel-bar{
         position:relative;
         display:inline-block;
         width:calc(50% - 10px);
-        height:5px;
+        min-height:5px;
         opacity:0.2;
         background-color:$app-backgrnd-secondary-color;
     }
-
     .block__carousel-bar.active{
         opacity:1;
     }
@@ -37,20 +27,29 @@
     width:100%;
     flex:1 0 0;
     align-items:center;
-    margin-top:15vh;
-    
+
     .img__header-img{
         position:relative;
         display:block;
-        width:400px;
-        height:380px;
+        width:85%;
+        max-width:400px;
+        max-height:380px;
         transition:0.2s;
+        @include min568max767{
+            max-width:300px;
+            margin-bottom:50px;
+        }
     }
     .block__start-text-container{
         position:relative;
         display:block;
         width:85%;
-    
+        @include min568max767{
+            text-align:center;
+        }
+        @include allmobiles{
+            width:100%;
+        }
         .p__step-title {
             opacity: 0.55;
             font-family: $muli-regular;
@@ -59,28 +58,24 @@
             font-stretch: normal;
             line-height: normal;
             letter-spacing: -0.4px;
-            color: #ffffff;
+            color: $white-color;
             margin-bottom:15px;
         }
         .p__start-title {
-            font-family: $muli;
+            font-family: $muli-semi-bold;
             font-size: 24px;
-            font-weight:600;
             line-height: normal;
             letter-spacing: -0.3px;
-            color: #ffffff;
-            margin-bottom:8px;
+            color: $white-color;
         }
         .p__start-sub-title {
             font-family: $muli-light;
             font-size: 18px;
-            font-weight: normal;
             font-style: normal;
             font-stretch: normal;
-            line-height: 1.28;
+            line-height: 23px;
             letter-spacing: -0.2px;
-            color: #ffffff;
-            margin-bottom:40px;
+            color: $white-color;
         }
         .button__proceed{
             width: 179px;
@@ -89,9 +84,8 @@
             border-radius: 6px;
             background-color: #ffffff;
             box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-            font-family: Muli;
+            font-family: $muli-bold;
             font-size: 22px;
-            font-weight: bold;
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
@@ -103,9 +97,7 @@
     }
 }
 
-
-
-@media(max-width:$col-md){
+@include allmobiles{
     .block__content{
         margin-top:0px;
         .img__header-img{
@@ -113,10 +105,8 @@
             max-width:300px;
             height:auto;
             margin:auto;
-            margin-top:5vh;
         }
     }
-
     .block__start-text-container{
         width:100%;
         text-align:center;
@@ -124,9 +114,7 @@
         margin-top:30px;
         margin-bottom:15vh;
     }
-}
 
-@media(max-width:$col-xs){
     .block__carousel-bar-container{
         padding-left:10px;
         padding-right:10px;
@@ -135,7 +123,6 @@
             width:calc(50% - 4px);
         }
     }
-
     .block__content{
         padding:0px !important;
         top:0px;
@@ -143,10 +130,7 @@
            min-width:200px;
            width:70%; 
         }
-
         .block__start-text-container{
-            margin-top:0vh;
-            margin-bottom:5vh;
             .button__proceed{
                 position: fixed;
                 width:100%;
@@ -154,7 +138,6 @@
                 left:0px;
                 border-radius:0px;
             }
-    
         }
     }
 }

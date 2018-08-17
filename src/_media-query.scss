@@ -89,6 +89,11 @@
 .top--limited{
   top:30px;
 }
+.mobile-top-non{
+  @include allmobiles {
+    top:0px;
+  }
+}
 .mobile-top-extended{
   @include allmobiles {
     top:50px;
