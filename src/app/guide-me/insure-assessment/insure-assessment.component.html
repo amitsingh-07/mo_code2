@@ -1,19 +1,19 @@
 <div class="container-fluid flex__wrapper flex--pad-reset mt0 mobile-top-non">
-        <div class="content">
-            <div class="col-lg-12 block__carousel-bar-container mt20"> 
-                <div class="block__carousel-bar active"></div>
-                <div class="block__carousel-bar"></div>
+    <div class="content">
+        <div class="col-lg-12 block__carousel-bar-container mt20"> 
+            <div class="block__carousel-bar active"></div>
+            <div class="block__carousel-bar"></div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz block__content">
+            <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset">
+                <img class="flex--right-align flex--sm-center img__header-img" src="assets/images/insure-needs.svg"/>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz block__content mt125 pab-mt30 sm-mt30">
-                <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset">
-                    <img class="flex--right-align flex--sm-center mr55 tab-mr35 pab-mlAuto pab-mrAuto img__header-img" src="assets/images/insure-needs.svg"/>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset flex--xs-grow">
-                    <div class="block__start-text-container flex--left-align ml55 sm-mlAuto tab-ml35 flex--xs-grow">
-                <p class="p__step-title">{{ 'INSURE_ASSESSMENT.CONTENT_STEP' | translate}}</p>
-                <p class="p__start-title">{{ 'INSURE_ASSESSMENT.CONTENT_TITLE' | translate}}</p>
-                <p class="p__start-sub-title">{{ 'INSURE_ASSESSMENT.CONTENT_DESC' | translate}}</p>
-                <button class="button__proceed" (click)="goNext()">
+            <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset flex--xs-grow">
+                <div class="block__start-text-container flex--left-align flex--xs-grow">
+                    <p class="p__step-title">{{ 'INSURE_ASSESSMENT.CONTENT_STEP' | translate}}</p>
+                    <p class="p__start-title mb10">{{ 'INSURE_ASSESSMENT.CONTENT_TITLE' | translate}}</p>
+                    <p class="p__start-sub-title mb40">{{ 'INSURE_ASSESSMENT.CONTENT_DESC' | translate}}</p>
+                    <button class="button__proceed" (click)="goNext()">
                             Proceed
                     </button>
                 </div>

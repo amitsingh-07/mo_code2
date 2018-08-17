@@ -7,7 +7,10 @@
     justify-content:space-between;
     width:calc(100%);
     margin:auto;
-    
+    @include allmobiles{
+        padding-left:10px;
+        padding-right:10px;
+    }
     .block__carousel-bar{
         position:relative;
         display:inline-block;
@@ -15,6 +18,9 @@
         min-height:5px;
         opacity:0.2;
         background-color:$app-backgrnd-secondary-color;
+        @include allmobiles{
+            width:calc(50% - 4px);
+        }
     }
     .block__carousel-bar.active{
         opacity:1;
@@ -27,7 +33,19 @@
     width:100%;
     flex:1 0 0;
     align-items:center;
-
+    margin-top:125px;
+    @include tablet{
+        margin-top:80px;
+    }
+    @include min768max768 {
+        margin-top:50px;
+    }
+    @include min568max767 {
+        margin-top:50px;
+    }
+    @include allmobiles {
+        margin-top:30px;
+        }
     .img__header-img{
         position:relative;
         display:block;
@@ -35,20 +53,47 @@
         max-width:400px;
         max-height:380px;
         transition:0.2s;
+        margin-right:55px;
+        @include min768max768{
+            margin-right:auto;
+        }
         @include min568max767{
             max-width:300px;
+            width:70%;
+            margin:auto;
             margin-bottom:50px;
+        }
+        @include allmobiles{    
+            height:auto;
+            margin:auto;
+            margin-bottom:30px;
+            max-width:200px;
+            width:70%;
         }
     }
     .block__start-text-container{
         position:relative;
         display:block;
         width:85%;
+        margin-left:55px;
+        @include tablet{
+            margin-left:35px;
+            margin-top:30px;
+        }
+        @include min768max768{
+            margin-left:auto;
+            text-align:center;
+            width:100%;
+        }
         @include min568max767{
             text-align:center;
+            width:100%;
         }
         @include allmobiles{
             width:100%;
+            text-align:center;
+            margin:auto;
+        
         }
         .p__step-title {
             opacity: 0.55;
@@ -93,45 +138,7 @@
             text-align: center;
             color: #00a7a7;
             cursor: pointer;
-        }
-    }
-}
-
-@include allmobiles{
-    .block__content{
-        margin-top:0px;
-        .img__header-img{
-            width:80%;
-            max-width:300px;
-            height:auto;
-            margin:auto;
-        }
-    }
-    .block__start-text-container{
-        width:100%;
-        text-align:center;
-        margin:auto;
-        margin-top:30px;
-        margin-bottom:15vh;
-    }
-
-    .block__carousel-bar-container{
-        padding-left:10px;
-        padding-right:10px;
-
-        .block__carousel-bar{
-            width:calc(50% - 4px);
-        }
-    }
-    .block__content{
-        padding:0px !important;
-        top:0px;
-        .img__header-img{
-           min-width:200px;
-           width:70%; 
-        }
-        .block__start-text-container{
-            .button__proceed{
+            @include allmobiles{
                 position: fixed;
                 width:100%;
                 bottom:0px;
