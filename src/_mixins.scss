@@ -64,6 +64,11 @@ $desktop-width: 1024px;
     @content;
   }
 }
+@mixin min768max768 {
+	@media (min-width: #{$tablet-width}) and (max-width: #{$tablet-width}) { 
+		@content
+	}
+}
 // Responsive grid media queries
 //iphone screen size are
 @mixin iphone4 {

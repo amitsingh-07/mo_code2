@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
@@ -60,6 +60,11 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
     this.headerService.setPageTitle(title, null, helpIcon);
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.guideMeService.protectionNeedsPageIndex--;
   }
 
   viewDetails(index) {
