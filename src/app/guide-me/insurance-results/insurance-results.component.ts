@@ -1,3 +1,4 @@
+import { GUIDE_ME_ROUTE_PATHS } from './../guide-me-routes.constants';
 import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -77,6 +78,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   simpleChange() {
     this.protectionNeedsData[0].amount = 784674;
     this.protectionNeedsData[1].amount = 2786123;
+    this.goToNext();
   }
 
   getProtectionNeeds() {
@@ -89,4 +91,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     }
   }
 
+  goToNext() {
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.RECOMMENDATIONS]);
+  }
 }
