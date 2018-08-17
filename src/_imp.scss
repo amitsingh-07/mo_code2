@@ -69,8 +69,16 @@
   margin-top: 5px !important;
 }
 
+.mt20 {
+  margin-top: 20px !important;
+}
+
 .mt30 {
   margin-top: 30px !important;
+}
+
+.mt125 {
+  margin-top: 125px !important;
 }
 
 .mb0 {
@@ -109,12 +117,20 @@
   margin-bottom: 90px !important;
 }
 
+.ml55 {
+  margin-left: 55px !important;
+}
+
 .mr10 {
   margin-right: 10px !important;
 }
 
 .mr17 {
   margin-right: 17px !important;
+}
+
+.mr55 {
+  margin-right: 55px !important;
 }
 
 .mr100 {
@@ -142,6 +158,25 @@
 }
 
 //Base Styles for mobile only
+@include min568max767{
+  .pab-mt30{
+    margin-top:30px !important;
+  }
+  .pab-mrAuto{
+    margin-right:auto !important;
+  }
+  .pab-mlAuto{
+    margin-left:auto !important;
+  }
+}
+@include tablet{
+  .tab-ml35{
+    margin-left:35px !important;
+  }       
+  .tab-mr35{
+    margin-right:35px !important;
+  }
+}
 @include allmobiles {
   .sm-pb0 {
     padding-bottom:0px !important;
@@ -151,6 +186,12 @@
   }
   .sm-pb60 {
     padding-bottom:60px !important;
+  }
+  .sm-mt20 {
+    margin-top: 20px !important;
+  }
+  .sm-mt30 {
+    margin-top: 30px !important;
   }
   .sm-mt50 {
     margin-top: 50px !important;
@@ -172,6 +213,12 @@
   }
   .sm-mb60 {
     margin-bottom: 50px !important;
+  }
+  .sm-mlAuto{
+    margin-left:auto !important;
+  }
+  .sm-mrAuto{
+    margin-right:auto !important;
   }
 }
 
