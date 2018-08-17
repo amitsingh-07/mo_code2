@@ -206,6 +206,7 @@ export class GuideMeService {
     this.guideMeFormData.otherLiabilities = data.otherLiabilities;
     this.commit();
   }
+
   getCiAssessment(): CiAssessment {
     return {
       ciCoverageAmt: this.guideMeFormData.ciCoverageAmt,
@@ -215,6 +216,7 @@ export class GuideMeService {
       untilRetirementAge: this.guideMeFormData.untilRetirementAge
     };
   }
+
   setCiAssessment(data: CiAssessment) {
     this.guideMeFormData.ciCoverageAmt = data.ciCoverageAmt;
     this.guideMeFormData.ciMultiplier = data.ciMultiplier;
