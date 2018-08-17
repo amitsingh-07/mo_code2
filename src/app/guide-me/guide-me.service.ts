@@ -40,11 +40,6 @@ export class GuideMeService {
   protectionNeedsArray: any;
   isMyOcpDisabilityFormValid = false;
 
-  // Variables for Insurance Results Generation
-  private result_title: string;
-  private result_icon: string;
-  private result_value;
-
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
 
@@ -315,29 +310,6 @@ export class GuideMeService {
     console.log('get Protection Needs Triggered');
     let selectedProtectionNeeds = [];
     selectedProtectionNeeds = this.getProtectionNeeds().protectionNeedData;
-    if (selectedProtectionNeeds) {
-      selectedProtectionNeeds.forEach( (protectionNeed) => {
-        this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeed));
-      });
-      return this.protectionNeedsArray;
-    }
-  }
-
-  createProtectionNeedResult(data) {
-    this.result_title = data.protectionType;
-    this.result_icon = (data.protectionType.replaceAll(' ', '-')) + '-icon.svg';
-    switch (data.protectionType) {
-      case 'Life Protection':
-        break;
-      case 'Critical Illness':
-        break;
-      case 'Occupational Disability':
-        break;
-      case 'Long Term Care':
-        break;
-      case 'Hospital Plan':
-        this.result_value = null;
-        break;
-    }
+    return selectedProtectionNeeds;
   }
 }

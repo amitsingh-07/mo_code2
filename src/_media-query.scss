@@ -97,6 +97,9 @@
 .mobile-top-extended{
   @include allmobiles {
     top:50px;
+    &.more{
+      top:70px;
+    }
   }
   @include min300max350{
     top:50px;

@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="result__wrapper flex__box--horz flex__box--sm-horz center mb90 sm-mb0">
-          <app-insurance-result [data]="protectionNeed" (Details)="viewDetails ($event)" *ngFor = "let protectionNeed of protectionNeedsData"></app-insurance-result>
+          <app-insurance-result [data]="protectionNeed" (Details)="viewDetails ($event)" *ngFor = "let protectionNeed of protectionNeedsArray"></app-insurance-result>
         </div>
       </div>
     </div>
