@@ -1,3 +1,4 @@
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -53,7 +54,8 @@ import { InsuranceResultComponent } from './insurance-results/insurance-result/i
     OcpDisabilityComponent,
     HospitalPlanComponent,
     InsuranceResultsComponent,
-    InsuranceResultComponent
+    InsuranceResultComponent,
+    RecommendationsComponent
   ],
   providers: [CurrencyPipe]
 })

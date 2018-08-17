@@ -81,13 +81,19 @@
     padding-left: 15px !important;
     padding-right: 15px !important;
     position: relative;
-    top: 35px;
+    //top: 35px;
     height: 100%;
-    bottom: 60px;
+    //bottom: 60px;
+    padding: 80px 0;
   }
 }
 .top--limited{
   top:30px;
+}
+.mobile-top-non{
+  @include allmobiles {
+    top:0px;
+  }
 }
 .mobile-top-extended{
   @include allmobiles {
@@ -143,4 +149,11 @@
       height: 180px;
     }
   }
+}
+
+/*IE11 Speific Styles*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+  .modal.show .modal-dialog {
+    padding-top: 10%;
+  }  
 }
