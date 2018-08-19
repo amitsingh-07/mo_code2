@@ -7,10 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from '../../guide-me.service';
-import {
-  LifeProtectionModalComponent
-} from './life-protection-modal/life-protection-modal.component';
-
+import {LifeProtectionModalComponent} from './life-protection-modal/life-protection-modal.component';
 const Regexp = new RegExp('[,]', 'g');
 const MAX_YEARS_NEEDED = 100;
 const MAX_AGE = 100;
