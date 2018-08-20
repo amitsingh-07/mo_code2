@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
+  InsuranceResultModalComponent
+} from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
+import {
   LifeProtectionModalComponent
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
@@ -36,7 +39,8 @@ export function createTranslateLoader(http: HttpClient) {
     MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
-    LifeProtectionModalComponent
+    LifeProtectionModalComponent,
+    InsuranceResultModalComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,8 @@ export function createTranslateLoader(http: HttpClient) {
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, LifeProtectionModalComponent, MobileModalComponent]
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent,
+     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent]
 })
 
 export class AppModule {

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { ApiService } from '../shared/http/api.service';
 import { CiAssessment } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
@@ -25,7 +27,7 @@ export class GuideMeCalculateService {
 
   constructor(private http: HttpClient, private apiService: ApiService, private guideMeService: GuideMeService) {}
   // Math Regex Process
-  summarizeCost( cost: number): string{
+  summarizeCost( cost: number): string {
     let sum_string: string;
     sum_string = '$750K';
 
@@ -35,7 +37,6 @@ export class GuideMeCalculateService {
     }
     return sum_string;
   }
-
   // Support Functions:
 
     // ---Education Support Amounts
@@ -91,33 +92,13 @@ export class GuideMeCalculateService {
 
   // Dependents
   getProtectionSupportSum(): number {
-    const dependents = this.guideMeService.getLifeProtection();
-    /*
-    let lifeProtectionSum: number;
-    dependents[0].forEach( (dependent) => {
-      if (dependent.supportAmount) {
-        lifeProtectionSum += dependent.supportAmount;
-      }
-    });
-    
-    return lifeProtectionSum;
-    */
+    const lifeProtection = this.guideMeService.getLifeProtection();
     return 100124;
   }
 
   // Education Support
   getEducationSupportSum(): number {
-    /*
-    const dependents = this.guideMeService.getLifeProtection();
-    let educationSum: number;
-    dependents[0].forEach( (dependent) => {
-      if (dependent.educationSupport) {
-         const education = this.getEducationSupportAmt( dependent.eduSupportCourse, dependent.educSupportCountry);
-         educationSum += (education[0] + education[1]);
-      }
-    });
-    */
-    return 1241;
+    return 100124;
   }
   // Liabilities Amount
   getLiabilitiesSum(): any {

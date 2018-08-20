@@ -9,6 +9,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { GuideMeCalculateService } from './../guide-me-calculate.service';
 import { GuideMeService } from './../guide-me.service';
+import { InsuranceResultModalComponent } from './insurance-result-modal/insurance-result-modal.component';
 
 const assetImgPath = './assets/images/';
 @Component({
@@ -23,7 +24,30 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   protectionNeeds: any;
   // protectionNeedsData: any;
 
-  protectionNeedsArray: IResultObject[] = [];
+  // protectionNeedsArray: IResultObject[] = [];
+
+  //JSON
+  protectionNeedsArray = [{
+    icon: 'life-protection-icon.svg',
+    title: 'Life Protection',
+    amount: '225364'
+  }, {
+    icon: 'critical-illness-icon.svg',
+    title: 'Critical Illness',
+    amount: '293963'
+  }, {
+    icon: 'occupational-disability-icon.svg',
+    title: 'Occupational Disability',
+    amount: '2939'
+  }, {
+    icon: 'long-term-care-icon.svg',
+    title: 'Long-Term Care',
+    amount: '509'
+  }, {
+    icon: 'hospital-plan-icon.svg',
+    title: 'Hospital Plan',
+    amount: '50965'
+  }];
 
   constructor(private router: Router, public headerService: HeaderService,
               private translate: TranslateService, private guideMeService: GuideMeService,
@@ -33,7 +57,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
       this.setPageTitle(this.pageTitle, null, false);
     });
-    this.getProtectionNeeds();
+    // this.getProtectionNeeds();
   }
 
 ngOnInit() {
@@ -49,11 +73,28 @@ onPopState(event) {
   }
 
 viewDetails(index) {
-    alert('working' + index.title);
+  // tslint:disable-next-line:prefer-const
+
+  switch ( index.title ) {
+      case 'Life Protection':
+        this.showDetailsModal(index);
+        break;
+      case 'Critical Illness':
+        this.showDetailsModal(index);
+        break;
+    }
     // tslint:disable-next-line:no-commented-code
     // this.protectionNeedsData = this.protectionNeedsData.slice(0);
     // console.log(this.protectionNeedsData);
   }
+
+showDetailsModal(data: any) {
+  const ref = this.modal.open(InsuranceResultModalComponent, {
+    centered: true
+  });
+  // tslint:disable-next-line:max-line-length
+  ref.componentInstance.title = data.title;
+}
 
 simpleChange() {
     this.protectionNeedsArray[0].amount = '784674';
