@@ -1,5 +1,4 @@
 @import '../../../variables';
-@import '../../../mixins';
 .profile__input__lbl {
   text-transform: lowercase;
   color: $text-color-secondary;
@@ -19,12 +18,4 @@
   margin-top: 15px;
   font-size: 16px;
   font-size: $muli-regular;
-}
-.container-fluid {
-  @include max360 {
-    padding: 100px 0;
-  }
-  @include iphone5 {
-    padding: 100px 0;
-  }
 }

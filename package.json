@@ -31,6 +31,7 @@
     "core-js": "^2.5.4",
     "eslint": "^5.1.0",
     "font-awesome": "^4.7.0",
+    "jqwidgets-framework": "^6.0.4",
     "ng2-nouislider": "^1.7.12",
     "ngx-translate-multi-http-loader": "^2.0.2",
     "nouislider": "^11.1.0",

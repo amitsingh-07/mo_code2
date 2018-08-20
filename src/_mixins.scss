@@ -86,11 +86,6 @@ $desktop-width: 1024px;
     @content;
   }
 }
-@mixin max360 {
-  @media (max-width: #{$mobile360-width}) {
-    @content;
-  }
-}
 @mixin iphone6 {
   @media (min-width: #{$mobile375-width}) and (max-width: #{$mobile414-width - 1px}) {
     @content;

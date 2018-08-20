@@ -1,4 +1,3 @@
-import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -36,8 +35,7 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.LONG_TERM_CARE, component: LtcAssessmentComponent},
   { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent},
   { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent},
-  { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent},
-  { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent}
+  { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent}
 ];
 
 @NgModule({

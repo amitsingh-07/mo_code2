@@ -4,10 +4,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
+import { HelpModalComponent } from '../help-modal/help-modal.component';
 
 const assetImgPath = './assets/images/';
 
