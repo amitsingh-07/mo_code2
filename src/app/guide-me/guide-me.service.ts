@@ -17,8 +17,6 @@ import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
-const LOCAL_STORAGE_KEY = 'app_local_storage_key';
-
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
 const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
 const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
@@ -42,25 +40,7 @@ export class GuideMeService {
   protectionNeedsArray: any;
   isMyOcpDisabilityFormValid = false;
 
-  // Variables for Insurance Results Generation
-  private result_title: string;
-  private result_icon: string;
-  private result_value;
-
   constructor(private http: HttpClient, private apiService: ApiService) {
-    this.getGuideMeFormData();
-  }
-
-  commit() {
-    if (window.localStorage) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.guideMeFormData));
-    }
-  }
-
-  clearData() {
-    if (window.localStorage) {
-      localStorage.clear();
-    }
   }
 
   getProfile(): Profile {
@@ -72,7 +52,6 @@ export class GuideMeService {
   setProfile(data: Profile) {
     this.isProfileFormValid = true;
     this.guideMeFormData.myProfile = data.myProfile;
-    this.commit();
   }
 
   getUserInfo(): UserInfo {
@@ -92,14 +71,10 @@ export class GuideMeService {
     this.guideMeFormData.smoker = data.smoker;
     this.guideMeFormData.customDob = data.customDob;
     this.guideMeFormData.dependent = data.dependent;
-    this.commit();
   }
 
-  // Return the entire GuideMe Form Data
   getGuideMeFormData(): GuideMeFormData {
-    if (window.localStorage && localStorage.getItem(LOCAL_STORAGE_KEY)) {
-      this.guideMeFormData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    }
+    // Return the entire GuideMe Form Data
     return this.guideMeFormData;
   }
 
@@ -116,7 +91,6 @@ export class GuideMeService {
   setProtectionNeeds(data) {
     this.isProtectionNeedFormValid = true;
     this.guideMeFormData.protectionNeedData = data;
-    this.commit();
   }
 
   getProtectionNeedsList() {
@@ -134,8 +108,8 @@ export class GuideMeService {
   }
 
   setLifeProtection(data) {
+    console.log('dependent set');
     this.guideMeFormData.lifeProtectionData = data;
-    this.commit();
   }
 
   /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
@@ -152,7 +126,6 @@ export class GuideMeService {
     this.guideMeFormData.monthlySalary = data.monthlySalary;
     this.guideMeFormData.annualBonus = data.annualBonus;
     this.guideMeFormData.otherIncome = data.otherIncome;
-    this.commit();
   }
 
   getMyExpenses(): IMyExpenses {
@@ -166,7 +139,6 @@ export class GuideMeService {
     this.isMyExpensesFormValid = true;
     this.guideMeFormData.monthlyInstallment = data.monthlyInstallment;
     this.guideMeFormData.otherExpenses = data.otherExpenses;
-    this.commit();
   }
 
   getMyAssets(): IMyAssets {
@@ -188,7 +160,6 @@ export class GuideMeService {
     this.guideMeFormData.investmentProperties = data.investmentProperties;
     this.guideMeFormData.investments = data.investments;
     this.guideMeFormData.otherAssets = data.otherAssets;
-    this.commit();
   }
 
   getMyLiabilities(): IMyLiabilities {
@@ -204,9 +175,7 @@ export class GuideMeService {
     this.guideMeFormData.propertyLoan = data.propertyLoan;
     this.guideMeFormData.carLoan = data.carLoan;
     this.guideMeFormData.otherLiabilities = data.otherLiabilities;
-    this.commit();
   }
-
   getCiAssessment(): CiAssessment {
     return {
       ciCoverageAmt: this.guideMeFormData.ciCoverageAmt,
@@ -216,12 +185,10 @@ export class GuideMeService {
       untilRetirementAge: this.guideMeFormData.untilRetirementAge
     };
   }
-
   setCiAssessment(data: CiAssessment) {
     this.guideMeFormData.ciCoverageAmt = data.ciCoverageAmt;
     this.guideMeFormData.ciMultiplier = data.ciMultiplier;
     this.guideMeFormData.untilRetirementAge = data.untilRetirementAge;
-    this.commit();
   }
 
   getMyOcpDisability(): IMyOcpDisability {
@@ -239,7 +206,6 @@ export class GuideMeService {
     this.guideMeFormData.sliderValue = data.sliderValue;
     this.guideMeFormData.retirementAge = data.retirementAge;
     this.guideMeFormData.selectedEmployee = data.selectedEmployee;
-    this.commit();
   }
 
   getLongTermCare(): LongTermCare {
@@ -251,7 +217,6 @@ export class GuideMeService {
   setLongTermCare(data) {
     this.isLongTermCareFormValid = true;
     this.guideMeFormData.longTermCareData = data;
-    this.commit();
   }
 
   getLongTermCareList() {
@@ -267,7 +232,6 @@ export class GuideMeService {
   setHospitalPlan(data) {
     this.isHospitalPlanFormValid = true;
     this.guideMeFormData.hospitalPlanData = data;
-    this.commit();
   }
 
   getHospitalPlanList() {
@@ -337,38 +301,15 @@ export class GuideMeService {
 
     if (this.protectionNeedsPageIndex < selectedProtectionNeeds.length) {
       return selectedProtectionNeeds[this.protectionNeedsPageIndex];
-    } else {
-      return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
-    }
+      } else {
+        return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
+      }
   }
 
   getProtectionNeedsResults() {
     console.log('get Protection Needs Triggered');
     let selectedProtectionNeeds = [];
     selectedProtectionNeeds = this.getProtectionNeeds().protectionNeedData;
-    if (selectedProtectionNeeds) {
-      selectedProtectionNeeds.forEach((protectionNeed) => {
-        this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeed));
-      });
-      return this.protectionNeedsArray;
-    }
-  }
-
-  createProtectionNeedResult(data) {
-    this.result_title = data.protectionType;
-    this.result_icon = (data.protectionType.replaceAll(' ', '-')) + '-icon.svg';
-    switch (data.protectionType) {
-      case 'Life Protection':
-        break;
-      case 'Critical Illness':
-        break;
-      case 'Occupational Disability':
-        break;
-      case 'Long Term Care':
-        break;
-      case 'Hospital Plan':
-        this.result_value = null;
-        break;
-    }
+    return selectedProtectionNeeds;
   }
 }

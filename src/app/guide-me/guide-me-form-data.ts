@@ -2,6 +2,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IDependent } from './life-protection/life-protection-form/dependent.interface';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
 export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
@@ -13,7 +14,7 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     smoker: string;
     dependent: number;
     protectionNeedData: ProtectionNeeds;
-    lifeProtectionData: FormGroup;
+    lifeProtectionData: IDependent[];
 
     // My Income
     monthlySalary: number;

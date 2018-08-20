@@ -123,8 +123,7 @@
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
-    "DESCRIPTION-PART1": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a ",
-    "DESCRIPTION_BOLD": "Critical Illness.",
+    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.",
     "COVERAGE_AMT": "Coverage Amount",
     "COVERAGE_AMT_DESC": "Based on the information below",
     "ANNUAL_SALARY": "Annual Salary",
@@ -178,7 +177,8 @@
     "STATIC_DESCRIPTION": "In the final step, we will be sharing with you the coverage you need based on our assessment",
     "COVERAGE_YOU_NEED": "Coverage You Need",
     "ADD_COVERAGE": {
-      "LBL": "Add Existing Coverage For More Accurate Result"
+      "LBL": "Add Existing Coverage?",
+      "SUB_LBL": "Tap to add coverages"
     },
     "PROCEED": {
       "LBL": "Continue To Recommendation"
@@ -186,9 +186,5 @@
     "RESULT_BLOCK": {
       "VIEW_DETAILS": "View Details"
     }
-  },
-  "CUSTOM_MODAL": {
-    "MODAL_TITLE": "Insurance Results",
-    "MODAL_DESC":"In the final step, we will be sharing with you the coverage you need based on our assessment."
   }
 }

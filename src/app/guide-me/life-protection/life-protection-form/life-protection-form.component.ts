@@ -7,7 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from '../../guide-me.service';
-import {LifeProtectionModalComponent} from './life-protection-modal/life-protection-modal.component';
+import {
+  LifeProtectionModalComponent
+} from './life-protection-modal/life-protection-modal.component';
+
 const Regexp = new RegExp('[,]', 'g');
 const MAX_YEARS_NEEDED = 100;
 const MAX_AGE = 100;
@@ -41,6 +44,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   eduSupportCourse = ['Medicine', 'Non-Medicine'];
   eduSupportCountry = ['Singapore', 'USA', 'United Kingdom', 'Australia'];
   eduSupportNationality = ['Singaporean', 'Singapore PR', 'Foreigner'];
+  currentFormData: any;
 
   dependentSliderConfig: any = {
     behaviour: 'snap',
@@ -190,7 +194,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   save(form: any) {
-    this.guideMeService.setLifeProtection(form.value);
+    this.currentFormData = this.lifeProtectionForm.value.dependents;
+    this.guideMeService.setLifeProtection(this.currentFormData);
     return true;
   }
 

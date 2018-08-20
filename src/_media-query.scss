@@ -84,12 +84,15 @@
     //top: 35px;
     height: 100%;
     //bottom: 60px;
-    padding: 80px 0;
+    &.bottom-none {
+      bottom: 0px;
+      top:0px;
+    }
   }
 }
 .top--limited{
   top:30px;
-}
+}.container-fluid
 .mobile-top-non{
   @include allmobiles {
     top:0px;
@@ -98,6 +101,9 @@
 .mobile-top-extended{
   @include allmobiles {
     top:50px;
+    &.more{
+      top:70px;
+    }
   }
   @include min300max350{
     top:50px;
@@ -149,11 +155,4 @@
       height: 180px;
     }
   }
-}
-
-/*IE11 Speific Styles*/
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
-  .modal.show .modal-dialog {
-    padding-top: 10%;
-  }  
 }

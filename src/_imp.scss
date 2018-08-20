@@ -129,6 +129,10 @@
   margin-right: 17px !important;
 }
 
+.mr20 {
+  margin-right: 20px !important;
+}
+
 .mr55 {
   margin-right: 55px !important;
 }
@@ -159,8 +163,14 @@
 
 //Base Styles for mobile only
 @include min568max767{
+  .pab-mb15{
+    margin-bottom:15px !important;
+  }
   .pab-mt30{
     margin-top:30px !important;
+  }
+  .pab-mt80{
+    margin-top:80px !important;
   }
   .pab-mrAuto{
     margin-right:auto !important;
@@ -208,6 +218,9 @@
   .sm-mb20 {
     margin-bottom: 20px !important;
   }
+  .sm-mb30 {
+    margin-bottom: 30px !important;
+  }
   .sm-mb50 {
     margin-bottom: 50px !important;
   }
@@ -216,6 +229,9 @@
   }
   .sm-mlAuto{
     margin-left:auto !important;
+  }
+  .sm-mr0{
+    margin-right: 0px !important;
   }
   .sm-mrAuto{
     margin-right:auto !important;
