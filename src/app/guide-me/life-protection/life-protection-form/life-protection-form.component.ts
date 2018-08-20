@@ -44,6 +44,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   eduSupportCourse = ['Medicine', 'Non-Medicine'];
   eduSupportCountry = ['Singapore', 'USA', 'United Kingdom', 'Australia'];
   eduSupportNationality = ['Singaporean', 'Singapore PR', 'Foreigner'];
+  currentFormData: any;
 
   dependentSliderConfig: any = {
     behaviour: 'snap',
@@ -193,7 +194,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   save(form: any) {
-    this.guideMeService.setLifeProtection(form.value);
+    this.currentFormData = this.lifeProtectionForm.value.dependents;
+    this.guideMeService.setLifeProtection(this.currentFormData);
     return true;
   }
 

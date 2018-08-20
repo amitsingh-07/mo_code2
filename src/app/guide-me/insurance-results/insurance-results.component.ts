@@ -24,9 +24,10 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   protectionNeeds: any;
   // protectionNeedsData: any;
 
-  // protectionNeedsArray: IResultObject[] = [];
+  protectionNeedsArray: IResultObject[] = [];
 
   //JSON
+  /*
   protectionNeedsArray = [{
     icon: 'life-protection-icon.svg',
     title: 'Life Protection',
@@ -48,7 +49,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     title: 'Hospital Plan',
     amount: '50965'
   }];
-
+  */
   constructor(private router: Router, public headerService: HeaderService,
               private translate: TranslateService, private guideMeService: GuideMeService,
               private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal) {
@@ -57,7 +58,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
       this.setPageTitle(this.pageTitle, null, false);
     });
-    // this.getProtectionNeeds();
+    this.getProtectionNeeds();
   }
 
 ngOnInit() {

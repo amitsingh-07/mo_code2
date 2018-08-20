@@ -14,6 +14,7 @@ import { GuideMeService } from './guide-me.service';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IDependent } from './life-protection/life-protection-form/dependent.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
 import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
@@ -92,8 +93,17 @@ export class GuideMeCalculateService {
 
   // Dependents
   getProtectionSupportSum(): number {
-    const lifeProtection = this.guideMeService.getLifeProtection();
-    return 100124;
+    let protectionSupportSum: number;
+    const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
+    lifeProtection.forEach((dependent) => {
+        console.log(dependent);
+        if (dependent.supportAmountRange) {
+          console.log('triggered');
+          protectionSupportSum += dependent.supportAmountRange;
+        }
+    });
+    console.log(protectionSupportSum);
+    return protectionSupportSum;
   }
 
   // Education Support
