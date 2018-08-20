@@ -39,7 +39,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ciSliderConfig: any = {
     behaviour: 'snap',
-    start: 75,
+    start: 0,
     connect: [true, false],
     format: {
       to: (value) => {
@@ -77,6 +77,9 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
       this.coveragePercent = this.formValues.sliderValue;
     }
     this.monthlyIncome = this.guideMeService.getMyIncome();
+    if (!this.monthlyIncome.monthlySalary) {
+      this.monthlyIncome.monthlySalary = 0;
+    }
     this.coverageAmount = (this.monthlyIncome.monthlySalary * this.coveragePercent) / 100;
     if (!this.coverageAmount) {
       this.coverageAmount = 0;
@@ -105,9 +108,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit() {
-    if (this.guideMeService.isMyOcpDisabilityFormValid) {
       this.ocpDisabilitySlider.writeValue(this.coveragePercent);
-    }
   }
 
   onSliderChange(value) {
