@@ -37,13 +37,13 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   isNavPrevEnabled;
   isNavNextEnabled;
   dependentCountOptions = [0, 1, 2, 3, 4, 5];
-  genderOptions = ['Male', 'Female'];
-  relationshipOptions = ['Spouse', 'Sibling', 'Parent', 'Children'];
+  genderOptions;
+  relationshipOptions;
   ageOptions;
   yearsNeededOptions;
-  eduSupportCourse = ['Medicine', 'Non-Medicine'];
-  eduSupportCountry = ['Singapore', 'USA', 'United Kingdom', 'Australia'];
-  eduSupportNationality = ['Singaporean', 'Singapore PR', 'Foreigner'];
+  eduSupportCourse;
+  eduSupportCountry;
+  eduSupportNationality;
 
   dependentSliderConfig: any = {
     behaviour: 'snap',
@@ -69,6 +69,11 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.supportAmountTitle = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_TITLE');
       this.supportAmountMessage = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_MESSAGE');
+      this.genderOptions = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.GENDER');
+      this.relationshipOptions = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.RELATIONSHIP');
+      this.eduSupportCourse = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_COURSE');
+      this.eduSupportCountry = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_COUNTRY');
+      this.eduSupportNationality = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_NATIONALITY');
     });
 
     this.yearsNeededOptions = Array(MAX_YEARS_NEEDED).fill(0).map((e, i) => i);
@@ -80,7 +85,6 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       dependents: this.formBuilder.array([this.createDependentForm()])
     });
     this.activeFormIndex = 0;
-    //this.dependentFormCount = this.dependentCount;
     this.refreshDependentForm();
   }
 
@@ -180,7 +184,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.updateNavLinks();
   }
 
-  showLifeProtectionSupportAmountModal() {
+  showSupportAmountModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.supportAmountTitle;
     ref.componentInstance.errorMessage = this.supportAmountMessage;

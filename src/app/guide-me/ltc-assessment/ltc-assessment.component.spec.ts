@@ -40,15 +40,6 @@ describe('LtcAssessmentComponent', () => {
      Long-Term Care with the help of a caregiver. Select the type of caregiver that you prefer.`);
   }));
 
-  // User can select a long term care standard by clicking on the respective type.
-  it('should call radioTest on radio button change', () => {
-    spyOn(component, 'radioTest').and.callThrough();
-    const options: DebugElement[] = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
-    const secondOption: HTMLInputElement = options[1].nativeElement;
-    secondOption.checked = true;
-    expect(component.radioTest).toHaveBeenCalled();
-  });
-
   // Testing the Mobile Pop-up Button
   it('testing the mobile pop-up button', async(() => {
     spyOn(component, 'showMobilePopUp');
