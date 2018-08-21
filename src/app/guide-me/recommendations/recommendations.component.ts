@@ -104,11 +104,16 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   selectPlan(data) {
     if (data.isSelected) {
-      console.log('selected plan :' + data.plan);
+      console.log('selected plan');
+      console.log(data.plan);
       this.selectedPlans.push(data.plan);
     } else {
-      console.log('de-selected plan :' + data.plan);
-      this.selectedPlans.pop(data.plan);
+      console.log('de-selected plan');
+      console.log(data.plan);
+      const index: number = this.selectedPlans.indexOf(data.plan);
+      if (index !== -1) {
+        this.selectedPlans.splice(index, 1);
+      }
     }
   }
 

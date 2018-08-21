@@ -1,9 +1,12 @@
+import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { FormGroup } from '@angular/forms';
 
+import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { IMyAssets } from './my-assets/my-assets.interface';
+import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
 export class GuideMeFormData {
@@ -31,20 +34,14 @@ export class GuideMeFormData {
     liabilities: IMyLiabilities;
 
     // Critical Illness Assessment
-    ciCoverageAmt: number;
-    annualSalary: number;
-    ciMultiplier: number;
-    untilRetirementAge: number;
+    criticalIllness: CriticalIllnessData;
 
     // Occupational Disability
-    coverageAmount: number;
-    retirementAge: number;
-    selectedEmployee: string;
-    sliderValue: number;
+    occupationalDisability: IMyOcpDisability;
 
     // Long Term Care
     longTermCareData: string;
 
     // Hospital Plan
-    hospitalPlanData: string;
+    hospitalPlanData: HospitalPlan;
 }

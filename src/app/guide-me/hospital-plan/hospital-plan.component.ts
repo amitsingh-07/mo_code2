@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/map';
 
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
+import { HospitalPlan } from './hospital-plan';
 
 const assetImgPath = './assets/images/';
 
@@ -25,8 +26,9 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   pageSubTitle: string;
 
   hospitalPlanForm: FormGroup;
-  hospitalPlanFormValues: any;
+  hospitalPlanFormValues: HospitalPlan;
   hospitalPlanList: any[];
+  isFormValid = false;
 
   constructor(
     private router: Router,
@@ -42,9 +44,9 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.hospitalPlanFormValues = this.guideMeService.getGuideMeFormData();
+    this.hospitalPlanFormValues = this.guideMeService.getHospitalPlan();
     this.hospitalPlanForm = new FormGroup({
-      hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalPlanData, Validators.required)
+      hospitalPlan: new FormControl(this.hospitalPlanFormValues, Validators.required)
     });
 
     this.guideMeService.getHospitalPlanList().subscribe((data) => {
@@ -61,12 +63,20 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
     this.headerService.setPageTitle(title, subTitle, false);
   }
 
+  validateForm(hospitalPlan) {
+    this.hospitalPlanFormValues = hospitalPlan;
+    this.isFormValid = true;
+  }
+
   save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setHospitalPlan(form.value);
+      const selectedPlan: HospitalPlan = {
+        hospitalClass: this.hospitalPlanFormValues.hospitalClass,
+        hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
+        hospitalClassId: this.hospitalPlanFormValues.id,
+        isFullRider: false
+      };
+      this.guideMeService.setHospitalPlan(selectedPlan);
       return true;
-    }
-    return false;
   }
 
   goToNext(form) {

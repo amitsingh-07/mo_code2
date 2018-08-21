@@ -1,6 +1,8 @@
 export interface IMyOcpDisability {
     coverageAmount: number;
-    retirementAge: number;
+    maxAge: number;
+    percentageCoverage: any;
+    // coverageDuration: number;
+    // employmentStatusId: number;
     selectedEmployee: string;
-    sliderValue: any;
 }
