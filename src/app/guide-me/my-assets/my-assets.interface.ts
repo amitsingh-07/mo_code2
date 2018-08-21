@@ -3,6 +3,6 @@ export interface IMyAssets {
     cpf: number;
     homeProperty: number;
     investmentProperties: number;
-    investments: number;
+    otherInvestments: number;
     otherAssets: number;
 }

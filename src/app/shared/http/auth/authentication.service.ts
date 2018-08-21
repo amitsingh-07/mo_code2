@@ -29,7 +29,7 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (response && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem(APP_JWT_TOKEN_KEY, response.objectList[0].securityToken);
+          sessionStorage.setItem(APP_JWT_TOKEN_KEY, response.objectList[0].securityToken);
           return response.objectList[0].securityToken;
         }
         return null;
@@ -38,11 +38,11 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem(APP_JWT_TOKEN_KEY);
+    sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
   }
 
   public getToken(): string {
-    return localStorage.getItem(APP_JWT_TOKEN_KEY);
+    return sessionStorage.getItem(APP_JWT_TOKEN_KEY);
   }
 
   public isAuthenticated(): boolean {

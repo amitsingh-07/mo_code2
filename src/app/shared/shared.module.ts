@@ -6,12 +6,13 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from './header/header.component';
 import { LoaderComponent } from './modal/loader/loader.component';
 import { CustomTranslateLoader } from './translate/custom-translate-loader';
+import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [HeaderComponent, LoaderComponent, TranslateModule]
+  declarations: [HeaderComponent, LoaderComponent, TranslateModule, PlanWidgetComponent]
 })
 export class SharedModule {
 

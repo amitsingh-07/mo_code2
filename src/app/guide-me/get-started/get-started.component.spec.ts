@@ -5,7 +5,6 @@ import { GuideMeService } from './../guide-me.service';
 import { GetStartedFormComponent } from './get-started-form/get-started-form.component';
 import { UserInfo } from './get-started-form/user-info';
 
-
 describe('GetStartedFormComponent', () => {
   let component: GetStartedFormComponent;
   let fixture: ComponentFixture<GetStartedFormComponent>;

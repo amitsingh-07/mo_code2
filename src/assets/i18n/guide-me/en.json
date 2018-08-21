@@ -191,5 +191,9 @@
     "RESULT_BLOCK": {
       "VIEW_DETAILS": "View Details"
     }
+  },
+  "RECOMMENDATIONS": {
+    "TITLE": "Recommendations",
+    "DESCRIPTION": "Personalise your insurance coverage by selecting the plans you are interested in."
   }
 }

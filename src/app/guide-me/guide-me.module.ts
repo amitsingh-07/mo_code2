@@ -1,3 +1,4 @@
+import { PlanWidgetComponent } from './../shared/widgets/plan-widget/plan-widget.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -55,7 +56,8 @@ import { InsuranceResultComponent } from './insurance-results/insurance-result/i
     HospitalPlanComponent,
     InsuranceResultsComponent,
     InsuranceResultComponent,
-    RecommendationsComponent
+    RecommendationsComponent,
+    PlanWidgetComponent
   ],
   providers: [CurrencyPipe]
 })

@@ -1,10 +1,12 @@
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+
 import { IMyExpenses } from './expenses/expenses.interface';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IMyAssets } from './my-assets/my-assets.interface';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
-export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
+export class GuideMeFormData {
     myProfile: number;
     email: string;
     gender: string;
@@ -12,30 +14,21 @@ export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
     customDob: string;
     smoker: string;
     dependent: number;
+
     protectionNeedData: ProtectionNeeds;
     lifeProtectionData: FormGroup;
 
     // My Income
-    monthlySalary: number;
-    annualBonus: number;
-    otherIncome: number;
+    income: IMyIncome;
 
     // My Expenses
-    monthlyInstallment: number;
-    otherExpenses: number;
+    expenses: IMyExpenses;
 
     // My Assets
-    cash: number;
-    cpf: number;
-    homeProperty: number;
-    investmentProperties: number;
-    investments: number;
-    otherAssets: number;
+    assets: IMyAssets;
 
     // My Liabilities
-    propertyLoan: number;
-    carLoan: number;
-    otherLiabilities: number;
+    liabilities: IMyLiabilities;
 
     // Critical Illness Assessment
     ciCoverageAmt: number;

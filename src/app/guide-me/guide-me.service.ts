@@ -52,14 +52,14 @@ export class GuideMeService {
   }
 
   commit() {
-    if (window.localStorage) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.guideMeFormData));
+    if (window.sessionStorage) {
+      sessionStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.guideMeFormData));
     }
   }
 
   clearData() {
-    if (window.localStorage) {
-      localStorage.clear();
+    if (window.sessionStorage) {
+      sessionStorage.clear();
     }
   }
 
@@ -97,8 +97,8 @@ export class GuideMeService {
 
   // Return the entire GuideMe Form Data
   getGuideMeFormData(): GuideMeFormData {
-    if (window.localStorage && localStorage.getItem(LOCAL_STORAGE_KEY)) {
-      this.guideMeFormData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (window.sessionStorage && sessionStorage.getItem(LOCAL_STORAGE_KEY)) {
+      this.guideMeFormData = JSON.parse(sessionStorage.getItem(LOCAL_STORAGE_KEY));
     }
     return this.guideMeFormData;
   }
@@ -140,70 +140,72 @@ export class GuideMeService {
 
   /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
   getMyIncome(): IMyIncome {
-    return {
-      monthlySalary: this.guideMeFormData.monthlySalary,
-      annualBonus: this.guideMeFormData.annualBonus,
-      otherIncome: this.guideMeFormData.otherIncome
-    };
+    if (!this.guideMeFormData.income) {
+      this.guideMeFormData.income = {
+        monthlySalary: 0,
+        annualBonus: 0,
+        otherIncome: 0
+      };
+    }
+    return this.guideMeFormData.income;
   }
 
   setMyIncome(data: IMyIncome) {
     this.isMyIncomeFormValid = true;
-    this.guideMeFormData.monthlySalary = data.monthlySalary;
-    this.guideMeFormData.annualBonus = data.annualBonus;
-    this.guideMeFormData.otherIncome = data.otherIncome;
+    this.guideMeFormData.income = data;
     this.commit();
   }
 
   getMyExpenses(): IMyExpenses {
-    return {
-      monthlyInstallment: this.guideMeFormData.monthlyInstallment,
-      otherExpenses: this.guideMeFormData.otherExpenses
-    };
+    if (!this.guideMeFormData.expenses) {
+      this.guideMeFormData.expenses = {
+        monthlyInstallments: 0,
+        livingExpenses: 0,
+        otherExpenses: 0
+      };
+    }
+    return this.guideMeFormData.expenses;
   }
 
   setMyExpenses(data: IMyExpenses) {
     this.isMyExpensesFormValid = true;
-    this.guideMeFormData.monthlyInstallment = data.monthlyInstallment;
-    this.guideMeFormData.otherExpenses = data.otherExpenses;
+    this.guideMeFormData.expenses = data;
     this.commit();
   }
 
   getMyAssets(): IMyAssets {
-    return {
-      cash: this.guideMeFormData.cash,
-      cpf: this.guideMeFormData.cpf,
-      homeProperty: this.guideMeFormData.homeProperty,
-      investmentProperties: this.guideMeFormData.investmentProperties,
-      investments: this.guideMeFormData.investments,
-      otherAssets: this.guideMeFormData.otherAssets,
-    };
+    if (!this.guideMeFormData.assets) {
+      this.guideMeFormData.assets = {
+        cash: 0,
+        cpf: 0,
+        homeProperty: 0,
+        investmentProperties: 0,
+        otherInvestments: 0,
+        otherAssets: 0
+      };
+    }
+    return this.guideMeFormData.assets;
   }
 
   setMyAssets(data: IMyAssets) {
-    this.isMyExpensesFormValid = true;
-    this.guideMeFormData.cash = data.cash;
-    this.guideMeFormData.cpf = data.cpf;
-    this.guideMeFormData.homeProperty = data.homeProperty;
-    this.guideMeFormData.investmentProperties = data.investmentProperties;
-    this.guideMeFormData.investments = data.investments;
-    this.guideMeFormData.otherAssets = data.otherAssets;
+    this.guideMeFormData.assets = data;
     this.commit();
   }
 
   getMyLiabilities(): IMyLiabilities {
-    return {
-      propertyLoan: this.guideMeFormData.propertyLoan,
-      carLoan: this.guideMeFormData.carLoan,
-      otherLiabilities: this.guideMeFormData.otherLiabilities
-    };
+    if (!this.guideMeFormData.liabilities) {
+      this.guideMeFormData.liabilities = {
+        propertyLoan: 0,
+        carLoan: 0,
+        otherLoan: 0
+      };
+    }
+    return this.guideMeFormData.liabilities;
   }
 
   setMyLiabilities(data: IMyLiabilities) {
     this.isMyExpensesFormValid = true;
-    this.guideMeFormData.propertyLoan = data.propertyLoan;
-    this.guideMeFormData.carLoan = data.carLoan;
-    this.guideMeFormData.otherLiabilities = data.otherLiabilities;
+    this.guideMeFormData.liabilities = data;
     this.commit();
   }
 
@@ -280,7 +282,8 @@ export class GuideMeService {
     for (const i in formValues) {
       if (formValues[i] !== null && formValues[i] !== '') {
         const Regexp = new RegExp('[,]', 'g');
-        const thisValue = formValues[i].replace(Regexp, '');
+        let thisValue: any = (formValues[i] + '').replace(Regexp, '');
+        thisValue = parseInt(formValues, 10);
         if (!isNaN(thisValue)) {
           if (i === 'annualBonus') {
             sum += thisValue !== 0 ? thisValue / 12 : 0;
@@ -370,5 +373,9 @@ export class GuideMeService {
         this.result_value = null;
         break;
     }
+  }
+
+  constructRecommendationsRequest() {
+
   }
 }
