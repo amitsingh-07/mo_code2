@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
+import { CustomCurrencyPipe } from './../shared/Pipes/custom-currency.pipe';
 
 import { CurrencyInputDirective } from '../shared/directives/currency-input.directive';
 import { SharedModule } from '../shared/shared.module';
@@ -54,7 +55,8 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     HospitalPlanComponent,
     InsuranceResultsComponent,
     InsuranceResultComponent,
+    CustomCurrencyPipe
   ],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe, CustomCurrencyPipe]
 })
 export class GuideMeModule { }

@@ -23,7 +23,7 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
       this.title = this.data.title;
       this.temp = this.data;
       // Is Month Enabled
-      if (this.title === 'Occupational Disability' || this.title === 'Long-Term Care'){
+      if (this.title === 'Occupational Disability' || this.title === 'Long-Term Care') {
         this.isMonthEnabled = true;
       } else {
         this.isMonthEnabled = false;

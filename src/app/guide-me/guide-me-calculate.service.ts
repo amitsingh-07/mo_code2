@@ -126,6 +126,15 @@ export class GuideMeCalculateService {
     return myAssets;
   }
 
+  getCriticalIllness() {
+    const criticalIllnessFormValues = this.guideMeService.getCiAssessment();
+    const criticalIllnessValues = {
+      annualSalary : criticalIllnessFormValues.annualSalary,
+      yearsNeeded: criticalIllnessFormValues.ciMultiplier,
+      coverageAmount: criticalIllnessFormValues.ciCoverageAmt
+    };
+  }
+
   getLifeProtectionSummary(): number {
     const dependents = this.guideMeService.getLifeProtection();
 

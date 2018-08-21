@@ -12,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
+import { ExistingCoverageModalComponent } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
 import {
   InsuranceResultModalComponent
 } from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
@@ -40,7 +41,8 @@ export function createTranslateLoader(http: HttpClient) {
     LoaderComponent,
     ErrorModalComponent,
     LifeProtectionModalComponent,
-    InsuranceResultModalComponent
+    InsuranceResultModalComponent,
+    ExistingCoverageModalComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,7 @@ export function createTranslateLoader(http: HttpClient) {
     }],
   bootstrap: [AppComponent],
   entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent,
-     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent]
+     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, ExistingCoverageModalComponent]
 })
 
 export class AppModule {

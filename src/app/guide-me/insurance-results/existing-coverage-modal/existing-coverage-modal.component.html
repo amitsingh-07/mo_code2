@@ -1,0 +1,94 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div>
+</div>
+<form id="userInfoForm" name="userInfoForm">
+<div class="form-group-with-bg">
+  <div class="form-group-with-bg--header">
+    <div class="flex-row">
+      <div class="flex-col-9">
+        <div class="modal-body-title">{{ ADD_EXISTING_COVERAGES.TITLE | translate}}</div>
+      </div>
+      <div class="flex-col-3">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="form-group-with-bg--content form-group-with-bg--content-white">
+    <div class="flex-row">
+      <div class="flex-col-6">
+        <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.LIFEPROTECTION | translate}}</div>
+      </div>
+      <div class="flex-col-6">
+        <div class="form-control">
+            <i>$</i> 
+          <div name="cpf" ><input  class="input-control" type="text" maxLength="10"  name="LIFEPROTECTION" [(ngModel)] = "model.LIFEPROTECTION"></div>
+        </div>    
+      </div>
+    </div>
+    <div class="flex-row ">
+          <div class="flex-col-6">
+          <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.CRITICAL_ILLNESS | translate}}</div>
+          </div>
+          <div class="flex-col-6">
+          <div class="form-control">
+              <i>$</i>
+          <div name="cpf" ><input  class="input-control" type="text"  maxLength="10" name="CRITICAL_ILLNESS" [(ngModel)] = "model.CRITICAL_ILLNESS"></div>
+          </div>    
+        </div>
+    </div>
+    <div class="flex-row ">
+            <div class="flex-col-6">
+            <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.OCCUPATION_DISABILITY | translate}}</div>
+            </div>
+            <div class="flex-col-6">
+            <div class="form-control">
+                
+            <div name="cpf" ><input  class="input-control" type="text"  maxLength="5" name="OCCUPATION_DISABILITY" [(ngModel)] = "model.OCCUPATION_DISABILITY"></div>
+            <i class="right">/mth</i>
+            </div>    
+          </div>
+    </div>
+    <div class="flex-row">
+              <div class="flex-col-6">
+              <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.LONG_TERMCARE | translate}}</div>
+              </div>
+              <div class="flex-col-6">
+              <div class="form-control">
+              <div name="cpf" ><input  class="input-control" type="text"  maxLength="5" name="LONG_TERMCARE"  [(ngModel)] = "model.LONG_TERMCARE"></div>
+              <i class="right" >/mth</i>
+              </div>    
+            </div>
+    </div>
+   
+          <div class="flex-row ">
+            <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.HOSPITAL_PLAN | translate}}</div>
+                </div>
+                <div class="flex-col-6">
+                <div class="dropdown-control">
+                  <div ngbDropdown id="dependentDropDown">
+                    <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+                      <span class="dependent-count">{{dependents}}</span>
+                      <button class="dropdown-item" *ngFor="let dependent of ADD_EXISTING_COVERAGES.dependents">{{dependent}}</button>
+                      
+                      <!-- <span *ngIf="dependents <= 1">{{ADD_EXISTING_COVERAGES.dependents | translate}}</span>
+                      <span *ngIf="dependents > 1">{{ADD_EXISTING_COVERAGES.dependents | translate}}</span> -->
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    </div>
+                  </div>
+                </div>
+              </div>
+           
+   <button type="button"  (click)="save()" class="btn btn__footer--fixed btn-primary width100"
+     id="incomeBtn">{{ 'LABEL.SAVE' | translate}}</button>
+     
+</div>
+
+</div>
+</div>
+</form>
+
+
