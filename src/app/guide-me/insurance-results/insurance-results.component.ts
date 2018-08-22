@@ -1,3 +1,4 @@
+import { GUIDE_ME_ROUTE_PATHS } from './../guide-me-routes.constants';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -261,5 +262,9 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
         value: 6000
       }
     };
+  }
+
+  goToNext() {
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
   }
 }

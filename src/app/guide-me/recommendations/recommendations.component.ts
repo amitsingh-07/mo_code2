@@ -2,8 +2,8 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulati
 import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { HeaderService } from '../../shared/header/header.service';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 
 @Component({
   selector: 'app-recommendations',
@@ -26,7 +26,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   public innerWidth: any;
   @ViewChild('recommendationCarousel') recommendationCarousel: NgbCarousel;
-  @ViewChild('widgetsContent', { read: ElementRef }) public widgetsContent: ElementRef<any>;
+  @ViewChild('mobileHeaderMenu', { read: ElementRef }) public mobileHeaderMenu: ElementRef<any>;
 
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
@@ -58,13 +58,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   moveCarouselNext() {
     this.recommendationCarousel.next();
-    const container = this.elRef.nativeElement.querySelector('#recType');
+    const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
     if (bound.right > containerBound.right) {
-      this.widgetsContent.nativeElement.scrollTo(
+      this.mobileHeaderMenu.nativeElement.scrollTo(
         {
-          left: (this.widgetsContent.nativeElement.scrollLeft + bound.width),
+          left: (this.mobileHeaderMenu.nativeElement.scrollLeft + bound.width),
           behavior: 'smooth'
         });
     }
@@ -72,13 +72,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   moveCarouselPrev() {
     this.recommendationCarousel.prev();
-    const container = this.elRef.nativeElement.querySelector('#recType');
+    const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
     if (bound.left < containerBound.left) {
-      this.widgetsContent.nativeElement.scrollTo(
+      this.mobileHeaderMenu.nativeElement.scrollTo(
         {
-          left: (this.widgetsContent.nativeElement.scrollLeft - bound.width),
+          left: (this.mobileHeaderMenu.nativeElement.scrollLeft - bound.width),
           behavior: 'smooth'
         });
     }
@@ -103,6 +103,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   selectPlan(data) {
+    /*
     if (data.isSelected) {
       console.log('selected plan');
       console.log(data.plan);
@@ -115,6 +116,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
         this.selectedPlans.splice(index, 1);
       }
     }
+    */
   }
 
   getRecommendations() {

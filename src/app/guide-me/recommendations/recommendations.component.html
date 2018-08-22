@@ -17,9 +17,9 @@
         </div>
       </div>
   
-      <div #widgetsContent id="recType" class="plan-type-list md-none hidden-lg" style="overflow-x: hidden; width: 100%">
+      <div #mobileHeaderMenu id="mobileHeaderMenu" class="plan-type-list md-none hidden-lg" style="overflow-x: hidden; width: 100%">
         <span class="plan-type" [attr.data-type]="recommendation.type" [class.active]="recommendation.type == activeRecommendationType"
-          (click)="jumpToSlide(recommendation.type)" *ngFor="let recommendation of recommendationPlans; let i = index">
+          *ngFor="let recommendation of recommendationPlans; let i = index">
           <span [innerHtml]="recommendation.type"></span>
         </span>
       </div>
