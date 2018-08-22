@@ -18,7 +18,7 @@ export class GuideMeFormData {
     smoker: string;
     dependent: number;
 
-    protectionNeedData: ProtectionNeeds;
+    protectionNeedData: ProtectionNeeds[];
     lifeProtectionData: IDependent[];
 
     // My Income

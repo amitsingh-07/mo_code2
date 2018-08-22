@@ -1,7 +1,9 @@
+import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
@@ -10,6 +12,7 @@ import { GuideMeFormData } from './guide-me-form-data';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
+import { IRecommendationRequest, IEnquiryData } from './interfaces/recommendations.request';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
@@ -47,7 +50,7 @@ export class GuideMeService {
   private result_icon: string;
   private result_value;
 
-  constructor(private http: HttpClient, private apiService: ApiService) {
+  constructor(private http: HttpClient, private apiService: ApiService, private authService: AuthenticationService) {
     this.getGuideMeFormData();
   }
 
@@ -107,10 +110,11 @@ export class GuideMeService {
     return this.apiService.getProfileList();
   }
 
-  getProtectionNeeds(): ProtectionNeeds {
-    return {
-      protectionNeedData: this.guideMeFormData.protectionNeedData
-    };
+  getProtectionNeeds(): ProtectionNeeds[] {
+    if (!this.guideMeFormData.protectionNeedData) {
+      this.guideMeFormData.protectionNeedData = [{}] as ProtectionNeeds[];
+    }
+    return this.guideMeFormData.protectionNeedData;
   }
 
   setProtectionNeeds(data) {
@@ -141,7 +145,7 @@ export class GuideMeService {
   /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
   getMyIncome(): IMyIncome {
     if (!this.guideMeFormData.income) {
-      this.guideMeFormData.income = { } as IMyIncome;
+      this.guideMeFormData.income = {} as IMyIncome;
     }
     return this.guideMeFormData.income;
   }
@@ -154,7 +158,7 @@ export class GuideMeService {
 
   getMyExpenses(): IMyExpenses {
     if (!this.guideMeFormData.expenses) {
-      this.guideMeFormData.expenses = { } as IMyExpenses;
+      this.guideMeFormData.expenses = {} as IMyExpenses;
     }
     return this.guideMeFormData.expenses;
   }
@@ -167,7 +171,7 @@ export class GuideMeService {
 
   getMyAssets(): IMyAssets {
     if (!this.guideMeFormData.assets) {
-      this.guideMeFormData.assets = { } as IMyAssets;
+      this.guideMeFormData.assets = {} as IMyAssets;
     }
     return this.guideMeFormData.assets;
   }
@@ -179,7 +183,7 @@ export class GuideMeService {
 
   getMyLiabilities(): IMyLiabilities {
     if (!this.guideMeFormData.liabilities) {
-      this.guideMeFormData.liabilities = { } as IMyLiabilities;
+      this.guideMeFormData.liabilities = {} as IMyLiabilities;
     }
     return this.guideMeFormData.liabilities;
   }
@@ -210,7 +214,7 @@ export class GuideMeService {
 
   getMyOcpDisability(): IMyOcpDisability {
     if (!this.guideMeFormData.occupationalDisability) {
-      this.guideMeFormData.occupationalDisability = { } as IMyOcpDisability;
+      this.guideMeFormData.occupationalDisability = {} as IMyOcpDisability;
     }
     return this.guideMeFormData.occupationalDisability;
   }
@@ -223,7 +227,7 @@ export class GuideMeService {
 
   getLongTermCare(): LongTermCare {
     if (!this.guideMeFormData.longTermCareData) {
-      this.guideMeFormData.longTermCareData = { } as LongTermCare;
+      this.guideMeFormData.longTermCareData = {} as LongTermCare;
     }
     return this.guideMeFormData.longTermCareData;
   }
@@ -240,7 +244,7 @@ export class GuideMeService {
 
   getHospitalPlan(): HospitalPlan {
     if (!this.guideMeFormData.hospitalPlanData) {
-      this.guideMeFormData.hospitalPlanData = { } as HospitalPlan;
+      this.guideMeFormData.hospitalPlanData = {} as HospitalPlan;
     }
     return this.guideMeFormData.hospitalPlanData;
   }
@@ -292,33 +296,41 @@ export class GuideMeService {
     return this.formError.formFieldErrors[formCtrlName][validation];
   }
 
-  getNextProtectionNeedsPage() {
+  getSelectedProtectionNeedsList() {
     const selectedProtectionNeeds = [];
-    const protectionNeeds = this.getProtectionNeeds().protectionNeedData;
+    const protectionNeeds = this.getProtectionNeeds();
     for (const thisNeed of protectionNeeds) {
       if (thisNeed.status) {
-        switch (thisNeed.protectionTypeId) {
-          case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
-            break;
-          case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
-            break;
-          case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
-            break;
-          case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
-            break;
-          case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
-            break;
-        }
+        selectedProtectionNeeds.push(thisNeed);
+      }
+    }
+    return selectedProtectionNeeds;
+  }
+  getNextProtectionNeedsPage() {
+    const selectedProtectionNeedsPage = [];
+    const protectionNeeds = this.getSelectedProtectionNeedsList();
+    for (const thisNeed of protectionNeeds) {
+      switch (thisNeed.protectionTypeId) {
+        case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
+          break;
+        case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
+          break;
+        case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
+          break;
+        case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
+          break;
+        case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
+          break;
       }
     }
 
-    if (this.protectionNeedsPageIndex < selectedProtectionNeeds.length) {
-      return selectedProtectionNeeds[this.protectionNeedsPageIndex];
+    if (this.protectionNeedsPageIndex < selectedProtectionNeedsPage.length) {
+      return selectedProtectionNeedsPage[this.protectionNeedsPageIndex];
     } else {
       return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
     }
@@ -336,13 +348,17 @@ export class GuideMeService {
   getProtectionNeedsResults() {
     console.log('get Protection Needs Triggered');
     let selectedProtectionNeeds = [];
-    selectedProtectionNeeds = this.getProtectionNeeds().protectionNeedData;
+    selectedProtectionNeeds = this.getProtectionNeeds();
     if (selectedProtectionNeeds) {
       selectedProtectionNeeds.forEach((protectionNeed) => {
         this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeed));
       });
       return this.protectionNeedsArray;
     }
+  }
+
+  getExistingCoverage(): IExistingCoverage[] {
+    return [{}] as IExistingCoverage[];
   }
 
   createProtectionNeedResult(data) {
@@ -363,7 +379,43 @@ export class GuideMeService {
     }
   }
 
-  constructRecommendationsRequest() {
+  constructRecommendationsRequest(): IRecommendationRequest {
+    const requestObj = {} as IRecommendationRequest;
+    requestObj.sessionId = this.authService.getAppSecretKey();
+    requestObj.criticalIllnessNeedsData = this.getCiAssessment();
+    requestObj.enquiryProtectionTypeData = this.getSelectedProtectionNeedsList();
+    requestObj.existingInsuranceList = this.getExistingCoverage();
+    requestObj.financialStatusMapping.assets = this.getMyAssets();
+    requestObj.financialStatusMapping.income = this.getMyIncome();
+    requestObj.financialStatusMapping.liabilities = this.getMyLiabilities();
+    requestObj.financialStatusMapping.expenses = this.getMyExpenses();
+    requestObj.hospitalizationNeeds = this.getHospitalPlan();
+    requestObj.occupationalDisabilityNeeds = this.getMyOcpDisability();
+    requestObj.longTermCareNeeds = this.getLongTermCare();
+    requestObj.dependentsData = null;
+    requestObj.lifeProtectionNeeds = null;
+    requestObj.enquiryData = this.getEnquiryData();
 
+    return requestObj;
+  }
+
+  getEnquiryData() {
+    const smoker: boolean = this.getGuideMeFormData().smoker.toLowerCase() === 'smoker' ? true : false;
+    const enquiryData = {
+      id: 0,
+      profileStatusId: this.getProfile().myProfile,
+      customerId: 0,
+      careGiverId: this.getLongTermCare().careGiverTypeId,
+      hospitalClassId: this.getHospitalPlan().hospitalClassId,
+      sessionTrackerId: 0,
+      gender: this.getGuideMeFormData().gender,
+      dateOfBirth: this.getGuideMeFormData().dob,
+      isSmoker: smoker,
+      employmentStatusId: 0,
+      numberOfDependents: this.getGuideMeFormData().dependent,
+      hasPremiumWaiver: false,
+    } as IEnquiryData;
+
+    return enquiryData;
   }
 }

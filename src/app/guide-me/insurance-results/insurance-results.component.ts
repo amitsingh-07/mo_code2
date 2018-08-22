@@ -1,4 +1,3 @@
-import { GUIDE_ME_ROUTE_PATHS } from './../guide-me-routes.constants';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -8,6 +7,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GuideMeService } from '../guide-me.service';
+import { GUIDE_ME_ROUTE_PATHS } from './../guide-me-routes.constants';
 import { ExistingCoverageModalComponent } from './existing-coverage-modal/existing-coverage-modal.component';
 import { IExistingCoverage } from './existing-coverage-modal/existing-coverage.interface';
 import { InsuranceResultModalComponent } from './insurance-result-modal/insurance-result-modal.component';
@@ -109,7 +109,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
 
   getProtectionNeeds() {
     this.protectionNeedsArray = [];
-    const protectionNeeds = this.guideMeService.getProtectionNeeds().protectionNeedData;
+    const protectionNeeds = this.guideMeService.getProtectionNeeds();
     if (protectionNeeds !== undefined) {
       protectionNeeds.forEach((protectionNeedData) => {
         if (protectionNeedData.status === true) {
