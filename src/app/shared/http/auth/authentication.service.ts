@@ -14,7 +14,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   getAppSecretKey() {
-    return 'lX7+bYbR4m6GUnmQE9zUrbAwvKMRVevbYL6nIrnOCWY=';
+    return '658Ifh5FmT70jkAmLSWEvQWulBrR9zkrZza2n7MCusY=';
   }
 
   authenticate(userEmail?: string, userPassword?: string) {
