@@ -24,8 +24,8 @@ const assetImgPath = './assets/images/';
 
 export class InsuranceResultsComponent implements OnInit, IPageComponent {
 
-  lifeProtectionValues: number;
-  currentAssetValues: any;
+  lifeProtectionValues: any;
+  assetValues: any;
   liabilityValues: any;
   criticalIllnessValues: CiAssessment;
   monthlySalary: IMyIncome;
@@ -47,8 +47,12 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     this.criticalIllnessValues = this.guideMeService.getCiAssessment();
     this.monthlySalary = this.guideMeService.getMyIncome();
     this.liabilityValues = this.guideMeCalculateService.getLiabilitiesSum();
-    this.currentAssetValues = this.guideMeCalculateService.getCurrentAssetsSum();
-    this.lifeProtectionValues = this.guideMeCalculateService.getProtectionSupportSum();
+    this.assetValues = this.guideMeCalculateService.getCurrentAssetsSum();
+    this.lifeProtectionValues = {
+      dependantsValue: this.guideMeCalculateService.getProtectionSupportSum(),
+      coverageAmount: this.guideMeCalculateService.getLifeProtectionSummary(),
+      educationSupportAmount: this.guideMeCalculateService.getEducationSupportSum()
+    };
     this.getProtectionNeeds();
   }
 
@@ -72,6 +76,9 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
       case 'Critical Illness':
         this.showDetailsModal(index);
         break;
+      case 'Occupational Disability':
+        this.showDetailsModal(index);
+        break;
     }
   }
 
@@ -79,9 +86,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     const ref = this.modal.open(InsuranceResultModalComponent, {
       centered: true
     });
-    // tslint:disable-next-line:max-line-length
     ref.componentInstance.data = data;
-    ref.componentInstance.values = this.criticalIllnessValues;
   }
 
   openExistingCoverageModal() {
@@ -170,45 +175,40 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   constructLifeProtection(protectionNeedsId: number): IResultItem {
     const coverage = {
       title: 'Less Existing Coverage',
-      value: null
+      value: 0
     } as IResultItemEntry;
-
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: 'For Dependants', value: this.lifeProtectionValues.dependantsValue } as IResultItemEntry);
+    entries.push({ title: 'Education Support', value: this.lifeProtectionValues.educationSupportAmount } as IResultItemEntry);
+    entries.push({ title: 'Liabilities', value: this.liabilityValues } as IResultItemEntry);
+    entries.push({ title: 'Less Current Assets', value: this.assetValues } as IResultItemEntry);
     return {
       id: protectionNeedsId,
       icon: 'life-protection-icon.svg',
       title: 'Life Protection',
-      inputValues: [
-        { title: 'Family Member', value: 600 }
-      ],
+      inputValues: entries,
       existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
-        value: 6000
+        value: this.lifeProtectionValues.coverageAmount
       }
     };
   }
 
   constructCriticalIllness(protectionNeedsId: number): IResultItem {
+    const coverage = {
+      title: 'Less Existing Coverage',
+      value: 0
+    } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'Family Member', value: 600 } as IResultItemEntry);
-    entries.push({ title: 'Family Member 2', value: 400 } as IResultItemEntry);
+    entries.push({ title: 'Years Needed', value: this.criticalIllnessValues.ciMultiplier } as IResultItemEntry);
+    entries.push({ title: 'Annual Income', value: this.criticalIllnessValues.annualSalary } as IResultItemEntry);
     return {
       id: protectionNeedsId,
       icon: 'critical-illness-icon.svg',
       title: 'Critical Illness',
       inputValues: entries,
-      existingCoverage: {
-        title: 'Less Existing Coverage',
-        value: 8000
-      },
-      yearsNeeded: {
-        title: 'Years Needed',
-        value: this.criticalIllnessValues.ciMultiplier
-      },
-      annualIncome: {
-        title: 'Annual Income',
-        value: this.criticalIllnessValues.annualSalary
-      },
+      existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
         value: this.criticalIllnessValues.annualSalary * this.criticalIllnessValues.ciMultiplier
@@ -217,25 +217,19 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   }
 
   constructOccupationalDisability(protectionNeedsId: number): IResultItem {
+    const coverage = {
+      title: 'Less Existing Coverage',
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: 'Monthly Salary', value: this.monthlySalary.monthlySalary } as IResultItemEntry);
+    entries.push({ title: '% to Replace', value: this.ocpDisabilityValues.sliderValue } as IResultItemEntry);
     return {
       id: protectionNeedsId,
       icon: 'occupational-disability-icon.svg',
       title: 'Occupational Disability',
-      inputValues: [
-        { title: 'Family Member', value: 600 }
-      ],
-      existingCoverage: {
-        title: 'Less Existing Coverage',
-        value: 8000
-      },
-      percentNeeded: {
-        title: 'Years Needed',
-        value: this.ocpDisabilityValues.sliderValue
-      },
-      monthlySalary: {
-        title: 'Monthly Salary',
-        value: this.monthlySalary.monthlySalary
-      },
+      inputValues: entries,
+      existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
         value: this.ocpDisabilityValues.coverageAmount
@@ -244,17 +238,18 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   }
 
   constructLongTermCare(protectionNeedsId: number): IResultItem {
+    const coverage = {
+      title: 'Less Existing Coverage',
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: 'Family Member', value: 600 } as IResultItemEntry);
     return {
       id: protectionNeedsId,
       icon: 'long-term-care-icon.svg',
       title: 'Long-Term Care',
-      inputValues: [
-        { title: 'Family Member', value: 600 }
-      ],
-      existingCoverage: {
-        title: 'Less Existing Coverage',
-        value: 8000
-      },
+      inputValues: entries,
+      existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
         value: 6000
@@ -263,19 +258,20 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   }
 
   constructHospitalPlan(protectionNeedsId): IResultItem {
+    const coverage = {
+      title: 'Less Existing Coverage',
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: 'Family Member', value: 600 } as IResultItemEntry);
     const hospitalPlanData = this.guideMeService.getHospitalPlan().hospitalPlanData;
     return {
       id: protectionNeedsId,
       icon: 'hospital-plan-icon.svg',
       title: 'Hospital Plan',
       content: 'private',
-      inputValues: [
-        { title: 'Family Member', value: 600 }
-      ],
-      existingCoverage: {
-        title: 'Less Existing Coverage',
-        value: 8000
-      },
+      inputValues: entries,
+      existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
         value: 6000

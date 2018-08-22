@@ -21,7 +21,9 @@ export class ExistingCoverageModalComponent implements OnInit {
     LONG_TERM_CARE: 'Long-TermCare',
     HOSPITAL_PLAN: 'Hospital Plan'
   };
-
+  selectedHospitalPlan = 'Private Hospital';
+  hospitalPlanList = ['Private Hospital', 'Government Hospital Ward A', 'Government Hospital Ward B1'
+                  , 'Government Hospital Ward B2/C', 'Global Healthcare Coverage'];
   isLifeProtection = false;
   isCriticalIllness = false;
   isOccupationalDisability = false;
@@ -60,6 +62,9 @@ export class ExistingCoverageModalComponent implements OnInit {
     //this.model.addedExistingCoverage = true;
     this.dataOutput.emit(this.model);
     this.activeModal.close();
+  }
+  selectHospitalPlan(currentPlan) {
+    this.selectedHospitalPlan = currentPlan;
   }
 
 }

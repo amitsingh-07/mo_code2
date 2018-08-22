@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LifeProtectionComponent } from './life-protection/life-protection.component';
 
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,64 +28,68 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 export class GuideMeCalculateService {
 
   constructor(private http: HttpClient, private apiService: ApiService, private guideMeService: GuideMeService) {}
-  // Math Regex Process
-  summarizeCost( cost: number): string {
-    let sum_string: string;
-    sum_string = '$750K';
-
-    if ((cost / 1000) >= 1) {
-      // it's in the thousands
-      Math.ceil(cost / 1000000);
-    }
-    return sum_string;
-  }
   // Support Functions:
 
     // ---Education Support Amounts
-  getEducationSupportAmt(course: string, country: string): number[] {
+  getEducationSupportAmt(course: string, country: string, nationality: string): number[] {
     // tslint:disable-next-line:prefer-const
     let  educationSum: number[];
-    const nonmedicine = 'non-medicine';
-    const medicine = 'medicine';
+    const nonmedicine = 'Non-medicine';
+    const medicine = 'Medicine';
+    const singapore = 'Singapore';
+    const australia = 'Australia';
+    const uk = 'United Kingdom';
+    const usa = 'USA';
+    const singaporean = 'Singaporean';
+    const singaporePR = 'PR';
+    const foreigner = 'Foreigner';
 
-    switch ( course && country ) {
-      case  nonmedicine && 'Singapore':
+    switch ( course && country && nationality ) {
+      case  nonmedicine && singapore && singaporean:
         educationSum[0] = 49600;
         educationSum[1] = 48000;
         break;
-      case  nonmedicine && 'Singapore - PR':
+      case  nonmedicine && singapore && singaporePR:
         educationSum[0] = 69400;
         educationSum[1] = 48000;
         break;
-      case  nonmedicine && 'Australia':
+      case nonmedicine && singapore && foreigner:
+        educationSum[0] = 106200;
+        educationSum[1] = 48000;
+        break;
+      case  nonmedicine && australia:
         educationSum[0] = 168000;
         educationSum[1] = 120900;
         break;
-      case  nonmedicine && 'UK':
+      case  nonmedicine && uk:
         educationSum[0] = 201600;
         educationSum[1] = 81200;
         break;
-      case  nonmedicine && 'USA':
+      case  nonmedicine && usa:
         educationSum[0] = 283000;
         educationSum[1] = 131600;
         break;
-      case medicine && 'Singapore':
+      case medicine && singapore && singaporean:
         educationSum[0] = 157500;
         educationSum[1] = 60000;
         break;
-      case medicine && 'Singapore - PR':
+      case medicine && singaporean && singaporePR:
         educationSum[0] = 220600;
         educationSum[1] = 60000;
         break;
-      case medicine && 'Australia':
+      case medicine && singaporean && foreigner:
+        educationSum[0] = 277100;
+        educationSum[1] = 60000;
+        break;
+      case medicine && australia:
         educationSum[0] = 490600;
         educationSum[1] = 241700;
         break;
-      case medicine && 'UK':
+      case medicine && uk:
         educationSum[0] = 469000;
         educationSum[1] = 132100;
         break;
-      case medicine && 'USA':
+      case medicine && usa:
         educationSum[0] = 614600;
         educationSum[1] = 263100;
     }
@@ -96,9 +101,7 @@ export class GuideMeCalculateService {
     let protectionSupportSum: number = null;
     const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
     lifeProtection.forEach((dependent) => {
-        console.log(dependent);
         if (dependent.supportAmountRange) {
-          console.log('triggered');
           protectionSupportSum += dependent.supportAmountRange * 12 * dependent.yearsNeeded;
         }
     });
@@ -108,8 +111,20 @@ export class GuideMeCalculateService {
 
   // Education Support
   getEducationSupportSum(): number {
-    return 100124;
+    let educationSupportSum = 0;
+    const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
+    lifeProtection.forEach((dependent) => {
+        if (dependent.eduSupport) {
+          const country = dependent.eduSupportCountry;
+          const course = dependent.eduSupportCourse;
+          const nationality = dependent.eduSupportNationality;
+          const eduAmt = this.getEducationSupportAmt(country, course, nationality);
+          educationSupportSum += (eduAmt[0] + eduAmt[1] + eduAmt[2]);
+        }
+    });
+    return educationSupportSum;
   }
+
   // Liabilities Amount
   getLiabilitiesSum(): any {
     const liabilities = this.guideMeService.getMyLiabilities();
@@ -129,17 +144,6 @@ export class GuideMeCalculateService {
     return myAssets;
   }
 
-  get
-
-  getCriticalIllness() {
-    const criticalIllnessFormValues = this.guideMeService.getCiAssessment();
-    const criticalIllnessValues = {
-      annualSalary : criticalIllnessFormValues.annualSalary,
-      yearsNeeded: criticalIllnessFormValues.ciMultiplier,
-      coverageAmount: criticalIllnessFormValues.ciCoverageAmt
-    };
-  }
-
   getLifeProtectionSummary(): number {
     const dependents = this.guideMeService.getLifeProtection();
 
@@ -153,7 +157,6 @@ export class GuideMeCalculateService {
     educationSum = this.getEducationSupportSum();
     liabilitiesSum = this.getLiabilitiesSum();
     currentAssets = this.getCurrentAssetsSum();
-
     coverageNeeded = forDependentSum + educationSum + liabilitiesSum - currentAssets;
     return coverageNeeded;
   }
