@@ -31,7 +31,7 @@
                   <div class="flex-col-6">
                     <div class="form-control">
                         <i>$</i>
-                      <div [ngClass]="{'readonly': monthlyInstallment.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="5" #monthlyInstallment formControlName="monthlyInstallment" value="0"></div>
+                      <div [ngClass]="{'readonly': monthlyInstallments.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="5" #monthlyInstallments formControlName="monthlyInstallments" value="0"></div>
                     </div>
                   </div>
                 </div>

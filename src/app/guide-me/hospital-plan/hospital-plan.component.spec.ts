@@ -34,15 +34,6 @@ describe('HospitalPlanComponent', () => {
     expect(compiled.querySelector('h6').textContent).toContain(`Select the type of hospital plan that you prefer.`);
   }));
 
-  // User can select a Hospital Plan by clicking on the respective type.
-  it('should call radioTest on radio button change', () => {
-    spyOn(component, 'radioTest').and.callThrough();
-    const options: DebugElement[] = fixture.debugElement.queryAll(By.css('input[type="radio"]'));
-    const secondOption: HTMLInputElement = options[1].nativeElement;
-    secondOption.checked = true;
-    expect(component.radioTest).toHaveBeenCalled();
-  });
-
   // Testing the Proceed Button Created
   it('testing the proceed button', async(() => {
     spyOn(component, 'goToNext');

@@ -37,29 +37,29 @@ export class ExistingCoverageModalComponent implements OnInit {
       switch (protectionNeed.id) {
         case 1:
           this.isLifeProtection = true;
-          this.model.lifeProtection = protectionNeed.existingCoverage.value;
+          this.model.lifeProtectionCoverage = protectionNeed.existingCoverage.value;
           break;
         case 2:
           this.isCriticalIllness = true;
-          this.model.criticalIllness = protectionNeed.existingCoverage.value;
+          this.model.criticalIllnessCoverage = protectionNeed.existingCoverage.value;
           break;
         case 3:
           this.isOccupationalDisability = true;
-          this.model.occupationalDisability = protectionNeed.existingCoverage.value;
+          this.model.occupationalDisabilityCoveragePerMonth = protectionNeed.existingCoverage.value;
           break;
         case 4:
           this.isHospitalPlan = true;
-          this.model.hospitalPlan = protectionNeed.existingCoverage.value;
+          // this.model.hospitalPlanCoverage = protectionNeed.existingCoverage.value;
+          // Drop-down will be displayed for Hospitalization
           break;
         case 5:
           this.isLongTermCare = true;
-          this.model.longTermCare = protectionNeed.existingCoverage.value;
+          this.model.longTermCareCoveragePerMonth = protectionNeed.existingCoverage.value;
           break;
       }
     });
   }
   save() {
-    //this.model.addedExistingCoverage = true;
     this.dataOutput.emit(this.model);
     this.activeModal.close();
   }

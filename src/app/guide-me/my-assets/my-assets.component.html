@@ -83,7 +83,7 @@
                         <div class="flex-col-6">
                           <div class="form-control">
                               <i>$</i>
-                            <div [ngClass]="{'readonly': investments.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="8" #investments formControlName="investments" value="0"></div>
+                            <div [ngClass]="{'readonly': otherInvestments.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="8" #otherInvestments formControlName="otherInvestments" value="0"></div>
                           </div>
                         </div>
                       </div>

@@ -1,7 +1,7 @@
 export interface IExistingCoverage {
-    lifeProtection: number;
-    criticalIllness: number;
-    occupationalDisability: number;
-    hospitalPlan: number;
-    longTermCare: number;
+    lifeProtectionCoverage: number;
+    criticalIllnessCoverage: number;
+    occupationalDisabilityCoveragePerMonth: number;
+    hospitalPlanCoverage: number;
+    longTermCareCoveragePerMonth: number;
 }

@@ -5,7 +5,6 @@ import { LifeProtectionComponent } from './life-protection/life-protection.compo
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ApiService } from '../shared/http/api.service';
-import { CiAssessment } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
@@ -100,7 +99,7 @@ export class GuideMeCalculateService {
   getProtectionSupportSum(): number {
     let protectionSupportSum: number = null;
     const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
-    lifeProtection.forEach((dependent) => {
+    lifeProtection['dependents'].forEach((dependent) => {
         if (dependent.supportAmountRange) {
           protectionSupportSum += dependent.supportAmountRange * 12 * dependent.yearsNeeded;
         }
@@ -113,7 +112,7 @@ export class GuideMeCalculateService {
   getEducationSupportSum(): number {
     let educationSupportSum = 0;
     const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
-    lifeProtection.forEach((dependent) => {
+    lifeProtection['dependents'].forEach((dependent) => {
         if (dependent.eduSupport) {
           const country = dependent.eduSupportCountry;
           const course = dependent.eduSupportCourse;
@@ -130,7 +129,7 @@ export class GuideMeCalculateService {
     const liabilities = this.guideMeService.getMyLiabilities();
     let myLiabilities: number;
     // tslint:disable-next-line:radix
-    myLiabilities = Math.floor(liabilities.propertyLoan) + Math.floor(liabilities.carLoan) + Math.floor(liabilities.otherLiabilities);
+    myLiabilities = Math.floor(liabilities.propertyLoan) + Math.floor(liabilities.carLoan) + Math.floor(liabilities.otherLoan);
     return myLiabilities;
   }
 
@@ -140,7 +139,7 @@ export class GuideMeCalculateService {
     let myAssets: number;
     // tslint:disable-next-line:radix
     myAssets = Math.floor(assets.cash) + Math.floor(assets.cpf) + Math.floor(assets.homeProperty)
-             + Math.floor(assets.investmentProperties) + Math.floor(assets.investments);
+             + Math.floor(assets.investmentProperties) + Math.floor(assets.otherInvestments);
     return myAssets;
   }
 

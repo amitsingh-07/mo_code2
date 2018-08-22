@@ -1,0 +1,38 @@
+<img class="best-value-icon" src="./assets/images/best-value-icon.svg" />
+<div class="carousel-content plan-widget" [ngClass]="{'plan-selected-wrapper': isSelected}">
+  <div class="plan__block flex__box--vert">
+    <div class="row">
+      <div class="col-md-9 col-md-push-3">
+        <h4>{{name}}</h4>
+        <h2>${{amount}}</h2>
+      </div>
+      <div class="col-md-3 col-md-pull-9">
+        <img src="assets/images/Aviva_Logo.png" class="img-fluid" alt="Aviva" />
+      </div>
+    </div>
+    <hr/>
+    <div>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let feature of features">
+          <div class="feature-head">{{feature.title}}</div>
+          <div class="feature-caption">{{feature.caption}}</div>
+        </div>
+      </div>
+      <div>Coverage Duration: {{coverageDuration}}</div>
+      <div>Premium Duration: {{PremiumDuration}}</div>
+      <div>Needs Medical Underwriting:
+        <span *ngIf="medicalUnderwritingRequired">Yes</span>
+        <span *ngIf="!medicalUnderwritingRequired">No</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 d-none d-md-flex">
+        <button type="button" (click)="viewDetails()" class="btn btn-default width100">Details</button>
+      </div>
+      <div class="col-md-6">
+        <button type="button" (click)="selectPlan()" class="btn btn-primary width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
+      </div>
+    </div>
+  </div>
+
+</div>

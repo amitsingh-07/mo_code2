@@ -1,16 +1,16 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 
-import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
-import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { GuideMeService } from '../guide-me.service';
+import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { CriticalIllnessData } from './ci-assessment';
 
 const assetImgPath = './assets/images/';
 
@@ -26,7 +26,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   pageTitle: string;
   mobileModalEvent: Event;
   ciAssessmentForm: FormGroup;
-  ciAssessmentFormValues: any;
+  ciAssessmentFormValues: CriticalIllnessData;
   ciCoverageAmt: any;
   ciMultiplier = 4;
   untilRetirementAge = 65;
@@ -59,15 +59,11 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
       this.setPageTitle(this.pageTitle, null, true);
     });
-    this.ciAssessmentFormValues = {
-      annualSalary: 0,
-      coverageMultiplier: 0,
-      untilRetirementAge: 0,
-    };
   }
 
   ngOnInit() {
     this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
+    this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears;
     let monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
     if (!monthlySalary) {
       monthlySalary = 0;
@@ -77,10 +73,10 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       this.ciAssessmentFormValues.ciMultiplier = this.ciMultiplier;
     }
     this.ciAssessmentForm = new FormGroup({
-      coverageAmt: new FormControl(this.ciAssessmentFormValues.coverageAmt),
+      coverageAmount: new FormControl(this.ciAssessmentFormValues.coverageAmount),
       annualSalary: new FormControl(this.ciAssessmentFormValues.annualSalary),
       ciMultiplier: new FormControl(this.ciAssessmentFormValues.ciMultiplier),
-      untilRetirementAge: new FormControl(this.ciAssessmentFormValues.untilRetirementAge)
+      coverageYears: new FormControl(this.ciAssessmentFormValues.coverageYears)
     });
     this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciAssessmentFormValues.ciMultiplier;
     // tslint:disable-next-line:max-line-length
@@ -131,6 +127,9 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
 
   save(form: any) {
     if (form.valid) {
+      this.ciAssessmentForm.controls.coverageYears.setValue(this.untilRetirementAge);
+      this.ciAssessmentForm.controls.coverageAmount.setValue(this.ciCoverageAmt);
+      this.ciAssessmentForm.controls.ciMultiplier.setValue(this.ciMultiplier);
       this.guideMeService.setCiAssessment(form.value);
     }
     return true;

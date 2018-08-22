@@ -4,7 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { CiAssessment } from '../ci-assessment/ci-assessment';
+
+import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { IMyIncome } from '../income/income.interface';
 import { IMyOcpDisability } from '../ocp-disability/ocp-disability.interface';
 import { GuideMeCalculateService } from './../guide-me-calculate.service';
@@ -24,10 +26,10 @@ const assetImgPath = './assets/images/';
 
 export class InsuranceResultsComponent implements OnInit, IPageComponent {
 
+  criticalIllnessValues: CriticalIllnessData;
   lifeProtectionValues: any;
   assetValues: any;
   liabilityValues: any;
-  criticalIllnessValues: CiAssessment;
   monthlySalary: IMyIncome;
   ocpDisabilityValues: IMyOcpDisability;
   pageTitle: string;
@@ -104,19 +106,19 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
       switch (protectionNeed.id) {
         case 1:
-          protectionNeed.existingCoverage.value = emittedValue.lifeProtection;
+          protectionNeed.existingCoverage.value = emittedValue.lifeProtectionCoverage;
           break;
         case 2:
-          protectionNeed.existingCoverage.value = emittedValue.criticalIllness;
+          protectionNeed.existingCoverage.value = emittedValue.criticalIllnessCoverage;
           break;
         case 3:
-          protectionNeed.existingCoverage.value = emittedValue.occupationalDisability;
+          protectionNeed.existingCoverage.value = emittedValue.occupationalDisabilityCoveragePerMonth;
           break;
         case 4:
-          protectionNeed.existingCoverage.value = emittedValue.hospitalPlan;
+          protectionNeed.existingCoverage.value = emittedValue.hospitalPlanCoverage;
           break;
         case 5:
-          protectionNeed.existingCoverage.value = emittedValue.longTermCare;
+          protectionNeed.existingCoverage.value = emittedValue.longTermCareCoveragePerMonth;
           break;
       }
       return protectionNeed.existingCoverage.value;
@@ -125,7 +127,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
 
   getProtectionNeeds() {
     this.protectionNeedsArray = [];
-    const protectionNeeds = this.guideMeService.getProtectionNeeds().protectionNeedData;
+    const protectionNeeds = this.guideMeService.getSelectedProtectionNeedsList();
     if (protectionNeeds !== undefined) {
       protectionNeeds.forEach((protectionNeedData) => {
         if (protectionNeedData.status === true) {
@@ -223,7 +225,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: 'Monthly Salary', value: this.monthlySalary.monthlySalary } as IResultItemEntry);
-    entries.push({ title: '% to Replace', value: this.ocpDisabilityValues.sliderValue } as IResultItemEntry);
+    entries.push({ title: '% to Replace', value: this.ocpDisabilityValues.percentageCoverage } as IResultItemEntry);
     return {
       id: protectionNeedsId,
       icon: 'occupational-disability-icon.svg',
@@ -264,7 +266,6 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: 'Family Member', value: 600 } as IResultItemEntry);
-    const hospitalPlanData = this.guideMeService.getHospitalPlan().hospitalPlanData;
     return {
       id: protectionNeedsId,
       icon: 'hospital-plan-icon.svg',
@@ -277,5 +278,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
         value: 6000
       }
     };
+  }
+  goToNext() {
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.RECOMMENDATIONS]);
   }
 }

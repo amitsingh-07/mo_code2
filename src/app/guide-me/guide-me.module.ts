@@ -4,10 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
-import { CustomCurrencyPipe } from './../shared/Pipes/custom-currency.pipe';
+import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
 
 import { CurrencyInputDirective } from '../shared/directives/currency-input.directive';
 import { SharedModule } from '../shared/shared.module';
+import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
@@ -27,6 +28,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 @NgModule({
   imports: [
@@ -55,6 +57,8 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     HospitalPlanComponent,
     InsuranceResultsComponent,
     InsuranceResultComponent,
+    RecommendationsComponent,
+    PlanWidgetComponent,
     CustomCurrencyPipe
   ],
   providers: [CurrencyPipe, CustomCurrencyPipe]

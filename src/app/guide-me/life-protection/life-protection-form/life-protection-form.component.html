@@ -11,10 +11,10 @@
     <div class="flex-col-6">
     <div class="dropdown-control">
       <div ngbDropdown id="dependentCountMobile">
-        <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+        <button class="btn btn-dropdown without-border" id="dependentCountDropdown" ngbDropdownToggle aria-expanded="false">
           <span>{{dependentCount}}</span>&nbsp;{{ 'LABEL.DEPENDANT' | translate}}<span *ngIf="dependentCount > 1">s</span>
         </button>
-        <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
+        <div ngbDropdownMenu class="dropdown" aria-labelledby="dependentCountDropdown">
           <button class="dropdown-item" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
         </div>
       </div>
@@ -39,10 +39,10 @@
             </div>
             <div class="flex-col-6">
               <div class="dropdown-control">
-                <div ngbDropdown id="RetirementAgeDropDown">
-                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.gender.value}}
+                <div ngbDropdown id="dependantGender">
+                  <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="genderDropDown" ngbDropdownToggle>{{item.controls.gender.value}}
                   </button>
-                  <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <div class="dropdown" ngbDropdownMenu aria-labelledby="genderDropDown">
                     <button class="dropdown-item" *ngFor="let option of genderOptions" (click)="setDropDownValue('gender', option, i)">{{option}}</button>
                   </div>
                 </div>
@@ -55,10 +55,10 @@
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
-              <div ngbDropdown id="RetirementAgeDropDown">
-                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.relationship.value}}
+              <div ngbDropdown id="dependantRelationship">
+                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="relationshipDropdown" ngbDropdownToggle>{{item.controls.relationship.value}}
                 </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div class="dropdown" ngbDropdownMenu aria-labelledby="relationshipDropdown">
                   <button class="dropdown-item" *ngFor="let option of relationshipOptions" (click)="setDropDownValue('relationship',option, i)">{{option}}</button>
                 </div>
               </div>
@@ -71,10 +71,10 @@
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
-              <div ngbDropdown id="RetirementAgeDropDown">
-                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.age.value}}
+              <div ngbDropdown id="dependantAge">
+                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="ageDropdown" ngbDropdownToggle>{{item.controls.age.value}}
                 </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div class="dropdown" ngbDropdownMenu aria-labelledby="ageDropdown">
                   <button class="dropdown-item" *ngFor="let option of ageOptions" (click)="setDropDownValue('age',option, i)">{{option}}</button>
                 </div>
               </div>
@@ -85,7 +85,7 @@
               <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">
               <a href="#" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</a>
-              <span class="help-icon" (click)="showLifeProtectionSupportAmountModal()"></span>
+              <span class="help-icon" (click)="showSupportAmountModal()"></span>
             </div>
             </div>
             <div class="flex-col-6">
@@ -107,10 +107,10 @@
             </div>
             <div class="flex-col-6">
             <div class="dropdown-control">
-              <div ngbDropdown id="RetirementAgeDropDown">
-                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.yearsNeeded.value}}
+              <div ngbDropdown id="yearsNeeded">
+                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="yearsNeededDropdown" ngbDropdownToggle>{{item.controls.yearsNeeded.value}}
                 </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div class="dropdown" ngbDropdownMenu aria-labelledby="yearsNeededDropdown">
                   <button class="dropdown-item" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
                 </div>
               </div>
@@ -139,10 +139,10 @@
               </div>
               <div class="flex-col-6">
                 <div class="dropdown-control">
-                  <div ngbDropdown id="RetirementAgeDropDown">
-                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportCourse.value}}
+                  <div ngbDropdown id="eduSupportCourse">
+                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="courseDropdown" ngbDropdownToggle>{{item.controls.eduSupportCourse.value}}
                     </button>
-                    <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                       <button class="dropdown-item" *ngFor="let option of eduSupportCourse" (click)="setDropDownValue('eduSupportCourse',option, i)">{{option}}</button>
                     </div>
                   </div>
@@ -155,10 +155,10 @@
                 </div>
                 <div class="flex-col-6">
                 <div class="dropdown-control">
-                  <div ngbDropdown id="RetirementAgeDropDown">
-                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportCountry.value}}
+                  <div ngbDropdown id="eduSupportCountry">
+                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="countryDropdown" ngbDropdownToggle>{{item.controls.eduSupportCountry.value}}
                     </button>
-                    <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <div class="dropdown" ngbDropdownMenu aria-labelledby="countryDropdown">
                       <button class="dropdown-item" *ngFor="let option of eduSupportCountry" (click)="setDropDownValue('eduSupportCountry',option, i)">{{option}}</button>
                     </div>
                   </div>
@@ -171,10 +171,10 @@
                 </div>
                 <div class="flex-col-6">
                 <div class="dropdown-control">
-                  <div ngbDropdown id="RetirementAgeDropDown">
-                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.eduSupportNationality.value}}
+                  <div ngbDropdown id="eduSupportNationality">
+                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="nationalityDropdown" ngbDropdownToggle>{{item.controls.eduSupportNationality.value}}
                     </button>
-                    <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <div class="dropdown" ngbDropdownMenu aria-labelledby="nationalityDropdown">
                       <button class="dropdown-item" *ngFor="let option of eduSupportNationality" (click)="setDropDownValue('eduSupportNationality',option, i)">{{option}}</button>
                     </div>
                   </div>

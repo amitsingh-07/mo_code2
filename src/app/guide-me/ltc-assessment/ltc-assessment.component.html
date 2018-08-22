@@ -14,7 +14,7 @@
           <div class="form-group mb0 flex-col flex__box--sm-horz">
             <div class="special-radio-button hidden" *ngFor="let longTermCare of longTermCareList; let i = index">
               <input id="longTermCare_{{i+1}}" name="careGiverType" formControlName="careGiverType" type="radio" class="field radio" value="{{longTermCare.id}}"
-              tabindex="{{i+1}}">
+              tabindex="{{i+1}}"  (change)="validateForm(longTermCare)" />
                 <label for="longTermCare_{{i+1}}" class="ltc">
                   <div class="input-label-white">{{longTermCare.careGiverType}}</div>
                   <div class="input-label-top20">{{longTermCare.careGiverDescription}}</div>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div>
-            <button type="button" [disabled]="!longTermCareForm.valid" (click)="goToNext(longTermCareForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <button type="button" [disabled]="!isFormValid" (click)="goToNext(longTermCareForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>
       </div>
