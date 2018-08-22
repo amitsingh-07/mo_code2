@@ -265,6 +265,6 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   }
 
   goToNext() {
-    this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]);
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.RECOMMENDATIONS]);
   }
 }
