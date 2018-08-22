@@ -93,13 +93,13 @@ export class GuideMeCalculateService {
 
   // Dependents
   getProtectionSupportSum(): number {
-    let protectionSupportSum: number;
+    let protectionSupportSum: number = null;
     const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
     lifeProtection.forEach((dependent) => {
         console.log(dependent);
         if (dependent.supportAmountRange) {
           console.log('triggered');
-          protectionSupportSum += dependent.supportAmountRange;
+          protectionSupportSum += dependent.supportAmountRange * 12 * dependent.yearsNeeded;
         }
     });
     console.log(protectionSupportSum);
@@ -114,7 +114,8 @@ export class GuideMeCalculateService {
   getLiabilitiesSum(): any {
     const liabilities = this.guideMeService.getMyLiabilities();
     let myLiabilities: number;
-    myLiabilities = liabilities.propertyLoan + liabilities.carLoan + liabilities.otherLiabilities; 
+    // tslint:disable-next-line:radix
+    myLiabilities = Math.floor(liabilities.propertyLoan) + Math.floor(liabilities.carLoan) + Math.floor(liabilities.otherLiabilities);
     return myLiabilities;
   }
 
@@ -122,9 +123,13 @@ export class GuideMeCalculateService {
   getCurrentAssetsSum(): any {
     const assets = this.guideMeService.getMyAssets();
     let myAssets: number;
-    myAssets = assets.cash + assets.cpf + assets.homeProperty + assets.investmentProperties + assets.investments;
+    // tslint:disable-next-line:radix
+    myAssets = Math.floor(assets.cash) + Math.floor(assets.cpf) + Math.floor(assets.homeProperty)
+             + Math.floor(assets.investmentProperties) + Math.floor(assets.investments);
     return myAssets;
   }
+
+  get
 
   getCriticalIllness() {
     const criticalIllnessFormValues = this.guideMeService.getCiAssessment();

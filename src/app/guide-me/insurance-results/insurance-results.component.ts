@@ -4,6 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { CiAssessment } from '../ci-assessment/ci-assessment';
+import { IMyIncome } from '../income/income.interface';
+import { IMyOcpDisability } from '../ocp-disability/ocp-disability.interface';
 import { GuideMeCalculateService } from './../guide-me-calculate.service';
 import { GuideMeService } from './../guide-me.service';
 import { ExistingCoverageModalComponent } from './existing-coverage-modal/existing-coverage-modal.component';
@@ -20,10 +23,16 @@ const assetImgPath = './assets/images/';
 })
 
 export class InsuranceResultsComponent implements OnInit, IPageComponent {
+
+  lifeProtectionValues: number;
+  currentAssetValues: any;
+  liabilityValues: any;
+  criticalIllnessValues: CiAssessment;
+  monthlySalary: IMyIncome;
+  ocpDisabilityValues: IMyOcpDisability;
   pageTitle: string;
   protectionNeeds: any;
   protectionNeedsArray: any;
-  criticalIllnessValues: any;
 
   constructor(
     private router: Router, public headerService: HeaderService,
@@ -34,7 +43,12 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
       this.setPageTitle(this.pageTitle, null, false);
     });
+    this.ocpDisabilityValues = this.guideMeService.getMyOcpDisability();
     this.criticalIllnessValues = this.guideMeService.getCiAssessment();
+    this.monthlySalary = this.guideMeService.getMyIncome();
+    this.liabilityValues = this.guideMeCalculateService.getLiabilitiesSum();
+    this.currentAssetValues = this.guideMeCalculateService.getCurrentAssetsSum();
+    this.lifeProtectionValues = this.guideMeCalculateService.getProtectionSupportSum();
     this.getProtectionNeeds();
   }
 
@@ -214,9 +228,17 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
         title: 'Less Existing Coverage',
         value: 8000
       },
+      percentNeeded: {
+        title: 'Years Needed',
+        value: this.ocpDisabilityValues.sliderValue
+      },
+      monthlySalary: {
+        title: 'Monthly Salary',
+        value: this.monthlySalary.monthlySalary
+      },
       total: {
         title: 'Coverage Needed',
-        value: 6000
+        value: this.ocpDisabilityValues.coverageAmount
       }
     };
   }

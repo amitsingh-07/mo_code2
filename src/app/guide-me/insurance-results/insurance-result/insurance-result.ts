@@ -11,6 +11,8 @@ export interface IResultItem {
     icon: string;
     yearsNeeded?: IResultItemEntry;
     annualIncome?: IResultItemEntry;
+    percentNeeded?: IResultItemEntry;
+    monthlySalary?: IResultItemEntry;
     inputValues: IResultItemEntry[];
     existingCoverage: IResultItemEntry;
     total: IResultItemEntry;
