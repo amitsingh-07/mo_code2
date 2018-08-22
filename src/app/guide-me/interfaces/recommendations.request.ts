@@ -2,6 +2,7 @@ import { IMyExpenses } from '../expenses/expenses.interface';
 import { IMyIncome } from '../income/income.interface';
 import { IMyLiabilities } from '../liabilities/liabilities.interface';
 import { IMyAssets } from '../my-assets/my-assets.interface';
+import { ILifeProtectionNeedsData } from './../life-protection/life-protection';
 
 export interface IRecommendationRequest {
     enquiryData: IEnquiryData;
@@ -14,6 +15,7 @@ export interface IRecommendationRequest {
     longTermCareNeeds: ILongTermCareNeedsData;
     lifeProtectionNeeds: ILifeProtectionNeedsData;
     existingInsuranceList: IExistingInsurance[];
+    sessionId: string;
 }
 
 export interface IEnquiryData {
@@ -79,12 +81,6 @@ export interface IHospitalizationNeedsData {
 export interface ILongTermCareNeedsData {
     careGiverTypeId: number;
     monthlyPayout: number;
-}
-
-export interface ILifeProtectionNeedsData {
-    coverageAmount: number;
-    coverageDuration: number;
-    isPremiumWaiver: boolean;
 }
 
 export interface IExistingInsurance {
