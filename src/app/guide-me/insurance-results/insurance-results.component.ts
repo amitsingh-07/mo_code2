@@ -100,6 +100,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
           protectionNeed.existingCoverage.value = emittedValue.longTermCare;
           break;
       }
+      return protectionNeed.existingCoverage.value;
     });
   }
 
