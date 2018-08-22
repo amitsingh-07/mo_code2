@@ -1,8 +1,6 @@
-import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
@@ -12,7 +10,7 @@ import { GuideMeFormData } from './guide-me-form-data';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
-import { IRecommendationRequest, IEnquiryData } from './interfaces/recommendations.request';
+import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
@@ -50,7 +48,7 @@ export class GuideMeService {
   private result_icon: string;
   private result_value;
 
-  constructor(private http: HttpClient, private apiService: ApiService, private authService: AuthenticationService) {
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
     this.getGuideMeFormData();
   }
 
@@ -106,10 +104,6 @@ export class GuideMeService {
     return this.guideMeFormData;
   }
 
-  getProfileList() {
-    return this.apiService.getProfileList();
-  }
-
   getProtectionNeeds(): ProtectionNeeds[] {
     if (!this.guideMeFormData.protectionNeedData) {
       this.guideMeFormData.protectionNeedData = [{}] as ProtectionNeeds[];
@@ -121,14 +115,6 @@ export class GuideMeService {
     this.isProtectionNeedFormValid = true;
     this.guideMeFormData.protectionNeedData = data;
     this.commit();
-  }
-
-  getProtectionNeedsList() {
-    const userInfoForm: any = {
-      profileId: this.guideMeFormData.myProfile,
-      birthDate: this.guideMeFormData.customDob
-    };
-    return this.apiService.getProtectionNeedsList(userInfoForm);
   }
 
   getLifeProtection() {
@@ -238,10 +224,6 @@ export class GuideMeService {
     this.commit();
   }
 
-  getLongTermCareList() {
-    return this.apiService.getLongTermCareList();
-  }
-
   getHospitalPlan(): HospitalPlan {
     if (!this.guideMeFormData.hospitalPlanData) {
       this.guideMeFormData.hospitalPlanData = {} as HospitalPlan;
@@ -253,10 +235,6 @@ export class GuideMeService {
     this.isHospitalPlanFormValid = true;
     this.guideMeFormData.hospitalPlanData = data;
     this.commit();
-  }
-
-  getHospitalPlanList() {
-    return this.apiService.getHospitalPlanList();
   }
 
   /*Additions of currency Values */
@@ -306,6 +284,7 @@ export class GuideMeService {
     }
     return selectedProtectionNeeds;
   }
+
   getNextProtectionNeedsPage() {
     const selectedProtectionNeedsPage = [];
     const protectionNeeds = this.getSelectedProtectionNeedsList();
@@ -377,45 +356,5 @@ export class GuideMeService {
         this.result_value = null;
         break;
     }
-  }
-
-  constructRecommendationsRequest(): IRecommendationRequest {
-    const requestObj = {} as IRecommendationRequest;
-    requestObj.sessionId = this.authService.getAppSecretKey();
-    requestObj.criticalIllnessNeedsData = this.getCiAssessment();
-    requestObj.enquiryProtectionTypeData = this.getSelectedProtectionNeedsList();
-    requestObj.existingInsuranceList = this.getExistingCoverage();
-    requestObj.financialStatusMapping.assets = this.getMyAssets();
-    requestObj.financialStatusMapping.income = this.getMyIncome();
-    requestObj.financialStatusMapping.liabilities = this.getMyLiabilities();
-    requestObj.financialStatusMapping.expenses = this.getMyExpenses();
-    requestObj.hospitalizationNeeds = this.getHospitalPlan();
-    requestObj.occupationalDisabilityNeeds = this.getMyOcpDisability();
-    requestObj.longTermCareNeeds = this.getLongTermCare();
-    requestObj.dependentsData = null;
-    requestObj.lifeProtectionNeeds = null;
-    requestObj.enquiryData = this.getEnquiryData();
-
-    return requestObj;
-  }
-
-  getEnquiryData() {
-    const smoker: boolean = this.getGuideMeFormData().smoker.toLowerCase() === 'smoker' ? true : false;
-    const enquiryData = {
-      id: 0,
-      profileStatusId: this.getProfile().myProfile,
-      customerId: 0,
-      careGiverId: this.getLongTermCare().careGiverTypeId,
-      hospitalClassId: this.getHospitalPlan().hospitalClassId,
-      sessionTrackerId: 0,
-      gender: this.getGuideMeFormData().gender,
-      dateOfBirth: this.getGuideMeFormData().dob,
-      isSmoker: smoker,
-      employmentStatusId: 0,
-      numberOfDependents: this.getGuideMeFormData().dependent,
-      hasPremiumWaiver: false,
-    } as IEnquiryData;
-
-    return enquiryData;
   }
 }

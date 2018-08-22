@@ -1,3 +1,4 @@
+import { GuideMeApiService } from './../guide-me.api.service';
 import 'rxjs/add/operator/map';
 
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
@@ -33,7 +34,8 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   constructor(
     private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
-    public modal: NgbModal, public headerService: HeaderService
+    public modal: NgbModal, public headerService: HeaderService,
+    private guideMeApiService: GuideMeApiService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -49,7 +51,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
       hospitalPlan: new FormControl(this.hospitalPlanFormValues, Validators.required)
     });
 
-    this.guideMeService.getHospitalPlanList().subscribe((data) => {
+    this.guideMeApiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
   }

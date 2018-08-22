@@ -1,3 +1,4 @@
+import { GuideMeApiService } from './../guide-me.api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,7 +30,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   constructor(
     private formBuilder: FormBuilder, private guideMeService: GuideMeService,
     private router: Router, public headerService: HeaderService,
-    private translate: TranslateService) {
+    private translate: TranslateService, private guideMeApiService: GuideMeApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PROTECTION_NEEDS.TITLE');
@@ -43,7 +44,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
     this.protectionNeedsForm = this.formBuilder.group({
       protectionNeedsArray: this.formBuilder.array([])
     });
-    this.guideMeService.getProtectionNeedsList().subscribe((data) => {
+    this.guideMeApiService.getProtectionNeedsList().subscribe((data) => {
       this.buildForm(data.objectList);
       this.protectionNeedsList = data.objectList;
     });

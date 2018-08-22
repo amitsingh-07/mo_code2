@@ -1,3 +1,4 @@
+import { GuideMeApiService } from './../guide-me.api.service';
 import 'rxjs/add/operator/map';
 
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
@@ -37,7 +38,8 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   constructor(
     private formBuilder: FormBuilder, private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
-    public modal: NgbModal, public headerService: HeaderService
+    public modal: NgbModal, public headerService: HeaderService,
+    private guideMeApiService: GuideMeApiService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -54,7 +56,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
       careGiverType: new FormControl(this.longTermCareFormValues, Validators.required)
     });
 
-    this.guideMeService.getLongTermCareList().subscribe((data) => {
+    this.guideMeApiService.getLongTermCareList().subscribe((data) => {
       this.longTermCareList = data.objectList; // Getting the information from the API
     });
 
