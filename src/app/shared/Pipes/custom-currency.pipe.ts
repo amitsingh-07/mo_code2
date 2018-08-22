@@ -26,7 +26,7 @@ export class CustomCurrencyPipe implements PipeTransform {
       } else if (value >= 1000000000 && value <= 999999999999) {
         return '$' + (value / 1000000000).toFixed(0) + 'B';
       } else {
-        return '$' + value ;
+        return value ;
       }
     }
   }

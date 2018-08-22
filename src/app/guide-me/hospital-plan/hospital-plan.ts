@@ -1,3 +1,3 @@
 export class HospitalPlan {
-    hospitalPlanData: string = null;
+    hospitalPlanData: any = null;
 }

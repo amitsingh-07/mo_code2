@@ -16,53 +16,53 @@
     </div>
   </div>
   <div class="form-group-with-bg--content form-group-with-bg--content-white">
-    <div class="flex-row">
+    <div class="flex-row" *ngIf="isLifeProtection">
       <div class="flex-col-6">
-        <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.LIFEPROTECTION | translate}}</div>
+        <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.LIFE_PROTECTION | translate}}</div>
       </div>
       <div class="flex-col-6">
         <div class="form-control">
             <i>$</i> 
-          <div name="cpf" ><input  class="input-control" type="text" maxLength="10"  name="LIFEPROTECTION" [(ngModel)] = "model.LIFEPROTECTION"></div>
+          <div name="cpf" ><input  class="input-control" type="text" maxLength="10"  name="LIFE_PROTECTION" [(ngModel)] = "model.lifeProtection"></div>
         </div>    
       </div>
     </div>
-    <div class="flex-row ">
+  <div class="flex-row " *ngIf= "isCriticalIllness"> 
           <div class="flex-col-6">
           <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.CRITICAL_ILLNESS | translate}}</div>
           </div>
           <div class="flex-col-6">
           <div class="form-control">
               <i>$</i>
-          <div name="cpf" ><input  class="input-control" type="text"  maxLength="10" name="CRITICAL_ILLNESS" [(ngModel)] = "model.CRITICAL_ILLNESS"></div>
+          <div name="cpf" ><input  class="input-control" type="text"  maxLength="10" name="CRITICAL_ILLNESS" [(ngModel)] = "model.criticalIllness"></div>
           </div>    
         </div>
     </div>
-    <div class="flex-row ">
+  <div class="flex-row " *ngIf ="isOccupationalDisability">
             <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.OCCUPATION_DISABILITY | translate}}</div>
             </div>
             <div class="flex-col-6">
             <div class="form-control">
                 
-            <div name="cpf" ><input  class="input-control" type="text"  maxLength="5" name="OCCUPATION_DISABILITY" [(ngModel)] = "model.OCCUPATION_DISABILITY"></div>
+            <div name="cpf" ><input  class="input-control" type="text"  maxLength="5" name="OCCUPATION_DISABILITY" [(ngModel)] = "model.occupationalDisability"></div>
             <i class="right">/mth</i>
             </div>    
           </div>
     </div>
-    <div class="flex-row">
+    <div class="flex-row" *ngIf = "isLongTermCare">
               <div class="flex-col-6">
-              <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.LONG_TERMCARE | translate}}</div>
+              <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.LONG_TERM_CARE | translate}}</div>
               </div>
               <div class="flex-col-6">
               <div class="form-control">
-              <div name="cpf" ><input  class="input-control" type="text"  maxLength="5" name="LONG_TERMCARE"  [(ngModel)] = "model.LONG_TERMCARE"></div>
+              <div name="cpf" ><input  class="input-control" type="text"  maxLength="5" name="LONG_TERM_CARE"  [(ngModel)] = "model.longTermCare"></div>
               <i class="right" >/mth</i>
               </div>    
             </div>
     </div>
    
-          <div class="flex-row ">
+          <div class="flex-row " *ngIf="isHospitalPlan">
             <div class="flex-col-6">
                 <div class="form-group-with-bg--content-label" for="name">{{ ADD_EXISTING_COVERAGES.HOSPITAL_PLAN | translate}}</div>
                 </div>
