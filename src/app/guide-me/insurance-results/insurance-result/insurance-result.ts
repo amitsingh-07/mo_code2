@@ -9,6 +9,8 @@ export interface IResultItem {
     title: string;
     content?: string;
     icon: string;
+    yearsNeeded?: IResultItemEntry;
+    annualIncome?: IResultItemEntry;
     inputValues: IResultItemEntry[];
     existingCoverage: IResultItemEntry;
     total: IResultItemEntry;

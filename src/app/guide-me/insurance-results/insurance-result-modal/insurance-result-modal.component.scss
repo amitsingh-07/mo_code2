@@ -1,7 +1,7 @@
-@import "../../../_variables.scss";
-@import "../../../_mixins.scss";
+@import "../../../../variables.scss";
+@import "../../../../mixins.scss";
 
-modal-body-message-fields {
+.modal-body-message-fields {
     font-family: $muli-regular;
     font-size: 16px;
     font-weight: normal;

@@ -179,8 +179,7 @@ export class GuideMeService {
   getCiAssessment(): CiAssessment {
     return {
       ciCoverageAmt: this.guideMeFormData.ciCoverageAmt,
-      // annualSalary: this.guideMeFormData.monthlySalary * 12,
-      annualSalary: 2200 * 12,
+      annualSalary: this.guideMeFormData.monthlySalary * 12,
       ciMultiplier: this.guideMeFormData.ciMultiplier,
       untilRetirementAge: this.guideMeFormData.untilRetirementAge
     };

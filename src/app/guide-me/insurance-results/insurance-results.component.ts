@@ -34,8 +34,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
       this.setPageTitle(this.pageTitle, null, false);
     });
-    this.getProtectionNeeds();
     this.criticalIllnessValues = this.guideMeService.getCiAssessment();
+    this.getProtectionNeeds();
   }
 
   ngOnInit() {
@@ -112,9 +112,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
           this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeedData));
         }
       });
+      this.arrangeProtectionNeedsList();
     }
-
-    this.arrangeProtectionNeedsList();
   }
 
   arrangeProtectionNeedsList() {
@@ -122,9 +121,9 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
       if (protectionNeed.id === 4) {
         hospitalPlanItem = this.protectionNeedsArray.splice(index, 1);
+        this.protectionNeedsArray = this.protectionNeedsArray.concat(hospitalPlanItem);
       }
     });
-    this.protectionNeedsArray = this.protectionNeedsArray.concat(hospitalPlanItem);
   }
 
   createProtectionNeedResult(data): IResultObject {
@@ -187,9 +186,17 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
         title: 'Less Existing Coverage',
         value: 8000
       },
+      yearsNeeded: {
+        title: 'Years Needed',
+        value: this.criticalIllnessValues.ciMultiplier
+      },
+      annualIncome: {
+        title: 'Annual Income',
+        value: this.criticalIllnessValues.annualSalary
+      },
       total: {
         title: 'Coverage Needed',
-        value: 6000
+        value: this.criticalIllnessValues.annualSalary * this.criticalIllnessValues.ciMultiplier
       }
     };
   }
@@ -232,13 +239,13 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     };
   }
 
-  constructHospitalPlan(data): IResultItem {
+  constructHospitalPlan(protectionNeedsId): IResultItem {
     const hospitalPlanData = this.guideMeService.getHospitalPlan().hospitalPlanData;
     return {
-      id: data.protectionNeedsId,
+      id: protectionNeedsId,
       icon: 'hospital-plan-icon.svg',
       title: 'Hospital Plan',
-      content: 'private', //hospitalPlanData.hospitalClass'
+      content: 'private',
       inputValues: [
         { title: 'Family Member', value: 600 }
       ],
