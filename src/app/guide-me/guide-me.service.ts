@@ -222,9 +222,10 @@ export class GuideMeService {
   }
 
   getLongTermCare(): LongTermCare {
-    return {
-      longTermCareData: this.guideMeFormData.longTermCareData
-    };
+    if (!this.guideMeFormData.longTermCareData) {
+      this.guideMeFormData.longTermCareData = { } as LongTermCare;
+    }
+    return this.guideMeFormData.longTermCareData;
   }
 
   setLongTermCare(data) {
@@ -319,16 +320,16 @@ export class GuideMeService {
     if (this.protectionNeedsPageIndex < selectedProtectionNeeds.length) {
       return selectedProtectionNeeds[this.protectionNeedsPageIndex];
     } else {
-      this.clearProtectionNeedsData();
       return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
     }
   }
 
   clearProtectionNeedsData() {
-    delete this.guideMeFormData.protectionNeedData;
+    delete this.guideMeFormData.lifeProtectionData;
     delete this.guideMeFormData.criticalIllness;
     delete this.guideMeFormData.occupationalDisability;
     delete this.guideMeFormData.hospitalPlanData;
+    delete this.guideMeFormData.longTermCareData;
     this.commit();
   }
 

@@ -1,17 +1,17 @@
-import { GuideMeFormData } from '../guide-me-form-data';
 import 'rxjs/add/operator/map';
 
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
 import { GuideMeService } from '../guide-me.service';
+import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
+import { LongTermCare } from './ltc-assessment';
 
 const assetImgPath = './assets/images/';
 
@@ -28,8 +28,9 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   pageSubTitle: string;
   modalData: any;
   longTermCareForm: FormGroup; // Working FormGroup
-  longTermCareFormValues: GuideMeFormData;
+  longTermCareFormValues: LongTermCare;
   longTermCareList: any[];
+  isFormValid = false;
 
   private subscription: Subscription;
 
@@ -48,9 +49,9 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   ngOnInit() {
-    this.longTermCareFormValues = this.guideMeService.getGuideMeFormData();
+    this.longTermCareFormValues = this.guideMeService.getLongTermCare();
     this.longTermCareForm = new FormGroup({
-      careGiverType: new FormControl(this.longTermCareFormValues.longTermCareData, Validators.required)
+      careGiverType: new FormControl(this.longTermCareFormValues, Validators.required)
     });
 
     this.guideMeService.getLongTermCareList().subscribe((data) => {
@@ -77,12 +78,20 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
     this.headerService.setPageTitle(title, subTitle, helpIcon);
   }
 
+  validateForm(careGiverType) {
+    this.longTermCareFormValues = careGiverType;
+    this.isFormValid = true;
+  }
+
   save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setLongTermCare(form.value);
-      return true;
-    }
-    return false;
+    const selectedCareGiverType: LongTermCare = {
+      careGiverType: this.longTermCareFormValues.careGiverType,
+      careGiverDescription: this.longTermCareFormValues.careGiverDescription,
+      careGiverTypeId: this.longTermCareFormValues.careGiverTypeId,
+      monthlyPayout: 0
+    };
+    this.guideMeService.setLongTermCare(selectedCareGiverType);
+    return true;
   }
 
   goToNext(form) {

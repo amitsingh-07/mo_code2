@@ -68,11 +68,11 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
     this.isFormValid = true;
   }
 
-  save(form: any) {
+  save() {
       const selectedPlan: HospitalPlan = {
         hospitalClass: this.hospitalPlanFormValues.hospitalClass,
         hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
-        hospitalClassId: this.hospitalPlanFormValues.id,
+        hospitalClassId: this.hospitalPlanFormValues.hospitalClassId,
         isFullRider: false
       };
       this.guideMeService.setHospitalPlan(selectedPlan);
@@ -80,7 +80,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   }
 
   goToNext(form) {
-    if (this.save(form)) {
+    if (this.save()) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
         this.guideMeService.protectionNeedsPageIndex++;
       });

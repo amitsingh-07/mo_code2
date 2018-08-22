@@ -1,7 +1,8 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
@@ -85,19 +86,20 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
     this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
       switch (protectionNeed.id) {
         case 1:
-          protectionNeed.existingCoverage.value = emittedValue.lifeProtection;
+          protectionNeed.existingCoverage.value = emittedValue.lifeProtectionCoverage;
           break;
         case 2:
-          protectionNeed.existingCoverage.value = emittedValue.criticalIllness;
+          protectionNeed.existingCoverage.value = emittedValue.criticalIllnessCoverage;
           break;
         case 3:
-          protectionNeed.existingCoverage.value = emittedValue.occupationalDisability;
+          protectionNeed.existingCoverage.value = emittedValue.occupationalDisabilityCoveragePerMonth;
           break;
         case 4:
-          protectionNeed.existingCoverage.value = emittedValue.hospitalPlan;
+          // protectionNeed.existingCoverage.value = emittedValue.hospitalPlanCoverage;
+          // Do nothing for hospitalization
           break;
         case 5:
-          protectionNeed.existingCoverage.value = emittedValue.longTermCare;
+          protectionNeed.existingCoverage.value = emittedValue.longTermCareCoveragePerMonth;
           break;
       }
       return protectionNeed.existingCoverage.value;
@@ -241,7 +243,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   }
 
   constructHospitalPlan(protectionNeedsId): IResultItem {
-    const hospitalPlanData = this.guideMeService.getHospitalPlan().hospitalPlanData;
+    const hospitalPlanData = this.guideMeService.getHospitalPlan();
     return {
       id: protectionNeedsId,
       icon: 'hospital-plan-icon.svg',

@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ApiService } from '../shared/http/api.service';
-import { CiAssessment } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
@@ -26,9 +25,9 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 })
 export class GuideMeCalculateService {
 
-  constructor(private http: HttpClient, private apiService: ApiService, private guideMeService: GuideMeService) {}
+  constructor(private http: HttpClient, private apiService: ApiService, private guideMeService: GuideMeService) { }
   // Math Regex Process
-  summarizeCost( cost: number): string {
+  summarizeCost(cost: number): string {
     let sum_string: string;
     sum_string = '$750K';
 
@@ -40,31 +39,31 @@ export class GuideMeCalculateService {
   }
   // Support Functions:
 
-    // ---Education Support Amounts
+  // ---Education Support Amounts
   getEducationSupportAmt(course: string, country: string): number[] {
     // tslint:disable-next-line:prefer-const
-    let  educationSum: number[];
+    let educationSum: number[];
     const nonmedicine = 'non-medicine';
     const medicine = 'medicine';
 
-    switch ( course && country ) {
-      case  nonmedicine && 'Singapore':
+    switch (course && country) {
+      case nonmedicine && 'Singapore':
         educationSum[0] = 49600;
         educationSum[1] = 48000;
         break;
-      case  nonmedicine && 'Singapore - PR':
+      case nonmedicine && 'Singapore - PR':
         educationSum[0] = 69400;
         educationSum[1] = 48000;
         break;
-      case  nonmedicine && 'Australia':
+      case nonmedicine && 'Australia':
         educationSum[0] = 168000;
         educationSum[1] = 120900;
         break;
-      case  nonmedicine && 'UK':
+      case nonmedicine && 'UK':
         educationSum[0] = 201600;
         educationSum[1] = 81200;
         break;
-      case  nonmedicine && 'USA':
+      case nonmedicine && 'USA':
         educationSum[0] = 283000;
         educationSum[1] = 131600;
         break;
@@ -96,11 +95,11 @@ export class GuideMeCalculateService {
     let protectionSupportSum: number;
     const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
     lifeProtection.forEach((dependent) => {
-        console.log(dependent);
-        if (dependent.supportAmountRange) {
-          console.log('triggered');
-          protectionSupportSum += dependent.supportAmountRange;
-        }
+      console.log(dependent);
+      if (dependent.supportAmountRange) {
+        console.log('triggered');
+        protectionSupportSum += dependent.supportAmountRange;
+      }
     });
     console.log(protectionSupportSum);
     return protectionSupportSum;
@@ -114,7 +113,7 @@ export class GuideMeCalculateService {
   getLiabilitiesSum(): any {
     const liabilities = this.guideMeService.getMyLiabilities();
     let myLiabilities: number;
-    myLiabilities = liabilities.propertyLoan + liabilities.carLoan + liabilities.otherLiabilities; 
+    myLiabilities = liabilities.propertyLoan + liabilities.carLoan + liabilities.otherLoan;
     return myLiabilities;
   }
 
@@ -122,16 +121,16 @@ export class GuideMeCalculateService {
   getCurrentAssetsSum(): any {
     const assets = this.guideMeService.getMyAssets();
     let myAssets: number;
-    myAssets = assets.cash + assets.cpf + assets.homeProperty + assets.investmentProperties + assets.investments;
+    myAssets = assets.cash + assets.cpf + assets.homeProperty + assets.investmentProperties + assets.otherInvestments;
     return myAssets;
   }
 
   getCriticalIllness() {
     const criticalIllnessFormValues = this.guideMeService.getCiAssessment();
     const criticalIllnessValues = {
-      annualSalary : criticalIllnessFormValues.annualSalary,
+      annualSalary: criticalIllnessFormValues.annualSalary,
       yearsNeeded: criticalIllnessFormValues.ciMultiplier,
-      coverageAmount: criticalIllnessFormValues.ciCoverageAmt
+      coverageAmount: criticalIllnessFormValues.coverageAmount
     };
   }
 

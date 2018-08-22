@@ -64,4 +64,3 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
   providers: [CurrencyPipe, CustomCurrencyPipe]
 })
 export class GuideMeModule { }
-

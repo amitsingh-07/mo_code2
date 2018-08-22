@@ -1,10 +1,10 @@
-import { HospitalPlan } from './hospital-plan/hospital-plan';
-import { FormGroup } from '@angular/forms';
-
+import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
+import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IDependent } from './life-protection/life-protection-form/dependent.interface';
 import { IMyAssets } from './my-assets/my-assets.interface';
 import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
@@ -19,7 +19,7 @@ export class GuideMeFormData {
     dependent: number;
 
     protectionNeedData: ProtectionNeeds;
-    lifeProtectionData: FormGroup;
+    lifeProtectionData: IDependent[];
 
     // My Income
     income: IMyIncome;
@@ -40,7 +40,7 @@ export class GuideMeFormData {
     occupationalDisability: IMyOcpDisability;
 
     // Long Term Care
-    longTermCareData: string;
+    longTermCareData: LongTermCare;
 
     // Hospital Plan
     hospitalPlanData: HospitalPlan;
