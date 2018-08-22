@@ -1,7 +1,7 @@
-import { IMyExpenses } from './../expenses/expenses.interface';
-import { IMyIncome } from './../income/income.interface';
-import { IMyLiabilities } from './../liabilities/liabilities.interface';
-import { IMyAssets } from './../my-assets/my-assets.interface';
+import { IMyExpenses } from '../expenses/expenses.interface';
+import { IMyIncome } from '../income/income.interface';
+import { IMyLiabilities } from '../liabilities/liabilities.interface';
+import { IMyAssets } from '../my-assets/my-assets.interface';
 
 export interface IRecommendationRequest {
     enquiryData: IEnquiryData;

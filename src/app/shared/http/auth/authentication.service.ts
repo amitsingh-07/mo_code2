@@ -4,8 +4,8 @@ import { tokenNotExpired } from 'angular2-jwt';
 import { map } from 'rxjs/operators';
 
 import { apiConstants } from '../api.constants';
-import { environment } from './../../../../environments/environment';
-import { IServerResponse } from './../interfaces/server-response.interface';
+import { environment } from '../../../../environments/environment';
+import { IServerResponse } from '../interfaces/server-response.interface';
 
 const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 
@@ -14,7 +14,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   getAppSecretKey() {
-    return 'lX7+bYbR4m6GUnmQE9zUrbAwvKMRVevbYL6nIrnOCWY=';
+    return '658Ifh5FmT70jkAmLSWEvQWulBrR9zkrZza2n7MCusY=';
   }
 
   authenticate(userEmail?: string, userPassword?: string) {

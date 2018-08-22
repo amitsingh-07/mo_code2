@@ -183,7 +183,8 @@
     "STATIC_DESCRIPTION": "In the final step, we will be sharing with you the coverage you need based on our assessment",
     "COVERAGE_YOU_NEED": "Coverage You Need",
     "ADD_COVERAGE": {
-      "LBL": "Add Existing Coverage For More Accurate Result"
+      "LBL": "Add Existing Coverage?",
+      "SUB_LBL": "Tap to add coverages"
     },
     "PROCEED": {
       "LBL": "Continue To Recommendation"

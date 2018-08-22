@@ -4,3 +4,4 @@ export class HospitalPlan {
     hospitalClassId: number;
     isFullRider = false;
 }
+

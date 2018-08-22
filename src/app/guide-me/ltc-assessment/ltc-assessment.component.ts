@@ -1,4 +1,4 @@
-import { GuideMeFormData } from './../guide-me-form-data';
+import { GuideMeFormData } from '../guide-me-form-data';
 import 'rxjs/add/operator/map';
 
 import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation, HostListener } from '@angular/core';

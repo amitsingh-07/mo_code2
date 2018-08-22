@@ -15,5 +15,9 @@
     "SAVE": "Save",
     "SUPPORT_AMOUNT": "Support Amount",
     "YEARS_NEEDED": "Years Needed"
+  },
+  "CUSTOM_MODAL": {
+    "MODAL_TITLE": "Insurance Results",
+    "MODAL_DESC":"In the final step, we will be sharing with you the coverage you need based on our assessment."
   }
 }

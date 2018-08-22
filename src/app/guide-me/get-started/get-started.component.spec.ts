@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { GuideMeService } from './../guide-me.service';
+import { GuideMeService } from '../guide-me.service';
 import { GetStartedFormComponent } from './get-started-form/get-started-form.component';
 import { UserInfo } from './get-started-form/user-info';
 

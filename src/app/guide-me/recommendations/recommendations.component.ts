@@ -3,7 +3,7 @@ import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { HeaderService } from './../../shared/header/header.service';
+import { HeaderService } from '../../shared/header/header.service';
 
 @Component({
   selector: 'app-recommendations',

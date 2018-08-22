@@ -12,7 +12,7 @@ import { LoggerService } from '../../shared/logger/logger.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 const assetImgPath = './assets/images/';
 

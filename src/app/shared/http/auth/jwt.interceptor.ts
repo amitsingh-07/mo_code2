@@ -11,7 +11,7 @@ import {
     HttpInterceptor,
     HttpRequest,
     HttpResponse
-} from '../../../../../node_modules/@angular/common/http';
+} from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable()

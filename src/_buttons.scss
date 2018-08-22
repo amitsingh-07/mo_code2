@@ -142,16 +142,21 @@
   color: $myinfo-btn-color;
   justify-content:center;
   align-items:center;
-  max-width:400px;
-  width:80%;
+  width:70%;
+  max-height:70px;
   min-width:337px;
+  max-width:370px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px #ff7f00;
+  
   @include allmobiles{
     width:100% !important;
     min-width:0px;
+    max-width:none;
   }
   .addCover__block__btn {
     position: absolute;
-    right: 0;
+    right: -1px;
     width: 50px;
     background: $myinfo-block-btn-bg-color;
     height: 100%;
@@ -175,6 +180,15 @@
     padding-right:5px;
     font-family: $muli-bold;
     font-size: 18px;
+    line-height:1.0;
+    letter-spacing: -0.1px;
+    .sub{
+      display:block;
+      font-family:$muli;
+      font-size:16px;
+      line-height:1.0;
+      letter-spacing: -0.3px;
+    }
   }
 }
 
@@ -212,15 +226,15 @@
   width:100%;
 }
 .result__wrapper{
+  flex-wrap:wrap;
   app-insurance-result{
     width:160px;
-    min-width:160px;
     margin-right:18px;
     @include allmobiles{
       width:calc(50% - 10px);
     }
     @include min300max325{
-      height:250px;
+      min-height:250px;
     }
     &:last-child(){
       margin-right:0px;
@@ -303,8 +317,9 @@
 .continue__btn{
   position: relative;
   display: inline-block;
-  width:80%;
-  max-width: 372px;
+  width:70%;
+  min-width: 340px;
+  max-width: 370px;
   background-color:$btn-primary-backgrnd-color;
   color:$white-color;
   border-radius: 6px;
@@ -312,6 +327,7 @@
   padding:16px 25px;
   letter-spacing:-0.2px;
   font-family:$muli-semi-bold;
+  max-height:70px;
   @include fontSize(13px);
   text-align:center;
   @include allmobiles {
