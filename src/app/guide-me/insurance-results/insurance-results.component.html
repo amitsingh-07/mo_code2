@@ -1,9 +1,29 @@
+<!--Custom Modal-->
+<div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
+  <div class="custom-modal-backdrop"></div>
+  <div class="custom-modal-wrapper">
+    <div class="custom-modal--icon">
+      <img src="../../../assets/images/custom-modal-icon.svg" id="custModalImg1" />
+      <div class="custom-modal--content">
+        <p class="custom-modal--title" id="custModalTitle">{{ 'CUSTOM_MODAL.MODAL_TITLE' | translate}}</p>
+        <p class="custom-modal--desc" id="custModalDesc">{{ 'CUSTOM_MODAL.MODAL_DESC' | translate}}</p>
+      </div>
+    </div>
+    <div class="custom-modal-content">
+      <div>
+        <img src="../../../assets/images/custom-modal-overlay-bg.svg" id="custModalImg2" />
+      </div>
+    </div>
+  </div>
+</div>
+<!--Custom Modal /-->
+
 <div class="container-fluid flex__wrapper mt30 sm-mt50 pab-mt80">
   <div class="content">
     <div class="row">
       <div class="col-lg-12 col-md-12 hidden-sm-md text-center mb10">
-          <h2>{{ pageTitle }}</h2>
-      </div> 
+        <h2>{{ pageTitle }}</h2>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 text-center mb25 pab-mb15 sm-mb15">
@@ -13,22 +33,22 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="result__wrapper flex__box--horz flex__box--sm-horz flex__box--md-horz center mb50 sm-mb0">
-          <app-insurance-result [data]="protectionNeed" (Details)="viewDetails ($event)" *ngFor = "let protectionNeed of protectionNeedsArray"></app-insurance-result>
+          <app-insurance-result [data]="protectionNeed" (Details)="viewDetails ($event)" *ngFor="let protectionNeed of protectionNeedsArray"></app-insurance-result>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz center">
         <div class="addCover__block mr20 sm-mr0 sm-mb30">
-            <div class="addCover__block__btn" (click)="openExistingCoverageModal()">
-              <span class="addCover__block__btn--plus"></span>
-            </div>
-            <div class="addCover__block--title">
-              <span>{{ 'INSURANCE_RESULTS.ADD_COVERAGE.LBL' | translate}}</span>
-              <span class="sub">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.SUB_LBL' | translate}}</span>
-            </div>          
-        </div> 
-        <div class="continue__btn" (click) = "goToNext()">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div> 
+          <div class="addCover__block__btn" (click)="openExistingCoverageModal()">
+            <span class="addCover__block__btn--plus"></span>
+          </div>
+          <div class="addCover__block--title">
+            <span>{{ 'INSURANCE_RESULTS.ADD_COVERAGE.LBL' | translate}}</span>
+            <span class="sub">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.SUB_LBL' | translate}}</span>
+          </div>
+        </div>
+        <div class="continue__btn" (click)="goToNext()">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div>
       </div>
     </div>
   </div>
