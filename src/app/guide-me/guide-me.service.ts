@@ -43,6 +43,7 @@ export class GuideMeService {
   protectionNeedsPageIndex = 0;
   protectionNeedsArray: any;
   isMyOcpDisabilityFormValid = false;
+  isExistingCoverAdded = false;
 
   // Variables for Insurance Results Generation
   private result_title: string;

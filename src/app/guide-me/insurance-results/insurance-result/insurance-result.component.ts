@@ -44,7 +44,6 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
   }
 
   viewDetails() {
-    console.log('Details Emitted');
     this.Details.emit(this.temp);
   }
 }

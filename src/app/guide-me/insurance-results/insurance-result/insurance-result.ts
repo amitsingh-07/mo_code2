@@ -17,4 +17,5 @@ export interface IResultItem {
 export interface IResultItemEntry {
     title: string;
     value: number;
+    type?: string;
 }
