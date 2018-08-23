@@ -19,7 +19,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit {
   assetsForm: FormGroup;
   assetsFormValues: IMyAssets;
   assetsTotal: any;
-  
+
   constructor(
     private router: Router, public headerService: HeaderService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
@@ -37,7 +37,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit {
       cpf: new FormControl(this.assetsFormValues.cpf),
       homeProperty: new FormControl(this.assetsFormValues.homeProperty),
       investmentProperties: new FormControl(this.assetsFormValues.investmentProperties),
-      investments: new FormControl(this.assetsFormValues.investments),
+      otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
 

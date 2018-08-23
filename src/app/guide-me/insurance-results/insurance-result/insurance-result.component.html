@@ -3,7 +3,7 @@
     <img src="../../../assets/images/{{icon}}"/>
   </div>
   <div class="result__block--title mb25 sm-mb30">{{title}}</div>
-  <div class="result__block--data mb10">{{amount}}</div>
+  <div class="result__block--data mb10">{{amount | customCurrency}}</div>
   <div class="result__block--postfix" *ngIf = isMonthEnabled>/mth</div>
   <div class="result__block--viewDed-btn center" *ngIf="viewDetailsBtn" (click) = "viewDetails($index)">{{ 'INSURANCE_RESULTS.RESULT_BLOCK.VIEW_DETAILS' | translate }}</div>
 </div>

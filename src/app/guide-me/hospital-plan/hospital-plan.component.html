@@ -9,12 +9,12 @@
           <img src="assets/images/hospital-plan.svg" />
         </div>
       </div>
-      <div class="col-lg-5 col-md-6 flex--pad-mt-reset">
+      <div class="col-lg-5 col-md-6">
         <form name="hospitalPlanForm" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
           <div class="form-group mb0 sm-mb50 flex-col flex__box--sm-horz">
             <div class="special-radio-button hidden" *ngFor="let hospitalPlan of hospitalPlanList; let i = index">
-              <input id="hospitalPlan_{{i+1}}" name="hospitalPlan" formControlName="hospitalPlan" type="radio" class="field radio" value="{{hospitalPlan.id}}"
-              tabindex="{{i+1}}">
+              <input id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlan)" name="hospitalPlan" [checked]="false" formControlName="hospitalPlan" type="radio" class="field radio" value="{{hospitalPlan.id}}"
+              tabindex="{{i+1}}" />
                 <label for="hospitalPlan_{{i+1}}">
                   <div class="input-label-white">{{hospitalPlan.hospitalClass}}</div>
                   <div class="input-label-normal">{{hospitalPlan.hospitalClassDescription}}</div>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div>
-            <button type="button" [disabled]="!hospitalPlanForm.valid" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <button type="button" [disabled]="!isFormValid" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>
       </div>

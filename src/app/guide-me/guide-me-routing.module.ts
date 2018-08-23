@@ -1,4 +1,3 @@
-import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,6 +18,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 const routes: Routes = [
   { path: GUIDE_ME_ROUTES.ROOT, component: ProfileComponent },

@@ -72,9 +72,9 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
     this.headerService.showMobilePopUp('removeClicked');
     this.formValues = this.guideMeService.getMyOcpDisability();
     if (this.guideMeService.isMyOcpDisabilityFormValid) {
-      this.selectRetirementAge(this.formValues.retirementAge);
+      this.selectRetirementAge(this.formValues.maxAge);
       this.selectEmployeeType(this.formValues.selectedEmployee, false);
-      this.coveragePercent = this.formValues.sliderValue;
+      this.coveragePercent = this.formValues.percentageCoverage;
     }
     this.monthlyIncome = this.guideMeService.getMyIncome();
     if (!this.monthlyIncome.monthlySalary) {
@@ -114,6 +114,9 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   onSliderChange(value) {
     this.coveragePercent = value;
     this.coverageAmount = (this.monthlyIncome.monthlySalary * this.coveragePercent) / 100;
+    if (!this.coverageAmount) {
+      this.coverageAmount = 0;
+    }
   }
 
   selectEmployeeType(status, setSlider) {
@@ -147,9 +150,10 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
         form.get(key).markAsDirty();
       });
     } else {
+
       form.value.coverageAmount = this.coverageAmount;
-      form.value.sliderValue = this.coveragePercent;
-      form.value.retirementAge = this.retirementAge;
+      form.value.percentageCoverage = this.coveragePercent;
+      form.value.maxAge = this.retirementAge;
       form.value.selectedEmployee = this.defaultEmployee;
       this.guideMeService.setMyOcpDisability(form.value);
       return true;

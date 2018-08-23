@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiService } from '../shared/http/api.service';
-import { CiAssessment } from './ci-assessment/ci-assessment';
+import { AuthenticationService } from './../shared/http/auth/authentication.service';
+import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
 import { UserInfo } from './get-started/get-started-form/user-info';
@@ -10,6 +10,7 @@ import { GuideMeFormData } from './guide-me-form-data';
 import { GUIDE_ME_ROUTE_PATHS } from './guide-me-routes.constants';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
+import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
@@ -47,19 +48,19 @@ export class GuideMeService {
   private result_icon: string;
   private result_value;
 
-  constructor(private http: HttpClient, private apiService: ApiService) {
+  constructor(private http: HttpClient, private authService: AuthenticationService) {
     this.getGuideMeFormData();
   }
 
   commit() {
-    if (window.localStorage) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.guideMeFormData));
+    if (window.sessionStorage) {
+      sessionStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.guideMeFormData));
     }
   }
 
   clearData() {
-    if (window.localStorage) {
-      localStorage.clear();
+    if (window.sessionStorage) {
+      sessionStorage.clear();
     }
   }
 
@@ -97,34 +98,23 @@ export class GuideMeService {
 
   // Return the entire GuideMe Form Data
   getGuideMeFormData(): GuideMeFormData {
-    if (window.localStorage && localStorage.getItem(LOCAL_STORAGE_KEY)) {
-      this.guideMeFormData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (window.sessionStorage && sessionStorage.getItem(LOCAL_STORAGE_KEY)) {
+      this.guideMeFormData = JSON.parse(sessionStorage.getItem(LOCAL_STORAGE_KEY));
     }
     return this.guideMeFormData;
   }
 
-  getProfileList() {
-    return this.apiService.getProfileList();
-  }
-
-  getProtectionNeeds(): ProtectionNeeds {
-    return {
-      protectionNeedData: this.guideMeFormData.protectionNeedData
-    };
+  getProtectionNeeds(): ProtectionNeeds[] {
+    if (!this.guideMeFormData.protectionNeedData) {
+      this.guideMeFormData.protectionNeedData = [{}] as ProtectionNeeds[];
+    }
+    return this.guideMeFormData.protectionNeedData;
   }
 
   setProtectionNeeds(data) {
     this.isProtectionNeedFormValid = true;
     this.guideMeFormData.protectionNeedData = data;
     this.commit();
-  }
-
-  getProtectionNeedsList() {
-    const userInfoForm: any = {
-      profileId: this.guideMeFormData.myProfile,
-      birthDate: this.guideMeFormData.customDob
-    };
-    return this.apiService.getProtectionNeedsList(userInfoForm);
   }
 
   getLifeProtection() {
@@ -140,112 +130,92 @@ export class GuideMeService {
 
   /* FinancialAssessment - Income, Expenses, Assets & Liabilities */
   getMyIncome(): IMyIncome {
-    return {
-      monthlySalary: this.guideMeFormData.monthlySalary,
-      annualBonus: this.guideMeFormData.annualBonus,
-      otherIncome: this.guideMeFormData.otherIncome
-    };
+    if (!this.guideMeFormData.income) {
+      this.guideMeFormData.income = {} as IMyIncome;
+    }
+    return this.guideMeFormData.income;
   }
 
   setMyIncome(data: IMyIncome) {
     this.isMyIncomeFormValid = true;
-    this.guideMeFormData.monthlySalary = data.monthlySalary;
-    this.guideMeFormData.annualBonus = data.annualBonus;
-    this.guideMeFormData.otherIncome = data.otherIncome;
+    this.guideMeFormData.income = data;
     this.commit();
   }
 
   getMyExpenses(): IMyExpenses {
-    return {
-      monthlyInstallment: this.guideMeFormData.monthlyInstallment,
-      otherExpenses: this.guideMeFormData.otherExpenses
-    };
+    if (!this.guideMeFormData.expenses) {
+      this.guideMeFormData.expenses = {} as IMyExpenses;
+    }
+    return this.guideMeFormData.expenses;
   }
 
   setMyExpenses(data: IMyExpenses) {
     this.isMyExpensesFormValid = true;
-    this.guideMeFormData.monthlyInstallment = data.monthlyInstallment;
-    this.guideMeFormData.otherExpenses = data.otherExpenses;
+    this.guideMeFormData.expenses = data;
     this.commit();
   }
 
   getMyAssets(): IMyAssets {
-    return {
-      cash: this.guideMeFormData.cash,
-      cpf: this.guideMeFormData.cpf,
-      homeProperty: this.guideMeFormData.homeProperty,
-      investmentProperties: this.guideMeFormData.investmentProperties,
-      investments: this.guideMeFormData.investments,
-      otherAssets: this.guideMeFormData.otherAssets,
-    };
+    if (!this.guideMeFormData.assets) {
+      this.guideMeFormData.assets = {} as IMyAssets;
+    }
+    return this.guideMeFormData.assets;
   }
 
   setMyAssets(data: IMyAssets) {
-    this.isMyExpensesFormValid = true;
-    this.guideMeFormData.cash = data.cash;
-    this.guideMeFormData.cpf = data.cpf;
-    this.guideMeFormData.homeProperty = data.homeProperty;
-    this.guideMeFormData.investmentProperties = data.investmentProperties;
-    this.guideMeFormData.investments = data.investments;
-    this.guideMeFormData.otherAssets = data.otherAssets;
+    this.guideMeFormData.assets = data;
     this.commit();
   }
 
   getMyLiabilities(): IMyLiabilities {
-    return {
-      propertyLoan: this.guideMeFormData.propertyLoan,
-      carLoan: this.guideMeFormData.carLoan,
-      otherLiabilities: this.guideMeFormData.otherLiabilities
-    };
+    if (!this.guideMeFormData.liabilities) {
+      this.guideMeFormData.liabilities = {} as IMyLiabilities;
+    }
+    return this.guideMeFormData.liabilities;
   }
 
   setMyLiabilities(data: IMyLiabilities) {
     this.isMyExpensesFormValid = true;
-    this.guideMeFormData.propertyLoan = data.propertyLoan;
-    this.guideMeFormData.carLoan = data.carLoan;
-    this.guideMeFormData.otherLiabilities = data.otherLiabilities;
+    this.guideMeFormData.liabilities = data;
     this.commit();
   }
 
-  getCiAssessment(): CiAssessment {
-    return {
-      ciCoverageAmt: this.guideMeFormData.ciCoverageAmt,
-      // annualSalary: this.guideMeFormData.monthlySalary * 12,
-      annualSalary: 2200 * 12,
-      ciMultiplier: this.guideMeFormData.ciMultiplier,
-      untilRetirementAge: this.guideMeFormData.untilRetirementAge
-    };
+  getCiAssessment(): CriticalIllnessData {
+    if (!this.guideMeFormData.criticalIllness) {
+      this.guideMeFormData.criticalIllness = { coverageYears: 65 } as CriticalIllnessData;
+    }
+    return this.guideMeFormData.criticalIllness;
   }
 
-  setCiAssessment(data: CiAssessment) {
-    this.guideMeFormData.ciCoverageAmt = data.ciCoverageAmt;
-    this.guideMeFormData.ciMultiplier = data.ciMultiplier;
-    this.guideMeFormData.untilRetirementAge = data.untilRetirementAge;
+  setCiAssessment(data: CriticalIllnessData) {
+    this.guideMeFormData.criticalIllness = {
+      coverageAmount: data.coverageAmount,
+      coverageYears: data.coverageYears,
+      isEarlyCriticalIllness: false,
+      annualSalary: data.annualSalary,
+      ciMultiplier: data.ciMultiplier
+    } as CriticalIllnessData;
     this.commit();
   }
 
   getMyOcpDisability(): IMyOcpDisability {
-    return {
-      coverageAmount: this.guideMeFormData.coverageAmount,
-      sliderValue: this.guideMeFormData.sliderValue,
-      retirementAge: this.guideMeFormData.retirementAge,
-      selectedEmployee: this.guideMeFormData.selectedEmployee
-    };
+    if (!this.guideMeFormData.occupationalDisability) {
+      this.guideMeFormData.occupationalDisability = {} as IMyOcpDisability;
+    }
+    return this.guideMeFormData.occupationalDisability;
   }
 
   setMyOcpDisability(data: IMyOcpDisability) {
     this.isMyOcpDisabilityFormValid = true;
-    this.guideMeFormData.coverageAmount = data.coverageAmount;
-    this.guideMeFormData.sliderValue = data.sliderValue;
-    this.guideMeFormData.retirementAge = data.retirementAge;
-    this.guideMeFormData.selectedEmployee = data.selectedEmployee;
+    this.guideMeFormData.occupationalDisability = data;
     this.commit();
   }
 
   getLongTermCare(): LongTermCare {
-    return {
-      longTermCareData: this.guideMeFormData.longTermCareData
-    };
+    if (!this.guideMeFormData.longTermCareData) {
+      this.guideMeFormData.longTermCareData = {} as LongTermCare;
+    }
+    return this.guideMeFormData.longTermCareData;
   }
 
   setLongTermCare(data) {
@@ -254,14 +224,11 @@ export class GuideMeService {
     this.commit();
   }
 
-  getLongTermCareList() {
-    return this.apiService.getLongTermCareList();
-  }
-
   getHospitalPlan(): HospitalPlan {
-    return {
-      hospitalPlanData: this.guideMeFormData.hospitalPlanData
-    };
+    if (!this.guideMeFormData.hospitalPlanData) {
+      this.guideMeFormData.hospitalPlanData = {} as HospitalPlan;
+    }
+    return this.guideMeFormData.hospitalPlanData;
   }
 
   setHospitalPlan(data) {
@@ -270,17 +237,14 @@ export class GuideMeService {
     this.commit();
   }
 
-  getHospitalPlanList() {
-    return this.apiService.getHospitalPlanList();
-  }
-
   /*Additions of currency Values */
   additionOfCurrency(formValues) {
     let sum: any = 0;
     for (const i in formValues) {
       if (formValues[i] !== null && formValues[i] !== '') {
         const Regexp = new RegExp('[,]', 'g');
-        const thisValue = formValues[i].replace(Regexp, '');
+        let thisValue: any = (formValues[i] + '').replace(Regexp, '');
+        thisValue = parseInt(formValues[i], 10);
         if (!isNaN(thisValue)) {
           if (i === 'annualBonus') {
             sum += thisValue !== 0 ? thisValue / 12 : 0;
@@ -310,48 +274,70 @@ export class GuideMeService {
     return this.formError.formFieldErrors[formCtrlName][validation];
   }
 
-  getNextProtectionNeedsPage() {
+  getSelectedProtectionNeedsList() {
     const selectedProtectionNeeds = [];
-    const protectionNeeds = this.getProtectionNeeds().protectionNeedData;
+    const protectionNeeds = this.getProtectionNeeds();
     for (const thisNeed of protectionNeeds) {
       if (thisNeed.status) {
-        switch (thisNeed.protectionTypeId) {
-          case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
-            break;
-          case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
-            break;
-          case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
-            break;
-          case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
-            break;
-          case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
-            selectedProtectionNeeds.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
-            break;
-        }
+        selectedProtectionNeeds.push(thisNeed);
+      }
+    }
+    return selectedProtectionNeeds;
+  }
+
+  getNextProtectionNeedsPage() {
+    const selectedProtectionNeedsPage = [];
+    const protectionNeeds = this.getSelectedProtectionNeedsList();
+    for (const thisNeed of protectionNeeds) {
+      switch (thisNeed.protectionTypeId) {
+        case PROTECTION_NEEDS_LIFE_PROTECTION_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LIFE_PROTECTION);
+          break;
+        case PROTECTION_NEEDS_CRITICAL_ILLNESS_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.CRITICAL_ILLNESS);
+          break;
+        case PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.OCCUPATIONAL_DISABILITY);
+          break;
+        case PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.HOSPITAL_PLAN);
+          break;
+        case PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID:
+          selectedProtectionNeedsPage.push(GUIDE_ME_ROUTE_PATHS.LONG_TERM_CARE);
+          break;
       }
     }
 
-    if (this.protectionNeedsPageIndex < selectedProtectionNeeds.length) {
-      return selectedProtectionNeeds[this.protectionNeedsPageIndex];
+    if (this.protectionNeedsPageIndex < selectedProtectionNeedsPage.length) {
+      return selectedProtectionNeedsPage[this.protectionNeedsPageIndex];
     } else {
       return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
     }
   }
 
+  clearProtectionNeedsData() {
+    delete this.guideMeFormData.lifeProtectionData;
+    delete this.guideMeFormData.criticalIllness;
+    delete this.guideMeFormData.occupationalDisability;
+    delete this.guideMeFormData.hospitalPlanData;
+    delete this.guideMeFormData.longTermCareData;
+    this.commit();
+  }
+
   getProtectionNeedsResults() {
     console.log('get Protection Needs Triggered');
     let selectedProtectionNeeds = [];
-    selectedProtectionNeeds = this.getProtectionNeeds().protectionNeedData;
+    selectedProtectionNeeds = this.getProtectionNeeds();
     if (selectedProtectionNeeds) {
       selectedProtectionNeeds.forEach((protectionNeed) => {
         this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeed));
       });
       return this.protectionNeedsArray;
     }
+  }
+
+  getExistingCoverage(): IExistingCoverage[] {
+    return [{}] as IExistingCoverage[];
   }
 
   createProtectionNeedResult(data) {

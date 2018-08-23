@@ -1,3 +1,4 @@
+import { GuideMeApiService } from './../guide-me.api.service';
 import 'rxjs/add/operator/map';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -12,7 +13,7 @@ import { LoggerService } from '../../shared/logger/logger.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 const assetImgPath = './assets/images/';
 
@@ -43,7 +44,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
     private guideMeService: GuideMeService, private router: Router,
     private modal: NgbModal, public headerService: HeaderService,
     public readonly translate: TranslateService, public authService: AuthenticationService,
-    public log: LoggerService) {
+    public log: LoggerService, private guideMeApiService: GuideMeApiService) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -58,7 +59,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
     });
     this.authService.authenticate().subscribe((token) => {
-      this.guideMeService.getProfileList().subscribe((data) => this.profileList = data.objectList);
+      this.guideMeApiService.getProfileList().subscribe((data) => this.profileList = data.objectList);
     });
   }
 

@@ -1,3 +1,5 @@
+import 'hammerjs';
+
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
@@ -12,6 +14,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
+import { ExistingCoverageModalComponent } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
+import {
+  InsuranceResultModalComponent
+} from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
 import {
   LifeProtectionModalComponent
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
@@ -36,7 +42,9 @@ export function createTranslateLoader(http: HttpClient) {
     MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
-    LifeProtectionModalComponent
+    LifeProtectionModalComponent,
+    InsuranceResultModalComponent,
+    ExistingCoverageModalComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +72,8 @@ export function createTranslateLoader(http: HttpClient) {
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, LifeProtectionModalComponent, MobileModalComponent]
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent,
+     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, ExistingCoverageModalComponent]
 })
 
 export class AppModule {

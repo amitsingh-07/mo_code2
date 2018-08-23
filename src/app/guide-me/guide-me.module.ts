@@ -1,13 +1,14 @@
-import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
+import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
 
 import { CurrencyInputDirective } from '../shared/directives/currency-input.directive';
 import { SharedModule } from '../shared/shared.module';
+import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
@@ -16,6 +17,7 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { GuideMeRoutingModule } from './guide-me-routing.module';
 import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
+import { InsuranceResultComponent } from './insurance-results/insurance-result/insurance-result.component';
 import { InsuranceResultsComponent } from './insurance-results/insurance-results.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
@@ -26,7 +28,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
-import { InsuranceResultComponent } from './insurance-results/insurance-result/insurance-result.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 @NgModule({
   imports: [
@@ -55,8 +57,10 @@ import { InsuranceResultComponent } from './insurance-results/insurance-result/i
     HospitalPlanComponent,
     InsuranceResultsComponent,
     InsuranceResultComponent,
-    RecommendationsComponent
+    RecommendationsComponent,
+    PlanWidgetComponent,
+    CustomCurrencyPipe
   ],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe, CustomCurrencyPipe]
 })
 export class GuideMeModule { }
