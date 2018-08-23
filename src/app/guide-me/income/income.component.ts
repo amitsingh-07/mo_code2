@@ -1,10 +1,9 @@
 import { CurrencyPipe } from '@angular/common';
-import { AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-
+import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
@@ -20,10 +19,8 @@ const Regexp = new RegExp('[,]', 'g');
   encapsulation: ViewEncapsulation.None
 })
 export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
-  @ViewChild('noUiSlider') noUiSlider: NouisliderComponent;
 
   someRange3 = 0;
-  formatter: DefaultFormatter;
 
   isUserInputIncome = false;
 
@@ -32,20 +29,6 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   incomeFormValues: IMyIncome;
   incomeTotal: any;
 
-  incomeSliderConfig: any = {
-    behaviour: 'snap',
-    start: 0,
-    connect: [true, false],
-    format: {
-      to: (value) => {
-        return Math.round(value);
-      },
-      from: (value) => {
-        return Math.round(value);
-      }
-    }
-  };
-
   private el: HTMLInputElement;
 
   constructor(
@@ -53,7 +36,6 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
     private translate: TranslateService, private guideMeService: GuideMeService,
     private currencyPipe: CurrencyPipe) {
 
-    this.formatter = new DefaultFormatter();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_INCOME.TITLE');
@@ -70,13 +52,9 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
     });
 
     this.setFormTotalValue();
-    this.noUiSlider.registerOnTouched(() => {
-      return 0;
-    });
   }
 
   ngAfterViewInit() {
-    this.updateSlider();
     this.isUserInputIncome = false;
   }
 
@@ -99,17 +77,6 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
       this.incomeForm.controls['otherIncome'].setValue(amount);
       this.setFormTotalValue();
     }
-  }
-
-  updateSlider() {
-    this.isUserInputIncome = true;
-    let sliderValue = this.incomeForm.controls['otherIncome'].value;
-    if (sliderValue === null) {
-      sliderValue = 0;
-    }
-    sliderValue = (sliderValue + '').replace(Regexp, '');
-    this.noUiSlider.writeValue(sliderValue);
-
   }
 
   /* Onchange Currency Addition */

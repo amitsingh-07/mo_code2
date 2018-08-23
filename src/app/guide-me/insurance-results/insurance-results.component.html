@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz center">
         <div class="addCover__block mr20 sm-mr0 sm-mb30">
-            <div class="addCover__block__btn">
+            <div class="addCover__block__btn" (click)="openExistingCoverageModal()">
               <span class="addCover__block__btn--plus"></span>
             </div>
             <div class="addCover__block--title">
@@ -28,7 +28,7 @@
               <span class="sub">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.SUB_LBL' | translate}}</span>
             </div>          
         </div> 
-        <div class="continue__btn" (click) = "simpleChange()">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div> 
+        <div class="continue__btn" (click) = "goToNext()">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div> 
       </div>
     </div>
   </div>

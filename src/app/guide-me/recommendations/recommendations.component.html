@@ -1,0 +1,73 @@
+<div class="outer-content">
+    <div class="col-md-12 hidden-sm-md" style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+        <h2>{{ pageTitle }}</h2>
+        <div align="center"><div class="description">{{ 'RECOMMENDATIONS.DESCRIPTION' | translate}}</div></div>
+      </div>
+  
+  
+      <!--
+  <app-recommendations-carousel></app-recommendations-carousel>
+  -->
+  
+  
+      <div class="plan-type-list d-none d-md-flex hidden-sm-md">
+        <div class="plan-type" (click)="jumpToSlide(recommendation.type)" [class.active]="recommendation.type == activeRecommendationType"
+          *ngFor="let recommendation of recommendationPlans; let i = index">
+          <span [innerHtml]="recommendation.type"></span>
+        </div>
+      </div>
+  
+      <div #mobileHeaderMenu id="mobileHeaderMenu" class="plan-type-list md-none hidden-lg" style="overflow-x: hidden; width: 100%">
+        <span class="plan-type" [attr.data-type]="recommendation.type" [class.active]="recommendation.type == activeRecommendationType"
+          *ngFor="let recommendation of recommendationPlans; let i = index">
+          <span [innerHtml]="recommendation.type"></span>
+        </span>
+      </div>
+</div>
+<div class="container-fluid">
+  <div class="content">
+    <!-- 
+    <div class="plan-type-mobile d-md-none">
+      {{activeRecommendationType}}
+    </div> -->
+
+
+    <div class="plan-carousel-container">
+      <div class="recommendation-carousel-item">
+        <!-- CAROUSEL -->
+        <ngb-carousel (swiperight)="moveCarouselPrev()" (swipeleft)="moveCarouselNext()" #recommendationCarousel="ngbCarousel" [interval]="false"
+          (slide)="slideCarousel($event)" [showNavigationArrows]="true" [showNavigationIndicators]="false">
+          <ng-template id="{{recommendation.type}}" ngbSlide *ngFor="let recommendation of recommendationPlans; let i = index">
+            <div>
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-6" *ngFor="let plan of recommendation.plan; let j = index">
+
+                  <app-plan-widget [data]="plan" (select)="selectPlan($event)" (view)="viewDetails($event)"></app-plan-widget>
+
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+        <!-- / CAROUSEL -->
+      </div>
+    </div>
+
+    <!-- Paging Indicator -->
+    <div class="page-indicator d-md-none">
+      <span [class.active]="recommendation.type == activeRecommendationType" *ngFor="let recommendation of recommendationPlans; let i = index">
+      </span>
+    </div>
+    <!-- / Paging Indicator -->
+
+    <!-- Floating plan selection footer -->
+    <div *ngIf="selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
+      <div class="floating-footer">
+        <span class="selected-count">{{selectedPlans.length}}</span>
+        <span class="lbl-selected">Plans Selected</span>
+        <span class="btn-proceed">Proceed</span>
+      </div>
+    </div>
+    <!-- / Floating plan selection footer -->
+  </div>
+</div>

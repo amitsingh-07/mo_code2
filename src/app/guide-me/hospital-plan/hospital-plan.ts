@@ -1,3 +1,6 @@
 export class HospitalPlan {
-    hospitalPlanData: string = null;
+    hospitalClass: string;
+    hospitalClassDescription: string;
+    hospitalClassId: number;
+    isFullRider = false;
 }

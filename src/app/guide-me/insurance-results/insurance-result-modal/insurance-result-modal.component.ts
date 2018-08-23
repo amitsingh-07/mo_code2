@@ -8,10 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None
 })
 export class InsuranceResultModalComponent implements OnInit {
-  @Input() title: string;
-  @Input() description: string;
-  @Input() fields: any;
-  @Input() final_field: any;
+  @Input() data: string;
 
   constructor(public activeModal: NgbActiveModal) { }
   ngOnInit() {

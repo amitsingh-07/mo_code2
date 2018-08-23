@@ -1,21 +1,62 @@
 <div class="modal-header">
-    <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div>
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" />
   </div>
-  <div class="modal-body white-bg">
-    <div class="modal-body-title">{{title}}</div>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true"></span>
-      </button>
-    <div class="modal-body-insure-message">
-      <div class="section">
-        <span class="lable">For Dependents:</span>
-        <span class="value">$798,600</span>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title">{{data.title}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true"></span>
+  </button>
+  <div class="form-group">
+    <div class="flex-row" *ngFor="let inputValue of data.inputValues">
+      <div class="flex-col-7">
+        <label>{{inputValue.title}}</label>
+      </div>
+      <div class="flex-col-5">
+        {{inputValue.value | currency:'USD':'symbol-narrow':'1.0-2' }}
+      </div>
+    </div>
+      <div class="separator-solid"></div>
+      <div class="flex-row">
+        <div class="flex-col-7">
+          <label>{{data.total.title}}</label>
         </div>
-      <div class="section">
-        <span class="label">Education Support</span>
-        <span class="value">$219,700</span> 
+        <div class="flex-col-5">
+          <span class="total">{{data.total.value | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
         </div>
       </div>
-    <hr/>
-    <div class="modal-body-message" [innerHTML]="icon_description"></div>
+    </div>
   </div>
+  
+
+
+  <!-- <div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" />
+  </div>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title">{{data.title}}</div>
+  <div class="modal-body-title">{{data.icon}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true"></span>
+  </button>
+    <div class="flex-row">
+      <div class="flex-col-6">
+        <div class="modal-body-message-fields" for="name">Annual Income</div>
+        <p style="align:right">{{values.annualSalary}}</p>
+      </div>
+      </div>
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="modal-body-message-fields">{{values.yearsNeeded}}</div>
+          </div>
+        </div>
+      <hr/>
+      <div class="flex-row">
+          <div class="flex-col-6">
+            <div class="modal-body-message-fields">{{values.coverageAmount}}</div>
+          </div>
+        </div>
+  </div> -->
