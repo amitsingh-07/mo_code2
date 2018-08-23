@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IResultItem } from '../insurance-result/insurance-result';
+import { GuideMeService } from './../../guide-me.service';
 import { IExistingCoverage } from './existing-coverage.interface';
 
 @Component({
@@ -16,7 +17,7 @@ export class ExistingCoverageModalComponent implements OnInit {
   model = {} as IExistingCoverage;
   ADD_EXISTING_COVERAGES = {
     TITLE: 'Add Existing Coverages',
-    LIFE_PROTECTION: 'life protection',
+    LIFE_PROTECTION: 'Life protection',
     CRITICAL_ILLNESS: 'Critical Illness',
     OCCUPATION_DISABILITY: 'Occupational Disability',
     LONG_TERM_CARE: 'Long-TermCare',
@@ -31,7 +32,7 @@ export class ExistingCoverageModalComponent implements OnInit {
   isLongTermCare = false;
   isHospitalPlan = false;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private guideMeService: GuideMeService) { }
 
   ngOnInit() {
     this.data.forEach((protectionNeed: IResultItem) => {
@@ -61,6 +62,7 @@ export class ExistingCoverageModalComponent implements OnInit {
     });
   }
   save() {
+    this.guideMeService.isExistingCoverAdded = true;
     this.dataOutput.emit(this.model);
     this.activeModal.close();
   }

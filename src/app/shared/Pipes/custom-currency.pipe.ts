@@ -18,7 +18,7 @@ export class CustomCurrencyPipe implements PipeTransform {
       return '$' + 0;
     } else {
       if (value <= 9999) {
-        return '$' + value;
+        return '$' + this.formatter(value);
       } else if (value >= 10000 && value <= 999999) {
         return '$' + (value / 1000).toFixed(0) + 'K';
       } else if (value >= 1000000 && value <= 999999999) {
@@ -29,5 +29,13 @@ export class CustomCurrencyPipe implements PipeTransform {
         return value ;
       }
     }
+  }
+  // tslint:disable-next-line:member-ordering
+  formatter(n) {
+    const d = '.';
+    const  t = ',';
+    const i = String(n = Math.abs(Number(n) || 0).toFixed(0));
+    const j = i.length > 3 ? (i.length) % 3 : 0;
+    return (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + t);
   }
 }
