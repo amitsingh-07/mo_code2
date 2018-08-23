@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2>{{ pageTitle }}</h2>
+      </div>
+      <div class="col-lg-5 col-md-6">
+
+        <form id="personalInfoForm" name="personalInfoForm" [formGroup]="personalInfoForm">
+          <div class="form-group">
+            <div class="flex-row">
+              <div class="flex-col-5">
+                <label for="name">{{ 'PERSONAL_INFO.BORN_ON' | translate}}</label>
+              </div>
+              <div class="flex-col-7">
+                <div class="datepicker-control">
+                  <div class="input-group date-picker" [ngClass]="{'inline-error': !personalInfoForm.get('dob').valid && !personalInfoForm.get('dob').pristine}">
+                    <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
+                      required>
+                    <div class="input-group-append">
+                      <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                        <img class="date-picker-image--valid" *ngIf="personalInfoForm.get('dob').valid || personalInfoForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
+                        />
+                        <img class="date-picker-image--invalid" *ngIf="!personalInfoForm.get('dob').valid && !personalInfoForm.get('dob').pristine"
+                          src="./assets/images/calendar-error.svg" />
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <hr/>
+
+          <div class="form-group">
+            <div class="form-group-with-bg--content">
+              <div class="investmentSlider">
+                <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
+                  [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" data-placement="bottom"></nouislider>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="callout">
+            <span class="pointer" [ngStyle]="{'left': pointerPositionScale}"></span>
+
+            <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
+                <h5>Select Investment Period </h5>
+                  <p>Drag the slider to select the number of years you want to invest for.</p>
+            </div>
+
+            <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
+              <h5>I want to invest for
+                <span class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>&nbsp;Years</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus purus. - Haoyu to provide! </p>
+            </div>
+          </div>
+          <div>
+            <button type="button" [disabled]="!personalInfoForm.controls.investmentPeriod.value" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>

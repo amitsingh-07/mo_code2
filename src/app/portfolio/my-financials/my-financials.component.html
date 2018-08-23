@@ -1,0 +1,173 @@
+<div class="container-fluid">
+  <div class="content">
+
+    <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="myFinancialsForm">
+      <!-- FIRST SECTION -->
+      <div class="row">
+        <div class="col-lg-5 col-md-6">
+          <div class="form-group-with-bg">
+            <!--Form Header-->
+            <div class="form-group-with-bg--header">
+              <div class="flex-row">
+                <div class="flex-col-7">
+                  <div class="form-group-with-bg--header-label">My Financials
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!--Form Content-->
+            <div class="form-group-with-bg--content">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--content-label" for="name">Monthly income (E.g.Salary,Bonus, Rental,Others) </div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="form-control">
+                    <i>$</i>
+                    <div name="monthlyIncome" [ngClass]="{'readonly': monthlyIncome.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="5" #monthlyIncome formControlName="monthlyIncome" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--content-label" for="name">% of my income saved</div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="form-control form-control-right">
+                    <i>$</i>
+                    <div name="myIncomeSaved" [ngClass]="{'readonly': myIncomeSaved.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #myIncomeSaved formControlName="myIncomeSaved">
+                      <i class="right">%</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--content-label" for="name">Total Assets (E.g.Cash, CPF, Investment, Property)</div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="form-control">
+                    <i>$</i>
+                    <div name="totalAssets" [ngClass]="{'readonly': totalAssets.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #totalAssets formControlName="totalAssets" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--content-label" for="name">Total Loans (E.g.Car,Property)</div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="form-control">
+                    <i>$</i>
+                    <div name="totalLoans" [ngClass]="{'readonly': totalLoans.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #totalLoans formControlName="totalLoans" value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="flex-row">
+                <div class=flex-col-10>
+                  <div class="form-group-with-bg--content-label" for="name">{{ 'MY_ASSETS.QUESTATION' | translate}}
+
+                  </div>
+                </div>
+              </div>
+              <!-- buttons -->
+              <div class="flex-row">
+
+                <div class="flex-col-7">
+                  <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="suffEmergencyFund">
+                    <div class="flex-row">
+                      <div class="flex-col-6">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+                          <input ngbButton type="radio" value="yes"> {{ 'MY_FINANCIALS.LABEL_YES' | translate}}
+                        </label>
+                      </div>
+                      <div class="flex-col-6">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+                          <input ngbButton type="radio" value="no" (click)="popup()"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ending button -->
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- SECOND SECTION -->
+      <div class="row second-section">
+        <div class="col-lg-5 col-md-6">
+
+          <div class="form-group-with-bg">
+            <!--Form Header-->
+            <div class="form-group-with-bg--header">
+              <div class="flex-row">
+                <div class="flex-col-7">
+                  <div class="form-group-with-bg--header-label">My Investment Amount
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!--Form Content-->
+            <div class="form-group-with-bg--content">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--content-label" for="name">Initial Desposit </div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="form-control">
+                    <i>$</i>
+                    <div name="initialDeposit" [ngClass]="{'readonly': initialDeposit.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="5" #initialDeposit formControlName="initialDeposit"
+                        value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <div class="form-group-with-bg--content-label" for="name">Monthly Deposit</div>
+                </div>
+                <div class="flex-col-6">
+                  <div class="form-control">
+                    <i>$</i>
+                    <div name="monthlyDeposit" [ngClass]="{'readonly': monthlyDeposit.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #monthlyDeposit formControlName="monthlyDeposit"
+                        value="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'
+                      [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
+                    </jqxSlider> -->
+          </div>
+          <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-primary width100" id="incomeBtn">Continue</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
