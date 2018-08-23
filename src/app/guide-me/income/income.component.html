@@ -10,13 +10,13 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <div class="myinfo__block">
+<!--         <div class="myinfo__block">
           <div class="myinfo__block__btn">
             <span class="myinfo__block__btn--arrow"></span>
           </div>
           <div class="myinfo__block--title">{{ 'COMMON.LBL_FILL_VIA_MY_INFO' | translate}}</div>
           <div class="myinfo__block--sub-title">{{ 'COMMON.LBL_MY_INFO_HELP_DESC' | translate}}</div>
-        </div>
+        </div> -->
           <form id="incomeForm" name="incomeForm" [formGroup]="incomeForm">
               <div  class="form-group-with-bg">
                 <!--Form Header-->
@@ -68,7 +68,7 @@
                     </div>
                     </div>
                     
-                    <nouislider #noUiSlider (slide)="onNoUiSliderChange($event)" [config]="incomeSliderConfig" [min]="0" [max]="9999" [step]="50" [tooltips]="[ false ]"></nouislider>
+                   <!--  <nouislider #noUiSlider (slide)="onNoUiSliderChange($event)" [config]="incomeSliderConfig" [min]="0" [max]="9999" [step]="50" [tooltips]="[ false ]"></nouislider> -->
                       
                   </div>
                   <!-- <jqxSlider #incomeSlider (onChange)="onSliderChange()" [height]='60' [width]='"100%"' [min]='0' [max]='9999' [value]='0'
