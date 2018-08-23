@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IResultItem } from '../insurance-result/insurance-result';
 import { IExistingCoverage } from './existing-coverage.interface';
@@ -6,7 +6,8 @@ import { IExistingCoverage } from './existing-coverage.interface';
 @Component({
   selector: 'app-existing-coverage-modal',
   templateUrl: './existing-coverage-modal.component.html',
-  styleUrls: ['./existing-coverage-modal.component.scss']
+  styleUrls: ['./existing-coverage-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ExistingCoverageModalComponent implements OnInit {
 
