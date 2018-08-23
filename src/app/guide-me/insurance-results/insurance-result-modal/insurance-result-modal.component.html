@@ -14,9 +14,17 @@
         <label>{{inputValue.title}}</label>
       </div>
       <div class="flex-col-5">
-        {{inputValue.value | currency:'USD':'symbol-narrow':'1.0-2' }}
+        <span>{{inputValue.currency}}</span>{{inputValue.value | currency : '' : '': '1.0-2'}} <span>{{inputValue.type}}</span>
       </div>
     </div>
+    <div class="flex-row" *ngIf ="isExistingCoverage">
+        <div class="flex-col-7 label-orange">
+          <label>{{data.existingCoverage.title}}</label>
+        </div>
+        <div class="flex-col-5 label-orange">
+          <span>{{data.existingCoverage.value | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+        </div>
+      </div>
       <div class="separator-solid"></div>
       <div class="flex-row">
         <div class="flex-col-7">
