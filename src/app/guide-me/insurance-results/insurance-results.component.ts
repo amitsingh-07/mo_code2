@@ -37,6 +37,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   pageTitle: string;
   protectionNeeds: any;
   protectionNeedsArray: any;
+  animateStaticModal = false;
   hideStaticModal = false;
 
   constructor(
@@ -65,9 +66,18 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   ngAfterViewInit() {
-    setInterval(() => {
+    if (this.guideMeService.getInsuranceResultsModalCounter() === 0) {
+      this.guideMeService.setInsuranceResultsModalCounter(1);
+      setInterval(() => {
+        this.animateStaticModal = true;
+      }, 2000);
+
+      setInterval(() => {
+        this.hideStaticModal = true;
+      }, 3000);
+    } else {
       this.hideStaticModal = true;
-    }, 2000);
+    }
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
