@@ -1,0 +1,19 @@
+app-plan-widget {
+  .best-value-icon {
+    position: absolute;
+    top: 3px;
+    left: 10px;
+  }
+  .plan-widget {
+    border: solid 3px #fff;
+  }
+  .plan-selected-wrapper {
+    border: solid 3px #ff872f;
+  }
+  .plan-selected {
+    color: #fff;
+    background-color: #ff872f !important;
+    border-color: #ff872f !important;
+    box-shadow: none;
+  }
+}

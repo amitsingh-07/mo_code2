@@ -1,4 +1,4 @@
-<div class="container-fluid flex__wrapper mt30 sm-mt50">
+<div class="container-fluid flex__wrapper mt30 sm-mt50 pab-mt80">
   <div class="content">
     <div class="row">
       <div class="col-lg-12 col-md-12 hidden-sm-md text-center mb10">
@@ -6,30 +6,29 @@
       </div> 
     </div>
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz center mb30 sm-mb20">
-        <div class="addCover__block">
-            <div class="addCover__block__btn">
-              <span class="addCover__block__btn--plus"></span>
-            </div>
-            <div class="addCover__block--title">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.LBL' | translate}}</div>
-        </div>
-      </div> 
-    </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 text-center mb25 sm-mb20">
+      <div class="col-lg-12 col-md-12 text-center mb25 pab-mb15 sm-mb15">
         <h6>{{ 'INSURANCE_RESULTS.COVERAGE_YOU_NEED' | translate}}</h6>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="result__wrapper flex__box--horz flex__box--sm-horz center mb90 sm-mb0">
-          <app-insurance-result [data]="protectionNeed" (Details)="viewDetails ($event)" *ngFor = "let protectionNeed of protectionNeedsData"></app-insurance-result>
+        <div class="result__wrapper flex__box--horz flex__box--sm-horz flex__box--md-horz center mb50 sm-mb0">
+          <app-insurance-result [data]="protectionNeed" (Details)="viewDetails ($event)" *ngFor = "let protectionNeed of protectionNeedsArray"></app-insurance-result>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz center">
-        <div class="continue__btn" (click) = "simpleChange()">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div> 
+        <div class="addCover__block mr20 sm-mr0 sm-mb30">
+            <div class="addCover__block__btn" (click)="openExistingCoverageModal()">
+              <span class="addCover__block__btn--plus"></span>
+            </div>
+            <div class="addCover__block--title">
+              <span>{{ 'INSURANCE_RESULTS.ADD_COVERAGE.LBL' | translate}}</span>
+              <span class="sub">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.SUB_LBL' | translate}}</span>
+            </div>          
+        </div> 
+        <div class="continue__btn" (click) = "goToNext()">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div> 
       </div>
     </div>
   </div>

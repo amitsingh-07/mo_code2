@@ -62,7 +62,7 @@
                       <!-- <div name="otherIncome" class="input-control" [ngClass]="{'readonly': otherIncome.value != 0}">$<input type="text" class="input-with-suffix" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0"><span class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</span></div> -->
                       <div class="form-control form-control-right">
                           <i>$</i>
-                          <input type="text" class="input-control" (change)="updateSlider()" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
+                          <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome formControlName="otherIncome" value="0">
                           <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
                         </div>
                     </div>
