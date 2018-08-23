@@ -39,8 +39,8 @@
                 <div class="flex-col-6">
                   <div class="form-control form-control-right">
                     <i>$</i>
-                    <div name="myIncomeSaved" [ngClass]="{'readonly': myIncomeSaved.value != 0}">
-                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #myIncomeSaved formControlName="myIncomeSaved">
+                    <div name="percentageOfSaving" [ngClass]="{'readonly': percentageOfSaving.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #percentageOfSaving formControlName="percentageOfSaving">
                       <i class="right">%</i>
                     </div>
                   </div>
@@ -69,8 +69,8 @@
                 <div class="flex-col-6">
                   <div class="form-control">
                     <i>$</i>
-                    <div name="totalLoans" [ngClass]="{'readonly': totalLoans.value != 0}">
-                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #totalLoans formControlName="totalLoans" value="0">
+                    <div name="totalLiabilities" [ngClass]="{'readonly': totalLiabilities.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #totalLiabilities formControlName="totalLiabilities" value="0">
                     </div>
                   </div>
                 </div>
@@ -138,8 +138,8 @@
                 <div class="flex-col-6">
                   <div class="form-control">
                     <i>$</i>
-                    <div name="initialDeposit" [ngClass]="{'readonly': initialDeposit.value != 0}">
-                      <input class="input-control" type="text" appCurrencyInput maxLength="5" #initialDeposit formControlName="initialDeposit"
+                    <div name="initialInvestment" [ngClass]="{'readonly': initialInvestment.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="5" #initialInvestment formControlName="initialInvestment"
                         value="0">
                     </div>
                   </div>
@@ -152,8 +152,8 @@
                 <div class="flex-col-6">
                   <div class="form-control">
                     <i>$</i>
-                    <div name="monthlyDeposit" [ngClass]="{'readonly': monthlyDeposit.value != 0}">
-                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #monthlyDeposit formControlName="monthlyDeposit"
+                    <div name="monthlyIncome" [ngClass]="{'readonly': monthlyIncome.value != 0}">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="6" #monthlyIncome formControlName="monthlyIncome"
                         value="0">
                     </div>
                   </div>
@@ -164,7 +164,7 @@
                       [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
                     </jqxSlider> -->
           </div>
-          <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-primary width100" id="incomeBtn">Continue</button>
+          <button type="button" (click)="goToNext(myFinancialsForm)" class="btn btn__footer--fixed btn-primary width100" id="incomeBtn">Continue</button>
 
         </div>
       </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { HeaderService } from '../../shared/header/header.service';
 
 @Component({
   selector: 'app-get-started-step2',
@@ -11,9 +14,14 @@ export class GetStartedStep2Component implements OnInit {
     img ="assets/images/step-2-icon.svg";
     description2="In the next step,we will assess your willingness to take risk";
     tab="2";
-  constructor() { }
+  constructor(public headerService: HeaderService, private router: Router) { }
 
   ngOnInit() {
+    this.headerService.setHeaderVisibility(false);
+  }
+
+  goNext() { 
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
   }
 
 }

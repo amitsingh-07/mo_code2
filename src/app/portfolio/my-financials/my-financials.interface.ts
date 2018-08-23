@@ -1,9 +1,9 @@
 export interface IMyFinancials {
    monthlyIncome:number;
-    myIncomeSaved:number;
+   percentageOfSaving:number;
     totalAssets:number;
-    totalLoans:number;
-    initialDeposit:number;
-    monthlyDeposit:number;
-    suffEmergencyFund:boolean;
+    totalLiabilities:number;
+    initialInvestment:number;
+    monthlyInvestment:number;
+    suffEmergencyFund:boolean; 
 }

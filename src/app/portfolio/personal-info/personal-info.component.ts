@@ -28,7 +28,7 @@ export class PersonalInfoComponent implements OnInit {
   personalInfoForm: FormGroup;
   pageTitle: string;
   formValues: any;
-  dob: string;
+  dateOfBirth: string;
   ciAssessmentFormValues: any;
   sliderMinValue:number = 4;
   sliderMaxValue:number = 99;
@@ -71,7 +71,7 @@ export class PersonalInfoComponent implements OnInit {
   ngOnInit() {
     this.formValues = this.portfolioService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
-      dob: [this.formValues.dob, Validators.required],
+      dateOfBirth: [this.formValues.dateOfBirth, Validators.required],
       investmentPeriod: [this.formValues.investmentPeriod, Validators.required],
     });
   }
@@ -109,7 +109,7 @@ export class PersonalInfoComponent implements OnInit {
       ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)['errorMessage'];
       return false; 
     }
-    form.value.customDob = this.parserFormatter.format(form.value.dob);
+    form.value.customDob = this.parserFormatter.format(form.value.dateOfBirth);
 
     this.portfolioService.setUserInfo(form.value);
     return true;

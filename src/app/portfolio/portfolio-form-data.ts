@@ -2,7 +2,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 
 export class PortfolioFormData {
     //PERSONAL INFO
-    dob:string;
+    dateOfBirth:string;
     investmentPeriod:number;
     
     //RISK ASSESSMENT
@@ -13,10 +13,10 @@ export class PortfolioFormData {
 
     //MY FINANCIALS
     monthlyIncome:number;
-    myIncomeSaved:number;
+    percentageOfSaving:number;
     totalAssets:number;
-    totalLoans:number;
-    initialDeposit:number;
-    monthlyDeposit:number;
+    totalLiabilities:number;
+    initialInvestment:number;
+    monthlyInvestment:number;
     suffEmergencyFund: boolean; 
 }

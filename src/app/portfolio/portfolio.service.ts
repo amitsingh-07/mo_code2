@@ -28,6 +28,8 @@ export class PortfolioService {
   }
 
   getPortfolioFormData(): PortfolioFormData {
+    let formData = this.portfolioFormData;
+    //formData.dateOfBirth = formData.dateOfBirth.day
     return this.portfolioFormData;
   }
 
@@ -35,7 +37,7 @@ export class PortfolioService {
   //PERSONAL INFO
   getPersonalInfo() {
     return {
-      dob: this.portfolioFormData.dob,
+      dob: this.portfolioFormData.dateOfBirth,
       investmentPeriod:this.portfolioFormData.investmentPeriod
     };
   }
@@ -56,7 +58,7 @@ export class PortfolioService {
     return this.myFinanacialFormError.formFieldErrors[formCtrlName][validation];
   }
   setUserInfo(data:PersonalInfo) {
-    this.portfolioFormData.dob = data.dob;
+    this.portfolioFormData.dateOfBirth = data.dateOfBirth;
     this.portfolioFormData.investmentPeriod=data.investmentPeriod;
   }
 
@@ -75,13 +77,29 @@ export class PortfolioService {
   getMyFinancials(): IMyFinancials {
     return {
       monthlyIncome: this.portfolioFormData.monthlyIncome,
-      myIncomeSaved: this.portfolioFormData.myIncomeSaved,
+      percentageOfSaving: this.portfolioFormData.percentageOfSaving,
       totalAssets: this.portfolioFormData.totalAssets,
-      totalLoans: this.portfolioFormData.totalLoans,
-      initialDeposit: this.portfolioFormData.initialDeposit,
-      monthlyDeposit: this.portfolioFormData.monthlyDeposit,
+      totalLiabilities: this.portfolioFormData.totalLiabilities,
+      initialInvestment: this.portfolioFormData.initialInvestment,
+      monthlyInvestment: this.portfolioFormData.monthlyInvestment,
       suffEmergencyFund: this.portfolioFormData.suffEmergencyFund
-    };
+    }; 
   }
+  setMyFinancials(formData){
+    this.portfolioFormData.monthlyIncome = formData.monthlyIncome;
+    this.portfolioFormData.percentageOfSaving = formData.myIncomeSaved;
+    this.portfolioFormData.totalAssets = formData.totalAssets;
+    this.portfolioFormData.totalLiabilities = formData.totalLoans;
+    this.portfolioFormData.initialInvestment = formData.initialInvestment;
+    this.portfolioFormData.monthlyInvestment = formData.monthlyInvestment;
+    this.portfolioFormData.suffEmergencyFund = formData.suffEmergencyFund;
+  }
+  
+  //SAVE FOR STEP 1
+  savePersonalInfo(){
+    const data = this.getPortfolioFormData();
+    return this.apiService.savePersonalInfo(data);
+  }
+
 }
  
