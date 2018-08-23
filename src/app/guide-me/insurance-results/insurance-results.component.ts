@@ -1,10 +1,12 @@
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import 'rxjs/add/observable/timer';
+
+import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-
 import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { IMyIncome } from '../income/income.interface';
@@ -24,7 +26,7 @@ const assetImgPath = './assets/images/';
   encapsulation: ViewEncapsulation.None
 })
 
-export class InsuranceResultsComponent implements OnInit, IPageComponent {
+export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterViewInit {
 
   criticalIllnessValues: CriticalIllnessData;
   lifeProtectionValues: any;
@@ -35,6 +37,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   pageTitle: string;
   protectionNeeds: any;
   protectionNeedsArray: any;
+  hideStaticModal = false;
 
   constructor(
     private router: Router, public headerService: HeaderService,
@@ -59,6 +62,12 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    setInterval(() => {
+      this.hideStaticModal = true;
+    }, 2000);
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
