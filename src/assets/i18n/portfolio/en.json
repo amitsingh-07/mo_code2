@@ -229,13 +229,13 @@
     "MONTHLY_DEPOSIT_LBL": "Monthly Deposi",
     "BUTTON_LBL": "Continue",
     "MY_FINANCIALS_LBL": "My Financials",
-    "MODAL_VALUES": {
+    "modalData": {
       "modalTitle": "Insufficient Emergency Fund!",
       "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
     },
-    "HELP_MODEL": {
-      "helpTitle": "Insufficient Emergency Fund!",
-      "helplMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
+    "heplDate": {
+      "modalTitle": "Insufficient Emergency Fund!",
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
     },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   }
