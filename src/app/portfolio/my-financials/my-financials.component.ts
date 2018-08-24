@@ -27,6 +27,7 @@ export class MyFinancialsComponent implements OnInit {
   //private myFinanacialFormError =new MyFinanacialFormError();
   
   modalData : any;
+  heplDate:any;
     
   
 
@@ -41,8 +42,8 @@ export class MyFinancialsComponent implements OnInit {
     this.translate.use('en');
     let self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      self.pageTitle = this.translate.instant('GET_STARTED.TITLE');
-      self.modalData = this.translate.instant('GET_STARTED.MODAL_VALUES');
+      self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
+      self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
       this.setPageTitle(self.pageTitle);
     });
   }

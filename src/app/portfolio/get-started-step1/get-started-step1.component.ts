@@ -11,7 +11,6 @@ import { HeaderService } from '../../shared/header/header.service';
 })
 export class GetStartedStep1Component implements OnInit {
 
-  //title = "Step 1";
   pageTitle: string;
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
   description = this.translate.instant('GETSTARTED_STEP1.CAPTION');;
