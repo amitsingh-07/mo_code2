@@ -16,6 +16,8 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 //import {MyFinanacialFormError} from './my-financials-form-error';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
+import { portfolioConstants } from '../../portfolio/portfolio.constants';
+
 @Component({
   selector: 'app-my-financials',
   templateUrl: './my-financials.component.html',
@@ -36,6 +38,7 @@ export class MyFinancialsComponent implements OnInit {
     private router: Router,
     private modal: NgbModal,
     private portfolioService: PortfolioService,
+    private formBuilder: FormBuilder,
     public headerService: HeaderService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService) {
@@ -44,6 +47,7 @@ export class MyFinancialsComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
+      self.heplDate = this.translate.instant('MY_FINANCIALS.heplDate');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -55,32 +59,32 @@ export class MyFinancialsComponent implements OnInit {
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
 
     this.myFinancialsForm = new FormGroup({
-      monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome),
-      percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving),
-      totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets),
-      totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities),
-      initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment),
-      monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
-      suffEmergencyFund: new FormControl(this.myFinancialsFormValues.suffEmergencyFund)
+      monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome, Validators.required),
+      percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving, Validators.required),
+      totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets, Validators.required),
+      totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities, Validators.required),
+      initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
+      monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment, Validators.required),
+      suffEmergencyFund: new FormControl(portfolioConstants.my_financials.sufficient_emergency_fund, Validators.required)
 
     });
   }
 
   form: any;
-  popup() {
+  showEmergencyFundModal() { 
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     //ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
     //ref.componentInstance.errorMessage = this.portfolioService.currentFormError(this.form)['errorMessage'];
     ref.componentInstance.errorTitle = this.modalData.modalTitle;
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
-    return false;
   }
-  HelpModal(){
+  showHelpModal(){
+    debugger;
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     //ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
     //ref.componentInstance.errorMessage = this.portfolioService.currentFormError(this.form)['errorMessage'];
-    ref.componentInstance.errorTitle = this.modalData.modalTitle;
-    ref.componentInstance.errorMessage = this.modalData.modalMessage;
+    ref.componentInstance.errorTitle = this.heplDate.modalTitle;
+    ref.componentInstance.errorMessage = this.heplDate.modalMessage;
     return false;
   }
 

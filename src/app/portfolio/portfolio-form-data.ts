@@ -18,5 +18,5 @@ export class PortfolioFormData {
     totalLiabilities:number;
     initialInvestment:number;
     monthlyInvestment:number;
-    suffEmergencyFund: boolean; 
+    suffEmergencyFund: string;  
 }

@@ -226,7 +226,7 @@
     "LOANS_LBL": "Total Loans (E.g.Car,Property)",
     "INVESTMENT_LBL": "My Investment Amount ",
     "INITIAL_DEPOSIT_LBL": "Initial Desposit",
-    "MONTHLY_DEPOSIT_LBL": "Monthly Deposi",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Deposit",
     "BUTTON_LBL": "Continue",
     "MY_FINANCIALS_LBL": "My Financials",
     "modalData": {
@@ -234,8 +234,8 @@
       "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
     },
     "heplDate": {
-      "modalTitle": "Insufficient Emergency Fund!",
-      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
+      "modalTitle": "Emergency Fund",
+      "modalMessage":"Emergency fund is money that must be set aside to cover your living expenses for a period of at least 3 months."
     },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   }

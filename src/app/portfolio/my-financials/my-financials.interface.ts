@@ -5,5 +5,5 @@ export interface IMyFinancials {
     totalLiabilities:number;
     initialInvestment:number;
     monthlyInvestment:number;
-    suffEmergencyFund:boolean; 
+    suffEmergencyFund:string; 
 }

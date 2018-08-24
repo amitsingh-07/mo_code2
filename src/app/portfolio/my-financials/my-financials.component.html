@@ -85,7 +85,7 @@
                   
                 </div>
                 <div class="flex-col-2">
-                  <i class="tooltip-icon" (click)="HelpModal()"></i> 
+                  <i class="tooltip-icon" (click)="showHelpModal()"></i> 
               </div>
               </div>
               <!-- buttons -->
@@ -101,7 +101,7 @@
                       </div>
                       <div class="flex-col-6">
                         <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                          <input ngbButton type="radio" value="no" (click)="popup()"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}}
+                          <input ngbButton type="radio" value="no" (click)="showEmergencyFundModal()"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}}
                         </label>
                       </div>
                     </div>
@@ -168,7 +168,7 @@
                       [step]='50' [tooltip]='false' [showTicks]='false' [showButtons]='false' [ticksFrequency]='50' [mode]='"fixed"'>
                     </jqxSlider> -->
           </div>
-          <button type="button" (click)="goToNext(myFinancialsForm)" class="btn btn__footer--fixed btn-primary width100" id="incomeBtn">Continue</button>
+          <button type="button" [disabled]="myFinancialsForm.controls.suffEmergencyFund.value == 'no'" (click)="goToNext(myFinancialsForm)" class="btn btn__footer--fixed btn-primary width100" id="incomeBtn">Continue</button>
 
         </div>
       </div>
