@@ -14,6 +14,5 @@ export class InsuranceResultModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal , public guideMeService: GuideMeService ) { }
   ngOnInit() {
     this.isExistingCoverage = this.guideMeService.isExistingCoverAdded;
-    this.data['total'].value = this.data['total'].value - this.data['existingCoverage'].value;
   }
 }
