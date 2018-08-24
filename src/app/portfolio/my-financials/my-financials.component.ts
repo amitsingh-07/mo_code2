@@ -25,7 +25,6 @@ export class MyFinancialsComponent implements OnInit {
   myFinancialsForm: FormGroup;
   myFinancialsFormValues: IMyFinancials;
   //private myFinanacialFormError =new MyFinanacialFormError();
-  
   modalData : any;
   heplDate:any;
     
@@ -44,6 +43,7 @@ export class MyFinancialsComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
+      self.heplDate = this.translate.instant('MY_FINANCIALS.heplDate');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -67,21 +67,18 @@ export class MyFinancialsComponent implements OnInit {
   }
 
   form: any;
-  popup() {
+  
+  insufficientModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    //ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
-    //ref.componentInstance.errorMessage = this.portfolioService.currentFormError(this.form)['errorMessage'];
-    ref.componentInstance.errorTitle = this.modalData.modalTitle;
+     ref.componentInstance.errorTitle = this.modalData.modalTitle;
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
     return false;
   }
   
-  HelpModal(){
+  helpModal(){
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    //ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
-    //ref.componentInstance.errorMessage = this.portfolioService.currentFormError(this.form)['errorMessage'];
-    ref.componentInstance.errorTitle = this.modalData.modalTitle;
-    ref.componentInstance.errorMessage = this.modalData.modalMessage;
+    ref.componentInstance.errorTitle = this.heplDate.modalTitle;
+    ref.componentInstance.errorMessage = this.heplDate.modalMessage;
     return false;
   }
 
