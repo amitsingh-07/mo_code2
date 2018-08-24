@@ -15,7 +15,8 @@ import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.compo
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
-
+import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
+import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 @NgModule({
   imports: [
     CommonModule, PortfolioRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
@@ -30,7 +31,9 @@ import { IntroScreenComponent } from './intro-screen/intro-screen.component';
     RiskAssessmentComponent,
     RiskProfileComponent,
     GetStartedStep2Component,
-    IntroScreenComponent
+    IntroScreenComponent,
+    CurrencyInputPortfolioDirective,
+    PercentageInputDirective
   ],
   providers: [CurrencyPipe]
 })

@@ -207,6 +207,16 @@
   },
   "MY_FINANCIALS":{
     "LABEL_YES": "Yes",
-    "LABEL_NO" : "No"
+    "LABEL_NO" : "No",
+    "TITLE": "Get Started",
+    "MONTHLY_INCOME_LBL": "Monthly income (E.g.Salary,Bonus, Rental,Others)",
+    "SAVED_INCOME_LBL": "% of my income saved",
+    "TOTAL_ASSET_LBL":"Total Assets (E.g.Cash, CPF, Investment, Property)",
+    "LOANS_LBL": "Total Loans (E.g.Car,Property)",
+    "INVESTMENT_LBL": "My Investment Amount ",
+    "INITIAL_DEPOSIT_LBL":"Initial Desposit",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Deposi",
+    "BUTTON_LBL":"Continue",
+    "MY_FINANCIALS_LBL":"My Financials"
   }
 }

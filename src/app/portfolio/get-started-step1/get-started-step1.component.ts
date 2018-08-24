@@ -14,9 +14,9 @@ export class GetStartedStep1Component implements OnInit {
   //title = "Step 1";
   pageTitle: string;
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
-  description = "Get Started";
+  description = this.translate.instant('GETSTARTED_STEP1.CAPTION');;
   img = "assets/images/checklist-icon.svg";
-  description2 = "In the next step,we are going to assess your ability to take risk";
+  description2 =  this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
   tab = "1";
 
   constructor(public readonly translate: TranslateService, private router: Router,
@@ -25,6 +25,8 @@ export class GetStartedStep1Component implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
       this.title = this.translate.instant('GETSTARTED_STEP1.TITLE');
+      this.description = this.translate.instant('GETSTARTED_STEP1.CAPTION');
+      this.description2 = this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
     });
   }
 
