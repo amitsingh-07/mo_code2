@@ -11,16 +11,16 @@
   
   
       <div class="plan-type-list d-none d-md-flex hidden-sm-md">
-        <div class="plan-type" (click)="jumpToSlide(recommendation.type)" [class.active]="recommendation.type == activeRecommendationType"
+        <div class="plan-type" (click)="jumpToSlide(recommendation.protectionType)" [class.active]="recommendation.protectionType == activeRecommendationType"
           *ngFor="let recommendation of recommendationPlans; let i = index">
-          <span [innerHtml]="recommendation.type"></span>
+          <span [innerHtml]="recommendation.protectionType"></span>
         </div>
       </div>
   
       <div #mobileHeaderMenu id="mobileHeaderMenu" class="plan-type-list md-none hidden-lg" style="overflow-x: hidden; width: 100%">
-        <span class="plan-type" [attr.data-type]="recommendation.type" [class.active]="recommendation.type == activeRecommendationType"
+        <span class="plan-type" [attr.data-type]="recommendation.protectionType" [class.active]="recommendation.protectionType == activeRecommendationType"
           *ngFor="let recommendation of recommendationPlans; let i = index">
-          <span [innerHtml]="recommendation.type"></span>
+          <span [innerHtml]="recommendation.protectionType"></span>
         </span>
       </div>
 </div>
@@ -37,10 +37,10 @@
         <!-- CAROUSEL -->
         <ngb-carousel (swiperight)="moveCarouselPrev()" (swipeleft)="moveCarouselNext()" #recommendationCarousel="ngbCarousel" [interval]="false"
           (slide)="slideCarousel($event)" [showNavigationArrows]="true" [showNavigationIndicators]="false">
-          <ng-template id="{{recommendation.type}}" ngbSlide *ngFor="let recommendation of recommendationPlans; let i = index">
+          <ng-template id="{{recommendation.protectionType}}" ngbSlide *ngFor="let recommendation of recommendationPlans; let i = index">
             <div>
               <div class="row">
-                <div class="col-md-6 col-sm-6 col-6" *ngFor="let plan of recommendation.plan; let j = index">
+                <div class="col-md-6 col-sm-6 col-6" *ngFor="let plan of recommendation.productList; let j = index">
 
                   <app-plan-widget [data]="plan" (select)="selectPlan($event)" (view)="viewDetails($event)"></app-plan-widget>
 
@@ -55,7 +55,7 @@
 
     <!-- Paging Indicator -->
     <div class="page-indicator d-md-none">
-      <span [class.active]="recommendation.type == activeRecommendationType" *ngFor="let recommendation of recommendationPlans; let i = index">
+      <span [class.active]="recommendation.protectionType == activeRecommendationType" *ngFor="let recommendation of recommendationPlans; let i = index">
       </span>
     </div>
     <!-- / Paging Indicator -->

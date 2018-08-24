@@ -14,7 +14,7 @@ const APP_SESSION_ID_KEY = 'app-session-id';
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
-  getAppSecretKey() {
+  private getAppSecretKey() {
     return '658Ifh5FmT70jkAmLSWEvQWulBrR9zkrZza2n7MCusY=';
   }
 
@@ -50,7 +50,8 @@ export class AuthenticationService {
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(APP_JWT_TOKEN_KEY);
+    //return sessionStorage.getItem(APP_JWT_TOKEN_KEY);
+    return 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJub3JtYWxfdXNlciIsInJvbGVzIjoiUk9MRV9VU0VSLCIsImlhdCI6MTUzNTEwOTU4NywiaXNzIjoiQXV0aG9yaXphdGlvbiIsImV4cCI6MTUzNTYyMjIyN30.idA3SgrY4HAy05pATan9_vP9eHpPV6hZEoSn_L_HxA8';
   }
 
   public getSessionId(): string {

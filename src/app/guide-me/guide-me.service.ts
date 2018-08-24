@@ -122,7 +122,7 @@ export class GuideMeService {
 
   getLifeProtection() {
     if (!this.guideMeFormData.lifeProtectionData) {
-      this.guideMeFormData.lifeProtectionData = {dependents: [] as IDependent[]};
+      this.guideMeFormData.lifeProtectionData = { dependents: [] as IDependent[] };
     }
     return this.guideMeFormData.lifeProtectionData;
   }
@@ -155,6 +155,7 @@ export class GuideMeService {
 
   setMyExpenses(data: IMyExpenses) {
     this.isMyExpensesFormValid = true;
+    data.livingExpenses = 0;
     this.guideMeFormData.expenses = data;
     this.commit();
   }
@@ -342,7 +343,12 @@ export class GuideMeService {
   }
 
   getExistingCoverage(): IExistingCoverage[] {
-    return [];
+    return [{
+      criticalIllnessCoverage: 0,
+      lifeProtectionCoverage: 0,
+      longTermCareCoveragePerMonth: 0,
+      occupationalDisabilityCoveragePerMonth: 0
+    }];
   }
 
   createProtectionNeedResult(data) {

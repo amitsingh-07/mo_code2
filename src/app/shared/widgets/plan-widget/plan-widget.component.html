@@ -3,8 +3,8 @@
   <div class="plan__block flex__box--vert">
     <div class="row">
       <div class="col-md-9 col-md-push-3">
-        <h4>{{name}}</h4>
-        <h2>${{amount}}</h2>
+        <h4>{{productName}}</h4>
+        <h2>${{premiumAmount}}</h2>
       </div>
       <div class="col-md-3 col-md-pull-9">
         <img src="assets/images/Aviva_Logo.png" class="img-fluid" alt="Aviva" />
@@ -21,8 +21,7 @@
       <div>Coverage Duration: {{coverageDuration}}</div>
       <div>Premium Duration: {{PremiumDuration}}</div>
       <div>Needs Medical Underwriting:
-        <span *ngIf="medicalUnderwritingRequired">Yes</span>
-        <span *ngIf="!medicalUnderwritingRequired">No</span>
+        <span>{{underWritting}}</span>
       </div>
     </div>
     <div class="row">
