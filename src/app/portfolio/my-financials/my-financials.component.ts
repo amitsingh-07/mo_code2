@@ -16,7 +16,7 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 //import {MyFinanacialFormError} from './my-financials-form-error';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
-import { portfolioConstants } from '../../portfolio/portfolio.constants';
+import { portfolioConstants } from '../../portfolio/portfolio.constants'; 
 
 @Component({
   selector: 'app-my-financials',
@@ -27,10 +27,10 @@ export class MyFinancialsComponent implements OnInit {
   myFinancialsForm: FormGroup;
   myFinancialsFormValues: IMyFinancials;
   //private myFinanacialFormError =new MyFinanacialFormError();
-  modalData : any;
-  heplDate:any;
-    
-  
+  modalData: any;
+  heplDate: any;
+
+
 
   pageTitle: string;
   constructor(
@@ -50,7 +50,7 @@ export class MyFinancialsComponent implements OnInit {
       this.setPageTitle(self.pageTitle);
     });
   }
-  
+
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
@@ -70,13 +70,15 @@ export class MyFinancialsComponent implements OnInit {
   }
 
   form: any;
-  showEmergencyFundModal() {    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-     ref.componentInstance.errorTitle = this.modalData.modalTitle;
+  showEmergencyFundModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.modalData.modalTitle;
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
   }
-  showHelpModal(){    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-	ref.componentInstance.errorTitle = this.heplDate.modalTitle;
-    ref.componentInstance.errorMessage = this.heplDate.modalMessage;    return false;
+  showHelpModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.heplDate.modalTitle;
+    ref.componentInstance.errorMessage = this.heplDate.modalMessage; return false;
   }
 
   save(form: any) {
