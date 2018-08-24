@@ -209,7 +209,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
-        value: this.lifeProtectionValues.coverageAmount - (data.existingCoverage ? data.existingCoverage.value : 0)
+        value: this.lifeProtectionValues.coverageAmount
        }
     };
   }
@@ -231,7 +231,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       total: {
         title: 'Coverage Needed',
         // tslint:disable-next-line:max-line-length
-        value: (this.criticalIllnessValues.annualSalary * this.criticalIllnessValues.ciMultiplier) - (data.existingCoverage ? data.existingCoverage.value : 0)
+        value: (this.criticalIllnessValues.annualSalary * this.criticalIllnessValues.ciMultiplier)
       }
     };
   }
@@ -252,7 +252,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
-        value: this.ocpDisabilityValues.coverageAmount// - coverage.value
+        value: this.ocpDisabilityValues.coverageAmount
       }
     };
   }
@@ -272,7 +272,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
-        value: 6000// - coverage.value ? coverage.value : 0
+        value: 6000
       }
     };
   }
