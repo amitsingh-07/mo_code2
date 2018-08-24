@@ -1,3 +1,4 @@
+import { GuideMeApiService } from './../guide-me.api.service';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -30,7 +31,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
-    private translate: TranslateService, public headerService: HeaderService) {
+    private translate: TranslateService, public headerService: HeaderService,
+    private guideMeApiService: GuideMeApiService) {
     this.carouselConfig.wrap = false;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -42,9 +44,12 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.recommendationPlans = this.getRecommendations();
-
     this.activeRecommendationType = this.recommendationPlans[0].type;
+    this.getRecommendationsFromServer();
+  }
 
+  getRecommendationsFromServer() {
+    this.guideMeApiService.constructRecommendationsRequest();
   }
 
   @HostListener('window:resize', ['$event'])

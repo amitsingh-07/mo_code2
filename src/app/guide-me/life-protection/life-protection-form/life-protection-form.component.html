@@ -92,7 +92,7 @@
             <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
                 <i class="fixed-currency">$</i>
                 <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
-                maxLength="5" #otherIncome formControlName="otherIncome" value="0">
+                maxLength="5" #supportAmount formControlName="supportAmount" value="0">
                 <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
               </div>
             </div>

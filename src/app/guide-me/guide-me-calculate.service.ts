@@ -98,8 +98,8 @@ export class GuideMeCalculateService {
   // Dependents
   getProtectionSupportSum(): number {
     let protectionSupportSum: number = null;
-    const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
-    lifeProtection['dependents'].forEach((dependent) => {
+    const lifeProtection = this.guideMeService.getLifeProtection().dependents;
+    lifeProtection.forEach((dependent) => {
         if (dependent.supportAmountRange) {
           protectionSupportSum += dependent.supportAmountRange * 12 * dependent.yearsNeeded;
         }
@@ -111,8 +111,8 @@ export class GuideMeCalculateService {
   // Education Support
   getEducationSupportSum(): number {
     let educationSupportSum = 0;
-    const lifeProtection = this.guideMeService.getLifeProtection().lifeProtectionData;
-    lifeProtection['dependents'].forEach((dependent) => {
+    const lifeProtection = this.guideMeService.getLifeProtection().dependents;
+    lifeProtection.forEach((dependent) => {
         if (dependent.eduSupport) {
           const country = dependent.eduSupportCountry;
           const course = dependent.eduSupportCourse;

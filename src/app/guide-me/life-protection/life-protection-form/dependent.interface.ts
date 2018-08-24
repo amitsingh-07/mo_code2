@@ -6,9 +6,9 @@ export interface IDependent {
     eduSupportNationality: string;
     eduSupport: boolean;
     gender: string;
-    otherIncome: number;
     relationship: string;
     supportAmount: string;
+    supportAmountValue: number;
     supportAmountRange: number;
     yearsNeeded: number;
 }
