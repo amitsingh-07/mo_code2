@@ -74,6 +74,15 @@ export class ExistingCoverageModalComponent implements OnInit {
     });
   }
 
+  /* Onchange Currency Addition */
+  @HostListener('input', ['$event'])
+  onChange() {
+    this.setFormTotalValue();
+  }
+
+  setFormTotalValue() {
+    return this.guideMeService.additionOfCurrency(this.existingCoverageForm.value);
+  }
   save() {
     this.guideMeService.isExistingCoverAdded = true;
     this.existingCoverageForm.controls.selectedHospitalPlan.setValue(this.selectedHospitalPlan);
