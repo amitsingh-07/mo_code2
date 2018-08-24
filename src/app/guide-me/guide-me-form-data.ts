@@ -2,6 +2,7 @@ import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
+import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { IDependent } from './life-protection/life-protection-form/dependent.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
@@ -44,4 +45,7 @@ export class GuideMeFormData {
 
     // Hospital Plan
     hospitalPlanData: HospitalPlan;
+
+    // Exisiting Coverage
+    existingCoverageValues: IExistingCoverage;
 }
