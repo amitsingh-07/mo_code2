@@ -1,10 +1,10 @@
-import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
 import { IDependent } from './life-protection/life-protection-form/dependent.interface';
+import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
 import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
@@ -19,7 +19,7 @@ export class GuideMeFormData {
     dependent: number;
 
     protectionNeedData: ProtectionNeeds[];
-    lifeProtectionData: IDependent[];
+    lifeProtectionData: {dependents: IDependent[]};
 
     // My Income
     income: IMyIncome;
