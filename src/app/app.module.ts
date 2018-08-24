@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import { ExistingCoverageModalComponent } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
+import { RestrictAlphabetsDirective } from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
 import {
   InsuranceResultModalComponent
 } from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
@@ -44,7 +45,8 @@ export function createTranslateLoader(http: HttpClient) {
     ErrorModalComponent,
     LifeProtectionModalComponent,
     InsuranceResultModalComponent,
-    ExistingCoverageModalComponent
+    ExistingCoverageModalComponent,
+    RestrictAlphabetsDirective
   ],
   imports: [
     BrowserModule,
