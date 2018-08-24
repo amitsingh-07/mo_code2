@@ -90,7 +90,12 @@
     "SUPPORT_AMOUNT_MESSAGE": "This refers to the amount you require to support this dependant on a monthly basis.",
     "I_HAVE": "I have",
     "LBL_NEXT_DEPENDANT": "Next Dependant",
-    "RELATIONSHIP_OPTIONS": ["Spouse", "Sibling", "Parent", "Children"],
+    "RELATIONSHIP_OPTIONS": [
+      "Spouse",
+      "Sibling",
+      "Parent",
+      "Children"
+    ],
     "EDUCATION_SUPPORT_TITLE": "Education Support",
     "EDUCATION_SUPPORT_DESC": "I want to fund this child for a university education if i pass away",
     "EDUCATION_SUPPORT_SUBTITLE": "He / She will be studying:",
@@ -98,8 +103,13 @@
     "EDUCATION_SUPPORT_COUNTRY": "Country",
     "EDUCATION_SUPPORT_NATIONALITY": "Nationality",
     "YEARS_MODAL_DESC": "Click on your dependant’s profile type for a general guideline on the years needed.",
-    "PROFILE_TYPE": ["spouse", "child", "family"],
-    "YEARS_NEEDED": [{
+    "PROFILE_TYPE": [
+      "spouse",
+      "child",
+      "family"
+    ],
+    "YEARS_NEEDED": [
+      {
         "id": 0,
         "className": "spouse",
         "message": "Years Needed = 85 – Spouse’s Current Age"
@@ -142,7 +152,8 @@
     "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
     "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
     "MODAL_TITLE": "Occupational Disability",
-    "EMPLOYEE_TYPE": [{
+    "EMPLOYEE_TYPE": [
+      {
         "status": "Salaried Employee"
       },
       {
@@ -192,7 +203,7 @@
     "DESCRIPTION": "In the next step,we are going to assess your ability to take risk"
   },
   "PERSONAL_INFO": {
-    "TITLE": "Get Started", 
+    "TITLE": "Get Started",
     "BORN_ON": "I was born on"
   },
   "GETSTARTED_STEP2": {
@@ -205,18 +216,27 @@
     "QUESTION_LBL": "Question",
     "OF_LBL": "of"
   },
-  "MY_FINANCIALS":{
+  "MY_FINANCIALS": {
     "LABEL_YES": "Yes",
-    "LABEL_NO" : "No",
+    "LABEL_NO": "No",
     "TITLE": "Get Started",
     "MONTHLY_INCOME_LBL": "Monthly income (E.g.Salary,Bonus, Rental,Others)",
     "SAVED_INCOME_LBL": "% of my income saved",
-    "TOTAL_ASSET_LBL":"Total Assets (E.g.Cash, CPF, Investment, Property)",
+    "TOTAL_ASSET_LBL": "Total Assets (E.g.Cash, CPF, Investment, Property)",
     "LOANS_LBL": "Total Loans (E.g.Car,Property)",
     "INVESTMENT_LBL": "My Investment Amount ",
-    "INITIAL_DEPOSIT_LBL":"Initial Desposit",
+    "INITIAL_DEPOSIT_LBL": "Initial Desposit",
     "MONTHLY_DEPOSIT_LBL": "Monthly Deposi",
-    "BUTTON_LBL":"Continue",
-    "MY_FINANCIALS_LBL":"My Financials"
+    "BUTTON_LBL": "Continue",
+    "MY_FINANCIALS_LBL": "My Financials",
+    "MODAL_VALUES": {
+      "modalTitle": "Insufficient Emergency Fund!",
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
+    },
+    "HELP_MODEL": {
+      "helpTitle": "Insufficient Emergency Fund!",
+      "helplMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
+    },
+    "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   }
 }

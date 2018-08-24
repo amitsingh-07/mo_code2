@@ -16,6 +16,7 @@ const assetImgPath = './assets/images/';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',

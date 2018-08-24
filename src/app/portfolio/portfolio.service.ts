@@ -5,9 +5,8 @@ import { ApiService } from '../shared/http/api.service';
 import { PortfolioFormData } from './portfolio-form-data';
 import {PersonalFormError} from './personal-info/Personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
-
 import { IMyFinancials } from './my-financials/my-financials.interface';
-import {MyFinanacialFormError} from './my-financials/my-financials-form-error';
+
 
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
 const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
@@ -22,7 +21,7 @@ export class PortfolioService {
 
   private portfolioFormData: PortfolioFormData = new PortfolioFormData();
   private personalFormError: any = new PersonalFormError();
-  private myFinanacialFormError : any = new MyFinanacialFormError ();
+  //private myFinanacialFormError : any = new MyFinanacialFormError ();
 
   constructor(private http: HttpClient, private apiService: ApiService) {
   }
@@ -54,8 +53,8 @@ export class PortfolioService {
     return this.getFormError(invalid[0], invalidFormat[0][0]);
   } 
   getFormError(formCtrlName: string, validation: string): string {
-    //return this.personalFormError.formFieldErrors[formCtrlName][validation];
-    return this.myFinanacialFormError.formFieldErrors[formCtrlName][validation];
+    return this.personalFormError.formFieldErrors[formCtrlName][validation];
+    
   }
   setUserInfo(data:PersonalInfo) {
     this.portfolioFormData.dateOfBirth = data.dateOfBirth;

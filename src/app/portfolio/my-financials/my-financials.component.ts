@@ -13,7 +13,7 @@ import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.con
 import { PortfolioService } from './../portfolio.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+//import {MyFinanacialFormError} from './my-financials-form-error';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
@@ -24,6 +24,11 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
 export class MyFinancialsComponent implements OnInit {
   myFinancialsForm: FormGroup;
   myFinancialsFormValues: IMyFinancials;
+  //private myFinanacialFormError =new MyFinanacialFormError();
+  
+  modalData : any;
+    
+  
 
   pageTitle: string;
   constructor(
@@ -34,11 +39,14 @@ export class MyFinancialsComponent implements OnInit {
     public authService: AuthenticationService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
+    let self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('GET_STARTED.TITLE');
-      this.setPageTitle(this.pageTitle);
+      self.pageTitle = this.translate.instant('GET_STARTED.TITLE');
+      self.modalData = this.translate.instant('GET_STARTED.MODAL_VALUES');
+      this.setPageTitle(self.pageTitle);
     });
   }
+  
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
@@ -60,8 +68,18 @@ export class MyFinancialsComponent implements OnInit {
   form: any;
   popup() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
-    ref.componentInstance.errorMessage = this.portfolioService.currentFormError(this.form)['errorMessage'];
+    //ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
+    //ref.componentInstance.errorMessage = this.portfolioService.currentFormError(this.form)['errorMessage'];
+    ref.componentInstance.errorTitle = this.modalData.modalTitle;
+    ref.componentInstance.errorMessage = this.modalData.modalMessage;
+    return false;
+  }
+  HelpModal(){
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    //ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
+    //ref.componentInstance.errorMessage = this.portfolioService.currentFormError(this.form)['errorMessage'];
+    ref.componentInstance.errorTitle = this.modalData.modalTitle;
+    ref.componentInstance.errorMessage = this.modalData.modalMessage;
     return false;
   }
 
