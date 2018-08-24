@@ -74,6 +74,7 @@ export class MyFinancialsComponent implements OnInit {
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
     return false;
   }
+  
   HelpModal(){
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     //ref.componentInstance.errorTitle = this.portfolioService.currentFormError(this.form)['errorTitle'];
