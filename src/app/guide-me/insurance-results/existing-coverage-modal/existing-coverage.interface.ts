@@ -4,4 +4,5 @@ export interface IExistingCoverage {
     occupationalDisabilityCoveragePerMonth: number;
     hospitalPlanCoverage: number;
     longTermCareCoveragePerMonth: number;
+    selectedHospitalPlan: string;
 }

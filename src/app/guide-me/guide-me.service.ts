@@ -370,4 +370,16 @@ export class GuideMeService {
   getInsuranceResultsModalCounter() {
     return parseInt(sessionStorage.getItem(INSURANCE_RESULTS_COUNTER_KEY), 10);
   }
+
+  setExistingCoverageValues(data: IExistingCoverage ) {
+    this.guideMeFormData.existingCoverageValues = data;
+    this.commit();
+  }
+
+  getExistingCoverageValues(): IExistingCoverage {
+    if (!this.guideMeFormData.existingCoverageValues) {
+      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan : 'Private Hospital' } as IExistingCoverage;
+    }
+    return this.guideMeFormData.existingCoverageValues;
+  }
 }
