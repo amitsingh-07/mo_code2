@@ -3,8 +3,15 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
+import { GuideMeCalculateService } from './guide-me-calculate.service';
 import { GuideMeService } from './guide-me.service';
-import { IEnquiryData, IRecommendationRequest } from './interfaces/recommendations.request';
+import {
+    IEnquiryData,
+    IFinancialStatusMapping,
+    ILifeProtection,
+    IRecommendationRequest
+} from './interfaces/recommendations.request';
+import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +19,8 @@ import { IEnquiryData, IRecommendationRequest } from './interfaces/recommendatio
 export class GuideMeApiService {
     constructor(
         private http: HttpClient, private apiService: ApiService,
-        private authService: AuthenticationService, private guideMeService: GuideMeService) {
+        private authService: AuthenticationService, private guideMeService: GuideMeService,
+        private calculateService: GuideMeCalculateService) {
 
     }
 
@@ -42,15 +50,18 @@ export class GuideMeApiService {
         requestObj.criticalIllnessNeedsData = this.guideMeService.getCiAssessment();
         requestObj.enquiryProtectionTypeData = this.guideMeService.getSelectedProtectionNeedsList();
         requestObj.existingInsuranceList = this.guideMeService.getExistingCoverage();
+
+        requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
         requestObj.financialStatusMapping.assets = this.guideMeService.getMyAssets();
         requestObj.financialStatusMapping.income = this.guideMeService.getMyIncome();
         requestObj.financialStatusMapping.liabilities = this.guideMeService.getMyLiabilities();
         requestObj.financialStatusMapping.expenses = this.guideMeService.getMyExpenses();
+
         requestObj.hospitalizationNeeds = this.guideMeService.getHospitalPlan();
         requestObj.occupationalDisabilityNeeds = this.guideMeService.getMyOcpDisability();
         requestObj.longTermCareNeeds = this.guideMeService.getLongTermCare();
-        requestObj.dependentsData = null;
-        requestObj.lifeProtectionNeeds = null;
+        requestObj.dependentsData = this.getDependentsData();
+        requestObj.lifeProtectionNeeds = this.getLifeProtectionData();
         requestObj.enquiryData = this.getEnquiryData();
 
         return requestObj;
@@ -75,5 +86,37 @@ export class GuideMeApiService {
         } as IEnquiryData;
 
         return enquiryData;
+    }
+
+    getDependentsData() {
+        const dependentsData = [];
+        const dependentList = this.guideMeService.getLifeProtection().dependents;
+        console.log(dependentList);
+        for (const dependent of dependentList) {
+            const thisDependent = {
+                gender: dependent.gender,
+                relationship: dependent.relationship,
+                dateOfBirth: null,
+                dependentProtectionNeeds: {
+                    dependentId: 0,
+                    educationCourse: dependent.eduSupportCourse,
+                    montlySupportAmount: dependent.supportAmountValue,
+                    countryOfEducation: dependent.eduSupportCountry,
+                    nationality: dependent.eduSupportNationality,
+                    universityEntryAge: 0,
+                    yearsNeeded: dependent.yearsNeeded
+                }
+            } as ILifeProtection;
+            dependentsData.push(thisDependent);
+        }
+        return dependentsData;
+    }
+
+    getLifeProtectionData() {
+        const lifeProtectionData = {} as ILifeProtectionNeedsData;
+        lifeProtectionData.coverageAmount = this.calculateService.getLifeProtectionSummary();
+        lifeProtectionData.coverageDuration = 0;
+        lifeProtectionData.isPremiumWaiver = true;
+        return lifeProtectionData;
     }
 }
