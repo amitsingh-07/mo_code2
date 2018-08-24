@@ -20,7 +20,7 @@ export class GuideMeFormData {
     dependent: number;
 
     protectionNeedData: ProtectionNeeds[];
-    lifeProtectionData: IDependent[];
+    lifeProtectionData: {dependents: IDependent[]};
 
     // My Income
     income: IMyIncome;

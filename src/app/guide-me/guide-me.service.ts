@@ -12,6 +12,7 @@ import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IDependent } from './life-protection/life-protection-form/dependent.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
 import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
@@ -108,7 +109,7 @@ export class GuideMeService {
 
   getProtectionNeeds(): ProtectionNeeds[] {
     if (!this.guideMeFormData.protectionNeedData) {
-      this.guideMeFormData.protectionNeedData = [{}] as ProtectionNeeds[];
+      this.guideMeFormData.protectionNeedData = [] as ProtectionNeeds[];
     }
     return this.guideMeFormData.protectionNeedData;
   }
@@ -120,9 +121,10 @@ export class GuideMeService {
   }
 
   getLifeProtection() {
-    return {
-      lifeProtectionData: this.guideMeFormData.lifeProtectionData
-    };
+    if (!this.guideMeFormData.lifeProtectionData) {
+      this.guideMeFormData.lifeProtectionData = {dependents: [] as IDependent[]};
+    }
+    return this.guideMeFormData.lifeProtectionData;
   }
 
   setLifeProtection(data) {
@@ -340,7 +342,7 @@ export class GuideMeService {
   }
 
   getExistingCoverage(): IExistingCoverage[] {
-    return [{}] as IExistingCoverage[];
+    return [];
   }
 
   createProtectionNeedResult(data) {

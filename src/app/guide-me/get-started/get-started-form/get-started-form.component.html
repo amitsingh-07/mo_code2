@@ -29,7 +29,7 @@
         <div #usrFrmDp class="flex-col-7">
           <div class="datepicker-control">
             <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
-              <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
+              <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
                 required id="getStrdInpt3">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
