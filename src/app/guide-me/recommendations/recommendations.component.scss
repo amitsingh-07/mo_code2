@@ -1,3 +1,4 @@
+@import '../../../variables';
 @import '../../../mixins';
 app-recommendations {
   .outer-content {
@@ -23,7 +24,7 @@ app-recommendations {
   .plan-type-list {
     display: flex;
     justify-content: center;
-    background-color: #01c5c4;
+    background-color: #00c5c4;
     @include allmobiles {
       justify-content: start !important;
     }
@@ -33,10 +34,15 @@ app-recommendations {
     justify-content: center;
     padding: 20px 30px;
     cursor: pointer;
+    font-size: 18px;
+    font-family: $muli-bold;
+    color: $white-color;
   }
   .plan-type.active {
-    background-color: #c1edee;
-    color: #2ca9a3;
+    background-color: #c0eded;
+    color: $app-backgrnd-color;
+    font-size: 18px;
+    font-family: $muli-bold;
   }
   .plan-carousel-container {
     margin: 20px 0px;

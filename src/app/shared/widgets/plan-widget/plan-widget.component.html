@@ -1,35 +1,37 @@
-<img class="best-value-icon" src="./assets/images/best-value-icon.svg" />
-<div class="carousel-content plan-widget" [ngClass]="{'plan-selected-wrapper': isSelected}">
-  <div class="plan__block flex__box--vert">
-    <div class="row">
+<div class="carousel-content insurance-plan-widget" [ngClass]="{'plan-selected-wrapper': isSelected}">
+  <img class="best-value-icon" src="./assets/images/best-value-icon.png" />
+  <div class="insurance-plan-widget__container flex__box--vert">
+    <div class="row mt10">
       <div class="col-md-9 col-md-push-3">
         <h4>{{productName}}</h4>
-        <h2>${{premiumAmount}}</h2>
+        <h2>${{premiumAmount}}<span class="text-small">/ mth</span></h2>
       </div>
       <div class="col-md-3 col-md-pull-9">
         <img src="assets/images/Aviva_Logo.png" class="img-fluid" alt="Aviva" />
       </div>
     </div>
-    <hr/>
+    <div class="insurance-plan-widget__container__discount__block">5% discount for cover of $1.1M onwards</div>
     <div>
-      <div class="row">
-        <div class="col-md-4" *ngFor="let feature of features">
+      <div class="insurance-plan-widget__container__rank__wrapper">
+        <div class="insurance-plan-widget__container__rank-box" *ngFor="let feature of features">
           <div class="feature-head">{{feature.title}}</div>
           <div class="feature-caption">{{feature.caption}}</div>
+          <div class="help-icon"></div>
         </div>
       </div>
-      <div>Coverage Duration: {{data.coverageDuration}}</div>
-      <div>Premium Duration: {{data.premiumDuration}}</div>
-      <div>Needs Medical Underwriting:
-        <span>{{data.underWritting}}</span>
+
+      <div>Coverage Duration: <span class="text-bold grey">{{data.coverageDuration}}</span></div>
+      <div>Premium Duration: <span class="text-bold grey">{{data.premiumDuration}}</span></div>
+      <div class="mb20">Needs Medical Underwriting:
+       <span class="text-bold grey">{{data.underWritting}}</span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 d-none d-md-flex">
-        <button type="button" (click)="viewDetails()" class="btn btn-default width100">Details</button>
+        <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">Details</button>
       </div>
       <div class="col-md-6">
-        <button type="button" (click)="selectPlan()" class="btn btn-primary width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
+        <button type="button" (click)="selectPlan()" class="btn btn-primary-dark width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
       </div>
     </div>
   </div>
