@@ -18,6 +18,12 @@ export class ApiService {
     private http: BaseService,
     private httpClient: HttpClient) { }
 
+  /* SignUp API */
+  requestVerifyMobile(): string {
+    const url = '';
+    return '000000';
+  };
+
   getProfileList() {
     const url = '../assets/mock-data/profile.json';
     return this.http.get(apiConstants.endpoint.getProfileList)
@@ -128,4 +134,5 @@ export class ApiService {
       })
     );
   }
+
 }
