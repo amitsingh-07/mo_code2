@@ -2,17 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from '../shared/http/api.service';
-import { PortfolioFormData } from './portfolio-form-data';
-import {PersonalFormError} from './personal-info/Personal-form-error';
-import { PersonalInfo } from './personal-info/personal-info';
 import { IMyFinancials } from './my-financials/my-financials.interface';
-
-
-const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
-const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
-const PROTECTION_NEEDS_OCCUPATIONAL_DISABILITY_ID = 3;
-const PROTECTION_NEEDS_LIFE_HOSPITAL_PLAN_ID = 4;
-const PROTECTION_NEEDS_LIFE_LONG_TERM_CARE_ID = 5;
+import { PersonalFormError } from './personal-info/personal-form-error';
+import { PersonalInfo } from './personal-info/personal-info';
+import { PortfolioFormData } from './portfolio-form-data';
 
 @Injectable({
   providedIn: 'root'
