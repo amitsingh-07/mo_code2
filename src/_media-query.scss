@@ -1,4 +1,5 @@
 /*Media Queries*/
+
 .navbar-nav {
   @include SmallDevice {
     -ms-flex-direction: row;
@@ -8,6 +9,7 @@
     margin: 0;
   }
 }
+
 .hidden-sm-md {
   @include ExtraSmallDevice {
     display: none !important;
@@ -16,6 +18,7 @@
     display: none !important;
   }
 }
+
 .hidden-lg {
   @include LargeDevice {
     display: none !important;
@@ -24,6 +27,7 @@
     display: none !important;
   }
 }
+
 .fixed-top {
   @include allmobiles {
     position: fixed !important;
@@ -38,6 +42,7 @@
     font-family: $muli-semi-bold;
   }
 }
+
 .navbar {
   @include allmobiles {
     display: flex;
@@ -56,6 +61,7 @@
     font-size: 20px;
   }
 }
+
 .navbar-nav {
   @include allmobiles {
     flex-direction: row;
@@ -63,6 +69,7 @@
     justify-content: center;
   }
 }
+
 .btn__footer--fixed {
   margin-top: 22px !important;
   font-family: $muli;
@@ -76,40 +83,42 @@
     box-shadow: none !important;
   }
 }
+
 .container-fluid {
   @include allmobiles {
     padding-left: 15px !important;
     padding-right: 15px !important;
-    position: relative;
-    //top: 35px;
-    height: 100%;
-    //bottom: 60px;
+    position: relative; //top: 35px;
+    height: 100%; //bottom: 60px;
     padding: 80px 0;
     &.bottom-none {
       bottom: 0px;
-      top:0px;
+      top: 0px;
     }
   }
 }
-.top--limited{
-  top:30px;
-}.container-fluid
-.mobile-top-non{
+
+.top--limited {
+  top: 30px;
+}
+
+.container-fluid .mobile-top-non {
   @include allmobiles {
-    top:0px;
+    top: 0px;
   }
 }
-.mobile-top-extended{
+
+.mobile-top-extended {
   @include allmobiles {
-    top:50px;
-    &.more{
-      top:70px;
+    top: 50px;
+    &.more {
+      top: 70px;
     }
   }
-  @include min300max350{
-    top:50px;
-    &.more{
-      top:60px;
+  @include min300max350 {
+    top: 50px;
+    &.more {
+      top: 60px;
     }
   }
 }
@@ -120,6 +129,7 @@
     //margin-top: 60px;
   }
 }
+
 .modal {
   @include allmobiles {
     position: fixed !important;
