@@ -1,10 +1,7 @@
 <div class="container-fluid">
   <div class="content">
     <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm-md">
-        <h2>{{ pageTitle }}</h2>
-      </div>
-      <div class="col-lg-5 col-md-6">
+      <div class="col-lg-12 col-md-12">
 
         <form id="personalInfoForm" name="personalInfoForm" [formGroup]="personalInfoForm">
           <div class="form-group">
@@ -19,8 +16,8 @@
                       required>
                     <div class="input-group-append">
                       <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                        <img class="date-picker-image--valid" *ngIf="personalInfoForm.get('dateOfBirth').valid || personalInfoForm.get('dateOfBirth').pristine" src="./assets/images/calendar-normal.svg"
-                        />
+                        <img class="date-picker-image--valid" *ngIf="personalInfoForm.get('dateOfBirth').valid || personalInfoForm.get('dateOfBirth').pristine"
+                          src="./assets/images/calendar-normal.svg" />
                         <img class="date-picker-image--invalid" *ngIf="!personalInfoForm.get('dateOfBirth').valid && !personalInfoForm.get('dateOfBirth').pristine"
                           src="./assets/images/calendar-error.svg" />
                       </button>
@@ -36,22 +33,23 @@
 
           <hr/>
 
-          <div class="form-group">
+          <div class="form-group" style="position:relative;">
             <div class="form-group-with-bg--content">
               <div class="investmentSlider">
                 <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
                   [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" data-placement="bottom"></nouislider>
               </div>
             </div>
+            <div class="pointer-container">
+              <div class="pointer"></div>
+            </div>
           </div>
 
 
-          <div class="callout">
-            <span class="pointer" [ngStyle]="{'left': pointerPositionScale}"></span>
-
+          <div class="callout">        
             <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
-                <h5>Select Investment Period </h5>
-                  <p>Drag the slider to select the number of years you want to invest for.</p>
+              <h5>Select Investment Period </h5>
+              <p>Drag the slider to select the number of years you want to invest for.</p>
             </div>
 
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
@@ -61,8 +59,8 @@
             </div>
           </div>
           <div>
-            <button type="button" [disabled]="!personalInfoForm.controls.investmentPeriod.value" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-              id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <button type="button" [disabled]="!personalInfoForm.controls.investmentPeriod.value" (click)="goToNext(personalInfoForm)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>
 

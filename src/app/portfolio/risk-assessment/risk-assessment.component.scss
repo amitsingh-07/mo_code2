@@ -13,9 +13,26 @@
   color: #00a7a7;
 }
 
-.question-desc {
-  margin-bottom: 10px;
-  font-size:18px;
+.risk-assessment {
+  padding-top: 90px;
 }
 
+@media (min-width: 768px) {
+  .question-info {
+    top: 0px;
+  }
+  .risk-assessment {
+    padding-top: 50px;
+  }
+}
 
+@media (max-width: 767px) {
+  .risk-assessment {
+    padding-top: 90px;
+  }
+}
+
+.question-desc {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
