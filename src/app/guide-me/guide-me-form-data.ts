@@ -14,7 +14,7 @@ export class GuideMeFormData {
     myProfile: number;
     email: string;
     gender: string;
-    dob: string;
+    dob: any;
     customDob: string;
     smoker: string;
     dependent: number;

@@ -1,19 +1,89 @@
+@import '../../../../variables';
+@import '../../../../mixins';
 app-plan-widget {
-  .best-value-icon {
-    position: absolute;
-    top: 3px;
-    left: 10px;
-  }
-  .plan-widget {
+  .insurance-plan-widget {
+    position: relative;
+    .best-value-icon {
+      position: absolute;
+      top: 0px;
+      left: 10px;
+    }
     border: solid 3px #fff;
+    .insurance-plan-widget__container {
+      h4 {
+        font-size: 21px;
+        color: $black-color;
+        font-family: $muli-semi-bold;
+      }
+      h2 {
+        font-size: 36px;
+        color: $app-backgrnd-color;
+        font-family: $muli-semi-bold;
+        .text-small {
+          color: #2d8289;
+          font-size: 18px;
+          font-family: $muli-regular;
+          margin-left: 5px;
+        }
+      }
+      .insurance-plan-widget__container__discount__block {
+        border-top: 1px solid #c2d9ec;
+        border-bottom: 1px solid #c2d9ec;
+        padding: 0 20px;
+        color: #e46f6f;
+        font-family:$muli-bold;
+        font-size: 16px;
+        position: relative;
+        margin: 0 -23px;
+        background: url("../../../../assets/images/promo-tag.svg");
+        background-repeat: no-repeat;
+        background-position: 26px 9px;
+        padding-left: 40px;
+      }
+      .insurance-plan-widget__container__rank__wrapper {
+          @extend .flex;
+          @extend .space-btwn;
+          margin: 20px 0;
+          .insurance-plan-widget__container__rank-box {
+            background-color: #c0eded;
+            border-radius: 8px;
+            padding: 4%;
+            width: 152px;
+            text-align: center;
+            color: $app-backgrnd-color;
+            @extend .flex;
+            @extend .justify-center;
+            @extend .align-center;
+            flex-direction: column;
+          }
+          .feature-head {
+            font-size: 24px;
+            font-family: $muli-bold;
+          }
+          .feature-caption {
+            font-size: 16px;
+            font-family: $muli-semi-bold;
+            width: 100px;
+            margin-bottom: 10px;
+          }
+          .help-icon {
+             background: url("../../../../assets/images/tooltip-icon.svg") no-repeat;
+             height: 20px;
+             width: 20px;
+             cursor: pointer;
+             text-align: center;
+          }
+      }
+    
+    .plan-selected-wrapper {
+      border: solid 3px #ff872f;
+    }
+    .plan-selected {
+      color: #fff;
+      background-color: #ff872f !important;
+      border-color: #ff872f !important;
+      box-shadow: none;
+    }
   }
-  .plan-selected-wrapper {
-    border: solid 3px #ff872f;
-  }
-  .plan-selected {
-    color: #fff;
-    background-color: #ff872f !important;
-    border-color: #ff872f !important;
-    box-shadow: none;
-  }
+}
 }

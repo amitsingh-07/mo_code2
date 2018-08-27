@@ -361,6 +361,11 @@
   .dropdown-menu.show {
     min-width: 100%;
   }
+  .dropdown-lg {
+     height: 235px; 
+     background-color: #fff; 
+     overflow:auto;
+  }
   .btn-dropdown {
     background: $module-fill-color;
     padding: .90rem;

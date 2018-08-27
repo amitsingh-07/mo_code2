@@ -44,9 +44,13 @@ export class GuideMeApiService {
         return this.apiService.getLongTermCareList();
     }
 
-    constructRecommendationsRequest(): IRecommendationRequest {
+    getRecommendations() {
+       return this.apiService.getRecommendations(this.constructRecommendationsRequest());
+    }
+
+    private constructRecommendationsRequest(): IRecommendationRequest {
         const requestObj = {} as IRecommendationRequest;
-        requestObj.sessionId = this.authService.getAppSecretKey();
+        requestObj.sessionId = this.authService.getSessionId();
         requestObj.criticalIllnessNeedsData = this.guideMeService.getCiAssessment();
         requestObj.enquiryProtectionTypeData = this.guideMeService.getSelectedProtectionNeedsList();
         requestObj.existingInsuranceList = this.guideMeService.getExistingCoverage();
@@ -70,6 +74,8 @@ export class GuideMeApiService {
     getEnquiryData() {
         const smoker: boolean =
             this.guideMeService.getGuideMeFormData().smoker.toLowerCase() === 'smoker' ? true : false;
+        const dobObj = this.guideMeService.getGuideMeFormData().dob;
+        const dob = dobObj.day + '-' + dobObj.month + '-' + dobObj.year;
         const enquiryData = {
             id: 0,
             profileStatusId: this.guideMeService.getProfile().myProfile,
@@ -78,11 +84,12 @@ export class GuideMeApiService {
             hospitalClassId: this.guideMeService.getHospitalPlan().hospitalClassId,
             sessionTrackerId: 0,
             gender: this.guideMeService.getGuideMeFormData().gender,
-            dateOfBirth: this.guideMeService.getGuideMeFormData().dob,
+            dateOfBirth: dob,
             isSmoker: smoker,
             employmentStatusId: 0,
             numberOfDependents: this.guideMeService.getGuideMeFormData().dependent,
             hasPremiumWaiver: false,
+            type: 'insurance-guided'
         } as IEnquiryData;
 
         return enquiryData;
@@ -96,11 +103,11 @@ export class GuideMeApiService {
             const thisDependent = {
                 gender: dependent.gender,
                 relationship: dependent.relationship,
-                dateOfBirth: null,
+                age: dependent.age,
                 dependentProtectionNeeds: {
                     dependentId: 0,
                     educationCourse: dependent.eduSupportCourse,
-                    montlySupportAmount: dependent.supportAmountValue,
+                    monthlySupportAmount: dependent.supportAmountValue,
                     countryOfEducation: dependent.eduSupportCountry,
                     nationality: dependent.eduSupportNationality,
                     universityEntryAge: 0,

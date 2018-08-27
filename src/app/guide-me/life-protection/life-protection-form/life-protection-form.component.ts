@@ -101,7 +101,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     if (amount !== null) {
       amount = amount.split('.')[0].replace('$', '');
       this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].setValue(amount);
-      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(amount);
+      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(amount, 10));
     }
   }
 
@@ -113,7 +113,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     sliderValue = (sliderValue + '').replace(Regexp, '');
     slider.writeValue(sliderValue);
 
-    this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(sliderValue);
+    this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(sliderValue, 10));
   }
 
   showLifeProtectionModal() {

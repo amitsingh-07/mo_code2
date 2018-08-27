@@ -9,8 +9,8 @@ import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulat
 export class PlanWidgetComponent implements DoCheck, OnInit {
   @Input() data;
   icon;
-  amount;
-  name;
+  premiumAmount;
+  productName;
   features;
   temp;
   isSelected = false;
@@ -26,8 +26,8 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   ngDoCheck() {
     if (this.data) {
       this.icon = this.data.icon;
-      this.amount = this.data.amount;
-      this.name = this.data.name;
+      this.premiumAmount = this.data.premium.premiumAmount;
+      this.productName = this.data.productName;
       this.coverageDuration = this.data.coverageDuration;
       this.premiumDuration = this.data.premiumDuration;
       this.features = this.data.features;
