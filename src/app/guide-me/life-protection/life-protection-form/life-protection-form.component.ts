@@ -100,17 +100,20 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     let amount = this.currencyPipe.transform(value, 'USD');
     if (amount !== null) {
       amount = amount.split('.')[0].replace('$', '');
-      this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].setValue(amount);
+      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].setValue(amount);
+      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(amount);
     }
   }
 
   updateSlider(slider, index) {
-    let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].value;
+    let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].value;
     if (sliderValue === null) {
       sliderValue = 0;
     }
     sliderValue = (sliderValue + '').replace(Regexp, '');
     slider.writeValue(sliderValue);
+
+    this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(sliderValue);
   }
 
   showLifeProtectionModal() {
@@ -159,8 +162,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       relationship: this.relationshipOptions[0],
       age: 24,
       supportAmount: '',
+      supportAmountValue: 0,
       yearsNeeded: this.yearsNeededOptions[0],
-      otherIncome: '',
       educationSupport: false,
       supportAmountRange: 0,
       eduSupportCourse: this.eduSupportCourse[0],

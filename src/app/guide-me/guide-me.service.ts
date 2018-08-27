@@ -12,13 +12,15 @@ import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IDependent } from './life-protection/life-protection-form/dependent.interface';
 import { LongTermCare } from './ltc-assessment/ltc-assessment';
 import { IMyAssets } from './my-assets/my-assets.interface';
 import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
-const LOCAL_STORAGE_KEY = 'app_local_storage_key';
+const SESSION_STORAGE_KEY = 'app_session_storage_key';
+const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
 
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
 const PROTECTION_NEEDS_CRITICAL_ILLNESS_ID = 2;
@@ -42,6 +44,7 @@ export class GuideMeService {
   protectionNeedsPageIndex = 0;
   protectionNeedsArray: any;
   isMyOcpDisabilityFormValid = false;
+  isExistingCoverAdded = false;
 
   // Variables for Insurance Results Generation
   private result_title: string;
@@ -54,7 +57,7 @@ export class GuideMeService {
 
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.guideMeFormData));
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.guideMeFormData));
     }
   }
 
@@ -98,15 +101,15 @@ export class GuideMeService {
 
   // Return the entire GuideMe Form Data
   getGuideMeFormData(): GuideMeFormData {
-    if (window.sessionStorage && sessionStorage.getItem(LOCAL_STORAGE_KEY)) {
-      this.guideMeFormData = JSON.parse(sessionStorage.getItem(LOCAL_STORAGE_KEY));
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+      this.guideMeFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
     return this.guideMeFormData;
   }
 
   getProtectionNeeds(): ProtectionNeeds[] {
     if (!this.guideMeFormData.protectionNeedData) {
-      this.guideMeFormData.protectionNeedData = [{}] as ProtectionNeeds[];
+      this.guideMeFormData.protectionNeedData = [] as ProtectionNeeds[];
     }
     return this.guideMeFormData.protectionNeedData;
   }
@@ -118,9 +121,10 @@ export class GuideMeService {
   }
 
   getLifeProtection() {
-    return {
-      lifeProtectionData: this.guideMeFormData.lifeProtectionData
-    };
+    if (!this.guideMeFormData.lifeProtectionData) {
+      this.guideMeFormData.lifeProtectionData = {dependents: [] as IDependent[]};
+    }
+    return this.guideMeFormData.lifeProtectionData;
   }
 
   setLifeProtection(data) {
@@ -311,6 +315,7 @@ export class GuideMeService {
     if (this.protectionNeedsPageIndex < selectedProtectionNeedsPage.length) {
       return selectedProtectionNeedsPage[this.protectionNeedsPageIndex];
     } else {
+      this.setInsuranceResultsModalCounter(0);
       return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
     }
   }
@@ -337,7 +342,7 @@ export class GuideMeService {
   }
 
   getExistingCoverage(): IExistingCoverage[] {
-    return [{}] as IExistingCoverage[];
+    return [];
   }
 
   createProtectionNeedResult(data) {
@@ -356,5 +361,27 @@ export class GuideMeService {
         this.result_value = null;
         break;
     }
+  }
+
+  setInsuranceResultsModalCounter(value: number) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(INSURANCE_RESULTS_COUNTER_KEY, value.toString());
+    }
+  }
+
+  getInsuranceResultsModalCounter() {
+    return parseInt(sessionStorage.getItem(INSURANCE_RESULTS_COUNTER_KEY), 10);
+  }
+
+  setExistingCoverageValues(data: IExistingCoverage ) {
+    this.guideMeFormData.existingCoverageValues = data;
+    this.commit();
+  }
+
+  getExistingCoverageValues(): IExistingCoverage {
+    if (!this.guideMeFormData.existingCoverageValues) {
+      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan : 'Private Hospital' } as IExistingCoverage;
+    }
+    return this.guideMeFormData.existingCoverageValues;
   }
 }
