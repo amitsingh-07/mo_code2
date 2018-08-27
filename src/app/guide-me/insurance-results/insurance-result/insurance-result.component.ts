@@ -1,4 +1,6 @@
 import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
+import { GuideMeService } from './../../guide-me.service';
+import { HospitalPlan } from './../../hospital-plan/hospital-plan';
 import { IResultItem } from './insurance-result';
 
 @Component({
@@ -33,12 +35,13 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
       }
       // View Details Button
       if (this.title === 'Hospital Plan') {
-        this.amount = this.data.content;
+        const hospitalPlan: any = this.guideMeService.getHospitalPlan().hospitalClass;
+        this.amount = hospitalPlan.substr(0, hospitalPlan.indexOf(' '));
         this.viewDetailsBtn = false;
       }
     }
  }
-  constructor() { }
+  constructor( private guideMeService: GuideMeService) { }
 
   ngOnInit() {
   }

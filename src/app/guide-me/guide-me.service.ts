@@ -347,7 +347,8 @@ export class GuideMeService {
       criticalIllnessCoverage: 0,
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
-      occupationalDisabilityCoveragePerMonth: 0
+      occupationalDisabilityCoveragePerMonth: 0,
+      selectedHospitalPlan: 'private'
     }];
   }
 

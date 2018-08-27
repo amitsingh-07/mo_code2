@@ -131,7 +131,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
           protectionNeed.existingCoverage.value = emittedValue.occupationalDisabilityCoveragePerMonth;
           break;
         case 4:
-          protectionNeed.existingCoverage.value = emittedValue.hospitalPlanCoverage;
+          protectionNeed.existingCoverage.value = emittedValue.selectedHospitalPlan;
           break;
         case 5:
           protectionNeed.existingCoverage.value = emittedValue.longTermCareCoveragePerMonth;
