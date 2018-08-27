@@ -1,0 +1,29 @@
+<div class="question-info">
+  {{QuestionLabel}} {{questionIndex}} {{ofLabel}} {{questionsList.length}}
+</div>
+
+
+<div class="container-fluid risk-assessment">
+
+  <div class="row">
+    <div class="col-lg-5 col-md-6" *ngIf="currentQuestion">
+      <form name="riskAssessmentForm" [formGroup]="riskAssessmentForm" id="riskAssessmentForm">
+        <div class="form-group-single-column flex-col">
+          <div class="question-desc">
+            {{currentQuestion.description}}
+          </div>
+
+          <div class="checkbox-button one-label" *ngFor="let option of currentQuestion.options; let i = index">
+            <input id="option_{{i+1}}" name="questSelOption" formControlName="questSelOption" type="radio" class="field radio" value="{{option.questionOptionId}}"
+              tabindex="{{i+1}}">
+            <label for="option_{{i+1}}" id="riskAssessLbl_{{i}}">
+              <span class="input-label-grey">{{option.text}}</span>
+            </label>
+          </div>
+          <button type="button" [disabled]="!riskAssessmentForm.valid" (click)="goToNext(riskAssessmentForm)" class="btn btn-primary btn__footer--fixed width100"
+            id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
