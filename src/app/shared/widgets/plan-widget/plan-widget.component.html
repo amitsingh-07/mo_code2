@@ -4,26 +4,38 @@
     <div class="row mt10">
       <div class="col-md-9 col-md-push-3">
         <h4>{{productName}}</h4>
-        <h2>${{premiumAmount}}<span class="text-small">/ mth</span></h2>
+        <h2>${{premiumAmount}}
+          <span class="text-small">/ mth</span>
+        </h2>
       </div>
       <div class="col-md-3 col-md-pull-9">
         <img src="assets/images/Aviva_Logo.png" class="img-fluid" alt="Aviva" />
       </div>
     </div>
     <div class="insurance-plan-widget__container__discount__block">5% discount for cover of $1.1M onwards</div>
-    <div>
+    <div style="margin-bottom: 15px;">
       <div class="insurance-plan-widget__container__rank__wrapper">
-        <div class="insurance-plan-widget__container__rank-box" *ngFor="let feature of features">
-          <div class="feature-head">{{feature.title}}</div>
-          <div class="feature-caption">{{feature.caption}}</div>
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
+          <div class="feature-head">#{{data.premium.ranking}}</div>
+          <div class="feature-caption">Ranking By Price</div>
+          <div class="help-icon" style="visibility: hidden;"></div>
+        </div>
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
+          <div class="feature-head">{{insurerRating}}</div>
+          <div class="feature-caption">Insurer's Rating</div>
+          <div class="help-icon"></div>
+        </div>
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
+          <div class="feature-head">50%</div>
+          <div class="feature-caption">Commission Rebate</div>
           <div class="help-icon"></div>
         </div>
       </div>
 
-      <div>Coverage Duration: <span class="text-bold grey">{{data.coverageDuration}}</span></div>
-      <div>Premium Duration: <span class="text-bold grey">{{data.premiumDuration}}</span></div>
-      <div class="mb20">Needs Medical Underwriting:
-       <span class="text-bold grey">{{data.underWritting}}</span>
+      <div style="padding: 2px;">
+        <div *ngFor="let highlight of highlights;">{{highlight.title}}
+          <span class="text-bold grey">{{highlight.description}}</span>
+        </div>
       </div>
     </div>
     <div class="row">
