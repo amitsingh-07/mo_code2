@@ -1,0 +1,13 @@
+export const SIGN_UP_BASE_ROUTE = '../signup/';
+
+export const SIGN_UP_ROUTES = {
+  ROOT: '',
+  CREATE_ACCOUNT: 'create-account',
+  VERIFY_MOBILE: 'verify-mobile',
+};
+
+export const SIGN_UP_ROUTE_PATHS = {
+  ROOT: '',
+  CREATE_ACCOUNT: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.CREATE_ACCOUNT,
+  VERIFY_MOBILE: SIGN_UP_BASE_ROUTE + SIGN_UP_ROUTES.VERIFY_MOBILE,
+};

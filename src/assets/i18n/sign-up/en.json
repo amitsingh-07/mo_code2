@@ -1,0 +1,25 @@
+{
+    "COMMON": {
+        "CONTINUE": "Continue"
+    },
+    "CREATE_ACCOUNT": {
+        "TITLE": "Create Your Account",
+        "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+        "FORM": {
+            "MOBILE_NUMBER": "Mobile Number",
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name",
+            "EMAIL": "Email Address"
+        }
+    },
+    "VERIFY_MOBILE": {
+        "TITLE": "Verify Your Mobile",
+        "SUB_TITLE": "So that our advisers can contact you.",
+        "FORM": {
+            "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
+            "EDIT_NUMBER": "Edit Number",
+            "DIDNT_RECIEVE": "Didn't Recieve it?",
+            "REQUEST_NEW_CODE": "Request New Code"
+        }
+    }
+}

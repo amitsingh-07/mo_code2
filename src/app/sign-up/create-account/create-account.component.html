@@ -1,0 +1,59 @@
+<div class="container-fluid flex__wrapper">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 col-xs-12 signup-wrapper sm-text-align-center">
+          <h3 class="title order1 sm-order2 ml10">{{pageTitle}}</h3>
+          <img class="header-icon order2 sm-order1" src="assets/images/createAccount-icon.svg"/>
+          <div class="hidden-lg description order3">
+              <p>{{description}}</p>
+            </div>
+        </div>
+      <div class="col-lg-6 col-sm-12 col-xs-12">
+        <form class="signup-form-wrapper" id="createAccountForm" name="createAccountForm" [formGroup]="createAccountForm">
+          <div class="flex-row mb10">
+            <div class="flex-col-3 stretch mr15">
+              <div class="dropdown-control form-control-left">
+              <div ngbDropdown id="countryCode">
+                <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+                  <span>+</span><span>{{countryCode}}</span>
+                </button>
+                <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setDropDownCountryCode(option, i)">{{option}}</button>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-col-8 stretch" [formGroup]="createAccountForm">
+              <div class="form-control">
+                  <input type="text" class="input-control text-left"
+                  maxLength="8" #otherIncome formControlName="mobileNumber" placeholder="{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}">
+                </div>
+              </div>
+            </div>
+          <div class="flex-row mb10">
+            <div class="flex-col-5 stretch mr15" [formGroup]="createAccountForm">
+              <div class="form-control">
+                <input type="text" class="input-control text-left" #firstName formControlName="firstName" value="" placeholder="{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME' | translate}}">
+              </div>
+            </div>
+            <div class="flex-col-5 stretch" [formGroup]="createAccountForm">
+              <div class="form-control">
+                <input type="text" class="input-control text-left" #firstName formControlName="lastName" value="" placeholder="{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}">
+              </div>
+            </div>
+            </div>
+          <div class="flex-row mb30">
+            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
+              <div class="form-control">
+                  <input type="text" class="input-control text-left"
+                  #email formControlName="email" placeholder="{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}">
+                </div>
+              </div>
+            </div>
+            
+            <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-white width100">{{ 'COMMON.CONTINUE' | translate }}</button>
+        </form>
+      </div>   
+    </div>
+  </div>
+</div>
