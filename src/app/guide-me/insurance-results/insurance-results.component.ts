@@ -97,6 +97,12 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       case 'Critical Illness':
         this.showDetailsModal(index);
         break;
+      case 'Occupational Disability':
+        this.showDetailsModal(index);
+        break;
+      case 'Long-Term Care':
+        this.showDetailsModal(index);
+        break;
     }
   }
 
