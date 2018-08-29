@@ -17,7 +17,7 @@
             <label for="profile_{{i+1}}" id="prfLbl1">
               <span class="input-label-grey">{{profiles.name}}</span>
             </label>
-            <i class="tooltip-icon" (click)="showHelpModal(i)" id="prfTltp"></i>
+            <i class="tooltip-icon" (click)="showHelpModal(i)" id="prfTltp_{{i+1}}"></i>
           </div>
           <button type="button" [disabled]="!profileForm.valid" (click)="goToNext(profileForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
