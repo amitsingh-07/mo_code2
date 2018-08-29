@@ -1,10 +1,15 @@
-import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output,ViewEncapsulation, SimpleChange, SimpleChanges } from '@angular/core';
+
+
+import { GuideMeService } from './../../guide-me.service';
+import { HospitalPlan } from './../../hospital-plan/hospital-plan';
 import { IResultItem } from './insurance-result';
 
 @Component({
   selector: 'app-insurance-result',
   templateUrl: './insurance-result.component.html',
-  styleUrls: ['./insurance-result.component.scss']
+  styleUrls: ['./insurance-result.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InsuranceResultComponent implements DoCheck, OnInit {
   @Input() data: IResultItem;
@@ -33,12 +38,15 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
       }
       // View Details Button
       if (this.title === 'Hospital Plan') {
-        this.amount = this.data.content;
+
+        const hospitalPlan: any = this.guideMeService.getHospitalPlan().hospitalClass;
+        this.amount = hospitalPlan.substr(0, hospitalPlan.indexOf(' '));
         this.viewDetailsBtn = false;
       }
     }
  }
-  constructor() { }
+
+  constructor( private guideMeService: GuideMeService) { }
 
   ngOnInit() {
   }

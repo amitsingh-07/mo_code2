@@ -74,7 +74,7 @@
               <div ngbDropdown id="dependantAge">
                 <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="ageDropdown" ngbDropdownToggle>{{item.controls.age.value}}
                 </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="ageDropdown">
+                <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="ageDropdown">
                   <button class="dropdown-item" *ngFor="let option of ageOptions" (click)="setDropDownValue('age',option, i)">{{option}}</button>
                 </div>
               </div>
@@ -110,7 +110,7 @@
               <div ngbDropdown id="yearsNeeded">
                 <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="yearsNeededDropdown" ngbDropdownToggle>{{item.controls.yearsNeeded.value}}
                 </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="yearsNeededDropdown">
+                <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="yearsNeededDropdown">
                   <button class="dropdown-item" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
                 </div>
               </div>
