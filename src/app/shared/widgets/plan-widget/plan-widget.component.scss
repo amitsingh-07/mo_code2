@@ -5,6 +5,9 @@ app-plan-widget {
   .insurance-plan-widget {
     position: relative;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
+    @include allmobiles {
+      box-shadow: none;
+    }
     
     .img-fluid {
       height: 70px;
@@ -49,6 +52,9 @@ app-plan-widget {
 
     .insurance-plan-widget__container {
       padding-top: 15px;
+      @include allmobiles {
+        min-height: 251px;
+      }
 
       h4 {
         font-size: 21px;
