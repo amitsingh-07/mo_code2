@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
@@ -9,6 +10,7 @@ import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GuideMeService } from '../guide-me.service';
 import { CriticalIllnessData } from './../ci-assessment/ci-assessment';
 import { GuideMeApiService } from './../guide-me.api.service';
+import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
 
 @Component({
   selector: 'app-recommendations',
@@ -40,7 +42,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private translate: TranslateService, public headerService: HeaderService,
     private guideMeApiService: GuideMeApiService, private guideMeCalculateService: GuideMeCalculateService,
-    private currency: CurrencyPipe, private guideMeService: GuideMeService) {
+    private currency: CurrencyPipe, private guideMeService: GuideMeService, public modal: NgbModal) {
     this.carouselConfig.wrap = false;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -160,7 +162,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   selectPlan(data) {
-    /*
     if (data.isSelected) {
       console.log('selected plan');
       console.log(data.plan);
@@ -173,9 +174,14 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
         this.selectedPlans.splice(index, 1);
       }
     }
-    */
   }
 
+  proceed() {
+    const ref = this.modal.open(CreateAccountModelComponent, {
+      centered: true
+    });
+    ref.componentInstance.data = this.selectedPlans.length;
+  }
   getRecommendations() {
     return {
       "responseMessage": {

@@ -1,0 +1,28 @@
+<div class="modal-body white-bg">
+  <div class="form-group">
+    <div class="flex-row">
+        <div class="flex-col-3">
+            <label></label>
+        </div>
+      <div class="flex-col-7">
+          <span class="selected-count">{{data}}</span>
+          <span class="lbl-selected">Plans Selected</span>
+      </div>
+    </div>
+    <div class="flex-row">
+        <div class="flex-col-12">
+          <label class="choose_ops">Choose one of the option to continue:</label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="flex-col-12">
+            <button type="button" (click)="save()" class="btn btn__footer--fixed btn-primary width100 mt5" id="incomeBtn">Create Account</button>
+        </div>
+      </div>
+      <div class="flex-row">
+          <div class="flex-col-12">
+              <button type="button" (click)="save()" class="btn btn__footer--fixed width100 mt5" id="incomeBtn">Login</button>
+          </div>
+        </div>
+    </div>
+  </div>
