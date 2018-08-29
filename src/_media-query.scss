@@ -167,3 +167,10 @@
     }
   }
 }
+
+//IE11 Modal Fix
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .modal.show .modal-dialog {
+    top: 30%;
+  }
+}
