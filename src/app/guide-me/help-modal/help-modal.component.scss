@@ -16,9 +16,13 @@
       width: 25px !important;
       height: 25px !important;
       background: url("../../../assets/images/close-button-dark.svg") !important;
-      position: absolute !important;
-      right: 15px !important;
-      top: 25px !important;
+      //position: absolute !important;
+      //right: 15px !important;
+      //top: 25px !important;
+      float: right;
+      position: relative;
+      top: 14px;
+      right: 5px;
       background-repeat: no-repeat !important;
     }
     .modal .close {
@@ -65,10 +69,14 @@
       width: 25px;
       height: 25px;
       background: url("../../../assets/images/close-button-dark.svg");
-      position: absolute;
-      right: 8px;
-      top: 16px;
+      //position: absolute;
+      //right: 8px;
+      //top: 16px;
       background-repeat: no-repeat;
+      position: relative;
+      float: right;
+      top: 14px;
+      right: 5px;
     }
     .modal-dialog {
       right: 20% !important;
