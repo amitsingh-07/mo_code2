@@ -140,6 +140,15 @@ app-life-protection-form {
         max-width: 100px;
       }
     }
+    @include iPadProPortrait {
+      a.link {
+        text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+      }
+    }
   }
   @include allmobiles {
     .form-group-with-bg {
