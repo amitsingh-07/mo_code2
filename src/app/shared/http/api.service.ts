@@ -182,8 +182,6 @@ export class ApiService {
   savePersonalInfo(data) {
     //const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setPersonalInfo.json';
-    console.log("Data Posted: ");
-    console.log(data);
     return this.http.post(url, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
