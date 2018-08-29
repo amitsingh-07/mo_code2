@@ -4,10 +4,18 @@
 app-plan-widget {
   .insurance-plan-widget {
     position: relative;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
+    
+    .img-fluid {
+      height: 70px;
+      width: 70px;
+    }
 
     .row-btn-bottom {}
 
-    .btn-primary-dark {
+    .btn-select {
+      background-color: #00a7a7;
+      color: #ffffff;
 
       @include allmobiles {
         border-radius: 0px 0px 6px 6px;
