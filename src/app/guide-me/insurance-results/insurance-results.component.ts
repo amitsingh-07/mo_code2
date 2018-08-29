@@ -269,7 +269,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'Family Member', value: 600 , currency: '$' } as IResultItemEntry);
+    entries.push({ title: this.guideMeService.getLongTermCare().careGiverType,
+                  value: this.guideMeService.selectLongTermCareValues() , currency: '$' } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: 'long-term-care-icon.svg',
@@ -278,7 +279,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
-        value: 6000
+        value: this.guideMeService.selectLongTermCareValues()
       }
     };
   }

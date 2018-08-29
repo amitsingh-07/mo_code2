@@ -391,4 +391,20 @@ export class GuideMeService {
     }
     return this.guideMeFormData.existingCoverageValues;
   }
+
+  selectLongTermCareValues() {
+    const currentLongTerm = this.getLongTermCare();
+    let currentValue;
+    switch (currentLongTerm.careGiverType) {
+      case 'Nursing Home' : currentValue = 2600;
+                            break;
+      case 'Daycare Support': currentValue = 2600;
+                              break;
+      case 'Domestic Helper': currentValue = 1200;
+                              break;
+      case 'Family Member': currentValue = 600;
+                            break;
+    }
+    return currentValue;
+  }
 }
