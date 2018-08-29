@@ -68,17 +68,11 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   }
 
   viewDetails() {
-    console.log('View plan clicked');
     this.view.emit(this.temp);
   }
 
   selectPlan() {
-    console.log('Plan selected');
-    if (this.isSelected) {
-      this.isSelected = false;
-    } else {
-      this.isSelected = true;
-    }
-    this.select.emit({ plan: this.temp, isSelected: this.isSelected });
+    this.isSelected = !this.isSelected;
+    this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
 }
