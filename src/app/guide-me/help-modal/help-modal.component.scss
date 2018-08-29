@@ -12,17 +12,17 @@
       }
     }
   }
-    button.close span {
+    button.close {
       width: 25px !important;
       height: 25px !important;
       background: url("../../../assets/images/close-button-dark.svg") !important;
-      //position: absolute !important;
-      //right: 15px !important;
-      //top: 25px !important;
-      float: right;
-      position: relative;
-      top: 14px;
-      right: 5px;
+      position: absolute !important;
+      right: 15px !important;
+      top: 25px !important;
+      // float: right;
+      // position: relative;
+      // top: 14px;
+      // right: 5px;
       background-repeat: no-repeat !important;
     }
     .modal .close {
@@ -56,27 +56,27 @@
       margin-bottom: 20px;
     }
     button.close {
-      background: $module-fill-color;
-      border-radius: 50%;
+      background: $module-fill-color !important;
+      border-radius: 50% !important;
       height: 50px;
       width: 50px;
       opacity: 1;
-      right: 46%;
-      top: 3%;
-      padding: 0px;
+      right: 46% !important;
+      top: 4% !important;
+      padding: 0px !important;
     }
     button.close span {
       width: 25px;
       height: 25px;
       background: url("../../../assets/images/close-button-dark.svg");
-      //position: absolute;
-      //right: 8px;
-      //top: 16px;
+      position: absolute;
+      right: 8px;
+      top: 16px;
       background-repeat: no-repeat;
-      position: relative;
-      float: right;
-      top: 14px;
-      right: 5px;
+      // position: relative;
+      // float: right;
+      // top: 14px;
+      // right: 5px;
     }
     .modal-dialog {
       right: 20% !important;
