@@ -1,5 +1,7 @@
 import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
+import { CurrencyPipe } from '../../../../../node_modules/@angular/common';
+
 @Component({
   selector: 'app-plan-widget',
   templateUrl: './plan-widget.component.html',
@@ -10,6 +12,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   @Input() data;
   @Input() type;
   icon;
+  insurerLogo;
   premiumAmount;
   productName;
   highlights = [];
@@ -26,7 +29,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
 
-  constructor() {
+  constructor(private currency: CurrencyPipe) {
     this.highlights = [];
   }
 
@@ -37,6 +40,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   ngOnInit() {
     if (this.data) {
       this.icon = this.data.icon;
+      this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
       this.productName = this.data.productName;
       this.coverageDuration = this.data.coverageDuration;
@@ -48,16 +52,16 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
       this.highlights.push({ title: 'Premium Duration', description: this.data.premiumDuration });
       if (this.type === 'long term care') {
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs', description: this.data.coverageDuration });
+        this.highlights.push({ title: 'No. of ADLs', description: '3 out of 6' });
       }
       if (this.type === 'hospital plan') {
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider', description: this.data.coverageDuration });
+        this.highlights.push({ title: 'Rider', description: 'Covers co-insurance and deductible'});
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period', description: this.data.coverageDuration });
-        this.highlights.push({ title: 'Escalating Benefit', description: this.data.underWritting });
+        this.highlights.push({ title: 'Deferred Period', description: '6 Months' });
+        this.highlights.push({ title: 'Escalating Benefit', description: '3%'});
       }
       this.highlights.push({ title: 'Needs Medical Underwriting', description: this.data.underWritting });
     }

@@ -1,10 +1,14 @@
-import { GuideMeApiService } from './../guide-me.api.service';
+import { CurrencyPipe } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GuideMeCalculateService } from '../guide-me-calculate.service';
+import { GuideMeService } from '../guide-me.service';
+import { CriticalIllnessData } from './../ci-assessment/ci-assessment';
+import { GuideMeApiService } from './../guide-me.api.service';
 
 @Component({
   selector: 'app-recommendations',
@@ -19,8 +23,11 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   recommendationPlans;
   selectedPlans: any[] = [];
+  coverageAmount = '';
+  premiumFrom = '';
 
   activeRecommendationType;
+  activeRecommendationList;
 
   prevActiveSlide;
   nextActiveSlide;
@@ -32,7 +39,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private translate: TranslateService, public headerService: HeaderService,
-    private guideMeApiService: GuideMeApiService) {
+    private guideMeApiService: GuideMeApiService, private guideMeCalculateService: GuideMeCalculateService,
+    private currency: CurrencyPipe, private guideMeService: GuideMeService) {
     this.carouselConfig.wrap = false;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -45,6 +53,9 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.recommendationPlans = this.getRecommendations().objectList[0].productProtectionTypeList;
     this.activeRecommendationType = this.recommendationPlans[0].protectionType;
+    this.activeRecommendationList = this.recommendationPlans[0];
+    this.updateCoverageDetails();
+
     this.getRecommendationsFromServer();
   }
 
@@ -52,6 +63,10 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
         console.log(data);
+        this.recommendationPlans = data.objectList[0].productProtectionTypeList;
+        this.activeRecommendationType = this.recommendationPlans[0].protectionType;
+        this.activeRecommendationList = this.recommendationPlans[0];
+        this.updateCoverageDetails();
       });
   }
 
@@ -99,11 +114,45 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
       this.nextActiveSlide = event.prev;
     }
     this.activeRecommendationType = event.current;
+    this.activeRecommendationList = this.getCurrentRecommendationList();
+    this.updateCoverageDetails();
   }
 
-  jumpToSlide(type) {
-    this.recommendationCarousel.activeId = type;
-    this.activeRecommendationType = type;
+  jumpToSlide(recommendation) {
+    this.recommendationCarousel.activeId = recommendation.protectionType;
+    this.activeRecommendationType = recommendation.protectionType;
+    this.activeRecommendationList = recommendation;
+    this.updateCoverageDetails();
+  }
+
+  getCurrentRecommendationList() {
+    for (const recommendation of this.recommendationPlans) {
+      if (this.activeRecommendationType === recommendation.protectionType) {
+        return recommendation;
+      }
+    }
+  }
+
+  updateCoverageDetails() {
+    this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
+    switch (this.activeRecommendationType) {
+      case 'Life Protection':
+        this.coverageAmount = this.guideMeCalculateService.getLifeProtectionSummary() + '';
+        break;
+      case 'Critical Illness':
+        const criticalIllnessValues: CriticalIllnessData = this.guideMeService.getCiAssessment();
+        this.coverageAmount = criticalIllnessValues.annualSalary * criticalIllnessValues.ciMultiplier + '';
+        break;
+      case 'Occupational Disability':
+        this.coverageAmount = this.guideMeService.getMyOcpDisability().coverageAmount + '';
+        break;
+      case 'Long Term Care':
+        this.coverageAmount = '';
+        break;
+      case 'Hospital Plan':
+        this.coverageAmount = '';
+        break;
+    }
   }
 
   viewDetails(plan) {
@@ -129,154 +178,411 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   getRecommendations() {
     return {
-      "responseCode": 6000,
-      "responseMessage": "Successful response",
+      "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+      },
       "objectList": [{
-          "enquiryId": 2,
-          "productProtectionTypeList": [{
-              "protectionType": "Life Protection",
-              "protectionTypeDescription": "Life Protection",
-              "productList": [{
-                  "id": null,
-                  "riderId": 3,
-                  "insurerId": "AVV",
-                  "productName": "MyProtector Level Plus with CI",
-                  "purposeId": 1,
-                  "objectiveId": 1,
-                  "typeId": 1,
-                  "promoId": 0,
-                  "searchCount": 0,
-                  "whyBuy": "I am concerned that I may have to stop work temporarily due to a critical illness and hence income loss.",
-                  "payOut": "A lump sum benefit upon critical illness (CI), death or terminal illness (TI).",
-                  "underWritting": "Yes",
-                  "rebate": "Eligible",
-                  "cashValue": "No",
-                  "cashPayoutFrequency": "",
-                  "coverageDuration": "At least 5 years, to age 99 (max)",
-                  "premiumDuration": "Throughout policy duration",
-                  "features": "Option to increase cover at key life stages.~5-yr or 10-yr Term can be renewed.~Covers 36 CI definitions instead of 30.~Unique riders like Male/Female Illness cover available.~Multi-currency available.",
-                  "productDescription": "This Term policy provides high protection at low cost with critical illness (CI), death and TI benefits. CI benefit is payable if one is diagnosed with any of the 37 illness definitions such as Major Cancer, Heart Attack and Stroke. This policy allows the option to increase death benefit at key life stages without health underwriting. If 5-year or 10-year Term is chosen, it can renew for another 5/10 years at the end of the Term duration. Six currency options are available: SGD, USD, GBP, EUR, AUD and HKD. You can also attach optional riders like TPD to enhance its benefits.",
-                  "status": "Expired",
-                  "brochureLink": null,
-                  "lastUpdated": "2017-01-13T07:30:00.020+0000",
-                  "lastUpdatedBy": null,
-                  "insurer": {
-                    "id": 0,
-                    "insurerName": "Aviva",
-                    "logoName": "logo-aviva.png",
-                    "url": "https://www.aviva.com.sg",
-                    "lastUpdatedTime": null,
-                    "rating": "1",
-                    "lastUpdatedBy": null
-                  },
-                  "premium": {
-                    "id": 0,
-                    "productId": null,
-                    "gender": "Female",
-                    "minimumAge": 40,
-                    "coverageName": "between 41 to 75",
-                    "durationName": "$6,000",
-                    "premiumTerm": "10",
-                    "savingsDuration": "",
-                    "retirementPayourAmount": "$6,000",
-                    "retirementPayourDuration": "lifetime",
-                    "premiumAmount": "14289",
-                    "premiumFrequency": "per year",
-                    "intrestRateOfReturn": "3.79",
-                    "ranking": 3,
-                    "riderId": 0,
-                    "lastUpdatedDate": null,
-                    "lastUpdatedBy": null
-                  },
-                  "promotion": {
-                    "insurerId": 0,
-                    "thumbnail": "manulife_premum_discount.jpg",
-                    "promoDiscount": "*10% OFF",
-                    "promoTitle": "Manulife RetireReady First Year Premium Discount Campaign (Extended)",
-                    "description": "Receive discount on your first year premium, when you sign up for RetireReady with Manulife!",
-                    "link": "ntuclink.com/link1",
-                    "expired": "TRUE",
-                    "expiredDate": "2016-01-24T15:30:00.059+0000",
-                    "lastUpdatedTime": null,
-                    "lastUpdatedBy": null
-                  },
-                  "authorised": true
-                }
-              ]
-            }, {
-              "protectionType": "Critical Illness",
-              "protectionTypeDescription": "Critical Illness",
-              "productList": [{
-                  "id": null,
-                  "riderId": 3,
-                  "insurerId": "MNL",
-                  "productName": "3G (I)",
-                  "purposeId": 3,
-                  "objectiveId": 10,
-                  "typeId": 14,
-                  "promoId": 1,
-                  "searchCount": 0,
-                  "whyBuy": "I want a stream of income payout for my entire life and a bequest upon death.",
-                  "payOut": "A stream of lifelong income payout with amount that can vary from year to year and a lump sum benefit upon death.",
-                  "underWritting": "Yes",
-                  "rebate": "Eligible",
-                  "cashValue": "Yes",
-                  "cashPayoutFrequency": "Yearly income starts after Year 10",
-                  "coverageDuration": "Whole life",
-                  "premiumDuration": "10 years",
-                  "features": "High death, TI and TPD benefits.",
-                  "productDescription": "This Whole Life policy requires only 10 years of premium payment, after which a stream of Yearly Cash Coupons are paid out starting from the 10th policy year. Each Yearly Cash Coupon comprises of (a) a guaranteed amount at 2% of sum assured and (b) a projected non-guaranteed bonus. This policy is available for ages 0 to 60. The policy offers death, TI and TPD benefits, in which 100% of Sum Assured and projected bonuses (if any) are payable.",
-                  "status": "Expired",
-                  "brochureLink": null,
-                  "lastUpdated": "2017-01-05T08:30:00.032+0000",
-                  "lastUpdatedBy": null,
-                  "insurer": {
-                    "id": 0,
-                    "insurerName": "Manulife",
-                    "logoName": "logo-manulife.png\t",
-                    "url": "https://www.manulife.com.sg",
-                    "lastUpdatedTime": null,
-                    "rating": "2",
-                    "lastUpdatedBy": null
-                  },
-                  "premium": {
-                    "id": 0,
-                    "productId": null,
-                    "gender": "Female",
-                    "minimumAge": 40,
-                    "coverageName": "between 41 to 75",
-                    "durationName": "$6,000",
-                    "premiumTerm": "10",
-                    "savingsDuration": "",
-                    "retirementPayourAmount": "$6,000",
-                    "retirementPayourDuration": "lifetime",
-                    "premiumAmount": "14289",
-                    "premiumFrequency": "per year",
-                    "intrestRateOfReturn": "3.79",
-                    "ranking": 3,
-                    "riderId": 0,
-                    "lastUpdatedDate": null,
-                    "lastUpdatedBy": null
-                  },
-                  "promotion": {
-                    "insurerId": 0,
-                    "thumbnail": null,
-                    "promoDiscount": null,
-                    "promoTitle": null,
-                    "description": null,
-                    "link": null,
-                    "expired": null,
-                    "expiredDate": null,
-                    "lastUpdatedTime": null,
-                    "lastUpdatedBy": null
-                  },
-                  "authorised": true
-                }
-              ]
-            }
-          ],
-          "securityToken": "jsdki929nsd92293nskd12wei230"
+        "enquiryId": 87,
+        "productProtectionTypeList": [{
+          "typeId": 1,
+          "purposeId": 1,
+          "objectiveId": 2,
+          "protectionType": "Life Protection",
+          "protectionTypeDescription": "Life Protection",
+          "productList": [{
+            "id": "0",
+            "riderId": 0,
+            "productName": "TM Term Assure",
+            "purposeId": 1,
+            "objectiveId": 2,
+            "typeId": 1,
+            "searchCount": 0,
+            "whyBuy": "I am concerned my family cannot cope financially with the loss of income upon my demise.",
+            "payOut": "A lump sum benefit upon death, terminal illness or total and permanent disability (TPD).",
+            "underWritting": "Yes",
+            "rebate": "Eligible",
+            "cashValue": "No",
+            "cashPayoutFrequency": "",
+            "coverageDuration": "5, 10 years, 11 - 44 years, up to age 85",
+            "premiumDuration": "Throughout policy duration",
+            "features": "Policy can be renewed.~Option to convert plan into regular premium Whole Life or endowment plan.",
+            "productDescription": "This Term policy provides high protection at low cost with death and TI benefits. This policy has the option to convert into a Whole Life or Endowment policy without underwriting. You can also attach optional riders like Critical Illness (CI) to enhance its benefits. You have the you have the flexibility to convert your term plan into either a regular premium whole life or an endowment plan up to the coverage amount of your policy.",
+            "status": "Active",
+            "brochureLink": "0",
+            "isAuthorised": true,
+            "lastUpdated": "2018-08-28T08:51:17.000+0000",
+            "lastUpdatedBy": "0",
+            "insurer": {
+              "id": "TKM",
+              "insurerName": "Tokio Marine",
+              "logoName": "logo-tokiomarine.png",
+              "url": "https://www.tokiomarine.com",
+              "lastUpdatedTime": "2017-05-03T07:27:06.000+0000",
+              "rating": "",
+              "lastUpdatedBy": "0"
+            },
+            "premium": {
+              "id": "P113",
+              "gender": "Male",
+              "minimumAge": 21,
+              "coverageName": "$500,000",
+              "durationName": "till age 65",
+              "premiumTerm": "",
+              "savingsDuration": "",
+              "retirementPayourAmount": "",
+              "retirementPayourDuration": "",
+              "premiumAmount": "435",
+              "premiumFrequency": "per year",
+              "intrestRateOfReturn": "0.00",
+              "ranking": 1,
+              "lastUpdatedDate": "2017-03-26T18:30:00.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "promotion": {
+              "insurerId": "TKM",
+              "thumbnail": "tkm_term_protection.jpg",
+              "promoDiscount": "*28% OFF",
+              "promoTitle": "28% First Year Annual Premium Discount for TM Term Assure (Extended)",
+              "description": "To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.",
+              "link": "50.jsp",
+              "expired": "FALSE",
+              "expiredDate": "2018-06-29T15:59:59.000+0000",
+              "lastUpdatedTime": "2018-05-25T04:33:28.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "authorised": true
+          }, {
+            "id": "0",
+            "riderId": 0,
+            "productName": "TM Term Assure",
+            "purposeId": 1,
+            "objectiveId": 2,
+            "typeId": 1,
+            "searchCount": 0,
+            "whyBuy": "I am concerned my family cannot cope financially with the loss of income upon my demise.",
+            "payOut": "A lump sum benefit upon death, terminal illness or total and permanent disability (TPD).",
+            "underWritting": "Yes",
+            "rebate": "Eligible",
+            "cashValue": "No",
+            "cashPayoutFrequency": "",
+            "coverageDuration": "5, 10 years, 11 - 44 years, up to age 85",
+            "premiumDuration": "Throughout policy duration",
+            "features": "Policy can be renewed.~Option to convert plan into regular premium Whole Life or endowment plan.",
+            "productDescription": "This Term policy provides high protection at low cost with death and TI benefits. This policy has the option to convert into a Whole Life or Endowment policy without underwriting. You can also attach optional riders like Critical Illness (CI) to enhance its benefits. You have the you have the flexibility to convert your term plan into either a regular premium whole life or an endowment plan up to the coverage amount of your policy.",
+            "status": "Active",
+            "brochureLink": "0",
+            "isAuthorised": true,
+            "lastUpdated": "2018-08-28T08:51:17.000+0000",
+            "lastUpdatedBy": "0",
+            "insurer": {
+              "id": "TKM",
+              "insurerName": "Tokio Marine",
+              "logoName": "logo-tokiomarine.png",
+              "url": "https://www.tokiomarine.com",
+              "lastUpdatedTime": "2017-05-03T07:27:06.000+0000",
+              "rating": "",
+              "lastUpdatedBy": "0"
+            },
+            "premium": {
+              "id": "P113",
+              "gender": "Male",
+              "minimumAge": 21,
+              "coverageName": "$500,000",
+              "durationName": "till age 65",
+              "premiumTerm": "",
+              "savingsDuration": "",
+              "retirementPayourAmount": "",
+              "retirementPayourDuration": "",
+              "premiumAmount": "435",
+              "premiumFrequency": "per year",
+              "intrestRateOfReturn": "0.00",
+              "ranking": 1,
+              "lastUpdatedDate": "2017-03-26T18:30:00.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "promotion": {
+              "insurerId": "TKM",
+              "thumbnail": "tkm_term_protection.jpg",
+              "promoDiscount": "*28% OFF",
+              "promoTitle": "28% First Year Annual Premium Discount for TM Term Assure (Extended)",
+              "description": "To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.",
+              "link": "50.jsp",
+              "expired": "FALSE",
+              "expiredDate": "2018-06-29T15:59:59.000+0000",
+              "lastUpdatedTime": "2018-05-25T04:33:28.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "authorised": true
+          }
+          ]
+        }, {
+          "typeId": 1,
+          "purposeId": 1,
+          "objectiveId": 2,
+          "protectionType": "Critical Illness",
+          "protectionTypeDescription": "Critical Illness",
+          "productList": [{
+            "id": "0",
+            "riderId": 0,
+            "productName": "TM Term Assure",
+            "purposeId": 1,
+            "objectiveId": 2,
+            "typeId": 1,
+            "searchCount": 0,
+            "whyBuy": "I am concerned my family cannot cope financially with the loss of income upon my demise.",
+            "payOut": "A lump sum benefit upon death, terminal illness or total and permanent disability (TPD).",
+            "underWritting": "Yes",
+            "rebate": "Eligible",
+            "cashValue": "No",
+            "cashPayoutFrequency": "",
+            "coverageDuration": "5, 10 years, 11 - 44 years, up to age 85",
+            "premiumDuration": "Throughout policy duration",
+            "features": "Policy can be renewed.~Option to convert plan into regular premium Whole Life or endowment plan.",
+            "productDescription": "This Term policy provides high protection at low cost with death and TI benefits. This policy has the option to convert into a Whole Life or Endowment policy without underwriting. You can also attach optional riders like Critical Illness (CI) to enhance its benefits. You have the you have the flexibility to convert your term plan into either a regular premium whole life or an endowment plan up to the coverage amount of your policy.",
+            "status": "Active",
+            "brochureLink": "0",
+            "isAuthorised": true,
+            "lastUpdated": "2018-08-28T08:51:17.000+0000",
+            "lastUpdatedBy": "0",
+            "insurer": {
+              "id": "TKM",
+              "insurerName": "Tokio Marine",
+              "logoName": "logo-tokiomarine.png",
+              "url": "https://www.tokiomarine.com",
+              "lastUpdatedTime": "2017-05-03T07:27:06.000+0000",
+              "rating": "",
+              "lastUpdatedBy": "0"
+            },
+            "premium": {
+              "id": "P113",
+              "gender": "Male",
+              "minimumAge": 21,
+              "coverageName": "$500,000",
+              "durationName": "till age 65",
+              "premiumTerm": "",
+              "savingsDuration": "",
+              "retirementPayourAmount": "",
+              "retirementPayourDuration": "",
+              "premiumAmount": "435",
+              "premiumFrequency": "per year",
+              "intrestRateOfReturn": "0.00",
+              "ranking": 1,
+              "lastUpdatedDate": "2017-03-26T18:30:00.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "promotion": {
+              "insurerId": "TKM",
+              "thumbnail": "tkm_term_protection.jpg",
+              "promoDiscount": "*28% OFF",
+              "promoTitle": "28% First Year Annual Premium Discount for TM Term Assure (Extended)",
+              "description": "To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.",
+              "link": "50.jsp",
+              "expired": "FALSE",
+              "expiredDate": "2018-06-29T15:59:59.000+0000",
+              "lastUpdatedTime": "2018-05-25T04:33:28.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "authorised": true
+          }, {
+            "id": "0",
+            "riderId": 0,
+            "productName": "TM Term Assure",
+            "purposeId": 1,
+            "objectiveId": 2,
+            "typeId": 1,
+            "searchCount": 0,
+            "whyBuy": "I am concerned my family cannot cope financially with the loss of income upon my demise.",
+            "payOut": "A lump sum benefit upon death, terminal illness or total and permanent disability (TPD).",
+            "underWritting": "Yes",
+            "rebate": "Eligible",
+            "cashValue": "No",
+            "cashPayoutFrequency": "",
+            "coverageDuration": "5, 10 years, 11 - 44 years, up to age 85",
+            "premiumDuration": "Throughout policy duration",
+            "features": "Policy can be renewed.~Option to convert plan into regular premium Whole Life or endowment plan.",
+            "productDescription": "This Term policy provides high protection at low cost with death and TI benefits. This policy has the option to convert into a Whole Life or Endowment policy without underwriting. You can also attach optional riders like Critical Illness (CI) to enhance its benefits. You have the you have the flexibility to convert your term plan into either a regular premium whole life or an endowment plan up to the coverage amount of your policy.",
+            "status": "Active",
+            "brochureLink": "0",
+            "isAuthorised": true,
+            "lastUpdated": "2018-08-28T08:51:17.000+0000",
+            "lastUpdatedBy": "0",
+            "insurer": {
+              "id": "TKM",
+              "insurerName": "Tokio Marine",
+              "logoName": "logo-tokiomarine.png",
+              "url": "https://www.tokiomarine.com",
+              "lastUpdatedTime": "2017-05-03T07:27:06.000+0000",
+              "rating": "",
+              "lastUpdatedBy": "0"
+            },
+            "premium": {
+              "id": "P113",
+              "gender": "Male",
+              "minimumAge": 21,
+              "coverageName": "$500,000",
+              "durationName": "till age 65",
+              "premiumTerm": "",
+              "savingsDuration": "",
+              "retirementPayourAmount": "",
+              "retirementPayourDuration": "",
+              "premiumAmount": "435",
+              "premiumFrequency": "per year",
+              "intrestRateOfReturn": "0.00",
+              "ranking": 1,
+              "lastUpdatedDate": "2017-03-26T18:30:00.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "promotion": {
+              "insurerId": "TKM",
+              "thumbnail": "tkm_term_protection.jpg",
+              "promoDiscount": "*28% OFF",
+              "promoTitle": "28% First Year Annual Premium Discount for TM Term Assure (Extended)",
+              "description": "To qualify for the premium discount, you have to sign up for the product during the promotion period and issued by the deadline.",
+              "link": "50.jsp",
+              "expired": "FALSE",
+              "expiredDate": "2018-06-29T15:59:59.000+0000",
+              "lastUpdatedTime": "2018-05-25T04:33:28.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "authorised": true
+          }
+          ]
+        }, {
+          "typeId": 1,
+          "purposeId": 1,
+          "objectiveId": 3,
+          "protectionType": "Occupational Disability",
+          "protectionTypeDescription": "Occupational Disability",
+          "productList": [{
+            "id": "0",
+            "riderId": 0,
+            "productName": "IdealIncome",
+            "purposeId": 1,
+            "objectiveId": 3,
+            "typeId": 1,
+            "searchCount": 0,
+            "whyBuy": "I am concerned with a loss of income if I lose my ability to work in my own occupation or similar occupation as a result of illness or sickness.",
+            "payOut": "A monthly income benefit if unable to work in my own or suitable occupation",
+            "underWritting": "Yes",
+            "rebate": "Eligible",
+            "cashValue": "No",
+            "cashPayoutFrequency": "",
+            "coverageDuration": "till age 55/60/65",
+            "premiumDuration": "Throughout policy duration",
+            "features": "Partial Disability Income Benefit.~Rehabilitation Benefit.~Optional Escalation Benefit.",
+            "productDescription": "This is a unique Disability Income Insurance that pays an monthly income benefit should you be unable to work in your own occupation or any occupation suited by virtue of training, education or experience as a result of sickness or disability. Unlike other disability benefit, this policy insure your income earning ability. A Partial Disability income benefit will be payable if you are able to return to work at a lower capacity after such disability. There is reimbursement of up to 3 times the monthly total or partial disability benefit for rehabilitation purpose. You can choose optional benefit to escalate the monthly income payout by 3% pa, to keep up with inflation. Policy premium is dependent on your type of occupation; more specialised or riskier occupation would require a higher premium. ",
+            "status": "Active",
+            "brochureLink": "0",
+            "isAuthorised": true,
+            "lastUpdated": "2018-08-28T08:51:17.000+0000",
+            "lastUpdatedBy": "0",
+            "insurer": {
+              "id": "AVV",
+              "insurerName": "Aviva",
+              "logoName": "logo-aviva.png",
+              "url": "https://www.aviva.com.sg",
+              "lastUpdatedTime": "2017-05-03T07:24:46.000+0000",
+              "rating": "",
+              "lastUpdatedBy": "0"
+            },
+            "premium": {
+              "id": "P045",
+              "gender": "Male",
+              "minimumAge": 21,
+              "coverageName": "$2,000 monthly",
+              "durationName": "till age 65",
+              "premiumTerm": "",
+              "savingsDuration": "",
+              "retirementPayourAmount": "",
+              "retirementPayourDuration": "",
+              "premiumAmount": "303",
+              "premiumFrequency": "per year",
+              "intrestRateOfReturn": "0.00",
+              "ranking": 1,
+              "lastUpdatedDate": "2017-02-20T18:30:00.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "promotion": {
+              "insurerId": "AVV",
+              "thumbnail": "aviva_giftbox.jpg",
+              "promoDiscount": "*VOUCHERS & TREATS",
+              "promoTitle": "Receive shopping vouchers, e-vouchers, dining treats or hotel stays",
+              "description": "Receive shopping vouchers, e-vouchers, dining treats or hotel stays with purchase of these Aviva plans!",
+              "link": "29.jsp",
+              "expired": "TRUE",
+              "expiredDate": "2017-09-30T15:59:59.000+0000",
+              "lastUpdatedTime": "2017-10-16T07:35:44.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "authorised": true
+          }, {
+            "id": "0",
+            "riderId": 0,
+            "productName": "IdealIncome",
+            "purposeId": 1,
+            "objectiveId": 3,
+            "typeId": 1,
+            "searchCount": 0,
+            "whyBuy": "I am concerned with a loss of income if I lose my ability to work in my own occupation or similar occupation as a result of illness or sickness.",
+            "payOut": "A monthly income benefit if unable to work in my own or suitable occupation",
+            "underWritting": "Yes",
+            "rebate": "Eligible",
+            "cashValue": "No",
+            "cashPayoutFrequency": "",
+            "coverageDuration": "till age 55/60/65",
+            "premiumDuration": "Throughout policy duration",
+            "features": "Partial Disability Income Benefit.~Rehabilitation Benefit.~Optional Escalation Benefit.",
+            "productDescription": "This is a unique Disability Income Insurance that pays an monthly income benefit should you be unable to work in your own occupation or any occupation suited by virtue of training, education or experience as a result of sickness or disability. Unlike other disability benefit, this policy insure your income earning ability. A Partial Disability income benefit will be payable if you are able to return to work at a lower capacity after such disability. There is reimbursement of up to 3 times the monthly total or partial disability benefit for rehabilitation purpose. You can choose optional benefit to escalate the monthly income payout by 3% pa, to keep up with inflation. Policy premium is dependent on your type of occupation; more specialised or riskier occupation would require a higher premium. ",
+            "status": "Active",
+            "brochureLink": "0",
+            "isAuthorised": true,
+            "lastUpdated": "2018-08-28T08:51:17.000+0000",
+            "lastUpdatedBy": "0",
+            "insurer": {
+              "id": "AVV",
+              "insurerName": "Aviva",
+              "logoName": "logo-aviva.png",
+              "url": "https://www.aviva.com.sg",
+              "lastUpdatedTime": "2017-05-03T07:24:46.000+0000",
+              "rating": "",
+              "lastUpdatedBy": "0"
+            },
+            "premium": {
+              "id": "P045",
+              "gender": "Male",
+              "minimumAge": 21,
+              "coverageName": "$2,000 monthly",
+              "durationName": "till age 65",
+              "premiumTerm": "",
+              "savingsDuration": "",
+              "retirementPayourAmount": "",
+              "retirementPayourDuration": "",
+              "premiumAmount": "303",
+              "premiumFrequency": "per year",
+              "intrestRateOfReturn": "0.00",
+              "ranking": 1,
+              "lastUpdatedDate": "2017-02-20T18:30:00.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "promotion": {
+              "insurerId": "AVV",
+              "thumbnail": "aviva_giftbox.jpg",
+              "promoDiscount": "*VOUCHERS & TREATS",
+              "promoTitle": "Receive shopping vouchers, e-vouchers, dining treats or hotel stays",
+              "description": "Receive shopping vouchers, e-vouchers, dining treats or hotel stays with purchase of these Aviva plans!",
+              "link": "29.jsp",
+              "expired": "TRUE",
+              "expiredDate": "2017-09-30T15:59:59.000+0000",
+              "lastUpdatedTime": "2017-10-16T07:35:44.000+0000",
+              "lastUpdatedBy": "0"
+            },
+            "authorised": true
+          }
+          ]
         }
+        ]
+      }
       ]
     };
   }

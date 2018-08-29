@@ -56,6 +56,9 @@ app-recommendations {
     border-radius: 6px;
     padding: 20px;
     color: #333;
+    @include allmobiles {
+      padding: 0px;
+    }
   }
   .carousel-control-prev {
     left: -120px;
@@ -189,5 +192,51 @@ app-recommendations {
       padding-top: 5px;
       margin-right: 20px;
     }
+  }
+  .plan-wrapper {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+  .plan-wrapper:nth-child(1) {
+    margin-right: 5px;
+    padding-right: 5px;
+  }
+  .plan-wrapper:nth-child(2) {
+    margin-right: 0px;
+    padding-left: 5px;
+  }
+  .best-value-icon {
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 13px;
+    z-index: 9;
+  }
+  .coverage-details {
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #76adb2;
+    padding-left: 145px !important;
+    padding-right: 125px !important;
+    @include allmobiles {
+      border: none;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      text-align: center;
+      padding-bottom: 0px !important;
+    }
+  }
+  .coverage-type,
+  .coverage-amount,
+  .coverage-premium-from {
+    font-family: $muli-bold;
+    margin-right: 50px;
+    @include allmobiles {
+      margin-right: 0px;
+    }
+  }
+  .coverage-premium-from {
+    margin-right: 0 !important;
   }
 }

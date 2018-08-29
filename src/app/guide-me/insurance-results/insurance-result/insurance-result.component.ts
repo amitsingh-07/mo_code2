@@ -1,10 +1,12 @@
-import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+
 import { IResultItem } from './insurance-result';
 
 @Component({
   selector: 'app-insurance-result',
   templateUrl: './insurance-result.component.html',
-  styleUrls: ['./insurance-result.component.scss']
+  styleUrls: ['./insurance-result.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InsuranceResultComponent implements DoCheck, OnInit {
   @Input() data: IResultItem;

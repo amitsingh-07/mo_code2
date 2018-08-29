@@ -3,27 +3,53 @@
 app-plan-widget {
   .insurance-plan-widget {
     position: relative;
-    .best-value-icon {
+    .row-btn-bottom {}
+    .btn-select-plan {
+      @include allmobiles {
+        border-radius: 0px 0px 6px 6px;
+        width: 100%;
+        font-size: 16px;
+      }
+    }
+    .info-icon {
       position: absolute;
-      top: 0px;
-      left: 10px;
+      right: 5px;
+      top: 5px;
     }
     border: solid 3px #fff;
+    @include allmobiles {
+      border: none;
+    }
     .insurance-plan-widget__container {
+      padding-top: 15px;
       h4 {
         font-size: 21px;
         color: $black-color;
         font-family: $muli-semi-bold;
+        @include allmobiles {
+          font-size: 16px;
+          text-align: center;
+        }
       }
       h2 {
         font-size: 36px;
         color: $app-backgrnd-color;
         font-family: $muli-semi-bold;
+        @include allmobiles {
+          text-align: center;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          font-size: 24px;
+        }
         .text-small {
           color: #2d8289;
           font-size: 18px;
           font-family: $muli-regular;
           margin-left: 5px;
+          @include allmobiles {
+            font-size: 16px;
+            margin-left: 0;
+          }
         }
       }
       .insurance-plan-widget__container__discount__block {
@@ -31,7 +57,7 @@ app-plan-widget {
         border-bottom: 1px solid #c2d9ec;
         padding: 0 20px;
         color: #e46f6f;
-        font-family:$muli-bold;
+        font-family: $muli-bold;
         font-size: 16px;
         position: relative;
         margin: 0 -23px;
@@ -41,49 +67,48 @@ app-plan-widget {
         padding-left: 40px;
       }
       .insurance-plan-widget__container__rank__wrapper {
+        @extend .flex;
+        @extend .space-btwn;
+        margin: 20px 0;
+        .insurance-plan-widget__container__rank-box {
+          background-color: #c0eded;
+          border-radius: 8px;
+          padding: 4%;
+          width: 152px;
+          text-align: center;
+          color: $app-backgrnd-color;
           @extend .flex;
-          @extend .space-btwn;
-          margin: 20px 0;
-          .insurance-plan-widget__container__rank-box {
-            background-color: #c0eded;
-            border-radius: 8px;
-            padding: 4%;
-            width: 152px;
-            text-align: center;
-            color: $app-backgrnd-color;
-            @extend .flex;
-            @extend .justify-center;
-            @extend .align-center;
-            flex-direction: column;
-          }
-          .feature-head {
-            font-size: 24px;
-            font-family: $muli-bold;
-          }
-          .feature-caption {
-            font-size: 16px;
-            font-family: $muli-semi-bold;
-            width: 100px;
-            margin-bottom: 10px;
-          }
-          .help-icon {
-             background: url("../../../../assets/images/tooltip-icon.svg") no-repeat;
-             height: 20px;
-             width: 20px;
-             cursor: pointer;
-             text-align: center;
-          }
+          @extend .justify-center;
+          @extend .align-center;
+          flex-direction: column;
+        }
+        .feature-head {
+          font-size: 24px;
+          font-family: $muli-bold;
+        }
+        .feature-caption {
+          font-size: 16px;
+          font-family: $muli-semi-bold;
+          width: 100px;
+          margin-bottom: 10px;
+        }
+        .help-icon {
+          background: url("../../../../assets/images/tooltip-icon.svg") no-repeat;
+          height: 20px;
+          width: 20px;
+          cursor: pointer;
+          text-align: center;
+        }
       }
-    
-    .plan-selected-wrapper {
-      border: solid 3px #ff872f;
-    }
-    .plan-selected {
-      color: #fff;
-      background-color: #ff872f !important;
-      border-color: #ff872f !important;
-      box-shadow: none;
+      .plan-selected-wrapper {
+        border: solid 3px #ff872f;
+      }
+      .plan-selected {
+        color: #fff;
+        background-color: #ff872f !important;
+        border-color: #ff872f !important;
+        box-shadow: none;
+      }
     }
   }
-}
 }

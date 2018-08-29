@@ -351,6 +351,7 @@
   letter-spacing:-0.2px;
   font-family:$muli-semi-bold;
   max-height:70px;
+  cursor: pointer;
   @include fontSize(13px);
   text-align:center;
   @include allmobiles {

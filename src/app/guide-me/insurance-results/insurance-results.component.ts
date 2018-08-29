@@ -281,11 +281,12 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: 'Family Member', value: 600 } as IResultItemEntry);
+    const hospitalPlanClass = this.guideMeService.getHospitalPlan().hospitalClass.split(' ')[0];
     return {
       id: data.protectionTypeId,
       icon: 'hospital-plan-icon.svg',
       title: 'Hospital Plan',
-      content: 'private',
+      content: hospitalPlanClass,
       inputValues: entries,
       existingCoverage: coverage,
       total: {
