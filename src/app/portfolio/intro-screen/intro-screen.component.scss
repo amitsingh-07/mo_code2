@@ -1,17 +1,17 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-.fin-accessment-block {
+.intro-block {
     .container-fluid {
         padding-top: 30px !important;
         @include allmobiles {
             padding-top: 10px !important;
         }
     }
-    .fin-accessment-block__tab-container {
+    .intro-block__tab-container {
         @extend .flex;
         @extend .space-btwn;
         width: 100%;
-        .fin-accessment-block__tab {
+        .intro-block__tab {
             width: calc(50% - 10px);
             opacity:0.2;
             padding-right: 10px;
@@ -22,7 +22,7 @@
             }
         }
     }
-    .fin-accessment-block__content {
+    .intro-block__content {
         @include tablet {
             .banner-image img {
                 max-width:90%;
@@ -39,7 +39,7 @@
             }
         }
     }
-    .fin-accessment-block__content__desc {
+    .intro-block__content__desc {
         margin-top: 100px;
         text-align: left;
         @include allmobiles {
@@ -50,7 +50,7 @@
             margin-top: 30px;
         }
     }
-    .fin-accessment-block__content__heading {
+    .intro-block__content__heading {
         opacity: 0.55;
         font-family: $muli-regular;
         font-size: 36px;
@@ -61,14 +61,14 @@
         color: $white-color;
         margin-bottom:15px;
     }
-    .fin-accessment-block__content__title {
+    .intro-block__content__title {
         font-family: $muli-semi-bold;
         font-size: 24px;
         line-height: normal;
         letter-spacing: -0.3px;
         color: $white-color;
     }
-    .fin-accessment-block__content__sub-title {
+    .intro-block__content__sub-title {
         font-family: $muli-light;
         font-size: 18px;
         font-style: normal;

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { HeaderService } from '../../shared/header/header.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-risk-profile',
   templateUrl: './risk-profile.component.html',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RiskProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(public readonly translate: TranslateService, private router: Router,
+    public headerService: HeaderService) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      
+    });
+  }
 
   ngOnInit() {
   }
