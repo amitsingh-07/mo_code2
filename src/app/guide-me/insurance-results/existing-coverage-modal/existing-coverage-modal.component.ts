@@ -26,7 +26,7 @@ export class ExistingCoverageModalComponent implements OnInit {
     LONG_TERM_CARE: 'Long-TermCare',
     HOSPITAL_PLAN: 'Hospital Plan'
   };
-  selectedHospitalPlan = 'Private Hospital';
+  selectedHospitalPlan = this.guideMeService.getHospitalPlan().hospitalClass;
   hospitalPlanList = ['Private Hospital', 'Government Hospital Ward A', 'Government Hospital Ward B1'
                   , 'Government Hospital Ward B2/C', 'Global Healthcare Coverage'];
   isLifeProtection = false;
@@ -86,6 +86,7 @@ export class ExistingCoverageModalComponent implements OnInit {
   save() {
     this.guideMeService.isExistingCoverAdded = true;
     this.existingCoverageForm.controls.selectedHospitalPlan.setValue(this.selectedHospitalPlan);
+    this.guideMeService.getHospitalPlan().hospitalClass = this.selectedHospitalPlan;
     this.guideMeService.setExistingCoverageValues(this.existingCoverageForm.value);
     this.dataOutput.emit(this.existingCoverageForm.value);
     this.activeModal.close();
