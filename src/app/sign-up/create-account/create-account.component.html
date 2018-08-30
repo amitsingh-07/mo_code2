@@ -1,15 +1,17 @@
-<div class="container-fluid flex__wrapper">
+<div class="container-fluid">
   <div class="content">
     <div class="row">
-      <div class="col-lg-6 col-sm-12 col-xs-12 signup-wrapper sm-text-align-center">
-          <h3 class="title order1 sm-order2 ml10">{{pageTitle}}</h3>
-          <img class="header-icon order2 sm-order1" src="assets/images/createAccount-icon.svg"/>
-          <div class="hidden-lg description order3">
-              <p>{{description}}</p>
+      <div class="col-lg-7 col-md-6">
+        <div class="signup-wrapper">
+          <h2 class="title order1 sm-order2 ml10">{{pageTitle}}</h2>
+          <div class="description order2">
+              <p>Please fill in your details so that our advisers can contact you.</p>
             </div>
+          <img class="header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg"/>
+          </div>
         </div>
-      <div class="col-lg-6 col-sm-12 col-xs-12">
-        <form class="signup-form-wrapper" id="createAccountForm" name="createAccountForm" [formGroup]="createAccountForm">
+      <div class="col-lg-5 col-md-6">
+        <form id="createAccountForm" name="createAccountForm" [formGroup]="createAccountForm">
           <div class="flex-row mb10">
             <div class="flex-col-3 stretch mr15">
               <div class="dropdown-control form-control-left">
@@ -50,8 +52,21 @@
                 </div>
               </div>
             </div>
-            
-            <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-white width100">{{ 'COMMON.CONTINUE' | translate }}</button>
+            <div class="checkbox-button one-label">
+              <input id="termsConditionPrivacy" name="termsConditionPrivacy" formControlName="termsConditionPrivacy" type="checkbox" class="field checkbox"
+                value="I agree to MoneyOwl's Terms of Use and Privacy Policy.">
+              <label for="termsConditionPrivacy">
+                <div class="title">I agree to MoneyOwl's <b><u>Terms of Use</u></b> and <b><u>Privacy Policy.</u></b></div>
+                                </label>
+            </div>
+            <div class="checkbox-button one-label">
+              <input id="marketingPartner" name="marketingPartner" formControlName="marketingPartner" type="checkbox" class="field checkbox"
+                value="I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.">
+              <label for="marketingPartner">
+                <div class="title">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.</div>
+                                </label>
+            </div>
+            <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.CONTINUE' | translate }}</button>
         </form>
       </div>   
     </div>

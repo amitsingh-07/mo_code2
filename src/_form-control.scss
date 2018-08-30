@@ -470,7 +470,7 @@
   font-size: 18px;
 }
 .stretch{
-  @include flex-grow(2);
+  @include flex-grow(2  !important);
 }
 
 /*Sign Up*/
@@ -480,6 +480,7 @@
   @include allmobiles{
     justify-content:center;
     align-items:center;
+    text-align: center;
   }
   .title{
     font-family:$muli-semi-bold;
