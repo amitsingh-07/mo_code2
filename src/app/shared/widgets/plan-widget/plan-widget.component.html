@@ -2,19 +2,19 @@
   <img class="info-icon hidden-lg" (click)="viewDetails()" src="./assets/images/tooltip-info.svg" />
   <div class="insurance-plan-widget__container flex__box--vert">
 
-    <div class="col-md-3 col-md-pull-9 hidden-lg mt20" style="justify-content: center; display: flex;">
-      <img [src]="insurerLogo" class="img-fluid" [alt]="data.insurer.insurerName" />
+    <div class="col-md-3 col-md-pull-9 hidden-lg mt20 insurer-logo">
+      <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
     </div>
     <div class="row mt10 mb10">
-      <div class="col-md-9 col-md-push-3">
+      <div class="col-md-8 col-md-push-3">
         <h4>{{productName}}</h4>
         <h2>{{premiumAmount | currency}}
           <br class="hidden-lg"/>
           <span class="text-small">/ mth</span>
         </h2>
       </div>
-      <div class="col-md-3 col-md-pull-9 hidden-sm-md">
-        <img [src]="insurerLogo" class="img-fluid"  [alt]="data.insurer.insurerName" />
+      <div class="col-md-4 col-md-pull-9 hidden-sm-md">
+        <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
       </div>
     </div>
     <div class="insurance-plan-widget__container__discount__block hidden-sm-md">{{data.promotion.promoDiscount}}</div>
@@ -49,7 +49,7 @@
         <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">Details</button>
       </div>
       <div class="col-md-6 col-btn-bottom">
-        <button type="button" (click)="selectPlan()" class="btn btn-primary-dark width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
+        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
       </div>
     </div>
 </div>
