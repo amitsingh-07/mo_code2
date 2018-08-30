@@ -1,3 +1,4 @@
+import { ConfigService } from './../../../config/config.service';
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,40 +28,23 @@ export class ExistingCoverageModalComponent implements OnInit {
     HOSPITAL_PLAN: 'Hospital Plan'
   };
   selectedHospitalPlan = this.guideMeService.getHospitalPlan();
-  hospitalPlanList = [{
-    'id': 0,
-    'hospitalClass': 'None',
-    'hospitalClassDescription': ''
-  }, {
-    'id': 1,
-    'hospitalClass': 'Private Hospital',
-    'hospitalClassDescription': 'Choose any doctor, Stay in any hospital'
-  }, {
-    'id': 2,
-    'hospitalClass': 'Government Hospital Ward A',
-    'hospitalClassDescription': 'Choose any doctor, Stay in single ward'
-  }, {
-    'id': 3,
-    'hospitalClass': 'Government Hospital Ward B1',
-    'hospitalClassDescription': 'Choose any doctor, Up to 4-bedded ward'
-  }, {
-    'id': 4,
-    'hospitalClass': 'Government Hospital Ward B2/C',
-    'hospitalClassDescription': 'Assigned doctor, Up to 9-bedded ward'
-  }, {
-    'id': 5,
-    'hospitalClass': 'Global Healthcare Coverage',
-    'hospitalClassDescription': 'Option for maternity, Outpatient treatment'
-  }];
+  hospitalPlanList;
   isLifeProtection = false;
   isCriticalIllness = false;
   isOccupationalDisability = false;
   isLongTermCare = false;
   isHospitalPlan = false;
 
-  constructor(public activeModal: NgbActiveModal, private guideMeService: GuideMeService) { }
+  constructor(
+    public activeModal: NgbActiveModal, private guideMeService: GuideMeService,
+    private config: ConfigService) { }
 
   ngOnInit() {
+
+    this.config.getConfig().subscribe((configData) => {
+      this.hospitalPlanList = configData.hospitalPlanData;
+    });
+
     this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
     this.selectedHospitalPlan = this.guideMeService.getHospitalPlan();
     this.existingCoverageForm = new FormGroup({
