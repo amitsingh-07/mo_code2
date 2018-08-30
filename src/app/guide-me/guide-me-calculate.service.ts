@@ -42,6 +42,7 @@ export class GuideMeCalculateService {
     const singaporean = 'Singaporean';
     const singaporePR = 'PR';
     const foreigner = 'Foreigner';
+    educationSum = [];
 
     switch ( course && country && nationality ) {
       case  nonmedicine && singapore && singaporean:
@@ -113,12 +114,12 @@ export class GuideMeCalculateService {
     let educationSupportSum = 0;
     const lifeProtection = this.guideMeService.getLifeProtection().dependents;
     lifeProtection.forEach((dependent) => {
-        if (dependent.eduSupport) {
+        if (dependent.educationSupport) {
           const country = dependent.eduSupportCountry;
           const course = dependent.eduSupportCourse;
           const nationality = dependent.eduSupportNationality;
           const eduAmt = this.getEducationSupportAmt(country, course, nationality);
-          educationSupportSum += (eduAmt[0] + eduAmt[1] + eduAmt[2]);
+          educationSupportSum += (eduAmt[0] + eduAmt[1]);
         }
     });
     return educationSupportSum;

@@ -84,7 +84,7 @@
           <div class="flex-row">
               <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">
-              <a href="#" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</a>
+              <span (click)="showSupportAmountModal()" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</span>
               <span class="help-icon" (click)="showSupportAmountModal()"></span>
             </div>
             </div>
@@ -101,7 +101,7 @@
           <div class="flex-row">
               <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">
-              <a href="#" class="link">{{ 'LABEL.YEARS_NEEDED' | translate}}</a>
+              <span (click)="showLifeProtectionModal()" class="link">{{ 'LABEL.YEARS_NEEDED' | translate}}</span>
               <span class="help-icon" (click)="showLifeProtectionModal()"></span>
             </div>
             </div>

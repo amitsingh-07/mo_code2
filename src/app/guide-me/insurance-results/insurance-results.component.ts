@@ -56,12 +56,11 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     this.assetValues = this.guideMeCalculateService.getCurrentAssetsSum();
 
     const eduSupportAmount = this.guideMeCalculateService.getEducationSupportSum();
-    const totalEduSupportAmount = eduSupportAmount[0] + eduSupportAmount[1];
     const lifeProtectionAmount = this.guideMeCalculateService.getProtectionSupportSum();
     this.lifeProtectionValues = {
       dependantsValue: lifeProtectionAmount ? lifeProtectionAmount : 0,
       coverageAmount: this.guideMeCalculateService.getLifeProtectionSummary(),
-      educationSupportAmount: totalEduSupportAmount ? totalEduSupportAmount : 0
+      educationSupportAmount: eduSupportAmount ? eduSupportAmount : 0
     };
     this.getProtectionNeeds();
   }
