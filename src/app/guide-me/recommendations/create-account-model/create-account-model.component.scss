@@ -1,0 +1,40 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.selected-count {
+    background-color: #ff872f;
+    width: 39px;
+    height: 26px;
+    padding: 0 15px;
+    border-radius: 13px;
+    font-family: Muli;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -0.1px;
+    color: #ffffff;
+    padding-bottom: 3px;
+    margin-right: 10px;
+    @include allmobiles {
+      float: left;
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+  }
+  .lbl-selected {
+    font-family: Muli;
+    font-size: 18px;
+    line-height: 1.11;
+    letter-spacing: -0.2px;
+    color: #5e5e5e;
+    margin-right: 100px;
+    @include allmobiles {
+      margin-right: 0;
+      padding-top: 13px;
+      float: left;
+    }
+  }
+  .choose_ops{
+      color:black;
+      font-weight: bold;
+      text-align: center;
+  }

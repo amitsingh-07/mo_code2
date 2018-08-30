@@ -1,6 +1,8 @@
+
 import { Component, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { GoogleAnalyticsService } from './shared/ga/google-analytics.service';
 import { LoggerService } from './shared/logger/logger.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { LoggerService } from './shared/logger/logger.service';
 export class AppComponent {
   title = 'Money Owl';
 
-  constructor(private log: LoggerService, private translate: TranslateService ) {
+  constructor(private log: LoggerService, private translate: TranslateService, private googleAnalyticsService: GoogleAnalyticsService) {
     this.translate.setDefaultLang('en');
   }
 }

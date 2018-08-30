@@ -17,6 +17,7 @@ import { ExistingCoverageModalComponent } from './existing-coverage-modal/existi
 import { IExistingCoverage } from './existing-coverage-modal/existing-coverage.interface';
 import { InsuranceResultModalComponent } from './insurance-result-modal/insurance-result-modal.component';
 import { IResultItem, IResultItemEntry, IResultObject } from './insurance-result/insurance-result';
+import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
 
 const assetImgPath = './assets/images/';
 @Component({
@@ -43,7 +44,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   constructor(
     private router: Router, public headerService: HeaderService,
     private translate: TranslateService, private guideMeService: GuideMeService,
-    private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal) {
+    private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal,
+    private googleAnalyticsService: GoogleAnalyticsService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
@@ -307,6 +309,11 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     };
   }
   goToNext() {
+    // GA Tracking
+    this.googleAnalyticsService.emitTime('guideMe', 'Guided', 'Success');
+    this.googleAnalyticsService.endTime('guideMe');
+    this.googleAnalyticsService.emitEvent('Guided', 'Recommend', 'Success');
+
     this.router.navigate([GUIDE_ME_ROUTE_PATHS.RECOMMENDATIONS]);
   }
 }
