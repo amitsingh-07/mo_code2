@@ -40,8 +40,7 @@
         }
     }
     .intro-block__content__desc {
-        margin-top: 100px;
-        text-align: left;
+        
         @include allmobiles {
             margin-top: 30px;
             text-align: center;

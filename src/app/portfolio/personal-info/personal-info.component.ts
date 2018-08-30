@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef  } from '@angular/core';
 
 import { AfterViewInit, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -42,7 +42,7 @@ export class PersonalInfoComponent implements OnInit {
     private config: NgbDatepickerConfig,
     private portfolioService: PortfolioService,
     private modal: NgbModal,
-
+    private elRef: ElementRef,
     private parserFormatter: NgbDateParserFormatter,
     public readonly translate: TranslateService) {
     this.translate.use('en');
@@ -82,21 +82,9 @@ export class PersonalInfoComponent implements OnInit {
     this.headerService.setPageTitle(title);
   }
   
-  ngAfterViewInit() {
-    //this.ciMultiplierSlider.writeValue(this.ciAssessmentFormValues.ciMultiplier);
-  }
-
   onSliderChange(value): void {
+    this.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = this.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
     this.personalInfoForm.controls.investmentPeriod.setValue(value);
-    let calloutPosition = (value / this.sliderMaxValue)*100;
-    if(calloutPosition > 90){
-      calloutPosition = 90;
-    }
-    else if(calloutPosition < 8){
-      calloutPosition = 8;
-    }
-    this.pointerPositionScale = calloutPosition + '%';
-    //this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciMultiplier;
   }
 
   save(form: any) {
