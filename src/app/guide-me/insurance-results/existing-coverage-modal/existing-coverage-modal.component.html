@@ -73,10 +73,10 @@
         <div class="dropdown-control">
           <div ngbDropdown id="hospitalPlanDropDown">
             <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
-              <span>{{selectedHospitalPlan}}</span>
+              <span>{{selectedHospitalPlan.hospitalClass}}</span>
             </button>
             <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
-              <button class="dropdown-item" *ngFor="let currentPlan of hospitalPlanList" (click)="selectHospitalPlan(currentPlan)">{{currentPlan}}</button>
+              <button class="dropdown-item" *ngFor="let currentPlan of hospitalPlanList" (click)="selectHospitalPlan(currentPlan)">{{currentPlan.hospitalClass}}</button>
             </div>
           </div>
         </div>

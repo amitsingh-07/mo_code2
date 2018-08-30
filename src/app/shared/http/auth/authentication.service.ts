@@ -50,8 +50,7 @@ export class AuthenticationService {
   }
 
   public getToken(): string {
-    //return sessionStorage.getItem(APP_JWT_TOKEN_KEY);
-    return 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJub3JtYWxfdXNlciIsInJvbGVzIjoiUk9MRV9VU0VSLCIsImlhdCI6MTUzNTEwOTU4NywiaXNzIjoiQXV0aG9yaXphdGlvbiIsImV4cCI6MTUzNTYyMjIyN30.idA3SgrY4HAy05pATan9_vP9eHpPV6hZEoSn_L_HxA8';
+    return sessionStorage.getItem(APP_JWT_TOKEN_KEY);
   }
 
   public getSessionId(): string {

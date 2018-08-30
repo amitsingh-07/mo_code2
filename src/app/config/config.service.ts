@@ -1,3 +1,4 @@
+import { HospitalPlan } from './../guide-me/hospital-plan/hospital-plan';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -6,6 +7,7 @@ import { catchError, retry, share } from 'rxjs/operators';
 export interface IConfig {
   apiBaseUrl: string;
   useMyInfo: boolean;
+  hospitalPlanData: HospitalPlan[];
 }
 
 @Injectable({
