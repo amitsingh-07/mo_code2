@@ -1,3 +1,4 @@
+
 import 'rxjs/add/operator/map';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -13,6 +14,7 @@ import { LoggerService } from '../../shared/logger/logger.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
+import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
 import { GuideMeApiService } from './../guide-me.api.service';
 
 const assetImgPath = './assets/images/';
@@ -45,7 +47,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
     private guideMeService: GuideMeService, private router: Router,
     private modal: NgbModal, public headerService: HeaderService,
     public readonly translate: TranslateService, public authService: AuthenticationService,
-    public log: LoggerService, private guideMeApiService: GuideMeApiService) {
+    public log: LoggerService, private guideMeApiService: GuideMeApiService, private googleAnalytics: GoogleAnalyticsService) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -92,6 +94,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
+      this.googleAnalytics.startTime('guideMe');
       this.router.navigate([GUIDE_ME_ROUTE_PATHS.GET_STARTED]);
     }
   }
