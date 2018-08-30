@@ -398,7 +398,7 @@ export class GuideMeService {
     switch (currentLongTerm.careGiverType) {
       case 'Nursing Home' : currentValue = 2600;
                             break;
-      case 'Daycare Support': currentValue = 2600;
+      case 'Daycare Support': currentValue = 1800;
                               break;
       case 'Domestic Helper': currentValue = 1200;
                               break;
