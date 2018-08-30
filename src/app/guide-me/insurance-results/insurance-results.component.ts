@@ -301,7 +301,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       existingCoverage: coverage,
       total: {
         title: 'Coverage Needed',
-        value: 6000
+        value: 0
       }
     };
   }

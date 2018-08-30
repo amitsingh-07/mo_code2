@@ -1,4 +1,4 @@
-import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output,ViewEncapsulation, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation, SimpleChange, SimpleChanges } from '@angular/core';
 
 
 import { GuideMeService } from './../../guide-me.service';
@@ -26,7 +26,7 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
     if (this.data) {
       this.icon = this.data.icon;
       this.amount = this.data.existingCoverage.value > this.data.total.value
-            ? 0 : this.data.total.value - this.data.existingCoverage.value;
+        ? 0 : this.data.total.value - this.data.existingCoverage.value;
 
       this.title = this.data.title;
       this.temp = this.data;
@@ -40,13 +40,17 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
       if (this.title === 'Hospital Plan') {
 
         const hospitalPlan: any = this.guideMeService.getHospitalPlan().hospitalClass;
-        this.amount = hospitalPlan.substr(0, hospitalPlan.indexOf(' '));
+        if (hospitalPlan.indexOf(' ') < 0) {
+          this.amount = hospitalPlan;
+        } else {
+          this.amount = hospitalPlan.substr(0, hospitalPlan.indexOf(' '));
+        }
         this.viewDetailsBtn = false;
       }
     }
- }
+  }
 
-  constructor( private guideMeService: GuideMeService) { }
+  constructor(private guideMeService: GuideMeService) { }
 
   ngOnInit() {
   }
