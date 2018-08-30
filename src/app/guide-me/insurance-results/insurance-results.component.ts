@@ -54,10 +54,14 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     this.monthlySalary = this.guideMeService.getMyIncome();
     this.liabilityValues = this.guideMeCalculateService.getLiabilitiesSum();
     this.assetValues = this.guideMeCalculateService.getCurrentAssetsSum();
+
+    const eduSupportAmount = this.guideMeCalculateService.getEducationSupportSum();
+    const totalEduSupportAmount = eduSupportAmount[0] + eduSupportAmount[1];
+    const lifeProtectionAmount = this.guideMeCalculateService.getProtectionSupportSum();
     this.lifeProtectionValues = {
-      dependantsValue: this.guideMeCalculateService.getProtectionSupportSum(),
+      dependantsValue: lifeProtectionAmount ? lifeProtectionAmount : 0,
       coverageAmount: this.guideMeCalculateService.getLifeProtectionSummary(),
-      educationSupportAmount: this.guideMeCalculateService.getEducationSupportSum()
+      educationSupportAmount: totalEduSupportAmount ? totalEduSupportAmount : 0
     };
     this.getProtectionNeeds();
   }
@@ -191,9 +195,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       default:
         resultValue = null;
     }
-
     return resultValue;
-
   }
 
   constructLifeProtection(data): IResultItem {

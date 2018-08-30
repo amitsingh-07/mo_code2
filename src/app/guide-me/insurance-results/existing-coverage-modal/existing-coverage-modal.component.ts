@@ -109,7 +109,7 @@ export class ExistingCoverageModalComponent implements OnInit {
   save() {
     const formControlKeys = Object.keys(this.existingCoverageForm.controls);
     formControlKeys.forEach((key: string) => {
-      const thisControl = this.existingCoverageForm.controls[formControlKeys[key]];
+      const thisControl = this.existingCoverageForm.controls[key];
       if (!thisControl.value) {
         thisControl.setValue(0);
       }
