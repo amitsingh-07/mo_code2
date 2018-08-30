@@ -1,41 +1,60 @@
+.position-bottom {
+  .modal-content {
+    position: absolute !important;
+    bottom: 0 !important;
+  }
+}
+
 .modal-content {
   background: transparent;
   border: none;
 }
+
 .modal-header {
   border: none;
   padding: 0px;
   justify-content: center;
   display: flex;
 }
+
 .modal-body {
   background: $module-fill-color;
   border-radius: 6px;
   padding: 15px 25px;
+
   @include allmobiles {
     padding: 15px !important;
   }
+
   .form-group {
     label {
       margin-bottom: 0px;
     }
+
     margin-top: 20px;
-    .flex-col-7, .flex-col-6:first-child {
+
+    .flex-col-7,
+    .flex-col-6:first-child {
       color: #2d8289;
       font-family: $muli-semi-bold;
       font-size: 18px;
     }
-    .flex-col-5, .flex-col-6:last-child {
-      color: #00a7a7;;
+
+    .flex-col-5,
+    .flex-col-6:last-child {
+      color: #00a7a7;
+      ;
       font-family: $muli-regular;
       font-size: 16px;
       text-align: right;
+
       .total {
         font-family: $muli-bold;
         font-size: 22px;
       }
     }
   }
+
   .separator-solid {
     border-bottom: 1px solid rgba(141, 154, 168, 0.35);
     margin: 10px 0;
@@ -62,9 +81,10 @@
   line-height: 1.31;
   letter-spacing: -0.2px;
   color: #5e5e5e;
-  .modal-text-secondary{
-    font-weight:600;
-    color:#00a7a7;
+
+  .modal-text-secondary {
+    font-weight: 600;
+    color: #00a7a7;
   }
 }
 
@@ -76,6 +96,7 @@
 
 .modal {
   width: 100%;
+
   .close {
     position: absolute;
     right: 10px;
@@ -84,6 +105,7 @@
     opacity: 0.4;
     text-shadow: none;
   }
+
   .help-modal-title {
     background: $module-fill-color;
     padding: 25px;
@@ -92,6 +114,7 @@
     font-family: $muli-bold;
     color: $white-color;
   }
+
   .help-modal-body {
     padding: 0px 25px 25px 0px;
     background: $module-fill-color;
@@ -101,29 +124,31 @@
   }
 }
 
-.modal__icon-container{
-  position: relative; 
+.modal__icon-container {
+  position: relative;
   display: flex;
-  width:100%;
-  flex-direction:row;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  align-items:center;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 
   .modal__icons {
+    position: relative;
+    display: inline-block;
+
+    img {
       position: relative;
-      display: inline-block;
-      img{
-          position: relative;
-          display:block;
-          width:95px;
-          height:95px;
-          margin-bottom:20px;
-          @include min300max350{
-            width:85px;
-            height:85px;
-            margin-bottom:8.5px;
-          }
+      display: block;
+      width: 95px;
+      height: 95px;
+      margin-bottom: 20px;
+
+      @include min300max350 {
+        width: 85px;
+        height: 85px;
+        margin-bottom: 8.5px;
       }
+    }
   }
 }
