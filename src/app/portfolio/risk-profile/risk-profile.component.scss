@@ -67,20 +67,24 @@
         margin-bottom:15px;
     }
     .risk-profile-block__content__title {
-        font-family: $muli-semi-bold;
+        font-family: $muli;
         font-size: 24px;
         line-height: normal;
         letter-spacing: -0.3px;
         color: $white-color;
+        font-weight: bold;
+        text-align: center;
     }
     .risk-profile-block__content__sub-title {
-        font-family: $muli-light;
-        font-size: 18px;
+        font-family: $muli;
+        font-size: 16px;
         font-style: normal;
         font-stretch: normal;
         line-height: 23px;
         letter-spacing: -0.2px;
         color: $white-color;
+
+       
     }
     .btn-proceed {
         width: 179px;

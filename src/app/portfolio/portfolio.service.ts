@@ -6,6 +6,7 @@ import { IMyFinancials } from './my-financials/my-financials.interface';
 import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
+import { RiskProfile } from './risk-profile/riskprofile';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,25 @@ export class PortfolioService {
       investmentPeriod:this.portfolioFormData.investmentPeriod
     };
   }
+
+  //Risk Profile
+  getRiskProfile() {
+    return {
+      id: this.portfolioFormData.id,
+      riskProfile:this.portfolioFormData.riskProfile,
+      htmlDescription1: this.portfolioFormData.htmlDescription1,
+      htmlDescription2:this.portfolioFormData.htmlDescription2
+    };
+  }
+  
+  setRiskProfile(data:RiskProfile) {
+    this.portfolioFormData.id = data.id;
+    this.portfolioFormData.riskProfile=data.riskProfile;
+    this.portfolioFormData.htmlDescription1=data.htmlDescription1;
+    this.portfolioFormData.htmlDescription2=data.htmlDescription2;
+
+  }
+
   currentFormError(form) {
     const invalid = [];
     const invalidFormat = []; 

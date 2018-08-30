@@ -19,4 +19,11 @@ export class PortfolioFormData {
     initialInvestment:number;
     monthlyInvestment:number;
     suffEmergencyFund: string;  
+
+    //RISK PROFILE
+    id: number;
+    riskProfile: string;
+    htmlDescription1:  string;
+    htmlDescription2:  string;
+
 }
