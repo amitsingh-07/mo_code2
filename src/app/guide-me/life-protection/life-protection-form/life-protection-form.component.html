@@ -1,7 +1,7 @@
 <form id="lifeProtectionForm" name="lifeProtectionForm" [formGroup]="lifeProtectionForm">
   <div class="dependent-count--btn mb10 hidden-sm-md">
     <i class="dependent-count--btn--prev-arrow" (click)="navigateDependentForm('prev')" [style.visibility]="isNavPrevEnabled ? 'visible' : 'hidden'"></i>
-    Dependent {{ !isFormControlDisabled ? activeFormIndex+1 : 0}}
+    {{ 'LABEL.DEPENDANT' | translate}} {{ !isFormControlDisabled ? activeFormIndex+1 : 0}}
     <i class="dependent-count--btn--next-arrow" (click)="navigateDependentForm('next')" [style.visibility]="isNavNextEnabled ? 'visible' : 'hidden'"></i>
   </div>
   <div class="flex-row dependent-count mt30 hidden-lg">
