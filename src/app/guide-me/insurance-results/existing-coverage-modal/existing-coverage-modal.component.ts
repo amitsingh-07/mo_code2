@@ -39,7 +39,7 @@ export class ExistingCoverageModalComponent implements OnInit {
 
   ngOnInit() {
     this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
-    this.selectedHospitalPlan = this.existingCoverageValues.selectedHospitalPlan;
+    this.selectedHospitalPlan = this.guideMeService.getHospitalPlan().hospitalClass;
     this.existingCoverageForm = new FormGroup({
       lifeProtectionCoverage: new FormControl(this.existingCoverageValues.lifeProtectionCoverage),
       criticalIllnessCoverage: new FormControl(this.existingCoverageValues.criticalIllnessCoverage),
