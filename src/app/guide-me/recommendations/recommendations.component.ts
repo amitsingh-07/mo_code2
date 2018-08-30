@@ -162,6 +162,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   selectPlan(data) {
+    
     if (data.isSelected) {
       console.log('selected plan');
       console.log(data.plan);
