@@ -1,32 +1,31 @@
-<div class="container-fluid flex__wrapper">
+<div class="container-fluid">
     <div class="content">
       <div class="row">
-        <div class="col-lg-6 col-sm-12 col-xs-12 signup-wrapper sm-text-align-center">
-            <h3 class="title mb15">{{pageTitle}}</h3>
-            <h5 class="sub-title mb30">{{subTitle}}</h5> 
-            <img class="header-icon hidden-md-sm" src="assets/images/createAccount-icon.svg"/>
-            <div class="description">
-                <p>{{description}}</p>
-              </div>
-          </div>
-        <div class="col-lg-6 col-sm-12 col-xs-12">
-          <form class="signup-form-wrapper" id="verifyMobileForm" name="verifyMobileForm" [formGroup]="verifyMobileForm">
-            <div class="flex-row">
-              <p class="text-align-center">{{ 'VERIFY_MOBILE.FORM.INSTRUCTION' | translate}}</p>
+        <div class="col-lg-7 col-md-6">
+        <div class="signup-wrapper">
+          <h2 class="title order1 sm-order2 ml10">{{pageTitle}}</h2>
+          <div class="description order2">
+              <p>So that our advisers can contact you.</p>
             </div>
-            <div class="flex-row mb50">
-              <div class="flex-col-12 stretch">
-                <div class="phone-number">
-                  <span class="mr10">+{{countryCode}}</span>
-                  <span>{{phoneNumber}}</span>
-                  </div>
+          <img class="header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg"/>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6">
+          <form id="verifyMobileForm" name="verifyMobileForm" [formGroup]="verifyMobileForm">
+            <div class="verify-mobile-block">
+            <div class="text-center verify-mobile-block__otp__title mb15">
+              {{ 'VERIFY_MOBILE.FORM.INSTRUCTION' | translate}}
+            </div>
+
+            <div class="mb50 text-center">
+                <div class="verify-mobile-block__phone-number">
+                  +65 82202059
                 </div>
-                <div class="flex-col-12 stretch flex__box--vert center">
-                  <a class="edit-link" (click)="editNumber()" href="../">Edit Number</a> 
+                <div>
+                  <a class="verify-mobile-block__edit-link link-white" (click)="editNumber()" href="../">Edit Number</a> 
                 </div>
               </div>
-            <div class="flex-row">
-              <div class="flex-col-1 stretch">
+            <div class="verify-mobile-block__otp">
                 
                 <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp1 formControlName="otp1" (keyup)="next(otp2)" size="1">
                 <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp2 formControlName="otp2" (keyup)="next(otp3)" size="1">
@@ -34,9 +33,13 @@
                 <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="next(otp5)" size="1">
                 <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="next(otp6)" size="1">
                 <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp6 formControlName="otp6" size="1">  
-                </div>
               </div>
-            <button (click)="save(verifyMobileForm)" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-white width100">{{ 'COMMON.VERIFY' | translate }}</button>
+            <button (click)="save(verifyMobileForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.VERIFY' | translate }}</button>
+             </div>
+             <div class="verify-mobile-block__otp__not-received text-center mt20">
+                Didn't receive it?<br>
+                <a href="#" class="link-white">Request New Code</a> 
+             </div>
           </form>
         </div>   
       </div>

@@ -26,11 +26,6 @@
               </div>
             </div>
             <div class="flex-col-8 stretch" [formGroup]="createAccountForm">
-<!--               <div class="form-control">
-                  <input type="text" class="input-control text-left"
-                  maxLength="8" #otherIncome formControlName="mobileNumber" placeholder="">
-                  <label class="input-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
-                </div> -->
               <div class="form-group">
                 <input type="input" maxLength="8" #otherIncome id="crtAccInpt1" formControlName="mobileNumber" class="form-control" required>
                 <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
@@ -40,18 +35,12 @@
             </div>
           <div class="flex-row mb10">
             <div class="flex-col-5 stretch mr15" [formGroup]="createAccountForm">
-             <!--  <div class="form-control">
-                <input type="text" class="input-control text-left" #firstName formControlName="firstName" value="" placeholder="{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME' | translate}}">
-              </div> -->
               <div class="form-group">
                 <input type="text" id="crtAccInpt2" class="form-control" #firstName formControlName="firstName" required>
                 <label class="form-control-placeholder" for="firstName">{{ 'CREATE_ACCOUNT.FORM.FIRST_NAME' | translate}}</label>
               </div>
             </div>
             <div class="flex-col-5 stretch" [formGroup]="createAccountForm">
-             <!--  <div class="form-control">
-                <input type="text" class="input-control text-left" #firstName formControlName="lastName" value="" placeholder="{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}">
-              </div> -->
               <div class="form-group">
                 <input type="text" id="crtAccInpt3" class="form-control" #lastName formControlName="lastName" required>
                 <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.LAST_NAME' | translate}}</label>
@@ -60,17 +49,13 @@
             </div>
           <div class="flex-row mb30">
             <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
-           <!--    <div class="form-control">
-                  <input type="text" class="input-control text-left"
-                  #email formControlName="email" placeholder="{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}">
-                </div> -->
                 <div class="form-group">
                 <input type="text" id="crtAccInpt3" class="form-control" #email formControlName="email" required>
                 <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}</label>
               </div>
               </div>
             </div>
-            <div class="checkbox-button one-label">
+            <div class="checkbox-button one-label mb10">
               <input id="termsOfConditions" name="termsOfConditions" formControlName="termsOfConditions" type="checkbox" class="field checkbox"
                 value="I agree to MoneyOwl's Terms of Use and Privacy Policy.">
               <label for="termsOfConditions">

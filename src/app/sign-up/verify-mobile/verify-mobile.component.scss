@@ -1,0 +1,31 @@
+@import '../../../variables';
+@import '../../../mixins';
+.verify-mobile-block {
+	
+	.verify-mobile-block__otp__title {
+		font-size: 18px;
+		font-family: $muli-regular;
+	}
+	.verify-mobile-block__phone-number {
+		font-size: 36px;
+		font-family: $muli-bold;
+	}
+	.verify-mobile-block__edit-link {
+		font-size: 18px;
+	}
+	.verify-mobile-block__otp {
+		@extend .flex;
+		@extend .space-btwn;
+		input {
+		  width: 48.7px;
+		  height: 60px;
+		  border-radius: 5.1px;
+		  background-color: $white-color;
+		  border: none;
+		  text-align: center;
+		  color: $app-backgrnd-color;
+		  font-size: 24px;
+		  font-family: $muli-regular;
+		}
+	}
+}
