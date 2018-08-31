@@ -1,5 +1,8 @@
-{
-    "countries": [
+[
+      {
+        "code": "+65",
+        "name": "Singapore"
+      },
       {
         "code": "+7 840",
         "name": "Abkhazia"
@@ -761,10 +764,6 @@
         "name": "Sierra Leone"
       },
       {
-        "code": "+65",
-        "name": "Singapore"
-      },
-      {
         "code": "+421",
         "name": "Slovakia"
       },
@@ -945,4 +944,3 @@
         "name": "Zimbabwe"
       }
     ]
-  }

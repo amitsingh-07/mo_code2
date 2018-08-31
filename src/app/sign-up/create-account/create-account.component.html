@@ -5,7 +5,7 @@
         <div class="signup-wrapper">
           <h2 class="title order1 sm-order2 ml10">{{pageTitle}}</h2>
           <div class="description order2">
-              <p>Please fill in your details so that our advisers can contact you.</p>
+              <p>{{description}}</p>
             </div>
           <img class="header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg"/>
           </div>
@@ -17,10 +17,10 @@
               <div class="dropdown-control form-control-left">
               <div ngbDropdown id="countryCode">
                 <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-                  <span>+</span><span>{{countryCode}}</span>
+                  <span>{{defaultCountryCode}}</span>
                 </button>
                 <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setDropDownCountryCode(option, i)">{{option}}</button>
+                  <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
                 </div>
                 </div>
               </div>
@@ -71,20 +71,20 @@
               </div>
             </div>
             <div class="checkbox-button one-label">
-              <input id="termsConditionPrivacy" name="termsConditionPrivacy" formControlName="termsConditionPrivacy" type="checkbox" class="field checkbox"
+              <input id="termsOfConditions" name="termsOfConditions" formControlName="termsOfConditions" type="checkbox" class="field checkbox"
                 value="I agree to MoneyOwl's Terms of Use and Privacy Policy.">
-              <label for="termsConditionPrivacy">
-                <div class="title">I agree to MoneyOwl's <b><u>Terms of Use</u></b> and <b><u>Privacy Policy.</u></b></div>
+              <label for="termsOfConditions">
+                <div class="title" [innerHtml]="'CREATE_ACCOUNT.FORM.TERMS_OF_USE' | translate"></div>
                                 </label>
             </div>
             <div class="checkbox-button one-label">
-              <input id="marketingPartner" name="marketingPartner" formControlName="marketingPartner" type="checkbox" class="field checkbox"
+              <input id="marketingAcceptance" name="marketingAcceptance" formControlName="marketingAcceptance" type="checkbox" class="field checkbox"
                 value="I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.">
-              <label for="marketingPartner">
-                <div class="title">I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl.</div>
+              <label for="marketingAcceptance">
+                <div class="title">{{ 'CREATE_ACCOUNT.FORM.MARKETING_ACCEPTANCE' | translate }}</div>
                                 </label>
             </div>
-            <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.CONTINUE' | translate }}</button>
+            <button id="nextDependentBtn" (click)="save(createAccountForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.CONTINUE' | translate }}</button>
         </form>
       </div>   
     </div>

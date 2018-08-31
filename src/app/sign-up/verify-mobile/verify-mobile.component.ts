@@ -1,47 +1,114 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from './../sign-up.service';
 
 @Component({
   selector: 'app-verify-mobile',
   templateUrl: './verify-mobile.component.html',
-  styleUrls: ['./verify-mobile.component.scss']
+  styleUrls: ['./verify-mobile.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class VerifyMobileComponent implements OnInit {
-  pageTitle: string;
-  subTitle: string;
-  countryCode: number;
-  phoneNumber: number;
-  verifyCode = [0, 0, 0, 0, 0, 0];
-  verifyCodeArray: FormArray;
-  verifyMobileForm: FormGroup;
-  signUpFormData: any;
+  private pageTitle: string;
+  private subTitle: string;
 
-  constructor(private formBuilder: FormBuilder, private signUpService: SignUpService,
-              private router: Router, private translate: TranslateService) {
+  verifyMobileForm: FormGroup;
+  showCodeSentText;
+  mobileNumber;
+
+  constructor(private formBuilder: FormBuilder,
+              private modal: NgbModal,
+              private signUpService: SignUpService,
+              private router: Router,
+              private translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('VERIFY_MOBILE.TITLE');
       this.subTitle = this.translate.instant('VERIFY_MOBILE.SUB_TITLE');
      });
-    this.getPhoneNumberSum();
   }
 
   ngOnInit() {
-    this.signUpFormData = this.signUpService.getRegDetails();
-    this.verifyMobileForm = new FormGroup({
-      verifyMobile: new FormControl(this.signUpFormData.verifyMobile),
+    this.showCodeSentText = false;
+    this.mobileNumber = this.signUpService.getMobileNumber();
+    this.buildVerifyMobileForm();
+  }
+
+  /**
+   * build verify mobile number form.
+   */
+  buildVerifyMobileForm() {
+    this.verifyMobileForm = this.formBuilder.group({
+      otp1: ['', [Validators.required]],
+      otp2: ['', [Validators.required]],
+      otp3: ['', [Validators.required]],
+      otp4: ['', [Validators.required]],
+      otp5: ['', [Validators.required]],
+      otp6: ['', [Validators.required]]
     });
   }
 
-  getPhoneNumberSum() {
-    // this.countryCode = this.signUpService.getCountryCode().toString();
-    // this.phoneNumber = this.signUpService.getPhoneNumber().toString();
-    this.countryCode = 65;
-    this.phoneNumber = 86065841;
+  /**
+   * verify user mobile number.
+   */
+  save(form: any) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+      form.name = 'verifyMobileForm';
+      const error = this.signUpService.currentFormError(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.errorTitle;
+      ref.componentInstance.errorMessage = error.errorMessage;
+      return false;
+    } else {
+      let otp;
+      for (const value of Object.keys(form.value)) {
+        otp += form.value[value];
+      }
+      this.verifyMobileNumber(otp);
+    }
   }
-  
+
+  /**
+   * verify user mobile number.
+   */
+  verifyMobileNumber(code) {
+    this.signUpService.verifyOneTimePassword(code).subscribe((data) => {
+      this.showCodeSentText = true;
+    });
+  }
+
+  /**
+   * request a new OTP.
+   */
+  requestNewCode() {
+    this.signUpService.requestOneTimePassword().subscribe((data) => {
+      this.showCodeSentText = true;
+    });
+  }
+
+  /**
+   * redirect to create account page.
+   */
+  editNumber() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+  }
+
+  /**
+   * set focus to next otp field.
+   */
+  next(el) {
+    if (el.value) {
+      el.focus();
+    }
+  }
+
 }

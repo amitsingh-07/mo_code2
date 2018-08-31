@@ -22,18 +22,21 @@
                   </div>
                 </div>
                 <div class="flex-col-12 stretch flex__box--vert center">
-                  <a class="edit-link" href="../">Edit Number</a> 
+                  <a class="edit-link" (click)="editNumber()" href="../">Edit Number</a> 
                 </div>
               </div>
             <div class="flex-row">
-              <div class="flex-col-1 stretch" formArrayName="verifyCodeInput" *ngFor="let char of verifyCode; let i=index">
-                <div class="form-control" [formGroupName]="i">
-                    <input type="text" class="input-control text-align-center"
-                    maxLength="1" #verifyCodeSingle formControlName="verifyCodeSingle" placeholder="{{char}}">
-                  </div>
+              <div class="flex-col-1 stretch">
+                
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp1 formControlName="otp1" (keyup)="next(otp2)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp2 formControlName="otp2" (keyup)="next(otp3)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp3 formControlName="otp3" (keyup)="next(otp4)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="next(otp5)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="next(otp6)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp6 formControlName="otp6" size="1">  
                 </div>
               </div>
-            <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-white width100">{{ 'COMMON.CONTINUE' | translate }}</button>
+            <button (click)="save(verifyMobileForm)" type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-white width100">{{ 'COMMON.VERIFY' | translate }}</button>
           </form>
         </div>   
       </div>
