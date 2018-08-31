@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef  } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { AfterViewInit, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -31,9 +31,11 @@ export class PersonalInfoComponent implements OnInit {
   formValues: any;
   dateOfBirth: string;
   ciAssessmentFormValues: any;
-  sliderMinValue:number = 4;
-  sliderMaxValue:number = 99;
-  pointerPositionScale;
+  sliderMinValue: number = 0;
+  sliderMaxValue: number = 99;
+  sliderDesc:string;
+
+
 
   constructor(
     private router: Router,
@@ -81,10 +83,28 @@ export class PersonalInfoComponent implements OnInit {
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
-  
+
   onSliderChange(value): void {
+    this.setSliderDescByRange(value);
     this.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = this.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
     this.personalInfoForm.controls.investmentPeriod.setValue(value);
+  }
+
+
+  setSliderDescByRange(value) {
+    if (value <= 3) {
+      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_1_3_DESC');
+    }
+    else if (value > 3 && value <= 7) {
+      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_3_7_DESC');
+    }
+    else if (value > 7 && value <= 14) {
+      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_7_14_DESC');
+    }
+    else if(value > 14) {
+      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_14_DESC');
+    }
+    
   }
 
   save(form: any) {
@@ -96,7 +116,7 @@ export class PersonalInfoComponent implements OnInit {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.portfolioService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)['errorMessage'];
-      return false; 
+      return false;
     }
     form.value.customDob = this.parserFormatter.format(form.value.dateOfBirth);
 

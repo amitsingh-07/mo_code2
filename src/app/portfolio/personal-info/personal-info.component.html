@@ -50,14 +50,14 @@
             
 
             <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
-                <h5>Select Investment Period </h5>
-                  <p>Drag the slider to select the number of years you want to invest for.</p>
+                <h5>{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
+                  <p>{{ 'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
             </div>
 
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
-              <h5>I want to invest for
+              <h5>{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
                 <span class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>&nbsp;Years</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus purus. - Haoyu to provide! </p>
+              <p>{{ sliderDesc }}</p>
             </div>
           </div>
           <div>
