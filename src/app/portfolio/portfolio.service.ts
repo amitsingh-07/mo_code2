@@ -7,6 +7,8 @@ import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
 import { RiskProfile } from './risk-profile/riskprofile';
+const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
+const SESSION_STORAGE_KEY = 'app_session_storage_key';
 
 @Injectable({
   providedIn: 'root'
@@ -112,6 +114,15 @@ export class PortfolioService {
     const data = this.getPortfolioFormData();
     return this.apiService.savePersonalInfo(data);
   }
-
+  setPortfolioRecommendationModalCounter(value: number) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY, value.toString());
+      
+    }
+  }
+  
+    getPortfolioRecommendationModalCounter() {
+      return parseInt(sessionStorage.getItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY), 10);
+     }
 }
  

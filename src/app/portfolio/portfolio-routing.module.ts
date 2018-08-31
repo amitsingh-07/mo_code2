@@ -9,6 +9,8 @@ import { MyFinancialsComponent } from './my-financials/my-financials.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
+import { PortfolioRecommendationComponent } from './portfolio-recommendation/portfolio-recommendation.component';
+
 
 const routes: Routes = [
   { path: PORTFOLIO_ROUTES.ROOT, redirectTo: PORTFOLIO_ROUTES.GET_STARTED_STEP1, pathMatch: 'full' },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: PORTFOLIO_ROUTES.GET_STARTED_STEP2, component: GetStartedStep2Component },
   { path: PORTFOLIO_ROUTES.RISK_ASSESSMENT, redirectTo: PORTFOLIO_ROUTES.RISK_ASSESSMENT + "/1", pathMatch: 'full' },
   { path: PORTFOLIO_ROUTES.RISK_ASSESSMENT + "/:id", component: RiskAssessmentComponent },
-  { path: PORTFOLIO_ROUTES.RISK_PROFILE, component: RiskProfileComponent }
+  { path: PORTFOLIO_ROUTES.RISK_PROFILE, component: RiskProfileComponent },
+  { path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION, component:PortfolioRecommendationComponent  }
+
 ];
 
 @NgModule({ 

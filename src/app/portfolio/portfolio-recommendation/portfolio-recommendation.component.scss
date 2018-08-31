@@ -1,0 +1,187 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-portfolio-recommendation {
+  .hide-custom-modal {
+    display: none;
+  }
+  .fade-out-animation {
+    -webkit-animation: fadeOut 1000ms ease-in-out;
+    /* Chrome, Safari, Opera */
+    animation: fadeOut 1000ms ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+    position: fixed;
+  }
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0; 
+    }
+  }
+  /* Standard syntax */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .custom-modal-backdrop {
+    background: $white-color;
+    position: fixed;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+  }
+  .custom-modal-wrapper {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    @extend .flex;
+    @extend .justify-center;
+    @extend .align-center;
+  }
+  .custom-modal-content {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .custom-modal--icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 20%;
+    @include allmobiles {
+      img {
+        width: 60%;
+      }
+    }
+  }
+  .custom-modal--title {
+    color: #00aaa8;
+    font-family: $muli-regular;
+    font-size: 36px;
+    letter-spacing: -0.4px;
+    line-height: 1.11;
+    margin-top: 30px;
+  }
+  .custom-modal--desc {
+    color: #5e5e5e;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    font-family: $muli-regular;
+    padding: 0 35%;
+    @include allmobiles {
+      padding: 0 10%;
+    }
+  }
+ 
+.title_recomd{
+  color: #FFFFFF;
+    font-family: "Muli Regular", sans-serif;
+    font-size: 24px;
+    letter-spacing: -0.4px;
+    
+    margin-top: -33.3px;
+    text-align: center;
+    padding-left: 81px;
+    font-weight: bold;
+}
+.edit_button{
+  background: url("../../../assets/images/edit_button.svg") no-repeat;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    display: block;
+  width: 18px;
+  height: 18px;
+ 
+    
+margin-top: -28px;
+ 
+}
+.balncePortfolio{
+  font-family: Muli;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  text-align: center;
+  color: #ffffff;
+  padding-left: 74px;
+    margin-top: -18px;
+}
+.portfilioyears{
+  width: 369px;
+  height: 20px;
+  font-family: Muli;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #ffffff;
+  .bold{
+    font-weight: bold;
+  }
+}
+.projectreturns{
+  
+  height: 100px;
+  background-color: #25898f;
+ .projectreturnstext{
+   
+  font-family: Muli;
+  font-size: 16px;
+ 
+  line-height: 1.31;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: #98dfdf;
+
+  }
+  .persentagevalue{
+    font-family: Muli;
+    font-size: 24px;
+    font-weight: bold;
+    
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #ffffff;
+    display: inline-block;
+    padding-left: 125px;
+  }
+  .whatrisk{
+  font-family: Muli;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #98dfdf;
+ 
+  }
+}
+.accordion{
+  height: 790px;
+  background-color: #2d8289;
+}
+.tooltip-icon {
+  background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+}
+
