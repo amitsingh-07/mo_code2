@@ -1,7 +1,7 @@
 <form id="lifeProtectionForm" name="lifeProtectionForm" [formGroup]="lifeProtectionForm">
   <div class="dependent-count--btn mb10 hidden-sm-md">
     <i class="dependent-count--btn--prev-arrow" (click)="navigateDependentForm('prev')" [style.visibility]="isNavPrevEnabled ? 'visible' : 'hidden'"></i>
-    Dependent {{ !isFormControlDisabled ? activeFormIndex+1 : 0}}
+    {{ 'LABEL.DEPENDANT' | translate}} {{ !isFormControlDisabled ? activeFormIndex+1 : 0}}
     <i class="dependent-count--btn--next-arrow" (click)="navigateDependentForm('next')" [style.visibility]="isNavNextEnabled ? 'visible' : 'hidden'"></i>
   </div>
   <div class="flex-row dependent-count mt30 hidden-lg">
@@ -74,7 +74,7 @@
               <div ngbDropdown id="dependantAge">
                 <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="ageDropdown" ngbDropdownToggle>{{item.controls.age.value}}
                 </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="ageDropdown">
+                <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="ageDropdown">
                   <button class="dropdown-item" *ngFor="let option of ageOptions" (click)="setDropDownValue('age',option, i)">{{option}}</button>
                 </div>
               </div>
@@ -84,7 +84,7 @@
           <div class="flex-row">
               <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">
-              <a href="#" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</a>
+              <span (click)="showSupportAmountModal()" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</span>
               <span class="help-icon" (click)="showSupportAmountModal()"></span>
             </div>
             </div>
@@ -92,7 +92,7 @@
             <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
                 <i class="fixed-currency">$</i>
                 <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
-                maxLength="5" #supportAmount formControlName="supportAmount" value="0">
+                maxLength="4" #supportAmount formControlName="supportAmount" value="0">
                 <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
               </div>
             </div>
@@ -101,7 +101,7 @@
           <div class="flex-row">
               <div class="flex-col-6">
             <div class="form-group-with-bg--content-label" for="name">
-              <a href="#" class="link">{{ 'LABEL.YEARS_NEEDED' | translate}}</a>
+              <span (click)="showLifeProtectionModal()" class="link">{{ 'LABEL.YEARS_NEEDED' | translate}}</span>
               <span class="help-icon" (click)="showLifeProtectionModal()"></span>
             </div>
             </div>
@@ -110,7 +110,7 @@
               <div ngbDropdown id="yearsNeeded">
                 <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="yearsNeededDropdown" ngbDropdownToggle>{{item.controls.yearsNeeded.value}}
                 </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="yearsNeededDropdown">
+                <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="yearsNeededDropdown">
                   <button class="dropdown-item" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
                 </div>
               </div>

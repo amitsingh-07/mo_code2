@@ -45,10 +45,33 @@
       background: $white-color !important;
     }
   }
-  &.btn-save {
+  &.btn-primary-dark {
+    background-color: $app-backgrnd-color;
+    border-color: $app-backgrnd-color;
+    color: $white-color;
+    &:hover {
+      background-color: #00c5c4;
+    }
+    &:focus,
+    &:active {
+      outline: none !important;
+      background: #00c5c4 !important;
+      border-color: none !important;
+    }
+  }
+  &.btn-secondary {
     background-color: transparent;
-    border: 1px solid #4d898d;
-    color: #FFF;
+    border: 1px solid #00c5c4;
+    color: $app-backgrnd-color;
+    &:hover {
+      background-color: transparent;
+    }
+    &:focus,
+    &:active {
+      outline: none !important;
+      background: transparent !important;
+      border-color: none !important;
+    }
   }
   &:disabled {
     opacity: 1 !important;
@@ -343,6 +366,7 @@
   letter-spacing:-0.2px;
   font-family:$muli-semi-bold;
   max-height:70px;
+  cursor: pointer;
   @include fontSize(13px);
   text-align:center;
   @include allmobiles {

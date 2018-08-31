@@ -5,4 +5,8 @@ app-existing-coverage-modal {
             padding-bottom: 30px;
           }
     }
+    .dropdown-control .dropdown-menu.show {
+        right: 0 !important;
+        left: inherit !important;
+    }
 }

@@ -122,7 +122,7 @@ export class GuideMeService {
 
   getLifeProtection() {
     if (!this.guideMeFormData.lifeProtectionData) {
-      this.guideMeFormData.lifeProtectionData = {dependents: [] as IDependent[]};
+      this.guideMeFormData.lifeProtectionData = { dependents: [] as IDependent[] };
     }
     return this.guideMeFormData.lifeProtectionData;
   }
@@ -155,6 +155,7 @@ export class GuideMeService {
 
   setMyExpenses(data: IMyExpenses) {
     this.isMyExpensesFormValid = true;
+    data.livingExpenses = 0;
     this.guideMeFormData.expenses = data;
     this.commit();
   }
@@ -342,7 +343,13 @@ export class GuideMeService {
   }
 
   getExistingCoverage(): IExistingCoverage[] {
-    return [];
+    return [{
+      criticalIllnessCoverage: 0,
+      lifeProtectionCoverage: 0,
+      longTermCareCoveragePerMonth: 0,
+      occupationalDisabilityCoveragePerMonth: 0,
+      selectedHospitalPlan: ''
+    }];
   }
 
   createProtectionNeedResult(data) {
@@ -371,5 +378,33 @@ export class GuideMeService {
 
   getInsuranceResultsModalCounter() {
     return parseInt(sessionStorage.getItem(INSURANCE_RESULTS_COUNTER_KEY), 10);
+  }
+
+  setExistingCoverageValues(data: IExistingCoverage ) {
+    this.guideMeFormData.existingCoverageValues = data;
+    this.commit();
+  }
+
+  getExistingCoverageValues(): IExistingCoverage {
+    if (!this.guideMeFormData.existingCoverageValues) {
+      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan : 'Private Hospital' } as IExistingCoverage;
+    }
+    return this.guideMeFormData.existingCoverageValues;
+  }
+
+  selectLongTermCareValues() {
+    const currentLongTerm = this.getLongTermCare();
+    let currentValue;
+    switch (currentLongTerm.careGiverType) {
+      case 'Nursing Home' : currentValue = 2600;
+                            break;
+      case 'Daycare Support': currentValue = 2600;
+                              break;
+      case 'Domestic Helper': currentValue = 1200;
+                              break;
+      case 'Family Member': currentValue = 600;
+                            break;
+    }
+    return currentValue;
   }
 }

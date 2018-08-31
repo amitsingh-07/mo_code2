@@ -131,13 +131,41 @@ app-life-protection-form {
         }
       }
     }
+    .link {
+      text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        cursor: pointer;
+    }
     @include allmobiles {
-      a.link {
+      .link {
         text-decoration: underline !important;
         color: #2d8289 !important;
         display: flex;
         flex-wrap: wrap;
         max-width: 100px;
+        cursor: pointer;
+      }
+    }
+    @include iPadProPortrait {
+      .link {
+        text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+        cursor: pointer;
+      }
+    }
+    @include iPadProLandscape {
+      .link {
+        text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+        cursor: pointer;
       }
     }
   }

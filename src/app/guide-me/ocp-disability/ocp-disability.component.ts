@@ -71,7 +71,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit() {
     this.headerService.showMobilePopUp('removeClicked');
     this.formValues = this.guideMeService.getMyOcpDisability();
-    if (this.guideMeService.isMyOcpDisabilityFormValid) {
+    if (this.guideMeService.isMyOcpDisabilityFormValid && this.formValues.maxAge) {
       this.selectRetirementAge(this.formValues.maxAge);
       this.selectEmployeeType(this.formValues.selectedEmployee, false);
       this.coveragePercent = this.formValues.percentageCoverage;

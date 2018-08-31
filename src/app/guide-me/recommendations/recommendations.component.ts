@@ -1,10 +1,16 @@
-import { GuideMeApiService } from './../guide-me.api.service';
+import { CurrencyPipe } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GuideMeCalculateService } from '../guide-me-calculate.service';
+import { GuideMeService } from '../guide-me.service';
+import { CriticalIllnessData } from './../ci-assessment/ci-assessment';
+import { GuideMeApiService } from './../guide-me.api.service';
+import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
 
 @Component({
   selector: 'app-recommendations',
@@ -19,8 +25,11 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   recommendationPlans;
   selectedPlans: any[] = [];
+  coverageAmount = '';
+  premiumFrom = '';
 
   activeRecommendationType;
+  activeRecommendationList;
 
   prevActiveSlide;
   nextActiveSlide;
@@ -32,7 +41,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private translate: TranslateService, public headerService: HeaderService,
-    private guideMeApiService: GuideMeApiService) {
+    private guideMeApiService: GuideMeApiService, private guideMeCalculateService: GuideMeCalculateService,
+    private currency: CurrencyPipe, private guideMeService: GuideMeService, public modal: NgbModal) {
     this.carouselConfig.wrap = false;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -43,13 +53,18 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.recommendationPlans = this.getRecommendations();
-    this.activeRecommendationType = this.recommendationPlans[0].type;
     this.getRecommendationsFromServer();
   }
 
   getRecommendationsFromServer() {
-    this.guideMeApiService.constructRecommendationsRequest();
+    this.guideMeApiService.getRecommendations().subscribe(
+      (data) => {
+        console.log(data);
+        this.recommendationPlans = data.objectList[0].productProtectionTypeList;
+        this.activeRecommendationType = this.recommendationPlans[0].protectionType;
+        this.activeRecommendationList = this.recommendationPlans[0];
+        this.updateCoverageDetails();
+      });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -96,11 +111,45 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
       this.nextActiveSlide = event.prev;
     }
     this.activeRecommendationType = event.current;
+    this.activeRecommendationList = this.getCurrentRecommendationList();
+    this.updateCoverageDetails();
   }
 
-  jumpToSlide(type) {
-    this.recommendationCarousel.activeId = type;
-    this.activeRecommendationType = type;
+  jumpToSlide(recommendation) {
+    this.recommendationCarousel.activeId = recommendation.protectionType;
+    this.activeRecommendationType = recommendation.protectionType;
+    this.activeRecommendationList = recommendation;
+    this.updateCoverageDetails();
+  }
+
+  getCurrentRecommendationList() {
+    for (const recommendation of this.recommendationPlans) {
+      if (this.activeRecommendationType === recommendation.protectionType) {
+        return recommendation;
+      }
+    }
+  }
+
+  updateCoverageDetails() {
+    this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
+    switch (this.activeRecommendationType) {
+      case 'Life Protection':
+        this.coverageAmount = this.guideMeCalculateService.getLifeProtectionSummary() + '';
+        break;
+      case 'Critical Illness':
+        const criticalIllnessValues: CriticalIllnessData = this.guideMeService.getCiAssessment();
+        this.coverageAmount = criticalIllnessValues.annualSalary * criticalIllnessValues.ciMultiplier + '';
+        break;
+      case 'Occupational Disability':
+        this.coverageAmount = this.guideMeService.getMyOcpDisability().coverageAmount + '';
+        break;
+      case 'Long Term Care':
+        this.coverageAmount = '';
+        break;
+      case 'Hospital Plan':
+        this.coverageAmount = '';
+        break;
+    }
   }
 
   viewDetails(plan) {
@@ -108,251 +157,22 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   selectPlan(data) {
-    /*
-    if (data.isSelected) {
-      console.log('selected plan');
+    if (data.selected) {
       console.log(data.plan);
       this.selectedPlans.push(data.plan);
     } else {
-      console.log('de-selected plan');
-      console.log(data.plan);
       const index: number = this.selectedPlans.indexOf(data.plan);
       if (index !== -1) {
         this.selectedPlans.splice(index, 1);
       }
     }
-    */
   }
 
-  getRecommendations() {
-    return [{
-      "type": "Life Protection",
-      "plan": [{
-        "name": "MyProtector Term with CI",
-        "amount": "122.70",
-        "offercaption": "5% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "1",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA-",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "50%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "30 Years",
-        "premiumDuration": "Throughout Policy Term",
-        "medicalUnderwritingRequired": true
-      },
-      {
-        "name": "MyProtector Life without CI",
-        "amount": "91.54",
-        "offercaption": "25% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "2",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "30%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "15 Years",
-        "premiumDuration": "5 Years",
-        "medicalUnderwritingRequired": false
-      }
-      ]
-    }, {
-      "type": "Occupational Disability",
-      "plan": [{
-        "name": "MyProtector Term with CI",
-        "amount": "122.70",
-        "offercaption": "5% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "1",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA-",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "50%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "30 Years",
-        "premiumDuration": "Throughout Policy Term",
-        "medicalUnderwritingRequired": true
-      },
-      {
-        "name": "MyProtector Life without CI",
-        "amount": "91.54",
-        "offercaption": "25% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "2",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "30%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "15 Years",
-        "premiumDuration": "5 Years",
-        "medicalUnderwritingRequired": false
-      }
-      ]
-    }, {
-      "type": "Hospital Plan",
-      "plan": [{
-        "name": "MyProtector Term with CI",
-        "amount": "122.70",
-        "offercaption": "5% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "1",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA-",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "50%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "30 Years",
-        "premiumDuration": "Throughout Policy Term",
-        "medicalUnderwritingRequired": true
-      },
-      {
-        "name": "MyProtector Life without CI",
-        "amount": "91.54",
-        "offercaption": "25% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "2",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "30%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "15 Years",
-        "premiumDuration": "5 Years",
-        "medicalUnderwritingRequired": false
-      }
-      ]
-    },
-    {
-      "type": "Critical Illness",
-      "plan": [{
-        "name": "Critical Illness with CI",
-        "amount": "91.5",
-        "offercaption": "15% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "78%",
-          "caption": "Rebate"
-        },
-        {
-          "title": "AA-",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "50%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "15 Years",
-        "premiumDuration": "Throughout Policy Term",
-        "medicalUnderwritingRequired": true
-      },
-      {
-        "name": "Critical Illness without CI",
-        "amount": "91.54",
-        "offercaption": "25% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "1",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "B",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "70%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "25 Years",
-        "premiumDuration": "10 Years",
-        "medicalUnderwritingRequired": true
-      }
-      ]
-    },
-    {
-      "type": "Long&#x2011;Term Care",
-      "plan": [{
-        "name": "Long Term Care with CI",
-        "amount": "122.70",
-        "offercaption": "65% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "1",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA-",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "50%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "20 Years",
-        "premiumDuration": "Throughout Policy Term",
-        "medicalUnderwritingRequired": true
-      },
-      {
-        "name": "Long Term Care without CI",
-        "amount": "91.54",
-        "offercaption": "15% discount for cover of $1.1 onwards",
-        "features": [{
-          "title": "2",
-          "caption": "Ranking by Price"
-        },
-        {
-          "title": "AA",
-          "caption": "Insurer's Rating"
-        },
-        {
-          "title": "90%",
-          "caption": "Commission Rebate"
-        }
-        ],
-        "coverageDuration": "15 Years",
-        "premiumDuration": "5 Years",
-        "medicalUnderwritingRequired": false
-      }
-      ]
-    }
-    ];
+  proceed() {
+    const ref = this.modal.open(CreateAccountModelComponent, {
+      windowClass: 'position-bottom',
+      centered: true
+    });
+    ref.componentInstance.data = this.selectedPlans.length;
   }
 }
