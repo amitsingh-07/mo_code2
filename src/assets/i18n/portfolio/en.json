@@ -204,7 +204,14 @@
   },
   "PERSONAL_INFO": {
     "TITLE": "Get Started",
-    "BORN_ON": "I was born on"
+    "BORN_ON": "I was born on",
+    "SELECT_INVESTMENT_HEAD": "Select Investment Period",
+    "SELECT_INVESTMENT_DESC": "Drag the slider to select the number of years you want to invest for.",
+    "I_WANT_INVEST_LBL": "I want to invest for",
+    "RANGE_1_3_DESC": "Title 1",
+    "RANGE_3_7_DESC": "Title 2",
+    "RANGE_7_14_DESC": "Title 3",
+    "RANGE_14_DESC": "Title 4"
   },
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
