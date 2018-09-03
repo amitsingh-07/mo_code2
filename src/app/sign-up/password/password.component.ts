@@ -40,8 +40,20 @@ export class PasswordComponent implements OnInit {
   buildPasswordForm() {
     this.passwordForm = this.formBuilder.group({
       password: ['', [ValidatePassword]],
-      confirmPassword: ['', [ValidateMatchPassword]]
-    });
+      confirmPassword: [''],
+    }, {validator: this.validateMatchPassword('password', 'confirmPassword')});
+  }
+
+  private validateMatchPassword(password: string, confirmPassword: string) {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls['password'];
+      const passwordConfirmationInput = group.controls['confirmPassword'];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({notEquivalent: true});
+      } else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    };
   }
 
   showHidePassword(el) {
@@ -58,7 +70,7 @@ export class PasswordComponent implements OnInit {
    */
   save(form: any) {
     if (!form.valid) {
-      console.log(form.controls.password.errors);
+      console.log(form);
     } else {
       this.createPassword();
     }
