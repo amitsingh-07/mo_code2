@@ -161,7 +161,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   Brochure = (() => {
     const a = document.createElement('a');
     document.body.appendChild(a);
-    a.style = 'display: block';
     return ((data, fileName) => {
       const json = JSON.stringify(data);
       const blob = new Blob([json], {type: 'octet/stream'});
