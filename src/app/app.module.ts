@@ -29,6 +29,7 @@ import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
+import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -43,6 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
     MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
+    ModelWithButtonComponent,
     LifeProtectionModalComponent,
     InsuranceResultModalComponent,
     ExistingCoverageModalComponent,
@@ -74,7 +76,7 @@ export function createTranslateLoader(http: HttpClient) {
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent,
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent,ModelWithButtonComponent,
      LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, ExistingCoverageModalComponent]
 })
 
