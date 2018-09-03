@@ -60,10 +60,18 @@ export class SignUpService {
 
   /**
    * get user mobile number.
-   * @returns user mobiel number.
+   * @returns user mobile number.
    */
   getMobileNumber() {
     return this.signUpFormData.mobileNumber;
+  }
+
+  /**
+   * get user country code.
+   * @returns user country code.
+   */
+  getCountryCode() {
+    return this.signUpFormData.countryCode;
   }
 
   /**
@@ -86,8 +94,8 @@ export class SignUpService {
    * get countries code.
    * @returns array of countries code.
    */
-  getCountryCode() {
-    return this.apiService.getCountryCode();
+  getCountryCodeList() {
+    return this.apiService.getCountryCodeList();
   }
 
   /**

@@ -21,6 +21,7 @@ export class VerifyMobileComponent implements OnInit {
   verifyMobileForm: FormGroup;
   showCodeSentText;
   mobileNumber;
+  countryCode;
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
@@ -37,6 +38,7 @@ export class VerifyMobileComponent implements OnInit {
   ngOnInit() {
     this.showCodeSentText = false;
     this.mobileNumber = this.signUpService.getMobileNumber();
+    this.countryCode = this.signUpService.getCountryCode();
     this.buildVerifyMobileForm();
   }
 
@@ -72,24 +74,28 @@ export class VerifyMobileComponent implements OnInit {
       let otp;
       for (const value of Object.keys(form.value)) {
         otp += form.value[value];
+        if (value === 'otp6') {
+          this.verifyMobileNumber(otp);
+        }
       }
-      this.verifyMobileNumber(otp);
     }
   }
 
   /**
    * verify user mobile number.
+   * @param code - one time password.
    */
   verifyMobileNumber(code) {
     this.signUpService.verifyOneTimePassword(code).subscribe((data) => {
-      this.showCodeSentText = true;
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
     });
   }
 
   /**
    * request a new OTP.
    */
-  requestNewCode() {
+  requestNewCode(el) {
+    el.preventDefault();
     this.signUpService.requestOneTimePassword().subscribe((data) => {
       this.showCodeSentText = true;
     });
@@ -98,17 +104,22 @@ export class VerifyMobileComponent implements OnInit {
   /**
    * redirect to create account page.
    */
-  editNumber() {
+  editNumber(el) {
+    el.preventDefault();
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
   }
 
   /**
-   * set focus to next otp field.
+   * restrict to enter numeric value.
+   * @param currentElement - current element to check numeric value.
+   * @param nextElement - next elemet to focus.
    */
-  next(el) {
-    if (el.value) {
-      el.focus();
+  onlyNumber(currentElement, nextElement) {
+    const elementName = currentElement.getAttribute('formcontrolname');
+    currentElement.value = currentElement.value.replace(/[^0-9]/g, '');
+    this.verifyMobileForm.controls[elementName].setValue(currentElement.value);
+    if (currentElement.value && nextElement) {
+      nextElement.focus();
     }
   }
-
 }

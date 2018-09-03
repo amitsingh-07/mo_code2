@@ -210,7 +210,7 @@ export class ApiService {
       );
   }
 
-  getCountryCode() {
+  getCountryCodeList() {
     const url = 'assets/country-data/phone.json';
     return this.http.get(url);
   }

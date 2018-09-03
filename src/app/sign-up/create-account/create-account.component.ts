@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from './../sign-up.service';
+import { ValidateRange } from './range.validator';
 
 @Component({
   selector: 'app-create-account',
@@ -53,7 +54,7 @@ export class CreateAccountComponent implements OnInit {
     this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, Validators.pattern('[0-9]\\d{7,9}')]],
+      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+')]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+')]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
@@ -88,15 +89,22 @@ export class CreateAccountComponent implements OnInit {
    * @param countryCode - country code detail.
    */
   setCountryCode(countryCode) {
+    const mobileControl = this.createAccountForm.controls['mobileNumber'];
     this.defaultCountryCode = countryCode;
     this.createAccountForm.controls['countryCode'].setValue(countryCode);
+    if (countryCode === '+65') {
+      mobileControl.setValidators([Validators.required, ValidateRange]);
+    } else {
+      mobileControl.setValidators([Validators.required, Validators.pattern('\\d{8,10}')]);
+    }
+    mobileControl.updateValueAndValidity();
   }
 
   /**
    * get country code.
    */
   getCountryCode() {
-    this.signUpService.getCountryCode().subscribe((data) => {
+    this.signUpService.getCountryCodeList().subscribe((data) => {
       this.countryCodeOptions = data;
       this.setCountryCode(this.countryCodeOptions[0].code);
     });
@@ -109,5 +117,9 @@ export class CreateAccountComponent implements OnInit {
     this.signUpService.requestOneTimePassword().subscribe((data) => {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
     });
+  }
+
+  onlyNumber(el) {
+    this.createAccountForm.controls['mobileNumber'].setValue(el.value.replace(/[^0-9]/g, ''));
   }
 }

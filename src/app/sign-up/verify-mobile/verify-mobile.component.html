@@ -39,26 +39,27 @@
 
             <div class="mb50 text-center">
                 <div class="verify-mobile-block__phone-number">
-                  +65 82202059
+                  {{countryCode}} {{mobileNumber}}
                 </div>
                 <div>
-                  <a class="verify-mobile-block__edit-link link-white" (click)="editNumber()" href="../">Edit Number</a> 
+                  <a class="verify-mobile-block__edit-link link-white" (click)="editNumber($event)" href="../">Edit Number</a> 
                 </div>
               </div>
             <div class="verify-mobile-block__otp">
                 
-                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp1 formControlName="otp1" (keyup)="next(otp2)" size="1">
-                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp2 formControlName="otp2" (keyup)="next(otp3)" size="1">
-                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp3 formControlName="otp3" (keyup)="next(otp4)" size="1">
-                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="next(otp5)" size="1">
-                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="next(otp6)" size="1">
-                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp6 formControlName="otp6" size="1">  
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp1 formControlName="otp1" (keyup)="onlyNumber(otp1,otp2)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp2 formControlName="otp2" (keyup)="onlyNumber(otp2,otp3)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp3 formControlName="otp3" (keyup)="onlyNumber(otp3,otp4)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="onlyNumber(otp4,otp5)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="onlyNumber(otp5,otp6)" size="1">
+                <input type="text" appCurrencyInput defaultValue="false" class="input-control text-align-center" #otp6 formControlName="otp6" (keyup)="onlyNumber(otp6)" size="1">  
               </div>
             <button (click)="save(verifyMobileForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.VERIFY' | translate }}</button>
              </div>
              <div class="verify-mobile-block__otp__not-received text-center mt20">
                 Didn't receive it?<br>
-                <a href="#" class="link-white">Request New Code</a> 
+                <a href="#" class="link-white" (click)="requestNewCode($event)">Request New Code</a><br> 
+                <span *ngIf="showCodeSentText">Code sent!</span>
              </div>
           </form>
         </div>   

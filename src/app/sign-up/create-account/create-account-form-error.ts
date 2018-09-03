@@ -13,8 +13,12 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Mobile number field can only contain numeric values'
+                        errorMessage: 'Mobile number field should be 8 to 10 characters length'
                 },
+                mobileRange : {
+                        errorTitle: 'Invalid Mobile Number',
+                        errorMessage: 'Mobile number range should be 8000000 to 9999999'
+                }
         },
         firstName: {
                 required : {
