@@ -31,6 +31,13 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   questionsList: any[] = [];
   questionIndex: number;
   currentQuestion: any;
+  isChartAvailable:boolean = false;
+  chartLegendEnum = {
+    1:"vhfvhr",
+    2:"hfhr",
+    3:"mfmr",
+    4:"lflr"
+  }
 
   constructor(
     private portfolioService: PortfolioService, private route: ActivatedRoute, private router: Router,
@@ -77,20 +84,25 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   }
 
   getQuestions() {
-    this.authService.authenticate().subscribe((token) => {
-      this.portfolioService.getQuestionsList().subscribe((data) => {
-        this.questionsList = data.objectList;
-        this.setCurrentQuestion();
-      });
+    this.portfolioService.getQuestionsList().subscribe((data) => {
+      this.questionsList = data.objectList;
+      this.setCurrentQuestion();
     });
+    // this.authService.authenticate().subscribe((token) => {
+    // });
   }
 
   setCurrentQuestion() {
     this.currentQuestion = this.questionsList[this.questionIndex - 1];
+    this.isChartAvailable = (this.currentQuestion.questionType == "RISK_ASSESSMENT") ? true : false;
     let selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
     if (selectedOption) {
       this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption); 
     }
+  }
+
+  setLegend(id){
+    return this.chartLegendEnum[id];
   }
 
   goToNext(form) {

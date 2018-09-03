@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 .question-info {
   position: relative;
   top: 66px;
@@ -32,8 +34,104 @@
   }
 }
 
-.question-desc {
+.question-title {
   margin-bottom: 10px;
   font-size: 18px;
 }
+
+.option-title{
+  font-size:18px;
+}
+
+
+input[type='radio']+label {
+  //background: url("../../../assets/images/edit_button.svg") no-repeat;
+  background: url("../../../assets/images/radio-normal.svg") left center no-repeat;
+}
+input[type='radio']:checked+label {
+  background-image: url("../../../assets/images/radio-select.png");
+}
+
+
+.chart-mode{
+   background-color:#fff;
+  .question-title {
+    color:$text-color-secondary;
+  }
+  .option-title{
+    font-size:18px;
+    color:$black-color;
+    
+  }
+  .option-desc{
+    font-size:16px;
+    color:$text-color-secondary;
+    font-family: "Muli Regular", sans-serif;
+  }
+
+  .legend-img-container{
+    margin-bottom:20px;
+  }
+
+
+  .form-group-single-column .checkbox-button.one-label{
+    padding:0px;
+  }
+
+  input[type='radio'] + label, input[type='checkbox'] + label{
+    background-position:15px center;
+  }
+
+  
+
+  label.vhfvhr, label.hfhr, label.mfmr, label.lflr{
+    padding:15px 25px 15px 55px;
+  }
+
+  .vhfvhr{
+    border:2px solid #ec681c;
+    background-color:#fbe1d2;
+    border-radius:5px;
+  }
+  .hfhr{
+    border:2px solid #00b0d9;
+    background-color:#cceff7;
+    border-radius:5px;
+  }
+  .mfmr{
+    border:2px solid #76328e;
+    background-color:#f3edf5;
+    border-radius:5px;
+  }
+  .lflr{
+    border:2px solid #00a451;
+    background-color:#cceddc;
+    border-radius:5px;
+  }
+
+  .legend-indicator{
+    float: right;
+    height:32px;
+    width:32px;
+    margin-top:15px;
+    font-size:22px;
+    background-position:right;
+    background-repeat: no-repeat;
+  }
+
+
+  .vhfvhr .legend-indicator{
+    background-image:url("../../../assets/images/portfolio/legend-1.svg");
+  }
+  .hfhr .legend-indicator{
+    background-image:url("../../../assets/images/portfolio/legend-2.svg");
+  }
+  .mfmr .legend-indicator{
+    background-image:url("../../../assets/images/portfolio/legend-3.svg");
+  }
+  .lflr .legend-indicator{
+    background-image:url("../../../assets/images/portfolio/legend-4.svg");
+  }
+}
+
 

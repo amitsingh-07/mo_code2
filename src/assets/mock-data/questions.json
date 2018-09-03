@@ -3,6 +3,7 @@
 			"id": 1,
 			"description": "Based on the investment amount I have indicated, I am willing to take a maximum loss of",
 			"text": null,
+			"questionType": "",
 			"options": [{
 					"id": 1,
 					"text": "0%",
@@ -42,6 +43,7 @@
 			"id": 2,
 			"description": "If the value of my investment portfolio were to drop by 30% in 3 months, I would",
 			"text": null,
+			"questionType": "",
 			"options": [{
 					"id": 5,
 					"text": "Sell all of my investments",
@@ -81,6 +83,7 @@
 			"id": 3,
 			"description": "In the event of a market decline, I would sell portions of my riskier assets and invest the money in safer assets instead.",
 			"text": null,
+			"questionType": "",
 			"options": [{
 					"id": 9,
 					"text": "Strongly Agree",
@@ -120,6 +123,7 @@
 			"id": 4,
 			"description": "Generally, I prefer stable investments and I'm willing to accept the lower returns for such investments.",
 			"text": null,
+			"questionType": "",
 			"options": [{
 					"id": 9,
 					"text": "Strongly Agree",
@@ -154,6 +158,46 @@
 				}
 			],
 			"listOrder": 4
+		},
+		{
+			"id": 5,
+			"description": "The investment portfolio that I am most likely to choose is",
+			"text": null,
+			"questionType": "RISK_ASSESSMENT",
+			"options": [{
+					"id": 9,
+					"text": "Portfolio",
+					"description": "Largest fluctuations, Highest potential returns",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 13,
+					"listingOrder": 1
+				},
+				{
+					"id": 10,
+					"text": "Portfolio",
+					"description": "Large fluctuations, High potential returns",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 14,
+					"listingOrder": 2
+				},
+				{
+					"id": 11,
+					"text": "Portfolio",
+					"description": "Moderate fluctuations, Moderate potential returns",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 15,
+					"listingOrder": 3
+				},
+				{
+					"id": 12,
+					"text": "Portfolio",
+					"description": "Small fluctuations, Low potential returns",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 16,
+					"listingOrder": 4
+				}
+			],
+			"listOrder": 5
 		}
 	],
 	"responseCode": 6000,
