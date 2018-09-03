@@ -481,19 +481,94 @@
 
 /*Floating Label form control styles*/
 .form-group {
+  padding: 5px 0 0;
+  background: $white-color;
+  border-radius: 6px;
   position: relative;
   margin-bottom: 1.5rem;
   margin-bottom: 0;
+  .show-password {
+    background:url("./assets/images/show-password.svg");
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }
+  .error-tooltip {
+    position: absolute;
+    bottom: 56px;
+    z-index: 9999;
+    width: 100%;
+  .error-tooltip__desc {
+    position: relative;
+    padding: 10px;
+    border-radius: 6px;
+    background: #007d7d;
+    p {
+      &.error-tooltip__desc-one, &.error-tooltip__desc-two, &.error-tooltip__desc-three {
+        position: relative;
+        color: $white-color;
+        font-size: 14px;
+        margin-bottom: 1px;
+        font-style: italic;
+        margin-left: 31px;
+        .tick-mark {
+          background:url("./assets/images/tick-mark-with-app-bg.svg");
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          right: 10px;
+          background-repeat: no-repeat;
+          top: 3px;
+        }
+      }
+      &.error-tooltip__title {
+        font-size: 18px;
+        font-family: $muli-bold;
+        margin-bottom: 2px;
+        .error-tooltip__title__warning-icon {
+          text-align: center;
+          border-radius: 100%;
+          background-color: #e57300;
+          width: 25px;
+          height: 25px;
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 23px;
+          margin-right: 5px;
+        }
+      }
+      &.error-tooltip__desc-three {
+        color: #a2cfcf;
+      }
+    }
+    .error-tooltip__arrow {
+      width: 0; 
+      height: 0; 
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 15px solid #007d7d;
+      position: absolute;
+      bottom: -14px;
+      right: 15px;
+    }
+  }
+  }
   .form-control {
     color: #00a7a7;
     border: none;
+    padding-bottom: 6px;
+    padding-top: 12px;
   }
   .form-control-placeholder {
     position: absolute;
-    top: 10px;
-    padding: 7px 0 0 13px;
+    top: 12px;
+    padding: 0px 0 0 12px;
     transition: all 200ms;
     color: #00a7a7;
+    left: 2px;
   }
   .form-control:focus + .form-control-placeholder,
   .form-control:valid + .form-control-placeholder {
@@ -503,6 +578,7 @@
     color: #5e5e5e;
   }
 }
+
 
 /*Sign Up*/
 .signup-wrapper {
