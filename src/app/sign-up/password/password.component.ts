@@ -7,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from './../sign-up.service';
+import { ValidateMatchPassword } from './password.match.validator';
+import { ValidatePassword } from './password.validator';
 
 @Component({
   selector: 'app-password',
@@ -37,8 +39,8 @@ export class PasswordComponent implements OnInit {
    */
   buildPasswordForm() {
     this.passwordForm = this.formBuilder.group({
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required, Validators.pattern('[0-9]\\d{7,9}')]]
+      password: ['', [ValidatePassword]],
+      confirmPassword: ['', [ValidateMatchPassword]]
     });
   }
 
@@ -56,15 +58,7 @@ export class PasswordComponent implements OnInit {
    */
   save(form: any) {
     if (!form.valid) {
-      Object.keys(form.controls).forEach((key) => {
-        form.get(key).markAsDirty();
-      });
-      form.name = 'accountInfoForm';
-      const error = this.signUpService.currentFormError(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      return false;
+      console.log(form.controls.password.errors);
     } else {
       this.createPassword();
     }

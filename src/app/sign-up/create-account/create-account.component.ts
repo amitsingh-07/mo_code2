@@ -106,7 +106,8 @@ export class CreateAccountComponent implements OnInit {
   getCountryCode() {
     this.signUpService.getCountryCodeList().subscribe((data) => {
       this.countryCodeOptions = data;
-      this.setCountryCode(this.countryCodeOptions[0].code);
+      const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
+      this.setCountryCode(countryCode);
     });
   }
 
