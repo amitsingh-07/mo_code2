@@ -8,6 +8,7 @@ import { PortfolioService } from './../portfolio.service';
 import { profileIcons } from './profileIcons';
 import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+
 @Component({
   selector: 'app-risk-profile',
   templateUrl: './risk-profile.component.html',

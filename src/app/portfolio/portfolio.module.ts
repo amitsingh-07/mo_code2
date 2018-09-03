@@ -18,6 +18,8 @@ import { PortfolioRecommendationComponent } from './portfolio-recommendation/por
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
+import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
+import { FundDetailsComponent } from './fund-details/fund-details.component';
 @NgModule({
   imports: [
     CommonModule, PortfolioRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
@@ -35,7 +37,9 @@ import { PercentageInputDirective } from '../shared/directives/percentage-input.
     IntroScreenComponent,
     PortfolioRecommendationComponent,
     CurrencyInputPortfolioDirective,
-    PercentageInputDirective
+    PercentageInputDirective,
+    WhatsTheRiskComponent,
+    FundDetailsComponent
   ],
   providers: [CurrencyPipe]
 })

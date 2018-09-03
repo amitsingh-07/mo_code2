@@ -88,100 +88,184 @@ app-portfolio-recommendation {
       padding: 0 10%;
     }
   }
+//  iadd for reference//
+.portfolio-allocation-details {
+  .container-fluid {
+      padding-top: 0px !important;
+      padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+      
+      @include allmobiles {
+         // padding-top: 10px !important;
+      }
+  }
+  .fin-accessment-block__tab-container {
+      @extend .flex;
+      @extend .space-btwn;
+      width: 100%;
+      .fin-accessment-block__tab {
+          width: calc(50% - 10px);
+          opacity:0.2;
+          padding-right: 10px;
+          background-color:$app-backgrnd-secondary-color;
+          min-height:5px;
+          &.active {
+             opacity:1; 
+          }
+      }
+  }
+  .portfolio-allocation-details__content {
+      @include tablet {
+          .banner-image img {
+              max-width:90%;
+              margin: 20px
+          }
+      }
+      @include allmobiles {
+          .banner-image img {
+              max-width:70%;
+              margin: 20px
+
+          }
+      }
+      @include iPadProPortrait {
+          .banner-image img {
+              max-width:80%;
+              margin: 20px
+
+          }
+      }
+  }
+  .portfolio-allocation-details__content__desc {
+      // margin-top: 100px;
+      // text-align: left;
+      @include allmobiles {
+        margin-top: 16px;
+          text-align: center;
+      }
+      @include tablet {
+          margin-top: 30px;
+      }
+  }
+  
+  .portfolio-allocation-details__content__title {
+      font-family: $muli;
+      font-size: 24px;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      color: $white-color;
+      font-weight: bold;
+      text-align: center;
+  }
  
-.title_recomd{
-  color: #FFFFFF;
-    font-family: "Muli Regular", sans-serif;
-    font-size: 24px;
-    letter-spacing: -0.4px;
-    
-    margin-top: -33.3px;
-    text-align: center;
-    padding-left: 81px;
-    font-weight: bold;
+  .btn-proceed {
+      width: 179px;
+      height: 60px;
+      border:0px;
+      border-radius: 6px;
+      background-color: $white-color;
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+      font-family: $muli-semi-bold;
+      font-size: 22px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: -0.2px;
+      text-align: center;
+      color: $app-backgrnd-color;
+      cursor: pointer;
+      @include allmobiles{
+          position: fixed;
+          width:100%;
+          bottom:0px;
+          left:0px;
+          border-radius:0px;
+      }
+  }
 }
+
+
+// i added for reference//
 .edit_button{
   background: url("../../../assets/images/edit_button.svg") no-repeat;
-    height: 20px;
-    width: 20px;
+
     cursor: pointer;
-    display: block;
+     display: inline-flex;;
   width: 18px;
   height: 18px;
- 
-    
-margin-top: -28px;
- 
+  
 }
-.balncePortfolio{
+.amount{
   font-family: Muli;
   font-size: 48px;
   font-weight: 300;
   letter-spacing: -0.5px;
   text-align: center;
   color: #ffffff;
-  padding-left: 74px;
-    margin-top: -18px;
 }
-.portfilioyears{
-  width: 369px;
-  height: 20px;
+.years{
   font-family: Muli;
   font-size: 18px;
   letter-spacing: -0.3px;
   text-align: center;
   color: #ffffff;
-  .bold{
-    font-weight: bold;
-  }
 }
-.projectreturns{
-  
-  height: 100px;
+.project_returns{
   background-color: #25898f;
- .projectreturnstext{
-   
+  padding: 12px;
+  
+.Projected_title{
   font-family: Muli;
   font-size: 16px;
- 
   line-height: 1.31;
   letter-spacing: -0.2px;
   text-align: center;
   color: #98dfdf;
-
-  }
-  .persentagevalue{
-    font-family: Muli;
-    font-size: 24px;
-    font-weight: bold;
-    
-    letter-spacing: -0.3px;
-    text-align: center;
-    color: #ffffff;
-    display: inline-block;
-    padding-left: 125px;
-  }
-  .whatrisk{
+  
+}
+.Projected_money{
   font-family: Muli;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #ffffff;
+  }
+  .tooltip-icon {
+    background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .whats_risk{
+    font-family: Muli;
   font-size: 14px;
   font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
   letter-spacing: -0.3px;
   text-align: center;
   color: #98dfdf;
- 
   }
+ 
+}
+@media (max-width: 567px) and (min-width: 320px){
+
+.container-fluid {
+    padding-left: 0px  !important;
+    padding-right: 0px !important;
+    position: relative;
+    height: 100%;
+    padding: 80px 0;
+}
 }
 .accordion{
-  height: 790px;
+  width: 100%;
+  height: 100vh;
   background-color: #2d8289;
-}
-.tooltip-icon {
-  background: url("../../../assets/images/tooltip-icon.svg") no-repeat;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-  display: inline-block;
-}
 
 }
-
+}

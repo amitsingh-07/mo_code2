@@ -10,6 +10,8 @@ import { GetStartedStep2Component } from './get-started-step2/get-started-step2.
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { PortfolioRecommendationComponent } from './portfolio-recommendation/portfolio-recommendation.component';
+import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
+
 
 
 const routes: Routes = [
@@ -21,7 +23,8 @@ const routes: Routes = [
   { path: PORTFOLIO_ROUTES.RISK_ASSESSMENT, redirectTo: PORTFOLIO_ROUTES.RISK_ASSESSMENT + "/1", pathMatch: 'full' },
   { path: PORTFOLIO_ROUTES.RISK_ASSESSMENT + "/:id", component: RiskAssessmentComponent },
   { path: PORTFOLIO_ROUTES.RISK_PROFILE, component: RiskProfileComponent },
-  { path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION, component:PortfolioRecommendationComponent  }
+  { path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION, component:PortfolioRecommendationComponent  },
+  { path: PORTFOLIO_ROUTES.WHATS_THE_RISK, component:WhatsTheRiskComponent  },
 
 ];
 

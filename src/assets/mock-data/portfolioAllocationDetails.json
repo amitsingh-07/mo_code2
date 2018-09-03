@@ -1,0 +1,30 @@
+{
+	"projectedValue": 2300000,
+	"tenure": 30,
+	"projectedReturns": "+ 5.50%",
+	"breakDown": [{
+		"sector": {
+			"id": "SECTOR00012",
+			"name": "Emerging Markets Equity",
+			"type": "Equities",
+			"riskRating": 9,
+			"totalPercentage": 100,
+			"funds": [{
+					"id": "FI3018",
+					"name": "Fidelity ASEAN A SGD",
+					"type": "UT",
+					"percentage": 1,
+					"factSheetLink": "http://"
+				},
+				{
+					"id": "FI3018",
+					"name": "Fidelity ASEAN A SGD",
+					"type": "UT",
+					"percentage": 1,
+					"factSheetLink": "http://"
+				}
+			]
+		}
+	}]
+
+}

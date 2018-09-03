@@ -251,6 +251,13 @@
   "PORTFOLIO_RECOMMENDATION":{
     "TITLE": "portfoli Recommendation",
     "MODAL_TITLE": "Portfolio Recommendations",
-    "MODAL_DESC":"In the next step, we will be showing you the recommended portfolio that is most suited to your profile."
+    "MODAL_DESC":"In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
+    "helpDate": {
+      "modalTitle": "Projected Returns",
+      "modalMessage": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."  
+      }
+  },
+  "WHATS_THE_RISK":{
+    "TITLE": "What’s The Risk"
   }
 }
