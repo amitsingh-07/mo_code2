@@ -10,6 +10,7 @@ export class PortfolioFormData {
     riskAssessQuest2: number;
     riskAssessQuest3: number;
     riskAssessQuest4: number;
+    riskAssessQuest5: number;
 
     //MY FINANCIALS
     monthlyIncome:number;
@@ -21,9 +22,8 @@ export class PortfolioFormData {
     suffEmergencyFund: string;  
 
     //RISK PROFILE
-    id: number;
-    riskProfile: string;
-    htmlDescription1:  string;
-    htmlDescription2:  string;
+    riskProfileId: number;
+    riskProfileName: string;
+    htmlDescription:  string;
 
 }

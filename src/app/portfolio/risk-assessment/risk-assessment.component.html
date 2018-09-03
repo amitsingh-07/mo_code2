@@ -18,25 +18,30 @@
               <img class="img-fluid" src="../assets/images/portfolio/breakdown-chart.png" alt="Breakdown Chart" />
             </div>
 
-            <div class="checkbox-button one-label" *ngFor="let option of currentQuestion.options; let i = index">
-              <input id="option_{{i+1}}" name="questSelOption" formControlName="questSelOption" type="radio" class="field radio" value="{{option.questionOptionId}}"
-                tabindex="{{i+1}}">
-              <label for="option_{{i+1}}" id="riskAssessLbl_{{i}}" [ngClass]="setLegend(option.listingOrder)">
-                  <div *ngIf="!isChartAvailable"><span class="input-label-grey">{{option.text}}</span></div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6" *ngFor="let option of currentQuestion.options; let i = index">
+                <div class="checkbox-button one-label">
+                  <input id="option_{{i+1}}" name="questSelOption" formControlName="questSelOption" type="radio" class="field radio"
+                    value="{{option.questionOptionId}}" tabindex="{{i+1}}">
+                  <label for="option_{{i+1}}" id="riskAssessLbl_{{i}}" [ngClass]="setLegend(option.listingOrder)">
+                    <div *ngIf="!isChartAvailable"><span class="input-label-grey">{{option.text}}</span></div>
 
-                  <div *ngIf="isChartAvailable" class="row">
-                    <div class="col-9">
-                      <div class="option-title">{{option.text}}</div>
-                      <div class="option-desc">{{option.description}}</div>
-                    </div>
-                    <div class="col-3">
+                    <div *ngIf="isChartAvailable" class="row">
+                      <div class="col-9">
+                        <div class="option-title">{{option.text}}</div>
+                        <div class="option-desc">{{option.description}}</div>
+                      </div>
+                      <div class="col-3">
                         <div class="legend-indicator">{{option.desc}}</div>
-                    </div>
-                    
-                  </div>
-              </label>
+                      </div>
 
+                    </div>
+                  </label>
+
+                </div>
+              </div>
             </div>
+
             <button type="button" [disabled]="!riskAssessmentForm.valid" (click)="goToNext(riskAssessmentForm)" class="btn btn-primary btn__footer--fixed width100"
               id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>

@@ -31,12 +31,12 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   questionsList: any[] = [];
   questionIndex: number;
   currentQuestion: any;
-  isChartAvailable:boolean = false;
+  isChartAvailable: boolean = false;
   chartLegendEnum = {
-    1:"vhfvhr",
-    2:"hfhr",
-    3:"mfmr",
-    4:"lflr"
+    1: "vhfvhr",
+    2: "hfhr",
+    3: "mfmr",
+    4: "lflr"
   }
 
   constructor(
@@ -75,13 +75,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     this.headerService.setPageTitle(title);
   }
 
-  save(form): boolean {
-    if (!form.valid) {
-      return false;
-    }
-    this.portfolioService.setRiskAssessment(this.riskAssessmentForm.value, this.questionIndex);
-    return true;
-  }
+
 
   getQuestions() {
     this.portfolioService.getQuestionsList().subscribe((data) => {
@@ -97,26 +91,40 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     this.isChartAvailable = (this.currentQuestion.questionType == "RISK_ASSESSMENT") ? true : false;
     let selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
     if (selectedOption) {
-      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption); 
+      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption);
     }
   }
 
-  setLegend(id){
+  setLegend(id) {
     return this.chartLegendEnum[id];
   }
 
+  save(form): boolean {
+    if (!form.valid) {
+      return false;
+    }
+    else {
+      return true;
+    }
+
+  }
+
   goToNext(form) {
+    console.log("calling next...");
     if (this.save(form)) {
       if (this.questionIndex < this.questionsList.length) {
         //NEXT QUESTION
         this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + "/" + (this.questionIndex + 1)]);
       }
       else {
-        //NEXT QUESTION
-        console.log(this.portfolioService.getPortfolioFormData());
-        this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_PROFILE]);
+        //RISK PROFILE
+        this.portfolioService.setRiskAssessment(form.value, this.questionIndex);
+        //CALL API
+        this.portfolioService.saveRiskAssessment().subscribe((data) => {
+          this.portfolioService.setRiskProfile(data.objectList);
+          this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_PROFILE]);
+        });
       }
-
     }
   }
 }

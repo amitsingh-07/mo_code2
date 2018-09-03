@@ -5,9 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from './../portfolio.service';
-import { profileIcons } from './profileIcons';
-import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileIcons } from './profileIcons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+
+import { RiskProfile } from '../risk-profile/riskprofile';
 
 @Component({
   selector: 'app-risk-profile',
@@ -15,25 +17,28 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
   styleUrls: ['./risk-profile.component.scss']
 })
 export class RiskProfileComponent implements OnInit {
-  imgobj=profileIcons[1];
-  iconImage=this.imgobj['icon'];
-  //riskProfile:RiskProfile;
-      profileid: number;
-      riskProfile: string;
-      htmlDescription1:  string;
-      htmlDescription2:  string;
+  iconImage;
+
+  profileid: number;
+  riskProfile: string;
+  htmlDescription: string;
+
+  selectedRiskProfile: RiskProfile
+  formValues;
+
   constructor(public readonly translate: TranslateService, private router: Router,
     public headerService: HeaderService,
     private portfolioService: PortfolioService,
     private modal: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      
+
     });
   }
 
   ngOnInit() {
-     // this.riskProfile.profileid = this.por
+    this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId]['icon'];
   }
   goToNext() {
     this.portfolioService.setPortfolioRecommendationModalCounter(0);

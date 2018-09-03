@@ -36,7 +36,7 @@
           <div class="form-group" style="position: relative;">
             <div class="form-group-with-bg--content">
               <div class="investmentSlider">
-                <nouislider #ciMultiplierSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
+                <nouislider #ciMultiplierSlider (change)="onSliderChange($event)" (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
                   [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" data-placement="bottom"></nouislider>
               </div>
             </div>

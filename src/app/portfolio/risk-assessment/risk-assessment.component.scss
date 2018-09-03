@@ -80,6 +80,7 @@ input[type='radio']:checked+label {
 
   input[type='radio'] + label, input[type='checkbox'] + label{
     background-position:15px center;
+    width: 100%;
   }
 
   
@@ -89,18 +90,18 @@ input[type='radio']:checked+label {
   }
 
   .vhfvhr{
+    border:2px solid #76328e;
+    background-color:#f3edf5;
+    border-radius:5px;
+  }
+  .hfhr{
     border:2px solid #ec681c;
     background-color:#fbe1d2;
     border-radius:5px;
   }
-  .hfhr{
+  .mfmr{
     border:2px solid #00b0d9;
     background-color:#cceff7;
-    border-radius:5px;
-  }
-  .mfmr{
-    border:2px solid #76328e;
-    background-color:#f3edf5;
     border-radius:5px;
   }
   .lflr{

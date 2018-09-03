@@ -79,6 +79,10 @@ export class PersonalInfoComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    this.ciMultiplierSlider.writeValue(this.formValues.investmentPeriod);
+  }
+
 
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);

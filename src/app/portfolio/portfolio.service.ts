@@ -40,18 +40,16 @@ export class PortfolioService {
   //Risk Profile
   getRiskProfile() {
     return {
-      id: this.portfolioFormData.id,
-      riskProfile:this.portfolioFormData.riskProfile,
-      htmlDescription1: this.portfolioFormData.htmlDescription1,
-      htmlDescription2:this.portfolioFormData.htmlDescription2
+      riskProfileId: this.portfolioFormData.riskProfileId,
+      riskProfileName:this.portfolioFormData.riskProfileName,
+      htmlDescription: this.portfolioFormData.htmlDescription
     };
   }
   
-  setRiskProfile(data:RiskProfile) {
-    this.portfolioFormData.id = data.id;
-    this.portfolioFormData.riskProfile=data.riskProfile;
-    this.portfolioFormData.htmlDescription1=data.htmlDescription1;
-    this.portfolioFormData.htmlDescription2=data.htmlDescription2;
+  setRiskProfile(data) {
+    this.portfolioFormData.riskProfileId = data.id;
+    this.portfolioFormData.riskProfileName=data.riskProfile;
+    this.portfolioFormData.htmlDescription=data.htmlDescription;
 
   }
 
@@ -85,6 +83,11 @@ export class PortfolioService {
   }
   setRiskAssessment(data, questionIndex) {
     this.portfolioFormData["riskAssessQuest" + questionIndex] = data;
+  }
+  //SAVE FOR STEP 2
+  saveRiskAssessment(){
+    const data = this.getPortfolioFormData();
+    return this.apiService.saveRiskAssessment(data);
   }
 
   //MY FINANCIALS
