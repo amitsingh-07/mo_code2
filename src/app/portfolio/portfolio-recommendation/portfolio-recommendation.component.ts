@@ -7,6 +7,8 @@ import { HeaderService } from '../../shared/header/header.service';
 import { Router } from '@angular/router';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { PORTFOLIO_ROUTES,PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { Token } from '@angular/compiler';
 
 
 @Component({
@@ -20,7 +22,10 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   animateStaticModal = false;
   hideStaticModal = false;
   pageTitle: string;
- 
+  projectedValue :number;
+  tenure:number;
+  data:any;
+  projectedReturns:number;
   
   helpDate:any;
   constructor(
@@ -28,6 +33,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
      public headerService: HeaderService,
     private translate: TranslateService, 
     //private guideMeCalculateService: GuideMeCalculateService, 
+    public authService: AuthenticationService,
     public modal: NgbModal,
   private portfolioService:PortfolioService) {
     this.translate.use('en');
@@ -43,6 +49,11 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
+    this.getPortfolioAllocationDeatails();
+    this.tenure=this.data;
+    this.projectedReturns=this.data;
+    this.projectedValue=this.data;
+    
   }
   ngAfterViewInit() {
   
@@ -75,6 +86,20 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   showWhatFubdDetails(){
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
   }
+  getPortfolioAllocationDeatails(){
+    //this.authService.authenticate().subscribe((Token)=>{
+    this.portfolioService.getPortfolioAllocationDeatails().subscribe((data)=>{
+      this.projectedReturns=data.projectedReturns;
+      this.projectedValue=data.projectedValue;
+      this.tenure=data.tenure;
+     
+    });
+ 
+  }
+  }
 
-}
+
+  
+
+
 

@@ -11,6 +11,7 @@ import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.compo
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { PortfolioRecommendationComponent } from './portfolio-recommendation/portfolio-recommendation.component';
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
+import { FundDetailsComponent } from './fund-details/fund-details.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: PORTFOLIO_ROUTES.RISK_PROFILE, component: RiskProfileComponent },
   { path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION, component:PortfolioRecommendationComponent  },
   { path: PORTFOLIO_ROUTES.WHATS_THE_RISK, component:WhatsTheRiskComponent  },
+  { path: PORTFOLIO_ROUTES.FUND_DETAILS, component:FundDetailsComponent  },
 
 ];
 

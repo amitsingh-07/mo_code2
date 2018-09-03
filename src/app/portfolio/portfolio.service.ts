@@ -127,5 +127,8 @@ export class PortfolioService {
     getPortfolioRecommendationModalCounter() {
       return parseInt(sessionStorage.getItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY), 10);
      }
-}
+     getPortfolioAllocationDeatails(){
+      return this.apiService.getPortfolioAllocationDeatails();
+    }
+    }
  

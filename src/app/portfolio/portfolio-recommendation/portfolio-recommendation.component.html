@@ -33,9 +33,9 @@
           <div class="portfolio-allocation-details__content__title mb10">Balanced Portfolio
             <div class="edit_button "></div>
           </div>
-          <div class="amount flex-col-12" id="riskProfileTitle">$234,567</div>
+          <div class="amount flex-col-12" id="riskProfileTitle">${{projectedValue}}</div>
           <div class="years flex-col-12 mb10" id="riskProfileTitle">Projected Portfolio Value in
-            <u>30</u> years</div>
+            <u>{{tenure}}</u> years</div>
           <div class="project_returns">
             <div class="flex-col-12">
               <div class="Projected_title">Projected Returns
@@ -45,7 +45,7 @@
 
             </div>
             <div class="flex-col-12">
-              <div class="Projected_money">+5.50%
+              <div class="Projected_money">{{projectedReturns}}
                 <div class="tooltip-icon" (click)="showHelpModal()"></div>
 
               </div>
@@ -57,7 +57,7 @@
           </div>
 
           <div class="accordion">
-
+ 
           </div>
 
 
