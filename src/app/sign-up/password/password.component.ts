@@ -15,7 +15,6 @@ import { ValidatePassword } from './password.validator';
   styleUrls: ['./password.component.scss']
 })
 export class PasswordComponent implements OnInit {
-pwdShow,pwdVisibility,confirmPwdShow,confirmPwdVisibility: boolean;
   passwordForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -24,10 +23,6 @@ pwdShow,pwdVisibility,confirmPwdShow,confirmPwdVisibility: boolean;
               private router: Router,
               private translate: TranslateService) {
     this.translate.use('en');
-    this.pwdShow = false;
-     this.pwdVisibility = false;
-     this.confirmPwdShow = false;
-     this.confirmPwdVisibility = false;
   }
 
   /**
@@ -37,15 +32,18 @@ pwdShow,pwdVisibility,confirmPwdShow,confirmPwdVisibility: boolean;
     this.buildPasswordForm();
   }
 
-  showPassword(args) {
-  if(args == "confirmPwd"){
-          this.confirmPwdShow = !this.confirmPwdShow;
-          this.confirmPwdVisibility = !this.confirmPwdVisibility;
-    }else if(args == "pwd"){
-          this.pwdShow = !this.pwdShow;
-          this.pwdVisibility = !this.pwdVisibility;
+  /**
+   * show / hide password field.
+   * @param el - selected element.
+   */
+  showHidePassword(el) {
+    if (el.type === 'password') {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
     }
   }
+
   /**
    * build password form.
    */
@@ -74,12 +72,11 @@ pwdShow,pwdVisibility,confirmPwdShow,confirmPwdVisibility: boolean;
   }
 
   save(form: any) {
-    if (!form.valid) {
-      console.log(form);
-    } else {
+    if (form.valid) {
       this.signUpService.setPassword(form.value.password);
       this.createAccount();
     }
+    return false;
   }
 
   /**

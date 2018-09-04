@@ -15,7 +15,7 @@ export class SignUpService {
 
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
-  private OTP: number;
+  otpRequested: boolean;
 
   constructor(private apiService: ApiService, private guideMeService: GuideMeService) {
     this.getAccountInfo();

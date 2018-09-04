@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -23,17 +23,18 @@ export class CreateAccountComponent implements OnInit {
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
+  heighlightMobileNumber;
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
               private signUpService: SignUpService,
+              private route: ActivatedRoute,
               private router: Router,
               private translate: TranslateService) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('CREATE_ACCOUNT.TITLE');
-      this.description = this.translate.instant('CREATE_ACCOUNT.DESCRIPTION');
-     });
+    this.route.params.subscribe((params) => {
+      this.heighlightMobileNumber = params.heighlightMobileNumber;
+    });
   }
 
   /**
@@ -115,6 +116,7 @@ export class CreateAccountComponent implements OnInit {
    */
   requestOneTimePassword() {
     this.signUpService.requestOneTimePassword().subscribe((data) => {
+      this.signUpService.otpRequested = true;
       this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
     });
   }

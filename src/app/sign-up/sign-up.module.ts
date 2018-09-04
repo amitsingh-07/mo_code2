@@ -5,11 +5,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 
-import { NumberOnlyDirective } from '../shared/directives/number-only.directive';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { PasswordComponent } from './password/password.component';
+import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 
@@ -24,10 +24,10 @@ import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
   declarations: [
     AccountCreatedComponent,
     CreateAccountComponent,
-    NumberOnlyDirective,
     EmailVerificationComponent,
     VerifyMobileComponent,
     PasswordComponent
-  ]
+  ],
+  providers: [SignUpAccessGuard]
 })
 export class SignUpModule { }

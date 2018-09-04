@@ -1,7 +1,8 @@
 import { AbstractControl } from '@angular/forms';
 
 export function ValidateRange(control: AbstractControl) {
-  if (control.value !== undefined && (isNaN(control.value) || control.value < 8000000 || control.value > 99999999)) {
+  const SINGAPORE_MOBILE_REGEXP = /^(8|9)\d{7}$/;
+  if (!SINGAPORE_MOBILE_REGEXP.test(control.value)) {
     return { mobileRange: true };
   }
   return null;

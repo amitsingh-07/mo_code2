@@ -31,10 +31,6 @@ export class VerifyMobileComponent implements OnInit {
               private router: Router,
               private translate: TranslateService) {
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('VERIFY_MOBILE.TITLE');
-      this.subTitle = this.translate.instant('VERIFY_MOBILE.SUB_TITLE');
-     });
   }
 
   ngOnInit() {
@@ -70,7 +66,7 @@ export class VerifyMobileComponent implements OnInit {
         otp += form.value[value];
         if (value === 'otp6') {
           this.openErrorModal();
-          //this.verifyMobileNumber(otp);
+          this.verifyMobileNumber(otp);
         }
       }
     }
@@ -111,7 +107,7 @@ export class VerifyMobileComponent implements OnInit {
    */
   editNumber(el) {
     el.preventDefault();
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { heighlightMobileNumber: true}]);
   }
 
   /**

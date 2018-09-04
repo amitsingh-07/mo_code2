@@ -7,3 +7,7 @@
 input[type='checkbox']+label {
    background-position:left top;
  }
+ .dropdown-menu.show {
+    height: 200px;
+    overflow-y: auto;
+}
