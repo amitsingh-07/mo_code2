@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
@@ -45,7 +46,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private translate: TranslateService, public headerService: HeaderService,
     private guideMeApiService: GuideMeApiService, private guideMeCalculateService: GuideMeCalculateService,
-    private currency: CurrencyPipe, private guideMeService: GuideMeService, public modal: NgbModal, private router: Router) {
+    private currency: CurrencyPipe, private guideMeService: GuideMeService,
+    private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router) {
     this.carouselConfig.wrap = false;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -157,9 +159,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   viewDetails(plan) {
     console.log('viewing plan :' + plan);
-    this.guideMeService.setPlanDetails(this.selectedPlans);
-    this.Brochure(plan, 'brochure.json');
-    this.router.navigate([GUIDE_ME_ROUTE_PATHS.COMPARE_PLANS]);
+    //this.Brochure(plan, 'brochure.json');
   }
 
   // tslint:disable-next-line:member-ordering
@@ -205,6 +205,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.isComparePlanEnabled = !this.isComparePlanEnabled;
   }
   proceed() {
+    this.selectedPlansService.setSelectedPlan(this.selectedPlans);
     const ref = this.modal.open(CreateAccountModelComponent, {
       windowClass: 'position-bottom',
       centered: true
