@@ -31,6 +31,11 @@
   justify-content:center;
   align-items:center;
 }
+
+.space-between {
+  justify-content: space-between;
+  align-items:center;
+}
 .sm-flex-left {
   @include allmobiles{
     justify-content:flex-start;
@@ -51,6 +56,19 @@
 .label-orange{
   color: #e57300 !important;
 }
+
+@include allmobiles{
+  .sm-text-align-center{
+    text-align:center !important;
+  }
+}
+
+@include allmobiles{
+  .sm-text-align-center{
+    text-align:center !important;
+  }
+}
+
 .width100 {
   width: 100%;
 }
@@ -139,6 +157,10 @@
 
 .mr10 {
   margin-right: 10px !important;
+}
+
+.mr15 {
+  margin-right: 15px !important;
 }
 
 .mr17 {
@@ -286,90 +308,28 @@
   }
 }
 
-// Styles for jqxWidgetSlider
-// .jqx-fill-state-pressed {
-//   border-color: #00a7a7 !important;
-//   background: #00a7a7 !important;
-// }
-
-// .jqx-fill-state-normal {
-//   border-color: rgba(0, 167, 167, 0.35) !important;
-//   background: rgba(0, 167, 167, 0.35) !important;
-// }
-
-// .jqx-slider-rangebar {
-//   height: 12px !important;
-// }
-
-// .jqx-rc-all {
-//   border-radius: 40px !important;
-// }
-
-// .jqx-slider-slider-horizontal {
-//   margin-top: -5.5px !important;
-//   border: 1px solid #99cfce !important;
-//   background: #ffffff !important;
-// }
-
-// .jqx-slider-track-horizontal {
-//   height: 12px !important;
-//   margin-top: 2px !important;
-// }
-
-// .jqx-slider-tickscontainer,
-// .jqx-slider-track {
-//   width: 100% !important;
-// }
-
-// .jqx-slider-left+div {
-//   width: 93% !important;
-//   @include tablet {
-//     width: 90% !important;
-//   }
-//   @include iPadProLandscape {
-//     width: 91% !important;
-//   }
-//   @include iPadProPortrait {
-//     width: 91% !important;
-//   }
-// }
-
-/* nouiSlider styles */
-.noUi-horizontal .noUi-handle {
-  border-radius: 100% !important;
-  width: 25px !important;
-  height: 25px !important;
-  top: -6px !important;
-  cursor: pointer;
-  border: 1px solid rgb(153, 207, 206);
-  box-shadow: none;
+.order1{
+  order:1;
 }
 
-.noUi-connect {
-  background: rgb(0,197,196) !important;
+.order2{
+  order:2;
 }
 
-.noUi-base {
-  background: rgba(0, 167, 167, 0.35) !important;
-  border-radius: 15px !important;
+.order3{
+  order:3;
 }
 
-.noUi-target {
-  height: 14px !important;
-  border: none !important;
-}
-
-.noUi-connects {
-  border-radius: 15px !important;
-}
-
-.noUi-handle:after,
-.noUi-handle:before {
-  background: none !important;
-}
-
-nouislider {
-    padding: 0 !important;
+@include allmobiles{
+  .sm-order1{
+    order:1;
+  }
+  .sm-order2{
+    order:2;
+  }
+  .sm-order3{
+    order:3;
+  }
 }
 
 /* Base styles for the entire tooltip */

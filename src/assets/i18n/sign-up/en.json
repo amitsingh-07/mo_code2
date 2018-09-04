@@ -1,0 +1,46 @@
+{
+    "COMMON": {
+        "CONTINUE": "Continue",
+        "VERIFY": "Verify", 
+        "LOGIN": "Log In",
+        "CREATE_ACCOUNT": "Create Account"
+    },
+    "CREATE_ACCOUNT": {
+        "TITLE": "Create Your Account",
+        "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+        "FORM": {
+            "MOBILE_NUMBER": "Mobile Number",
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name",
+            "EMAIL": "Email Address",
+            "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href=href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
+            "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
+        }
+    },
+    "VERIFY_MOBILE": {
+        "TITLE": "Verify Your Mobile",
+        "SUB_TITLE": "So that our advisers can contact you.",
+        "FORM": {
+            "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
+            "EDIT_NUMBER": "Edit Number",
+            "DIDNT_RECIEVE": "Didn't Recieve it?",
+            "REQUEST_NEW_CODE": "Request New Code"
+        }
+    },
+    "PASSWORD": {
+        "TITLE": "Create Password",
+        "SUB_TITLE": "You may use Mobile Number / Email Address as your Login ID.",
+        "FORM": {
+            "PASSWORD": "Password",
+            "CONFIRM_PASSWORD": "Confirm Password"            
+        }      
+    },
+    "EMAIL_VERIFICATION": {
+        "TITLE": "Email Verified!"        
+    },
+    "ACCOUNT_CREATED": {
+        "TITLE": "Account Created",
+        "SUB_TITLE1": "A verification link has been sent to your email address.",
+        "SUB_TITLE2": "Please verify your email address before logging in."    
+    }
+}
