@@ -21,10 +21,10 @@ export class ExistingCoverageModalComponent implements OnInit {
   existingCoverageForm: FormGroup;
   ADD_EXISTING_COVERAGES = {
     TITLE: 'Add Existing Coverages',
-    LIFE_PROTECTION: 'Life protection',
+    LIFE_PROTECTION: 'Life Protection',
     CRITICAL_ILLNESS: 'Critical Illness',
     OCCUPATION_DISABILITY: 'Occupational Disability',
-    LONG_TERM_CARE: 'Long-TermCare',
+    LONG_TERM_CARE: 'Long-Term Care',
     HOSPITAL_PLAN: 'Hospital Plan'
   };
   selectedHospitalPlan = this.guideMeService.getHospitalPlan();

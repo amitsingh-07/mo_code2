@@ -45,6 +45,7 @@ export class GuideMeService {
   protectionNeedsArray: any;
   isMyOcpDisabilityFormValid = false;
   isExistingCoverAdded = false;
+  guideMePlanData: any;
 
   // Variables for Insurance Results Generation
   private result_title: string;
@@ -172,6 +173,14 @@ export class GuideMeService {
     this.commit();
   }
 
+  setPlanDetails(plan) {
+    this.guideMePlanData = plan;
+    this.commit();
+  }
+
+  getPlanDetails() {
+    return this.guideMePlanData;
+  }
   getMyLiabilities(): IMyLiabilities {
     if (!this.guideMeFormData.liabilities) {
       this.guideMeFormData.liabilities = {} as IMyLiabilities;

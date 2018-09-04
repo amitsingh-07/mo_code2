@@ -201,16 +201,19 @@
     top: 0;
     border-radius: 0 8px 8px 0;
     cursor: pointer;
-    .addCover__block__btn--plus {
+    .addCover__block__btn--plus, .addCover__block__btn--edit {
       position: absolute;
       color: $white-color;
       top:50%;
       left:55%;
-      background-image:url(../src/assets/images/plus-white.svg);
+      background-image:url("../src/assets/images/plus-white.svg");
       background-repeat:no-repeat;
       width:20px;
       height:20px;
       transform:translate(-50%,-50%);
+    }
+    .addCover__block__btn--edit {
+      background-image:url("../src/assets/images/edit-white.png");
     }
   }
   .addCover__block--title {

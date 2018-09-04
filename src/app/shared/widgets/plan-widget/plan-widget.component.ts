@@ -11,6 +11,7 @@ import { CurrencyPipe } from '../../../../../node_modules/@angular/common';
 export class PlanWidgetComponent implements DoCheck, OnInit {
   @Input() data;
   @Input() type;
+  @Input() comparePlan;
   icon;
   insurerLogo;
   premiumAmount;
@@ -19,22 +20,25 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   temp;
   insurerRating = 'AA-';
   isSelected = false;
+  isComparePlanSelected = false;
   canShowRanking = true;
   canShowRating = true;
   canShowDiscount = true;
+  isComparePlanEnabled = false;
 
   coverageDuration;
   premiumDuration;
 
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
+  @Output() compare = new EventEmitter();
 
   constructor(private currency: CurrencyPipe) {
     this.highlights = [];
   }
 
   ngDoCheck() {
-
+    this.isComparePlanEnabled = this.comparePlan;
   }
 
   ngOnInit() {
@@ -74,5 +78,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   selectPlan() {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
+  }
+  compareplan() {
+    this.isComparePlanSelected = !this.isComparePlanSelected;
+    this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected});
   }
 }
