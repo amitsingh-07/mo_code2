@@ -1,0 +1,7 @@
+<h1>Working</h1>
+<div *ngFor = "let plan of plansdata">
+  <span>{{plan.productName}}</span>
+   <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
+    <img src="../../../assets/images/{{plan.insurer.logoName}}"/>
+  </div> 
+</div>
