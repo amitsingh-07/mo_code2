@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
@@ -28,6 +29,7 @@ export class VerifyMobileComponent implements OnInit {
   newCodeRequested: boolean;
 
   constructor(private formBuilder: FormBuilder,
+              public headerService: HeaderService,
               private modal: NgbModal,
               private signUpApiService: SignUpApiService,
               private signUpService: SignUpService,
@@ -42,6 +44,7 @@ export class VerifyMobileComponent implements OnInit {
     this.mobileNumberVerified = false;
     this.mobileNumberVerifiedMessage = 'Verifying...';
     this.mobileNumber = this.signUpService.getMobileNumber();
+    this.headerService.setHeaderVisibility(false);
     this.buildVerifyMobileForm();
   }
 
