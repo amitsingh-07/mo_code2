@@ -15,7 +15,7 @@ import { ValidatePassword } from './password.validator';
   styleUrls: ['./password.component.scss']
 })
 export class PasswordComponent implements OnInit {
-
+pwdShow,pwdVisibility,confirmPwdShow,confirmPwdVisibility: boolean;
   passwordForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -24,6 +24,10 @@ export class PasswordComponent implements OnInit {
               private router: Router,
               private translate: TranslateService) {
     this.translate.use('en');
+    this.pwdShow = false;
+     this.pwdVisibility = false;
+     this.confirmPwdShow = false;
+     this.confirmPwdVisibility = false;
   }
 
   /**
@@ -33,6 +37,15 @@ export class PasswordComponent implements OnInit {
     this.buildPasswordForm();
   }
 
+  showPassword(args) {
+  if(args == "confirmPwd"){
+          this.confirmPwdShow = !this.confirmPwdShow;
+          this.confirmPwdVisibility = !this.confirmPwdVisibility;
+    }else if(args == "pwd"){
+          this.pwdShow = !this.pwdShow;
+          this.pwdVisibility = !this.pwdVisibility;
+    }
+  }
   /**
    * build password form.
    */
@@ -60,22 +73,6 @@ export class PasswordComponent implements OnInit {
     };
   }
 
-  /**
-   * show / hide password field.
-   * @param el - selected element.
-   */
-  showHidePassword(el) {
-    if (el.type === 'password') {
-      el.type = 'text';
-    } else {
-      el.type = 'password';
-    }
-  }
-
-  /**
-   * validate password form.
-   * @param form - password form detail.
-   */
   save(form: any) {
     if (!form.valid) {
       console.log(form);
