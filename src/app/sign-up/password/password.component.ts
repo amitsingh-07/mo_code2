@@ -93,6 +93,7 @@ export class PasswordComponent implements OnInit {
   createAccount() {
     this.signUpApiService.createAccount().subscribe((data: any) => {
       if (data.responseCode === 6000) {
+        this.signUpService.clearData();
         this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
       }
     });
