@@ -112,13 +112,13 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   goToNext(form) {
     console.log("calling next...");
     if (this.save(form)) {
+      this.portfolioService.setRiskAssessment(form.value, this.questionIndex);
       if (this.questionIndex < this.questionsList.length) {
         //NEXT QUESTION
         this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + "/" + (this.questionIndex + 1)]);
       }
       else {
         //RISK PROFILE
-        this.portfolioService.setRiskAssessment(form.value, this.questionIndex);
         //CALL API
         this.portfolioService.saveRiskAssessment().subscribe((data) => {
           this.portfolioService.setRiskProfile(data.objectList);

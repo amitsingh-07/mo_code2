@@ -255,7 +255,12 @@
     "helpDate": {
       "modalTitle": "Projected Returns",
       "modalMessage": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."  
-      }
+      },
+      "editModel": {
+        "modalTitle": "Edit Portfolio",
+        "modalMessage": "To make changes to your portfolio, you need to reassess your risk. Are you sure you want to continue?"  
+        }
+      
   },
   "WHATS_THE_RISK":{
     "TITLE": "What’s The Risk"

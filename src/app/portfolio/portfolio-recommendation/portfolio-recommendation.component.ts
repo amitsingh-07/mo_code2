@@ -9,7 +9,7 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { Token } from '@angular/compiler';
-
+import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
 
 @Component({
 
@@ -30,6 +30,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   legendColors: string[] = ["#3cdacb", "#ec681c", "#76328e"];
 
   helpDate: any;
+  editPortfolio:any;
   constructor(
     private router: Router,
     public headerService: HeaderService,
@@ -42,7 +43,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
     let self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
-
+self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel');
       self.helpDate = this.translate.instant('PORTFOLIO_RECOMMENDATION.helpDate');
       this.setPageTitle(this.pageTitle, null, false);
     });
@@ -78,6 +79,11 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
     ref.componentInstance.errorMessage = this.helpDate.modalMessage;
     return false;
   }
+  showEditModal(){
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+     ref.componentInstance.errorTitle =this.editPortfolio.modalTitle;
+     ref.componentInstance.errorMessage =this.editPortfolio.modalMessage;
+   }
   showWhatTheRisk() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
 
