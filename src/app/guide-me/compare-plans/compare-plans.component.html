@@ -1,7 +1,14 @@
 <h1>Working</h1>
 <div *ngFor = "let plan of plansdata">
   <span>{{plan.productName}}</span>
+  <span>{{plan.premium.premiumAmount}}</span>
    <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
-    <img src="../../../assets/images/{{plan.insurer.logoName}}"/>
+    <img src="../../../assets/images/{{plan.insurer.logoName}}"/><hr>
+    <span>{{plan.underWritting}}</span><hr>
+    <span>{{plan.cashValue}}</span><hr>
+    <span>{{plan.coverageDuration}}</span><hr>
+    <span>{{plan.premiumDuration}}</span><hr>
+    <span>{{plan.payOut}}</span><hr>
+    <span>{{plan.features}}</span><hr>
   </div> 
 </div>
