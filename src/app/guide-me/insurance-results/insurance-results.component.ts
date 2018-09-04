@@ -229,8 +229,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'Years Needed', value: this.criticalIllnessValues.ciMultiplier , type: 'Years'} as IResultItemEntry);
     entries.push({ title: 'Annual Income', value: this.criticalIllnessValues.annualSalary , currency: '$' } as IResultItemEntry);
+    entries.push({ title: 'Years To Replace', value: this.criticalIllnessValues.ciMultiplier , type: ' Years'} as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: 'critical-illness-icon.svg',
@@ -273,7 +273,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: this.guideMeService.getLongTermCare().careGiverType,
-                  value: this.guideMeService.selectLongTermCareValues() , currency: '$' } as IResultItemEntry);
+                  value: this.guideMeService.selectLongTermCareValues() , currency: '$', monthEnabled: ' / mth' } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: 'long-term-care-icon.svg',
