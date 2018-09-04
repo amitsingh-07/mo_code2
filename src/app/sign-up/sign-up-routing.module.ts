@@ -20,23 +20,14 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.VERIFY_MOBILE,
     component: VerifyMobileComponent,
-    data: {
-      otpRequested: true
-    },
     canActivate: [SignUpAccessGuard]
   },
   { path: SIGN_UP_ROUTES.PASSWORD,
     component: PasswordComponent,
-    data: {
-      otpRequested: true
-    },
     canActivate: [SignUpAccessGuard]
   },
   { path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
     component: AccountCreatedComponent,
-    data: {
-      otpRequested: true
-    },
     canActivate: [SignUpAccessGuard]
   },
   { path: SIGN_UP_ROUTES.EMAIL_VERIFIED,

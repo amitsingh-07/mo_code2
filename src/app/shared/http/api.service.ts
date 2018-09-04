@@ -216,7 +216,8 @@ export class ApiService {
   }
 
   requestOneTimePassword(mobileNumber) {
-    return this.http.post(apiConstants.endpoint.getProtectionTypesList, mobileNumber)
+    const url = '../assets/mock-data/questions.json';
+    return this.http.post(url, mobileNumber)
     .pipe(
       // tslint:disable-next-line:no-identical-functions
       catchError((error: HttpErrorResponse) => {
@@ -229,6 +230,7 @@ export class ApiService {
           console.error(
             `Backend returned code ${error.status}, ` + `body was: ${error.error}`
           );
+          return this.httpClient.get<IServerResponse>(url);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');
@@ -237,7 +239,8 @@ export class ApiService {
   }
 
   verifyOneTimePassword(code) {
-    return this.http.post(apiConstants.endpoint.getProtectionTypesList, code)
+    const url = '../assets/mock-data/questions.json';
+    return this.http.post(url, code)
     .pipe(
       // tslint:disable-next-line:no-identical-functions
       catchError((error: HttpErrorResponse) => {
@@ -250,6 +253,7 @@ export class ApiService {
           console.error(
             `Backend returned code ${error.status}, ` + `body was: ${error.error}`
           );
+          return this.httpClient.get<IServerResponse>(url);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');
@@ -258,7 +262,8 @@ export class ApiService {
   }
 
   createAccount(data) {
-    return this.http.post(apiConstants.endpoint.getProtectionTypesList, data)
+    const url = '../assets/mock-data/questions.json';
+    return this.http.post(url, data)
     .pipe(
       // tslint:disable-next-line:no-identical-functions
       catchError((error: HttpErrorResponse) => {
@@ -271,6 +276,7 @@ export class ApiService {
           console.error(
             `Backend returned code ${error.status}, ` + `body was: ${error.error}`
           );
+          return this.httpClient.get<IServerResponse>(url);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');

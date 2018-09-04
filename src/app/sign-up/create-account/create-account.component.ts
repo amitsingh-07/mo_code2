@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
 
@@ -27,6 +28,7 @@ export class CreateAccountComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
+              private signUpApiService: SignUpApiService,
               private signUpService: SignUpService,
               private route: ActivatedRoute,
               private router: Router,
@@ -104,7 +106,7 @@ export class CreateAccountComponent implements OnInit {
    * get country code.
    */
   getCountryCode() {
-    this.signUpService.getCountryCodeList().subscribe((data) => {
+    this.signUpApiService.getCountryCodeList().subscribe((data) => {
       this.countryCodeOptions = data;
       const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
       this.setCountryCode(countryCode);
@@ -115,9 +117,11 @@ export class CreateAccountComponent implements OnInit {
    * request one time password.
    */
   requestOneTimePassword() {
-    this.signUpService.requestOneTimePassword().subscribe((data) => {
-      this.signUpService.otpRequested = true;
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+    this.signUpApiService.requestOneTimePassword().subscribe((data: any) => {
+      if (data.responseCode === 6000) {
+        this.signUpService.otpRequested = true;
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+      }
     });
   }
 

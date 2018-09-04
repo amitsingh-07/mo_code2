@@ -14,7 +14,7 @@ export class SignUpAccessGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean>|Promise<boolean>|boolean {
     if (!this.signUpService.otpRequested) {
         this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
-        return false;
     }
+    return true;
   }
 }

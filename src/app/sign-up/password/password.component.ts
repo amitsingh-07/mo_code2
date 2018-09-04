@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidatePassword } from './password.validator';
 
@@ -19,6 +20,7 @@ export class PasswordComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
+              private signUpApiService: SignUpApiService,
               private signUpService: SignUpService,
               private router: Router,
               private translate: TranslateService) {
@@ -71,6 +73,9 @@ export class PasswordComponent implements OnInit {
     };
   }
 
+  /**
+   * check validation.
+   */
   save(form: any) {
     if (form.valid) {
       this.signUpService.setPassword(form.value.password);
@@ -83,8 +88,10 @@ export class PasswordComponent implements OnInit {
    * create user account.
    */
   createAccount() {
-    this.signUpService.createAccount().subscribe((data) => {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+    this.signUpApiService.createAccount().subscribe((data: any) => {
+      if (data.responseCode === 6000) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
+      }
     });
   }
 

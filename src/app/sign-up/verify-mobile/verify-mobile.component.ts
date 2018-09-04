@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 
 @Component({
@@ -24,9 +25,11 @@ export class VerifyMobileComponent implements OnInit {
   mobileNumberVerified: boolean;
   mobileNumberVerifiedMessage: string;
   progressModal: boolean;
+  newCodeRequested: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
+              private signUpApiService: SignUpApiService,
               private signUpService: SignUpService,
               private router: Router,
               private translate: TranslateService) {
@@ -65,7 +68,6 @@ export class VerifyMobileComponent implements OnInit {
       for (const value of Object.keys(form.value)) {
         otp += form.value[value];
         if (value === 'otp6') {
-          this.openErrorModal();
           this.verifyMobileNumber(otp);
         }
       }
@@ -78,10 +80,13 @@ export class VerifyMobileComponent implements OnInit {
    */
   verifyMobileNumber(otp) {
     this.progressModal = true;
-    this.signUpService.verifyOneTimePassword(otp).subscribe((data) => {
-      this.mobileNumberVerified = true;
-      this.mobileNumberVerifiedMessage = 'Mobile Verified!';
-      this.openErrorModal();
+    this.signUpApiService.verifyOneTimePassword(otp).subscribe((data: any) => {
+      if (data.responseCode === 6000) {
+        this.mobileNumberVerified = true;
+        this.mobileNumberVerifiedMessage = 'Mobile Verified!';
+      } else {
+        this.openErrorModal();
+      }
     });
   }
 
@@ -90,9 +95,13 @@ export class VerifyMobileComponent implements OnInit {
    */
   requestNewCode(el) {
     el.preventDefault();
-    this.signUpService.requestOneTimePassword().subscribe((data) => {
-      this.showCodeSentText = true;
-    });
+    if (!this.newCodeRequested) {
+      this.newCodeRequested = true;
+      this.signUpApiService.requestOneTimePassword().subscribe((data) => {
+        this.showCodeSentText = true;
+        this.newCodeRequested = false;
+      });
+    }
   }
 
   /**

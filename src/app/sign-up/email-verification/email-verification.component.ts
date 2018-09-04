@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { SignUpService } from './../sign-up.service';
 })
 export class EmailVerificationComponent implements OnInit {
   constructor(
+    private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
@@ -33,7 +35,7 @@ export class EmailVerificationComponent implements OnInit {
    * @param code - email confirmation code
    */
   verifyEmail(code) {
-    this.signUpService.verifyEmail(code).subscribe((data) => {
+    this.signUpApiService.verifyEmail(code).subscribe((data) => {
 
     });
   }

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { GuideMeService } from '../guide-me/guide-me.service';
-import { ApiService } from './../shared/http/api.service';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 
@@ -17,7 +15,7 @@ export class SignUpService {
   private createAccountFormError: any = new CreateAccountFormError();
   otpRequested: boolean;
 
-  constructor(private apiService: ApiService, private guideMeService: GuideMeService) {
+  constructor() {
     this.getAccountInfo();
   }
 
@@ -91,81 +89,5 @@ export class SignUpService {
         return this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]];
       }
     }
-  }
-
-  /**
-   * get countries code.
-   * @returns array of countries code.
-   */
-  getCountryCodeList() {
-    return this.apiService.getCountryCodeList();
-  }
-
-  /**
-   * get one time password.
-   * @returns OTP code.
-   */
-  requestOneTimePassword() {
-    return this.apiService.requestOneTimePassword(this.signUpFormData.mobileNumber);
-  }
-
-  /**
-   * verify one time password.
-   * @param code - one time password.
-   */
-  verifyOneTimePassword(otp) {
-    return this.apiService.requestOneTimePassword(otp);
-  }
-
-  /**
-   * create user account.
-   * @param code - verification code.
-   */
-  formCreateAccountRequest() {
-    const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
-    const getAccountInfo = this.getAccountInfo();
-    return {
-      customer : {
-        isSmoker: getGuideMeFormData.smoker,
-        givenName: getAccountInfo.firstName,
-        surName: getAccountInfo.lastName,
-        email: getAccountInfo.emailAddress,
-        mobileNumber: getAccountInfo.mobileNumber,
-        notificationByEmail: getAccountInfo.marketingAcceptance,
-        password: getAccountInfo.password,
-        countryCode: getAccountInfo.countryCode,
-        notificationByPhone: false,
-        crmId: 0,
-        isIdentityVerified: false
-      },
-      enquiryId : 3,
-      selectedProducts: [
-        {
-          productName: 'MyProtector Level Plus with CI',
-          typeId: 1
-        },
-        {
-          productName: '3G (I)',
-          typeId: 14
-        }
-      ]
-    };
-  }
-
-  /**
-   * create user account.
-   * @param code - verification code.
-   */
-  createAccount() {
-    const data = this.formCreateAccountRequest();
-    return this.apiService.createAccount(data);
-  }
-
-  /**
-   * verify email.
-   * @param code - verification code.
-   */
-  verifyEmail(code) {
-    return this.apiService.verifyEmail(code);
   }
 }
