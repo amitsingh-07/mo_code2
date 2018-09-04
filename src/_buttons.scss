@@ -25,9 +25,24 @@
       outline: none !important;
       background: $btn-primary-backgrnd-color !important;
     }
+  }
+  &.btn-white {
+    background-color: $white-color;
+    border-color:transparent;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    color:$teal-color;
+    &:hover {
+      background-color: #eafaf9;
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    }
+    &:focus,
+    &:active {
+      background-color: #eafaf9;
+      box-shadow: 0px;
+    }
     &.active {
       outline: none !important;
-      background: $btn-primary-backgrnd-color !important;
+      background: $white-color !important;
     }
   }
   &.btn-primary-dark {
