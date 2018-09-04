@@ -15,13 +15,15 @@ import { PortfolioService } from './../portfolio.service';
 const assetImgPath = './assets/images/';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
-  //   providers: [ provide: NgbDateParserFormatter],
+ 
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   encapsulation: ViewEncapsulation.None
 })
 export class PersonalInfoComponent implements OnInit {
@@ -29,11 +31,11 @@ export class PersonalInfoComponent implements OnInit {
   personalInfoForm: FormGroup;
   pageTitle: string;
   formValues: any;
-  dateOfBirth: string;
   ciAssessmentFormValues: any;
   sliderMinValue: number = 0;
   sliderMaxValue: number = 99;
   sliderDesc:string;
+  dob:string;
 
 
 
@@ -74,7 +76,7 @@ export class PersonalInfoComponent implements OnInit {
   ngOnInit() {
     this.formValues = this.portfolioService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
-      dateOfBirth: [this.formValues.dateOfBirth, Validators.required],
+      dob: [this.formValues.dob, Validators.required],
       investmentPeriod: [this.formValues.investmentPeriod, Validators.required],
     });
   }
@@ -122,7 +124,8 @@ export class PersonalInfoComponent implements OnInit {
       ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.customDob = this.parserFormatter.format(form.value.dateOfBirth);
+  
+    form.value.customDob = this.parserFormatter.format(form.value.dob);
 
     this.portfolioService.setUserInfo(form.value);
     return true;

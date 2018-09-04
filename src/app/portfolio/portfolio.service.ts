@@ -25,6 +25,8 @@ export class PortfolioService {
   getPortfolioFormData(): PortfolioFormData {
     let formData = this.portfolioFormData;
     //formData.dateOfBirth = formData.dateOfBirth.day
+    
+    
     return this.portfolioFormData;
   }
 
@@ -32,7 +34,8 @@ export class PortfolioService {
   //PERSONAL INFO
   getPersonalInfo() {
     return {
-      dob: this.portfolioFormData.dateOfBirth,
+      dob: this.portfolioFormData.dob,
+      customDob: this.portfolioFormData.customDob,
       investmentPeriod:this.portfolioFormData.investmentPeriod
     };
   }
@@ -70,7 +73,8 @@ export class PortfolioService {
     
   }
   setUserInfo(data:PersonalInfo) {
-    this.portfolioFormData.dateOfBirth = data.dateOfBirth;
+    this.portfolioFormData.dob = data.dob;
+    this.portfolioFormData.customDob = data.customDob;
     this.portfolioFormData.investmentPeriod=data.investmentPeriod;
   }
 

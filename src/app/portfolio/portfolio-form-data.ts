@@ -3,7 +3,9 @@ import { FormArray, FormGroup } from '@angular/forms';
 export class PortfolioFormData {
     //PERSONAL INFO
     dateOfBirth:string;
+    dob:string;
     investmentPeriod:number;
+    customDob: string;
     
     //RISK ASSESSMENT
     riskAssessQuest1: number;
