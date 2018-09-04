@@ -23,20 +23,22 @@
 <!-- risk-profile-block -->
 <!-- portfolio-allocation-details -->
 <div class="portfolio-allocation-details">
-  <div class="container-fluid">
 
-    <div class="portfolio-allocation-details__content">
-      <div class="row text-center">
+  <div class="portfolio-allocation-details__content" *ngIf="portfolio">
+    <div class="row">
 
-        <div class="col-12 portfolio-allocation-details__content__desc">
+      <div class="col-12 portfolio-allocation-details__content__desc">
 
-          <div class="portfolio-allocation-details__content__title mb10">Balanced Portfolio
-            <div class="edit_button "></div>
-          </div>
-          <div class="amount flex-col-12" id="riskProfileTitle">${{projectedValue}}</div>
-          <div class="years flex-col-12 mb10" id="riskProfileTitle">Projected Portfolio Value in
-            <u>{{tenure}}</u> years</div>
-          <div class="project_returns">
+        <div class="portfolio-allocation-details__content__title mb10 text-center">Balanced Portfolio
+          <div class="edit_button "></div>
+        </div>
+
+        <div class="amount flex-col-12  text-center" id="riskProfileTitle">${{portfolio.projectedValue}}</div>
+        <div class="years flex-col-12 mb10  text-center" id="riskProfileTitle">Projected Portfolio Value in
+          <u>{{portfolio.tenure}}</u> years</div>
+
+        <div class="project_returns  text-center">
+          <div class="container-fluid">
             <div class="flex-col-12">
               <div class="Projected_title">Projected Returns
 
@@ -45,7 +47,7 @@
 
             </div>
             <div class="flex-col-12">
-              <div class="Projected_money">{{projectedReturns}}
+              <div class="Projected_money">{{portfolio.projectedReturns}}
                 <div class="tooltip-icon" (click)="showHelpModal()"></div>
 
               </div>
@@ -53,17 +55,29 @@
               <!-- <div class="whats_resk" (click)=showWhatFubdDetails()>Fund Details</div>                -->
 
             </div>
-
           </div>
-
-          <div class="accordion">
- 
-          </div>
-
-
-
-          <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="riskProfileBtn">{{ 'LABEL.I_WANT_TO_START_INVESTING' | translate}}</button>
         </div>
+
+        <div class="allocation-container">
+          <div class="container-fluid">
+            <div class="flex-col-12">
+              <div class="allocation-content">
+                <div *ngIf="portfolio">
+                  <div class="breakdown-title">Asset Allocation Breakdown</div>
+                  <app-breakdown-bar [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
+                    [colors]="legendColors" (selectAllocationBar)="selectAllocation($event)"></app-breakdown-bar>
+                  <app-breakdown-accordion [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
+                    [colors]="legendColors" (selectAllocationAccordion)="selectAllocation($event)"></app-breakdown-accordion>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+          id="riskProfileBtn">{{ 'LABEL.I_WANT_TO_START_INVESTING' | translate}}</button>
       </div>
     </div>
   </div>
