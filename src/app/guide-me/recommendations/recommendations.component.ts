@@ -45,7 +45,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private translate: TranslateService, public headerService: HeaderService,
-    private guideMeApiService: GuideMeApiService, private guideMeCalculateService: GuideMeCalculateService,
+    private guideMeApiService: GuideMeApiService, private calculateService: GuideMeCalculateService,
     private currency: CurrencyPipe, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router) {
     this.carouselConfig.wrap = false;
@@ -138,17 +138,19 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
     switch (this.activeRecommendationType) {
       case 'Life Protection':
-        this.coverageAmount = this.guideMeCalculateService.getLifeProtectionSummary() + '';
+        this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
         break;
       case 'Critical Illness':
-        const criticalIllnessValues: CriticalIllnessData = this.guideMeService.getCiAssessment();
-        this.coverageAmount = criticalIllnessValues.annualSalary * criticalIllnessValues.ciMultiplier + '';
+        const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
+        this.coverageAmount = criticalIllnessValues.coverageAmount + '';
         break;
       case 'Occupational Disability':
-        this.coverageAmount = this.guideMeService.getMyOcpDisability().coverageAmount + '';
+        const ocpData = this.calculateService.getOcpData();
+        this.coverageAmount = ocpData.coverageAmount + '';
         break;
       case 'Long Term Care':
-        this.coverageAmount = '';
+        const ltcData = this.calculateService.getLtcData();
+        this.coverageAmount = ltcData.monthlyPayout + '';
         break;
       case 'Hospital Plan':
         this.coverageAmount = '';

@@ -126,6 +126,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.dependentCount = value;
     this.dependentCountChange.emit(value);
     this.refreshDependentForm();
+    this.guideMeService.updateDependentCount(value);
   }
 
   refreshDependentForm() {

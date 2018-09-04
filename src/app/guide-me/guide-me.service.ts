@@ -100,6 +100,11 @@ export class GuideMeService {
     this.commit();
   }
 
+  updateDependentCount(count: number) {
+    this.guideMeFormData.dependent = count;
+    this.commit();
+  }
+
   // Return the entire GuideMe Form Data
   getGuideMeFormData(): GuideMeFormData {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
