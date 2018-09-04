@@ -1,4 +1,19 @@
+
 // Button styles
+button {
+  box-shadow: none !important;
+}
+button:active {
+  box-shadow: none;
+  background: none;
+}
+/*
+button:active:focus {
+  color: inherit;
+  background-color: inherit; 
+  border-color: inherit;
+}
+*/
 .btn {
   font-size: 22px;
   font-family: $muli-semi-bold;
@@ -8,6 +23,7 @@
   text-align: center;
   border: 0;
   border: 0 solid transparent;
+
   &.btn-primary {
     background-color: $btn-primary-backgrnd-color;
     border-color: $btn-primary-backgrnd-color;
