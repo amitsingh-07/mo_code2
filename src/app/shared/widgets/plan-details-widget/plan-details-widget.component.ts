@@ -1,19 +1,15 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
 
 @Component({
-  selector: 'app-plan-widget',
-  templateUrl: './plan-widget.component.html',
-  styleUrls: ['./plan-widget.component.scss'],
+  selector: 'app-plan-details-widget',
+  templateUrl: './plan-details-widget.component.html',
+  styleUrls: ['./plan-details-widget.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlanWidgetComponent implements DoCheck, OnInit {
+export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
   @Input() data;
   @Input() type;
-  @Input() comparePlan;
   @Input() bestValue;
 
   icon;
@@ -23,25 +19,22 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   highlights = [];
   temp;
   isSelected = false;
-  isComparePlanSelected = false;
   canShowRanking = true;
   canShowRating = true;
   canShowDiscount = true;
-  isComparePlanEnabled = false;
 
   coverageDuration;
   premiumDuration;
 
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
-  @Output() compare = new EventEmitter();
 
-  constructor(private currency: CurrencyPipe, public modal: NgbModal) {
+  constructor(private currency: CurrencyPipe) {
     this.highlights = [];
   }
 
   ngDoCheck() {
-    this.isComparePlanEnabled = this.comparePlan;
+
   }
 
   ngOnInit() {
@@ -75,29 +68,11 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   }
 
   viewDetails() {
-    //this.view.emit(this.temp);
-    const data = this.temp;
-    const ref = this.modal.open(ProductDetailComponent, { centered: true });
-    ref.componentInstance.plan = data;
-    ref.componentInstance.protectionType = this.type;
-    ref.componentInstance.bestValue = this.bestValue;
-    ref.result.then((plan) => {
-      if (plan) {
-        this.isSelected = true;
-        this.select.emit({ plan: this.temp, selected: this.isSelected });
-      }
-    }).catch((e) => {
-      console.log(e);
-    });
+    this.view.emit(this.temp);
   }
 
   selectPlan() {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
-  compareplan() {
-    this.isComparePlanSelected = !this.isComparePlanSelected;
-    this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
-  }
 }
-

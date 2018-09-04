@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { AuthenticationService } from './../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';

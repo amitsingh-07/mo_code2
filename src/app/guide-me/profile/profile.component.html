@@ -20,6 +20,7 @@
             <i class="tooltip-icon" (click)="showHelpModal(i)" id="prfTltp_{{i+1}}"></i>
           </div>
           <button type="button" [disabled]="!profileForm.valid" (click)="goToNext(profileForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+          <button type="button" (click)="viewDetails()" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">TEST</button>
         </div>
       </form>
     </div>

@@ -26,7 +26,7 @@
           <div class="help-icon" style="visibility: hidden;"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
-          <div class="feature-head">{{insurerRating}}</div>
+          <div class="feature-head">{{data.insurer.rating}}</div>
           <div class="feature-caption">Insurer's Rating</div>
           <div class="help-icon"></div>
         </div>
@@ -45,10 +45,10 @@
     </div>
   </div>
   <div class="row row-btn-bottom">
-      <div class="col-md-6 d-none d-md-flex hidden-sm-md" *ngIf = "!isComparePlanEnabled">
+      <div class="col-md-6 d-none d-md-flex hidden-sm-md widget-btn-view" *ngIf = "!isComparePlanEnabled">
         <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">Details</button>
       </div>
-      <div class="col-md-6 col-btn-bottom" *ngIf = "!isComparePlanEnabled">
+      <div class="col-md-6 col-btn-bottom widget-btn-select" *ngIf = "!isComparePlanEnabled">
         <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
       </div>
       <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
@@ -56,3 +56,4 @@
       </div>
     </div>
 </div>
+

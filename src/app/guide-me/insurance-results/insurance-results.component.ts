@@ -4,20 +4,20 @@ import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } fro
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { IMyIncome } from '../income/income.interface';
 import { IMyOcpDisability } from '../ocp-disability/ocp-disability.interface';
-import { GuideMeCalculateService } from './../guide-me-calculate.service';
-import { GuideMeService } from './../guide-me.service';
+import { GuideMeCalculateService } from '../guide-me-calculate.service';
+import { GuideMeService } from '../guide-me.service';
 import { ExistingCoverageModalComponent } from './existing-coverage-modal/existing-coverage-modal.component';
 import { IExistingCoverage } from './existing-coverage-modal/existing-coverage.interface';
 import { InsuranceResultModalComponent } from './insurance-result-modal/insurance-result-modal.component';
 import { IResultItem, IResultItemEntry, IResultObject } from './insurance-result/insurance-result';
-import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
+import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 
 const assetImgPath = './assets/images/';
 @Component({

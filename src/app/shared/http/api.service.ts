@@ -1,4 +1,4 @@
-import { IRecommendationRequest } from './../../guide-me/interfaces/recommendations.request';
+import { IRecommendationRequest } from '../../guide-me/interfaces/recommendations.request';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
