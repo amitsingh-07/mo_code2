@@ -64,7 +64,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   getRecommendationsFromServer() {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
-        console.log(data);
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;
         this.activeRecommendationList = this.recommendationPlans[0];

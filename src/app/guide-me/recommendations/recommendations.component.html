@@ -6,12 +6,6 @@
     </div>
   </div>
 
-
-  <!--
-  <app-recommendations-carousel></app-recommendations-carousel>
-  -->
-
-
   <div class="plan-type-list d-none d-md-flex hidden-sm-md">
     <div class="plan-type" (click)="jumpToSlide(recommendation)" [class.active]="recommendation.protectionType == activeRecommendationType"
       *ngFor="let recommendation of recommendationPlans; let i = index">
@@ -32,7 +26,7 @@
   <span class="coverage-amount">{{coverageAmount | currency:'USD':number:'1.0-0'}}</span>
   <br class="hidden-lg" />
   Premium from:
-  <span class="coverage-premium-from">{{premiumFrom | currency}}</span> / mth
+  <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ 'SUFFIX.PER_MONTH' | translate}}
 </div>
 <!-- <button class="comparePlans_btn">
 <span (click)="EnablecomparePlan()">compare plans</span></button> -->
@@ -73,8 +67,8 @@
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
     <span class="selected-count">{{selectedPlans.length}}</span>
-    <span class="lbl-selected">Plans Selected</span>
-    <span class="btn-proceed" (click)="proceed()">Proceed</span>
+    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
+    <span class="btn-proceed" (click)="proceed()">{{ 'BUTTON.PROCEED' | translate}}</span>
   </div>
 </div>
 <!-- / Floating plan selection footer -->
@@ -83,8 +77,8 @@
 <div *ngIf="isComparePlanEnabled && (comparePlans && comparePlans.length > 0)" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
     <span class="selected-count">{{comparePlans.length}}</span>
-    <span class="lbl-selected">Plans Selected</span>
-    <span class="btn-proceed" (click)="compare()">Compare</span>
+    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
+    <span class="btn-proceed" (click)="compare()">{{ 'BUTTON.COMPARE' | translate}}</span>
   </div>
 </div>
 <!-- / Floating plan selection for compare plans footer -->

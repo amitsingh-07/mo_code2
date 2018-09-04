@@ -98,7 +98,6 @@ export class GuideMeApiService {
     getDependentsData() {
         const dependentsData = [];
         const dependentList = this.guideMeService.getLifeProtection().dependents;
-        console.log(dependentList);
         for (const dependent of dependentList) {
             const thisDependent = {
                 gender: dependent.gender,

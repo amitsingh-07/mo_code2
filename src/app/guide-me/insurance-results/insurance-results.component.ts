@@ -124,7 +124,6 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     });
     ref.componentInstance.data = this.protectionNeedsArray;
     ref.componentInstance.dataOutput.subscribe((emittedValue) => {
-      console.log(emittedValue);
       this.addExistingCoverageOutput(emittedValue);
     });
   }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,7 +17,20 @@ export class ProductDetailComponent implements OnInit {
   current = 0;
   items: any[];
 
-  constructor(public activeModal: NgbActiveModal) { }
+  lblAboutPolicy;
+  lblReasons;
+  lblPayout;
+  lblFeatures;
+
+  constructor(public activeModal: NgbActiveModal, public translate: TranslateService) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.lblAboutPolicy = this.translate.instant('PRODUCT_DETAILS.LBL_ABOUT_POLICY');
+      this.lblReasons = this.translate.instant('PRODUCT_DETAILS.LBL_REASONS_TO_BUY');
+      this.lblPayout = this.translate.instant('PRODUCT_DETAILS.LBL_PAYOUT');
+      this.lblFeatures = this.translate.instant('PRODUCT_DETAILS.LBL_UNIQUE_FEATURES');
+    });
+  }
 
   toggle(position) {
     this.current = position;
@@ -34,19 +48,19 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        title: 'About Policy',
+        title: this.lblAboutPolicy,
         description: this.plan.productDescription
       },
       {
-        title: 'Reasons To Buy This Plan',
+        title: this.lblReasons,
         description: this.plan.whyBuy
       },
       {
-        title: 'Payout Details',
+        title: this.lblPayout,
         description: this.plan.payOut
       },
       {
-        title: 'Unique Features',
+        title: this.lblFeatures,
         description: this.plan.features
       }
     ];
@@ -54,6 +68,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   selectPlan(data) {
-      this.activeModal.close(data);
+    this.activeModal.close(data);
   }
 }

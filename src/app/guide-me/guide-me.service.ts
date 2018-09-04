@@ -340,7 +340,6 @@ export class GuideMeService {
   }
 
   getProtectionNeedsResults() {
-    console.log('get Protection Needs Triggered');
     let selectedProtectionNeeds = [];
     selectedProtectionNeeds = this.getProtectionNeeds();
     if (selectedProtectionNeeds) {

@@ -4,7 +4,7 @@
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
         <h2>{{premiumAmount | currency}}
-          <span class="text-small">/ mth</span>
+          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
         </h2>
       </div>
       <div class="insurer-logo" style="width: 35%">
@@ -16,15 +16,15 @@
       <div class="insurance-plan-widget__container__rank__wrapper">
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
-          <div class="feature-caption">Ranking By Price</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
           <div class="feature-head">{{data.insurer.rating}}</div>
-          <div class="feature-caption">Insurer's Rating</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
           <div class="feature-head">50%</div>
-          <div class="feature-caption">Commission Rebate</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
         </div>
       </div>
 
@@ -38,11 +38,10 @@
   </div>
   <div class="row row-btn-bottom">
     <div class="col-md-6 d-none d-md-flex widget-btn-view">
-      <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">Details</button>
+      <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
     </div>
     <div class="col-md-6 col-btn-bottom widget-btn-select">
-      <button type="button" (click)="selectPlan()" class="btn btn-select width100">Select
-        Plan</button>
+      <button type="button" (click)="selectPlan()" class="btn btn-select width100">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
     </div>
   </div>
 </div>

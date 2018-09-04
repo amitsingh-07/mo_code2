@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '../../../../../node_modules/@ngx-translate/core';
 
 @Component({
   selector: 'app-plan-details-widget',
@@ -29,7 +30,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
 
-  constructor(private currency: CurrencyPipe) {
+  constructor(private currency: CurrencyPipe, private translate: TranslateService) {
+    this.translate.use('en');
     this.highlights = [];
   }
 
