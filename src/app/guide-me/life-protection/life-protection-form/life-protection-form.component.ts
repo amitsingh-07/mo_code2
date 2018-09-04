@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,9 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from '../../guide-me.service';
-import {
-  LifeProtectionModalComponent
-} from './life-protection-modal/life-protection-modal.component';
+import { LifeProtectionModalComponent } from './life-protection-modal/life-protection-modal.component';
 
 const Regexp = new RegExp('[,]', 'g');
 const MAX_YEARS_NEEDED = 100;
@@ -81,6 +79,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.dependentCount = this.guideMeService.getUserInfo().dependent ? this.guideMeService.getUserInfo().dependent : 0;
     this.lifeProtectionForm = this.formBuilder.group({
       dependents: this.formBuilder.array([this.createDependentForm()])
     });
@@ -201,7 +200,11 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   save(form: any) {
-    this.guideMeService.setLifeProtection(form.value);
+    const formValues = [];
+    form.controls.dependents.controls.forEach((formData) => {
+      formValues.push(formData.value);
+    });
+    this.guideMeService.setLifeProtection({ dependents: formValues });
     return true;
   }
 
@@ -222,4 +225,3 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     return age <= 23;
   }
 }
-
