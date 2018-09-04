@@ -27,7 +27,7 @@
             </div>
             <div class="flex-col-8 stretch" [formGroup]="createAccountForm">
               <div class="form-group">
-                <input type="input" maxLength="8" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
+                <input type="input" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
                 <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
               </div>
             </div>

@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from './../sign-up.service';
-import { ValidateMatchPassword } from './password.match.validator';
 import { ValidatePassword } from './password.validator';
 
 @Component({
@@ -44,6 +43,11 @@ export class PasswordComponent implements OnInit {
     }, {validator: this.validateMatchPassword('password', 'confirmPassword')});
   }
 
+  /**
+   * validate confirm password.
+   * @param password - password field.
+   * @param confirmPassword - confirm password field.
+   */
   private validateMatchPassword(password: string, confirmPassword: string) {
     return (group: FormGroup) => {
       const passwordInput = group.controls['password'];
@@ -56,6 +60,10 @@ export class PasswordComponent implements OnInit {
     };
   }
 
+  /**
+   * show / hide password field.
+   * @param el - selected element.
+   */
   showHidePassword(el) {
     if (el.type === 'password') {
       el.type = 'text';
@@ -65,19 +73,23 @@ export class PasswordComponent implements OnInit {
   }
 
   /**
-   * validate accountInfoForm.
-   * @param form - user account form detail.
+   * validate password form.
+   * @param form - password form detail.
    */
   save(form: any) {
     if (!form.valid) {
       console.log(form);
     } else {
-      this.createPassword();
+      this.signUpService.setPassword(form.value.password);
+      this.createAccount();
     }
   }
 
-  createPassword() {
-    this.signUpService.requestOneTimePassword().subscribe((data) => {
+  /**
+   * create user account.
+   */
+  createAccount() {
+    this.signUpService.createAccount().subscribe((data) => {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
     });
   }

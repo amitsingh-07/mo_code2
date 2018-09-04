@@ -19,18 +19,28 @@ export class EmailVerificationComponent implements OnInit {
     this.translate.use('en');
   }
 
+  /**
+   * Getting email confirmation code from URL.
+   */
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.verifyEmail(params.code);
     });
   }
 
+  /**
+   * verify email.
+   * @param code - email confirmation code
+   */
   verifyEmail(code) {
     this.signUpService.verifyEmail(code).subscribe((data) => {
 
     });
   }
 
+  /**
+   * redirect to login page.
+   */
   redirectToLogin() {
     this.router.navigate([]);
   }

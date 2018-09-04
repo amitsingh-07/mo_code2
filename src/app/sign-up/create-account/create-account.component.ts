@@ -72,7 +72,6 @@ export class CreateAccountComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      form.name = 'createAccountForm';
       const error = this.signUpService.currentFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;

@@ -19,9 +19,11 @@ export class VerifyMobileComponent implements OnInit {
   private subTitle: string;
 
   verifyMobileForm: FormGroup;
-  showCodeSentText;
-  mobileNumber;
-  countryCode;
+  showCodeSentText: boolean;
+  mobileNumber: any;
+  mobileNumberVerified: boolean;
+  mobileNumberVerifiedMessage: string;
+  progressModal: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
@@ -36,9 +38,11 @@ export class VerifyMobileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.progressModal = false;
     this.showCodeSentText = false;
+    this.mobileNumberVerified = false;
+    this.mobileNumberVerifiedMessage = 'Verifying...';
     this.mobileNumber = this.signUpService.getMobileNumber();
-    this.countryCode = this.signUpService.getCountryCode();
     this.buildVerifyMobileForm();
   }
 
@@ -47,12 +51,12 @@ export class VerifyMobileComponent implements OnInit {
    */
   buildVerifyMobileForm() {
     this.verifyMobileForm = this.formBuilder.group({
-      otp1: ['', [Validators.required]],
-      otp2: ['', [Validators.required]],
-      otp3: ['', [Validators.required]],
-      otp4: ['', [Validators.required]],
-      otp5: ['', [Validators.required]],
-      otp6: ['', [Validators.required]]
+      otp1: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
+      otp2: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
+      otp3: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
+      otp4: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
+      otp5: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
+      otp6: ['', [Validators.required, Validators.pattern('(?:[0-9])')]]
     });
   }
 
@@ -60,22 +64,13 @@ export class VerifyMobileComponent implements OnInit {
    * verify user mobile number.
    */
   save(form: any) {
-    if (!form.valid) {
-      Object.keys(form.controls).forEach((key) => {
-        form.get(key).markAsDirty();
-      });
-      form.name = 'verifyMobileForm';
-      const error = this.signUpService.currentFormError(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      return false;
-    } else {
+    if (form.valid) {
       let otp;
       for (const value of Object.keys(form.value)) {
         otp += form.value[value];
         if (value === 'otp6') {
-          this.verifyMobileNumber(otp);
+          this.openErrorModal();
+          //this.verifyMobileNumber(otp);
         }
       }
     }
@@ -85,9 +80,12 @@ export class VerifyMobileComponent implements OnInit {
    * verify user mobile number.
    * @param code - one time password.
    */
-  verifyMobileNumber(code) {
-    this.signUpService.verifyOneTimePassword(code).subscribe((data) => {
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
+  verifyMobileNumber(otp) {
+    this.progressModal = true;
+    this.signUpService.verifyOneTimePassword(otp).subscribe((data) => {
+      this.mobileNumberVerified = true;
+      this.mobileNumberVerifiedMessage = 'Mobile Verified!';
+      this.openErrorModal();
     });
   }
 
@@ -99,6 +97,13 @@ export class VerifyMobileComponent implements OnInit {
     this.signUpService.requestOneTimePassword().subscribe((data) => {
       this.showCodeSentText = true;
     });
+  }
+
+  /**
+   * redirect to password creation page.
+   */
+  redirectToPasswordPage() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
   }
 
   /**
@@ -121,5 +126,20 @@ export class VerifyMobileComponent implements OnInit {
     if (currentElement.value && nextElement) {
       nextElement.focus();
     }
+  }
+
+  /**
+   * open invalid otp error modal.
+   */
+  openErrorModal() {
+      this.progressModal = false;
+      const error = {
+        errorTitle : 'Incorrect OTP Code',
+        errorMessage: 'You have keyed in an invalid OTP Code'
+      };
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.errorTitle;
+      ref.componentInstance.errorMessage = error.errorMessage;
+      ref.componentInstance.showErrorButton = true;
   }
 }

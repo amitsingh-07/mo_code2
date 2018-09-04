@@ -6,4 +6,5 @@ export class SignUpFormData {
     emailAddress: string;
     termsOfConditions: boolean;
     marketingAcceptance: boolean;
+    password: string;
 }

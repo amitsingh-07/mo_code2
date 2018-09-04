@@ -36,7 +36,7 @@
         }      
     },
     "EMAIL_VERIFICATION": {
-        "TITLE": "Email Verified"        
+        "TITLE": "Email Verified!"        
     },
     "ACCOUNT_CREATED": {
         "TITLE": "Account Created",
