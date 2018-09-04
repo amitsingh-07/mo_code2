@@ -45,11 +45,14 @@
     </div>
   </div>
   <div class="row row-btn-bottom">
-      <div class="col-md-6 d-none d-md-flex hidden-sm-md">
+      <div class="col-md-6 d-none d-md-flex hidden-sm-md" *ngIf = "!isComparePlanEnabled">
         <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">Details</button>
       </div>
-      <div class="col-md-6 col-btn-bottom">
+      <div class="col-md-6 col-btn-bottom" *ngIf = "!isComparePlanEnabled">
         <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
+      </div>
+      <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
+        <button type="button" (click)="compareplan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isComparePlanSelected}">Compare</button>
       </div>
     </div>
 </div>

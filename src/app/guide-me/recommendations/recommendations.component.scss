@@ -9,7 +9,11 @@ app-recommendations {
       margin-top: 115px;
     }
   }
-
+  .comparePlans_btn{
+    display: flex;
+    margin-left: auto;
+    order: 2;
+  }
   .description {
     width: 500px;
     color: rgba(255, 255, 255, 0.65);

@@ -4,9 +4,11 @@ import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { CriticalIllnessData } from './../ci-assessment/ci-assessment';
 import { GuideMeApiService } from './../guide-me.api.service';
@@ -27,9 +29,10 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   selectedPlans: any[] = [];
   coverageAmount = '';
   premiumFrom = '';
-
+  comparePlans: any[] = [];
   activeRecommendationType;
   activeRecommendationList;
+  isComparePlanEnabled = false;
 
   prevActiveSlide;
   nextActiveSlide;
@@ -42,7 +45,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private translate: TranslateService, public headerService: HeaderService,
     private guideMeApiService: GuideMeApiService, private guideMeCalculateService: GuideMeCalculateService,
-    private currency: CurrencyPipe, private guideMeService: GuideMeService, public modal: NgbModal) {
+    private currency: CurrencyPipe, private guideMeService: GuideMeService, public modal: NgbModal, private router: Router) {
     this.carouselConfig.wrap = false;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -154,14 +157,15 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
 
   viewDetails(plan) {
     console.log('viewing plan :' + plan);
-    // this.Brochure(plan, 'brochure.json');
+    this.guideMeService.setPlanDetails(this.selectedPlans);
+    this.Brochure(plan, 'brochure.json');
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.COMPARE_PLANS]);
   }
 
   // tslint:disable-next-line:member-ordering
   Brochure = (() => {
     const a = document.createElement('a');
     document.body.appendChild(a);
-    a.style = 'display: block';
     return ((data, fileName) => {
       const json = JSON.stringify(data);
       const blob = new Blob([json], {type: 'octet/stream'});
@@ -183,7 +187,23 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
       }
     }
   }
-
+  comparePlan(data) {
+    if (data.selected) {
+      this.comparePlans.push(data.plan);
+    } else {
+      const index: number = this.comparePlans.indexOf(data.plan);
+      if (index !== -1) {
+        this.comparePlans.splice(index, 1);
+      }
+    }
+  }
+  compare() {
+    this.guideMeService.setPlanDetails(this.comparePlans);
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.COMPARE_PLANS]);
+  }
+  EnablecomparePlan() {
+    this.isComparePlanEnabled = !this.isComparePlanEnabled;
+  }
   proceed() {
     const ref = this.modal.open(CreateAccountModelComponent, {
       windowClass: 'position-bottom',
