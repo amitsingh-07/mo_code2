@@ -1,3 +1,5 @@
+import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
+import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -61,8 +63,11 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
     RecommendationsComponent,
     PlanWidgetComponent,
     CustomCurrencyPipe,
-    ComparePlansComponent
+    ComparePlansComponent,
+    PlanDetailsWidgetComponent,
+    ProductDetailComponent
   ],
-  providers: [CurrencyPipe, CustomCurrencyPipe]
+  providers: [CurrencyPipe, CustomCurrencyPipe],
+  entryComponents: [ProductDetailComponent]
 })
 export class GuideMeModule { }

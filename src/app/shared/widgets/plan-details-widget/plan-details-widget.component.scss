@@ -1,7 +1,7 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-app-plan-widget {
+app-plan-details-widget {
   .hidden {
     display: none !important;
   }
@@ -14,10 +14,6 @@ app-plan-widget {
     position: relative;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
 
-    @include allmobiles {
-      box-shadow: none;
-    }
-
     .img-fluid {
       height: 70px;
       width: 70px;
@@ -28,62 +24,31 @@ app-plan-widget {
     .btn-select {
       background-color: #00a7a7;
       color: #ffffff;
-
-      @include allmobiles {
-        border-radius: 0px 0px 6px 6px;
-        width: 100%;
-        font-size: 16px;
-      }
-    }
-
-    .plan-selected {
-      color: #fff;
-      background-color: #ff872f !important;
-      border-color: #ff872f !important;
-      box-shadow: none;
     }
 
     .info-icon {
       position: absolute;
       right: 5px;
       top: 5px;
-      z-index: 9999;
-      cursor: pointer;
     }
 
     .insurer-logo {
       height: 80px;
       text-align: center;
       margin-bottom: 10px;
-      display: flex;
       align-items: center;
-      justify-content: center;
     }
 
     border: solid 3px #fff;
 
-    @include allmobiles {
-      border: none;
-    }
-
     .insurance-plan-widget__container {
       padding-top: 15px;
 
-      @include allmobiles {
-        min-height: 251px;
-      }
-
       h4 {
-        height: 44px;
+        max-height: 44px;
         font-size: 21px;
         color: $black-color;
         font-family: $muli-semi-bold;
-
-        @include allmobiles {
-          font-size: 16px;
-          text-align: center;
-          min-height: 38px;
-        }
       }
 
       h2 {
@@ -91,23 +56,11 @@ app-plan-widget {
         color: $app-backgrnd-color;
         font-family: $muli-semi-bold;
 
-        @include allmobiles {
-          text-align: center;
-          margin-top: 5px;
-          margin-bottom: 5px;
-          font-size: 24px;
-        }
-
         .text-small {
           color: #2d8289;
           font-size: 18px;
           font-family: $muli-regular;
           margin-left: 5px;
-
-          @include allmobiles {
-            font-size: 16px;
-            margin-left: 0;
-          }
         }
       }
 
@@ -119,7 +72,7 @@ app-plan-widget {
         font-family: $muli-bold;
         font-size: 16px;
         position: relative;
-        margin: 0 -23px;
+        margin: 0 -20px;
         background: url("../../../../assets/images/promo-tag.svg");
         background-repeat: no-repeat;
         background-position: 26px 9px;

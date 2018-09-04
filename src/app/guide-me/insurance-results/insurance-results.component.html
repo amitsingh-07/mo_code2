@@ -43,9 +43,12 @@
           <div class="addCover__block__btn" (click)="openExistingCoverageModal()">
             <span class="addCover__block__btn--{{this.guideMeService.isExistingCoverAdded ? 'edit':'plus'}}"></span>
           </div>
-          <div class="addCover__block--title">
-            <span>{{ 'INSURANCE_RESULTS.ADD_COVERAGE.LBL' | translate}}</span>
+          <div class="addCover__block--title" *ngIf ='!this.guideMeService.isExistingCoverAdded'>
+            <span >{{ 'INSURANCE_RESULTS.ADD_COVERAGE.LBL' | translate}}</span>
             <span class="sub">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.SUB_LBL' | translate}}</span>
+          </div>
+          <div class="addCover__block--title" *ngIf ='this.guideMeService.isExistingCoverAdded'>
+            <span >{{ 'INSURANCE_RESULTS.ADD_COVERAGE.EXISTING_LBL' | translate}}</span>
           </div>
         </div>
         <div class="continue__btn" (click)="goToNext()">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div>

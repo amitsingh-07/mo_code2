@@ -1,4 +1,4 @@
-import { GuideMeApiService } from './../guide-me.api.service';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';

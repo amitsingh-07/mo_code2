@@ -13,7 +13,6 @@ export class ComparePlansComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.guideMeService.getPlanDetails());
     this.plansdata = this.guideMeService.getPlanDetails();
     this.data = {
       "id":"P113",

@@ -1,18 +1,17 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarousel, NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
+import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
-import { CriticalIllnessData } from './../ci-assessment/ci-assessment';
-import { GuideMeApiService } from './../guide-me.api.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
 
 @Component({
@@ -26,6 +25,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   pageTitle: string;
   subTitle: string;
 
+  modalRef: NgbModalRef;
   recommendationPlans;
   selectedPlans: any[] = [];
   coverageAmount = '';
@@ -64,7 +64,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   getRecommendationsFromServer() {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
-        console.log(data);
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;
         this.activeRecommendationList = this.recommendationPlans[0];
@@ -158,8 +157,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   viewDetails(plan) {
-    console.log('viewing plan :' + plan);
-    //this.Brochure(plan, 'brochure.json');
   }
 
   // tslint:disable-next-line:member-ordering
@@ -168,7 +165,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     document.body.appendChild(a);
     return ((data, fileName) => {
       const json = JSON.stringify(data);
-      const blob = new Blob([json], {type: 'octet/stream'});
+      const blob = new Blob([json], { type: 'octet/stream' });
       const url = window.URL.createObjectURL(blob);
       a.href = url;
       a.download = fileName;
@@ -176,12 +173,14 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
       window.URL.revokeObjectURL(url);
     });
   })();
+
   selectPlan(data) {
+    const index: number = this.selectedPlans.indexOf(data.plan);
     if (data.selected) {
-      console.log(data.plan);
-      this.selectedPlans.push(data.plan);
+      if (index === -1) {
+        this.selectedPlans.push(data.plan);
+      }
     } else {
-      const index: number = this.selectedPlans.indexOf(data.plan);
       if (index !== -1) {
         this.selectedPlans.splice(index, 1);
       }
@@ -206,10 +205,11 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
   proceed() {
     this.selectedPlansService.setSelectedPlan(this.selectedPlans);
-    const ref = this.modal.open(CreateAccountModelComponent, {
+    this.modalRef = this.modal.open(CreateAccountModelComponent, {
       windowClass: 'position-bottom',
       centered: true
     });
-    ref.componentInstance.data = this.selectedPlans.length;
+    this.modalRef.componentInstance.data = this.selectedPlans.length;
   }
 }
+
