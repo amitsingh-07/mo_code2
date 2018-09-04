@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-lg-7 col-md-6">
         <div class="signup-wrapper">
-          <h2 class="signup-wrapper__title order1 sm-order2 ml10">{{pageTitle}}</h2>
+          <h2 class="signup-wrapper__title order1 sm-order2 ml10">{{ 'CREATE_ACCOUNT.TITLE' | translate}}</h2>
           <div class="signup-wrapper__description order2">
-              <p>{{description}}</p>
+              <p>{{ 'CREATE_ACCOUNT.DESCRIPTION' | translate}}</p>
             </div>
           <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg"/>
           </div>
@@ -27,7 +27,7 @@
             </div>
             <div class="flex-col-8 stretch" [formGroup]="createAccountForm">
               <div [ngClass]="{'inline-error':heighlightMobileNumber}" class="form-group-floating-label">
-                <input type="input" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
+                <input type="input" maxlength="10" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
                 <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
               </div>
             </div>
