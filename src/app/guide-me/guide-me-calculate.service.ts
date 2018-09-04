@@ -105,7 +105,6 @@ export class GuideMeCalculateService {
           protectionSupportSum += dependent.supportAmountRange * 12 * dependent.yearsNeeded;
         }
     });
-    console.log(protectionSupportSum);
     return protectionSupportSum;
   }
 

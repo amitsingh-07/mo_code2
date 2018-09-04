@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiService } from './../shared/http/api.service';
-import { AuthenticationService } from './../shared/http/auth/authentication.service';
+import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { GuideMeCalculateService } from './guide-me-calculate.service';
 import { GuideMeService } from './guide-me.service';
 import {
@@ -98,7 +98,6 @@ export class GuideMeApiService {
     getDependentsData() {
         const dependentsData = [];
         const dependentList = this.guideMeService.getLifeProtection().dependents;
-        console.log(dependentList);
         for (const dependent of dependentList) {
             const thisDependent = {
                 gender: dependent.gender,

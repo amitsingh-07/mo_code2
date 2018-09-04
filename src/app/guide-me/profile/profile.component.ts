@@ -1,4 +1,3 @@
-
 import 'rxjs/add/operator/map';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -7,15 +6,16 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
-import { GuideMeApiService } from './../guide-me.api.service';
+import { ProductDetailComponent } from './../../shared/components/product-detail/product-detail.component';
 
 const assetImgPath = './assets/images/';
 

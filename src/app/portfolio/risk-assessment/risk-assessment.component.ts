@@ -13,7 +13,7 @@ import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { ActivatedRoute } from '@angular/router';
 
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-risk-assessment',
