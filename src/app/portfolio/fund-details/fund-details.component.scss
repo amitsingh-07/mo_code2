@@ -1,0 +1,20 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+
+.title{
+  font-family: "Muli Semi Bold";
+  font-size: 22px;
+  font-weight: 600;
+  
+  
+  color: #ffffff;
+}
+.content{
+  font-family: $muli-regular;
+  font-size: 16px;
+  
+  line-height: 1.38;
+  
+  color: #ffffff;
+}

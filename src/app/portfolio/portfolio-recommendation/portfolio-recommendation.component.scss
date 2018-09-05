@@ -106,7 +106,7 @@ app-portfolio-recommendation {
 
   //  iadd for reference//
   .portfolio-allocation-details {
-    margin-top:70px;
+    // margin-top:70px;
     .container-fluid {
       padding-top: 0px;
       padding-bottom: 0px;
@@ -167,9 +167,8 @@ app-portfolio-recommendation {
     }
 
     .portfolio-allocation-details__content__title {
-      font-family: $muli;
+      font-family: $muli-bold;
       font-size: 24px;
-      line-height: normal;
       letter-spacing: -0.3px;
       color: $white-color;
       font-weight: bold;
@@ -183,10 +182,6 @@ app-portfolio-recommendation {
       background-color: $white-color;
       box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
       font-size: 22px;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.2px;
       text-align: center;
       color: $app-backgrnd-color;
       cursor: pointer;
@@ -212,18 +207,15 @@ app-portfolio-recommendation {
   }
 
   .amount {
-    font-family: Muli;
+    font-family: $muli-light;
     font-size: 48px;
-    font-weight: 300;
-    letter-spacing: -0.5px;
     text-align: center;
     color: #ffffff;
   }
 
   .years {
-    font-family: Muli;
+    font-family: $muli-regular;
     font-size: 18px;
-    letter-spacing: -0.3px;
     text-align: center;
     color: #ffffff;
   }
@@ -233,7 +225,6 @@ app-portfolio-recommendation {
     padding: 12px;
 
     .Projected_title {
-      font-family: Muli;
       font-size: 16px;
       line-height: 1.31;
       letter-spacing: -0.2px;
@@ -242,7 +233,7 @@ app-portfolio-recommendation {
     }
 
     .Projected_money {
-      font-family: Muli;
+      font-family: $muli-bold;
       font-size: 24px;
       font-weight: bold;
       letter-spacing: -0.3px;
@@ -259,13 +250,8 @@ app-portfolio-recommendation {
     }
 
     .whats_risk {
-      font-family: Muli;
+      font-family: $muli-regular;
       font-size: 14px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
-      letter-spacing: -0.3px;
       text-align: center;
       color: #98dfdf;
     }

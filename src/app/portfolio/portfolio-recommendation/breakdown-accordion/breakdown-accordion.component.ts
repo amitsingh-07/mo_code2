@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../../portfolio-routes.constants';
 
 @Component({
   selector: 'app-breakdown-accordion',
@@ -14,7 +16,9 @@ export class BreakdownAccordionComponent implements OnInit {
   @Output() selectAllocationAccordion = new EventEmitter<boolean>();
 
   
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     console.log(this.activeIndex);
@@ -23,5 +27,10 @@ export class BreakdownAccordionComponent implements OnInit {
   emitSelectedAllocation(index){
     this.selectAllocationAccordion.emit(index);
   }
+  goToNext() {
+   
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS])
+  
+}
 
 }
