@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES  } from '../portfolio-routes.constants';
+import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from './../portfolio.service';
 
 import { HeaderService } from '../../shared/header/header.service';
@@ -24,7 +24,7 @@ const assetImgPath = './assets/images/';
   encapsulation: ViewEncapsulation.None
 })
 export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageComponent {
-  @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
+  @ViewChild('piInvestmentSlider') piInvestmentSlider: NouisliderComponent;
   personalInfoForm: FormGroup;
   pageTitle: string;
   formValues: any;
@@ -55,6 +55,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   }
   ciSliderConfig: any = {
     behaviour: 'snap',
+    animate: false,
     start: 0,
     connect: [true, false],
     format: {
@@ -68,7 +69,8 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   };
 
   ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(this.formValues.investmentPeriod);
+    this.piInvestmentSlider.writeValue(this.formValues.investmentPeriod);
+    this.onSliderChange(this.formValues.investmentPeriod);
   }
 
   ngOnInit() {
@@ -85,9 +87,14 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
 
   onSliderChange(value): void {
     this.setSliderDescByRange(value);
-    const pointerPosition = this.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
-    this.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
     this.personalInfoForm.controls.investmentPeriod.setValue(value);
+    const self = this;
+    setTimeout(function () {
+      const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
+      console.log(pointerPosition);
+      self.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
+    }, 1);
+
   }
 
   setSliderDescByRange(value) {
