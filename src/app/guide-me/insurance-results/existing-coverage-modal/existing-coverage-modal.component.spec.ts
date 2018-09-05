@@ -44,4 +44,13 @@ describe('ExistingCoverageModalComponent', () => {
     expect(long_Term_Care.valid).toBeFalsy();
   });
 
+  it('testing the proceed button', async(() => {
+    spyOn(component, 'save');
+    const button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    fixture.whenStable().then(() => {
+      expect(component.save).toHaveBeenCalled();
+    });
+  }));
+
 });
