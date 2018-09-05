@@ -10,6 +10,8 @@ import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.con
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { Token } from '@angular/compiler';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { CurrencyPipe } from '@angular/common';
+  
 
 @Component({
 
@@ -35,7 +37,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
     private router: Router,
     public headerService: HeaderService,
     private translate: TranslateService,
-    //private guideMeCalculateService: GuideMeCalculateService, 
+    private currencyPipe: CurrencyPipe,
     public authService: AuthenticationService,
     public modal: NgbModal,
     private portfolioService: PortfolioService) {
