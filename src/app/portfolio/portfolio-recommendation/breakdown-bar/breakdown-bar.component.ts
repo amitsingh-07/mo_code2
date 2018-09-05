@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-breakdown-bar',
@@ -16,10 +16,10 @@ export class BreakdownBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
-  emitSelectedAllocation(index,isOpen){
+  emitSelectedAllocation(index) {
     this.selectAllocationBar.emit(index);
   }
 

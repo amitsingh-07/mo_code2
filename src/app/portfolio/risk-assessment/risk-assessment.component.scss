@@ -55,6 +55,7 @@ input[type='radio']:checked+label {
 
 .chart-mode{
    background-color:#fff;
+
   .question-title {
     color:$text-color-secondary;
   }
@@ -73,7 +74,6 @@ input[type='radio']:checked+label {
     margin-bottom:20px;
   }
 
-
   .form-group-single-column .checkbox-button.one-label{
     padding:0px;
   }
@@ -82,8 +82,6 @@ input[type='radio']:checked+label {
     background-position:15px center;
     width: 100%;
   }
-
-  
 
   label.vhfvhr, label.hfhr, label.mfmr, label.lflr{
     padding:15px 25px 15px 55px;

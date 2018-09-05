@@ -29,12 +29,15 @@
 
       <div class="col-12 portfolio-allocation-details__content__desc">
 
-        <div class="portfolio-allocation-details__content__title mb10 text-center">{{'PORTFOLIO_RECOMMENDATION.BALANCED_PORTFOLIO' | translate}}
+        <div class="portfolio-allocation-details__content__title mb10 text-center">{{'PORTFOLIO_RECOMMENDATION.BALANCED_PORTFOLIO'
+          | translate}}
           <div class="edit_button " (click)="showEditModal()"></div>
         </div>
 
-        <div class="amount flex-col-12  text-center" id="riskProfileTitle">{{portfolio.projectedValue  | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-        <div class="years flex-col-12 mb10  text-center" id="riskProfileTitle">{{'PORTFOLIO_RECOMMENDATION.PROJECTED_PORTF_VALUE' | translate}}
+        <div class="amount flex-col-12  text-center" id="riskProfileTitle">{{portfolio.projectedValue |
+          currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+        <div class="years flex-col-12 mb10  text-center" id="riskProfileTitle">{{'PORTFOLIO_RECOMMENDATION.PROJECTED_PORTF_VALUE'
+          | translate}}
           <u>{{portfolio.tenure}}</u> {{'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</div>
 
         <div class="project_returns  text-center">
@@ -42,10 +45,7 @@
             <div class="flex-col-12">
               <div class="Projected_title">
                 {{'PORTFOLIO_RECOMMENDATION.PROJECTED_RETURNS' | translate}}
-
               </div>
-
-
             </div>
             <div class="flex-col-12">
               <div class="Projected_money">{{portfolio.projectedReturns}}
@@ -54,7 +54,8 @@
               </div>
               <!-- <u class="whats_risk" (click)=showWhatTheRisk()>What’s the risk?</u> -->
               <!-- <div class="whats_resk" (click)=showWhatFubdDetails()>Fund Details</div>                -->
-              <a class="whats_risk" (click)="showWhatTheRisk()">{{'PORTFOLIO_RECOMMENDATION.WHATS_THE_RISK' | translate}}</a>
+              <a class="whats_risk" (click)="showWhatTheRisk()">{{'PORTFOLIO_RECOMMENDATION.WHATS_THE_RISK' |
+                translate}}</a>
             </div>
           </div>
         </div>

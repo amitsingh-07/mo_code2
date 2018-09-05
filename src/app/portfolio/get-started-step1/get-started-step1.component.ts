@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 
 @Component({
   selector: 'app-get-started-step1',
@@ -13,13 +13,12 @@ export class GetStartedStep1Component implements OnInit {
 
   pageTitle: string;
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
-  description = this.translate.instant('GETSTARTED_STEP1.CAPTION');;
-  img = "assets/images/checklist-icon.svg";
+  description = this.translate.instant('GETSTARTED_STEP1.CAPTION');
+  img = 'assets/images/checklist-icon.svg';
   description2 =  this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
-  tab = "1";
+  tab = '1';
 
-  constructor(public readonly translate: TranslateService, private router: Router,
-    public headerService: HeaderService) {
+  constructor(public readonly translate: TranslateService, private router: Router, public headerService: HeaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
@@ -33,7 +32,7 @@ export class GetStartedStep1Component implements OnInit {
     this.headerService.setHeaderVisibility(false);
   }
 
-  goNext() { 
+  goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
   }
 }

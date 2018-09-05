@@ -200,7 +200,8 @@
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
     "CAPTION": "Get Started",
-    "DESCRIPTION": "In the next step,we are going to assess your ability to take risk"
+    "DESCRIPTION": "In the next step,we are going to assess your ability to take risk",
+    "PROCEED":"Proceed"
   },
   "PERSONAL_INFO": {
     "TITLE": "Get Started",
@@ -272,6 +273,9 @@
   } ,
   "FUND_DETAILS":{
     "TITLE": "Fund Details"
+  },
+  "RISK_PROFILE":{
+    "BUTTON_TITLE": "View My Portfolio"
   }
 
 }
