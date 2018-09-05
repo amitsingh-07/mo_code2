@@ -272,7 +272,10 @@
     "TITLE": "What’s The Risk"
   } ,
   "FUND_DETAILS":{
-    "TITLE": "Fund Details"
+    "TITLE": "Fund Details",
+    "DOWNLOAD_FACTSHEET":"Download Factsheet (2MB)",
+    "DOWNLOAD_HIGHLIGHT_FACTSHEET":"Download Highlight Sheet"
+  
   },
   "RISK_PROFILE":{
     "BUTTON_TITLE": "View My Portfolio"
