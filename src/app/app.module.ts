@@ -75,7 +75,8 @@ export function createTranslateLoader(http: HttpClient) {
     }],
   bootstrap: [AppComponent],
   entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent,
-     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, ExistingCoverageModalComponent]
+                    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent,
+                    ExistingCoverageModalComponent]
 })
 
 export class AppModule {

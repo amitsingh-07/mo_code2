@@ -8,12 +8,15 @@ export class HeaderService {
     private pageTitle = new BehaviorSubject('');
     private pageSubTitle = new BehaviorSubject('');
     private pageHelpIcon = new BehaviorSubject(true);
+    private pageProdInfoIcon = new BehaviorSubject(false);
     private mobileModal = new BehaviorSubject('');
+    private closeProdInfo = new BehaviorSubject('');
     private headerVisibility = new BehaviorSubject(true);
 
     currentPageTitle = this.pageTitle.asObservable();
     currentPageSubTitle = this.pageSubTitle.asObservable();
     currentPageHelpIcon = this.pageHelpIcon.asObservable();
+    currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
     currentMobileModalEvent = this.mobileModal.asObservable();
     currentHeaderVisibility = this.headerVisibility.asObservable();
 
@@ -34,6 +37,11 @@ export class HeaderService {
 
         this.headerVisibility.next(true);
     }
+    // Initiate Buttons
+
+    setProdButtonVisibility(isVisible: boolean){
+        this.pageProdInfoIcon.next(isVisible);
+    }
 
     setHeaderVisibility(isVisible: boolean) {
         this.headerVisibility.next(isVisible);
@@ -42,5 +50,10 @@ export class HeaderService {
     // Showing Mobile PopUp Trigger
     showMobilePopUp(event) {
         this.mobileModal.next(event);
+    }
+
+    // Hiding Product Info Modal Trigger
+    hideProdInfo(event) {
+        this.closeProdInfo.next(event);
     }
 }

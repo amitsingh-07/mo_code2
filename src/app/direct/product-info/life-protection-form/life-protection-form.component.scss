@@ -1,0 +1,45 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-life-protection-form {
+    position: relative;
+    display:block;
+    max-width:756px;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    @include allmobiles{
+        padding: 0px 20px;
+    }
+    .flex-row{
+        justify-content: space-between;
+        .flex-row{
+            max-width:340px;
+            justify-content:space-between;
+            align-items:center;
+        }
+    }
+    .direct-form{
+        width:340px;
+        @include allmobiles{
+            width:100%;
+        }
+        label{
+            font-family:$muli-semi-bold;
+            color:$dark-teal-color;
+            font-size:18px;
+            letter-spacing:-0.3px;
+            line-height:1.3;
+            margin-bottom:0px;
+            &.subtitle{
+                font-family:$muli;
+                font-size:16px;
+                transform:translateY(-5px);
+            }
+            @include allmobiles{
+                font-size:16px;
+                color:$white-color;
+            }
+        }
+    }
+}

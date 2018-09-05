@@ -1,0 +1,24 @@
+<div class="prod-info" [ngClass]="{'show': toggleVisibility, 'full': toggleVisibility && !toggleSelectVisibility}">
+  <div class="prod-cat-list__wrapper" [ngClass]="{'show': toggleSelectVisibility}">
+    <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div> 
+    <div class="prod-cat-list-close hidden-lg" (click)="search()"></div>
+    <app-product-category [data]="productCategory" *ngFor="let productCategory of productCategoryList; let i = index" (click)="openProductCategory(i)"></app-product-category>
+  </div>
+  <div class="prod-form__wrapper" [ngClass]="{'show': toggleFormVisibility}">
+    <router-outlet></router-outlet>
+  </div> 
+  <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search()">
+    {{searchText}} 
+  </button>
+</div>
+<div class="min-prod-info" [ngClass]="{'show': !toggleVisibility}">
+    <div class="min-prod-info__block">
+      <img  class="min-prod-info__block-icon" src="../../../assets/images/life-protection-icon.svg"/>
+        <span class="min-prod-info__block-title">Life Protection</span>
+        <span class="min-prod-info__block-subtitle">$150,000, Whole Life, Prem...</span>
+        <div class="min-prod-info__block-btn" (click)="editProdInfo()">
+          <span class="min-prod-info__block-btn--edit"></span>
+        </div>
+      </div> 
+</div>
+<div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>

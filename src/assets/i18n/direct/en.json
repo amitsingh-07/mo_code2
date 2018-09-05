@@ -1,0 +1,44 @@
+{
+  "COMMON": {
+    "LBL_SEARCH_PLAN": "Search Plan",
+    "LBL_UPDATE_PLAN": "Update Plan",
+    "LBL_MALE": "Male",
+    "LBL_FEMALE": "Female",
+    "LBL_SMOKER": "Smoker",
+    "LBL_NONSMOKER": "Non-smoker",
+    "LBL_YES": "Yes",
+    "LBL_NO": "No"
+  },
+  "COVERAGE": {
+    "TITLE": "Pick A Coverage Type"
+  },
+  "PROFILE": {
+    "TITLE": "Your Profile",
+    "TITLE2": "Edit Profile",
+    "COVERAGE_TYPE": {
+      "TITLE": "Coverage Type"
+    },
+    "GENDER": {
+      "TITLE": "Gender"
+    },
+    "DOB": {
+      "TITLE": "Date Of Birth"
+    },
+    "SMOKER": {
+      "TITLE": "Smoker Status"
+    }
+  } ,
+  "LIFE_PROTECTION": {
+    "COVERAGE_AMT": {
+      "TITLE": "Coverage Amount"
+    },
+    "DURATION": {
+      "TITLE": "Duration",
+      "FORM": ["Till Age 50", "Till Age 55", "Till Age 65"]
+    },
+    "PREMIUM_WAIVER": {
+      "TITLE": "Premium Waiver",
+      "SUBTITLE": "(optional)"
+    }
+  }
+}
