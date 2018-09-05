@@ -38,7 +38,7 @@ export class RiskProfileComponent implements OnInit {
 
   ngOnInit() {
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
-    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId]['icon'];
+    this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId-1]['icon'];
   }
   goToNext() {
     this.portfolioService.setPortfolioRecommendationModalCounter(0);

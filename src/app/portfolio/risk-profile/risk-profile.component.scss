@@ -48,11 +48,11 @@
         margin-top: 100px;
         text-align: left;
         @include allmobiles {
-            margin-top: 45px;
+            margin-top: 0px;
             text-align: center;
         }
         @include tablet {
-            margin-top: 45px;
+            margin-top: 0px;
         }
     }
     .risk-profile-block__content__heading {
