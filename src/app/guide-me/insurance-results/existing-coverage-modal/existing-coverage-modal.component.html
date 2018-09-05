@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="modal-body white-bg">
-  <div class="modal-body-title">Add Existing Coverage</div>
+  <div class="modal-body-title">Add Existing Coverages</div>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true"></span>
   </button>
@@ -72,11 +72,11 @@
       <div class="flex-col-6">
         <div class="dropdown-control">
           <div ngbDropdown id="hospitalPlanDropDown">
-            <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-              <span>{{selectedHospitalPlan}}</span>
+            <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
+              <span>{{selectedHospitalPlan.hospitalClass}}</span>
             </button>
             <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
-              <button class="dropdown-item" *ngFor="let currentPlan of hospitalPlanList" (click)="selectHospitalPlan(currentPlan)">{{currentPlan}}</button>
+              <button class="dropdown-item" *ngFor="let currentPlan of hospitalPlanList" (click)="selectHospitalPlan(currentPlan)">{{currentPlan.hospitalClass}}</button>
             </div>
           </div>
         </div>

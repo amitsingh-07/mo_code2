@@ -1,8 +1,8 @@
-import { IRecommendationRequest } from './../../guide-me/interfaces/recommendations.request';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { IRecommendationRequest } from '../../guide-me/interfaces/recommendations.request';
 
 import { ConfigService } from '../../config/config.service';
 import { apiConstants } from './api.constants';
@@ -18,6 +18,12 @@ export class ApiService {
     private configService: ConfigService,
     private http: BaseService,
     private httpClient: HttpClient) { }
+
+  /* SignUp API */
+  requestVerifyMobile(): string {
+    const url = '';
+    return '000000';
+  };
 
   getProfileList() {
     const url = '../assets/mock-data/profile.json';
@@ -225,5 +231,100 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
+    }
+  getCountryCodeList() {
+    const url = 'assets/country-data/phone.json';
+    return this.httpClient.get(url);
   }
+
+  requestOneTimePassword(mobileNumber) {
+    const url = '../assets/mock-data/questions.json';
+    return this.http.post(url, mobileNumber)
+    .pipe(
+      // tslint:disable-next-line:no-identical-functions
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', error.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.error(
+            `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+          );
+          return this.httpClient.get<IServerResponse>(url);
+        }
+        // return an observable with a user-facing error message
+        return throwError('Something bad happened; please try again later.');
+      })
+    );
+  }
+
+  verifyOneTimePassword(code) {
+    const url = '../assets/mock-data/questions.json';
+    return this.http.post(url, code)
+    .pipe(
+      // tslint:disable-next-line:no-identical-functions
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', error.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.error(
+            `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+          );
+          return this.httpClient.get<IServerResponse>(url);
+        }
+        // return an observable with a user-facing error message
+        return throwError('Something bad happened; please try again later.');
+      })
+    );
+  }
+
+  createAccount(data) {
+    const url = '../assets/mock-data/questions.json';
+    return this.http.post(url, data)
+    .pipe(
+      // tslint:disable-next-line:no-identical-functions
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', error.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.error(
+            `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+          );
+          return this.httpClient.get<IServerResponse>(url);
+        }
+        // return an observable with a user-facing error message
+        return throwError('Something bad happened; please try again later.');
+      })
+    );
+  }
+
+  verifyEmail(verificationCode) {
+    return this.http.post(apiConstants.endpoint.getProtectionTypesList, verificationCode)
+    .pipe(
+      // tslint:disable-next-line:no-identical-functions
+      catchError((error: HttpErrorResponse) => {
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', error.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.error(
+            `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+          );
+        }
+        // return an observable with a user-facing error message
+        return throwError('Something bad happened; please try again later.');
+      })
+    );
+  }
+
 }

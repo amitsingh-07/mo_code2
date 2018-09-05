@@ -9,7 +9,11 @@ app-recommendations {
       margin-top: 115px;
     }
   }
-
+  .comparePlans_btn{
+    display: flex;
+    margin-left: auto;
+    order: 2;
+  }
   .description {
     width: 500px;
     color: rgba(255, 255, 255, 0.65);
@@ -55,7 +59,7 @@ app-recommendations {
   }
 
   .plan-carousel-container {
-    margin: 20px 0px;
+    padding: 20px 10px;
   }
 
   .recommendation-carousel-item {
@@ -271,6 +275,7 @@ app-recommendations {
     border-bottom: 1px solid #76adb2;
     padding-left: 145px !important;
     padding-right: 125px !important;
+    background: #2d8289;
 
     @include allmobiles {
       border: none;
@@ -286,6 +291,7 @@ app-recommendations {
   .coverage-premium-from {
     font-family: $muli-bold;
     margin-right: 50px;
+    font-size: 22px;
 
     @include allmobiles {
       margin-right: 0px;

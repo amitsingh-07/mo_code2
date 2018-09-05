@@ -1,9 +1,10 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { IResultItem } from '../insurance-result/insurance-result';
 
-import { GuideMeService } from './../../guide-me.service';
+import { ConfigService } from '../../../config/config.service';
+import { GuideMeService } from '../../guide-me.service';
+import { IResultItem } from '../insurance-result/insurance-result';
 import { IExistingCoverage } from './existing-coverage.interface';
 
 @Component({
@@ -20,26 +21,32 @@ export class ExistingCoverageModalComponent implements OnInit {
   existingCoverageForm: FormGroup;
   ADD_EXISTING_COVERAGES = {
     TITLE: 'Add Existing Coverages',
-    LIFE_PROTECTION: 'Life protection',
+    LIFE_PROTECTION: 'Life Protection',
     CRITICAL_ILLNESS: 'Critical Illness',
     OCCUPATION_DISABILITY: 'Occupational Disability',
-    LONG_TERM_CARE: 'Long-TermCare',
+    LONG_TERM_CARE: 'Long-Term Care',
     HOSPITAL_PLAN: 'Hospital Plan'
   };
-  selectedHospitalPlan = this.guideMeService.getHospitalPlan().hospitalClass;
-  hospitalPlanList = ['Private Hospital', 'Government Hospital Ward A', 'Government Hospital Ward B1'
-                  , 'Government Hospital Ward B2/C', 'Global Healthcare Coverage'];
+  selectedHospitalPlan = this.guideMeService.getHospitalPlan();
+  hospitalPlanList;
   isLifeProtection = false;
   isCriticalIllness = false;
   isOccupationalDisability = false;
   isLongTermCare = false;
   isHospitalPlan = false;
 
-  constructor(public activeModal: NgbActiveModal, private guideMeService: GuideMeService) { }
+  constructor(
+    public activeModal: NgbActiveModal, private guideMeService: GuideMeService,
+    private config: ConfigService) { }
 
   ngOnInit() {
+
+    this.config.getConfig().subscribe((configData) => {
+      this.hospitalPlanList = configData.hospitalPlanData;
+    });
+
     this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
-    this.selectedHospitalPlan = this.guideMeService.getHospitalPlan().hospitalClass;
+    this.selectedHospitalPlan = this.guideMeService.getHospitalPlan();
     this.existingCoverageForm = new FormGroup({
       lifeProtectionCoverage: new FormControl(this.existingCoverageValues.lifeProtectionCoverage),
       criticalIllnessCoverage: new FormControl(this.existingCoverageValues.criticalIllnessCoverage),
@@ -84,9 +91,17 @@ export class ExistingCoverageModalComponent implements OnInit {
     return this.guideMeService.additionOfCurrency(this.existingCoverageForm.value);
   }
   save() {
+    const formControlKeys = Object.keys(this.existingCoverageForm.controls);
+    formControlKeys.forEach((key: string) => {
+      const thisControl = this.existingCoverageForm.controls[key];
+      if (!thisControl.value) {
+        thisControl.setValue(0);
+      }
+    });
+
     this.guideMeService.isExistingCoverAdded = true;
     this.existingCoverageForm.controls.selectedHospitalPlan.setValue(this.selectedHospitalPlan);
-    this.guideMeService.getHospitalPlan().hospitalClass = this.selectedHospitalPlan;
+    this.guideMeService.setHospitalPlan(this.selectedHospitalPlan);
     this.guideMeService.setExistingCoverageValues(this.existingCoverageForm.value);
     this.dataOutput.emit(this.existingCoverageForm.value);
     this.activeModal.close();
