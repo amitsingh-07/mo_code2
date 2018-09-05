@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -27,6 +28,12 @@ export class PasswordComponent implements OnInit {
               private router: Router,
               private translate: TranslateService) {
     this.translate.use('en');
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.signUpService.otpRequested = false;
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
   }
 
   /**
