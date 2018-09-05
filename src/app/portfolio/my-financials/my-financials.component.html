@@ -183,7 +183,7 @@
                     </jqxSlider> -->
           </div>
           <button type="button" [disabled]="myFinancialsForm.controls.suffEmergencyFund.value == 'no'" (click)="goToNext(myFinancialsForm)"
-            class="btn btn__footer--fixed btn-primary width100" id="incomeBtn">Continue</button>
+            class="btn btn__footer--fixed btn-primary width100" id="incomeBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
 
         </div>
       </div>
