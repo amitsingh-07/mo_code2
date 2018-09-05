@@ -10,6 +10,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { PORTFOLIO_CONFIG } from '../portfolio.constants';
 import { PortfolioService } from '../portfolio.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
@@ -30,12 +31,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   questionIndex: number;
   currentQuestion: any;
   isChartAvailable = false;
-  chartLegendEnum = {
-    1: 'vhfvhr',
-    2: 'hfhr',
-    3: 'mfmr',
-    4: 'lflr'
-  };
+  chartLegendEnum = PORTFOLIO_CONFIG.risk_assessment.chart_legend;
 
   constructor(
     private portfolioService: PortfolioService, private route: ActivatedRoute, private router: Router,

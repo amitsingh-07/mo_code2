@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-import { portfolioConstants } from '../../portfolio/portfolio.constants';
+import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from './../portfolio.service';
 import { IMyFinancials } from './my-financials.interface';
@@ -58,7 +58,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities, Validators.required),
       initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
       monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment, Validators.required),
-      suffEmergencyFund: new FormControl(portfolioConstants.my_financials.sufficient_emergency_fund, Validators.required)
+      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund, Validators.required)
 
     });
   }

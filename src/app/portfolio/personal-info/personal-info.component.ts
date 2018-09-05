@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
+import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from './../portfolio.service';
 
@@ -91,22 +92,23 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     const self = this;
     setTimeout(function () {
       const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
-      console.log(pointerPosition);
       self.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
     }, 1);
 
   }
 
   setSliderDescByRange(value) {
-    if (value <= 3) {
-      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_1_3_DESC');
-    } else if (value > 3 && value <= 7) {
-      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_3_7_DESC');
-    } else if (value > 7 && value <= 14) {
-      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_7_14_DESC');
-    } else if (value > 14) {
-      this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_14_DESC');
-    }
+    const ranges = PORTFOLIO_CONFIG.personal_info.range_with_desc;
+    ranges.forEach((range) => {
+      if (this.isValueBetweenRange(value, range.min, range.max)) {
+        this.sliderDesc = this.translate.instant(range.content);
+      }
+    });
+
+  }
+
+  isValueBetweenRange(x, min, max) {
+    return x > min && x <= max;
   }
 
   save(form: any) {
