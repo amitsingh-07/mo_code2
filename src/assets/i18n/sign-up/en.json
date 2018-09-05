@@ -39,7 +39,7 @@
         "TITLE": "Email Verified!"        
     },
     "ACCOUNT_CREATED": {
-        "TITLE": "Account Created",
+        "TITLE": "Account Created!",
         "SUB_TITLE1": "A verification link has been sent to your email address.",
         "SUB_TITLE2": "Please verify your email address before logging in."    
     }
