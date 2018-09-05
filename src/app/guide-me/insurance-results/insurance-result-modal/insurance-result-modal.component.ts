@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation  } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { GuideMeService } from './../../guide-me.service';
+import { GuideMeService } from '../../guide-me.service';
 
 @Component({
   selector: 'app-insurance-result-modal',

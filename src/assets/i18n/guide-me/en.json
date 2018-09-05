@@ -1,7 +1,8 @@
 {
   "COMMON": {
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
-    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data"
+    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLANS_SELECTED": "Plans Selected"
   },
   "PROFILE": {
     "TITLE": "What's Your Profile?",

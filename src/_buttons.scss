@@ -1,4 +1,19 @@
+
 // Button styles
+button {
+  box-shadow: none !important;
+}
+button:active {
+  box-shadow: none;
+  background: none;
+}
+/*
+button:active:focus {
+  color: inherit;
+  background-color: inherit; 
+  border-color: inherit;
+}
+*/
 .btn {
   font-size: 22px;
   font-family: $muli-semi-bold;
@@ -8,6 +23,7 @@
   text-align: center;
   border: 0;
   border: 0 solid transparent;
+
   &.btn-primary {
     background-color: $btn-primary-backgrnd-color;
     border-color: $btn-primary-backgrnd-color;
@@ -25,9 +41,24 @@
       outline: none !important;
       background: $btn-primary-backgrnd-color !important;
     }
+  }
+  &.btn-white {
+    background-color: $white-color;
+    border-color:transparent;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    color:$teal-color;
+    &:hover {
+      background-color: #eafaf9;
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    }
+    &:focus,
+    &:active {
+      background-color: #eafaf9;
+      box-shadow: 0px;
+    }
     &.active {
       outline: none !important;
-      background: $btn-primary-backgrnd-color !important;
+      background: $white-color !important;
     }
   }
   &.btn-primary-dark {

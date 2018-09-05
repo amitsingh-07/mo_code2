@@ -1,6 +1,6 @@
 import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
-import { GuideMeService } from './../../guide-me.service';
+import { GuideMeService } from '../../guide-me.service';
 import { IResultItem } from './insurance-result';
 
 

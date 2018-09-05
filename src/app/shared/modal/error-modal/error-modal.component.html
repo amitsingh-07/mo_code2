@@ -7,5 +7,6 @@
         <span aria-hidden="true"></span>
       </button>
     <div class="modal-body-message">{{errorMessage}}</div>
+    <button *ngIf="showErrorButton" (click)="activeModal.dismiss('Close click')" type="button" class="btn btn__footer--fixed btn-primary width100">Try Again</button>
   </div>
   

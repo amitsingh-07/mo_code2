@@ -1,0 +1,47 @@
+<div class="carousel-content insurance-plan-widget">
+  <div class="insurance-plan-widget__container flex__box--vert">
+    <div class="row mt10 mb10">
+      <div style="width: 65%; padding-left: 15px;">
+        <h4>{{productName}}</h4>
+        <h2>{{premiumAmount | currency}}
+          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+        </h2>
+      </div>
+      <div class="insurer-logo" style="width: 35%">
+        <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
+      </div>
+    </div>
+    <div class="insurance-plan-widget__container__discount__block">{{data.promotion.promoDiscount}}</div>
+    <div style="margin-bottom: 15px;">
+      <div class="insurance-plan-widget__container__rank__wrapper">
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
+          <div class="feature-head">#{{data.premium.ranking}}</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+        </div>
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
+          <div class="feature-head">{{data.insurer.rating}}</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
+        </div>
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
+          <div class="feature-head">50%</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
+        </div>
+      </div>
+
+      <div style="padding: 2px;">
+        <div *ngFor="let highlight of highlights;">
+          <span class="grey mr5">{{highlight.title}}</span>
+          <span class="text-bold grey">{{highlight.description}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row row-btn-bottom">
+    <div class="col-md-6 d-none d-md-flex widget-btn-view">
+      <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
+    </div>
+    <div class="col-md-6 col-btn-bottom widget-btn-select">
+      <button type="button" (click)="selectPlan()" class="btn btn-select width100">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
+    </div>
+  </div>
+</div>

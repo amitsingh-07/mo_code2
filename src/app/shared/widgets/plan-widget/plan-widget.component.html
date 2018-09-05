@@ -10,7 +10,7 @@
         <h4>{{productName}}</h4>
         <h2>{{premiumAmount | currency}}
           <br class="hidden-lg"/>
-          <span class="text-small">/ mth</span>
+          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
         </h2>
       </div>
       <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
@@ -22,37 +22,38 @@
       <div class="insurance-plan-widget__container__rank__wrapper">
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
-          <div class="feature-caption">Ranking By Price</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
           <div class="help-icon" style="visibility: hidden;"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
-          <div class="feature-head">{{insurerRating}}</div>
-          <div class="feature-caption">Insurer's Rating</div>
+          <div class="feature-head">{{data.insurer.rating}}</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
           <div class="help-icon"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
           <div class="feature-head">50%</div>
-          <div class="feature-caption">Commission Rebate</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
           <div class="help-icon"></div>
         </div>
       </div>
 
       <div style="padding: 2px;" class="hidden-sm-md">
-        <div *ngFor="let highlight of highlights;">{{highlight.title}}
+        <div *ngFor="let highlight of highlights;"><span class="grey mr5">{{highlight.title}}</span>
           <span class="text-bold grey">{{highlight.description}}</span>
         </div>
       </div>
     </div>
   </div>
   <div class="row row-btn-bottom">
-      <div class="col-md-6 d-none d-md-flex hidden-sm-md" *ngIf = "!isComparePlanEnabled">
-        <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">Details</button>
+      <div class="col-md-6 d-none d-md-flex hidden-sm-md widget-btn-view" *ngIf = "!isComparePlanEnabled">
+        <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
       </div>
-      <div class="col-md-6 col-btn-bottom" *ngIf = "!isComparePlanEnabled">
-        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
+      <div class="col-md-6 col-btn-bottom widget-btn-select" *ngIf = "!isComparePlanEnabled">
+        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
       </div>
       <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
-        <button type="button" (click)="compareplan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isComparePlanSelected}">Compare</button>
+        <button type="button" (click)="compareplan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>
       </div>
     </div>
 </div>
+
