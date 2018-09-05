@@ -4,14 +4,14 @@ import { AfterViewInit, HostListener, ViewChild, ViewEncapsulation } from '@angu
 import { TranslateService } from '@ngx-translate/core';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 //import { Router } from '../../../../node_modules/@angular/router';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { PortfolioService } from './../portfolio.service';
+import { PortfolioService } from '../portfolio.service';
 const assetImgPath = './assets/images/';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';

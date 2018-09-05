@@ -10,13 +10,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { PortfolioService } from './../portfolio.service';
+import { PortfolioService } from '../portfolio.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 //import {MyFinanacialFormError} from './my-financials-form-error';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 
-import { portfolioConstants } from '../../portfolio/portfolio.constants'; 
+import { portfolioConstants } from '../portfolio.constants'; 
 
 @Component({
   selector: 'app-my-financials',

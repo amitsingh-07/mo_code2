@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiService } from './../shared/http/api.service';
-import { AuthenticationService } from './../shared/http/auth/authentication.service';
+import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { GuideMeCalculateService } from './guide-me-calculate.service';
 import { GuideMeService } from './guide-me.service';
+import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import {
     IEnquiryData,
     IFinancialStatusMapping,
     ILifeProtection,
-    IRecommendationRequest
+    IRecommendationRequest,
+    ILongTermCareNeedsData
 } from './interfaces/recommendations.request';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
@@ -17,11 +19,12 @@ import { ILifeProtectionNeedsData } from './life-protection/life-protection';
     providedIn: 'root'
 })
 export class GuideMeApiService {
+    existingCoverage: IExistingCoverage;
     constructor(
         private http: HttpClient, private apiService: ApiService,
         private authService: AuthenticationService, private guideMeService: GuideMeService,
         private calculateService: GuideMeCalculateService) {
-
+        this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     }
 
     getProfileList() {
@@ -45,13 +48,13 @@ export class GuideMeApiService {
     }
 
     getRecommendations() {
-       return this.apiService.getRecommendations(this.constructRecommendationsRequest());
+        return this.apiService.getRecommendations(this.constructRecommendationsRequest());
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {
         const requestObj = {} as IRecommendationRequest;
         requestObj.sessionId = this.authService.getSessionId();
-        requestObj.criticalIllnessNeedsData = this.guideMeService.getCiAssessment();
+
         requestObj.enquiryProtectionTypeData = this.guideMeService.getSelectedProtectionNeedsList();
         requestObj.existingInsuranceList = this.guideMeService.getExistingCoverage();
 
@@ -62,10 +65,13 @@ export class GuideMeApiService {
         requestObj.financialStatusMapping.expenses = this.guideMeService.getMyExpenses();
 
         requestObj.hospitalizationNeeds = this.guideMeService.getHospitalPlan();
-        requestObj.occupationalDisabilityNeeds = this.guideMeService.getMyOcpDisability();
-        requestObj.longTermCareNeeds = this.guideMeService.getLongTermCare();
+        requestObj.criticalIllnessNeedsData = this.calculateService.getCriticalIllnessData();
+
+        requestObj.occupationalDisabilityNeeds = this.calculateService.getOcpData();
+
+        requestObj.longTermCareNeeds = this.calculateService.getLtcData();
         requestObj.dependentsData = this.getDependentsData();
-        requestObj.lifeProtectionNeeds = this.getLifeProtectionData();
+        requestObj.lifeProtectionNeeds = this.calculateService.getLifeProtectionData();
         requestObj.enquiryData = this.getEnquiryData();
 
         return requestObj;
@@ -98,7 +104,6 @@ export class GuideMeApiService {
     getDependentsData() {
         const dependentsData = [];
         const dependentList = this.guideMeService.getLifeProtection().dependents;
-        console.log(dependentList);
         for (const dependent of dependentList) {
             const thisDependent = {
                 gender: dependent.gender,
@@ -117,13 +122,5 @@ export class GuideMeApiService {
             dependentsData.push(thisDependent);
         }
         return dependentsData;
-    }
-
-    getLifeProtectionData() {
-        const lifeProtectionData = {} as ILifeProtectionNeedsData;
-        lifeProtectionData.coverageAmount = this.calculateService.getLifeProtectionSummary();
-        lifeProtectionData.coverageDuration = 0;
-        lifeProtectionData.isPremiumWaiver = true;
-        return lifeProtectionData;
     }
 }

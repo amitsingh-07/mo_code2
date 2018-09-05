@@ -1,4 +1,19 @@
+
 // Button styles
+button {
+  box-shadow: none !important;
+}
+button:active {
+  box-shadow: none;
+  background: none;
+}
+/*
+button:active:focus {
+  color: inherit;
+  background-color: inherit; 
+  border-color: inherit;
+}
+*/
 .btn {
   font-size: 22px;
   font-family: $muli-semi-bold;
@@ -8,6 +23,7 @@
   text-align: center;
   border: 0;
   border: 0 solid transparent;
+
   &.btn-primary {
     background-color: $btn-primary-backgrnd-color;
     border-color: $btn-primary-backgrnd-color;
@@ -25,9 +41,24 @@
       outline: none !important;
       background: $btn-primary-backgrnd-color !important;
     }
+  }
+  &.btn-white {
+    background-color: $white-color;
+    border-color:transparent;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    color:$teal-color;
+    &:hover {
+      background-color: #eafaf9;
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    }
+    &:focus,
+    &:active {
+      background-color: #eafaf9;
+      box-shadow: 0px;
+    }
     &.active {
       outline: none !important;
-      background: $btn-primary-backgrnd-color !important;
+      background: $white-color !important;
     }
   }
   &.btn-primary-dark {
@@ -186,16 +217,19 @@
     top: 0;
     border-radius: 0 8px 8px 0;
     cursor: pointer;
-    .addCover__block__btn--plus {
+    .addCover__block__btn--plus, .addCover__block__btn--edit {
       position: absolute;
       color: $white-color;
       top:50%;
       left:55%;
-      background-image:url(../src/assets/images/plus-white.svg);
+      background-image:url("../src/assets/images/plus-white.svg");
       background-repeat:no-repeat;
       width:20px;
       height:20px;
       transform:translate(-50%,-50%);
+    }
+    .addCover__block__btn--edit {
+      background-image:url("../src/assets/images/edit-white.png");
     }
   }
   .addCover__block--title {

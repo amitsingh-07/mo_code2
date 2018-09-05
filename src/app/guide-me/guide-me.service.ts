@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { AuthenticationService } from './../shared/http/auth/authentication.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
@@ -45,6 +45,7 @@ export class GuideMeService {
   protectionNeedsArray: any;
   isMyOcpDisabilityFormValid = false;
   isExistingCoverAdded = false;
+  guideMePlanData: any;
 
   // Variables for Insurance Results Generation
   private result_title: string;
@@ -96,6 +97,11 @@ export class GuideMeService {
     this.guideMeFormData.smoker = data.smoker;
     this.guideMeFormData.customDob = data.customDob;
     this.guideMeFormData.dependent = data.dependent;
+    this.commit();
+  }
+
+  updateDependentCount(count: number) {
+    this.guideMeFormData.dependent = count;
     this.commit();
   }
 
@@ -172,6 +178,14 @@ export class GuideMeService {
     this.commit();
   }
 
+  setPlanDetails(plan) {
+    this.guideMePlanData = plan;
+    this.commit();
+  }
+
+  getPlanDetails() {
+    return this.guideMePlanData;
+  }
   getMyLiabilities(): IMyLiabilities {
     if (!this.guideMeFormData.liabilities) {
       this.guideMeFormData.liabilities = {} as IMyLiabilities;
@@ -317,8 +331,23 @@ export class GuideMeService {
       return selectedProtectionNeedsPage[this.protectionNeedsPageIndex];
     } else {
       this.setInsuranceResultsModalCounter(0);
+      this.resetExistingCoverage();
       return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
     }
+  }
+
+  resetExistingCoverage() {
+    this.setExistingCoverageValues({
+      criticalIllnessCoverage: 0,
+      lifeProtectionCoverage: 0,
+      longTermCareCoveragePerMonth: 0,
+      occupationalDisabilityCoveragePerMonth: 0,
+      selectedHospitalPlan: {
+        id: 0,
+        hospitalClass: 'None',
+        hospitalClassDescription: ''
+      }
+    });
   }
 
   clearProtectionNeedsData() {
@@ -331,7 +360,6 @@ export class GuideMeService {
   }
 
   getProtectionNeedsResults() {
-    console.log('get Protection Needs Triggered');
     let selectedProtectionNeeds = [];
     selectedProtectionNeeds = this.getProtectionNeeds();
     if (selectedProtectionNeeds) {
@@ -348,7 +376,11 @@ export class GuideMeService {
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
       occupationalDisabilityCoveragePerMonth: 0,
-      selectedHospitalPlan: ''
+      selectedHospitalPlan: {
+        id: 0,
+        hospitalClass: 'None',
+        hospitalClassDescription: ''
+      }
     }];
   }
 
@@ -380,14 +412,14 @@ export class GuideMeService {
     return parseInt(sessionStorage.getItem(INSURANCE_RESULTS_COUNTER_KEY), 10);
   }
 
-  setExistingCoverageValues(data: IExistingCoverage ) {
+  setExistingCoverageValues(data: IExistingCoverage) {
     this.guideMeFormData.existingCoverageValues = data;
     this.commit();
   }
 
   getExistingCoverageValues(): IExistingCoverage {
     if (!this.guideMeFormData.existingCoverageValues) {
-      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan : 'Private Hospital' } as IExistingCoverage;
+      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan: 'Private Hospital' } as IExistingCoverage;
     }
     return this.guideMeFormData.existingCoverageValues;
   }
@@ -396,14 +428,14 @@ export class GuideMeService {
     const currentLongTerm = this.getLongTermCare();
     let currentValue;
     switch (currentLongTerm.careGiverType) {
-      case 'Nursing Home' : currentValue = 2600;
-                            break;
-      case 'Daycare Support': currentValue = 2600;
-                              break;
+      case 'Nursing Home': currentValue = 2600;
+        break;
+      case 'Daycare Support': currentValue = 1800;
+        break;
       case 'Domestic Helper': currentValue = 1200;
-                              break;
+        break;
       case 'Family Member': currentValue = 600;
-                            break;
+        break;
     }
     return currentValue;
   }

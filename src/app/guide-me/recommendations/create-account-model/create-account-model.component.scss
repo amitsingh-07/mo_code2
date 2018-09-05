@@ -1,6 +1,5 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-
 .selected-count {
     background-color: #ff872f;
     width: 39px;
@@ -37,4 +36,16 @@
       color:black;
       font-weight: bold;
       text-align: center;
+  }
+
+  .back{
+    display:flex;
+    width: 26px;
+    height: 25px;
+    background: url("../../../../assets/images/close-button-dark.svg");
+    position: inherit;
+    background-repeat: no-repeat;
+    border: 0;
+    margin-left: 15px;
+    margin-top: 15px;
   }
