@@ -52,7 +52,9 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
       this.planData = this.translate.instant('INSURANCE_RESULTS.PLANS');
       this.setPageTitle(this.pageTitle, null, false);
-      this.getProtectionNeeds();
+      setTimeout(() => {
+        this.getProtectionNeeds();
+      }, 500);
     });
     this.ocpDisabilityValues = this.guideMeService.getMyOcpDisability();
     this.criticalIllnessValues = this.guideMeService.getCiAssessment();
