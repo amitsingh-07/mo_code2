@@ -29,19 +29,19 @@ describe('ExistingCoverageModalComponent', () => {
     expect(life_protection.valid).toBeFalsy();
   });
 
-  it('life protection field validity', () => {
-    const life_protection = component.existingCoverageForm.controls['CRITICAL_ILLNESS'];
-    expect(life_protection.valid).toBeFalsy();
+  it('critical Illness field validity', () => {
+    const critical_illness = component.existingCoverageForm.controls['CRITICAL_ILLNESS'];
+    expect(critical_illness.valid).toBeFalsy();
   });
 
-  it('life protection field validity', () => {
-    const occupational = component.existingCoverageForm.controls['OCCUPATION_DISABILITY'];
-    expect(life_protection.valid).toBeFalsy();
+  it('occupational disability field validity', () => {
+    const occupational_disability = component.existingCoverageForm.controls['OCCUPATION_DISABILITY'];
+    expect(occupational_disability.valid).toBeFalsy();
   });
 
-  it('life protection field validity', () => {
-    const life_protection = component.existingCoverageForm.controls['LONG_TERM_CARE'];
-    expect(life_protection.valid).toBeFalsy();
+  it('long term care field validity', () => {
+    const long_Term_Care = component.existingCoverageForm.controls['LONG_TERM_CARE'];
+    expect(long_Term_Care.valid).toBeFalsy();
   });
 
 });
