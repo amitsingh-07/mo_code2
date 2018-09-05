@@ -4,15 +4,15 @@
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <img src="../../../assets/images/custom-modal-icon.svg" id="custModalImg1" />
+      <img src="../../../assets/images/custom-modal-icon.svg" id="portfolioRecommenadtionCustModalImg1" />
       <div class="custom-modal--content">
-        <p class="custom-modal--title" id="custModalTitle">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_TITLE' | translate}}</p>
-        <p class="custom-modal--desc" id="custModalDesc">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
+        <p class="custom-modal--title" id="portfolioRecommenadtionCustModalTitle">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_TITLE' | translate}}</p>
+        <p class="custom-modal--desc" id="portfolioRecommenadtionCustModalDesc">{{ 'PORTFOLIO_RECOMMENDATION.MODAL_DESC' | translate}}</p>
       </div>
     </div>
     <div class="custom-modal-content">
       <div>
-        <img src="../../../assets/images/custom-modal-overlay-bg.svg" id="custModalImg2" />
+        <img src="../../../assets/images/custom-modal-overlay-bg.svg" id="portfolioRecommendationCustModalImg2" />
       </div>
     </div>
   </div>
@@ -29,32 +29,32 @@
 
       <div class="col-12 portfolio-allocation-details__content__desc">
 
-        <div class="portfolio-allocation-details__content__title mb10 text-center">{{'PORTFOLIO_RECOMMENDATION.BALANCED_PORTFOLIO'
+        <div class="portfolio-allocation-details__content__title mb10 text-center" id="portfolioRecommenadtionTitle">{{'PORTFOLIO_RECOMMENDATION.BALANCED_PORTFOLIO'
           | translate}}
-          <div class="edit_button " (click)="showEditModal()"></div>
+          <div id="portfolioRecommenationEditBtn"  class="edit_button " (click)="showEditModal()"></div>
         </div>
 
-        <div class="amount flex-col-12  text-center" id="riskProfileTitle">{{portfolio.projectedValue |
+        <div class="amount flex-col-12  text-center" id="portfolioRecommenadtionProjtValue">{{portfolio.projectedValue |
           currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-        <div class="years flex-col-12 mb10  text-center" id="riskProfileTitle">{{'PORTFOLIO_RECOMMENDATION.PROJECTED_PORTF_VALUE'
+        <div class="years flex-col-12 mb10  text-center" id="portfolioRecommenadtionYearsValue">{{'PORTFOLIO_RECOMMENDATION.PROJECTED_PORTF_VALUE'
           | translate}}
           <u>{{portfolio.tenure}}</u> {{'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</div>
 
         <div class="project_returns  text-center">
           <div class="container-fluid">
             <div class="flex-col-12">
-              <div class="Projected_title">
+              <div class="Projected_title" id="portfolioRecommenadtionProjectRetrsContent">
                 {{'PORTFOLIO_RECOMMENDATION.PROJECTED_RETURNS' | translate}}
               </div>
             </div>
             <div class="flex-col-12">
-              <div class="Projected_money">{{portfolio.projectedReturns}}
-                <div class="tooltip-icon" (click)="showHelpModal()"></div>
+              <div class="Projected_money" id="portfolioRecommedationProjectRetrsValue">{{portfolio.projectedReturns}}
+                <div class="tooltip-icon"  id="portfoliorecommedationHelpIcon" (click)="showHelpModal()"></div>
 
               </div>
               <!-- <u class="whats_risk" (click)=showWhatTheRisk()>What’s the risk?</u> -->
               <!-- <div class="whats_resk" (click)=showWhatFubdDetails()>Fund Details</div>                -->
-              <a class="whats_risk" (click)="showWhatTheRisk()">{{'PORTFOLIO_RECOMMENDATION.WHATS_THE_RISK' |
+              <a class="whats_risk"  id="portfolioRecommeationWhatsRiskLink" (click)="showWhatTheRisk()">{{'PORTFOLIO_RECOMMENDATION.WHATS_THE_RISK' |
                 translate}}</a>
             </div>
           </div>
@@ -65,7 +65,7 @@
             <div class="flex-col-12">
               <div class="allocation-content">
                 <div *ngIf="portfolio">
-                  <div class="breakdown-title">Asset Allocation Breakdown</div>
+                  <div class="breakdown-title" id="portfolioRecommenationAccordtionTitle">Asset Allocation Breakdown</div>
                   <app-breakdown-bar [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
                     [colors]="legendColors" (selectAllocationBar)="selectAllocation($event)"></app-breakdown-bar>
                   <app-breakdown-accordion [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
@@ -78,8 +78,8 @@
 
 
 
-        <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-          id="riskProfileBtn">{{ 'LABEL.I_WANT_TO_START_INVESTING' | translate}}</button>
+        <button type="button"  (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+          id="portfolioRecommendationNextBtn">{{ 'LABEL.I_WANT_TO_START_INVESTING' | translate}}</button>
       </div>
     </div>
   </div>
