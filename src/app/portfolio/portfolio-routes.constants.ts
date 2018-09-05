@@ -6,11 +6,11 @@ export const PORTFOLIO_ROUTES = {
   PERSONAL_INFO: 'personal-info',
   MY_FINANCIALS: 'my-financials',
   GET_STARTED_STEP2: 'step-2',
-  RISK_ASSESSMENT:'risk-assessment',
-  RISK_PROFILE:'risk-profile',
-  PORTFOLIO_RECOMMENDATION:'portfolio-recommendation',
-  WHATS_THE_RISK:'whats-the-risk',
-  FUND_DETAILS:'fund-details'
+  RISK_ASSESSMENT: 'risk-assessment',
+  RISK_PROFILE: 'risk-profile',
+  PORTFOLIO_RECOMMENDATION: 'portfolio-recommendation',
+  WHATS_THE_RISK: 'whats-the-risk',
+  FUND_DETAILS: 'fund-details'
 };
 
 export const PORTFOLIO_ROUTE_PATHS = {

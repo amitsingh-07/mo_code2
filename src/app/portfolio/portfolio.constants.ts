@@ -1,5 +1,5 @@
 export let portfolioConstants = {
     my_financials : {
-        sufficient_emergency_fund: "yes"
+        sufficient_emergency_fund: 'yes'
     }
 };

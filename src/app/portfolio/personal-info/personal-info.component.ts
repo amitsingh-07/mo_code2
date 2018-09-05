@@ -1,43 +1,38 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AfterViewInit, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-import { CommonModule, CurrencyPipe } from '@angular/common';
-import { FormControl, FormGroup } from '../../../../node_modules/@angular/forms';
-//import { Router } from '../../../../node_modules/@angular/router';
-import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES  } from '../portfolio-routes.constants';
+import { PortfolioService } from './../portfolio.service';
+
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { PortfolioService } from './../portfolio.service';
-const assetImgPath = './assets/images/';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
+const assetImgPath = './assets/images/';
 
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.scss'],
- 
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   encapsulation: ViewEncapsulation.None
 })
-export class PersonalInfoComponent implements OnInit {
+export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageComponent {
   @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   personalInfoForm: FormGroup;
   pageTitle: string;
   formValues: any;
   ciAssessmentFormValues: any;
-  sliderMinValue: number = 0;
-  sliderMaxValue: number = 99;
-  sliderDesc:string;
-  dob:string;
-
-
+  sliderMinValue = 0;
+  sliderMaxValue = 99;
+  sliderDesc: string;
+  dob: string;
 
   constructor(
     private router: Router,
@@ -72,6 +67,9 @@ export class PersonalInfoComponent implements OnInit {
     }
   };
 
+  ngAfterViewInit() {
+    this.ciMultiplierSlider.writeValue(this.formValues.investmentPeriod);
+  }
 
   ngOnInit() {
     this.formValues = this.portfolioService.getPersonalInfo();
@@ -81,36 +79,27 @@ export class PersonalInfoComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.ciMultiplierSlider.writeValue(this.formValues.investmentPeriod);
-  }
-
-
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
 
   onSliderChange(value): void {
     this.setSliderDescByRange(value);
-    this.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = this.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
+    const pointerPosition = this.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
+    this.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
     this.personalInfoForm.controls.investmentPeriod.setValue(value);
   }
-
 
   setSliderDescByRange(value) {
     if (value <= 3) {
       this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_1_3_DESC');
-    }
-    else if (value > 3 && value <= 7) {
+    } else if (value > 3 && value <= 7) {
       this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_3_7_DESC');
-    }
-    else if (value > 7 && value <= 14) {
+    } else if (value > 7 && value <= 14) {
       this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_7_14_DESC');
-    }
-    else if(value > 14) {
+    } else if (value > 14) {
       this.sliderDesc = this.translate.instant('PERSONAL_INFO.RANGE_14_DESC');
     }
-    
   }
 
   save(form: any) {
@@ -118,15 +107,12 @@ export class PersonalInfoComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.portfolioService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)['errorMessage'];
       return false;
     }
-  
     form.value.customDob = this.parserFormatter.format(form.value.dob);
-
     this.portfolioService.setUserInfo(form.value);
     return true;
   }

@@ -1,20 +1,19 @@
-import { Component, OnInit, ViewEncapsulation, HostListener, AfterContentInit, AfterViewInit } from '@angular/core';
-import 'rxjs/add/observable/timer';
-import { PortfolioService } from './../portfolio.service';
+import { CurrencyPipe } from '@angular/common';
+import { Token } from '@angular/compiler';
+import { AfterContentInit, AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
-import { Router } from '@angular/router';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { Token } from '@angular/compiler';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-import { CurrencyPipe } from '@angular/common';
-  
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { PortfolioService } from './../portfolio.service';
+
+import 'rxjs/add/observable/timer';
 
 @Component({
-
   selector: 'app-portfolio-recommendation',
   templateUrl: './portfolio-recommendation.component.html',
   styleUrls: ['./portfolio-recommendation.component.scss'],
@@ -27,12 +26,12 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   portfolio;
 
   breakdownSelectionindex: number = null;
-  isAllocationOpen: boolean = false;
+  isAllocationOpen = false;
 
-  legendColors: string[] = ["#3cdacb", "#ec681c", "#76328e"];
+  legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
 
   helpDate: any;
-  editPortfolio:any;
+  editPortfolio: any;
   constructor(
     private router: Router,
     public headerService: HeaderService,
@@ -42,15 +41,14 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
     public modal: NgbModal,
     private portfolioService: PortfolioService) {
     this.translate.use('en');
-    let self = this;
+    const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
-self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel');
+      self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel');
       self.helpDate = this.translate.instant('PORTFOLIO_RECOMMENDATION.helpDate');
       this.setPageTitle(this.pageTitle, null, false);
     });
   }
-
 
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
@@ -81,11 +79,11 @@ self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel'
     ref.componentInstance.errorMessage = this.helpDate.modalMessage;
     return false;
   }
-  showEditModal(){
+  showEditModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-     ref.componentInstance.errorTitle =this.editPortfolio.modalTitle;
-     ref.componentInstance.errorMessage =this.editPortfolio.modalMessage;
-   }
+    ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
+    ref.componentInstance.errorMessage = this.editPortfolio.modalMessage;
+  }
   showWhatTheRisk() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
 
@@ -94,7 +92,7 @@ self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel'
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
   }
   getPortfolioAllocationDeatails() {
-    //this.authService.authenticate().subscribe((Token)=>{
+    // this.authService.authenticate().subscribe((Token)=>{
     this.portfolioService.getPortfolioAllocationDeatails().subscribe((data) => {
       this.portfolio = data.objectList;
     });
@@ -104,24 +102,16 @@ self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel'
     if ((!this.isAllocationOpen)) {
       this.breakdownSelectionindex = event;
       this.isAllocationOpen = true;
-    }
-    else {
-      if (event != this.breakdownSelectionindex) {
-        //different tab
-        this.breakdownSelectionindex = event;
-        this.isAllocationOpen = true;
-      }
-      else {
-        //same tab click
-        this.breakdownSelectionindex = null;
-        this.isAllocationOpen = false;
-      }
+    } else {
+        if (event !== this.breakdownSelectionindex) {
+          // different tab
+          this.breakdownSelectionindex = event;
+          this.isAllocationOpen = true;
+          } else {
+          // same tab click
+          this.breakdownSelectionindex = null;
+          this.isAllocationOpen = false;
+        }
     }
   }
 }
-
-
-
-
-
-
