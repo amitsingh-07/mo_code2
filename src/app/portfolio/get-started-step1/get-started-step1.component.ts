@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-get-started-step1',
@@ -18,7 +19,11 @@ export class GetStartedStep1Component implements OnInit {
   description2 =  this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
   tab = '1';
 
-  constructor(public readonly translate: TranslateService, private router: Router, public headerService: HeaderService) {
+  constructor(
+    public readonly translate: TranslateService,
+    public authService: AuthenticationService,
+    private router: Router,
+    public headerService: HeaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
@@ -30,6 +35,10 @@ export class GetStartedStep1Component implements OnInit {
 
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
+
+    this.authService.authenticate().subscribe((token) => {
+     console.log(token);
+    });
   }
 
   goNext() {

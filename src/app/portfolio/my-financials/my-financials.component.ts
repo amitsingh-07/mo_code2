@@ -9,6 +9,7 @@ import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from './../portfolio.service';
 import { IMyFinancials } from './my-financials.interface';
+
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -77,10 +78,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
 
   save(form: any) {
     this.portfolioService.setMyFinancials(form.value);
-    this.authService.authenticate().subscribe((token) => {
-      this.portfolioService.savePersonalInfo().subscribe((data) => {
-        // capture enquiry id
-      });
+    this.portfolioService.savePersonalInfo().subscribe((data) => {
+      // capture enquiry id
     });
     return true;
   }
