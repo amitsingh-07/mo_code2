@@ -28,6 +28,25 @@
 		}
 	}
 }
+.signup-wrapper__header-icon {
+  @include allmobiles {
+    display: none;
+  }
+}
+.container-fluid {
+  padding-top: 50px;
+}
+.signup-wrapper {
+  h2 {
+    margin-bottom: 20px;
+  }
+  .signup-wrapper__description {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: -10px;
+  }
+}
 /*Modal styles*/
 .mobile-verify-modal {
 .custom-modal-backdrop {
