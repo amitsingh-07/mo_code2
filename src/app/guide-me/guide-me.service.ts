@@ -100,6 +100,11 @@ export class GuideMeService {
     this.commit();
   }
 
+  updateDependentCount(count: number) {
+    this.guideMeFormData.dependent = count;
+    this.commit();
+  }
+
   // Return the entire GuideMe Form Data
   getGuideMeFormData(): GuideMeFormData {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
@@ -326,8 +331,23 @@ export class GuideMeService {
       return selectedProtectionNeedsPage[this.protectionNeedsPageIndex];
     } else {
       this.setInsuranceResultsModalCounter(0);
+      this.resetExistingCoverage();
       return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
     }
+  }
+
+  resetExistingCoverage() {
+    this.setExistingCoverageValues({
+      criticalIllnessCoverage: 0,
+      lifeProtectionCoverage: 0,
+      longTermCareCoveragePerMonth: 0,
+      occupationalDisabilityCoveragePerMonth: 0,
+      selectedHospitalPlan: {
+        id: 0,
+        hospitalClass: 'None',
+        hospitalClassDescription: ''
+      }
+    });
   }
 
   clearProtectionNeedsData() {
@@ -356,7 +376,11 @@ export class GuideMeService {
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
       occupationalDisabilityCoveragePerMonth: 0,
-      selectedHospitalPlan: ''
+      selectedHospitalPlan: {
+        id: 0,
+        hospitalClass: 'None',
+        hospitalClassDescription: ''
+      }
     }];
   }
 
@@ -388,14 +412,14 @@ export class GuideMeService {
     return parseInt(sessionStorage.getItem(INSURANCE_RESULTS_COUNTER_KEY), 10);
   }
 
-  setExistingCoverageValues(data: IExistingCoverage ) {
+  setExistingCoverageValues(data: IExistingCoverage) {
     this.guideMeFormData.existingCoverageValues = data;
     this.commit();
   }
 
   getExistingCoverageValues(): IExistingCoverage {
     if (!this.guideMeFormData.existingCoverageValues) {
-      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan : 'Private Hospital' } as IExistingCoverage;
+      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan: 'Private Hospital' } as IExistingCoverage;
     }
     return this.guideMeFormData.existingCoverageValues;
   }
@@ -404,14 +428,14 @@ export class GuideMeService {
     const currentLongTerm = this.getLongTermCare();
     let currentValue;
     switch (currentLongTerm.careGiverType) {
-      case 'Nursing Home' : currentValue = 2600;
-                            break;
+      case 'Nursing Home': currentValue = 2600;
+        break;
       case 'Daycare Support': currentValue = 1800;
-                              break;
+        break;
       case 'Domestic Helper': currentValue = 1200;
-                              break;
+        break;
       case 'Family Member': currentValue = 600;
-                            break;
+        break;
     }
     return currentValue;
   }
