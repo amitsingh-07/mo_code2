@@ -3,7 +3,7 @@ export class SignUpFormData {
     mobileNumber: number;
     firstName: string;
     lastName: string;
-    emailAddress: string;
+    email: string;
     termsOfConditions: boolean;
     marketingAcceptance: boolean;
     password: string;
