@@ -34,6 +34,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   activeRecommendationType;
   activeRecommendationList;
   isComparePlanEnabled = false;
+  enquiryId;
 
   prevActiveSlide;
   nextActiveSlide;
@@ -65,6 +66,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
+        this.enquiryId = data.objectList[0].enquiryId;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;
         this.activeRecommendationList = this.recommendationPlans[0];
         this.updateCoverageDetails();
@@ -206,7 +208,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.isComparePlanEnabled = !this.isComparePlanEnabled;
   }
   proceed() {
-    this.selectedPlansService.setSelectedPlan(this.selectedPlans);
+    this.selectedPlansService.setSelectedPlan(this.selectedPlans, this.enquiryId);
     this.modalRef = this.modal.open(CreateAccountModelComponent, {
       windowClass: 'position-bottom',
       centered: true

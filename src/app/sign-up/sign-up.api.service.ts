@@ -53,22 +53,27 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    const selectedPlan = [];
+    for (const plan of selectedPlanData.plans) {
+      selectedPlan.push({typeId: plan.typeId, productName: plan.productName});
+    }
     return {
       customer : {
-        isSmoker: getGuideMeFormData.smoker,
+        isSmoker: (getGuideMeFormData.smoker === 'non-smoker') ? false : true,
         givenName: getAccountInfo.firstName,
         surName: getAccountInfo.lastName,
-        email: getAccountInfo.emailAddress,
+        email: getAccountInfo.email,
         mobileNumber: getAccountInfo.mobileNumber,
         notificationByEmail: getAccountInfo.marketingAcceptance,
         password: getAccountInfo.password,
         countryCode: getAccountInfo.countryCode,
         notificationByPhone: false,
         crmId: 0,
-        isIdentityVerified: false
+        isIdentityVerified: false,
+        dateOfBirth: getGuideMeFormData.customDob
       },
-      enquiryId : 3,
-      selectedProducts: selectedPlanData
+      enquiryId : selectedPlanData.enquiryId,
+      selectedProducts: selectedPlan
     };
   }
 
