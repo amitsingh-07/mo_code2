@@ -66,6 +66,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
 
   setDropDownDependentCount(value, i) {
     this.lpDependentCountForm.controls.dependentCount.setValue(value);
+    this.guideMeService.updateDependentCount(value);
   }
   showMobilePopUp() {
     const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });

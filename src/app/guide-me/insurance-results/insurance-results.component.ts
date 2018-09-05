@@ -1,23 +1,23 @@
 import 'rxjs/add/observable/timer';
 
 import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, NavigationStart } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Router } from '@angular/router';
+import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
+import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GuideMeService } from '../guide-me.service';
 import { IMyIncome } from '../income/income.interface';
 import { IMyOcpDisability } from '../ocp-disability/ocp-disability.interface';
-import { GuideMeCalculateService } from '../guide-me-calculate.service';
-import { GuideMeService } from '../guide-me.service';
 import { ExistingCoverageModalComponent } from './existing-coverage-modal/existing-coverage-modal.component';
 import { IExistingCoverage } from './existing-coverage-modal/existing-coverage.interface';
 import { InsuranceResultModalComponent } from './insurance-result-modal/insurance-result-modal.component';
 import { IResultItem, IResultItemEntry, IResultObject } from './insurance-result/insurance-result';
-import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 
 const assetImgPath = './assets/images/';
 @Component({
@@ -116,6 +116,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       centered: true
     });
     ref.componentInstance.data = data;
+    this.dismissPopup(ref);
   }
 
   openExistingCoverageModal() {
@@ -125,6 +126,15 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     ref.componentInstance.data = this.protectionNeedsArray;
     ref.componentInstance.dataOutput.subscribe((emittedValue) => {
       this.addExistingCoverageOutput(emittedValue);
+    });
+    this.dismissPopup(ref);
+  }
+
+  dismissPopup(ref: NgbModalRef) {
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        ref.close();
+      }
     });
   }
 
@@ -204,9 +214,11 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'For Dependants', value: this.lifeProtectionValues.dependantsValue , currency: '$' } as IResultItemEntry);
-    entries.push({ title: 'Education Support',
-                  value: this.lifeProtectionValues.educationSupportAmount, currency: '$' } as IResultItemEntry);
+    entries.push({ title: 'For Dependants', value: this.lifeProtectionValues.dependantsValue, currency: '$' } as IResultItemEntry);
+    entries.push({
+      title: 'Education Support',
+      value: this.lifeProtectionValues.educationSupportAmount, currency: '$'
+    } as IResultItemEntry);
     entries.push({ title: 'Liabilities', value: this.liabilityValues, currency: '$' } as IResultItemEntry);
     entries.push({ title: 'Less Current Assets', value: this.assetValues, currency: '$' } as IResultItemEntry);
     return {
@@ -218,7 +230,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       total: {
         title: 'Coverage Needed',
         value: this.lifeProtectionValues.coverageAmount
-       }
+      }
     };
   }
 
@@ -228,8 +240,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'Annual Income', value: this.criticalIllnessValues.annualSalary , currency: '$' } as IResultItemEntry);
-    entries.push({ title: 'Years To Replace', value: this.criticalIllnessValues.ciMultiplier , type: ' Years'} as IResultItemEntry);
+    entries.push({ title: 'Annual Income', value: this.criticalIllnessValues.annualSalary, currency: '$' } as IResultItemEntry);
+    entries.push({ title: 'Years To Replace', value: this.criticalIllnessValues.ciMultiplier, type: ' Years' } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: 'critical-illness-icon.svg',
@@ -271,8 +283,10 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: this.guideMeService.getLongTermCare().careGiverType,
-                  value: this.guideMeService.selectLongTermCareValues() , currency: '$', monthEnabled: ' / mth' } as IResultItemEntry);
+    entries.push({
+      title: this.guideMeService.getLongTermCare().careGiverType,
+      value: this.guideMeService.selectLongTermCareValues(), currency: '$', monthEnabled: ' / mth'
+    } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: 'long-term-care-icon.svg',

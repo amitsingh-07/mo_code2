@@ -1,10 +1,10 @@
-import { ConfigService } from '../../../config/config.service';
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { IResultItem } from '../insurance-result/insurance-result';
 
+import { ConfigService } from '../../../config/config.service';
 import { GuideMeService } from '../../guide-me.service';
+import { IResultItem } from '../insurance-result/insurance-result';
 import { IExistingCoverage } from './existing-coverage.interface';
 
 @Component({
