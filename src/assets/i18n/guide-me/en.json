@@ -193,6 +193,44 @@
     },
     "RESULT_BLOCK": {
       "VIEW_DETAILS": "View Details"
+    },
+    "PLANS": {
+      "COVARAGE_NEEDED": "Coverage Needed",
+      "LESS_EXISTING_COVARAGE": "Less Existing Coverage",
+      "DOLLER":"$",
+      "PERSENTAGE":"%",
+      "LIFE_PROTECTION":{ 
+        "TITLE": "Life Protection",
+        "ICON": "life-protection-icon.svg",
+        "EDUCATION_SUPPORT":"Education Support",
+        "FOR_DEPENDENTS":"For Dependants",
+        "LIABILITIES":"Liabilities",
+        "LESS_CURRENT_ASSETS":"Less Current Assets"
+        
+        },
+      "CRITICAL_ILLNESS":{ 
+        "TITLE": "Critical Illness",
+        "ICON": "critical-illness-icon.svg",
+        "ANNUAL_INCOME":"Annual Income",
+        "YEARS_TO_REPLACE":"Years To Replace",
+        "YEARS":" Years"
+        }, 
+      "OCCUPATIONAL_dISABILITY": { 
+        "TITLE": "Occupational Disability",
+        "ICON": "occupational-disability-icon.svg",
+        "MONTHLY_SALARY":"Monthly Salary",
+        "PERSENTAGE_TO_REPLACE":"% to Replace"
+        },
+      "LONG_TERMCARE":{ 
+        "TITLE": "Long-Term Care",
+        "ICON": "long-term-care-icon.svg",
+        "FOR_MONTH":" / mth"
+        }, 
+      "HOSPITAL_PLAN":{ 
+        "TITLE": "Hospital Plan",
+        "ICON": "hospital-plan-icon.svg",
+        "FAMILY_MEMBER":"Family Member"
+        }
     }
   },
   "RECOMMENDATIONS": {
