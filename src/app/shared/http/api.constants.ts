@@ -7,6 +7,7 @@ export let apiConstants = {
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',
         getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
-        getRecommendations: 'recommend/recomm-microservice/api/getRecommendations'
+        getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
+        signUp: 'account/account-microservice/api/signup'
     }
 };
