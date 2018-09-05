@@ -1,4 +1,3 @@
-import { GuideMeApiService } from './../guide-me.api.service';
 import 'rxjs/add/operator/map';
 
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
@@ -10,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { HospitalPlan } from './hospital-plan';
 
 const assetImgPath = './assets/images/';
@@ -66,7 +66,11 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   }
 
   validateForm(hospitalPlan) {
-    this.hospitalPlanFormValues = hospitalPlan;
+    this.hospitalPlanFormValues = {
+      hospitalClass: hospitalPlan.hospitalClass,
+      hospitalClassDescription: hospitalPlan.hospitalClassDescription,
+      hospitalClassId: hospitalPlan.id
+    } as HospitalPlan;
     this.isFormValid = true;
   }
 

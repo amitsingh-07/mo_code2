@@ -4,7 +4,7 @@ export interface IDependent {
     eduSupportCountry: string;
     eduSupportCourse: string;
     eduSupportNationality: string;
-    eduSupport: boolean;
+    educationSupport: boolean;
     gender: string;
     relationship: string;
     supportAmount: string;

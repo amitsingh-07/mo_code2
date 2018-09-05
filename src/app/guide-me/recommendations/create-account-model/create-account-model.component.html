@@ -1,0 +1,30 @@
+<div class="modal-body white-bg">
+  <div class="form-group mt0">
+    <div class="flex-row">
+        <div class="flex-col-3">
+                <button type="button" class="back" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                        <span aria-hidden="true"></span>
+                      </button>
+        </div>
+      <div class="flex-col-8">
+          <span class="selected-count">{{data}}</span>
+          <span class="lbl-selected">Plans Selected</span>
+      </div>
+    </div>
+    <div class="flex-row">
+        <div class="flex-col-12">
+          <label class="choose_ops flex-col-12">Choose one of the option to continue:</label>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="flex-col-12">
+            <button type="button" class="btn btn__footer btn-primary width100 mt5" id="incomeBtn">Create Account</button>
+        </div>
+      </div>
+      <div class="flex-row">
+          <div class="flex-col-12">
+              <button type="button" class="btn btn__footer width100 mt5" id="incomeBtn">Login</button>
+          </div>
+        </div>
+    </div>
+  </div>

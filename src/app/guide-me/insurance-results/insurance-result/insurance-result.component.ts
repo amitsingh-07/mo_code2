@@ -1,10 +1,14 @@
-import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+
+import { GuideMeService } from '../../guide-me.service';
 import { IResultItem } from './insurance-result';
+
 
 @Component({
   selector: 'app-insurance-result',
   templateUrl: './insurance-result.component.html',
-  styleUrls: ['./insurance-result.component.scss']
+  styleUrls: ['./insurance-result.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InsuranceResultComponent implements DoCheck, OnInit {
   @Input() data: IResultItem;
@@ -21,7 +25,7 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
     if (this.data) {
       this.icon = this.data.icon;
       this.amount = this.data.existingCoverage.value > this.data.total.value
-            ? 0 : this.data.total.value - this.data.existingCoverage.value;
+        ? 0 : this.data.total.value - this.data.existingCoverage.value;
 
       this.title = this.data.title;
       this.temp = this.data;
@@ -33,12 +37,19 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
       }
       // View Details Button
       if (this.title === 'Hospital Plan') {
-        this.amount = this.data.content;
+
+        const hospitalPlan: any = this.guideMeService.getHospitalPlan().hospitalClass;
+        if (hospitalPlan.indexOf(' ') < 0) {
+          this.amount = hospitalPlan;
+        } else {
+          this.amount = hospitalPlan.substr(0, hospitalPlan.indexOf(' '));
+        }
         this.viewDetailsBtn = false;
       }
     }
- }
-  constructor() { }
+  }
+
+  constructor(private guideMeService: GuideMeService) { }
 
   ngOnInit() {
   }

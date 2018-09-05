@@ -1,10 +1,11 @@
+<form id="existingCoverageForm" name="existingCoverageForm" [formGroup]="existingCoverageForm">
 <div class="modal-header">
   <div class="modal-title popup-header-icon">
     <img src="./assets/images/owl.svg" />
   </div>
 </div>
 <div class="modal-body white-bg">
-  <div class="modal-body-title">Add Existing Coverage</div>
+  <div class="modal-body-title">Add Existing Coverages</div>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true"></span>
   </button>
@@ -17,7 +18,7 @@
         <div class="form-control">
           <i>$</i>
           <div name="cpf">
-            <input class="input-control" type="text" maxLength="10" name="LIFE_PROTECTION" [(ngModel)]="model.lifeProtectionCoverage">
+            <input class="input-control" type="text" maxLength="10" name="LIFE_PROTECTION" type="text" appRestrictAlphabets formControlName="lifeProtectionCoverage" value="0">
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
         <div class="form-control">
           <i>$</i>
           <div name="cpf">
-            <input class="input-control" type="text" maxLength="10" name="CRITICAL_ILLNESS" [(ngModel)]="model.criticalIllnessCoverage">
+            <input class="input-control" type="text" maxLength="10" name="CRITICAL_ILLNESS" appRestrictAlphabets formControlName="criticalIllnessCoverage" value="0">
           </div>
         </div>
       </div>
@@ -43,7 +44,7 @@
         <div class="form-control form-control-right">
           <i>$</i>
           <div name="cpf">
-            <input class="input-control" type="text" maxLength="5" name="OCCUPATION_DISABILITY" [(ngModel)]="model.occupationalDisabilityCoveragePerMonth">
+            <input class="input-control" type="text" maxLength="5" name="OCCUPATION_DISABILITY" appRestrictAlphabets formControlName="occupationalDisabilityCoveragePerMonth" value="0">
           </div>
           <i class="right">/ mth</i>
         </div>
@@ -57,7 +58,7 @@
         <div class="form-control form-control-right">
           <i>$</i>
           <div name="cpf">
-            <input class="input-control" type="text" maxLength="5" name="LONG_TERM_CARE" [(ngModel)]="model.longTermCareCoveragePerMonth">
+            <input class="input-control"  type="text" maxLength="5" name="LONG_TERM_CARE" appRestrictAlphabets formControlName="longTermCareCoveragePerMonth" value="0">
           </div>
           <i class="right">/ mth</i>
         </div>
@@ -71,11 +72,11 @@
       <div class="flex-col-6">
         <div class="dropdown-control">
           <div ngbDropdown id="hospitalPlanDropDown">
-            <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
-              <span>{{selectedHospitalPlan}}</span>
+            <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
+              <span>{{selectedHospitalPlan.hospitalClass}}</span>
             </button>
             <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
-              <button class="dropdown-item" *ngFor="let currentPlan of hospitalPlanList" (click)="selectHospitalPlan(currentPlan)">{{currentPlan}}</button>
+              <button class="dropdown-item" *ngFor="let currentPlan of hospitalPlanList" (click)="selectHospitalPlan(currentPlan)">{{currentPlan.hospitalClass}}</button>
             </div>
           </div>
         </div>
@@ -84,3 +85,4 @@
   </div>
   <button type="button" (click)="save()" class="btn btn__footer--fixed btn-primary width100 mt5" id="incomeBtn">{{ 'LABEL.SAVE' | translate}}</button>
 </div>
+</form>

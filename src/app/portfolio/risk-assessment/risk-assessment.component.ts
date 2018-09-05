@@ -1,0 +1,110 @@
+import 'rxjs/add/operator/map';
+
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+
+import { HeaderService } from '../../shared/header/header.service';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { LoggerService } from '../../shared/logger/logger.service';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { PortfolioService } from '../portfolio.service';
+import { ActivatedRoute } from '@angular/router';
+
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+
+@Component({
+  selector: 'app-risk-assessment',
+  templateUrl: './risk-assessment.component.html',
+  styleUrls: ['./risk-assessment.component.scss'],
+  encapsulation: ViewEncapsulation.None
+})
+export class RiskAssessmentComponent implements IPageComponent, OnInit {
+
+  pageTitle: string;
+  QuestionLabel: string;
+  ofLabel: string;
+  riskAssessmentForm: FormGroup;
+  riskFormValues: any;
+  questionsList: any[] = [];
+  questionIndex: number;
+  currentQuestion: any;
+
+  constructor(
+    private portfolioService: PortfolioService, private route: ActivatedRoute, private router: Router,
+    private modal: NgbModal, public headerService: HeaderService,
+    public readonly translate: TranslateService, public authService: AuthenticationService,
+    public log: LoggerService) {
+
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('RISK_ASSESSMENT.TITLE');
+      this.QuestionLabel = this.translate.instant('RISK_ASSESSMENT.QUESTION_LBL');
+      this.ofLabel = this.translate.instant('RISK_ASSESSMENT.OF_LBL');
+      this.setPageTitle(this.pageTitle);
+    });
+  }
+
+  ngOnInit() {
+    this.riskFormValues = this.portfolioService.getPortfolioFormData();
+    let self = this;
+    this.route.params.subscribe(params => {
+      self.questionIndex = +params['id'];
+      this.riskAssessmentForm = new FormGroup({
+        questSelOption: new FormControl(this.riskFormValues.questSelectedOption, Validators.required)
+      });
+      if (!self.questionsList.length) {
+        self.getQuestions();
+      }
+      else {
+        self.setCurrentQuestion();
+      }
+    });
+  }
+
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title);
+  }
+
+  save(form): boolean {
+    if (!form.valid) {
+      return false;
+    }
+    this.portfolioService.setRiskAssessment(this.riskAssessmentForm.value, this.questionIndex);
+    return true;
+  }
+
+  getQuestions() {
+    this.authService.authenticate().subscribe((token) => {
+      this.portfolioService.getQuestionsList().subscribe((data) => {
+        this.questionsList = data.objectList;
+        this.setCurrentQuestion();
+      });
+    });
+  }
+
+  setCurrentQuestion() {
+    this.currentQuestion = this.questionsList[this.questionIndex - 1];
+    let selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
+    if (selectedOption) {
+      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption); 
+    }
+  }
+
+  goToNext(form) {
+    if (this.save(form)) {
+      if (this.questionIndex < this.questionsList.length) {
+        //NEXT QUESTION
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + "/" + (this.questionIndex + 1)]);
+      }
+      else {
+        //NEXT QUESTION
+        console.log(this.portfolioService.getPortfolioFormData());
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_PROFILE]);
+      }
+
+    }
+  }
+}

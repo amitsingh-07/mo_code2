@@ -1,4 +1,3 @@
-import { GuideMeApiService } from './../guide-me.api.service';
 import 'rxjs/add/operator/map';
 
 import { Component, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
@@ -12,6 +11,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
 import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { LongTermCare } from './ltc-assessment';
 
 const assetImgPath = './assets/images/';
@@ -80,8 +80,12 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
     this.headerService.setPageTitle(title, subTitle, helpIcon);
   }
 
-  validateForm(careGiverType) {
-    this.longTermCareFormValues = careGiverType;
+  validateForm(careGiver) {
+    this.longTermCareFormValues = {
+      careGiverType: careGiver.careGiverType,
+      careGiverDescription: careGiver.careGiverDescription,
+      careGiverTypeId: careGiver.id
+    } as LongTermCare;
     this.isFormValid = true;
   }
 

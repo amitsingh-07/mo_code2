@@ -2,7 +2,7 @@ import { IMyExpenses } from '../expenses/expenses.interface';
 import { IMyIncome } from '../income/income.interface';
 import { IMyLiabilities } from '../liabilities/liabilities.interface';
 import { IMyAssets } from '../my-assets/my-assets.interface';
-import { ILifeProtectionNeedsData } from './../life-protection/life-protection';
+import { ILifeProtectionNeedsData } from '../life-protection/life-protection';
 
 export interface IRecommendationRequest {
     enquiryData: IEnquiryData;
@@ -31,6 +31,7 @@ export interface IEnquiryData {
     employmentStatusId: number;
     numberOfDependents: number;
     hasPremiumWaiver: boolean;
+    type: string;
 }
 
 export interface IProtectionTypeData {
@@ -47,11 +48,11 @@ export interface IFinancialStatusMapping {
 export interface ILifeProtection {
     gender: string;
     relationship: string;
-    dateOfBirth: string;
+    age: number;
     dependentProtectionNeeds: {
         dependentId: number;
         educationCourse: string;
-        montlySupportAmount: number;
+        monthlySupportAmount: number;
         countryOfEducation: string;
         nationality: string;
         universityEntryAge: number;

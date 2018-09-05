@@ -1,3 +1,5 @@
+import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
+import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +12,7 @@ import { CurrencyInputDirective } from '../shared/directives/currency-input.dire
 import { SharedModule } from '../shared/shared.module';
 import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
+import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
@@ -59,8 +62,12 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
     InsuranceResultComponent,
     RecommendationsComponent,
     PlanWidgetComponent,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    ComparePlansComponent,
+    PlanDetailsWidgetComponent,
+    ProductDetailComponent
   ],
-  providers: [CurrencyPipe, CustomCurrencyPipe]
+  providers: [CurrencyPipe, CustomCurrencyPipe],
+  entryComponents: [ProductDetailComponent]
 })
 export class GuideMeModule { }

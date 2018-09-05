@@ -1,4 +1,29 @@
 {
-    "apiBaseUrl": "http://bfa-uat.ntuclink.cloud",
-    "useMyInfo": false
-  }
+  "apiBaseUrl": "http://bfa-uat.ntuclink.cloud",
+  "useMyInfo": false,
+  "hospitalPlanData": [{
+    "id": 0,
+    "hospitalClass": "None",
+    "hospitalClassDescription": ""
+  }, {
+    "id": 1,
+    "hospitalClass": "Private Hospital",
+    "hospitalClassDescription": "Choose any doctor, Stay in any hospital"
+  }, {
+    "id": 2,
+    "hospitalClass": "Government Hospital Ward A",
+    "hospitalClassDescription": "Choose any doctor, Stay in single ward"
+  }, {
+    "id": 3,
+    "hospitalClass": "Government Hospital Ward B1",
+    "hospitalClassDescription": "Choose any doctor, Up to 4-bedded ward"
+  }, {
+    "id": 4,
+    "hospitalClass": "Government Hospital Ward B2/C",
+    "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward"
+  }, {
+    "id": 5,
+    "hospitalClass": "Global Healthcare Coverage",
+    "hospitalClassDescription": "Option for maternity, Outpatient treatment"
+  }]
+}

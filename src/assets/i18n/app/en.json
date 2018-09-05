@@ -1,4 +1,7 @@
 {
+  "SUFFIX": {
+    "PER_MONTH": "/ mth"
+  },
   "LABEL": {
     "GENDER": "Gender",
     "CONTINUE": "Continue",
@@ -16,8 +19,23 @@
     "SUPPORT_AMOUNT": "Support Amount",
     "YEARS_NEEDED": "Years Needed"
   },
+  "BUTTON": {
+    "PROCEED": "Proceed",
+    "COMPARE": "Compare",
+    "SELECT_PLAN": "Select Plan",
+    "DETAILS": "Details"
+  },
   "CUSTOM_MODAL": {
     "MODAL_TITLE": "Insurance Results",
     "MODAL_DESC":"In the final step, we will be sharing with you the coverage you need based on our assessment."
+  },
+  "PRODUCT_DETAILS": {
+    "LBL_ABOUT_POLICY": "About Policy",
+    "LBL_REASONS_TO_BUY": "Reasons To Buy This Plan",
+    "LBL_PAYOUT": "Payout Details",
+    "LBL_UNIQUE_FEATURES": "Unique Features",
+    "LBL_RANKING": "Ranking By Price",
+    "LBL_RATING": "Insurer's Rating",
+    "LBL_COMMISSION": "Commission Rebate"
   }
 }

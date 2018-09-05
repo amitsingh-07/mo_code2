@@ -1,80 +1,113 @@
+@import '../../../variables';
 @import '../../../mixins';
+
 app-recommendations {
   .outer-content {
     margin-top: 0;
+
     @include allmobiles {
       margin-top: 115px;
     }
+  }
+  .comparePlans_btn{
+    display: flex;
+    margin-left: auto;
+    order: 2;
   }
   .description {
     width: 500px;
     color: rgba(255, 255, 255, 0.65);
     font-size: 18px;
   }
+
   .container-fluid {
     padding-top: 0 !important;
     padding-left: 125px !important;
     padding-right: 125px !important;
+
     @include allmobiles {
       padding: 0 !important;
       height: 100%;
     }
   }
+
   .plan-type-list {
     display: flex;
     justify-content: center;
-    background-color: #01c5c4;
+    background-color: #00c5c4;
+
     @include allmobiles {
       justify-content: start !important;
     }
   }
+
   .plan-type {
     flex-direction: row;
     justify-content: center;
     padding: 20px 30px;
     cursor: pointer;
+    font-size: 18px;
+    font-family: $muli-bold;
+    color: $white-color;
   }
+
   .plan-type.active {
-    background-color: #c1edee;
-    color: #2ca9a3;
+    background-color: #c0eded;
+    color: $app-backgrnd-color;
+    font-size: 18px;
+    font-family: $muli-bold;
   }
+
   .plan-carousel-container {
-    margin: 20px 0px;
+    padding: 20px 10px;
   }
+
   .recommendation-carousel-item {
     // width:800px;
     // margin:0 auto;
   }
+
   .carousel-content {
     background-color: #fff;
     border-radius: 6px;
     padding: 20px;
     color: #333;
+
+    @include allmobiles {
+      padding: 0px;
+    }
   }
+
   .carousel-control-prev {
     left: -120px;
     cursor: pointer;
   }
+
   .carousel-control-next {
     right: -120px !important;
     cursor: pointer;
   }
+
   .plan-type-mobile {
     text-align: center;
     padding: 15px 0px;
     background-color: #01c5c4;
   }
+
   @media screen and (max-width: 767px) {
+
     .carousel-control-prev,
     .carousel-control-next {
       display: none;
     }
   }
+
   @media screen and (min-width: 768px) {
     .recommendation-carousel-item {
       margin: 0 auto;
     }
   }
+
   .page-indicator {
     display: flex !important;
     flex-direction: row;
@@ -83,6 +116,7 @@ app-recommendations {
     align-items: center;
     margin: 10px 0px 30px 0px;
   }
+
   .page-indicator span {
     width: 14px;
     height: 14px;
@@ -91,46 +125,57 @@ app-recommendations {
     margin-right: 10px;
     display: block;
   }
+
   .page-indicator span:last-child {
     margin-right: 0px;
   }
+
   .page-indicator span.active {
     background-color: #fff;
   }
+
   .carousel-item {
     opacity: 0;
   }
+
   .carousel-item.active {
     opacity: 1;
     transform: none;
     animation: fadeIn 1.2s;
   }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
     }
+
     75% {
       opacity: 0.9;
     }
+
     100% {
       opacity: 1;
     }
   }
+
   .floating-footer-wrapper {
     width: 100%;
     align-items: center;
     position: fixed;
     bottom: 10px;
+
     @include allmobiles {
       bottom: 0;
     }
   }
+
   .floating-footer {
     background-color: #fff;
     border-radius: 6px;
     padding: 5px 10px;
     width: fit-content;
     padding-bottom: 10px !important;
+
     @include allmobiles {
       padding-bottom: 0 !important;
       width: 100%;
@@ -138,6 +183,7 @@ app-recommendations {
       height: 50px;
     }
   }
+
   .selected-count {
     background-color: #ff872f;
     width: 39px;
@@ -151,12 +197,14 @@ app-recommendations {
     color: #ffffff;
     padding-bottom: 3px;
     margin-right: 10px;
+
     @include allmobiles {
       float: left;
       margin-left: 20px;
       margin-top: 10px;
     }
   }
+
   .lbl-selected {
     font-family: Muli;
     font-size: 18px;
@@ -164,12 +212,14 @@ app-recommendations {
     letter-spacing: -0.2px;
     color: #5e5e5e;
     margin-right: 100px;
+
     @include allmobiles {
       margin-right: 0;
       padding-top: 13px;
       float: left;
     }
   }
+
   .btn-proceed {
     font-family: Muli;
     font-size: 22px;
@@ -178,10 +228,77 @@ app-recommendations {
     text-align: center;
     color: #00a7a7;
     cursor: pointer;
+
     @include allmobiles {
       float: right;
       padding-top: 5px;
       margin-right: 20px;
     }
+  }
+
+  .plan-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
+
+    @include allmobiles {
+      flex: 0 0 47%;
+      max-width: 47%;
+    }
+  }
+
+  .plan-wrapper:nth-child(1) {
+    @include allmobiles {
+      margin-right: 3px;
+      padding-right: 3px;
+    }
+  }
+
+  .plan-wrapper:nth-child(2) {
+    @include allmobiles {
+      margin-right: 0px;
+      padding-left: 3px;
+    }
+  }
+
+  .best-value-icon {
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 13px;
+    z-index: 9;
+  }
+
+  .coverage-details {
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #76adb2;
+    padding-left: 145px !important;
+    padding-right: 125px !important;
+    background: #2d8289;
+
+    @include allmobiles {
+      border: none;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      text-align: center;
+      padding-bottom: 0px !important;
+    }
+  }
+
+  .coverage-type,
+  .coverage-amount,
+  .coverage-premium-from {
+    font-family: $muli-bold;
+    margin-right: 50px;
+    font-size: 22px;
+
+    @include allmobiles {
+      margin-right: 0px;
+    }
+  }
+
+  .coverage-premium-from {
+    margin-right: 0 !important;
   }
 }

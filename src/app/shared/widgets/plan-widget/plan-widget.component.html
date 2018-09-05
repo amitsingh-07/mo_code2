@@ -1,38 +1,59 @@
-<img class="best-value-icon" src="./assets/images/best-value-icon.svg" />
-<div class="carousel-content plan-widget" [ngClass]="{'plan-selected-wrapper': isSelected}">
-  <div class="plan__block flex__box--vert">
-    <div class="row">
-      <div class="col-md-9 col-md-push-3">
-        <h4>{{name}}</h4>
-        <h2>${{amount}}</h2>
+<div class="carousel-content insurance-plan-widget" [ngClass]="{'plan-selected-wrapper': isSelected}">
+  <img class="info-icon hidden-lg" (click)="viewDetails()" src="./assets/images/tooltip-info.svg" />
+  <div class="insurance-plan-widget__container flex__box--vert">
+
+    <div class="col-md-3 col-md-pull-9 hidden-lg mt20 insurer-logo">
+      <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
+    </div>
+    <div class="row mt10 mb10">
+      <div class="col-md-8 col-md-push-3">
+        <h4>{{productName}}</h4>
+        <h2>{{premiumAmount | currency}}
+          <br class="hidden-lg"/>
+          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+        </h2>
       </div>
-      <div class="col-md-3 col-md-pull-9">
-        <img src="assets/images/Aviva_Logo.png" class="img-fluid" alt="Aviva" />
+      <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
+        <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
       </div>
     </div>
-    <hr/>
-    <div>
-      <div class="row">
-        <div class="col-md-4" *ngFor="let feature of features">
-          <div class="feature-head">{{feature.title}}</div>
-          <div class="feature-caption">{{feature.caption}}</div>
+    <div class="insurance-plan-widget__container__discount__block hidden-sm-md">{{data.promotion.promoDiscount}}</div>
+    <div style="margin-bottom: 15px;" class="hidden-sm-md">
+      <div class="insurance-plan-widget__container__rank__wrapper">
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
+          <div class="feature-head">#{{data.premium.ranking}}</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+          <div class="help-icon" style="visibility: hidden;"></div>
+        </div>
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
+          <div class="feature-head">{{data.insurer.rating}}</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
+          <div class="help-icon"></div>
+        </div>
+        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
+          <div class="feature-head">50%</div>
+          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
+          <div class="help-icon"></div>
         </div>
       </div>
-      <div>Coverage Duration: {{coverageDuration}}</div>
-      <div>Premium Duration: {{PremiumDuration}}</div>
-      <div>Needs Medical Underwriting:
-        <span *ngIf="medicalUnderwritingRequired">Yes</span>
-        <span *ngIf="!medicalUnderwritingRequired">No</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 d-none d-md-flex">
-        <button type="button" (click)="viewDetails()" class="btn btn-default width100">Details</button>
-      </div>
-      <div class="col-md-6">
-        <button type="button" (click)="selectPlan()" class="btn btn-primary width100" [ngClass]="{'plan-selected': isSelected}">Select Plan</button>
+
+      <div style="padding: 2px;" class="hidden-sm-md">
+        <div *ngFor="let highlight of highlights;"><span class="grey mr5">{{highlight.title}}</span>
+          <span class="text-bold grey">{{highlight.description}}</span>
+        </div>
       </div>
     </div>
   </div>
-
+  <div class="row row-btn-bottom">
+      <div class="col-md-6 d-none d-md-flex hidden-sm-md widget-btn-view" *ngIf = "!isComparePlanEnabled">
+        <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
+      </div>
+      <div class="col-md-6 col-btn-bottom widget-btn-select" *ngIf = "!isComparePlanEnabled">
+        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
+      </div>
+      <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
+        <button type="button" (click)="compareplan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>
+      </div>
+    </div>
 </div>
+

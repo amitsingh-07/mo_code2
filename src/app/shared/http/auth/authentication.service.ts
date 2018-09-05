@@ -14,8 +14,8 @@ const APP_SESSION_ID_KEY = 'app-session-id';
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
-  getAppSecretKey() {
-    return '658Ifh5FmT70jkAmLSWEvQWulBrR9zkrZza2n7MCusY=';
+  private getAppSecretKey() {
+    return 'YdY51VhXVWEK7nLuM+wrb8CXhLMFS4WOlYf7dAEG5jc=';
   }
 
   authenticate(userEmail?: string, userPassword?: string) {
