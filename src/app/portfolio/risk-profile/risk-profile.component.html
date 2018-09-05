@@ -8,7 +8,7 @@
         </div>
         <div class="col-12 risk-profile-block__content__desc">
           <p class="risk-profile-block__content__title mb30" id="riskProfileTitle">{{selectedRiskProfile.riskProfileName}}</p>
-          <p class="risk-profile-block__content__sub-title mb40" id="riskProfileSubTitle">{{selectedRiskProfile.htmlDescription}}</p>
+          <div class="risk-profile-block__content__sub-title mb40" id="riskProfileSubTitle" [innerHTML]=selectedRiskProfile.htmlDescription></div>
           <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
             id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
         </div>
