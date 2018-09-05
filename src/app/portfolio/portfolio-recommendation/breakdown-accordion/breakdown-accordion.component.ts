@@ -12,6 +12,7 @@ export class BreakdownAccordionComponent implements OnInit {
   @Input('allocation') allocation;
   @Input('activeIndex') activeIndex;
   @Input('colors') colors;
+  curAllocation:any;
 
   @Output() selectAllocationAccordion = new EventEmitter<boolean>();
 
@@ -22,12 +23,12 @@ export class BreakdownAccordionComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.activeIndex);
-  }
+    }
 
   emitSelectedAllocation(index){
     this.selectAllocationAccordion.emit(index);
   }
-  goToNext() {
+  viewDetails() {
    
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS])
   

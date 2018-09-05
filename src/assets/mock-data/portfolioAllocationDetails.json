@@ -15,14 +15,18 @@
             "name": "Dimensional Global Short Fixed Inc ACC-H SGD",
             "type": "UT",
             "percentage": 20,
-            "factSheetLink": "http://moneyowl.com"
+            "factSheetLink": "http://moneyowl.com",
+            "factHighlightSheetLink": "http://moneyowl.com",
+            "htmlDesc": "<html-desc>"
           },
           {
             "id": "FI3018",
             "name": "Dimensional Global Short Term Inv Gr Fixed Inc ACC-H SGD ",
             "type": "UT",
             "percentage": 20,
-            "factSheetLink": "http://moneyowl.com"
+            "factSheetLink": "http://moneyowl.com",
+            "factHighlightSheetLink": "http://moneyowl.com",
+            "htmlDesc": "<html-desc>"
           }
         ]
       }

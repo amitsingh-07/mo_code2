@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation} from '@angular/core';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,8 @@ import { PortfolioService } from './../portfolio.service';
 @Component({
   selector: 'app-whats-the-risk',
   templateUrl: './whats-the-risk.component.html',
-  styleUrls: ['./whats-the-risk.component.scss']
+  styleUrls: ['./whats-the-risk.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class WhatsTheRiskComponent implements OnInit {
   pageTitle:string;
