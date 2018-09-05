@@ -7,6 +7,7 @@ import { PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from './../portfolio.service';
 
 
+
 @Component({
   selector: 'app-fund-details',
   templateUrl: './fund-details.component.html',
@@ -17,6 +18,9 @@ export class FundDetailsComponent implements OnInit {
   portfolio:any;
   name:string;
   pageTitle:string;
+  fund;
+  
+  
   constructor(public readonly translate: TranslateService,
      private router: Router,
     public headerService: HeaderService,
@@ -33,6 +37,11 @@ export class FundDetailsComponent implements OnInit {
     this.headerService.setPageTitle(title, null, helpIcon);
   }
   ngOnInit() {
+
+    this.fund = this.portfolioService.getSelectedFund();
+    console.log(this.fund +"hiiiiii");
+   
+    
     this.getPortfolioAllocationDeatails();
   }
   getPortfolioAllocationDeatails() {

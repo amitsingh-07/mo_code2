@@ -127,4 +127,11 @@ export class PortfolioService {
   getPortfolioAllocationDeatails() {
     return this.apiService.getPortfolioAllocationDeatails();
   }
+
+  setFund(fund){
+    this.portfolioFormData.selectedFund = fund;
+  }
+  getSelectedFund(){
+    return this.portfolioFormData.selectedFund;
+  }
 }

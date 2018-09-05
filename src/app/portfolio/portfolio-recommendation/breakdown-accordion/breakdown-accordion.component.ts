@@ -15,6 +15,7 @@ export class BreakdownAccordionComponent implements OnInit {
   curAllocation:any;
 
   @Output() selectAllocationAccordion = new EventEmitter<boolean>();
+  @Output() selectFundDetails = new EventEmitter();
 
   
   constructor(
@@ -23,15 +24,17 @@ export class BreakdownAccordionComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.activeIndex);
+    
     }
 
   emitSelectedAllocation(index){
     this.selectAllocationAccordion.emit(index);
   }
-  viewDetails() {
-   
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS])
-  
-}
+
+  emitSelectedFund(fund){
+    this.selectFundDetails.emit(fund);    
+
+  }
+
 
 }

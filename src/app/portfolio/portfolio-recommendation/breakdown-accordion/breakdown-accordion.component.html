@@ -14,13 +14,13 @@
     </div>
 
     <div class="accordion-content">
-      <div class="row fund-detail-row" *ngFor="let detailAlloc of curAllocation.sector.funds;">
+      <div class="row fund-detail-row" *ngFor="let fund of curAllocation.sector.funds;">
           <div class="col-2">
-            <span [style.color]="i==activeIndex ? colors[i] : 'transparent'">{{detailAlloc.percentage}}%</span>
+            <span [style.color]="i==activeIndex ? colors[i] : 'transparent'">{{fund.percentage}}%</span>
             </div>
             <div class="col-10">
-              <div>{{detailAlloc.name}}</div>
-              <a target="_blank" (click)="viewDetails()" class="fund-detail-link" [style.color]="i==activeIndex ? '' : 'transparent'">View Details</a>
+              <div>{{fund.name}}</div>
+              <a target="_blank" (click)="emitSelectedFund(fund)" class="fund-detail-link" [style.color]="i==activeIndex ? '' : 'transparent'">View Details</a>
             </div>
       </div>
     </div>

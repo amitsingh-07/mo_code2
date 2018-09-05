@@ -69,7 +69,7 @@
                   <app-breakdown-bar [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
                     [colors]="legendColors" (selectAllocationBar)="selectAllocation($event)"></app-breakdown-bar>
                   <app-breakdown-accordion [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
-                    [colors]="legendColors" (selectAllocationAccordion)="selectAllocation($event)"></app-breakdown-accordion>
+                    [colors]="legendColors" (selectAllocationAccordion)="selectAllocation($event)" (selectFundDetails)="viewFundDetails($event)"></app-breakdown-accordion>
                 </div>
               </div>
             </div>

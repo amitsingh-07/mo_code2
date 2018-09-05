@@ -2,14 +2,11 @@
 <div class="container-fluid ">
     <div class="col-12">
 
-        <div class="title mb10">Dimensional Global Core Equity ACC SGD</div>
+        <!-- <div class="title mb10">Dimensional Global Core Equity ACC SGD</div> -->
+        <div class="title mb10">{{fund.name}}</div>
+       
         <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar eros id velit eleifend vehicula. Curabitur
-                cursus, nibh ac varius lobortis, quam lorem aliquet tortor, faucibus sollicitudin neque magna nec lectus.
-                In elit dui, pulvinar vel lorem id, egestas posuere orci.</p>
-            <p>Quisque auctor tempus mauris, a porta turpis facilisis non. Praesent egestas ex eu arcu faucibus, ut maximus
-                massa laoreet. Aenean at tortor sed erat rutrum consequat vel hendrerit felis. Fusce tempor sed purus quis
-                ultrices. Fusce semper accumsan tellus ut feugiat.</p>
+            <div [innerHTML]="fund.htmlDesc"></div>
 
                 <button type="button" 
                 class="btn btn__footer--fixed btn-primary width100" >{{'FUND_DETAILS.DOWNLOAD_FACTSHEET' | translate}}</button>

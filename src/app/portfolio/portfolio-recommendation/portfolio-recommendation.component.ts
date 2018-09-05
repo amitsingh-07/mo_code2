@@ -53,6 +53,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
     this.getPortfolioAllocationDeatails();
+    
 
   }
   ngAfterViewInit() {
@@ -113,5 +114,12 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
           this.isAllocationOpen = false;
         }
     }
+  }
+
+  viewFundDetails(fund) {
+    this.portfolioService.setFund(fund);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS])
+
+
   }
 }
