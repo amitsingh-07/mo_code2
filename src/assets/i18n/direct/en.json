@@ -7,10 +7,12 @@
     "LBL_SMOKER": "Smoker",
     "LBL_NONSMOKER": "Non-smoker",
     "LBL_YES": "Yes",
-    "LBL_NO": "No"
+    "LBL_NO": "No",
+    "LBL_CONTINUE": "Continue"
   },
   "COVERAGE": {
-    "TITLE": "Pick A Coverage Type"
+    "TITLE": "Pick A Coverage Type",
+    "MOBILE_TITLE": "Coverage Type"
   },
   "PROFILE": {
     "TITLE": "Your Profile",

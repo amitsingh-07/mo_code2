@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './../../shared/header/header.service';
@@ -23,14 +23,19 @@ export class ProductInfoComponent implements OnInit {
   private searchText: string;
   private productCategoryList: any;
 
+  private productCategorySelected: string;
+  private productCategorySelectedIndex: number;
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < this.mobileThreshold) {
       this.toggleFormVisibility = false;
+      this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
     } else {
       this.toggleSelectVisibility = true;
       this.toggleFormVisibility = true;
+      this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
     }
   }
 
@@ -39,7 +44,11 @@ export class ProductInfoComponent implements OnInit {
               private translate: TranslateService, private directApiService: DirectApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
+      if (this.innerWidth < this.mobileThreshold) {
+        this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
+      } else {
+        this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
+      }
     });
   }
 
@@ -49,11 +58,9 @@ export class ProductInfoComponent implements OnInit {
     this.initDisplaySetup();
     this.directApiService.getProdCategoryList().subscribe((data) => {
       this.productCategoryList = data.objectList; // Getting the information from the API
-      this.productCategoryList.forEach((element, i) => {
-        element.active = false;
-        if (i === 0) {
-          element.active = true;
-        }
+      this.directService.prodCategoryIndex.subscribe((index) => {
+        this.productCategorySelectedIndex = index;
+        this.initCategorySetup(index);
       });
     });
   }
@@ -64,6 +71,16 @@ export class ProductInfoComponent implements OnInit {
       this.toggleBackdropVisibility = true;
       this.toggleFormVisibility = false;
     }
+  }
+
+  initCategorySetup(prodCategoryIndex) {
+    this.productCategoryList.forEach((element, i) => {
+      element.active = false;
+      if (i === prodCategoryIndex) {
+        this.productCategorySelected = element.prodCatName;
+        element.active = true;
+      }
+    });
   }
 
   search() {
@@ -93,12 +110,17 @@ export class ProductInfoComponent implements OnInit {
       this.toggleFormVisibility = true;
       this.directService.setModalFreeze(true);
     }
-    this.productCategoryList.forEach((element, i) => {
-      element.active = false;
+    this.productCategoryList.forEach((category, i) => {
+      category.active = false;
       if (i === index) {
-        element.active = true;
-        this.router.navigate([`${element.prodLink}`], { relativeTo: this.route });
+        category.active = true;
+        this.productCategorySelected = category.prodCatName;
+        this.router.navigate([`${category.prodLink}`], { relativeTo: this.route });
       }
     });
+  }
+
+  selectProductCategory(data) {
+    this.router.navigate([`${data.prodLink}`], { relativeTo: this.route });
   }
 }

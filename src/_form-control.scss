@@ -656,3 +656,47 @@
 //   }
   
 // }
+
+.prod-form__wrapper{
+  form{
+    position: relative;
+    min-width:756px;
+    justify-content:space-between;
+    @include allmobiles{
+      flex-direction:column !important;
+      min-width: unset;
+    }
+  }
+  .direct-form{
+    width:340px;
+    margin-bottom:0px;
+    @include allmobiles{
+        width:100%;
+        padding:0px 16px;
+      }
+    .flex-row{
+      max-width:340px;
+      justify-content:space-between;
+      align-items:center;
+      @include allmobiles{
+        }
+      }
+    label{
+        font-family:$muli-semi-bold;
+        color:$dark-teal-color;
+        font-size:18px;
+        letter-spacing:-0.3px;
+        line-height:1.3;
+        margin-bottom:0px;
+        &.subtitle{
+            font-family:$muli;
+            font-size:16px;
+            transform:translateY(-5px);
+          }
+        @include allmobiles{
+            font-size:16px;
+            color:$white-color;
+          }
+      }
+    }
+}

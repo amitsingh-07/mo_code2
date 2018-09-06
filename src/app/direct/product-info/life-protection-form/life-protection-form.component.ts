@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
+import { DirectService } from './../../direct.service';
+
 @Component({
   selector: 'app-life-protection-form',
   templateUrl: './life-protection-form.component.html',
@@ -21,11 +23,13 @@ export class LifeProtectionFormComponent implements OnInit {
   durationValues = ['Till Age 55', 'Till Age 60', 'Till Age 65'];
 
   constructor(
+    private directService: DirectService,
     private parserFormatter: NgbDateParserFormatter,
     private formBuilder: FormBuilder) {
     }
 
   ngOnInit() {
+    this.directService.setProdCategoryIndex(0);
   }
 
   selectCoverageAmt(in_coverage_amt) {

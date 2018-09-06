@@ -415,7 +415,7 @@ button:active:focus {
       display:flex;
     }
     @include allmobiles{
-      max-height:53px;
+      min-height:60px;
       }
     }
 }
@@ -604,10 +604,18 @@ button:active:focus {
         }
       }
       @include allmobiles{
+        display:flex;
+        justify-content: center;
+        align-items: center;
         min-width:82px;
+        max-width:82px;
         background-color:$teal-color;
         border-color:$dark-teal-color;
         color:$light-teal-color;
+        white-space:normal;
+        height:52px;
+        padding:0px;
+        line-height:1.1;
         &.active{
           border-color:$white-color; 
           color:$white-color;
@@ -622,9 +630,15 @@ button:active:focus {
   .datepicker-control{
     border:1px solid $light-teal-color;
     border-radius:6px;
+    .dropdown-menu{
+      @include allmobiles{
+        left:auto !important;
+        right:0px !important;
+        }
+      }
     }
   .dropdown-control{
     border:1px solid $light-teal-color;
     border-radius:6px;
-    }
   }
+}

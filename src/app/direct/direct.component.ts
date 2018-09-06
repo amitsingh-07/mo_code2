@@ -1,6 +1,6 @@
-import { DirectService } from './direct.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { HeaderService } from './../shared/header/header.service';
+import { DirectService } from './direct.service';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
