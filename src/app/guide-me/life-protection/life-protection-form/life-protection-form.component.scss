@@ -250,6 +250,9 @@ app-life-protection-form {
       }
     }
   }
+  .btn:disabled:hover {
+    background: #fff !important;
+  }
 }
 .dependent-count {
   @extend .align-center;
