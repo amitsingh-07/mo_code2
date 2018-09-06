@@ -567,6 +567,24 @@
     border: none;
     padding-bottom:9px;
     padding-top: 12px;
+    position: relative;
+    z-index: 999;
+    background: transparent !important;
+    width: 90%;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    color: #00a7a7;
+    -webkit-text-fill-color:  #00a7a7;
+    -webkit-box-shadow: none;
+    -webkit-box-shadow: inset 0 0 0px 9999px white;
   }
   .form-control-placeholder {
     position: absolute;
@@ -575,6 +593,7 @@
     transition: all 200ms;
     color: #00a7a7;
     left: 2px;
+    background: transparent !important;
   }
   .form-control:focus + .form-control-placeholder,
   .form-control:valid + .form-control-placeholder {
@@ -582,6 +601,7 @@
     transform: translate3d(0, -50%, 0);
     opacity: 1;
     color: #5e5e5e;
+    z-index: 999;
   }
 }
 
@@ -628,34 +648,11 @@
     }
   }
 }
-// .signup-form-wrapper {
-//   max-width:350px;
-//   .phone-number{
-//     font-family: $muli-bold;
-//     font-size: 36px;
-//     font-style: normal;
-//     font-stretch: normal;
-//     line-height: normal;
-//     letter-spacing: -0.3px;
-//     text-align: center;
-//     color: $white-color;
-//   }
-//   .edit-link{
-//     font-family: $muli-regular;
-//     font-size: 18px;
-//     font-style: normal;
-//     font-stretch: normal;
-//     line-height: 1.17;
-//     letter-spacing: -0.2px;
-//     text-align: center;
-//     color: $white-color;
-//     text-decoration:underline;
-//     &:hover{
-//       text-decoration:none;
-//     }
-//   }
-  
-// }
+.form-control:focus {
+  //border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 
 .prod-form__wrapper{
   form{

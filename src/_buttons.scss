@@ -29,7 +29,7 @@ button:active:focus {
     border-color: $btn-primary-backgrnd-color;
     box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
     &:hover {
-      background-color: #0de0de;
+      background-color: #0de0de !important;
     }
     &:focus,
     &:active {
@@ -97,11 +97,21 @@ button:active:focus {
     box-shadow: none;
     border: none;
     &:hover {
-      background-color: $btn-disabled-bg;
+      background-color: $btn-disabled-bg !important;
     }
   }
 }
-
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.btn.btn-primary:hover {
+  background-color: #0de0de !important;
+}
+.btn:disabled:hover {
+  background: #009a9a !important;
+}
 /*Fixed button small*/
 
 .fixed-btn--sm {
