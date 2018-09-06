@@ -78,8 +78,11 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
 
   save(form: any) {
     this.portfolioService.setMyFinancials(form.value);
+    //CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
-      // capture enquiry id
+      if(data){
+        this.authService.saveEnquiryId(data.objectList.enquiryId);
+      }
     });
     return true;
   }
