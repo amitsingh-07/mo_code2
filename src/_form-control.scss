@@ -651,3 +651,8 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.inline-error {
+ input, label {
+    color: #e57300 !important;
+ }
+}
