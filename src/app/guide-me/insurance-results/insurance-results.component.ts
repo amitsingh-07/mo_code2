@@ -1,7 +1,7 @@
 import 'rxjs/add/observable/timer';
 
 import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -40,6 +40,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   protectionNeedsArray: any;
   animateStaticModal = false;
   hideStaticModal = false;
+  planData;
 
   constructor(
     private router: Router, public headerService: HeaderService,
@@ -49,7 +50,11 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
+      this.planData = this.translate.instant('INSURANCE_RESULTS.PLANS');
       this.setPageTitle(this.pageTitle, null, false);
+      setTimeout(() => {
+        this.getProtectionNeeds();
+      }, 500);
     });
     this.ocpDisabilityValues = this.guideMeService.getMyOcpDisability();
     this.criticalIllnessValues = this.guideMeService.getCiAssessment();
@@ -64,7 +69,6 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       coverageAmount: this.guideMeCalculateService.getLifeProtectionSummary(),
       educationSupportAmount: eduSupportAmount ? eduSupportAmount : 0
     };
-    this.getProtectionNeeds();
   }
 
   ngOnInit() {
@@ -96,16 +100,16 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   viewDetails(index) {
     switch (index.title) {
-      case 'Life Protection':
+      case this.planData.LIFE_PROTECTION.TITLE:
         this.showDetailsModal(index);
         break;
-      case 'Critical Illness':
+      case this.planData.CRITICAL_ILLNESS.TITLE:
         this.showDetailsModal(index);
         break;
-      case 'Occupational Disability':
+      case this.planData.OCCUPATIONAL_dISABILITY.TITLE:
         this.showDetailsModal(index);
         break;
-      case 'Long-Term Care':
+      case this.planData.LONG_TERMCARE.TITLE:
         this.showDetailsModal(index);
         break;
     }
@@ -210,25 +214,28 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructLifeProtection(data): IResultItem {
     const coverage = {
-      title: 'Less Existing Coverage',
+      title: this.planData.LESS_EXISTING_COVARAGE,
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'For Dependants', value: this.lifeProtectionValues.dependantsValue, currency: '$' } as IResultItemEntry);
+    entries.push({ title: this.planData.LIFE_PROTECTION.FOR_DEPENDENTS,
+       value: this.lifeProtectionValues.dependantsValue, currency: this.planData.DOLLER } as IResultItemEntry);
     entries.push({
-      title: 'Education Support',
-      value: this.lifeProtectionValues.educationSupportAmount, currency: '$'
+      title: this.planData.LIFE_PROTECTION.EDUCATION_SUPPORT,
+      value: this.lifeProtectionValues.educationSupportAmount, currency: this.planData.DOLLER
     } as IResultItemEntry);
-    entries.push({ title: 'Liabilities', value: this.liabilityValues, currency: '$' } as IResultItemEntry);
-    entries.push({ title: 'Less Current Assets', value: this.assetValues, currency: '$' } as IResultItemEntry);
+    entries.push({ title: this.planData.LIFE_PROTECTION.LIABILITIES,
+      value: this.liabilityValues, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({ title: this.planData.LIFE_PROTECTION.LESS_CURRENT_ASSETS,
+      value: this.assetValues, currency: this.planData.DOLLER } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
-      icon: 'life-protection-icon.svg',
-      title: 'Life Protection',
+      icon: this.planData.LIFE_PROTECTION.ICON,
+      title: this.planData.LIFE_PROTECTION.TITLE,
       inputValues: entries,
       existingCoverage: coverage,
       total: {
-        title: 'Coverage Needed',
+        title: this.planData.COVARAGE_NEEDED,
         value: this.lifeProtectionValues.coverageAmount
       }
     };
@@ -236,20 +243,22 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructCriticalIllness(data): IResultItem {
     const coverage = {
-      title: 'Less Existing Coverage',
+      title: this.planData.LESS_EXISTING_COVARAGE,
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'Annual Income', value: this.criticalIllnessValues.annualSalary, currency: '$' } as IResultItemEntry);
-    entries.push({ title: 'Years To Replace', value: this.criticalIllnessValues.ciMultiplier, type: ' Years' } as IResultItemEntry);
+    entries.push({ title: this.planData.CRITICAL_ILLNESS.ANNUAL_INCOME,
+       value: this.criticalIllnessValues.annualSalary, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({ title: this.planData.CRITICAL_ILLNESS.YEARS_TO_REPLACE,
+       value: this.criticalIllnessValues.ciMultiplier, type: this.planData.CRITICAL_ILLNESS.YEARS } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
-      icon: 'critical-illness-icon.svg',
-      title: 'Critical Illness',
+      icon: this.planData.CRITICAL_ILLNESS.ICON,
+      title: this.planData.CRITICAL_ILLNESS.TITLE,
       inputValues: entries,
       existingCoverage: coverage,
       total: {
-        title: 'Coverage Needed',
+        title: this.planData.COVARAGE_NEEDED,
         // tslint:disable-next-line:max-line-length
         value: (this.criticalIllnessValues.annualSalary * this.criticalIllnessValues.ciMultiplier)
       }
@@ -258,20 +267,22 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructOccupationalDisability(data): IResultItem {
     const coverage = {
-      title: 'Less Existing Coverage',
+      title: this.planData.LESS_EXISTING_COVARAGE,
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'Monthly Salary', value: this.monthlySalary.monthlySalary, currency: '$' } as IResultItemEntry);
-    entries.push({ title: '% to Replace', value: this.ocpDisabilityValues.percentageCoverage, type: '%' } as IResultItemEntry);
+    entries.push({ title: this.planData.OCCUPATIONAL_dISABILITY.MONTHLY_SALARY,
+      value: this.monthlySalary.monthlySalary, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({ title: this.planData.OCCUPATIONAL_dISABILITY.PERSENTAGE_TO_REPLACE,
+       value: this.ocpDisabilityValues.percentageCoverage, type: this.planData.PERSENTAGE } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
-      icon: 'occupational-disability-icon.svg',
-      title: 'Occupational Disability',
+      icon: this.planData.OCCUPATIONAL_dISABILITY.ICON,
+      title: this.planData.OCCUPATIONAL_dISABILITY.TITLE,
       inputValues: entries,
       existingCoverage: coverage,
       total: {
-        title: 'Coverage Needed',
+        title: this.planData.COVARAGE_NEEDED,
         value: this.ocpDisabilityValues.coverageAmount
       }
     };
@@ -279,22 +290,23 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructLongTermCare(data): IResultItem {
     const coverage = {
-      title: 'Less Existing Coverage',
+      title: this.planData.LESS_EXISTING_COVARAGE,
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({
       title: this.guideMeService.getLongTermCare().careGiverType,
-      value: this.guideMeService.selectLongTermCareValues(), currency: '$', monthEnabled: ' / mth'
+      value: this.guideMeService.selectLongTermCareValues(),
+       currency: this.planData.DOLLER, monthEnabled: this.planData.LONG_TERMCARE.FOR_MONTH
     } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
-      icon: 'long-term-care-icon.svg',
-      title: 'Long-Term Care',
+      icon: this.planData.LONG_TERMCARE.ICON,
+      title: this.planData.LONG_TERMCARE.TITLE,
       inputValues: entries,
       existingCoverage: coverage,
       total: {
-        title: 'Coverage Needed',
+        title: this.planData.COVARAGE_NEEDED,
         value: this.guideMeService.selectLongTermCareValues()
       }
     };
@@ -302,21 +314,21 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructHospitalPlan(data): IResultItem {
     const coverage = {
-      title: 'Less Existing Coverage',
+      title: this.planData.LESS_EXISTING_COVARAGE,
       value: 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: 'Family Member', value: 600 } as IResultItemEntry);
+    entries.push({ title: this.planData.HOSPITAL_PLAN.FAMILY_MEMBER, value: 0 } as IResultItemEntry);
     const hospitalPlanClass = this.guideMeService.getHospitalPlan().hospitalClass.split(' ')[0];
     return {
       id: data.protectionTypeId,
-      icon: 'hospital-plan-icon.svg',
-      title: 'Hospital Plan',
+      icon: this.planData.HOSPITAL_PLAN.ICON,
+      title: this.planData.HOSPITAL_PLAN.TITLE,
       content: hospitalPlanClass,
       inputValues: entries,
       existingCoverage: coverage,
       total: {
-        title: 'Coverage Needed',
+        title: this.planData.COVARAGE_NEEDED,
         value: 0
       }
     };
