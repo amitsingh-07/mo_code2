@@ -20,7 +20,7 @@
             </div>
             <div class="col-10">
               <div>{{fund.name}}</div>
-              <a target="_blank" (click)="emitSelectedFund(fund)" class="fund-detail-link" [style.color]="i==activeIndex ? '' : 'transparent'">View Details</a>
+              <a target="_blank" (click)="emitSelectedFund(fund)" class="fund-detail-link" [style.color]="i==activeIndex ? '' : 'transparent'">{{'PORTFOLIO_RECOMMENDATION.VIEW_DETAILS' | translate}}</a>
             </div>
       </div>
     </div>

@@ -258,6 +258,8 @@
     "YEARS":"years",
     "PROJECTED_RETURNS":"Projected Returns",
     "WHATS_THE_RISK":"What’s the risk?",
+    "ASSET_ALLOCATION_BREAKDOWN":"Asset Allocation Breakdown",
+    "VIEW_DETAILS":"View Details",
     "helpDate": {
       "modalTitle": "Projected Returns",
       "modalMessage": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."  

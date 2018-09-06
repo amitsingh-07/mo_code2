@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../../portfolio-routes.constants';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-breakdown-accordion',
@@ -20,6 +21,7 @@ export class BreakdownAccordionComponent implements OnInit {
   
   constructor(
     private router: Router,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {

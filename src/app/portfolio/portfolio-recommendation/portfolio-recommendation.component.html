@@ -65,7 +65,7 @@
             <div class="flex-col-12">
               <div class="allocation-content">
                 <div *ngIf="portfolio">
-                  <div class="breakdown-title" id="portfolioRecommenationAccordtionTitle">Asset Allocation Breakdown</div>
+                  <div class="breakdown-title" id="portfolioRecommenationAccordtionTitle"> {{'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION_BREAKDOWN' | translate}}</div>
                   <app-breakdown-bar [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
                     [colors]="legendColors" (selectAllocationBar)="selectAllocation($event)"></app-breakdown-bar>
                   <app-breakdown-accordion [allocation]="portfolio.breakDown" [activeIndex]="breakdownSelectionindex"
