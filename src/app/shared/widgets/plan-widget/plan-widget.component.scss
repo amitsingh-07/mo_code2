@@ -57,7 +57,7 @@ app-plan-widget {
       margin-bottom: 10px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
     }
 
     border: solid 3px #fff;
@@ -135,7 +135,7 @@ app-plan-widget {
           background-color: #c0eded;
           border-radius: 8px;
           padding: 4%;
-          width: 152px;
+          width: 30%;
           text-align: center;
           color: $app-backgrnd-color;
           @extend .flex;

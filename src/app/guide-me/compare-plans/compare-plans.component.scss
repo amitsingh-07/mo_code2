@@ -67,7 +67,7 @@
         margin-bottom: 5px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
       }
 
     .insurance-plan-widget__container__rank__wrapper {
@@ -79,7 +79,7 @@
         background-color: #c0eded;
         border-radius: 8px;
         padding: 4%;
-        width: 152px;
+        width: 30%;
         text-align: center;
         color: $app-backgrnd-color;
         @extend .flex;
