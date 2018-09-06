@@ -60,6 +60,11 @@
                 </button>
                 <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
                   <button class="dropdown-item" *ngFor="let option of relationshipOptions" (click)="setDropDownValue('relationship',option, i)">{{option}}</button>
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">
+                  <span (click)="showSupportAmountModal()">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</span>
+                  <span class="help-icon" (click)="showSupportAmountModal()"></span>
                 </div>
               </div>
             </div>
@@ -94,6 +99,10 @@
                 <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
                 maxLength="5" #otherIncome formControlName="otherIncome" value="0">
                 <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
+                <div class="form-group-with-bg--content-label" for="name">
+                  <span (click)="showLifeProtectionModal()">{{ 'LABEL.YEARS_NEEDED' | translate}}</span>
+                  <span class="help-icon" (click)="showLifeProtectionModal()"></span>
+                </div>
               </div>
             </div>
           </div>
