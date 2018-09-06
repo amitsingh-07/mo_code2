@@ -186,7 +186,8 @@
     "ADD_COVERAGE": {
       "LBL": "Add Existing Coverage?",
       "SUB_LBL": "Tap to add coverages",
-      "EXISTING_LBL": "Existing Coverage Added"
+      "EXISTING_LBL": "Existing Coverage Added",
+      "EXISTING_SUB_LBL": "Tap to edit coverages"
     },
     "PROCEED": {
       "LBL": "Continue To Recommendations"
