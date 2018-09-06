@@ -1,0 +1,9 @@
+{
+  "objectList": {
+    "id": 2,
+    "riskProfile": "Conservative",
+    "htmlDescription": "<p>You are willing to accept little fluctuation in the value of your portfolio, even if it means that your portfolio will grow relatively slowly.Additionally, your investment time horizon for this financial goal is relatively short.</p>"
+},
+  "responseCode": 6000,
+  "responseDescription": "Successful response"
+}

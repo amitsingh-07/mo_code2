@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-get-started-step1',
@@ -13,12 +14,15 @@ export class GetStartedStep1Component implements OnInit {
 
   pageTitle: string;
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
-  description = this.translate.instant('GETSTARTED_STEP1.CAPTION');;
-  img = "assets/images/checklist-icon.svg";
+  description = this.translate.instant('GETSTARTED_STEP1.CAPTION');
+  img = 'assets/images/checklist-icon.svg';
   description2 =  this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
-  tab = "1";
+  tab = '1';
 
-  constructor(public readonly translate: TranslateService, private router: Router,
+  constructor(
+    public readonly translate: TranslateService,
+    public authService: AuthenticationService,
+    private router: Router,
     public headerService: HeaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -31,9 +35,13 @@ export class GetStartedStep1Component implements OnInit {
 
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
+
+    this.authService.authenticate().subscribe((token) => {
+     console.log(token);
+    });
   }
 
-  goNext() { 
+  goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
   }
 }

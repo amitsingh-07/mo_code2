@@ -1,22 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
+import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
+import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
+import { PortfolioService } from './../portfolio.service';
 import { IMyFinancials } from './my-financials.interface';
 import { AfterViewInit, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
+
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { PortfolioService } from '../portfolio.service';
+import { PortfolioService } from './../portfolio.service';
+
+
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 //import {MyFinanacialFormError} from './my-financials-form-error';
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
-import { portfolioConstants } from '../portfolio.constants'; 
+import { portfolioConstants } from '../../portfolio/portfolio.constants'; 
+
+
 
 @Component({
   selector: 'app-my-financials',
@@ -24,11 +38,14 @@ import { portfolioConstants } from '../portfolio.constants';
   styleUrls: ['./my-financials.component.scss']
 })
 export class MyFinancialsComponent implements OnInit {
+export class MyFinancialsComponent implements IPageComponent, OnInit {
   myFinancialsForm: FormGroup;
   myFinancialsFormValues: IMyFinancials;
   //private myFinanacialFormError =new MyFinanacialFormError();
   modalData: any;
   heplDate: any;
+  pageTitle: string;
+  form: any;
 
 
 
@@ -43,6 +60,7 @@ export class MyFinancialsComponent implements OnInit {
     public readonly translate: TranslateService) {
     this.translate.use('en');
     let self = this;
+    const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
@@ -65,6 +83,7 @@ export class MyFinancialsComponent implements OnInit {
       initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
       monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment, Validators.required),
       suffEmergencyFund: new FormControl(portfolioConstants.my_financials.sufficient_emergency_fund, Validators.required)
+      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund, Validators.required)
 
     });
   }
@@ -79,6 +98,8 @@ export class MyFinancialsComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.heplDate.modalTitle;
     ref.componentInstance.errorMessage = this.heplDate.modalMessage; return false;
+    ref.componentInstance.errorMessage = this.heplDate.modalMessage;
+    return false;
   }
 
   save(form: any) {
@@ -89,6 +110,8 @@ export class MyFinancialsComponent implements OnInit {
       this.portfolioService.savePersonalInfo().subscribe((data) => {
         //capture enquiry id
       });
+    this.portfolioService.savePersonalInfo().subscribe((data) => {
+      // capture enquiry id
     });
     return true;
   }
@@ -99,4 +122,5 @@ export class MyFinancialsComponent implements OnInit {
       this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
     }
   }
+}
 }
