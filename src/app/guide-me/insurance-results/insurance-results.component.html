@@ -49,6 +49,7 @@
           </div>
           <div class="addCover__block--title" *ngIf ='this.guideMeService.isExistingCoverAdded'>
             <span id="insurance_result_add_covarage_existing_lbl">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.EXISTING_LBL' | translate}}</span>
+            <span class="sub" id="insurance_result_add_covarage_sub_lbl">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.EXISTING_SUB_LBL' | translate}}</span>
           </div>
         </div>
         <div class="continue__btn" (click)="goToNext()" id="insurance_result_procced">{{ 'INSURANCE_RESULTS.PROCEED.LBL' | translate}}</div>
