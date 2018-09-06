@@ -13,6 +13,7 @@ import { PasswordComponent } from './password/password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
     EmailVerificationComponent,
     VerifyMobileComponent,
     PasswordComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent
   ],
   providers: [SignUpAccessGuard]
 })
