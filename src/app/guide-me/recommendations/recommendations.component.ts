@@ -59,7 +59,9 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.getRecommendationsFromServer();
+    setTimeout(() => {
+      this.getRecommendationsFromServer();
+    }, 500);
   }
 
   getRecommendationsFromServer() {
