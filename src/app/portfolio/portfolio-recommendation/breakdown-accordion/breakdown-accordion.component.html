@@ -1,26 +1,26 @@
 <div class="breakdown-accordion-container">
 
-  <div class="breakdown-item" *ngFor="let curAllocation of allocation; let i = index" [class.active]="i==activeIndex">
+  <div class="breakdown-item" id="breakdown_accordion_i" *ngFor="let curAllocation of allocation; let i = index" [class.active]="i==activeIndex">
 
     <div class="accordion-head" (click)="emitSelectedAllocation(i)">
       <div class="row">
         <div class="col-9">
-          <div [style.color]="colors[i]">{{curAllocation.sector.name}}</div>
+          <div  id="fund_name" [style.color]="colors[i]">{{curAllocation.sector.name}}</div>
         </div>
         <div class="col-3">
-          <span class="arrow" [style.border-color]="colors[i]" ></span>
+          <span id="fund_color" class="arrow" [style.border-color]="colors[i]" ></span>
         </div>
       </div>
     </div>
 
     <div class="accordion-content">
-      <div class="row fund-detail-row" *ngFor="let fund of curAllocation.sector.funds;">
+      <div class="row fund-detail-row" id="fund-details_row" *ngFor="let fund of curAllocation.sector.funds;">
           <div class="col-2">
-            <span [style.color]="i==activeIndex ? colors[i] : 'transparent'">{{fund.percentage}}%</span>
+            <span id="Fund_percentage" [style.color]="i==activeIndex ? colors[i] : 'transparent'">{{fund.percentage}}%</span>
             </div>
             <div class="col-10">
-              <div>{{fund.name}}</div>
-              <a target="_blank" (click)="emitSelectedFund(fund)" class="fund-detail-link" [style.color]="i==activeIndex ? '' : 'transparent'">{{'PORTFOLIO_RECOMMENDATION.VIEW_DETAILS' | translate}}</a>
+              <div id="fund_desc">{{fund.name}}</div>
+              <a target="_blank" (click)="emitSelectedFund(fund)" id="view_details_btn" class="fund-detail-link" [style.color]="i==activeIndex ? '' : 'transparent'">{{'PORTFOLIO_RECOMMENDATION.VIEW_DETAILS' | translate}}</a>
             </div>
       </div>
     </div>

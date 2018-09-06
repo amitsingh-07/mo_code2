@@ -37,10 +37,10 @@
             <div class="form-group-with-bg--content">
               <div class="investmentSlider">
                 <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
-                  [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" data-placement="bottom"></nouislider>
+                  [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" id="personalInfoSlider" data-placement="bottom"></nouislider>
               </div>
             </div>
-            <div class="pointer-container">
+            <div class="pointer-container" id="personalInfoPointer">
                 <div class="pointer"></div>
               </div>
           </div>
@@ -50,14 +50,14 @@
             
 
             <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
-                <h5>{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
-                  <p>{{ 'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
+                <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
+                  <p id="personalInfoInvestmentDesc">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
             </div>
 
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
-              <h5>{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
-                <span class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>&nbsp;Years</h5>
-              <p>{{ sliderDesc }}</p>
+              <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
+                <span  id="personalInfoInvestmentYears"class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>&nbsp;{{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
+              <p id="personalInfoSliderDesc">{{ sliderDesc }}</p>
             </div>
           </div>
           <div>
