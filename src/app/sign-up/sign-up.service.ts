@@ -90,4 +90,25 @@ export class SignUpService {
       }
     }
   }
+
+  /**
+   * get user mobile number.
+   * @returns user mobile number with country code.
+   */
+  getForgotPasswordInfo() {
+    return {
+      email : this.signUpFormData.forgotPassEmail
+      
+    };
+  }
+
+  /**
+   * set user account details.
+   * @param data - user account details.
+   */
+  setForgotPasswordInfo(data: string) {
+    this.signUpFormData.forgotPassEmail = data;
+    this.commit();
+  }
+  
 }

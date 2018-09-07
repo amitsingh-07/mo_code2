@@ -21,7 +21,7 @@ export class ForgotPasswordComponent implements OnInit {
   private pageTitle: string;
   private description: string;
 
-  createAccountForm: FormGroup;
+  forgotPasswordForm: FormGroup;
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
@@ -42,6 +42,39 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.headerService.setHeaderVisibility(false);
+    this.buildForgotPasswordForm();
   }
+
+  buildForgotPasswordForm() {
+    this.formValues = this.signUpService.getForgotPasswordInfo();
+    
+    this.forgotPasswordForm = this.formBuilder.group({
+     
+      email: [this.formValues.email, [Validators.required, Validators.email]],
+     
+    });
+  }
+
+   /**
+  * validate ForgotPassword Form.
+  * @param form - email form detail.
+  */
+ save(form: any) {
+  if (!form.valid) {
+    Object.keys(form.controls).forEach((key) => {
+      form.get(key).markAsDirty();
+    });
+    const error = this.signUpService.currentFormError(form);
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = error.errorTitle;
+    ref.componentInstance.errorMessage = error.errorMessage;
+    return false;
+  } else {
+    this.signUpService.setForgotPasswordInfo(form.value.email);
+   
+    
+  }
+}
 
 }
