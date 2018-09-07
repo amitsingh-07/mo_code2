@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="359" height="123" viewBox="0 0 359 123">
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(9 2)">
+            <path stroke="#FB8B3D" stroke-width="2" d="M8.223 106.247l45.99-19.27h32.475l31.753-13.893 31.477-8.822 31.332 8.822 32.868 1.772 32.02-24.023 34.987 6.32 48.985-21.385 14.456 11.474" opacity=".3"/>
+            <path stroke="#85499A" stroke-width="2" d="M6.385 106.38l14.43-16.453 33.912-7.436s29.753 7.126 30.863 9.087c1.11 1.961 33.33-22.764 33.33-22.764l30.417 16.202 32.212-5.045 33.296-19.887 31.042 11.738 38.348-11.738L318.532.188l26.199 35.098" opacity=".3"/>
+            <path stroke="#DBDBDB" stroke-dasharray="1,1,1,2" stroke-linecap="square" d="M5.37 81.426h340.287M5.36 57.409H345.05M5.372 33.15h343.14" opacity=".502"/>
+            <path stroke="#858585" stroke-dasharray="1,1,1,2" stroke-linecap="square" d="M5.37 107.102h339.747" opacity=".502"/>
+            <path stroke="#DBDBDB" stroke-dasharray="1,1,2" stroke-linecap="square" d="M53.948 2.959v101.02" opacity=".496"/>
+            <g stroke-dasharray="1,1,2" stroke-linecap="square" opacity=".496">
+                <path stroke="#DBDBDB" d="M85.467 2.959v103.32"/>
+                <path stroke="#858585" d="M5.166 2.78v104.265"/>
+            </g>
+            <path stroke="#DBDBDB" stroke-dasharray="1,1,2" stroke-linecap="square" d="M118.485 2.959v103.32M149.618 2.959v104.086M181.508 2.959v104.086M213.768 2.959v104.086" opacity=".496"/>
+            <path stroke="#DBDBDB" stroke-dasharray="1,1,2" stroke-linecap="square" d="M281.565 2.445V107.19M313.084 2.445V107.19M345.345 2.445V107.19" opacity=".3"/>
+            <path stroke="#DBDBDB" stroke-dasharray="1,1,2" stroke-linecap="square" d="M245.658 2.959v101.786" opacity=".496"/>
+            <path stroke="#00C0C7" stroke-width="2" d="M9.243 106.444l44.763-11.168 31.622-1.386 33.168 6.055 62.665-4.67 32.882-13.584 32.112 4.054 34.863-9.47 31.63-18.956 32.887 12.319" opacity=".3"/>
+            <path stroke="#00A450" stroke-width="2" d="M6.882 106.449l45.52-6.94s32.546.033 33.038 0c.492-.035 32.674-4.886 32.674-4.886l63.853-4.296 64.173-10.021 34.896 12.882 32.466-16.16 31.739 4.685" opacity=".3"/>
+            <ellipse cx="345.035" cy="69.189" fill="#00C0C7" rx="3.548" ry="3.591"/>
+            <path fill="#858585" d="M0 103.595h9.27v9.382H0z"/>
+            <path fill="#00A450" d="M341.724 79.724h6.622v6.701h-6.622z"/>
+            <path fill="#85499A" fill-rule="nonzero" d="M345.162 31.123l3.675 2.743-1.404 4.44h-4.543l-1.404-4.44z"/>
+            <path fill="#FB8B3D" d="M345.26 42.861l4.327 4.328-4.38 4.38-4.328-4.328z"/>
+        </g>
+        <path fill="#FFF" stroke="#C2C2C2" d="M.5.5h66v24H.5z"/>
+        <text fill="#858585" font-family="Muli-Regular, Muli" font-size="14">
+            <tspan x="6" y="17">Portfolio</tspan>
+        </text>
+        <g>
+            <path fill="#FFF" stroke="#C2C2C2" d="M233.854 98.5h42.292v24h-42.292z"/>
+            <text fill="#858585" font-family="Muli-Regular, Muli" font-size="14" transform="translate(233 98)">
+                <tspan x="5.68" y="17.5">Time</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

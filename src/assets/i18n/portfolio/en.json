@@ -1,0 +1,287 @@
+{
+  "COMMON": {
+    "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
+    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data"
+  },
+  "PROFILE": {
+    "TITLE": "What's Your Profile?",
+    "DESCRIPTION": "Please choose the profile that best describes you."
+  },
+  "GET_STARTED": {
+    "TITLE": "Get Started",
+    "DESCRIPTION": "Just a few simple questions to get you started.",
+    "I_AM_A": "I am a",
+    "BORN_ON": "Born on",
+    "AND_A": "And a",
+    "I_HAVE": "I have",
+    "DEPENDANT_MEANING_LBL": "Meaning of Dependant",
+    "DEPENDANT_MEANING_DESC": " Children, Parents, Spouse, Siblings that I'm supporting"
+  },
+  "PROTECTION_NEEDS": {
+    "TITLE": "Protection Needs",
+    "DESCRIPTION": "Here are the protection type(s) recommended for you. Uncheck those that are not a priority.",
+    "BOTTOM_INFO": "We'll guide you through these needs when you tap 'continue'"
+  },
+  "MY_INCOME": {
+    "TITLE": "My Income",
+    "DESCRIPTION": "Help us understand your finances better.",
+    "MONTHLY_INCOME": "My Monthly Income",
+    "WHAT_YOU_EARN": "What You Earn",
+    "MONTHLY_SALARY": "Monthly Salary",
+    "ANNUAL_BONUS": "Annual Bonus",
+    "OTHER_INCOME": "Other Income",
+    "OTHER_INCOME_HINT": "(E.g. Rental, Dividend)",
+    "PER_MONTH": "/ mth"
+  },
+  "MY_EXPENSES": {
+    "TITLE": "My Expenses",
+    "DESCRIPTION": "Help us understand your finances better.",
+    "MONTHLY_EXPENSES": "My Monthly Expenses",
+    "WHAT_YOU_SPEND": "What You Spend",
+    "MONTHLY_INSTALLMENT": "Monthly Instalments",
+    "MONTHLY_INSTALLMENT_HINT": "(E.g. Car, House)",
+    "OTHER_EXPENSES": "All Other Expenses",
+    "OTHER_EXPENSES_HINT": "(E.g. Food, Household, Bills)"
+  },
+  "MY_ASSETS": {
+    "TITLE": "My Assets",
+    "DESCRIPTION": "Help us understand your finances better.",
+    "MY_ASSETS_FRM_TITLE": "My Assets",
+    "WHAT_YOU_OWN": "What You Own",
+    "CASH": "Cash",
+    "CPF": "CPF",
+    "HOME_PROPERTY": "Home Property",
+    "HOME_PROPERTY_HINT": "(Market Value)",
+    "INVESTMENT_PROP": "Investment Properties",
+    "INVESTMENT_PROP_HINT": "(Market Value)",
+    "INVESTMENTS": "Investments",
+    "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
+    "OTHERS": "Others",
+    "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)"
+  },
+  "MY_LIABILITIES": {
+    "TITLE": "My Liabilities",
+    "DESCRIPTION": "Help us understand your finances better. ",
+    "MY_LIABILITIES_FRM_TITLE": "My Liabilities",
+    "WHAT_YOU_OWE": "What You Owe",
+    "PROPERTY_LOAN": "Property Loan",
+    "PROPERTY_LOAN_HINT": "(Remaining amount)",
+    "CAR_LOAN": "Car Loan",
+    "CAR_LOAN_HINT": "(Remaining amount)",
+    "OTHERS": "Others",
+    "OTHERS_HINT": "(E.g. Personal Loan, Business Loan)"
+  },
+  "FINANCIAL_ASSESSMENT": {
+    "TITLE": "Financial Assessment",
+    "CONTENT_STEP": "Step 1",
+    "CONTENT_TITLE": "Financial Assessment",
+    "CONTENT_DESC": "In the next step, we are going to gather information on your income, expenses, assets and liabilities to determine your insurance needs."
+  },
+  "INSURE_ASSESSMENT": {
+    "TITLE": "Insurance Needs Assessment",
+    "CONTENT_STEP": "Step 2",
+    "CONTENT_TITLE": "Insurance Needs Assessment",
+    "CONTENT_DESC": "In the next step, we will ask you a few simple questions to assess your needs."
+  },
+  "LIFE_PROTECTION": {
+    "TITLE": "Life Protection",
+    "DESCRIPTION": "If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.",
+    "SUPPORT_AMOUNT_TITLE": "Support Amount",
+    "SUPPORT_AMOUNT_MESSAGE": "This refers to the amount you require to support this dependant on a monthly basis.",
+    "I_HAVE": "I have",
+    "LBL_NEXT_DEPENDANT": "Next Dependant",
+    "RELATIONSHIP_OPTIONS": [
+      "Spouse",
+      "Sibling",
+      "Parent",
+      "Children"
+    ],
+    "EDUCATION_SUPPORT_TITLE": "Education Support",
+    "EDUCATION_SUPPORT_DESC": "I want to fund this child for a university education if i pass away",
+    "EDUCATION_SUPPORT_SUBTITLE": "He / She will be studying:",
+    "EDUCATION_SUPPORT_COURSE": "Course",
+    "EDUCATION_SUPPORT_COUNTRY": "Country",
+    "EDUCATION_SUPPORT_NATIONALITY": "Nationality",
+    "YEARS_MODAL_DESC": "Click on your dependant’s profile type for a general guideline on the years needed.",
+    "PROFILE_TYPE": [
+      "spouse",
+      "child",
+      "family"
+    ],
+    "YEARS_NEEDED": [
+      {
+        "id": 0,
+        "className": "spouse",
+        "message": "Years Needed = 85 – Spouse’s Current Age"
+      },
+      {
+        "id": 1,
+        "className": "child",
+        "message": "Years Needed = Child’s Age of Starting Work – Child’s Current Age"
+      },
+      {
+        "id": 2,
+        "className": "family",
+        "message": "Years Needed = 85 – Parent/Sibling’s Current Age"
+      }
+    ],
+    "MODAL_DATA": {
+      "title": "Life Protection",
+      "description": "<h4>Life Protection</h4><p>If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.</p>",
+      "imageName": "lifeProtection_modal.png"
+    }
+  },
+  "CI_ASSESSMENT": {
+    "TITLE": "Critical Illness",
+    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.",
+    "COVERAGE_AMT": "Coverage Amount",
+    "COVERAGE_AMT_DESC": "Based on the information below",
+    "ANNUAL_SALARY": "Annual Salary",
+    "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
+    "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
+    "UNTIL_RETIREMENT_AGE": "Till the retirement age of "
+  },
+  "OCP_DISABILITY": {
+    "TITLE": "Occupational Disability",
+    "DESCRIPTION": "This coverage is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.",
+    "OCP_DISABILITY_FRM_TITLE": "Coverage Amount",
+    "OCP_DISABILITY_HINT": "Based on the information below",
+    "EMPLOYEE_FIELD": "I am a",
+    "PROPERTY_LOAN_HINT": "(Remaining amount)",
+    "RETIREMENT_AGE": "Till the retirement age of",
+    "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
+    "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
+    "MODAL_TITLE": "Occupational Disability",
+    "EMPLOYEE_TYPE": [
+      {
+        "status": "Salaried Employee"
+      },
+      {
+        "status": "Self-employed"
+      }
+    ],
+    "MODAL_DATA": {
+      "title": "Occupational Disability",
+      "description": "<h4>Occupational Disability</h4><p>This is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.</p>",
+      "imageName": "occupationdisability_modal.png"
+    }
+  },
+  "LTC_ASSESSMENT": {
+    "TITLE": "Long Term Care",
+    "SUB_TITLE": "Select the type of caregiver that you prefer.",
+    "DESCRIPTION_PART1": "If one is unable to perform at least ",
+    "DESCRIPTION_BOLD": "3 of these activities (washing, feeding, dressing, toileting, mobility and transferring)",
+    "DESCRIPTION_PART2": ", he or she is considered severely disabled and would need Long-Term Care with the help of a caregiver. Select the type of caregiver that you prefer.",
+    "MODAL_DATA": {
+      "TITLE": "Long-Term Care",
+      "DESCRIPTION": "<p>If one is unable to perform at least 3 of the below activities, he or she is considered severely disabled and would need <span class=\"modal-text-secondary\">Long-Term Care</span> with the help of a caregiver.</p>",
+      "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"../assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/transferring.png\"/></div>\n</div>"
+    }
+  },
+  "HOSPITAL_PLAN": {
+    "TITLE": "Hospital Plan",
+    "SUB_TITLE": "Select the type of hospital plan that you prefer.",
+    "DESCRIPTION": "Select the type of hospital plan that you prefer."
+  },
+  "INSURANCE_RESULTS": {
+    "TITLE": "Insurance Results",
+    "STATIC_DESCRIPTION": "In the final step, we will be sharing with you the coverage you need based on our assessment",
+    "COVERAGE_YOU_NEED": "Coverage You Need",
+    "ADD_COVERAGE": {
+      "LBL": "Add Existing Coverage For More Accurate Result"
+    },
+    "PROCEED": {
+      "LBL": "Continue To Recommendations"
+    },
+    "RESULT_BLOCK": {
+      "VIEW_DETAILS": "View Details"
+    }
+  },
+  "GETSTARTED_STEP1": {
+    "TITLE": "Step 1",
+    "CAPTION": "Get Started",
+    "DESCRIPTION": "In the next step,we are going to assess your ability to take risk",
+    "PROCEED":"Proceed"
+  },
+  "PERSONAL_INFO": {
+    "TITLE": "Get Started",
+    "YEARS":"Years",
+    "BORN_ON": "I was born on",
+    "SELECT_INVESTMENT_HEAD": "Select Investment Period",
+    "SELECT_INVESTMENT_DESC": "Drag the slider to select the number of years you want to invest for.",
+    "I_WANT_INVEST_LBL": "I want to invest for",
+    "RANGE_1_3_DESC": "Title 1",
+    "RANGE_3_7_DESC": "Title 2",
+    "RANGE_7_14_DESC": "Title 3",
+    "RANGE_14_DESC": "Title 4"
+  },
+  "GETSTARTED_STEP2": {
+    "TITLE": "Step 2",
+    "CAPTION": "Assess Your Risk",
+    "DESCRIPTION": "In the next step,we will assess your willingness to take risk"
+  },
+  "RISK_ASSESSMENT": {
+    "TITLE": "Assess Your Risk",
+    "QUESTION_LBL": "Question",
+    "OF_LBL": "of"
+  },
+  "MY_FINANCIALS": {
+    "LABEL_YES": "Yes",
+    "LABEL_NO": "No",
+    "TITLE": "Get Started",
+    "MONTHLY_INCOME_LBL": "Monthly Income",
+    "MONTHLY_INCOME_SUB_LBL":"(E.g.Salary,Bonus, Rental,Others)",
+    "SAVED_INCOME_LBL": "% of my income saved",
+    "TOTAL_ASSET_LBL": "Total Assets ",
+    "TOTAL_ASSET_SUB_LBL":"(E.g.Cash, CPF, Investment, Property)",
+    "LOANS_LBL": "Total Loans",
+    "LOANS_SUB_LBL": "(E.g.Car,Property)",
+    "INVESTMENT_LBL": "My Investment Amount ",
+    "INITIAL_DEPOSIT_LBL": "Initial Deposit",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Deposit",
+    "BUTTON_LBL": "Continue",
+    "MY_FINANCIALS_LBL": "My Financials",
+    "modalData": {
+      "modalTitle": "Insufficient Emergency Fund!",
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
+    },
+    "heplDate": {
+      "modalTitle": "Emergency Fund",
+      "modalMessage": "Emergency fund is money that must be set aside to cover your living expenses for a period of at least 3 months."    },
+    "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
+  },
+  "PORTFOLIO_RECOMMENDATION":{
+    "TITLE": "portfoli Recommendation",
+    "MODAL_TITLE": "Portfolio Recommendations",
+    "MODAL_DESC":"In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
+    "BALANCED_PORTFOLIO":"Balanced Portfolio",
+    "PROJECTED_PORTF_VALUE":"Projected Portfolio Value in",
+    "YEARS":"years",
+    "PROJECTED_RETURNS":"Projected Returns",
+    "WHATS_THE_RISK":"What’s the risk?",
+    "ASSET_ALLOCATION_BREAKDOWN":"Asset Allocation Breakdown",
+    "VIEW_DETAILS":"View Details",
+    "helpDate": {
+      "modalTitle": "Projected Returns",
+      "modalMessage": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."  
+      },
+      "editModel": {
+        "modalTitle": "Edit Portfolio",
+        "modalMessage": "To make changes to your portfolio, you need to reassess your risk. Are you sure you want to continue?"  
+        }
+      
+  },
+  "WHATS_THE_RISK":{
+    "TITLE": "What’s The Risk"
+  } ,
+  "FUND_DETAILS":{
+    "TITLE": "Fund Details",
+    "DOWNLOAD_FACTSHEET":"Download Factsheet (2MB)",
+    "DOWNLOAD_HIGHLIGHT_FACTSHEET":"Download Highlight Sheet"
+  
+  },
+  "RISK_PROFILE":{
+    "BUTTON_TITLE": "View My Portfolio"
+  }
+
+}
