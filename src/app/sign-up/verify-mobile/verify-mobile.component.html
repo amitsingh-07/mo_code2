@@ -3,7 +3,21 @@
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <img src="../../../assets/images/custom-modal-icon.svg" id="custModalImg1"/>
+        <div id='loading'>
+            <div class='outer'>
+            </div>
+            <div class='inner'>
+                <img src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1"/>
+            </div>
+            
+              <div class='hold left'>
+                <div class='fill'></div>
+              </div>
+              <div class='hold right'>
+                <div class='fill'></div>
+              </div>
+            
+          </div>
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{mobileNumberVerifiedMessage}}</p>
         <p class="custom-modal--desc" id="custModalDesc">{{mobileNumber.code}} {{mobileNumber.number}}</p>
