@@ -247,14 +247,14 @@
     },
     "heplDate": {
       "modalTitle": "Emergency Fund",
-      "modalMessage": "Emergency fund is money that must be set aside to cover your living expenses for a period of at least 3 months."    },
+      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>."    },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   },
   "PORTFOLIO_RECOMMENDATION":{
-    "TITLE": "portfoli Recommendation",
+    "TITLE": "portfolio Recommendation",
     "MODAL_TITLE": "Portfolio Recommendations",
     "MODAL_DESC":"In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
-    "BALANCED_PORTFOLIO":"Balanced Portfolio",
+    "PORTFOLIO":"Portfolio",
     "PROJECTED_PORTF_VALUE":"Projected Portfolio Value in",
     "YEARS":"years",
     "PROJECTED_RETURNS":"Projected Returns",

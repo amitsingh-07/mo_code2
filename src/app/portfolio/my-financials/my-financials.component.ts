@@ -18,7 +18,8 @@ import { AuthenticationService } from './../../shared/http/auth/authentication.s
 @Component({
   selector: 'app-my-financials',
   templateUrl: './my-financials.component.html',
-  styleUrls: ['./my-financials.component.scss']
+  styleUrls: ['./my-financials.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyFinancialsComponent implements IPageComponent, OnInit {
   myFinancialsForm: FormGroup;
@@ -72,14 +73,17 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.heplDate.modalTitle;
-    ref.componentInstance.errorMessage = this.heplDate.modalMessage;
+    ref.componentInstance.errorDescription = this.heplDate.modalDesc;
     return false;
   }
 
   save(form: any) {
     this.portfolioService.setMyFinancials(form.value);
+    //CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
-      // capture enquiry id
+      if(data){
+        this.authService.saveEnquiryId(data.objectList.enquiryId);
+      }
     });
     return true;
   }

@@ -1,15 +1,17 @@
 {
-	"objectList": [{
+	"objectList": [
+		{
 			"id": 1,
-			"description": "For the amount I am intending to invest in this portfolio, the maximum loss I can take in all scenario is:",
+			"description": "Based on the investment amount I have indicated, I am willing to take a maximum loss of",
 			"text": null,
-			"questionType": "",
-			"options": [{
+			"options": [
+				{
 					"id": 1,
 					"text": "0%",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 1,
+					"customUserInput": null,
 					"listingOrder": 1
 				},
 				{
@@ -18,6 +20,7 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 2,
+					"customUserInput": null,
 					"listingOrder": 2
 				},
 				{
@@ -26,6 +29,7 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 3,
+					"customUserInput": null,
 					"listingOrder": 3
 				},
 				{
@@ -34,6 +38,7 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 4,
+					"customUserInput": null,
 					"listingOrder": 4
 				}
 			],
@@ -41,23 +46,25 @@
 		},
 		{
 			"id": 2,
-			"description": "If your investment portfolio lost more than 30% in 3 months, what would you do?",
+			"description": "If the value of my investment portfolio were to drop by 30% in 3 months, I would",
 			"text": null,
-			"questionType": "",
-			"options": [{
+			"options": [
+				{
 					"id": 5,
-					"text": "Sell all my investment",
+					"text": "Sell all of my investments",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 5,
+					"customUserInput": null,
 					"listingOrder": 1
 				},
 				{
 					"id": 6,
-					"text": "Sell some of my investment",
+					"text": "Sell some of my investments",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 6,
+					"customUserInput": null,
 					"listingOrder": 2
 				},
 				{
@@ -66,14 +73,16 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 7,
+					"customUserInput": null,
 					"listingOrder": 3
 				},
 				{
 					"id": 8,
-					"text": "Buy more investment",
+					"text": "Buy more investments",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 8,
+					"customUserInput": null,
 					"listingOrder": 4
 				}
 			],
@@ -81,15 +90,16 @@
 		},
 		{
 			"id": 3,
-			"description": "During market declines, I tend to sell portions of my riskier assets and invest the money in safer assets.",
+			"description": "In the event of a market decline, I would sell portions of my riskier assets and invest the money in safer assets instead.",
 			"text": null,
-			"questionType": "",
-			"options": [{
+			"options": [
+				{
 					"id": 9,
-					"text": "Strongly agree",
+					"text": "Strongly Agree",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 9,
+					"customUserInput": null,
 					"listingOrder": 1
 				},
 				{
@@ -98,6 +108,7 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 10,
+					"customUserInput": null,
 					"listingOrder": 2
 				},
 				{
@@ -106,14 +117,16 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 11,
+					"customUserInput": null,
 					"listingOrder": 3
 				},
 				{
 					"id": 12,
-					"text": "Strongly disagree",
+					"text": "Strongly Disagree",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 12,
+					"customUserInput": null,
 					"listingOrder": 4
 				}
 			],
@@ -121,15 +134,16 @@
 		},
 		{
 			"id": 4,
-			"description": "Generally, I prefer stable investments, and I’m willing to accept the lower return for such investments.",
+			"description": "Generally, I prefer stable investments and I'm willing to accept the lower returns for such investments.",
 			"text": null,
-			"questionType": "",
-			"options": [{
+			"options": [
+				{
 					"id": 9,
-					"text": "Strongly agree",
+					"text": "Strongly Agree",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 13,
+					"customUserInput": null,
 					"listingOrder": 1
 				},
 				{
@@ -138,6 +152,7 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 14,
+					"customUserInput": null,
 					"listingOrder": 2
 				},
 				{
@@ -146,14 +161,16 @@
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 15,
+					"customUserInput": null,
 					"listingOrder": 3
 				},
 				{
 					"id": 12,
-					"text": "Strongly disagree",
+					"text": "Strongly Disagree",
 					"description": null,
 					"optionType": "SINGLE_SELECT",
 					"questionOptionId": 16,
+					"customUserInput": null,
 					"listingOrder": 4
 				}
 			],
@@ -161,45 +178,51 @@
 		},
 		{
 			"id": 5,
-			"description": "The charts below shows 4 investment portfolios. Which portfolio will you prefer to invest in?",
+			"description": "The Investment portfolio that I am most likely to choose is",
 			"text": null,
-			"questionType": "RISK_ASSESSMENT",
-			"options": [{
-					"id": 9,
+			"options": [
+				{
+					"id": 13,
 					"text": "Portfolio 1",
-					"description": "Largest fluctuations, Highest potential returns",
+					"description": "Highest ups and downs, Highest potential return",
 					"optionType": "SINGLE_SELECT",
-					"questionOptionId": 13,
+					"questionOptionId": 17,
+					"customUserInput": null,
 					"listingOrder": 1
 				},
 				{
-					"id": 10,
+					"id": 14,
 					"text": "Portfolio 2",
-					"description": "Large fluctuations, High potential returns",
+					"description": "High ups and downs, High potential return",
 					"optionType": "SINGLE_SELECT",
-					"questionOptionId": 14,
+					"questionOptionId": 18,
+					"customUserInput": null,
 					"listingOrder": 2
 				},
 				{
-					"id": 11,
+					"id": 15,
 					"text": "Portfolio 3",
-					"description": "Moderate fluctuations, Moderate potential returns",
+					"description": "Moderate ups and downs, Moderate potential return",
 					"optionType": "SINGLE_SELECT",
-					"questionOptionId": 15,
+					"questionOptionId": 19,
+					"customUserInput": null,
 					"listingOrder": 3
 				},
 				{
-					"id": 12,
+					"id": 16,
 					"text": "Portfolio 4",
-					"description": "Small fluctuations, Low potential returns",
+					"description": "Lowest ups and downs, Lowest potential return",
 					"optionType": "SINGLE_SELECT",
-					"questionOptionId": 16,
+					"questionOptionId": 20,
+					"customUserInput": null,
 					"listingOrder": 4
 				}
 			],
 			"listOrder": 5
 		}
 	],
-	"responseCode": 6000,
-	"responseDescription": "Successful response"
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	}
 }

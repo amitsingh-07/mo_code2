@@ -121,8 +121,8 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
       ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.customDob = this.parserFormatter.format(form.value.dob);
-    this.portfolioService.setUserInfo(form.value);
+    form.value.dob = this.parserFormatter.format(form.value.dob);
+    this.portfolioService.setPersonalInfo(form.value);
     return true;
   }
 

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="back-btn hidden-lg"></div>
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6">
+        <div class="signup-wrapper">
+          <h2 class="signup-wrapper__title order1 sm-order2 ml10 mb20">{{ 'LOGIN.WELCOME_LBL' | translate}}</h2>
+          <!--
+          <div class="signup-wrapper__description order2">
+              <p>{{ 'LOGIN.DESCRIPTION' | translate}}</p>
+            </div>
+            -->
+          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <form id="createAccountForm" name="createAccountForm" [formGroup]="createAccountForm">
+          <div class="flex-row mb15">
+            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
+              <div class="form-group-floating-label">
+                <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
+                <label class="form-control-placeholder" for="lastName">{{ 'LOGIN.FORM.USERNAME' | translate}}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-row mb20">
+            <div class="flex-col-12 stretch" [formGroup]="createAccountForm">
+              <div class="form-group-floating-label">
+                <input type="password" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
+                <label class="form-control-placeholder" for="lastName">{{ 'LOGIN.FORM.PASSWORD' | translate}}</label>
+              </div>
+            </div>
+          </div>
+          <!-- FORGOT -->
+          <div class="forgot-link">
+              <a href="#">{{ 'LOGIN.FORGOT_PASSWORD' | translate}} <span>{{ 'LOGIN.CLICK_HERE' | translate}}</span></a>
+          </div>
+          <button id="nextDependentBtn" (click)="save(createAccountForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+            'COMMON.LOGIN' | translate }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -409,3 +409,7 @@ button:active:focus {
     @include fontSize(12px);
   }
 }
+.btn-txt-wrap {
+  display: inline-block;
+  margin-right: 10px;
+}

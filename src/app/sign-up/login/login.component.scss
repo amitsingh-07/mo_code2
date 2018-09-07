@@ -1,0 +1,15 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+
+.forgot-link {
+  text-align: center;
+
+  a {
+    color: #fff;
+    font-family: 'Muli';
+    font-size: 16px;
+  }
+  a span{
+      font-weight:bold;
+  }
+}
