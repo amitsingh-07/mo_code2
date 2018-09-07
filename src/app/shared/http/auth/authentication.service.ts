@@ -9,6 +9,7 @@ import { IServerResponse } from '../interfaces/server-response.interface';
 
 const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
+const APP_ENQUIRY_ID = 'app-enquiry-id';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -63,4 +64,16 @@ export class AuthenticationService {
     // whether or not the token is expired
     return tokenNotExpired(token);
   }
+
+  saveEnquiryId(id){
+    if(sessionStorage){
+      sessionStorage.setItem(APP_ENQUIRY_ID, id);
+    }
+  }
+
+  public getEnquiryId(): string {
+    return sessionStorage.getItem(APP_ENQUIRY_ID);
+  }
+
+
 }
