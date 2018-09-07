@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HostListener } from '@angular/core';
+import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
 
 @Component({
   selector: 'app-account-created',
@@ -12,6 +13,7 @@ import { HostListener } from '@angular/core';
 export class AccountCreatedComponent implements OnInit {
 
   constructor(private translate: TranslateService,
+              private googleAnalyticsService: GoogleAnalyticsService,
               private router: Router) {
     this.translate.use('en');
   }
@@ -22,6 +24,7 @@ export class AccountCreatedComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
   }
 
 }
