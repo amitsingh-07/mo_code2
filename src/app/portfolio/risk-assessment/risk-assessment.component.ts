@@ -77,10 +77,11 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   setCurrentQuestion() {
     this.currentQuestion = this.questionsList[this.questionIndex - 1];
-    this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
+    // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
+    this.isChartAvailable = (this.currentQuestion.listOrder === 5) ? true : false;
     const selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
     if (selectedOption) {
-      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption);
+      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption.value);
     }
   }
 
@@ -98,7 +99,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.portfolioService.setRiskAssessment(form.value, this.questionIndex);
+      this.portfolioService.setRiskAssessment(form.controls.questSelOption.value, this.questionIndex);
       if (this.questionIndex < this.questionsList.length) {
         // NEXT QUESTION
         this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + '/' + (this.questionIndex + 1)]);

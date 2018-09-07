@@ -5,16 +5,45 @@
     background: white;
     color: black;
     border-right: 2px solid #00a7a7;
+    padding:20px;
 }
 .heading{
     justify-content: center;
+    background-color: #2d8289;
 }
 .compare-modal {
     justify-content: center;
+    .insurance-plan-widget__container{
+      &:first-child{
+        border-top-left-radius: 6px;
+      }
+      &:last-child{
+        border-top-right-radius: 6px;
+      }
+    }
 }
-.plan-wrapper{
-    display:flex;
-    justify-content: center;
+.plan-wrapper {
+  flex: 0 0 50%;
+  max-width: 50%;
+
+  @include allmobiles {
+    flex: 0 0 47%;
+    max-width: 47%;
+  }
+}
+
+.plan-wrapper:nth-child(1) {
+  @include allmobiles {
+    margin-right: 3px;
+    padding-right: 3px;
+  }
+}
+
+.plan-wrapper:nth-child(2) {
+  @include allmobiles {
+    margin-right: 0px;
+    padding-left: 3px;
+  }
 }
 .insurance-plan-widget__container {
     padding-top: 15px;
@@ -62,7 +91,7 @@
     }
 
     .insurer-logo {
-        height: 40px;
+        height: 80px;
         text-align: center;
         margin-bottom: 5px;
         display: flex;

@@ -165,21 +165,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   viewDetails(plan) {
   }
 
-  // tslint:disable-next-line:member-ordering
-  Brochure = (() => {
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    return ((data, fileName) => {
-      const json = JSON.stringify(data);
-      const blob = new Blob([json], { type: 'octet/stream' });
-      const url = window.URL.createObjectURL(blob);
-      a.href = url;
-      a.download = fileName;
-      a.click();
-      window.URL.revokeObjectURL(url);
-    });
-  })();
-
   selectPlan(data) {
     const index: number = this.selectedPlans.indexOf(data.plan);
     if (data.selected) {

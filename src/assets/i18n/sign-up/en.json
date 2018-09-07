@@ -42,5 +42,24 @@
         "TITLE": "Account Created!",
         "SUB_TITLE1": "A verification link has been sent to your email address.",
         "SUB_TITLE2": "Please verify your email address before logging in."    
+    },
+    "LOGIN": {
+        "WELCOME_LBL": "Welcome to MoneyOwl!",
+        "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+        "FORM": {
+            "USERNAME": "Mobile No. / Email Address",
+            "PASSWORD": "Password",
+            "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
+        },
+        "FORGOT_PASSWORD": "Forgot your password?",
+        "CLICK_HERE": "Click Here"
+    },
+    "FORGOTPASSWORD": {
+        
+        "SUBMIT": "Submit",
+        "EMAIL":"Email Address",
+        "DESCRIPTION":"Enter your email to receive your password reset instructions.",
+        "TITLE":"Forgot Password"
+
     }
 }

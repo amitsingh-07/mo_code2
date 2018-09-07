@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { ApiService } from '../shared/http/api.service';
 import { IMyFinancials } from './my-financials/my-financials.interface';
 import { PersonalFormError } from './personal-info/personal-form-error';
@@ -8,6 +7,7 @@ import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
 import { RiskProfile } from './risk-profile/riskprofile';
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 const SESSION_STORAGE_KEY = 'app_session_storage_key';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class PortfolioService {
 
   private portfolioFormData: PortfolioFormData = new PortfolioFormData();
   private personalFormError: any = new PersonalFormError();
-  constructor(private http: HttpClient, private apiService: ApiService) {
+  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService, ) {
   }
 
   getPortfolioFormData(): PortfolioFormData {
@@ -29,7 +29,6 @@ export class PortfolioService {
   getPersonalInfo() {
     return {
       dob: this.portfolioFormData.dob,
-      customDob: this.portfolioFormData.customDob,
       investmentPeriod: this.portfolioFormData.investmentPeriod
     };
   }
@@ -45,8 +44,8 @@ export class PortfolioService {
 
   setRiskProfile(data) {
     this.portfolioFormData.riskProfileId = data.id;
-    this.portfolioFormData.riskProfileName = data.riskProfile;
-    this.portfolioFormData.htmlDescription = data.htmlDescription;
+    this.portfolioFormData.riskProfileName = data.type;
+    this.portfolioFormData.htmlDescription = data.htmlDesc;
   }
 
   currentFormError(form) {
@@ -65,9 +64,8 @@ export class PortfolioService {
     return this.personalFormError.formFieldErrors[formCtrlName][validation];
   }
 
-  setUserInfo(data: PersonalInfo) {
+  setPersonalInfo(data: PersonalInfo) {
     this.portfolioFormData.dob = data.dob;
-    this.portfolioFormData.customDob = data.customDob;
     this.portfolioFormData.investmentPeriod = data.investmentPeriod;
   }
 
@@ -75,6 +73,9 @@ export class PortfolioService {
   getQuestionsList() {
     return this.apiService.getQuestionsList();
   }
+  constructGetQuestionsRequest() {
+  }
+
   getSelectedOptionByIndex(index) {
     return this.portfolioFormData['riskAssessQuest' + index];
   }
@@ -84,8 +85,30 @@ export class PortfolioService {
 
   // SAVE FOR STEP 2
   saveRiskAssessment() {
-    const data = this.getPortfolioFormData();
+    const data = this.constructRiskAssessmentSaveRequest();
     return this.apiService.saveRiskAssessment(data);
+  }
+  constructRiskAssessmentSaveRequest() {
+    const formData = this.getPortfolioFormData();
+    const selAnswers = [{
+      questionOptionId: formData.riskAssessQuest1
+    },
+    {
+      questionOptionId: formData.riskAssessQuest2
+    },
+    {
+      questionOptionId: formData.riskAssessQuest3
+    },
+    {
+      questionOptionId: formData.riskAssessQuest4
+    },
+    {
+      questionOptionId: formData.riskAssessQuest5
+    }];
+    return {
+      enquiryId: this.authService.getEnquiryId(),
+      answers: selAnswers
+    };
   }
 
   // MY FINANCIALS
@@ -102,9 +125,9 @@ export class PortfolioService {
   }
   setMyFinancials(formData) {
     this.portfolioFormData.monthlyIncome = formData.monthlyIncome;
-    this.portfolioFormData.percentageOfSaving = formData.myIncomeSaved;
+    this.portfolioFormData.percentageOfSaving = formData.percentageOfSaving;
     this.portfolioFormData.totalAssets = formData.totalAssets;
-    this.portfolioFormData.totalLiabilities = formData.totalLoans;
+    this.portfolioFormData.totalLiabilities = formData.totalLiabilities;
     this.portfolioFormData.initialInvestment = formData.initialInvestment;
     this.portfolioFormData.monthlyInvestment = formData.monthlyInvestment;
     this.portfolioFormData.suffEmergencyFund = formData.suffEmergencyFund;
@@ -112,9 +135,23 @@ export class PortfolioService {
 
   // SAVE FOR STEP 1
   savePersonalInfo() {
-    const data = this.getPortfolioFormData();
-    return this.apiService.savePersonalInfo(data);
+    const payload = this.constructInvObjectiveRequest();
+    return this.apiService.savePersonalInfo(payload);
   }
+  constructInvObjectiveRequest() {
+    const formData = this.getPortfolioFormData();
+    return {
+      investmentPeriod: formData.investmentPeriod,
+      monthlyIncome: formData.monthlyIncome,
+      initialInvestment: formData.initialInvestment,
+      monthlyInvestment: formData.monthlyInvestment,
+      dateOfBirth: formData.dob.split('/').join('-'),
+      percentageOfSaving: formData.percentageOfSaving,
+      totalAssets: formData.totalAssets,
+      totalLiabilities: formData.totalLiabilities
+    };
+  }
+
   setPortfolioRecommendationModalCounter(value: number) {
     if (window.sessionStorage) {
       sessionStorage.setItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY, value.toString());
@@ -128,10 +165,10 @@ export class PortfolioService {
     return this.apiService.getPortfolioAllocationDeatails();
   }
 
-  setFund(fund){
+  setFund(fund) {
     this.portfolioFormData.selectedFund = fund;
   }
-  getSelectedFund(){
+  getSelectedFund() {
     return this.portfolioFormData.selectedFund;
   }
 }

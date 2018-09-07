@@ -1,7 +1,9 @@
 {
   "objectList": {
-    "enquiryId": "jf387634k23fd"
+    "enquiryId": "993"
   },
-  "responseCode": 6000,
-  "responseDescription": "Successful response"
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  }
 }

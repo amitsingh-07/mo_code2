@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz center">
         <div class="addCover__block mr20 sm-mr0 sm-mb30">
-          <div class="addCover__block__btn" (click)="openExistingCoverageModal()">
+          <div class="addCover__block__btn" (click)="openExistingCoverageModal()" id="ir-add-ec-btn">
             <span class="addCover__block__btn--{{this.guideMeService.isExistingCoverAdded ? 'edit':'plus'}}"></span>
           </div>
           <div class="addCover__block--title" *ngIf ='!this.guideMeService.isExistingCoverAdded'>

@@ -9,12 +9,12 @@
     <span aria-hidden="true"></span>
   </button>
   <div class="form-group">
-    <div class="flex-row" *ngFor="let inputValue of data.inputValues">
+    <div class="flex-row" *ngFor="let inputValue of data.inputValues; let i = index">
       <div class="flex-col-7">
-        <label>{{inputValue.title}}</label>
+        <label id="ir-vd-title-{{data.id}}-{{i}}">{{inputValue.title}}</label>
       </div>
       <div class="flex-col-5">
-        <span>{{inputValue.currency}}</span>{{inputValue.value | currency : '' : '': '1.0-2'}}<span>{{inputValue.type}}</span><span id="view_details_for_month">{{inputValue.monthEnabled}}</span>
+        <span id="ir-vd-value-{{data.id}}-{{i}}">{{inputValue.currency}}{{inputValue.value | currency : '' : '': '1.0-2'}}</span><span>{{inputValue.type}}</span><span id="view_details_for_month">{{inputValue.monthEnabled}}</span>
       </div>
     </div>
     <div class="flex-row" *ngIf ="isExistingCoverage">
