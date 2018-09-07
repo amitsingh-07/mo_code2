@@ -54,20 +54,6 @@
             </div>
             <div class="flex-row">
               <div class="flex-col-6">
-            <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.RELATIONSHIP' | translate}}</div>
-            </div>
-            <div class="flex-col-6">
-            <div class="dropdown-control">
-              <div ngbDropdown id="RetirementAgeDropDown">
-                <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>{{item.controls.relationship.value}}
-                </button>
-                <div class="dropdown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item" *ngFor="let option of relationshipOptions" (click)="setDropDownValue('relationship',option, i)">{{option}}</button>
-            <div class="flex-row">
-              <div class="flex-col-6">
-                <div class="form-group-with-bg--content-label" for="name">
-                  <span (click)="showSupportAmountModal()">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</span>
-                  <span class="help-icon" (click)="showSupportAmountModal()"></span>
                 <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.RELATIONSHIP' | translate}}</div>
               </div>
               <div class="flex-col-6">
@@ -102,25 +88,9 @@
             </div>
             <div class="flex-row">
               <div class="flex-col-6">
-            <div class="form-group-with-bg--content-label" for="name">
-              <a href="#" class="link">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</a>
-              <span class="help-icon" (click)="showLifeProtectionSupportAmountModal()"></span>
-            </div>
-            </div>
-            <div class="flex-col-6">
-            <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
-                <i class="fixed-currency">$</i>
-                <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)" appCurrencyInput
-                maxLength="5" #otherIncome formControlName="otherIncome" value="0">
-                <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
-                <div class="form-group-with-bg--content-label" for="name">
-                  <span (click)="showLifeProtectionModal()">{{ 'LABEL.YEARS_NEEDED' | translate}}</span>
-                  <span class="help-icon" (click)="showLifeProtectionModal()"></span>
-=======
                 <div class="form-group-with-bg--content-label" for="name">
                   <span (click)="showSupportAmountModal()">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}</span>
                   <span class="help-icon" (click)="showSupportAmountModal()"></span>
->>>>>>> 9374d412dd81ea72f87c3dbff3d62373420a721f
                 </div>
               </div>
               <div class="flex-col-6">

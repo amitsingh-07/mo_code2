@@ -1,0 +1,121 @@
+@import '../../../variables';
+@import '../../../mixins';
+.verify-mobile-block {
+	.verify-mobile-block__otp__title {
+		font-size: 18px;
+		font-family: $muli-regular;
+	}
+	.verify-mobile-block__phone-number {
+		font-size: 36px;
+		font-family: $muli-bold;
+	}
+	.verify-mobile-block__edit-link {
+		font-size: 18px;
+	}
+	.verify-mobile-block__otp {
+		@extend .flex;
+		@extend .space-btwn;
+		input {
+		  width: 48.7px;
+		  height: 60px;
+		  border-radius: 5.1px;
+		  background-color: $white-color;
+		  border: none;
+		  text-align: center;
+		  color: $app-backgrnd-color;
+		  font-size: 24px;
+		  font-family: $muli-regular;
+		}
+	}
+}
+.signup-wrapper__header-icon {
+  @include allmobiles {
+    display: none;
+  }
+}
+.container-fluid {
+  padding-top: 50px;
+}
+.signup-wrapper {
+  h2 {
+    margin-bottom: 20px;
+  }
+  .signup-wrapper__description {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: -10px;
+  }
+}
+/*Modal styles*/
+.mobile-verify-modal {
+.custom-modal-backdrop {
+    background: $app-backgrnd-color;
+    position: fixed;
+    opacity: 0.85;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+  }
+  .custom-modal-wrapper {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    @extend .flex;
+    @extend .justify-center;
+    @extend .align-center;
+  }
+  .custom-modal-content {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .custom-modal--icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+	top: 20%;
+	img {
+		width: 15%;
+	}
+    @include allmobiles {
+      img {
+        width: 60%;
+      }
+    }
+  }
+  .custom-modal--title {
+    color: $white-color;
+    font-family: $muli-regular;
+    font-size: 18px;
+    letter-spacing: -0.4px;
+    line-height: 0.56;
+    margin-top: 30px;
+  }
+  .custom-modal--desc {
+    color: $white-color;
+    font-size: 24px;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    font-family: $muli-bold;
+    padding: 0 35%;
+    @include allmobiles {
+      padding: 0 10%;
+    }
+  }
+  .btn-primary {
+	  width: 275px;
+  }
+  @include allmobiles {
+	.btn__footer--fixed {
+		width: 100%;
+	}
+  }
+}

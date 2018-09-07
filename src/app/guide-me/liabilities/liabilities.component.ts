@@ -35,7 +35,7 @@ export class LiabilitiesComponent implements IPageComponent, OnInit {
     this.liabilitiesForm = new FormGroup({
       propertyLoan: new FormControl(this.assetsFormValues.propertyLoan),
       carLoan: new FormControl(this.assetsFormValues.carLoan),
-      otherLiabilities: new FormControl(this.assetsFormValues.otherLiabilities)
+      otherLoan: new FormControl(this.assetsFormValues.otherLoan)
     });
 
     this.setFormTotalValue();

@@ -1,7 +1,8 @@
 {
   "COMMON": {
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
-    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data"
+    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLANS_SELECTED": "Plans Selected"
   },
   "PROFILE": {
     "TITLE": "What's Your Profile?",
@@ -90,9 +91,8 @@
     "SUPPORT_AMOUNT_MESSAGE": "This refers to the amount you require to support this dependant on a monthly basis.",
     "I_HAVE": "I have",
     "LBL_NEXT_DEPENDANT": "Next Dependant",
-    "RELATIONSHIP_OPTIONS": ["Spouse", "Sibling", "Parent", "Children"],
     "EDUCATION_SUPPORT_TITLE": "Education Support",
-    "EDUCATION_SUPPORT_DESC": "I want to fund this child for a university education if i pass away",
+    "EDUCATION_SUPPORT_DESC": "I want to fund this child for a university education if I pass away",
     "EDUCATION_SUPPORT_SUBTITLE": "He / She will be studying:",
     "EDUCATION_SUPPORT_COURSE": "Course",
     "EDUCATION_SUPPORT_COUNTRY": "Country",
@@ -119,6 +119,13 @@
       "title": "Life Protection",
       "description": "<h4>Life Protection</h4><p>If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.</p>",
       "imageName": "lifeProtection_modal.png"
+    },
+    "DROP_DOWN_OPTIONS": {
+      "GENDER": ["Male", "Female"],
+      "RELATIONSHIP": ["Spouse", "Sibling", "Parent", "Children"],
+      "EDU_SUPPORT_COURSE": ["Medicine", "Non-Medicine"],
+      "EDU_SUPPORT_COUNTRY": ["Singapore", "USA", "United Kingdom", "Australia"],
+      "EDU_SUPPORT_NATIONALITY": ["Singaporean", "Singapore PR", "Foreigner"]
     }
   },
   "CI_ASSESSMENT": {
@@ -177,13 +184,58 @@
     "STATIC_DESCRIPTION": "In the final step, we will be sharing with you the coverage you need based on our assessment",
     "COVERAGE_YOU_NEED": "Coverage You Need",
     "ADD_COVERAGE": {
-      "LBL": "Add Existing Coverage For More Accurate Result"
+      "LBL": "Add Existing Coverage?",
+      "SUB_LBL": "Tap to add coverages",
+      "EXISTING_LBL": "Existing Coverage Added",
+      "EXISTING_SUB_LBL": "Tap to edit coverages"
     },
     "PROCEED": {
-      "LBL": "Continue To Recommendation"
+      "LBL": "Continue To Recommendations"
     },
     "RESULT_BLOCK": {
       "VIEW_DETAILS": "View Details"
+    },
+    "PLANS": {
+      "COVARAGE_NEEDED": "Coverage Needed",
+      "LESS_EXISTING_COVARAGE": "Less Existing Coverage",
+      "DOLLER":"$",
+      "PERSENTAGE":"%",
+      "LIFE_PROTECTION":{ 
+        "TITLE": "Life Protection",
+        "ICON": "life-protection-icon.svg",
+        "EDUCATION_SUPPORT":"Education Support",
+        "FOR_DEPENDENTS":"For Dependants",
+        "LIABILITIES":"Liabilities",
+        "LESS_CURRENT_ASSETS":"Less Current Assets"
+        
+        },
+      "CRITICAL_ILLNESS":{ 
+        "TITLE": "Critical Illness",
+        "ICON": "critical-illness-icon.svg",
+        "ANNUAL_INCOME":"Annual Income",
+        "YEARS_TO_REPLACE":"Years To Replace",
+        "YEARS":" Years"
+        }, 
+      "OCCUPATIONAL_dISABILITY": { 
+        "TITLE": "Occupational Disability",
+        "ICON": "occupational-disability-icon.svg",
+        "MONTHLY_SALARY":"Monthly Salary",
+        "PERSENTAGE_TO_REPLACE":"% to Replace"
+        },
+      "LONG_TERMCARE":{ 
+        "TITLE": "Long-Term Care",
+        "ICON": "long-term-care-icon.svg",
+        "FOR_MONTH":" / mth"
+        }, 
+      "HOSPITAL_PLAN":{ 
+        "TITLE": "Hospital Plan",
+        "ICON": "hospital-plan-icon.svg",
+        "FAMILY_MEMBER":"Family Member"
+        }
     }
+  },
+  "RECOMMENDATIONS": {
+    "TITLE": "Recommendations",
+    "DESCRIPTION": "Personalise your insurance coverage by selecting the plans you are interested in."
   }
 }

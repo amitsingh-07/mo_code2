@@ -2,17 +2,20 @@ import 'rxjs/add/operator/map';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NavigationStart, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { ProductDetailComponent } from './../../shared/components/product-detail/product-detail.component';
 
 const assetImgPath = './assets/images/';
 
@@ -38,12 +41,13 @@ export class ProfileComponent implements IPageComponent, OnInit {
   profileList: any[];
   helpImg: any[];
   profileFormValues: any;
+  modalRef: NgbModalRef;
 
   constructor(
     private guideMeService: GuideMeService, private router: Router,
     private modal: NgbModal, public headerService: HeaderService,
     public readonly translate: TranslateService, public authService: AuthenticationService,
-    public log: LoggerService) {
+    public log: LoggerService, private guideMeApiService: GuideMeApiService, private googleAnalytics: GoogleAnalyticsService) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -58,7 +62,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
     });
     this.authService.authenticate().subscribe((token) => {
-      this.guideMeService.getProfileList().subscribe((data) => this.profileList = data.objectList);
+      this.guideMeApiService.getProfileList().subscribe((data) => this.profileList = data.objectList);
     });
   }
 
@@ -67,11 +71,17 @@ export class ProfileComponent implements IPageComponent, OnInit {
   }
 
   showHelpModal(id) {
-    const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
+    this.modalRef = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
 
-    ref.componentInstance.description = this.profileList[id].description;
-    ref.componentInstance.title = this.profileList[id].name;
-    ref.componentInstance.img = assetImgPath + profileHelpImages['helpImg_' + (id + 1)];
+    this.modalRef.componentInstance.description = this.profileList[id].description;
+    this.modalRef.componentInstance.title = this.profileList[id].name;
+    this.modalRef.componentInstance.img = assetImgPath + profileHelpImages['helpImg_' + (id + 1)];
+
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        this.modalRef.close();
+      }
+    });
   }
 
   save(form): boolean {
@@ -84,6 +94,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
+      this.googleAnalytics.startTime('guideMe');
       this.router.navigate([GUIDE_ME_ROUTE_PATHS.GET_STARTED]);
     }
   }

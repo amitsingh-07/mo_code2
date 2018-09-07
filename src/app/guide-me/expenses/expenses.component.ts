@@ -33,7 +33,7 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.expensesFormValues = this.guideMeService.getMyExpenses();
     this.expensesForm = new FormGroup({
-      monthlyInstallment: new FormControl(this.expensesFormValues.monthlyInstallment),
+      monthlyInstallments: new FormControl(this.expensesFormValues.monthlyInstallments),
       otherExpenses: new FormControl(this.expensesFormValues.otherExpenses)
     });
 

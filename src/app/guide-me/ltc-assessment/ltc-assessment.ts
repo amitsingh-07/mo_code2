@@ -1,3 +1,6 @@
 export class LongTermCare {
-    longTermCareData: string = null;
+    careGiverType: string;
+    careGiverDescription: string;
+    careGiverTypeId: number;
+    monthlyPayout = 0;
 }

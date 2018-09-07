@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/map';
 
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { GuideMeService } from '../guide-me.service';
+import { GuideMeApiService } from '../guide-me.api.service';
+import { HospitalPlan } from './hospital-plan';
 
 const assetImgPath = './assets/images/';
 
@@ -25,13 +27,15 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   pageSubTitle: string;
 
   hospitalPlanForm: FormGroup;
-  hospitalPlanFormValues: any;
+  hospitalPlanFormValues: HospitalPlan;
   hospitalPlanList: any[];
+  isFormValid = false;
 
   constructor(
     private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
-    public modal: NgbModal, public headerService: HeaderService
+    public modal: NgbModal, public headerService: HeaderService,
+    private guideMeApiService: GuideMeApiService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
@@ -42,12 +46,12 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.hospitalPlanFormValues = this.guideMeService.getGuideMeFormData();
+    this.hospitalPlanFormValues = this.guideMeService.getHospitalPlan();
     this.hospitalPlanForm = new FormGroup({
-      hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalPlanData, Validators.required)
+      hospitalPlan: new FormControl(this.hospitalPlanFormValues, Validators.required)
     });
 
-    this.guideMeService.getHospitalPlanList().subscribe((data) => {
+    this.guideMeApiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
   }
@@ -61,16 +65,28 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
     this.headerService.setPageTitle(title, subTitle, false);
   }
 
-  save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setHospitalPlan(form.value);
+  validateForm(hospitalPlan) {
+    this.hospitalPlanFormValues = {
+      hospitalClass: hospitalPlan.hospitalClass,
+      hospitalClassDescription: hospitalPlan.hospitalClassDescription,
+      hospitalClassId: hospitalPlan.id
+    } as HospitalPlan;
+    this.isFormValid = true;
+  }
+
+  save() {
+      const selectedPlan: HospitalPlan = {
+        hospitalClass: this.hospitalPlanFormValues.hospitalClass,
+        hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
+        hospitalClassId: this.hospitalPlanFormValues.hospitalClassId,
+        isFullRider: false
+      };
+      this.guideMeService.setHospitalPlan(selectedPlan);
       return true;
-    }
-    return false;
   }
 
   goToNext(form) {
-    if (this.save(form)) {
+    if (this.save()) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
         this.guideMeService.protectionNeedsPageIndex++;
       });

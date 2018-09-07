@@ -1,12 +1,23 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
-import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import 'rxjs/add/observable/timer';
 
-import { Router } from '../../../../node_modules/@angular/router';
+import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+
+import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 import { HeaderService } from '../../shared/header/header.service';
-import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { GuideMeService } from './../guide-me.service';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
+import { GuideMeCalculateService } from '../guide-me-calculate.service';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GuideMeService } from '../guide-me.service';
+import { IMyIncome } from '../income/income.interface';
+import { IMyOcpDisability } from '../ocp-disability/ocp-disability.interface';
+import { ExistingCoverageModalComponent } from './existing-coverage-modal/existing-coverage-modal.component';
+import { IExistingCoverage } from './existing-coverage-modal/existing-coverage.interface';
+import { InsuranceResultModalComponent } from './insurance-result-modal/insurance-result-modal.component';
+import { IResultItem, IResultItemEntry, IResultObject } from './insurance-result/insurance-result';
 
 const assetImgPath = './assets/images/';
 @Component({
@@ -15,47 +26,67 @@ const assetImgPath = './assets/images/';
   styleUrls: ['./insurance-results.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class InsuranceResultsComponent implements OnInit, IPageComponent {
+
+export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterViewInit {
+
+  criticalIllnessValues: CriticalIllnessData;
+  lifeProtectionValues: any;
+  assetValues: any;
+  liabilityValues: any;
+  monthlySalary: IMyIncome;
+  ocpDisabilityValues: IMyOcpDisability;
   pageTitle: string;
   protectionNeeds: any;
-  // protectionNeedsData: any;
+  protectionNeedsArray: any;
+  animateStaticModal = false;
+  hideStaticModal = false;
+  planData;
 
-  // JSON
-  protectionNeedsData = [{
-    icon: 'life-protection-icon.svg',
-    title: 'Life Protection',
-    amount: 225364
-  }, {
-    icon: 'critical-illness-icon.svg',
-    title: 'Critical Illness',
-    amount: 293963
-  }, {
-    icon: 'occupational-disability-icon.svg',
-    title: 'Occupational Disability',
-    amount: 2939
-  }, {
-    icon: 'long-term-care-icon.svg',
-    title: 'Long-Term Care',
-    amount: 509
-  }, {
-    icon: 'hospital-plan-icon.svg',
-    title: 'Hospital Plan',
-    amount: 50965
-  }];
-
-  constructor(private router: Router, public headerService: HeaderService,
-              private translate: TranslateService, private guideMeService: GuideMeService,
-              public modal: NgbModal) {
+  constructor(
+    private router: Router, public headerService: HeaderService,
+    private translate: TranslateService, private guideMeService: GuideMeService,
+    private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal,
+    private googleAnalyticsService: GoogleAnalyticsService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
+      this.planData = this.translate.instant('INSURANCE_RESULTS.PLANS');
       this.setPageTitle(this.pageTitle, null, false);
+      setTimeout(() => {
+        this.getProtectionNeeds();
+      }, 500);
     });
-    this.getProtectionNeeds();
+    this.ocpDisabilityValues = this.guideMeService.getMyOcpDisability();
+    this.criticalIllnessValues = this.guideMeService.getCiAssessment();
+    this.monthlySalary = this.guideMeService.getMyIncome();
+    this.liabilityValues = this.guideMeCalculateService.getLiabilitiesSum();
+    this.assetValues = this.guideMeCalculateService.getCurrentAssetsSum();
+
+    const eduSupportAmount = this.guideMeCalculateService.getEducationSupportSum();
+    const lifeProtectionAmount = this.guideMeCalculateService.getProtectionSupportSum();
+    this.lifeProtectionValues = {
+      dependantsValue: lifeProtectionAmount ? lifeProtectionAmount : 0,
+      coverageAmount: this.guideMeCalculateService.getLifeProtectionSummary(),
+      educationSupportAmount: eduSupportAmount ? eduSupportAmount : 0
+    };
   }
 
   ngOnInit() {
-    this.getProtectionNeeds();
+  }
+
+  ngAfterViewInit() {
+    if (this.guideMeService.getInsuranceResultsModalCounter() === 0) {
+      this.guideMeService.setInsuranceResultsModalCounter(1);
+      setInterval(() => {
+        this.animateStaticModal = true;
+      }, 2000);
+
+      setInterval(() => {
+        this.hideStaticModal = true;
+      }, 3000);
+    } else {
+      this.hideStaticModal = true;
+    }
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
@@ -68,25 +99,246 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent {
   }
 
   viewDetails(index) {
-    alert('working' + index.title);
-    // tslint:disable-next-line:no-commented-code
-    // this.protectionNeedsData = this.protectionNeedsData.slice(0);
-    // console.log(this.protectionNeedsData);
-  }
-
-  simpleChange() {
-    this.protectionNeedsData[0].amount = 784674;
-    this.protectionNeedsData[1].amount = 2786123;
-  }
-
-  getProtectionNeeds() {
-    console.log('Service triggered');
-    console.log(this.guideMeService.getLifeProtection());
-    this.protectionNeeds = this.guideMeService.getProtectionNeeds();
-    if (this.protectionNeeds) {
-      console.log(this.protectionNeeds);
-      console.log('It exists');
+    switch (index.title) {
+      case this.planData.LIFE_PROTECTION.TITLE:
+        this.showDetailsModal(index);
+        break;
+      case this.planData.CRITICAL_ILLNESS.TITLE:
+        this.showDetailsModal(index);
+        break;
+      case this.planData.OCCUPATIONAL_dISABILITY.TITLE:
+        this.showDetailsModal(index);
+        break;
+      case this.planData.LONG_TERMCARE.TITLE:
+        this.showDetailsModal(index);
+        break;
     }
   }
 
+  showDetailsModal(data: any) {
+    const ref = this.modal.open(InsuranceResultModalComponent, {
+      centered: true
+    });
+    ref.componentInstance.data = data;
+    this.dismissPopup(ref);
+  }
+
+  openExistingCoverageModal() {
+    const ref = this.modal.open(ExistingCoverageModalComponent, {
+      centered: true
+    });
+    ref.componentInstance.data = this.protectionNeedsArray;
+    ref.componentInstance.dataOutput.subscribe((emittedValue) => {
+      this.addExistingCoverageOutput(emittedValue);
+    });
+    this.dismissPopup(ref);
+  }
+
+  dismissPopup(ref: NgbModalRef) {
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        ref.close();
+      }
+    });
+  }
+
+  addExistingCoverageOutput(emittedValue: IExistingCoverage) {
+    this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
+      switch (protectionNeed.id) {
+        case 1:
+          protectionNeed.existingCoverage.value = emittedValue.lifeProtectionCoverage;
+          break;
+        case 2:
+          protectionNeed.existingCoverage.value = emittedValue.criticalIllnessCoverage;
+          break;
+        case 3:
+          protectionNeed.existingCoverage.value = emittedValue.occupationalDisabilityCoveragePerMonth;
+          break;
+        case 4:
+          protectionNeed.existingCoverage.value = emittedValue.selectedHospitalPlan;
+          break;
+        case 5:
+          protectionNeed.existingCoverage.value = emittedValue.longTermCareCoveragePerMonth;
+          break;
+      }
+      return protectionNeed.existingCoverage.value;
+    });
+  }
+
+  getProtectionNeeds() {
+    this.protectionNeedsArray = [];
+    const protectionNeeds = this.guideMeService.getSelectedProtectionNeedsList();
+    if (protectionNeeds !== undefined) {
+      protectionNeeds.forEach((protectionNeedData) => {
+        if (protectionNeedData.status === true) {
+          this.protectionNeedsArray.push(this.createProtectionNeedResult(protectionNeedData));
+        }
+      });
+      this.arrangeProtectionNeedsList();
+    }
+  }
+
+  arrangeProtectionNeedsList() {
+    let hospitalPlanItem: IResultItem = null;
+    this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
+      if (protectionNeed.id === 4) {
+        hospitalPlanItem = this.protectionNeedsArray.splice(index, 1);
+        this.protectionNeedsArray = this.protectionNeedsArray.concat(hospitalPlanItem);
+      }
+    });
+  }
+
+  createProtectionNeedResult(data): IResultObject {
+    let resultValue: any;
+    switch (data.protectionTypeId) {
+      case 1:
+        resultValue = this.constructLifeProtection(data);
+        break;
+      case 2:
+        resultValue = this.constructCriticalIllness(data);
+        break;
+      case 3:
+        resultValue = this.constructOccupationalDisability(data);
+        break;
+      case 4:
+        resultValue = this.constructHospitalPlan(data);
+        break;
+      case 5:
+        resultValue = this.constructLongTermCare(data);
+        break;
+      default:
+        resultValue = null;
+    }
+    return resultValue;
+  }
+
+  constructLifeProtection(data): IResultItem {
+    const coverage = {
+      title: this.planData.LESS_EXISTING_COVARAGE,
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: this.planData.LIFE_PROTECTION.FOR_DEPENDENTS,
+       value: this.lifeProtectionValues.dependantsValue, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({
+      title: this.planData.LIFE_PROTECTION.EDUCATION_SUPPORT,
+      value: this.lifeProtectionValues.educationSupportAmount, currency: this.planData.DOLLER
+    } as IResultItemEntry);
+    entries.push({ title: this.planData.LIFE_PROTECTION.LIABILITIES,
+      value: this.liabilityValues, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({ title: this.planData.LIFE_PROTECTION.LESS_CURRENT_ASSETS,
+      value: this.assetValues, currency: this.planData.DOLLER } as IResultItemEntry);
+    return {
+      id: data.protectionTypeId,
+      icon: this.planData.LIFE_PROTECTION.ICON,
+      title: this.planData.LIFE_PROTECTION.TITLE,
+      inputValues: entries,
+      existingCoverage: coverage,
+      total: {
+        title: this.planData.COVARAGE_NEEDED,
+        value: this.lifeProtectionValues.coverageAmount
+      }
+    };
+  }
+
+  constructCriticalIllness(data): IResultItem {
+    const coverage = {
+      title: this.planData.LESS_EXISTING_COVARAGE,
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: this.planData.CRITICAL_ILLNESS.ANNUAL_INCOME,
+       value: this.criticalIllnessValues.annualSalary, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({ title: this.planData.CRITICAL_ILLNESS.YEARS_TO_REPLACE,
+       value: this.criticalIllnessValues.ciMultiplier, type: this.planData.CRITICAL_ILLNESS.YEARS } as IResultItemEntry);
+    return {
+      id: data.protectionTypeId,
+      icon: this.planData.CRITICAL_ILLNESS.ICON,
+      title: this.planData.CRITICAL_ILLNESS.TITLE,
+      inputValues: entries,
+      existingCoverage: coverage,
+      total: {
+        title: this.planData.COVARAGE_NEEDED,
+        // tslint:disable-next-line:max-line-length
+        value: (this.criticalIllnessValues.annualSalary * this.criticalIllnessValues.ciMultiplier)
+      }
+    };
+  }
+
+  constructOccupationalDisability(data): IResultItem {
+    const coverage = {
+      title: this.planData.LESS_EXISTING_COVARAGE,
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: this.planData.OCCUPATIONAL_dISABILITY.MONTHLY_SALARY,
+      value: this.monthlySalary.monthlySalary, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({ title: this.planData.OCCUPATIONAL_dISABILITY.PERSENTAGE_TO_REPLACE,
+       value: this.ocpDisabilityValues.percentageCoverage, type: this.planData.PERSENTAGE } as IResultItemEntry);
+    return {
+      id: data.protectionTypeId,
+      icon: this.planData.OCCUPATIONAL_dISABILITY.ICON,
+      title: this.planData.OCCUPATIONAL_dISABILITY.TITLE,
+      inputValues: entries,
+      existingCoverage: coverage,
+      total: {
+        title: this.planData.COVARAGE_NEEDED,
+        value: this.ocpDisabilityValues.coverageAmount
+      }
+    };
+  }
+
+  constructLongTermCare(data): IResultItem {
+    const coverage = {
+      title: this.planData.LESS_EXISTING_COVARAGE,
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({
+      title: this.guideMeService.getLongTermCare().careGiverType,
+      value: this.guideMeService.selectLongTermCareValues(),
+       currency: this.planData.DOLLER, monthEnabled: this.planData.LONG_TERMCARE.FOR_MONTH
+    } as IResultItemEntry);
+    return {
+      id: data.protectionTypeId,
+      icon: this.planData.LONG_TERMCARE.ICON,
+      title: this.planData.LONG_TERMCARE.TITLE,
+      inputValues: entries,
+      existingCoverage: coverage,
+      total: {
+        title: this.planData.COVARAGE_NEEDED,
+        value: this.guideMeService.selectLongTermCareValues()
+      }
+    };
+  }
+
+  constructHospitalPlan(data): IResultItem {
+    const coverage = {
+      title: this.planData.LESS_EXISTING_COVARAGE,
+      value: 0
+    } as IResultItemEntry;
+    const entries = [] as IResultItemEntry[];
+    entries.push({ title: this.planData.HOSPITAL_PLAN.FAMILY_MEMBER, value: 0 } as IResultItemEntry);
+    const hospitalPlanClass = this.guideMeService.getHospitalPlan().hospitalClass.split(' ')[0];
+    return {
+      id: data.protectionTypeId,
+      icon: this.planData.HOSPITAL_PLAN.ICON,
+      title: this.planData.HOSPITAL_PLAN.TITLE,
+      content: hospitalPlanClass,
+      inputValues: entries,
+      existingCoverage: coverage,
+      total: {
+        title: this.planData.COVARAGE_NEEDED,
+        value: 0
+      }
+    };
+  }
+  goToNext() {
+    // GA Tracking
+    this.googleAnalyticsService.emitTime('guideMe', 'Guided', 'Success');
+    this.googleAnalyticsService.endTime('guideMe');
+    this.googleAnalyticsService.emitEvent('Guided', 'Recommend', 'Success');
+
+    this.router.navigate([GUIDE_ME_ROUTE_PATHS.RECOMMENDATIONS]);
+  }
 }

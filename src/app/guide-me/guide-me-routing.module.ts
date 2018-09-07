@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
+import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedComponent } from './get-started/get-started.component';
@@ -18,6 +19,7 @@ import { MyAssetsComponent } from './my-assets/my-assets.component';
 import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 const routes: Routes = [
   { path: GUIDE_ME_ROUTES.ROOT, component: ProfileComponent },
@@ -35,7 +37,9 @@ const routes: Routes = [
   { path: GUIDE_ME_ROUTES.LONG_TERM_CARE, component: LtcAssessmentComponent},
   { path: GUIDE_ME_ROUTES.OCCUPATIONAL_DISABILITY, component: OcpDisabilityComponent},
   { path: GUIDE_ME_ROUTES.HOSPITAL_PLAN, component: HospitalPlanComponent},
-  { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent}
+  { path: GUIDE_ME_ROUTES.INSURANCE_RESULTS, component: InsuranceResultsComponent},
+  { path: GUIDE_ME_ROUTES.RECOMMENDATIONS, component: RecommendationsComponent},
+  { path: GUIDE_ME_ROUTES.COMPARE_PLANS, component: ComparePlansComponent}
 ];
 
 @NgModule({

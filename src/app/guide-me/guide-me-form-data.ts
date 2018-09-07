@@ -1,57 +1,51 @@
-import { FormArray, FormGroup } from '@angular/forms';
+import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
+import { HospitalPlan } from './hospital-plan/hospital-plan';
 import { IMyIncome } from './income/income.interface';
+import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { IMyLiabilities } from './liabilities/liabilities.interface';
+import { IDependent } from './life-protection/life-protection-form/dependent.interface';
+import { LongTermCare } from './ltc-assessment/ltc-assessment';
+import { IMyAssets } from './my-assets/my-assets.interface';
+import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
-export class GuideMeFormData implements IMyIncome, IMyExpenses, IMyLiabilities {
+export class GuideMeFormData {
     myProfile: number;
     email: string;
     gender: string;
-    dob: string;
+    dob: any;
     customDob: string;
     smoker: string;
     dependent: number;
-    protectionNeedData: ProtectionNeeds;
-    lifeProtectionData: FormGroup;
+
+    protectionNeedData: ProtectionNeeds[];
+    lifeProtectionData: {dependents: IDependent[]};
 
     // My Income
-    monthlySalary: number;
-    annualBonus: number;
-    otherIncome: number;
+    income: IMyIncome;
 
     // My Expenses
-    monthlyInstallment: number;
-    otherExpenses: number;
+    expenses: IMyExpenses;
 
     // My Assets
-    cash: number;
-    cpf: number;
-    homeProperty: number;
-    investmentProperties: number;
-    investments: number;
-    otherAssets: number;
+    assets: IMyAssets;
 
     // My Liabilities
-    propertyLoan: number;
-    carLoan: number;
-    otherLiabilities: number;
+    liabilities: IMyLiabilities;
 
     // Critical Illness Assessment
-    ciCoverageAmt: number;
-    annualSalary: number;
-    ciMultiplier: number;
-    untilRetirementAge: number;
+    criticalIllness: CriticalIllnessData;
 
     // Occupational Disability
-    coverageAmount: number;
-    retirementAge: number;
-    selectedEmployee: string;
-    sliderValue: number;
+    occupationalDisability: IMyOcpDisability;
 
     // Long Term Care
-    longTermCareData: string;
+    longTermCareData: LongTermCare;
 
     // Hospital Plan
-    hospitalPlanData: string;
+    hospitalPlanData: HospitalPlan;
+
+    // Exisiting Coverage
+    existingCoverageValues: IExistingCoverage;
 }

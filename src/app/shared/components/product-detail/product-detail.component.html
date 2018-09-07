@@ -1,0 +1,24 @@
+<div class="product-detail-wrapper">
+  <img class="best-value-icon" *ngIf="bestValue" src="./assets/images/best-value-icon.png" />
+  <div style="height: 30px;">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()" id="modalBtn">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="pr20 pl20">
+    <app-plan-details-widget [data]="plan" (select)="selectPlan(plan)" [type]="protectionType"></app-plan-details-widget>
+  </div>
+  <div id="panel-group" class="mb10">
+    <div class="panel panel-default" *ngFor="let item of items; let i = index">
+      <div class="panel-heading pr25 pl25 pt10 pb5" (click)="toggle(i)">
+        <h5 class="panel-title">
+          {{item.title}}
+          <i class='fa right' [class.fa-chevron-down]="!isExpanded(i)" [class.fa-chevron-up]="isExpanded(i)"></i>
+        </h5>
+      </div>
+      <div id="collapse1" class="panel-collapse pr20 pl20" [class.collapse]='!isExpanded(i)'>
+        <div class="panel-body">{{item.description}}</div>
+      </div>
+    </div>
+  </div>
+</div>

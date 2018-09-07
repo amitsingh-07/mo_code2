@@ -1,3 +1,5 @@
+import 'hammerjs';
+
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
@@ -12,10 +14,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
+import { ExistingCoverageModalComponent } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
+import { RestrictAlphabetsDirective } from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
+import {
+  InsuranceResultModalComponent
+} from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
 import {
   LifeProtectionModalComponent
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
+import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { JwtInterceptor } from './shared/http/auth/jwt.interceptor';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';

@@ -1,4 +1,19 @@
+
 // Button styles
+button {
+  box-shadow: none !important;
+}
+button:active {
+  box-shadow: none;
+  background: none;
+}
+/*
+button:active:focus {
+  color: inherit;
+  background-color: inherit; 
+  border-color: inherit;
+}
+*/
 .btn {
   font-size: 22px;
   font-family: $muli-semi-bold;
@@ -8,12 +23,13 @@
   text-align: center;
   border: 0;
   border: 0 solid transparent;
+
   &.btn-primary {
     background-color: $btn-primary-backgrnd-color;
     border-color: $btn-primary-backgrnd-color;
     box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
     &:hover {
-      background-color: #0de0de;
+      background-color: #0de0de !important;
     }
     &:focus,
     &:active {
@@ -25,15 +41,53 @@
       outline: none !important;
       background: $btn-primary-backgrnd-color !important;
     }
+  }
+  &.btn-white {
+    background-color: $white-color;
+    border-color:transparent;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    color:$teal-color;
+    &:hover {
+      background-color: #eafaf9;
+      box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    }
+    &:focus,
+    &:active {
+      background-color: #eafaf9;
+      box-shadow: 0px;
+    }
     &.active {
       outline: none !important;
-      background: $btn-primary-backgrnd-color !important;
+      background: $white-color !important;
     }
   }
-  &.btn-save {
+  &.btn-primary-dark {
+    background-color: $app-backgrnd-color;
+    border-color: $app-backgrnd-color;
+    color: $white-color;
+    &:hover {
+      background-color: #00c5c4;
+    }
+    &:focus,
+    &:active {
+      outline: none !important;
+      background: #00c5c4 !important;
+      border-color: none !important;
+    }
+  }
+  &.btn-secondary {
     background-color: transparent;
-    border: 1px solid #4d898d;
-    color: #FFF;
+    border: 1px solid #00c5c4;
+    color: $app-backgrnd-color;
+    &:hover {
+      background-color: transparent;
+    }
+    &:focus,
+    &:active {
+      outline: none !important;
+      background: transparent !important;
+      border-color: none !important;
+    }
   }
   &:disabled {
     opacity: 1 !important;
@@ -43,11 +97,21 @@
     box-shadow: none;
     border: none;
     &:hover {
-      background-color: $btn-disabled-bg;
+      background-color: $btn-disabled-bg !important;
     }
   }
 }
-
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.btn.btn-primary:hover {
+  background-color: #0de0de !important;
+}
+.btn:disabled:hover {
+  background: #009a9a !important;
+}
 /*Fixed button small*/
 
 .fixed-btn--sm {
@@ -142,32 +206,40 @@
   color: $myinfo-btn-color;
   justify-content:center;
   align-items:center;
-  max-width:400px;
-  width:80%;
+  width:70%;
+  max-height:70px;
   min-width:337px;
+  max-width:370px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px #ff7f00;
+  
   @include allmobiles{
     width:100% !important;
     min-width:0px;
+    max-width:none;
   }
   .addCover__block__btn {
     position: absolute;
-    right: 0;
+    right: -1px;
     width: 50px;
     background: $myinfo-block-btn-bg-color;
     height: 100%;
     top: 0;
     border-radius: 0 8px 8px 0;
     cursor: pointer;
-    .addCover__block__btn--plus {
+    .addCover__block__btn--plus, .addCover__block__btn--edit {
       position: absolute;
       color: $white-color;
       top:50%;
       left:55%;
-      background-image:url(../src/assets/images/plus-white.svg);
+      background-image:url("../src/assets/images/plus-white.svg");
       background-repeat:no-repeat;
       width:20px;
       height:20px;
       transform:translate(-50%,-50%);
+    }
+    .addCover__block__btn--edit {
+      background-image:url("../src/assets/images/edit-white.png");
     }
   }
   .addCover__block--title {
@@ -175,6 +247,15 @@
     padding-right:5px;
     font-family: $muli-bold;
     font-size: 18px;
+    line-height:1.0;
+    letter-spacing: -0.1px;
+    .sub{
+      display:block;
+      font-family:$muli;
+      font-size:16px;
+      line-height:1.0;
+      letter-spacing: -0.3px;
+    }
   }
 }
 
@@ -212,15 +293,15 @@
   width:100%;
 }
 .result__wrapper{
+  flex-wrap:wrap;
   app-insurance-result{
     width:160px;
-    min-width:160px;
     margin-right:18px;
     @include allmobiles{
       width:calc(50% - 10px);
     }
     @include min300max325{
-      height:250px;
+      min-height:250px;
     }
     &:last-child(){
       margin-right:0px;
@@ -303,8 +384,9 @@
 .continue__btn{
   position: relative;
   display: inline-block;
-  width:80%;
-  max-width: 372px;
+  width:70%;
+  min-width: 340px;
+  max-width: 370px;
   background-color:$btn-primary-backgrnd-color;
   color:$white-color;
   border-radius: 6px;
@@ -312,6 +394,8 @@
   padding:16px 25px;
   letter-spacing:-0.2px;
   font-family:$muli-semi-bold;
+  max-height:70px;
+  cursor: pointer;
   @include fontSize(13px);
   text-align:center;
   @include allmobiles {

@@ -1,3 +1,4 @@
+import { IRecommendationRequest } from '../../guide-me/interfaces/recommendations.request';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -17,6 +18,12 @@ export class ApiService {
     private configService: ConfigService,
     private http: BaseService,
     private httpClient: HttpClient) { }
+
+  /* SignUp API */
+  requestVerifyMobile(): string {
+    const url = '';
+    return '000000';
+  };
 
   getProfileList() {
     const url = '../assets/mock-data/profile.json';
@@ -95,7 +102,6 @@ export class ApiService {
 
   getProtectionNeedsList(userInfoForm) {
     let localUrl = '../assets/mock-data/getProtectionList.json';
-    const baseUrl = 'http://bfa-uat.ntuclink.cloud';
     // return this.httpClient.post<IServerResponse>(`${baseUrl}/${apiConstants.endpoint.getProtectionTypesList}`, userInfoForm);
     // return this.http.post(apiConstants.endpoint.getProtectionTypesList, userInfoForm);
 
@@ -246,14 +252,13 @@ export class ApiService {
           console.error(
             `Backend returned code ${error.status}, ` + `body was: ${error.error}`
           );
-          localUrl = '../assets/mock-data/getProtectionList.json';
-          return this.httpClient.get<IServerResponse>(localUrl);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');
       })
     );
   }
+
 
   // -------------------------- PORTFOLIO MODULE ---------------------------------------
   getQuestionsList() {

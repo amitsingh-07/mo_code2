@@ -1,23 +1,25 @@
-<div class="container-fluid flex__wrapper flex--pad-reset mt0 mobile-top-non">
-    <div class="content">
-        <div class="col-lg-12 block__carousel-bar-container mt20"> 
-            <div class="block__carousel-bar active"></div>
-            <div class="block__carousel-bar"></div>
+<!--Insure Assessment-->
+<div class="fin-accessment-block">
+    <div class="container-fluid">
+        <div class="fin-accessment-block__tab-container"> 
+            <div class="fin-accessment-block__tab"></div>
+            <div class="fin-accessment-block__tab active"></div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz block__content">
-            <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset">
-                <img class="flex--right-align flex--sm-center img__header-img" src="assets/images/insure-needs.svg"/>
+
+        <div class="fin-accessment-block__content">
+        <div class="row text-center">
+            <div class="col-sm-12 col-md-6">
+                <div class="banner-image"><img src="assets/images/group.svg" id="finAccssImg" /></div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset flex--xs-grow">
-                <div class="block__start-text-container flex--left-align flex--xs-grow">
-                    <p class="p__step-title">{{ 'INSURE_ASSESSMENT.CONTENT_STEP' | translate}}</p>
-                    <p class="p__start-title mb10">{{ 'INSURE_ASSESSMENT.CONTENT_TITLE' | translate}}</p>
-                    <p class="p__start-sub-title mb40">{{ 'INSURE_ASSESSMENT.CONTENT_DESC' | translate}}</p>
-                    <button class="button__proceed" (click)="goNext()">
-                            Proceed
-                    </button>
-                </div>
-            </div> 
+            <div class="col-sm-12 col-md-6 fin-accessment-block__content__desc">
+                <p class="fin-accessment-block__content__heading" id="finAccssHeading">{{ 'INSURE_ASSESSMENT.CONTENT_STEP' | translate}}</p>
+                <p class="fin-accessment-block__content__title mb10" id="finAccssTitle">{{ 'INSURE_ASSESSMENT.CONTENT_TITLE' | translate}}</p>
+                <p class="fin-accessment-block__content__sub-title mb40" id="finAccssSubTitle">{{ 'INSURE_ASSESSMENT.CONTENT_DESC' | translate}}</p>
+                <button class="btn btn-proceed" (click)="goNext()">
+                        Proceed
+                </button>
+            </div>
+        </div>
         </div>
     </div>
 </div>

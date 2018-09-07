@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,9 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from '../../guide-me.service';
-import {
-  LifeProtectionModalComponent
-} from './life-protection-modal/life-protection-modal.component';
+import { LifeProtectionModalComponent } from './life-protection-modal/life-protection-modal.component';
 
 const Regexp = new RegExp('[,]', 'g');
 const MAX_YEARS_NEEDED = 100;
@@ -37,13 +35,13 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   isNavPrevEnabled;
   isNavNextEnabled;
   dependentCountOptions = [0, 1, 2, 3, 4, 5];
-  genderOptions = ['Male', 'Female'];
-  relationshipOptions = ['Spouse', 'Sibling', 'Parent', 'Children'];
+  genderOptions;
+  relationshipOptions;
   ageOptions;
   yearsNeededOptions;
-  eduSupportCourse = ['Medicine', 'Non-Medicine'];
-  eduSupportCountry = ['Singapore', 'USA', 'United Kingdom', 'Australia'];
-  eduSupportNationality = ['Singaporean', 'Singapore PR', 'Foreigner'];
+  eduSupportCourse;
+  eduSupportCountry;
+  eduSupportNationality;
 
   dependentSliderConfig: any = {
     behaviour: 'snap',
@@ -69,6 +67,11 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.supportAmountTitle = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_TITLE');
       this.supportAmountMessage = this.translate.instant('LIFE_PROTECTION.SUPPORT_AMOUNT_MESSAGE');
+      this.genderOptions = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.GENDER');
+      this.relationshipOptions = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.RELATIONSHIP');
+      this.eduSupportCourse = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_COURSE');
+      this.eduSupportCountry = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_COUNTRY');
+      this.eduSupportNationality = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_NATIONALITY');
     });
 
     this.yearsNeededOptions = Array(MAX_YEARS_NEEDED).fill(0).map((e, i) => i);
@@ -76,11 +79,11 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.dependentCount = this.guideMeService.getUserInfo().dependent ? this.guideMeService.getUserInfo().dependent : 0;
     this.lifeProtectionForm = this.formBuilder.group({
       dependents: this.formBuilder.array([this.createDependentForm()])
     });
     this.activeFormIndex = 0;
-    //this.dependentFormCount = this.dependentCount;
     this.refreshDependentForm();
   }
 
@@ -96,17 +99,20 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     let amount = this.currencyPipe.transform(value, 'USD');
     if (amount !== null) {
       amount = amount.split('.')[0].replace('$', '');
-      this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].setValue(amount);
+      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].setValue(amount);
+      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(amount, 10));
     }
   }
 
   updateSlider(slider, index) {
-    let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['otherIncome'].value;
+    let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].value;
     if (sliderValue === null) {
       sliderValue = 0;
     }
     sliderValue = (sliderValue + '').replace(Regexp, '');
     slider.writeValue(sliderValue);
+
+    this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(sliderValue, 10));
   }
 
   showLifeProtectionModal() {
@@ -119,6 +125,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.dependentCount = value;
     this.dependentCountChange.emit(value);
     this.refreshDependentForm();
+    this.guideMeService.updateDependentCount(value);
   }
 
   refreshDependentForm() {
@@ -155,8 +162,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       relationship: this.relationshipOptions[0],
       age: 24,
       supportAmount: '',
+      supportAmountValue: 0,
       yearsNeeded: this.yearsNeededOptions[0],
-      otherIncome: '',
       educationSupport: false,
       supportAmountRange: 0,
       eduSupportCourse: this.eduSupportCourse[0],
@@ -180,7 +187,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.updateNavLinks();
   }
 
-  showLifeProtectionSupportAmountModal() {
+  showSupportAmountModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.supportAmountTitle;
     ref.componentInstance.errorMessage = this.supportAmountMessage;
@@ -193,7 +200,11 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   }
 
   save(form: any) {
-    this.guideMeService.setLifeProtection(form.value);
+    const formValues = [];
+    form.controls.dependents.controls.forEach((formData) => {
+      formValues.push(formData.value);
+    });
+    this.guideMeService.setLifeProtection({ dependents: formValues });
     return true;
   }
 

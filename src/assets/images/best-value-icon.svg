@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="99" height="22" viewBox="0 0 99 22">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E46F6F" d="M0 0v22h99l-9.305-11L99 0z"/>
+        <text fill="#FFF" font-family="Muli-Bold, Muli" font-size="14" font-weight="bold" letter-spacing="-.131">
+            <tspan x="9" y="15.522">Best Value</tspan>
+        </text>
+    </g>
+</svg>

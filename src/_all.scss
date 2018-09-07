@@ -113,13 +113,25 @@ body {
   .modal-backdrop.show {
     opacity: 0.8;
 }
-.modal .close span {
+.modal .close {
     position: absolute !important;
-    right: 8px !important;
+    right: 12px !important;
     top: 15px !important;
     text-shadow: none !important;
     background: url("./assets/images/close-button-dark.svg") !important;
     width: 18px;
     height: 18px;
     background-repeat: no-repeat !important;
+    // position: relative;
+    // float: right;
+    // top: 14px;
+    // right: 5px;
+    @include allmobiles {
+      top: 22px !important;
+      opacity: 1 !important;
+    }
+}
+a.link-white {
+    color: $white-color;
+    text-decoration: underline;
 }
