@@ -72,9 +72,27 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
   viewDetails() {
     this.view.emit(this.temp);
   }
+  brochureDownload() {
+    this.Brochure(this.temp, 'Brochure.json');
+  }
+  // tslint:disable-next-line:member-ordering
+  Brochure = (() => {
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    return ((data, fileName) => {
+      const json = JSON.stringify(data);
+      const blob = new Blob([json], { type: 'octet/stream' });
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  })();
 
   selectPlan() {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
+
 }
