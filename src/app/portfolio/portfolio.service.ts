@@ -76,13 +76,11 @@ export class PortfolioService {
   constructGetQuestionsRequest() {
   }
 
-
   getSelectedOptionByIndex(index) {
     return this.portfolioFormData['riskAssessQuest' + index];
   }
   setRiskAssessment(data, questionIndex) {
     this.portfolioFormData['riskAssessQuest' + questionIndex] = data;
-    
   }
 
   // SAVE FOR STEP 2
@@ -92,25 +90,25 @@ export class PortfolioService {
   }
   constructRiskAssessmentSaveRequest() {
     const formData = this.getPortfolioFormData();
-    let answers = [{
-      "questionOptionId": formData.riskAssessQuest1
+    const selAnswers = [{
+      questionOptionId: formData.riskAssessQuest1
     },
     {
-      "questionOptionId": formData.riskAssessQuest2
+      questionOptionId: formData.riskAssessQuest2
     },
     {
-      "questionOptionId": formData.riskAssessQuest3
+      questionOptionId: formData.riskAssessQuest3
     },
     {
-      "questionOptionId": formData.riskAssessQuest4
+      questionOptionId: formData.riskAssessQuest4
     },
     {
-      "questionOptionId": formData.riskAssessQuest5
+      questionOptionId: formData.riskAssessQuest5
     }];
     return {
-      "enquiryId": this.authService.getEnquiryId(),
-      "answers": answers
-    }
+      enquiryId: this.authService.getEnquiryId(),
+      answers: selAnswers
+    };
   }
 
   // MY FINANCIALS
@@ -143,15 +141,15 @@ export class PortfolioService {
   constructInvObjectiveRequest() {
     const formData = this.getPortfolioFormData();
     return {
-      "investmentPeriod": formData.investmentPeriod,
-      "monthlyIncome": formData.monthlyIncome,
-      "initialInvestment": formData.initialInvestment,
-      "monthlyInvestment": formData.monthlyInvestment,
-      "dateOfBirth": formData.dob.split("/").join("-"),
-      "percentageOfSaving": formData.percentageOfSaving,
-      "totalAssets": formData.totalAssets,
-      "totalLiabilities": formData.totalLiabilities
-    }
+      investmentPeriod: formData.investmentPeriod,
+      monthlyIncome: formData.monthlyIncome,
+      initialInvestment: formData.initialInvestment,
+      monthlyInvestment: formData.monthlyInvestment,
+      dateOfBirth: formData.dob.split('/').join('-'),
+      percentageOfSaving: formData.percentageOfSaving,
+      totalAssets: formData.totalAssets,
+      totalLiabilities: formData.totalLiabilities
+    };
   }
 
   setPortfolioRecommendationModalCounter(value: number) {
