@@ -29,8 +29,8 @@
 
       <div class="col-12 portfolio-allocation-details__content__desc">
 
-        <div class="portfolio-allocation-details__content__title mb10 text-center" id="portfolioRecommenadtionTitle">{{'PORTFOLIO_RECOMMENDATION.BALANCED_PORTFOLIO'
-          | translate}}
+        <div class="portfolio-allocation-details__content__title mb10 text-center" id="portfolioRecommenadtionTitle">{{selectedRiskProfile.riskProfileName}}
+           {{'PORTFOLIO_RECOMMENDATION.PORTFOLIO' | translate}}
           <div id="portfolioRecommenationEditBtn"  class="edit_button " (click)="showEditModal()"></div>
         </div>
 
@@ -52,10 +52,10 @@
                 <div class="tooltip-icon"  id="portfoliorecommedationHelpIcon" (click)="showHelpModal()"></div>
 
               </div>
-              <!-- <u class="whats_risk" (click)=showWhatTheRisk()>What’s the risk?</u> -->
-              <!-- <div class="whats_resk" (click)=showWhatFubdDetails()>Fund Details</div>                -->
-              <a class="whats_risk"  id="portfolioRecommeationWhatsRiskLink" (click)="showWhatTheRisk()">{{'PORTFOLIO_RECOMMENDATION.WHATS_THE_RISK' |
+             
+              <a  class="whats_risk"  id="portfolioRecommeationWhatsRiskLink" (click)="showWhatTheRisk()">{{'PORTFOLIO_RECOMMENDATION.WHATS_THE_RISK' |
                 translate}}</a>
+                <!-- <a href="#" class="link-white" (click)="requestNewCode($event)">Request New Code</a> -->
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@
 
 
         <button type="button"  (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-          id="portfolioRecommendationNextBtn">{{ 'LABEL.I_WANT_TO_START_INVESTING' | translate}}</button>
+          id="portfolioRecommendationNextBtn">{{ 'LABEL.SET_UP_INVESTMENT_ACCOUNT' | translate}}</button>
       </div>
     </div>
   </div>

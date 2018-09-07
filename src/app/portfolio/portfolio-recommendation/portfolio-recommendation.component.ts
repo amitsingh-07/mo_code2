@@ -10,6 +10,7 @@ import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/m
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { PortfolioService } from './../portfolio.service';
+import { RiskProfile } from '../risk-profile/riskprofile';
 
 import 'rxjs/add/observable/timer';
 
@@ -24,7 +25,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   hideStaticModal = false;
   pageTitle: string;
   portfolio;
-
+  selectedRiskProfile:RiskProfile;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
 
@@ -53,7 +54,8 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
     this.getPortfolioAllocationDeatails();
-    
+    this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+    console.log(this.selectedRiskProfile.riskProfileName); 
 
   }
   ngAfterViewInit() {

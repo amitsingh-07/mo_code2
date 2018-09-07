@@ -254,6 +254,7 @@ app-portfolio-recommendation {
       font-size: 14px;
       text-align: center;
       color: #98dfdf;
+      text-decoration: underline;
     }
   }
 
@@ -263,6 +264,8 @@ app-portfolio-recommendation {
     background-color: #2d8289;
     padding-top:30px;
     padding-bottom:100px;
+    height: 100vh;
+
   }
 
   .allocation-content {
@@ -277,4 +280,9 @@ app-portfolio-recommendation {
     color:$text-color-secondary;
     margin-bottom:5px;
   }
+  a.link-white {
+  
+    text-decoration: underline;
+}
+
 }
