@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from './../shared/shared.module';
@@ -16,6 +17,7 @@ import { LifeProtectionFormComponent } from './product-info/life-protection-form
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     DirectRoutingModule, NgbModule.forRoot(),
     TranslateModule.forChild(SharedModule.getTranslateConfig('direct')),
   ],

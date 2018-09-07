@@ -292,7 +292,9 @@
   padding-top:15px;
   padding-bottom:20px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
+  border-top:1px solid #e1e1e1;
   text-overflow: ellipsis;
+  z-index:130;
   &.show {
     display:flex;
   }

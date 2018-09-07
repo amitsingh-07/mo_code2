@@ -19,4 +19,7 @@ export class DirectApiService {
         return this.apiService.getProductCategory();
     }
 
+    sendDirectRequest(data) {
+        return this.apiService.getDirectSearch(data);
+    }
 }

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './../../shared/header/header.service';
@@ -90,6 +90,7 @@ export class ProductInfoComponent implements OnInit {
     this.toggleVisibility = false;
     this.toggleBackdropVisibility = false;
     this.directService.setModalFreeze(false);
+    this.directService.triggerSearch(event);
   }
 
   editProdInfo() {

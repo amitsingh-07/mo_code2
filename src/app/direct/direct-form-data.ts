@@ -1,4 +1,4 @@
-export class GuideMeFormData {
+export class DirectFormData {
     prodCategory: string;
     gender: string;
     dob: any;
@@ -7,7 +7,7 @@ export class GuideMeFormData {
 
     // Life Protection Form
     coverageAmt: number;
-    duartion: string;
+    duration: string;
     premiumWaiver: boolean;
 
     // Critical Illness Form
