@@ -16,7 +16,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   private getAppSecretKey() {
-    return 'eINd03jdaOvx10lNVdLtHRIoU0k5SJ3tIOJjsH+01C0=';
+    return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
   authenticate(userEmail?: string, userPassword?: string) {
     const authenticateUrl = apiConstants.endpoint.authenticate;
