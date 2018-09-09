@@ -7,12 +7,12 @@ export class PersonalFormError {
                 gender: {
                         required: { errorTitle: 'Invalid Gender', errorMessage: 'Select the gender' }
                 },
-               dob: {
-                       required: {
+                dob: {
+                        required: {
                                 errorTitle: 'Invalid Birth Year',
-                         errorMessage: 'Please re-check your entry. You have keyed in an invalid birth year.'
+                                errorMessage: 'Please re-check your entry. You have keyed in an invalid birth year.'
                         }
-                 },
+                },
                 smoker: {
                         required: { errorTitle: 'Invalid Smoker', errorMessage: 'Select one option' }
                 },

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-get-started-step1',

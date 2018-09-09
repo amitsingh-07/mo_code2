@@ -1,18 +1,23 @@
+import 'rxjs/add/observable/timer';
+
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
-import { AfterContentInit, AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    AfterContentInit, AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { HeaderService } from '../../shared/header/header.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
-import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
-import { PortfolioService } from './../portfolio.service';
-import { RiskProfile } from '../risk-profile/riskprofile';
 
-import 'rxjs/add/observable/timer';
+import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { PortfolioService } from '../portfolio.service';
+import { RiskProfile } from '../risk-profile/riskprofile';
 
 @Component({
   selector: 'app-portfolio-recommendation',
@@ -25,7 +30,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   hideStaticModal = false;
   pageTitle: string;
   portfolio;
-  selectedRiskProfile:RiskProfile;
+  selectedRiskProfile: RiskProfile;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
 
@@ -55,7 +60,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
     this.headerService.setHeaderVisibility(false);
     this.getPortfolioAllocationDeatails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
-    console.log(this.selectedRiskProfile.riskProfileName); 
+    console.log(this.selectedRiskProfile.riskProfileName);
 
   }
   ngAfterViewInit() {
@@ -120,8 +125,6 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
 
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS])
-
-
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
 }
