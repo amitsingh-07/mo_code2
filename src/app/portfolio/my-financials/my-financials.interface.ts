@@ -1,3 +1,4 @@
+
 export interface IMyFinancials {
     monthlyIncome: number;
     percentageOfSaving: number;

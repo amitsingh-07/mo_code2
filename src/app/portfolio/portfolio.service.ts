@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { IMyFinancials } from './my-financials/my-financials.interface';
 import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
 import { RiskProfile } from './risk-profile/riskprofile';
+
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
-import { AuthenticationService } from '../shared/http/auth/authentication.service';
 const SESSION_STORAGE_KEY = 'app_session_storage_key';
 
 @Injectable({
@@ -21,7 +23,6 @@ export class PortfolioService {
   }
 
   getPortfolioFormData(): PortfolioFormData {
-    const formData = this.portfolioFormData;
     return this.portfolioFormData;
   }
 
