@@ -84,7 +84,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     this.isChartAvailable = this.currentQuestion.listOrder === 5 ? true : false;
     const selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
     if (selectedOption) {
-      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption.value);
+      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
     }
   }
 
