@@ -4,7 +4,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
@@ -34,9 +33,12 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   chartLegendEnum = PORTFOLIO_CONFIG.risk_assessment.chart_legend;
 
   constructor(
-    private portfolioService: PortfolioService, private route: ActivatedRoute, private router: Router,
-    private modal: NgbModal, public headerService: HeaderService,
-    public readonly translate: TranslateService, public authService: AuthenticationService,
+    private portfolioService: PortfolioService,
+    private route: ActivatedRoute,
+    private router: Router,
+    public headerService: HeaderService,
+    public readonly translate: TranslateService,
+    public authService: AuthenticationService,
     public log: LoggerService) {
 
     this.translate.use('en');
@@ -77,11 +79,12 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   setCurrentQuestion() {
     this.currentQuestion = this.questionsList[this.questionIndex - 1];
+    // tslint:disable-next-line
     // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
-    this.isChartAvailable = (this.currentQuestion.listOrder === 5) ? true : false;
+    this.isChartAvailable = this.currentQuestion.listOrder === 5 ? true : false;
     const selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
     if (selectedOption) {
-      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption.value);
+      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
     }
   }
 

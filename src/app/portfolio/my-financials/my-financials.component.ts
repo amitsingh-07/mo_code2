@@ -1,19 +1,22 @@
+import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
+
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
-import { PortfolioService } from './../portfolio.service';
-import { IMyFinancials } from './my-financials.interface';
 
+import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { AuthenticationService } from './../../shared/http/auth/authentication.service';
+import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
+import { PortfolioService } from '../portfolio.service';
+import { IMyFinancials } from './my-financials.interface';
 
 @Component({
   selector: 'app-my-financials',
@@ -79,9 +82,9 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
 
   save(form: any) {
     this.portfolioService.setMyFinancials(form.value);
-    //CALL API
+    // CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
-      if(data){
+      if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
       }
     });

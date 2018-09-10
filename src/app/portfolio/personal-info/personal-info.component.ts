@@ -1,19 +1,21 @@
+import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
+
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { AfterViewInit, HostListener, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+    AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
-import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
-import { PortfolioService } from './../portfolio.service';
 
+import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
+import { PortfolioService } from '../portfolio.service';
 
 const assetImgPath = './assets/images/';
 
@@ -36,6 +38,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   dob: string;
 
   constructor(
+    // tslint:disable-next-line
     private router: Router,
     private formBuilder: FormBuilder,
     public headerService: HeaderService,
@@ -90,7 +93,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     this.setSliderDescByRange(value);
     this.personalInfoForm.controls.investmentPeriod.setValue(value);
     const self = this;
-    setTimeout(function () {
+    setTimeout( () => {
       const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
       self.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
     }, 1);
@@ -128,7 +131,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate([PORTFOLIO_ROUTE_PATHS.MY_FINANCIALS])
+      this.router.navigate([PORTFOLIO_ROUTE_PATHS.MY_FINANCIALS]);
     }
   }
 

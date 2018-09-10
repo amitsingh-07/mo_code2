@@ -9,4 +9,18 @@ app-life-protection {
       }
     }
   }
+  @include  iPadProLandscape {
+    .col-lg-4 {
+      .dropdown-control {
+        width: 170px;
+      }
+    }
+  }
+  @include  iPadProPortrait {
+    .col-lg-4 {
+      .dropdown-control {
+        width: 170px;
+      }
+    }
+  }
 }
