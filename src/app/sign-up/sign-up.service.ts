@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 
-const SESSION_STORAGE_KEY = 'app_signup_local_storage_key';
+const SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class SignUpService {
    */
   clearData() {
     if (window.sessionStorage) {
-      sessionStorage.clear();
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
     }
   }
 
@@ -98,7 +98,6 @@ export class SignUpService {
   getForgotPasswordInfo() {
     return {
       email : this.signUpFormData.forgotPassEmail
-      
     };
   }
 
@@ -110,5 +109,4 @@ export class SignUpService {
     this.signUpFormData.forgotPassEmail = data;
     this.commit();
   }
-  
 }
