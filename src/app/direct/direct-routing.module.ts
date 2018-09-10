@@ -6,7 +6,7 @@ import { CriticalIllnessFormComponent } from './product-info/critical-illness-fo
 import { LifeProtectionFormComponent } from './product-info/life-protection-form/life-protection-form.component';
 
 const routes: Routes = [
-  { path: '', component: DirectComponent,
+  { path: 'direct', component: DirectComponent,
     children: [
       { path: '', redirectTo: 'life-protection', pathMatch: 'full' },
       { path: 'life-protection', component: LifeProtectionFormComponent},

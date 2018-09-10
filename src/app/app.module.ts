@@ -1,4 +1,3 @@
-import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import 'hammerjs';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -15,8 +14,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
-import { ExistingCoverageModalComponent } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
-import { RestrictAlphabetsDirective } from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
+import {
+  ExistingCoverageModalComponent
+} from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
+import {
+  RestrictAlphabetsDirective
+} from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
 import {
   InsuranceResultModalComponent
 } from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
@@ -32,6 +35,8 @@ import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
+import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
+import { Formatter } from './shared/utils/formatter.util';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -78,9 +83,9 @@ export function createTranslateLoader(http: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }],
+    }, Formatter],
   bootstrap: [AppComponent],
-    entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent,
     InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent]
 })

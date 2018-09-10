@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { Formatter } from '../../shared/utils/formatter.util';
 import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
@@ -46,7 +47,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     private router: Router, public headerService: HeaderService,
     private translate: TranslateService, private guideMeService: GuideMeService,
     private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal,
-    private googleAnalyticsService: GoogleAnalyticsService) {
+    private googleAnalyticsService: GoogleAnalyticsService, private formatter: Formatter) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
@@ -146,19 +147,19 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
       switch (protectionNeed.id) {
         case 1:
-          protectionNeed.existingCoverage.value = emittedValue.lifeProtectionCoverage;
+          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.lifeProtectionCoverage);
           break;
         case 2:
-          protectionNeed.existingCoverage.value = emittedValue.criticalIllnessCoverage;
+          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.criticalIllnessCoverage);
           break;
         case 3:
-          protectionNeed.existingCoverage.value = emittedValue.occupationalDisabilityCoveragePerMonth;
+          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.occupationalDisabilityCoveragePerMonth);
           break;
         case 4:
           protectionNeed.existingCoverage.value = emittedValue.selectedHospitalPlan;
           break;
         case 5:
-          protectionNeed.existingCoverage.value = emittedValue.longTermCareCoveragePerMonth;
+          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.longTermCareCoveragePerMonth);
           break;
       }
       return protectionNeed.existingCoverage.value;
