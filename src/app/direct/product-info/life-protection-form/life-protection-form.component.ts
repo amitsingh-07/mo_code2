@@ -84,9 +84,20 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
       );
   }
 
+  summarizeDetails() {
+    let sum_string = '';
+    sum_string += this.coverage_amt + ', ';
+    sum_string += this.duration;
+    if (this.lifeProtectionForm.value.premiumWaiver === 'yes') {
+      sum_string += ', Premium Waiver Rider';
+    }
+    return sum_string;
+  }
+
   save() {
     this.lifeProtectionForm.value.coverageAmt = this.coverage_amt;
     this.lifeProtectionForm.value.duration = this.duration;
     this.directService.setLifeProtectionForm(this.lifeProtectionForm);
+    this.directService.setMinProdInfo(this.summarizeDetails());
   }
 }

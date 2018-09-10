@@ -17,8 +17,8 @@ export class ProductInfoComponent implements OnInit {
   modalRef: NgbModalRef;
   private initLoad = true;
   private innerWidth: any;
-  private innerHeight: any;
   private mobileThreshold = 560;
+
   private toggleVisibility = true;
   private toggleSelectVisibility = true;
   private toggleBackdropVisibility = false;
@@ -27,7 +27,10 @@ export class ProductInfoComponent implements OnInit {
   private productCategoryList: any;
 
   private productCategorySelected: string;
+  private productCategorySelectedLogo: string;
   private productCategorySelectedIndex: number;
+
+  private minProdSearch: string;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -66,6 +69,11 @@ export class ProductInfoComponent implements OnInit {
         this.initCategorySetup(index);
       });
     });
+    this.directService.prodSearchInfoData.subscribe((data) => {
+      if (data !== '') {
+          this.minProdSearch = data;
+      }
+    });
     this.directService.modalToolTipTrigger.subscribe((data) => {
       if (data.title !== '') {
         this.openToolTipModal(data);
@@ -86,6 +94,7 @@ export class ProductInfoComponent implements OnInit {
       element.active = false;
       if (i === prodCategoryIndex) {
         this.productCategorySelected = element.prodCatName;
+        this.productCategorySelectedLogo = element.prodCatIcon;
         element.active = true;
       }
     });
