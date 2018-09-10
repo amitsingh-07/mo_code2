@@ -84,7 +84,7 @@ export class VerifyMobileComponent implements OnInit {
   verifyMobileNumber(otp) {
     this.progressModal = true;
     this.signUpApiService.verifyOneTimePassword(otp).subscribe((data: any) => {
-      if (data.responseCode === 6000) {
+      if (data.responseMessage.responseCode === 6000) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = 'Mobile Verified!';
       } else {
