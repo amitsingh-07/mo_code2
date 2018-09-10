@@ -88,4 +88,11 @@ app-insurance-results {
       padding: 0 10%;
     }
   }
+  .addCover__block__btn {
+    height: 63px !important;
+  }
+  .addCover__block {
+    height: 65px;
+    @extend .flex;
+  }
 }

@@ -28,6 +28,25 @@
 		}
 	}
 }
+.signup-wrapper__header-icon {
+  @include allmobiles {
+    display: none;
+  }
+}
+.container-fluid {
+  padding-top: 50px;
+}
+.signup-wrapper {
+  h2 {
+    margin-bottom: 20px;
+  }
+  .signup-wrapper__description {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: -10px;
+  }
+}
 /*Modal styles*/
 .mobile-verify-modal {
 .custom-modal-backdrop {
@@ -62,7 +81,7 @@
     width: 100%;
     height: 100%;
     position: absolute;
-	top: 20%;
+	  top: 20%;
 	img {
 		width: 15%;
 	}
@@ -98,5 +117,113 @@
 	.btn__footer--fixed {
 		width: 100%;
 	}
+  }
+}
+#loading 
+{
+  width: 100px;
+  height: 100px;
+  margin: 30px auto;
+  position: relative;
+}
+
+.outer, .inner
+{
+  z-index: 4;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.inner
+{
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  margin-top: -40px;
+  border-radius: 100%;
+  background: #099c9c;
+  img {
+    width: 100% !important;
+  }
+}
+.hold 
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0px, 100px, 100px, 50px);
+  border-radius: 100%;
+  background-color: #099c9c;
+}
+
+.fill, .dot span 
+{
+  background-color: #ff9600;
+}
+
+.fill 
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  clip: rect(0px, 50px, 100px, 0px);
+}
+
+.left .fill 
+{
+  z-index: 1;
+  -webkit-animation: left 1s linear ;
+  -moz-animation: left 1s linear ;
+  animation: left 1s linear both;  
+}
+
+@keyframes left 
+{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{transform:rotate(180deg);}
+}
+
+@-webkit-keyframes left 
+{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(180deg);}
+}
+
+.right 
+{
+  z-index: 3;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.right .fill 
+{  
+   z-index: 3;
+  -webkit-animation: right 1s linear ;
+  -moz-animation: right 1s linear ;
+  animation: right 1s linear both ;
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+@keyframes right 
+{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{transform:rotate(180deg);}
+}
+
+@-webkit-keyframes right {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
   }
 }

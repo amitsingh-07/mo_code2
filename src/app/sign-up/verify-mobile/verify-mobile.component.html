@@ -3,11 +3,25 @@
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-      <img src="../../../assets/images/custom-modal-icon.svg" id="custModalImg1" />
+        <div id='loading'>
+            <div class='outer'>
+            </div>
+            <div class='inner'>
+                <img src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1"/>
+            </div>
+            
+              <div class='hold left'>
+                <div class='fill'></div>
+              </div>
+              <div class='hold right'>
+                <div class='fill'></div>
+              </div>
+            
+          </div>
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{mobileNumberVerifiedMessage}}</p>
         <p class="custom-modal--desc" id="custModalDesc">{{mobileNumber.code}} {{mobileNumber.number}}</p>
-        <button *ngIf="mobileNumberVerified" class="btn btn-primary btn__footer--fixed" (click)="redirectToPasswordPage()">Continue</button>
+        <button *ngIf="mobileNumberVerified" class="btn btn-primary" (click)="redirectToPasswordPage()">Continue</button>
       </div>
     </div>
     <!-- <div class="custom-modal-content">
@@ -27,7 +41,7 @@
           <div class="signup-wrapper__description order2">
               <p>{{ 'VERIFY_MOBILE.SUB_TITLE' | translate }}</p>
             </div>
-          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg"/>
+          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/createAccount-icon.svg" />
           </div>
         </div>
         <div class="col-lg-5 col-md-6">

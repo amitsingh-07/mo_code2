@@ -9,15 +9,15 @@ import { IServerResponse } from '../interfaces/server-response.interface';
 
 const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
+const APP_ENQUIRY_ID = 'app-enquiry-id';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   private getAppSecretKey() {
-    return 'YdY51VhXVWEK7nLuM+wrb8CXhLMFS4WOlYf7dAEG5jc=';
+    return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
-
   authenticate(userEmail?: string, userPassword?: string) {
     const authenticateUrl = apiConstants.endpoint.authenticate;
     const authenticateBody = {
@@ -64,4 +64,16 @@ export class AuthenticationService {
     // whether or not the token is expired
     return tokenNotExpired(token);
   }
+
+  saveEnquiryId(id){
+    if(sessionStorage){
+      sessionStorage.setItem(APP_ENQUIRY_ID, id);
+    }
+  }
+
+  public getEnquiryId(): string {
+    return sessionStorage.getItem(APP_ENQUIRY_ID);
+  }
+
+
 }

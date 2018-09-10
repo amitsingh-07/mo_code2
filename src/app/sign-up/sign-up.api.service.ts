@@ -70,7 +70,8 @@ export class SignUpApiService {
         notificationByPhone: false,
         crmId: 0,
         isIdentityVerified: false,
-        dateOfBirth: getGuideMeFormData.customDob
+        dateOfBirth: getGuideMeFormData.customDob,
+        gender: getGuideMeFormData.gender
       },
       enquiryId : selectedPlanData.enquiryId,
       selectedProducts: selectedPlan

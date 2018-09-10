@@ -1,3 +1,7 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+
 .fixed-btn--sm {
     border: 1px solid rgba(0, 135, 134, 0.4);
     color: #00a7a7;
@@ -23,4 +27,16 @@
     cursor: pointer;
     display: block;
   }
- 
+  .modal {
+    @include allmobiles {
+      
+      .modal-body {
+
+        b {
+          color :#5e5e5e;
+          font-family: $muli-bold;
+        }
+      }
+      
+    }
+  }

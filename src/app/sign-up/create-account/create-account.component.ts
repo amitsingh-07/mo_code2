@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,7 +35,8 @@ export class CreateAccountComponent implements OnInit {
               private signUpService: SignUpService,
               private route: ActivatedRoute,
               private router: Router,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private _location: Location ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
@@ -130,5 +132,9 @@ export class CreateAccountComponent implements OnInit {
 
   onlyNumber(el) {
     this.createAccountForm.controls['mobileNumber'].setValue(el.value.replace(/[^0-9]/g, ''));
+  }
+  
+  goBack() {
+    this._location.back();
   }
 }

@@ -122,7 +122,7 @@ app-life-protection-form {
       cursor: pointer;
       .dropdown-toggle {
         padding: 0.90rem;
-        padding-right: 0;
+        //padding-right: 0;
         &:disabled {
           cursor: not-allowed;
           &:hover {
@@ -249,6 +249,9 @@ app-life-protection-form {
         }
       }
     }
+  }
+  .btn:disabled:hover {
+    background: #fff !important;
   }
 }
 .dependent-count {

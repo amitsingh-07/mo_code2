@@ -11,6 +11,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() showErrorButton: boolean;
+  @Input() errorDescription: any;
 
   constructor(public activeModal: NgbActiveModal) { }
 

@@ -4,10 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,12 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.EMAIL_VERIFIED,
     component: EmailVerificationComponent
+  },
+  { path: SIGN_UP_ROUTES.LOGIN,
+    component: LoginComponent
+  },
+  { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
+    component: ForgotPasswordComponent
   }
 ];
 
