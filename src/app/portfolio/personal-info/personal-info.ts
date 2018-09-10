@@ -1,5 +1,5 @@
 export class PersonalInfo {
-        
-    dateOfBirth: string;
-        investmentPeriod:number;
+    dob:string;
+    customDob: string;
+    investmentPeriod:number;
     }
