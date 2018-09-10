@@ -1,3 +1,4 @@
+import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import 'hammerjs';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -45,6 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
     MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
+    ToolTipModalComponent,
     ModelWithButtonComponent,
     LifeProtectionModalComponent,
     InsuranceResultModalComponent,
@@ -78,9 +80,9 @@ export function createTranslateLoader(http: HttpClient) {
       multi: true
     }],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent,ModelWithButtonComponent,
-     LifeProtectionModalComponent, MobileModalComponent,
-      InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent]
+    entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    LifeProtectionModalComponent, MobileModalComponent,
+    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent]
 })
 
 export class AppModule {

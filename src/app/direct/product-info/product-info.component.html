@@ -1,0 +1,45 @@
+<div class="prod-info" [ngClass]="{'show': toggleVisibility, 'full': toggleVisibility && !toggleSelectVisibility}">
+  <div class="prod-cat-list__wrapper" [ngClass]="{'show': toggleSelectVisibility}">
+    <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div> 
+    <div class="prod-cat-list-close hidden-lg" (click)="search()"></div>
+    <app-product-category [data]="productCategory" *ngFor="let productCategory of productCategoryList; let i = index" (click)="openProductCategory(i)"></app-product-category>
+  </div>
+  <div class="prod-form__wrapper" [ngClass]="{'show': toggleFormVisibility}">
+    <div class="form-group direct-form hidden-lg">
+      <div class="flex-row">
+          <div class="flex-col-3">
+            <label for="name" id="getStrLbl6">{{ 'COVERAGE.MOBILE_TITLE' | translate}}</label>
+          </div>
+          <div class="flex-col-8 direct-form-grp">
+            <div class="dropdown-control">
+                <div ngbDropdown id="productCatDropDown">
+                  <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                    <span class="coverage_amt">{{productCategorySelected}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button type="button" class="dropdown-item" *ngFor="let productCategory of productCategoryList" (click)="selectProductCategory(productCategory)">
+                      {{productCategory.prodCatName}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div> 
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div> 
+  <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search()">
+    {{searchText}} 
+  </button>
+</div>
+<div class="min-prod-info" [ngClass]="{'show': !toggleVisibility}">
+    <div class="min-prod-info__block">
+      <img  class="min-prod-info__block-icon" src="../../../assets/images/{{productCategorySelectedLogo}}"/>
+        <span class="min-prod-info__block-title">{{productCategorySelected}}</span>
+        <span class="min-prod-info__block-subtitle">{{minProdSearch}}</span>
+        <div class="min-prod-info__block-btn" (click)="editProdInfo()">
+          <span class="min-prod-info__block-btn--edit"></span>
+        </div>
+      </div> 
+</div>
+<div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>

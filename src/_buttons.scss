@@ -290,10 +290,8 @@ button:active:focus {
 
 /*Insurance Results*/
 .result__wrapper{
-  width:100%;
-}
-.result__wrapper{
   flex-wrap:wrap;
+  width:100%;
   app-insurance-result{
     width:160px;
     margin-right:18px;
@@ -320,7 +318,6 @@ button:active:focus {
     }
   }
 }
-
 .result__block{
   display:flex !important;
   align-items:center;
@@ -409,6 +406,253 @@ button:active:focus {
     @include fontSize(12px);
   }
 }
+
+/* ProdInfo Buttons*/
+.prod-info{
+  .search-btn{
+    position: relative;
+    display: none;
+    margin-bottom:0px;
+    margin-top:auto;
+    width:100%;
+    min-height:74px;
+    border-radius:0px;
+    background-color:$btn-primary-backgrnd-color;
+    color:$white-color;
+    justify-content: center;
+    outline:none;
+    &.show{
+      display:flex;
+    }
+    @include allmobiles{
+      min-height:60px;
+      }
+    }
+}
+
+.min-prod-info{
+  .min-prod-info__block{
+    position: relative;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:center;
+    background: $light-aqua-color;
+    border: 1px solid $teal-color;   
+    padding:12px 64px 12px 20px;
+    border-radius: 8px;
+    color: $teal-color;
+    width:calc(100% - 160px);
+    max-height:70px; 
+    min-height:64px;
+    max-width: calc(1024px - 160px);
+    min-width:337px;
+    box-shadow: 0 6px 8px 0 rgba(138, 155, 169, 0.3);
+    
+    @include allmobiles{
+      width:100% !important;
+      min-width:0px;
+      max-width:calc(100% - 36px);
+      min-height:70px;
+      flex-direction:column; 
+      align-items:flex-start;
+      justify-content:center;
+      padding:0px 45px 0px 10px;
+    }
+    .min-prod-info__block-btn {
+      position: absolute;
+      width:64px;
+      height:64px; 
+      background: $teal-color;
+      top: 0;
+      right:-1px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      @include allmobiles{
+        height:101%;
+        width:40px;
+      }
+      .min-prod-info__block-btn--edit{
+        position: absolute;
+        color: $white-color;
+        top:50%;
+        left:55%;
+        background-image:url(../src/assets/images/editIcon.svg);
+        background-repeat:no-repeat;
+        width:20px;
+        height:20px;
+        transform:translate(-50%,-50%);
+      }
+    }
+    .min-prod-info__block-icon {
+      position: relative;
+      display: inline-block;
+      height:40px;
+      margin-right:15px;
+      @include allmobiles{
+        display: none;
+      }
+    }
+    .min-prod-info__block-title {
+      padding-right:5px;
+      font-family: $muli-bold;
+      font-size: 22px;
+      line-height:1.0;
+      letter-spacing: -0.1px;
+      &:after{
+        content:" ";
+        display: inline-block;
+        width:6px;
+        height:6px;
+        margin-left:5px;
+        border-radius:3px;
+        background-color:$teal-color;
+        transform:translateY(-4px);
+      }
+      @include allmobiles {
+        font-size:18px;
+        padding-right:0px;
+        line-height:1.1;
+        &:after {
+          display:none;
+        }
+      }
+    }
+
+    .min-prod-info__block-subtitle{
+      display:block;
+      font-family:$muli-semi-bold;
+      font-size:22px;
+      line-height:1.0;
+      letter-spacing: -0.4px;
+      color:$dark-teal-color;
+      @include allmobiles{
+        font-family:$muli-regular;
+        color:$teal-color;
+        font-size:16px;
+        line-height:1.1;
+      }
+    }
+  }
+}
+
+.prod-cat__block{
+  display:flex !important;
+  align-items:center;
+  background-color: $white-color;
+  height:135px;
+  width:115px;
+  border-radius:8px;
+  background-color: rgba(192, 237, 237, 0.45);
+  overflow:hidden;
+  z-index:2;
+  margin-bottom:20px;
+  padding:20px 0px 18px 0px;
+  cursor: pointer;
+  @include allmobiles{
+    margin-bottom:7px;
+  }
+  @include min300max325{
+    width:99px;
+    height:140px;
+  }
+  .prodCat__block--icon{
+    position: relative;
+    display: inline-block;
+    height:45px;
+    margin-bottom:15px;
+  }
+  .prod-cat__block-title{
+    max-width:calc(100% - 4px);
+    color: $teal-color;
+    opacity: 0.75;
+    font-family: $muli-semi-bold;
+    font-size: 16px;
+    text-align:center;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.31;
+    letter-spacing: -0.2px;
+    margin-top:15px;
+    @include min300max325{
+      font-size: 14px;
+    }
+  }
+  &.active{
+    background-color:$teal-color;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.17);
+    .prod-cat__block-title{
+      color:$white-color;
+      opacity:1;
+    }
+  }
+}
+/* ProdInfo Form Buttons*/
+.direct-form-grp{
+  max-width:215px;
+  @include allmobiles{
+    max-width:175px;
+  }
+  .btn-group--toggle{
+    .direct-form-btn--radio{
+      padding:16px 0px;
+      min-width:100px;
+      background-color:$white-color;
+      border:1px solid $light-teal-color;
+      color:$teal-color;
+      font-family:$muli;
+      font-size:16px;
+      &.active{
+        background-color:$teal-color;
+        color:$white-color;
+        }
+      &:hover,:focus{
+        border-color:$teal-color;
+        color:$dark-teal-color;
+        &.active{
+          color:$white-color;
+        }
+      }
+      @include allmobiles{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        min-width:82px;
+        max-width:82px;
+        background-color:$teal-color;
+        border-color:$dark-teal-color;
+        color:$light-teal-color;
+        white-space:normal;
+        height:52px;
+        padding:0px;
+        line-height:1.1;
+        &.active{
+          border-color:$white-color; 
+          color:$white-color;
+        }
+        &.hover{
+          border-color:$white-color;
+
+        }
+      }
+      }
+    }
+  .datepicker-control{
+    border:1px solid $light-teal-color;
+    border-radius:6px;
+    .dropdown-menu{
+      @include allmobiles{
+        left:auto !important;
+        right:0px !important;
+        }
+      }
+    }
+  .dropdown-control{
+    border:1px solid $light-teal-color;
+    border-radius:6px;
+  }
+}
+
 .btn-txt-wrap {
   display: inline-block;
   margin-right: 15px;
