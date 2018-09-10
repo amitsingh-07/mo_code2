@@ -29,6 +29,9 @@ export class CreateAccountModelComponent implements OnInit {
       this.signUpService.clearData();
       this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
     }
+    if (page === 'login') {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    }
   }
 
 }
