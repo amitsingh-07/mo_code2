@@ -28,7 +28,7 @@
         <div #usrFrmDp class="flex-col-8 direct-form-grp">
           <div class="datepicker-control">
             <div class="input-group date-picker mb0">
-              <input readonly class="form-control" placeholder="DD / MM / YYYY"
+              <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
               name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
@@ -48,12 +48,12 @@
                 <div class="flex-row mb0">
                   <div>
                     <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl2">
-                      <input ngbButton type="radio" value="smoker" id="getStrdInpt1"/> {{ 'COMMON.LBL_SMOKER' | translate}}
+                      <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt1"/> {{ 'COMMON.LBL_NONSMOKER' | translate}}
                     </label>
                     </div>
                   <div>
                     <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl3">
-                      <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt2"/> {{ 'COMMON.LBL_NONSMOKER' | translate}}
+                      <input ngbButton type="radio" value="smoker" id="getStrdInpt2"/> {{ 'COMMON.LBL_SMOKER' | translate}}
                     </label>
                     </div>
                   </div>
@@ -104,9 +104,10 @@
         <div class="flex-col-3">
           <label for="name" id="getStrLbl7">{{ 'LIFE_PROTECTION.PREMIUM_WAIVER.TITLE' | translate}}</label>
           <label class="subtitle" for="name" id="getStrLbl8">{{ 'LIFE_PROTECTION.PREMIUM_WAIVER.SUBTITLE' | translate}}</label>
+          <div class="tooltip-icon" (click)="showPremiumWaiverModal()"></div>
           </div>
         <div class="flex-col-8 direct-form-grp">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioPremiumWaiver" formControlName="smoker">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioPremiumWaiver" formControlName="premiumWaiver">
               <div class="flex-row mb0">
                 <div>
                   <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">

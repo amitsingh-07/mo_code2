@@ -179,16 +179,16 @@
   border-top:1px solid #e1e1e1;
   &.show{
     display:flex;
-    z-index:1304;
+    z-index:1034;
     min-height: 150px;
     max-height:none;
     }
   @include allmobiles {
     position: fixed;
     bottom:0px;
-    z-index:1503;
+    z-index:1043;
     &.show{
-      z-index:1506;
+      z-index:1046;
     }
     &.full{
       height:calc(100% - 65.5px);

@@ -1,8 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './../../shared/header/header.service';
+import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
 
@@ -12,6 +14,7 @@ import { DirectService } from './../direct.service';
   styleUrls: ['./product-info.component.scss']
 })
 export class ProductInfoComponent implements OnInit {
+  modalRef: NgbModalRef;
   private initLoad = true;
   private innerWidth: any;
   private innerHeight: any;
@@ -40,7 +43,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   constructor(public headerService: HeaderService, private directService: DirectService,
-              private router: Router, private route: ActivatedRoute,
+              private router: Router, private route: ActivatedRoute, private modal: NgbModal,
               private translate: TranslateService, private directApiService: DirectApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -62,6 +65,11 @@ export class ProductInfoComponent implements OnInit {
         this.productCategorySelectedIndex = index;
         this.initCategorySetup(index);
       });
+    });
+    this.directService.modalToolTipTrigger.subscribe((data) => {
+      if (data.title !== '') {
+        this.openToolTipModal(data);
+      }
     });
   }
 
@@ -116,12 +124,22 @@ export class ProductInfoComponent implements OnInit {
       if (i === index) {
         category.active = true;
         this.productCategorySelected = category.prodCatName;
+        this.directService.setProductCategory(category.prodCatName);
         this.router.navigate([`${category.prodLink}`], { relativeTo: this.route });
       }
     });
   }
 
   selectProductCategory(data) {
+    this.productCategorySelected = data.prodCatName;
+    this.directService.setProductCategory(data.prodCatName);
     this.router.navigate([`${data.prodLink}`], { relativeTo: this.route });
+  }
+
+  openToolTipModal(data) {
+    this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
+    this.modalRef.componentInstance.tooltipTitle = data.title;
+    this.modalRef.componentInstance.tooltipMessage = data.message;
+    this.directService.showToolTipModal('', '');
   }
 }

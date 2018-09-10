@@ -39,7 +39,7 @@ export class HeaderService {
     }
     // Initiate Buttons
 
-    setProdButtonVisibility(isVisible: boolean){
+    setProdButtonVisibility(isVisible: boolean) {
         this.pageProdInfoIcon.next(isVisible);
     }
 
