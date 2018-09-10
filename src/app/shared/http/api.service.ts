@@ -162,8 +162,6 @@ export class ApiService {
       );
   }
 
-  
-
   getCountryCodeList() {
     const url = 'assets/country-data/phone.json';
     return this.httpClient.get(url);
@@ -312,11 +310,11 @@ export class ApiService {
       );
   }
 
-  getPortfolioAllocationDeatails() {
+  getPortfolioAllocationDetails(param) {
     const url = '../assets/mock-data/portfolioAllocationDetails.json';
     // tslint:disable-next-line
     // const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
-    return this.http.get(url)
+    return this.http.get(apiConstants.endpoint.portfolio.getAllocationDetails + param)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -331,7 +329,7 @@ export class ApiService {
             return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.'); 
+          return throwError('Something bad happened; please try again later.');
         })
       );
   }

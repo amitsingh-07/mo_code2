@@ -12,8 +12,8 @@ export let apiConstants = {
         portfolio: {
             setInvestmentObjective: 'invest/api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: 'invest/investment-microservice/RiskAssessment',
-            updateRiskAssessment: 'invest/RiskAssessment'
+            updateRiskAssessment: 'invest/RiskAssessment',
+            getAllocationDetails: 'invest/portfolio/recommend'
         }
-        
     }
 };
