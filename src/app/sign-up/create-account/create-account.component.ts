@@ -123,7 +123,7 @@ export class CreateAccountComponent implements OnInit {
    */
   requestOneTimePassword() {
     this.signUpApiService.requestOneTimePassword().subscribe((data: any) => {
-      if (data.responseCode === 6000) {
+      if (data.responseMessage.responseCode === 6000) {
         this.signUpService.otpRequested = true;
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       }
