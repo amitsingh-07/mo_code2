@@ -27,4 +27,10 @@ export class AccountCreatedComponent implements OnInit {
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
   }
 
+  /**
+   * redirect to login page.
+   */
+  redirectToLogin() {
+  }
+
 }
