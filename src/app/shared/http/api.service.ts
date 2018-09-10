@@ -261,9 +261,10 @@ export class ApiService {
   // -------------------------- PORTFOLIO MODULE ---------------------------------------
 
   savePersonalInfo(data) {
-    //const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
+    // tslint:disable-next-line
+    // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setPersonalInfo.json';
-    console.log("Data Posted: ");
+    console.log('Data Posted: ');
     console.log(data);
     return this.http.post(apiConstants.endpoint.portfolio.setInvestmentObjective, data)
       .pipe(
@@ -288,9 +289,10 @@ export class ApiService {
 
   getQuestionsList() {
     const url = '../assets/mock-data/questions.json';
-    //const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
+    // tslint:disable-next-line
+    // const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
     return this.http.get(apiConstants.endpoint.portfolio.getRiskAssessmentQuestions)
-      .pipe(
+      .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
@@ -311,9 +313,10 @@ export class ApiService {
 
   getPortfolioAllocationDeatails() {
     const url = '../assets/mock-data/portfolioAllocationDetails.json';
-    //const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
+    // tslint:disable-next-line
+    // const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
     return this.http.get(url)
-      .pipe(
+      .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
@@ -330,10 +333,11 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
-    }
+  }
 
   saveRiskAssessment(data) {
-    //const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
+    // tslint:disable-next-line
+    // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setRiskAssessment.json';
     console.log('Data Posted: ');
     console.log(data);

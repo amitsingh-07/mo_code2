@@ -16,5 +16,4 @@ export class IntroScreenComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

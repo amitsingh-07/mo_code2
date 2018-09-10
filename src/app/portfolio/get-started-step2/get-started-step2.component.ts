@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 
 @Component({
   selector: 'app-get-started-step2',

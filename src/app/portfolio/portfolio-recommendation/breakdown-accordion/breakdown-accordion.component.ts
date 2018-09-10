@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { PORTFOLIO_ROUTES, PORTFOLIO_ROUTE_PATHS } from '../../portfolio-routes.constants';
 import { TranslateService } from '@ngx-translate/core';
+
+import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../../portfolio-routes.constants';
 
 @Component({
   selector: 'app-breakdown-accordion',
@@ -13,30 +14,24 @@ export class BreakdownAccordionComponent implements OnInit {
   @Input('allocation') allocation;
   @Input('activeIndex') activeIndex;
   @Input('colors') colors;
-  curAllocation:any;
+  curAllocation: any;
 
   @Output() selectAllocationAccordion = new EventEmitter<boolean>();
   @Output() selectFundDetails = new EventEmitter();
 
-  
   constructor(
     private router: Router,
     private translate: TranslateService
   ) { }
 
   ngOnInit() {
-    console.log(this.activeIndex);
-    
-    }
+  }
 
-  emitSelectedAllocation(index){
+  emitSelectedAllocation(index) {
     this.selectAllocationAccordion.emit(index);
   }
 
-  emitSelectedFund(fund){
-    this.selectFundDetails.emit(fund);    
-
+  emitSelectedFund(fund) {
+    this.selectFundDetails.emit(fund);
   }
-
-
 }

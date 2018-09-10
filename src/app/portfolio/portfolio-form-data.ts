@@ -24,7 +24,7 @@ export class PortfolioFormData {
     // RISK PROFILE
     riskProfileId: number;
     riskProfileName: string;
-    htmlDescription:  string;
+    htmlDescription: string;
 
     selectedFund;
 
