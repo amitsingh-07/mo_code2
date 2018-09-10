@@ -1,0 +1,35 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.init-direct-results{
+    padding:50px 0px 100px 0px;
+    @include allmobiles{
+        padding:50px 20px 50px 20px;
+        img{
+            width:180px;
+        }
+    }
+    .init-direct-results__title{
+        font-family:$muli-semi-bold;
+        font-size:36px;
+        line-height:1.1;
+        letter-spacing:-0.4px;
+        color:$white-color;
+        margin-bottom:10px;
+        margin-top:15px;
+        @include allmobiles{
+            font-size:28px;
+        }
+    }
+    .init-direct-results__sub-title{
+        font-family:$muli;
+        font-size:18px;
+        line-height:1.22;
+        letter-spacing:-0.2px;
+        color:$white-color;
+        opacity:0.65;
+        @include allmobiles{
+            font-size:16px;
+        }
+    }
+}

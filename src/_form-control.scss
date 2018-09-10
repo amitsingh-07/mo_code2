@@ -138,6 +138,7 @@
    }
  }
 
+
  /*Form Group Styles*/
  .form-group {
    .flex-row {
@@ -478,6 +479,7 @@
   font-family: $muli-semi-bold;
   font-size: 18px;
 }
+
 .stretch{
   @include flex-grow(2  !important);
 }
@@ -606,7 +608,6 @@
   }
 }
 
-
 /*Sign Up*/
 .signup-wrapper {
   display:flex;
@@ -654,8 +655,65 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
 .inline-error {
- input, label {
-    color: #e57300 !important;
- }
+  input, label {
+     color: #e57300 !important;
+  }
 }
+
+.prod-form__wrapper{
+  form{
+    position: relative;
+    min-width:756px;
+    justify-content:space-between;
+    @include allmobiles{
+      flex-direction:column !important;
+      min-width: unset;
+    }
+  }
+  .direct-form{
+    width:340px;
+    margin-bottom:0px;
+    @include allmobiles{
+        width:100%;
+        padding:0px 16px;
+      }
+    .flex-row{
+      max-width:340px;
+      justify-content:space-between;
+      align-items:center;
+      @include allmobiles{
+        }
+      }
+    label{
+        font-family:$muli-semi-bold;
+        color:$dark-teal-color;
+        font-size:18px;
+        letter-spacing:-0.3px;
+        line-height:1.3;
+        margin-bottom:0px;
+        &.subtitle{
+            font-family:$muli;
+            font-size:16px;
+            transform:translateY(-5px);
+          }
+        @include allmobiles{
+            font-size:16px;
+            color:$white-color;
+          }
+      }
+      .tooltip-icon {
+        position: relative;
+        right: -80px;
+        top: -50px;
+        background: url("./assets/images/tooltip-icon.svg") no-repeat;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        @include allmobiles{
+          background: url("./assets/images/tooltip-icon-white.svg") no-repeat;
+        }
+        }
+    }
+  }

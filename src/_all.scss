@@ -105,6 +105,22 @@ body {
     z-index:1;
   }
   
+  .navbar__closeIcon {
+    position: absolute;
+    display: inline-block;
+    background: url("./assets/images/prodInfoSelectClose.svg") !important;
+    width:20px;
+    height:20px;
+    top:22px;
+    right:13px;
+    z-index:1;
+    @include allmobiles {
+      background: url("./assets/images/close-button-dark.svg") !important;
+      width:18px;
+      height:18px;
+    }
+  }
+
   .span--content-inline--underline {
     color: #04a6a7;
     text-decoration: underline;

@@ -17,6 +17,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   helpIcon = false;
   // helpIcon: boolean;
   showHeader = true;
+  closeIcon = false;
 
   constructor(public headerService: HeaderService, private _location: Location , private router: Router) {  }
 
@@ -24,6 +25,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.headerService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
     this.headerService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
+    this.headerService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
   }
 
   ngAfterViewInit() {
@@ -40,6 +42,10 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
 
   showMobilePopUp() {
     this.headerService.showMobilePopUp(this.pageTitle);
+  }
+
+  hideProdInfo() {
+    this.headerService.setProdButtonVisibility(false);
   }
 
   goBack() {
