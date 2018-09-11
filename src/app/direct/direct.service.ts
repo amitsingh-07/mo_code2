@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -28,7 +29,7 @@ export class DirectService {
   searchBtnTrigger = this.searchBtn.asObservable();
   modalToolTipTrigger = this.modalToolTip.asObservable();
 
-  constructor() {
+  constructor(private currencyPipe: CurrencyPipe) {
   }
   /* Setting Freeze for manual modal, Edit Profile */
   setModalFreeze(isFrozen: boolean) {
@@ -75,5 +76,12 @@ export class DirectService {
     this.directFormData.dob = form.value.dob;
     this.directFormData.smoker = form.value.smoker;
     this.directFormData.coverageAmt = form.value.coverageAmt;
+  }
+
+  /* Custom Currency */
+  convertToCurrency(in_amount: number) {
+    const amount = this.currencyPipe.transform(in_amount, 'USD');
+    const final_amount = amount.split('.')[0].replace('$', '');
+    return final_amount;
   }
 }

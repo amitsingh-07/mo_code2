@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +24,7 @@ import { LifeProtectionFormComponent } from './product-info/life-protection-form
   declarations: [
     DirectResultsComponent, DirectComponent,
     ProductInfoComponent, ProductCategoryComponent,
-    LifeProtectionFormComponent, CriticalIllnessFormComponent]
+    LifeProtectionFormComponent, CriticalIllnessFormComponent],
+  providers: [CurrencyPipe]
 })
 export class DirectModule { }

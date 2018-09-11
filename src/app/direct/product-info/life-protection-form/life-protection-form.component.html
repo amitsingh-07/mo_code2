@@ -70,11 +70,11 @@
           <div class="dropdown-control">
               <div ngbDropdown id="coverageAmtDropDown">
                 <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                  <span class="coverage_amt">{{coverage_amt}}</span>
+                  <span class="coverage_amt">{{ 'LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}{{coverage_amt}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                   <button type="button" class="dropdown-item" *ngFor="let ele_coverageAmt of coverageAmtValues" (click)="selectCoverageAmt(ele_coverageAmt)">
-                  {{ele_coverageAmt}}
+                    {{ 'LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}{{ele_coverageAmt}}
                   </button>
                 </div>
               </div>
