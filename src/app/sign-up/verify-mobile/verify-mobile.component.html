@@ -3,21 +3,11 @@
   <div class="custom-modal-backdrop"></div>
   <div class="custom-modal-wrapper">
     <div class="custom-modal--icon">
-        <div id='loading'>
-            <div class='outer'>
-            </div>
-            <div class='inner'>
-                <img src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1"/>
-            </div>
-            
-              <div class='hold left'>
-                <div class='fill'></div>
-              </div>
-              <div class='hold right'>
-                <div class='fill'></div>
-              </div>
-            
-          </div>
+      <div class="loader-outer">
+        <div class="loader" *ngIf="!mobileNumberVerified"></div>
+        <img *ngIf="!mobileNumberVerified" src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1"/>
+      </div>
+      <img *ngIf="mobileNumberVerified" src="../../../assets/images/account-created-icon.svg" id="custModalImg1" />
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{mobileNumberVerifiedMessage}}</p>
         <p class="custom-modal--desc" id="custModalDesc">{{mobileNumber.code}} {{mobileNumber.number}}</p>
@@ -56,7 +46,7 @@
                   {{mobileNumber.code}} {{mobileNumber.number}}
                 </div>
                 <div>
-                  <a class="verify-mobile-block__edit-link link-white" (click)="editNumber($event)" href="../">Edit Number</a> 
+                  <div class="verify-mobile-block__edit-link link-white" (click)="editNumber($event)">Edit Number</div> 
                 </div>
               </div>
             <div class="verify-mobile-block__otp">
@@ -72,7 +62,7 @@
              </div>
              <div class="verify-mobile-block__otp__not-received text-center mt20">
                 Didn't receive it?<br>
-                <a href="#" class="link-white" (click)="requestNewCode($event)">Request New Code</a>
+                <div class="link-white" (click)="requestNewCode($event)">Request New Code</div>
              </div>
              <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
               Code sent!
