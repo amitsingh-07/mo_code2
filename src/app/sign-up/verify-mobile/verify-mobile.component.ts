@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
@@ -67,11 +68,11 @@ export class VerifyMobileComponent implements OnInit {
    */
   save(form: any) {
     if (form.valid) {
-      let otp;
+      let otp = '';
       for (const value of Object.keys(form.value)) {
         otp += form.value[value];
         if (value === 'otp6') {
-          this.verifyMobileNumber(otp);
+          this.verifyOTP(otp);
         }
       }
     }
@@ -81,12 +82,13 @@ export class VerifyMobileComponent implements OnInit {
    * verify user mobile number.
    * @param code - one time password.
    */
-  verifyMobileNumber(otp) {
+  verifyOTP(otp) {
     this.progressModal = true;
-    this.signUpApiService.verifyOneTimePassword(otp).subscribe((data: any) => {
-      if (data.responseMessage.responseCode === 6000) {
+    this.signUpApiService.verifyOTP(otp).subscribe((data: any) => {
+      if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = 'Mobile Verified!';
+        this.signUpService.setResetCode(data.objectList[0].resetCode);
       } else {
         this.openErrorModal();
       }
@@ -96,11 +98,13 @@ export class VerifyMobileComponent implements OnInit {
   /**
    * request a new OTP.
    */
-  requestNewCode(el) {
-    el.preventDefault();
+  requestNewCode() {
+    this.progressModal = true;
     if (!this.newCodeRequested) {
       this.newCodeRequested = true;
-      this.signUpApiService.requestOneTimePassword().subscribe((data) => {
+      this.mobileNumberVerifiedMessage = 'Sending New OTP';
+      this.signUpApiService.requestNewOTP().subscribe((data) => {
+        this.progressModal = false;
         this.showCodeSentText = true;
         this.newCodeRequested = false;
       });
@@ -117,9 +121,8 @@ export class VerifyMobileComponent implements OnInit {
   /**
    * redirect to create account page.
    */
-  editNumber(el) {
-    el.preventDefault();
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { heighlightMobileNumber: true}]);
+  editNumber() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true}]);
   }
 
   /**
@@ -129,7 +132,7 @@ export class VerifyMobileComponent implements OnInit {
    */
   onlyNumber(currentElement, nextElement) {
     const elementName = currentElement.getAttribute('formcontrolname');
-    currentElement.value = currentElement.value.replace(/[^0-9]/g, '');
+    currentElement.value = currentElement.value.replace(RegexConstants.OnlyNumeric, '');
     this.verifyMobileForm.controls[elementName].setValue(currentElement.value);
     if (currentElement.value && nextElement) {
       nextElement.focus();

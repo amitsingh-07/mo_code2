@@ -1,12 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../shared/header/header.service';
+import { APP_SESSION_ID_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
@@ -26,7 +28,7 @@ export class CreateAccountComponent implements OnInit {
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
-  heighlightMobileNumber;
+  editNumber;
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
@@ -39,7 +41,7 @@ export class CreateAccountComponent implements OnInit {
               private _location: Location ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
-      this.heighlightMobileNumber = params.heighlightMobileNumber;
+      this.editNumber = params.editNumber;
     });
   }
 
@@ -63,8 +65,8 @@ export class CreateAccountComponent implements OnInit {
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
-      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+')]],
-      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+')]],
+      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
       termsOfConditions: [this.formValues.termsOfConditions],
       marketingAcceptance: [this.formValues.marketingAcceptance]
@@ -87,7 +89,7 @@ export class CreateAccountComponent implements OnInit {
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);
-      this.requestOneTimePassword();
+      this.createAccount();
     }
   }
 
@@ -102,7 +104,7 @@ export class CreateAccountComponent implements OnInit {
     if (countryCode === '+65') {
       mobileControl.setValidators([Validators.required, ValidateRange]);
     } else {
-      mobileControl.setValidators([Validators.required, Validators.pattern('\\d{8,10}')]);
+      mobileControl.setValidators([Validators.required, Validators.pattern(RegexConstants.CharactersLimit)]);
     }
     mobileControl.updateValueAndValidity();
   }
@@ -121,19 +123,21 @@ export class CreateAccountComponent implements OnInit {
   /**
    * request one time password.
    */
-  requestOneTimePassword() {
-    this.signUpApiService.requestOneTimePassword().subscribe((data: any) => {
+  createAccount() {
+    this.signUpApiService.createAccount().subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.otpRequested = true;
+        this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+        sessionStorage.setItem(APP_SESSION_ID_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       }
     });
   }
 
   onlyNumber(el) {
-    this.createAccountForm.controls['mobileNumber'].setValue(el.value.replace(/[^0-9]/g, ''));
+    this.createAccountForm.controls['mobileNumber'].setValue(el.value.replace(RegexConstants.OnlyNumeric, ''));
   }
-  
+
   goBack() {
     this._location.back();
   }

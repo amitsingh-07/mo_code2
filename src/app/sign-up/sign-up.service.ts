@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 
-const SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
+const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
+const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
+const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,7 @@ export class SignUpService {
    */
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
+      sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
     }
   }
 
@@ -33,7 +35,47 @@ export class SignUpService {
    */
   clearData() {
     if (window.sessionStorage) {
-      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(SIGNUP_SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(CUSTOMER_REF_SESSION_STORAGE_KEY);
+      sessionStorage.removeItem(RESET_CODE_SESSION_STORAGE_KEY);
+    }
+  }
+
+  /**
+   * save data in session storage.
+   */
+  setCustomerRef(customerRef) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(CUSTOMER_REF_SESSION_STORAGE_KEY, JSON.stringify(customerRef));
+    }
+  }
+
+  /**
+   * get user account details.
+   * @returns user account details.
+   */
+  getCustomerRef() {
+    if (window.sessionStorage && sessionStorage.getItem(CUSTOMER_REF_SESSION_STORAGE_KEY)) {
+      return JSON.parse(sessionStorage.getItem(CUSTOMER_REF_SESSION_STORAGE_KEY));
+    }
+  }
+
+  /**
+   * save data in session storage.
+   */
+  setResetCode(code) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(RESET_CODE_SESSION_STORAGE_KEY, JSON.stringify(code));
+    }
+  }
+
+  /**
+   * get user account details.
+   * @returns user account details.
+   */
+  getResetCode() {
+    if (window.sessionStorage && sessionStorage.getItem(RESET_CODE_SESSION_STORAGE_KEY)) {
+      return JSON.parse(sessionStorage.getItem(RESET_CODE_SESSION_STORAGE_KEY));
     }
   }
 
@@ -60,8 +102,8 @@ export class SignUpService {
    * @returns user account details.
    */
   getAccountInfo(): SignUpFormData {
-    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
-      this.signUpFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    if (window.sessionStorage && sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY)) {
+      this.signUpFormData = JSON.parse(sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY));
     }
     return this.signUpFormData;
   }

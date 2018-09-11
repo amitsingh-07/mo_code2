@@ -9,11 +9,14 @@ export let apiConstants = {
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         signUp: 'account/account-microservice/api/signup',
+        verifyOTP: 'account/account-microservice/api/verifyOTP',
+        resendOTP: 'account/account-microservice/api/resendOTP',
+        setPassword: 'account/account-microservice/api/setPassword',
+        verifyEmail: 'account/account-microservice/api/verifyEmail',
         portfolio: {
             setInvestmentObjective: 'invest/api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: 'invest/investment-microservice/RiskAssessment',
             updateRiskAssessment: 'invest/RiskAssessment'
         }
-        
     }
 };

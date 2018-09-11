@@ -25,6 +25,15 @@
             "EDIT_NUMBER": "Edit Number",
             "DIDNT_RECIEVE": "Didn't Recieve it?",
             "REQUEST_NEW_CODE": "Request New Code"
+        },
+        "ERROR_MODAL": {
+            "ERROR_TITLE": "Incorrect OTP Code",
+            "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
+        },
+        "LOADING": {
+            "VERIFYING" : "Verifying...",
+            "VERIFIED": "Mobile Verified!",
+            "SENDING": "Sending New OTP"
         }
     },
     "PASSWORD": {

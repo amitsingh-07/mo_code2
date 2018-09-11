@@ -1,15 +1,12 @@
 import { AbstractControl } from '@angular/forms';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 
 export function ValidatePassword(control: AbstractControl) {
-  const PASSWORD_REGEXP = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,20}$/;
-  const LENGTH_REGEXP = /.{8,20}/;
-  const UPPER_LOWER_REGEXP = /^(?=.*[a-z])(?=.*[A-Z])/;
-  const NUMBER_SYMBOL_REGEXP = /^(?=.*\d)(?=.*[$@$!%*?&])/;
-  if (!PASSWORD_REGEXP.test(control.value)) {
+  if (!RegexConstants.Password.Full.test(control.value)) {
     const validator = {length: false, upperLower: false, numberSymbol: false};
-    validator.length = !LENGTH_REGEXP.test(control.value);
-    validator.upperLower = !UPPER_LOWER_REGEXP.test(control.value);
-    validator.numberSymbol = !NUMBER_SYMBOL_REGEXP.test(control.value);
+    validator.length = !RegexConstants.Password.length.test(control.value);
+    validator.upperLower = !RegexConstants.Password.UpperLower.test(control.value);
+    validator.numberSymbol = !RegexConstants.Password.NumberSymbol.test(control.value);
     return validator;
   }
   return null;

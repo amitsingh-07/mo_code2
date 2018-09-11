@@ -49,6 +49,12 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid E-mail',
                         errorMessage: 'Please enter your valid Email address'
                 }
+        },
+        termsOfConditions: {
+                required : {
+                        errorTitle: '',
+                        errorMessage: 'Please agree to MoneyOwl\'s Terms of Use and Privacy Policy'
+                }
         }
     };
 }
