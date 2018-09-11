@@ -1,0 +1,15 @@
+@import '../../../variables';
+@import '../../../mixins';
+.sing-pass-link {
+                color: #e57300;
+                font-family: $muli-bold;
+                font-size: 14px;
+                @extend .flex;
+                cursor: pointer;
+                .sing-pass-icon {
+                                background: url("../../../assets/images/singpass-icon.svg");
+                                background-repeat: no-repeat;
+                                width: 24px;
+                                margin-left: 5px;
+                }
+}
