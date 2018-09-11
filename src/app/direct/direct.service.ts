@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { DirectFormData } from './direct-form-data';
+import { FormError } from './product-info/form-error';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class DirectService {
     message: ''
   };
 
+  private formError: any = new FormError();
   private directFormData:  DirectFormData = new DirectFormData();
   private modalFreeze = new BehaviorSubject(false);
   private prodCategory = new BehaviorSubject(0);
@@ -83,5 +85,22 @@ export class DirectService {
     const amount = this.currencyPipe.transform(in_amount, 'USD');
     const final_amount = amount.split('.')[0].replace('$', '');
     return final_amount;
+  }
+
+  currentFormError(form) {
+    const invalid = [];
+    const invalidFormat = [];
+    const controls = form.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        invalid.push(name);
+        invalidFormat.push(Object.keys(controls[name]['errors']));
+      }
+    }
+    return this.getFormError(invalid[0], invalidFormat[0][0]);
+  }
+
+  getFormError(formCtrlName: string, validation: string): string {
+    return this.formError.formFieldErrors[formCtrlName][validation];
   }
 }

@@ -638,8 +638,10 @@ button:active:focus {
       }
     }
   .datepicker-control{
-    border:1px solid $light-teal-color;
-    border-radius:6px;
+    .date-picker{
+      border:1px solid $light-teal-color;
+      border-radius:4px;
+    }
     .dropdown-menu{
       @include allmobiles{
         left:auto !important;

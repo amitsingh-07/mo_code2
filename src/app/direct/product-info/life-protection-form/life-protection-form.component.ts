@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
 import { DirectService } from './../../direct.service';
@@ -66,7 +67,10 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
-        this.save();
+        if (this.save()) {
+          console.log('triggered');
+          this.directService.setMinProdInfo(this.summarizeDetails());
+        }
         this.directService.triggerSearch('');
       }
     });
@@ -86,9 +90,8 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
 
   showPremiumWaiverModal() {
     this.directService.showToolTipModal(
-      'Premium Waiver Rider',
-      // tslint:disable-next-line:max-line-length
-      'In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you.'
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
       );
   }
 
@@ -103,9 +106,21 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    this.lifeProtectionForm.value.coverageAmt = this.coverage_amt;
-    this.lifeProtectionForm.value.duration = this.duration;
-    this.directService.setLifeProtectionForm(this.lifeProtectionForm);
-    this.directService.setMinProdInfo(this.summarizeDetails());
+    const form = this.lifeProtectionForm;
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
+      ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
+      return false;
+    }
+    form.value.coverageAmt = this.coverage_amt;
+    form.value.duration = this.duration;
+    this.directService.setLifeProtectionForm(form);
+    return true;
   }
+
 }

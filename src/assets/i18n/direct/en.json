@@ -40,7 +40,11 @@
     },
     "PREMIUM_WAIVER": {
       "TITLE": "Premium Waiver",
-      "SUBTITLE": "(optional)"
+      "SUBTITLE": "(optional)",
+      "TOOLTIP": {
+          "TITLE": "Premium Waiver Rider",
+          "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
+      }
     }
   }
 }
