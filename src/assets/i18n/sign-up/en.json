@@ -59,7 +59,10 @@
         "SUBMIT": "Submit",
         "EMAIL":"Email Address",
         "DESCRIPTION":"Enter your email to receive your password reset instructions.",
-        "TITLE":"Forgot Password"
+        "TITLE":"Forgot Password",
+        "EMAIL_NOT_FOUND":"Email Not Found",
+        "EMAIL_NOT_FOUND_DESC":"The email you’ve entered doesn’t seem to exist in our database. Please try again."
+
 
     }
 }

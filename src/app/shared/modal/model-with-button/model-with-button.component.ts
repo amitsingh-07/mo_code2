@@ -14,6 +14,7 @@ import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.const
 export class ModelWithButtonComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
+  @Input() forgotPassword: any;
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
