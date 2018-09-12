@@ -8,7 +8,7 @@ import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 
 const APP_JWT_TOKEN_KEY = 'app-jwt-token';
-const APP_SESSION_ID_KEY = 'app-session-id';
+export const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
 
 @Injectable({ providedIn: 'root' })

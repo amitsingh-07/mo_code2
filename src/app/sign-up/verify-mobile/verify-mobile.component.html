@@ -46,7 +46,7 @@
                   {{mobileNumber.code}} {{mobileNumber.number}}
                 </div>
                 <div>
-                  <div class="verify-mobile-block__edit-link link-white" (click)="editNumber($event)">Edit Number</div> 
+                  <div class="verify-mobile-block__edit-link link-white" (click)="editNumber()">Edit Number</div> 
                 </div>
               </div>
             <div class="verify-mobile-block__otp">
@@ -62,7 +62,7 @@
              </div>
              <div class="verify-mobile-block__otp__not-received text-center mt20">
                 Didn't receive it?<br>
-                <div class="link-white" (click)="requestNewCode($event)">Request New Code</div>
+                <div class="link-white" (click)="requestNewCode()">Request New Code</div>
              </div>
              <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
               Code sent!

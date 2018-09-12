@@ -36,7 +36,9 @@ export class EmailVerificationComponent implements OnInit {
    */
   verifyEmail(code) {
     this.signUpApiService.verifyEmail(code).subscribe((data) => {
+        if (data.responseMessage.responseCode !== 6000) {
 
+        }
     });
   }
 
