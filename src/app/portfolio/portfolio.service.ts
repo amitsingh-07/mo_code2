@@ -26,7 +26,7 @@ export class PortfolioService {
     return this.portfolioFormData;
   }
 
-  // PERSONAL INFO
+  // GET PERSONAL INFO
   getPersonalInfo() {
     return {
       dob: this.portfolioFormData.dob,
