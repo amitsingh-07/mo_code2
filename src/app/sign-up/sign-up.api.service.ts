@@ -94,10 +94,9 @@ export class SignUpApiService {
   /**
    * form create user account request.
    */
-  setPasswordBodyRequest(): ISetPassword {
+  setPasswordBodyRequest(pwd: string): ISetPassword {
     const custRef = this.signUpService.getCustomerRef();
     const resCode = this.signUpService.getResetCode();
-    const pwd = this.signUpService.getAccountInfo().password;
     return {
         customerRef: custRef,
         password: pwd,
@@ -138,8 +137,8 @@ export class SignUpApiService {
    * verify one time password.
    * @param code - one time password.
    */
-  setPassword() {
-    const payload = this.setPasswordBodyRequest();
+  setPassword(pwd) {
+    const payload = this.setPasswordBodyRequest(pwd);
     return this.apiService.setPassword(payload);
   }
 
