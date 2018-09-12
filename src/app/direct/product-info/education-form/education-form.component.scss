@@ -6,7 +6,9 @@
             width:400px;
             border: 1px solid $form-title-backgrnd-color; 
             border-radius: 6px;
-            margin-left: 18px;     
+        }
+        &:last-child{
+            margin-left: 18px;
         }
     }
     .educationForm-title{
@@ -20,5 +22,39 @@
     .form-group {
         .flex-row {
             margin-bottom: 17px;
+        }
+    }
+    fieldset {
+        &:disabled {
+          cursor: not-allowed;  
+          background: rgba(255,255,255,.5);
+          opacity: 0.2;
+          label{
+            cursor: not-allowed;  
+          }
+          input{
+            cursor: not-allowed;   
+          }
+          button{
+            cursor: not-allowed;  
+            img{
+                cursor: not-allowed;   
+            } 
+          }
+        }
+      }
+    @include allmobiles{
+        .form-group{ 
+            &.direct-form{
+                border: none;
+            }
+            &:last-child{
+                margin-left: 0px;
+            }
+        }
+        .educationForm-title{
+            color:$white-color;
+            background: $form-title-mob-backgrnd-color;
+            font-size: 22px;
         }
     }
