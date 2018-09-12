@@ -34,12 +34,5 @@ export class FundDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.fund = this.portfolioService.getSelectedFund();
-    this.getPortfolioAllocationDeatails();
-  }
-
-  getPortfolioAllocationDeatails() {
-   this.portfolioService.getPortfolioAllocationDeatails().subscribe((data) => {
-      this.portfolio = data.objectList;
-    });
   }
 }

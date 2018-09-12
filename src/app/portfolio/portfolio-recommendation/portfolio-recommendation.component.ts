@@ -58,7 +58,7 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
-    this.getPortfolioAllocationDeatails();
+    this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     console.log(this.selectedRiskProfile.riskProfileName);
 
@@ -99,11 +99,19 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
   showWhatFubdDetails() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
   }
-  getPortfolioAllocationDeatails() {
-    // this.authService.authenticate().subscribe((Token)=>{
-    this.portfolioService.getPortfolioAllocationDeatails().subscribe((data) => {
+  getPortfolioAllocationDetails() {
+    const params = this.constructgetAllocationParams();
+    this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
     });
+  }
+  constructgetAllocationParams() {
+    const formData = this.portfolioService.getRiskProfile();
+    const enqId = this.authService.getEnquiryId();
+    return {
+      riskProfileId: formData.riskProfileId,
+      enquiryId: enqId
+    };
   }
 
   selectAllocation(event) {

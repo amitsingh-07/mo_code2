@@ -162,8 +162,19 @@ export class PortfolioService {
   getPortfolioRecommendationModalCounter() {
     return parseInt(sessionStorage.getItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY), 10);
   }
-  getPortfolioAllocationDeatails() {
-    return this.apiService.getPortfolioAllocationDeatails();
+  getPortfolioAllocationDetails(params) {
+    const urlParams = this.constructQueryParams(params);
+    return this.apiService.getPortfolioAllocationDetails(urlParams);
+  }
+
+  constructQueryParams(options) {
+    const objectKeys = Object.keys(options);
+    const params = new URLSearchParams();
+    Object.keys(objectKeys).map( (e) => {
+      console.log('key= ${e} value = ${objectKeys[e]}');
+      params.set(objectKeys[e], options[objectKeys[e]]);
+    });
+    return '?' + params.toString();
   }
 
   setFund(fund) {

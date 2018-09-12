@@ -4,7 +4,6 @@
     "tenure": 30,
     "projectedReturns": "+ 5.50%",
     "breakDown": [{
-      "sector": {
         "id": "SECTOR00012",
         "name": "Global Bonds",
         "type": "Equities",
@@ -29,10 +28,8 @@
             "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
           }
         ]
-      }
-    },
-    {
-      "sector": {
+      },
+      {
         "id": "SECTOR00013",
         "name": "Global Equities",
         "type": "Equities",
@@ -57,28 +54,24 @@
             "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
           }
         ]
-      }
-    },
-    {
-      "sector": {
+      },
+      {
         "id": "SECTOR00014",
         "name": "Emerging Market Equities",
         "type": "Equities",
         "riskRating": 9,
         "totalPercentage": 45,
         "funds": [{
-            "id": "FI3018",
-            "name": "Dimensional EM Large Cap Core Equity ACC SGD",
-            "type": "UT",
-            "percentage": 5,
-            "factSheetLink": "http://moneyowl.com",
-            "factHighlightSheetLink": "http://moneyowl.com",
-            "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
-          }
-        ]
+          "id": "FI3018",
+          "name": "Dimensional EM Large Cap Core Equity ACC SGD",
+          "type": "UT",
+          "percentage": 5,
+          "factSheetLink": "http://moneyowl.com",
+          "factHighlightSheetLink": "http://moneyowl.com",
+          "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+        }]
       }
-    }]
-
+    ]
   },
   "responseCode": 6000,
   "responseDescription": "Successful response"
