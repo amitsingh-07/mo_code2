@@ -45,7 +45,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructor(
     private router: Router, public headerService: HeaderService,
-    private translate: TranslateService, private guideMeService: GuideMeService,
+    private translate: TranslateService, public guideMeService: GuideMeService,
     private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal,
     private googleAnalyticsService: GoogleAnalyticsService, private formatter: Formatter) {
     this.translate.use('en');

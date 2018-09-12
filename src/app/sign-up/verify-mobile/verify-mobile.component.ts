@@ -131,7 +131,7 @@ export class VerifyMobileComponent implements OnInit {
     const elementName = currentElement.getAttribute('formcontrolname');
     currentElement.value = currentElement.value.replace(/[^0-9]/g, '');
     this.verifyMobileForm.controls[elementName].setValue(currentElement.value);
-    if (currentElement.value && nextElement) {
+    if (currentElement.value && (nextElement !== undefined || nextElement !== 'undefined')) {
       nextElement.focus();
     }
   }

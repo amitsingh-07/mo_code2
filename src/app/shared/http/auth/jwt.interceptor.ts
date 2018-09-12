@@ -1,3 +1,4 @@
+import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 
 import {
@@ -15,18 +16,29 @@ import { Observable } from 'rxjs/Observable';
 
 import { appConstants } from './../../../app.constants';
 import { CustomErrorHandlerService } from './../custom-error-handler.service';
+import { RequestCache } from './../http-cache.service';
 import { IError } from './../interfaces/error.interface';
 import { IServerResponse } from './../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class JwtInterceptor implements HttpInterceptor {
 
     constructor(
-        public auth: AuthenticationService, private router: Router,
-        public errorHandler: CustomErrorHandlerService) { }
+        public auth: AuthenticationService, public cache: RequestCache,
+        public errorHandler: CustomErrorHandlerService, public router: Router) {
+            console.log(this.cache);
+    }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const cachedResponse = this.cache.get(request);
+        return cachedResponse ? Observable.of(cachedResponse) : this.sendRequest(request, next, this.cache);
+    }
+
+    sendRequest(
+        request: HttpRequest<any>,
+        next: HttpHandler,
+        cache: RequestCache): Observable<HttpEvent<any>> {
         request = request.clone({
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -36,6 +48,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
         return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
+                cache.put(request, event);
                 // do stuff with response if you want
                 const data = event.body;
                 if (data.responseMessage && data.responseMessage.responseCode < 6000) {
