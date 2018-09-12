@@ -42,5 +42,10 @@
       "TITLE": "Premium Waiver",
       "SUBTITLE": "(optional)"
     }
+  },
+  "LONG_TERM_CARE": {
+    "MONTHLY_PAYOUT": {
+      "TITLE": "Monthly Payout"
+    }
   }
 }
