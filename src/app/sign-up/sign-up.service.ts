@@ -90,15 +90,6 @@ export class SignUpService {
   }
 
   /**
-   * set user password.
-   * @param data - user password details.
-   */
-  setPassword(data: string) {
-    this.signUpFormData.password = data;
-    this.commit();
-  }
-
-  /**
    * get user account details.
    * @returns user account details.
    */

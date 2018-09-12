@@ -91,8 +91,7 @@ export class PasswordComponent implements OnInit {
    */
   save(form: any) {
     if (form.valid) {
-      this.signUpService.setPassword(form.value.password);
-      this.setPassword();
+      this.setPassword(form.value.password);
     }
     return false;
   }
@@ -100,8 +99,8 @@ export class PasswordComponent implements OnInit {
   /**
    * create user account.
    */
-  setPassword() {
-    this.signUpApiService.setPassword().subscribe((data: any) => {
+  setPassword(pwd) {
+    this.signUpApiService.setPassword(pwd).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.clearData();
         this.selectedPlansService.clearData();
