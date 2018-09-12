@@ -1,3 +1,4 @@
+import { AuthenticationService } from './auth/authentication.service';
 import { throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,7 +10,19 @@ import { IError } from './interfaces/error.interface';
   providedIn: 'root'
 })
 export class CustomErrorHandlerService {
-  constructor() { }
+  constructor(private auth: AuthenticationService) { }
+
+  /*
+    * Handle API authentication errors.
+    */
+  public handleAuthError(error: HttpErrorResponse) {
+    // clear stored credentials; they're invalid
+    // redirect to the login route
+    // or show a modal
+    this.auth.logout();
+    // navigate back to the login page
+    // this.router.navigate(['/login']);
+  }
 
   public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
