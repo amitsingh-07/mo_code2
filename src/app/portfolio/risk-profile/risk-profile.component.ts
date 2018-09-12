@@ -24,6 +24,7 @@ export class RiskProfileComponent implements OnInit {
   htmlDescription: string;
   selectedRiskProfile: RiskProfile;
   formValues;
+  pageTitle: string;
 
   constructor(
     public readonly translate: TranslateService,
@@ -33,6 +34,8 @@ export class RiskProfileComponent implements OnInit {
     private modal: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('RISK_PROFILE.TITLE');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
@@ -43,6 +46,9 @@ export class RiskProfileComponent implements OnInit {
   goToNext() {
     this.portfolioService.setPortfolioRecommendationModalCounter(0);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
+  }
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title);
   }
 
 }
