@@ -109,4 +109,23 @@ export class SignUpService {
     this.signUpFormData.forgotPassEmail = data;
     this.commit();
   }
+
+  /**
+   * get login info.
+   * @param data - user account details.
+   */
+  getLoginInfo() {
+    return {
+      loginUsername: this.signUpFormData.loginUsername,
+      loginPassword: this.signUpFormData.loginPassword
+    };
+  }
+
+  /**
+   * set login info.
+   * @param data - user account details.
+   */
+  setLoginInfo(data: SignUpFormData) {
+    this.signUpFormData = data;
+  }
 }

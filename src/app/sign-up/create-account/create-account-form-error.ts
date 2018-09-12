@@ -49,6 +49,22 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid E-mail',
                         errorMessage: 'Please enter your valid Email address'
                 }
+        },
+        loginUsername: {
+                required : {
+                        errorTitle: 'Mobile No. or Email Address required',
+                        errorMessage: 'Please enter your Mobile No. or Email Address'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Mobile No. or Email Address',
+                        errorMessage: 'Please enter your valid username'
+                }
+        },
+        loginPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your Password'
+                }
         }
     };
 }

@@ -7,6 +7,11 @@ export class SignUpFormData {
     termsOfConditions: boolean;
     marketingAcceptance: boolean;
     password: string;
-//Forgot Password
-forgotPassEmail:string;
+
+    // Login
+    loginUsername: string;
+    loginPassword: string;
+
+    // Forgot Password
+    forgotPassEmail: string;
 }
