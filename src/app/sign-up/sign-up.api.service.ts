@@ -52,19 +52,18 @@ export class SignUpApiService {
     }
     return {
       customer: {
+        id: 0,
         isSmoker: (getGuideMeFormData.smoker === 'non-smoker') ? false : true,
         givenName: getAccountInfo.firstName,
         surName: getAccountInfo.lastName,
         email: getAccountInfo.email,
         mobileNumber: getAccountInfo.mobileNumber,
-        notificationByEmail: getAccountInfo.marketingAcceptance,
-        password: getAccountInfo.password,
+        notificationByEmail: true,
         countryCode: getAccountInfo.countryCode,
-        notificationByPhone: false,
+        notificationByPhone: true,
         dateOfBirth: dob,
         gender: getGuideMeFormData.gender,
-        crmId: 0,
-        isIdentityVerified: false,
+        acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
       enquiryId : selectedPlanData.enquiryId,
       selectedProducts: selectedPlan

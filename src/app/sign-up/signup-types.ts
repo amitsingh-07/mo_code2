@@ -10,19 +10,18 @@ export interface IPlan {
 }
 
 export interface ICustomer {
+    id: number;
     isSmoker: boolean;
     givenName: string;
     surName: string;
     email: string;
     mobileNumber: string;
     notificationByEmail: boolean;
-    password: string;
     countryCode: string;
-    notificationByPhone: false;
+    notificationByPhone: boolean;
     dateOfBirth: string;
     gender: string;
-    crmId: number;
-    isIdentityVerified: boolean;
+    acceptMarketEmails: boolean;
 }
 
 export interface IVerifyRequestOTP {

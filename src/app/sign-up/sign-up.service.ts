@@ -34,6 +34,7 @@ export class SignUpService {
    * clear session storage data.
    */
   clearData() {
+    this.signUpFormData = new SignUpFormData();
     if (window.sessionStorage) {
       sessionStorage.removeItem(SIGNUP_SESSION_STORAGE_KEY);
       sessionStorage.removeItem(CUSTOMER_REF_SESSION_STORAGE_KEY);
@@ -42,7 +43,7 @@ export class SignUpService {
   }
 
   /**
-   * save data in session storage.
+   * set customer reference code.
    */
   setCustomerRef(customerRef) {
     if (window.sessionStorage) {
@@ -51,8 +52,8 @@ export class SignUpService {
   }
 
   /**
-   * get user account details.
-   * @returns user account details.
+   * get customer reference code.
+   * @returns reference code.
    */
   getCustomerRef() {
     if (window.sessionStorage && sessionStorage.getItem(CUSTOMER_REF_SESSION_STORAGE_KEY)) {
@@ -61,7 +62,7 @@ export class SignUpService {
   }
 
   /**
-   * save data in session storage.
+   * set reset code.
    */
   setResetCode(code) {
     if (window.sessionStorage) {
@@ -70,8 +71,8 @@ export class SignUpService {
   }
 
   /**
-   * get user account details.
-   * @returns user account details.
+   * get reset code.
+   * @returns reset code.
    */
   getResetCode() {
     if (window.sessionStorage && sessionStorage.getItem(RESET_CODE_SESSION_STORAGE_KEY)) {
@@ -89,8 +90,8 @@ export class SignUpService {
   }
 
   /**
-   * set user account details.
-   * @param data - user account details.
+   * set user password.
+   * @param data - user password details.
    */
   setPassword(data: string) {
     this.signUpFormData.password = data;

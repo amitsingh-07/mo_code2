@@ -4,7 +4,6 @@ export class SignUpFormData {
     firstName: string;
     lastName: string;
     email: string;
-    termsOfConditions: boolean;
     marketingAcceptance: boolean;
     password: string;
     forgotPassEmail: string;

@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../shared/header/header.service';
 import { APP_SESSION_ID_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
@@ -38,7 +39,9 @@ export class CreateAccountComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private translate: TranslateService,
-              private _location: Location ) {
+              private _location: Location,
+              private selectedPlansService: SelectedPlansService
+  ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
       this.editNumber = params.editNumber;
@@ -49,6 +52,9 @@ export class CreateAccountComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
+    if (!this.selectedPlansService.getSelectedPlan()) {
+      this.router.navigate(['/']);
+    }
     this.headerService.setHeaderVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
@@ -130,6 +136,7 @@ export class CreateAccountComponent implements OnInit {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         sessionStorage.setItem(APP_SESSION_ID_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+      } else if (data.responseMessage.responseCode === 5006) {
       }
     });
   }

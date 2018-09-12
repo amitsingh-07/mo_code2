@@ -29,8 +29,7 @@ const routes: Routes = [
     canActivate: [SignUpAccessGuard]
   },
   { path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
-    component: AccountCreatedComponent,
-    canActivate: [SignUpAccessGuard]
+    component: AccountCreatedComponent
   },
   { path: SIGN_UP_ROUTES.EMAIL_VERIFIED,
     component: EmailVerificationComponent

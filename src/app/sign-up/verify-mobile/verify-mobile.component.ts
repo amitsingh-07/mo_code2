@@ -18,14 +18,14 @@ import { SignUpService } from './../sign-up.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class VerifyMobileComponent implements OnInit {
-  private pageTitle: string;
-  private subTitle: string;
+  private errorModal = {};
+  private loading = {};
 
   verifyMobileForm: FormGroup;
-  showCodeSentText: boolean;
   mobileNumber: any;
-  mobileNumberVerified: boolean;
   mobileNumberVerifiedMessage: string;
+  showCodeSentText: boolean;
+  mobileNumberVerified: boolean;
   progressModal: boolean;
   newCodeRequested: boolean;
 
@@ -37,13 +37,19 @@ export class VerifyMobileComponent implements OnInit {
               private router: Router,
               private translate: TranslateService) {
     this.translate.use('en');
+    this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
+      this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
+      this.errorModal['message'] = result.ERROR_MODAL.ERROR_MESSAGE;
+      this.loading['verifying'] = result.LOADING.VERIFYING;
+      this.loading['verified'] = result.LOADING.VERIFIED;
+      this.loading['sending'] = result.LOADING.SENDING;
+    });
   }
 
   ngOnInit() {
     this.progressModal = false;
     this.showCodeSentText = false;
     this.mobileNumberVerified = false;
-    this.mobileNumberVerifiedMessage = 'Verifying...';
     this.mobileNumber = this.signUpService.getMobileNumber();
     this.headerService.setHeaderVisibility(false);
     this.buildVerifyMobileForm();
@@ -84,10 +90,11 @@ export class VerifyMobileComponent implements OnInit {
    */
   verifyOTP(otp) {
     this.progressModal = true;
+    this.mobileNumberVerifiedMessage = this.loading['verifying'];
     this.signUpApiService.verifyOTP(otp).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
-        this.mobileNumberVerifiedMessage = 'Mobile Verified!';
+        this.mobileNumberVerifiedMessage = this.loading['verified'];
         this.signUpService.setResetCode(data.objectList[0].resetCode);
       } else {
         this.openErrorModal();
@@ -100,15 +107,11 @@ export class VerifyMobileComponent implements OnInit {
    */
   requestNewCode() {
     this.progressModal = true;
-    if (!this.newCodeRequested) {
-      this.newCodeRequested = true;
-      this.mobileNumberVerifiedMessage = 'Sending New OTP';
-      this.signUpApiService.requestNewOTP().subscribe((data) => {
-        this.progressModal = false;
-        this.showCodeSentText = true;
-        this.newCodeRequested = false;
-      });
-    }
+    this.mobileNumberVerifiedMessage = this.loading['sending'];
+    this.signUpApiService.requestNewOTP().subscribe((data) => {
+      this.progressModal = false;
+      this.showCodeSentText = true;
+    });
   }
 
   /**
@@ -145,8 +148,8 @@ export class VerifyMobileComponent implements OnInit {
   openErrorModal() {
       this.progressModal = false;
       const error = {
-        errorTitle : 'Incorrect OTP Code',
-        errorMessage: 'You have keyed in an invalid OTP Code'
+        errorTitle : this.errorModal['title'],
+        errorMessage: this.errorModal['message']
       };
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
