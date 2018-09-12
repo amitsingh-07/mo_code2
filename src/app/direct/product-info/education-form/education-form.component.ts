@@ -16,10 +16,11 @@ export class EducationFormComponent implements OnInit {
   modalRef: NgbModalRef;
   educationForm: FormGroup;
   formValues: any;
-  contribution = '$100';
+  contribution = '100';
+  isSelfFormEnabled = true;
   EntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
-  monthlyContribution = ['$100', '$150', '$200', '$250', '$300', '$350', '$400', '$450', '$500'];
-  univercityEntryAge = ['18', '19', '20', '21'];
+  monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
+  univercityEntryAge = Array(4).fill(18).map((x, i) => x += i);
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
@@ -35,9 +36,6 @@ export class EducationFormComponent implements OnInit {
     //this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
     this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
-    if (this.formValues.duration !== undefined ) {
-      //this.selectDuration(this.formValues.dependent);
-    }
     if (this.formValues.monthlyContribution !== undefined ) {
       this.selectCoverageAmt(this.formValues.monthlyContribution);
     }
@@ -56,7 +54,7 @@ export class EducationFormComponent implements OnInit {
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
-        //this.save();
+        this.save();
         this.directService.triggerSearch('');
       }
       this.EntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
@@ -68,5 +66,26 @@ export class EducationFormComponent implements OnInit {
   selectEntryAge(EntryAge) {
     this.EntryAge = EntryAge;
   }
+  setdefaultUniversityAge() {
+    this.EntryAge = this.educationForm.controls['childgender'].value === 'male' ? '20' : '18';
+  }
 
+  setselfform() {
+    this.isSelfFormEnabled = this.educationForm.controls['premiumWaiver'].value === 'yes' ? true : false;
+  }
+  summarizeDetails() {
+    let sum_string = '';
+    sum_string += 'ssd' + ', ';
+    sum_string += 'dsds';
+    if (this.educationForm.value.premiumWaiver === 'yes') {
+      sum_string += ', Premium Waiver Rider';
+    }
+    return sum_string;
+  }
+  save() {
+    this.educationForm.value.coverageAmt = 'sfdsdf';
+    this.educationForm.value.duration = 'dfsfsd';
+    this.directService.setLifeProtectionForm(this.educationForm);
+    this.directService.setMinProdInfo(this.summarizeDetails());
+  }
 }

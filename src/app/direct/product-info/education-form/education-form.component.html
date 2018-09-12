@@ -10,12 +10,12 @@
             <div class="flex-row mb0">
               <div>
                 <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
-                  <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
+                  <input ngbButton type="radio" value="male" id="getStrdInpt1" (change) = "setdefaultUniversityAge()"> {{ 'COMMON.LBL_MALE' | translate}}
                 </label>
                 </div>
               <div>
                 <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
-                  <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
+                  <input ngbButton type="radio" value="female" id="getStrdInpt2" (change) = "setdefaultUniversityAge()"> {{ 'COMMON.LBL_FEMALE' | translate}}
                 </label>
                 </div>
               </div>
@@ -35,6 +35,7 @@
                 <button (click)="e.toggle()" class="btn btn-primary" type="button">
                   <img class="date-picker-image--valid" src="./assets/images/calendar-normal.svg"/>
                 </button>
+                
                 </div>
               </div>
             </div>
@@ -49,11 +50,11 @@
               <div class="dropdown-control">
                   <div ngbDropdown id="coverageAmtDropDown">
                     <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                      <span class="coverage_amt">{{contribution}}</span>
+                      <span class="coverage_amt">{{contribution | currency:'USD':'symbol-narrow':'1.0-0'}}</span>
                     </button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                       <button type="button" class="dropdown-item" *ngFor="let contribution of monthlyContribution" (click)="selectCoverageAmt(contribution)">
-                      {{contribution}}
+                      {{contribution | currency:'USD':'symbol-narrow':'1.0-0'}}
                       </button>
                     </div>
                   </div>
@@ -63,7 +64,7 @@
 
           <div class="flex-row pl20">
               <div class="flex-col-3">
-                <label for="name" id="getStrLbl6">{{ 'University Entry age' | translate}}</label>
+                <label for="name" id="getStrLbl6">{{ 'University Entry Age' | translate}}</label>
               </div>
               <div class="flex-col-8 direct-form-grp">
                 <div class="dropdown-control">
@@ -94,19 +95,19 @@
                   <div class="flex-row mb0">
                     <div>
                       <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
-                        <input ngbButton type="radio" value="yes" id="getStrdInpt1"> {{ 'COMMON.LBL_YES' | translate}}
+                        <input ngbButton type="radio" value="yes" id="getStrdInpt1" (change) = "setselfform()"> {{ 'COMMON.LBL_YES' | translate}}
                       </label>
                       </div>
                     <div>
                       <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
-                        <input ngbButton type="radio" value="no" id="getStrdInpt2"> {{ 'COMMON.LBL_NO' | translate}}
+                        <input ngbButton type="radio" value="no" id="getStrdInpt2" (change) = "setselfform()"> {{ 'COMMON.LBL_NO' | translate}}
                       </label>
                       </div>
                     </div>
                   </div>
               </div>
             </div>
-            
+            <fieldset [disabled]='!isSelfFormEnabled'>      
       <div class="flex-row pl20">
         <div class="flex-col-3">
             <label for="name" id="getStrdLbl1">{{ 'PROFILE.GENDER.TITLE' | translate}}</label>
@@ -136,9 +137,9 @@
           <div class="datepicker-control">
             <div class="input-group date-picker mb0">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="selfdob"
-              name="dp2" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+              name="dp2" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [attr.disabled] ="true">
               <div class="input-group-append">
-                <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                <button (click)="d.toggle()" class="btn btn-primary" type="button" [attr.disabled] ="true">
                   <img class="date-picker-image--valid" src="./assets/images/calendar-normal.svg"/>
                 </button>
                 </div>
@@ -147,7 +148,7 @@
           </div>
         </div>
       
-
+        
         <div class="flex-row pl20">
             <div class="flex-col-3">
               <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE'  | translate}}</label>
@@ -157,17 +158,18 @@
                     <div class="flex-row mb0">
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl2">
-                          <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt1"/> {{ 'COMMON.LBL_NONSMOKER' | translate}}
+                          <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt1" [attr.disabled] ="true"/> {{ 'COMMON.LBL_NONSMOKER' | translate}}
                         </label>
                         </div>
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl3">
-                          <input ngbButton type="radio" value="smoker" id="getStrdInpt2"/> {{ 'COMMON.LBL_SMOKER' | translate}}
+                          <input ngbButton type="radio" value="smoker" id="getStrdInpt2" [attr.disabled] ="true"/> {{ 'COMMON.LBL_SMOKER' | translate}}
                         </label>
                         </div>
                       </div>
                     </div>
               </div>
           </div>
+        </fieldset>
     </div>
   </form>
