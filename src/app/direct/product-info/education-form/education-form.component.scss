@@ -1,0 +1,24 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+    .form-group{ 
+        &.direct-form{
+            width:400px;
+            border: 1px solid $form-title-backgrnd-color; 
+            border-radius: 6px;
+            margin-left: 18px;     
+        }
+    }
+    .educationForm-title{
+        color:$teal-color;
+        background: $form-title-backgrnd-color;
+        font-size: 16px;
+        font-family: $muli-bold;
+        padding: 13px 20px; 
+        margin-bottom: 22px;
+    }
+    .form-group {
+        .flex-row {
+            margin-bottom: 17px;
+        }
+    }
