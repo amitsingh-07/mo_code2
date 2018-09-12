@@ -8,12 +8,12 @@ export let apiConstants = {
         getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
+        getMyInfoValues: 'account/account-microservice/api/getMyInfoValues',
         signUp: 'account/account-microservice/api/signup',
         portfolio: {
             setInvestmentObjective: 'invest/api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: 'invest/investment-microservice/RiskAssessment',
             updateRiskAssessment: 'invest/RiskAssessment'
         }
-        
     }
 };
