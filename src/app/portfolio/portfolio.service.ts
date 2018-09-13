@@ -153,7 +153,7 @@ export class PortfolioService {
     };
   }
 
-  setPortfolioRecommendationModalCounter(value: number) {
+  setPortfolioSplashModalCounter(value: number) {
     if (window.sessionStorage) {
       sessionStorage.setItem(PORTFOLIO_RECOMMENDATION_COUNTER_KEY, value.toString());
     }

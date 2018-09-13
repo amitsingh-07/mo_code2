@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,9 @@ import { ProfileIcons } from './profileIcons';
   templateUrl: './risk-profile.component.html',
   styleUrls: ['./risk-profile.component.scss']
 })
-export class RiskProfileComponent implements OnInit {
+export class RiskProfileComponent implements OnInit, AfterViewInit {
+  animateStaticModal = false;
+  hideStaticModal = false;
   iconImage;
   profileid: number;
   riskProfile: string;
@@ -43,8 +45,23 @@ export class RiskProfileComponent implements OnInit {
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
+
+  ngAfterViewInit() {
+    if (this.portfolioService.getPortfolioRecommendationModalCounter() === 0) {
+      this.portfolioService.setPortfolioSplashModalCounter(1);
+      setInterval(() => {
+        this.animateStaticModal = true;
+      }, 2000);
+
+      setInterval(() => {
+        this.hideStaticModal = true;
+      }, 3000);
+    } else {
+      this.hideStaticModal = true;
+    }
+  }
+
   goToNext() {
-    this.portfolioService.setPortfolioRecommendationModalCounter(0);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
   }
   setPageTitle(title: string) {
