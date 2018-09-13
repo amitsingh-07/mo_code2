@@ -12,10 +12,10 @@
               <div class="flex-col-7">
                 <div class="datepicker-control">
                   <div class="input-group date-picker" id="personalInfoDate" [ngClass]="{'inline-error': !personalInfoForm.get('dob').valid && !personalInfoForm.get('dob').pristine}">
-                    <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"  id="personalInfoDateInput" ngbDatepicker #d="ngbDatepicker"
+                    <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"  id="personalInfoDateInput" ngbDatepicker #dobDp="ngbDatepicker"
                       required>
                     <div class="input-group-append">
-                      <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                      <button (click)="dobDp.toggle()" class="btn btn-primary" type="button">
                         <img class="date-picker-image--valid" id="personalInfoDateValidImg" *ngIf="personalInfoForm.get('dob').valid || personalInfoForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
                         />
                         <img class="date-picker-image--invalid" *ngIf="!personalInfoForm.get('dob').valid && !personalInfoForm.get('dob').pristine" id="personalInfoDateInValidImg"

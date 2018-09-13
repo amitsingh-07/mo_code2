@@ -19,7 +19,7 @@ export class PortfolioService {
 
   private portfolioFormData: PortfolioFormData = new PortfolioFormData();
   private personalFormError: any = new PersonalFormError();
-  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService, ) {
+  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
   }
 
   getPortfolioFormData(): PortfolioFormData {
@@ -146,7 +146,7 @@ export class PortfolioService {
       monthlyIncome: formData.monthlyIncome,
       initialInvestment: formData.initialInvestment,
       monthlyInvestment: formData.monthlyInvestment,
-      dateOfBirth: formData.dob.split('/').join('-'),
+      dateOfBirth: formData.dob.day + '-' + formData.dob.month + '-' + formData.dob.year,
       percentageOfSaving: formData.percentageOfSaving,
       totalAssets: formData.totalAssets,
       totalLiabilities: formData.totalLiabilities
