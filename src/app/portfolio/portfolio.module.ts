@@ -28,6 +28,7 @@ import { PortfolioRoutingModule } from './portfolio-routing.module';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
+import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component
     WhatsTheRiskComponent,
     FundDetailsComponent,
     BreakdownBarComponent,
-    BreakdownAccordionComponent
+    BreakdownAccordionComponent,
+    SelectNationalityComponent
   ],
   providers: [CurrencyPipe]
 })

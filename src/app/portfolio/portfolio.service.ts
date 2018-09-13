@@ -183,4 +183,7 @@ export class PortfolioService {
   getSelectedFund() {
     return this.portfolioFormData.selectedFund;
   }
+  getNationalityList(){
+    return this.apiService.getNationalityList();
+  }
 }
