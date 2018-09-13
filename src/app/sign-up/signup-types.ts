@@ -36,3 +36,7 @@ export interface ISetPassword {
     resetType: string;
     resetCode: string;
 }
+
+export interface IVerifyCode {
+    code: string;
+}
