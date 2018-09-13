@@ -8,7 +8,8 @@ require('dotenv').config();
 // `ts-node set-env.ts --environment=dev`
 // we get it from yargs's Argv object
 console.log(process.env);
-const environment = process.env.NODE_ENV || 'uat' ;
+let environment = process.env.NODE_ENV || 'uat' ;
+environment = environment.toLowerCase();
 const isProd = environment === 'prod';
 
 const inputPath = `./src/environments/environment.${environment}.ts`;

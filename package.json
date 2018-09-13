@@ -4,8 +4,8 @@
   "scripts": {
     "config": "ts-node ./set-env.ts",
     "ng": "ng",
-    "start": "npm run config && ng serve",
-    "build": "npm run config && ng build",
+    "start": "npm run config && ng serve -c=prod",
+    "build": "npm run config && ng build -c=prod",
     "test": "npm run config && ng test",
     "lint": "npm run config && ng lint",
     "e2e": "npm run config && ng e2e"
