@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
+import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 
@@ -16,7 +17,8 @@ export class EmailVerificationComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authService: AuthenticationService
   ) {
     this.translate.use('en');
   }
@@ -35,10 +37,8 @@ export class EmailVerificationComponent implements OnInit {
    * @param code - email confirmation code
    */
   verifyEmail(verifyCode) {
-    this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
-        if (data.responseMessage.responseCode !== 6000) {
-
-        }
+    this.authService.authenticate().subscribe((token) => {
+      this.signUpApiService.verifyEmail(verifyCode).subscribe();
     });
   }
 
