@@ -35,11 +35,37 @@
             "scripts": []
           },
           "configurations": {
+            "dev": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.dev.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "production": {
               "fileReplacements": [{
                 "replace": "src/environments/environment.ts",
                 "with": "src/environments/environment.prod.ts"
               }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "production1": {
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -73,8 +99,14 @@
             "browserTarget": "bfa-frontend:build"
           },
           "configurations": {
+            "dev": {
+              "browserTarget": "bfa-frontend:build"
+            },
             "production": {
               "browserTarget": "bfa-frontend:build:production"
+            },
+            "production1": {
+              "browserTarget": "bfa-frontend:build:production1"
             },
             "uat": {
               "browserTarget": "bfa-frontend:build:uat"

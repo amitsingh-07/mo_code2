@@ -15,22 +15,22 @@ import { DirectService } from './../direct.service';
 })
 export class ProductInfoComponent implements OnInit {
   modalRef: NgbModalRef;
-  private initLoad = true;
-  private innerWidth: any;
-  private mobileThreshold = 560;
+  initLoad = true;
+  innerWidth: any;
+  mobileThreshold = 560;
 
-  private toggleVisibility = true;
-  private toggleSelectVisibility = true;
-  private toggleBackdropVisibility = false;
-  private toggleFormVisibility = true;
-  private searchText: string;
-  private productCategoryList: any;
+  toggleVisibility = true;
+  toggleSelectVisibility = true;
+  toggleBackdropVisibility = false;
+  toggleFormVisibility = true;
+  searchText: string;
+  productCategoryList: any;
 
-  private productCategorySelected: string;
-  private productCategorySelectedLogo: string;
-  private productCategorySelectedIndex: number;
+  productCategorySelected: string;
+  productCategorySelectedLogo: string;
+  productCategorySelectedIndex: number;
 
-  private minProdSearch: string;
+  minProdSearch: string;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {

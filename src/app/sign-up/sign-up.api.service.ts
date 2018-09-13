@@ -71,7 +71,8 @@ export class SignUpApiService {
   }
 
   /**
-   * form create user account request.
+   * form request new OTP request.
+   * @returns IVerifyRequestOTP - VerifyRequest
    */
   requestNewOTPBodyRequest(): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
@@ -81,7 +82,7 @@ export class SignUpApiService {
   }
 
   /**
-   * form create user account request.
+   * form verify OTP request.
    */
   verifyOTPBodyRequest(code): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
@@ -92,7 +93,7 @@ export class SignUpApiService {
   }
 
   /**
-   * form create user account request.
+   * form set password request.
    */
   setPasswordBodyRequest(pwd: string): ISetPassword {
     const custRef = this.signUpService.getCustomerRef();
@@ -107,7 +108,7 @@ export class SignUpApiService {
   }
 
   /**
-   * form create user account request.
+   * form verify email request.
    */
   verifyEmailBodyRequest(verifyCode): IVerifyCode {
     return {
@@ -125,8 +126,7 @@ export class SignUpApiService {
   }
 
   /**
-   * verify one time password.
-   * @param code - one time password.
+   * request new one time password.
    */
   requestNewOTP() {
     const payload = this.requestNewOTPBodyRequest();
@@ -135,7 +135,7 @@ export class SignUpApiService {
 
   /**
    * verify one time password.
-   * @param code - one time password.
+   * @param otp - one time password.
    */
   verifyOTP(otp) {
     const payload = this.verifyOTPBodyRequest(otp);
@@ -143,8 +143,8 @@ export class SignUpApiService {
   }
 
   /**
-   * verify one time password.
-   * @param code - one time password.
+   * set password.
+   * @param pwd - password.
    */
   setPassword(pwd) {
     const payload = this.setPasswordBodyRequest(pwd);
@@ -153,7 +153,7 @@ export class SignUpApiService {
 
   /**
    * verify email.
-   * @param code - verification code.
+   * @param verifyCode - confirmation token.
    */
   verifyEmail(verifyCode) {
     const payload = this.verifyEmailBodyRequest(verifyCode);
