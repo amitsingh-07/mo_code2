@@ -12,17 +12,17 @@ environment = environment.toLowerCase();
 const inputPath = `./angular.config.json`;
 const targetPath = `./angular.json`;
 
-console.log('Configuring ' + environment + ' environment');
+console.log('Configuring \'' + environment + '\' environment');
 
 const angularConfig: any = readFileSync(inputPath);
-console.log('Reading package json');
+console.log('Reading angular configuration');
 const config = JSON.parse(angularConfig);
 const defaultProject = config.defaultProject;
-console.log('defaultProject :' + defaultProject);
+console.log('Building project :' + defaultProject);
 
 // tslint:disable-next-line:max-line-length
 config.projects[defaultProject].architect.build.configurations.common = config.projects[defaultProject].architect.build.configurations[environment];
 
 writeFileSync(targetPath, beautify(config, null, 2, 100));
 
-console.log(`Output generated at ${targetPath}`);
+console.log(`Final angular configuration generated at ${targetPath}`);
