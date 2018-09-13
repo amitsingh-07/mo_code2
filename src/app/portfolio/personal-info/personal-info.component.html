@@ -56,8 +56,9 @@
 
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
-                <span  id="personalInfoInvestmentYears"class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>&nbsp;{{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
-              <p id="personalInfoSliderDesc">{{ sliderDesc }}</p>
+                <span  id="personalInfoInvestmentYears"class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
+                {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
+              <div [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
             </div>
           </div>
           <div>

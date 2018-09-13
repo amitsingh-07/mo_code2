@@ -16,7 +16,7 @@
   }
 }
 
-.btn-proceed {
+.btn-account {
   width: 179px;
   height: 60px;
   border: 0px;
@@ -32,16 +32,10 @@
   text-align: center;
   color: $app-backgrnd-color;
   cursor: pointer;
+}
 
-  @include MediumDevice {
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
-    border-radius: 0px;
-
-    .mobile-only{
-      display:none;
-    }
+@include ExtraSmallDevice {
+  .mobile-only{
+    display:none;
   }
 }
