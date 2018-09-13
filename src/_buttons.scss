@@ -549,6 +549,11 @@ button:active:focus {
   margin-bottom:20px;
   padding:20px 0px 18px 0px;
   cursor: pointer;
+  @include tablet{
+    width:85px;
+    height:125px;
+    margin-bottom:15px;
+  }
   @include allmobiles{
     margin-bottom:7px;
   }
@@ -556,11 +561,17 @@ button:active:focus {
     width:99px;
     height:140px;
   }
-  .prodCat__block--icon{
+  .prod-cat__block-icon{
     position: relative;
     display: inline-block;
     height:45px;
     margin-bottom:15px;
+    @include tablet{
+      margin-bottom:0px;
+      img{
+        height:40px;
+      }
+    }
   }
   .prod-cat__block-title{
     max-width:calc(100% - 4px);
@@ -573,7 +584,10 @@ button:active:focus {
     font-stretch: normal;
     line-height: 1.31;
     letter-spacing: -0.2px;
-    margin-top:15px;
+    @include tablet{
+      font-size:12px;
+      margin-top:8px;
+    }
     @include min300max325{
       font-size: 14px;
     }
@@ -588,8 +602,17 @@ button:active:focus {
   }
 }
 /* ProdInfo Form Buttons*/
+.direct-form{
+  .tooltip-container{
+    position: relative;
+    display:block;
+    height:0px;
+    overflow:visible;
+  }
+}
 .direct-form-grp{
   max-width:215px;
+  align-self:flex-start;
   @include allmobiles{
     max-width:175px;
   }
@@ -641,17 +664,33 @@ button:active:focus {
     .date-picker{
       border:1px solid $light-teal-color;
       border-radius:4px;
-    }
-    .dropdown-menu{
-      @include allmobiles{
-        left:auto !important;
-        right:0px !important;
+      .input-group-append {
+        .btn-primary{
+          height:50px;
+
+        }
+      }
+      .dropdown-menu{
+        @include allmobiles{
+          left:auto !important;
+          right:0px !important;
+          }
         }
       }
     }
+    
   .dropdown-control{
     border:1px solid $light-teal-color;
     border-radius:6px;
+    .dropdown-menu{
+      @include allmobiles{
+        max-height:150px;
+        max-width:unset;
+        overflow:auto;
+        left:auto !important;
+        right:0px !important;
+      }
+    }
   }
 }
 

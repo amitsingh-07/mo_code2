@@ -46,5 +46,19 @@
           "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
       }
     }
+  },
+  "CRITICAL_ILLNESS": {
+    "COVERAGE_AMT": {
+      "TITLE": "Coverage Amount",
+      "DOLLAR": "$"
+      },
+    "DURATION": {
+      "TITLE": "Duration"
+      },
+    "EARLY_CI": {
+      "TITLE": "Early CI",
+      "SUBTITLE": "(optional)"
+      }
+    }
   }
-}
+

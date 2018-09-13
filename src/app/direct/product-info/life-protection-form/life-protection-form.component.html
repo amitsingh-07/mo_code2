@@ -107,7 +107,9 @@
         <div class="flex-col-3">
           <label for="name" id="getStrLbl7">{{ 'LIFE_PROTECTION.PREMIUM_WAIVER.TITLE' | translate}}</label>
           <label class="subtitle" for="name" id="getStrLbl8">{{ 'LIFE_PROTECTION.PREMIUM_WAIVER.SUBTITLE' | translate}}</label>
-          <div class="tooltip-icon" (click)="showPremiumWaiverModal()"></div>
+          <div class="tooltip-container">
+            <div class="tooltip-icon" (click)="showPremiumWaiverModal()"></div>
+            </div>
           </div>
         <div class="flex-col-8 direct-form-grp">
           <div class="btn-group--toggle" ngbRadioGroup name="radioPremiumWaiver" formControlName="premiumWaiver">

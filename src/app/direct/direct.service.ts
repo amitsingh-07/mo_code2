@@ -1,3 +1,4 @@
+import { PercentageInputDirective } from './../shared/directives/percentage-input.directive';
 import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -78,6 +79,16 @@ export class DirectService {
     this.directFormData.dob = form.value.dob;
     this.directFormData.smoker = form.value.smoker;
     this.directFormData.coverageAmt = form.value.coverageAmt;
+    this.directFormData.premiumWaiver = form.value.premiumWaiver;
+  }
+
+  /* Setting Critical Illness Form into Direct Form */
+  setCriticalIllnessForm(form: any) {
+    this.directFormData.gender = form.value.gender;
+    this.directFormData.dob = form.value.dob;
+    this.directFormData.smoker = form.value.smoker;
+    this.directFormData.coverageAmt = form.value.coverageAmt;
+    this.directFormData.earlyCI = form.value.earlyCI;
   }
 
   /* Custom Currency */

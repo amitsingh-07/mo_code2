@@ -7,7 +7,6 @@ import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-m
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
 import { DirectService } from './../../direct.service';
-import { DirectLifeProtectionFormData } from './life-protect-form-data';
 
 @Component({
   selector: 'app-life-protection-form',
@@ -42,7 +41,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
-    // this.directService.setProdCategoryIndex(0);
+    this.directService.setProdCategoryIndex(0);
     /* Building the form */
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);

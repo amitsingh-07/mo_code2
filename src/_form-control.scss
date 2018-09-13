@@ -667,6 +667,9 @@
     position: relative;
     min-width:756px;
     justify-content:space-between;
+    @include tablet{
+      min-width:720px;
+    }
     @include allmobiles{
       flex-direction:column !important;
       min-width: unset;
@@ -684,6 +687,7 @@
       justify-content:space-between;
       align-items:center;
       @include allmobiles{
+        max-width:unset;
         }
       }
     label{
