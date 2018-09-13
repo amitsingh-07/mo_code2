@@ -1,28 +1,28 @@
-import { readFile, writeFile } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
+import * as beautify from 'json-beautify';
 
-// This is good for local dev environments, when it's better to
-// store a projects environment variables in a .gitignore'd file
+// tslint:disable-next-line:no-var-requires
 require('dotenv').config();
+// tslint:disable-next-line:no-var-requires
+require('json-beautify');
 
-// Would be passed to script like this:
-// `ts-node set-env.ts --environment=dev`
-// we get it from yargs's Argv object
-console.log(process.env);
-let environment = process.env.NODE_ENV || 'uat' ;
+let environment = process.env.NODE_ENV || 'DEV';
 environment = environment.toLowerCase();
-const isProd = environment === 'prod';
 
-const inputPath = `./src/environments/environment.${environment}.ts`;
-const targetPath = `./src/environments/environment.ts`;
+const inputPath = `./angular.config.json`;
+const targetPath = `./angular.json`;
 
-readFile(inputPath, function read(err, data) {
-    if (err) {
-        throw err;
-    }
-    writeFile(targetPath, data, function (err) {
-        if (err) {
-            console.log(err);
-        }
-        console.log(`Output generated at ${targetPath}`);
-    });
-});
+console.log('Configuring ' + environment + ' environment');
+
+const angularConfig: any = readFileSync(inputPath);
+console.log('Reading package json');
+const config = JSON.parse(angularConfig);
+const defaultProject = config.defaultProject;
+console.log('defaultProject :' + defaultProject);
+
+// tslint:disable-next-line:max-line-length
+config.projects[defaultProject].architect.build.configurations.common = config.projects[defaultProject].architect.build.configurations[environment];
+
+writeFileSync(targetPath, beautify(config, null, 2, 100));
+
+console.log(`Output generated at ${targetPath}`);

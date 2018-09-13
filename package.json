@@ -4,8 +4,8 @@
   "scripts": {
     "config": "ts-node ./set-env.ts",
     "ng": "ng",
-    "start": "npm run config && ng serve -c=prod",
-    "build": "npm run config && ng build -c=prod",
+    "start": "npm run config && ng serve -c=common",
+    "build": "npm run config && ng build -c=common",
     "test": "npm run config && ng test",
     "lint": "npm run config && ng lint",
     "e2e": "npm run config && ng e2e"
@@ -34,6 +34,7 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jqwidgets-framework": "^6.0.4",
+    "json-beautify": "^1.0.1",
     "ng2-nouislider": "^1.7.12",
     "ngx-translate-multi-http-loader": "^2.0.2",
     "nouislider": "^11.1.0",
