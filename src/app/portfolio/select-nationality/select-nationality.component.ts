@@ -10,6 +10,9 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-select-nationality',
@@ -18,21 +21,23 @@ import { TranslateService } from '@ngx-translate/core';
   encapsulation: ViewEncapsulation.None
 })
 export class SelectNationalityComponent implements OnInit {
-  nationalitylist: any[];
+  nationalitylists: any[];
   selectedNationality: any;
   country: any;
   afterSelectedNationality = false;
   beforeSelectedNationality = true;
   nationality = "select nationality";
   formValues: any;
-  isBlocked: any;
+  blocked: any;
   editPortfolio: string;
   Question = false;
   sigQuestion = false;
-
-
+  nationalitylist: any;
+ 
   constructor(
     public headerService: HeaderService,
+    public activeModal: NgbActiveModal,
+    private router: Router,
     private portfolioService: PortfolioService,
     private modal: NgbModal,
     public readonly translate: TranslateService) {
@@ -46,50 +51,61 @@ export class SelectNationalityComponent implements OnInit {
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
     this.getNationalityList();
-
+    
 
 
   }
-  selectNationality(nationality) {
-    this.nationality = nationality;
-    this.isBlocked = this.nationality.isBlocked;
+  selectNationality(nationalitylist) {
+    this.nationalitylist = nationalitylist;
+    console.log(nationalitylist) +"nationlity list";
+    this.blocked = this.nationalitylist.blocked;
+    console.log( this.blocked +"blocked country");
     this.afterSelectedNationality = true;
     this.beforeSelectedNationality = false;
     this.Question = false;
     this.sigQuestion = false;
   }
 
-  getNationalityList() {
+  
+getNationalityList() {
     this.portfolioService.getNationalityList().subscribe((data) => {
-      this.nationalitylist = data.objectList;
+      this.nationalitylists = data.objectList;
 
-      console.log(this.nationalitylist);
-
-
-
-
-    });
+      console.log(this.nationalitylists);
+});
 
   }
-
-
+  
 
 
   goToNext() {
-    if (this.nationality.isBlocked == true) {
+    if (this.nationalitylist.blocked == true) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.editPortfolio.modalerror;
-      ref.componentInstance.errorMessage = this.editPortfolio.modalMessage;
-      console.log("saidevikosgdjas");
-
-    } else if (this.nationality.country == 'ALAND ISLANDS') {
+      ref.componentInstance.errorTitle = "Unable To Proceed";
+      ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
+      ref.componentInstance.ButtonTitle = "Return To Homepage";
+      ref.componentInstance.selectNationalityError =this.errorButtonNavigation();
+    } 
+    else if (this.nationalitylist.country   ==  ( !(this.nationalitylist.blocked)   && 'SINGAPORE'  && "UNITED STATES OF AMERICA"))  {
+    
       this.Question = true;
 
 
     }
-    else if (this.nationality.country == 'Singapore') {
+    else if (this.nationalitylist.country == 'SINGAPORE') {
       this.sigQuestion = true;
     }
+    else if(this.nationalitylist.country == 'UNITED STATES OF AMERICA'){
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = "Unable To Proceed";
+      ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
+      ref.componentInstance.ButtonTitle = "Return To Homepage";
+      ref.componentInstance.selectNationalityError =this.errorButtonNavigation();
+    }
 
+  }
+  errorButtonNavigation(){
+    this.activeModal.dismiss('Cross click');
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
   }
 }

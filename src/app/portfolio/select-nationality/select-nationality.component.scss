@@ -24,7 +24,11 @@ font-size: 18px;
 }
 .dropdown-control .dropdown-menu.show {
     right: 0 !important;
-    left: inherit !important;
+    
+}
+.dropdown-item {
+   
+    white-space: normal;
 }
 
 }
