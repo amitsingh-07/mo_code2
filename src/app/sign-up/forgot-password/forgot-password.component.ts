@@ -10,6 +10,7 @@ import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+
 import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
@@ -49,10 +50,6 @@ export class ForgotPasswordComponent implements OnInit {
       this.emailNotFoundTitle = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND');
       this.emailNotFoundDesc = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND_DESC');
     });
-     
-      
-     
-   
   }
 
   ngOnInit() {
@@ -66,12 +63,6 @@ export class ForgotPasswordComponent implements OnInit {
       email: [this.formValues.email, [Validators.required, Validators.email]],
     });
   }
-
-  /**
-  * validate ForgotPassword Form.
-  * @param form - email form detail.
-  */
-
  save(form: any) {
   if (!form.valid) {
     Object.keys(form.controls).forEach((key) => {
@@ -84,11 +75,10 @@ export class ForgotPasswordComponent implements OnInit {
     return false;
   } else {
     this.signUpService.setForgotPasswordInfo(form.value.email);
-    
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
-    ref.componentInstance.errorMessage = "The email you’ve entered doesn’t seem to exist in our database. Please try again.";
-    ref.componentInstance.forgotPassword='YES';
+    ref.componentInstance.errorMessage = this.emailNotFoundDesc;
+    ref.componentInstance.forgotPassword = 'YES';
   }
 }
 

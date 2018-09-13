@@ -9,7 +9,10 @@ import { PasswordComponent } from './password/password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
+import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-password-result.component';
 
 const routes: Routes = [
   {
@@ -40,6 +43,9 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
+  },
+  { path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
+    component: ForgotPasswordResultComponent
   }
 ];
 
