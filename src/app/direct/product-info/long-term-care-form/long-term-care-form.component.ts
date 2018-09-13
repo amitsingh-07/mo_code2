@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DirectService } from '../../direct.service';
@@ -8,7 +8,8 @@ import { DirectService } from '../../direct.service';
   templateUrl: './long-term-care-form.component.html',
   styleUrls: ['./long-term-care-form.component.scss']
 })
-export class LongTermCareFormComponent implements OnInit {
+export class LongTermCareFormComponent implements OnInit , OnDestroy {
+  categorySub: any;
   formValues: any;
   longTermCareForm: FormGroup;
   monthlyPayoutList = Array(26).fill(500).map((x, i) => x += i * 100);
@@ -32,10 +33,33 @@ export class LongTermCareFormComponent implements OnInit {
       dob: [this.formValues.dob, Validators.required],
       monthlyPayout: [this.formValues.duration]
     });
+    this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
+      if (data !== '') {
+        this.save();
+        this.directService.triggerSearch('');
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.categorySub.unsubscribe();
   }
 
   selectMonthlyPayout(selectedMonthlyPayout) {
     this.selectedMonthlyPayout = selectedMonthlyPayout;
+  }
+
+  summarizeDetails() {
+    let sum_string = '';
+    sum_string += this.longTermCareForm.controls['gender'].value + ', ';
+    sum_string += '$' + this.selectedMonthlyPayout;
+    return sum_string;
+  }
+
+  save() {
+    this.longTermCareForm.value.monthlyPayout = this.selectedMonthlyPayout;
+    this.directService.setLifeProtectionForm(this.longTermCareForm);
+    this.directService.setMinProdInfo(this.summarizeDetails());
   }
 
 }

@@ -76,4 +76,19 @@ export class DirectService {
     this.directFormData.smoker = form.value.smoker;
     this.directFormData.coverageAmt = form.value.coverageAmt;
   }
+
+  setLongTermCareForm(form: any) {
+    this.directFormData.gender = form.value.gender;
+    this.directFormData.dob = form.value.dob;
+    this.directFormData.monthlyPayout = form.value.monthlyPayout;
+  }
+
+  setRetirementIncomeForm(form: any) {
+    this.directFormData.gender = form.value.gender;
+    this.directFormData.dob = form.value.dob;
+    this.directFormData.retirementIncome = form.value.retirementIncome;
+    this.directFormData.payoutAge = form.value.payoutAge;
+    this.directFormData.payoutDuration = form.value.payoutDuration;
+    this.directFormData.payoutFeature = form.value.payoutFeature;
+  }
 }

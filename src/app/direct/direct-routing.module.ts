@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RetirementIncomeFormComponent } from './product-info/retirement-income-form/retirement-income-form.component';
 
 import { EducationFormComponent } from 'src/app/direct/product-info/education-form/education-form.component';
 import { DirectComponent } from './direct.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path: 'life-protection', component: LifeProtectionFormComponent},
       { path: 'critical-illness', component: CriticalIllnessFormComponent},
       { path: 'education', component: EducationFormComponent},
-      { path: 'long-term-care', component: LongTermCareFormComponent}
+      { path: 'long-term-care', component: LongTermCareFormComponent},
+      { path: 'retirement-income-plan', component: RetirementIncomeFormComponent},
     ]
   },
 ];

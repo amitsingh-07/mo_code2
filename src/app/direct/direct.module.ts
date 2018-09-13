@@ -15,6 +15,7 @@ import { CriticalIllnessFormComponent } from './product-info/critical-illness-fo
 import { EducationFormComponent } from './product-info/education-form/education-form.component';
 import { LifeProtectionFormComponent } from './product-info/life-protection-form/life-protection-form.component';
 import { LongTermCareFormComponent } from './product-info/long-term-care-form/long-term-care-form.component';
+import { RetirementIncomeFormComponent } from './product-info/retirement-income-form/retirement-income-form.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,6 @@ import { LongTermCareFormComponent } from './product-info/long-term-care-form/lo
   declarations: [
     DirectResultsComponent, DirectComponent,
     ProductInfoComponent, ProductCategoryComponent,
-    LifeProtectionFormComponent, CriticalIllnessFormComponent, EducationFormComponent, LongTermCareFormComponent]
+    LifeProtectionFormComponent, CriticalIllnessFormComponent, EducationFormComponent, LongTermCareFormComponent, RetirementIncomeFormComponent]
 })
 export class DirectModule { }

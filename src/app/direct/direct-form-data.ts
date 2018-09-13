@@ -11,4 +11,13 @@ export class DirectFormData {
     premiumWaiver: boolean;
 
     // Critical Illness Form
+
+    // Long-Term Care Form
+    monthlyPayout: number;
+
+    // Retirement Income Form
+    retirementIncome: number;
+    payoutAge: number;
+    payoutDuration: string;
+    payoutFeature: string;
 }
