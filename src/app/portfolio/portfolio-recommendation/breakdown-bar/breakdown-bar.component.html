@@ -2,8 +2,9 @@
   
   <div class="breakdown-item"  id="Breakdowm_bar_i"  *ngFor="let curAllocation of allocation; let i = index" 
     [style.background-color]="colors[i]" 
-    [style.width]="curAllocation.sector.totalPercentage + '%'"
+    [style.width]="curAllocation.totalPercentage + '%'"
     [class.last]="i == allocation.length - 1" 
+    [class.first]="i == 0" 
     [class.greyout]="i != activeIndex && activeIndex != null" (click)="emitSelectedAllocation(i, (i != activeIndex && activeIndex != null))">
     
   </div>

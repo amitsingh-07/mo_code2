@@ -8,12 +8,12 @@ import { SharedModule } from '../shared/shared.module';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [

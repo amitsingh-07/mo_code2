@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 
@@ -27,15 +29,14 @@ export class RetirementIncomeFormComponent implements OnInit {
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
+    private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
-      const today: Date = new Date();
-      config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-      config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-      config.outsideDays = 'collapsed';
+    this.translate.use('en');
     }
 
     ngOnInit() {
-      this.formValues = this.directService.getDirectFormData();
+      this.directService.setProdCategoryIndex(6);
+      this.formValues = this.directService.getRetirementIncomeForm();
       this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
       if (this.formValues.retirementIncome !== undefined ) {
         this.selectRetirementIncome(this.formValues.retirementIncome);
@@ -59,12 +60,14 @@ export class RetirementIncomeFormComponent implements OnInit {
         payoutFeature: [this.formValues.payoutFeature]
       });
       this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-        if (data !== '') {
-          this.save();
-          this.directService.triggerSearch('');
+      if (data !== '') {
+        if (this.save()) {
+          this.directService.setMinProdInfo(this.summarizeDetails());
         }
-      });
-    }
+        this.directService.triggerSearch('');
+      }
+    });
+  }
 
     selectRetirementIncome(selectedRetirementIncome) {
     this.selectedRetirementIncome = selectedRetirementIncome;
@@ -99,11 +102,22 @@ export class RetirementIncomeFormComponent implements OnInit {
   }
 
   save() {
-    this.retirementIncomeForm.value.retirementIncome = this.selectedRetirementIncome;
-    this.retirementIncomeForm.value.payoutAge = this.selectedPayoutAge;
-    this.retirementIncomeForm.value.payoutDuration = this.payoutDuration;
-    this.retirementIncomeForm.value.payoutFeature = this.payoutFeature;
-    this.directService.setRetirementIncomeForm(this.retirementIncomeForm);
-    this.directService.setMinProdInfo(this.summarizeDetails());
+    const form = this.retirementIncomeForm;
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
+      ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
+      return false;
+    }
+    form.value.retirementIncome = this.selectedRetirementIncome;
+    form.value.payoutAge = this.selectedPayoutAge;
+    form.value.payoutDuration = this.payoutDuration;
+    form.value.payoutFeature = this.payoutFeature;
+    this.directService.setRetirementIncomeForm(form.value);
+    return true;
   }
 }

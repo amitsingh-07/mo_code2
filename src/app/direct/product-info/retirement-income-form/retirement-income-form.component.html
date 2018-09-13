@@ -7,7 +7,7 @@
       <div class="flex-col-8 direct-form-grp">
         <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
           <div class="flex-row mb0">
-            <div>
+            <div >
               <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
                 <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
               </label>
@@ -27,7 +27,7 @@
         </div>
       <div #usrFrmDp class="flex-col-8 direct-form-grp">
         <div class="datepicker-control">
-          <div class="input-group date-picker mb0">
+          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !retirementIncomeForm.get('dob').valid && !retirementIncomeForm.get('dob').pristine}">
             <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
             name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             <div class="input-group-append">

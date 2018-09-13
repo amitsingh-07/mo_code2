@@ -25,11 +25,14 @@
         opacity:0.2;
     }
 
-    .breakdown-item:first-child{
+    .breakdown-item.first{
         border-radius:8px 0px 0px 8px;
     }
     .breakdown-item.last{
         border-radius:0px 8px 8px 0px;
+    }
+    .breakdown-item.last.first{
+        border-radius:8px 8px 8px 8px;
     }
 
 

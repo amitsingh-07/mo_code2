@@ -1,12 +1,12 @@
-import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
-import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
+import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
 import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
+import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 
 import { CurrencyInputDirective } from '../shared/directives/currency-input.directive';
 import { SharedModule } from '../shared/shared.module';

@@ -1,3 +1,4 @@
+import { appConstants } from './../../../app.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
@@ -8,7 +9,7 @@ import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 
 const APP_JWT_TOKEN_KEY = 'app-jwt-token';
-const APP_SESSION_ID_KEY = 'app-session-id';
+export const APP_SESSION_ID_KEY = 'app-session-id';
 const APP_ENQUIRY_ID = 'app-enquiry-id';
 
 @Injectable({ providedIn: 'root' })
@@ -39,8 +40,8 @@ export class AuthenticationService {
 
   saveAuthDetails(auth: any) {
     if (sessionStorage) {
-      sessionStorage.setItem(APP_JWT_TOKEN_KEY, auth.securityToken);
-      sessionStorage.setItem(APP_SESSION_ID_KEY, auth.sessionId);
+      sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
+      sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
     }
   }
 
@@ -50,11 +51,11 @@ export class AuthenticationService {
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(APP_JWT_TOKEN_KEY);
+    return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
   }
 
   public getSessionId(): string {
-    return sessionStorage.getItem(APP_SESSION_ID_KEY);
+    return sessionStorage.getItem(appConstants.APP_SESSION_ID_KEY);
   }
 
   public isAuthenticated(): boolean {
@@ -65,14 +66,14 @@ export class AuthenticationService {
     return tokenNotExpired(token);
   }
 
-  saveEnquiryId(id){
-    if(sessionStorage){
-      sessionStorage.setItem(APP_ENQUIRY_ID, id);
+  saveEnquiryId(id) {
+    if (sessionStorage) {
+      sessionStorage.setItem(appConstants.APP_ENQUIRY_ID, id);
     }
   }
 
   public getEnquiryId(): string {
-    return sessionStorage.getItem(APP_ENQUIRY_ID);
+    return sessionStorage.getItem(appConstants.APP_ENQUIRY_ID);
   }
 
 

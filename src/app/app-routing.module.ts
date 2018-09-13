@@ -4,7 +4,7 @@ import { RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/rout
 import { CallBackComponent } from 'src/app/call-back/call-back.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'direct', pathMatch: 'full'},
+  {path: '', redirectTo: 'guideme', pathMatch: 'full'},
   {path: 'direct', loadChildren: './direct/direct.module#DirectModule'},
   {path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule'},
   {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},

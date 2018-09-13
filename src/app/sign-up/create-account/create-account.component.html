@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="flex-col-7 stretch" [formGroup]="createAccountForm">
-              <div [ngClass]="{'inline-error':heighlightMobileNumber}" class="form-group-floating-label">
+              <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
                 <input type="input" maxlength="10" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control" (keyup)="onlyNumber(mobileNumber)" required>
                 <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
               </div>
@@ -58,7 +58,7 @@
             </div>
             <div class="checkbox-button one-label mb10">
               <input id="termsOfConditions" name="termsOfConditions" formControlName="termsOfConditions" type="checkbox" class="field checkbox"
-                value="I agree to MoneyOwl's Terms of Use and Privacy Policy.">
+                value="I agree to MoneyOwl's Terms of Use and Privacy Policy." required>
               <label for="termsOfConditions">
                 <div class="title" [innerHtml]="'CREATE_ACCOUNT.FORM.TERMS_OF_USE' | translate"></div>
                                 </label>
