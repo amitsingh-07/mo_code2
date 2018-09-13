@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
-import { IPlan, ISetPassword, ISignUp, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 
@@ -41,7 +41,7 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const dob = this.datepipe.transform(getGuideMeFormData.customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
+    const dob = this.datepipe.transform(new Date(getGuideMeFormData.customDob), 'yyyy-MM-dd').toString() + 'T00:00:00';
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
@@ -107,6 +107,15 @@ export class SignUpApiService {
   }
 
   /**
+   * form create user account request.
+   */
+  verifyEmailBodyRequest(verifyCode): IVerifyCode {
+    return {
+        code: verifyCode
+    };
+  }
+
+  /**
    * create user account.
    * @param code - verification code.
    */
@@ -146,7 +155,8 @@ export class SignUpApiService {
    * verify email.
    * @param code - verification code.
    */
-  verifyEmail(verificationCode) {
-    return this.apiService.verifyEmail(verificationCode);
+  verifyEmail(verifyCode) {
+    const payload = this.verifyEmailBodyRequest(verifyCode);
+    return this.apiService.verifyEmail(payload);
   }
 }
