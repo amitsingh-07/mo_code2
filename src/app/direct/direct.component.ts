@@ -16,7 +16,7 @@ import { ProductInfoComponent } from './product-info/product-info.component';
 })
 
 export class DirectComponent implements OnInit, IPageComponent {
-  private modalFreeze: boolean;
+  modalFreeze: boolean;
   pageTitle: string;
   constructor(
     private router: Router, public headerService: HeaderService,
