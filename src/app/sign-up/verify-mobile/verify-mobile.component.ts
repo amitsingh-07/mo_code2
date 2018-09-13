@@ -60,12 +60,12 @@ export class VerifyMobileComponent implements OnInit {
    */
   buildVerifyMobileForm() {
     this.verifyMobileForm = this.formBuilder.group({
-      otp1: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
-      otp2: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
-      otp3: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
-      otp4: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
-      otp5: ['', [Validators.required, Validators.pattern('(?:[0-9])')]],
-      otp6: ['', [Validators.required, Validators.pattern('(?:[0-9])')]]
+      otp1: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
+      otp2: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
+      otp3: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
+      otp4: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
+      otp5: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]],
+      otp6: ['', [Validators.required, Validators.pattern(RegexConstants.OTP)]]
     });
   }
 
