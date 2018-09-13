@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
 import { IMyExpenses } from './expenses/expenses.interface';
 import { FormError } from './get-started/get-started-form/form-error';
@@ -46,13 +48,16 @@ export class GuideMeService {
   isMyOcpDisabilityFormValid = false;
   isExistingCoverAdded = false;
   guideMePlanData: any;
+  myInfoValue: any;
+  loadingModalRef: NgbModalRef;
+  isMyInfoEnabled = false;
 
   // Variables for Insurance Results Generation
   private result_title: string;
   private result_icon: string;
   private result_value;
 
-  constructor(private http: HttpClient, private authService: AuthenticationService) {
+  constructor(private http: HttpClient, private modal: NgbModal, private authService: AuthenticationService) {
     this.getGuideMeFormData();
   }
 
@@ -424,18 +429,32 @@ export class GuideMeService {
     return this.guideMeFormData.existingCoverageValues;
   }
 
+  openFetchPopup() {
+    this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
+    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data';
+    this.loadingModalRef.componentInstance.errorMessage = 'You will be redirected to SingPass';
+  }
+
+  closeFetchPopup() {
+    this.loadingModalRef.close();
+  }
+
+  setMyInfoValue(code) {
+    this.myInfoValue = code;
+  }
+
   selectLongTermCareValues() {
     const currentLongTerm = this.getLongTermCare();
     let currentValue;
     switch (currentLongTerm.careGiverType) {
       case 'Nursing Home': currentValue = 2600;
-        break;
+                           break;
       case 'Daycare Support': currentValue = 1800;
-        break;
+                              break;
       case 'Domestic Helper': currentValue = 1200;
-        break;
+                              break;
       case 'Family Member': currentValue = 600;
-        break;
+                            break;
     }
     return currentValue;
   }

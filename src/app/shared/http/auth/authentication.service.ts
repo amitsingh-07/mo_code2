@@ -8,6 +8,10 @@ import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { appConstants } from './../../../app.constants';
 
+const APP_JWT_TOKEN_KEY = 'app-jwt-token';
+export const APP_SESSION_ID_KEY = 'app-session-id';
+const APP_ENQUIRY_ID = 'app-enquiry-id';
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }

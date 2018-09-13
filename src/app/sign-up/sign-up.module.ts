@@ -1,9 +1,9 @@
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { AccountCreatedComponent } from './account-created/account-created.component';
@@ -15,7 +15,6 @@ import { PasswordComponent } from './password/password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
-
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(

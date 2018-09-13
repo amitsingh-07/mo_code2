@@ -27,7 +27,6 @@ export class JwtInterceptor implements HttpInterceptor {
     constructor(
         public auth: AuthenticationService, public cache: RequestCache,
         public errorHandler: CustomErrorHandlerService, public router: Router) {
-            console.log(this.cache);
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -52,11 +51,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 // do stuff with response if you want
                 const data = event.body;
                 if (data.responseMessage && data.responseMessage.responseCode < 6000) {
-                    const error: IError = {
-                        error: data.responseMessage.responseCode,
-                        message: data.responseMessage.responseDescription
-                    };
-                    throw new Error(this.errorHandler.parseCustomServerErrorToString(error));
+                    this.errorHandler.handleCustomError(data);
                 } else {
                     return data;
                 }

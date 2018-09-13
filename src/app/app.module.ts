@@ -1,6 +1,6 @@
 import 'hammerjs';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
+import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
   ExistingCoverageModalComponent
@@ -75,7 +76,8 @@ export function tokenGetterFn() {
     RestrictAlphabetsDirective,
     jqxSliderComponent,
     HeaderComponent,
-    NumberOnlyDirective
+    NumberOnlyDirective,
+    CallBackComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +110,7 @@ export function tokenGetterFn() {
       useClass: JwtInterceptor,
       multi: true,
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
-    }, Formatter],
+    }, Formatter, CurrencyPipe],
   bootstrap: [AppComponent],
   entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent,
