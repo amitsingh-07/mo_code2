@@ -9,8 +9,26 @@ export class RequestCache {
 
     cache = new Map();
 
+    private getHashCode(str: string) {
+        let hash = 0;
+        let i = 0;
+        const len = str.length;
+        while (i < len) {
+            hash = ((hash << 5) - hash + str.charCodeAt(i++)) << 0;
+        }
+        return hash;
+    }
+
+    private getUrl(req: HttpRequest<any>) {
+        let urlParameters = '';
+        if (req.body) {
+            urlParameters = '?' + this.getHashCode(JSON.stringify(req.body));
+        }
+        return req.urlWithParams + urlParameters;
+    }
+
     get(req: HttpRequest<any>): HttpResponse<any> | undefined {
-        const url = req.urlWithParams;
+        const url = this.getUrl(req);
         const cached = this.cache.get(url);
 
         if (!cached) {
@@ -23,7 +41,7 @@ export class RequestCache {
     }
 
     put(req: HttpRequest<any>, response: HttpResponse<any>): void {
-        const url = req.url;
+        const url = this.getUrl(req);
         const entry = { url, response, lastRead: Date.now() };
         this.cache.set(url, entry);
 

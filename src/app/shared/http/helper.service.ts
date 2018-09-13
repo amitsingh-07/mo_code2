@@ -25,8 +25,17 @@ export class HelperService {
   }
 
   showCustomErrorModal(error: IError) {
+    let title = '';
+    let message = '';
+    if (error.message.indexOf(':') > -1) {
+      const desc = error.message.split(':');
+      title = desc[0];
+      message = desc[1];
+    } else {
+      message = error.message;
+    }
     this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
-    this.loadingModalRef.componentInstance.errorTitle = error.error;
-    this.loadingModalRef.componentInstance.errorMessage = error.message;
+    this.loadingModalRef.componentInstance.errorTitle = title;
+    this.loadingModalRef.componentInstance.errorMessage = message;
   }
 }
