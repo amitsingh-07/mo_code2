@@ -25,8 +25,8 @@ export class EmailVerificationComponent implements OnInit {
    * Getting email confirmation code from URL.
    */
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.verifyEmail(params.code);
+    this.route.queryParams.subscribe((queryParams) => {
+      this.verifyEmail(queryParams.verifyCode);
     });
   }
 
@@ -34,8 +34,8 @@ export class EmailVerificationComponent implements OnInit {
    * verify email.
    * @param code - email confirmation code
    */
-  verifyEmail(code) {
-    this.signUpApiService.verifyEmail(code).subscribe((data) => {
+  verifyEmail(verifyCode) {
+    this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
         if (data.responseMessage.responseCode !== 6000) {
 
         }

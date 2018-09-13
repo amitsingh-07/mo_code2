@@ -5,10 +5,13 @@ export class DirectFormData {
     customDob: string;
     smoker: string;
 
-    // Life Protection Form
+    // Life Protection && Critical Illness Form
     coverageAmt: number;
     duration: string;
+
+    // Life Protection Form
     premiumWaiver: boolean;
 
     // Critical Illness Form
+    earlyCI: boolean;
 }

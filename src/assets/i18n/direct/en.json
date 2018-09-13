@@ -32,15 +32,33 @@
   } ,
   "LIFE_PROTECTION": {
     "COVERAGE_AMT": {
-      "TITLE": "Coverage Amount"
+      "TITLE": "Coverage Amount",
+      "DOLLAR": "$"
     },
     "DURATION": {
-      "TITLE": "Duration",
-      "FORM": ["Till Age 50", "Till Age 55", "Till Age 65"]
+      "TITLE": "Duration"
     },
     "PREMIUM_WAIVER": {
       "TITLE": "Premium Waiver",
+      "SUBTITLE": "(optional)",
+      "TOOLTIP": {
+          "TITLE": "Premium Waiver Rider",
+          "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
+      }
+    }
+  },
+  "CRITICAL_ILLNESS": {
+    "COVERAGE_AMT": {
+      "TITLE": "Coverage Amount",
+      "DOLLAR": "$"
+      },
+    "DURATION": {
+      "TITLE": "Duration"
+      },
+    "EARLY_CI": {
+      "TITLE": "Early CI",
       "SUBTITLE": "(optional)"
+      }
     }
   },
   "LONG_TERM_CARE": {
@@ -48,4 +66,4 @@
       "TITLE": "Monthly Payout"
     }
   }
-}
+
