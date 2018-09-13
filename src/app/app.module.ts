@@ -1,5 +1,5 @@
-import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import 'hammerjs';
+import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
