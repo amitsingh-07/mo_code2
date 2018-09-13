@@ -17,7 +17,7 @@ export class CreateAccountFormError {
                 },
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Mobile number range should be 8000000 to 9999999'
+                        errorMessage: 'Mobile number should contain 8 digits'
                 }
         },
         firstName: {
@@ -47,7 +47,7 @@ export class CreateAccountFormError {
                 },
                 email : {
                         errorTitle: 'Invalid E-mail',
-                        errorMessage: 'Please enter your valid Email address'
+                        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         },
         termsOfConditions: {
