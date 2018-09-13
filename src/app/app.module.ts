@@ -13,6 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
   ExistingCoverageModalComponent
@@ -57,7 +58,8 @@ export function createTranslateLoader(http: HttpClient) {
     InsuranceResultModalComponent,
     CreateAccountModelComponent,
     ExistingCoverageModalComponent,
-    RestrictAlphabetsDirective
+    RestrictAlphabetsDirective,
+    CallBackComponent
   ],
   imports: [
     BrowserModule,

@@ -9,13 +9,13 @@
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <div class="myinfo__block">
+<!--         <div class="myinfo__block">
           <div class="myinfo__block__btn">
             <span class="myinfo__block__btn--arrow"></span>
           </div>
           <div class="myinfo__block--title">{{ 'COMMON.LBL_FILL_VIA_MY_INFO' | translate}}</div>
         <div class="myinfo__block--sub-title">{{ 'COMMON.LBL_MY_INFO_HELP_DESC' | translate}}</div>
-      </div>
+      </div> -->
         <div>
           <form id="assetsForm" name="assetsForm" [formGroup]="assetsForm">
               <div  class="form-group-with-bg">
@@ -45,7 +45,11 @@
                       </div>
                       <div class="flex-row">
                         <div class="flex-col-6">
-                        <div class="form-group-with-bg--content-label" for="name">{{ 'MY_ASSETS.CPF' | translate}}</div>
+                           <div class="form-group-with-bg--content-label" for="name">{{ 'MY_ASSETS.CPF' | translate}}
+                          <div class="sing-pass-link">Fill Via SingPass <span class="sing-pass-icon"></span></div>
+                          <!-- <div class="sing-pass-link" (click)="openModal()">Fill Via SingPass <span class="sing-pass-icon"></span></div> -->
+                        </div>
+
                         </div>
                         <div class="flex-col-6">
                         <div class="form-control">

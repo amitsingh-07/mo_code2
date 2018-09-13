@@ -23,13 +23,6 @@ import { IServerResponse } from './interfaces/server-response.interface';
 export class BaseService {
   config$: Observable<IConfig>;
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      // 'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJub3JtYWxfdXNlciIsInJvbGVzIjoiUk9MRV9VU0VSLCIsImlhdCI6MTUzMzkwMzU3NywiaXNzIjoiQXV0aG9yaXphdGlvbiIsImV4cCI6MTUzNDQxNjIxN30.Og7tGptG2BUONwxVXLn1EbcAedP7f-MXgi556uZjrl4'
-    })
-  };
-
   constructor(
     public http: HttpService,
     public httpClient: HttpClient,
@@ -40,31 +33,10 @@ export class BaseService {
     this.config$ = this.configService.getConfig();
   }
 
-  /*
-  get(url) {
-    // Helper service to start ng2-slim-loading-bar progress bar
-    this.helperService.showLoader();
-    return this.config$.mergeMap((config) => {
-      return this.http
-        .get(`${config.apiBaseUrl}/${url}`)
-        .map((res: Response) => {
-          return this.handleResponse(res);
-        })
-        .catch((error: Response) =>
-          Observable.throw(this.errorHandler.tryParseError(error))
-        )
-        .finally(() => {
-          // stop ng2-slim-loading-bar progress bar
-          this.helperService.hideLoader();
-        });
-    });
-  }
-  */
-
   get(url) {
     this.helperService.showLoader();
     return this.httpClient
-      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`, this.httpOptions)
+      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`)
       .finally(() => {
         this.helperService.hideLoader();
       })
@@ -76,7 +48,7 @@ export class BaseService {
   post(url, postBody: any) {
     this.helperService.showLoader();
     return this.httpClient
-      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}`, postBody, this.httpOptions)
+      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}`, postBody)
       .finally(() => {
         this.helperService.hideLoader();
       });
@@ -134,7 +106,6 @@ export class BaseService {
   handleResponse(res): IServerResponse {
     // My API sends a new jwt access token with each request,
     // so store it in the local storage, replacing the old one.
-    this.refreshToken(res);
     const data = res;
     if (data.responseMessage.responseCode < 6000) {
       const error: IError = {
@@ -147,10 +118,4 @@ export class BaseService {
     }
   }
 
-  refreshToken(res: IServerResponse) {
-    // const token = res.headers.get(appConstants.accessTokenServer);
-    // if (token) {
-    //   localStorage.setItem(appConstants.accessTokenLocalStorage, `${token}`);
-    // }
-  }
 }
