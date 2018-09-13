@@ -23,7 +23,7 @@
 <div class="coverage-details" *ngIf="coverageAmount != ''">
   <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
   Coverage:
-  <span class="coverage-amount">{{coverageAmount | currency:'USD':number:'1.0-0'}}</span>
+  <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
   <br class="hidden-lg" />
   Premium from:
   <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ 'SUFFIX.PER_MONTH' | translate}}

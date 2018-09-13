@@ -6,8 +6,9 @@ import { isDebugMode } from '../app/shared/logger/console-logger.service';
 export const environment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://bfa-uat.ntuclink.cloud'
+  apiBaseUrl: 'https://bfa-dev.ntuclink.cloud'
 };
+
 /*
  * In development mode, to ignore zone related error stack frames such as
  * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can

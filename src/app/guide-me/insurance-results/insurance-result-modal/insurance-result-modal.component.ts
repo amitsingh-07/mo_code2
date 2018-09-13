@@ -10,7 +10,7 @@ import { GuideMeService } from '../../guide-me.service';
 })
 export class InsuranceResultModalComponent implements OnInit {
   isMonthEnabled: boolean;
-  @Input() data: string;
+  @Input() data: any;
   isExistingCoverage: boolean;
   constructor(public activeModal: NgbActiveModal , public guideMeService: GuideMeService ) { }
   ngOnInit() {
