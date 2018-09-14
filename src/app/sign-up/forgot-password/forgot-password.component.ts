@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,6 +41,7 @@ export class ForgotPasswordComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
+    private _location: Location,
     private translate: TranslateService) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -81,5 +83,7 @@ export class ForgotPasswordComponent implements OnInit {
     ref.componentInstance.forgotPassword = 'YES';
   }
 }
-
+goBack() {
+  this._location.back();
+}
 }
