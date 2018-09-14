@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule'},
   {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
   // {component: CallBackComponent, matcher: test},
-  {path: 'signup', loadChildren: './sign-up/sign-up.module#SignUpModule'}
+  {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'}
 ];
 
 @NgModule({
