@@ -89,4 +89,8 @@ export class EducationFormComponent implements OnInit {
     this.directService.setLifeProtectionForm(this.educationForm);
     this.directService.setMinProdInfo(this.summarizeDetails());
   }
+
+  showPremiumWaiverModal() {
+
+  }
 }

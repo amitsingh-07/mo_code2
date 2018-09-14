@@ -7,7 +7,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-
+  createAccountForm: any;
   ngOnInit() {}
 
+  save(form) {
+
+  }
 }

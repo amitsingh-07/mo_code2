@@ -27,7 +27,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   pageTitle: string;
   incomeForm: FormGroup;
   incomeFormValues: IMyIncome;
-  incomeTotal: any;
+  incomeTotal = 0;
 
   private el: HTMLInputElement;
 
@@ -50,11 +50,11 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
       annualBonus: new FormControl(this.incomeFormValues.annualBonus),
       otherIncome: new FormControl(this.incomeFormValues.otherIncome)
     });
+
+    this.setFormTotalValue();
   }
 
   ngAfterViewInit() {
-
-    this.setFormTotalValue();
     this.isUserInputIncome = false;
   }
 
