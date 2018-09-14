@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, Output,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
+import { RiskProfileComponent } from '../../../portfolio/risk-profile/risk-profile.component';
+
 
 @Component({
   selector: 'app-model-with-button',
@@ -14,6 +16,10 @@ import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.const
 export class ModelWithButtonComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
+  @Input() forgotPassword: any;
+  @Input() ButtonTitle: any;
+ @Output() selectNationalityError = new EventEmitter();
+
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -29,5 +35,8 @@ export class ModelWithButtonComponent implements OnInit {
   goNext() {
     this.activeModal.dismiss('Cross click');
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
-   }
-}
+    }
+   selectNationalityHomepage() {
+     this.selectNationalityError.emit(null);
+    }
+  }

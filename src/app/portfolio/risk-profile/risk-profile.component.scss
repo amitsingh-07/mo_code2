@@ -1,5 +1,110 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+
+.hide-custom-modal {
+    display: none;
+  }
+
+  .fade-out-animation {
+    -webkit-animation: fadeOut 1000ms ease-in-out;
+    /* Chrome, Safari, Opera */
+    animation: fadeOut 1000ms ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+    position: fixed;
+  }
+
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 0.8;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Standard syntax */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .custom-modal-backdrop {
+    background: $white-color;
+    position: fixed;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+  }
+
+  .custom-modal-wrapper {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    @extend .flex;
+    @extend .justify-center;
+    @extend .align-center;
+  }
+
+  .custom-modal-content {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .custom-modal--icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 20%;
+
+    @include allmobiles {
+      img {
+        width: 60%;
+      }
+    }
+  }
+
+  .custom-modal--title {
+    color: #00aaa8;
+    font-family: $muli-regular;
+    font-size: 36px;
+    letter-spacing: -0.4px;
+    line-height: 1.11;
+    margin-top: 30px;
+  }
+
+  .custom-modal--desc {
+    color: #5e5e5e;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    font-family: $muli-regular;
+    padding: 0 35%;
+
+    @include allmobiles {
+      padding: 0 10%;
+    }
+  }
+
+
+  
 .risk-profile-block {
     .container-fluid {
         padding-top: 30px !important;
@@ -87,28 +192,16 @@
        
     }
     .btn-proceed {
-        width: 179px;
-        height: 60px;
-        border:0px;
-        border-radius: 6px;
-        background-color: $white-color;
-        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
-        font-family: $muli-semi-bold;
-        font-size: 22px;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: normal;
-        letter-spacing: -0.2px;
-        text-align: center;
-        color: $app-backgrnd-color;
-        cursor: pointer;
-        @include allmobiles{
-            position: fixed;
-            width:100%;
-            bottom:0px;
-            left:0px;
-            border-radius:0px;
-        }
+        font-family: Muli;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #ffffff;
+        
     }
 }
 

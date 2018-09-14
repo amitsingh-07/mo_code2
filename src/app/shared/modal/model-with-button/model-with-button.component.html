@@ -7,8 +7,13 @@
       <span aria-hidden="true"  id="errorModelCloseIcon"></span>
     </button>
   <div class="modal-body-message"  id="errorModelMessage">{{errorMessage}}</div>
-  <button type="button" class="Rectangle-2 btn btn-primary"  (click)="goNext()"  id="errorModeButton">
-    {{ 'LABEL.CONTINUE' | translate}}
+  <button type="button"  class="Rectangle-2 "  (click)="selectNationalityHomepage()"   id="errorModeButton">
+    {{ButtonTitle}}
   </button>
+  <!-- <button type="button"  *ngIf="forgotPassword" class="Rectangle-2"   id="errorModeButton2" (click)="activeModal.dismiss('Cross click')">
+    {{ 'LABEL.TRY_AGAIN' | translate}} 
+  </button> -->
+ 
+
 </div>
 
