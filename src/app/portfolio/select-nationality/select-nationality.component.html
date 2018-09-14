@@ -27,13 +27,13 @@
           <div class="dropdown-control">
             <div ngbDropdown>
               <button class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
-                <span *ngIf="afterSelectedNationality" class="dependent-count">{{nationalitylist.country | titlecase}}</span>
+                <span *ngIf="afterSelectedNationality" class="dependent-count">{{nationalitylist.nationality | titlecase }}</span>
                 <span *ngIf="beforeSelectedNationality" class="dependent-count">select nationality</span>
                 <!-- <span *ngIf=afterSelectedNationality class="dependent-count">Select Nationality</span> -->
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" *ngFor="let nationalitylist of nationalitylists" (click)="selectNationality(nationalitylist)">
-                  {{nationalitylist.country | titlecase}}
+                  {{nationalitylist.nationality | titlecase}}
 
                 </button>
               </div>
@@ -42,6 +42,7 @@
         </div>
       </div>
 <!-- other coutryquestion -->
+<form id="userInfoForm" name="selectNationalityForm" [formGroup]="SelectNationality" id="getStrdFrm">
 <div *ngIf="Question">
 <div class="flex-row mb10">
     <div class=flex-col-10>
@@ -66,6 +67,7 @@
             </label>
           </div>
           <div class="flex-col-6">
+            
             <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
               <input ngbButton type="radio" value="no" (click)="showEmergencyFundModal()" id="myFinancialNoBtn"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
           </div>
@@ -111,23 +113,22 @@
 
 
 <!-- sigpore Question -->
+
 <div *ngIf="sigQuestion">
 <div class="flex-row mb10">
     <div class=flex-col-10>
-      <div class="form-group-with-bg--content-label" for="name" id="myFinancialQuestaion">Are you a Singaporean Permanent Resident?
+      <div class="form-group-with-bg--content-label" for="name" id="myFinancialQuestaion" >Are you a Singaporean Permanent Resident?
 
       </div>
 
     </div>
-    <div class="flex-col-2">
-      <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
-    </div>
+   
   </div>
   <!-- buttons -->
   <div class="flex-row">
 
     <div class="flex-col-7">
-      <div class="btn-group--toggle" ngbRadioGroup name="radioGender" >
+      <div class="btn-group--toggle" ngbRadioGroup name="radioGender"  formControlName="selectNationalitySig">
         <div class="flex-row">
           <div class="flex-col-6">
             <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
@@ -135,8 +136,9 @@
             </label>
           </div>
           <div class="flex-col-6">
+            
             <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-              <input ngbButton type="radio" value="no" (click)="showEmergencyFundModal()" id="myFinancialNoBtn"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
+              <input ngbButton type="radio" value="no"  id="myFinancialNoBtn"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
           </div>
         </div>
       </div>
@@ -144,11 +146,11 @@
   </div>
   </div>
   
-
+</form>
 <!-- sigpore question -->
 
 
-      <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="riskProfileBtn">Continue</button>
+      <button type="button" (click)="goToNext(SelectNationality)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="riskProfileBtn">Continue</button>
     </div>
   </div>
 </div>
