@@ -41,7 +41,8 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const dob = this.datepipe.transform(new Date(getGuideMeFormData.customDob), 'yyyy-MM-dd').toString() + 'T00:00:00';
+    const customDob = new Date(getGuideMeFormData.customDob);
+    const dob = this.datepipe.transform(customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
@@ -101,7 +102,7 @@ export class SignUpApiService {
     return {
         customerRef: custRef,
         password: pwd,
-        callbackUrl: environment.apiBaseUrl + '/#/signup/email-verification',
+        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
         resetType: 'New',
         resetCode: resCode
     };
