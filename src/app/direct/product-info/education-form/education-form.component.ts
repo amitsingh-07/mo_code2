@@ -32,6 +32,7 @@ export class EducationFormComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.directService.setProdCategoryIndex(5);
     this.formValues = this.directService.getDirectFormData();
     //this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
