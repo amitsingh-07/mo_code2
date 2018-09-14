@@ -2,10 +2,12 @@
   <div class="prod-cat-list__wrapper" [ngClass]="{'show': toggleSelectVisibility}">
     <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div> 
     <div class="prod-cat-list-close hidden-lg" (click)="search()"></div>
-    <app-product-category [data]="productCategory" *ngFor="let productCategory of productCategoryList; let i = index" (click)="openProductCategory(i)"></app-product-category>
+    <div class="prod-cat-list">
+      <app-product-category [data]="productCategory" *ngFor="let productCategory of productCategoryList; let i = index" (click)="openProductCategory(i)"></app-product-category>
+    </div>
   </div>
   <div class="prod-form__wrapper" [ngClass]="{'show': toggleFormVisibility}">
-    <div class="form-group direct-form hidden-lg">
+    <div class="form-group direct-form sm--view">
       <div class="flex-row">
           <div class="flex-col-3">
             <label for="name" id="getStrLbl6">{{ 'COVERAGE.MOBILE_TITLE' | translate}}</label>

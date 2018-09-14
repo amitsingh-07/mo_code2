@@ -24,7 +24,17 @@
             "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
             "EDIT_NUMBER": "Edit Number",
             "DIDNT_RECIEVE": "Didn't Recieve it?",
-            "REQUEST_NEW_CODE": "Request New Code"
+            "REQUEST_NEW_CODE": "Request New Code",
+            "CODE_SENT": "Code sent!"
+        },
+        "ERROR_MODAL": {
+            "ERROR_TITLE": "Incorrect OTP Code",
+            "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
+        },
+        "LOADING": {
+            "VERIFYING" : "Verifying...",
+            "VERIFIED": "Mobile Verified!",
+            "SENDING": "Sending New OTP"
         }
     },
     "PASSWORD": {
@@ -33,7 +43,14 @@
         "FORM": {
             "PASSWORD": "Password",
             "CONFIRM_PASSWORD": "Confirm Password"            
-        }      
+        },
+        "ERROR_MESSAGE": {
+            "TITLE": "Password Criteria",
+            "LENGTH": "8 - 20 Alphanumeric Characters",
+            "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
+            "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
+            "MATCH": "Passwords do not match"
+        }     
     },
     "EMAIL_VERIFICATION": {
         "TITLE": "Email Verified!"        
@@ -57,6 +74,9 @@
     "FORGOTPASSWORD": {
         "SUBMIT": "Submit",
         "EMAIL":"Email Address",
+        "BACK_TO":"Back To Login",
+        "EMAIL_SENT":"Email Sent!",
+        "CHECK_EMAIL":"Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
         "DESCRIPTION":"Enter your email to receive your password reset instructions.",
         "TITLE":"Forgot Password",
         "EMAIL_NOT_FOUND":"Email Not Found",

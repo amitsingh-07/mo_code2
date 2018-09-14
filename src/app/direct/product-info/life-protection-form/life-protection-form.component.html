@@ -27,12 +27,15 @@
           </div>
         <div #usrFrmDp class="flex-col-8 direct-form-grp">
           <div class="datepicker-control">
-            <div class="input-group date-picker mb0">
+            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !lifeProtectionForm.get('dob').valid  && !lifeProtectionForm.get('dob').pristine}">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
               name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                  <img class="date-picker-image--valid" src="./assets/images/calendar-normal.svg"/>
+                  <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="lifeProtectionForm.get('dob').valid || lifeProtectionForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
+                  />
+                  <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="!lifeProtectionForm.get('dob').valid && !lifeProtectionForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                  />
                 </button>
                 </div>
               </div>
@@ -70,11 +73,11 @@
           <div class="dropdown-control">
               <div ngbDropdown id="coverageAmtDropDown">
                 <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                  <span class="coverage_amt">{{coverage_amt}}</span>
+                  <span class="coverage_amt">{{ 'LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}{{coverage_amt}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                   <button type="button" class="dropdown-item" *ngFor="let ele_coverageAmt of coverageAmtValues" (click)="selectCoverageAmt(ele_coverageAmt)">
-                  {{ele_coverageAmt}}
+                    {{ 'LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}{{ele_coverageAmt}}
                   </button>
                 </div>
               </div>
@@ -104,7 +107,9 @@
         <div class="flex-col-3">
           <label for="name" id="getStrLbl7">{{ 'LIFE_PROTECTION.PREMIUM_WAIVER.TITLE' | translate}}</label>
           <label class="subtitle" for="name" id="getStrLbl8">{{ 'LIFE_PROTECTION.PREMIUM_WAIVER.SUBTITLE' | translate}}</label>
-          <div class="tooltip-icon" (click)="showPremiumWaiverModal()"></div>
+          <div class="tooltip-container">
+            <div class="tooltip-icon" (click)="showPremiumWaiverModal()"></div>
+            </div>
           </div>
         <div class="flex-col-8 direct-form-grp">
           <div class="btn-group--toggle" ngbRadioGroup name="radioPremiumWaiver" formControlName="premiumWaiver">

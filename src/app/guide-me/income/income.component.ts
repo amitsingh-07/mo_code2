@@ -27,7 +27,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   pageTitle: string;
   incomeForm: FormGroup;
   incomeFormValues: IMyIncome;
-  incomeTotal: any;
+  incomeTotal = 0;
 
   private el: HTMLInputElement;
 

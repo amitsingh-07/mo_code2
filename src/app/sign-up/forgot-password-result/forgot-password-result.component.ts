@@ -30,5 +30,7 @@ export class ForgotPasswordResultComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  redirectToLogin() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+  }
 }

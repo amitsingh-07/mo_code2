@@ -1,10 +1,10 @@
-export const SIGN_UP_BASE_ROUTE = '../signup/';
+export const SIGN_UP_BASE_ROUTE = '../account/';
 
 export const SIGN_UP_ROUTES = {
   ROOT: '',
   ACCOUNT_CREATED: 'success',
-  CREATE_ACCOUNT: 'account',
-  EMAIL_VERIFIED: 'email-verification/:code',
+  CREATE_ACCOUNT: 'sign-up',
+  EMAIL_VERIFIED: 'email-verification',
   PASSWORD: 'password',
   VERIFY_MOBILE: 'verify-mobile',
   LOGIN: 'login',

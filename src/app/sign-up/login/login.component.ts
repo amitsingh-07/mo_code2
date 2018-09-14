@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
+    private _location: Location,
     private translate: TranslateService) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -100,5 +102,7 @@ export class LoginComponent implements OnInit {
       this.signUpService.setLoginInfo(form.value);
     }
   }
-
+  goBack() {
+    this._location.back();
+  }
 }

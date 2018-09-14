@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-password-result.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
-import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-password-result.component';
-
 const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ROOT,
-    component: CreateAccountComponent
+    pathMatch: 'full',
+    redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT
   },
   {
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT,
@@ -32,8 +30,7 @@ const routes: Routes = [
     canActivate: [SignUpAccessGuard]
   },
   { path: SIGN_UP_ROUTES.ACCOUNT_CREATED,
-    component: AccountCreatedComponent,
-    canActivate: [SignUpAccessGuard]
+    component: AccountCreatedComponent
   },
   { path: SIGN_UP_ROUTES.EMAIL_VERIFIED,
     component: EmailVerificationComponent
