@@ -20,6 +20,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./select-nationality.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
+
 export class SelectNationalityComponent implements OnInit {
   nationalitylists: any[];
   selectedNationality: any;
@@ -106,6 +108,6 @@ getNationalityList() {
   }
   errorButtonNavigation(){
     this.activeModal.dismiss('Cross click');
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY]);
   }
 }
