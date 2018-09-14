@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../shared/header/header.service';
-import { APP_SESSION_ID_KEY } from '../../shared/http/auth/authentication.service';
+import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -133,7 +133,7 @@ export class CreateAccountComponent implements OnInit {
     this.signUpApiService.createAccount().subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-        sessionStorage.setItem(APP_SESSION_ID_KEY, data.objectList[0].securityToken);
+        sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       }
     });

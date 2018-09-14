@@ -670,6 +670,11 @@
     @include tablet{
       min-width:720px;
     }
+    @include phablet{
+      min-width:unset;
+      padding:0px 20px;
+      flex-wrap:wrap;
+    }
     @include allmobiles{
       flex-direction:column !important;
       min-width: unset;
@@ -678,10 +683,23 @@
   .direct-form{
     width:340px;
     margin-bottom:0px;
+    @include phablet{
+      margin-left:auto;
+      margin-right:auto;
+    }
     @include allmobiles{
         width:100%;
-        padding:0px 16px;
+        padding:0px 30px;
       }
+    @include min300max350{
+        padding:0px 16px;
+    }
+    &.sm--view{
+      display:none;
+      @include allmobiles{
+        display:block;
+      }
+    }
     .flex-row{
       max-width:340px;
       justify-content:space-between;
@@ -702,22 +720,22 @@
             font-size:16px;
             transform:translateY(-5px);
           }
-        @include allmobiles{
+        @include minMobilemaxPhablet{
             font-size:16px;
             color:$white-color;
           }
       }
-      .tooltip-icon {
-        position: relative;
-        right: -80px;
-        top: -50px;
-        background: url("./assets/images/tooltip-icon.svg") no-repeat;
-        height: 20px;
-        width: 20px;
-        cursor: pointer;
-        @include allmobiles{
-          background: url("./assets/images/tooltip-icon-white.svg") no-repeat;
+    .tooltip-icon {
+      position: relative;
+      right: -80px;
+      top: -50px;
+      background: url("./assets/images/tooltip-icon.svg") no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      @include allmobiles{
+        background: url("./assets/images/tooltip-icon-white.svg") no-repeat;
         }
-        }
+      }
     }
   }
