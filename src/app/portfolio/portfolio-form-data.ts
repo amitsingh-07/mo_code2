@@ -2,7 +2,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 
 export class PortfolioFormData {
     // PERSONAL INFO
-    dob: string;
+    dob: any;
     investmentPeriod: number;
 
     // RISK ASSESSMENT

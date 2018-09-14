@@ -1,5 +1,16 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  DoCheck,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewEncapsulation
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
@@ -10,7 +21,7 @@ import { ProductDetailComponent } from './../../components/product-detail/produc
   styleUrls: ['./plan-widget.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlanWidgetComponent implements DoCheck, OnInit {
+export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() data;
   @Input() type;
   @Input() comparePlan;
@@ -28,6 +39,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   canShowRating = true;
   canShowDiscount = true;
   isComparePlanEnabled = false;
+  isRankContainerSet = false;
 
   coverageDuration;
   premiumDuration;
@@ -36,7 +48,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
   @Output() select = new EventEmitter();
   @Output() compare = new EventEmitter();
 
-  constructor(private currency: CurrencyPipe, public modal: NgbModal) {
+  constructor(
+    private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
+    private renderer: Renderer2) {
     this.highlights = [];
   }
 
@@ -74,8 +88,26 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
     }
   }
 
+  ngAfterViewChecked() {
+    if (!this.isRankContainerSet) {
+      const rankContainer = this.elRef.nativeElement.querySelectorAll('.insurance-plan-widget__container__rank-box');
+      if (rankContainer.length > 0) {
+        rankContainer.forEach((el) => {
+          if (rankContainer.length === 1) {
+            this.renderer.addClass(el, 'one-plan-width');
+          } else if (rankContainer.length === 2) {
+            this.renderer.addClass(el, 'two-plan-width');
+          } else {
+            this.renderer.addClass(el, 'three-plan-width');
+          }
+        });
+        this.isRankContainerSet = true;
+      }
+    }
+  }
+
   viewDetails() {
-    //this.view.emit(this.temp);
+    // this.view.emit(this.temp);
     const data = this.temp;
     const ref = this.modal.open(ProductDetailComponent, { centered: true });
     ref.componentInstance.plan = data;
@@ -99,4 +131,3 @@ export class PlanWidgetComponent implements DoCheck, OnInit {
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }
-

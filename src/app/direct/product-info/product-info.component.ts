@@ -17,7 +17,7 @@ export class ProductInfoComponent implements OnInit {
   modalRef: NgbModalRef;
   initLoad = true;
   innerWidth: any;
-  mobileThreshold = 560;
+  mobileThreshold = 567;
 
   toggleVisibility = true;
   toggleSelectVisibility = true;
@@ -37,6 +37,7 @@ export class ProductInfoComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < this.mobileThreshold) {
       this.toggleFormVisibility = false;
+      this.directService.setModalFreeze(false);
       this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
     } else {
       this.toggleSelectVisibility = true;

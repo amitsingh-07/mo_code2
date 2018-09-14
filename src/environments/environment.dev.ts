@@ -1,4 +1,5 @@
 import { isDebugMode } from '../app/shared/logger/console-logger.service';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -6,7 +7,7 @@ import { isDebugMode } from '../app/shared/logger/console-logger.service';
 export const environment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://bfa-dev.ntuclink.cloud'
+  apiBaseUrl: 'https://bfa.ntuclink.cloud'
 };
 
 /*
