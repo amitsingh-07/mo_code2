@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../shared/header/header.service';
-import { APP_SESSION_ID_KEY } from '../../shared/http/auth/authentication.service';
+import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -103,7 +103,7 @@ export class PasswordComponent implements OnInit {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.clearData();
         this.selectedPlansService.clearData();
-        sessionStorage.removeItem(APP_SESSION_ID_KEY);
+        sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
       }
     });
