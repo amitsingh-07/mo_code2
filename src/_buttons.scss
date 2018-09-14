@@ -449,7 +449,7 @@ button:active:focus {
     min-width:337px;
     box-shadow: 0 6px 8px 0 rgba(138, 155, 169, 0.3);
     
-    @include allmobiles{
+    @include minMobilemaxPhablet{
       width:100% !important;
       min-width:0px;
       max-width:calc(100% - 36px);
@@ -468,7 +468,7 @@ button:active:focus {
       right:-1px;
       border-radius: 0 8px 8px 0;
       cursor: pointer;
-      @include allmobiles{
+      @include minMobilemaxPhablet{
         height:101%;
         width:40px;
       }
@@ -489,7 +489,7 @@ button:active:focus {
       display: inline-block;
       height:40px;
       margin-right:15px;
-      @include allmobiles{
+      @include minMobilemaxPhablet{
         display: none;
       }
     }
@@ -509,7 +509,7 @@ button:active:focus {
         background-color:$teal-color;
         transform:translateY(-4px);
       }
-      @include allmobiles {
+      @include minMobilemaxPhablet {
         font-size:18px;
         padding-right:0px;
         line-height:1.1;
@@ -526,11 +526,12 @@ button:active:focus {
       line-height:1.0;
       letter-spacing: -0.4px;
       color:$dark-teal-color;
-      @include allmobiles{
+      @include minMobilemaxPhablet{
         font-family:$muli-regular;
         color:$teal-color;
         font-size:16px;
         line-height:1.1;
+        margin-top: 4px;
       }
     }
   }
@@ -549,6 +550,7 @@ button:active:focus {
   margin-bottom:20px;
   padding:20px 0px 18px 0px;
   cursor: pointer;
+
   @include allmobiles{
     margin-bottom:7px;
   }
@@ -556,7 +558,7 @@ button:active:focus {
     width:99px;
     height:140px;
   }
-  .prodCat__block--icon{
+  .prod-cat__block-icon{
     position: relative;
     display: inline-block;
     height:45px;
@@ -573,7 +575,6 @@ button:active:focus {
     font-stretch: normal;
     line-height: 1.31;
     letter-spacing: -0.2px;
-    margin-top:15px;
     @include min300max325{
       font-size: 14px;
     }
@@ -588,8 +589,17 @@ button:active:focus {
   }
 }
 /* ProdInfo Form Buttons*/
+.direct-form{
+  .tooltip-container{
+    position: relative;
+    display:block;
+    height:0px;
+    overflow:visible;
+  }
+}
 .direct-form-grp{
   max-width:215px;
+  align-self:flex-start;
   @include allmobiles{
     max-width:175px;
   }
@@ -638,18 +648,42 @@ button:active:focus {
       }
     }
   .datepicker-control{
+    .date-picker{
+      border:1px solid $light-teal-color;
+      border-radius:4px;
+      @include allmobiles{
+        border:0px;
+      }
+      .form-control{
+        height:50px;
+      }
+      .input-group-append {
+        .btn-primary{
+          height:50px;
+        }
+      }
+      .dropdown-menu{
+        @include allmobiles{
+          left:auto !important;
+          right:0px !important;
+          }
+        }
+      }
+    }
+    
+  .dropdown-control{
     border:1px solid $light-teal-color;
     border-radius:6px;
     .dropdown-menu{
       @include allmobiles{
+        border: none;
+        max-height:150px;
+        max-width:unset;
+        overflow:auto;
         left:auto !important;
         right:0px !important;
-        }
       }
     }
-  .dropdown-control{
-    border:1px solid $light-teal-color;
-    border-radius:6px;
   }
 }
 

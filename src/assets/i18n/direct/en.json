@@ -12,7 +12,7 @@
   },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
-    "MOBILE_TITLE": "Coverage Type"
+    "MOBILE_TITLE": "Protection Type"
   },
   "PROFILE": {
     "TITLE": "Your Profile",
@@ -32,15 +32,60 @@
   } ,
   "LIFE_PROTECTION": {
     "COVERAGE_AMT": {
-      "TITLE": "Coverage Amount"
+      "TITLE": "Coverage Amount",
+      "DOLLAR": "$"
     },
     "DURATION": {
-      "TITLE": "Duration",
-      "FORM": ["Till Age 50", "Till Age 55", "Till Age 65"]
+      "TITLE": "Duration"
     },
     "PREMIUM_WAIVER": {
       "TITLE": "Premium Waiver",
-      "SUBTITLE": "(optional)"
+      "SUBTITLE": "(optional)",
+      "TOOLTIP": {
+          "TITLE": "Premium Waiver Rider",
+          "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
+      }
     }
+  },
+  "CRITICAL_ILLNESS": {
+    "COVERAGE_AMT": {
+      "TITLE": "Coverage Amount",
+      "DOLLAR": "$"
+      },
+    "DURATION": {
+      "TITLE": "Duration"
+      },
+    "EARLY_CI": {
+      "TITLE": "Early CI",
+      "SUBTITLE": "(optional)"
+      }
+    },
+  "LONG_TERM_CARE": {
+    "MONTHLY_PAYOUT": {
+      "TITLE": "Monthly Payout"
+      }
+    },
+    "OCCUPATIONAL_DISABILITY": {
+      "EMPLOYMENT_TYPE":"Employment Type",
+      "MONTHLY_SALARY":"Monthly Salary",
+      "DURATION":"Duration",
+      "COVER": "Cover",
+      "OF": "Of",
+      "EMPLOYMENT_TYPE_LIST": ["Salaried", "Self-employed"],
+      "DURATION_VALUES": ["Till 55", "Till 60", "Till 65"]
+    },
+    "RETIREMENT_INCOME": {
+      "INCOME": "Retirement Income",
+      "PAYOUT_AGE": "Payout Start Age",
+      "PAYOUT_DURATION": "Payout Duration",
+      "PAYOUT_FEATURE": "Payout Feature",
+      "PAYOUT_DURATION_LIST": [ "Lifetime", "Limited Years" ],
+      "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable", "Increasing"],
+      "TOOLTIP": {
+          "TITLE": "Payout Feature",
+          "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
+      }
+      }
   }
-}
+
+

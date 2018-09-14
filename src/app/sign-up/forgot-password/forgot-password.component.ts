@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +12,9 @@ import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
+import {
+  ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -21,13 +25,13 @@ export class ForgotPasswordComponent implements OnInit {
 
   private pageTitle: string;
   private description: string;
-
+  emailNotFoundTitle: any;
+  emailNotFoundDesc: any;
   forgotPasswordForm: FormGroup;
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
   heighlightMobileNumber;
-
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -37,10 +41,16 @@ export class ForgotPasswordComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
+    private _location: Location,
     private translate: TranslateService) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
+    });
+
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.emailNotFoundTitle = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND');
+      this.emailNotFoundDesc = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND_DESC');
     });
   }
 
@@ -55,12 +65,6 @@ export class ForgotPasswordComponent implements OnInit {
       email: [this.formValues.email, [Validators.required, Validators.email]],
     });
   }
-
-  /**
-  * validate ForgotPassword Form.
-  * @param form - email form detail.
-  */
-
  save(form: any) {
   if (!form.valid) {
     Object.keys(form.controls).forEach((key) => {
@@ -73,7 +77,13 @@ export class ForgotPasswordComponent implements OnInit {
     return false;
   } else {
     this.signUpService.setForgotPasswordInfo(form.value.email);
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
+    ref.componentInstance.errorMessage = this.emailNotFoundDesc;
+    ref.componentInstance.forgotPassword = 'YES';
   }
 }
-
+goBack() {
+  this._location.back();
+}
 }

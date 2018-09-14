@@ -1,0 +1,13 @@
+@import '../../../mixins';
+
+app-product-info {
+  .direct-form-grp .dropdown-control {
+    @include allmobiles {
+      border: none;
+    }
+    .dropdown-menu {
+      height: auto !important;
+      max-height: 300px !important;
+    }
+  }
+}

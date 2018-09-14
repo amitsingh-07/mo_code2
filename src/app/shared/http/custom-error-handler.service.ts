@@ -1,17 +1,27 @@
-import { AuthenticationService } from './auth/authentication.service';
-import { throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HelperService } from './helper.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Response, ResponseOptions } from '@angular/http';
+import { throwError } from 'rxjs';
 
+import { AuthenticationService } from './auth/authentication.service';
 import { IError } from './interfaces/error.interface';
+import { IServerResponse } from './interfaces/server-response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomErrorHandlerService {
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService, private helper: HelperService) { }
 
+  public handleCustomError(data: IServerResponse) {
+    const error: IError = {
+      error: data.responseMessage.responseCode,
+      message: data.responseMessage.responseDescription
+    };
+    this.helper.showCustomErrorModal(error);
+    throw new Error(this.parseCustomServerErrorToString(error));
+  }
   /*
     * Handle API authentication errors.
     */

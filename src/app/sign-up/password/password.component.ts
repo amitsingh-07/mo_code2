@@ -6,7 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../shared/header/header.service';
+import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
@@ -23,6 +25,7 @@ export class PasswordComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               public headerService: HeaderService,
               private modal: NgbModal,
+              private selectedPlansService: SelectedPlansService,
               private signUpApiService: SignUpApiService,
               private signUpService: SignUpService,
               private router: Router,
@@ -32,7 +35,6 @@ export class PasswordComponent implements OnInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.signUpService.otpRequested = false;
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
   }
 
@@ -88,8 +90,7 @@ export class PasswordComponent implements OnInit {
    */
   save(form: any) {
     if (form.valid) {
-      this.signUpService.setPassword(form.value.password);
-      this.createAccount();
+      this.setPassword(form.value.password);
     }
     return false;
   }
@@ -97,10 +98,12 @@ export class PasswordComponent implements OnInit {
   /**
    * create user account.
    */
-  createAccount() {
-    this.signUpApiService.createAccount().subscribe((data: any) => {
+  setPassword(pwd) {
+    this.signUpApiService.setPassword(pwd).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.clearData();
+        this.selectedPlansService.clearData();
+        sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
       }
     });

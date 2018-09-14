@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { NouisliderModule } from 'ng2-nouislider';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
@@ -28,13 +30,29 @@ import { PortfolioRoutingModule } from './portfolio-routing.module';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
+import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new MultiTranslateHttpLoader(
+    http,
+    [
+        { prefix: './assets/i18n/app/', suffix: '.json' },
+        { prefix: './assets/i18n/portfolio/', suffix: '.json' }
+    ]);
+}
 
 @NgModule({
   imports: [
     CommonModule, PortfolioRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
-    TranslateModule.forChild(SharedModule.getTranslateConfig('portfolio')),
     NouisliderModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     GetStartedStep1Component,
@@ -50,7 +68,8 @@ import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component
     WhatsTheRiskComponent,
     FundDetailsComponent,
     BreakdownBarComponent,
-    BreakdownAccordionComponent
+    BreakdownAccordionComponent,
+    SelectNationalityComponent
   ],
   providers: [CurrencyPipe]
 })

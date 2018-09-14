@@ -17,7 +17,7 @@ export class CreateAccountFormError {
                 },
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Mobile number range should be 8000000 to 9999999'
+                        errorMessage: 'Mobile number should contain 8 digits'
                 }
         },
         firstName: {
@@ -27,7 +27,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid First Name',
-                        errorMessage: 'First name field can only contain alphabets value'
+                        errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
                 }
         },
         lastName: {
@@ -37,7 +37,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid Last Name',
-                        errorMessage: 'Last name field can only contain alphabets value'
+                        errorMessage: 'Last name field can only contain alphabets value of 2 - 40 characters in length'
                 }
         },
         email: {
@@ -47,7 +47,29 @@ export class CreateAccountFormError {
                 },
                 email : {
                         errorTitle: 'Invalid E-mail',
-                        errorMessage: 'Please enter your valid Email address'
+                        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+                }
+        },
+        termsOfConditions: {
+                required : {
+                        errorTitle: '',
+                        errorMessage: 'Please agree to MoneyOwl\'s Terms of Use and Privacy Policy'
+                }
+        },
+        loginUsername: {
+                required : {
+                        errorTitle: 'Mobile No. or Email Address required',
+                        errorMessage: 'Please enter your Mobile No. or Email Address'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Mobile No. or Email Address',
+                        errorMessage: 'Please enter your valid username'
+                }
+        },
+        loginPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your Password'
                 }
         }
     };

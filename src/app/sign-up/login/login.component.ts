@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   private pageTitle: string;
   private description: string;
 
-  createAccountForm: FormGroup;
+  loginForm: FormGroup;
   formValues: any;
   defaultCountryCode;
   countryCodeOptions;
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
+    private _location: Location,
     private translate: TranslateService) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -44,38 +46,49 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-  * Initialize tasks.
-  */
+   * Initialize tasks.
+   */
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
-    this.buildAccountInfoForm();
-    this.getCountryCode();
+    this.buildLoginForm();
   }
 
   /**
-  * build account form.
-  */
-  buildAccountInfoForm() {
-    this.formValues = this.signUpService.getAccountInfo();
-    this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
-    this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : false;
-    this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
-    this.createAccountForm = this.formBuilder.group({
-      countryCode: [this.formValues.countryCode, [Validators.required]],
-      mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
-      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern('^[a-zA-Z]+')]],
-      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern('^[a-zA-Z]+')]],
-      email: [this.formValues.email, [Validators.required, Validators.email]],
-      termsOfConditions: [this.formValues.termsOfConditions],
-      marketingAcceptance: [this.formValues.marketingAcceptance]
+   * show / hide password field.
+   * @param el - selected element.
+   */
+  showHidePassword(el) {
+    if (el.type === 'password') {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
+  }
+
+  /**
+   * build login form.
+   */
+  buildLoginForm() {
+    this.formValues = this.signUpService.getLoginInfo();
+    this.loginForm = this.formBuilder.group({
+      loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(/^(?:\d{8,10}|\w+[\w-\.]*@\w+\.\w{2,3})$/)]],
+      loginPassword: [this.formValues.loginPassword, [Validators.required]]
     });
   }
 
   /**
-  * validate createAccountForm.
-  * @param form - user account form detail.
-  */
-  save(form: any) {
+   * Show or hide inline error.
+   * @param form - form control.
+   */
+  getInlineErrorStatus(control) {
+    return (this.loginForm.controls[control].touched && !this.loginForm.controls[control].valid);
+  }
+
+  /**
+   * login submit.
+   * @param form - login form.
+   */
+  doLogin(form: any) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -86,52 +99,10 @@ export class LoginComponent implements OnInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpService.setAccountInfo(form.value);
-      this.requestOneTimePassword();
+      this.signUpService.setLoginInfo(form.value);
     }
   }
-
-  /**
-  * set country code.
-  * @param countryCode - country code detail.
-  */
-  setCountryCode(countryCode) {
-    const mobileControl = this.createAccountForm.controls['mobileNumber'];
-    this.defaultCountryCode = countryCode;
-    this.createAccountForm.controls['countryCode'].setValue(countryCode);
-    if (countryCode === '+65') {
-      mobileControl.setValidators([Validators.required, ValidateRange]);
-    } else {
-      mobileControl.setValidators([Validators.required, Validators.pattern('\\d{8,10}')]);
-    }
-    mobileControl.updateValueAndValidity();
+  goBack() {
+    this._location.back();
   }
-
-  /**
-  * get country code.
-  */
-  getCountryCode() {
-    this.signUpApiService.getCountryCodeList().subscribe((data) => {
-      this.countryCodeOptions = data;
-      const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
-      this.setCountryCode(countryCode);
-    });
-  }
-
-  /**
-  * request one time password.
-  */
-  requestOneTimePassword() {
-    this.signUpApiService.requestOneTimePassword().subscribe((data: any) => {
-      if (data.responseCode === 6000) {
-        this.signUpService.otpRequested = true;
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-      }
-    });
-  }
-
-  onlyNumber(el) {
-    this.createAccountForm.controls['mobileNumber'].setValue(el.value.replace(/[^0-9]/g, ''));
-  }
-
 }

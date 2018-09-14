@@ -10,8 +10,8 @@ import {
     IEnquiryData,
     IFinancialStatusMapping,
     ILifeProtection,
-    IRecommendationRequest,
-    ILongTermCareNeedsData
+    ILongTermCareNeedsData,
+    IRecommendationRequest
 } from './interfaces/recommendations.request';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
@@ -49,6 +49,10 @@ export class GuideMeApiService {
 
     getRecommendations() {
         return this.apiService.getRecommendations(this.constructRecommendationsRequest());
+    }
+
+    getMyInfoData() {
+        return this.apiService.getMyInfoData();
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {

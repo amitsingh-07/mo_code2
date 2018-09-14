@@ -3,7 +3,7 @@ import 'rxjs/add/observable/timer';
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
 import {
-    AfterContentInit, AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation
+    AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,9 +25,7 @@ import { RiskProfile } from '../risk-profile/riskprofile';
   styleUrls: ['./portfolio-recommendation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
-  animateStaticModal = false;
-  hideStaticModal = false;
+export class PortfolioRecommendationComponent implements OnInit {
   pageTitle: string;
   portfolio;
   selectedRiskProfile: RiskProfile;
@@ -61,23 +59,8 @@ export class PortfolioRecommendationComponent implements OnInit, AfterViewInit {
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     console.log(this.selectedRiskProfile.riskProfileName);
-
   }
-  ngAfterViewInit() {
 
-    if (this.portfolioService.getPortfolioRecommendationModalCounter() === 0) {
-      this.portfolioService.setPortfolioRecommendationModalCounter(1);
-      setInterval(() => {
-        this.animateStaticModal = true;
-      }, 2000);
-
-      setInterval(() => {
-        this.hideStaticModal = true;
-      }, 3000);
-    } else {
-      this.hideStaticModal = true;
-    }
-  }
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
     this.headerService.setPageTitle(title, null, helpIcon);
   }
