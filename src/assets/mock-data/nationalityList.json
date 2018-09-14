@@ -1,0 +1,55 @@
+{
+                "objectList": [{
+                                                "country": "ABKHAZIA",
+                                                "nationality": "ABKHAZIAN",
+                                                "isBlocked": true,
+                                                "countryCode": "111",
+                                                "phoneCode": "21",
+                                                "currency": "$"
+                                }, 
+                                {
+                                                "country": "AFGHANISTAN",
+                                                "nationality": "AFGHANI",
+                                                "isBlocked": true,
+                                                "countryCode": "116",
+                                                "phoneCode": "67",
+                                                "currency": "$"
+                                },
+                                {
+                                                "country": "ALAND ISLANDS",
+                                                "nationality": "ALANDIC",
+                                                "isBlocked": false,
+                                                "countryCode": "1144",
+                                                "phoneCode": "45",
+                                                "currency": "$"
+                                },
+                                {
+                                                "country": "india",
+                                                "nationality": "ALANDIC",
+                                                "isBlocked": false,
+                                                "countryCode": "1144",
+                                                "phoneCode": "45",
+                                                "currency": "$"
+                                },
+                                {
+                                                "country": "Singapore",
+                                                "nationality": "ALANDIC",
+                                                "isBlocked": false,
+                                                "countryCode": "1144",
+                                                "phoneCode": "45",
+                                                "currency": "$"
+                                },
+                                {
+                                                "country": "US",
+                                                "nationality": "ALANDIC",
+                                                "isBlocked": false,
+                                                "countryCode": "1144",
+                                                "phoneCode": "45",
+                                                "currency": "$"
+                                }
+                ],
+                "responseMessage": {
+                                "responseCode": 6000,
+                                "responseDescription": "Successful response"
+                }
+}

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
@@ -40,6 +40,9 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
+  },
+  { path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
+    component: ForgotPasswordResultComponent
   }
 ];
 

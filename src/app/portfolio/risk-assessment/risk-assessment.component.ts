@@ -111,6 +111,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
         // CALL API
         this.portfolioService.saveRiskAssessment().subscribe((data) => {
           this.portfolioService.setRiskProfile(data.objectList);
+          this.portfolioService.setPortfolioSplashModalCounter(0);
           this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_PROFILE]);
         });
       }
