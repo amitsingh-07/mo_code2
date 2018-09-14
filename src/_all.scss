@@ -52,14 +52,21 @@ body {
       justify-content: space-between;
     }
   }
-  .navbar__logo,
+  .navbar__logo--primary {
+    height: 35px;
+  }
+  .navbar__logo--secondary,
   .navbar__back-btn--web {
     background-repeat: no-repeat;
     display: block;
     height: 40px;
   }
-  .navbar__logo {
-    background-image: url("./assets/images/logo.png");
+  .navbar__logo--primary {
+    background-image: url("./assets/images/logo--primary.svg");
+    width:147px;
+  }
+  .navbar__logo--secondary {
+    background-image: url("./assets/images/logo--secondary.png");
     width: 130px;
     margin-top: 20px;
   }

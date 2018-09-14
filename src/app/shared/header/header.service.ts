@@ -11,6 +11,7 @@ export class HeaderService {
     private pageProdInfoIcon = new BehaviorSubject(false);
     private mobileModal = new BehaviorSubject('');
     private closeProdInfo = new BehaviorSubject('');
+    private headerOverallVisibility = new BehaviorSubject(true);
     private headerVisibility = new BehaviorSubject(true);
 
     currentPageTitle = this.pageTitle.asObservable();
@@ -18,6 +19,7 @@ export class HeaderService {
     currentPageHelpIcon = this.pageHelpIcon.asObservable();
     currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
     currentMobileModalEvent = this.mobileModal.asObservable();
+    currentHeaderOverallVisibility = this.headerOverallVisibility.asObservable();
     currentHeaderVisibility = this.headerVisibility.asObservable();
 
     constructor() { }
@@ -45,6 +47,10 @@ export class HeaderService {
 
     setHeaderVisibility(isVisible: boolean) {
         this.headerVisibility.next(isVisible);
+    }
+
+    setHeaderOverallVisibility(isVisible: boolean) {
+        this.headerOverallVisibility.next(isVisible);
     }
 
     // Showing Mobile PopUp Trigger

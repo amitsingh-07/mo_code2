@@ -16,6 +16,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   subTitle = '';
   helpIcon = false;
   // helpIcon: boolean;
+  showOverallHeader = true;
   showHeader = true;
   closeIcon = false;
 
@@ -29,6 +30,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.headerService.currentHeaderOverallVisibility.subscribe((showOverallHeader) => this.showOverallHeader = showOverallHeader);
     this.headerService.currentHeaderVisibility.subscribe((showHeader) => this.showHeader = showHeader);
   }
 

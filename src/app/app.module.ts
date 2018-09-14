@@ -34,6 +34,7 @@ import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.compo
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { HeaderComponent } from './shared/header/header.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
 import { JwtInterceptor } from './shared/http/auth/jwt.interceptor';
 import { CustomErrorHandlerService } from './shared/http/custom-error-handler.service';
@@ -46,6 +47,7 @@ import { ModelWithButtonComponent } from './shared/modal/model-with-button/model
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
+import { HomeComponent } from './home/home.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -76,8 +78,10 @@ export function tokenGetterFn() {
     RestrictAlphabetsDirective,
     jqxSliderComponent,
     HeaderComponent,
+    NavbarComponent,
     NumberOnlyDirective,
-    CallBackComponent
+    CallBackComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
