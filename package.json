@@ -34,6 +34,7 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jqwidgets-framework": "^6.0.4",
+    "js-sha512": "^0.8.0",
     "ng2-nouislider": "^1.7.12",
     "ngx-translate-multi-http-loader": "^2.0.2",
     "nouislider": "^11.1.0",
