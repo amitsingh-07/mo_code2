@@ -1,0 +1,9 @@
+{
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  },
+  "objectList": [{
+    "CPF": 4000
+  }]
+}

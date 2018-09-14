@@ -1,16 +1,17 @@
-import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
-import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
-import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
 import { CurrencyInputDirective } from '../shared/directives/currency-input.directive';
-import { SharedModule } from '../shared/shared.module';
+import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
 import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
+import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { ExpensesComponent } from './expenses/expenses.component';
@@ -33,12 +34,27 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new MultiTranslateHttpLoader(
+    http,
+    [
+      { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/guide-me/', suffix: '.json' }
+    ]);
+}
+
 @NgModule({
   imports: [
     CommonModule, GuideMeRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
-    TranslateModule.forChild(SharedModule.getTranslateConfig('guide-me')),
     NouisliderModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
   ],
   declarations: [
     ProfileComponent,
@@ -71,3 +87,4 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
   entryComponents: [ProductDetailComponent]
 })
 export class GuideMeModule { }
+

@@ -4,7 +4,7 @@ export const SIGN_UP_ROUTES = {
   ROOT: '',
   ACCOUNT_CREATED: 'success',
   CREATE_ACCOUNT: 'account',
-  EMAIL_VERIFIED: 'email-verification/:code',
+  EMAIL_VERIFIED: 'email-verification',
   PASSWORD: 'password',
   VERIFY_MOBILE: 'verify-mobile',
   LOGIN: 'login',

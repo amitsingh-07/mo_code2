@@ -11,7 +11,7 @@
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{mobileNumberVerifiedMessage}}</p>
         <p class="custom-modal--desc" id="custModalDesc">{{mobileNumber.code}} {{mobileNumber.number}}</p>
-        <button *ngIf="mobileNumberVerified" class="btn btn-primary" (click)="redirectToPasswordPage()">Continue</button>
+        <button *ngIf="mobileNumberVerified" class="btn btn-primary" (click)="redirectToPasswordPage()">{{ 'COMMON.CONTINUE' | translate }}</button>
       </div>
     </div>
     <!-- <div class="custom-modal-content">
@@ -46,7 +46,7 @@
                   {{mobileNumber.code}} {{mobileNumber.number}}
                 </div>
                 <div>
-                  <div class="verify-mobile-block__edit-link link-white" (click)="editNumber($event)">Edit Number</div> 
+                  <div class="verify-mobile-block__edit-link link-white" (click)="editNumber()">{{ 'VERIFY_MOBILE.FORM.EDIT_NUMBER' | translate }}</div> 
                 </div>
               </div>
             <div class="verify-mobile-block__otp">
@@ -56,16 +56,16 @@
                 <input type="text" class="input-control text-align-center" #otp3 formControlName="otp3" (keyup)="onlyNumber(otp3,otp4)" size="1">
                 <input type="text" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="onlyNumber(otp4,otp5)" size="1">
                 <input type="text" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="onlyNumber(otp5,otp6)" size="1">
-                <input type="text" class="input-control text-align-center" #otp6 formControlName="otp6" (keyup)="onlyNumber(otp6)" size="1">  
+                <input type="text" class="input-control text-align-center" #otp6 formControlName="otp6" (keyup)="onlyNumber(otp6, 'undefined')" size="1">  
               </div>
             <button (click)="save(verifyMobileForm)" [disabled]="verifyMobileForm.invalid" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.VERIFY' | translate }}</button>
              </div>
              <div class="verify-mobile-block__otp__not-received text-center mt20">
-                Didn't receive it?<br>
-                <div class="link-white" (click)="requestNewCode($event)">Request New Code</div>
+              {{ 'VERIFY_MOBILE.FORM.DIDNT_RECIEVE' | translate }}<br>
+                <div class="link-white" (click)="requestNewCode()">{{ 'VERIFY_MOBILE.FORM.REQUEST_NEW_CODE' | translate }}</div>
              </div>
              <div class="verify-mobile-block__otp__not-received text-center mt20" *ngIf="showCodeSentText">
-              Code sent!
+              {{ 'VERIFY_MOBILE.FORM.CODE_SENT' | translate }}
            </div>
           </form>
         </div>   

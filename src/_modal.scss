@@ -202,7 +202,7 @@
     width:100%;
     max-width:1024px;
     justify-content: space-between;
-    padding-top:20px;
+    padding:20px 10px 0px 10px;
     overflow:hidden;
     height:0px;
     @include allmobiles {
@@ -240,10 +240,18 @@
       height: 18px;
       background-repeat: no-repeat !important;
       @include allmobiles {
-      display: block;
-      top: 20px !important;
-      opacity: 1 !important;
+        display: block;
+        top: 20px !important;
+        opacity: 1 !important;
+        }
     }
+    @include tablet {
+      app-product-category{
+        margin-right:10px;
+        &:last-child() {
+          margin-right:10px;
+        }
+      } 
     }
     @include allmobiles{
       app-product-category{
