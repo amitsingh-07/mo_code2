@@ -1,7 +1,7 @@
-import { PercentageInputDirective } from './../shared/directives/percentage-input.directive';
 import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { PercentageInputDirective } from './../shared/directives/percentage-input.directive';
 
 import { DirectFormData } from './direct-form-data';
 import { FormError } from './product-info/form-error';

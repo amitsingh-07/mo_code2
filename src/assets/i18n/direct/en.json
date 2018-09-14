@@ -59,11 +59,10 @@
       "TITLE": "Early CI",
       "SUBTITLE": "(optional)"
       }
-    }
-  },
+    },
   "LONG_TERM_CARE": {
     "MONTHLY_PAYOUT": {
       "TITLE": "Monthly Payout"
+      }
     }
   }
-
