@@ -1,5 +1,5 @@
 export const RegexConstants = {
-    OnlyAlpha: /^[a-zA-Z\s]*$/, // Only alpha values with space
+    OnlyAlpha: /^[a-zA-Z\s]{2,40}$/, // Only alpha values with space
     CharactersLimit: /\w{8,10}/, // Characters length should be 8 to 10
     OnlyNumeric: /[^0-9]/g, // Only numeric values
     OTP: /(?:[0-9])/,
