@@ -14,7 +14,8 @@ import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ROOT,
-    component: CreateAccountComponent
+    pathMatch: 'full',
+    redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT
   },
   {
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT,
