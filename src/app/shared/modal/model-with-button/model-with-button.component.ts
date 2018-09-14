@@ -17,13 +17,8 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() forgotPassword: any;
-  @Input() ButtonTitle:any;
-  
- 
+  @Input() ButtonTitle: any;
  @Output() selectNationalityError = new EventEmitter();
- 
- 
-
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -41,7 +36,7 @@ export class ModelWithButtonComponent implements OnInit {
     this.activeModal.dismiss('Cross click');
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
     }
-   selectNationalityHomepage(){
+   selectNationalityHomepage() {
      this.selectNationalityError.emit(null);
     }
   }

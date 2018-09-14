@@ -159,4 +159,23 @@ export class SignUpApiService {
     const payload = this.verifyEmailBodyRequest(verifyCode);
     return this.apiService.verifyEmail(payload);
   }
+
+  /**
+   * verify email.
+   * @param verifyCode - confirmation token.
+   */
+  requestPassword(data) {
+    const payload = this.setRequestPasswordPayload(data);
+    return this.apiService.requestForgotPasswordLink(payload);
+  }
+
+  /**
+   * Payload for forgot password request .
+   */
+  setRequestPasswordPayload(data) {
+    return {
+        email: data
+    };
+  }
+
 }

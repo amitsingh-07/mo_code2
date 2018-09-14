@@ -11,7 +11,7 @@ export const PORTFOLIO_ROUTES = {
   PORTFOLIO_RECOMMENDATION: 'portfolio-recommendation',
   WHATS_THE_RISK: 'whats-the-risk',
   FUND_DETAILS: 'fund-details',
-  SELECT_NATIONALITY:'select-nationality'
+  SELECT_NATIONALITY: 'select-nationality'
 };
 
 export const PORTFOLIO_ROUTE_PATHS = {
