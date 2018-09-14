@@ -15,15 +15,14 @@ import { DirectService } from '../../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
-  defaultEmployee = 'Salaried';
+  defaultEmployee;
   categorySub: any;
   @ViewChild('ocpDisabilityFormSlider') ocpDisabilityFormSlider: NouisliderComponent;
   ocpDisabilityForm: FormGroup;
   formValues: any;
-  employmentType = 'Salaried';
-  employmentTypeList = ['Salaried', 'Self-employed'];
-  duration = 'Till 55';
-  durationValues = ['Till 55', 'Till 60', 'Till 65'];
+  employmentTypeList;
+  duration;
+  durationValues;
   coverageMax = 75;
   coveragePercent = 75;
 
@@ -46,13 +45,19 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
     private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+    this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
+    this.defaultEmployee = this.employmentTypeList[0];
+    this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
+    this.duration = this.durationValues[0];
+    });
   }
 
   ngOnInit() {
     this.directService.setProdCategoryIndex(2);
     this.formValues = this.directService.getOcpDisabilityForm();
     if (this.formValues.employmentType !== undefined ) {
-      this.selectEmploymentType(this.formValues.employmentType);
+      this.selectEmployeeType(this.formValues.employmentType, true);
     }
     if (this.formValues.duration !== undefined ) {
       this.selectDuration(this.formValues.duration);
@@ -80,10 +85,6 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
     this.ocpDisabilityFormSlider.writeValue(this.coveragePercent);
   }
 
-  selectEmploymentType(selectedEmploymentType) {
-    this.employmentType = selectedEmploymentType;
-  }
-
   selectDuration(selectedDuration) {
     this.duration = selectedDuration;
   }
@@ -108,7 +109,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string += '$' + this.employmentType + ', ';
+    sum_string +=  this.defaultEmployee + ', ';
     sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value + ', ';
     sum_string += this.duration;
     return sum_string;
@@ -126,8 +127,9 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.employmentType = this.employmentType;
+    form.value.employmentType = this.selectEmployeeType;
     form.value.duration = this.duration;
+    form.value.percentageCoverage = this.coveragePercent;
     this.directService.setOcpDisabilityForm(form.value);
     return true;
   }
