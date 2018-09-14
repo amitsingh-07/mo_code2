@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
+import { CtyptoService} from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
@@ -21,7 +22,8 @@ export class SignUpApiService {
                 private signUpService: SignUpService,
                 private guideMeService: GuideMeService,
                 private selectedPlansService: SelectedPlansService,
-                public datepipe: DatePipe
+                public datepipe: DatePipe,
+                public ctyptoService: CtyptoService
                ) {
     }
 
@@ -101,7 +103,7 @@ export class SignUpApiService {
     const resCode = this.signUpService.getResetCode();
     return {
         customerRef: custRef,
-        password: pwd,
+        password: this.ctyptoService.encrypt(pwd),
         callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
         resetType: 'New',
         resetCode: resCode
