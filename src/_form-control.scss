@@ -734,7 +734,7 @@
       width: 20px;
       cursor: pointer;
       @include allmobiles{
-        background: url("./assets/images/tooltip-icon-white.svg") no-repeat;
+        background: url("./assets/images/tooltip-icon-white.svg") no-repeat !important;
         }
       }
     }

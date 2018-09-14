@@ -1,5 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,7 +10,8 @@ import { DirectService } from './../direct.service';
 @Component({
   selector: 'app-product-info',
   templateUrl: './product-info.component.html',
-  styleUrls: ['./product-info.component.scss']
+  styleUrls: ['./product-info.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductInfoComponent implements OnInit {
   modalRef: NgbModalRef;
@@ -30,6 +30,8 @@ export class ProductInfoComponent implements OnInit {
   productCategorySelectedLogo: string;
   productCategorySelectedIndex: number;
 
+  selectedCategoryId = 0;
+
   minProdSearch: string;
 
   @HostListener('window:resize', ['$event'])
@@ -46,9 +48,10 @@ export class ProductInfoComponent implements OnInit {
     }
   }
 
-  constructor(public headerService: HeaderService, private directService: DirectService,
-              private router: Router, private route: ActivatedRoute, private modal: NgbModal,
-              private translate: TranslateService, private directApiService: DirectApiService) {
+  constructor(
+    public headerService: HeaderService, private directService: DirectService,
+    private modal: NgbModal, private translate: TranslateService,
+    private directApiService: DirectApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       if (this.innerWidth < this.mobileThreshold) {
@@ -72,13 +75,13 @@ export class ProductInfoComponent implements OnInit {
     });
     this.directService.prodSearchInfoData.subscribe((data) => {
       if (data !== '') {
-          this.minProdSearch = data;
-          if (this.initLoad === true) { // Initial Load Case
-            this.initLoad = false;
-          }
-          this.toggleVisibility = false;
-          this.toggleBackdropVisibility = false;
-          this.directService.setModalFreeze(false);
+        this.minProdSearch = data;
+        if (this.initLoad === true) { // Initial Load Case
+          this.initLoad = false;
+        }
+        this.toggleVisibility = false;
+        this.toggleBackdropVisibility = false;
+        this.directService.setModalFreeze(false);
       }
     });
     this.directService.modalToolTipTrigger.subscribe((data) => {
@@ -90,7 +93,7 @@ export class ProductInfoComponent implements OnInit {
 
   // Initial Display setup
   initDisplaySetup() {
-    if ( this.innerWidth < this.mobileThreshold && this.initLoad) {
+    if (this.innerWidth < this.mobileThreshold && this.initLoad) {
       this.toggleBackdropVisibility = true;
       this.toggleFormVisibility = false;
     }
@@ -135,15 +138,15 @@ export class ProductInfoComponent implements OnInit {
         category.active = true;
         this.productCategorySelected = category.prodCatName;
         this.directService.setProductCategory(category.prodCatName);
-        this.router.navigate([`${category.prodLink}`], { relativeTo: this.route });
+        this.selectedCategoryId = index;
       }
     });
   }
 
-  selectProductCategory(data) {
+  selectProductCategory(data, index) {
     this.productCategorySelected = data.prodCatName;
     this.directService.setProductCategory(data.prodCatName);
-    this.router.navigate([`${data.prodLink}`], { relativeTo: this.route });
+    this.selectedCategoryId = index;
   }
 
   openToolTipModal(data) {

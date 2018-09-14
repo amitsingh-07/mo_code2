@@ -12,7 +12,6 @@ import { OcpDisabilityFormComponent } from './product-info/ocp-disability-form/o
 const routes: Routes = [
   { path: '', component: DirectComponent,
     children: [
-      { path: '', redirectTo: 'life-protection', pathMatch: 'full' },
       { path: 'life-protection', component: LifeProtectionFormComponent},
       { path: 'critical-illness', component: CriticalIllnessFormComponent},
       { path: 'education', component: EducationFormComponent},
