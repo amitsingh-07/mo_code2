@@ -8,8 +8,8 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
-import { CurrencyInputDirective } from '../shared/directives/currency-input.directive';
 import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
+import { SharedModule } from '../shared/shared.module';
 import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
 import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
@@ -47,6 +47,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     CommonModule, GuideMeRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
     NouisliderModule,
+    SharedModule,
     FormsModule,
     TranslateModule.forRoot({
       loader: {
@@ -65,7 +66,6 @@ export function createTranslateLoader(http: HttpClient) {
     ExpensesComponent,
     MyAssetsComponent,
     LiabilitiesComponent,
-    CurrencyInputDirective,
     FinAssessmentComponent,
     InsureAssessmentComponent,
     LifeProtectionComponent,
@@ -87,4 +87,3 @@ export function createTranslateLoader(http: HttpClient) {
   entryComponents: [ProductDetailComponent]
 })
 export class GuideMeModule { }
-

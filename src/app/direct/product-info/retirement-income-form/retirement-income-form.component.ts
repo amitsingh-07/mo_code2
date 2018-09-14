@@ -17,14 +17,14 @@ export class RetirementIncomeFormComponent implements OnInit {
   retirementIncomeForm: FormGroup;
   categorySub: any;
   formValues: any;
-  payoutFeature = 'Guaranteed';
-  payoutDuration = 'Lifetime';
+  payoutFeature;
+  payoutDuration;
   retirementIncomeList = Array(16).fill(500).map((x, i) => x += i * 100);
   selectedRetirementIncome = 500;
   payoutAgeList = Array(16).fill(55).map((x, i) => x += i * 1);
   selectedPayoutAge = 55;
-  payoutDurationList = [ 'Lifetime', 'Limited Years' ];
-  payoutFeatureList = [ 'Guaranteed', 'Variable', 'Increasing'];
+  payoutDurationList;
+  payoutFeatureList;
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -32,6 +32,12 @@ export class RetirementIncomeFormComponent implements OnInit {
     private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+    this.payoutDurationList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_DURATION_LIST');
+    this.payoutDuration = this.payoutDurationList[0];
+    this.payoutFeatureList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_FEATURE_LIST');
+    this.payoutFeature = this.payoutFeatureList[0];
+    });
     }
 
     ngOnInit() {
@@ -86,9 +92,8 @@ export class RetirementIncomeFormComponent implements OnInit {
 
   showPayoutFeatureModal() {
     this.directService.showToolTipModal(
-      'Payout Feature',
-      // tslint:disable-next-line:max-line-length
-      'In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you.'
+      this.translate.instant('RETIREMENT_INCOME.TOOLTIP.TITLE'),
+      this.translate.instant('RETIREMENT_INCOME.TOOLTIP.MESSAGE')
       );
   }
 
