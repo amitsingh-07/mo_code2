@@ -1,0 +1,143 @@
+<form name="retirementIncomeForm" id="retirementIncomeForm" [formGroup]="retirementIncomeForm" class="flex-row ">
+  <div class="form-group direct-form">
+    <div class="flex-row">
+      <div class="flex-col-3">
+          <label for="name" id="getStrdLbl1">{{ 'PROFILE.GENDER.TITLE' | translate}}</label>
+        </div>
+      <div class="flex-col-8 direct-form-grp">
+        <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+          <div class="flex-row mb0">
+            <div >
+              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
+                <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
+              </label>
+              </div>
+            <div>
+              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
+                <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
+              </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrdLbl4">{{ 'PROFILE.DOB.TITLE' | translate}}</label>
+        </div>
+      <div #usrFrmDp class="flex-col-8 direct-form-grp">
+        <div class="datepicker-control">
+          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !retirementIncomeForm.get('dob').valid && !retirementIncomeForm.get('dob').pristine}">
+            <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
+            name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            <div class="input-group-append">
+              <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                <img class="date-picker-image--valid" src="./assets/images/calendar-normal.svg"/>
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE'  | translate}}</label>
+        </div>
+      <div class="flex-col-8 direct-form-grp">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
+              <div class="flex-row mb0">
+                <div>
+                  <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl2">
+                    <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt1"/> {{ 'COMMON.LBL_NONSMOKER' | translate}}
+                  </label>
+                  </div>
+                <div>
+                  <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl3">
+                    <input ngbButton type="radio" value="smoker" id="getStrdInpt2"/> {{ 'COMMON.LBL_SMOKER' | translate}}
+                  </label>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div> 
+  </div>
+  <div class="form-group direct-form">
+      <div class="flex-row">
+          <div class="flex-col-3">
+            <label for="name" id="getStrLbl6">{{ 'Retirement Income' | translate}}</label>
+          </div>
+          <div class="flex-col-8 direct-form-grp">
+            <div class="dropdown-control">
+                <div ngbDropdown id="coverageAmtDropDown">
+                  <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                    <span class="coverage_amt">{{selectedRetirementIncome | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button type="button" class="dropdown-item" *ngFor="let selectedRetirementIncome of retirementIncomeList" (click)="selectRetirementIncome(selectedRetirementIncome)">
+                    {{selectedRetirementIncome | currency:'USD':'symbol-narrow':'1.0-2'}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+          </div> 
+        </div>
+        <div class="flex-row">
+            <div class="flex-col-3">
+              <label for="name" id="getStrLbl6">{{ 'Payout Start Age' | translate}}</label>
+            </div>
+            <div class="flex-col-8 direct-form-grp">
+              <div class="dropdown-control">
+                  <div ngbDropdown id="coverageAmtDropDown">
+                    <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                      <span class="coverage_amt">{{selectedPayoutAge}}</span>
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button type="button" class="dropdown-item" *ngFor="let selectedPayoutAge of payoutAgeList" (click)="selectPayoutAge(selectedPayoutAge)">
+                      {{selectedPayoutAge}}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div> 
+          </div>
+    <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrLbl7">{{ 'Payout Duration' | translate}}</label>
+      </div>
+      <div class="flex-col-8 direct-form-grp">
+        <div class="dropdown-control">
+            <div ngbDropdown id="durationDropDown">
+              <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                <span class="duration">{{payoutDuration}}</span>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                <button type="button" class="dropdown-item" *ngFor="let payoutDuration of payoutDurationList" (click)="selectPayoutDuration(payoutDuration)">
+                  {{payoutDuration}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row">
+          <div class="flex-col-3">
+            <label for="name" id="getStrLbl7">{{ 'Payout Feature' | translate}}</label>
+            <div class="tooltip-icon" (click)="showPayoutFeatureModal()"></div>
+          </div>
+          <div class="flex-col-8 direct-form-grp">
+            <div class="dropdown-control">
+                <div ngbDropdown id="durationDropDown">
+                  <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                    <span class="duration">{{payoutFeature}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                    <button type="button" class="dropdown-item" *ngFor="let payoutFeature of payoutFeatureList" (click)="selectPayoutFeature(payoutFeature)">
+                      {{payoutFeature}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>  
+</form>

@@ -132,14 +132,9 @@ export class CreateAccountComponent implements OnInit {
   createAccount() {
     this.signUpApiService.createAccount().subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
-        this.signUpService.otpRequested = true;
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         sessionStorage.setItem(APP_SESSION_ID_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-      } else if (data.responseMessage.responseCode === 5006) {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
-        return false;
       }
     });
   }

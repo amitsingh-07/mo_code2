@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
-import { IPlan, ISetPassword, ISignUp, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 
@@ -41,7 +41,7 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const dob = this.datepipe.transform(getGuideMeFormData.customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
+    const dob = this.datepipe.transform(new Date(getGuideMeFormData.customDob), 'yyyy-MM-dd').toString() + 'T00:00:00';
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
@@ -71,7 +71,8 @@ export class SignUpApiService {
   }
 
   /**
-   * form create user account request.
+   * form request new OTP request.
+   * @returns IVerifyRequestOTP - VerifyRequest
    */
   requestNewOTPBodyRequest(): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
@@ -81,7 +82,7 @@ export class SignUpApiService {
   }
 
   /**
-   * form create user account request.
+   * form verify OTP request.
    */
   verifyOTPBodyRequest(code): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
@@ -92,7 +93,7 @@ export class SignUpApiService {
   }
 
   /**
-   * form create user account request.
+   * form set password request.
    */
   setPasswordBodyRequest(pwd: string): ISetPassword {
     const custRef = this.signUpService.getCustomerRef();
@@ -107,6 +108,15 @@ export class SignUpApiService {
   }
 
   /**
+   * form verify email request.
+   */
+  verifyEmailBodyRequest(verifyCode): IVerifyCode {
+    return {
+        code: verifyCode
+    };
+  }
+
+  /**
    * create user account.
    * @param code - verification code.
    */
@@ -116,8 +126,7 @@ export class SignUpApiService {
   }
 
   /**
-   * verify one time password.
-   * @param code - one time password.
+   * request new one time password.
    */
   requestNewOTP() {
     const payload = this.requestNewOTPBodyRequest();
@@ -126,7 +135,7 @@ export class SignUpApiService {
 
   /**
    * verify one time password.
-   * @param code - one time password.
+   * @param otp - one time password.
    */
   verifyOTP(otp) {
     const payload = this.verifyOTPBodyRequest(otp);
@@ -134,8 +143,8 @@ export class SignUpApiService {
   }
 
   /**
-   * verify one time password.
-   * @param code - one time password.
+   * set password.
+   * @param pwd - password.
    */
   setPassword(pwd) {
     const payload = this.setPasswordBodyRequest(pwd);
@@ -144,9 +153,10 @@ export class SignUpApiService {
 
   /**
    * verify email.
-   * @param code - verification code.
+   * @param verifyCode - confirmation token.
    */
-  verifyEmail(verificationCode) {
-    return this.apiService.verifyEmail(verificationCode);
+  verifyEmail(verifyCode) {
+    const payload = this.verifyEmailBodyRequest(verifyCode);
+    return this.apiService.verifyEmail(payload);
   }
 }
