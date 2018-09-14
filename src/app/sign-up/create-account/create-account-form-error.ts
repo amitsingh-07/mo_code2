@@ -55,6 +55,22 @@ export class CreateAccountFormError {
                         errorTitle: '',
                         errorMessage: 'Please agree to MoneyOwl\'s Terms of Use and Privacy Policy'
                 }
+        },
+        loginUsername: {
+                required : {
+                        errorTitle: 'Mobile No. or Email Address required',
+                        errorMessage: 'Please enter your Mobile No. or Email Address'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Mobile No. or Email Address',
+                        errorMessage: 'Please enter your valid username'
+                }
+        },
+        loginPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your Password'
+                }
         }
     };
 }

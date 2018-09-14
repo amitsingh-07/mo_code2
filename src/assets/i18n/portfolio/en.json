@@ -210,10 +210,10 @@
     "SELECT_INVESTMENT_HEAD": "Select Investment Period",
     "SELECT_INVESTMENT_DESC": "Drag the slider to select the number of years you want to invest for.",
     "I_WANT_INVEST_LBL": "I want to invest for",
-    "RANGE_1_3_DESC": "Title 1",
-    "RANGE_3_7_DESC": "Title 2",
-    "RANGE_7_14_DESC": "Title 3",
-    "RANGE_14_DESC": "Title 4"
+    "RANGE_1_3_DESC": "<p>A very short investment period is not recommended.</p><p>Markets can be highly volatile in the short term. In the event of a market decline, your investments may not have sufficient time to recover.</p>",
+    "RANGE_3_7_DESC": "<p>A relatively short investment period calls for a less volatile portfolio.</p><p>You are more likely to be affected by a market decline as there is a higher chance that your investments are unable to recover in the short term.</p>",
+    "RANGE_7_14_DESC": "<p>A moderately long investment period allows you to invest in a moderately volatile portfolio.</p><p>In the event of a market decline, your investments have more time and a higher chance to recover.</p>",
+    "RANGE_14_DESC": "<p>A long investment period allows you to invest in a more volatile portfolio.</p><p>You are less affected by market declines because you are able to hold on to your investment while the market recovers.</p>"
   },
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
@@ -237,8 +237,8 @@
     "LOANS_LBL": "Total Loans",
     "LOANS_SUB_LBL": "(E.g.Car,Property)",
     "INVESTMENT_LBL": "My Investment Amount ",
-    "INITIAL_DEPOSIT_LBL": "Initial Deposit",
-    "MONTHLY_DEPOSIT_LBL": "Monthly Deposit",
+    "INITIAL_DEPOSIT_LBL": "One-Time Investment",
+    "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
     "MY_FINANCIALS_LBL": "My Financials",
     "modalData": {
@@ -281,6 +281,7 @@
   
   },
   "RISK_PROFILE":{
+    "TITLE": "Portfolio Recommendation",
     "BUTTON_TITLE": "View My Portfolio"
   }
 
