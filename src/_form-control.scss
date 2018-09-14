@@ -681,7 +681,12 @@
     }
   }
   .direct-form{
-    width:340px;
+    width:400px;
+
+    @include allmobiles {
+      width: auto;
+    }
+
     margin-bottom:0px;
     @include phablet{
       margin-left:auto;
@@ -701,7 +706,6 @@
       }
     }
     .flex-row{
-      max-width:340px;
       justify-content:space-between;
       align-items:center;
       @include allmobiles{
@@ -721,7 +725,6 @@
             transform:translateY(-5px);
           }
         @include minMobilemaxPhablet{
-            font-size:16px;
             color:$white-color;
           }
       }
@@ -736,6 +739,13 @@
       @include allmobiles{
         background: url("./assets/images/tooltip-icon-white.svg") no-repeat !important;
         }
+      }
+    }
+
+    .second-form {
+      margin-left: 81px;
+      @include allmobiles {
+        margin-left: 0px;
       }
     }
   }

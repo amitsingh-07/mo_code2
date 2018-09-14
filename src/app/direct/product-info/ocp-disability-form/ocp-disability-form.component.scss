@@ -6,6 +6,12 @@ app-ocp-disability-form {
 }
   nouislider {
     margin-right: 1rem !important;
+    .noUi-target {
+      @include allmobiles {
+        border-radius: 8px;
+        background: transparent;
+      }
+    }
   }
   .noUi-horizontal .noUi-tooltip {
       padding-right: 20px;
@@ -13,6 +19,9 @@ app-ocp-disability-form {
   .noUi-tooltip:after {
     content: '%';
     position: absolute !important;
+  }
+  .span--content-inline--underline {
+    font-size: 18px;
   }
   .fixed-tenure {
     font-family: $muli;

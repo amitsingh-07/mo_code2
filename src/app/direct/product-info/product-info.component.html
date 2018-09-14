@@ -31,6 +31,7 @@
     <div>
       <app-life-protection-form *ngIf="selectedCategoryId == 0"></app-life-protection-form>
       <app-critical-illness-form *ngIf="selectedCategoryId == 1"></app-critical-illness-form>
+      <app-ocp-disability-form *ngIf="selectedCategoryId == 2"></app-ocp-disability-form>
       <app-hospital-plan-form *ngIf="selectedCategoryId == 3"></app-hospital-plan-form>
       <app-long-term-care-form *ngIf="selectedCategoryId == 4"></app-long-term-care-form>
       <app-education-form *ngIf="selectedCategoryId == 5"></app-education-form>
