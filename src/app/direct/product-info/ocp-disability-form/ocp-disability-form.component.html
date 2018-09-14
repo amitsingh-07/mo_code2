@@ -63,7 +63,7 @@
      </div>
      <div class="flex-row">
         <div class="flex-col-3">
-           <label for="name" id="getStrLbl7">{{ 'Employment Type' | translate}}</label>
+           <label for="name" id="getStrLbl7">{{ 'OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE' | translate}}</label>
         </div>
         <div class="flex-col-8 direct-form-grp">
            <div class="dropdown-control">
@@ -84,7 +84,7 @@
   <div class="form-group direct-form second-form">
      <div class="flex-row">
         <div class="flex-col-3">
-           <label for="name" id="getStrLbl6">{{ 'Monthly Salary' | translate}}</label>
+           <label for="name" id="getStrLbl6">{{ 'OCCUPATIONAL_DISABILITY.MONTHLY_SALARY' | translate}}</label>
         </div>
         <div class="flex-col-8 direct-form-grp">
            <div class="form-control">
@@ -95,8 +95,7 @@
      </div>
      <div class="flex-row">
         <div class="flex-col-8">
-           <label for="name" id="getStrLbl6">{{ 'Cover' | translate}}</label>&nbsp;<span class="span--content-inline--underline">{{coveragePercent}}%</span><label>&nbsp;Of</label><p><label>{{'Monthly Salary' | translate}}</label></p>
-        </div>
+                      <label for="name" id="getStrLbl6">{{ 'OCCUPATIONAL_DISABILITY.COVER' | translate}}</label>&nbsp;<span class="span--content-inline--underline">{{coveragePercent}}%</span><label>&nbsp;{{'OCCUPATIONAL_DISABILITY.OF'  | translate }}</label><p><label>{{'OCCUPATIONAL_DISABILITY.MONTHLY_SALARY' | translate}}</label></p></div>
      </div>
      <nouislider #ocpDisabilityFormSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]='coverageMax'
      [step]="1" [tooltips]="[ true ]"></nouislider>
@@ -107,7 +106,7 @@
      </div>
      <div class="flex-row">
         <div class="flex-col-3">
-           <label for="name" id="getStrLbl7">{{ 'LIFE_PROTECTION.DURATION.TITLE' | translate}}</label>
+           <label for="name" id="getStrLbl7">{{ 'OCCUPATIONAL_DISABILITY.DURATION' | translate}}</label>
         </div>
         <div class="flex-col-8 direct-form-grp">
            <div class="dropdown-control">
