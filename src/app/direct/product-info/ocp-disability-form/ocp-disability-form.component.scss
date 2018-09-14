@@ -1,0 +1,32 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+app-ocp-disability-form {
+  .dropdown-control .btn-dropdown:after {
+    top: 24px;
+}
+  nouislider {
+    margin-right: 1rem !important;
+  }
+  .noUi-horizontal .noUi-tooltip {
+      padding-right: 20px;
+  }
+  .noUi-tooltip:after {
+    content: '%';
+    position: absolute !important;
+  }
+  .fixed-tenure {
+    font-family: $muli;
+    font-weight: normal;
+    margin-top: -10px;
+    color: #2d8288;
+    font-size: 16px;
+  }
+  .dash{
+    border: 0 none;
+    border-top: 2px dashed #c2d9ec;
+    background: none;
+    height:0;
+    margin-top: 24px;
+    margin-bottom: 20px;
+  } 
+}

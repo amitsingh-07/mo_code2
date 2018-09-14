@@ -5,6 +5,7 @@ import { TranslateLoader } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { AppModule } from './../app.module';
+import { CurrencyInputDirective } from './directives/currency-input.directive';
 
 export function HttpLoaderFactory(http: HttpClient, moduleName: string) {
   return new MultiTranslateHttpLoader(
@@ -19,6 +20,11 @@ export function HttpLoaderFactory(http: HttpClient, moduleName: string) {
   imports: [
     CommonModule
   ],
-  declarations: []
+  exports: [
+    CurrencyInputDirective
+  ],
+  declarations: [
+    CurrencyInputDirective
+  ]
 })
 export class SharedModule { }
