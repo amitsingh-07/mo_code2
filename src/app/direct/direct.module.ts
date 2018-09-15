@@ -1,3 +1,4 @@
+
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -6,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from './../shared/shared.module';
 
+import { NavbarService } from './../shared/navbar/navbar.service';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectRoutingModule } from './direct-routing.module';
 import { DirectComponent } from './direct.component';
@@ -49,4 +51,8 @@ export function createTranslateLoader(http: HttpClient) {
     EducationFormComponent, LongTermCareFormComponent, HospitalPlanFormComponent, RetirementIncomeFormComponent],
   providers: [CurrencyPipe]
 })
-export class DirectModule { }
+export class DirectModule {
+  constructor(public navbarService: NavbarService) {
+    this.navbarService.setNavbarVisibility(false);
+  }
+}

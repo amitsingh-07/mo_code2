@@ -7,6 +7,7 @@ export class NavbarService {
 
   private navbarVisibility = new BehaviorSubject(true);
 
+  isNavbarCollapsed = true;
   currentNavbarVisibility = this.navbarVisibility.asObservable();
 
   constructor() {}

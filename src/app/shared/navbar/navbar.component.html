@@ -1,12 +1,40 @@
-<nav *ngIf="showNavbar" class="navbar fixed-top hidden-sm-md">
-    <div class="navbar__logo--primary">
-    </div> 
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <span class="navbar__logo" routerLink="/"></span>
-        </li>
-        <li class="nav-item">
-            <span class="navbar__logo__subtitle"></span>
-        </li>
-    </ul>
+<nav *ngIf="showNavbar" class="navbar fixed-top center">
+    <div class="navbar-wrapper space-between">
+        <div class="navbar-group space-between">
+            <div class="navbar-brand">
+                <div class="navbar__logo--primary" routerLink="/">
+                    </div>
+                </div>
+            <button class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar__menu-icon"></span>
+                </button>
+            </div>
+        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+            <ul class="navbar-nav space-between">
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" id="id01" href="#" ngbDropdownToggle>Files</a>
+                    <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
+                        <a class="dropdown-item" href="#">HTML</a>
+                        <a class="dropdown-item" href="#">TS</a>
+                        <a class="dropdown-item" href="#">JS</a>
+                    </div>
+                </li>
+                <li><a>Compare</a></li>
+                <li><a>Products</a></li>
+                <li><a>Learn</a></li>
+                <li><a>Help</a></li>
+                <li><a>About Us</a></li>
+                <li>
+                    <div class="navbar-nav">
+                        <div class="navbar-search">
+                            <img src="../../../assets/images/search-icon.svg"/>
+                        </div>            
+                    </div>
+                    </li>
+                <li>
+                    <a class="link-login">Login</a>
+                </li>
+            </ul> 
+        </div>
+    </div>
 </nav>
