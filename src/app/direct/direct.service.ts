@@ -6,8 +6,8 @@ import { PercentageInputDirective } from './../shared/directives/percentage-inpu
 import { DirectFormData } from './direct-form-data';
 import { FormError } from './product-info/form-error';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
-import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
+import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 
 @Injectable({
   providedIn: 'root'

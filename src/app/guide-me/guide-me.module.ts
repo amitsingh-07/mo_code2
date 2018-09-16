@@ -87,13 +87,9 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [CurrencyPipe, CustomCurrencyPipe],
   entryComponents: [ProductDetailComponent]
 })
-<<<<<<< HEAD
 export class GuideMeModule {
 
   constructor(public navbarService: NavbarService) {
     this.navbarService.setNavbarVisibility(false);
   }
 }
-=======
-export class GuideMeModule { }
->>>>>>> 21f61738054ebda4d591a364ca0930d362443b1a
