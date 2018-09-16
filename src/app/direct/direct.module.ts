@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NouisliderModule } from 'ng2-nouislider';
 import { SharedModule } from './../shared/shared.module';
 
 import { NavbarService } from './../shared/navbar/navbar.service';
@@ -20,6 +21,7 @@ import { EducationFormComponent } from './product-info/education-form/education-
 import { HospitalPlanFormComponent } from './product-info/hospital-plan-form/hospital-plan-form.component';
 import { LifeProtectionFormComponent } from './product-info/life-protection-form/life-protection-form.component';
 import { LongTermCareFormComponent } from './product-info/long-term-care-form/long-term-care-form.component';
+import { OcpDisabilityFormComponent } from './product-info/ocp-disability-form/ocp-disability-form.component';
 import { RetirementIncomeFormComponent } from './product-info/retirement-income-form/retirement-income-form.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -35,6 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NouisliderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -42,13 +45,15 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    DirectRoutingModule, NgbModule.forRoot()
+    DirectRoutingModule, NgbModule.forRoot(),
+    SharedModule
   ],
   declarations: [
     DirectResultsComponent, DirectComponent,
     ProductInfoComponent, ProductCategoryComponent,
     LifeProtectionFormComponent, CriticalIllnessFormComponent,
-    EducationFormComponent, LongTermCareFormComponent, HospitalPlanFormComponent, RetirementIncomeFormComponent],
+    EducationFormComponent, LongTermCareFormComponent,
+    HospitalPlanFormComponent, RetirementIncomeFormComponent, OcpDisabilityFormComponent],
   providers: [CurrencyPipe]
 })
 export class DirectModule {

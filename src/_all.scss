@@ -182,6 +182,9 @@ body {
   }
 
   .span--content-inline--underline {
+    @include allmobiles{
+      color: #ffffff;
+    }
     color: #04a6a7;
     text-decoration: underline;
     font-family: $muli-bold;
