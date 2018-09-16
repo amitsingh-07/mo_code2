@@ -12,7 +12,7 @@
   },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
-    "MOBILE_TITLE": "Coverage Type"
+    "MOBILE_TITLE": "Protection Type"
   },
   "PROFILE": {
     "TITLE": "Your Profile",
@@ -64,7 +64,28 @@
     "MONTHLY_PAYOUT": {
       "TITLE": "Monthly Payout"
       }
-    }
+    },
+    "OCCUPATIONAL_DISABILITY": {
+      "EMPLOYMENT_TYPE":"Employment Type",
+      "MONTHLY_SALARY":"Monthly Salary",
+      "DURATION":"Duration",
+      "COVER": "Cover",
+      "OF": "Of",
+      "EMPLOYMENT_TYPE_LIST": ["Salaried", "Self-employed"],
+      "DURATION_VALUES": ["Till 55", "Till 60", "Till 65"]
+    },
+    "RETIREMENT_INCOME": {
+      "INCOME": "Retirement Income",
+      "PAYOUT_AGE": "Payout Start Age",
+      "PAYOUT_DURATION": "Payout Duration",
+      "PAYOUT_FEATURE": "Payout Feature",
+      "PAYOUT_DURATION_LIST": [ "Lifetime", "Limited Years" ],
+      "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable", "Increasing"],
+      "TOOLTIP": {
+          "TITLE": "Payout Feature",
+          "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
+      }
+      }
   }
 
 

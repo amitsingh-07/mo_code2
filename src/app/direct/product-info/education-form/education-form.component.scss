@@ -1,60 +1,79 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
-    .form-group{ 
-        &.direct-form{
-            width:400px;
-            border: 1px solid $form-title-backgrnd-color; 
-            border-radius: 6px;
-        }
-        &:last-child{
-            margin-left: 18px;
-        }
+.form-group {
+  &.direct-form {
+    border: 1px solid $form-title-backgrnd-color;
+    border-radius: 6px;
+  }
+
+  &:last-child {
+    margin-left: 18px;
+  }
+}
+
+.educationForm-title {
+  color: $teal-color;
+  background: $form-title-backgrnd-color;
+  font-size: 16px;
+  font-family: $muli-bold;
+  padding: 13px 20px;
+  border-radius: 6px 6px 0 0;
+}
+
+.form-group {
+  .frm-data {
+    padding-top: 20px;
+    @include allmobiles {
+      padding-top: 22px !important;
+      border: 1px solid #009A99;
+      border-radius: 0px 0px 6px 6px;
     }
-    .educationForm-title{
-        color:$teal-color;
-        background: $form-title-backgrnd-color;
-        font-size: 16px;
-        font-family: $muli-bold;
-        padding: 13px 20px; 
-        margin-bottom: 22px;
+  }
+
+  .flex-row {
+    margin-bottom: 17px;
+  }
+}
+
+fieldset {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+
+    label {
+      cursor: not-allowed;
     }
-    .form-group {
-        .flex-row {
-            margin-bottom: 17px;
-        }
+
+    input {
+      cursor: not-allowed;
     }
-    fieldset {
-        &:disabled {
-          cursor: not-allowed;  
-          background: rgba(255,255,255,.5);
-          opacity: 0.2;
-          label{
-            cursor: not-allowed;  
-          }
-          input{
-            cursor: not-allowed;   
-          }
-          button{
-            cursor: not-allowed;  
-            img{
-                cursor: not-allowed;   
-            } 
-          }
-        }
+
+    button {
+      cursor: not-allowed;
+
+      img {
+        cursor: not-allowed;
       }
-    @include allmobiles{
-        .form-group{ 
-            &.direct-form{
-                border: none;
-            }
-            &:last-child{
-                margin-left: 0px;
-            }
-        }
-        .educationForm-title{
-            color:$white-color;
-            background: $form-title-mob-backgrnd-color;
-            font-size: 22px;
-        }
     }
+  }
+}
+
+@include allmobiles {
+  .form-group {
+    &.direct-form {
+      border: none;
+    }
+
+    &:last-child {
+      margin-left: 0px;
+    }
+  }
+
+  .educationForm-title {
+    font-family: $muli-bold;
+    color: $white-color;
+    background: $form-title-mob-backgrnd-color;
+    font-size: 16px;
+  }
+}
