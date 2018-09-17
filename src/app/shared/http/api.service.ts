@@ -356,9 +356,9 @@ export class ApiService {
       );
   }
   getNationalityList() {
-    const url = '../assets/mock-data/nationalityList.json';
+    //const url = '../assets/mock-data/nationalityList.json';
     // tslint:disable-next-line
-    //const url='https://bfa.ntuclink.cloud/invest/countrylist'
+    const url='https://bfa.ntuclink.cloud/invest/countrylist'
     
   //const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
     //return this.http.get(url);

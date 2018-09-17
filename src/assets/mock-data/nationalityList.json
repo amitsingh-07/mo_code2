@@ -2,7 +2,7 @@
                 "objectList": [{
                                                 "country": "ABKHAZIA",
                                                 "nationality": "ABKHAZIAN",
-                                                "isBlocked": true,
+                                                "blocked": true,
                                                 "countryCode": "111",
                                                 "phoneCode": "21",
                                                 "currency": "$"
@@ -10,7 +10,7 @@
                                 {
                                                 "country": "AFGHANISTAN",
                                                 "nationality": "AFGHANI",
-                                                "isBlocked": true,
+                                                "blocked": true,
                                                 "countryCode": "116",
                                                 "phoneCode": "67",
                                                 "currency": "$"
@@ -18,7 +18,7 @@
                                 {
                                                 "country": "ALAND ISLANDS",
                                                 "nationality": "ALANDIC",
-                                                "isBlocked": false,
+                                                "blocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",
                                                 "currency": "$"
@@ -27,7 +27,7 @@
                                 {
                                                 "country": "Singapore",
                                                 "nationality": "SINGAPOREAN",
-                                                "isBlocked": false,
+                                                "blocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",
                                                 "currency": "$"
@@ -35,7 +35,7 @@
                                 {
                                                 "country": "US",
                                                 "nationality": "AMERICAN",
-                                                "isBlocked": false,
+                                                "blocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",
                                                 "currency": "$"

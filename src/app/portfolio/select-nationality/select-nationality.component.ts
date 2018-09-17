@@ -1,20 +1,23 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PortfolioService } from '../portfolio.service';
-import { HeaderService } from '../../shared/header/header.service';
+
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+
 import { ANNOTATIONS } from '@angular/core/src/util/decorators';
 import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
+
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
-import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-//import { SelectNationality } from './select-nationality.interface';
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderService } from '../../shared/header/header.service';
 
 
 @Component({
@@ -31,7 +34,7 @@ export class SelectNationalityComponent implements OnInit {
   country: any;
   afterSelectedNationality = false;
   beforeSelectedNationality = true;
-  nationality = "select nationality";
+  nationality = 'select nationality';
   formValues: any;
   blocked: any;
   editPortfolio: string;
@@ -70,9 +73,7 @@ export class SelectNationalityComponent implements OnInit {
   }
   selectNationality(nationalitylist) {
     this.nationalitylist = nationalitylist;
-    console.log(nationalitylist) + "nationlity list";
     this.blocked = this.nationalitylist.blocked;
-    console.log(this.blocked + "blocked country");
     this.afterSelectedNationality = true;
     this.beforeSelectedNationality = false;
     this.Question = false;
@@ -95,11 +96,10 @@ export class SelectNationalityComponent implements OnInit {
     this.portfolioService.setNationality(this.selectNationalityForm.value)
     return true;
   }
-
-  goToNext(form) {
+ goToNext(form) {
     if (this.nationalitylist.blocked == true) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = "Unable To Proceed";
+      ref.componentInstance.errorTitle  = 'Unable To Proceed';
       ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
       ref.componentInstance.ButtonTitle = "Return To Homepage";
       ref.componentInstance.selectNationalityError = this.errorButtonNavigation();
@@ -121,16 +121,13 @@ export class SelectNationalityComponent implements OnInit {
         selectNationalitySig: new FormControl(this.selectNationalityFormValues.selectNationalitySig, Validators.required)
       });
       if (this.save(form)) {
-        //this.portfolioService.setNationality(this.selectNationalityForm.value);
-
-        if (form.controls.selectNationalitySig.value == 'no') {
+      if (form.controls.selectNationalitySig.value == 'no') {
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-          ref.componentInstance.errorTitle = "Unable To Proceed";
+          ref.componentInstance.errorTitle = 'Unable To Proceed';
           ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
-          ref.componentInstance.ButtonTitle = "Return To Homepage";
-
-        } else {
-          this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+          ref.componentInstance.ButtonTitle = 'Return To Homepage';
+     } else{
+     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
         }
       }
     }
@@ -142,27 +139,32 @@ export class SelectNationalityComponent implements OnInit {
         otherCoutryQuestionTwo: new FormControl(this.selectNationalityFormValues.otherCoutryQuestionTwo, Validators.required)
       });
       if (this.save(form)) {
-        //this.portfolioService.setNationality(this.selectNationalityForm.value);
-
-        if (form.controls.otherCoutryQuestionOne.value == 'no') {
+          if (form.controls.otherCoutryQuestionOne.value == 'yes' && form.controls.otherCoutryQuestionTwo.value == 'yes') {
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = 'Unable To Proceed';
+          ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
+          ref.componentInstance.ButtonTitle = "Return To Homepage";
+         }
+        else if (form.controls.otherCoutryQuestionOne.value == 'yes' && form.controls.otherCoutryQuestionTwo.value == 'no') {
           const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
           ref.componentInstance.errorTitle = "Unable To Proceed";
           ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
           ref.componentInstance.ButtonTitle = "Return To Homepage";
 
-        } else {
-          this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+        }
+        else if (form.controls.otherCoutryQuestionOne.value == 'no' && form.controls.otherCoutryQuestionTwo.value == 'yes') {
+     }
+        else {
+          console.log('xAXa');
         }
       }
 
     }
   }
-
-  errorButtonNavigation() {
+errorButtonNavigation() {
     this.activeModal.dismiss('Cross click');
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY]);
   }
-
 }
 
 
