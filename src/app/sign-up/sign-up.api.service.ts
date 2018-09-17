@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -22,7 +21,6 @@ export class SignUpApiService {
                 private signUpService: SignUpService,
                 private guideMeService: GuideMeService,
                 private selectedPlansService: SelectedPlansService,
-                public datePipe: DatePipe,
                 public ctyptoService: CtyptoService
                ) {
     }
@@ -43,8 +41,6 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const datePipe = new DatePipe('en-US');
-    const dob = datePipe.transform(getGuideMeFormData.customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
@@ -64,7 +60,7 @@ export class SignUpApiService {
         notificationByEmail: true,
         countryCode: getAccountInfo.countryCode,
         notificationByPhone: true,
-        dateOfBirth: dob,
+        dateOfBirth: getGuideMeFormData.customDob,
         gender: getGuideMeFormData.gender,
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
