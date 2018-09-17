@@ -13,6 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+//import { SelectNationality } from './select-nationality.interface';
+
 
 @Component({
   selector: 'app-select-nationality',
@@ -20,7 +22,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./select-nationality.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
+
 export class SelectNationalityComponent implements OnInit {
+  SelectNationality: FormGroup;
   nationalitylists: any[];
   selectedNationality: any;
   country: any;
@@ -33,8 +38,10 @@ export class SelectNationalityComponent implements OnInit {
   Question = false;
   sigQuestion = false;
   nationalitylist: any;
+  selectNationalityFormValues:any;
  
   constructor(
+    private formBuilder:FormBuilder,
     public headerService: HeaderService,
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -52,7 +59,6 @@ export class SelectNationalityComponent implements OnInit {
     this.headerService.setHeaderVisibility(false);
     this.getNationalityList();
     
-
 
   }
   selectNationality(nationalitylist) {
@@ -76,9 +82,18 @@ getNationalityList() {
 
   }
   
+  save(form): boolean {
+    if (!form.valid) {
+      return false;
+    }
+    // this.guideMeService.setProfile(this.profileForm.value);
+    this.portfolioService.setNationality(this.SelectNationality.value)
+    return true;
+  }
 
-
-  goToNext() {
+  
+  
+goToNext(form) {
     if (this.nationalitylist.blocked == true) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = "Unable To Proceed";
@@ -86,14 +101,43 @@ getNationalityList() {
       ref.componentInstance.ButtonTitle = "Return To Homepage";
       ref.componentInstance.selectNationalityError =this.errorButtonNavigation();
     } 
-    else if (this.nationalitylist.country   ==  ( !(this.nationalitylist.blocked)   && 'SINGAPORE'  && "UNITED STATES OF AMERICA"))  {
+    else if (this.nationalitylist.nationality   !==  ( this.nationalitylist.blocked  || "SINGAPOREAN"  || "AMERICAN"))  {
     
       this.Question = true;
 
-
+      
     }
-    else if (this.nationalitylist.country == 'SINGAPORE') {
+    else if (this.nationalitylist.nationality == 'SINGAPOREAN') {
+
       this.sigQuestion = true;
+      this.selectNationalityFormValues = this.portfolioService.getNationality();
+      this.SelectNationality = new FormGroup({
+        selectNationalitySig: new FormControl(this.selectNationalityFormValues.selectNationalitySig, Validators.required),
+        
+        
+      });
+      if (this.save(form)) {
+        
+
+
+   if(this.SelectNationality.controls.selectNationalitySig.value !== 'no'){
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = "Unable To Proceed";
+    ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
+    ref.componentInstance.ButtonTitle = "Return To Homepage";
+
+   }else{
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+   }
+
+
+
+
+     
+        
+      }
+  
+      
     }
     else if(this.nationalitylist.country == 'UNITED STATES OF AMERICA'){
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -102,10 +146,12 @@ getNationalityList() {
       ref.componentInstance.ButtonTitle = "Return To Homepage";
       ref.componentInstance.selectNationalityError =this.errorButtonNavigation();
     }
-
+   
   }
   errorButtonNavigation(){
     this.activeModal.dismiss('Cross click');
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY]);
   }
+
 }
+

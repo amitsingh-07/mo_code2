@@ -27,5 +27,7 @@ export class PortfolioFormData {
     htmlDescription: string;
 
     selectedFund;
+    //selectnationality
+    selectNationalitySig:string;
 
 }
