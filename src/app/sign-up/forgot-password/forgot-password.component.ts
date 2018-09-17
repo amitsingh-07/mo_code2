@@ -82,7 +82,6 @@ export class ForgotPasswordComponent implements OnInit {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
     ref.componentInstance.errorMessage = this.emailNotFoundDesc;
-    ref.componentInstance.forgotPassword = 'YES';
     ref.componentInstance.ButtonTitle = this.buttonTitle;
   }
 }

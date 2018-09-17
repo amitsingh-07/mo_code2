@@ -77,7 +77,8 @@ export class PortfolioRecommendationComponent implements OnInit {
     ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
     ref.componentInstance.errorMessage = this.editPortfolio.modalMessage;
     ref.componentInstance.ButtonTitle = this.buttonTitle;
-  }
+    ref.componentInstance.ButtonNavigation = PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT;
+    }
   showWhatTheRisk() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
 
@@ -117,6 +118,9 @@ export class PortfolioRecommendationComponent implements OnInit {
     }
   }
 
+  modelButtonClick() {
+    alert('functinality');
+   }
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
