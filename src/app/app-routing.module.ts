@@ -9,11 +9,12 @@ const routes: Routes = [
   {path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule'},
   {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
   // {component: CallBackComponent, matcher: test},
-  {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'}
+  {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'},
+  {path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   declarations: []
 })
 export class AppRoutingModule { }

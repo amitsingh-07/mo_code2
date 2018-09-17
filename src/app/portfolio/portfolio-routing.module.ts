@@ -12,8 +12,8 @@ import {
 import { PORTFOLIO_ROUTES } from './portfolio-routes.constants';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
-import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
+import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 
 const routes: Routes = [
   { path: PORTFOLIO_ROUTES.ROOT, redirectTo: PORTFOLIO_ROUTES.GET_STARTED_STEP1, pathMatch: 'full' },
