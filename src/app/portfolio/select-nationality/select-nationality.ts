@@ -1,4 +1,5 @@
 export class SelectNationality {
-    selectNationalitySig:string;
-
+    selectNationalitySig:any;
+    otherCoutryQuestionOne:any;
+    otherCoutryQuestionTwo:any;
 }

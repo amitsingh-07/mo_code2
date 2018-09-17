@@ -23,17 +23,10 @@
                                                 "phoneCode": "45",
                                                 "currency": "$"
                                 },
-                                {
-                                                "country": "india",
-                                                "nationality": "ALANDIC",
-                                                "isBlocked": false,
-                                                "countryCode": "1144",
-                                                "phoneCode": "45",
-                                                "currency": "$"
-                                },
+                                
                                 {
                                                 "country": "Singapore",
-                                                "nationality": "ALANDIC",
+                                                "nationality": "SINGAPOREAN",
                                                 "isBlocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",
@@ -41,7 +34,7 @@
                                 },
                                 {
                                                 "country": "US",
-                                                "nationality": "ALANDIC",
+                                                "nationality": "AMERICAN",
                                                 "isBlocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",

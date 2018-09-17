@@ -189,13 +189,18 @@ export class PortfolioService {
   }
   getNationality(){
     return {
-      selectNationalitySig: this.portfolioFormData.selectNationalitySig
-     
+      selectNationalitySig: this.portfolioFormData.selectNationalitySig,
+      otherCoutryQuestionOne:this.portfolioFormData.otherCoutryQuestionOne,
+      otherCoutryQuestionTwo:this.portfolioFormData.otherCoutryQuestionTwo
     };
     
 
   }
   setNationality(data:SelectNationality ) {
     this.portfolioFormData.selectNationalitySig = data.selectNationalitySig;
+    this.portfolioFormData.otherCoutryQuestionOne = data.otherCoutryQuestionOne;
+    this.portfolioFormData.otherCoutryQuestionTwo = data.otherCoutryQuestionTwo;
   }
 }
+
+
