@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfigService } from '../../../config/config.service';
+import { Formatter } from '../../../shared/utils/formatter.util';
 import { GuideMeService } from '../../guide-me.service';
 import { IResultItem } from '../insurance-result/insurance-result';
 import { IExistingCoverage } from './existing-coverage.interface';
@@ -19,14 +20,6 @@ export class ExistingCoverageModalComponent implements OnInit {
   @Input() data: any;
   @Output() dataOutput: EventEmitter<any> = new EventEmitter();
   existingCoverageForm: FormGroup;
-  ADD_EXISTING_COVERAGES = {
-    TITLE: 'Add Existing Coverages',
-    LIFE_PROTECTION: 'Life Protection',
-    CRITICAL_ILLNESS: 'Critical Illness',
-    OCCUPATION_DISABILITY: 'Occupational Disability',
-    LONG_TERM_CARE: 'Long-Term Care',
-    HOSPITAL_PLAN: 'Hospital Plan'
-  };
   selectedHospitalPlan = this.guideMeService.getHospitalPlan();
   hospitalPlanList;
   isLifeProtection = false;
@@ -37,7 +30,7 @@ export class ExistingCoverageModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal, private guideMeService: GuideMeService,
-    private config: ConfigService) { }
+    private config: ConfigService, private formatter: Formatter) { }
 
   ngOnInit() {
 
@@ -96,6 +89,9 @@ export class ExistingCoverageModalComponent implements OnInit {
       const thisControl = this.existingCoverageForm.controls[key];
       if (!thisControl.value) {
         thisControl.setValue(0);
+      } else {
+        const intValue = this.formatter.getIntValue(thisControl.value);
+        thisControl.setValue(intValue);
       }
     });
 

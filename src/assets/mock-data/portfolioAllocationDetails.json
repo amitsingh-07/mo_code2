@@ -1,0 +1,78 @@
+{
+  "objectList": {
+    "projectedValue": 2300000,
+    "tenure": 30,
+    "projectedReturns": "+ 5.50%",
+    "breakDown": [{
+        "id": "SECTOR00012",
+        "name": "Global Bonds",
+        "type": "Equities",
+        "riskRating": 9,
+        "totalPercentage": 20,
+        "funds": [{
+            "id": "FI3018",
+            "name": "Dimensional Global Short Fixed Inc ACC-H SGD",
+            "type": "UT",
+            "percentage": 20,
+            "factSheetLink": "http://moneyowl.com",
+            "factHighlightSheetLink": "http://moneyowl.com",
+            "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          },
+          {
+            "id": "FI3018",
+            "name": "Dimensional Global Short Term Inv Gr Fixed Inc ACC-H SGD ",
+            "type": "UT",
+            "percentage": 20,
+            "factSheetLink": "http://moneyowl.com",
+            "factHighlightSheetLink": "http://moneyowl.com",
+            "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        ]
+      },
+      {
+        "id": "SECTOR00013",
+        "name": "Global Equities",
+        "type": "Equities",
+        "riskRating": 9,
+        "totalPercentage": 35,
+        "funds": [{
+            "id": "FI3018",
+            "name": "Dimensional Global Core Equity ACC SGD",
+            "type": "UT",
+            "percentage": 45,
+            "factSheetLink": "http://moneyowl.com",
+            "factHighlightSheetLink": "http://moneyowl.com",
+            "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          },
+          {
+            "id": "FI3018",
+            "name": "Dimensional Global Core Equity ACC SGD",
+            "type": "UT",
+            "percentage": 10,
+            "factSheetLink": "http://moneyowl.com",
+            "factHighlightSheetLink": "http://moneyowl.com",
+            "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        ]
+      },
+      {
+        "id": "SECTOR00014",
+        "name": "Emerging Market Equities",
+        "type": "Equities",
+        "riskRating": 9,
+        "totalPercentage": 45,
+        "funds": [{
+          "id": "FI3018",
+          "name": "Dimensional EM Large Cap Core Equity ACC SGD",
+          "type": "UT",
+          "percentage": 5,
+          "factSheetLink": "http://moneyowl.com",
+          "factHighlightSheetLink": "http://moneyowl.com",
+          "htmlDesc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit, >Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+        }]
+      }
+    ]
+  },
+  "responseCode": 6000,
+  "responseDescription": "Successful response"
+}

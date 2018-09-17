@@ -13,7 +13,7 @@
             "FIRST_NAME": "First Name",
             "LAST_NAME": "Last Name",
             "EMAIL": "Email Address",
-            "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href=href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
+            "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
             "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
         }
     },
@@ -24,7 +24,17 @@
             "INSTRUCTION": "Enter the 6-digit OTP code sent to:",
             "EDIT_NUMBER": "Edit Number",
             "DIDNT_RECIEVE": "Didn't Recieve it?",
-            "REQUEST_NEW_CODE": "Request New Code"
+            "REQUEST_NEW_CODE": "Request New Code",
+            "CODE_SENT": "Code sent!"
+        },
+        "ERROR_MODAL": {
+            "ERROR_TITLE": "Incorrect OTP Code",
+            "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
+        },
+        "LOADING": {
+            "VERIFYING" : "Verifying...",
+            "VERIFIED": "Mobile Verified!",
+            "SENDING": "Sending New OTP"
         }
     },
     "PASSWORD": {
@@ -33,14 +43,45 @@
         "FORM": {
             "PASSWORD": "Password",
             "CONFIRM_PASSWORD": "Confirm Password"            
-        }      
+        },
+        "ERROR_MESSAGE": {
+            "TITLE": "Password Criteria",
+            "LENGTH": "8 - 20 Alphanumeric Characters",
+            "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
+            "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
+            "MATCH": "Passwords do not match"
+        }     
     },
     "EMAIL_VERIFICATION": {
         "TITLE": "Email Verified!"        
     },
     "ACCOUNT_CREATED": {
-        "TITLE": "Account Created",
+        "TITLE": "Account Created!",
         "SUB_TITLE1": "A verification link has been sent to your email address.",
         "SUB_TITLE2": "Please verify your email address before logging in."    
+    },
+    "LOGIN": {
+        "WELCOME_LBL": "Welcome to MoneyOwl!",
+        "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
+        "FORM": {
+            "USERNAME": "Mobile No. / Email Address",
+            "PASSWORD": "Password",
+            "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
+        },
+        "FORGOT_PASSWORD": "Forgot your password?",
+        "CLICK_HERE": "Click Here"
+    },
+    "FORGOTPASSWORD": {
+        "SUBMIT": "Submit",
+        "EMAIL":"Email Address",
+        "BACK_TO":"Back To Login",
+        "EMAIL_SENT":"Email Sent!",
+        "CHECK_EMAIL":"Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
+        "DESCRIPTION":"Enter your email to receive your password reset instructions.",
+        "TITLE":"Forgot Password",
+        "EMAIL_NOT_FOUND":"Email Not Found",
+        "EMAIL_NOT_FOUND_DESC":"The email you’ve entered doesn’t seem to exist in our database. Please try again."
+
+
     }
 }

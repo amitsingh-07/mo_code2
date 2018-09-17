@@ -1,5 +1,17 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  DoCheck,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewEncapsulation
+} from '@angular/core';
+
 import { TranslateService } from '../../../../../node_modules/@ngx-translate/core';
 
 @Component({
@@ -8,7 +20,7 @@ import { TranslateService } from '../../../../../node_modules/@ngx-translate/cor
   styleUrls: ['./plan-details-widget.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
+export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() data;
   @Input() type;
   @Input() bestValue;
@@ -24,13 +36,17 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
   canShowRating = true;
   canShowDiscount = true;
 
+  isRankContainerSet = false;
+
   coverageDuration;
   premiumDuration;
 
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
 
-  constructor(private currency: CurrencyPipe, private translate: TranslateService) {
+  constructor(
+    private currency: CurrencyPipe, private translate: TranslateService,
+    private elRef: ElementRef, private renderer: Renderer2) {
     this.translate.use('en');
     this.highlights = [];
   }
@@ -69,12 +85,48 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
     }
   }
 
+  ngAfterViewChecked() {
+    if (!this.isRankContainerSet) {
+      const rankContainer = this.elRef.nativeElement.querySelectorAll('.insurance-plan-widget__container__rank-box');
+      if (rankContainer.length > 0) {
+        rankContainer.forEach((el) => {
+          if (rankContainer.length === 1) {
+            this.renderer.addClass(el, 'one-plan-width');
+          } else if (rankContainer.length === 2) {
+            this.renderer.addClass(el, 'two-plan-width');
+          } else {
+            this.renderer.addClass(el, 'three-plan-width');
+          }
+        });
+        this.isRankContainerSet = true;
+      }
+    }
+  }
+
   viewDetails() {
     this.view.emit(this.temp);
   }
+  brochureDownload() {
+    this.Brochure(this.temp, 'Brochure.json');
+  }
+  // tslint:disable-next-line:member-ordering
+  Brochure = (() => {
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    return ((data, fileName) => {
+      const json = JSON.stringify(data);
+      const blob = new Blob([json], { type: 'octet/stream' });
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  })();
 
   selectPlan() {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
+
 }

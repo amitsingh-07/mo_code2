@@ -22,4 +22,13 @@ describe('OcpDisabilityComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('testing the proceed button', async(() => {
+    spyOn(component, 'goToNext');
+    const button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    fixture.whenStable().then(() => {
+      expect(component.goToNext).toHaveBeenCalled();
+    });
+  }));
 });

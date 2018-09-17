@@ -10,8 +10,8 @@ import {
     IEnquiryData,
     IFinancialStatusMapping,
     ILifeProtection,
-    IRecommendationRequest,
-    ILongTermCareNeedsData
+    ILongTermCareNeedsData,
+    IRecommendationRequest
 } from './interfaces/recommendations.request';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
@@ -34,7 +34,8 @@ export class GuideMeApiService {
     getProtectionNeedsList() {
         const userInfoForm: any = {
             profileId: this.guideMeService.getGuideMeFormData().myProfile,
-            birthDate: this.guideMeService.getGuideMeFormData().customDob
+            birthDate: this.guideMeService.getGuideMeFormData().customDob,
+            journeyType: 'guided'
         };
         return this.apiService.getProtectionNeedsList(userInfoForm);
     }
@@ -49,6 +50,10 @@ export class GuideMeApiService {
 
     getRecommendations() {
         return this.apiService.getRecommendations(this.constructRecommendationsRequest());
+    }
+
+    getMyInfoData() {
+        return this.apiService.getMyInfoData();
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {

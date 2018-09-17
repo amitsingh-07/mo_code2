@@ -1,17 +1,17 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-.fin-accessment-block {
+.intro-block {
     .container-fluid {
         padding-top: 30px !important;
         @include allmobiles {
             padding-top: 10px !important;
         }
     }
-    .fin-accessment-block__tab-container {
+    .intro-block__tab-container {
         @extend .flex;
         @extend .space-btwn;
         width: 100%;
-        .fin-accessment-block__tab {
+        .intro-block__tab {
             width: calc(50% - 10px);
             opacity:0.2;
             padding-right: 10px;
@@ -22,7 +22,7 @@
             }
         }
     }
-    .fin-accessment-block__content {
+    .intro-block__content {
         @include tablet {
             .banner-image img {
                 max-width:90%;
@@ -39,9 +39,8 @@
             }
         }
     }
-    .fin-accessment-block__content__desc {
-        margin-top: 100px;
-        text-align: left;
+    .intro-block__content__desc {
+        
         @include allmobiles {
             margin-top: 30px;
             text-align: center;
@@ -50,32 +49,39 @@
             margin-top: 30px;
         }
     }
-    .fin-accessment-block__content__heading {
+    .intro-block__content__heading {
         opacity: 0.55;
-        font-family: $muli-regular;
+        font-family: Muli;
         font-size: 36px;
+        font-weight: normal;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;
         letter-spacing: -0.4px;
-        color: $white-color;
-        margin-bottom:15px;
+        text-align: center;
+        color: #ffffff;
     }
-    .fin-accessment-block__content__title {
-        font-family: $muli-semi-bold;
-        font-size: 24px;
-        line-height: normal;
-        letter-spacing: -0.3px;
-        color: $white-color;
+    .intro-block__content__title {
+       font-family: Muli;
+       font-size: 24px;
+       font-weight: 600;
+       font-style: normal;
+       font-stretch: normal;
+       line-height: normal;
+       letter-spacing: -0.3px;
+       text-align: center;
+       color: #ffffff;
     }
-    .fin-accessment-block__content__sub-title {
-        font-family: $muli-light;
+    .intro-block__content__sub-title {
+        font-family: Muli;
         font-size: 18px;
+        font-weight: normal;
         font-style: normal;
         font-stretch: normal;
-        line-height: 23px;
+        line-height: 1.22;
         letter-spacing: -0.2px;
-        color: $white-color;
+        text-align: center;
+        color: #ffffff;
     }
     .btn-proceed {
         width: 179px;
@@ -101,4 +107,18 @@
             border-radius:0px;
         }
     }
+    .Step-1 {
+        width: 105px;
+        height: 45px;
+        opacity: 0.55;
+        font-family: Muli;
+        font-size: 36px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.4px;
+        text-align: center;
+        color: #ffffff;
+      }
 }

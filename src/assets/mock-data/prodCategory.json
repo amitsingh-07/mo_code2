@@ -1,0 +1,64 @@
+{
+    "responseMessage":{
+       "responseCode":6000,
+       "responseDescription":"Successful response"
+    },
+    "objectList":[
+       {
+          "id":1,
+          "prodCatName":"Life Protection",
+          "prodCatIcon":"LifeProtection-icon--teal.svg",
+          "prodCatIconAlt":"LifeProtection-icon--white.svg",
+          "prodLink":"life-protection"
+       },
+       {
+          "id":2,
+          "prodCatName":"Critical Illness (CI)",
+          "prodCatIcon":"CriticalIllness-icon--teal.svg",
+          "prodCatIconAlt":"CriticalIllness-icon--white.svg",
+          "prodLink":"critical-illness"
+       },
+       {
+        "id":3,
+        "prodCatName":"Occupational Disability",
+        "prodCatIcon":"OccupationalDisability-icon--teal.svg",
+        "prodCatIconAlt":"OccupationalDisability-icon--white.svg",
+        "prodLink":"occupational-disability"
+       },
+       {
+        "id":4,
+        "prodCatName":"Hospital Plan",
+        "prodCatIcon":"HospitalPlan-icon--teal.svg",
+        "prodCatIconAlt":"HospitalPlan-icon--white.svg",
+        "prodLink":"hospital-plan"
+       },
+       {
+        "id":5,
+        "prodCatName":"Long-Term Care",
+        "prodCatIcon":"LongTermCare-icon--teal.svg",
+        "prodCatIconAlt":"LongTermCare-icon--white.svg",
+        "prodLink":"long-term-care"
+       },
+       {
+        "id":6,
+        "prodCatName":"Education Fund",
+        "prodCatIcon":"EducationFund-icon--teal.svg",
+        "prodCatIconAlt":"EducationFund-icon--white.svg",
+        "prodLink":"education"
+       },
+       {
+        "id":7,
+        "prodCatName":"Retirement Income Plans",
+        "prodCatIcon":"RetirementIncomePlan-icon--teal.svg",
+        "prodCatIconAlt":"RetirementIncomePlan-icon--white.svg",
+        "prodLink":"retirement-income-plan"
+       },
+       {
+        "id":8,
+        "prodCatName":"SRS-Approved Plans",
+        "prodCatIcon":"SRS-icon--teal.svg",
+        "prodCatIconAlt":"SRS-icon--white.svg",
+        "prodLink":"srs-plan"
+       }
+    ]
+ }

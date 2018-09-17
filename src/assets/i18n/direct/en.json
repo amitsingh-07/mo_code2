@@ -1,0 +1,91 @@
+{
+  "COMMON": {
+    "LBL_SEARCH_PLAN": "Search Plan",
+    "LBL_UPDATE_PLAN": "Update Plan",
+    "LBL_MALE": "Male",
+    "LBL_FEMALE": "Female",
+    "LBL_SMOKER": "Smoker",
+    "LBL_NONSMOKER": "Non-smoker",
+    "LBL_YES": "Yes",
+    "LBL_NO": "No",
+    "LBL_CONTINUE": "Continue"
+  },
+  "COVERAGE": {
+    "TITLE": "Pick A Coverage Type",
+    "MOBILE_TITLE": "Protection Type"
+  },
+  "PROFILE": {
+    "TITLE": "Your Profile",
+    "TITLE2": "Edit Profile",
+    "COVERAGE_TYPE": {
+      "TITLE": "Coverage Type"
+    },
+    "GENDER": {
+      "TITLE": "Gender"
+    },
+    "DOB": {
+      "TITLE": "Date Of Birth"
+    },
+    "SMOKER": {
+      "TITLE": "Smoker Status"
+    }
+  } ,
+  "LIFE_PROTECTION": {
+    "COVERAGE_AMT": {
+      "TITLE": "Coverage Amount",
+      "DOLLAR": "$"
+    },
+    "DURATION": {
+      "TITLE": "Duration"
+    },
+    "PREMIUM_WAIVER": {
+      "TITLE": "Premium Waiver",
+      "SUBTITLE": "(optional)",
+      "TOOLTIP": {
+          "TITLE": "Premium Waiver Rider",
+          "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
+      }
+    }
+  },
+  "CRITICAL_ILLNESS": {
+    "COVERAGE_AMT": {
+      "TITLE": "Coverage Amount",
+      "DOLLAR": "$"
+      },
+    "DURATION": {
+      "TITLE": "Duration"
+      },
+    "EARLY_CI": {
+      "TITLE": "Early CI",
+      "SUBTITLE": "(optional)"
+      }
+    },
+  "LONG_TERM_CARE": {
+    "MONTHLY_PAYOUT": {
+      "TITLE": "Monthly Payout"
+      }
+    },
+    "OCCUPATIONAL_DISABILITY": {
+      "EMPLOYMENT_TYPE":"Employment Type",
+      "MONTHLY_SALARY":"Monthly Salary",
+      "DURATION":"Duration",
+      "COVER": "Cover",
+      "OF": "Of",
+      "EMPLOYMENT_TYPE_LIST": ["Salaried", "Self-employed"],
+      "DURATION_VALUES": ["Till 55", "Till 60", "Till 65"]
+    },
+    "RETIREMENT_INCOME": {
+      "INCOME": "Retirement Income",
+      "PAYOUT_AGE": "Payout Start Age",
+      "PAYOUT_DURATION": "Payout Duration",
+      "PAYOUT_FEATURE": "Payout Feature",
+      "PAYOUT_DURATION_LIST": [ "Lifetime", "Limited Years" ],
+      "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable", "Increasing"],
+      "TOOLTIP": {
+          "TITLE": "Payout Feature",
+          "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
+      }
+      }
+  }
+
+

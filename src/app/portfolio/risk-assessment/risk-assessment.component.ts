@@ -2,18 +2,16 @@ import 'rxjs/add/operator/map';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../shared/logger/logger.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { PORTFOLIO_CONFIG } from '../portfolio.constants';
 import { PortfolioService } from '../portfolio.service';
-import { ActivatedRoute } from '@angular/router';
-
-import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-risk-assessment',
@@ -31,11 +29,16 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   questionsList: any[] = [];
   questionIndex: number;
   currentQuestion: any;
+  isChartAvailable = false;
+  chartLegendEnum = PORTFOLIO_CONFIG.risk_assessment.chart_legend;
 
   constructor(
-    private portfolioService: PortfolioService, private route: ActivatedRoute, private router: Router,
-    private modal: NgbModal, public headerService: HeaderService,
-    public readonly translate: TranslateService, public authService: AuthenticationService,
+    private portfolioService: PortfolioService,
+    private route: ActivatedRoute,
+    private router: Router,
+    public headerService: HeaderService,
+    public readonly translate: TranslateService,
+    public authService: AuthenticationService,
     public log: LoggerService) {
 
     this.translate.use('en');
@@ -49,16 +52,15 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.riskFormValues = this.portfolioService.getPortfolioFormData();
-    let self = this;
-    this.route.params.subscribe(params => {
+    const self = this;
+    this.route.params.subscribe((params) => {
       self.questionIndex = +params['id'];
       this.riskAssessmentForm = new FormGroup({
         questSelOption: new FormControl(this.riskFormValues.questSelectedOption, Validators.required)
       });
       if (!self.questionsList.length) {
         self.getQuestions();
-      }
-      else {
+      } else {
         self.setCurrentQuestion();
       }
     });
@@ -68,43 +70,51 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     this.headerService.setPageTitle(title);
   }
 
-  save(form): boolean {
-    if (!form.valid) {
-      return false;
-    }
-    this.portfolioService.setRiskAssessment(this.riskAssessmentForm.value, this.questionIndex);
-    return true;
-  }
-
   getQuestions() {
-    this.authService.authenticate().subscribe((token) => {
-      this.portfolioService.getQuestionsList().subscribe((data) => {
-        this.questionsList = data.objectList;
-        this.setCurrentQuestion();
-      });
+    this.portfolioService.getQuestionsList().subscribe((data) => {
+      this.questionsList = data.objectList;
+      this.setCurrentQuestion();
     });
   }
 
   setCurrentQuestion() {
     this.currentQuestion = this.questionsList[this.questionIndex - 1];
-    let selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
+    // tslint:disable-next-line
+    // this.isChartAvailable = (this.currentQuestion.questionType === 'RISK_ASSESSMENT') ? true : false;
+    this.isChartAvailable = this.currentQuestion.listOrder === 5 ? true : false;
+    const selectedOption = this.portfolioService.getSelectedOptionByIndex(this.questionIndex);
     if (selectedOption) {
-      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption.questSelOption); 
+      this.riskAssessmentForm.controls.questSelOption.setValue(selectedOption);
+    }
+  }
+
+  setLegend(id) {
+    return this.chartLegendEnum[id];
+  }
+
+  save(form): boolean {
+    if (!form.valid) {
+      return false;
+    } else {
+      return true;
     }
   }
 
   goToNext(form) {
     if (this.save(form)) {
+      this.portfolioService.setRiskAssessment(form.controls.questSelOption.value, this.questionIndex);
       if (this.questionIndex < this.questionsList.length) {
-        //NEXT QUESTION
-        this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + "/" + (this.questionIndex + 1)]);
+        // NEXT QUESTION
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT + '/' + (this.questionIndex + 1)]);
+      } else {
+        // RISK PROFILE
+        // CALL API
+        this.portfolioService.saveRiskAssessment().subscribe((data) => {
+          this.portfolioService.setRiskProfile(data.objectList);
+          this.portfolioService.setPortfolioSplashModalCounter(0);
+          this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_PROFILE]);
+        });
       }
-      else {
-        //NEXT QUESTION
-        console.log(this.portfolioService.getPortfolioFormData());
-        this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_PROFILE]);
-      }
-
     }
   }
 }

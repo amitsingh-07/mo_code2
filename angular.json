@@ -8,11 +8,7 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
-      },
+      "schematics": { "@schematics/angular:component": { "styleext": "scss" } },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -22,24 +18,39 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [{
-                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
-              },
+            "assets": [ "src/favicon.ico", "src/assets" ],
+            "styles": [
+              { "input": "./node_modules/bootstrap/dist/css/bootstrap.css" },
               "src/styles.scss",
               "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": []
           },
           "configurations": {
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -51,41 +62,55 @@
               "buildOptimizer": true
             },
             "uat": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.uat.ts"
-              }],
-              "optimization": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+                }
+              ],
+              "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": false,
+              "extractCss": true,
               "namedChunks": false,
-              "aot": false,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": false
+              "buildOptimizer": true
+            },
+            "common": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "bfa-frontend:build"
-          },
+          "options": { "browserTarget": "bfa-frontend:build" },
           "configurations": {
-            "production": {
-              "browserTarget": "bfa-frontend:build:production"
-            },
-            "uat": {
-              "browserTarget": "bfa-frontend:build:uat"
-            }
+            "dev": { "browserTarget": "bfa-frontend:build" },
+            "production": { "browserTarget": "bfa-frontend:build:production" },
+            "prod": { "browserTarget": "bfa-frontend:build:prod" },
+            "uat": { "browserTarget": "bfa-frontend:build:uat" },
+            "common": { "browserTarget": "bfa-frontend:build:common" }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "bfa-frontend:build"
-          }
+          "options": { "browserTarget": "bfa-frontend:build" }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -94,26 +119,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": [ "src/styles.scss" ],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": [ "src/favicon.ico", "src/assets" ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": [ "src/tsconfig.app.json", "src/tsconfig.spec.json" ],
+            "exclude": [ "**/node_modules/**" ]
           }
         }
       }
@@ -129,22 +144,13 @@
             "devServerTarget": "bfa-frontend:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "bfa-frontend:serve:production"
-            },
-            "uat": {
-              "devServerTarget": "bfa-frontend:serve:uat"
-            }
+            "production": { "devServerTarget": "bfa-frontend:serve:production" },
+            "uat": { "devServerTarget": "bfa-frontend:serve:uat" }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
+          "options": { "tsConfig": "e2e/tsconfig.e2e.json", "exclude": [ "**/node_modules/**" ] }
         }
       }
     }

@@ -94,16 +94,25 @@ strong {
   position: relative;
 }
 
-.callout .pointer {
+.pointer-container{
+  position: absolute;
+  bottom: -14px;
+  left: 30px;
+  left:34px;
+  right:0px;
+  transform: translate(-100%, 0px);
+
+}
+
+.pointer {
   width: 0;
   height: 0;
-  border-left: 18px solid transparent;
+  border-left: 15px solid transparent;
   border-right: 18px solid transparent;
   border-bottom: 18px solid #fff;
+  right:0px;
+  left:auto;
   position: absolute;
-  top: -18px;
-  left: 30px;
-  margin-left: -19px;
 }
 
 .callout h5 {
@@ -113,6 +122,7 @@ strong {
 
 .callout h5 .period-count{
   color:$slider-selection-color;
+  text-decoration: underline;
 }
 
 .investmentSlider {
@@ -137,10 +147,16 @@ strong {
     height: 64px !important;
     background: url("../../../assets/images/owl-icon.png") no-repeat center;
     border: none !important;
-    right: 0px !important;
+    right: 0px;
   }
   .noUi-origin{
-    width:84%;
+    width:93%;
+    margin:  0 auto;
+  }
+  @media (min-width: 768px) {
+    .noUi-origin{
+      width:96%;
+    }
   }
 
 }

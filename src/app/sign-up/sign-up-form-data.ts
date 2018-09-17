@@ -1,10 +1,16 @@
 export class SignUpFormData {
-    countryCode: number;
-    mobileNumber: number;
+    countryCode: string;
+    mobileNumber: string;
     firstName: string;
     lastName: string;
-    emailAddress: string;
-    termsOfConditions: boolean;
+    email: string;
     marketingAcceptance: boolean;
     password: string;
+
+    // Login
+    loginUsername: string;
+    loginPassword: string;
+
+    // Forgot Password
+    forgotPassEmail: string;
 }

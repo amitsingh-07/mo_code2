@@ -1,0 +1,129 @@
+<form name="criticalIllnessForm" id="criticalIllnessForm" [formGroup]="criticalIllnessForm" class="flex-row ">
+    <div class="form-group direct-form">
+      <div class="flex-row">
+        <div class="flex-col-3">
+            <label for="name" id="getStrdLbl1">{{ 'PROFILE.GENDER.TITLE' | translate}}</label>
+          </div>
+        <div class="flex-col-8 direct-form-grp">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+            <div class="flex-row mb0">
+              <div>
+                <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
+                  <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
+                </label>
+                </div>
+              <div>
+                <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
+                  <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
+                </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="flex-row">
+        <div class="flex-col-3">
+          <label for="name" id="getStrdLbl4">{{ 'PROFILE.DOB.TITLE' | translate}}</label>
+          </div>
+        <div #usrFrmDp class="flex-col-8 direct-form-grp">
+          <div class="datepicker-control">
+            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !criticalIllnessForm.get('dob').valid  && !criticalIllnessForm.get('dob').pristine}">
+              <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
+              name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+              <div class="input-group-append">
+                <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                  <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="criticalIllnessForm.get('dob').valid || criticalIllnessForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
+                  />
+                  <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="!criticalIllnessForm.get('dob').valid && !criticalIllnessForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                  />
+                </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="flex-row">
+        <div class="flex-col-3">
+          <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE'  | translate}}</label>
+          </div>
+        <div class="flex-col-8 direct-form-grp">
+            <div class="btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
+                <div class="flex-row mb0">
+                  <div>
+                    <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl2">
+                      <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt1"/> {{ 'COMMON.LBL_NONSMOKER' | translate}}
+                    </label>
+                    </div>
+                  <div>
+                    <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl3">
+                      <input ngbButton type="radio" value="smoker" id="getStrdInpt2"/> {{ 'COMMON.LBL_SMOKER' | translate}}
+                    </label>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div> 
+    </div>
+    <div class="form-group direct-form second-form">
+      <div class="flex-row">
+        <div class="flex-col-3">
+          <label for="name" id="getStrLbl6">{{ 'CRITICAL_ILLNESS.COVERAGE_AMT.TITLE' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+          <div class="dropdown-control">
+              <div ngbDropdown id="coverageAmtDropDown">
+                <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                  <span class="coverage_amt">{{ 'CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR' | translate}}{{coverage_amt}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button type="button" class="dropdown-item" *ngFor="let ele_coverageAmt of coverageAmtValues" (click)="selectCoverageAmt(ele_coverageAmt)">
+                    {{ 'CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR' | translate}}{{ele_coverageAmt}}
+                  </button>
+                </div>
+              </div>
+            </div>
+        </div> 
+      </div>
+      <div class="flex-row">
+        <div class="flex-col-3">
+          <label for="name" id="getStrLbl7">{{ 'CRITICAL_ILLNESS.DURATION.TITLE' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+          <div class="dropdown-control">
+              <div ngbDropdown id="durationDropDown">
+                <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                  <span class="duration">{{duration}}</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                  <button type="button" class="dropdown-item" *ngFor="let ele_duration of durationValues" (click)="selectDuration(ele_duration)">
+                    {{ele_duration}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="flex-row">
+        <div class="flex-col-3">
+          <label for="name" id="getStrLbl7">{{ 'CRITICAL_ILLNESS.EARLY_CI.TITLE' | translate}}</label>
+          <label class="subtitle" for="name" id="getStrLbl8">{{ 'CRITICAL_ILLNESS.EARLY_CI.SUBTITLE' | translate}}</label>
+          </div>
+        <div class="flex-col-8 direct-form-grp">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioEarlyCI" formControlName="earlyCI">
+              <div class="flex-row mb0">
+                <div>
+                  <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
+                    <input ngbButton type="radio" value="yes" id="getStrdInpt1"> {{ 'COMMON.LBL_YES' | translate}}
+                  </label>
+                  </div>
+                <div>
+                  <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
+                    <input ngbButton type="radio" value="no" id="getStrdInpt2"> {{ 'COMMON.LBL_NO' | translate}}
+                  </label>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  </form>

@@ -34,6 +34,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   activeRecommendationType;
   activeRecommendationList;
   isComparePlanEnabled = false;
+  enquiryId;
 
   prevActiveSlide;
   nextActiveSlide;
@@ -58,13 +59,16 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.getRecommendationsFromServer();
+    setTimeout(() => {
+      this.getRecommendationsFromServer();
+    }, 500);
   }
 
   getRecommendationsFromServer() {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
+        this.enquiryId = data.objectList[0].enquiryId;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;
         this.activeRecommendationList = this.recommendationPlans[0];
         this.updateCoverageDetails();
@@ -161,21 +165,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   viewDetails(plan) {
   }
 
-  // tslint:disable-next-line:member-ordering
-  Brochure = (() => {
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    return ((data, fileName) => {
-      const json = JSON.stringify(data);
-      const blob = new Blob([json], { type: 'octet/stream' });
-      const url = window.URL.createObjectURL(blob);
-      a.href = url;
-      a.download = fileName;
-      a.click();
-      window.URL.revokeObjectURL(url);
-    });
-  })();
-
   selectPlan(data) {
     const index: number = this.selectedPlans.indexOf(data.plan);
     if (data.selected) {
@@ -206,7 +195,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.isComparePlanEnabled = !this.isComparePlanEnabled;
   }
   proceed() {
-    this.selectedPlansService.setSelectedPlan(this.selectedPlans);
+    this.selectedPlansService.setSelectedPlan(this.selectedPlans, this.enquiryId);
     this.modalRef = this.modal.open(CreateAccountModelComponent, {
       windowClass: 'position-bottom',
       centered: true

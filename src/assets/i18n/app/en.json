@@ -5,6 +5,7 @@
   "LABEL": {
     "GENDER": "Gender",
     "CONTINUE": "Continue",
+    "SET_UP_INVESTMENT_ACCOUNT": "Set Up Investment Account",
     "MALE": "Male",
     "FEMALE": "Female",
     "DEPENDANT": "Dependant",
@@ -17,7 +18,16 @@
     "AGE": "Age",
     "SAVE": "Save",
     "SUPPORT_AMOUNT": "Support Amount",
-    "YEARS_NEEDED": "Years Needed"
+    "YEARS_NEEDED": "Years Needed",
+    "TRY_AGAIN":"Try Again"
+  },
+  "ADD_EXISTING_COVERAGES" : {
+    "TITLE": "Add Existing Coverages",
+    "LIFE_PROTECTION": "Life Protection",
+    "CRITICAL_ILLNESS": "Critical Illness",
+    "OCCUPATION_DISABILITY": "Occupational Disability",
+    "LONG_TERM_CARE": "Long-Term Care",
+    "HOSPITAL_PLAN": "Hospital Plan"
   },
   "BUTTON": {
     "PROCEED": "Proceed",

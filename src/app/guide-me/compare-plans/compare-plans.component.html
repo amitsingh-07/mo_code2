@@ -1,14 +1,50 @@
-<h1>Working</h1>
-<div *ngFor = "let plan of plansdata">
-  <span>{{plan.productName}}</span>
-  <span>{{plan.premium.premiumAmount | currency:'USD':'symbol-narrow':'1.0-0'}}</span>
-   <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
-    <img src="../../../assets/images/{{plan.insurer.logoName}}"/><hr>
-    <span>{{plan.underWritting}}</span><hr>
-    <span>{{plan.cashValue}}</span><hr>
-    <span>{{plan.coverageDuration}}</span><hr>
-    <span>{{plan.premiumDuration}}</span><hr>
-    <span>{{plan.payOut}}</span><hr>
-    <span>{{plan.features}}</span><hr>
-  </div> 
+<div class="container-fluid">
+  <div class="flex-row compare-modal">
+    <div *ngFor = "let plan of plansdata" class="bg-white flex col-sm-3 col-md-3 col-6 insurance-plan-widget__container flex__box--vert" >
+      <div class="flex-col-12">
+        <div class="mt20 insurer-logo">
+          <img src="../../../assets/images/{{plan.insurer.logoName}}"/>
+        </div>
+        <div class="flex-row mt10 mb10">
+            <div class="col-md-12 col-md-push-3">
+              <h4 class="mb20">{{plan.productName}}</h4>
+              <h2>{{plan.premium.premiumAmount | currency:'USD':'symbol-narrow':'1.0-0'}}
+                <br class="hidden-lg"/>
+                <span class="text-small">/ mth</span>
+              </h2>
+            </div>
+          </div>
+      </div>
+    </div>
+  
+    <div class="flex-col-12 heading flex">Coverage Duration</div>
+    <div *ngFor = "let plan of plansdata" class="bg-white flex col-sm-3 col-md-3 col-6 ">
+      <span>{{plan.coverageDuration}}</span>
+    </div>
+  
+    <div class="flex-col-12 flex heading">Premium Duration</div>
+    <div *ngFor = "let plan of plansdata" class="bg-white flex col-sm-3 col-md-3 col-6 ">
+      <span>{{plan.premiumDuration}}</span>
+    </div>
+
+    <div class="flex-col-12 flex heading">Need Under Writting</div>
+    <div *ngFor = "let plan of plansdata" class="bg-white flex col-sm-3 col-md-3 col-6 ">
+      <span>{{plan.underWritting}}</span>
+    </div>
+  
+    <div class="flex-col-12 flex heading">Cash Value</div>
+    <div *ngFor = "let plan of plansdata" class="bg-white flex col-sm-3 col-md-3 col-6 ">
+      <span>{{plan.cashValue}}</span>
+    </div>
+  
+    <div class="flex-col-12 flex heading">pay out details</div>
+    <div *ngFor = "let plan of plansdata" class="bg-white flex col-sm-3 col-md-3 col-6 ">
+      <span>{{plan.payOut}}</span>
+    </div>
+  
+    <div class="flex-col-12 flex heading">Unique Features</div>
+    <div *ngFor = "let plan of plansdata" class="bg-white flex col-sm-3 col-md-3 col-6 ">
+      <span>{{plan.features}}</span>
+    </div>
+  </div>
 </div>

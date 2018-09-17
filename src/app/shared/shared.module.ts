@@ -1,33 +1,30 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader } from '@ngx-translate/core';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { HeaderComponent } from './header/header.component';
-import { LoaderComponent } from './modal/loader/loader.component';
-import { CustomCurrencyPipe } from './Pipes/custom-currency.pipe';
-import { CustomTranslateLoader } from './translate/custom-translate-loader';
-import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
-import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
+import { AppModule } from './../app.module';
+import { CurrencyInputDirective } from './directives/currency-input.directive';
+
+export function HttpLoaderFactory(http: HttpClient, moduleName: string) {
+  return new MultiTranslateHttpLoader(
+    http,
+    [
+      { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/' + moduleName + '/', suffix: '.json' },
+    ]);
+}
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [HeaderComponent, LoaderComponent, TranslateModule, CustomCurrencyPipe,
-    PlanWidgetComponent, ProductDetailComponent, PlanDetailsWidgetComponent]
+  exports: [
+    CurrencyInputDirective
+  ],
+  declarations: [
+    CurrencyInputDirective
+  ]
 })
-export class SharedModule {
-
-  public static getTranslateConfig(moduleName: string) {
-    return {
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (() => CustomTranslateLoader(moduleName)),
-        deps: [HttpClient]
-      },
-      isolate: true
-    };
-  }
-}
+export class SharedModule { }

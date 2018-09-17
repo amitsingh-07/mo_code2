@@ -4,34 +4,34 @@
   </div>
 </div>
 <div class="modal-body white-bg">
-  <div class="modal-body-title">{{data.title}}</div>
+  <div class="modal-body-title" id="view_details_title">{{data.title}}</div>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true"></span>
   </button>
   <div class="form-group">
-    <div class="flex-row" *ngFor="let inputValue of data.inputValues">
+    <div class="flex-row" *ngFor="let inputValue of data.inputValues; let i = index">
       <div class="flex-col-7">
-        <label>{{inputValue.title}}</label>
+        <label id="ir-vd-title-{{data.id}}-{{i}}">{{inputValue.title}}</label>
       </div>
       <div class="flex-col-5">
-        <span>{{inputValue.currency}}</span>{{inputValue.value | currency : '' : '': '1.0-2'}}<span>{{inputValue.type}}</span><span>{{inputValue.monthEnabled}}</span>
+        <span id="ir-vd-value-{{data.id}}-{{i}}">{{inputValue.currency}}{{inputValue.value | currency : '' : '': '1.0-2'}}</span><span>{{inputValue.type}}</span><span id="view_details_for_month">{{inputValue.monthEnabled}}</span>
       </div>
     </div>
     <div class="flex-row" *ngIf ="isExistingCoverage">
         <div class="flex-col-7 label-orange">
-          <label>{{data.existingCoverage.title}}</label>
+          <label id="view_details_existing_covarage_text">{{data.existingCoverage.title}}</label>
         </div>
         <div class="flex-col-5 label-orange">
-          <span>{{data.existingCoverage.value | currency:'USD':'symbol-narrow':'1.0-2'}}{{data.inputValues[0].monthEnabled}}</span>
+          <span id="view_details_existing_covarage_value">{{data.existingCoverage.value | currency:'USD':'symbol-narrow':'1.0-2'}}{{data.inputValues[0].monthEnabled}}</span>
         </div>
       </div>
       <div class="separator-solid"></div>
       <div class="flex-row">
         <div class="flex-col-7">
-          <label>{{data.total.title}}</label>
+          <label id="view_details_total_text">{{data.total.title}}</label>
         </div>
         <div class="flex-col-5">
-          <span class="total">{{((data.total.value - data.existingCoverage.value)>0 ? (data.total.value - data.existingCoverage.value) : 0) | currency:'USD':'symbol-narrow':'1.0-0'}}</span><span class="total" *ngIf="isMonthEnabled"> / mth</span>
+          <span class="total" id="view_details_total_value">{{((data.total.value - data.existingCoverage.value)>0 ? (data.total.value - data.existingCoverage.value) : 0) | currency:'USD':'symbol-narrow':'1.0-0'}}</span><span class="total" *ngIf="isMonthEnabled"> / mth</span>
         </div>
       </div>
     </div>

@@ -1,23 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
+import { appConstants } from './../../../app.constants';
 
-const APP_JWT_TOKEN_KEY = 'app-jwt-token';
+export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
 const APP_SESSION_ID_KEY = 'app-session-id';
+const APP_ENQUIRY_ID = 'app-enquiry-id';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }
 
   private getAppSecretKey() {
-    return 'YdY51VhXVWEK7nLuM+wrb8CXhLMFS4WOlYf7dAEG5jc=';
+    return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
-
   authenticate(userEmail?: string, userPassword?: string) {
     const authenticateUrl = apiConstants.endpoint.authenticate;
     const authenticateBody = {
@@ -39,8 +40,8 @@ export class AuthenticationService {
 
   saveAuthDetails(auth: any) {
     if (sessionStorage) {
-      sessionStorage.setItem(APP_JWT_TOKEN_KEY, auth.securityToken);
-      sessionStorage.setItem(APP_SESSION_ID_KEY, auth.sessionId);
+      sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
+      sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
     }
   }
 
@@ -50,11 +51,11 @@ export class AuthenticationService {
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(APP_JWT_TOKEN_KEY);
+    return sessionStorage.getItem(appConstants.APP_JWT_TOKEN_KEY);
   }
 
   public getSessionId(): string {
-    return sessionStorage.getItem(APP_SESSION_ID_KEY);
+    return sessionStorage.getItem(appConstants.APP_SESSION_ID_KEY);
   }
 
   public isAuthenticated(): boolean {
@@ -62,6 +63,17 @@ export class AuthenticationService {
     const token = this.getToken();
     // return a boolean reflecting
     // whether or not the token is expired
-    return tokenNotExpired(token);
+    return this.jwtHelper.isTokenExpired(token);
   }
+
+  saveEnquiryId(id) {
+    if (sessionStorage) {
+      sessionStorage.setItem(appConstants.APP_ENQUIRY_ID, id);
+    }
+  }
+
+  public getEnquiryId(): string {
+    return sessionStorage.getItem(appConstants.APP_ENQUIRY_ID);
+  }
+
 }

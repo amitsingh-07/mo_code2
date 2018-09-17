@@ -1,11 +1,15 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { IMyAssets } from './my-assets.interface';
 
@@ -14,7 +18,8 @@ import { IMyAssets } from './my-assets.interface';
   templateUrl: './my-assets.component.html',
   styleUrls: ['./my-assets.component.scss']
 })
-export class MyAssetsComponent implements IPageComponent, OnInit {
+export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
+  locationSubscription: any;
   pageTitle: string;
   assetsForm: FormGroup;
   assetsFormValues: IMyAssets;
@@ -22,6 +27,8 @@ export class MyAssetsComponent implements IPageComponent, OnInit {
 
   constructor(
     private router: Router, public headerService: HeaderService,
+    private modal: NgbModal, private location: Location,
+    public guideMeApiService: GuideMeApiService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -31,6 +38,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.locationSubscription = this.location.subscribe(() => this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]));
     this.assetsFormValues = this.guideMeService.getMyAssets();
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
@@ -40,9 +48,19 @@ export class MyAssetsComponent implements IPageComponent, OnInit {
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
-
+    if (this.guideMeService.isMyInfoEnabled) {
+      this.guideMeApiService.getMyInfoData().subscribe((data) => {
+        this.guideMeService.closeFetchPopup();
+        this.assetsForm.controls['cpf'].setValue(data.objectList[0].CPF);
+        this.setFormTotalValue();
+        this.guideMeService.isMyInfoEnabled = false;
+      });
+      }
     this.setFormTotalValue();
-  }
+    }
+    ngOnDestroy(): void {
+      this.locationSubscription.unsubscribe();
+    }
 
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.assetsForm.value);
@@ -58,6 +76,13 @@ export class MyAssetsComponent implements IPageComponent, OnInit {
     this.guideMeService.setMyAssets(form.value);
     return true;
   }
+
+  openModal() {
+     const ref = this.modal.open(ErrorModalComponent, { centered: true });
+     ref.componentInstance.errorTitle = 'Leave This Page';
+     ref.componentInstance.errorMessage = 'You will be redirected to Singpass MyInfo page to begin fetching your data.';
+     ref.componentInstance.isButtonEnabled = true;
+   }
 
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
