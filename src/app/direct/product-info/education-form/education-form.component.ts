@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
+import { TranslateService } from '@ngx-translate/core';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { DirectService } from './../../direct.service';
 
 @Component({
@@ -18,13 +20,15 @@ export class EducationFormComponent implements OnInit {
   formValues: any;
   contribution = '100';
   isSelfFormEnabled = true;
+  childdob: string;
+  childgender: string;
   selectedunivercityEntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
   monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
   univercityEntryAge = Array(4).fill(18).map((x, i) => x += i);
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
+    private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
       const today: Date = new Date();
       config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
       config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -44,19 +48,21 @@ export class EducationFormComponent implements OnInit {
       this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.educationForm = this.formBuilder.group({
-      selfgender: [this.formValues.selfgender, Validators.required],
+      selfgender: [this.formValues.selfgender],
       childgender: [this.formValues.childgender, Validators.required],
-      selfdob: [this.formValues.selfdob, Validators.required],
+      selfdob: [this.formValues.selfdob],
       childdob: [this.formValues.childdob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker],
       contribution: [this.formValues.contribution],
       selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge],
-      premiumWaiver: [this.formValues.premiumWaiver]
+      premiumWaiver: [this.formValues.premiumWaiver, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
-        this.save();
-        this.directService.triggerSearch('');
+         if (this.save()) {
+            this.directService.setMinProdInfo(this.summarizeDetails());
+         }
+         this.directService.triggerSearch('');
       }
     });
   }
@@ -78,20 +84,38 @@ export class EducationFormComponent implements OnInit {
   }
   summarizeDetails() {
     let sum_string = '';
-    sum_string += this.educationForm.value.childgender + ', ';
-    sum_string += this.educationForm.value.selectedunivercityEntryAge + ', ';
-    sum_string += this.educationForm.value.contribution;
-    if (this.educationForm.value.premiumWaiver === 'yes') {
+    sum_string += 'Save $' + this.educationForm.value.contribution + '/ mth, ';
+    if (this.educationForm.value.selectedunivercityEntryAge) {
+      sum_string += 'Uni Entry Age of ' + this.educationForm.value.selectedunivercityEntryAge;
+    }
+    if (this.isSelfFormEnabled) {
       sum_string += ', Premium Waiver Rider';
     }
     return sum_string;
   }
   save() {
-    this.directService.setLifeProtectionForm(this.educationForm);
-    this.directService.setMinProdInfo(this.summarizeDetails());
+    const form = this.educationForm;
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
+      ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
+      return false;
+    }
+    form.value.childgender = this.childgender;
+    form.value.childdob = this.childdob;
+    form.value.contribution = this.contribution;
+    form.value.childdob = this.selectedunivercityEntryAge;
+    this.directService.setEducationForm(form.value);
+    return true;
   }
-
   showPremiumWaiverModal() {
-
+    this.directService.showToolTipModal(
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+      );
   }
 }

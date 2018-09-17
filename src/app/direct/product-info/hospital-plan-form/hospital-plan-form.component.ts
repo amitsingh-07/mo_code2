@@ -3,7 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
+import { TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../../direct.service';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-hospital-plan-form',
@@ -21,7 +23,7 @@ export class HospitalPlanFormComponent implements OnInit {
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
+    private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
       const today: Date = new Date();
       config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
       config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -40,7 +42,9 @@ export class HospitalPlanFormComponent implements OnInit {
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
-        this.save();
+        if (this.save()) {
+          this.directService.setMinProdInfo(this.summarizeDetails());
+        }
         this.directService.triggerSearch('');
       }
     });
@@ -51,7 +55,6 @@ export class HospitalPlanFormComponent implements OnInit {
   }
   summarizeDetails() {
     let sum_string = '';
-    sum_string += this.hospitalForm.value.gender + ', ';
     sum_string += this.hospitalForm.value.selectedPlan;
     if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
       sum_string += ', Full / Partial Rider';
@@ -59,7 +62,26 @@ export class HospitalPlanFormComponent implements OnInit {
     return sum_string;
   }
   save() {
-    this.directService.setLifeProtectionForm(this.hospitalForm);
-    this.directService.setMinProdInfo(this.summarizeDetails());
+    const form = this.hospitalForm;
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
+      ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
+      return false;
+    }
+    form.value.selectedPlan = this.selectedPlan;
+    this.directService.setHospitalPlanForm(form.value);
+    return true;
+  }
+
+  showFullOrPartialRider() {
+    this.directService.showToolTipModal(
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+      );
   }
 }

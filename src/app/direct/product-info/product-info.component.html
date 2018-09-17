@@ -42,7 +42,8 @@
     {{searchText}} 
   </button>
 </div>
-<div class="min-prod-info" [ngClass]="{'show': !toggleVisibility}">
+<app-edit-product-info (click)="editProdInfo()"></app-edit-product-info>
+<!-- <div class="min-prod-info" [ngClass]="{'show': !toggleVisibility}">
     <div class="min-prod-info__block">
       <img  class="min-prod-info__block-icon" src="../../../assets/images/{{productCategorySelectedLogo}}"/>
         <span class="min-prod-info__block-title">{{productCategorySelected}}</span>
@@ -51,5 +52,5 @@
           <span class="min-prod-info__block-btn--edit"></span>
         </div>
       </div> 
-</div>
+</div> -->
 <div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>
