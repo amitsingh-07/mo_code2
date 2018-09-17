@@ -47,4 +47,11 @@ export class ResetPasswordComponent implements OnInit {
     this.headerService.setHeaderVisibility(false);
     this.buildResetPasswordForm();
   }
+  showHidePassword(el) {
+    if (el.type === 'password') {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
+  }
 }
