@@ -36,6 +36,7 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   helpDate: any;
   editPortfolio: any;
+  buttonTitle: any;
   constructor(
     private router: Router,
     public headerService: HeaderService,
@@ -50,6 +51,7 @@ export class PortfolioRecommendationComponent implements OnInit {
       self.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
       self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel');
       self.helpDate = this.translate.instant('PORTFOLIO_RECOMMENDATION.helpDate');
+      self.buttonTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.CONTINUE');
       this.setPageTitle(this.pageTitle, null, false);
     });
   }
@@ -74,6 +76,7 @@ export class PortfolioRecommendationComponent implements OnInit {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
     ref.componentInstance.errorMessage = this.editPortfolio.modalMessage;
+    ref.componentInstance.ButtonTitle = this.buttonTitle;
   }
   showWhatTheRisk() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);

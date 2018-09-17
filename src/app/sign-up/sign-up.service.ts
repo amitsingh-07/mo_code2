@@ -161,4 +161,16 @@ export class SignUpService {
   setLoginInfo(data: SignUpFormData) {
     this.signUpFormData = data;
   }
+
+  /**
+   * get login info.
+   * @param data - user account details.
+   */
+  getResetPasswordInfo() {
+    return {
+      password: this.signUpFormData.resetPassword,
+      confirmPassword: this.signUpFormData.confirmPassword
+    };
+  }
+
 }
