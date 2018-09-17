@@ -18,7 +18,7 @@ export class EducationFormComponent implements OnInit {
   formValues: any;
   contribution = '100';
   isSelfFormEnabled = true;
-  EntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
+  selectedunivercityEntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
   monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
   univercityEntryAge = Array(4).fill(18).map((x, i) => x += i);
   constructor(
@@ -37,11 +37,11 @@ export class EducationFormComponent implements OnInit {
     //this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
     this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
-    if (this.formValues.monthlyContribution !== undefined ) {
+    if (this.formValues.contribution !== undefined ) {
       this.selectCoverageAmt(this.formValues.monthlyContribution);
     }
-    if (this.formValues.univercityEntryAge !== undefined ) {
-      this.selectEntryAge(this.formValues.univercityEntryAge);
+    if (this.formValues.selectedunivercityEntryAge !== undefined ) {
+      this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.educationForm = this.formBuilder.group({
       selfgender: [this.formValues.selfgender, Validators.required],
@@ -49,8 +49,8 @@ export class EducationFormComponent implements OnInit {
       selfdob: [this.formValues.selfdob, Validators.required],
       childdob: [this.formValues.childdob, Validators.required],
       smoker: [this.formValues.smoker, Validators.required],
-      monthlyContribution: [this.formValues.monthlyContribution],
-      univercityEntryAge: [this.formValues.univercityEntryAge],
+      contribution: [this.formValues.contribution],
+      selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge],
       premiumWaiver: [this.formValues.premiumWaiver]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
@@ -58,17 +58,19 @@ export class EducationFormComponent implements OnInit {
         this.save();
         this.directService.triggerSearch('');
       }
-      this.EntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
     });
   }
   selectCoverageAmt(contribution) {
     this.contribution = contribution;
+    this.educationForm.controls.contribution.setValue(this.contribution);
   }
   selectEntryAge(EntryAge) {
-    this.EntryAge = EntryAge;
+    this.selectedunivercityEntryAge = EntryAge;
+    this.educationForm.controls.selectedunivercityEntryAge.setValue(this.selectedunivercityEntryAge);
   }
   setdefaultUniversityAge() {
-    this.EntryAge = this.educationForm.controls['childgender'].value === 'male' ? '20' : '18';
+    this.selectedunivercityEntryAge = this.educationForm.controls['childgender'].value === 'male' ? '20' : '18';
+    this.educationForm.controls.selectedunivercityEntryAge.setValue(this.selectedunivercityEntryAge);
   }
 
   setselfform() {
@@ -76,16 +78,15 @@ export class EducationFormComponent implements OnInit {
   }
   summarizeDetails() {
     let sum_string = '';
-    sum_string += 'ssd' + ', ';
-    sum_string += 'dsds';
+    sum_string += this.educationForm.value.childgender + ', ';
+    sum_string += this.educationForm.value.selectedunivercityEntryAge + ', ';
+    sum_string += this.educationForm.value.contribution;
     if (this.educationForm.value.premiumWaiver === 'yes') {
       sum_string += ', Premium Waiver Rider';
     }
     return sum_string;
   }
   save() {
-    this.educationForm.value.coverageAmt = 'sfdsdf';
-    this.educationForm.value.duration = 'dfsfsd';
     this.directService.setLifeProtectionForm(this.educationForm);
     this.directService.setMinProdInfo(this.summarizeDetails());
   }

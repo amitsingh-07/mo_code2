@@ -47,6 +47,24 @@
       }
     }
   },
+  "EDUCATION": {
+    "ABOUT_CHILD": {
+      "TITLE": "About my child",
+      "UNIVERSITY_ENTRY_AGE": "University Entry Age",
+      "MONTHLY_CONTRIBUTION":"Monthly contribution"
+    },
+    "ABOUT_ME": {
+      "TITLE": "About me"
+    }
+  },
+  "HOSPITAL_PLAN": {
+    "PLAN_TYPE": "Plan type",
+    "FULL_OR_PARTIAL_RIDER":{ 
+      "TITLE": "Full / Partial Rider",
+      "SUBTITLE": "(optional)"
+    }
+    
+  },
   "CRITICAL_ILLNESS": {
     "COVERAGE_AMT": {
       "TITLE": "Coverage Amount",
