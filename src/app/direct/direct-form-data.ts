@@ -1,5 +1,6 @@
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
+import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 export class DirectFormData {
     prodCategory: string;
     gender: string;
@@ -20,5 +21,9 @@ export class DirectFormData {
     // Retirement Income Form
     retirementIncome: IRetirementIncome;
 
+    // Long-Term-Care Form
     longTermCare: ILongTermCare;
+
+    // Occupational Disability Form
+    ocpDisability: IOcpDisability;
 }

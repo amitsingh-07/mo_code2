@@ -1,5 +1,17 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  DoCheck,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewEncapsulation
+} from '@angular/core';
+
 import { TranslateService } from '../../../../../node_modules/@ngx-translate/core';
 
 @Component({
@@ -8,7 +20,7 @@ import { TranslateService } from '../../../../../node_modules/@ngx-translate/cor
   styleUrls: ['./plan-details-widget.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
+export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() data;
   @Input() type;
   @Input() bestValue;
@@ -24,13 +36,17 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
   canShowRating = true;
   canShowDiscount = true;
 
+  isRankContainerSet = false;
+
   coverageDuration;
   premiumDuration;
 
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
 
-  constructor(private currency: CurrencyPipe, private translate: TranslateService) {
+  constructor(
+    private currency: CurrencyPipe, private translate: TranslateService,
+    private elRef: ElementRef, private renderer: Renderer2) {
     this.translate.use('en');
     this.highlights = [];
   }
@@ -66,6 +82,24 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit {
         this.highlights.push({ title: 'Escalating Benefit:', description: '3%' });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
+    }
+  }
+
+  ngAfterViewChecked() {
+    if (!this.isRankContainerSet) {
+      const rankContainer = this.elRef.nativeElement.querySelectorAll('.insurance-plan-widget__container__rank-box');
+      if (rankContainer.length > 0) {
+        rankContainer.forEach((el) => {
+          if (rankContainer.length === 1) {
+            this.renderer.addClass(el, 'one-plan-width');
+          } else if (rankContainer.length === 2) {
+            this.renderer.addClass(el, 'two-plan-width');
+          } else {
+            this.renderer.addClass(el, 'three-plan-width');
+          }
+        });
+        this.isRankContainerSet = true;
+      }
     }
   }
 

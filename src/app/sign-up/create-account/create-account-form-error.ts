@@ -27,7 +27,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid First Name',
-                        errorMessage: 'First name field can only contain alphabets value'
+                        errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
                 }
         },
         lastName: {
@@ -37,7 +37,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid Last Name',
-                        errorMessage: 'Last name field can only contain alphabets value'
+                        errorMessage: 'Last name field can only contain alphabets value of 2 - 40 characters in length'
                 }
         },
         email: {

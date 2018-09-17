@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
+import { CtyptoService} from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
@@ -21,7 +22,8 @@ export class SignUpApiService {
                 private signUpService: SignUpService,
                 private guideMeService: GuideMeService,
                 private selectedPlansService: SelectedPlansService,
-                public datepipe: DatePipe
+                public datepipe: DatePipe,
+                public ctyptoService: CtyptoService
                ) {
     }
 
@@ -41,7 +43,8 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const dob = this.datepipe.transform(new Date(getGuideMeFormData.customDob), 'yyyy-MM-dd').toString() + 'T00:00:00';
+    const customDob = new Date(getGuideMeFormData.customDob);
+    const dob = this.datepipe.transform(customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
@@ -100,8 +103,8 @@ export class SignUpApiService {
     const resCode = this.signUpService.getResetCode();
     return {
         customerRef: custRef,
-        password: pwd,
-        callbackUrl: environment.apiBaseUrl + '/#/signup/email-verification',
+        password: this.ctyptoService.encrypt(pwd),
+        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
         resetType: 'New',
         resetCode: resCode
     };

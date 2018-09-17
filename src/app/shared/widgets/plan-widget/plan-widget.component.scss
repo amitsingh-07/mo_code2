@@ -134,6 +134,18 @@ app-plan-widget {
         @extend .space-btwn;
         margin: 15px 0;
 
+        .one-plan-width {
+          width: 100% !important;
+        }
+
+        .two-plan-width {
+          width: 47% !important;
+        }
+
+        .three-plan-width {
+          width: 30% !important;
+        }
+
         .insurance-plan-widget__container__rank-box {
           background-color: #c0eded;
           border-radius: 8px;

@@ -34,7 +34,8 @@ export class GuideMeApiService {
     getProtectionNeedsList() {
         const userInfoForm: any = {
             profileId: this.guideMeService.getGuideMeFormData().myProfile,
-            birthDate: this.guideMeService.getGuideMeFormData().customDob
+            birthDate: this.guideMeService.getGuideMeFormData().customDob,
+            journeyType: 'guided'
         };
         return this.apiService.getProtectionNeedsList(userInfoForm);
     }

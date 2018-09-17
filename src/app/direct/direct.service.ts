@@ -7,6 +7,7 @@ import { DirectFormData } from './direct-form-data';
 import { FormError } from './product-info/form-error';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
+import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -137,5 +138,16 @@ export class DirectService {
 
   setRetirementIncomeForm(data: IRetirementIncome) {
     this.directFormData.retirementIncome = data;
+  }
+
+  getOcpDisabilityForm(): IOcpDisability {
+    if (!this.directFormData.ocpDisability) {
+      this.directFormData.ocpDisability = {} as IOcpDisability;
+    }
+    return this.directFormData.ocpDisability;
+  }
+
+  setOcpDisabilityForm(data: IOcpDisability) {
+    this.directFormData.ocpDisability = data;
   }
 }
