@@ -38,7 +38,7 @@ export class EducationFormComponent implements OnInit {
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
     this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
     if (this.formValues.contribution !== undefined ) {
-      this.selectCoverageAmt(this.formValues.monthlyContribution);
+      this.selectMonthlyContribution(this.formValues.monthlyContribution);
     }
     if (this.formValues.selectedunivercityEntryAge !== undefined ) {
       this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
@@ -60,7 +60,7 @@ export class EducationFormComponent implements OnInit {
       }
     });
   }
-  selectCoverageAmt(contribution) {
+  selectMonthlyContribution(contribution) {
     this.contribution = contribution;
     this.educationForm.controls.contribution.setValue(this.contribution);
   }

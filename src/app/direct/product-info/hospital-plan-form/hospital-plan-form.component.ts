@@ -16,7 +16,7 @@ export class HospitalPlanFormComponent implements OnInit {
   modalRef: NgbModalRef;
   hospitalForm: FormGroup;
   formValues: any;
-  plan = 'Private';
+  selectedPlan = 'Private';
   planType = [ 'Private', 'Govt Ward A', 'Govt Ward B1', 'Govt Ward B2/C', 'Global Healthcare' ];
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -36,16 +36,30 @@ export class HospitalPlanFormComponent implements OnInit {
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       fullOrPartialRider: [this.formValues.fullOrPartialRider, Validators.required],
-      planType: [this.formValues.planType]
+      selectedPlan: [this.formValues.selectedPlan]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
-        //this.save();
+        this.save();
         this.directService.triggerSearch('');
       }
     });
   }
   selectHospitalPlan(plan) {
-    this.plan = plan;
+    this.selectedPlan = plan;
+    this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan);
+  }
+  summarizeDetails() {
+    let sum_string = '';
+    sum_string += this.hospitalForm.value.gender + ', ';
+    sum_string += this.hospitalForm.value.selectedPlan;
+    if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
+      sum_string += ', Full / Partial Rider';
+    }
+    return sum_string;
+  }
+  save() {
+    this.directService.setLifeProtectionForm(this.hospitalForm);
+    this.directService.setMinProdInfo(this.summarizeDetails());
   }
 }

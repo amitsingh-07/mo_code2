@@ -56,7 +56,7 @@
                 <span class="coverage_amt">{{contribution | currency:'USD':'symbol-narrow':'1.0-0'}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button type="button" class="dropdown-item" *ngFor="let contribution of monthlyContribution" (click)="selectCoverageAmt(contribution)">
+                <button type="button" class="dropdown-item" *ngFor="let contribution of monthlyContribution" (click)="selectMonthlyContribution(contribution)">
                   {{contribution | currency:'USD':'symbol-narrow':'1.0-0'}}
                 </button>
               </div>
