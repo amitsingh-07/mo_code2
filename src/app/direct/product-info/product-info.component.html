@@ -1,7 +1,7 @@
 <div class="prod-info" [ngClass]="{'show': toggleVisibility, 'full': toggleVisibility && !toggleSelectVisibility}">
   <div class="prod-cat-list__wrapper" [ngClass]="{'show': toggleSelectVisibility}">
     <div class="prod-cat-list-title hidden-lg">{{'COVERAGE.TITLE' | translate}}</div> 
-    <div class="prod-cat-list-close hidden-lg" (click)="search()"></div>
+    <div class="prod-cat-list-close hidden-lg" (click)="openProductCategory(0)"></div>
     <div class="prod-cat-list">
       <app-product-category [data]="productCategory" *ngFor="let productCategory of productCategoryList; let i = index" (click)="openProductCategory(i)"></app-product-category>
     </div>
@@ -19,7 +19,7 @@
                     <span class="coverage_amt">{{productCategorySelected}}</span>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button type="button" class="dropdown-item" *ngFor="let productCategory of productCategoryList" (click)="selectProductCategory(productCategory)">
+                    <button type="button" class="dropdown-item" *ngFor="let productCategory of productCategoryList; let i = index" (click)="selectProductCategory(productCategory, i)">
                       {{productCategory.prodCatName}}
                     </button>
                   </div>
@@ -28,7 +28,15 @@
           </div> 
         </div>
     </div>
-    <router-outlet></router-outlet>
+    <div>
+      <app-life-protection-form *ngIf="selectedCategoryId == 0"></app-life-protection-form>
+      <app-critical-illness-form *ngIf="selectedCategoryId == 1"></app-critical-illness-form>
+      <app-ocp-disability-form *ngIf="selectedCategoryId == 2"></app-ocp-disability-form>
+      <app-hospital-plan-form *ngIf="selectedCategoryId == 3"></app-hospital-plan-form>
+      <app-long-term-care-form *ngIf="selectedCategoryId == 4"></app-long-term-care-form>
+      <app-education-form *ngIf="selectedCategoryId == 5"></app-education-form>
+      <app-retirement-income-form *ngIf="selectedCategoryId == 6"></app-retirement-income-form>
+    </div>
   </div> 
   <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search()">
     {{searchText}} 

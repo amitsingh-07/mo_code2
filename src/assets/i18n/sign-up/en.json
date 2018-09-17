@@ -72,11 +72,16 @@
         "CLICK_HERE": "Click Here"
     },
     "FORGOTPASSWORD": {
-        
         "SUBMIT": "Submit",
         "EMAIL":"Email Address",
+        "BACK_TO":"Back To Login",
+        "EMAIL_SENT":"Email Sent!",
+        "CHECK_EMAIL":"Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
         "DESCRIPTION":"Enter your email to receive your password reset instructions.",
-        "TITLE":"Forgot Password"
+        "TITLE":"Forgot Password",
+        "EMAIL_NOT_FOUND":"Email Not Found",
+        "EMAIL_NOT_FOUND_DESC":"The email you’ve entered doesn’t seem to exist in our database. Please try again."
+
 
     }
 }

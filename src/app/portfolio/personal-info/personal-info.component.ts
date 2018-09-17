@@ -2,7 +2,7 @@ import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
-    AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation
+  AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -81,7 +81,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     this.formValues = this.portfolioService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
       dob: [this.formValues.dob, Validators.required],
-      investmentPeriod: [this.formValues.investmentPeriod, Validators.required],
+      investmentPeriod: ['', Validators.required],
     });
   }
 
@@ -91,13 +91,12 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
 
   onSliderChange(value): void {
     this.setSliderDescByRange(value);
-    this.personalInfoForm.controls.investmentPeriod.setValue(value);
     const self = this;
-    setTimeout( () => {
+    setTimeout(() => {
+      self.personalInfoForm.controls.investmentPeriod.setValue(value);
       const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
       self.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
     }, 1);
-
   }
 
   setSliderDescByRange(value) {
@@ -124,7 +123,6 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
       ref.componentInstance.errorMessage = this.portfolioService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.dob = this.parserFormatter.format(form.value.dob);
     this.portfolioService.setPersonalInfo(form.value);
     return true;
   }

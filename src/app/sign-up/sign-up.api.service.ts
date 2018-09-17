@@ -22,7 +22,7 @@ export class SignUpApiService {
                 private signUpService: SignUpService,
                 private guideMeService: GuideMeService,
                 private selectedPlansService: SelectedPlansService,
-                public datepipe: DatePipe,
+                public datePipe: DatePipe,
                 public ctyptoService: CtyptoService
                ) {
     }
@@ -43,8 +43,8 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const customDob = new Date(getGuideMeFormData.customDob);
-    const dob = this.datepipe.transform(customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
+    const datePipe = new DatePipe('en-US');
+    const dob = datePipe.transform(getGuideMeFormData.customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
@@ -162,4 +162,23 @@ export class SignUpApiService {
     const payload = this.verifyEmailBodyRequest(verifyCode);
     return this.apiService.verifyEmail(payload);
   }
+
+  /**
+   * verify email.
+   * @param verifyCode - confirmation token.
+   */
+  requestPassword(data) {
+    const payload = this.setRequestPasswordPayload(data);
+    return this.apiService.requestForgotPasswordLink(payload);
+  }
+
+  /**
+   * Payload for forgot password request .
+   */
+  setRequestPasswordPayload(data) {
+    return {
+        email: data
+    };
+  }
+
 }
