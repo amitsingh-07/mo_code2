@@ -41,6 +41,8 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    const formatDob = getGuideMeFormData.customDob.split(/\//g);
+    const customDob = formatDob[2] + '-' + formatDob[1] + '-' + formatDob[0];
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
@@ -60,7 +62,7 @@ export class SignUpApiService {
         notificationByEmail: true,
         countryCode: getAccountInfo.countryCode,
         notificationByPhone: true,
-        dateOfBirth: getGuideMeFormData.customDob,
+        dateOfBirth: customDob,
         gender: getGuideMeFormData.gender,
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
