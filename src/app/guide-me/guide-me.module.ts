@@ -1,3 +1,4 @@
+import { SlickModule } from 'ngx-slick';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -56,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    SlickModule.forRoot()
   ],
   declarations: [
     ProfileComponent,

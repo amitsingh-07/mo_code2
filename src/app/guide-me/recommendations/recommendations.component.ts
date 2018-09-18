@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbCarousel, NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -7,12 +7,12 @@ import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
-import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
+import { SlickComponent } from 'ngx-slick';
 
 @Component({
   selector: 'app-recommendations',
@@ -21,7 +21,7 @@ import { CreateAccountModelComponent } from './create-account-model/create-accou
   encapsulation: ViewEncapsulation.None,
   providers: [NgbCarouselConfig]
 })
-export class RecommendationsComponent implements IPageComponent, OnInit {
+export class RecommendationsComponent implements IPageComponent, OnInit, AfterViewChecked {
   pageTitle: string;
   subTitle: string;
 
@@ -36,11 +36,16 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   isComparePlanEnabled = false;
   enquiryId;
 
+  enableScroll = false;
+
   prevActiveSlide;
   nextActiveSlide;
 
   public innerWidth: any;
-  @ViewChild('recommendationCarousel') recommendationCarousel: NgbCarousel;
+  currentSlide = 0;
+  slideConfig = { slidesToShow: 1, slidesToScroll: 1 };
+
+  @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
   @ViewChild('mobileHeaderMenu', { read: ElementRef }) public mobileHeaderMenu: ElementRef<any>;
 
   constructor(
@@ -64,6 +69,27 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     }, 500);
   }
 
+  ngAfterViewChecked() {
+    this.enableScroll = true;
+  }
+
+  afterChange(e) {
+    this.currentSlide = e.currentSlide;
+    this.activeRecommendationList = this.recommendationPlans[this.currentSlide];
+    this.activeRecommendationType = this.activeRecommendationList.protectionType;
+
+    this.updateCoverageDetails();
+    switch (e.slick.currentDirection) {
+      // Left
+      case 0:
+        this.moveCarouselNext();
+        break;
+      case 1:
+        this.moveCarouselPrev();
+        break;
+    }
+  }
+
   getRecommendationsFromServer() {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
@@ -85,7 +111,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   moveCarouselNext() {
-    this.recommendationCarousel.next();
+    // this.recommendationCarousel.next();
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
@@ -99,7 +125,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
   }
 
   moveCarouselPrev() {
-    this.recommendationCarousel.prev();
+    // this.recommendationCarousel.prev();
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
@@ -123,19 +149,22 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.updateCoverageDetails();
   }
 
-  jumpToSlide(recommendation) {
-    this.recommendationCarousel.activeId = recommendation.protectionType;
+  jumpToSlide(recommendation, index) {
+    this.recommendationCarousel.slickGoTo(index);
     this.activeRecommendationType = recommendation.protectionType;
     this.activeRecommendationList = recommendation;
     this.updateCoverageDetails();
   }
 
   getCurrentRecommendationList() {
+    /*
     for (const recommendation of this.recommendationPlans) {
       if (this.activeRecommendationType === recommendation.protectionType) {
         return recommendation;
       }
     }
+    */
+    return this.recommendationPlans[this.currentSlide];
   }
 
   updateCoverageDetails() {
@@ -203,4 +232,3 @@ export class RecommendationsComponent implements IPageComponent, OnInit {
     this.modalRef.componentInstance.data = this.selectedPlans.length;
   }
 }
-
