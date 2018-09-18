@@ -1,64 +1,39 @@
 <!doctype html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="utf-8">
     <title>
         MoneyOwl
     </title>
     <base href="/">
-
+ 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <style>
-        /* Font Styles Start */
-        @font-face {
-            font-family: 'Muli';
-            src: url('http://localhost:4200/assets/fonts/muli.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Muli Regular';
-            src: url('http://localhost:4200/assets/fonts/muli-regular.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Muli Bold';
-            src: url('http://localhost:4200/assets/fonts/muli-bold.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Muli Semi Bold';
-            src: url('http://localhost:4200/assets/fonts/muli-semi-bold.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Muli Light';
-            src: url('http://localhost:4200/assets/fonts/muli-light.ttf') format('truetype');
-        }
-
         body {
             margin: 0;
             padding: 0;
         }
-        
+       
         body a{
             color: #ffffff;
             text-decoration: none;
         }
-
+ 
         .link-txt-wrap a {
             color: #4a90e2;
             text-decoration: underline;
         }
-
+ 
         img {
             max-width: 100%;
             height: auto;
             margin: auto;
         }
-
+ 
         .title {
-            font-family: Muli Light;
+            font-family: "Muli", Light;
             font-size: 19px;
             font-weight: 300;
             letter-spacing: -0.9px;
@@ -66,52 +41,52 @@
             text-align: center;
             padding: 20px;
         }
-
+ 
         .title-logo {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: baseline;
         }
-
+ 
         .title-logo img {
             margin: 0;
             width: 33.7px;
             height: 43.4px;
         }
-
+ 
         .title-txt {
             display: flex;
-            font-family: Muli Bold;
+            font-family: "Muli", Bold;
             font-size: 40px;
             letter-spacing: -1.8px;
             color: #00a7a7;
             align-items: flex-end;
         }
-
+ 
         .title-txt span:last-child {
             letter-spacing: -2px;
             color: #ff9c39;
         }
-
+ 
         .container {
-            width: 75%;
+            width: 512px;
             margin: 0 auto;
             text-align: center;
             padding: 10px 30px;
         }
-
+ 
         .container div {
             padding: 10px;
         }
-
+ 
         .title div {
             padding: 0;
         }
-
+ 
         .btn {
             font-size: 18px;
-            font-family: Muli Semi Bold;
+            font-family: "Muli";
             margin: auto;
             padding: 0.90rem;
             border-radius: 6px;
@@ -123,51 +98,63 @@
             width: 181.5px;
             height: 26.5px;
         }
-
+ 
         .txt-semi {
-            font-family: Muli Semi Bold;
+            font-family: "Muli", Semi Bold;
             font-size: 24px;
             font-weight: 600;
             text-align: center;
             color: #000000;
         }
-
+ 
         .txt-nrml {
-            font-family: Muli;
+            font-family: "Muli",;
             font-size: 20px;
             text-align: center;
             color: #000000;
         }
-
+ 
         .link-txt-wrap {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            font-family: Muli;
+            font-family: "Muli",;
             font-size: 14px;
             text-align: center;
             color: #000000;
         }
-
+ 
         .footer {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            font-family: Muli;
             font-size: 10px;
             font-weight: 300;
-            font-style: Muli Light;
+            font-family: "Muli", Light;
             text-align: center;
             color: #000000;
         }
+
+        .footer div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .footer img{
+            width: 16.5px;
+            height: 16.5px;
+            padding-right: 5.5px;
+        }
     </style>
 </head>
-
+ 
 <body>
     <div><img src="http://localhost:4200/assets/images/top-green@3x.jpg" alt=""></div>
-
+ 
     <div class="container">
         <div class="title">
             <div class="title-logo">
@@ -187,12 +174,16 @@
             <div>If you have received this email by mistake, please ignore this email.</div>
         </div>
         <div class="footer">
-            <span>Problems or questions? Call us at 7685 9483 or</span>
+            <span>Problems or questions? Call us at 6329 9189 or</span>
             <span>email enquiries@moneyowl.com.sg</span>
-            <div><img src="http://localhost:4200/assets/images/group-2.png" alt=""></div>
+            <div>
+                <img src="http://localhost:4200/assets/images/web-icon@3x.jpg" alt="">
+                <img src="http://localhost:4200/assets/images/linkedin-icon@3x.jpg" alt="">
+                <img src="http://localhost:4200/assets/images/fb-icon@3x.jpg" alt="">
+            </div>
         </div>
     </div>
     <div><img src="http://localhost:4200/assets/images/bottom-green@3x.jpg" alt=""></div>
 </body>
-
+ 
 </html>
