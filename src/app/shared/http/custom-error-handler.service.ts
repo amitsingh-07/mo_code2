@@ -8,6 +8,8 @@ import { AuthenticationService } from './auth/authentication.service';
 import { IError } from './interfaces/error.interface';
 import { IServerResponse } from './interfaces/server-response.interface';
 
+const errorCodes =  new Set([5007, 5009]);
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,12 +17,14 @@ export class CustomErrorHandlerService {
   constructor(private auth: AuthenticationService, private helper: HelperService) { }
 
   public handleCustomError(data: IServerResponse) {
-    const error: IError = {
-      error: data.responseMessage.responseCode,
-      message: data.responseMessage.responseDescription
-    };
-    this.helper.showCustomErrorModal(error);
-    throw new Error(this.parseCustomServerErrorToString(error));
+    if (!errorCodes.has(data.responseMessage.responseCode)) {
+      const error: IError = {
+        error: data.responseMessage.responseCode,
+        message: data.responseMessage.responseDescription
+      };
+      this.helper.showCustomErrorModal(error);
+      throw new Error(this.parseCustomServerErrorToString(error));
+    }
   }
   /*
     * Handle API authentication errors.
