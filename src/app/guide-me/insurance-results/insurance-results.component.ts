@@ -30,6 +30,7 @@ const assetImgPath = './assets/images/';
 
 export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterViewInit {
 
+  existingCoverageValues: IExistingCoverage;
   criticalIllnessValues: CriticalIllnessData;
   lifeProtectionValues: any;
   assetValues: any;
@@ -62,6 +63,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     this.monthlySalary = this.guideMeService.getMyIncome();
     this.liabilityValues = this.guideMeCalculateService.getLiabilitiesSum();
     this.assetValues = this.guideMeCalculateService.getCurrentAssetsSum();
+    this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
 
     const eduSupportAmount = this.guideMeCalculateService.getEducationSupportSum();
     const lifeProtectionAmount = this.guideMeCalculateService.getProtectionSupportSum();
@@ -216,7 +218,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   constructLifeProtection(data): IResultItem {
     const coverage = {
       title: this.planData.LESS_EXISTING_COVARAGE,
-      value: 0
+      value: this.existingCoverageValues.lifeProtectionCoverage ? this.existingCoverageValues.lifeProtectionCoverage : 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: this.planData.LIFE_PROTECTION.FOR_DEPENDENTS,
@@ -245,7 +247,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   constructCriticalIllness(data): IResultItem {
     const coverage = {
       title: this.planData.LESS_EXISTING_COVARAGE,
-      value: 0
+      value: this.existingCoverageValues.criticalIllnessCoverage ? this.existingCoverageValues.criticalIllnessCoverage : 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: this.planData.CRITICAL_ILLNESS.ANNUAL_INCOME,
@@ -269,7 +271,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   constructOccupationalDisability(data): IResultItem {
     const coverage = {
       title: this.planData.LESS_EXISTING_COVARAGE,
-      value: 0
+      value: this.existingCoverageValues.occupationalDisabilityCoveragePerMonth ?
+            this.existingCoverageValues.occupationalDisabilityCoveragePerMonth : 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: this.planData.OCCUPATIONAL_dISABILITY.MONTHLY_SALARY,
@@ -292,7 +295,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   constructLongTermCare(data): IResultItem {
     const coverage = {
       title: this.planData.LESS_EXISTING_COVARAGE,
-      value: 0
+      value: this.existingCoverageValues.longTermCareCoveragePerMonth ? this.existingCoverageValues.longTermCareCoveragePerMonth : 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({
@@ -316,7 +319,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   constructHospitalPlan(data): IResultItem {
     const coverage = {
       title: this.planData.LESS_EXISTING_COVARAGE,
-      value: 0
+      value: this.existingCoverageValues.selectedHospitalPlan ? this.existingCoverageValues.selectedHospitalPlan : 0
     } as IResultItemEntry;
     const entries = [] as IResultItemEntry[];
     entries.push({ title: this.planData.HOSPITAL_PLAN.FAMILY_MEMBER, value: 0 } as IResultItemEntry);
