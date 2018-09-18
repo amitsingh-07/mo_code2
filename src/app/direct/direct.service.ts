@@ -4,10 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 import { PercentageInputDirective } from './../shared/directives/percentage-input.directive';
 
 import { DirectFormData } from './direct-form-data';
+import { IEducation } from './product-info/education-form/education.interface';
 import { FormError } from './product-info/form-error';
+import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
-import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
+import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,7 @@ export class DirectService {
   prodSearchInfoData = this.prodSearchInfo.asObservable();
   searchBtnTrigger = this.searchBtn.asObservable();
   modalToolTipTrigger = this.modalToolTip.asObservable();
+  currentIndexValue: number;
 
   constructor(private currencyPipe: CurrencyPipe) {
   }
@@ -149,5 +152,27 @@ export class DirectService {
 
   setOcpDisabilityForm(data: IOcpDisability) {
     this.directFormData.ocpDisability = data;
+  }
+
+  setEducationForm(data: IEducation) {
+    this.directFormData.education = data;
+  }
+
+  setHospitalPlanForm(data: IHospital) {
+    this.directFormData.hospital = data;
+  }
+
+  getHospitalPlanForm() {
+    if (!this.directFormData.hospital) {
+      this.directFormData.hospital = {} as IHospital;
+    }
+    return this.directFormData.hospital;
+  }
+
+  getEducationForm() {
+    if (!this.directFormData.education) {
+      this.directFormData.education = {} as IEducation;
+    }
+    return this.directFormData.education;
   }
 }
