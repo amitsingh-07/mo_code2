@@ -518,6 +518,10 @@ input::placeholder {
       padding-right: 0;
       text-align: right;
     }
+
+    &.grey{
+      color:$text-color-secondary;
+    }
   }
 
   &.form-control-right {

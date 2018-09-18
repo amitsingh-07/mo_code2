@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { HeaderService } from '../../shared/header/header.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
+import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
   selector: 'app-residential-address',
@@ -6,10 +12,65 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./residential-address.component.scss']
 })
 export class ResidentialAddressComponent implements OnInit {
+  addressForm: FormGroup;
+  pageTitle: string;
+  formValues;
+  countries;
+  isUserNationalitySingapore;
 
-  constructor() { }
+  constructor(
+    public readonly translate: TranslateService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public headerService: HeaderService,
+    public investmentAccountService: InvestmentAccountService) {
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe((result: string) => {
+        this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
+        this.setPageTitle(this.pageTitle);
+      });
+  }
 
   ngOnInit() {
+    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
+    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.countries = this.investmentAccountService.getCountriesFormData();
+    this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
+  }
+
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title);
+  }
+
+  setDropDownValue(key, value, i) {
+    this.addressForm.controls[key].setValue(value);
+  }
+
+  goNext() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+  }
+
+  buildFormForSingapore() {
+    return this.formBuilder.group({
+      country: [this.countries[0], Validators.required],
+      postalCode: [this.formValues.postalCode, Validators.required],
+      address1: [this.formValues.address1, Validators.required],
+      address2: [this.formValues.address2],
+      unitNo: [this.formValues.unitNo, Validators.required],
+      isMailingAddressSame: [true, Validators.required]
+    });
+  }
+
+  buildFormForOtherCountry() {
+    return this.formBuilder.group({
+      country: [this.countries[0], Validators.required],
+      address1: [this.formValues.address1, Validators.required],
+      address2: [this.formValues.address2],
+      city: [this.formValues.city, Validators.required],
+      state: [this.formValues.state, Validators.required],
+      zipCode: [this.formValues.zipCode, Validators.required],
+      isMailingAddressSame: [true, Validators.required],
+    });
   }
 
 }

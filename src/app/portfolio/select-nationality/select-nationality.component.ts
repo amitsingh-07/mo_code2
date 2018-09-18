@@ -1,20 +1,23 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PortfolioService } from '../portfolio.service';
-import { HeaderService } from '../../shared/header/header.service';
+
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from '../../shared/http/api.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+
 import { ANNOTATIONS } from '@angular/core/src/util/decorators';
 import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
+
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
-import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-//import { SelectNationality } from './select-nationality.interface';
 
+import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderService } from '../../shared/header/header.service';
 
 @Component({
   selector: 'app-select-nationality',
@@ -23,25 +26,31 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None
 })
 
-
 export class SelectNationalityComponent implements OnInit {
-  SelectNationality: FormGroup;
+  selectNationalityForm: FormGroup;
   nationalitylists: any[];
   selectedNationality: any;
   country: any;
   afterSelectedNationality = false;
   beforeSelectedNationality = true;
-  nationality = "select nationality";
+  nationality = 'select nationality';
   formValues: any;
   blocked: any;
   editPortfolio: string;
   Question = false;
   sigQuestion = false;
   nationalitylist: any;
-  selectNationalityFormValues:any;
- 
-  constructor(
-    private formBuilder:FormBuilder,
+  selectNationalityFormValues: any;
+  editModalData: any;
+  modalTitle: any;
+  modalMessage: any;
+  ButtonTitle: any;
+  editModalData1: any;
+  modalTitle1: any;
+  modalMessage1: any;
+
+constructor(
+    private formBuilder: FormBuilder,
     public headerService: HeaderService,
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -49,109 +58,104 @@ export class SelectNationalityComponent implements OnInit {
     private modal: NgbModal,
     public readonly translate: TranslateService) {
     this.translate.use('en');
-    const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel');
+      this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
+      this.editModalData1 = this.translate.instant('SELECT_NATIONALITY.editModalData1');
     });
   }
 
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
     this.getNationalityList();
-    
 
+    this.selectNationalityFormValues = this.portfolioService.getNationality();
+    this.selectNationalityForm = new FormGroup({
+      selectNationalitySig: new FormControl(this.selectNationalityFormValues.selectNationalitySig, Validators.required)
+    });
   }
   selectNationality(nationalitylist) {
     this.nationalitylist = nationalitylist;
-    console.log(nationalitylist) +"nationlity list";
     this.blocked = this.nationalitylist.blocked;
-    console.log( this.blocked +"blocked country");
     this.afterSelectedNationality = true;
     this.beforeSelectedNationality = false;
     this.Question = false;
     this.sigQuestion = false;
   }
-
-  
-getNationalityList() {
+  getNationalityList() {
     this.portfolioService.getNationalityList().subscribe((data) => {
       this.nationalitylists = data.objectList;
-
       console.log(this.nationalitylists);
-});
+    });
 
   }
-  
-  save(form): boolean {
+ save(form): any {
     if (!form.valid) {
       return false;
     }
-    // this.guideMeService.setProfile(this.profileForm.value);
-    this.portfolioService.setNationality(this.SelectNationality.value)
+    this.portfolioService.setNationality(this.selectNationalityForm.value);
     return true;
   }
-
-  
-  
-goToNext(form) {
-    if (this.nationalitylist.blocked == true) {
+  goToNext(form) {
+    if (this.nationalitylist.blocked === true) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = "Unable To Proceed";
-      ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
-      ref.componentInstance.ButtonTitle = "Return To Homepage";
-      ref.componentInstance.selectNationalityError =this.errorButtonNavigation();
-    } 
-    else if (this.nationalitylist.nationality   !==  ( this.nationalitylist.blocked  || "SINGAPOREAN"  || "AMERICAN"))  {
-    
-      this.Question = true;
-
-      
-    }
-    else if (this.nationalitylist.nationality == 'SINGAPOREAN') {
-
+      ref.componentInstance.errorTitle = this.editModalData.modalTitle;
+      ref.componentInstance.errorMessage = this.editModalData.modalMessage;
+      ref.componentInstance.ButtonTitle = this.editModalData.ButtonTitle;
+      ref.componentInstance.selectNationalityError = PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY;
+    } else if (this.nationalitylist.nationality === 'AMERICAN') {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.editModalData.modalTitle;
+      ref.componentInstance.errorMessage = this.editModalData.modalMessage;
+      ref.componentInstance.ButtonTitle = this.editModalData.ButtonTitle;
+      ref.componentInstance.selectNationalityError = PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY;
+      ref.componentInstance.selectNationalityError = PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY;
+    } else if (this.nationalitylist.nationality === 'SINGAPOREAN') {
       this.sigQuestion = true;
+
       this.selectNationalityFormValues = this.portfolioService.getNationality();
-      this.SelectNationality = new FormGroup({
-        selectNationalitySig: new FormControl(this.selectNationalityFormValues.selectNationalitySig, Validators.required),
-        
-        
+      this.selectNationalityForm = new FormGroup({
+        selectNationalitySig: new FormControl(this.selectNationalityFormValues.selectNationalitySig, Validators.required)
       });
       if (this.save(form)) {
-        
-
-
-   if(this.SelectNationality.controls.selectNationalitySig.value !== 'no'){
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = "Unable To Proceed";
-    ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
-    ref.componentInstance.ButtonTitle = "Return To Homepage";
-
-   }else{
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
-   }
-
-
-
-
-     
-        
+        if (form.controls.selectNationalitySig.value === 'no') {
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.editModalData1.modalTitle1;
+          ref.componentInstance.errorMessage = this.editModalData1.modalMessage1;
+          ref.componentInstance.ButtonTitle = this.editModalData1.ButtonTitle1;
+          ref.componentInstance.selectNationalityError = PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY;
+        } else {
+          this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+        }
       }
-  
-      
-    }
-    else if(this.nationalitylist.country == 'UNITED STATES OF AMERICA'){
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = "Unable To Proceed";
-      ref.componentInstance.errorMessage = "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance";
-      ref.componentInstance.ButtonTitle = "Return To Homepage";
-      ref.componentInstance.selectNationalityError =this.errorButtonNavigation();
-    }
-   
-  }
-  errorButtonNavigation(){
-    this.activeModal.dismiss('Cross click');
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY]);
-  }
+    } else if (this.nationalitylist.nationality !== (this.nationalitylist.blocked || 'SINGAPOREAN' || 'AMERICAN')) {
+      this.Question = true;
+      this.selectNationalityFormValues = this.portfolioService.getNationality();
+      this.selectNationalityForm = new FormGroup({
+        otherCoutryQuestionOne: new FormControl(this.selectNationalityFormValues.otherCoutryQuestionOne, Validators.required),
+        otherCoutryQuestionTwo: new FormControl(this.selectNationalityFormValues.otherCoutryQuestionTwo, Validators.required)
+      });
+      if (this.save(form)) {
+        if (form.controls.otherCoutryQuestionOne.value === 'yes' && form.controls.otherCoutryQuestionTwo.value === 'yes') {
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.editModalData1.modalTitle1;
+          ref.componentInstance.errorMessage = this.editModalData1.modalMessage1;
+          ref.componentInstance.ButtonTitle = this.editModalData1.ButtonTitle1;
+          ref.componentInstance.selectNationalityError = PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY;
+        } else if (form.controls.otherCoutryQuestionOne.value === 'yes' && form.controls.otherCoutryQuestionTwo.value === 'no') {
+          const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.editModalData1.modalTitle1;
+          ref.componentInstance.errorMessage = this.editModalData1.modalMessage1;
+          ref.componentInstance.ButtonTitle = this.editModalData1.ButtonTitle1;
+          ref.componentInstance.selectNationalityError = PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY;
+          ref.componentInstance.selectNationalityError = PORTFOLIO_ROUTE_PATHS.SELECT_NATIONALITY;
+         } else if (form.controls.otherCoutryQuestionOne.value === 'no' && form.controls.otherCoutryQuestionTwo.value === 'yes') {
+          console.log('NoAndYes');
+        } else {
+          console.log('xAXa');
+        }
+      }
 
+    }
+  }
 }
 

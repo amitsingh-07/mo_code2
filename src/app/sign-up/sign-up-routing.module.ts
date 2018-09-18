@@ -7,6 +7,7 @@ import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-p
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
@@ -43,6 +44,9 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
     component: ForgotPasswordResultComponent
+  },
+  { path: SIGN_UP_ROUTES.RESET_PASSWORD,
+    component: ResetPasswordComponent
   }
 ];
 

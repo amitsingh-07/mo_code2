@@ -257,6 +257,7 @@
     "PORTFOLIO":"Portfolio",
     "PROJECTED_PORTF_VALUE":"Projected Portfolio Value in",
     "YEARS":"years",
+    "CONTINUE":"Continue",
     "PROJECTED_RETURNS":"Projected Returns",
     "WHATS_THE_RISK":"What’s the risk?",
     "ASSET_ALLOCATION_BREAKDOWN":"Asset Allocation Breakdown",
@@ -283,6 +284,19 @@
   "RISK_PROFILE":{
     "TITLE": "Portfolio Recommendation",
     "BUTTON_TITLE": "View My Portfolio"
+  },
+  "SELECT_NATIONALITY":{
+    "editModalData": {
+      "modalTitle": "Unable To Proceed",
+      "modalMessage": "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance" ,
+      "ButtonTitle" :"Return To Homepage"
+      },
+    "editModalData1": {
+        "modalTitle1": "Oops, Unable To Proceed",
+        "modalMessage1": "Thank you for your interest in MoneyOwl! Unfortunately, we are currently unable to set up investment accounts for US Citizens, Permanent Residents and Tax Residents. " ,
+        "ButtonTitle1" :"Return To Homepage"
+        }
+     
   }
 
 }

@@ -1,7 +1,9 @@
 {
   "COMMON": {
-    "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
-    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data"
+    "LABEL": {
+      "CONTINUE": "Continue",
+      "RETRIEVE": "Retrieve"
+    }
   },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
@@ -14,5 +16,16 @@
     "PASSPORT_EXPIRY": "Passport Expiry",
     "DOB": "Date of Birth",
     "GENDER": "Gender"
+  },
+  "RESIDENTIAL_ADDRESS": {
+    "TITLE": "Residential Address",
+    "COUNTRY": "Country",
+    "POSTAL_CODE": "Postal Code",
+    "ADDRESS_1": "Address Line 1",
+    "ADDRESS_2": "Address Line 2",
+    "UNIT_NO": "Unit No.",
+    "CITY": "City",
+    "STATE": "State / Province / Region",
+    "ZIPCODE": "Zip Code"
   }
 }

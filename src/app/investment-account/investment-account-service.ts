@@ -8,11 +8,26 @@ import { InvestmentAccountFormData } from './investment-account-form-data';
 @Injectable({
     providedIn: 'root'
 })
-export class PortfolioService {
+export class InvestmentAccountService {
 
     private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
 
     constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+    }
+
+    getInvestmentAccountFormData() {
+        return this.investmentAccountFormData;
+    }
+
+    getCountriesFormData() {
+        const countries = ['India', 'Singapore', 'Malaysia'];
+        // const countries = this.investmentAccountFormData.countries;
+        return countries;
+    }
+
+    isUserNationalitySingapore() {
+        // return this.investmentAccountFormData.country === 'singapore';
+        return true;
     }
 
 }

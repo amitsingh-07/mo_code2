@@ -32,6 +32,7 @@ export class ForgotPasswordComponent implements OnInit {
   defaultCountryCode;
   countryCodeOptions;
   heighlightMobileNumber;
+  buttonTitle;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -51,6 +52,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.emailNotFoundTitle = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND');
       this.emailNotFoundDesc = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND_DESC');
+      this.buttonTitle = this.translate.instant('COMMON.TRY_AGAIN');
     });
   }
 
@@ -80,7 +82,7 @@ export class ForgotPasswordComponent implements OnInit {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
     ref.componentInstance.errorMessage = this.emailNotFoundDesc;
-    ref.componentInstance.forgotPassword = 'YES';
+    ref.componentInstance.ButtonTitle = this.buttonTitle;
   }
 }
 goBack() {
