@@ -1,7 +1,8 @@
 import { CurrencyPipe } from '@angular/common';
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbCarousel, NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { SlickComponent } from 'ngx-slick';
 
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
@@ -12,7 +13,6 @@ import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
-import { SlickComponent } from 'ngx-slick';
 
 @Component({
   selector: 'app-recommendations',
@@ -111,7 +111,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   moveCarouselNext() {
-    // this.recommendationCarousel.next();
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
@@ -125,7 +124,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   moveCarouselPrev() {
-    // this.recommendationCarousel.prev();
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
@@ -157,13 +155,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   getCurrentRecommendationList() {
-    /*
-    for (const recommendation of this.recommendationPlans) {
-      if (this.activeRecommendationType === recommendation.protectionType) {
-        return recommendation;
-      }
-    }
-    */
     return this.recommendationPlans[this.currentSlide];
   }
 

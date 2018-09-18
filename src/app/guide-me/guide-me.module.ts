@@ -1,4 +1,3 @@
-import { SlickModule } from 'ngx-slick';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -6,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
+import { SlickModule } from 'ngx-slick';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
