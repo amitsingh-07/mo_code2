@@ -7,7 +7,7 @@ import { isDebugMode } from '../app/shared/logger/console-logger.service';
 export const environment = {
   production: false,
   isDebugMode: true,
-  apiBaseUrl: 'https://bfa.ntuclink.cloud'
+  apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud'
 };
 
 /*
