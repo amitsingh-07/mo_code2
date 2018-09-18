@@ -21,6 +21,7 @@ import { LifeProtectionFormComponent } from './product-info/life-protection-form
 import { LongTermCareFormComponent } from './product-info/long-term-care-form/long-term-care-form.component';
 import { OcpDisabilityFormComponent } from './product-info/ocp-disability-form/ocp-disability-form.component';
 import { RetirementIncomeFormComponent } from './product-info/retirement-income-form/retirement-income-form.component';
+import { EditProductInfoComponent } from './edit-product-info/edit-product-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -51,7 +52,7 @@ export function createTranslateLoader(http: HttpClient) {
     ProductInfoComponent, ProductCategoryComponent,
     LifeProtectionFormComponent, CriticalIllnessFormComponent,
     EducationFormComponent, LongTermCareFormComponent,
-    HospitalPlanFormComponent, RetirementIncomeFormComponent, OcpDisabilityFormComponent],
+    HospitalPlanFormComponent, RetirementIncomeFormComponent, OcpDisabilityFormComponent, EditProductInfoComponent],
   providers: [CurrencyPipe]
 })
 export class DirectModule { }
