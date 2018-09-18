@@ -59,8 +59,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string += this.longTermCareForm.controls['gender'].value + ', ';
-    sum_string += '$' + this.selectedMonthlyPayout;
+    sum_string += '$' + this.selectedMonthlyPayout + ' / mth';
     return sum_string;
   }
 
