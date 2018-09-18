@@ -71,6 +71,7 @@
                 <div ngbDropdown id="coverageAmtDropDown">
                   <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
                     <span class="coverage_amt">{{selectedRetirementIncome | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                    <i class="normal">{{ ' / mth' | translate}}</i>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <button type="button" class="dropdown-item" *ngFor="let selectedRetirementIncome of retirementIncomeList" (click)="selectRetirementIncome(selectedRetirementIncome)">
