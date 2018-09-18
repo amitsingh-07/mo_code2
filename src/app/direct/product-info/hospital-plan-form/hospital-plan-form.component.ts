@@ -18,8 +18,8 @@ export class HospitalPlanFormComponent implements OnInit {
   modalRef: NgbModalRef;
   hospitalForm: FormGroup;
   formValues: any;
-  selectedPlan = 'Private';
-  planType = [ 'Private', 'Govt Ward A', 'Govt Ward B1', 'Govt Ward B2/C', 'Global Healthcare' ];
+  selectedPlan;
+  planType;
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
@@ -28,11 +28,16 @@ export class HospitalPlanFormComponent implements OnInit {
       config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
       config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
       config.outsideDays = 'collapsed';
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe((result: string) => {
+      this.planType = this.translate.instant('HOSPITAL_PLAN.HOSPITAL_PLANS');
+      this.selectedPlan = this.planType[0];
+    });
      }
 
   ngOnInit() {
-    this.formValues = this.directService.getDirectFormData();
-    //this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
+    this.directService.setProdCategoryIndex(3);
+    this.formValues = this.directService.getHospitalPlanForm();
     this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider ? this.formValues.fullOrPartialRider : 'yes';
     this.hospitalForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
