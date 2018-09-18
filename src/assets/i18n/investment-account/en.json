@@ -4,7 +4,15 @@
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data"
   },
   "PERSONAL_INFO": {
-    "TITLE": "What's Your Profile?",
-    "DESCRIPTION": "Please choose the profile that best describes you."
+    "TITLE": "Personal Information",
+    "DESCRIPTION": "Please choose the profile that best describes you.",
+    "FULL_NAME": "Full Name",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "NRIC_NUMBER": "NRIC Number",
+    "PASSPORT_NUMBER": "Passport Number",
+    "PASSPORT_EXPIRY": "Passport Expiry",
+    "DOB": "Date of Birth",
+    "GENDER": "Gender"
   }
 }

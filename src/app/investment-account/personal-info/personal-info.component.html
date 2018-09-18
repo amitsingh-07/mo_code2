@@ -1,3 +1,128 @@
-<p>
-  personal-info works!
-</p>
+<div class="container-fluid">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <div>
+          <h2 id="invPersInfoH2">{{ 'PERSONAL_INFO.TITLE' | translate}}</h2>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <div class="doselfCheck">
+          <form [formGroup]="invPersonalInfoForm" id="invPersonalInfoForm" name="invPersonalInfoForm">
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl2">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <input type="text" id="invPersInfoInpt2" class="form-control" #firstName formControlName="firstName">
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl3">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <input type="text" id="invPersInfoInpt3" class="form-control" #lastName formControlName="lastName">
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl4">{{ 'PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <input type="text" id="invPersInfoInpt4" class="form-control" #nricNumber formControlName="nricNumber">
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl5">{{ 'PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <input type="text" id="invPersInfoInpt5" class="form-control" #passportNumber formControlName="passportNumber">
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
+                </div>
+                <div #usrFrmDp class="flex-col-7">
+                  <div class="datepicker-control">
+                    <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine}">
+                      <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY"
+                        formControlName="passportExpiry" name="passportExpiry" ngbDatepicker #e="ngbDatepicker" id="invPersInfoInpt6">
+                      <div class="input-group-append">
+                        <button (click)="e.toggle()" class="btn btn-primary" type="button" id="invPersInfoBtn1">
+                          <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('passportExpiry').valid || invPersonalInfoForm.get('passportExpiry').pristine"
+                            src="./assets/images/calendar-normal.svg" />
+                          <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine"
+                            src="./assets/images/calendar-error.svg" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl7">{{ 'PERSONAL_INFO.DOB' | translate}}</label>
+                </div>
+                <div #usrFrmDp class="flex-col-7">
+                  <div class="datepicker-control">
+                    <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine}">
+                      <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY"
+                        formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker" id="invPersInfoInpt7">
+                      <div class="input-group-append">
+                        <button (click)="d.toggle()" class="btn btn-primary" type="button" id="invPersInfoBtn1">
+                          <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('dob').valid || invPersonalInfoForm.get('dob').pristine"
+                            src="./assets/images/calendar-normal.svg" />
+                          <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine"
+                            src="./assets/images/calendar-error.svg" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="invPersInfoLbl8">{{ 'PERSONAL_INFO.GENDER' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+                    <div class="flex-row mb0">
+                      <div class="flex-col-6">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17" id="invPersInfoLbl2">
+                          <input ngbButton type="radio" value="male" id="invPersInfoInpt8"> {{ 'LABEL.MALE' |
+                          translate}}
+                        </label>
+                      </div>
+                      <div class="flex-col-6">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="invPersInfoLbl3">
+                          <input ngbButton type="radio" value="female" id="invPersInfoInpt9"> {{ 'LABEL.FEMALE' |
+                          translate}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="button" [disabled]="!invPersonalInfoForm.valid" (click)="goToNext(invPersonalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                id="invPersInfoBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
