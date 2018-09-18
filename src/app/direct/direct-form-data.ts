@@ -1,3 +1,5 @@
+import { IEducation } from './product-info/education-form/education.interface';
+import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
@@ -27,4 +29,10 @@ export class DirectFormData {
 
     // Occupational Disability Form
     ocpDisability: IOcpDisability;
+
+    // Education form
+    education: IEducation;
+
+    // Hospital form
+    hospital: IHospital;
 }

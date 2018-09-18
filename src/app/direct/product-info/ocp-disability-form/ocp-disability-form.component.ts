@@ -113,8 +113,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string +=  this.defaultEmployee + ', ';
-    sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value + ', ';
+    sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value +  ' / mth, ';
     sum_string += this.duration;
     return sum_string;
   }
