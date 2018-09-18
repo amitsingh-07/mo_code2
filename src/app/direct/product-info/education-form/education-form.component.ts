@@ -12,7 +12,7 @@ import { DirectService } from './../../direct.service';
   templateUrl: './education-form.component.html',
   styleUrls: ['./education-form.component.scss']
 })
-export class EducationFormComponent implements OnInit {
+export class EducationFormComponent implements OnInit, OnDestroy {
   dobValue;
   categorySub: any;
   modalRef: NgbModalRef;
@@ -37,16 +37,9 @@ export class EducationFormComponent implements OnInit {
 
   ngOnInit() {
     this.directService.setProdCategoryIndex(5);
-    this.formValues = this.directService.getDirectFormData();
-    //this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
+    this.formValues = this.directService.getEducationForm();
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
     this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
-    if (this.formValues.contribution !== undefined ) {
-      this.selectMonthlyContribution(this.formValues.monthlyContribution);
-    }
-    if (this.formValues.selectedunivercityEntryAge !== undefined ) {
-      this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
-    }
     this.educationForm = this.formBuilder.group({
       selfgender: [this.formValues.selfgender],
       childgender: [this.formValues.childgender, Validators.required],
@@ -57,6 +50,12 @@ export class EducationFormComponent implements OnInit {
       selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge],
       premiumWaiver: [this.formValues.premiumWaiver, Validators.required]
     });
+    if (this.formValues.contribution !== undefined ) {
+       this.selectMonthlyContribution(this.formValues.contribution);
+    }
+    if (this.formValues.selectedunivercityEntryAge !== undefined ) {
+       this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
+    }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
          if (this.save()) {
@@ -66,6 +65,11 @@ export class EducationFormComponent implements OnInit {
       }
     });
   }
+
+  ngOnDestroy(): void {
+    this.categorySub.unsubscribe();
+  }
+
   selectMonthlyContribution(contribution) {
     this.contribution = contribution;
     this.educationForm.controls.contribution.setValue(this.contribution);
@@ -105,10 +109,8 @@ export class EducationFormComponent implements OnInit {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.childgender = this.childgender;
-    form.value.childdob = this.childdob;
     form.value.contribution = this.contribution;
-    form.value.childdob = this.selectedunivercityEntryAge;
+    form.value.selectedunivercityEntryAge = this.selectedunivercityEntryAge;
     this.directService.setEducationForm(form.value);
     return true;
   }

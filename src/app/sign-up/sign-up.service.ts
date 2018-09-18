@@ -125,6 +125,24 @@ export class SignUpService {
   }
 
   /**
+   * get form errors.
+   * @param form - form details.
+   * @returns first error of the form.
+   */
+  getSignupFormError(form) {
+    const controls = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.createAccountFormError.formFieldErrors.errorTitle;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        errors.errorMessages.push(this.createAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+      }
+    }
+    return errors;
+  }
+
+  /**
    * get user mobile number.
    * @returns user mobile number with country code.
    */

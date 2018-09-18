@@ -2,6 +2,10 @@
 @import '../../../mixins';
 
 app-recommendations {
+  .enable-scroll {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important; 
+  }
   .outer-content {
     margin-top: 0;
 

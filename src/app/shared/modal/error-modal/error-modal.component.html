@@ -8,6 +8,9 @@
       </button>
     <div class="modal-body-message">
       <span *ngIf="errorMessage">{{errorMessage}}</span>
+      <ng-container *ngIf="errorMessageList">
+        <p *ngFor="let errorMessage of errorMessageList"><span>{{errorMessage}}</span></p>
+      </ng-container>
       <span *ngIf="errorDescription" [innerHTML]="errorDescription"></span>
     </div>
     <button *ngIf="showErrorButton" (click)="activeModal.dismiss('Close click')" type="button" class="btn btn__footer--fixed btn-primary width100">Try Again</button>

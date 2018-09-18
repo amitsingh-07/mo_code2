@@ -10,6 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ErrorModalComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
+  @Input() errorMessageList: string[];
   @Input() showErrorButton: boolean;
   @Input() errorDescription: any;
   @Input() isButtonEnabled: boolean;
