@@ -10,7 +10,7 @@ import { DirectService } from './../../direct.service';
   templateUrl: './hospital-plan-form.component.html',
   styleUrls: ['./hospital-plan-form.component.scss']
 })
-export class HospitalPlanFormComponent implements OnInit {
+export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   dobValue;
   categorySub: any;
   modalRef: NgbModalRef;
@@ -45,6 +45,11 @@ export class HospitalPlanFormComponent implements OnInit {
       }
     });
   }
+
+  ngOnDestroy(): void {
+    this.categorySub.unsubscribe();
+  }
+
   selectHospitalPlan(plan) {
     this.plan = plan;
   }

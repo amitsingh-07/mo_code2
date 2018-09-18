@@ -10,7 +10,7 @@ import { DirectService } from './../../direct.service';
   templateUrl: './education-form.component.html',
   styleUrls: ['./education-form.component.scss']
 })
-export class EducationFormComponent implements OnInit {
+export class EducationFormComponent implements OnInit, OnDestroy {
   dobValue;
   categorySub: any;
   modalRef: NgbModalRef;
@@ -61,6 +61,11 @@ export class EducationFormComponent implements OnInit {
       this.EntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
     });
   }
+
+  ngOnDestroy(): void {
+    this.categorySub.unsubscribe();
+  }
+
   selectCoverageAmt(contribution) {
     this.contribution = contribution;
   }
