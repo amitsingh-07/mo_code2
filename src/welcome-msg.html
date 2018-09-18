@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <meta charset="utf-8">
+    <title>
+        MoneyOwl
+    </title>
+    <base href="/">
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+       
+        body a{
+            color: #ffffff;
+            text-decoration: none;
+        }
+ 
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: auto;
+        }
+ 
+        .welcome-msg {
+            font-family: "Muli", Semi Bold ;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-align: center;
+            color: #000000;
+            padding: 20px;
+        }
+ 
+        .welcome-desc{
+            font-family: Muli;
+            font-size: 18px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .title-logo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+ 
+        .title-logo img {
+            margin: 0;
+            width: 163.5px;
+            height: 165px;
+        }
+ 
+        .leaf img{
+            width: 76px;
+            height: 25px;
+        }
+ 
+        .container {
+            width: 512px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 10px 30px;
+        }
+ 
+        .container div {
+            padding: 10px;
+        }
+ 
+        .title div {
+            padding: 0;
+        }
+ 
+        .btn {
+            font-size: 18px;
+            font-family: "Muli";
+            padding: 0 !important;
+            border-radius: 6px;
+            text-align: center;
+            border: 0;
+            border: 0 solid transparent;
+            background-color: #00a7a7;
+            color: #ffffff;
+            width: 193.5px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        .txt-semi {
+            font-family: "Muli", Semi Bold;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            color: #000000;
+        }
+ 
+        .txt-nrml {
+            font-family: "Muli";
+            font-size: 12px;
+            text-align: center;
+            color: #000000;
+        }
+ 
+        .selected-plans .txt-nrml{
+            font-size: 15px;
+        }
+
+        .selected-plans{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .selected-plans div{
+            text-align: left;
+        }
+
+        .selected-plans ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .selected-plans ul li{
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+            width: 45%;
+            display: flex;
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .selected-plans ul li span{
+            padding-right: 5px;
+        }
+
+        .link-txt-wrap {
+            padding: 30px!important;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            color: #000000;
+            border-radius: 3px;
+            background-color: #f0f9fa;
+            border: solid 0.5px #c0eded;
+        }
+
+        .link-txt-wrap .txt-semi{
+            font-size: 20px;
+            font-weight: bold;
+            font-style: italic;
+            padding-top: 13.5px;
+            height: 82.5px;
+        }
+
+        .link-txt-wrap img {
+            width: 248.5px;
+            height: 205px;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            font-weight: 300;
+            font-family: "Muli", Light;
+            text-align: center;
+            color: #000000;
+        }
+
+        .footer div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .footer img{
+            width: 16.5px;
+            height: 16.5px;
+            padding-right: 5.5px;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div><img src="http://localhost:4200/assets/images/top-green@3x.jpg" alt=""></div>
+ 
+    <div class="container">
+        <div class="title-logo">
+            <img src="http://localhost:4200/assets/images/owl-icon-dark.svg" alt="">
+            <div class="welcome-msg">Hi,<span></span><br/>Welcome to MoneyOwl! </div>
+            <div class="welcome-desc">You’re now one step closer to covering <br/>all your insurance needs.</div>
+        </div>
+        <div class="leaf">
+            <img src="http://localhost:4200/assets/images/leaf.svg" alt="">
+        </div>
+        <div class="selected-plans txt-nrml">
+            <div class="txt-semi">Here is a summary of the insurance plans that you <br/>have selected:</div>
+            <ul>
+                <li><span>1.</span> <span>Life Protection <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+                <li><span>2.</span> <span>Critical Illness <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+                <li><span>3.</span> <span>Hospitalisation Plan <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+                <li><span>4.</span> <span>Occupational Dsiability <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+                <li><span>5.</span> <span>Long Term Care <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+                <li><span>6.</span> <span>Education Fund <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+                <li><span>7.</span> <span>Retirement Income <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+                <li><span>8.</span> <span>SRS-Approved Plan <br/>My Protector Term Plan <br/>$122.70/month</span></li>
+            </ul>
+            <div class="txt-nrml">Our advisers are now working on a quote for you and will <br/>contact you on your mobile within 3 working days. </div>
+        </div>
+        <div class="link-txt-wrap">
+            <img src="http://localhost:4200/assets/images/welcome-msg.svg" alt="">
+            <div class="txt-semi">We are offering free Will writing service <br/>(worth $150), click here to get started!</div>
+            <div class="btn"><a href="#">Start Will Writing</a></div>
+        </div>
+        <div class="footer">
+            <span>Problems or questions? Call us at 6329 9189 or</span>
+            <span>email enquiries@moneyowl.com.sg</span>
+            <div>
+                <img src="http://localhost:4200/assets/images/web-icon@3x.jpg" alt="">
+                <img src="http://localhost:4200/assets/images/linkedin-icon@3x.jpg" alt="">
+                <img src="http://localhost:4200/assets/images/fb-icon@3x.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div><img src="http://localhost:4200/assets/images/bottom-green@3x.jpg" alt=""></div>
+</body>
+ 
+</html>

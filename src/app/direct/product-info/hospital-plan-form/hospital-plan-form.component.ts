@@ -3,7 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
+import { TranslateService } from '@ngx-translate/core';
 import { DirectService } from './../../direct.service';
+import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-hospital-plan-form',
@@ -16,12 +18,12 @@ export class HospitalPlanFormComponent implements OnInit {
   modalRef: NgbModalRef;
   hospitalForm: FormGroup;
   formValues: any;
-  plan = 'Private';
+  selectedPlan = 'Private';
   planType = [ 'Private', 'Govt Ward A', 'Govt Ward B1', 'Govt Ward B2/C', 'Global Healthcare' ];
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
+    private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
       const today: Date = new Date();
       config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
       config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -36,16 +38,50 @@ export class HospitalPlanFormComponent implements OnInit {
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       fullOrPartialRider: [this.formValues.fullOrPartialRider, Validators.required],
-      planType: [this.formValues.planType]
+      selectedPlan: [this.formValues.selectedPlan]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
-        //this.save();
+        if (this.save()) {
+          this.directService.setMinProdInfo(this.summarizeDetails());
+        }
         this.directService.triggerSearch('');
       }
     });
   }
   selectHospitalPlan(plan) {
-    this.plan = plan;
+    this.selectedPlan = plan;
+    this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan);
+  }
+  summarizeDetails() {
+    let sum_string = '';
+    sum_string += this.hospitalForm.value.selectedPlan;
+    if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
+      sum_string += ', Full / Partial Rider';
+    }
+    return sum_string;
+  }
+  save() {
+    const form = this.hospitalForm;
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
+      ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
+      return false;
+    }
+    form.value.selectedPlan = this.selectedPlan;
+    this.directService.setHospitalPlanForm(form.value);
+    return true;
+  }
+
+  showFullOrPartialRider() {
+    this.directService.showToolTipModal(
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+      );
   }
 }
