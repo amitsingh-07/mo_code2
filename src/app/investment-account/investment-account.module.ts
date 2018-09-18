@@ -7,6 +7,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+import { SharedModule } from '../shared/shared.module';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
@@ -25,6 +27,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule, InvestmentAccountRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
     NouisliderModule,
     FormsModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
