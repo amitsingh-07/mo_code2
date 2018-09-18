@@ -1,7 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PercentageInputDirective } from './../shared/directives/percentage-input.directive';
 
 import { DirectFormData } from './direct-form-data';
 import { IEducation } from './product-info/education-form/education.interface';
@@ -14,7 +13,6 @@ import { IRetirementIncome } from './product-info/retirement-income-form/retirem
 @Injectable({
   providedIn: 'root'
 })
-
 export class DirectService {
   searchStatus: boolean;
 

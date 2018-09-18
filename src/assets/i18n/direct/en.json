@@ -62,7 +62,8 @@
     "FULL_OR_PARTIAL_RIDER":{ 
       "TITLE": "Full / Partial Rider",
       "SUBTITLE": "(optional)"
-    }
+    },
+    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C", "Global Healthcare"]
     
   },
   "CRITICAL_ILLNESS": {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { DirectService } from '../../direct.service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   encapsulation: ViewEncapsulation.None
 })
-export class RetirementIncomeFormComponent implements OnInit {
+export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   retirementIncomeForm: FormGroup;
   categorySub: any;
   formValues: any;
@@ -73,6 +73,10 @@ export class RetirementIncomeFormComponent implements OnInit {
         this.directService.triggerSearch('');
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.categorySub.unsubscribe();
   }
 
     selectRetirementIncome(selectedRetirementIncome) {
