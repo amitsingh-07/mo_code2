@@ -45,30 +45,28 @@
 <form  name="selectNationalityForm" [formGroup]="selectNationalityForm">
 <div *ngIf="Question">
 <div class="flex-row mb10">
-    <div class=flex-col-10>
+    <div class="flex-col-10 mt15">
       <div class="form-group-with-bg--content-label" for="name" >Are you a United States Permanent Resident / Tax Resident?
 
       </div>
 
     </div>
-    <div class="flex-col-2">
-      <i class="tooltip-icon"  (click)="showHelpModal()"></i>
-    </div>
+   
   </div>
   <!-- buttons -->
   <div class="flex-row">
 
-    <div class="flex-col-12">
+    <div class="flex-col-12 mb10">
       <div class="btn-group--toggle" ngbRadioGroup name="radioGender"  formControlName="otherCoutryQuestionOne">
         <div class="flex-row">
           <div class="flex-col-6">
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
               <input ngbButton type="radio" value="yes" > Yes
             </label>
           </div>
           <div class="flex-col-6">
             
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
               <input ngbButton type="radio" value="no"  >No</label>
           </div>
         </div>
@@ -95,12 +93,12 @@
       <div class="btn-group--toggle" ngbRadioGroup name="radioGender"  formControlName="otherCoutryQuestionTwo">
         <div class="flex-row">
           <div class="flex-col-6 ">
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
               <input ngbButton type="radio" value="yes" > Yes
             </label>
           </div>
           <div class="flex-col-6 ">
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
               <input ngbButton type="radio" value="no"  > No</label>
           </div>
         </div>
@@ -116,8 +114,8 @@
 
 <div *ngIf="sigQuestion">
 <div class="flex-row mb10">
-    <div class=flex-col-10>
-      <div class="form-group-with-bg--content-label" for="name" >Are you a Singaporean Permanent Resident?
+    <div class="flex-col-10 mt15">
+      <div class="form-group-with-bg--content-label" for="name" >Are you a US Permanent Resident / Tax resident ? 
 
       </div>
 
@@ -127,17 +125,17 @@
   <!-- buttons -->
   <div class="flex-row">
 
-    <div class="flex-col-12">
+    <div class="flex-col-12 ">
       <div class="btn-group--toggle" ngbRadioGroup name="radioGender"  formControlName="selectNationalitySig">
         <div class="flex-row">
           <div class="flex-col-6">
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
               <input ngbButton type="radio" value="yes" > Yes
             </label>
           </div>
           <div class="flex-col-6">
             
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
               <input ngbButton type="radio" value="no"  > No </label>
           </div>
         </div>
