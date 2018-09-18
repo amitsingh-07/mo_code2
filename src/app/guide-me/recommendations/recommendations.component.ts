@@ -41,7 +41,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   public innerWidth: any;
   currentSlide = 0;
-  slideConfig = { slidesToShow: 1, slidesToScroll: 1 };
+  slideConfig = { slidesToShow: 1, slidesToScroll: 1, infinite: false };
 
   @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
   @ViewChild('mobileHeaderMenu', { read: ElementRef }) public mobileHeaderMenu: ElementRef<any>;
