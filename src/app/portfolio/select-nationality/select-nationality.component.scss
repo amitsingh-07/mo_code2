@@ -49,7 +49,15 @@ letter-spacing: -0.3px;
 .mr16{
     margin-right: 5px !important;
 }
-
+.text{
+   font-family: $muli-regular;
+  font-size: 18px;
+   line-height: 1.17;
+  letter-spacing: -0.2px;
+  text-align: center;
+  padding-left: 17px;
+  padding-right: 14px;
+}
 
 // .QuestionLabel{
 //     width: 83%;

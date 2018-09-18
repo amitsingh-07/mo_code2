@@ -96,7 +96,7 @@ constructor(
     return true;
   }
   goToNext(form) {
-    if (this.nationalitylist.blocked === true && 'AMERICAN') {
+    if (this.nationalitylist.blocked === true) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.editModalData.modalTitle;
       ref.componentInstance.errorMessage = this.editModalData.modalMessage;
