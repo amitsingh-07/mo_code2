@@ -40,6 +40,7 @@ export class VerifyMobileComponent implements OnInit {
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
       this.errorModal['message'] = result.ERROR_MODAL.ERROR_MESSAGE;
+      this.errorModal['expiredMessage'] = result.EXPIRED_ERROR_MODAL.ERROR_MESSAGE;
       this.loading['verifying'] = result.LOADING.VERIFYING;
       this.loading['verified'] = result.LOADING.VERIFIED;
       this.loading['sending'] = result.LOADING.SENDING;
@@ -97,7 +98,10 @@ export class VerifyMobileComponent implements OnInit {
         this.mobileNumberVerifiedMessage = this.loading['verified'];
         this.signUpService.setResetCode(data.objectList[0].resetCode);
       } else {
-        this.openErrorModal();
+        const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : '';
+        const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
+        const showErrorButton = data.responseMessage.responseCode === 5007 ? true : false;
+        this.openErrorModal(title, message, showErrorButton);
       }
     });
   }
@@ -145,15 +149,15 @@ export class VerifyMobileComponent implements OnInit {
   /**
    * open invalid otp error modal.
    */
-  openErrorModal() {
+  openErrorModal(title, message, showErrorButton) {
       this.progressModal = false;
       const error = {
-        errorTitle : this.errorModal['title'],
-        errorMessage: this.errorModal['message']
+        errorTitle : title,
+        errorMessage: message
       };
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = error.errorTitle;
       ref.componentInstance.errorMessage = error.errorMessage;
-      ref.componentInstance.showErrorButton = true;
+      ref.componentInstance.showErrorButton = showErrorButton;
   }
 }
