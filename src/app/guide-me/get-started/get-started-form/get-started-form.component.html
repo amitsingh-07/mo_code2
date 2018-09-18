@@ -23,10 +23,10 @@
         </div>
         </div>
         <div class="flex-row">
-        <div class="flex-col-5">
+        <div class="flex-col-4">
           <label for="name" id="getStrdLbl4">{{ 'GET_STARTED.BORN_ON' | translate}}</label>
         </div>
-        <div #usrFrmDp class="flex-col-7">
+        <div #usrFrmDp class="flex-col-8">
           <div class="datepicker-control">
             <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
               <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
@@ -44,10 +44,10 @@
         </div>
       </div>
       <div class="flex-row">
-        <div class="flex-col-5">
+        <div class="flex-col-4">
           <label for="name" id="getStrdLbl5">{{ 'GET_STARTED.AND_A' | translate}}</label>
         </div>
-        <div class="flex-col-7">
+        <div class="flex-col-8">
           <div class="btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
               <div class="flex-row mb0">
               <div class="flex-col-6">
@@ -66,10 +66,10 @@
           </div>
         </div>
       <div class="flex-row">
-        <div class="flex-col-5">
+        <div class="flex-col-4">
           <label for="name" id="getStrdLbl8">{{ 'GET_STARTED.I_HAVE' | translate}}</label>
         </div>
-        <div class="flex-col-7">
+        <div class="flex-col-8">
           <div class="dropdown-control">
             <div ngbDropdown id="dependentDropDown">
               <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
@@ -89,8 +89,8 @@
         </div>
       </div>
       <div class="flex-row">
-          <div class="flex-col-5"></div>
-          <div class="flex-col-7">
+          <div class="flex-col-4"></div>
+          <div class="flex-col-8">
               <div>
                   <strong>{{ 'GET_STARTED.DEPENDANT_MEANING_LBL' | translate}}</strong>
                   <br/>{{ 'GET_STARTED.DEPENDANT_MEANING_DESC' | translate}}

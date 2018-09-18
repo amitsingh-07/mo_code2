@@ -2,6 +2,13 @@
 @import '../../../mixins';
 
 app-recommendations {
+  .recommedation-wrapper {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    width: 100%;
+    z-index: 999;
+
   .enable-scroll {
     touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important; 
@@ -29,6 +36,21 @@ app-recommendations {
     padding-left: 125px !important;
     padding-right: 125px !important;
     height: 100vh;
+    position: relative;
+    .carousel-control-prev {
+    left: -100px;
+    cursor: pointer;
+    position: absolute;
+    height: 50px;
+    top: 50%;
+  }
+  .carousel-control-next {
+    right: -100px !important;
+    cursor: pointer;
+    position: absolute;
+    height: 50px;
+    top: 50%;
+  }
     @include allmobiles {
       padding: 0 !important;
       height: 100vh;
@@ -53,6 +75,7 @@ app-recommendations {
     font-size: 18px;
     font-family: $muli-bold;
     color: $white-color;
+    border-right: 1px solid rgba(255,255,255,0.44);
   }
 
   .plan-type.active {
@@ -82,15 +105,15 @@ app-recommendations {
     }
   }
 
-  .carousel-control-prev {
-    left: -120px;
-    cursor: pointer;
-  }
+  // .carousel-control-prev {
+  //   left: -120px;
+  //   cursor: pointer;
+  // }
 
-  .carousel-control-next {
-    right: -120px !important;
-    cursor: pointer;
-  }
+  // .carousel-control-next {
+  //   right: -120px !important;
+  //   cursor: pointer;
+  // }
 
   .plan-type-mobile {
     text-align: center;
@@ -305,4 +328,5 @@ app-recommendations {
   .coverage-premium-from {
     margin-right: 0 !important;
   }
+}
 }
