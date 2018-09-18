@@ -30,10 +30,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   selectedPlans: any[] = [];
   coverageAmount = '';
   premiumFrom = '';
-  comparePlans: any[] = [];
   activeRecommendationType;
   activeRecommendationList;
-  isComparePlanEnabled = false;
   enquiryId;
 
   enableScroll = false;
@@ -197,23 +195,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       }
     }
   }
-  comparePlan(data) {
-    if (data.selected) {
-      this.comparePlans.push(data.plan);
-    } else {
-      const index: number = this.comparePlans.indexOf(data.plan);
-      if (index !== -1) {
-        this.comparePlans.splice(index, 1);
-      }
-    }
-  }
-  compare() {
-    this.guideMeService.setPlanDetails(this.comparePlans);
-    this.router.navigate([GUIDE_ME_ROUTE_PATHS.COMPARE_PLANS]);
-  }
-  EnablecomparePlan() {
-    this.isComparePlanEnabled = !this.isComparePlanEnabled;
-  }
+
   proceed() {
     this.selectedPlansService.setSelectedPlan(this.selectedPlans, this.enquiryId);
     this.modalRef = this.modal.open(CreateAccountModelComponent, {

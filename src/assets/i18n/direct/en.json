@@ -104,6 +104,9 @@
           "TITLE": "Payout Feature",
           "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
       }
+      },
+      "RESULTS": {
+        "TITLE": "Plans"
       }
   }
 

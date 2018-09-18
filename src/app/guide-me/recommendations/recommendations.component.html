@@ -58,8 +58,8 @@
                     <div class="row" style="justify-content: center;">
                       <div class="col-md-6 col-sm-6 col-6 plan-wrapper" *ngFor="let plan of recommendation.productList; let j = index;">
                         <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
-                        <app-plan-widget [data]="plan" [type]="recommendation.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)"
-                          (view)="viewDetails($event)" (compare)= "comparePlan($event)"></app-plan-widget>
+                        <app-plan-widget [data]="plan" [type]="recommendation.protectionType" [bestValue]="j == 0" (select)="selectPlan($event)"
+                          (view)="viewDetails($event)"></app-plan-widget>
                       </div>
                     </div>
                   </div>
