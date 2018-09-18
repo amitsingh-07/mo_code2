@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { MyInfoService } from '../../shared/Services/my-info.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
@@ -28,6 +29,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   constructor(
     private router: Router, public headerService: HeaderService,
     private modal: NgbModal, private location: Location,
+    private myInfoService: MyInfoService,
     public guideMeApiService: GuideMeApiService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
     this.translate.use('en');
@@ -82,6 +84,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
      ref.componentInstance.errorTitle = 'Leave This Page';
      ref.componentInstance.errorMessage = 'You will be redirected to Singpass MyInfo page to begin fetching your data.';
      ref.componentInstance.isButtonEnabled = true;
+     ref.result.then(() => {
+      this.myInfoService.goToMyInfo();
+    }).catch((e) => {
+    });
+
    }
 
   setPageTitle(title: string) {
