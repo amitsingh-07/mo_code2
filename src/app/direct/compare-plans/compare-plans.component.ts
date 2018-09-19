@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 import { HeaderService } from '../../shared/header/header.service';
-import { GuideMeService } from '../guide-me.service';
+import { DirectService } from './../direct.service';
 
 @Component({
   selector: 'app-compare-plans',
@@ -10,8 +11,8 @@ import { GuideMeService } from '../guide-me.service';
 })
 export class ComparePlansComponent implements OnInit {
   pageTitle: string;
-  plansdata: any[] = [];
-  constructor(public headerService: HeaderService, public guideMeService: GuideMeService, public readonly translate: TranslateService) {
+  plansData: any[] = [];
+  constructor(public headerService: HeaderService, public directService: DirectService, public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GET_STARTED.TITLE');
@@ -20,7 +21,7 @@ export class ComparePlansComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.plansdata = this.guideMeService.getPlanDetails();
+    this.plansData = this.directService.getSelectedPlans();
   }
 
   setPageTitle(title: string) {

@@ -26,7 +26,7 @@ export class CallBackComponent implements OnInit {
       this.data = this.route.url['value'][0].parameters.data;
       this.data = this.data.substr(this.data.indexOf('=') + 1, this.data.indexOf('&') - this.data.indexOf('=') - 1);
       this.guideMeService.setMyInfoValue(this.data);
-      this.router.navigate([GUIDE_ME_ROUTE_PATHS.ASSETS]);
+      window.location.href = window.sessionStorage.getItem('currentUrl');
     }
    }
   }

@@ -12,6 +12,8 @@ import { SignUpService } from './../sign-up.service';
   styleUrls: ['./email-verification.component.scss']
 })
 export class EmailVerificationComponent implements OnInit {
+  email: string;
+  emailVerified: boolean;
   constructor(
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -27,6 +29,7 @@ export class EmailVerificationComponent implements OnInit {
    * Getting email confirmation code from URL.
    */
   ngOnInit() {
+    this.emailVerified = false;
     this.route.queryParams.subscribe((queryParams) => {
       this.verifyEmail(queryParams.confirmation_token);
     });
@@ -38,7 +41,10 @@ export class EmailVerificationComponent implements OnInit {
    */
   verifyEmail(verifyCode) {
     this.authService.authenticate().subscribe((token) => {
-      this.signUpApiService.verifyEmail(verifyCode).subscribe();
+      this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
+        this.emailVerified = true;
+        this.email = data.objectList[0].email;
+      });
     });
   }
 
