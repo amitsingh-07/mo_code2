@@ -55,7 +55,7 @@ export function createTranslateLoader(http: HttpClient) {
     EducationFormComponent, LongTermCareFormComponent,
     HospitalPlanFormComponent, RetirementIncomeFormComponent,
     OcpDisabilityFormComponent, EditProductInfoComponent,
-    ComparePlansComponent, PlanWidgetComponent],
+    ComparePlansComponent],
   providers: [CurrencyPipe]
 })
 export class DirectModule { }

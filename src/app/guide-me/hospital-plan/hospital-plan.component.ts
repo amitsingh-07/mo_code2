@@ -58,7 +58,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   setPageTitle(title: string, subTitle?: string) {
@@ -88,7 +88,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   goToNext(form) {
     if (this.save()) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }

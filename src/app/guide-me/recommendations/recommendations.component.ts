@@ -91,6 +91,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   getRecommendationsFromServer() {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
+        window.scrollTo(0, 0);
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.enquiryId = data.objectList[0].enquiryId;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;

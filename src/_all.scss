@@ -1,3 +1,6 @@
+@import './variables';
+@import './mixins';
+
 /*Global Styles*/
 html, body {
   height: 100%;
@@ -9,7 +12,7 @@ ul, ul li {
   outline: none;
 }
 body {
-    background-color: $app-backgrnd-color;
+    //background-color: $app-backgrnd-color;
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-family: $muli-regular;
@@ -18,6 +21,8 @@ body {
     margin:0px;
     background: url("./assets/images/body-bg.png");
     background-repeat: repeat;
+    max-width: 1024px;
+    margin: 0 auto;
     @include allmobiles {
       background: $app-backgrnd-color;
     }
@@ -161,4 +166,83 @@ body {
 a.link-white {
     color: $white-color;
     text-decoration: underline;
+}
+
+
+.floating-footer-wrapper {
+  width: 100%;
+  align-items: center;
+  position: fixed;
+  bottom: 10px;
+
+  @include allmobiles {
+    bottom: 0;
+  }
+}
+
+.floating-footer {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: fit-content;
+  padding-bottom: 10px !important;
+
+  @include allmobiles {
+    padding-bottom: 0 !important;
+    width: 100%;
+    border-radius: 0;
+    height: 50px;
+  }
+}
+
+.selected-count {
+  background-color: #ff872f;
+  width: 39px;
+  height: 26px;
+  padding: 0 15px;
+  border-radius: 13px;
+  font-family: Muli;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+  padding-bottom: 3px;
+  margin-right: 10px;
+
+  @include allmobiles {
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+}
+
+.lbl-selected {
+  font-family: Muli;
+  font-size: 18px;
+  line-height: 1.11;
+  letter-spacing: -0.2px;
+  color: #5e5e5e;
+  margin-right: 100px;
+
+  @include allmobiles {
+    margin-right: 0;
+    padding-top: 13px;
+    float: left;
+  }
+}
+
+.btn-proceed {
+  font-family: Muli;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: #00a7a7;
+  cursor: pointer;
+
+  @include allmobiles {
+    float: right;
+    padding-top: 5px;
+    margin-right: 20px;
+  }
 }

@@ -194,7 +194,7 @@ export class DirectService {
   }
 
   setSelectedPlans(plan) {
-    this.directFormData = plan;
+    this.directFormData.selectedPlans = plan;
     this.commit();
   }
 
