@@ -137,7 +137,7 @@ export class ProductInfoComponent implements OnInit {
       if (i === index) {
         category.active = true;
         this.productCategorySelected = category.prodCatName;
-        this.directService.setProductCategory(category.prodCatName);
+        this.directService.setProductCategory(category);
         this.selectedCategoryId = index;
       }
     });
@@ -145,7 +145,7 @@ export class ProductInfoComponent implements OnInit {
 
   selectProductCategory(data, index) {
     this.productCategorySelected = data.prodCatName;
-    this.directService.setProductCategory(data.prodCatName);
+    this.directService.setProductCategory(data);
     this.selectedCategoryId = index;
   }
 

@@ -2,6 +2,19 @@
 @import '../../../mixins';
 
 app-recommendations {
+  .slick-disabled {
+    display: none;
+  }
+  .slick-next:before, .slick-prev:before {
+  } 
+
+  .slick-prev .slick-arrow {
+    
+  }
+
+  .slick-next.slick-arrow {
+    
+  }
   .recommedation-wrapper {
     position: absolute;
     left: 0;

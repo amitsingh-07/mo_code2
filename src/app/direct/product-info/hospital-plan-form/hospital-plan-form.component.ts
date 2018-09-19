@@ -4,8 +4,8 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, Ngb
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 
 import { TranslateService } from '@ngx-translate/core';
-import { DirectService } from './../../direct.service';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { DirectService } from './../../direct.service';
 
 @Component({
   selector: 'app-hospital-plan-form',
@@ -89,9 +89,16 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   }
 
   showFullOrPartialRider() {
-    this.directService.showToolTipModal(
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+    if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
+      this.directService.showToolTipModal(
+        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.TITLE'),
+        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.MESSAGE')
       );
+    } else {
+      this.directService.showToolTipModal(
+        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.TITLE'),
+        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.MESSAGE')
+      );
+    }
   }
 }

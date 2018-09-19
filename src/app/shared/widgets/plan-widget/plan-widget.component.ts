@@ -126,6 +126,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
+
   compareplan() {
     this.isComparePlanSelected = !this.isComparePlanSelected;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });

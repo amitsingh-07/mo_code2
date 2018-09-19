@@ -35,4 +35,6 @@ export class DirectFormData {
 
     // Hospital form
     hospital: IHospital;
+
+    selectedPlans: any;
 }

@@ -61,7 +61,17 @@
     "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
       "TITLE": "Full / Partial Rider",
-      "SUBTITLE": "(Optional)"
+      "SUBTITLE": "(optional)",
+      "TOOLTIP": {
+        "FULL_RIDER": {
+          "TITLE": "Full Rider",
+          "MESSAGE": "This rider provides coverage for both co-insurance and deductible components."
+        },
+        "PARTIAL_RIDER": {
+          "TITLE": "Partial Rider",
+          "MESSAGE": "This rider only provides coverage for either co-insurance or deductible."
+        }
+      }
     },
     "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C", "Global Healthcare"]
     
@@ -106,7 +116,7 @@
       },
       "VARIABLE_TOOLTIP": {
           "TITLE": "Variable payouts",
-          "MESSAGE": "These monthly payouts consists of a guaranteed amount that you will receive and non-guaranteed amount that is dependent on the performance of the insurerâ€™s participative fund."
+          "MESSAGE": "These monthly payouts consists of a guaranteed amount that you will receive and non-guaranteed amount that is dependent on the performance of the insurer’s participative fund."
       },
       "INCREASING_TOOLTIP": {
           "TITLE": "Increasing payout",
@@ -114,5 +124,3 @@
       }
     }
   }
-
-
