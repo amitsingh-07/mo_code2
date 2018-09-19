@@ -96,14 +96,12 @@
               <div class="flex-col-6">
                 <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
                   <i class="fixed-currency">$</i>
-                  <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)"
+                  <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control"
                     appCurrencyInput maxLength="4" #supportAmount formControlName="supportAmount" value="0">
                   <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
                 </div>
               </div>
             </div>
-            <nouislider [disabled]="isFormControlDisabled" formControlName="supportAmountRange" #noUiSlider (slide)="onNoUiSliderChange($event, i)"
-              [config]="dependentSliderConfig" [min]="0" [max]="99999" [step]="50" [tooltips]="[ false ]"></nouislider>
             <div class="flex-row">
               <div class="flex-col-6">
                 <div class="form-group-with-bg--content-label" for="name">
