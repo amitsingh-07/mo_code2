@@ -359,11 +359,8 @@ export class ApiService {
     //const url = '../assets/mock-data/nationalityList.json';
     // tslint:disable-next-line
     const url='https://bfa.ntuclink.cloud/invest/countrylist'
-    
- 
     //return this.http.get(url);
-   
-    return this.http.get(url)
+   return this.http.get(url)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -382,7 +379,6 @@ export class ApiService {
         })
       );
   }
-  
   // tslint:disable-next-line:no-identical-functions
   requestForgotPasswordLink(data) {
     // tslint:disable-next-line

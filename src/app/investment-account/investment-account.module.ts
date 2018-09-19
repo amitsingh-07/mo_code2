@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
+import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -24,7 +25,10 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   imports: [
-    CommonModule, InvestmentAccountRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
+    CommonModule, 
+    InvestmentAccountRoutingModule, 
+    ReactiveFormsModule,
+     NgbModule.forRoot(),
     NouisliderModule,
     FormsModule,
     SharedModule,
@@ -38,7 +42,9 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   declarations: [
     PersonalInfoComponent,
-    ResidentialAddressComponent
+    ResidentialAddressComponent,
+    SelectNationalityComponent
+
   ],
   providers: [CurrencyPipe]
 })
