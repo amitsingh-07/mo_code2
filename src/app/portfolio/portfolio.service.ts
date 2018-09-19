@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { IMyFinancials } from './my-financials/my-financials.interface';
-import { SelectNationality } from './select-nationality/select-nationality';
 import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
 import { RiskProfile } from './risk-profile/riskprofile';
+import { SelectNationality } from './select-nationality/select-nationality';
 
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_session_storage_key';
@@ -171,7 +171,7 @@ export class PortfolioService {
   constructQueryParams(options) {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
-    Object.keys(objectKeys).map( (e) => {
+    Object.keys(objectKeys).map((e) => {
       console.log('key= ${e} value = ${objectKeys[e]}');
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
@@ -184,23 +184,23 @@ export class PortfolioService {
   getSelectedFund() {
     return this.portfolioFormData.selectedFund;
   }
-  getNationalityList(){
+  getNationalityList() {
     return this.apiService.getNationalityList();
   }
-  getNationality(){
+  getNationality() {
     return {
+      nationality: this.portfolioFormData.nationality,
+      countries: this.portfolioFormData.countries,
       selectNationalitySig: this.portfolioFormData.selectNationalitySig,
-      otherCoutryQuestionOne:this.portfolioFormData.otherCoutryQuestionOne,
-      otherCoutryQuestionTwo:this.portfolioFormData.otherCoutryQuestionTwo
+      otherCoutryQuestionOne: this.portfolioFormData.otherCoutryQuestionOne,
+      otherCoutryQuestionTwo: this.portfolioFormData.otherCoutryQuestionTwo
     };
-    
-
   }
-  setNationality(data:SelectNationality ) {
+  setNationality(data: SelectNationality) {
+    this.portfolioFormData.nationality = data.nationality;
+    this.portfolioFormData.countries = data.countries;
     this.portfolioFormData.selectNationalitySig = data.selectNationalitySig;
     this.portfolioFormData.otherCoutryQuestionOne = data.otherCoutryQuestionOne;
     this.portfolioFormData.otherCoutryQuestionTwo = data.otherCoutryQuestionTwo;
   }
 }
-
-

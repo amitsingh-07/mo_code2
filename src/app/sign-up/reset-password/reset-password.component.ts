@@ -39,8 +39,10 @@ export class ResetPasswordComponent implements OnInit {
   buildResetPasswordForm() {
     this.formValues = this.signUpService.getResetPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
-      password1: [this.formValues.password, [Validators.required]],
-      confirmpassword: [this.formValues.confirmpassword, [Validators.required]],
+      // tslint:disable-next-line:max-line-length
+      password1: [this.formValues.password1, [Validators.required], Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)],
+      // tslint:disable-next-line:max-line-length
+      confirmpassword: [this.formValues.confirmpassword, [Validators.required], Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)],
     });
   }
   ngOnInit() {
@@ -52,6 +54,23 @@ export class ResetPasswordComponent implements OnInit {
       el.type = 'text';
     } else {
       el.type = 'password';
+    }
+  }
+   resetPassword(form: any) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+      const error = this.signUpService.currentFormError(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.errorTitle;
+      ref.componentInstance.errorMessage = error.errorMessage;
+      return false;
+    } else {
+      this.signUpService.setLoginInfo(form.value);
+      console.log(form.value);
+      // tslint:disable-next-line:max-line-length
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset'}, fragment: 'loading'});
     }
   }
 }

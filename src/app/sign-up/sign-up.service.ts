@@ -163,7 +163,7 @@ export class SignUpService {
   }
 
   /**
-   * get login info.
+   * get reset password info.
    * @param data - user account details.
    */
   getResetPasswordInfo() {
@@ -171,6 +171,16 @@ export class SignUpService {
       password: this.signUpFormData.resetPassword,
       confirmPassword: this.signUpFormData.confirmPassword
     };
+  }
+
+  /**
+   * set reset password info.
+   * @param data - user account details.
+   */
+  // tslint:disable-next-line:no-identical-functions
+  setResetPasswordInfo(data) {
+    this.signUpFormData.resetPassword = '';
+    this.signUpFormData.confirmPassword = '';
   }
 
 }

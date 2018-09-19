@@ -8,6 +8,7 @@ export class CreateAccountFormError {
         },
         mobileNumber: {
                 required : {
+                        // tslint:disable-next-line:no-duplicate-string
                         errorTitle: 'Invalid Mobile Number',
                         errorMessage: 'Please enter your mobile number'
                 },
@@ -68,8 +69,30 @@ export class CreateAccountFormError {
         },
         loginPassword: {
                 required : {
+                        // tslint:disable-next-line:no-duplicate-string
+                        errorTitle: 'Password required',
+                        // tslint:disable-next-line:no-duplicate-string
+                        errorMessage: 'Please enter your Password'
+                }
+        },
+        resetPassword1: {
+                required : {
                         errorTitle: 'Password required',
                         errorMessage: 'Please enter your Password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number '
+                }
+        },
+        confirmpassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your Password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number '
                 }
         }
     };
