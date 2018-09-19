@@ -17,7 +17,7 @@
         </div>
 
       </div>
-
+  <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
       <div class="text mb20" *ngIf="Question">To continue, please tell us what is your nationality</div>
 
       <div class="flex-row">
@@ -27,12 +27,12 @@
         <div class="flex-col-7">
           <div class="dropdown-control">
             <div ngbDropdown>
-              <button class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
+              <button class="btn btn-dropdown"  ngbDropdownToggle aria-expanded="false" style="font-size: 15px;"  formControlName="nationality" >
                 <span *ngIf="afterSelectedNationality" class="dependent-count">{{nationalitylist.nationality | titlecase }}</span>
                 <span *ngIf="beforeSelectedNationality" class="dependent-count">Select Nationality</span>
 
               </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" formControlName="nationalityList" >
                 <button class="dropdown-item" *ngFor="let nationalitylist of nationalitylists" (click)="selectNationality(nationalitylist)">
                   {{nationalitylist.nationality | titlecase}}
 
@@ -43,7 +43,7 @@
         </div>
       </div>
       <!-- other coutryquestion -->
-      <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
+      
         <div *ngIf="Question">
           <div class="flex-row mb10">
             <div class="flex-col-10 mt15">

@@ -360,7 +360,7 @@ export class ApiService {
     // tslint:disable-next-line
     const url='https://bfa.ntuclink.cloud/invest/countrylist'
     
-  //const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
+ 
     //return this.http.get(url);
    
     return this.http.get(url)

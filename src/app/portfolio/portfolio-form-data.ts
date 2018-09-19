@@ -1,6 +1,4 @@
 import { FormArray, FormGroup } from '@angular/forms';
-
-
 export class PortfolioFormData {
     // PERSONAL INFO
     dob: any;
@@ -28,10 +26,10 @@ export class PortfolioFormData {
     htmlDescription: string;
 
     selectedFund;
-    //selectnationality
-    selectNationalitySig:string;
-    otherCoutryQuestionOne:string;
-    otherCoutryQuestionTwo:string;
-
-
+    // SELECTNATIONLITY
+     nationality: string;
+     countries: any;
+     selectNationalitySig: string;
+     otherCoutryQuestionOne: string;
+     otherCoutryQuestionTwo: string;
 }
