@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { BaseComponent } from '../../base.component';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { HeaderService } from './../../shared/header/header.service';
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
