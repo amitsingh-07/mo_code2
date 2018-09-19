@@ -21,7 +21,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                      <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
                         ngbDropdownToggle>{{addressForm.controls.country.value}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -171,7 +171,7 @@
                   <div class="flex-col-7">
                     <div class="dropdown-control">
                       <div ngbDropdown>
-                        <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                        <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
                           ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
