@@ -1,6 +1,7 @@
-export class InvestmentAccountFormData {
+import { FormArray, FormGroup } from '@angular/forms';
 
-    // Residential Address
+export class InvestmentAccountFormData {
+   // Residential Address
     country: string;
     postalCode: number;
     address1: string;
@@ -18,11 +19,10 @@ export class InvestmentAccountFormData {
     mailCity: string;
     mailState: string;
     mailZipCode: number;
-
     // SELECTNATIONLITY
+    nationalitylist: any;
     nationality: string;
-    countries: any;
-     selectNationalitySig: string;
-     otherCoutryQuestionOne: string;
-     otherCoutryQuestionTwo: string;
+    selectNationalitySingapore: string;
+    otherCountryQuestionOne: string;
+    otherCountryQuestionTwo: string;
 }

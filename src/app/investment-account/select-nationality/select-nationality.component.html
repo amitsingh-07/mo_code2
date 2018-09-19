@@ -8,46 +8,45 @@
     <div class="fin-accessment-block__content">
       <div class="row text-center">
         <div class="col-12">
-          <div class="banner-image mb30">
+          <div class="banner-image mb30" id="select_nationality_img">
             <img src="assets/images/selectnationality.svg" />
           </div>
-
-
-
         </div>
-
       </div>
-  <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
-      <div class="text mb20" *ngIf="Question">To continue, please tell us what is your nationality</div>
+      <form name="selectNationalityForm" [formGroup]="selectNationalityForm">
+        <div class="text mb20" id="select_nationality_text" *ngIf="Question">To continue, please tell us what is your nationality</div>
 
-      <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="name">Nationality</label>
-        </div>
-        <div class="flex-col-7">
-          <div class="dropdown-control">
-            <div ngbDropdown>
-              <button class="btn btn-dropdown"  ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
-                <span *ngIf="afterSelectedNationality" class="dependent-count">{{nationalitylist.nationality | titlecase }}</span>
-                <span *ngIf="beforeSelectedNationality" class="dependent-count">Select Nationality</span>
-
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1"  >
-                <button class="dropdown-item" *ngFor="let nationalitylist of nationalitylists" (click)="selectNationality(nationalitylist)">
-                  {{nationalitylist.nationality | titlecase}}
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label for="name" id="select_nationality_lab">Nationality</label>
+          </div>
+          <div class="flex-col-7">
+            <div class="dropdown-control">
+              <div ngbDropdown>
+                <button class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
+                  <span *ngIf="afterSelectedNationality" class="dependent-count" id="select_nationality_dropdown_nationality">{{nationalityObj.nationality | titlecase }}</span>
+                  <span *ngIf="beforeSelectedNationality" class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Nationality</span>
 
                 </button>
+                <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                    <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('country',option, i)"
+                      id="residentialAddress-country-option-{{i}}">{{option}}</button>
+                  </div>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item"   *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectNationality(nationalityObj)" id="selectNationality-country-option-{{i}}">
+                    {{nationalityObj.nationality | titlecase}}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- other coutryquestion -->
-      
+        <!-- other coutryquestion -->
+
         <div *ngIf="Question">
           <div class="flex-row mb10">
-            <div class="flex-col-10 mt15">
-              <div class="form-group-with-bg--content-label" for="name">Are you a United States Permanent Resident / Tax Resident?
+            <div class="flex-col-12 mt15">
+              <div class="form-group-with-bg--content-label"  id="select_nationality_question-one"  for="name">Are you a United States Permanent Resident / Tax Resident?
 
               </div>
 
@@ -58,17 +57,17 @@
           <div class="flex-row">
 
             <div class="flex-col-12 mb10">
-              <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="otherCoutryQuestionOne">
+              <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="otherCountryQuestionOne">
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" value="yes"> Yes
+                      <input ngbButton type="radio" id="select_nationlity_yes" value="yes"> Yes
                     </label>
                   </div>
                   <div class="flex-col-6">
 
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" value="no">No</label>
+                      <input ngbButton type="radio" id="select_nationlity_no" value="no">No</label>
                   </div>
                 </div>
               </div>
@@ -78,7 +77,7 @@
           <!-- other country question -->
           <div class="flex-row mb10">
             <div class=flex-col-10>
-              <div class="form-group-with-bg--content-label" for="name">Are you a Singaporean Permanent Resident?
+              <div class="form-group-with-bg--content-label" id="select_nationality_question-two" for="name">Are you a Singaporean Permanent Resident?
 
               </div>
 
@@ -91,16 +90,16 @@
           <div class="flex-row">
 
             <div class="flex-col-12">
-              <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="otherCoutryQuestionTwo">
+              <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="otherCountryQuestionTwo">
                 <div class="flex-row">
                   <div class="flex-col-6 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" value="yes"> Yes
+                      <input ngbButton type="radio" id="select_nationlity_yes1" value="yes"> Yes
                     </label>
                   </div>
                   <div class="flex-col-6 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" value="no"> No</label>
+                      <input ngbButton type="radio"  id="select_nationlity_no1" value="no"> No</label>
                   </div>
                 </div>
               </div>
@@ -113,10 +112,10 @@
 
         <!-- sigpore Question -->
 
-        <div *ngIf="sigQuestion">
+        <div *ngIf="singaporeQuestion">
           <div class="flex-row mb10">
             <div class="flex-col-10 mt15">
-              <div class="form-group-with-bg--content-label" for="name">Are you a US Permanent Resident / Tax resident ?
+              <div class="form-group-with-bg--content-label" id="select_nationality_question-three" for="name">Are you a US Permanent Resident / Tax resident ?
 
               </div>
 
@@ -127,17 +126,17 @@
           <div class="flex-row">
 
             <div class="flex-col-12 ">
-              <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="selectNationalitySig">
+              <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="selectNationalitySingapore">
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" value="yes"> Yes
+                      <input ngbButton type="radio" id="select_nationlity_yes2" value="yes"> Yes
                     </label>
                   </div>
                   <div class="flex-col-6">
 
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" value="no"> No </label>
+                      <input ngbButton type="radio" id="select_nationlity_no2" value="no"> No </label>
                   </div>
                 </div>
               </div>
@@ -149,7 +148,7 @@
       <!-- sigpore question -->
 
 
-      <button type="button" (click)="goToNext(selectNationalityForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button type="button" (click)="goToNext(selectNationalityForm)"  id="select-nationality_continue_btn"  class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="riskProfileBtn">Continue</button>
     </div>
   </div>
