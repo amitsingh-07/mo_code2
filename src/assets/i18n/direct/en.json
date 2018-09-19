@@ -1,11 +1,11 @@
 {
   "COMMON": {
-    "LBL_SEARCH_PLAN": "Search Plan",
+    "LBL_SEARCH_PLAN": "Search Plans",
     "LBL_UPDATE_PLAN": "Update Plan",
     "LBL_MALE": "Male",
     "LBL_FEMALE": "Female",
     "LBL_SMOKER": "Smoker",
-    "LBL_NONSMOKER": "Non-smoker",
+    "LBL_NONSMOKER": "Non-Smoker",
     "LBL_YES": "Yes",
     "LBL_NO": "No",
     "LBL_CONTINUE": "Continue"
@@ -40,7 +40,7 @@
     },
     "PREMIUM_WAIVER": {
       "TITLE": "Premium Waiver",
-      "SUBTITLE": "(optional)",
+      "SUBTITLE": "(Optional)",
       "TOOLTIP": {
           "TITLE": "Premium Waiver Rider",
           "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
@@ -49,16 +49,16 @@
   },
   "EDUCATION": {
     "ABOUT_CHILD": {
-      "TITLE": "About my child",
+      "TITLE": "About My Child",
       "UNIVERSITY_ENTRY_AGE": "University Entry Age",
-      "MONTHLY_CONTRIBUTION":"Monthly contribution"
+      "MONTHLY_CONTRIBUTION":"Monthly Contribution"
     },
     "ABOUT_ME": {
-      "TITLE": "About me"
+      "TITLE": "About Me"
     }
   },
   "HOSPITAL_PLAN": {
-    "PLAN_TYPE": "Plan type",
+    "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
       "TITLE": "Full / Partial Rider",
       "SUBTITLE": "(optional)",
@@ -86,7 +86,7 @@
       },
     "EARLY_CI": {
       "TITLE": "Early CI",
-      "SUBTITLE": "(optional)"
+      "SUBTITLE": "(Optional)"
       }
     },
   "LONG_TERM_CARE": {
@@ -114,6 +114,9 @@
           "TITLE": "Payout Feature",
           "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
       }
+      },
+      "RESULTS": {
+        "TITLE": "Plans"
       }
   }
 

@@ -148,6 +148,9 @@ export class VerifyMobileComponent implements OnInit {
 
   /**
    * open invalid otp error modal.
+   * @param title - title for error modal.
+   * @param message - error description for error modal time password.
+   * @param showErrorButton - show try again button or not.
    */
   openErrorModal(title, message, showErrorButton) {
       this.progressModal = false;
