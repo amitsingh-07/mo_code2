@@ -15,6 +15,6 @@ export class SignUpFormData {
     forgotPassEmail: string;
 
     // Reset Password
-    resetPassword: string;
+    resetPassword1: string;
     confirmPassword: string;
 }

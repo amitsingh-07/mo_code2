@@ -40,9 +40,9 @@ export class ResetPasswordComponent implements OnInit {
     this.formValues = this.signUpService.getResetPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      password1: [this.formValues.password1, [Validators.required], Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)],
+      resetPassword1 : [this.formValues.resetPassword1, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)]],
       // tslint:disable-next-line:max-line-length
-      confirmpassword: [this.formValues.confirmpassword, [Validators.required], Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)],
+      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)]]
     });
   }
   ngOnInit() {
@@ -66,11 +66,17 @@ export class ResetPasswordComponent implements OnInit {
       ref.componentInstance.errorTitle = error.errorTitle;
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
+    } else if (form.value.resetPassword1 !== form.value.confirmpassword) {
+      const error = this.signUpService.currentFormError(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = 'Password Should Match';
+      return false;
     } else {
-      this.signUpService.setLoginInfo(form.value);
+      this.signUpService.setResetPasswordInfo(form.value).subscribe((data) => {
+        // tslint:disable-next-line:max-line-length
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset'}, fragment: 'loading'});
+      });
       console.log(form.value);
-      // tslint:disable-next-line:max-line-length
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset'}, fragment: 'loading'});
     }
   }
 }

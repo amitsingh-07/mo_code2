@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
 
@@ -15,8 +17,7 @@ export class SignUpService {
 
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
-
-  constructor() {
+  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
     this.getAccountInfo();
   }
 
@@ -156,9 +157,9 @@ export class SignUpService {
    * set user account details.
    * @param data - user account details.
    */
-  setForgotPasswordInfo(data: string) {
-    this.signUpFormData.forgotPassEmail = data;
-    this.commit();
+  setForgotPasswordInfo(data) {
+    // API Call here
+    return this.apiService.requestForgotPasswordLink(data);
   }
 
   /**
@@ -186,7 +187,7 @@ export class SignUpService {
    */
   getResetPasswordInfo() {
     return {
-      password: this.signUpFormData.resetPassword,
+      resetPassword1: this.signUpFormData.resetPassword1,
       confirmPassword: this.signUpFormData.confirmPassword
     };
   }
@@ -197,8 +198,8 @@ export class SignUpService {
    */
   // tslint:disable-next-line:no-identical-functions
   setResetPasswordInfo(data) {
-    this.signUpFormData.resetPassword = '';
-    this.signUpFormData.confirmPassword = '';
+    // API Call here
+    return this.apiService.requestResetPassword(data);
   }
 
 }
