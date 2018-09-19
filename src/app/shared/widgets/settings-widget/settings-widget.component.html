@@ -1,105 +1,180 @@
-<div class="doselfCheck setpOneForm">
-  <form id="userInfoForm" name="userInfoForm" [formGroup]="userInfoForm" id="getStrdFrm">
-    <div class="form-group">
-      <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="name" id="getStrdLbl1">{{ 'GET_STARTED.I_AM_A' | translate}}</label>
-        </div>
-        <div class="flex-col-7">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-            <div class="flex-row mb0">
-            <div class="flex-col-6">
-              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17" id="getStrdLbl2">
-                <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'LABEL.MALE' | translate}}
-              </label>
-            </div>
-            <div class="flex-col-6">
-              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="getStrdLbl3">
-                <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'LABEL.FEMALE' | translate}}
-              </label>
-            </div>
-          </div>
-          </div>
-        </div>
-        </div>
-        <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="name" id="getStrdLbl4">{{ 'GET_STARTED.BORN_ON' | translate}}</label>
-        </div>
-        <div #usrFrmDp class="flex-col-7">
-          <div class="datepicker-control">
-            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine}">
-              <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
-                required id="getStrdInpt3">
-              <div class="input-group-append">
-                <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
-                  <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="userInfoForm.get('dob').valid || userInfoForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
-                  />
-                  <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="!userInfoForm.get('dob').valid && !userInfoForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
-                  />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="name" id="getStrdLbl5">{{ 'GET_STARTED.AND_A' | translate}}</label>
-        </div>
-        <div class="flex-col-7">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
-              <div class="flex-row mb0">
-              <div class="flex-col-6">
-              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17" id="getStrdLbl6">
-                <input ngbButton type="radio" value="non-smoker" id="getStrdInpt4"> {{'LABEL.NON_SMOKER' | translate}}
-              </label>
-              </div>
-            
-            <div class="flex-col-6">
-              <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="getStrdLbl7">
-                <input ngbButton type="radio" value="smoker" id="getStrdInpt5"> {{'LABEL.SMOKER' | translate}}
-              </label>
-            </div>
-          </div>
-            </div>
-          </div>
-        </div>
-      <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="name" id="getStrdLbl8">{{ 'GET_STARTED.I_HAVE' | translate}}</label>
-        </div>
-        <div class="flex-col-7">
-          <div class="dropdown-control">
-            <div ngbDropdown id="dependentDropDown">
-              <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                <span class="dependent-count">{{dependents}}</span>
-                <span *ngIf="dependents <= 1">{{'LABEL.DEPENDANT' | translate}}</span>
-                <span *ngIf="dependents > 1">{{'LABEL.DEPENDANT_PLURAL' | translate}}</span>
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" *ngFor="let count of dependentItems" (click)="selectDependentsCount(count)" id="getStrdBtn2">
-                  {{count}} 
-                  <span *ngIf="count <= 1">{{'LABEL.DEPENDANT' | translate}}</span>
-                  <span *ngIf="count > 1">{{'LABEL.DEPENDANT_PLURAL' | translate}}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex-row">
-          <div class="flex-col-5"></div>
-          <div class="flex-col-7">
-              <div>
-                  <strong>{{ 'GET_STARTED.DEPENDANT_MEANING_LBL' | translate}}</strong>
-                  <br/>{{ 'GET_STARTED.DEPENDANT_MEANING_DESC' | translate}}
-                </div>
-          </div>
-      </div>
-      </div>
-    <div>
-      <button type="button" (click)="goToNext(userInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
+<div class="form-group">
+  <div class="flex-row mb0">
+    <div class="title flex-col-12">
+      Settings
     </div>
-  </form>
+  </div>
+  <div class="flex-row">
+    <div class="flex-col-5">
+      <label for="name">Sort by </label>
+    </div>
+    <div class="flex-col-7">
+      <div class="dropdown-control">
+        <div ngbDropdown id="dependentDropDown">
+          <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+            <span class="dependent-count">Highest Ranking</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" (click)="selectDependentsCount(count)" id="getStrdBtn2">
+              <span>Lowest</span>
+            </button>
+            <button class="dropdown-item" (click)="selectDependentsCount(count)" id="getStrdBtn2">
+              <span>Lowest 2</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex-col">
+    <label>Premium Frequency</label>
+    <div class="form-group-single-column mb0">
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_10" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="Yes" tabindex="{{i+1}}">
+        <label for="protectionNeed_10" id="prtNeedLbl">
+          <div class="input-label-normal">Monthly</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_11" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_11" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">Yearly</div>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="flex-col">
+    <label>Insurers</label>
+    <div class="form-group-single-column mb0">
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="Yes" tabindex="{{i+1}}">
+        <label for="protectionNeed" id="prtNeedLbl">
+          <div class="input-label-normal">All</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_1" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_1" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">Aviva</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_2" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_2" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">AXA</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_3" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_3" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">Manulife</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_4" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_4" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">Tokio Marine</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_5" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_5" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">NTUC Income</div>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="flex-col">
+    <label>Insurers’ Financial Rating</label>
+    <div class="form-group-single-column mb0">
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_6" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="Yes" tabindex="{{i+1}}">
+        <label for="protectionNeed_6" id="prtNeedLbl">
+          <div class="input-label-normal">All</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_7" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_7" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">AA-</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_8" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_8" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">A+</div>
+        </label>
+      </div>
+      <div class="checkbox-button two-label">
+        <input id="protectionNeed_9" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
+          value="No" tabindex="{{i+1}}">
+        <label for="protectionNeed_9" id="prtNeedLbl{{i+1}}">
+          <div class="input-label-normal">A-</div>
+        </label>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="flex-row">
+    <div class="flex-col-12">
+      <label for="name">Premium Frequency</label>
+    </div>
+    <div class="flex-col-12">
+      <div class="btn-group--toggle" ngbRadioGroup name="radioGender">
+        <div class="flex-row mb0">
+          <div class="flex-col-5">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17">
+              <input ngbButton type="radio" value="male" id="getStrdInpt1">Monthly
+            </label>
+          </div>
+          <div class="flex-col-5">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+              <input ngbButton type="radio" value="female" id="getStrdInpt2">Yearly
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex-row">
+    <div class="flex-col-12">
+      <label for="name">Insurers’ Financial Rating</label>
+    </div>
+    <div class="flex-col-12">
+      <div class="btn-group--toggle" ngbRadioGroup name="radioGender1">
+        <div class="flex-row mb0">
+          <div class="rating">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+              <input ngbButton type="radio" value="male" id="getStrdInpt1">All
+            </label>
+          </div>
+          <div class="rating">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+              <input ngbButton type="radio" value="female" id="getStrdInpt2">AA-
+            </label>
+          </div>
+          <div class="rating">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+              <input ngbButton type="radio" value="female1" id="getStrdInpt2">A+
+            </label>
+          </div>
+          <div class="rating">
+            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
+              <input ngbButton type="radio" value="female2" id="getStrdInpt2">A-
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
 </div>
