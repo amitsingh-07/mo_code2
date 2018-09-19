@@ -159,25 +159,24 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   updateCoverageDetails() {
     this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
-    const typeId = this.recommendationPlans[this.currentSlide].typeId;
-    switch (typeId) {
-      case 1:
+    switch (this.activeRecommendationType) {
+      case 'Life Protection':
         this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
         break;
-      case 2:
+      case 'Critical Illness':
         const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
         this.coverageAmount = criticalIllnessValues.coverageAmount + '';
         break;
-      case 3:
+      case 'Occupational Disability':
         const ocpData = this.calculateService.getOcpData();
         this.coverageAmount = ocpData.coverageAmount + '';
         break;
-      case 4:
-        this.coverageAmount = '';
-        break;
-      case 5:
+      case 'Long Term Care':
         const ltcData = this.calculateService.getLtcData();
         this.coverageAmount = ltcData.monthlyPayout + '';
+        break;
+      case 'Hospital Plan':
+        this.coverageAmount = '';
         break;
     }
   }
