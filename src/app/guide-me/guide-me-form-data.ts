@@ -12,6 +12,7 @@ import { ProtectionNeeds } from './protection-needs/protection-needs';
 
 export class GuideMeFormData {
     protectionNeedsPageIndex: number;
+    isExistingCoverAdded = false;
     myProfile: number;
     email: string;
     gender: string;
