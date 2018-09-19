@@ -1,14 +1,13 @@
 <div class="personal-info">
-    <div class="step-indicator-container">
-      <div class="container-fluid">
-        <app-step-indicator [count]="7" [activeStepIndex]="1"></app-step-indicator>
-      </div>
-    </div>  
-<div class="container-fluid">
-  <div class="content">
-    <div class="row">
+  <div class="step-indicator-container">
+    <div class="container-fluid">
+      <app-step-indicator [count]="7" [activeStepIndex]="0"></app-step-indicator>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="content">
+      <div class="row">
         <div class="col-lg-12 col-md-12">
-        <div class="doselfCheck">
           <form [formGroup]="invPersonalInfoForm" id="invPersonalInfoForm" name="invPersonalInfoForm">
             <div class="form-group">
               <div class="flex-row">
@@ -118,8 +117,9 @@
               </div>
             </div>
             <div>
-              <button type="button" [disabled]="!invPersonalInfoForm.valid" (click)="goToNext(invPersonalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-                id="invPersInfoBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
+              <button type="button" [disabled]="!invPersonalInfoForm.valid" (click)="goToNext(invPersonalInfoForm)"
+                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="invPersInfoBtn3">{{
+                'LABEL.CONTINUE' | translate}}</button>
             </div>
           </form>
         </div>

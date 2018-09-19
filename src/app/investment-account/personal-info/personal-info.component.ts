@@ -37,7 +37,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       firstName: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       lastName: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       nricNumber: ['', Validators.required],
-      passportNumber: ['', Validators.required],
+      passportNumber: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       passportExpiry: ['', Validators.required],
       dob: ['', Validators.required],
       gender: ['male', Validators.required]
@@ -57,7 +57,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
     }
   }
 }

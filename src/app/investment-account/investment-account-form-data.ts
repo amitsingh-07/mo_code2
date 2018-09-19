@@ -1,5 +1,15 @@
 export class InvestmentAccountFormData {
 
+    // Personal Information
+    fullName: string;
+    firstName: string;
+    lastName: string;
+    nricNumber: any;
+    passportNumber: any;
+    passportExpiry: any;
+    dob: any;
+    gender: string;
+    
     // Residential Address
     country: string;
     postalCode: number;
