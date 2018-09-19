@@ -367,14 +367,12 @@ export class GuideMeService {
   }
 
   getEmptyExistingCoverage() {
-    let hospitalPlan = this.getHospitalPlan();
-    if (!hospitalPlan) {
-      hospitalPlan = {
-        hospitalClassId: 0,
-        hospitalClass: 'None',
-        hospitalClassDescription: ''
-      } as HospitalPlan;
-    }
+    const hospitalPlan = {
+      hospitalClassId: 0,
+      hospitalClass: 'None',
+      hospitalClassDescription: ''
+    } as HospitalPlan;
+
     const existingCoverage = {
       criticalIllnessCoverage: 0,
       lifeProtectionCoverage: 0,
