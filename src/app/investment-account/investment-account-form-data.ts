@@ -1,5 +1,4 @@
 export class InvestmentAccountFormData {
-
     // Personal Information
     fullName: string;
     firstName: string;
@@ -9,7 +8,7 @@ export class InvestmentAccountFormData {
     passportExpiry: any;
     dob: any;
     gender: string;
-    
+
     // Residential Address
     country: string;
     postalCode: number;
@@ -30,9 +29,9 @@ export class InvestmentAccountFormData {
     mailZipCode: number;
 
     // SELECTNATIONLITY
+    nationalitylist: any;
     nationality: string;
-    countries: any;
-     selectNationalitySig: string;
-     otherCoutryQuestionOne: string;
-     otherCoutryQuestionTwo: string;
+    selectNationalitySingapore: string;
+    otherCountryQuestionOne: string;
+    otherCountryQuestionTwo: string;
 }

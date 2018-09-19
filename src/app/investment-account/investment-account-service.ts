@@ -60,19 +60,14 @@ export class InvestmentAccountService {
     }
     getNationality() {
         return {
+            nationalitylist: this.investmentAccountFormData.nationalitylist,
             nationality: this.investmentAccountFormData.nationality,
-            countries: this.investmentAccountFormData.countries,
-            selectNationalitySig: this.investmentAccountFormData.selectNationalitySig,
-            otherCoutryQuestionOne: this.investmentAccountFormData.otherCoutryQuestionOne,
-            otherCoutryQuestionTwo: this.investmentAccountFormData.otherCoutryQuestionTwo
-        };
+            };
     }
-    setNationality(data: SelectNationality) {
-        this.investmentAccountFormData.nationality = data.nationality;
-        this.investmentAccountFormData.countries = data.countries;
-        this.investmentAccountFormData.selectNationalitySig = data.selectNationalitySig;
-        this.investmentAccountFormData.otherCoutryQuestionOne = data.otherCoutryQuestionOne;
-        this.investmentAccountFormData.otherCoutryQuestionTwo = data.otherCoutryQuestionTwo;
+    setNationality(nationalitylist: any, nationality: string) {
+        this.investmentAccountFormData.nationalitylist = nationalitylist;
+        this.investmentAccountFormData.nationality = nationality;
+
     }
 
 }

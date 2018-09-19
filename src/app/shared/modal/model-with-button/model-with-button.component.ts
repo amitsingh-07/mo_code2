@@ -16,7 +16,9 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() errorMessage: any;
   @Input() ButtonTitle: any;
   @Input() ButtonNavigation: any;
-
+  @Input() secondButton: any;
+  @Input() secondButtonTitle: any;
+  @Output() yesButtonClick = new EventEmitter<any>();
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -29,6 +31,17 @@ export class ModelWithButtonComponent implements OnInit {
   ngOnInit() {
   }
   modelButtonClick() {
+      if (this.secondButton) {
+        this.yesButtonClick.emit('Yes');
+      }
+      this.activeModal.dismiss('Cross click');
+      this.router.navigate([this.ButtonNavigation]);
+    }
+    // tslint:disable-next-line:no-identical-functions
+    secondmodelButtonClick() {
+      if (this.secondButton) {
+        this.yesButtonClick.emit('No');
+      }
       this.activeModal.dismiss('Cross click');
       this.router.navigate([this.ButtonNavigation]);
     }

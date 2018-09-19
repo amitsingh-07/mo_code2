@@ -25,9 +25,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   imports: [
-    CommonModule, 
-    InvestmentAccountRoutingModule, 
-    ReactiveFormsModule,
+    CommonModule, InvestmentAccountRoutingModule, ReactiveFormsModule,
      NgbModule.forRoot(),
     NouisliderModule,
     FormsModule,

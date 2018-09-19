@@ -1,7 +1,7 @@
 export class SelectNationality {
-    selectNationalitySig: any;
-    otherCoutryQuestionOne: any;
-    otherCoutryQuestionTwo: any;
-    nationality: any;
-    countries: any;
+    selectNationalitySingapore: string;
+    otherCountryQuestionOne: string;
+    otherCountryQuestionTwo: string;
+    nationalitylist: any;
+    nationality: string ;
 }

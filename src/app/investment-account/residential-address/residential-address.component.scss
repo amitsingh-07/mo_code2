@@ -2,6 +2,17 @@
 
 .residential-address {
 
+  .inline-error-inv {
+    color: $inline-error-border-color;
+    border: 1px solid $inline-error-border-color !important;
+    color: $inline-error-border-color;
+
+    input {
+      color: $inline-error-border-color !important;
+    }
+  }
+
+
   label {
     font-size: 18px;
     font-family: $muli-semi-bold;
@@ -52,6 +63,7 @@
       color: #fff;
       border: none;
       font-family: $muli;
+
       &.right {
         float: right;
       }
@@ -93,5 +105,12 @@
       font-family: $muli-semi-bold;
       font-size: 16px;
     }
+  }
+
+
+  .autofill-link{
+    border:1px solid $secondary-action-color;
+    padding:30px;
+    background-color:#fff;
   }
 }
