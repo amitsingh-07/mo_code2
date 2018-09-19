@@ -5,6 +5,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { SelectNationality } from './select-nationality/select-nationality';
+import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,7 @@ import { SelectNationality } from './select-nationality/select-nationality';
 export class InvestmentAccountService {
 
     private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
+    private investmentAccountFormError: any = new InvestmentAccountFormError();
 
     constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
         this.setDefaultValueForFormData();
@@ -73,6 +75,35 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.selectNationalitySig = data.selectNationalitySig;
         this.investmentAccountFormData.otherCoutryQuestionOne = data.otherCoutryQuestionOne;
         this.investmentAccountFormData.otherCoutryQuestionTwo = data.otherCoutryQuestionTwo;
+    }
+
+
+    /**
+     * get form errors.
+     * @param form - form details.
+     * @returns first error of the form.
+     */
+    getFormErrorList(form) {
+        const controls = form.controls;
+        const errors: any = {};
+        errors.errorMessages = [];
+        errors.title = this.investmentAccountFormError.formFieldErrors.errorTitle;
+        for (const name in controls) {
+            if (controls[name].invalid) {
+                // HAS NESTED CONTROLS ?
+                if (controls[name].controls) {
+                    const nestedControls = controls[name].controls;
+                    for (const nestedControlName in nestedControls) {
+                        if (nestedControls[nestedControlName].invalid) {
+                            errors.errorMessages.push(this.investmentAccountFormError.formFieldErrors[nestedControlName][Object.keys(nestedControls[nestedControlName]['errors'])[0]].errorMessage);
+                        }
+                    }
+                } else { // NO NESTED CONTROLS
+                    errors.errorMessages.push(this.investmentAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+                }
+            }
+        }
+        return errors;
     }
 
 }
