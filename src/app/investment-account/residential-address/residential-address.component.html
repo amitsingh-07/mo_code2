@@ -150,7 +150,7 @@
             <!-- IS MAILING ADDRESS SAME -->
             <div class="form-group-single-column  mb10 flex-col">
               <div class="checkbox-button two-label">
-                <input id="residentialAddress_mailingsame_radio" name="isMailingAddressSame"
+                <input id="residentialAddress_mailingsame_radio" name="isMailingAddressSame" (change)="addOrRemoveMailingAddress(event)"
                   name="protectionNeed" formControlName="isMailingAddressSame" type="checkbox" class="field checkbox" value="true">
                 <label for="residentialAddress_mailingsame_radio" id="residentialAddress_mailingsame_lbl">
                   <div class="input-label-black" id="residentialAddress_optionhead_lbl">Mailing Address</div>
@@ -160,7 +160,7 @@
             </div>
 
             <!-- ----------------------------- MAIL ----------------------------------------- -->
-            <div *ngIf="!addressForm.get('isMailingAddressSame').value">
+            <div *ngIf="!addressForm.get('isMailingAddressSame').value"  formGroupName="mailingAddress">
               <!-- COUNTRY -->
               <div class="form-group">
                 <div class="flex-row">
@@ -172,10 +172,10 @@
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
-                          ngbDropdownToggle>{{addressForm.controls.mailCountry.value}}
+                          ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('mailCountry',option, i)"
+                          <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',option, 'mailingAddress')"
                             id="residentialAddress-country-option-{{i}}">{{option}}</button>
                         </div>
                       </div>
