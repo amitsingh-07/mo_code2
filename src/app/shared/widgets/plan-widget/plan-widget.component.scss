@@ -77,7 +77,7 @@ app-plan-widget {
       }
 
       h4 {
-        height: 44px;
+        //height: 44px;
         font-size: 21px;
         color: $black-color;
         font-family: $muli-semi-bold;
@@ -157,6 +157,11 @@ app-plan-widget {
           @extend .justify-center;
           @extend .align-center;
           flex-direction: column;
+          flex: 1;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0;
+          }
         }
 
         .feature-head {

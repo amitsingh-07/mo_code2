@@ -1,15 +1,4 @@
 {
-  "COMMON": {
-    "LBL_SEARCH_PLAN": "Search Plans",
-    "LBL_UPDATE_PLAN": "Update Plan",
-    "LBL_MALE": "Male",
-    "LBL_FEMALE": "Female",
-    "LBL_SMOKER": "Smoker",
-    "LBL_NONSMOKER": "Non-Smoker",
-    "LBL_YES": "Yes",
-    "LBL_NO": "No",
-    "LBL_CONTINUE": "Continue"
-  },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
     "MOBILE_TITLE": "Protection Type"
@@ -110,17 +99,14 @@
       "PAYOUT_FEATURE": "Payout Feature",
       "PAYOUT_DURATION_LIST": [ "Lifetime", "Limited Years" ],
       "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable", "Increasing"],
-      "FIXED_TOOLTIP": {
-          "TITLE": "Fixed payouts",
-          "MESSAGE": "These monthly payouts are a guaranteed amount that you will receive."
-      },
-      "VARIABLE_TOOLTIP": {
-          "TITLE": "Variable payouts",
-          "MESSAGE": "These monthly payouts consists of a guaranteed amount that you will receive and non-guaranteed amount that is dependent on the performance of the insurer’s participative fund."
-      },
-      "INCREASING_TOOLTIP": {
-          "TITLE": "Increasing payout",
-          "MESSAGE": "These monthly payouts can increase yearly."
+      "TOOLTIP": {
+          "TITLE": "Payout Feature",
+          "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
       }
-    }
+      },
+      "RESULTS": {
+        "TITLE": "Plans"
+      }
   }
+
+
