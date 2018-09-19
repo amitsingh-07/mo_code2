@@ -2,7 +2,7 @@
 @import "../../../_mixins.scss";
 .fin-accessment-block {
     .container-fluid {
-        padding-top: 30px !important;
+        padding-top: 20px !important;
         @include allmobiles {
             padding-top: 10px !important;
         }
@@ -23,6 +23,12 @@
         }
     }
     .fin-accessment-block__content {
+        @extend .flex;
+        @extend .align-center;
+        height: 490px;
+        .banner-image img {
+            max-width:80%;
+        }
         @include tablet {
             .banner-image img {
                 max-width:90%;
@@ -83,7 +89,7 @@
         border:0px;
         border-radius: 6px;
         background-color: $white-color;
-        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
         font-family: $muli-semi-bold;
         font-size: 22px;
         font-style: normal;

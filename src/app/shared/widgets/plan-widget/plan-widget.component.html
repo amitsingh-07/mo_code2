@@ -44,11 +44,11 @@
       </div>
     </div>
   </div>
-  <div class="row row-btn-bottom">
-      <div class="col-md-6 d-none d-md-flex hidden-sm-md widget-btn-view" *ngIf = "!isComparePlanEnabled">
+  <div class="flex row-btn-bottom">
+      <div class="flex-1 hidden-sm-md widget-btn-view mr10" *ngIf = "!isComparePlanEnabled">
         <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
       </div>
-      <div class="col-md-6 col-btn-bottom widget-btn-select" *ngIf = "!isComparePlanEnabled">
+      <div class="flex-1 widget-btn-select" *ngIf = "!isComparePlanEnabled">
         <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
       </div>
       <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">

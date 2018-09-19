@@ -61,6 +61,9 @@ app-plan-widget {
       @include allmobiles {
         justify-content: center;
       }
+      img {
+        width: 80%;
+      }
     }
 
     border: solid 3px #fff;
@@ -171,6 +174,9 @@ app-plan-widget {
 
         .feature-caption {
           font-size: 16px;
+          @include tablet {
+            font-size: 14px !important;
+          }
           font-family: $muli-semi-bold;
           width: 100px;
           margin-bottom: 10px;

@@ -27,7 +27,10 @@ button:active:focus {
   &.btn-primary {
     background-color: $btn-primary-backgrnd-color;
     border-color: $btn-primary-backgrnd-color;
-    box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+    @include allmobiles {
+      box-shadow: none !important;
+    }
     &:hover {
       background-color: #0de0de !important;
     }
@@ -81,12 +84,15 @@ button:active:focus {
     color: $app-backgrnd-color;
     &:hover {
       background-color: transparent;
+      border: 1px solid #00c5c4 !important;
+      color: $app-backgrnd-color !important;
     }
     &:focus,
     &:active {
       outline: none !important;
-      background: transparent !important;
-      border-color: none !important;
+      border: 1px solid #00c5c4 !important;
+      color: $app-backgrnd-color !important;
+      background-color: transparent !important;
     }
   }
   &:disabled {

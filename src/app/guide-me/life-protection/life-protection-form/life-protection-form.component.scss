@@ -19,7 +19,7 @@ app-life-protection-form {
     justify-content: center;
     flex-wrap: nowrap;
     align-items: center;
-    margin: 10px 0px 30px 0px;
+    margin: 20px 0px 30px 0px;
   }
   .page-indicator span {
     width: 11px;
@@ -81,6 +81,7 @@ app-life-protection-form {
       }
       .form-group-with-bg.show {
         display: block;
+        margin-bottom: 30px;
       }
       .education-support-details {
         .form-group-with-bg {
