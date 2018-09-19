@@ -1,4 +1,18 @@
 {
+  "COMMON": {
+    "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
+    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLANS_SELECTED": "Plans Selected",
+    "LBL_SEARCH_PLAN": "Search Plans",
+    "LBL_UPDATE_PLAN": "Update Plan",
+    "LBL_MALE": "Male",
+    "LBL_FEMALE": "Female",
+    "LBL_SMOKER": "Smoker",
+    "LBL_NONSMOKER": "Non-Smoker",
+    "LBL_YES": "Yes",
+    "LBL_NO": "No",
+    "LBL_CONTINUE": "Continue"
+  },
   "SUFFIX": {
     "PER_MONTH": "/ mth"
   },

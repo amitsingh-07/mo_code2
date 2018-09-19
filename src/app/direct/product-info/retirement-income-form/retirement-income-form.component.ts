@@ -103,10 +103,9 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string += '$' + this.selectedRetirementIncome + ', ';
-    sum_string += '$' + this.selectedPayoutAge + ', ';
-    sum_string += this.payoutDuration + ', ';
-    sum_string += this.payoutFeature;
+    sum_string += '$' + this.selectedRetirementIncome + ' / mth,  ';
+    sum_string += 'Payout Age ' + this.selectedPayoutAge + ', ';
+    sum_string += 'Payout For ' + this.payoutDuration ;
     return sum_string;
   }
 

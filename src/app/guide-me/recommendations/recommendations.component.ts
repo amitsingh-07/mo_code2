@@ -1,7 +1,8 @@
 import { CurrencyPipe } from '@angular/common';
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbCarousel, NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { SlickComponent } from 'ngx-slick';
 
 import { Router } from '../../../../node_modules/@angular/router';
 import { HeaderService } from '../../shared/header/header.service';
@@ -12,7 +13,6 @@ import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
-import { SlickComponent } from 'ngx-slick';
 
 @Component({
   selector: 'app-recommendations',
@@ -30,10 +30,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   selectedPlans: any[] = [];
   coverageAmount = '';
   premiumFrom = '';
-  comparePlans: any[] = [];
   activeRecommendationType;
   activeRecommendationList;
-  isComparePlanEnabled = false;
   enquiryId;
 
   enableScroll = false;
@@ -43,7 +41,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   public innerWidth: any;
   currentSlide = 0;
-  slideConfig = { slidesToShow: 1, slidesToScroll: 1 };
+  slideConfig = { slidesToShow: 1, slidesToScroll: 1, infinite: false };
 
   @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
   @ViewChild('mobileHeaderMenu', { read: ElementRef }) public mobileHeaderMenu: ElementRef<any>;
@@ -93,6 +91,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   getRecommendationsFromServer() {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
+        window.scrollTo(0, 0);
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.enquiryId = data.objectList[0].enquiryId;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;
@@ -111,7 +110,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   moveCarouselNext() {
-    // this.recommendationCarousel.next();
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
@@ -125,7 +123,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   moveCarouselPrev() {
-    // this.recommendationCarousel.prev();
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
     const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
@@ -157,36 +154,30 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   getCurrentRecommendationList() {
-    /*
-    for (const recommendation of this.recommendationPlans) {
-      if (this.activeRecommendationType === recommendation.protectionType) {
-        return recommendation;
-      }
-    }
-    */
     return this.recommendationPlans[this.currentSlide];
   }
 
   updateCoverageDetails() {
     this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
-    switch (this.activeRecommendationType) {
-      case 'Life Protection':
+    const typeId = this.recommendationPlans[this.currentSlide].typeId;
+    switch (typeId) {
+      case 1:
         this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
         break;
-      case 'Critical Illness':
+      case 2:
         const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
         this.coverageAmount = criticalIllnessValues.coverageAmount + '';
         break;
-      case 'Occupational Disability':
+      case 3:
         const ocpData = this.calculateService.getOcpData();
         this.coverageAmount = ocpData.coverageAmount + '';
         break;
-      case 'Long Term Care':
+      case 4:
+        this.coverageAmount = '';
+        break;
+      case 5:
         const ltcData = this.calculateService.getLtcData();
         this.coverageAmount = ltcData.monthlyPayout + '';
-        break;
-      case 'Hospital Plan':
-        this.coverageAmount = '';
         break;
     }
   }
@@ -206,23 +197,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       }
     }
   }
-  comparePlan(data) {
-    if (data.selected) {
-      this.comparePlans.push(data.plan);
-    } else {
-      const index: number = this.comparePlans.indexOf(data.plan);
-      if (index !== -1) {
-        this.comparePlans.splice(index, 1);
-      }
-    }
-  }
-  compare() {
-    this.guideMeService.setPlanDetails(this.comparePlans);
-    this.router.navigate([GUIDE_ME_ROUTE_PATHS.COMPARE_PLANS]);
-  }
-  EnablecomparePlan() {
-    this.isComparePlanEnabled = !this.isComparePlanEnabled;
-  }
+
   proceed() {
     this.selectedPlansService.setSelectedPlan(this.selectedPlans, this.enquiryId);
     this.modalRef = this.modal.open(CreateAccountModelComponent, {

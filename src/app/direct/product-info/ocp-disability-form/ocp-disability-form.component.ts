@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig , NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
+
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
@@ -113,8 +114,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string +=  this.defaultEmployee + ', ';
-    sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value + ', ';
+    sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value +  ' / mth, ';
     sum_string += this.duration;
     return sum_string;
   }

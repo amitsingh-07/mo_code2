@@ -1,15 +1,4 @@
 {
-  "COMMON": {
-    "LBL_SEARCH_PLAN": "Search Plan",
-    "LBL_UPDATE_PLAN": "Update Plan",
-    "LBL_MALE": "Male",
-    "LBL_FEMALE": "Female",
-    "LBL_SMOKER": "Smoker",
-    "LBL_NONSMOKER": "Non-smoker",
-    "LBL_YES": "Yes",
-    "LBL_NO": "No",
-    "LBL_CONTINUE": "Continue"
-  },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
     "MOBILE_TITLE": "Protection Type"
@@ -40,12 +29,41 @@
     },
     "PREMIUM_WAIVER": {
       "TITLE": "Premium Waiver",
-      "SUBTITLE": "(optional)",
+      "SUBTITLE": "(Optional)",
       "TOOLTIP": {
           "TITLE": "Premium Waiver Rider",
           "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
       }
     }
+  },
+  "EDUCATION": {
+    "ABOUT_CHILD": {
+      "TITLE": "About My Child",
+      "UNIVERSITY_ENTRY_AGE": "University Entry Age",
+      "MONTHLY_CONTRIBUTION":"Monthly Contribution"
+    },
+    "ABOUT_ME": {
+      "TITLE": "About Me"
+    }
+  },
+  "HOSPITAL_PLAN": {
+    "PLAN_TYPE": "Plan Type",
+    "FULL_OR_PARTIAL_RIDER":{ 
+      "TITLE": "Full / Partial Rider",
+      "SUBTITLE": "(optional)",
+      "TOOLTIP": {
+        "FULL_RIDER": {
+          "TITLE": "Full Rider",
+          "MESSAGE": "This rider provides coverage for both co-insurance and deductible components."
+        },
+        "PARTIAL_RIDER": {
+          "TITLE": "Partial Rider",
+          "MESSAGE": "This rider only provides coverage for either co-insurance or deductible."
+        }
+      }
+    },
+    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C", "Global Healthcare"]
+    
   },
   "CRITICAL_ILLNESS": {
     "COVERAGE_AMT": {
@@ -57,7 +75,7 @@
       },
     "EARLY_CI": {
       "TITLE": "Early CI",
-      "SUBTITLE": "(optional)"
+      "SUBTITLE": "(Optional)"
       }
     },
   "LONG_TERM_CARE": {
@@ -72,7 +90,7 @@
       "COVER": "Cover",
       "OF": "Of",
       "EMPLOYMENT_TYPE_LIST": ["Salaried", "Self-employed"],
-      "DURATION_VALUES": ["Till 55", "Till 60", "Till 65"]
+      "DURATION_VALUES": ["Till Age 55", "Till Age 60", "Till Age 65"]
     },
     "RETIREMENT_INCOME": {
       "INCOME": "Retirement Income",
@@ -85,6 +103,9 @@
           "TITLE": "Payout Feature",
           "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
       }
+      },
+      "RESULTS": {
+        "TITLE": "Plans"
       }
   }
 

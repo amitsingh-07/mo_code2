@@ -1,18 +1,20 @@
 import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PercentageInputDirective } from './../shared/directives/percentage-input.directive';
 
 import { DirectFormData } from './direct-form-data';
+import { IEducation } from './product-info/education-form/education.interface';
 import { FormError } from './product-info/form-error';
+import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
-import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
+import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
+
+const SESSION_STORAGE_KEY = 'app_direct_session';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class DirectService {
   searchStatus: boolean;
 
@@ -23,6 +25,7 @@ export class DirectService {
 
   private formError: any = new FormError();
   private directFormData:  DirectFormData = new DirectFormData();
+
   private modalFreeze = new BehaviorSubject(false);
   private prodCategory = new BehaviorSubject(0);
   private prodSearchInfo = new BehaviorSubject('');
@@ -34,9 +37,30 @@ export class DirectService {
   prodSearchInfoData = this.prodSearchInfo.asObservable();
   searchBtnTrigger = this.searchBtn.asObservable();
   modalToolTipTrigger = this.modalToolTip.asObservable();
+  currentIndexValue: number;
 
   constructor(private currencyPipe: CurrencyPipe) {
   }
+
+  commit() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.directFormData));
+    }
+  }
+
+  clearData() {
+    if (window.sessionStorage) {
+      sessionStorage.clear();
+    }
+  }
+
+  getDirectFormData(): DirectFormData {
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+      this.directFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    }
+    return this.directFormData;
+  }
+
   /* Setting Freeze for manual modal, Edit Profile */
   setModalFreeze(isFrozen: boolean) {
     this.modalFreeze.next(isFrozen);
@@ -48,10 +72,6 @@ export class DirectService {
   /* Search Button Trigger */
   triggerSearch(event) {
     this.searchBtn.next(event);
-  }
-  /* Get Direct Form Data */
-  getDirectFormData(): DirectFormData {
-    return this.directFormData;
   }
 
   /* Get Product Category List */
@@ -149,5 +169,39 @@ export class DirectService {
 
   setOcpDisabilityForm(data: IOcpDisability) {
     this.directFormData.ocpDisability = data;
+  }
+
+  setEducationForm(data: IEducation) {
+    this.directFormData.education = data;
+  }
+
+  setHospitalPlanForm(data: IHospital) {
+    this.directFormData.hospital = data;
+  }
+
+  getHospitalPlanForm() {
+    if (!this.directFormData.hospital) {
+      this.directFormData.hospital = {} as IHospital;
+    }
+    return this.directFormData.hospital;
+  }
+
+  getEducationForm() {
+    if (!this.directFormData.education) {
+      this.directFormData.education = {} as IEducation;
+    }
+    return this.directFormData.education;
+  }
+
+  setSelectedPlans(plan) {
+    this.directFormData.selectedPlans = plan;
+    this.commit();
+  }
+
+  getSelectedPlans() {
+    if (!this.directFormData.selectedPlans) {
+      this.directFormData.selectedPlans = [];
+    }
+    return this.directFormData.selectedPlans;
   }
 }

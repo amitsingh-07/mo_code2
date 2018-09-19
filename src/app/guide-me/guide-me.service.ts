@@ -21,7 +21,7 @@ import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
-const SESSION_STORAGE_KEY = 'app_session_storage_key';
+const SESSION_STORAGE_KEY = 'app_guided_session';
 const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
 
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
@@ -59,6 +59,7 @@ export class GuideMeService {
 
   constructor(private http: HttpClient, private modal: NgbModal, private authService: AuthenticationService) {
     this.getGuideMeFormData();
+    this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex
   }
 
   commit() {
@@ -191,6 +192,7 @@ export class GuideMeService {
   getPlanDetails() {
     return this.guideMePlanData;
   }
+
   getMyLiabilities(): IMyLiabilities {
     if (!this.guideMeFormData.liabilities) {
       this.guideMeFormData.liabilities = {} as IMyLiabilities;
@@ -262,6 +264,7 @@ export class GuideMeService {
   }
 
   /*Additions of currency Values */
+  // tslint:disable-next-line:cognitive-complexity
   additionOfCurrency(formValues) {
     let sum: any = 0;
     for (const i in formValues) {
@@ -307,6 +310,24 @@ export class GuideMeService {
       }
     }
     return selectedProtectionNeeds;
+  }
+
+  resetProtectionNeedsPageIndex() {
+    this.protectionNeedsPageIndex = 0;
+    this.guideMeFormData.protectionNeedsPageIndex = 0;
+    this.commit();
+  }
+
+  decrementProtectionNeedsIndex() {
+    this.protectionNeedsPageIndex--;
+    this.guideMeFormData.protectionNeedsPageIndex--;
+    this.commit();
+  }
+
+  incrementProtectionNeedsIndex() {
+    this.protectionNeedsPageIndex++;
+    this.guideMeFormData.protectionNeedsPageIndex++;
+    this.commit();
   }
 
   getNextProtectionNeedsPage() {
@@ -448,13 +469,13 @@ export class GuideMeService {
     let currentValue;
     switch (currentLongTerm.careGiverType) {
       case 'Nursing Home': currentValue = 2600;
-                           break;
+        break;
       case 'Daycare Support': currentValue = 1800;
-                              break;
+        break;
       case 'Domestic Helper': currentValue = 1200;
-                              break;
+        break;
       case 'Family Member': currentValue = 600;
-                            break;
+        break;
     }
     return currentValue;
   }

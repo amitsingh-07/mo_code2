@@ -1,10 +1,22 @@
-<div class="init-direct-results flex-col center text-center">
+<app-edit-product-info (click)="editProdInfo()"></app-edit-product-info>
+<div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>
+<div *ngFor="let category of searchResult; let i = index">
   <div>
-    <img src="../../../assets/images/init-direct-results.svg"/>
+    <div class="row" style="justify-content: center;">
+      <div class="col-md-6 col-sm-6 col-6 plan-wrapper" *ngFor="let plan of category.productList; let j = index;">
+        <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+        <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
+          (select)="selectPlan($event)" (view)="viewDetails($event)" (compare)="comparePlan($event)"></app-plan-widget>
+      </div>
     </div>
-  <div>
-    <p class="init-direct-results__title">Get Started</p> 
-    <p class="init-direct-results__sub-title">Just a few simple questions to get you started.</p>
-    </div> 
   </div>
-<div></div> 
+</div>
+<!-- Floating plan selection for compare plans footer -->
+<div *ngIf="isComparePlanEnabled && (selectedPlans && selectedPlans.length > 0)" align="center" class="floating-footer-wrapper">
+  <div class="floating-footer">
+    <span class="selected-count">{{selectedPlans.length}}</span>
+    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
+    <span class="btn-proceed" (click)="compare()">{{ 'BUTTON.COMPARE' | translate}}</span>
+  </div>
+</div>
+<!-- / Floating plan selection for compare plans footer -->
