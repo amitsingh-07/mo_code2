@@ -211,7 +211,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   submitDependentForm(form) {
     if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }

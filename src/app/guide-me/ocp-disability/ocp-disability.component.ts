@@ -99,7 +99,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   selectRetirementAge(age) {
@@ -162,7 +162,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   goToNext(form) {
     if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }

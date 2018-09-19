@@ -11,6 +11,7 @@ import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
 export class GuideMeFormData {
+    protectionNeedsPageIndex: number;
     myProfile: number;
     email: string;
     gender: string;

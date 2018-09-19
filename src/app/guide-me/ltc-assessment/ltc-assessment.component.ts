@@ -73,7 +73,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
@@ -103,7 +103,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   goToNext(form) {
     if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }
