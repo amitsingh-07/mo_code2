@@ -16,4 +16,8 @@ export class AppComponent {
   constructor(private log: LoggerService, private translate: TranslateService, private googleAnalyticsService: GoogleAnalyticsService) {
     this.translate.setDefaultLang('en');
   }
+
+  onActivate(event) {
+    window.scroll(0, 0);
+  }
 }

@@ -164,8 +164,8 @@ app-recommendations {
   }
 
   .page-indicator span {
-    width: 14px;
-    height: 14px;
+    width: 11px;
+    height: 11px;
     background-color: #73cece;
     border-radius: 10px;
     margin-right: 10px;
@@ -349,10 +349,11 @@ app-recommendations {
   .coverage-premium-from {
     margin-right: 0 !important;
   }
-  .recommedation-wrapper__disclaimer {
+
+  .recommendation-wrapper__disclaimer {
     font-size: 16px;
     font-family: $muli-regular;
-    margin: 0 15%;
+    margin: 0 32px;
     text-align: center;
     opacity: 0.6;
   }

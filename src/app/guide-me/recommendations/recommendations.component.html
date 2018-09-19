@@ -10,14 +10,14 @@
   <div class="plan-type-list d-none d-md-flex hidden-sm-md">
     <div class="plan-type" (click)="jumpToSlide(recommendation, i)" [class.active]="recommendation.protectionType == activeRecommendationType"
       *ngFor="let recommendation of recommendationPlans; let i = index">
-      <span [innerHtml]="recommendation.protectionType"></span>
+      <span [innerHtml]="recommendation.protectionType.replace('-', '&#8209;')"></span>
     </div>
   </div>
 
   <div #mobileHeaderMenu id="mobileHeaderMenu" class="plan-type-list md-none hidden-lg" style="overflow-x: hidden; width: 100%">
     <span class="plan-type" [attr.data-type]="recommendation.protectionType" [class.active]="recommendation.protectionType == activeRecommendationType"
       *ngFor="let recommendation of recommendationPlans; let i = index">
-      <span [innerHtml]="recommendation.protectionType"></span>
+      <span [innerHtml]="recommendation.protectionType.replace('-', '&#8209;')"></span>
     </span>
   </div>
 </div>
@@ -77,7 +77,7 @@
       </span>
     </div>
     <!-- / Paging Indicator -->
-    <div class="recommedation-wrapper__disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
+    <div class="recommendation-wrapper__disclaimer" *ngIf="recommendationPlans">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
   </div>
 </div>
 

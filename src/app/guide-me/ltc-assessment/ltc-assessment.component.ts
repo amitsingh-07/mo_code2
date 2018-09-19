@@ -9,9 +9,9 @@ import { Subscription } from 'rxjs';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
-import { GuideMeApiService } from '../guide-me.api.service';
 import { LongTermCare } from './ltc-assessment';
 
 const assetImgPath = './assets/images/';

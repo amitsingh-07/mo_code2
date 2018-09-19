@@ -91,6 +91,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   getRecommendationsFromServer() {
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
+        window.scrollTo(0, 0);
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.enquiryId = data.objectList[0].enquiryId;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;
@@ -158,24 +159,25 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   updateCoverageDetails() {
     this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
-    switch (this.activeRecommendationType) {
-      case 'Life Protection':
+    const typeId = this.recommendationPlans[this.currentSlide].typeId;
+    switch (typeId) {
+      case 1:
         this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
         break;
-      case 'Critical Illness':
+      case 2:
         const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
         this.coverageAmount = criticalIllnessValues.coverageAmount + '';
         break;
-      case 'Occupational Disability':
+      case 3:
         const ocpData = this.calculateService.getOcpData();
         this.coverageAmount = ocpData.coverageAmount + '';
         break;
-      case 'Long Term Care':
+      case 4:
+        this.coverageAmount = '';
+        break;
+      case 5:
         const ltcData = this.calculateService.getLtcData();
         this.coverageAmount = ltcData.monthlyPayout + '';
-        break;
-      case 'Hospital Plan':
-        this.coverageAmount = '';
         break;
     }
   }

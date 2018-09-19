@@ -128,6 +128,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.guideMeService.updateDependentCount(value);
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   refreshDependentForm() {
     if (this.lifeProtectionForm) {
       // no of existing form less than selected dependent count

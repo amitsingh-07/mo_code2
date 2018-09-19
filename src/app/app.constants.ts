@@ -1,4 +1,3 @@
-import { apiConstants } from './shared/http/api.constants';
 import { GUIDE_ME_ROUTES } from './guide-me/guide-me-routes.constants';
 
 export let appConstants = {
