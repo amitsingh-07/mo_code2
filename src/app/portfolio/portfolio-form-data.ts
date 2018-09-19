@@ -27,9 +27,4 @@ export class PortfolioFormData {
 
     selectedFund;
     // SELECTNATIONLITY
-     nationality: string;
-     countries: any;
-     selectNationalitySig: string;
-     otherCoutryQuestionOne: string;
-     otherCoutryQuestionTwo: string;
-}
+    }

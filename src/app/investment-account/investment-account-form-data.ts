@@ -27,4 +27,9 @@ export class InvestmentAccountFormData {
     mailCity: string;
     mailState: string;
     mailZipCode: number;
+    // SELECTNATIONLITY
+
+     selectNationalitySig : string;
+     otherCoutryQuestionOne: string;
+     otherCoutryQuestionTwo: string;
 }

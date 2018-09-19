@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
+import { SelectNationality } from './select-nationality/select-nationality';
 
 @Injectable({
     providedIn: 'root'
@@ -44,5 +45,24 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.mailState = data.mailState;
         this.investmentAccountFormData.mailZipCode = data.mailZipCode;
     }
+    getNationalityList() {
+        return this.apiService.getNationalityList();
+      }
+      getNationality() {
+        return {
+          nationality: this.investmentAccountFormData.nationality,
+          countries: this.investmentAccountFormData.countries,
+          selectNationalitySig: this.investmentAccountFormData.selectNationalitySig,
+          otherCoutryQuestionOne: this.investmentAccountFormData.otherCoutryQuestionOne,
+          otherCoutryQuestionTwo: this.investmentAccountFormData.otherCoutryQuestionTwo
+        };
+      }
+      setNationality(data: SelectNationality) {
+        this.investmentAccountFormData.nationality = data.nationality;
+        this.investmentAccountFormData.countries = data.countries;
+        this.investmentAccountFormData.selectNationalitySig = data.selectNationalitySig;
+        this.investmentAccountFormData.otherCoutryQuestionOne = data.otherCoutryQuestionOne;
+        this.investmentAccountFormData.otherCoutryQuestionTwo = data.otherCoutryQuestionTwo;
+      }
 
 }
