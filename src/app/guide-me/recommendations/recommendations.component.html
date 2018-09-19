@@ -21,17 +21,19 @@
     </span>
   </div>
 </div>
-<div class="coverage-details" *ngIf="coverageAmount != ''">
-  <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
-  Coverage:
-  <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
-  <br class="hidden-lg" />
-  Premium from:
-  <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ 'SUFFIX.PER_MONTH' | translate}}
+<div class="coverage-details-wrapper">
+  <div class="coverage-details" *ngIf="coverageAmount != ''">
+    <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
+    Coverage:
+    <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+    <br class="hidden-lg" />
+    Premium from:
+    <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ 'SUFFIX.PER_MONTH' | translate}}
+  </div>
 </div>
 <!-- <button class="comparePlans_btn">
 <span (click)="EnablecomparePlan()">compare plans</span></button> -->
-<div class="container-fluid" style="background: #2d8289">
+<div class="container-fluid">
   <div class="content">
     <div class="plan-carousel-container">
       <div class="recommendation-carousel-item">
@@ -75,6 +77,7 @@
       </span>
     </div>
     <!-- / Paging Indicator -->
+    <div class="recommedation-wrapper__disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
   </div>
 </div>
 
