@@ -2,6 +2,11 @@
 @import '../../../mixins';
 
 app-recommendations {
+  .slick-arrow {
+    @include allmobiles {
+      display: none;
+    }
+  }
   .slick-disabled {
     display: none;
   }
@@ -21,6 +26,10 @@ app-recommendations {
     top: 100px;
     width: 100%;
     z-index: 999;
+
+    @include allmobiles {
+      top: 0;
+    }
 
   .enable-scroll {
     touch-action: pan-y !important;

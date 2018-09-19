@@ -18,6 +18,8 @@ export class AppComponent {
   }
 
   onActivate(event) {
-    document.body.scrollTop = 0;
+    setTimeout(() => {
+      window.scroll(0, 0);
+    }, 0);
   }
 }

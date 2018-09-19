@@ -64,7 +64,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   ngOnInit() {
     setTimeout(() => {
       this.getRecommendationsFromServer();
-    }, 500);
+    }, 0);
   }
 
   ngAfterViewChecked() {
