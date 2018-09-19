@@ -9,7 +9,11 @@ app-product-detail {
   @include allmobiles {
     border-radius: 0;
   }
-
+  .insurer-logo {
+    img {
+      width: 50% !important;
+    }
+  }
   .best-value-icon {
     display: block;
     position: absolute;
