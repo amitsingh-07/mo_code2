@@ -87,14 +87,4 @@
   </div>
 </div>
 <!-- / Floating plan selection footer -->
-
-<!-- Floating plan selection for compare plans footer -->
-<div *ngIf="isComparePlanEnabled && (comparePlans && comparePlans.length > 0)" align="center" class="floating-footer-wrapper">
-  <div class="floating-footer">
-    <span class="selected-count">{{comparePlans.length}}</span>
-    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
-    <span class="btn-proceed" (click)="compare()">{{ 'BUTTON.COMPARE' | translate}}</span>
-  </div>
-</div>
-<!-- / Floating plan selection for compare plans footer -->
 </div>

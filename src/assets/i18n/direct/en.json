@@ -1,15 +1,4 @@
 {
-  "COMMON": {
-    "LBL_SEARCH_PLAN": "Search Plans",
-    "LBL_UPDATE_PLAN": "Update Plan",
-    "LBL_MALE": "Male",
-    "LBL_FEMALE": "Female",
-    "LBL_SMOKER": "Smoker",
-    "LBL_NONSMOKER": "Non-Smoker",
-    "LBL_YES": "Yes",
-    "LBL_NO": "No",
-    "LBL_CONTINUE": "Continue"
-  },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
     "MOBILE_TITLE": "Protection Type"
