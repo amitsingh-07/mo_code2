@@ -146,6 +146,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   addExistingCoverageOutput(emittedValue: IExistingCoverage) {
+    this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
     this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
       if (!protectionNeed.existingCoverage) {
         protectionNeed.existingCoverage = {
