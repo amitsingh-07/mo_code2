@@ -12,6 +12,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
 
@@ -50,8 +51,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
   constructor(
     private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
-    private renderer: Renderer2) {
+    private renderer: Renderer2, private translate: TranslateService) {
     this.highlights = [];
+    this.translate.use('en');
   }
 
   ngDoCheck() {
@@ -107,6 +109,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
 
   viewDetails() {
+    // tslint:disable-next-line:no-commented-code
     // this.view.emit(this.temp);
     const data = this.temp;
     const ref = this.modal.open(ProductDetailComponent, { centered: true });
@@ -126,6 +129,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
+
   compareplan() {
     this.isComparePlanSelected = !this.isComparePlanSelected;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });

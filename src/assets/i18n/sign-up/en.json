@@ -56,7 +56,10 @@
         }     
     },
     "EMAIL_VERIFICATION": {
-        "TITLE": "Email Verified!"        
+        "LOADING": {
+            "VERIFYING" : "Verifying...",
+            "VERIFIED": "Email Verified!"
+        }
     },
     "ACCOUNT_CREATED": {
         "TITLE": "Account Created!",

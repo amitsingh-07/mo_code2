@@ -2,12 +2,44 @@
 @import '../../../mixins';
 
 app-recommendations {
+  .slick-disabled {
+    opacity: .5;
+    cursor: default;
+  }
+  .slick-next:before {
+    content:url(../../../assets/images/carousel-next.png) !important;
+    opacity: 1;
+    @include allmobiles {
+      display: none;
+    }
+  } 
+  .slick-prev:before {
+    content:url(../../../assets/images/carousel-prev.png) !important;
+    opacity: 1;
+    @include allmobiles {
+      display: none;
+    }
+  }
+  .slick-prev .slick-arrow {
+    opacity: 1;
+  }
+
+  .slick-next.slick-arrow {
+    opacity: 1;
+  }
+  .recommedation-wrapper {
+    position: absolute;
+    left: 0;
+    //top: 100px;
+    width: 100%;
+    z-index: 999;
   .enable-scroll {
     touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important; 
   }
   .outer-content {
     margin-top: 0;
+    background: $app-backgrnd-color;
 
     @include allmobiles {
       margin-top: 115px;
@@ -28,7 +60,24 @@ app-recommendations {
     padding-top: 0 !important;
     padding-left: 125px !important;
     padding-right: 125px !important;
-    height: 100vh;
+    //height: 100vh;
+    position: relative;
+    border-top: 1px solid #76adb2;
+    background: #2d8289;
+    .carousel-control-prev {
+    left: -100px;
+    cursor: pointer;
+    position: absolute;
+    height: 50px;
+    top: 50%;
+  }
+  .carousel-control-next {
+    right: -100px !important;
+    cursor: pointer;
+    position: absolute;
+    height: 50px;
+    top: 50%;
+  }
     @include allmobiles {
       padding: 0 !important;
       height: 100vh;
@@ -53,6 +102,7 @@ app-recommendations {
     font-size: 18px;
     font-family: $muli-bold;
     color: $white-color;
+    border-right: 1px solid rgba(255,255,255,0.44);
   }
 
   .plan-type.active {
@@ -64,6 +114,8 @@ app-recommendations {
 
   .plan-carousel-container {
     padding: 20px 10px;
+    max-width: 1024px;
+    margin: 0 auto;
   }
 
   .recommendation-carousel-item {
@@ -80,16 +132,6 @@ app-recommendations {
     @include allmobiles {
       padding: 0px;
     }
-  }
-
-  .carousel-control-prev {
-    left: -120px;
-    cursor: pointer;
-  }
-
-  .carousel-control-next {
-    right: -120px !important;
-    cursor: pointer;
   }
 
   .plan-type-mobile {
@@ -122,8 +164,8 @@ app-recommendations {
   }
 
   .page-indicator span {
-    width: 14px;
-    height: 14px;
+    width: 11px;
+    height: 11px;
     background-color: #73cece;
     border-radius: 10px;
     margin-right: 10px;
@@ -162,84 +204,6 @@ app-recommendations {
     }
   }
 
-  .floating-footer-wrapper {
-    width: 100%;
-    align-items: center;
-    position: fixed;
-    bottom: 10px;
-
-    @include allmobiles {
-      bottom: 0;
-    }
-  }
-
-  .floating-footer {
-    background-color: #fff;
-    border-radius: 6px;
-    padding: 5px 10px;
-    width: fit-content;
-    padding-bottom: 10px !important;
-
-    @include allmobiles {
-      padding-bottom: 0 !important;
-      width: 100%;
-      border-radius: 0;
-      height: 50px;
-    }
-  }
-
-  .selected-count {
-    background-color: #ff872f;
-    width: 39px;
-    height: 26px;
-    padding: 0 15px;
-    border-radius: 13px;
-    font-family: Muli;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: -0.1px;
-    color: #ffffff;
-    padding-bottom: 3px;
-    margin-right: 10px;
-
-    @include allmobiles {
-      float: left;
-      margin-left: 20px;
-      margin-top: 10px;
-    }
-  }
-
-  .lbl-selected {
-    font-family: Muli;
-    font-size: 18px;
-    line-height: 1.11;
-    letter-spacing: -0.2px;
-    color: #5e5e5e;
-    margin-right: 100px;
-
-    @include allmobiles {
-      margin-right: 0;
-      padding-top: 13px;
-      float: left;
-    }
-  }
-
-  .btn-proceed {
-    font-family: Muli;
-    font-size: 22px;
-    font-weight: bold;
-    letter-spacing: -0.2px;
-    text-align: center;
-    color: #00a7a7;
-    cursor: pointer;
-
-    @include allmobiles {
-      float: right;
-      padding-top: 5px;
-      margin-right: 20px;
-    }
-  }
-
   .plan-wrapper {
     flex: 0 0 50%;
     max-width: 50%;
@@ -271,23 +235,25 @@ app-recommendations {
     left: 13px;
     z-index: 9;
   }
-
-  .coverage-details {
-    padding-left: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #76adb2;
-    padding-left: 145px !important;
-    padding-right: 125px !important;
-    background: #2d8289;
-
-    @include allmobiles {
-      border: none;
-      padding-left: 0px !important;
-      padding-right: 0px !important;
-      text-align: center;
-      padding-bottom: 0px !important;
-    }
+   .coverage-details-wrapper {
+      background: #2d8289;
+      .coverage-details {
+        padding-left: 20px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        //padding-left: 145px !important;
+        //padding-right: 125px !important;
+        //background: #2d8289;
+        max-width: 1024px;
+        margin: 0 auto;
+        @include allmobiles {
+          border: none;
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+          text-align: center;
+          padding-bottom: 0px !important;
+        }
+      }
   }
 
   .coverage-type,
@@ -305,4 +271,13 @@ app-recommendations {
   .coverage-premium-from {
     margin-right: 0 !important;
   }
+
+  .recommendation-wrapper__disclaimer {
+    font-size: 16px;
+    font-family: $muli-regular;
+    margin: 0 32px;
+    text-align: center;
+    opacity: 0.6;
+  }
+}
 }

@@ -14,7 +14,6 @@ import { SharedModule } from '../shared/shared.module';
 import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
 import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
-import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
@@ -79,9 +78,7 @@ export function createTranslateLoader(http: HttpClient) {
     InsuranceResultsComponent,
     InsuranceResultComponent,
     RecommendationsComponent,
-    PlanWidgetComponent,
     CustomCurrencyPipe,
-    ComparePlansComponent,
     PlanDetailsWidgetComponent,
     ProductDetailComponent
   ],

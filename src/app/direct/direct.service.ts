@@ -10,6 +10,8 @@ import { ILongTermCare } from './product-info/long-term-care-form/long-term-care
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 
+const SESSION_STORAGE_KEY = 'app_direct_session';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +25,7 @@ export class DirectService {
 
   private formError: any = new FormError();
   private directFormData:  DirectFormData = new DirectFormData();
+
   private modalFreeze = new BehaviorSubject(false);
   private prodCategory = new BehaviorSubject(0);
   private prodSearchInfo = new BehaviorSubject('');
@@ -38,6 +41,26 @@ export class DirectService {
 
   constructor(private currencyPipe: CurrencyPipe) {
   }
+
+  commit() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.directFormData));
+    }
+  }
+
+  clearData() {
+    if (window.sessionStorage) {
+      sessionStorage.clear();
+    }
+  }
+
+  getDirectFormData(): DirectFormData {
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+      this.directFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    }
+    return this.directFormData;
+  }
+
   /* Setting Freeze for manual modal, Edit Profile */
   setModalFreeze(isFrozen: boolean) {
     this.modalFreeze.next(isFrozen);
@@ -49,10 +72,6 @@ export class DirectService {
   /* Search Button Trigger */
   triggerSearch(event) {
     this.searchBtn.next(event);
-  }
-  /* Get Direct Form Data */
-  getDirectFormData(): DirectFormData {
-    return this.directFormData;
   }
 
   /* Get Product Category List */
@@ -172,5 +191,17 @@ export class DirectService {
       this.directFormData.education = {} as IEducation;
     }
     return this.directFormData.education;
+  }
+
+  setSelectedPlans(plan) {
+    this.directFormData.selectedPlans = plan;
+    this.commit();
+  }
+
+  getSelectedPlans() {
+    if (!this.directFormData.selectedPlans) {
+      this.directFormData.selectedPlans = [];
+    }
+    return this.directFormData.selectedPlans;
   }
 }

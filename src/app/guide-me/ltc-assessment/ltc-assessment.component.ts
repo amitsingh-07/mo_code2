@@ -9,9 +9,9 @@ import { Subscription } from 'rxjs';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
-import { GuideMeApiService } from '../guide-me.api.service';
 import { LongTermCare } from './ltc-assessment';
 
 const assetImgPath = './assets/images/';
@@ -73,7 +73,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
@@ -103,7 +103,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   goToNext(form) {
     if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }
