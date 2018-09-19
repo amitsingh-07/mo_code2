@@ -1,13 +1,4 @@
-import { FormArray, FormGroup } from '@angular/forms';
-
 export class InvestmentAccountFormData {
-
-    // countries
-    countries: [];
-
-    // selectnationality
-    nationality: string;
-    selectNationalitySig: string;
 
     // Residential Address
     country: string;
@@ -27,9 +18,11 @@ export class InvestmentAccountFormData {
     mailCity: string;
     mailState: string;
     mailZipCode: number;
-    // SELECTNATIONLITY
 
-     selectNationalitySig : string;
+    // SELECTNATIONLITY
+    nationality: string;
+    countries: any;
+     selectNationalitySig: string;
      otherCoutryQuestionOne: string;
      otherCoutryQuestionTwo: string;
 }
