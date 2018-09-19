@@ -1,12 +1,13 @@
+<div class="personal-info">
+    <div class="step-indicator-container">
+      <div class="container-fluid">
+        <app-step-indicator [count]="7" [activeStepIndex]="1"></app-step-indicator>
+      </div>
+    </div>  
 <div class="container-fluid">
   <div class="content">
     <div class="row">
-      <div class="col-lg-7 col-md-6 hidden-sm-md">
-        <div>
-          <h2 id="invPersInfoH2">{{ 'PERSONAL_INFO.TITLE' | translate}}</h2>
-        </div>
-      </div>
-      <div class="col-lg-5 col-md-6">
+        <div class="col-lg-12 col-md-12">
         <div class="doselfCheck">
           <form [formGroup]="invPersonalInfoForm" id="invPersonalInfoForm" name="invPersonalInfoForm">
             <div class="form-group">
