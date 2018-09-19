@@ -24,7 +24,10 @@ app-settings-widget {
             .flex-row{
                 font-size: 16px;
                 padding: 10px 25px;
-                border-bottom: 1px solid #d1edec;
+                border-bottom: none;
+                @include allmobiles {
+                    border-bottom: 1px solid #d1edec;
+                }
                 label{
                     font-family: $muli-semi-bold;
                     color: #2D8289;
@@ -35,8 +38,11 @@ app-settings-widget {
                     color: #00a7a7;
                     height: 60.4px;
                     display: flex;
-                    justify-content: center;
+                    justify-content: flex-start;
                     align-items: center;
+                    @include allmobiles {
+                        justify-content: center;
+                    }
                 }
                 .fixed-btn--sm{
                     font-family: $muli;
@@ -55,6 +61,10 @@ app-settings-widget {
                 }
             }
             .flex-col{
+                margin-bottom: 25px;
+                @include allmobiles{
+                    margin-bottom: 10px;
+                }
                 label{
                     font-family: $muli-semi-bold;
                     color: #2D8289;
