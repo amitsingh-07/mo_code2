@@ -1,0 +1,23 @@
+@import '../../variables';
+@import '../../mixins';
+
+.home--header{
+    position: relative;
+    display: flex;
+    width:100%;
+    height:5px;
+    .orange--section{
+        position: relative;
+        display: inline-block;
+        width:35%;
+        height:100%;
+        background-color:$orange-color;
+    }
+    .teal--section{
+        position: relative;
+        display: inline-block;
+        width:65%;
+        height:100%;
+        background-color:$balance-teal-color;
+    }
+}

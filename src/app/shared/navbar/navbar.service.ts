@@ -6,15 +6,21 @@ import { BehaviorSubject } from 'rxjs';
 export class NavbarService {
 
   private navbarVisibility = new BehaviorSubject(true);
+  private navbarShadowVisibility = new BehaviorSubject(true);
 
   isNavbarCollapsed = true;
+  currentNavbarShadowVisibility = this.navbarShadowVisibility.asObservable();
   currentNavbarVisibility = this.navbarVisibility.asObservable();
 
   constructor() {}
 
   setNavbarVisibility(isVisible: boolean) {
     this.navbarVisibility.next(isVisible);
-    console.log('Service recieved');
     }
+
+  setNavbarShadowVisibility(isVisible: boolean) {
+    this.navbarShadowVisibility.next(isVisible);
+    console.log(isVisible);
+  }
 
 }

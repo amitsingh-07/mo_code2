@@ -1,5 +1,6 @@
 import { NavigationEnd, Router } from '@angular/router';
 import { HeaderService } from './../shared/header/header.service';
+import { NavbarService } from './../shared/navbar/navbar.service';
 import { DirectService } from './direct.service';
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -19,7 +20,7 @@ export class DirectComponent implements OnInit, IPageComponent {
   modalFreeze: boolean;
   pageTitle: string;
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public headerService: HeaderService, public navbarService: NavbarService,
     private directService: DirectService, private translate: TranslateService,
     public modal: NgbModal ) {
     this.translate.use('en');
@@ -31,7 +32,11 @@ export class DirectComponent implements OnInit, IPageComponent {
     this.showProductInfo();
     }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.navbarService.setNavbarVisibility(false);
+    this.headerService.setHeaderDropshadowVisibility(true);
+    this.headerService.setHeaderOverallVisibility(true);
+  }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?) {
     this.headerService.setPageTitle(title, null, helpIcon);

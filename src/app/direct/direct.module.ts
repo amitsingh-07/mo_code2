@@ -1,4 +1,3 @@
-
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -8,6 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 import { SharedModule } from './../shared/shared.module';
 
+import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectRoutingModule } from './direct-routing.module';
@@ -57,7 +57,6 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [CurrencyPipe]
 })
 export class DirectModule {
-  constructor(public navbarService: NavbarService) {
-    this.navbarService.setNavbarVisibility(false);
+  constructor(public navbarService: NavbarService, public headerService: HeaderService) {
   }
 }

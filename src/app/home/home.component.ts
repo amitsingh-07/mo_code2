@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   constructor(public headerService: HeaderService, public navbarService: NavbarService) { }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.headerService.setHeaderOverallVisibility(false);
   }
 }

@@ -13,6 +13,7 @@ export class HeaderService {
     private closeProdInfo = new BehaviorSubject('');
     private headerOverallVisibility = new BehaviorSubject(true);
     private headerVisibility = new BehaviorSubject(true);
+    private headerDropshadow = new BehaviorSubject(true);
 
     currentPageTitle = this.pageTitle.asObservable();
     currentPageSubTitle = this.pageSubTitle.asObservable();
@@ -21,6 +22,7 @@ export class HeaderService {
     currentMobileModalEvent = this.mobileModal.asObservable();
     currentHeaderOverallVisibility = this.headerOverallVisibility.asObservable();
     currentHeaderVisibility = this.headerVisibility.asObservable();
+    currentHeaderDropshadow = this.headerDropshadow.asObservable();
 
     constructor() { }
 
@@ -51,6 +53,11 @@ export class HeaderService {
 
     setHeaderOverallVisibility(isVisible: boolean) {
         this.headerOverallVisibility.next(isVisible);
+        console.log('Header Overall Visibility' + isVisible);
+    }
+
+    setHeaderDropshadowVisibility(isVisible: boolean) {
+        this.headerDropshadow.next(isVisible);
     }
 
     // Showing Mobile PopUp Trigger

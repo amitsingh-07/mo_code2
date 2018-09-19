@@ -1,24 +1,35 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NavbarService } from './navbar.service';
 
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  providers: [NgbDropdownConfig]
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
   showNavbar = true;
-  constructor(private navbarService: NavbarService) { }
+  showNavShadow = false;
+  showSearchBar = false;
+  constructor(private navbarService: NavbarService, config: NgbDropdownConfig) {
+    config.autoClose = true;
+  }
 
   ngOnInit() {
-    console.log(this.showNavbar);
   }
 
   ngAfterViewInit() {
     this.navbarService.currentNavbarVisibility.subscribe((showNavbar) => {
-      console.log('Before:' + this.showNavbar);
       this.showNavbar = showNavbar;
-      console.log(this.showNavbar);
     });
+    this.navbarService.currentNavbarShadowVisibility.subscribe((showNavShadow) => {
+      this.showNavShadow = showNavShadow;
+      console.log('shadow definition changed to: ' + this.showNavShadow);
+    });
+  }
+
+  openSearchBar(toggle: boolean) {
+    this.showSearchBar = toggle;
   }
 }
