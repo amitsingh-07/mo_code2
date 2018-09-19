@@ -20,7 +20,6 @@ export class NavbarService {
 
   setNavbarShadowVisibility(isVisible: boolean) {
     this.navbarShadowVisibility.next(isVisible);
-    console.log(isVisible);
   }
 
 }
