@@ -61,7 +61,17 @@
     "PLAN_TYPE": "Plan type",
     "FULL_OR_PARTIAL_RIDER":{ 
       "TITLE": "Full / Partial Rider",
-      "SUBTITLE": "(optional)"
+      "SUBTITLE": "(optional)",
+      "TOOLTIP": {
+        "FULL_RIDER": {
+          "TITLE": "Full Rider",
+          "MESSAGE": "This rider provides coverage for both co-insurance and deductible components."
+        },
+        "PARTIAL_RIDER": {
+          "TITLE": "Partial Rider",
+          "MESSAGE": "This rider only provides coverage for either co-insurance or deductible."
+        }
+      }
     },
     "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C", "Global Healthcare"]
     
