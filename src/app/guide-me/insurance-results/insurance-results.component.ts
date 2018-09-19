@@ -98,7 +98,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   viewDetails(index) {

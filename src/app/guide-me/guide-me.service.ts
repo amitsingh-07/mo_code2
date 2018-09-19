@@ -59,6 +59,7 @@ export class GuideMeService {
 
   constructor(private http: HttpClient, private modal: NgbModal, private authService: AuthenticationService) {
     this.getGuideMeFormData();
+    this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex
   }
 
   commit() {
@@ -311,6 +312,24 @@ export class GuideMeService {
     return selectedProtectionNeeds;
   }
 
+  resetProtectionNeedsPageIndex() {
+    this.protectionNeedsPageIndex = 0;
+    this.guideMeFormData.protectionNeedsPageIndex = 0;
+    this.commit();
+  }
+
+  decrementProtectionNeedsIndex() {
+    this.protectionNeedsPageIndex--;
+    this.guideMeFormData.protectionNeedsPageIndex--;
+    this.commit();
+  }
+
+  incrementProtectionNeedsIndex() {
+    this.protectionNeedsPageIndex++;
+    this.guideMeFormData.protectionNeedsPageIndex++;
+    this.commit();
+  }
+
   getNextProtectionNeedsPage() {
     const selectedProtectionNeedsPage = [];
     const protectionNeeds = this.getSelectedProtectionNeedsList();
@@ -450,13 +469,13 @@ export class GuideMeService {
     let currentValue;
     switch (currentLongTerm.careGiverType) {
       case 'Nursing Home': currentValue = 2600;
-                           break;
+        break;
       case 'Daycare Support': currentValue = 1800;
-                              break;
+        break;
       case 'Domestic Helper': currentValue = 1200;
-                              break;
+        break;
       case 'Family Member': currentValue = 600;
-                            break;
+        break;
     }
     return currentValue;
   }
