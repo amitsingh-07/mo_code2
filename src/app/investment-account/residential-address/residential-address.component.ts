@@ -36,14 +36,43 @@ export class ResidentialAddressComponent implements OnInit {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
+    this.addOrRemoveMailingAddress();
   }
 
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
   }
 
-  setDropDownValue(key, value, i) {
+  setDropDownValue(key, value) {
     this.addressForm.controls[key].setValue(value);
+  }
+  setNestedDropDownValue(key, value, nestedKey) {
+    this.addressForm.controls[nestedKey]['controls'][key].setValue(value);
+  }
+
+  addOrRemoveMailingAddress() {
+    if (this.addressForm.controls.isMailingAddressSame.value !== true) {
+      if (this.isUserNationalitySingapore) { // Singapore
+        this.addressForm.addControl('mailingAddress', this.formBuilder.group({
+          mailCountry: [this.formValues.mailCountry ? this.formValues.mailCountry : this.countries[0], Validators.required],
+          mailPostalCode: [this.formValues.mailPostalCode, Validators.required],
+          mailAddress1: [this.formValues.mailAddress1, Validators.required],
+          mailAddress2: [this.formValues.mailAddress2],
+          mailUnitNo: [this.formValues.mailUnitNo, Validators.required]
+        }));
+      } else { // Other Countries
+        this.addressForm.addControl('mailingAddress', this.formBuilder.group({
+          mailCountry: [this.formValues.mailCountry ? this.formValues.mailCountry : this.countries[0], Validators.required],
+          mailAddress1: [this.formValues.mailAddress1, Validators.required],
+          mailAddress2: [this.formValues.mailAddress2],
+          mailCity: [this.formValues.mailCity, Validators.required],
+          mailState: [this.formValues.mailState, Validators.required],
+          mailZipCode: [this.formValues.mailZipCode, Validators.required],
+        }));
+      }
+    } else {
+      this.addressForm.removeControl('mailingAddress');
+    }
   }
 
   goToNext(form) {
@@ -53,65 +82,32 @@ export class ResidentialAddressComponent implements OnInit {
       });
       return false;
     } else {
-      this.setValidatorsForMailingAddress();
       this.investmentAccountService.setResidentialAddressFormData(form.value);
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
     }
   }
 
-  setValidatorsForMailingAddress() {
-    if (this.isUserNationalitySingapore) {
-      if (this.addressForm.controls.isMailingAddressSame.value === true) {
-        this.addressForm.controls.mailCountry.clearValidators();
-        this.addressForm.controls.mailPostalCode.clearValidators();
-        this.addressForm.controls.mailAddress1.clearValidators();
-        this.addressForm.controls.mailAddress2.clearValidators();
-        this.addressForm.controls.mailUnitNo.clearValidators();
-      }
-    } else {
-      if (this.addressForm.controls.isMailingAddressSame.value === true) {
-        this.addressForm.controls.mailCountry.clearValidators();
-        this.addressForm.controls.mailAddress1.clearValidators();
-        this.addressForm.controls.mailAddress2.clearValidators();
-        this.addressForm.controls.mailCity.clearValidators();
-        this.addressForm.controls.mailState.clearValidators();
-        this.addressForm.controls.mailZipCode.clearValidators();
-      }
-    }
-    this.addressForm.updateValueAndValidity();
-  }
-
-  buildFormForSingapore() {
+  buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
-      country: [this.countries[0], Validators.required],
+      country: [this.formValues.country ? this.formValues.country : this.countries[0] , Validators.required],
       postalCode: [this.formValues.postalCode, Validators.required],
       address1: [this.formValues.address1, Validators.required],
       address2: [this.formValues.address2],
       unitNo: [this.formValues.unitNo, Validators.required],
-      isMailingAddressSame: [true, Validators.required],
-      mailCountry: [this.countries[0], Validators.required],
-      mailPostalCode: [this.formValues.postalCode, Validators.required],
-      mailAddress1: [this.formValues.address1, Validators.required],
-      mailAddress2: [this.formValues.address2],
-      mailUnitNo: [this.formValues.unitNo, Validators.required],
+      isMailingAddressSame: [this.formValues.isMailingAddressSame, Validators.required],
+
     });
   }
 
-  buildFormForOtherCountry() {
+  buildFormForOtherCountry(): FormGroup {
     return this.formBuilder.group({
-      country: [this.countries[0], Validators.required],
+      country: [this.formValues.country ? this.formValues.country : this.countries[0], Validators.required],
       address1: [this.formValues.address1, Validators.required],
       address2: [this.formValues.address2],
       city: [this.formValues.city, Validators.required],
       state: [this.formValues.state, Validators.required],
       zipCode: [this.formValues.zipCode, Validators.required],
-      isMailingAddressSame: [true, Validators.required],
-      mailCountry: [this.countries[0], Validators.required],
-      mailAddress1: [this.formValues.address1, Validators.required],
-      mailAddress2: [this.formValues.address2],
-      mailCity: [this.formValues.city, Validators.required],
-      mailState: [this.formValues.state, Validators.required],
-      mailZipCode: [this.formValues.zipCode, Validators.required],
+      isMailingAddressSame: [this.formValues.isMailingAddressSame, Validators.required]
     });
   }
 

@@ -14,6 +14,7 @@ export class InvestmentAccountService {
     private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
 
     constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+        this.setDefaultValueForFormData();
     }
 
     getInvestmentAccountFormData() {
@@ -30,39 +31,48 @@ export class InvestmentAccountService {
         // return this.investmentAccountFormData.country === 'singapore';
         return true;
     }
+    setDefaultValueForFormData() {
+        this.investmentAccountFormData.isMailingAddressSame = true;
+    }
     setResidentialAddressFormData(data) {
         this.investmentAccountFormData.country = data.country;
+        this.investmentAccountFormData.postalCode = data.postalCode;
         this.investmentAccountFormData.address1 = data.address1;
         this.investmentAccountFormData.address2 = data.address2;
+        this.investmentAccountFormData.unitNo = data.unitNo;
         this.investmentAccountFormData.city = data.city;
         this.investmentAccountFormData.state = data.state;
         this.investmentAccountFormData.zipCode = data.zipCode;
         this.investmentAccountFormData.isMailingAddressSame = data.isMailingAddressSame;
-        this.investmentAccountFormData.mailCountry = data.mailCountry;
-        this.investmentAccountFormData.mailAddress1 = data.mailAddress1;
-        this.investmentAccountFormData.mailAddress2 = data.mailAddress2;
-        this.investmentAccountFormData.mailCity = data.mailCity;
-        this.investmentAccountFormData.mailState = data.mailState;
-        this.investmentAccountFormData.mailZipCode = data.mailZipCode;
+        if (!data.isMailingAddressSame) {
+            this.investmentAccountFormData.mailCountry = data.mailingAddress.mailCountry;
+            this.investmentAccountFormData.mailPostalCode = data.mailingAddress.mailPostalCode;
+            this.investmentAccountFormData.mailAddress1 = data.mailingAddress.mailAddress1;
+            this.investmentAccountFormData.mailAddress2 = data.mailingAddress.mailAddress2;
+            this.investmentAccountFormData.mailUnitNo = data.mailingAddress.mailUnitNo;
+            this.investmentAccountFormData.mailCity = data.mailingAddress.mailCity;
+            this.investmentAccountFormData.mailState = data.mailingAddress.mailState;
+            this.investmentAccountFormData.mailZipCode = data.mailingAddress.mailZipCode;
+        }
     }
     getNationalityList() {
         return this.apiService.getNationalityList();
-      }
-      getNationality() {
+    }
+    getNationality() {
         return {
-          nationality: this.investmentAccountFormData.nationality,
-          countries: this.investmentAccountFormData.countries,
-          selectNationalitySig: this.investmentAccountFormData.selectNationalitySig,
-          otherCoutryQuestionOne: this.investmentAccountFormData.otherCoutryQuestionOne,
-          otherCoutryQuestionTwo: this.investmentAccountFormData.otherCoutryQuestionTwo
+            nationality: this.investmentAccountFormData.nationality,
+            countries: this.investmentAccountFormData.countries,
+            selectNationalitySig: this.investmentAccountFormData.selectNationalitySig,
+            otherCoutryQuestionOne: this.investmentAccountFormData.otherCoutryQuestionOne,
+            otherCoutryQuestionTwo: this.investmentAccountFormData.otherCoutryQuestionTwo
         };
-      }
-      setNationality(data: SelectNationality) {
+    }
+    setNationality(data: SelectNationality) {
         this.investmentAccountFormData.nationality = data.nationality;
         this.investmentAccountFormData.countries = data.countries;
         this.investmentAccountFormData.selectNationalitySig = data.selectNationalitySig;
         this.investmentAccountFormData.otherCoutryQuestionOne = data.otherCoutryQuestionOne;
         this.investmentAccountFormData.otherCoutryQuestionTwo = data.otherCoutryQuestionTwo;
-      }
+    }
 
 }
