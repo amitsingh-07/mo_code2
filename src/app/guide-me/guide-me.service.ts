@@ -21,7 +21,7 @@ import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
-const SESSION_STORAGE_KEY = 'app_session_storage_key';
+const SESSION_STORAGE_KEY = 'app_guided_session';
 const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
 
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
@@ -191,6 +191,7 @@ export class GuideMeService {
   getPlanDetails() {
     return this.guideMePlanData;
   }
+
   getMyLiabilities(): IMyLiabilities {
     if (!this.guideMeFormData.liabilities) {
       this.guideMeFormData.liabilities = {} as IMyLiabilities;
@@ -262,6 +263,7 @@ export class GuideMeService {
   }
 
   /*Additions of currency Values */
+  // tslint:disable-next-line:cognitive-complexity
   additionOfCurrency(formValues) {
     let sum: any = 0;
     for (const i in formValues) {
