@@ -1,11 +1,13 @@
+import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
-
 import { DirectService } from './../../direct.service';
 
 @Component({
@@ -27,18 +29,19 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(10);
   durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99',
-                    'Whole Life', 'Whole Life w/Multiplier'];
+    'Whole Life', 'Whole Life w/Multiplier'];
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe) {
-      const today: Date = new Date();
-      config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-      config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-      config.outsideDays = 'collapsed';
-      this.translate.use('en');
-    }
+    private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
+    private router: Router) {
+    const today: Date = new Date();
+    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.outsideDays = 'collapsed';
+    this.translate.use('en');
+  }
 
   ngOnInit() {
     this.directService.setProdCategoryIndex(1);
@@ -50,10 +53,10 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'non-smoker';
     this.formValues.earlyCI = this.formValues.earlyCI ? this.formValues.earlyCI : 'yes';
-    if (this.formValues.duration !== undefined ) {
+    if (this.formValues.duration !== undefined) {
       this.selectDuration(this.formValues.dependent);
     }
-    if (this.formValues.coverageAmt !== undefined ) {
+    if (this.formValues.coverageAmt !== undefined) {
       this.selectCoverageAmt(this.formValues.coverageAmt);
     }
     this.criticalIllnessForm = this.formBuilder.group({
@@ -68,6 +71,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
       if (data !== '') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
+          this.router.navigate([DIRECT_ROUTE_PATHS.RESULTS]);
         }
         this.directService.triggerSearch('');
       }

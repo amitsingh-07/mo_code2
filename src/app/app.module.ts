@@ -1,11 +1,12 @@
 import 'hammerjs';
+//import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,6 +33,7 @@ import {
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
+import { HammerConfig } from './hammer.config';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
@@ -46,6 +48,7 @@ import { ModelWithButtonComponent } from './shared/modal/model-with-button/model
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
+import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -77,7 +80,8 @@ export function tokenGetterFn() {
     jqxSliderComponent,
     HeaderComponent,
     NumberOnlyDirective,
-    CallBackComponent
+    CallBackComponent,
+    SettingsWidgetComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +109,10 @@ export function tokenGetterFn() {
   providers: [NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

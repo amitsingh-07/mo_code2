@@ -14,7 +14,10 @@ export class SignUpAccessGuard implements CanActivate {
             ) {
   }
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-    if ((route.routeConfig.path === SIGN_UP_ROUTES.VERIFY_MOBILE && !this.signUpService.getCustomerRef()) ||
+    if (!this.selectedPlansService.getSelectedPlan()) {
+      this.myRoute.navigate(['/']);
+      return false;
+    } else if ((route.routeConfig.path === SIGN_UP_ROUTES.VERIFY_MOBILE && !this.signUpService.getCustomerRef()) ||
     (route.routeConfig.path === SIGN_UP_ROUTES.PASSWORD  && !this.signUpService.getResetCode())) {
         this.myRoute.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
         return false;

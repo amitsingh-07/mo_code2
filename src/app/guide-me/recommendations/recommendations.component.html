@@ -1,3 +1,4 @@
+<div class="recommedation-wrapper">
 <div class="outer-content">
   <div class="col-md-12 hidden-sm-md" style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
     <h2>{{ pageTitle }}</h2>
@@ -7,7 +8,7 @@
   </div>
 
   <div class="plan-type-list d-none d-md-flex hidden-sm-md">
-    <div class="plan-type" (click)="jumpToSlide(recommendation)" [class.active]="recommendation.protectionType == activeRecommendationType"
+    <div class="plan-type" (click)="jumpToSlide(recommendation, i)" [class.active]="recommendation.protectionType == activeRecommendationType"
       *ngFor="let recommendation of recommendationPlans; let i = index">
       <span [innerHtml]="recommendation.protectionType"></span>
     </div>
@@ -30,14 +31,14 @@
 </div>
 <!-- <button class="comparePlans_btn">
 <span (click)="EnablecomparePlan()">compare plans</span></button> -->
-
 <div class="container-fluid" style="background: #2d8289">
   <div class="content">
     <div class="plan-carousel-container">
       <div class="recommendation-carousel-item">
-        <!-- CAROUSEL -->
+        <!-- CAROUSEL 
         <ngb-carousel (swiperight)="moveCarouselPrev()" (swipeleft)="moveCarouselNext()" #recommendationCarousel="ngbCarousel"
-          [interval]="false" (slide)="slideCarousel($event)" [showNavigationArrows]="true" [showNavigationIndicators]="false">
+          [interval]="false" (slide)="slideCarousel($event)" [showNavigationArrows]="true" [showNavigationIndicators]="false"
+          [ngClass]="{'enable-scroll' : enableScroll}" style="display:none;">
           <ng-template id="{{recommendation.protectionType}}" ngbSlide *ngFor="let recommendation of recommendationPlans; let i = index">
             <div>
               <div class="row" style="justify-content: center;">
@@ -51,6 +52,20 @@
           </ng-template>
         </ngb-carousel>
         <!-- / CAROUSEL -->
+
+        <ngx-slick class="carousel" #recommendationCarousel="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
+            <div ngxSlickItem *ngFor="let recommendation of recommendationPlans; let i = index" class="slide">
+                <div>
+                    <div class="row" style="justify-content: center; margin-left: 0; margin-right: 0">
+                      <div class="col-md-6 col-sm-6 col-6 plan-wrapper" *ngFor="let plan of recommendation.productList; let j = index;">
+                        <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+                        <app-plan-widget [data]="plan" [type]="recommendation.protectionType" [bestValue]="j == 0" (select)="selectPlan($event)"
+                          (view)="viewDetails($event)"></app-plan-widget>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </ngx-slick>
       </div>
     </div>
 
@@ -82,4 +97,4 @@
   </div>
 </div>
 <!-- / Floating plan selection for compare plans footer -->
-
+</div>

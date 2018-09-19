@@ -88,10 +88,10 @@ export class CreateAccountComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.signUpService.currentFormError(form);
+      const error = this.signUpService.getSignupFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);

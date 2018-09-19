@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { IMyFinancials } from './my-financials/my-financials.interface';
+import { SelectNationality } from './select-nationality/select-nationality';
 import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
@@ -185,5 +186,16 @@ export class PortfolioService {
   }
   getNationalityList(){
     return this.apiService.getNationalityList();
+  }
+  getNationality(){
+    return {
+      selectNationalitySig: this.portfolioFormData.selectNationalitySig
+     
+    };
+    
+
+  }
+  setNationality(data:SelectNationality ) {
+    this.portfolioFormData.selectNationalitySig = data.selectNationalitySig;
   }
 }

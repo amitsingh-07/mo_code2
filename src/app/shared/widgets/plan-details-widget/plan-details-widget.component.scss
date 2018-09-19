@@ -83,7 +83,8 @@ app-plan-details-widget {
 
       .insurance-plan-widget__container__rank__wrapper {
         @extend .flex;
-        @extend .space-btwn;
+        //@extend .space-btwn;
+        @extend .justify-center;
         margin: 15px 0;
 
         .one-plan-width {
@@ -109,6 +110,9 @@ app-plan-details-widget {
           @extend .justify-center;
           @extend .align-center;
           flex-direction: column;
+          flex: 1;
+          width: 25%;
+          margin-right: 10px;
         }
 
         .feature-head {
