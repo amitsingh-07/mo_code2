@@ -24,11 +24,11 @@ export class ResidentialAddressComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public investmentAccountService: InvestmentAccountService) {
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe((result: string) => {
-        this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
-        this.setPageTitle(this.pageTitle);
-      });
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
+      this.setPageTitle(this.pageTitle);
+    });
   }
 
   ngOnInit() {
@@ -46,8 +46,39 @@ export class ResidentialAddressComponent implements OnInit {
     this.addressForm.controls[key].setValue(value);
   }
 
-  goNext() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+  goToNext(form) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+      return false;
+    } else {
+      this.setValidatorsForMailingAddress();
+      this.investmentAccountService.setResidentialAddressFormData(form.value);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+    }
+  }
+
+  setValidatorsForMailingAddress() {
+    if (this.isUserNationalitySingapore) {
+      if (this.addressForm.controls.isMailingAddressSame.value === true) {
+        this.addressForm.controls.mailCountry.clearValidators();
+        this.addressForm.controls.mailPostalCode.clearValidators();
+        this.addressForm.controls.mailAddress1.clearValidators();
+        this.addressForm.controls.mailAddress2.clearValidators();
+        this.addressForm.controls.mailUnitNo.clearValidators();
+      }
+    } else {
+      if (this.addressForm.controls.isMailingAddressSame.value === true) {
+        this.addressForm.controls.mailCountry.clearValidators();
+        this.addressForm.controls.mailAddress1.clearValidators();
+        this.addressForm.controls.mailAddress2.clearValidators();
+        this.addressForm.controls.mailCity.clearValidators();
+        this.addressForm.controls.mailState.clearValidators();
+        this.addressForm.controls.mailZipCode.clearValidators();
+      }
+    }
+    this.addressForm.updateValueAndValidity();
   }
 
   buildFormForSingapore() {
@@ -57,7 +88,12 @@ export class ResidentialAddressComponent implements OnInit {
       address1: [this.formValues.address1, Validators.required],
       address2: [this.formValues.address2],
       unitNo: [this.formValues.unitNo, Validators.required],
-      isMailingAddressSame: [true, Validators.required]
+      isMailingAddressSame: [true, Validators.required],
+      mailCountry: [this.countries[0], Validators.required],
+      mailPostalCode: [this.formValues.postalCode, Validators.required],
+      mailAddress1: [this.formValues.address1, Validators.required],
+      mailAddress2: [this.formValues.address2],
+      mailUnitNo: [this.formValues.unitNo, Validators.required],
     });
   }
 
@@ -70,6 +106,12 @@ export class ResidentialAddressComponent implements OnInit {
       state: [this.formValues.state, Validators.required],
       zipCode: [this.formValues.zipCode, Validators.required],
       isMailingAddressSame: [true, Validators.required],
+      mailCountry: [this.countries[0], Validators.required],
+      mailAddress1: [this.formValues.address1, Validators.required],
+      mailAddress2: [this.formValues.address2],
+      mailCity: [this.formValues.city, Validators.required],
+      mailState: [this.formValues.state, Validators.required],
+      mailZipCode: [this.formValues.zipCode, Validators.required],
     });
   }
 

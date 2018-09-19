@@ -15,8 +15,16 @@ export class InvestmentAccountFormData {
     address1: string;
     address2: string;
     unitNo: string;
-    isMailingAddressSame: boolean;
     city: string;
     state: string;
     zipCode: number;
+    isMailingAddressSame: boolean;
+    mailCountry: string;
+    mailPostalCode: number;
+    mailAddress1: string;
+    mailAddress2: string;
+    mailUnitNo: string;
+    mailCity: string;
+    mailState: string;
+    mailZipCode: number;
 }
