@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig , NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,7 @@ import { DirectService } from '../../direct.service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   encapsulation: ViewEncapsulation.None
 })
-export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
+export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDestroy {
   defaultEmployee;
   categorySub: any;
   @ViewChild('ocpDisabilityFormSlider') ocpDisabilityFormSlider: NouisliderComponent;
@@ -85,6 +85,10 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
     this.ocpDisabilityFormSlider.writeValue(this.coveragePercent);
   }
 
+  ngOnDestroy(): void {
+    this.categorySub.unsubscribe();
+  }
+
   selectDuration(selectedDuration) {
     this.duration = selectedDuration;
   }
@@ -109,8 +113,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit {
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string +=  this.defaultEmployee + ', ';
-    sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value + ', ';
+    sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value +  ' / mth, ';
     sum_string += this.duration;
     return sum_string;
   }

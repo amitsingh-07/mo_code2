@@ -1,60 +1,61 @@
 export class CreateAccountFormError {
     formFieldErrors: object = {
+        errorTitle: 'Invalid Form',
         countryCode: {
                 required : {
                         errorTitle: 'Invalid Country Code',
-                        errorMessage: 'Please enter your country code'
+                        errorMessage: 'Please enter your country code.'
                 },
         },
         mobileNumber: {
                 required : {
                         // tslint:disable-next-line:no-duplicate-string
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Please enter your mobile number'
+                        errorMessage: 'Please enter your mobile number.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Mobile number field should be 8 to 10 characters length'
+                        errorMessage: 'Mobile number field should be 8 to 10 characters length.'
                 },
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Mobile number should contain 8 digits'
+                        errorMessage: 'Mobile number should contain 8 digits.'
                 }
         },
         firstName: {
                 required : {
                         errorTitle: 'Invalid First Name',
-                        errorMessage: 'Please enter your first name'
+                        errorMessage: 'Please enter your first name.'
                 },
                 pattern : {
                         errorTitle: 'Invalid First Name',
-                        errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
+                        errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length.'
                 }
         },
         lastName: {
                 required : {
                         errorTitle: 'Invalid Last Name',
-                        errorMessage: 'Please enter your last name'
+                        errorMessage: 'Please enter your last name.'
                 },
                 pattern : {
                         errorTitle: 'Invalid Last Name',
-                        errorMessage: 'Last name field can only contain alphabets value of 2 - 40 characters in length'
+                        errorMessage: 'Last name field can only contain alphabets value of 2 - 40 characters in length.'
                 }
         },
         email: {
                 required : {
                         errorTitle: 'Invalid E-mail',
-                        errorMessage: 'Please enter your Email address'
+                        errorMessage: 'Please enter your Email address.'
                 },
                 email : {
                         errorTitle: 'Invalid E-mail',
-                        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+                        errorMessage: 'Please enter a valid email address in the format yourname@example.com.'
                 }
         },
         termsOfConditions: {
                 required : {
                         errorTitle: '',
-                        errorMessage: 'Please agree to MoneyOwl\'s Terms of Use and Privacy Policy'
+                        errorMessage: 'Please agree to MoneyOwl\'s Terms of Use and Privacy Policy.'
                 }
         },
         loginUsername: {

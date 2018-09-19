@@ -47,6 +47,25 @@
       }
     }
   },
+  "EDUCATION": {
+    "ABOUT_CHILD": {
+      "TITLE": "About my child",
+      "UNIVERSITY_ENTRY_AGE": "University Entry Age",
+      "MONTHLY_CONTRIBUTION":"Monthly contribution"
+    },
+    "ABOUT_ME": {
+      "TITLE": "About me"
+    }
+  },
+  "HOSPITAL_PLAN": {
+    "PLAN_TYPE": "Plan type",
+    "FULL_OR_PARTIAL_RIDER":{ 
+      "TITLE": "Full / Partial Rider",
+      "SUBTITLE": "(optional)"
+    },
+    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C", "Global Healthcare"]
+    
+  },
   "CRITICAL_ILLNESS": {
     "COVERAGE_AMT": {
       "TITLE": "Coverage Amount",
@@ -72,7 +91,7 @@
       "COVER": "Cover",
       "OF": "Of",
       "EMPLOYMENT_TYPE_LIST": ["Salaried", "Self-employed"],
-      "DURATION_VALUES": ["Till 55", "Till 60", "Till 65"]
+      "DURATION_VALUES": ["Till Age 55", "Till Age 60", "Till Age 65"]
     },
     "RETIREMENT_INCOME": {
       "INCOME": "Retirement Income",

@@ -8,14 +8,13 @@ import { TranslateLoader } from '@ngx-translate/core';
 import { AppModule } from '../app.module';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
+import { SettingsWidgetComponent } from "./widgets/settings-widget/settings-widget.component";
 
 export function HttpLoaderFactory(http: HttpClient, moduleName: string) {
-  return new MultiTranslateHttpLoader(
-    http,
-    [
-      { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/' + moduleName + '/', suffix: '.json' },
-    ]);
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: "./assets/i18n/app/", suffix: ".json" },
+    { prefix: "./assets/i18n/" + moduleName + "/", suffix: ".json" }
+  ]);
 }
 
 @NgModule({
@@ -31,4 +30,4 @@ export function HttpLoaderFactory(http: HttpClient, moduleName: string) {
     StepIndicatorComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {}
