@@ -1,3 +1,4 @@
+import { MyInfoService } from './../Services/my-info.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -24,6 +25,7 @@ export class ApiService {
     private configService: ConfigService,
     private http: BaseService,
     private modal: NgbModal,
+    private myInfoService: MyInfoService,
     private guideMeService: GuideMeService,
     private httpClient: HttpClient) { }
 
@@ -71,19 +73,22 @@ export class ApiService {
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
-          // tslint:disable-next-line:no-commented-code
-          // this.guideMeService.closeFetchPopup();
-          // const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          // ref.componentInstance.errorTitle = 'Oops, Error!';
-          // ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
-          // ref.componentInstance.isError = true;
+          this.guideMeService.closeFetchPopup();
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = 'Oops, Error!';
+          ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+          ref.componentInstance.isError = true;
+          ref.result.then(() => {
+            this.myInfoService.goToMyInfo();
+          }).catch((e) => {
+          });
           if (error.error instanceof ErrorEvent) {
-            this.guideMeService.closeFetchPopup();
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = 'OOps error';
-            ref.componentInstance.errorMessage = 'You will be redirected to SingPass';
-            ref.componentInstance.isButtonEnabled = true;
-            ref.componentInstance.isError = true;
+            // this.guideMeService.closeFetchPopup();
+            // const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            // ref.componentInstance.errorTitle = 'Oops, Error!';
+            // ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+            // ref.componentInstance.isButtonEnabled = true;
+            // ref.componentInstance.isError = true;
             // A client-side or network error occurred. Handle it accordingly.
             console.error('An error occurred:', error.error.message);
           } else {
@@ -356,10 +361,8 @@ export class ApiService {
       );
   }
   getNationalityList() {
-    //const url = '../assets/mock-data/nationalityList.json';
-    // tslint:disable-next-line
-  const url='https://bfa.ntuclink.cloud/invest/countrylist'
-
+    const url = '../assets/mock-data/nationalityList.json';
+    //return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
     return this.http.get(url)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {

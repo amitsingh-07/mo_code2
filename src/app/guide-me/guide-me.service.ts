@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
@@ -57,7 +58,8 @@ export class GuideMeService {
   private result_icon: string;
   private result_value;
 
-  constructor(private http: HttpClient, private modal: NgbModal, private authService: AuthenticationService) {
+  constructor(private http: HttpClient, private modal: NgbModal,
+              private authService: AuthenticationService, private translate: TranslateService ) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
     if (this.guideMeFormData.existingCoverageValues) {
@@ -478,8 +480,8 @@ export class GuideMeService {
 
   openFetchPopup() {
     this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
-    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data';
-    this.loadingModalRef.componentInstance.errorMessage = 'You will be redirected to SingPass';
+    this.loadingModalRef.componentInstance.errorTitle = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
+    this.loadingModalRef.componentInstance.errorMessage = this.translate.instant('MYINFO.FETCH_MODAL_DATA.DESCRIPTION');
   }
 
   closeFetchPopup() {
