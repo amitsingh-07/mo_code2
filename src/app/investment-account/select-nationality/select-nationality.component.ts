@@ -34,6 +34,7 @@ export class SelectNationalityComponent implements OnInit {
     editModalData1: any;
     modalTitle1: any;
     modalMessage1: any;
+    countries: ['Singapore', 'India'];
    constructor(
         public headerService: HeaderService,
         public activeModal: NgbActiveModal,
