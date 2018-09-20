@@ -61,7 +61,7 @@ export class GuideMeApiService {
         requestObj.sessionId = this.authService.getSessionId();
 
         requestObj.enquiryProtectionTypeData = this.guideMeService.getSelectedProtectionNeedsList();
-        requestObj.existingInsuranceList = this.guideMeService.getExistingCoverage();
+        requestObj.existingInsuranceList = [this.guideMeService.getExistingCoverageValues()];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
         requestObj.financialStatusMapping.assets = this.guideMeService.getMyAssets();

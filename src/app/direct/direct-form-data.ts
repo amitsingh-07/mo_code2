@@ -3,6 +3,7 @@ import { IHospital } from './product-info/hospital-plan-form/hospital-plan.inter
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
+import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 
 export class DirectFormData {
     prodCategory: string;
@@ -37,4 +38,7 @@ export class DirectFormData {
     hospital: IHospital;
 
     selectedPlans: any;
+
+    // SRS Approved Plans Form
+    srsApprovedPlans: ISrsApprovedPlans;
 }

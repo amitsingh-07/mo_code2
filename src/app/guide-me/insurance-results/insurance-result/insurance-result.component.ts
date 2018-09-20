@@ -3,7 +3,6 @@ import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulat
 import { GuideMeService } from '../../guide-me.service';
 import { IResultItem } from './insurance-result';
 
-
 @Component({
   selector: 'app-insurance-result',
   templateUrl: './insurance-result.component.html',
@@ -21,12 +20,16 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
 
   @Output() Details = new EventEmitter();
 
+  // tslint:disable-next-line:cognitive-complexity
   ngDoCheck() {
     if (this.data) {
       this.icon = this.data.icon;
-      this.amount = this.data.existingCoverage.value > this.data.total.value
-        ? 0 : this.data.total.value - this.data.existingCoverage.value;
-
+      if (this.data.existingCoverage) {
+        this.amount = this.data.existingCoverage.value > this.data.total.value
+          ? 0 : this.data.total.value - this.data.existingCoverage.value;
+      } else {
+        this.amount = this.data.total.value > 0 ? this.data.total.value : 0;
+      }
       this.title = this.data.title;
       this.temp = this.data;
       // Is Month Enabled

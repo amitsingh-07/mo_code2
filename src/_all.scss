@@ -12,7 +12,7 @@ ul, ul li {
   outline: none;
 }
 body {
-    background-color: $app-backgrnd-color;
+    //background-color: $app-backgrnd-color;
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-family: $muli-regular;
@@ -21,6 +21,9 @@ body {
     margin:0px;
     background: url("./assets/images/body-bg.png");
     background-repeat: repeat;
+    max-width: 1024px;
+    margin: 0 auto;
+    background-color: $app-backgrnd-color !important;
     @include allmobiles {
       background: $app-backgrnd-color;
     }
@@ -172,7 +175,7 @@ a.link-white {
   align-items: center;
   position: fixed;
   bottom: 10px;
-
+  left: 0;
   @include allmobiles {
     bottom: 0;
   }

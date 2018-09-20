@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -95,20 +95,20 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   }
 
   showPayoutFeatureModal() {
-      if (this.payoutFeature === this.payoutFeatureList[0]) {
+      if (this.payoutFeature === 'Guaranteed') {
       this.directService.showToolTipModal(
       this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
       this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
-      } else if (this.payoutFeature === this.payoutFeatureList[1]) {
+      } else if (this.payoutFeature === 'Variable') {
       this.directService.showToolTipModal(
       this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.TITLE'),
       this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.MESSAGE'));
-      } else {
+      } else {
       this.directService.showToolTipModal(
       this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.TITLE'),
       this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.MESSAGE'));
+      }
     }
-  }
 
   summarizeDetails() {
     let sum_string = '';

@@ -105,11 +105,22 @@
       },
       "VARIABLE_TOOLTIP": {
           "TITLE": "Variable payouts",
-          "MESSAGE": "These monthly payouts consists of a guaranteed amount that you will receive and non-guaranteed amount that is dependent on the performance of the insurer’s participative fund."
+          "MESSAGE": "These monthly payouts consists of a guaranteed amount that you will receive and non-guaranteed amount that is dependent on the performance of the insurerâ€™s participative fund."
       },
       "INCREASING_TOOLTIP": {
           "TITLE": "Increasing payout",
           "MESSAGE": "These monthly payouts can increase yearly."
       }
-    }
+      },
+      "SRS_SELECTED_PLANS": {
+        "SINGLE_PREMIUM":"Single Premium",
+        "PAYOUT_START_AGE":"Payout Start Age",
+        "PAYOUT_TYPE":"Payout Type",
+        "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
+      },
+      "RESULTS": {
+        "TITLE": "Plans"
+      }
   }
+
+

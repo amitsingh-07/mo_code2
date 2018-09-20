@@ -10,28 +10,30 @@
   <div class="plan-type-list d-none d-md-flex hidden-sm-md">
     <div class="plan-type" (click)="jumpToSlide(recommendation, i)" [class.active]="recommendation.protectionType == activeRecommendationType"
       *ngFor="let recommendation of recommendationPlans; let i = index">
-      <span [innerHtml]="recommendation.protectionType"></span>
+      <span [innerHtml]="recommendation.protectionType.replace('-', '&#8209;')"></span>
     </div>
   </div>
 
   <div #mobileHeaderMenu id="mobileHeaderMenu" class="plan-type-list md-none hidden-lg" style="overflow-x: hidden; width: 100%">
     <span class="plan-type" [attr.data-type]="recommendation.protectionType" [class.active]="recommendation.protectionType == activeRecommendationType"
       *ngFor="let recommendation of recommendationPlans; let i = index">
-      <span [innerHtml]="recommendation.protectionType"></span>
+      <span [innerHtml]="recommendation.protectionType.replace('-', '&#8209;')"></span>
     </span>
   </div>
 </div>
-<div class="coverage-details" *ngIf="coverageAmount != ''">
-  <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
-  Coverage:
-  <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
-  <br class="hidden-lg" />
-  Premium from:
-  <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ 'SUFFIX.PER_MONTH' | translate}}
+<div class="coverage-details-wrapper">
+  <div class="coverage-details" *ngIf="coverageAmount != ''">
+    <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
+    Coverage:
+    <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+    <br class="hidden-lg" />
+    Premium from:
+    <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ 'SUFFIX.PER_MONTH' | translate}}
+  </div>
 </div>
 <!-- <button class="comparePlans_btn">
 <span (click)="EnablecomparePlan()">compare plans</span></button> -->
-<div class="container-fluid" style="background: #2d8289">
+<div class="container-fluid">
   <div class="content">
     <div class="plan-carousel-container">
       <div class="recommendation-carousel-item">
@@ -75,6 +77,7 @@
       </span>
     </div>
     <!-- / Paging Indicator -->
+    <div class="recommendation-wrapper__disclaimer" *ngIf="recommendationPlans">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
   </div>
 </div>
 
