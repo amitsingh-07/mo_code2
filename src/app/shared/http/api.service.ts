@@ -377,15 +377,16 @@ export class ApiService {
         })
       );
   }
-
+ 
   // tslint:disable-next-line:no-identical-functions
   requestForgotPasswordLink(data) {
     // tslint:disable-next-line
-    // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
+    //const url = 'https://bfa-dev.ntucbfa.cloud/account/account-microservice/api/forgotPassword';
+    // tslint:disable-next-line:no-commented-code
     const url = '../assets/mock-data/forgotPassword.json';
     console.log('Data Posted: ');
     console.log(data);
-    return this.http.post(url, data)
+    return this.http.post(apiConstants.endpoint.forgotPassword, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -398,7 +399,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            return this.httpClient.get<IServerResponse>(url);
+            //return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
@@ -412,7 +413,7 @@ requestResetPassword(data) {
   const url = '../assets/mock-data/forgotPassword.json';
   console.log('Data Posted: ');
   console.log(data);
-  return this.http.post(url, data)
+  return this.http.post(apiConstants.endpoint.resetPassword, data)
     .pipe(
       // tslint:disable-next-line:no-identical-functions
       catchError((error: HttpErrorResponse) => {
@@ -425,7 +426,7 @@ requestResetPassword(data) {
           console.error(
             `Backend returned code ${error.status}, ` + `body was: ${error.error}`
           );
-          return this.httpClient.get<IServerResponse>(url);
+         // return this.httpClient.get<IServerResponse>(url);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');

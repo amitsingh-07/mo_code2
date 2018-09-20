@@ -21,6 +21,9 @@ import { SignUpService } from '../sign-up.service';
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
   formValues: any;
+queryParams;
+tocken;
+
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -46,8 +49,13 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.queryParams = this.route.snapshot.queryParams;
     this.headerService.setHeaderVisibility(false);
     this.buildResetPasswordForm();
+    console.log('the tocken is ' + this.queryParams.key);
+    this.tocken = encodeURI(this.queryParams.key);
+    console.log('the tocken now is is ' + this.tocken);
+    //alert('the key' + this.queryParams.key);
   }
   showHidePassword(el) {
     if (el.type === 'password') {
@@ -72,9 +80,13 @@ export class ResetPasswordComponent implements OnInit {
       ref.componentInstance.errorTitle = 'Password Should Match';
       return false;
     } else {
-      this.signUpService.setResetPasswordInfo(form.value).subscribe((data) => {
-        // tslint:disable-next-line:max-line-length
+      this.signUpService.setResetPasswordInfo(form.value.confirmpassword, this.tocken).subscribe((data) => {
+        console.log('Error code is ' + data.responseMessage.responseCode);
+        // tslint:disable-next-line:triple-equals
+        if ( data.responseMessage.responseCode == 4) {
+          // tslint:disable-next-line:max-line-length
         this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset'}, fragment: 'loading'});
+        }
       });
       console.log(form.value);
     }
