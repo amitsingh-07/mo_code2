@@ -12,8 +12,10 @@ import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-p
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
+import { SuccessMessageComponent } from './success-message/success-message.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -47,7 +49,9 @@ export function createTranslateLoader(http: HttpClient) {
     PasswordComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    ForgotPasswordResultComponent
+    ForgotPasswordResultComponent,
+    ResetPasswordComponent,
+    SuccessMessageComponent
   ],
   providers: [SignUpAccessGuard]
 })

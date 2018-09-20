@@ -7,11 +7,11 @@ require('dotenv').config();
 require('json-beautify');
 
 const supportedEnvironments = new Set(['dev', 'uat', 'prod']);
-let environment = process.env.NODE_ENV || 'PROD';
+let environment = process.env.NODE_ENV || 'UAT';
 environment = environment.toLowerCase();
 
 if (!supportedEnvironments.has(environment)) {
-    environment = 'prod';
+  environment = 'uat';
 }
 
 const inputPath = `./angular.config.json`;
@@ -40,4 +40,4 @@ export const environmentConstants = {
 };
 `;
 writeFileSync(constantsPath, constantsConfig);
-console.log(`Environment variables configured at ${targetPath}`);
+console.log(`Environment variables configured at ${constantsPath}`);

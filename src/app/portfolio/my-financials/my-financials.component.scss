@@ -1,6 +1,8 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+.body{
+  font-weight: 600;
+}
 
 .fixed-btn--sm {
     border: 1px solid rgba(0, 135, 134, 0.4);
@@ -16,6 +18,16 @@
     color: #FFFFFF !important;
     background:  #00a7a7 !important;
 }
+.form-group-with-bg--header-label{
+  font-weight: 600;
+}
+.form-group-with-bg--content-sub-label{
+  font-weight: 400;
+}
+.form-group-with-bg--content-label{
+  font-weight: 600;
+}
+
 
 .second-section{
     margin-top:20px;
