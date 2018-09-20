@@ -23,6 +23,7 @@ body {
     background-repeat: repeat;
     max-width: 1024px;
     margin: 0 auto;
+    background-color: $app-backgrnd-color !important;
     @include allmobiles {
       background: $app-backgrnd-color;
     }
