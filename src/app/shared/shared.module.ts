@@ -5,7 +5,9 @@ import { NgModule } from '@angular/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CurrencyInputDirective } from './directives/currency-input.directive';
+import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
+import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -24,7 +26,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     })],
-  exports: [CurrencyInputDirective, PlanWidgetComponent],
-  declarations: [CurrencyInputDirective, PlanWidgetComponent]
+  exports: [CurrencyInputDirective, PlanWidgetComponent, SettingsWidgetComponent, PlanFilterPipe],
+  declarations: [CurrencyInputDirective, PlanWidgetComponent, SettingsWidgetComponent, PlanFilterPipe]
 })
 export class SharedModule {}

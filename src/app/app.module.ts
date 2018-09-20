@@ -48,7 +48,6 @@ import { ModelWithButtonComponent } from './shared/modal/model-with-button/model
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
-import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -80,8 +79,7 @@ export function tokenGetterFn() {
     jqxSliderComponent,
     HeaderComponent,
     NumberOnlyDirective,
-    CallBackComponent,
-    SettingsWidgetComponent
+    CallBackComponent
   ],
   imports: [
     BrowserModule,

@@ -2,10 +2,11 @@ import { IEducation } from './product-info/education-form/education.interface';
 import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
+import { IProductCategory } from './product-info/product-category/product-category';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 
 export class DirectFormData {
-    prodCategory: string;
+    prodCategory: IProductCategory;
     gender: string;
     dob: any;
     customDob: string;

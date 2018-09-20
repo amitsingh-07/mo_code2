@@ -12,115 +12,24 @@
       <div class="dropdown-control">
         <div ngbDropdown id="dependentDropDown">
           <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
-            <span class="dependent-count">Highest Ranking</span>
+            <span class="dependent-count">{{defaultSort}}</span>
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button class="dropdown-item" (click)="selectDependentsCount(count)" id="getStrdBtn2">
-              <span>Lowest</span>
-            </button>
-            <button class="dropdown-item" (click)="selectDependentsCount(count)" id="getStrdBtn2">
-              <span>Lowest 2</span>
+            <button type="button" class="dropdown-item" *ngFor="let sort of sorts">
+              {{sort}}
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="flex-col">
-    <label>Premium Frequency</label>
+  <div class="flex-col" *ngFor="let filter of filters">
+    <label>{{filter.title}}</label>
     <div class="form-group-single-column mb0">
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_10" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="Yes" tabindex="{{i+1}}">
-        <label for="protectionNeed_10" id="prtNeedLbl">
-          <div class="input-label-normal">Monthly</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_11" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_11" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">Yearly</div>
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="flex-col">
-    <label>Insurers</label>
-    <div class="form-group-single-column mb0">
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="Yes" tabindex="{{i+1}}">
-        <label for="protectionNeed" id="prtNeedLbl">
-          <div class="input-label-normal">All</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_1" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_1" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">Aviva</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_2" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_2" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">AXA</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_3" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_3" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">Manulife</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_4" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_4" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">Tokio Marine</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_5" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_5" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">NTUC Income</div>
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="flex-col">
-    <label>Insurers’ Financial Rating</label>
-    <div class="form-group-single-column mb0">
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_6" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="Yes" tabindex="{{i+1}}">
-        <label for="protectionNeed_6" id="prtNeedLbl">
-          <div class="input-label-normal">All</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_7" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_7" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">AA-</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_8" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_8" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">A+</div>
-        </label>
-      </div>
-      <div class="checkbox-button two-label">
-        <input id="protectionNeed_9" (change)="validateForm(protectionNeedsForm)" name="protectionNeed" type="checkbox" class="field checkbox"
-          value="No" tabindex="{{i+1}}">
-        <label for="protectionNeed_9" id="prtNeedLbl{{i+1}}">
-          <div class="input-label-normal">A-</div>
+      <div class="checkbox-button two-label" *ngFor="let flr of filter.values; let i = index;">
+        <input id="{{filter.title + '_' + i}}" type="checkbox" (change)="applyFilter(filter.name, flr.value)" class="field checkbox" [checked]="flr.checked">
+        <label for="{{filter.title + '_' + i}}" id="tle + '_' + i}}Lbl">
+          <div class="input-label-normal">{{flr.value}}</div>
         </label>
       </div>
     </div>
