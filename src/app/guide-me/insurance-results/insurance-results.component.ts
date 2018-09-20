@@ -146,6 +146,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   addExistingCoverageOutput(emittedValue: IExistingCoverage) {
+    this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
     this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
       if (!protectionNeed.existingCoverage) {
         protectionNeed.existingCoverage = {
@@ -223,7 +224,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructLifeProtection(data): IResultItem {
     let coverage;
-    if (this.existingCoverageValues && this.existingCoverageValues.lifeProtectionCoverage) {
+    if (this.existingCoverageValues) {
       coverage = {
         title: this.planData.LESS_EXISTING_COVARAGE,
         value: this.existingCoverageValues.lifeProtectionCoverage ? this.existingCoverageValues.lifeProtectionCoverage : 0
@@ -261,7 +262,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructCriticalIllness(data): IResultItem {
     let coverage;
-    if (this.existingCoverageValues && this.existingCoverageValues.criticalIllnessCoverage) {
+    if (this.existingCoverageValues) {
       coverage = {
         title: this.planData.LESS_EXISTING_COVARAGE,
         value: this.existingCoverageValues.criticalIllnessCoverage ? this.existingCoverageValues.criticalIllnessCoverage : 0
@@ -292,7 +293,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructOccupationalDisability(data): IResultItem {
     let coverage;
-    if (this.existingCoverageValues && this.existingCoverageValues.occupationalDisabilityCoveragePerMonth) {
+    if (this.existingCoverageValues) {
       coverage = {
         title: this.planData.LESS_EXISTING_COVARAGE,
         value: this.existingCoverageValues.occupationalDisabilityCoveragePerMonth ?
@@ -323,7 +324,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructLongTermCare(data): IResultItem {
     let coverage;
-    if (this.existingCoverageValues && this.existingCoverageValues.occupationalDisabilityCoveragePerMonth) {
+    if (this.existingCoverageValues) {
       coverage = {
         title: this.planData.LESS_EXISTING_COVARAGE,
         value: this.existingCoverageValues.longTermCareCoveragePerMonth ? this.existingCoverageValues.longTermCareCoveragePerMonth : 0
@@ -350,7 +351,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   constructHospitalPlan(data): IResultItem {
     let coverage;
-    if (this.existingCoverageValues && this.existingCoverageValues.selectedHospitalPlan) {
+    if (this.existingCoverageValues) {
       coverage = {
         title: this.planData.LESS_EXISTING_COVARAGE,
         value: this.existingCoverageValues.selectedHospitalPlan ? this.existingCoverageValues.selectedHospitalPlan : 0

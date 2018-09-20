@@ -3,7 +3,6 @@ import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulat
 import { GuideMeService } from '../../guide-me.service';
 import { IResultItem } from './insurance-result';
 
-
 @Component({
   selector: 'app-insurance-result',
   templateUrl: './insurance-result.component.html',
