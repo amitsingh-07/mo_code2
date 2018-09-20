@@ -98,7 +98,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   viewDetails(index) {
@@ -147,6 +147,12 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   addExistingCoverageOutput(emittedValue: IExistingCoverage) {
     this.protectionNeedsArray.forEach((protectionNeed: IResultItem, index) => {
+      if (!protectionNeed.existingCoverage) {
+        protectionNeed.existingCoverage = {
+          title: this.planData.LESS_EXISTING_COVARAGE,
+          value: 0
+        } as IResultItemEntry;
+      }
       switch (protectionNeed.id) {
         case 1:
           protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.lifeProtectionCoverage);
@@ -216,21 +222,30 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   constructLifeProtection(data): IResultItem {
-    const coverage = {
-      title: this.planData.LESS_EXISTING_COVARAGE,
-      value: this.existingCoverageValues.lifeProtectionCoverage ? this.existingCoverageValues.lifeProtectionCoverage : 0
-    } as IResultItemEntry;
+    let coverage;
+    if (this.existingCoverageValues && this.existingCoverageValues.lifeProtectionCoverage) {
+      coverage = {
+        title: this.planData.LESS_EXISTING_COVARAGE,
+        value: this.existingCoverageValues.lifeProtectionCoverage ? this.existingCoverageValues.lifeProtectionCoverage : 0
+      } as IResultItemEntry;
+    }
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: this.planData.LIFE_PROTECTION.FOR_DEPENDENTS,
-       value: this.lifeProtectionValues.dependantsValue, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({
+      title: this.planData.LIFE_PROTECTION.FOR_DEPENDENTS,
+      value: this.lifeProtectionValues.dependantsValue, currency: this.planData.DOLLER
+    } as IResultItemEntry);
     entries.push({
       title: this.planData.LIFE_PROTECTION.EDUCATION_SUPPORT,
       value: this.lifeProtectionValues.educationSupportAmount, currency: this.planData.DOLLER
     } as IResultItemEntry);
-    entries.push({ title: this.planData.LIFE_PROTECTION.LIABILITIES,
-      value: this.liabilityValues, currency: this.planData.DOLLER } as IResultItemEntry);
-    entries.push({ title: this.planData.LIFE_PROTECTION.LESS_CURRENT_ASSETS,
-      value: this.assetValues, currency: this.planData.DOLLER } as IResultItemEntry);
+    entries.push({
+      title: this.planData.LIFE_PROTECTION.LIABILITIES,
+      value: this.liabilityValues, currency: this.planData.DOLLER
+    } as IResultItemEntry);
+    entries.push({
+      title: this.planData.LIFE_PROTECTION.LESS_CURRENT_ASSETS,
+      value: this.assetValues, currency: this.planData.DOLLER
+    } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: this.planData.LIFE_PROTECTION.ICON,
@@ -245,15 +260,22 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   constructCriticalIllness(data): IResultItem {
-    const coverage = {
-      title: this.planData.LESS_EXISTING_COVARAGE,
-      value: this.existingCoverageValues.criticalIllnessCoverage ? this.existingCoverageValues.criticalIllnessCoverage : 0
-    } as IResultItemEntry;
+    let coverage;
+    if (this.existingCoverageValues && this.existingCoverageValues.criticalIllnessCoverage) {
+      coverage = {
+        title: this.planData.LESS_EXISTING_COVARAGE,
+        value: this.existingCoverageValues.criticalIllnessCoverage ? this.existingCoverageValues.criticalIllnessCoverage : 0
+      } as IResultItemEntry;
+    }
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: this.planData.CRITICAL_ILLNESS.ANNUAL_INCOME,
-       value: this.criticalIllnessValues.annualSalary, currency: this.planData.DOLLER } as IResultItemEntry);
-    entries.push({ title: this.planData.CRITICAL_ILLNESS.YEARS_TO_REPLACE,
-       value: this.criticalIllnessValues.ciMultiplier, type: this.planData.CRITICAL_ILLNESS.YEARS } as IResultItemEntry);
+    entries.push({
+      title: this.planData.CRITICAL_ILLNESS.ANNUAL_INCOME,
+      value: this.criticalIllnessValues.annualSalary, currency: this.planData.DOLLER
+    } as IResultItemEntry);
+    entries.push({
+      title: this.planData.CRITICAL_ILLNESS.YEARS_TO_REPLACE,
+      value: this.criticalIllnessValues.ciMultiplier, type: this.planData.CRITICAL_ILLNESS.YEARS
+    } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: this.planData.CRITICAL_ILLNESS.ICON,
@@ -269,16 +291,23 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   constructOccupationalDisability(data): IResultItem {
-    const coverage = {
-      title: this.planData.LESS_EXISTING_COVARAGE,
-      value: this.existingCoverageValues.occupationalDisabilityCoveragePerMonth ?
-            this.existingCoverageValues.occupationalDisabilityCoveragePerMonth : 0
-    } as IResultItemEntry;
+    let coverage;
+    if (this.existingCoverageValues && this.existingCoverageValues.occupationalDisabilityCoveragePerMonth) {
+      coverage = {
+        title: this.planData.LESS_EXISTING_COVARAGE,
+        value: this.existingCoverageValues.occupationalDisabilityCoveragePerMonth ?
+          this.existingCoverageValues.occupationalDisabilityCoveragePerMonth : 0
+      } as IResultItemEntry;
+    }
     const entries = [] as IResultItemEntry[];
-    entries.push({ title: this.planData.OCCUPATIONAL_dISABILITY.MONTHLY_SALARY,
-      value: this.monthlySalary.monthlySalary, currency: this.planData.DOLLER } as IResultItemEntry);
-    entries.push({ title: this.planData.OCCUPATIONAL_dISABILITY.PERSENTAGE_TO_REPLACE,
-       value: this.ocpDisabilityValues.percentageCoverage, type: this.planData.PERSENTAGE } as IResultItemEntry);
+    entries.push({
+      title: this.planData.OCCUPATIONAL_dISABILITY.MONTHLY_SALARY,
+      value: this.monthlySalary.monthlySalary, currency: this.planData.DOLLER
+    } as IResultItemEntry);
+    entries.push({
+      title: this.planData.OCCUPATIONAL_dISABILITY.PERSENTAGE_TO_REPLACE,
+      value: this.ocpDisabilityValues.percentageCoverage, type: this.planData.PERSENTAGE
+    } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
       icon: this.planData.OCCUPATIONAL_dISABILITY.ICON,
@@ -293,15 +322,18 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   constructLongTermCare(data): IResultItem {
-    const coverage = {
-      title: this.planData.LESS_EXISTING_COVARAGE,
-      value: this.existingCoverageValues.longTermCareCoveragePerMonth ? this.existingCoverageValues.longTermCareCoveragePerMonth : 0
-    } as IResultItemEntry;
+    let coverage;
+    if (this.existingCoverageValues && this.existingCoverageValues.occupationalDisabilityCoveragePerMonth) {
+      coverage = {
+        title: this.planData.LESS_EXISTING_COVARAGE,
+        value: this.existingCoverageValues.longTermCareCoveragePerMonth ? this.existingCoverageValues.longTermCareCoveragePerMonth : 0
+      } as IResultItemEntry;
+    }
     const entries = [] as IResultItemEntry[];
     entries.push({
       title: this.guideMeService.getLongTermCare().careGiverType,
       value: this.guideMeService.selectLongTermCareValues(),
-       currency: this.planData.DOLLER, monthEnabled: this.planData.LONG_TERMCARE.FOR_MONTH
+      currency: this.planData.DOLLER, monthEnabled: this.planData.LONG_TERMCARE.FOR_MONTH
     } as IResultItemEntry);
     return {
       id: data.protectionTypeId,
@@ -317,10 +349,13 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   constructHospitalPlan(data): IResultItem {
-    const coverage = {
-      title: this.planData.LESS_EXISTING_COVARAGE,
-      value: this.existingCoverageValues.selectedHospitalPlan ? this.existingCoverageValues.selectedHospitalPlan : 0
-    } as IResultItemEntry;
+    let coverage;
+    if (this.existingCoverageValues && this.existingCoverageValues.selectedHospitalPlan) {
+      coverage = {
+        title: this.planData.LESS_EXISTING_COVARAGE,
+        value: this.existingCoverageValues.selectedHospitalPlan ? this.existingCoverageValues.selectedHospitalPlan : 0
+      } as IResultItemEntry;
+    }
     const entries = [] as IResultItemEntry[];
     entries.push({ title: this.planData.HOSPITAL_PLAN.FAMILY_MEMBER, value: 0 } as IResultItemEntry);
     const hospitalPlanClass = this.guideMeService.getHospitalPlan().hospitalClass.split(' ')[0];

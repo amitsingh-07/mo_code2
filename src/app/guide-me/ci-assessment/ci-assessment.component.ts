@@ -97,7 +97,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
@@ -138,7 +138,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   goToNext(form) {
     if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }

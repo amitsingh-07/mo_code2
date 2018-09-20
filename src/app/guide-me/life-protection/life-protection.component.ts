@@ -57,7 +57,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
