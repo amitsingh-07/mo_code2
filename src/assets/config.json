@@ -1,5 +1,4 @@
 {
-  "apiBaseUrl": "http://bfa-uat.ntuclink.cloud",
   "useMyInfo": false,
   "hospitalPlanData": [{
     "id": 0,

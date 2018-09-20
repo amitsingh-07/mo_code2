@@ -20,7 +20,7 @@ export class ExistingCoverageModalComponent implements OnInit {
   @Input() data: any;
   @Output() dataOutput: EventEmitter<any> = new EventEmitter();
   existingCoverageForm: FormGroup;
-  selectedHospitalPlan = this.guideMeService.getHospitalPlan();
+  selectedHospitalPlan;
   hospitalPlanList;
   isLifeProtection = false;
   isCriticalIllness = false;
@@ -35,6 +35,7 @@ export class ExistingCoverageModalComponent implements OnInit {
     if (!this.existingCoverageValues) {
       this.existingCoverageValues = this.guideMeService.getEmptyExistingCoverage();
     }
+    this.selectedHospitalPlan = this.existingCoverageValues.selectedHospitalPlan;
   }
 
   ngOnInit() {
@@ -43,7 +44,6 @@ export class ExistingCoverageModalComponent implements OnInit {
       this.hospitalPlanList = configData.hospitalPlanData;
     });
 
-    this.selectedHospitalPlan = this.guideMeService.getHospitalPlan();
     this.existingCoverageForm = new FormGroup({
       lifeProtectionCoverage: new FormControl(this.existingCoverageValues.lifeProtectionCoverage),
       criticalIllnessCoverage: new FormControl(this.existingCoverageValues.criticalIllnessCoverage),
