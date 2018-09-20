@@ -104,6 +104,12 @@
           "MESSAGE": "In the event that you are diagnosed with Payout Feature, your remaining premiums will be waived without affecting the payout benefit to you."
       }
       },
+      "SRS_SELECTED_PLANS": {
+        "SINGLE_PREMIUM":"Single Premium",
+        "PAYOUT_START_AGE":"Payout Start Age",
+        "PAYOUT_TYPE":"Payout Type",
+        "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
+      },
       "RESULTS": {
         "TITLE": "Plans"
       }
