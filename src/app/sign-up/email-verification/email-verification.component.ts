@@ -42,8 +42,10 @@ export class EmailVerificationComponent implements OnInit {
   verifyEmail(verifyCode) {
     this.authService.authenticate().subscribe((token) => {
       this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
-        this.emailVerified = true;
-        this.email = data.objectList[0].email;
+        if (data.responseMessage.responseCode === 6000) {
+          this.emailVerified = true;
+          this.email = data.objectList[0].email;
+        }
       });
     });
   }
