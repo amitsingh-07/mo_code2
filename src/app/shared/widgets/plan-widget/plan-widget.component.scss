@@ -60,6 +60,9 @@ app-plan-widget {
       justify-content: flex-end;
       @include allmobiles {
         justify-content: center;
+        img {
+          width: 50% !important;
+        }
       }
       img {
         width: 80%;
