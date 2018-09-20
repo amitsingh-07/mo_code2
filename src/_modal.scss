@@ -11,6 +11,9 @@
 .modal-content {
   background: transparent;
   border: none;
+  .btn.btn-primary {
+    box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14) !important;
+  }
 }
 
 .modal-header {

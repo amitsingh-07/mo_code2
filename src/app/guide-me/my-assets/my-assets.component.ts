@@ -81,8 +81,8 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
 
   openModal() {
      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-     ref.componentInstance.errorTitle = 'Leave This Page';
-     ref.componentInstance.errorMessage = 'You will be redirected to Singpass MyInfo page to begin fetching your data.';
+     ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
+     ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
      ref.componentInstance.isButtonEnabled = true;
      ref.result.then(() => {
       this.myInfoService.goToMyInfo();

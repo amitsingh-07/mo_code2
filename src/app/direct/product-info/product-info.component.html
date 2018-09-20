@@ -36,6 +36,7 @@
       <app-long-term-care-form *ngIf="selectedCategoryId == 4"></app-long-term-care-form>
       <app-education-form *ngIf="selectedCategoryId == 5"></app-education-form>
       <app-retirement-income-form *ngIf="selectedCategoryId == 6"></app-retirement-income-form>
+      <app-srs-approved-plans-form *ngIf="selectedCategoryId == 7"></app-srs-approved-plans-form>
     </div>
   </div> 
   <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search()">

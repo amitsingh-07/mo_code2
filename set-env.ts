@@ -11,7 +11,7 @@ let environment = process.env.NODE_ENV || 'DEV';
 environment = environment.toLowerCase();
 
 if (!supportedEnvironments.has(environment)) {
-    environment = 'prod';
+  environment = 'uat';
 }
 
 const inputPath = `./angular.config.json`;
@@ -40,4 +40,4 @@ export const environmentConstants = {
 };
 `;
 writeFileSync(constantsPath, constantsConfig);
-console.log(`Environment variables configured at ${targetPath}`);
+console.log(`Environment variables configured at ${constantsPath}`);

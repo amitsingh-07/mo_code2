@@ -49,7 +49,11 @@ export class SignUpApiService {
       selectedPlan.push(
         {
           typeId: plan.typeId,
-          productName: plan.productName
+          productName: plan.productName,
+          premium : {
+            premiumAmount: plan.premium.premiumAmount,
+            premiumFrequency: plan.premium.premiumFrequency
+          }
         }
       );
     }

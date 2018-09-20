@@ -1,4 +1,4 @@
 
 export const environmentConstants = {
-  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
+  myInfoClientId: 'STG2-MYINFO-SELF-TEST'
 };
