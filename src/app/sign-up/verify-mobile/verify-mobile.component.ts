@@ -97,7 +97,7 @@ export class VerifyMobileComponent implements OnInit {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified'];
         this.signUpService.setResetCode(data.objectList[0].resetCode);
-      } else {
+      } else if (data.responseMessage.responseCode === 5007 || data.responseMessage.responseCode === 5009) {
         const title = data.responseMessage.responseCode === 5007 ? this.errorModal['title'] : '';
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
         const showErrorButton = data.responseMessage.responseCode === 5007 ? true : false;
@@ -113,6 +113,7 @@ export class VerifyMobileComponent implements OnInit {
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['sending'];
     this.signUpApiService.requestNewOTP().subscribe((data) => {
+      this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;
     });
