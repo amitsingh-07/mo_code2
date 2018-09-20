@@ -46,6 +46,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
     this.headerService.setPageTitle(title);
   }
 
+  editProdInfo() {
+
+  }
+
   viewDetails(plan) {
   }
 

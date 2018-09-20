@@ -1,0 +1,45 @@
+{
+  "COMMON": {
+    "LABEL": {
+      "CONTINUE": "Continue",
+      "RETRIEVE": "Retrieve"
+    }
+  },
+  "PERSONAL_INFO": {
+    "TITLE": "Personal Information",
+    "DESCRIPTION": "Please choose the profile that best describes you.",
+    "FULL_NAME": "Full Name",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "NRIC_NUMBER": "NRIC Number",
+    "PASSPORT_NUMBER": "Passport Number",
+    "PASSPORT_EXPIRY": "Passport Expiry",
+    "DOB": "Date of Birth",
+    "GENDER": "Gender"
+  },
+  "RESIDENTIAL_ADDRESS": {
+    "TITLE": "Residential Address",
+    "COUNTRY": "Country",
+    "POSTAL_CODE": "Postal Code",
+    "ADDRESS_1": "Address Line 1",
+    "ADDRESS_2": "Address Line 2",
+    "UNIT_NO": "Unit No.",
+    "CITY": "City",
+    "STATE": "State / Province / Region",
+    "ZIPCODE": "Zip Code"
+  },
+  "SELECT_NATIONALITY":{
+    "editModalData": {
+      "modalTitle": "Unable To Proceed",
+      "modalMessage": "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance" ,
+      "ButtonTitle" :"Return To Homepage"
+      },
+    "editModalData1": {
+        "modalTitle1": "Oops, Unable To Proceed",
+        "modalMessage1": "Thank you for your interest in MoneyOwl! Unfortunately, we are currently unable to set up investment accounts for US Citizens, Permanent Residents and Tax Residents. " ,
+        "ButtonTitle1" :"Return To Homepage"
+        }
+     
+  }
+
+}
