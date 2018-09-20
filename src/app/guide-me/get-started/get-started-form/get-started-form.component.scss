@@ -19,6 +19,9 @@ strong {
   font-size: 16px;
 }
 .input-group {
+  .btn-primary {
+    box-shadow: none !important;
+  }
   &.inline-error {
     .btn-primary {
       background: transparent !important;

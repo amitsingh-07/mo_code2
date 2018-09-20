@@ -149,15 +149,15 @@ export class GuideMeCalculateService {
   }
 
   getLifeProtectionData() {
-    let existingCoverage = 0;
+    let exCoverage = 0;
     try {
       if (this.existingCoverage.lifeProtectionCoverage) {
-        existingCoverage = parseInt(this.existingCoverage.lifeProtectionCoverage + '', 10);
+        exCoverage = parseInt(this.existingCoverage.lifeProtectionCoverage + '', 10);
       }
     } catch (e) { }
 
     const lifeProtectionData = {} as ILifeProtectionNeedsData;
-    lifeProtectionData.coverageAmount = this.getLifeProtectionSummary() - existingCoverage;
+    lifeProtectionData.coverageAmount = this.getLifeProtectionSummary() - exCoverage;
     if (isNaN(lifeProtectionData.coverageAmount) || lifeProtectionData.coverageAmount < 0) {
       lifeProtectionData.coverageAmount = 0;
     }
@@ -167,14 +167,14 @@ export class GuideMeCalculateService {
   }
 
   getCriticalIllnessData() {
-    let existingCoverage = 0;
+    let exCoverage = 0;
     try {
       if (this.existingCoverage.criticalIllnessCoverage) {
-        existingCoverage = parseInt(this.existingCoverage.criticalIllnessCoverage + '', 10);
+        exCoverage = parseInt(this.existingCoverage.criticalIllnessCoverage + '', 10);
       }
     } catch (e) { }
     const ciData = this.guideMeService.getCiAssessment();
-    ciData.coverageAmount -= existingCoverage;
+    ciData.coverageAmount -= exCoverage;
     if (isNaN(ciData.coverageAmount) || ciData.coverageAmount < 0) {
       ciData.coverageAmount = 0;
     }
@@ -182,15 +182,15 @@ export class GuideMeCalculateService {
   }
 
   getOcpData() {
-    let existingCoverage = 0;
+    let exCoverage = 0;
     try {
       if (this.existingCoverage.occupationalDisabilityCoveragePerMonth) {
-        existingCoverage = parseInt(this.existingCoverage.occupationalDisabilityCoveragePerMonth + '', 10);
+        exCoverage = parseInt(this.existingCoverage.occupationalDisabilityCoveragePerMonth + '', 10);
       }
     } catch (e) { }
 
     const ocpData = this.guideMeService.getMyOcpDisability();
-    ocpData.coverageAmount -= existingCoverage;
+    ocpData.coverageAmount -= exCoverage;
     if (isNaN(ocpData.coverageAmount) || ocpData.coverageAmount < 0) {
       ocpData.coverageAmount = 0;
     }
@@ -198,15 +198,15 @@ export class GuideMeCalculateService {
   }
 
   getLtcData() {
-    let existingCoverage = 0;
+    let exCoverage = 0;
     try {
       if (this.existingCoverage.longTermCareCoveragePerMonth) {
-        existingCoverage = parseInt(this.existingCoverage.longTermCareCoveragePerMonth + '', 10);
+        exCoverage = parseInt(this.existingCoverage.longTermCareCoveragePerMonth + '', 10);
       }
     } catch (e) { }
 
     const ltcData: ILongTermCareNeedsData = this.guideMeService.getLongTermCare();
-    ltcData.monthlyPayout = this.guideMeService.selectLongTermCareValues() - existingCoverage;
+    ltcData.monthlyPayout = this.guideMeService.selectLongTermCareValues() - exCoverage;
     if (isNaN(ltcData.monthlyPayout) || ltcData.monthlyPayout < 0) {
       ltcData.monthlyPayout = 0;
     }

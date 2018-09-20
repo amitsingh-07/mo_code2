@@ -3,6 +3,7 @@ import { IMyIncome } from '../income/income.interface';
 import { IMyLiabilities } from '../liabilities/liabilities.interface';
 import { ILifeProtectionNeedsData } from '../life-protection/life-protection';
 import { IMyAssets } from '../my-assets/my-assets.interface';
+import { IExistingCoverage } from './../insurance-results/existing-coverage-modal/existing-coverage.interface';
 
 export interface IRecommendationRequest {
     enquiryData: IEnquiryData;
@@ -14,7 +15,7 @@ export interface IRecommendationRequest {
     hospitalizationNeeds: IHospitalizationNeedsData;
     longTermCareNeeds: ILongTermCareNeedsData;
     lifeProtectionNeeds: ILifeProtectionNeedsData;
-    existingInsuranceList: IExistingInsurance[];
+    existingInsuranceList: IExistingCoverage[];
     sessionId: string;
 }
 
@@ -82,11 +83,4 @@ export interface IHospitalizationNeedsData {
 export interface ILongTermCareNeedsData {
     careGiverTypeId: number;
     monthlyPayout: number;
-}
-
-export interface IExistingInsurance {
-    lifeProtectionCoverage: number;
-    criticalIllnessCoverage: number;
-    occupationalDisabilityCoveragePerMonth: number;
-    longTermCareCoveragePerMonth: number;
 }
