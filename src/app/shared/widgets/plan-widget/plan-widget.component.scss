@@ -61,6 +61,9 @@ app-plan-widget {
       @include allmobiles {
         justify-content: center;
       }
+      img {
+        width: 80%;
+      }
     }
 
     border: solid 3px #fff;
@@ -77,7 +80,7 @@ app-plan-widget {
       }
 
       h4 {
-        height: 44px;
+        //height: 44px;
         font-size: 21px;
         color: $black-color;
         font-family: $muli-semi-bold;
@@ -157,6 +160,11 @@ app-plan-widget {
           @extend .justify-center;
           @extend .align-center;
           flex-direction: column;
+          flex: 1;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0;
+          }
         }
 
         .feature-head {
@@ -166,6 +174,9 @@ app-plan-widget {
 
         .feature-caption {
           font-size: 16px;
+          @include tablet {
+            font-size: 14px !important;
+          }
           font-family: $muli-semi-bold;
           width: 100px;
           margin-bottom: 10px;

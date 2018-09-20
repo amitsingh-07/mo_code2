@@ -97,7 +97,7 @@ export class SelectNationalityComponent implements OnInit {
             selectNationalitySingapore: new FormControl(this.selectNationalityFormValues.selectNationalitySingapore, Validators.required)
             });
             if (this.save(form)) {
-                if (form.controls.selectNationalitySingapore.value === 'no') {
+                if (form.controls.selectNationalitySingapore.value === 'yes') {
                     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
                     ref.componentInstance.errorTitle = this.editModalData1.modalTitle1;
                     ref.componentInstance.errorMessage = this.editModalData1.modalMessage1;

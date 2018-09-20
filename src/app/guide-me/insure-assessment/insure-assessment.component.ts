@@ -32,9 +32,9 @@ export class InsureAssessmentComponent implements IPageComponent, OnInit {
 
   goNext() {
     this.guideMeService.clearProtectionNeedsData();
-    this.guideMeService.protectionNeedsPageIndex = 0;
+    this.guideMeService.resetProtectionNeedsPageIndex();
     this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-      this.guideMeService.protectionNeedsPageIndex++;
+      this.guideMeService.incrementProtectionNeedsIndex();
     });
   }
 }

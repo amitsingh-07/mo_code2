@@ -356,10 +356,8 @@ export class ApiService {
       );
   }
   getNationalityList() {
-    //const url = '../assets/mock-data/nationalityList.json';
-    // tslint:disable-next-line
-  const url='https://bfa.ntuclink.cloud/invest/countrylist'
-
+    const url = '../assets/mock-data/nationalityList.json';
+    //return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
     return this.http.get(url)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {

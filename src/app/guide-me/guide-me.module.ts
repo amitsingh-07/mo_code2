@@ -78,7 +78,6 @@ export function createTranslateLoader(http: HttpClient) {
     InsuranceResultsComponent,
     InsuranceResultComponent,
     RecommendationsComponent,
-    PlanWidgetComponent,
     CustomCurrencyPipe,
     PlanDetailsWidgetComponent,
     ProductDetailComponent
