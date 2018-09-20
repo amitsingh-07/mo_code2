@@ -17,7 +17,7 @@
         <span id="ir-vd-value-{{data.id}}-{{i}}">{{inputValue.currency}}{{inputValue.value | currency : '' : '': '1.0-2'}}</span><span>{{inputValue.type}}</span><span id="view_details_for_month">{{inputValue.monthEnabled}}</span>
       </div>
     </div>
-    <div class="flex-row" *ngIf ="isExistingCoverage">
+    <div class="flex-row" *ngIf ="data.existingCoverage">
         <div class="flex-col-7 label-orange">
           <label id="view_details_existing_covarage_text">{{data.existingCoverage.title}}</label>
         </div>
@@ -31,7 +31,7 @@
           <label id="view_details_total_text">{{data.total.title}}</label>
         </div>
         <div class="flex-col-5">
-          <span class="total" id="view_details_total_value">{{((data.total.value - data.existingCoverage.value)>0 ? (data.total.value - data.existingCoverage.value) : 0) | currency:'USD':'symbol-narrow':'1.0-0'}}</span><span class="total" *ngIf="isMonthEnabled"> / mth</span>
+          <span class="total" id="view_details_total_value">{{ finalTotal | currency:'USD':'symbol-narrow':'1.0-0'}}</span><span class="total" *ngIf="isMonthEnabled"> / mth</span>
         </div>
       </div>
     </div>

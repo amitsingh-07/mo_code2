@@ -41,13 +41,13 @@
       <div class="col-lg-12 col-md-12 col-sm-12 flex__box--horz center">
         <div class="addCover__block mr20 sm-mr0 sm-mb30" (click)="openExistingCoverageModal()">
           <div class="addCover__block__btn" id="ir-add-ec-btn">
-            <span class="addCover__block__btn--{{this.guideMeService.isExistingCoverAdded ? 'edit':'plus'}}"></span>
+            <span class="addCover__block__btn--{{this.existingCoverageValues ? 'edit':'plus'}}"></span>
           </div>
-          <div class="addCover__block--title" *ngIf ='!this.guideMeService.isExistingCoverAdded'>
+          <div class="addCover__block--title" *ngIf ='!this.existingCoverageValues'>
             <span id="insurance_result_add_covarage_lbl">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.LBL' | translate}}</span>
             <span class="sub" id="insurance_result_add_covarage_sub_lbl">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.SUB_LBL' | translate}}</span>
           </div>
-          <div class="addCover__block--title" *ngIf ='this.guideMeService.isExistingCoverAdded'>
+          <div class="addCover__block--title" *ngIf ='this.existingCoverageValues'>
             <span id="insurance_result_add_covarage_existing_lbl">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.EXISTING_LBL' | translate}}</span>
             <span class="sub" id="insurance_result_add_covarage_sub_lbl">{{ 'INSURANCE_RESULTS.ADD_COVERAGE.EXISTING_SUB_LBL' | translate}}</span>
           </div>

@@ -17,7 +17,6 @@ import { Observable } from 'rxjs/Observable';
 import { appConstants } from './../../../app.constants';
 import { CustomErrorHandlerService } from './../custom-error-handler.service';
 import { RequestCache } from './../http-cache.service';
-import { IError } from './../interfaces/error.interface';
 import { IServerResponse } from './../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
 

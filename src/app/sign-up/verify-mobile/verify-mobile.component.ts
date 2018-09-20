@@ -113,7 +113,6 @@ export class VerifyMobileComponent implements OnInit {
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['sending'];
     this.signUpApiService.requestNewOTP().subscribe((data) => {
-      this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;
     });

@@ -20,7 +20,7 @@ export class ExistingCoverageModalComponent implements OnInit {
   @Input() data: any;
   @Output() dataOutput: EventEmitter<any> = new EventEmitter();
   existingCoverageForm: FormGroup;
-  selectedHospitalPlan = this.guideMeService.getHospitalPlan();
+  selectedHospitalPlan;
   hospitalPlanList;
   isLifeProtection = false;
   isCriticalIllness = false;
@@ -30,7 +30,13 @@ export class ExistingCoverageModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal, private guideMeService: GuideMeService,
-    private config: ConfigService, private formatter: Formatter) { }
+    private config: ConfigService, private formatter: Formatter) {
+    this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
+    if (!this.existingCoverageValues) {
+      this.existingCoverageValues = this.guideMeService.getEmptyExistingCoverage();
+    }
+    this.selectedHospitalPlan = this.existingCoverageValues.selectedHospitalPlan;
+  }
 
   ngOnInit() {
 
@@ -38,8 +44,6 @@ export class ExistingCoverageModalComponent implements OnInit {
       this.hospitalPlanList = configData.hospitalPlanData;
     });
 
-    this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
-    this.selectedHospitalPlan = this.guideMeService.getHospitalPlan();
     this.existingCoverageForm = new FormGroup({
       lifeProtectionCoverage: new FormControl(this.existingCoverageValues.lifeProtectionCoverage),
       criticalIllnessCoverage: new FormControl(this.existingCoverageValues.criticalIllnessCoverage),
@@ -51,15 +55,16 @@ export class ExistingCoverageModalComponent implements OnInit {
       switch (protectionNeed.id) {
         case 1:
           this.isLifeProtection = true;
-          this.existingCoverageValues.lifeProtectionCoverage = protectionNeed.existingCoverage.value;
+          this.existingCoverageValues.lifeProtectionCoverage = protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
           break;
         case 2:
           this.isCriticalIllness = true;
-          this.existingCoverageValues.criticalIllnessCoverage = protectionNeed.existingCoverage.value;
+          this.existingCoverageValues.criticalIllnessCoverage = protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
           break;
         case 3:
           this.isOccupationalDisability = true;
-          this.existingCoverageValues.occupationalDisabilityCoveragePerMonth = protectionNeed.existingCoverage.value;
+          this.existingCoverageValues.occupationalDisabilityCoveragePerMonth =
+            protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
           break;
         case 4:
           this.isHospitalPlan = true;
