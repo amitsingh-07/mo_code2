@@ -465,6 +465,181 @@ body {
     }
   }
 
+  .footer__wrapper{
+    position: absolute;
+    display: flex;
+    flex-direction:column;
+    width:100%;
+    margin:0px;
+    bottom:0px;
+    .footer__group {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      &.primary{
+        justify-content:flex-start;
+        background-color:$teal-color;
+        color:$white-color;
+        padding:0px 45px;
+        border-bottom:1px solid $light-teal-color;
+      }
+      &.secondary{
+        justify-content:space-between;
+        background-color:$teal-color;
+        color:$white-color;
+        padding:30px 45px;
+      }
+      &.tertiary{
+        justify-content:space-between;
+        background-color:$dark-teal-color;
+        color:$white-color;
+        border-bottom:1px solid $light-teal-color;
+        padding:20px 45px 25px 45px;
+      }
+      &.quaternary{
+        justify-content:flex-start;
+        background-color:$dark-teal-color;
+        color:$white-color;
+        padding:10px 45px 15px 45px;
+      }
+    }
+
+    .footer-link__btn{
+      position: relative;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      height:65px;
+      margin-right:45px;
+      padding:20px 0px;
+      opacity:1;
+      transition:0.2s;
+      cursor:pointer;
+      &:hover{
+        opacity:0.8;
+      }
+      .icon{
+        display:block;
+        background-repeat:no-repeat;
+        margin-right:10px;
+        &.chat-icon{
+          background-image: url("./assets/images/chat-icon.svg");
+          width:16px;
+          height:16px;
+        }
+        &.contact-icon{
+          background-image: url("./assets/images/contact-icon.svg");
+          width:16px;
+          height:16px;
+        }
+        &.direction-icon{
+          background-image: url("./assets/images/direction-icon.svg");
+          width:16px;
+          height:16px;
+        }
+      }
+      
+      span{
+        font-family:$muli-semi-bold;
+        color:$white-color;
+        font-size:18px;
+        letter-spacing:-0.3px;
+      }
+    }
+    .footer__list{
+      display:flex;
+      flex-direction:column;
+      max-width:240px;
+      .title{
+        font-family:$muli-semi-bold;
+        font-size:18px;
+        margin-bottom:10px;
+      }
+      a{
+        font-family:$muli-regular;
+        font-weight:300;
+        font-size:16px;
+        letter-spacing: -0.3px;
+        color:$white-color;
+        opacity:0.8;
+        cursor: pointer;
+        &:hover{
+          opacity:1;
+        }
+      }
+    }
+    .footer-address{
+      display:flex;
+      flex-direction:row;
+      .footer-address__header{
+        font-family:$muli-bold;
+        font-size:20px;
+        letter-spacing:-0.4px;
+        margin-right:30px;
+        max-width:220px;
+        line-height: 1.5;
+      }
+      .footer-address__body{
+        font-family:$muli-regular;
+        font-size:16px;
+        letter-spacing:-0.3px;
+        p{
+          margin-bottom:auto;
+        }
+        span{
+          font-family:$muli-semi-bold;
+        }
+      }
+    }
+    .footer-social{
+      display:flex;
+      flex-direction:row;
+      align-items:flex-start;
+      .social-btn{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+        margin-left:45px;
+        cursor: pointer;
+        .icon{
+          display:block;
+          background:no-repeat;
+          margin-right:10px;
+          &.facebook-icon{
+            background-image: url('./assets/images/facebook-icon.svg');
+            width:16px;
+            height:16px;
+          }
+          &.youtube-icon{
+            background-image: url('./assets/images/youtube-icon.svg');
+            width:22px;
+            height:16px;
+          }
+        }
+        span{
+          font-family:$muli-bold;
+          font-size:18px;
+          letter-spacing:-0.3px;
+        }
+      }
+    }
+    .footer-copyright{
+      font-family:$muli-regular;
+      font-size:14px;
+      opacity:0.5;
+      span{
+        display:block;
+      }
+      a{ 
+        cursor: pointer;
+        &:hover{
+          text-decoration:underline;
+        }
+      }
+    }
+  }
+
   .span--content-inline--underline {
     @include allmobiles{
       color: #ffffff;

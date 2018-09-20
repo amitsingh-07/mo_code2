@@ -24,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient, moduleName: string) {
     CurrencyInputDirective
   ],
   declarations: [
-    CurrencyInputDirective
+    CurrencyInputDirective,
   ]
 })
 export class SharedModule { }
