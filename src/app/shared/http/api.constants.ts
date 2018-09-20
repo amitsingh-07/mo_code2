@@ -14,6 +14,8 @@ export let apiConstants = {
         resendOTP: 'account/account-microservice/api/resendOTP',
         setPassword: 'account/account-microservice/api/setPassword',
         verifyEmail: 'account/account-microservice/api/verifyEmail',
+        resetPassword: 'account/account-microservice/api/resetPassword',
+        forgotPassword: 'account/account-microservice/api/forgotPassword',
         portfolio: {
             setInvestmentObjective: 'invest/api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: 'invest/investment-microservice/RiskAssessment',
