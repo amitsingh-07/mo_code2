@@ -10,6 +10,8 @@ import { ILongTermCare } from './product-info/long-term-care-form/long-term-care
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 
+import { GoogleAnalyticsService } from './../shared/ga/google-analytics.service';
+
 const SESSION_STORAGE_KEY = 'app_direct_session';
 
 @Injectable({
@@ -39,7 +41,7 @@ export class DirectService {
   modalToolTipTrigger = this.modalToolTip.asObservable();
   currentIndexValue: number;
 
-  constructor(private currencyPipe: CurrencyPipe) {
+  constructor(private currencyPipe: CurrencyPipe, private googleAnalyticsService: GoogleAnalyticsService) {
   }
 
   commit() {
@@ -73,6 +75,14 @@ export class DirectService {
   triggerSearch(event) {
     this.searchBtn.next(event);
   }
+  /* Search Button Success */
+  gaDirectSuccess(category: string) {
+    if (this.googleAnalyticsService.getTime('initialDirectSearch') !== false) {
+      this.googleAnalyticsService.emitTime('initialDirectSearch', 'Direct', 'Success');
+    }
+    this.googleAnalyticsService.emitEvent('Direct', 'Recommend', 'Success');
+    this.googleAnalyticsService.emitEvent('Direct', category, 'Success');
+  }
 
   /* Get Product Category List */
   getProductCategory() {
@@ -103,6 +113,7 @@ export class DirectService {
     this.directFormData.smoker = form.value.smoker;
     this.directFormData.coverageAmt = form.value.coverageAmt;
     this.directFormData.premiumWaiver = form.value.premiumWaiver;
+    this.gaDirectSuccess('life-protection');
   }
 
   /* Setting Critical Illness Form into Direct Form */
@@ -112,6 +123,7 @@ export class DirectService {
     this.directFormData.smoker = form.value.smoker;
     this.directFormData.coverageAmt = form.value.coverageAmt;
     this.directFormData.earlyCI = form.value.earlyCI;
+    this.gaDirectSuccess('critical-illness');
   }
 
   /* Custom Currency */
@@ -140,6 +152,7 @@ export class DirectService {
 
   setLongTermCareForm(data: ILongTermCare) {
     this.directFormData.longTermCare = data;
+    this.gaDirectSuccess('long-term-care');
   }
 
   getLongTermCareForm(): ILongTermCare {
@@ -158,6 +171,7 @@ export class DirectService {
 
   setRetirementIncomeForm(data: IRetirementIncome) {
     this.directFormData.retirementIncome = data;
+    this.gaDirectSuccess('retirement-income');
   }
 
   getOcpDisabilityForm(): IOcpDisability {
@@ -169,14 +183,17 @@ export class DirectService {
 
   setOcpDisabilityForm(data: IOcpDisability) {
     this.directFormData.ocpDisability = data;
+    this.gaDirectSuccess('occupational-disability');
   }
 
   setEducationForm(data: IEducation) {
     this.directFormData.education = data;
+    this.gaDirectSuccess('education');
   }
 
   setHospitalPlanForm(data: IHospital) {
     this.directFormData.hospital = data;
+    this.gaDirectSuccess('hospital-plan');
   }
 
   getHospitalPlanForm() {

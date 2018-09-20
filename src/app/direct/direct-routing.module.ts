@@ -13,8 +13,14 @@ import { OcpDisabilityFormComponent } from './product-info/ocp-disability-form/o
 import { RetirementIncomeFormComponent } from './product-info/retirement-income-form/retirement-income-form.component';
 
 const routes: Routes = [
-  { path: '', component: DirectComponent,
-    children: [
+  { path: '', component: DirectComponent},
+  { path: ':id', component: DirectComponent},
+  { path: DIRECT_ROUTES.RESULTS, component: DirectResultsComponent },
+  { path: DIRECT_ROUTES.COMPARE_PLANS, component: ComparePlansComponent }
+];
+
+/*
+children: [
       { path: 'life-protection', component: LifeProtectionFormComponent},
       { path: 'critical-illness', component: CriticalIllnessFormComponent},
       { path: 'education', component: EducationFormComponent},
@@ -23,10 +29,7 @@ const routes: Routes = [
       { path: 'occupational-disability', component: OcpDisabilityFormComponent},
     ]
   },
-  { path: DIRECT_ROUTES.RESULTS, component: DirectResultsComponent },
-  { path: DIRECT_ROUTES.COMPARE_PLANS, component: ComparePlansComponent }
-];
-
+*/
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
