@@ -25,10 +25,16 @@ const config = JSON.parse(angularConfig);
 const defaultProject = config.defaultProject;
 console.log('Building project :' + defaultProject);
 
+console.log('**** actual config ****');
+console.log(JSON.stringify(config.projects[defaultProject].architect.build.configurations.common));
+
 // tslint:disable-next-line:max-line-length
 config.projects[defaultProject].architect.build.configurations.common = config.projects[defaultProject].architect.build.configurations[environment];
 
 writeFileSync(targetPath, beautify(config, null, 2, 100));
+
+console.log('**** updated config ****');
+console.log(JSON.stringify(config.projects[defaultProject].architect.build.configurations.common));
 
 console.log(`Final angular configuration generated at ${targetPath}`);
 
@@ -40,4 +46,4 @@ export const environmentConstants = {
 };
 `;
 writeFileSync(constantsPath, constantsConfig);
-console.log(`Environment variables configured at ${targetPath}`);
+console.log(`Environment variables configured at ${constantsPath}`);
