@@ -7,11 +7,11 @@ require('dotenv').config();
 require('json-beautify');
 
 const supportedEnvironments = new Set(['dev', 'uat', 'prod']);
-let environment = process.env.NODE_ENV || 'PROD';
+let environment = process.env.NODE_ENV || 'UAT';
 environment = environment.toLowerCase();
 
 if (!supportedEnvironments.has(environment)) {
-    environment = 'prod';
+  environment = 'uat';
 }
 
 const inputPath = `./angular.config.json`;
@@ -25,16 +25,10 @@ const config = JSON.parse(angularConfig);
 const defaultProject = config.defaultProject;
 console.log('Building project :' + defaultProject);
 
-console.log('**** actual config ****');
-console.log(JSON.stringify(config.projects[defaultProject].architect.build.configurations.common));
-
 // tslint:disable-next-line:max-line-length
 config.projects[defaultProject].architect.build.configurations.common = config.projects[defaultProject].architect.build.configurations[environment];
 
 writeFileSync(targetPath, beautify(config, null, 2, 100));
-
-console.log('**** updated config ****');
-console.log(JSON.stringify(config.projects[defaultProject].architect.build.configurations.common));
 
 console.log(`Final angular configuration generated at ${targetPath}`);
 
