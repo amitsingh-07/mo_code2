@@ -212,11 +212,14 @@ app-life-protection-form {
       position: relative;
       top: -4px;
       font-family: $muli-regular;
+      opacity: 0.75;
+      font-size: 16px;
+      line-height: 21px;
     }
   }
   .education-support-details {
-    position: relative;
-    z-index: 3;
+    //position: relative;
+    //z-index: 3;
     .form-group-with-bg {
       padding: 0.90rem;
       label {
@@ -229,6 +232,10 @@ app-life-protection-form {
         }
       }
       &.dark {
+        padding: 15px 20px;
+        label {
+          margin-bottom: 15px;
+        }
         .flex-row {
           margin-bottom: 15px;
         }
@@ -254,7 +261,14 @@ app-life-protection-form {
   .btn:disabled:hover {
     background: #fff !important;
   }
+  .dependent-count {
+    @extend .align-center;
+  }
+  .with-help-icon {
+    width: 100px;
+    .help-icon {
+      margin-left: 0 !important;
+    }
+  }
 }
-.dependent-count {
-  @extend .align-center;
-}
+
