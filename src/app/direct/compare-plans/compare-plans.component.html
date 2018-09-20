@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="flex-row compare-modal">
       <div *ngFor="let plan of plansData; let i = index;" 
-        class="col-sm-3 col-md-3 col-6 insurance-plan-widget" [ngClass]="{'rt-round': i == plansData.length - 1}">
+        class="col-sm-3 col-md-3 col-6 insurance-plan-widget" [ngClass]="{'rt-round': i == plansData.length - 1, 'hidden-sm-md': i > 1}">
         <div class="bg-white flex insurance-plan-widget__container flex__box--vert">
           <div class="mt20 insurer-logo">
             <img src="../../../assets/images/{{plan.insurer.logoName}}" />
@@ -16,58 +16,59 @@
             </div>
           </div>
         </div>
-        <div  class="heading" style="height: 30px;width: 100%;">&nbsp;</div>
+        <div  class="heading">&nbsp;</div>
       </div>
-      <div  class="flex-col-12 flex title" ><span>Coverage Duration</span></div>
-      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'hidden-sm-md': i > 1}">
-        <div class="plan-content">
-        <span>{{plan.coverageDuration}}</span>
-        </div>
-        <div  class="heading" style="height: 30px;width: 100%;">&nbsp;</div>
-      </div>
-  
+
       <div  class="flex-col-12 flex title" ><span>Insurer Financial Rating</span></div>
       <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'hidden-sm-md': i > 1}">
         <div class="plan-content">
         <span>{{plan.insurer.rating}}</span>
         </div>
-        <div  class="heading" style="height: 30px;width: 100%;">&nbsp;</div>
+        <div  class="heading">&nbsp;</div>
+      </div>
+
+      <div  class="flex-col-12 flex title" ><span>Coverage Duration</span></div>
+      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'hidden-sm-md': i > 1}">
+        <div class="plan-content">
+        <span>{{plan.coverageDuration}}</span>
+        </div>
+        <div  class="heading">&nbsp;</div>
       </div>
   
       <div class="flex-col-12 flex title"><span>Premium Duration</span></div>
-      <div *ngFor="let plan of plansData" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content">
+      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'hidden-sm-md': i > 1}">
           <div class="plan-content">
         <span>{{plan.premiumDuration}}</span>
         </div>
-        <div  class="heading" style="height: 30px;width: 100%;">&nbsp;</div>
+        <div  class="heading">&nbsp;</div>
       </div>
   
       <div class="flex-col-12 flex title"><span>Need Under Writting</span><span class="tooltip-compare"></span></div>
-      <div *ngFor="let plan of plansData" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content">
+      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'hidden-sm-md': i > 1}">
           <div class="plan-content">
         <span><img src="../../../assets/images/{{plan.underWritting}}.png"/></span>
         </div>
-        <div  class="heading" style="height: 30px;width: 100%;">&nbsp;</div>
+        <div  class="heading">&nbsp;</div>
       </div>
   
       <div class="flex-col-12 flex title"><span>Cash Value</span><span class="tooltip-compare"></span></div>
-      <div *ngFor="let plan of plansData" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content">
+      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'hidden-sm-md': i > 1}">
           <div class="plan-content">
         <span><img src="../../../assets/images/{{plan.cashValue}}.png"/></span>
         </div>
-        <div  class="heading" style="height: 30px;width: 100%;">&nbsp;</div>
+        <div  class="heading">&nbsp;</div>
       </div>
   
-      <div class="flex-col-12 flex title"><span>pay out details</span></div>
-      <div *ngFor="let plan of plansData" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content">
+      <div class="flex-col-12 flex title"><span>Payout Details</span></div>
+      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'hidden-sm-md': i > 1}">
           <div class="plan-content flex">
         <span>{{plan.payOut}}</span>
         </div>
-        <div  class="heading" style="height: 30px;width: 100%;">&nbsp;</div>
+        <div  class="heading">&nbsp;</div>
       </div>
   
       <div class="flex-col-12 flex title"><span>Unique Features</span></div>
-      <div *ngFor="let plan of plansData, let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'lb-round': i == 0, 'rb-round': i == plansData.length - 1}">
+      <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content" [ngClass]="{'lb-round': i == 0, 'hidden-sm-md': i > 1, 'rb-round': i == plansData.length - 1}">
           <div class="plan-content feature-list">
             <div *ngFor = "let feature of plan.features.split('.')">
               <div class="features" *ngIf="feature && feature != ''">
