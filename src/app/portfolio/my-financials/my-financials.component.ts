@@ -86,15 +86,10 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-    
-      const error = this.portfolioService.currentFormError(form);
     }
+    const error = this.portfolioService.doFinancialValidations(form);
+    console.log('error' + error);
     console.log(form.value);
-    // tslint:disable-next-line:curly
-//     if ( form.value.initialInvestment == 0  &&  form.value.monthlyInvestment == 0 )
-//     {
-// alert('NO NO');
-//     }
     this.portfolioService.setMyFinancials(form.value);
     // CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
