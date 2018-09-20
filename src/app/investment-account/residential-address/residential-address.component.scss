@@ -110,7 +110,30 @@
 
   .autofill-link{
     border:1px solid $secondary-action-color;
-    padding:30px;
+    padding:23px 34px;
     background-color:#fff;
+    border-radius:6px;
+    margin-bottom:20px;
+    cursor: pointer;
+    display: flex;
+
+    .autofill-text, .autofill-logo{
+        
+        
+    }
+
+    .autofill-logo{
+      
+      width:35%;
+  }
+
+    .autofill-text{
+      width:65%;
+      font-family: Muli;
+      font-size: 18px;
+      font-weight: bold;
+      color: #e57300;
+    }
+    
   }
 }
