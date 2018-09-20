@@ -99,7 +99,6 @@ export class GoogleAnalyticsService {
                   timingLabel: string = null
                 ) {
       const timingValue = this.getTime(timeId);
-      console.log(timingValue);
       this.endTime(timeId);
       if (typeof ga === 'function') {
         this.endTime(timeId);
