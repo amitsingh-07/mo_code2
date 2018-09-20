@@ -18,6 +18,9 @@ export class PersonalFormError {
                 },
                 dependent: {
                         required: { errorTitle: 'Invalid Dependent', errorMessage: 'Dependent required' }
+                },
+                financialValidations: {
+                        zero: { errorTitle: 'Invalid Amount', errorMessage: 'One-Time Investment and Monthly Investment cannot be 0' }
                 }
-        };
+        };  
 }

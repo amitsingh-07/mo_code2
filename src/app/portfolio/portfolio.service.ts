@@ -64,6 +64,17 @@ export class PortfolioService {
     return this.personalFormError.formFieldErrors[formCtrlName][validation];
   }
 
+  doFinancialValidations(form) {
+    const invalid = [];
+    const invalidFormat = [];
+    // tslint:disable-next-line:triple-equals
+    if ( form.value.initialInvestment == 0  &&  form.value.monthlyInvestment == 0 ) {
+      invalid.push('zero');
+      return this.personalFormError.formFieldErrors['financialValidations']['zero'];
+        }
+    
+    }
+
   setPersonalInfo(data: PersonalInfo) {
     this.portfolioFormData.dob = data.dob;
     this.portfolioFormData.investmentPeriod = data.investmentPeriod;

@@ -9,6 +9,7 @@ import { CtyptoService} from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,7 @@ export class SignUpApiService {
 
     constructor(private http: HttpClient,
                 private apiService: ApiService,
+                private authService: AuthenticationService,
                 private signUpService: SignUpService,
                 private guideMeService: GuideMeService,
                 private selectedPlansService: SelectedPlansService,
@@ -181,6 +183,15 @@ export class SignUpApiService {
     return {
         email: data
     };
+  }
+
+  /**
+   * verify credentials .
+   * @param username - email / mobile no.
+   * @param password - password.
+   */
+  verifyLogin(userEmail, userPassword) {
+    return this.authService.authenticate(userEmail, userPassword);
   }
 
 }
