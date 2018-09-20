@@ -16,6 +16,7 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
+import { FinancialValidator } from './my-financial-validator';
 import { IMyFinancials } from './my-financials.interface';
 
 @Component({
@@ -57,13 +58,13 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
 
     this.myFinancialsForm = new FormGroup({
-      monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome, Validators.required),
-      percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving, Validators.required),
-      totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets, Validators.required),
-      totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities, Validators.required),
+      monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome),
+      percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving),
+      totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets),
+      totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities),
       initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
-      monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment, Validators.required),
-      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund, Validators.required)
+      monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
+      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund)
 
     });
   }
@@ -81,6 +82,19 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
 
   save(form: any) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+    
+      const error = this.portfolioService.currentFormError(form);
+    }
+    console.log(form.value);
+    // tslint:disable-next-line:curly
+//     if ( form.value.initialInvestment == 0  &&  form.value.monthlyInvestment == 0 )
+//     {
+// alert('NO NO');
+//     }
     this.portfolioService.setMyFinancials(form.value);
     // CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
@@ -88,6 +102,17 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
       }
     });
+
+    // tslint:disable-next-line:no-commented-code
+    // const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    //   ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
+    //   ref.componentInstance.errorMessage = this.emailNotFoundDesc;
+    //   ref.componentInstance.ButtonTitle = this.buttonTitle;
+    //   ref.componentInstance.secondButton = 'this.buttonTitle';
+    //   ref.componentInstance.secondButtonTitle = 'Yes';
+    //   ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
+    //    alert(emittedValue);
+    //   });
     return true;
   }
 

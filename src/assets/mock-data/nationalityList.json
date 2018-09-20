@@ -2,7 +2,7 @@
                 "objectList": [{
                                                 "country": "ABKHAZIA",
                                                 "nationality": "ABKHAZIAN",
-                                                "isBlocked": true,
+                                                "blocked": true,
                                                 "countryCode": "111",
                                                 "phoneCode": "21",
                                                 "currency": "$"
@@ -10,7 +10,7 @@
                                 {
                                                 "country": "AFGHANISTAN",
                                                 "nationality": "AFGHANI",
-                                                "isBlocked": true,
+                                                "blocked": true,
                                                 "countryCode": "116",
                                                 "phoneCode": "67",
                                                 "currency": "$"
@@ -18,31 +18,24 @@
                                 {
                                                 "country": "ALAND ISLANDS",
                                                 "nationality": "ALANDIC",
-                                                "isBlocked": false,
+                                                "blocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",
                                                 "currency": "$"
                                 },
-                                {
-                                                "country": "india",
-                                                "nationality": "ALANDIC",
-                                                "isBlocked": false,
-                                                "countryCode": "1144",
-                                                "phoneCode": "45",
-                                                "currency": "$"
-                                },
+                                
                                 {
                                                 "country": "Singapore",
-                                                "nationality": "ALANDIC",
-                                                "isBlocked": false,
+                                                "nationality": "SINGAPOREAN",
+                                                "blocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",
                                                 "currency": "$"
                                 },
                                 {
                                                 "country": "US",
-                                                "nationality": "ALANDIC",
-                                                "isBlocked": false,
+                                                "nationality": "AMERICAN",
+                                                "blocked": false,
                                                 "countryCode": "1144",
                                                 "phoneCode": "45",
                                                 "currency": "$"
