@@ -10,6 +10,7 @@ import { ILongTermCare } from './product-info/long-term-care-form/long-term-care
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IProductCategory } from './product-info/product-category/product-category';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
+import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 
 const SESSION_STORAGE_KEY = 'app_direct_session';
 
@@ -203,5 +204,15 @@ export class DirectService {
       this.directFormData.selectedPlans = [];
     }
     return this.directFormData.selectedPlans;
+  }
+
+  setSrsApprovedPlansForm(data: ISrsApprovedPlans) {
+    this.directFormData.srsApprovedPlans = data;
+  }
+  getSrsApprovedPlansForm() {
+    if (!this.directFormData.srsApprovedPlans) {
+      this.directFormData.srsApprovedPlans = {} as ISrsApprovedPlans;
+    }
+    return this.directFormData.srsApprovedPlans;
   }
 }

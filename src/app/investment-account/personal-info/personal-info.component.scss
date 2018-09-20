@@ -1,0 +1,134 @@
+@import '../../../variables';
+
+.personal-info {
+
+  .inline-error-inv {
+    color: $inline-error-border-color;
+    border: 1px solid $inline-error-border-color !important;
+    color: $inline-error-border-color;
+
+    input {
+      color: $inline-error-border-color !important;
+    }
+  }
+
+
+  label {
+    font-size: 18px;
+    font-family: $muli-semi-bold;
+  }
+
+  .input-control {
+    text-align: left;
+  }
+
+  .step-indicator-container {
+    background-color: #fff;
+    padding: 10px 0px;
+    position: relative;
+    top: 66px;
+    margin-bottom: 15px;
+
+    .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .step-indicator-container {
+      top: 0px;
+    }
+  }
+
+
+  .form-control {
+    &.with-button {
+      padding: 0.50rem;
+      padding-left: 0.8rem;
+
+      input {
+        margin-top: 6px;
+      }
+    }
+
+
+  }
+
+  .btn {
+    &.btn-secondary {
+      padding: 0.50rem;
+      font-size: 16px;
+      background-color: #ff872f;
+      color: #fff;
+      border: none;
+      font-family: $muli;
+
+      &.right {
+        float: right;
+      }
+
+      &:focus {
+        background-color: #ff730c !important;
+      }
+
+      &:active {
+        background-color: #ff730c !important;
+      }
+
+    }
+  }
+
+
+  .white-bg-checkbox {
+    background-color: #fff;
+    padding: 10px 18px 10px 18px;
+    border-radius: 6px;
+    font-family: $muli;
+
+    label {
+
+      padding: 0px 0 0px 35px;
+    }
+
+    .option-row {
+      margin-left: 0px;
+    }
+
+    .option-title {
+      color: #000;
+      font-size: 18px;
+    }
+
+    .option-desc {
+      color: #4a4a4a;
+      font-family: $muli-semi-bold;
+      font-size: 16px;
+    }
+  }
+
+
+  .autofill-link {
+    border: 1px solid $secondary-action-color;
+    padding: 23px 34px;
+    background-color: #fff;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+
+    .autofill-logo {
+
+      width: 35%;
+    }
+
+    .autofill-text {
+      width: 65%;
+      font-family: Muli;
+      font-size: 18px;
+      font-weight: bold;
+      color: #e57300;
+    }
+
+  }
+}

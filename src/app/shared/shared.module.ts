@@ -1,9 +1,10 @@
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
@@ -26,7 +27,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     })],
-  exports: [CurrencyInputDirective, PlanWidgetComponent, SettingsWidgetComponent, PlanFilterPipe],
-  declarations: [CurrencyInputDirective, PlanWidgetComponent, SettingsWidgetComponent, PlanFilterPipe]
+  exports: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe],
+  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe]
 })
 export class SharedModule {}

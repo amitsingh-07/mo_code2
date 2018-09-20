@@ -21,12 +21,9 @@ export class PercentageInputDirective implements AfterViewInit {
     @HostListener('keyup', ['$event'])
     onKeyUp(event: KeyboardEvent) {
         this.el.nativeElement.value = this.el.nativeElement.value.replace(/[^0-9]/g, '');
-        if(this.el.nativeElement.value >100)
-        {
-            this.el.nativeElement.value='';
+        if (this.el.nativeElement.value > 100) {
+            this.el.nativeElement.value = '';
         }
-
-        
     }
 
     @HostListener('focus', ['$event'])

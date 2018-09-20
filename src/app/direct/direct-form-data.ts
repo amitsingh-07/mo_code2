@@ -4,6 +4,7 @@ import { ILongTermCare } from './product-info/long-term-care-form/long-term-care
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IProductCategory } from './product-info/product-category/product-category';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
+import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 
 export class DirectFormData {
     prodCategory: IProductCategory;
@@ -38,4 +39,7 @@ export class DirectFormData {
     hospital: IHospital;
 
     selectedPlans: any;
+
+    // SRS Approved Plans Form
+    srsApprovedPlans: ISrsApprovedPlans;
 }

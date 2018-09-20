@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
     private modal: NgbModal,
+    public authService: AuthenticationService,
     public headerService: HeaderService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -99,9 +101,12 @@ export class LoginComponent implements OnInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpService.setLoginInfo(form.value);
+      this.authService.authenticate(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword).subscribe((token) => {
+        console.log(token);
+      });
     }
   }
+
   goBack() {
     this._location.back();
   }
