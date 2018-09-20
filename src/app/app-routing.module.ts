@@ -10,9 +10,12 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent },
   {path: 'direct', loadChildren: './direct/direct.module#DirectModule'},
   {path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule'},
+  {path: 'articles', loadChildren: './article/article.module#ArticleModule'},
   {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
   // {component: CallBackComponent, matcher: test},
-  {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'}
+  {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'},
+  // Legacy Routes
+  {path: 'learn', loadChildren: './article/article.module#ArticleModule'}
 ];
 
 @NgModule({

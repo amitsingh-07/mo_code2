@@ -32,9 +32,9 @@ import {
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
+import { HomeComponent } from './home/home.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { HeaderComponent } from './shared/header/header.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
 import { JwtInterceptor } from './shared/http/auth/jwt.interceptor';
 import { CustomErrorHandlerService } from './shared/http/custom-error-handler.service';
@@ -45,9 +45,9 @@ import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.comp
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
-import { HomeComponent } from './home/home.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
