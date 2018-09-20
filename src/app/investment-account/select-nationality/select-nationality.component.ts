@@ -77,7 +77,7 @@ export class SelectNationalityComponent implements OnInit {
         if (!form.valid) {
             return false;
         }
-        this.investmentAccountService.setNationality(this.nationalitylist, this.nationality);
+        this.investmentAccountService.setNationality(this.nationalitylist, this.nationalityObj);
 
         return true;
     }

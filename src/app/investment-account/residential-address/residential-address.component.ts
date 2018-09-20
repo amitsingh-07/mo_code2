@@ -59,7 +59,7 @@ export class ResidentialAddressComponent implements OnInit {
     if (this.addressForm.controls.isMailingAddressSame.value !== true) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: ['singapore', Validators.required],
+          mailCountry: [this.formValues.nationality.country, Validators.required],
           mailPostalCode: [this.formValues.mailPostalCode, Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(/^[a-z0-9]+$/i)]],
           mailAddress2: [this.formValues.mailAddress2],
@@ -67,7 +67,7 @@ export class ResidentialAddressComponent implements OnInit {
         }));
       } else { // Other Countries
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.formValues.mailCountry ? this.formValues.mailCountry : this.countries[0], Validators.required],
+          mailCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(/^[a-z0-9]+$/i)]],
           mailAddress2: [this.formValues.mailAddress2],
           mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(/^[a-zA-Z]*$/)]],
@@ -96,7 +96,7 @@ export class ResidentialAddressComponent implements OnInit {
 
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
-      country: ['singapore', Validators.required],
+      country: [this.formValues.nationality.country, Validators.required],
       postalCode: [this.formValues.postalCode, Validators.required],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(/^[a-z0-9]+$/i)]],
       address2: [this.formValues.address2],
@@ -107,7 +107,7 @@ export class ResidentialAddressComponent implements OnInit {
 
   buildFormForOtherCountry(): FormGroup {
     return this.formBuilder.group({
-      country: [this.formValues.country ? this.formValues.country : this.countries[0], Validators.required],
+      country: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(/^[a-z0-9]+$/i)]],
       address2: [this.formValues.address2],
       city: [this.formValues.city, [Validators.required, Validators.pattern(/^[a-zA-Z]*$/)]],

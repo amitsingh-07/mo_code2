@@ -35,8 +35,8 @@
                         ngbDropdownToggle>{{addressForm.controls.country.value}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('country',option, i)"
-                          id="residentialAddress-country-option-{{i}}">{{option}}</button>
+                        <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('country',option.country, i)"
+                          id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
                       </div>
                     </div>
                   </div>
@@ -189,8 +189,8 @@
                           ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',option, 'mailingAddress')"
-                            id="residentialAddress-country-option-{{i}}">{{option}}</button>
+                          <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',option.country, 'mailingAddress')"
+                            id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
                         </div>
                       </div>
                     </div>

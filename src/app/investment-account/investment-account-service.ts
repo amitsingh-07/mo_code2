@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
-import { SelectNationality } from './select-nationality/select-nationality';
-import { InvestmentAccountFormError } from '../investment-account/investment-account-form-error';
 
 @Injectable({
     providedIn: 'root'
@@ -25,13 +24,12 @@ export class InvestmentAccountService {
 
     /* Residential Address */
     getCountriesFormData() {
-        const countries = ['India', 'Singapore', 'Malaysia'];
-        // const countries = this.investmentAccountFormData.countries;
+        const countries = this.investmentAccountFormData.nationalitylist;
         return countries;
     }
     isUserNationalitySingapore() {
-        // return this.investmentAccountFormData.country === 'singapore';
-        return true;
+        const selectedCountry = this.investmentAccountFormData.nationality.country.toUpperCase();
+        return selectedCountry === 'SINGAPORE';
     }
     setDefaultValueForFormData() {
         this.investmentAccountFormData.isMailingAddressSame = true;
@@ -57,6 +55,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailZipCode = data.mailingAddress.mailZipCode;
         }
     }
+    // tslint:disable-next-line
     getFormErrorList(form) {
         const controls = form.controls;
         const errors: any = {};
@@ -69,10 +68,12 @@ export class InvestmentAccountService {
                     const nestedControls = controls[name].controls;
                     for (const nestedControlName in nestedControls) {
                         if (nestedControls[nestedControlName].invalid) {
+                            // tslint:disable-next-line
                             errors.errorMessages.push(this.investmentAccountFormError.formFieldErrors[nestedControlName][Object.keys(nestedControls[nestedControlName]['errors'])[0]].errorMessage);
                         }
                     }
                 } else { // NO NESTED CONTROLS
+                    // tslint:disable-next-line
                     errors.errorMessages.push(this.investmentAccountFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
                 }
             }
@@ -89,9 +90,9 @@ export class InvestmentAccountService {
             nationality: this.investmentAccountFormData.nationality,
             };
     }
-    setNationality(nationalitylist: any, nationality: string) {
+    setNationality(nationalitylist: any, nationalityObj: any) {
         this.investmentAccountFormData.nationalitylist = nationalitylist;
-        this.investmentAccountFormData.nationality = nationality;
+        this.investmentAccountFormData.nationality = nationalityObj;
 
     }
 

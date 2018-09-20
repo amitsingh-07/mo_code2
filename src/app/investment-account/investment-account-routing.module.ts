@@ -7,7 +7,7 @@ import { ResidentialAddressComponent } from './residential-address/residential-a
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 
 const routes: Routes = [
-  { path: INVESTMENT_ACCOUNT_ROUTES.ROOT, redirectTo: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_INFO, pathMatch: 'full' },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ROOT, redirectTo: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY, pathMatch: 'full' },
   { path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_INFO, component: PersonalInfoComponent },
   { path: INVESTMENT_ACCOUNT_ROUTES.RESIDENTIAL_ADDRESS, component: ResidentialAddressComponent },
    { path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY, component: SelectNationalityComponent },

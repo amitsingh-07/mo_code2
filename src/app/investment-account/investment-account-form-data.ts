@@ -30,7 +30,7 @@ export class InvestmentAccountFormData {
 
     // SELECTNATIONLITY
     nationalitylist: any;
-    nationality: string;
+    nationality: any;
     selectNationalitySingapore: string;
     otherCountryQuestionOne: string;
     otherCountryQuestionTwo: string;
