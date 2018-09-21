@@ -361,7 +361,7 @@ export class ApiService {
       );
   }
   getNationalityList() {
-    //const url = '../assets/mock-data/nationalityList.json';
+    const url = '../assets/mock-data/nationalityList.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
