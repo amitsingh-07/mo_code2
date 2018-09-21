@@ -89,8 +89,8 @@ export class GuideMeCalculateService {
     let protectionSupportSum: number = null;
     const lifeProtection = this.guideMeService.getLifeProtection().dependents;
     lifeProtection.forEach((dependent) => {
-      if (dependent.supportAmountRange) {
-        protectionSupportSum += dependent.supportAmountRange * 12 * dependent.yearsNeeded;
+      if (dependent.supportAmount) {
+        protectionSupportSum += dependent.supportAmount * 12 * dependent.yearsNeeded;
       }
     });
     return protectionSupportSum;
