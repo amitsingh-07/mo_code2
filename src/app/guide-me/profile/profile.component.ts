@@ -16,6 +16,7 @@ import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { ProductDetailComponent } from './../../shared/components/product-detail/product-detail.component';
+import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 const assetImgPath = './assets/images/';
@@ -46,7 +47,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
 
   constructor(
     private guideMeService: GuideMeService, private router: Router,
-    private modal: NgbModal, public headerService: HeaderService, public navbarService: NavbarService,
+    private modal: NgbModal, public headerService: HeaderService, public navbarService: NavbarService, public footerService: FooterService,
     public readonly translate: TranslateService, public authService: AuthenticationService,
     public log: LoggerService, private guideMeApiService: GuideMeApiService, private googleAnalytics: GoogleAnalyticsService) {
 
@@ -68,6 +69,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarVisibility(false);
     this.headerService.setHeaderDropshadowVisibility(true);
     this.headerService.setHeaderOverallVisibility(true);
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {

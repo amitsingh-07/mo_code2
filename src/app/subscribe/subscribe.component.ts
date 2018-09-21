@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FooterService } from './../shared/footer/footer.service';
 import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 
@@ -10,11 +11,12 @@ import { NavbarService } from './../shared/navbar/navbar.service';
 })
 export class SubscribeComponent implements OnInit {
 
-  constructor(private navbarService: NavbarService, private headerService: HeaderService) { }
+  constructor(private navbarService: NavbarService, private headerService: HeaderService, private footerService: FooterService) { }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(false);
-    this.headerService.setHeaderDropshadowVisibility(true);
-    this.headerService.setHeaderOverallVisibility(true);
+    this.navbarService.setNavbarVisibility(true);
+    this.headerService.setHeaderDropshadowVisibility(false);
+    this.headerService.setHeaderOverallVisibility(false);
+    this.footerService.setFooterVisibility(true);
   }
 }

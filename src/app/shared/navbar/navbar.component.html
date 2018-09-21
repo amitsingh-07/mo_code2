@@ -85,5 +85,5 @@
             </div>
         </div>
     </nav>
-<div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
+<div [ngbCollapse]="isNavbarCollapsed" (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
     </div>

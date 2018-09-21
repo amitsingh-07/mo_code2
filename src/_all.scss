@@ -461,17 +461,18 @@ body {
       transition:0.5s;
       &.show{
         opacity:0.6;
+        z-index:100;
       }
     }
   }
-
   .footer__wrapper{
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction:column;
     width:100%;
     margin:0px;
     bottom:0px;
+    border-top:1px solid $light-teal-color;
     .footer__group {
       position: relative;
       display: flex;
@@ -482,12 +483,21 @@ body {
         color:$white-color;
         padding:0px 45px;
         border-bottom:1px solid $light-teal-color;
+        @include minMobilemaxPhablet{
+          flex-direction:column;
+          padding:0px;
+        }
       }
       &.secondary{
         justify-content:space-between;
         background-color:$teal-color;
         color:$white-color;
         padding:30px 45px;
+        flex-wrap:wrap;
+        @include minMobilemaxPhablet{
+          justify-content:flex-start;
+          padding:20px;
+        }
       }
       &.tertiary{
         justify-content:space-between;
@@ -495,12 +505,19 @@ body {
         color:$white-color;
         border-bottom:1px solid $light-teal-color;
         padding:20px 45px 25px 45px;
+        @include minMobilemaxPhablet{
+          flex-direction:column;
+          padding:20px 20px 25px 20px;
+        }
       }
       &.quaternary{
         justify-content:flex-start;
         background-color:$dark-teal-color;
         color:$white-color;
         padding:10px 45px 15px 45px;
+        @include minMobilemaxPhablet{
+          padding:10px 20px 25px 20px;
+        }
       }
     }
 
@@ -515,6 +532,16 @@ body {
       opacity:1;
       transition:0.2s;
       cursor:pointer;
+      @include minMobilemaxPhablet{
+        height:45px;
+        padding:0px 20px;
+        margin-right:unset;
+        justify-content:flex-start;
+        border-bottom:1px solid $light-teal-color;
+        &:last-child() {
+          border-bottom:0px;
+        }
+      }
       &:hover{
         opacity:0.8;
       }
@@ -550,6 +577,10 @@ body {
       display:flex;
       flex-direction:column;
       max-width:240px;
+      @include minMobilemaxPhablet{
+        margin-right:20px;
+        margin-bottom:20px;
+      }
       .title{
         font-family:$muli-semi-bold;
         font-size:18px;
@@ -571,6 +602,9 @@ body {
     .footer-address{
       display:flex;
       flex-direction:row;
+      @include minMobilemaxPhablet{
+        flex-direction:column;
+      }
       .footer-address__header{
         font-family:$muli-bold;
         font-size:20px;
@@ -578,6 +612,9 @@ body {
         margin-right:30px;
         max-width:220px;
         line-height: 1.5;
+        @include minMobilemaxPhablet{
+          margin-bottom:10px;
+        }
       }
       .footer-address__body{
         font-family:$muli-regular;
@@ -601,6 +638,11 @@ body {
         justify-content:center;
         align-items:center;
         margin-left:45px;
+        @include minMobilemaxPhablet{
+          margin-left:unset;
+          margin-right:20px;
+          margin-top:15px;
+        }
         cursor: pointer;
         .icon{
           display:block;
