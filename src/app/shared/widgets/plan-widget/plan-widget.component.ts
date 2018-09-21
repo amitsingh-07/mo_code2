@@ -5,6 +5,7 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -14,6 +15,7 @@ import {
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
 
 @Component({
@@ -27,6 +29,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() type;
   @Input() comparePlan;
   @Input() bestValue;
+  @Input() planSelected;
 
   icon;
   insurerLogo;
@@ -41,6 +44,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   canShowDiscount = true;
   isComparePlanEnabled = false;
   isRankContainerSet = false;
+  mobileThreshold = 576;
 
   coverageDuration;
   premiumDuration;
@@ -129,9 +133,34 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
-
+  comparePlanErrorForMobileModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = '2 plans only';
+    ref.componentInstance.errorMessage = 'you can select max 2 plans for compare';
+    return false;
+  }
+  comparePlanErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = '4 plans only';
+    ref.componentInstance.errorMessage = 'you can select max 4 plans for compare';
+  }
   compareplan() {
-    this.isComparePlanSelected = !this.isComparePlanSelected;
+    if (this.planSelected && this.planSelected.length  < 4) {
+      if (window.innerWidth <= this.mobileThreshold) {
+        if (this.planSelected.length >= 2) {
+          this.comparePlanErrorForMobileModal();
+          return false;
+        }
+      }
+      this.isComparePlanSelected = !this.isComparePlanSelected;
+    } else {
+      if (this.isComparePlanSelected) {
+        this.isComparePlanSelected = !this.isComparePlanSelected;
+      } else {
+        this.comparePlanErrorModal();
+        return false;
+      }
+    }
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }
