@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { DirectFormData } from './direct-form-data';
+import { ICriticalIllness } from './product-info/critical-illness-form/critical-illness.interface';
 import { IEducation } from './product-info/education-form/education.interface';
 import { FormError } from './product-info/form-error';
 import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
+import { ILifeProtection } from './product-info/life-protection-form/life-protection.interface';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
@@ -107,26 +109,6 @@ export class DirectService {
     this.prodSearchInfo.next(prodString);
   }
 
-  /* Setting Life Protection Form into Direct Form */
-  setLifeProtectionForm(form: any) {
-    this.directFormData.gender = form.value.gender;
-    this.directFormData.dob = form.value.dob;
-    this.directFormData.smoker = form.value.smoker;
-    this.directFormData.coverageAmt = form.value.coverageAmt;
-    this.directFormData.premiumWaiver = form.value.premiumWaiver;
-    this.gaDirectSuccess('life-protection');
-  }
-
-  /* Setting Critical Illness Form into Direct Form */
-  setCriticalIllnessForm(form: any) {
-    this.directFormData.gender = form.value.gender;
-    this.directFormData.dob = form.value.dob;
-    this.directFormData.smoker = form.value.smoker;
-    this.directFormData.coverageAmt = form.value.coverageAmt;
-    this.directFormData.earlyCI = form.value.earlyCI;
-    this.gaDirectSuccess('critical-illness');
-  }
-
   /* Custom Currency */
   convertToCurrency(in_amount: number) {
     const amount = this.currencyPipe.transform(in_amount, 'USD');
@@ -149,6 +131,32 @@ export class DirectService {
 
   getFormError(formCtrlName: string, validation: string): string {
     return this.formError.formFieldErrors[formCtrlName][validation];
+  }
+
+  /* Setting Life Protection Form into Direct Form */
+  setLifeProtectionForm(data: ILifeProtection) {
+    this.directFormData.lifeProtection = data;
+    this.gaDirectSuccess('life-protection');
+  }
+
+  getLifeProtectionForm(): ILifeProtection {
+    if (!this.directFormData.lifeProtection) {
+      this.directFormData.lifeProtection = {} as ILifeProtection;
+    }
+    return this.directFormData.lifeProtection;
+  }
+
+  /* Setting Critical Illness Form into Direct Form */
+  setCriticalIllnessForm(data: ICriticalIllness) {
+    this.directFormData.criticalIllness = data;
+    this.gaDirectSuccess('critical-illness');
+  }
+
+  getCriticalIllnessForm(): ICriticalIllness {
+    if (!this.directFormData.criticalIllness) {
+      this.directFormData.criticalIllness = {} as ICriticalIllness;
+    }
+    return this.directFormData.criticalIllness;
   }
 
   setLongTermCareForm(data: ILongTermCare) {
