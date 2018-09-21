@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
+export interface IDropDownData {
+  displayText: string;
+  value: string;
+}
+
 @Component({
   selector: 'app-settings-widget',
   templateUrl: './settings-widget.component.html',
@@ -12,21 +17,53 @@ export class SettingsWidgetComponent implements OnInit {
   @Output() filterProducts = new EventEmitter();
 
   filterArgs: any = {};
-  flrString;
-  sorts: any = ['Highest Rating'];
-  defaultSort = 'Highest Rating';
-  constructor() { }
+  defaultSort: IDropDownData;
+  @Input() sort: any = [];
+  constructor() {
 
-  ngOnInit() {
   }
 
-  applyFilter(name, value) {
-    name = 'plan.' + name;
+  ngOnInit() {
+    this.defaultSort = this.sort[0];
+  }
+
+  setSort(sort) {
+    this.defaultSort = sort;
+    this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
+  }
+
+  uncheck(index, value, c_index, name) {
+    const length = this.filters[index].filterTypes.length;
+    let checkedLength = 0;
+    for (const fil of this.filters[index].filterTypes) {
+      if (value === 'All' && fil.value !== 'All') {
+        fil.checked = false;
+      } else if (value !== 'All' && value !== fil.value) {
+        this.filters[index].filterTypes[0].checked = false;
+      }
+      if (fil.checked) {
+        checkedLength++;
+      }
+    }
+    if (checkedLength === length - 1) {
+      delete this.filterArgs[name];
+      return false;
+    }
+    return true;
+  }
+
+  applyFilter(name, value, allBtn, p_index, c_index) {
+    this.filters[p_index].filterTypes[c_index].checked = !this.filters[p_index].filterTypes[c_index].checked;
+    if (allBtn) {
+      if (!this.uncheck(p_index, value, c_index, name)) {
+        return false;
+      }
+    }
+
     if (this.filterArgs.hasOwnProperty(name)) {
-      if (value === 'All')  {
+      if (value === 'All') {
         delete this.filterArgs[name];
       } else {
-        value = name + ' === \'' + value + '\'';
         if (this.filterArgs[name].has(value)) {
           this.filterArgs[name].delete(value);
           if (this.filterArgs[name].size === 0) {
@@ -37,18 +74,17 @@ export class SettingsWidgetComponent implements OnInit {
         }
       }
     } else {
-      value = name + ' === \'' + value + '\'';
-      this.filterArgs[name] = new Set([]);
-      this.filterArgs[name].add(value);
-    }
-    let flrString = '';
-    for (const type in this.filterArgs) {
-      if (this.filterArgs.hasOwnProperty(type)) {
-        flrString +=  Array.from(this.filterArgs[type]).join(' || ');
-        flrString += ' || ';
+      if (value !== 'All') {
+        this.filterArgs[name] = new Set([]);
+        this.filterArgs[name].add(value);
       }
     }
-    this.flrString = flrString.substring(0, flrString.length - 3);
-    this.filterProducts.emit(this.flrString);
+
+    if (value === 'All') {
+      setTimeout(() => { this.filters[p_index].filterTypes[c_index].checked = true; }, 0);
+    }
+
+    console.log(this.filterArgs);
+    this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
   }
 }
