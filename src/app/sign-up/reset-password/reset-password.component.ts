@@ -43,9 +43,9 @@ tocken;
     this.formValues = this.signUpService.getResetPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      resetPassword1 : [this.formValues.resetPassword1, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)]],
+      resetPassword1 : [this.formValues.resetPassword1, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,20}$/)]],
       // tslint:disable-next-line:max-line-length
-      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,}$/)]]
+      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,20}$/)]]
     });
   }
   ngOnInit() {
@@ -53,9 +53,8 @@ tocken;
     this.headerService.setHeaderVisibility(false);
     this.buildResetPasswordForm();
     console.log('the tocken is ' + this.queryParams.key);
-    this.tocken = encodeURI(this.queryParams.key);
+    this.tocken = encodeURIComponent(this.queryParams.key);
     console.log('the tocken now is is ' + this.tocken);
-    //alert('the key' + this.queryParams.key);
   }
   showHidePassword(el) {
     if (el.type === 'password') {

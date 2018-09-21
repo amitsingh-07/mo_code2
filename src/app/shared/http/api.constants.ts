@@ -23,7 +23,7 @@ export let apiConstants = {
             getAllocationDetails: 'invest/portfolio/recommend'
         },
         investmentAccount: {
-            nationalitylist: 'invest/countrylist',
+            nationalitylist: 'invest/countrylist', 
             getAddressByPincode: 'https://gothere.sg/maps/geo?callback=&output=json&client=&sensor=false'
         }
     }
