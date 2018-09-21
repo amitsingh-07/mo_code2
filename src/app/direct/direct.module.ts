@@ -23,6 +23,7 @@ import { OcpDisabilityFormComponent } from './product-info/ocp-disability-form/o
 import { ProductCategoryComponent } from './product-info/product-category/product-category.component';
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { RetirementIncomeFormComponent } from './product-info/retirement-income-form/retirement-income-form.component';
+import { SrsApprovedPlansFormComponent } from './product-info/srs-approved-plans-form/srs-approved-plans-form.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -55,7 +56,8 @@ export function createTranslateLoader(http: HttpClient) {
     EducationFormComponent, LongTermCareFormComponent,
     HospitalPlanFormComponent, RetirementIncomeFormComponent,
     OcpDisabilityFormComponent, EditProductInfoComponent,
-    ComparePlansComponent],
+    ComparePlansComponent,
+    SrsApprovedPlansFormComponent],
   providers: [CurrencyPipe]
 })
 export class DirectModule { }

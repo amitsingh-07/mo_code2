@@ -18,10 +18,10 @@ export let apiConstants = {
             setInvestmentObjective: 'invest/api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: 'invest/investment-microservice/RiskAssessment',
             updateRiskAssessment: 'invest/RiskAssessment',
-            getAllocationDetails: 'invest/portfolio/recommend',
-            countrylist:'invest/investment-microservice/countrylist'
-            
-            
+            getAllocationDetails: 'invest/portfolio/recommend'
+        },
+        investmentAccount: {
+            nationalitylist: 'invest/countrylist'
         }
     }
 };

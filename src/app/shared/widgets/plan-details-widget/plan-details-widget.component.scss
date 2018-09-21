@@ -42,6 +42,11 @@ app-plan-details-widget {
       img {
         width: 80%;
       }
+      @include allmobiles {
+        img {
+          width: 50% !important;
+        }
+      }
     }
 
     border: solid 3px #fff;
