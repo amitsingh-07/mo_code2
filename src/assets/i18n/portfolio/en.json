@@ -240,6 +240,8 @@
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
+    "INFO": "Information",
+    "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Financials",
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund!",
