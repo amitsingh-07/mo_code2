@@ -2,7 +2,7 @@ import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
-    AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
+  AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,6 +19,9 @@ import { PortfolioService } from '../portfolio.service';
 import { FinancialValidator } from './my-financial-validator';
 import { IMyFinancials } from './my-financials.interface';
 
+import {
+  ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-my-financials',
   templateUrl: './my-financials.component.html',
@@ -81,7 +84,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     return false;
   }
 
-  save(form: any) {
+  goToNext(form) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -90,30 +93,41 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     const error = this.portfolioService.doFinancialValidations(form);
     console.log('error' + error);
     console.log(form.value);
+    if (error) {
+      // tslint:disable-next-line:no-commented-code
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.errorTitle;
+      ref.componentInstance.errorMessage = error.errorMessage;
+      // tslint:disable-next-line:triple-equals
+      if (error.errorTitle == 'Information') {
+        ref.componentInstance.secondButton = 'Yes';
+        ref.componentInstance.secondButtonTitle = 'No';
+        ref.componentInstance.ButtonTitle = 'Yes';
+        ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
+          // tslint:disable-next-line:triple-equals
+          if (emittedValue == 'No') {
+            return false;
+          } else {
+            this.saveAndProceed(form);
+          }
+        });
+      } else {
+        ref.componentInstance.ButtonTitle = 'Try Again';
+        return false;
+      }
+    } else {
+
+      this.saveAndProceed(form);
+    }
+  }
+  saveAndProceed(form: any) {
     this.portfolioService.setMyFinancials(form.value);
     // CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     });
-
-    // tslint:disable-next-line:no-commented-code
-    // const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    //   ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
-    //   ref.componentInstance.errorMessage = this.emailNotFoundDesc;
-    //   ref.componentInstance.ButtonTitle = this.buttonTitle;
-    //   ref.componentInstance.secondButton = 'this.buttonTitle';
-    //   ref.componentInstance.secondButtonTitle = 'Yes';
-    //   ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
-    //    alert(emittedValue);
-    //   });
-    return true;
-  }
-
-  goToNext(form) {
-    if (this.save(form)) {
-      this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
-    }
   }
 }

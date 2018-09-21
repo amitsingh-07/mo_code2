@@ -23,7 +23,7 @@ export let apiConstants = {
             getAllocationDetails: 'invest/portfolio/recommend'
         },
         investmentAccount: {
-            nationalitylist: 'invest/countrylist'
+            nationalitylist: 'invest/investment-microservice/countrylist'
         }
     }
 };
