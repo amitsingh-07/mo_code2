@@ -162,7 +162,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       gender: this.genderOptions[0],
       relationship: this.relationshipOptions[0],
       age: 24,
-      supportAmount: '',
+      supportAmount: 0,
       supportAmountValue: 0,
       yearsNeeded: this.yearsNeededOptions[0],
       educationSupport: false,
