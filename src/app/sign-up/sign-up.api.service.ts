@@ -191,7 +191,7 @@ export class SignUpApiService {
    * @param password - password.
    */
   verifyLogin(userEmail, userPassword) {
-    return this.authService.authenticate(userEmail, userPassword);
+    return this.authService.authenticate(userEmail, this.ctyptoService.encrypt(userPassword));
   }
 
 }
