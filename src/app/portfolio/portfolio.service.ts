@@ -66,22 +66,21 @@ export class PortfolioService {
 
   doFinancialValidations(form) {
     const invalid = [];
-    const invalidFormat = [];
     // tslint:disable-next-line:triple-equals
-    if (form.value.initialInvestment == 0 && form.value.monthlyInvestment == 0) {
+    if (Number(form.value.initialInvestment) == 0 && Number(form.value.monthlyInvestment) == 0) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['zero']);
       return this.personalFormError.formFieldErrors['financialValidations']['zero'];
-    } else if (form.value.initialInvestment <= 100 && form.value.monthlyInvestment <= 50) {
+    } else if (Number(form.value.initialInvestment) <= 100 && Number(form.value.monthlyInvestment) <= 50) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['more']);
       return this.personalFormError.formFieldErrors['financialValidations']['more'];
       // tslint:disable-next-line:max-line-length
-    } else if (form.value.initialInvestment > form.value.myFinancialTotalAssetInput && form.value.monthlyInvestment > form.value.percentageOfSaving * form.value.monthlyIncome) {
+    } else if (Number(form.value.initialInvestment) > Number(form.value.totalAssets) && Number(form.value.monthlyInvestment) > Number(form.value.percentageOfSaving) * Number(form.value.monthlyIncome)) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment']);
       return this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment'];
-    } else if (form.value.initialInvestment > form.value.myFinancialTotalAssetInput) {
+    } else if (Number(form.value.initialInvestment) > Number(form.value.totalAssets)) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreasset']);
       return this.personalFormError.formFieldErrors['financialValidations']['moreasset'];
-    } else if (form.value.monthlyInvestment > form.value.percentageOfSaving * form.value.monthlyIncome) {
+    } else if (Number(form.value.monthlyInvestment) > Number(form.value.percentageOfSaving) * Number(form.value.monthlyIncome)) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreinvestment']);
       return this.personalFormError.formFieldErrors['financialValidations']['moreinvestment'];
     } else {

@@ -84,7 +84,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     return false;
   }
 
-  save(form: any) {
+  goToNext(form) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -108,7 +108,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
           if (emittedValue == 'No') {
             return false;
           } else {
-            return true;
+            this.saveAndProceed(form);
           }
         });
       } else {
@@ -117,20 +117,17 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       }
     } else {
 
-      this.portfolioService.setMyFinancials(form.value);
-      // CALL API
-      this.portfolioService.savePersonalInfo().subscribe((data) => {
-        if (data) {
-          this.authService.saveEnquiryId(data.objectList.enquiryId);
-        }
-      });
-      return true;
+      this.saveAndProceed(form);
     }
   }
-
-  goToNext(form) {
-    if (this.save(form)) {
-      this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
-    }
+  saveAndProceed(form: any) {
+    this.portfolioService.setMyFinancials(form.value);
+    // CALL API
+    this.portfolioService.savePersonalInfo().subscribe((data) => {
+      if (data) {
+        this.authService.saveEnquiryId(data.objectList.enquiryId);
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
+      }
+    });
   }
 }
