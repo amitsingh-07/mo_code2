@@ -96,14 +96,12 @@
               <div class="flex-col-6">
                 <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
                   <i class="fixed-currency">$</i>
-                  <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control" (change)="updateSlider(noUiSlider, i)"
+                  <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control"
                     appCurrencyInput maxLength="4" #supportAmount formControlName="supportAmount" value="0">
                   <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
                 </div>
               </div>
             </div>
-            <nouislider [disabled]="isFormControlDisabled" formControlName="supportAmountRange" #noUiSlider (slide)="onNoUiSliderChange($event, i)"
-              [config]="dependentSliderConfig" [min]="0" [max]="99999" [step]="50" [tooltips]="[ false ]"></nouislider>
             <div class="flex-row">
               <div class="flex-col-6">
                 <div class="form-group-with-bg--content-label" for="name">
@@ -141,11 +139,11 @@
             <div class="form-group-with-bg dark">
               <label>{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_SUBTITLE' | translate}} </label>
               <div class="flex-row">
-                <div class="flex-col-6">
+                <div class="flex-col-5">
                   <div class="form-group-with-bg--content-label" for="name">{{
                     'LIFE_PROTECTION.EDUCATION_SUPPORT_COURSE' | translate}}</div>
                 </div>
-                <div class="flex-col-6">
+                <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown id="eduSupportCourse">
                       <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="courseDropdown"
@@ -159,11 +157,11 @@
                 </div>
               </div>
               <div class="flex-row">
-                <div class="flex-col-6">
+                <div class="flex-col-5">
                   <div class="form-group-with-bg--content-label" for="name">{{
                     'LIFE_PROTECTION.EDUCATION_SUPPORT_COUNTRY' | translate}}</div>
                 </div>
-                <div class="flex-col-6">
+                <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown id="eduSupportCountry">
                       <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="countryDropdown"
@@ -177,11 +175,11 @@
                 </div>
               </div>
               <div class="flex-row">
-                <div class="flex-col-6">
+                <div class="flex-col-5">
                   <div class="form-group-with-bg--content-label" for="name">{{
                     'LIFE_PROTECTION.EDUCATION_SUPPORT_NATIONALITY' | translate}}</div>
                 </div>
-                <div class="flex-col-6">
+                <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown id="eduSupportNationality">
                       <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="nationalityDropdown"

@@ -8,7 +8,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None
 })
 export class ErrorModalComponent implements OnInit {
-  isSelected = false;
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() errorMessageList: string[];
@@ -17,6 +16,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() isButtonEnabled: boolean;
   @Input() isError: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
+  @Output() retry: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal) { }
 
@@ -24,8 +24,11 @@ export class ErrorModalComponent implements OnInit {
   }
 
   goBack() {
-    this.isSelected = true;
-    this.selected.emit(this.isSelected);
+    this.selected.emit();
+    this.activeModal.close();
+  }
+  tryAgain() {
+    this.retry.emit();
     this.activeModal.close();
   }
 }

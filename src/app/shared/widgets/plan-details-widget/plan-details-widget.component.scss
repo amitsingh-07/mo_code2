@@ -39,6 +39,14 @@ app-plan-details-widget {
       text-align: center;
       margin-bottom: 10px;
       align-items: center;
+      img {
+        width: 80%;
+      }
+      @include allmobiles {
+        img {
+          width: 50% !important;
+        }
+      }
     }
 
     border: solid 3px #fff;
@@ -122,6 +130,9 @@ app-plan-details-widget {
 
         .feature-caption {
           font-size: 16px;
+          @include tablet {
+            font-size: 14px !important;
+          }
           font-family: $muli-semi-bold;
           width: 100px;
           margin-bottom: 10px;

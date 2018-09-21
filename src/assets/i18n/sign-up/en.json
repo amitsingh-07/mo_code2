@@ -3,7 +3,8 @@
         "CONTINUE": "Continue",
         "VERIFY": "Verify", 
         "LOGIN": "Log In",
-        "CREATE_ACCOUNT": "Create Account"
+        "CREATE_ACCOUNT": "Create Account",
+        "TRY_AGAIN": "Try Again"
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",

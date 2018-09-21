@@ -12,8 +12,8 @@ import {
 import { PORTFOLIO_ROUTES } from './portfolio-routes.constants';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
+
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
-import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 
 const routes: Routes = [
   { path: PORTFOLIO_ROUTES.ROOT, redirectTo: PORTFOLIO_ROUTES.GET_STARTED_STEP1, pathMatch: 'full' },
@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION, component: PortfolioRecommendationComponent },
   { path: PORTFOLIO_ROUTES.WHATS_THE_RISK, component: WhatsTheRiskComponent },
   { path: PORTFOLIO_ROUTES.FUND_DETAILS, component: FundDetailsComponent },
-  { path: PORTFOLIO_ROUTES.SELECT_NATIONALITY, component: SelectNationalityComponent },
+  
 ];
 
 @NgModule({

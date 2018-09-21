@@ -1,19 +1,30 @@
 <div class="modal-header">
-  <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" id="errorModelImage" /></div>
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" id="errorModelImage" />
+  </div>
 </div>
 <div class="modal-body white-bg">
-  <div class="modal-body-title"  id="errorModeltitle">{{errorTitle}}</div>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true"  id="errorModelCloseIcon"></span>
-    </button>
-  <div class="modal-body-message"  id="errorModelMessage">{{errorMessage}}</div>
-  <button type="button"  class="Rectangle-2 "  (click)="selectNationalityHomepage()"    id="errorModeButton">
-    {{ButtonTitle}}
+  <div class="modal-body-title" id="errorModeltitle">{{errorTitle}}</div>
+  <button type="button" class="close close1" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" id="errorModelCloseIcon"></span>
   </button>
+  <div class="modal-body-message" id="errorModelMessage">{{errorMessage}}</div>
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="Rectangle-2 " (click)="modelButtonClick()" id="errorModeButton">
+        {{ButtonTitle}}
+      </button>
+    </div>
+    <div class="col-12" *ngIf="secondButton">
+      <button type="button" class="Rectangle-2 " (click)="secondmodelButtonClick()" id="errorModeButton">
+        {{secondButtonTitle}}
+      </button>
+    </div>
+  </div>
+
   <!-- <button type="button"  *ngIf="forgotPassword" class="Rectangle-2"   id="errorModeButton2" (click)="activeModal.dismiss('Cross click')">
     {{ 'LABEL.TRY_AGAIN' | translate}} 
   </button> -->
- 
+
 
 </div>
-

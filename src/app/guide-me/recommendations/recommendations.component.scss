@@ -9,6 +9,7 @@ app-recommendations {
   .slick-next:before {
     content:url(../../../assets/images/carousel-next.png) !important;
     opacity: 1;
+    height: 40px;
     @include allmobiles {
       display: none;
     }
@@ -16,16 +17,20 @@ app-recommendations {
   .slick-prev:before {
     content:url(../../../assets/images/carousel-prev.png) !important;
     opacity: 1;
+    height: 40px;
     @include allmobiles {
       display: none;
     }
   }
   .slick-prev .slick-arrow {
-    opacity: 1;
+    height: 50px;
   }
 
   .slick-next.slick-arrow {
-    opacity: 1;
+    height: 40px;
+  }
+  .slick-prev, .slick-next {
+    height: 40px !important;
   }
   .recommedation-wrapper {
     position: absolute;
@@ -128,7 +133,6 @@ app-recommendations {
     border-radius: 6px;
     padding: 20px;
     color: #333;
-
     @include allmobiles {
       padding: 0px;
     }
@@ -241,6 +245,7 @@ app-recommendations {
         padding-left: 20px;
         padding-top: 8px;
         padding-bottom: 8px;
+        font-size: 18px;
         //padding-left: 145px !important;
         //padding-right: 125px !important;
         //background: #2d8289;
@@ -259,9 +264,9 @@ app-recommendations {
   .coverage-type,
   .coverage-amount,
   .coverage-premium-from {
-    font-family: $muli-bold;
+    font-family: $muli-semi-bold;
     margin-right: 50px;
-    font-size: 22px;
+    font-size: 20px;
 
     @include allmobiles {
       margin-right: 0px;

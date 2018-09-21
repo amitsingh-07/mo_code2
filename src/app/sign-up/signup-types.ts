@@ -7,6 +7,12 @@ export interface ISignUp {
 export interface IPlan {
     typeId: number;
     productName: string;
+    premium: IPremium;
+}
+
+export interface IPremium {
+    premiumAmount: string;
+    premiumFrequency: string;
 }
 
 export interface ICustomer {
