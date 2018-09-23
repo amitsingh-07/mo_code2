@@ -41,6 +41,9 @@ app-plan-widget {
       background-color: #ff872f !important;
       border-color: #ff872f !important;
       box-shadow: none;
+      @include allmobiles {
+        border-radius: 0;
+      }
     }
 
     .info-icon {
@@ -61,7 +64,7 @@ app-plan-widget {
       @include allmobiles {
         justify-content: center;
         img {
-          width: 50% !important;
+          width: 70% !important;
         }
       }
       img {
@@ -77,6 +80,7 @@ app-plan-widget {
 
     .insurance-plan-widget__container {
       padding-top: 15px;
+      min-height: 440px;
 
       @include allmobiles {
         min-height: 251px;
