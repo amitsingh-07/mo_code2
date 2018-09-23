@@ -44,12 +44,12 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
   premiumFrequency: any = {};
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
-  claimFeature = new Set(['All', 'Single Claim', 'Multiple Claim']);
-  deferredPeriod = new Set(['All', '3 Months', '6 Months']);
-  escalatingBenefit = new Set(['All', '0%', '3%']);
-  fullPartialRider = new Set(['All', 'Partial Rider', 'Full Rider']);
-  payoutYears = new Set(['All', '12 Years', 'Lifetime']);
-  claimCriteria = new Set(['All', 'Standard', 'Lenient']);
+  claimFeature = [{value: 'All', checked: true}, { value: 'Single Claim', checked: false}, { value: 'Multiple Claim', checked: false}];
+  deferredPeriod = [{value: 'All', checked: true}, { value: '3 Months', checked: false}, { value: '6 Months', checked: false}];
+  escalatingBenefit = [{value: 'All', checked: true}, { value: '0%', checked: false}, { value: '3%', checked: false}];
+  fullPartialRider = [{value: 'All', checked: true}, { value: 'Partial Rider', checked: false}, { value: 'Full Rider', checked: false}];
+  payoutYears = [{value: 'All', checked: true}, { value: '12 Years', checked: false}, { value: 'Lifetime', checked: false}];
+  claimCriteria = [{value: 'All', checked: true}, { value: 'Standard', checked: false}, { value: 'Lenient', checked: false}];
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
@@ -91,6 +91,30 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
           title: 'Insurers\' Financial Rating', name: 'financialRating',
           filterTypes: this.insurersFinancialRating, allBtn: true
         };
+        const claimFeature = {
+          title: 'Claim Feature', toolTip: '', name: 'claimFeature',
+          filterTypes: this.claimFeature, allBtn: true
+        };
+        const deferredPeriod = {
+          title: 'Deferred Period', toolTip: '', name: 'deferredPeriod',
+          filterTypes: this.deferredPeriod, allBtn: true
+        };
+        const escalatingBenefit = {
+          title: 'Escalating Benefit', toolTip: '', name: 'escalatingBenefit',
+          filterTypes: this.escalatingBenefit, allBtn: true
+        };
+        const fullPartialRider = {
+          title: 'Full / Partial Rider', toolTip: '', name: 'fullPartialRider',
+          filterTypes: this.fullPartialRider, allBtn: true
+        };
+        const payoutYears = {
+          title: 'Payout Years', toolTip: '', name: 'payoutYears',
+          filterTypes: this.payoutYears, allBtn: true
+        };
+        const claimCriteria = {
+          title: 'Claim Criteria', toolTip: '', name: 'claimCriteria',
+          filterTypes: this.claimCriteria, allBtn: true
+        };
         this.filters.push(premiumFrequency);
         this.filters.push(insurers);
         this.filters.push(insurersFinancialRating);
@@ -99,29 +123,30 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
             this.filters.push({ title: 'Claim Feature', toolTip: '', filterTypes: this.claimFeature, allBtn: true });
             break;
           case 2:
-            //this.filters.delete(premiumFrequency);
-            //this.filters.delete(insurersFinancialRating);
-            this.filters.push({ title: 'Deferred Period', toolTip: '', filterTypes: this.deferredPeriod, allBtn: true });
-            this.filters.push({ title: 'Escalating Benefit', toolTip: '', filterTypes: this.escalatingBenefit });
+            delete this.filters[1];
+            delete this.filters[2];
+            this.filters.push(deferredPeriod);
+            this.filters.push(escalatingBenefit);
             break;
           case 3:
-            //this.filters.delete(premiumFrequency);
-            this.filters.push({ title: 'Full / Partial Rider', toolTip: '', filterTypes: this.fullPartialRider });
+            delete this.filters[0];
+            this.filters.push(fullPartialRider);
             break;
           case 4:
-            this.filters.push({ title: 'Payout Years', filterTypes: this.payoutYears, allBtn: true });
-            this.filters.push({ title: 'Claim Criteria', toolTip: '', filterTypes: this.claimCriteria, allBtn: true });
+            this.filters.push(payoutYears);
+            this.filters.push(claimCriteria);
             break;
           case 5:
-            //this.filters.delete(premiumFrequency);
+            delete this.filters[0];
             break;
           case 6:
-            this.filters.push({ title: 'Payout Years', filterTypes: this.payoutYears, allBtn: true });
+            this.filters.push(payoutYears);
             break;
           case 7:
-            //this.filters.delete(premiumFrequency);
+            delete this.filters[0];
             break;
         }
+        this.filters = this.filters.filter(() => true);
       });
   }
 
