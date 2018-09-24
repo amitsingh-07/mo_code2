@@ -1,4 +1,3 @@
-
 .Rectangle-2 {
     width: 100%;
     height: 57px;
@@ -17,22 +16,7 @@
     text-align: center;
     color: #ffffff;
   }
-  // .closeIt
-  // {
-  //   position: absolute !important;
-  //   right: 12px !important;
-  //   top: 15px !important;
-  //   text-shadow: none !important;
-  //   background: url("./assets/images/close-button-dark.svg") !important;
-  //   width: 18px;
-  //   height: 18px;
-  //   background-repeat: no-repeat !important;
-  //   // position: relative;
-  //   // float: right;
-  //   // top: 14px;
-  //   // right: 5px;
-  //   @include allmobiles {
-  //     top: 22px !important;
-  //    // opacity: 1 !important;
-  //   }
-  // }
+  .close1
+  {
+    opacity: 0 !important;
+  }

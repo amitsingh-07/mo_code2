@@ -1,10 +1,6 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
-input::-ms-clear, input::-ms-reveal {
-  display: none;
-}
-
 .forgot-link {
   text-align: center;
 

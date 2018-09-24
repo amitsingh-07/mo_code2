@@ -26,12 +26,7 @@
     "UNIT_NO": "Unit No.",
     "CITY": "City",
     "STATE": "State / Province / Region",
-    "ZIPCODE": "Zip Code",
-    "ERROR": {
-      "POSTAL_CODE_TITLE": "Error !",
-      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
-    }
-    
+    "ZIPCODE": "Zip Code"
   },
   "SELECT_NATIONALITY":{
     "editModalData": {

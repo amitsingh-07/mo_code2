@@ -76,11 +76,12 @@ export class GoogleAnalyticsService {
               oldDate = c.substring(cookieName.length, c.length);
           }
       }
-
-    if (oldDate != null) {
+    if (oldDate !== 'null') {
       timeDiff = (Date.parse(currDate) - Date.parse(oldDate));
+      return timeDiff;
+    } else {
+      return false;
     }
-    return timeDiff;
   }
 
   public endTime(timeId: string) {

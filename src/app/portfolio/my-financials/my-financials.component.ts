@@ -2,7 +2,7 @@ import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
-  AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
+    AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,9 +19,6 @@ import { PortfolioService } from '../portfolio.service';
 import { FinancialValidator } from './my-financial-validator';
 import { IMyFinancials } from './my-financials.interface';
 
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-my-financials',
   templateUrl: './my-financials.component.html',
@@ -35,7 +32,6 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   heplDate: any;
   pageTitle: string;
   form: any;
-  translator: any;
 
   constructor(
     private router: Router,
@@ -51,7 +47,6 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
       self.heplDate = this.translate.instant('MY_FINANCIALS.heplDate');
-      self.translator = this.translate.instant('MY_FINANCIALS');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -86,49 +81,44 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     return false;
   }
 
-  goToNext(form) {
+  save(form: any) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
+    
+      const error = this.portfolioService.currentFormError(form);
     }
-    const error = this.portfolioService.doFinancialValidations(form);
-    console.log('error' + error);
-    if (error) {
-      // tslint:disable-next-line:no-commented-code
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      // tslint:disable-next-line:triple-equals
-      if (error.errorTitle == this.translator.INFO) {
-        ref.componentInstance.secondButton = this.translator.LABEL_YES;
-        ref.componentInstance.secondButtonTitle = this.translator.LABEL_NO;
-        ref.componentInstance.ButtonTitle = this.translator.LABEL_YES;
-        ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
-          // tslint:disable-next-line:triple-equals
-          if (emittedValue == this.translator.LABEL_NO) {
-            return false;
-          } else {
-            this.saveAndProceed(form);
-          }
-        });
-      } else {
-        ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
-        return false;
-      }
-    } else {
-
-      this.saveAndProceed(form);
-    }
-  }
-  saveAndProceed(form: any) {
+    console.log(form.value);
+    // tslint:disable-next-line:curly
+//     if ( form.value.initialInvestment == 0  &&  form.value.monthlyInvestment == 0 )
+//     {
+// alert('NO NO');
+//     }
     this.portfolioService.setMyFinancials(form.value);
     // CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
-        this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     });
+
+    // tslint:disable-next-line:no-commented-code
+    // const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    //   ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
+    //   ref.componentInstance.errorMessage = this.emailNotFoundDesc;
+    //   ref.componentInstance.ButtonTitle = this.buttonTitle;
+    //   ref.componentInstance.secondButton = 'this.buttonTitle';
+    //   ref.componentInstance.secondButtonTitle = 'Yes';
+    //   ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
+    //    alert(emittedValue);
+    //   });
+    return true;
+  }
+
+  goToNext(form) {
+    if (this.save(form)) {
+      this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
+    }
   }
 }

@@ -81,10 +81,6 @@ export class InvestmentAccountService {
         return errors;
     }
 
-    getAddressUsingPostalCode(data) {
-        return this.apiService.getAddressUsingPostalCode(data);
-    }
-
     getNationalityList() {
         return this.apiService.getNationalityList();
     }
