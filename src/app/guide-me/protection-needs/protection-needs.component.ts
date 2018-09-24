@@ -1,8 +1,8 @@
-import { GuideMeApiService } from '../guide-me.api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { GuideMeApiService } from '../guide-me.api.service';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
@@ -66,7 +66,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   }
   createItem(responseObj, i): FormGroup {
     return this.formBuilder.group({
-      status: (this.formValues && this.formValues[i] && this.formValues[i].status)
+      status: (this.formValues && this.formValues[i] && this.formValues[i].status !== undefined)
         ? this.formValues[i].status : true,
       protectionTypeId: responseObj.protectionTypeId,
       protectionType: responseObj.protectionType,
