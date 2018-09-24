@@ -61,6 +61,10 @@ export class GuideMeApiService {
         requestObj.sessionId = this.authService.getSessionId();
 
         requestObj.enquiryProtectionTypeData = this.guideMeService.getSelectedProtectionNeedsList();
+        let existingCoverageList = this.guideMeService.getExistingCoverageValues();
+        if (!existingCoverageList) {
+            existingCoverageList = this.guideMeService.getEmptyExistingCoverage();
+        }
         requestObj.existingInsuranceList = [this.guideMeService.getExistingCoverageValues()];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
