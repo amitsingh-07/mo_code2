@@ -130,6 +130,8 @@ export class ResidentialAddressComponent implements OnInit {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
           ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
           ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+          address1Control.setValue('');
+          address2Control.setValue('');
         }
       }
     });

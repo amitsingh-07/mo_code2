@@ -59,7 +59,7 @@
 
                       </div>
                       <div class="col-5">
-                        <button type="button" *ngIf="addressForm.controls.postalCode.value" (click)="retrieveAddress(addressForm.controls.postalCode.value, addressForm.controls.address1, addressForm.controls.address2)" class="btn btn-secondary right">{{
+                        <button type="button" (click)="retrieveAddress(addressForm.controls.postalCode.value, addressForm.controls.address1, addressForm.controls.address2)" class="btn btn-secondary right">{{
                           'COMMON.LABEL.RETRIEVE' | translate}}
                         </button>
                       </div>
@@ -214,7 +214,7 @@
                           />
                         </div>
                         <div class="col-5">
-                          <button type="button" *ngIf="addressForm.controls.mailingAddress.controls.mailPostalCode.value" (click)="retrieveAddress(addressForm.controls.mailingAddress.controls.mailPostalCode.value, addressForm.controls.mailingAddress.controls.mailAddress1, addressForm.controls.mailingAddress.controls.mailAddress2)" class="btn btn-secondary right">{{
+                          <button type="button" (click)="retrieveAddress(addressForm.controls.mailingAddress.controls.mailPostalCode.value, addressForm.controls.mailingAddress.controls.mailAddress1, addressForm.controls.mailingAddress.controls.mailAddress2)" class="btn btn-secondary right">{{
                             'COMMON.LABEL.RETRIEVE' | translate}}
                           </button>
                         </div>
