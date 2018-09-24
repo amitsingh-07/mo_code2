@@ -1,3 +1,37 @@
-<div>
-settings widget
+<div class="form-group">
+  <div class="flex-row mb0">
+    <div class="title flex-col-12">
+      Settings
+    </div>
+  </div>
+  <div class="flex-row">
+    <div class="flex-col-5">
+      <label for="name">{{ 'SETTINGS.SORT_BY'  | translate}} </label>
+    </div>
+    <div class="flex-col-7">
+      <div class="dropdown-control">
+        <div ngbDropdown id="dependentDropDown">
+          <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+            <span class="dependent-count">{{defaultSort.displayText}}</span>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button type="button" class="dropdown-item" *ngFor="let item of sort;" (click)="setSort(item)">
+              {{item.displayText}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex-col" *ngFor="let filter of filters; let p_index = index">
+    <label>{{filter.title}}</label>
+    <div class="form-group-single-column mb0">
+      <div class="checkbox-button two-label" *ngFor="let flr of filter.filterTypes; let c_index = index;">
+        <input id="{{filter.title + '_' + c_index}}" type="checkbox" (change)="applyFilter(filter.name, flr.value, filter.allBtn, p_index, c_index)" class="field checkbox" [checked]="flr.checked">
+        <label for="{{filter.title + '_' + c_index}}" id="tle + '_' + c_index}}Lbl">
+          <div class="input-label-normal">{{flr.name ? flr.name : flr.value}}</div>
+        </label>
+      </div>
+    </div>
+  </div>
 </div>

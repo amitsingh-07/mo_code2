@@ -19,7 +19,7 @@ export class CreateAccountModelComponent implements OnInit {
               public guideMeService: GuideMeService,
               private router: Router) {
   }
-  
+
   ngOnInit() {
   }
 

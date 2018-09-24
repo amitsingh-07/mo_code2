@@ -61,5 +61,26 @@
     "LBL_RANKING": "Ranking By Price",
     "LBL_RATING": "Insurer's Rating",
     "LBL_COMMISSION": "Commission Rebate"
+  },
+  "SETTINGS": {
+    "SORT_BY": "Sort by",
+    "SORT" : [
+      {"displayText": "Highest Ranking", "value": "premium.ranking" },
+      {"displayText": "Insurer Name (A-Z)", "value": "+insurer.insurerName" },
+      {"displayText": "Insurer Name (Z-A)", "value": "-insurer.insurerName" },
+      {"displayText": "Financial Rating (Highest-Lowest)", "value": "+insurer.rating" },
+      {"displayText": "Financial Rating (Lowest-Highest)", "value": "-insurer.rating" }
+    ],
+    "TYPES": {
+      "PREMIUM_FREQUENCY": "Premium Frequency",
+      "INSURANCE_FINANCIAL_RATING": "Insurers' Financial Rating",
+      "CLAIM_FEATURE": "Claim Feature",
+      "DEFERRED_PERIOD": "Deferred Period",
+      "ESCALATING_BENEFIT": "Escalating Benefit",
+      "FULL_PARTIAL_RIDER": "Full / Partial Rider",
+      "PAYOUT_YEARS": "Payout Years",
+      "CLAIM_CRITERIA": "Claim Criteria"
+    },
+    "NO_RESULTS": "Please change your filter settings" 
   }
 }
