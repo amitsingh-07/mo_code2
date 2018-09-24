@@ -15,7 +15,7 @@
             "LAST_NAME": "Last Name",
             "EMAIL": "Email Address",
             "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
-            "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
+            "MARKETING_ACCEPTANCE": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl."
         }
     },
     "VERIFY_MOBILE": {
