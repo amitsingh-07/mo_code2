@@ -11,7 +11,7 @@ import {
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { ValidateRange } from '../create-account/range.validator';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
   buildLoginForm() {
     this.formValues = this.signUpService.getLoginInfo();
     this.loginForm = this.formBuilder.group({
-      loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(/^(?:\d{8,10}|\w+[\w-\.]*@\w+\.\w{2,3})$/)]],
+      loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
       loginPassword: [this.formValues.loginPassword, [Validators.required]]
     });
   }
