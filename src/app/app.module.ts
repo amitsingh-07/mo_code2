@@ -1,7 +1,7 @@
 import 'hammerjs';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -89,6 +89,7 @@ export function tokenGetterFn() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     HttpModule,
     TranslateModule.forRoot({
       loader: {

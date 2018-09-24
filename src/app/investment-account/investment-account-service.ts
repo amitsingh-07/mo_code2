@@ -5,6 +5,7 @@ import { InvestmentAccountFormError } from '../investment-account/investment-acc
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
+import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 
 @Injectable({
     providedIn: 'root'
@@ -32,7 +33,7 @@ export class InvestmentAccountService {
         return selectedCountry === 'SINGAPORE';
     }
     setDefaultValueForFormData() {
-        this.investmentAccountFormData.isMailingAddressSame = true;
+        this.investmentAccountFormData.isMailingAddressSame = INVESTMENT_ACCOUNT_CONFIG.residential_info.isMailingAddressSame;
     }
     setResidentialAddressFormData(data) {
         this.investmentAccountFormData.country = data.country;
@@ -79,6 +80,10 @@ export class InvestmentAccountService {
             }
         }
         return errors;
+    }
+
+    getAddressUsingPostalCode(data) {
+        return this.apiService.getAddressUsingPostalCode(data);
     }
 
     getNationalityList() {

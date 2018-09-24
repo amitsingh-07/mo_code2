@@ -1,4 +1,5 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { MyInfoService } from './../Services/my-info.service';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
@@ -13,6 +14,7 @@ import { MyInfoService } from './../Services/my-info.service';
 import { apiConstants } from './api.constants';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
+import { Jsonp } from '@angular/http';
 
 const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
 
@@ -362,8 +364,7 @@ export class ApiService {
   }
   getNationalityList() {
     const url = '../assets/mock-data/nationalityList.json';
-    //return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
-    return this.http.get(url)
+    return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -386,11 +387,12 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions
   requestForgotPasswordLink(data) {
     // tslint:disable-next-line
-    // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
+    //const url = 'https://bfa-dev.ntucbfa.cloud/account/account-microservice/api/forgotPassword';
+    // tslint:disable-next-line:no-commented-code
     const url = '../assets/mock-data/forgotPassword.json';
     console.log('Data Posted: ');
     console.log(data);
-    return this.http.post(url, data)
+    return this.http.post(apiConstants.endpoint.forgotPassword, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -403,42 +405,68 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            return this.httpClient.get<IServerResponse>(url);
+            //return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
         })
       );
   }
-// tslint:disable-next-line:no-identical-functions
-requestResetPassword(data) {
-  // tslint:disable-next-line
-  // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
-  const url = '../assets/mock-data/forgotPassword.json';
-  console.log('Data Posted: ');
-  console.log(data);
-  return this.http.post(url, data)
-    .pipe(
-      // tslint:disable-next-line:no-identical-functions
-      catchError((error: HttpErrorResponse) => {
-        if (error.error instanceof ErrorEvent) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.error('An error occurred:', error.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.error(
-            `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-          );
-          return this.httpClient.get<IServerResponse>(url);
-        }
-        // return an observable with a user-facing error message
-        return throwError('Something bad happened; please try again later.');
-      })
-    );
-}
+  // tslint:disable-next-line:no-identical-functions
+  requestResetPassword(data) {
+    // tslint:disable-next-line
+    // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
+    const url = '../assets/mock-data/forgotPassword.json';
+    console.log('Data Posted: ');
+    console.log(data);
+    return this.http.post(apiConstants.endpoint.resetPassword, data)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+            // return this.httpClient.get<IServerResponse>(url);
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
   getDirectSearch(data) {
     const url = '../assets/mock-data/directResults.json';
     return this.httpClient.get<IServerResponse>(url);
   }
+
+  getAddressUsingPostalCode(code) {
+    // tslint:disable-next-line
+    // const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
+    const q = code ? code : '';
+    return this.httpClient.jsonp(apiConstants.endpoint.investmentAccount.getAddressByPincode + '&q=' + q, 'callback')
+      .pipe( // tslint:disable-next-line
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+            //return this.httpClient.get<IServerResponse>(url);
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
 }
+
