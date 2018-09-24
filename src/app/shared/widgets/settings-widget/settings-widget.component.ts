@@ -82,8 +82,14 @@ export class SettingsWidgetComponent implements OnInit {
 
     if (value === 'All') {
       setTimeout(() => { this.filters[p_index].filterTypes[c_index].checked = true; }, 0);
+    } else if (name === 'premiumFrequency') {
+      if (this.filters[p_index].filterTypes[c_index].checked) {
+        const i = c_index === 1 ? 0 : 1;
+        this.filters[p_index].filterTypes[i].checked = !this.filters[p_index].filterTypes[i].checked;
+      } else {
+        setTimeout(() => { this.filters[p_index].filterTypes[c_index].checked = true; }, 0);
+      }
     }
-
     console.log(this.filterArgs);
     this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
   }

@@ -41,7 +41,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
   filterArgs;
   sortProperty = this.sortList[0].value;
 
-  premiumFrequency: any = {};
+  premiumFrequency: any = [{value: 'per month', checked: true}, { value: 'per year', checked: false}];
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
   claimFeature = [{value: 'All', checked: true}, { value: 'Single Claim', checked: false}, { value: 'Multiple Claim', checked: false}];
@@ -71,16 +71,12 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
           for (const productList of productLists.productList) {
             this.insurers[productList.insurer.insurerName.replace(/ /g, '_')] = productList.insurer.insurerName;
             this.insurersFinancialRating[productList.insurer.rating.replace(/ /g, '_')] = productList.insurer.rating;
-            this.premiumFrequency[productList.premium.premiumFrequency.replace(/ /g, '_')] = productList.premium.premiumFrequency;
           }
         }
         this.insurers = Object.values(this.insurers).map((key) => {
           return { value: key, checked: key === 'All' ? true : false };
         });
         this.insurersFinancialRating = Object.values(this.insurersFinancialRating).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-        this.premiumFrequency = Object.values(this.premiumFrequency).map((key) => {
           return { value: key, checked: key === 'All' ? true : false };
         });
         const premiumFrequency = {
@@ -152,6 +148,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
 
   ngAfterContentInit() {
 
+  }
+
+  ngOnInit() {
   }
 
   setPageTitle(title: string) {
