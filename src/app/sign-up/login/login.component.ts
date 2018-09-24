@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
       return false;
     } else {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword).subscribe((data) => {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.ROOT]);
       });
     }
   }

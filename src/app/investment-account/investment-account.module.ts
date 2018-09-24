@@ -13,6 +13,7 @@ import { InvestmentAccountRoutingModule } from './investment-account-routing.mod
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
+import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -41,7 +42,8 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     PersonalInfoComponent,
     ResidentialAddressComponent,
-    SelectNationalityComponent
+    SelectNationalityComponent,
+    EmploymentDetailsComponent
 
   ],
   providers: [CurrencyPipe]

@@ -147,7 +147,7 @@ export class ResidentialAddressComponent implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setResidentialAddressFormData(form.value);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
     }
   }
 
