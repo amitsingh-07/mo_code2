@@ -88,8 +88,8 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   }
   dobErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'dob error';
-    ref.componentInstance.errorMessage = 'dob content';
+    ref.componentInstance.errorTitle = 'Invalid Payout age';
+    ref.componentInstance.errorMessage = 'Payout age must be greater than the current age of the user';
     return false;
   }
   selectPayoutType(payoutType) {

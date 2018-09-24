@@ -136,13 +136,13 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   comparePlanErrorForMobileModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = '2 plans only';
-    ref.componentInstance.errorMessage = 'you can select max 2 plans for compare';
+    ref.componentInstance.errorMessage = 'you can select maximum of 2 plans for compare';
     return false;
   }
   comparePlanErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = '4 plans only';
-    ref.componentInstance.errorMessage = 'you can select max 4 plans for compare';
+    ref.componentInstance.errorMessage = 'you can select maximum of 4 plans for compare';
   }
   compareplan() {
     if (this.planSelected && this.planSelected.length  < 4) {
