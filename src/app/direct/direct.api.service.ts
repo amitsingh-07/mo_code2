@@ -12,7 +12,8 @@ import {
     ILifeProtection,
     ILongTermCareNeedsData,
     IOccupationalDisabilityData,
-    IRecommendationRequest
+    IRecommendationRequest,
+    IProtectionTypeData
 } from './../shared/interfaces/recommendations.request';
 import { DirectService } from './direct.service';
 
@@ -38,7 +39,7 @@ export class DirectApiService {
         const requestObj = {} as IRecommendationRequest;
         requestObj.sessionId = this.authService.getSessionId();
 
-        requestObj.enquiryProtectionTypeData = [this.directService.getProductCategory()];
+        requestObj.enquiryProtectionTypeData = this.getProtectionTypeData();
         requestObj.existingInsuranceList = [this.directService.getEmptyExistingCoverage()];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
@@ -55,6 +56,15 @@ export class DirectApiService {
         return requestObj;
     }
 
+    getProtectionTypeData() {
+        const productCategory = this.directService.getProductCategory();
+        return [
+            {
+                protectionTypeId: productCategory.id,
+                protectionType: productCategory.prodCatName
+            } as IProtectionTypeData
+        ];
+    }
     getHospitalPlanData() {
         const hospitalPlan = this.directService.getHospitalPlanForm();
         const hospitalPlanData: IHospitalizationNeedsData = {

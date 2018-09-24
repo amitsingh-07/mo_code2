@@ -1,4 +1,3 @@
-import { IProtectionTypeData } from '../shared/interfaces/recommendations.request';
 import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
 import { ICriticalIllness } from './product-info/critical-illness-form/critical-illness.interface';
 import { IEducation } from './product-info/education-form/education.interface';
@@ -21,7 +20,7 @@ export class DirectFormData {
     coverageAmt: number;
     duration: string;
     userInfo: UserInfo;
-    prodCategory: IProtectionTypeData;
+    prodCategory: IProductCategory;
 
     // Life Protection Form
     lifeProtection: ILifeProtection;
