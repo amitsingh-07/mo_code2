@@ -67,6 +67,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
       duration: [this.formValues.duration],
       earlyCI: [this.formValues.earlyCI]
     });
+
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '') {
         if (this.save()) {

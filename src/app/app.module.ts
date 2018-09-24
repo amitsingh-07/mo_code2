@@ -1,13 +1,7 @@
 import 'hammerjs';
 
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
-//import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import {
-    HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -16,6 +10,8 @@ import { Router, RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,21 +19,19 @@ import { appConstants } from './app.constants';
 import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
-    ExistingCoverageModalComponent
+  ExistingCoverageModalComponent
 } from './guide-me/insurance-results/existing-coverage-modal/existing-coverage-modal.component';
 import {
-    RestrictAlphabetsDirective
+  RestrictAlphabetsDirective
 } from './guide-me/insurance-results/existing-coverage-modal/restrict-alphabets.directive';
 import {
-    InsuranceResultModalComponent
+  InsuranceResultModalComponent
 } from './guide-me/insurance-results/insurance-result-modal/insurance-result-modal.component';
 import {
-    LifeProtectionModalComponent
+  LifeProtectionModalComponent
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
-import {
-    CreateAccountModelComponent
-} from './guide-me/recommendations/create-account-model/create-account-model.component';
+import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { HeaderComponent } from './shared/header/header.component';
@@ -49,15 +43,11 @@ import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
-import {
-    ModelWithButtonComponent
-} from './shared/modal/model-with-button/model-with-button.component';
+import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
+import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
-import {
-    SettingsWidgetComponent
-} from './shared/widgets/settings-widget/settings-widget.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -89,8 +79,7 @@ export function tokenGetterFn() {
     jqxSliderComponent,
     HeaderComponent,
     NumberOnlyDirective,
-    CallBackComponent,
-    SettingsWidgetComponent
+    CallBackComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +121,7 @@ export function tokenGetterFn() {
   bootstrap: [AppComponent],
   entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent,
-    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent]
+    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent]
 })
 
 export class AppModule {
