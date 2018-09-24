@@ -14,8 +14,14 @@ import { RetirementIncomeFormComponent } from './product-info/retirement-income-
 import { SrsApprovedPlansFormComponent } from './product-info/srs-approved-plans-form/srs-approved-plans-form.component';
 
 const routes: Routes = [
-  { path: '', component: DirectComponent,
-    children: [
+  { path: '', component: DirectComponent},
+  { path: ':id', component: DirectComponent},
+  { path: DIRECT_ROUTES.RESULTS, component: DirectResultsComponent },
+  { path: DIRECT_ROUTES.COMPARE_PLANS, component: ComparePlansComponent }
+];
+
+/*
+children: [
       { path: 'life-protection', component: LifeProtectionFormComponent},
       { path: 'critical-illness', component: CriticalIllnessFormComponent},
       { path: 'education', component: EducationFormComponent},
@@ -25,10 +31,7 @@ const routes: Routes = [
       { path: 'srs-approved-plans', component: SrsApprovedPlansFormComponent}
     ]
   },
-  { path: DIRECT_ROUTES.RESULTS, component: DirectResultsComponent },
-  { path: DIRECT_ROUTES.COMPARE_PLANS, component: ComparePlansComponent }
-];
-
+*/
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

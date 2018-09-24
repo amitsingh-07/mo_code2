@@ -750,8 +750,7 @@ input::placeholder {
 
   .signup-wrapper__header-icon {
     width: 30%;
-    /* height: 30%; */
-    display:block;
+    height: 30%;
 
     @include allmobiles {
       width: 138px;

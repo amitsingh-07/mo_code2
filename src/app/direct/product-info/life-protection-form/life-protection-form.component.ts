@@ -118,7 +118,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     }
     form.value.coverageAmt = this.coverage_amt;
     form.value.duration = this.duration;
-    this.directService.setLifeProtectionForm(form);
+    this.directService.setLifeProtectionForm(form.value);
     return true;
   }
 

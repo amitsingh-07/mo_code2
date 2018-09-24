@@ -1,6 +1,5 @@
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { NgControl } from '@angular/forms';
 
 @Directive({
     selector: '[appCurrencyInputPortfolio]',
@@ -13,7 +12,6 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
 
     constructor(
         private el: ElementRef, private currencyPipe: CurrencyPipe,
-        private control: NgControl,
         private decimalPipe: DecimalPipe) {
     }
     ngAfterViewInit() {
@@ -49,7 +47,6 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
             this.el.nativeElement.value = currentElement === '' ? 0 : currentElement;
         } else {
             this.el.nativeElement.value = 0;
-            this.control.control.setValue(0);
         }
     }
 }

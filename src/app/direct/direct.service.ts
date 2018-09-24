@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { DirectFormData } from './direct-form-data';
+import { ICriticalIllness } from './product-info/critical-illness-form/critical-illness.interface';
 import { IEducation } from './product-info/education-form/education.interface';
 import { FormError } from './product-info/form-error';
 import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
+import { ILifeProtection } from './product-info/life-protection-form/life-protection.interface';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
 import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
+
+import { GoogleAnalyticsService } from './../shared/ga/google-analytics.service';
 
 const SESSION_STORAGE_KEY = 'app_direct_session';
 
@@ -40,7 +44,7 @@ export class DirectService {
   modalToolTipTrigger = this.modalToolTip.asObservable();
   currentIndexValue: number;
 
-  constructor(private currencyPipe: CurrencyPipe) {
+  constructor(private currencyPipe: CurrencyPipe, private googleAnalyticsService: GoogleAnalyticsService) {
   }
 
   commit() {
@@ -74,6 +78,14 @@ export class DirectService {
   triggerSearch(event) {
     this.searchBtn.next(event);
   }
+  /* Search Button Success */
+  gaDirectSuccess(category: string) {
+    if (this.googleAnalyticsService.getTime('initialDirectSearch') !== false) {
+      this.googleAnalyticsService.emitTime('initialDirectSearch', 'Direct', 'Success');
+    }
+    this.googleAnalyticsService.emitEvent('Direct', 'Recommend', 'Success');
+    this.googleAnalyticsService.emitEvent('Direct', category, 'Success');
+  }
 
   /* Get Product Category List */
   getProductCategory() {
@@ -95,24 +107,6 @@ export class DirectService {
   /* Handling Minified Product Info */
   setMinProdInfo(prodString: string) {
     this.prodSearchInfo.next(prodString);
-  }
-
-  /* Setting Life Protection Form into Direct Form */
-  setLifeProtectionForm(form: any) {
-    this.directFormData.gender = form.value.gender;
-    this.directFormData.dob = form.value.dob;
-    this.directFormData.smoker = form.value.smoker;
-    this.directFormData.coverageAmt = form.value.coverageAmt;
-    this.directFormData.premiumWaiver = form.value.premiumWaiver;
-  }
-
-  /* Setting Critical Illness Form into Direct Form */
-  setCriticalIllnessForm(form: any) {
-    this.directFormData.gender = form.value.gender;
-    this.directFormData.dob = form.value.dob;
-    this.directFormData.smoker = form.value.smoker;
-    this.directFormData.coverageAmt = form.value.coverageAmt;
-    this.directFormData.earlyCI = form.value.earlyCI;
   }
 
   /* Custom Currency */
@@ -139,8 +133,35 @@ export class DirectService {
     return this.formError.formFieldErrors[formCtrlName][validation];
   }
 
+  /* Setting Life Protection Form into Direct Form */
+  setLifeProtectionForm(data: ILifeProtection) {
+    this.directFormData.lifeProtection = data;
+    this.gaDirectSuccess('life-protection');
+  }
+
+  getLifeProtectionForm(): ILifeProtection {
+    if (!this.directFormData.lifeProtection) {
+      this.directFormData.lifeProtection = {} as ILifeProtection;
+    }
+    return this.directFormData.lifeProtection;
+  }
+
+  /* Setting Critical Illness Form into Direct Form */
+  setCriticalIllnessForm(data: ICriticalIllness) {
+    this.directFormData.criticalIllness = data;
+    this.gaDirectSuccess('critical-illness');
+  }
+
+  getCriticalIllnessForm(): ICriticalIllness {
+    if (!this.directFormData.criticalIllness) {
+      this.directFormData.criticalIllness = {} as ICriticalIllness;
+    }
+    return this.directFormData.criticalIllness;
+  }
+
   setLongTermCareForm(data: ILongTermCare) {
     this.directFormData.longTermCare = data;
+    this.gaDirectSuccess('long-term-care');
   }
 
   getLongTermCareForm(): ILongTermCare {
@@ -159,6 +180,7 @@ export class DirectService {
 
   setRetirementIncomeForm(data: IRetirementIncome) {
     this.directFormData.retirementIncome = data;
+    this.gaDirectSuccess('retirement-income');
   }
 
   getOcpDisabilityForm(): IOcpDisability {
@@ -170,14 +192,17 @@ export class DirectService {
 
   setOcpDisabilityForm(data: IOcpDisability) {
     this.directFormData.ocpDisability = data;
+    this.gaDirectSuccess('occupational-disability');
   }
 
   setEducationForm(data: IEducation) {
     this.directFormData.education = data;
+    this.gaDirectSuccess('education');
   }
 
   setHospitalPlanForm(data: IHospital) {
     this.directFormData.hospital = data;
+    this.gaDirectSuccess('hospital-plan');
   }
 
   getHospitalPlanForm() {
