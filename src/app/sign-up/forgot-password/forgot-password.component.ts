@@ -78,12 +78,18 @@ export class ForgotPasswordComponent implements OnInit {
     ref.componentInstance.errorMessage = error.errorMessage;
     return false;
   } else {
-    this.signUpService.setForgotPasswordInfo(form.value).subscribe((data) => {
-      console.log('incomingData' + data);
+    this.signUpService.setForgotPasswordInfo(form.value.email).subscribe((data) => {
+      console.log('incomingData' + data.responseMessage.responseCode);
+      // tslint:disable-next-line:triple-equals
+      if ( data.responseMessage.responseCode == 5004) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
       ref.componentInstance.errorMessage = this.emailNotFoundDesc;
       ref.componentInstance.ButtonTitle = this.buttonTitle;
+      // tslint:disable-next-line:triple-equals
+      } else if (data.responseMessage.responseCode == 6000) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+      }
     });
   }
 }

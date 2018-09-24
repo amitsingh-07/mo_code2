@@ -83,7 +83,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid password',
-                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number '
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number and 8-20 Alphanumeric Characters  '
                 }
         },
         confirmpassword: {
@@ -93,7 +93,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid password',
-                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number '
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number 8-20 Alphanumeric Characters  '
                 }
         }
     };

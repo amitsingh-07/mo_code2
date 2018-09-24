@@ -4,4 +4,5 @@ export interface ILifeProtection {
     smoker: string;
     coverageAmt: number;
     premiumWaiver: boolean;
+    duration: number;
 }
