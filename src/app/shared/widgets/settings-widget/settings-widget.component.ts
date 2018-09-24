@@ -96,7 +96,6 @@ export class SettingsWidgetComponent implements OnInit {
         setTimeout(() => { this.filters[p_index].filterTypes[c_index].checked = true; }, 0);
       }
     }
-    console.log(this.filterArgs);
     this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
   }
 }
