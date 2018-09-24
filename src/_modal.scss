@@ -76,6 +76,7 @@
   letter-spacing: -0.2px;
   color: #009999;
   margin-bottom: 20px;
+  padding-right:18px;
 }
 
 .modal-body-message {
@@ -186,7 +187,8 @@
   transition:0.5s;
   flex-direction:column;
   box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.18);
-  border-top:1px solid #e1e1e1;
+  border-top:1px solid rgba(141,154,168,0.16);
+  margin-top: 2px;
   &.show{
     display:flex;
     z-index:1034;
@@ -307,7 +309,7 @@
       @include allmobiles {
         display: block;
         top: 20px !important;
-        opacity: 1 !important;
+        opacity: .4 !important;
         }
     }
   }
