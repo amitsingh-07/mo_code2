@@ -7,7 +7,9 @@ require('dotenv').config();
 require('json-beautify');
 
 const supportedEnvironments = new Set(['dev', 'uat', 'prod']);
-let environment = process.env.NODE_ENV || 'UAT';
+let environment = process.env.NODE_ENV || 'DEV';
+console.log('Available environment variables :' + process.env);
+console.log('process.env.NODE_ENV :' + process.env.NODE_ENV);
 console.log('******* CURRENT ENVIRONMENT :' + environment);
 environment = environment.toLowerCase();
 
