@@ -119,8 +119,7 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe((data) => {
-      const response = JSON.parse(data);
+    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe((response: any) => {
       if (response) {
         if (response.Status.code === 200) {
           const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;

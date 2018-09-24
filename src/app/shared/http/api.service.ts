@@ -445,14 +445,10 @@ export class ApiService {
   }
 
   getAddressUsingPostalCode(code) {
-    const url = '../assets/mock-data/questions.json';
     // tslint:disable-next-line
     // const url = "http://10.144.196.214:8080/investment-microservice/RiskAssessment";
-    const options = {
-      responseType:  'text' as 'text'
-    };
 
-    return this.httpClient.get(apiConstants.endpoint.investmentAccount.getAddressByPincode + '&q=' + code, options)
+    return this.httpClient.jsonp(apiConstants.endpoint.investmentAccount.getAddressByPincode + '&q=' + code, 'callback')
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
