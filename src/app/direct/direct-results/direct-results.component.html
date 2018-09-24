@@ -11,7 +11,7 @@
     </div>
   </div>
 </div>
-<div [hidden]="filteredResult?.length > 0">Please change your filter settings</div>
+<div [hidden]="filteredResult?.length > 0">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
 <!-- Floating plan selection for compare plans footer -->
 <div *ngIf="isComparePlanEnabled && (selectedPlans && selectedPlans.length > 0)" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
@@ -22,4 +22,4 @@
 </div>
 <!-- / Floating plan selection for compare plans footer -->
 
-<app-settings-widget [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)"></app-settings-widget>
+<app-settings-widget *ngIf="sortList.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)"></app-settings-widget>

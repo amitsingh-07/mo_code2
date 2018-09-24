@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChildren, DoCheck, AfterViewChecked, AfterViewInit, AfterContentInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ViewChildren
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Subject, Subscription } from 'rxjs';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { OrderByPipe } from '../../shared/Pipes/order-by.pipe';
 import { IDropDownData } from '../../shared/widgets/settings-widget/settings-widget.component';
@@ -10,22 +12,15 @@ import { HeaderService } from './../../shared/header/header.service';
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
-import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-direct-results',
   templateUrl: './direct-results.component.html',
   styleUrls: ['./direct-results.component.scss']
 })
-export class DirectResultsComponent implements IPageComponent, OnInit, AfterContentInit {
+export class DirectResultsComponent implements IPageComponent {
 
-  sortList: IDropDownData[] = [
-    { displayText: 'Highest Ranking', value: 'premium.ranking' },
-    { displayText: 'Insurer Name (A-Z)', value: '+insurer.insurerName' },
-    { displayText: 'Insurer Name (Z-A)', value: '-insurer.insurerName' },
-    { displayText: 'Financial Rating (Highest-Lowest)', value: '+insurer.rating' },
-    { displayText: 'Financial Rating (Lowest-Highest)', value: '-insurer.rating' },
-  ];
+  sortList: IDropDownData[] = [];
 
   pageTitle = '';
   isComparePlanEnabled = true;
@@ -39,9 +34,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
   selectedPlans: any[] = [];
   filters = [];
   filterArgs;
-  sortProperty = this.sortList[0].value;
+  sortProperty;
+  types;
 
-  premiumFrequency: any = [{value: 'per month', checked: true}, { value: 'per year', checked: false}];
+  premiumFrequency: any = [{value: 'per month', name: 'Monthly', checked: true}, { value: 'per year', name: 'Yearly', checked: false}];
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
   claimFeature = [{value: 'All', checked: true}, { value: 'Single Claim', checked: false}, { value: 'Multiple Claim', checked: false}];
@@ -57,11 +53,18 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
+      this.sortList = this.translate.instant('SETTINGS.SORT');
+      this.types = this.translate.instant('SETTINGS.TYPES');
+      this.sortProperty = this.sortList[0].value;
       this.setPageTitle(this.pageTitle);
+      this.getRecommendations();
     });
     this.subscription = this.filteredCountSubject.subscribe((planList) => {
       this.filteredResult = planList;
     });
+  }
+
+  getRecommendations() {
     this.selectedCategory = this.directService.getProductCategory();
     this.directApiService.getSearchResults(this.directService.getProductCategory())
       .subscribe((data) => {
@@ -80,35 +83,35 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
           return { value: key, checked: key === 'All' ? true : false };
         });
         const premiumFrequency = {
-          title: 'Premium Frequency', name: 'premiumFrequency', filterTypes: this.premiumFrequency, allBtn: false
+          title: this.types.PREMIUM_FREQUENCY, name: 'premiumFrequency', filterTypes: this.premiumFrequency, allBtn: false
         };
         const insurers = { title: 'Insurers', name: 'insurerName', filterTypes: this.insurers, allBtn: true };
         const insurersFinancialRating = {
-          title: 'Insurers\' Financial Rating', name: 'financialRating',
+          title: this.types.INSURANCE_FINANCIAL_RATING, name: 'financialRating',
           filterTypes: this.insurersFinancialRating, allBtn: true
         };
         const claimFeature = {
-          title: 'Claim Feature', toolTip: '', name: 'claimFeature',
+          title: this.types.CLAIM_FEATURE, toolTip: '', name: 'claimFeature',
           filterTypes: this.claimFeature, allBtn: true
         };
         const deferredPeriod = {
-          title: 'Deferred Period', toolTip: '', name: 'deferredPeriod',
+          title: this.types.DEFERRED_PERIOD, toolTip: '', name: 'deferredPeriod',
           filterTypes: this.deferredPeriod, allBtn: true
         };
         const escalatingBenefit = {
-          title: 'Escalating Benefit', toolTip: '', name: 'escalatingBenefit',
+          title: this.types.ESCALATING_BENEFIT, toolTip: '', name: 'escalatingBenefit',
           filterTypes: this.escalatingBenefit, allBtn: true
         };
         const fullPartialRider = {
-          title: 'Full / Partial Rider', toolTip: '', name: 'fullPartialRider',
+          title: this.types.FULL_PARTIAL_RIDER, toolTip: '', name: 'fullPartialRider',
           filterTypes: this.fullPartialRider, allBtn: true
         };
         const payoutYears = {
-          title: 'Payout Years', toolTip: '', name: 'payoutYears',
+          title: this.types.PAYOUT_YEARS, toolTip: '', name: 'payoutYears',
           filterTypes: this.payoutYears, allBtn: true
         };
         const claimCriteria = {
-          title: 'Claim Criteria', toolTip: '', name: 'claimCriteria',
+          title: this.types.CLAIM_CRITERIA, toolTip: '', name: 'claimCriteria',
           filterTypes: this.claimCriteria, allBtn: true
         };
         this.filters.push(premiumFrequency);
@@ -144,13 +147,6 @@ export class DirectResultsComponent implements IPageComponent, OnInit, AfterCont
         }
         this.filters = this.filters.filter(() => true);
       });
-  }
-
-  ngAfterContentInit() {
-
-  }
-
-  ngOnInit() {
   }
 
   setPageTitle(title: string) {

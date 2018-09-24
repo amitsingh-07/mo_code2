@@ -25,6 +25,8 @@ export class SettingsWidgetComponent implements OnInit {
 
   ngOnInit() {
     this.defaultSort = this.sort[0];
+    this.filterArgs['premiumFrequency'] = new Set([]);
+    this.filterArgs['premiumFrequency'].add('per month');
   }
 
   setSort(sort) {
@@ -58,6 +60,10 @@ export class SettingsWidgetComponent implements OnInit {
       if (!this.uncheck(p_index, value, c_index, name)) {
         return false;
       }
+    }
+
+    if (name === 'premiumFrequency') {
+      this.filterArgs[name].clear();
     }
 
     if (this.filterArgs.hasOwnProperty(name)) {
