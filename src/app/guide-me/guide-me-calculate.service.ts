@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from '../shared/http/api.service';
+import { ILongTermCareNeedsData } from './../shared/interfaces/recommendations.request';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
-import { ILongTermCareNeedsData } from './interfaces/recommendations.request';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
 @Injectable({
