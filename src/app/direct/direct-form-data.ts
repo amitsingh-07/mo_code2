@@ -1,3 +1,5 @@
+import { IProtectionTypeData } from '../shared/interfaces/recommendations.request';
+import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
 import { ICriticalIllness } from './product-info/critical-illness-form/critical-illness.interface';
 import { IEducation } from './product-info/education-form/education.interface';
 import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
@@ -8,7 +10,8 @@ import { IRetirementIncome } from './product-info/retirement-income-form/retirem
 import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 
 export class DirectFormData {
-    prodCategory: string;
+    userInfo: UserInfo;
+    prodCategory: IProtectionTypeData;
 
     // Life Protection Form
     lifeProtection: ILifeProtection;
