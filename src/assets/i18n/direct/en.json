@@ -118,6 +118,15 @@
         "PAYOUT_TYPE":"Payout Type",
         "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
       },
+      "COMPARE_PLANS": {
+        "INSURER_FINANCIAL_RATING":"Insurer Financial Rating",
+        "COVARAGE_DURATION":"Covarage Duration",
+        "PREMIUM_DURATION":"Premium Duration",
+        "NEED_UNDERWRITING":"Need Underwriting",
+        "CASH_VALUE":"Cash Value",
+        "PAYOUT_DETAILS":"Payout Details",
+        "UNIQUE_FEATURES":"Unique Features"
+      },
       "RESULTS": {
         "TITLE": "Plans"
       }

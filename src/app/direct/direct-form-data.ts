@@ -1,5 +1,9 @@
+import { IProtectionTypeData } from '../shared/interfaces/recommendations.request';
+import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
+import { ICriticalIllness } from './product-info/critical-illness-form/critical-illness.interface';
 import { IEducation } from './product-info/education-form/education.interface';
 import { IHospital } from './product-info/hospital-plan-form/hospital-plan.interface';
+import { ILifeProtection } from './product-info/life-protection-form/life-protection.interface';
 import { ILongTermCare } from './product-info/long-term-care-form/long-term-care.interface';
 import { IOcpDisability } from './product-info/ocp-disability-form/ocp-disability-form.interface';
 import { IProductCategory } from './product-info/product-category/product-category';
@@ -7,7 +11,7 @@ import { IRetirementIncome } from './product-info/retirement-income-form/retirem
 import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 
 export class DirectFormData {
-    prodCategory: IProductCategory;
+    // prodCategory: IProductCategory;
     gender: string;
     dob: any;
     customDob: string;
@@ -16,12 +20,14 @@ export class DirectFormData {
      // Life Protection && Critical Illness Form
     coverageAmt: number;
     duration: string;
+    userInfo: UserInfo;
+    prodCategory: IProtectionTypeData;
 
     // Life Protection Form
-    premiumWaiver: boolean;
+    lifeProtection: ILifeProtection;
 
     // Critical Illness Form
-    earlyCI: boolean;
+    criticalIllness: ICriticalIllness;
 
     // Retirement Income Form
     retirementIncome: IRetirementIncome;

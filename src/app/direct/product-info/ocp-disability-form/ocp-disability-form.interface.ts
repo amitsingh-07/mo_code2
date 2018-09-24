@@ -1,9 +1,9 @@
 export interface IOcpDisability {
     gender: string;
     dob: string;
-    smoker: number;
-    employmentType: string;
+    smoker: string;
+    employmentType: number;
     monthlySalary: number;
     percentageCoverage: number;
-    duration: string;
+    duration: number;
 }

@@ -1,4 +1,4 @@
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { HeaderService } from './../shared/header/header.service';
 import { DirectService } from './direct.service';
 
@@ -21,14 +21,14 @@ export class DirectComponent implements OnInit, IPageComponent {
   constructor(
     private router: Router, public headerService: HeaderService,
     private directService: DirectService, private translate: TranslateService,
-    public modal: NgbModal ) {
-    this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-    this.pageTitle = this.translate.instant('PROFILE.TITLE');
-    this.setPageTitle(this.pageTitle, null, false);
-    });
-    this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
-    this.showProductInfo();
+    public modal: NgbModal, private route: ActivatedRoute ) {
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('PROFILE.TITLE');
+      this.setPageTitle(this.pageTitle, null, false);
+      });
+      this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
+      this.showProductInfo();
     }
 
   ngOnInit() { }
