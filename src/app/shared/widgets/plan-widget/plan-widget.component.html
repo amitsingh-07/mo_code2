@@ -28,12 +28,12 @@
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
           <div class="feature-head">{{data.insurer.rating}}</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
-          <div class="help-icon"></div>
+          <div class="help-icon" (click)="openRatingModal()"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
           <div class="feature-head">50%</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
-          <div class="help-icon"></div>
+          <div class="help-icon" (click)="openCommissionModal()"></div>
         </div>
       </div>
 

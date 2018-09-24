@@ -1,5 +1,4 @@
 import 'hammerjs';
-//import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
@@ -45,6 +44,7 @@ import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
+import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
@@ -120,7 +120,7 @@ export function tokenGetterFn() {
   bootstrap: [AppComponent],
   entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent,
-    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent]
+    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent]
 })
 
 export class AppModule {

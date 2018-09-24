@@ -6,6 +6,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
+import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
@@ -29,6 +30,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })],
   exports: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe, OrderByPipe],
-  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe, OrderByPipe]
+  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
+    OrderByPipe, RecommendationsModalComponent]
 })
-export class SharedModule {}
+export class SharedModule { }
