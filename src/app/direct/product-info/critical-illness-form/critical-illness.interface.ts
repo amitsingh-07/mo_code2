@@ -4,4 +4,5 @@ export interface ICriticalIllness {
     smoker: string;
     coverageAmt: number;
     earlyCI: boolean;
+    duration: number;
 }

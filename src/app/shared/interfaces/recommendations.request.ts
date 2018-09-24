@@ -1,9 +1,9 @@
-import { IMyExpenses } from '../expenses/expenses.interface';
-import { IMyIncome } from '../income/income.interface';
-import { IMyLiabilities } from '../liabilities/liabilities.interface';
-import { ILifeProtectionNeedsData } from '../life-protection/life-protection';
-import { IMyAssets } from '../my-assets/my-assets.interface';
-import { IExistingCoverage } from './../insurance-results/existing-coverage-modal/existing-coverage.interface';
+import { IMyExpenses } from './../../guide-me/expenses/expenses.interface';
+import { IMyIncome } from './../../guide-me/income/income.interface';
+import { IExistingCoverage } from './../../guide-me/insurance-results/existing-coverage-modal/existing-coverage.interface';
+import { IMyLiabilities } from './../../guide-me/liabilities/liabilities.interface';
+import { ILifeProtectionNeedsData } from './../../guide-me/life-protection/life-protection';
+import { IMyAssets } from './../../guide-me/my-assets/my-assets.interface';
 
 export interface IRecommendationRequest {
     enquiryData: IEnquiryData;
@@ -37,6 +37,9 @@ export interface IEnquiryData {
 
 export interface IProtectionTypeData {
     protectionTypeId: number;
+    protectionType?: string;
+    protectionDesc?: string;
+    status?: boolean;
 }
 
 export interface IFinancialStatusMapping {
@@ -48,16 +51,16 @@ export interface IFinancialStatusMapping {
 
 export interface ILifeProtection {
     gender: string;
-    relationship: string;
-    age: number;
+    relationship?: string;
+    age?: number;
     dependentProtectionNeeds: {
-        dependentId: number;
-        educationCourse: string;
+        dependentId?: number;
+        educationCourse?: string;
         monthlySupportAmount: number;
-        countryOfEducation: string;
-        nationality: string;
+        countryOfEducation?: string;
+        nationality?: string;
         universityEntryAge: number;
-        yearsNeeded: number;
+        yearsNeeded?: number;
     };
 }
 
@@ -65,6 +68,8 @@ export interface ICriticalIllnessData {
     coverageYears: number;
     coverageAmount: number;
     isEarlyCriticalIllness: boolean;
+    annualSalary?: number;
+    ciMultiplier?: number;
 }
 
 export interface IOccupationalDisabilityData {
@@ -81,6 +86,20 @@ export interface IHospitalizationNeedsData {
 }
 
 export interface ILongTermCareNeedsData {
-    careGiverTypeId: number;
+    careGiverTypeId?: number;
     monthlyPayout: number;
+}
+
+export interface ISrsApprovedPlans {
+    id: number;
+    singlePremium: number;
+    payoutStartAge: number;
+    payoutType: string;
+}
+
+export interface IRetirementIncomePlan {
+    id: number;
+    retirementIncome: number;
+    payoutStartAge: number;
+    payoutDuration: string;
 }

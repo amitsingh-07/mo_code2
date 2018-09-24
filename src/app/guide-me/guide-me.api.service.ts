@@ -3,17 +3,15 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { GuideMeCalculateService } from './guide-me-calculate.service';
-import { GuideMeService } from './guide-me.service';
-import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import {
     IEnquiryData,
     IFinancialStatusMapping,
     ILifeProtection,
-    ILongTermCareNeedsData,
     IRecommendationRequest
-} from './interfaces/recommendations.request';
-import { ILifeProtectionNeedsData } from './life-protection/life-protection';
+} from './../shared/interfaces/recommendations.request';
+import { GuideMeCalculateService } from './guide-me-calculate.service';
+import { GuideMeService } from './guide-me.service';
+import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 
 @Injectable({
     providedIn: 'root'
