@@ -8,6 +8,7 @@ require('json-beautify');
 
 const supportedEnvironments = new Set(['dev', 'uat', 'prod']);
 let environment = process.env.NODE_ENV || 'UAT';
+console.log('******* CURRENT ENVIRONMENT :' + environment);
 environment = environment.toLowerCase();
 
 if (!supportedEnvironments.has(environment)) {

@@ -1,5 +1,4 @@
-import { MyInfoService } from './../Services/my-info.service';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
@@ -14,7 +13,6 @@ import { MyInfoService } from './../Services/my-info.service';
 import { apiConstants } from './api.constants';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
-import { Jsonp } from '@angular/http';
 
 const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
 

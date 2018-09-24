@@ -105,12 +105,12 @@ export class DirectService {
   /* Get Product Category List */
   getProductCategory() {
     if (!this.directFormData.prodCategory) {
-      this.directFormData.prodCategory = {} as IProtectionTypeData;
+      this.directFormData.prodCategory = {} as IProductCategory;
     }
     return this.directFormData.prodCategory;
   }
   /* Product Category drop down Handler */
-  setProductCategory(prodCat: IProtectionTypeData) {
+  setProductCategory(prodCat: IProductCategory) {
     this.directFormData.prodCategory = prodCat;
     console.log(this.directFormData.prodCategory);
     this.commit();
