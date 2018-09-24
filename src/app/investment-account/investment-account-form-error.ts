@@ -98,7 +98,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'State should not countain numbers and special characters in mailing address.'
             }
         },
-        zipcode: {
+        zipCode: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid zipcode',
@@ -109,7 +109,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Zipcode should not contain special characters.'
             }
         },
-        mailZipcode: {
+        mailZipCode: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid zipcode in mailing address',
