@@ -75,7 +75,7 @@
   line-height: normal;
   letter-spacing: -0.2px;
   color: #009999;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding-right:18px;
 }
 
@@ -143,18 +143,25 @@
   .modal__icons {
     position: relative;
     display: inline-block;
+    position: relative;
+    display: inline-block;
+    //margin-right: 14px;
 
     img {
       position: relative;
       display: block;
-      width: 95px;
-      height: 95px;
-      margin-bottom: 20px;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 15px;
 
       @include min300max350 {
         width: 85px;
         height: 85px;
         margin-bottom: 8.5px;
+      }
+      @include iphone6plus {
+        width: 120px;
+        height: 120px;
       }
     }
   }
@@ -180,7 +187,8 @@
   transition:0.5s;
   flex-direction:column;
   box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.18);
-  border-top:1px solid #e1e1e1;
+  border-top:1px solid rgba(141,154,168,0.16);
+  margin-top: 2px;
   &.show{
     display:flex;
     z-index:1034;
@@ -301,7 +309,7 @@
       @include allmobiles {
         display: block;
         top: 20px !important;
-        opacity: 1 !important;
+        opacity: .4 !important;
         }
     }
   }
