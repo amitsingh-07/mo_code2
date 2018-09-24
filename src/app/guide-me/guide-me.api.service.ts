@@ -65,7 +65,7 @@ export class GuideMeApiService {
         if (!existingCoverageList) {
             existingCoverageList = this.guideMeService.getEmptyExistingCoverage();
         }
-        requestObj.existingInsuranceList = [this.guideMeService.getExistingCoverageValues()];
+        requestObj.existingInsuranceList = [existingCoverageList];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
         requestObj.financialStatusMapping.assets = this.guideMeService.getMyAssets();
