@@ -73,8 +73,8 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
           this.router.navigate([DIRECT_ROUTE_PATHS.RESULTS]);
+          this.directService.triggerSearch('');
         }
-        this.directService.triggerSearch('');
       }
     });
   }

@@ -15,7 +15,6 @@ import { SrsApprovedPlansFormComponent } from './product-info/srs-approved-plans
 
 const routes: Routes = [
   { path: '', component: DirectComponent},
-  { path: ':id', component: DirectComponent},
   { path: DIRECT_ROUTES.RESULTS, component: DirectResultsComponent },
   { path: DIRECT_ROUTES.COMPARE_PLANS, component: ComparePlansComponent }
 ];

@@ -46,7 +46,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    DirectRoutingModule, NgbModule.forRoot(),
+    DirectRoutingModule,
+    NgbModule.forRoot(),
     SharedModule
   ],
   declarations: [
