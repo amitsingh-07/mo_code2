@@ -359,7 +359,7 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
-  }
+    }
   getNationalityList() {
     const url = '../assets/mock-data/nationalityList.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
@@ -467,4 +467,3 @@ export class ApiService {
   }
 
 }
-

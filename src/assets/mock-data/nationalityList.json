@@ -1,1767 +1,1681 @@
 {
   "objectList": [{
-        "id": 1,
-        "country": "ABKHAZIA",
-        "nationality": "ABKHAZIAN",
-        "countryCode": "+840",
-        "blocked": false
-      }, {
-        "id": 2,
-        "country": "AFGHANISTAN",
-        "nationality": "AFGHANI",
-        "countryCode": "+93",
-        "blocked": true
-      }, {
-        "id": 3,
-        "country": "ALAND ISLANDS",
-        "nationality": "ALANDIC",
-        "countryCode": "+358",
-        "blocked": false
-      }, {
-        "id": 4,
-        "country": "ALBANIA",
-        "nationality": "ALBANIAN",
-        "countryCode": "+355",
-        "blocked": false
-      }, {
-        "id": 5,
-        "country": "ALGERIA",
-        "nationality": "ALGERIAN",
-        "countryCode": "+213",
-        "blocked": false
-      }, {
-        "id": 6,
-        "country": "AMERICAN SAMOA",
-        "nationality": "U.S. TERRITORY",
-        "countryCode": "+1684",
-        "blocked": false
-      }, {
-        "id": 7,
-        "country": "ANDORRA",
-        "nationality": "ANDORRAN",
-        "countryCode": "+376",
-        "blocked": false
-      }, {
-        "id": 8,
-        "country": "ANGOLA",
-        "nationality": "ANGOLAN",
-        "countryCode": "+244",
-        "blocked": true
-      }, {
-        "id": 9,
-        "country": "ANGUILLA",
-        "nationality": "BRITISH OVERSEAS TERRITORY",
-        "countryCode": "+1264",
-        "blocked": false
-      }, {
-        "id": 10,
-        "country": "ANTARCTICA",
-        "nationality": "ANTARCTIC",
-        "countryCode": "+672",
-        "blocked": false
-      }, {
-        "id": 11,
-        "country": "ANTIGUA AND BARBUDA",
-        "nationality": "ANTIGUAN",
-        "countryCode": "+1268",
-        "blocked": false
-      }, {
-        "id": 12,
-        "country": "ARGENTINA",
-        "nationality": "ARGENTINE",
-        "countryCode": "+54",
-        "blocked": false
-      }, {
-        "id": 13,
-        "country": "ARMENIA",
-        "nationality": "ARMENIAN",
-        "countryCode": "+374",
-        "blocked": false
-      }, {
-        "id": 14,
-        "country": "ARUBA",
-        "nationality": "ARUBIAN",
-        "countryCode": "+297",
-        "blocked": false
-      }, {
-        "id": 15,
-        "country": "ASCENSION",
-        "nationality": "ASCENSION",
-        "countryCode": "+247",
-        "blocked": false
-      }, {
-        "id": 16,
-        "country": "ASHMORE AND CARTIER ISLANDS",
-        "nationality": "AUSTRALIAN EXTERNAL TERRITORY",
-        "countryCode": "+91",
-        "blocked": false
-      }, {
-        "id": 17,
-        "country": "AUSTRALIA",
-        "nationality": "AUSTRALIAN",
-        "countryCode": "+61",
-        "blocked": false
-      }, {
-        "id": 18,
-        "country": "AUSTRALIAN ANTARCTIC TERRITORY",
-        "nationality": "AUSTRALIAN ANTARCTIC TERRITORY",
-        "countryCode": "+672",
-        "blocked": false
-      }, {
-        "id": 19,
-        "country": "AUSTRIA",
-        "nationality": "AUSTRIAN",
-        "countryCode": "+43",
-        "blocked": false
-      }, {
-        "id": 20,
-        "country": "AZERBAIJAN",
-        "nationality": "AZERBAIJANI",
-        "countryCode": "+994",
-        "blocked": false
-      }, {
-        "id": 21,
-        "country": "BAHAMAS",
-        "nationality": "BAHAMEESE",
-        "countryCode": "+1242",
-        "blocked": false
-      }, {
-        "id": 22,
-        "country": "BAHRAIN",
-        "nationality": "BAHRAINIAN",
-        "countryCode": "+973",
-        "blocked": false
-      }, {
-        "id": 23,
-        "country": "BAKER ISLAND",
-        "nationality": "BAKER ISLAND",
-        "countryCode": null,
-        "blocked": false
-      }, {
-        "id": 24,
-        "country": "BANGLADESH",
-        "nationality": "BANGLADESHI",
-        "countryCode": "+880",
-        "blocked": false
-      }, {
-        "id": 25,
-        "country": "BARBADOS",
-        "nationality": "BARBADIAN",
-        "countryCode": "+1246",
-        "blocked": false
-      }, {
-        "id": 26,
-        "country": "BELARUS",
-        "nationality": "BELARUSIAN",
-        "countryCode": "+375",
-        "blocked": false
-      }, {
-        "id": 27,
-        "country": "BELGIUM",
-        "nationality": "BELGIAN",
-        "countryCode": "+32",
-        "blocked": false
-      }, {
-        "id": 28,
-        "country": "BELIZE",
-        "nationality": "BELIZEAN",
-        "countryCode": "+501",
-        "blocked": false
-      }, {
-        "id": 29,
-        "country": "BENIN",
-        "nationality": "BENINESE",
-        "countryCode": "+22",
-        "blocked": false
-      }, {
-        "id": 30,
-        "country": "BERMUDA",
-        "nationality": "BRITISH OVERSEAS TERRITORY",
-        "countryCode": "+1441",
-        "blocked": false
-      }, {
-        "id": 31,
-        "country": "BHUTAN",
-        "nationality": "BHUTANESE",
-        "countryCode": "+975",
-        "blocked": false
-      }, {
-        "id": 32,
-        "country": "BOLIVIA",
-        "nationality": "BOLIVIAN",
-        "countryCode": "+591",
-        "blocked": false
-      }, {
-        "id": 33,
-        "country": "BOSNIA AND HERZEGOVINA",
-        "nationality": "BOSNIAN",
-        "countryCode": "+387",
-        "blocked": true
-      }, {
-        "id": 34,
-        "country": "BOTSWANA",
-        "nationality": "MOTSWANA",
-        "countryCode": "+267",
-        "blocked": false
-      }, {
-        "id": 35,
-        "country": "BOUVET ISLAND",
-        "nationality": "BOUVET ISLAND",
-        "countryCode": "+55",
-        "blocked": false
-      }, {
-        "id": 36,
-        "country": "BRAZIL",
-        "nationality": "BRAZILIAN",
-        "countryCode": "+55",
-        "blocked": false
-      }, {
-        "id": 37,
-        "country": "BRITISH ANTARCTIC TERRITORY",
-        "nationality": "BRITISH ANTARCTIC TERRITORY",
-        "countryCode": null,
-        "blocked": false
-      }, {
-        "id": 38,
-        "country": "BRITISH INDIAN OCEAN TERRITORY",
-        "nationality": "BRITISH INDIAN OCEAN TERRITORY",
-        "countryCode": "+246",
-        "blocked": false
-      }, {
-        "id": 39,
-        "country": "BRITISH SOVEREIGN BASE AREAS",
-        "nationality": "BRITISH SOVEREIGN BASE AREAS",
-        "countryCode": null,
-        "blocked": false
-      }, {
-        "id": 40,
-        "country": "BRITISH VIRGIN ISLANDS",
-        "nationality": "BRITISH OVERSEAS TERRITORY",
-        "countryCode": "+1284",
-        "blocked": false
-      }, {
-        "id": 41,
-        "country": "BRUNEI",
-        "nationality": "BRU
-        NEIAN ","
-        countryCode ":" + 673 ","
-        blocked ":false},{"
-        id ":42,"
-        country ":"
-        BULGARIA ","
-        nationality ":"
-        BULGARIAN ","
-        countryCode ":" + 359 ","
-        blocked ":false},{"
-        id ":43,"
-        country ":"
-        BURKINA FASO ","
-        nationality ":"
-        BURKINABE ","
-        countryCode ":" + 226 ","
-        blocked ":false},{"
-        id ":44,"
-        country ":"
-        BURMA(REPUBLIC OF THE UNION OF MYANMAR)
-        ","
-        nationality ":"
-        MYANMAR ","
-        countryCode ":" + 95 ","
-        blocked ":false},{"
-        id ":45,"
-        country ":"
-        BURUNDI ","
-        nationality ":"
-        BURUNDIAN ","
-        countryCode ":" + 257 ","
-        blocked ":false},{"
-        id ":46,"
-        country ":"
-        CAMBODIA ","
-        nationality ":"
-        CAMBODIAN ","
-        countryCode ":" + 855 ","
-        blocked ":false},{"
-        id ":47,"
-        country ":"
-        CAMEROON ","
-        nationality ":"
-        CAMEROONIAN ","
-        countryCode ":" + 237 ","
-        blocked ":false},{"
-        id ":48,"
-        country ":"
-        CANADA ","
-        nationality ":"
-        CANADIAN ","
-        countryCode ":" + 1 ","
-        blocked ":false},{"
-        id ":49,"
-        country ":"
-        CAPE VERDE ","
-        nationality ":"
-        CAPE VERDEAN ","
-        countryCode ":" + 238 ","
-        blocked ":false},{"
-        id ":50,"
-        country ":"
-        CARIBBEAN NETHERLANDS ","
-        nationality ":"
-        CARIBBEAN NETHERLANDS ","
-        countryCode ":" + 599 ","
-        blocked ":false},{"
-        id ":51,"
-        country ":"
-        CAYMAN ISLANDS ","
-        nationality ":"
-        BRITISH OVERSEAS TERRITORY ","
-        countryCode ":" + 1345 ","
-        blocked ":false},{"
-        id ":52,"
-        country ":"
-        CENTRAL AFRICAN REPUBLIC ","
-        nationality ":"
-        CENTRAL AFRICAN ","
-        countryCode ":" + 236 ","
-        blocked ":false},{"
-        id ":53,"
-        country ":"
-        CHAD ","
-        nationality ":"
-        CHADIAN ","
-        countryCode ":" + 235 ","
-        blocked ":false},{"
-        id ":54,"
-        country ":"
-        CHILE ","
-        nationality ":"
-        CHILEAN ","
-        countryCode ":" + 56 ","
-        blocked ":false},{"
-        id ":55,"
-        country ":"
-        CHINA ","
-        nationality ":"
-        CHINESE ","
-        countryCode ":" + 86 ","
-        blocked ":false},{"
-        id ":56,"
-        country ":"
-        CHRISTMAS ISLAND ","
-        nationality ":"
-        AUSTRALIAN EXTERNAL TERRITORY ","
-        countryCode ":" + 61 ","
-        blocked ":false},{"
-        id ":57,"
-        country ":"
-        CLIPPERTON ISLAND ","
-        nationality ":"
-        CLIPPERTON ISLAND ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":58,"
-        country ":"
-        COCOS(KEELING) ISLANDS ","
-        nationality ":"
-        AUSTRALIAN EXTERNAL TERRITORY ","
-        countryCode ":" + 891 ","
-        blocked ":false},{"
-        id ":59,"
-        country ":"
-        COLOMBIA ","
-        nationality ":"
-        COLOMBIAN ","
-        countryCode ":" + 57 ","
-        blocked ":false},{"
-        id ":60,"
-        country ":"
-        COMOROS ","
-        nationality ":"
-        COMORAN ","
-        countryCode ":" + 269 ","
-        blocked ":false},{"
-        id ":61,"
-        country ":"
-        CONGO(REPUBLIC OF)
-        ","
-        nationality ":"
-        CONGOLESE ","
-        countryCode ":" + 242 ","
-        blocked ":false},{"
-        id ":62,"
-        country ":"
-        COOK ISLANDS ","
-        nationality ":"
-        COOK ISLANDER ","
-        countryCode ":" + 682 ","
-        blocked ":false},{"
-        id ":63,"
-        country ":"
-        CORAL SEA ISLANDS ","
-        nationality ":"
-        AUSTRALIAN EXTERNAL TERRITORY ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":64,"
-        country ":"
-        COSTA RICA ","
-        nationality ":"
-        COSTA RICAN ","
-        countryCode ":" + 506 ","
-        blocked ":false},{"
-        id ":65,"
-        country ":"
-        COTE D 'IVOIRE (IVORY COAST)","nationality":"IVORIAN","countryCode":"+225","blocked":false},{"id":66,"country":"CROATIA","nationality":"CROATIAN","countryCode":"+385","blocked":false},{"id":67,"country":"CUBA","nationality":"CUBAN","countryCode":"+53","blocked":false},{"id":68,"country":"CURACAO","nationality":"CURACAOAN","countryCode":"+599","blocked":false},{"id":69,"country":"CYPRUS","nationality":"CYPRIOT","countryCode":"+357","blocked":false},{"id":70,"country":"CZECH REPUBLIC","nationality":"CZECH","countryCode":"+420","blocked":false},{"id":71,"country":"DEMOCRATIC REPUBLIC OF THE CONGO","nationality":"CONGOLESE","countryCode":"+243","blocked":true},{"id":72,"country":"DENMARK","nationality":"DANISH","countryCode":"+45","blocked":false},{"id":73,"country":"DJIBOUTI","nationality":"DJIBOUTIAN","countryCode":"+253","blocked":false},{"id":74,"country":"DOMINICA","nationality":"DOMINICAN","countryCode":"+1767","blocked":false},{"id":75,"country":"DOMINICAN REPUBLIC","nationality":"DOMINICAN","countryCode":"+1","blocked":false},{"id":76,"country":"ECUADOR","nationality":"ECUADOREAN","countryCode":"+593","blocked":false},{"id":77,"country":"EGYPT","nationality":"EGYPTIAN","countryCode":"+20","blocked":false},{"id":78,"country":"EL SALVADOR","nationality":"SALVADOREAN","countryCode":"+503","blocked":false},{"id":79,"country":"EQUATORIAL GUINEA","nationality":"EQUATORIAL GUINEAN","countryCode":"+240","blocked":false},{"id":80,"country":"ERITREA","nationality":"ERITREAN","countryCode":"+291","blocked":true},{"id":81,"country":"ESTONIA","nationality":"ESTONIAN","countryCode":"+372","blocked":false},{"id":82,"country":"ETHIOPIA","nation
-        ality ":"
-        ETHIOPIAN ","
-        countryCode ":" + 251 ","
-        blocked ":false},{"
-        id ":83,"
-        country ":"
-        FALKLAND ISLANDS ","
-        nationality ":"
-        BRITISH OVERSEAS TERRITORY ","
-        countryCode ":" + 500 ","
-        blocked ":false},{"
-        id ":84,"
-        country ":"
-        FAROE ISLANDS ","
-        nationality ":"
-        FAROESE ","
-        countryCode ":" + 298 ","
-        blocked ":false},{"
-        id ":85,"
-        country ":"
-        FIJI ","
-        nationality ":"
-        FIJIAN ","
-        countryCode ":" + 679 ","
-        blocked ":false},{"
-        id ":86,"
-        country ":"
-        FINLAND ","
-        nationality ":"
-        FINNISH ","
-        countryCode ":" + 358 ","
-        blocked ":false},{"
-        id ":87,"
-        country ":"
-        FRANCE ","
-        nationality ":"
-        FRENCH ","
-        countryCode ":" + 33 ","
-        blocked ":false},{"
-        id ":88,"
-        country ":"
-        FRENCH GUIANA ","
-        nationality ":"
-        FRENCH GUIANESE ","
-        countryCode ":" + 594 ","
-        blocked ":false},{"
-        id ":89,"
-        country ":"
-        FRENCH POLYNESIA ","
-        nationality ":"
-        FRENCH OVERSEAS COLLECTIVITY ","
-        countryCode ":" + 689 ","
-        blocked ":false},{"
-        id ":90,"
-        country ":"
-        FRENCH SOUTHERN AND ANTARCTIC LANDS ","
-        nationality ":"
-        FRENCH SOUTHERN AND ANTARCTIC LANDS ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":91,"
-        country ":"
-        FRENCH SOUTHERN TERRITORIES ","
-        nationality ":"
-        FRENCH SOUTHERN TERRITORIES ","
-        countryCode ":" + 98404 ","
-        blocked ":false},{"
-        id ":92,"
-        country ":"
-        GABON ","
-        nationality ":"
-        GABONESE ","
-        countryCode ":" + 241 ","
-        blocked ":false},{"
-        id ":93,"
-        country ":"
-        GAMBIA ","
-        nationality ":"
-        GAMBIAN ","
-        countryCode ":" + 220 ","
-        blocked ":false},{"
-        id ":94,"
-        country ":"
-        GEORGIA ","
-        nationality ":"
-        GEORGIAN ","
-        countryCode ":" + 995 ","
-        blocked ":false},{"
-        id ":95,"
-        country ":"
-        GERMANY ","
-        nationality ":"
-        GERMAN ","
-        countryCode ":" + 49 ","
-        blocked ":false},{"
-        id ":96,"
-        country ":"
-        GHANA ","
-        nationality ":"
-        GHANAIAN ","
-        countryCode ":" + 233 ","
-        blocked ":false},{"
-        id ":97,"
-        country ":"
-        GIBRALTAR ","
-        nationality ":"
-        GIBRALTARIAN ","
-        countryCode ":" + 350 ","
-        blocked ":false},{"
-        id ":98,"
-        country ":"
-        GREECE ","
-        nationality ":"
-        GREEK ","
-        countryCode ":" + 30 ","
-        blocked ":false},{"
-        id ":99,"
-        country ":"
-        GREENLAND ","
-        nationality ":"
-        GREENLANDER ","
-        countryCode ":" + 299 ","
-        blocked ":false},{"
-        id ":100,"
-        country ":"
-        GRENADA ","
-        nationality ":"
-        GRENADIAN ","
-        countryCode ":" + 1473 ","
-        blocked ":false},{"
-        id ":101,"
-        country ":"
-        GUADELOUPE ","
-        nationality ":"
-        GUADELOUPEAN ","
-        countryCode ":" + 590 ","
-        blocked ":false},{"
-        id ":102,"
-        country ":"
-        GUAM ","
-        nationality ":"
-        GUAMANIAN ","
-        countryCode ":" + 1671 ","
-        blocked ":false},{"
-        id ":103,"
-        country ":"
-        GUATEMALA ","
-        nationality ":"
-        GUATEMALAN ","
-        countryCode ":" + 502 ","
-        blocked ":false},{"
-        id ":104,"
-        country ":"
-        GUERNSEY ","
-        nationality ":"
-        GUERNSEY ","
-        countryCode ":" + 44 ","
-        blocked ":false},{"
-        id ":105,"
-        country ":"
-        GUINEA ","
-        nationality ":"
-        GUINEAN ","
-        countryCode ":" + 224 ","
-        blocked ":true},{"
-        id ":106,"
-        country ":"
-        GUINEA - BISSAU ","
-        nationality ":"
-        GUINEAN ","
-        countryCode ":" + 245 ","
-        blocked ":true},{"
-        id ":107,"
-        country ":"
-        GUYANA ","
-        nationality ":"
-        GUYANESE ","
-        countryCode ":" + 592 ","
-        blocked ":false},{"
-        id ":108,"
-        country ":"
-        HAITI ","
-        nationality ":"
-        HAITIAN ","
-        countryCode ":" + 509 ","
-        blocked ":true},{"
-        id ":109,"
-        country ":"
-        HEARD AND MCDONALD ISLANDS ","
-        nationality ":"
-        AUSTRALIAN EXTERNAL TERRITORY ","
-        countryCode ":" + 6723 ","
-        blocked ":false},{"
-        id ":110,"
-        country ":"
-        HONDURAS ","
-        nationality ":"
-        HONDURAN ","
-        countryCode ":" + 504 ","
-        blocked ":false},{"
-        id ":111,"
-        country ":"
-        HONG KONG ","
-        nationality ":"
-        HONG KONG ","
-        countryCode ":" + 852 ","
-        blocked ":false},{"
-        id ":112,"
-        country ":"
-        HOWLAND ISLAND ","
-        nationality ":"
-        HOWLAND ISLAND ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":113,"
-        country ":"
-        HUNGARY ","
-        nationality ":"
-        HUNGARIAN ","
-        countryCode ":" + 36 ","
-        blocked ":false},{"
-        id ":114,"
-        country ":"
-        ICELAND ","
-        nationality ":"
-        ICELANDER ","
-        countryCode ":" + 354 ","
-        blocked ":false},{"
-        id ":115,"
-        country ":"
-        INDIA ","
-        nationality ":"
-        INDIAN ","
-        countryCode ":" + 91 ","
-        blocked ":false},{"
-        id ":116,"
-        country ":"
-        INDONESIA ","
-        nationality ":"
-        INDONESIAN ","
-        countryCode ":" + 62 ","
-        blocked ":false},{"
-        id ":117,"
-        country ":"
-        IRAN ","
-        nationality ":"
-        IRANIAN ","
-        countryCode ":" + 98 ","
-        blocked ":true},{"
-        id ":118,"
-        country ":"
-        IRAQ ","
-        nationality ":"
-        IRAQI ","
-        countryCode ":" + 964 ","
-        blocked ":true},{"
-        id ":119,"
-        country ":"
-        IRELAND ","
-        nationality ":"
-        IRISH ","
-        countryCode ":" + 353 ","
-        blocked ":false},{"
-        id ":120,"
-        country ":"
-        ISLE OF MAN ","
-        nationality ":"
-        MANX ","
-        countryCode ":" + 44 ","
-        blocked ":false},{"
-        id ":121,"
-        country ":"
-        ISRAEL ","
-        nationality ":"
-        ISRAELI ","
-        countryCode ":" + 972 ","
-        blocked ":false},{"
-        id ":122,"
-        country ":"
-        ITALY ","
-        nationality ":"
-        ITALIAN ","
-        countryCode ":" + 39 ","
-        blocked ":false},{"
-        id ":123,"
-        country ":"
-        JAMAICA ","
-        nationality ":"
-        JAMAICAN ","
-        countryCode ":" + 1876 ","
-        blocked ":false},{"
-        id ":124,"
-        country ":"
-        JAPAN ","
-        nationality ":"
-        JAPA
-        NESE ","
-        countryCode ":" + 81 ","
-        blocked ":false},{"
-        id ":125,"
-        country ":"
-        JARVIS ISLAND ","
-        nationality ":"
-        JARVIS ISLAND ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":126,"
-        country ":"
-        JERSEY ","
-        nationality ":"
-        JERSEY ","
-        countryCode ":" + 44 ","
-        blocked ":false},{"
-        id ":127,"
-        country ":"
-        JOHNSTON ATOLL ","
-        nationality ":"
-        JOHNSTON ATOLL ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":128,"
-        country ":"
-        JORDAN ","
-        nationality ":"
-        JORDANIAN ","
-        countryCode ":" + 962 ","
-        blocked ":false},{"
-        id ":129,"
-        country ":"
-        KAZAKHSTAN ","
-        nationality ":"
-        KAZAKHSTANI ","
-        countryCode ":" + 7 ","
-        blocked ":false},{"
-        id ":130,"
-        country ":"
-        KENYA ","
-        nationality ":"
-        KENYAN ","
-        countryCode ":" + 254 ","
-        blocked ":false},{"
-        id ":131,"
-        country ":"
-        KINGMAN REEF ","
-        nationality ":"
-        KINGMAN REEF ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":132,"
-        country ":"
-        KIRIBATI ","
-        nationality ":"
-        I - KIRIBATI ","
-        countryCode ":" + 686 ","
-        blocked ":false},{"
-        id ":133,"
-        country ":"
-        KOSOVO ","
-        nationality ":"
-        KOSOVAR ","
-        countryCode ":" + 381 ","
-        blocked ":false},{"
-        id ":134,"
-        country ":"
-        KUWAIT ","
-        nationality ":"
-        KUWAITI ","
-        countryCode ":" + 965 ","
-        blocked ":false},{"
-        id ":135,"
-        country ":"
-        KYRGYZSTAN ","
-        nationality ":"
-        KYRGYZSTANI ","
-        countryCode ":" + 996 ","
-        blocked ":false},{"
-        id ":136,"
-        country ":"
-        LAOS ","
-        nationality ":"
-        LAOTIAN ","
-        countryCode ":" + 856 ","
-        blocked ":true},{"
-        id ":137,"
-        country ":"
-        LATVIA ","
-        nationality ":"
-        LATVIAN ","
-        countryCode ":" + 371 ","
-        blocked ":false},{"
-        id ":138,"
-        country ":"
-        LEBANON ","
-        nationality ":"
-        LEBANESE ","
-        countryCode ":" + 961 ","
-        blocked ":false},{"
-        id ":139,"
-        country ":"
-        LESOTHO ","
-        nationality ":"
-        MOSOTHO ","
-        countryCode ":" + 266 ","
-        blocked ":false},{"
-        id ":140,"
-        country ":"
-        LIBERIA ","
-        nationality ":"
-        LIBERIAN ","
-        countryCode ":" + 231 ","
-        blocked ":false},{"
-        id ":141,"
-        country ":"
-        LIBYA ","
-        nationality ":"
-        LIBYAN ","
-        countryCode ":" + 218 ","
-        blocked ":true},{"
-        id ":142,"
-        country ":"
-        LIECHTENSTEIN ","
-        nationality ":"
-        LIECHTENSTEINER ","
-        countryCode ":" + 423 ","
-        blocked ":false},{"
-        id ":143,"
-        country ":"
-        LITHUANIA ","
-        nationality ":"
-        LITHUNIAN ","
-        countryCode ":" + 370 ","
-        blocked ":false},{"
-        id ":144,"
-        country ":"
-        LUXEMBOURG ","
-        nationality ":"
-        LUXEMBOURGER ","
-        countryCode ":" + 352 ","
-        blocked ":false},{"
-        id ":145,"
-        country ":"
-        MACAU ","
-        nationality ":"
-        MACANESE ","
-        countryCode ":" + 853 ","
-        blocked ":false},{"
-        id ":146,"
-        country ":"
-        MACEDONIA ","
-        nationality ":"
-        MACEDONIAN ","
-        countryCode ":" + 389 ","
-        blocked ":false},{"
-        id ":147,"
-        country ":"
-        MADAGASCAR ","
-        nationality ":"
-        MALAGASY ","
-        countryCode ":" + 261 ","
-        blocked ":false},{"
-        id ":148,"
-        country ":"
-        MALAWI ","
-        nationality ":"
-        MALAWIAN ","
-        countryCode ":" + 265 ","
-        blocked ":false},{"
-        id ":149,"
-        country ":"
-        MALAYSIA ","
-        nationality ":"
-        MALAYSIAN ","
-        countryCode ":" + 60 ","
-        blocked ":false},{"
-        id ":150,"
-        country ":"
-        MALDIVES ","
-        nationality ":"
-        MALDIVAN ","
-        countryCode ":" + 960 ","
-        blocked ":false},{"
-        id ":151,"
-        country ":"
-        MALI ","
-        nationality ":"
-        MALIAN ","
-        countryCode ":" + 223 ","
-        blocked ":false},{"
-        id ":152,"
-        country ":"
-        MALTA ","
-        nationality ":"
-        MALTESE ","
-        countryCode ":" + 356 ","
-        blocked ":false},{"
-        id ":153,"
-        country ":"
-        MARSHALL ISLANDS ","
-        nationality ":"
-        MARSHALLESE ","
-        countryCode ":" + 692 ","
-        blocked ":false},{"
-        id ":154,"
-        country ":"
-        MARTINIQUE ","
-        nationality ":"
-        MARTINICAN ","
-        countryCode ":" + 596 ","
-        blocked ":false},{"
-        id ":155,"
-        country ":"
-        MAURITANIA ","
-        nationality ":"
-        MAURITANIAN ","
-        countryCode ":" + 222 ","
-        blocked ":false},{"
-        id ":156,"
-        country ":"
-        MAURITIUS ","
-        nationality ":"
-        MAURITIAN ","
-        countryCode ":" + 230 ","
-        blocked ":false},{"
-        id ":157,"
-        country ":"
-        MAYOTTE ","
-        nationality ":"
-        MAHORAN ","
-        countryCode ":" + 262 ","
-        blocked ":false},{"
-        id ":158,"
-        country ":"
-        MEXICO ","
-        nationality ":"
-        MEXICAN ","
-        countryCode ":" + 52 ","
-        blocked ":false},{"
-        id ":159,"
-        country ":"
-        MICRONESIA ","
-        nationality ":"
-        MICRONESIAN ","
-        countryCode ":" + 691 ","
-        blocked ":false},{"
-        id ":160,"
-        country ":"
-        MIDWAY ISLANDS ","
-        nationality ":"
-        U.S.TERRITORY ","
-        countryCode ":" + 1 ","
-        blocked ":false},{"
-        id ":161,"
-        country ":"
-        MOLDOVA ","
-        nationality ":"
-        MOLDOVAN ","
-        countryCode ":" + 373 ","
-        blocked ":false},{"
-        id ":162,"
-        country ":"
-        MONACO ","
-        nationality ":"
-        MONACAN ","
-        countryCode ":" + 377 ","
-        blocked ":false},{"
-        id ":163,"
-        country ":"
-        MONGOLIA ","
-        nationality ":"
-        MONGOLIAN ","
-        countryCode ":" + 976 ","
-        blocked ":false},{"
-        id ":164,"
-        country ":"
-        MONTENEGRO ","
-        nationality ":"
-        MONTENEGRIN ","
-        countryCode ":" + 382 ","
-        blocked ":false},{"
-        id ":165,"
-        country ":"
-        MONTSERRAT ","
-        nationality ":"
-        MONTSERRATIAN ","
-        countryCode ":" + 1664 ","
-        blocked ":false},{"
-        id ":166,"
-        country ":"
-        MOROCCO ","
-        nationality ":"
-        MOROCCAN ","
-        countryCode ":" + 212 ","
-        blocked ":false},{"
-        id ":167,"
-        country ":"
-        MOZAMBIQUE ","
-        nationality ":"
-        MOZAMBICA
-        N ","
-        countryCode ":" + 258 ","
-        blocked ":false},{"
-        id ":168,"
-        country ":"
-        NAGORNO - KARABAKH ","
-        nationality ":"
-        NAGORNO - KARABAKH ","
-        countryCode ":" + 374 ","
-        blocked ":false},{"
-        id ":169,"
-        country ":"
-        NAMIBIA ","
-        nationality ":"
-        NAMIBIAN ","
-        countryCode ":" + 264 ","
-        blocked ":false},{"
-        id ":170,"
-        country ":"
-        NAURU ","
-        nationality ":"
-        NAURUAN ","
-        countryCode ":" + 674 ","
-        blocked ":false},{"
-        id ":171,"
-        country ":"
-        NAVASSA ISLAND ","
-        nationality ":"
-        NAVASSA ISLAND ","
-        countryCode ":" + 1 ","
-        blocked ":false},{"
-        id ":172,"
-        country ":"
-        NEPAL ","
-        nationality ":"
-        NEPALESE ","
-        countryCode ":" + 977 ","
-        blocked ":false},{"
-        id ":173,"
-        country ":"
-        NETHERLANDS ","
-        nationality ":"
-        DUTCH ","
-        countryCode ":" + 31 ","
-        blocked ":false},{"
-        id ":174,"
-        country ":"
-        NEW CALEDONIA ","
-        nationality ":"
-        NEW CALEDONIAN ","
-        countryCode ":" + 687 ","
-        blocked ":false},{"
-        id ":175,"
-        country ":"
-        NEW ZEALAND ","
-        nationality ":"
-        NEW ZEALANDER ","
-        countryCode ":" + 64 ","
-        blocked ":false},{"
-        id ":176,"
-        country ":"
-        NICARAGUA ","
-        nationality ":"
-        NICARAGUAN ","
-        countryCode ":" + 505 ","
-        blocked ":false},{"
-        id ":177,"
-        country ":"
-        NIGER ","
-        nationality ":"
-        NIGERIEN ","
-        countryCode ":" + 227 ","
-        blocked ":false},{"
-        id ":178,"
-        country ":"
-        NIGERIA ","
-        nationality ":"
-        NIGERIAN ","
-        countryCode ":" + 234 ","
-        blocked ":false},{"
-        id ":179,"
-        country ":"
-        NIUE ","
-        nationality ":"
-        NIUEAN ","
-        countryCode ":" + 683 ","
-        blocked ":false},{"
-        id ":180,"
-        country ":"
-        NORFOLK ISLAND ","
-        nationality ":"
-        NORFOLK ISLANDER ","
-        countryCode ":" + 672 ","
-        blocked ":false},{"
-        id ":181,"
-        country ":"
-        NORTH KOREA ","
-        nationality ":"
-        NORTH KOREAN ","
-        countryCode ":" + 850 ","
-        blocked ":true},{"
-        id ":182,"
-        country ":"
-        NORTHERN CYPRUS ","
-        nationality ":"
-        U.S.TERRITORY ","
-        countryCode ":" + 90 ","
-        blocked ":false},{"
-        id ":183,"
-        country ":"
-        NORTHERN MARIANA ISLANDS ","
-        nationality ":"
-        U.S.TERRITORY ","
-        countryCode ":" + 1670 ","
-        blocked ":false},{"
-        id ":184,"
-        country ":"
-        NORWAY ","
-        nationality ":"
-        NORWEGIAN ","
-        countryCode ":" + 47 ","
-        blocked ":false},{"
-        id ":185,"
-        country ":"
-        OMAN ","
-        nationality ":"
-        OMANI ","
-        countryCode ":" + 968 ","
-        blocked ":false},{"
-        id ":186,"
-        country ":"
-        PAKISTAN ","
-        nationality ":"
-        PAKISTANI ","
-        countryCode ":" + 92 ","
-        blocked ":false},{"
-        id ":187,"
-        country ":"
-        PALAU ","
-        nationality ":"
-        PALAUAN ","
-        countryCode ":" + 680 ","
-        blocked ":false},{"
-        id ":188,"
-        country ":"
-        PALESTINE ","
-        nationality ":"
-        PALESTINIAN ","
-        countryCode ":" + 970 ","
-        blocked ":false},{"
-        id ":189,"
-        country ":"
-        PALMYRA ATOLL ","
-        nationality ":"
-        PALMYRA ATOLL ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":190,"
-        country ":"
-        PANAMA ","
-        nationality ":"
-        PANAMANIAN ","
-        countryCode ":" + 507 ","
-        blocked ":false},{"
-        id ":191,"
-        country ":"
-        PAPUA NEW GUINEA ","
-        nationality ":"
-        PAPUA NEW GUINEAN ","
-        countryCode ":" + 675 ","
-        blocked ":false},{"
-        id ":192,"
-        country ":"
-        PARAGUAY ","
-        nationality ":"
-        PARAGUAYAN ","
-        countryCode ":" + 595 ","
-        blocked ":false},{"
-        id ":193,"
-        country ":"
-        PERU ","
-        nationality ":"
-        PERUVIAN ","
-        countryCode ":" + 51 ","
-        blocked ":false},{"
-        id ":194,"
-        country ":"
-        PETER I ISLAND ","
-        nationality ":"
-        PETER I ISLAND ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":195,"
-        country ":"
-        PHILIPPINES ","
-        nationality ":"
-        FILIPINO ","
-        countryCode ":" + 63 ","
-        blocked ":false},{"
-        id ":196,"
-        country ":"
-        PITCAIRN ","
-        nationality ":"
-        PITCAIRN ISLANDER ","
-        countryCode ":" + 64 ","
-        blocked ":false},{"
-        id ":197,"
-        country ":"
-        PITCAIRN ISLANDS ","
-        nationality ":"
-        BRITISH OVERSEAS TERRITORY ","
-        countryCode ":" + 870 ","
-        blocked ":false},{"
-        id ":198,"
-        country ":"
-        POLAND ","
-        nationality ":"
-        POLISH ","
-        countryCode ":" + 48 ","
-        blocked ":false},{"
-        id ":199,"
-        country ":"
-        PORTUGAL ","
-        nationality ":"
-        PORTUGUESE ","
-        countryCode ":" + 351 ","
-        blocked ":false},{"
-        id ":200,"
-        country ":"
-        PRIDNESTROVIE(TRANSNISTRIA)
-        ","
-        nationality ":"
-        PRIDNESTROVIE(TRANSNISTRIA)
-        ","
-        countryCode ":" + 373 ","
-        blocked ":false},{"
-        id ":201,"
-        country ":"
-        PUERTO RICO ","
-        nationality ":"
-        PUERTO RICAN ","
-        countryCode ":" + 1 ","
-        blocked ":false},{"
-        id ":202,"
-        country ":"
-        QATAR ","
-        nationality ":"
-        QATARI ","
-        countryCode ":" + 974 ","
-        blocked ":false},{"
-        id ":203,"
-        country ":"
-        QUEEN MAUD LAND ","
-        nationality ":"
-        QUEEN MAUD LAND ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":204,"
-        country ":"
-        REUNION ","
-        nationality ":"
-        FRENCH OVERSEAS REGION ","
-        countryCode ":" + 262 ","
-        blocked ":false},{"
-        id ":205,"
-        country ":"
-        ROMANIA ","
-        nationality ":"
-        ROMANIAN ","
-        countryCode ":" + 40 ","
-        blocked ":false},{"
-        id ":206,"
-        country ":"
-        ROSS DEPENDENCY ","
-        nationality ":"
-        ROSS DEPENDENCY ","
-        countryCode ":null,"
-        blocked ":false},{"
-        id ":207,"
-        country ":"
-        RUSSIAN FEDERATION ","
-        nationality ":"
-        RUSSIAN ","
-        countryCode ":" + 7 ","
-        blocked ":false},{"
-        id ":208,"
-        country ":"
-        RWANDA ","
-        nationality ":"
-        RWANDAN ","
-        countryCode ":" + 250 ",
-        "blocked": false
-      }, {
-        "id": 209,
-        "country": "SAINT BARTHELEMY",
-        "nationality": "FRENCH OVERSEAS COLLECTIVITY",
-        "countryCode": "+590",
-        "blocked": false
-      }, {
-        "id": 210,
-        "country": "SAINT HELENA",
-        "nationality": "BRITISH OVERSEAS TERRITORY",
-        "countryCode": "+290",
-        "blocked": false
-      }, {
-        "id": 211,
-        "country": "SAINT KITTS AND NEVIS",
-        "nationality": "KITTIAN",
-        "countryCode": "+1869",
-        "blocked": false
-      }, {
-        "id": 212,
-        "country": "SAINT LUCIA",
-        "nationality": "SAINT LUCIAN",
-        "countryCode": "+1758",
-        "blocked": false
-      }, {
-        "id": 213,
-        "country": "SAINT MARTIN (FRANCE)",
-        "nationality": "FRENCH OVERSEAS COLLECTIVITY",
-        "countryCode": "+590",
-        "blocked": false
-      }, {
-        "id": 214,
-        "country": "SAINT MARTIN (NETHERLANDS)",
-        "nationality": "DUTCH",
-        "countryCode": "+1",
-        "blocked": false
-      }, {
-        "id": 215,
-        "country": "SAINT PIERRE AND MIQUELON",
-        "nationality": "SAINT-PIERRAIS",
-        "countryCode": "+508",
-        "blocked": false
-      }, {
-        "id": 216,
-        "country": "SAINT VINCENT AND GRENADINES",
-        "nationality": "SAINT VINCENTIAN",
-        "countryCode": "+1",
-        "blocked": false
-      }, {
-        "id": 217,
-        "country": "SAMOA",
-        "nationality": "SAMOAN",
-        "countryCode": "+685",
-        "blocked": false
-      }, {
-        "id": 218,
-        "country": "SAN MARINO",
-        "nationality": "SANMARINESE",
-        "countryCode": "+378",
-        "blocked": false
-      }, {
-        "id": 219,
-        "country": "SAO TOME AND PRINCIPE",
-        "nationality": "SAO TOMEAN",
-        "countryCode": "+239",
-        "blocked": false
-      }, {
-        "id": 220,
-        "country": "SAUDI ARABIA",
-        "nationality": "SAUDI ARABIAN",
-        "countryCode": "+966",
-        "blocked": false
-      }, {
-        "id": 221,
-        "country": "SENEGAL",
-        "nationality": "SENEGALESE",
-        "countryCode": "+221",
-        "blocked": false
-      }, {
-        "id": 222,
-        "country": "SERBIA",
-        "nationality": "SERBIAN",
-        "countryCode": "+381",
-        "blocked": false
-      }, {
-        "id": 223,
-        "country": "SEYCHELLES",
-        "nationality": "SEYCHELLOIS",
-        "countryCode": "+248",
-        "blocked": false
-      }, {
-        "id": 224,
-        "country": "SIERRA LEONE",
-        "nationality": "SIERRA LEONEAN",
-        "countryCode": "+232",
-        "blocked": false
-      }, {
-        "id": 225,
-        "country": "SINGAPORE",
-        "nationality": "SINGAPOREAN",
-        "countryCode": "+65",
-        "blocked": false
-      }, {
-        "id": 226,
-        "country": "SLOVAKIA",
-        "nationality": "SLOVAKIAN",
-        "countryCode": "+421",
-        "blocked": false
-      }, {
-        "id": 227,
-        "country": "SLOVENIA",
-        "nationality": "SLOVENIAN",
-        "countryCode": "+386",
-        "blocked": false
-      }, {
-        "id": 228,
-        "country": "SOLOMON ISLANDS",
-        "nationality": "SOLOMON ISLANDER",
-        "countryCode": "+677",
-        "blocked": false
-      }, {
-        "id": 229,
-        "country": "SOMALIA",
-        "nationality": "SOMALI",
-        "countryCode": "+252",
-        "blocked": true
-      }, {
-        "id": 230,
-        "country": "SOMALILAND",
-        "nationality": "SOMALILAND",
-        "countryCode": "+252",
-        "blocked": false
-      }, {
-        "id": 231,
-        "country": "SOUTH AFRICA",
-        "nationality": "SOUTH AFRICAN",
-        "countryCode": "+27",
-        "blocked": false
-      }, {
-        "id": 232,
-        "country": "SOUTH GEORGIA & SOUTH SANDWICH ISLANDS",
-        "nationality": "BRITISH OVERSEAS TERRITORY",
-        "countryCode": "+500",
-        "blocked": false
-      }, {
-        "id": 233,
-        "country": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS",
-        "nationality": "BRITISH OVERSEAS TERRITORY",
-        "countryCode": null,
-        "blocked": false
-      }, {
-        "id": 234,
-        "country": "SOUTH KOREA",
-        "nationality": "SOUTH KOREAN",
-        "countryCode": "+82",
-        "blocked": false
-      }, {
-        "id": 235,
-        "country": "SOUTH OSSETIA",
-        "nationality": "SOUTH OSSETIA",
-        "countryCode": "+7",
-        "blocked": false
-      }, {
-        "id": 236,
-        "country": "SOUTH SUDAN",
-        "nationality": "SOUTH SUDANESE",
-        "countryCode": "+211",
-        "blocked": true
-      }, {
-        "id": 237,
-        "country": "SPAIN",
-        "nationality": "SPANISH",
-        "countryCode": "+34",
-        "blocked": false
-      }, {
-        "id": 238,
-        "country": "SRI LANKA",
-        "nationality": "SRI LANKAN",
-        "countryCode": "+94",
-        "blocked": false
-      }, {
-        "id": 239,
-        "country": "SUDAN",
-        "nationality": "SUDANESE",
-        "countryCode": "+249",
-        "blocked": true
-      }, {
-        "id": 240,
-        "country": "SURINAME",
-        "nationality": "SURINAMER",
-        "countryCode": "+597",
-        "blocked": false
-      }, {
-        "id": 241,
-        "country": "SVALBARD AND JAN MAYEN ISLANDS",
-        "nationality": "SVALBARD AND JAN MAYEN ISLANDS",
-        "countryCode": "47",
-        "blocked": false
-      }, {
-        "id": 242,
-        "country": "SWAZILAND",
-        "nationality": "SWAZI",
-        "countryCode": "+268",
-        "blocked": false
-      }, {
-        "id": 243,
-        "country": "SWEDEN",
-        "nationality": "SWEDISH",
-        "countryCode": "+46",
-        "blocked": false
-      }, {
-        "id": 244,
-        "country": "SWITZERLAND",
-        "nationality": "SWISS",
-        "countryCode": "+41",
-        "blocked": false
-      }, {
-        "id": 245,
-        "country": "SYRIA",
-        "nationality": "SYRIAN",
-        "countryCode": "+963",
-        "blocked": true
-      }, {
-        "id": 246,
-        "country": "TAIWAN",
-        "nationality": "TAIWANESE",
-        "countryCode": "+886",
-        "blocked": false
-      }, {
-        "id": 247,
-        "country": "TAJIKISTAN",
-        "nationality": "TAJIKISTANI",
-        "countryCode": "+992",
-        "blocked": false
-      }, {
-        "id": 248,
-        "country": "TANZANIA",
-        "n
-        ationality ":"
-        TANZANIAN ","
-        countryCode ":" + 255 ","
-        blocked ":false},{"
-        id ":249,"
-        country ":"
-        THAILAND ","
-        nationality ":"
-        THAI ","
-        countryCode ":" + 66 ","
-        blocked ":false},{"
-        id ":250,"
-        country ":"
-        TIMOR - LESTE ","
-        nationality ":"
-        TIMORESE ","
-        countryCode ":" + 670 ","
-        blocked ":false},{"
-        id ":251,"
-        country ":"
-        TOGO ","
-        nationality ":"
-        TOGOLESE ","
-        countryCode ":" + 228 ","
-        blocked ":false},{"
-        id ":252,"
-        country ":"
-        TOKELAU ","
-        nationality ":"
-        TOKELAUAN ","
-        countryCode ":" + 690 ","
-        blocked ":false},{"
-        id ":253,"
-        country ":"
-        TONGA ","
-        nationality ":"
-        TONGAN ","
-        countryCode ":" + 676 ","
-        blocked ":false},{"
-        id ":254,"
-        country ":"
-        TRINIDAD AND TOBAGO ","
-        nationality ":"
-        TRINIDADIAN ","
-        countryCode ":" + 1868 ","
-        blocked ":false},{"
-        id ":255,"
-        country ":"
-        TRISTAN DA CUNHA ","
-        nationality ":"
-        TRISTAN DA CUNHA ","
-        countryCode ":" + 290 ","
-        blocked ":false},{"
-        id ":256,"
-        country ":"
-        TUNISIA ","
-        nationality ":"
-        TUNISIAN ","
-        countryCode ":" + 216 ","
-        blocked ":false},{"
-        id ":257,"
-        country ":"
-        TURKEY ","
-        nationality ":"
-        TURKISH ","
-        countryCode ":" + 90 ","
-        blocked ":false},{"
-        id ":258,"
-        country ":"
-        TURKMENISTAN ","
-        nationality ":"
-        TURKMEN ","
-        countryCode ":" + 993 ","
-        blocked ":true},{"
-        id ":259,"
-        country ":"
-        TURKS AND CAICOS ISLANDS ","
-        nationality ":"
-        BRITISH OVERSEAS TERRITORY ","
-        countryCode ":" + 1649 ","
-        blocked ":false},{"
-        id ":260,"
-        country ":"
-        TUVALU ","
-        nationality ":"
-        TUVALUAN ","
-        countryCode ":" + 688 ","
-        blocked ":false},{"
-        id ":261,"
-        country ":"
-        UGANDA ","
-        nationality ":"
-        UGANDAN ","
-        countryCode ":" + 256 ","
-        blocked ":true},{"
-        id ":262,"
-        country ":"
-        UKRAINE ","
-        nationality ":"
-        UKRAINIAN ","
-        countryCode ":" + 380 ","
-        blocked ":false},{"
-        id ":263,"
-        country ":"
-        UNITED ARAB EMIRATES ","
-        nationality ":"
-        EMIRIAN ","
-        countryCode ":" + 971 ","
-        blocked ":false},{"
-        id ":264,"
-        country ":"
-        UNITED KINGDOM ","
-        nationality ":"
-        BRITISH ","
-        countryCode ":" + 44 ","
-        blocked ":false},{"
-        id ":265,"
-        country ":"
-        UNITED STATES MINOR OUTLYING ISLANDS ","
-        nationality ":"
-        U.S.TERRITORY ","
-        countryCode ":" + 1 ","
-        blocked ":false},{"
-        id ":266,"
-        country ":"
-        UNITED STATES OF AMERICA ","
-        nationality ":"
-        AMERICAN ","
-        countryCode ":" + 1 ","
-        blocked ":false},{"
-        id ":267,"
-        country ":"
-        UNITED STATES VIRGIN ISLANDS ","
-        nationality ":"
-        U.S.TERRITORY ","
-        countryCode ":" + 1 ","
-        blocked ":false},{"
-        id ":268,"
-        country ":"
-        URUGUAY ","
-        nationality ":"
-        URUGUAYAN ","
-        countryCode ":" + 598 ","
-        blocked ":false},{"
-        id ":269,"
-        country ":"
-        UZBEKISTAN ","
-        nationality ":"
-        UZBEKISTANI ","
-        countryCode ":" + 998 ","
-        blocked ":true},{"
-        id ":270,"
-        country ":"
-        VANUATU ","
-        nationality ":"
-        NI - VANUATU ","
-        countryCode ":" + 678 ","
-        blocked ":true},{"
-        id ":271,"
-        country ":"
-        VATICAN ","
-        nationality ":"
-        VATICAN ","
-        countryCode ":" + 379 ","
-        blocked ":false},{"
-        id ":272,"
-        country ":"
-        VENEZUELA ","
-        nationality ":"
-        VENEZUELAN ","
-        countryCode ":" + 58 ","
-        blocked ":true},{"
-        id ":273,"
-        country ":"
-        VIETNAM ","
-        nationality ":"
-        VIETNAMESE ","
-        countryCode ":" + 84 ","
-        blocked ":false},{"
-        id ":274,"
-        country ":"
-        WAKE ISLAND ","
-        nationality ":"
-        WAKE ISLAND ","
-        countryCode ":" + 1808 ","
-        blocked ":false},{"
-        id ":275,"
-        country ":"
-        WALLIS AND FUTUNA ISLANDS ","
-        nationality ":"
-        FRENCH OVERSEAS COLLECTIVITY ","
-        countryCode ":" + 681 ","
-        blocked ":false},{"
-        id ":276,"
-        country ":"
-        WESTERN SAHARAN ","
-        nationality ":"
-        WESTERN SAHARAN ","
-        countryCode ":" + 212 ","
-        blocked ":false},{"
-        id ":277,"
-        country ":"
-        YEMEN ","
-        nationality ":"
-        YEMENI ","
-        countryCode ":" + 967 ","
-        blocked ":true},{"
-        id ":278,"
-        country ":"
-        ZAMBIA ","
-        nationality ":"
-        ZAMBIAN ","
-        countryCode ":" + 260 ","
-        blocked ":false},{"
-        id ":279,"
-        country ":"
-        ZIMBABWE ","
-        nationality ":"
-        ZIMBABWEAN ","
-        countryCode ":" + 263 ","
-        blocked ":false}],"
-        responseMessage ":{"
-        responseCode ":6000,"
-        responseDescription ":"
-        Successful response "}}
+    "id": 1,
+    "country": "ABKHAZIA",
+    "nationality": "ABKHAZIAN",
+    "countryCode": "+840",
+    "blocked": false
+  }, {
+    "id": 2,
+    "country": "AFGHANISTAN",
+    "nationality": "AFGHANI",
+    "countryCode": "+93",
+    "blocked": true
+  }, {
+    "id": 3,
+    "country": "ALAND ISLANDS",
+    "nationality": "ALANDIC",
+    "countryCode": "+358",
+    "blocked": false
+  }, {
+    "id": 4,
+    "country": "ALBANIA",
+    "nationality": "ALBANIAN",
+    "countryCode": "+355",
+    "blocked": false
+  }, {
+    "id": 5,
+    "country": "ALGERIA",
+    "nationality": "ALGERIAN",
+    "countryCode": "+213",
+    "blocked": false
+  }, {
+    "id": 6,
+    "country": "AMERICAN SAMOA",
+    "nationality": "U.S. TERRITORY",
+    "countryCode": "+1684",
+    "blocked": false
+  }, {
+    "id": 7,
+    "country": "ANDORRA",
+    "nationality": "ANDORRAN",
+    "countryCode": "+376",
+    "blocked": false
+  }, {
+    "id": 8,
+    "country": "ANGOLA",
+    "nationality": "ANGOLAN",
+    "countryCode": "+244",
+    "blocked": true
+  }, {
+    "id": 9,
+    "country": "ANGUILLA",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+1264",
+    "blocked": false
+  }, {
+    "id": 10,
+    "country": "ANTARCTICA",
+    "nationality": "ANTARCTIC",
+    "countryCode": "+672",
+    "blocked": false
+  }, {
+    "id": 11,
+    "country": "ANTIGUA AND BARBUDA",
+    "nationality": "ANTIGUAN",
+    "countryCode": "+1268",
+    "blocked": false
+  }, {
+    "id": 12,
+    "country": "ARGENTINA",
+    "nationality": "ARGENTINE",
+    "countryCode": "+54",
+    "blocked": false
+  }, {
+    "id": 13,
+    "country": "ARMENIA",
+    "nationality": "ARMENIAN",
+    "countryCode": "+374",
+    "blocked": false
+  }, {
+    "id": 14,
+    "country": "ARUBA",
+    "nationality": "ARUBIAN",
+    "countryCode": "+297",
+    "blocked": false
+  }, {
+    "id": 15,
+    "country": "ASCENSION",
+    "nationality": "ASCENSION",
+    "countryCode": "+247",
+    "blocked": false
+  }, {
+    "id": 16,
+    "country": "ASHMORE AND CARTIER ISLANDS",
+    "nationality": "AUSTRALIAN EXTERNAL TERRITORY",
+    "countryCode": "+91",
+    "blocked": false
+  }, {
+    "id": 17,
+    "country": "AUSTRALIA",
+    "nationality": "AUSTRALIAN",
+    "countryCode": "+61",
+    "blocked": false
+  }, {
+    "id": 18,
+    "country": "AUSTRALIAN ANTARCTIC TERRITORY",
+    "nationality": "AUSTRALIAN ANTARCTIC TERRITORY",
+    "countryCode": "+672",
+    "blocked": false
+  }, {
+    "id": 19,
+    "country": "AUSTRIA",
+    "nationality": "AUSTRIAN",
+    "countryCode": "+43",
+    "blocked": false
+  }, {
+    "id": 20,
+    "country": "AZERBAIJAN",
+    "nationality": "AZERBAIJANI",
+    "countryCode": "+994",
+    "blocked": false
+  }, {
+    "id": 21,
+    "country": "BAHAMAS",
+    "nationality": "BAHAMEESE",
+    "countryCode": "+1242",
+    "blocked": false
+  }, {
+    "id": 22,
+    "country": "BAHRAIN",
+    "nationality": "BAHRAINIAN",
+    "countryCode": "+973",
+    "blocked": false
+  }, {
+    "id": 23,
+    "country": "BAKER ISLAND",
+    "nationality": "BAKER ISLAND",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 24,
+    "country": "BANGLADESH",
+    "nationality": "BANGLADESHI",
+    "countryCode": "+880",
+    "blocked": false
+  }, {
+    "id": 25,
+    "country": "BARBADOS",
+    "nationality": "BARBADIAN",
+    "countryCode": "+1246",
+    "blocked": false
+  }, {
+    "id": 26,
+    "country": "BELARUS",
+    "nationality": "BELARUSIAN",
+    "countryCode": "+375",
+    "blocked": false
+  }, {
+    "id": 27,
+    "country": "BELGIUM",
+    "nationality": "BELGIAN",
+    "countryCode": "+32",
+    "blocked": false
+  }, {
+    "id": 28,
+    "country": "BELIZE",
+    "nationality": "BELIZEAN",
+    "countryCode": "+501",
+    "blocked": false
+  }, {
+    "id": 29,
+    "country": "BENIN",
+    "nationality": "BENINESE",
+    "countryCode": "+22",
+    "blocked": false
+  }, {
+    "id": 30,
+    "country": "BERMUDA",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+1441",
+    "blocked": false
+  }, {
+    "id": 31,
+    "country": "BHUTAN",
+    "nationality": "BHUTANESE",
+    "countryCode": "+975",
+    "blocked": false
+  }, {
+    "id": 32,
+    "country": "BOLIVIA",
+    "nationality": "BOLIVIAN",
+    "countryCode": "+591",
+    "blocked": false
+  }, {
+    "id": 33,
+    "country": "BOSNIA AND HERZEGOVINA",
+    "nationality": "BOSNIAN",
+    "countryCode": "+387",
+    "blocked": true
+  }, {
+    "id": 34,
+    "country": "BOTSWANA",
+    "nationality": "MOTSWANA",
+    "countryCode": "+267",
+    "blocked": false
+  }, {
+    "id": 35,
+    "country": "BOUVET ISLAND",
+    "nationality": "BOUVET ISLAND",
+    "countryCode": "+55",
+    "blocked": false
+  }, {
+    "id": 36,
+    "country": "BRAZIL",
+    "nationality": "BRAZILIAN",
+    "countryCode": "+55",
+    "blocked": false
+  }, {
+    "id": 37,
+    "country": "BRITISH ANTARCTIC TERRITORY",
+    "nationality": "BRITISH ANTARCTIC TERRITORY",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 38,
+    "country": "BRITISH INDIAN OCEAN TERRITORY",
+    "nationality": "BRITISH INDIAN OCEAN TERRITORY",
+    "countryCode": "+246",
+    "blocked": false
+  }, {
+    "id": 39,
+    "country": "BRITISH SOVEREIGN BASE AREAS",
+    "nationality": "BRITISH SOVEREIGN BASE AREAS",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 40,
+    "country": "BRITISH VIRGIN ISLANDS",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+1284",
+    "blocked": false
+  }, {
+    "id": 41,
+    "country": "BRUNEI",
+    "nationality": "BRUNEIAN",
+    "countryCode": "+673",
+    "blocked": false
+  }, {
+    "id": 42,
+    "country": "BULGARIA",
+    "nationality": "BULGARIAN",
+    "countryCode": "+359",
+    "blocked": false
+  }, {
+    "id": 43,
+    "country": "BURKINA FASO",
+    "nationality": "BURKINABE",
+    "countryCode": "+226",
+    "blocked": false
+  }, {
+    "id": 44,
+    "country": "BURMA (REPUBLIC OF THE UNION OF MYANMAR)",
+    "nationality": "MYANMAR",
+    "countryCode": "+95",
+    "blocked": false
+  }, {
+    "id": 45,
+    "country": "BURUNDI",
+    "nationality": "BURUNDIAN",
+    "countryCode": "+257",
+    "blocked": false
+  }, {
+    "id": 46,
+    "country": "CAMBODIA",
+    "nationality": "CAMBODIAN",
+    "countryCode": "+855",
+    "blocked": false
+  }, {
+    "id": 47,
+    "country": "CAMEROON",
+    "nationality": "CAMEROONIAN",
+    "countryCode": "+237",
+    "blocked": false
+  }, {
+    "id": 48,
+    "country": "CANADA",
+    "nationality": "CANADIAN",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 49,
+    "country": "CAPE VERDE",
+    "nationality": "CAPE VERDEAN",
+    "countryCode": "+238",
+    "blocked": false
+  }, {
+    "id": 50,
+    "country": "CARIBBEAN NETHERLANDS",
+    "nationality": "CARIBBEAN NETHERLANDS",
+    "countryCode": "+599",
+    "blocked": false
+  }, {
+    "id": 51,
+    "country": "CAYMAN ISLANDS",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+1345",
+    "blocked": false
+  }, {
+    "id": 52,
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "nationality": "CENTRAL AFRICAN",
+    "countryCode": "+236",
+    "blocked": false
+  }, {
+    "id": 53,
+    "country": "CHAD",
+    "nationality": "CHADIAN",
+    "countryCode": "+235",
+    "blocked": false
+  }, {
+    "id": 54,
+    "country": "CHILE",
+    "nationality": "CHILEAN",
+    "countryCode": "+56",
+    "blocked": false
+  }, {
+    "id": 55,
+    "country": "CHINA",
+    "nationality": "CHINESE",
+    "countryCode": "+86",
+    "blocked": false
+  }, {
+    "id": 56,
+    "country": "CHRISTMAS ISLAND",
+    "nationality": "AUSTRALIAN EXTERNAL TERRITORY",
+    "countryCode": "+61",
+    "blocked": false
+  }, {
+    "id": 57,
+    "country": "CLIPPERTON ISLAND",
+    "nationality": "CLIPPERTON ISLAND",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 58,
+    "country": "COCOS (KEELING) ISLANDS",
+    "nationality": "AUSTRALIAN EXTERNAL TERRITORY",
+    "countryCode": "+891",
+    "blocked": false
+  }, {
+    "id": 59,
+    "country": "COLOMBIA",
+    "nationality": "COLOMBIAN",
+    "countryCode": "+57",
+    "blocked": false
+  }, {
+    "id": 60,
+    "country": "COMOROS",
+    "nationality": "COMORAN",
+    "countryCode": "+269",
+    "blocked": false
+  }, {
+    "id": 61,
+    "country": "CONGO (REPUBLIC OF)",
+    "nationality": "CONGOLESE",
+    "countryCode": "+242",
+    "blocked": false
+  }, {
+    "id": 62,
+    "country": "COOK ISLANDS",
+    "nationality": "COOK ISLANDER",
+    "countryCode": "+682",
+    "blocked": false
+  }, {
+    "id": 63,
+    "country": "CORAL SEA ISLANDS",
+    "nationality": "AUSTRALIAN EXTERNAL TERRITORY",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 64,
+    "country": "COSTA RICA",
+    "nationality": "COSTA RICAN",
+    "countryCode": "+506",
+    "blocked": false
+  }, {
+    "id": 65,
+    "country": "COTE D'IVOIRE (IVORY COAST)",
+    "nationality": "IVORIAN",
+    "countryCode": "+225",
+    "blocked": false
+  }, {
+    "id": 66,
+    "country": "CROATIA",
+    "nationality": "CROATIAN",
+    "countryCode": "+385",
+    "blocked": false
+  }, {
+    "id": 67,
+    "country": "CUBA",
+    "nationality": "CUBAN",
+    "countryCode": "+53",
+    "blocked": false
+  }, {
+    "id": 68,
+    "country": "CURACAO",
+    "nationality": "CURACAOAN",
+    "countryCode": "+599",
+    "blocked": false
+  }, {
+    "id": 69,
+    "country": "CYPRUS",
+    "nationality": "CYPRIOT",
+    "countryCode": "+357",
+    "blocked": false
+  }, {
+    "id": 70,
+    "country": "CZECH REPUBLIC",
+    "nationality": "CZECH",
+    "countryCode": "+420",
+    "blocked": false
+  }, {
+    "id": 71,
+    "country": "DEMOCRATIC REPUBLIC OF THE CONGO",
+    "nationality": "CONGOLESE",
+    "countryCode": "+243",
+    "blocked": true
+  }, {
+    "id": 72,
+    "country": "DENMARK",
+    "nationality": "DANISH",
+    "countryCode": "+45",
+    "blocked": false
+  }, {
+    "id": 73,
+    "country": "DJIBOUTI",
+    "nationality": "DJIBOUTIAN",
+    "countryCode": "+253",
+    "blocked": false
+  }, {
+    "id": 74,
+    "country": "DOMINICA",
+    "nationality": "DOMINICAN",
+    "countryCode": "+1767",
+    "blocked": false
+  }, {
+    "id": 75,
+    "country": "DOMINICAN REPUBLIC",
+    "nationality": "DOMINICAN",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 76,
+    "country": "ECUADOR",
+    "nationality": "ECUADOREAN",
+    "countryCode": "+593",
+    "blocked": false
+  }, {
+    "id": 77,
+    "country": "EGYPT",
+    "nationality": "EGYPTIAN",
+    "countryCode": "+20",
+    "blocked": false
+  }, {
+    "id": 78,
+    "country": "EL SALVADOR",
+    "nationality": "SALVADOREAN",
+    "countryCode": "+503",
+    "blocked": false
+  }, {
+    "id": 79,
+    "country": "EQUATORIAL GUINEA",
+    "nationality": "EQUATORIAL GUINEAN",
+    "countryCode": "+240",
+    "blocked": false
+  }, {
+    "id": 80,
+    "country": "ERITREA",
+    "nationality": "ERITREAN",
+    "countryCode": "+291",
+    "blocked": true
+  }, {
+    "id": 81,
+    "country": "ESTONIA",
+    "nationality": "ESTONIAN",
+    "countryCode": "+372",
+    "blocked": false
+  }, {
+    "id": 82,
+    "country": "ETHIOPIA",
+    "nationality": "ETHIOPIAN",
+    "countryCode": "+251",
+    "blocked": false
+  }, {
+    "id": 83,
+    "country": "FALKLAND ISLANDS",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+500",
+    "blocked": false
+  }, {
+    "id": 84,
+    "country": "FAROE ISLANDS",
+    "nationality": "FAROESE",
+    "countryCode": "+298",
+    "blocked": false
+  }, {
+    "id": 85,
+    "country": "FIJI",
+    "nationality": "FIJIAN",
+    "countryCode": "+679",
+    "blocked": false
+  }, {
+    "id": 86,
+    "country": "FINLAND",
+    "nationality": "FINNISH",
+    "countryCode": "+358",
+    "blocked": false
+  }, {
+    "id": 87,
+    "country": "FRANCE",
+    "nationality": "FRENCH",
+    "countryCode": "+33",
+    "blocked": false
+  }, {
+    "id": 88,
+    "country": "FRENCH GUIANA",
+    "nationality": "FRENCH GUIANESE",
+    "countryCode": "+594",
+    "blocked": false
+  }, {
+    "id": 89,
+    "country": "FRENCH POLYNESIA",
+    "nationality": "FRENCH OVERSEAS COLLECTIVITY",
+    "countryCode": "+689",
+    "blocked": false
+  }, {
+    "id": 90,
+    "country": "FRENCH SOUTHERN AND ANTARCTIC LANDS",
+    "nationality": "FRENCH SOUTHERN AND ANTARCTIC LANDS",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 91,
+    "country": "FRENCH SOUTHERN TERRITORIES",
+    "nationality": "FRENCH SOUTHERN TERRITORIES",
+    "countryCode": "+98404",
+    "blocked": false
+  }, {
+    "id": 92,
+    "country": "GABON",
+    "nationality": "GABONESE",
+    "countryCode": "+241",
+    "blocked": false
+  }, {
+    "id": 93,
+    "country": "GAMBIA",
+    "nationality": "GAMBIAN",
+    "countryCode": "+220",
+    "blocked": false
+  }, {
+    "id": 94,
+    "country": "GEORGIA",
+    "nationality": "GEORGIAN",
+    "countryCode": "+995",
+    "blocked": false
+  }, {
+    "id": 95,
+    "country": "GERMANY",
+    "nationality": "GERMAN",
+    "countryCode": "+49",
+    "blocked": false
+  }, {
+    "id": 96,
+    "country": "GHANA",
+    "nationality": "GHANAIAN",
+    "countryCode": "+233",
+    "blocked": false
+  }, {
+    "id": 97,
+    "country": "GIBRALTAR",
+    "nationality": "GIBRALTARIAN",
+    "countryCode": "+350",
+    "blocked": false
+  }, {
+    "id": 98,
+    "country": "GREECE",
+    "nationality": "GREEK",
+    "countryCode": "+30",
+    "blocked": false
+  }, {
+    "id": 99,
+    "country": "GREENLAND",
+    "nationality": "GREENLANDER",
+    "countryCode": "+299",
+    "blocked": false
+  }, {
+    "id": 100,
+    "country": "GRENADA",
+    "nationality": "GRENADIAN",
+    "countryCode": "+1473",
+    "blocked": false
+  }, {
+    "id": 101,
+    "country": "GUADELOUPE",
+    "nationality": "GUADELOUPEAN",
+    "countryCode": "+590",
+    "blocked": false
+  }, {
+    "id": 102,
+    "country": "GUAM",
+    "nationality": "GUAMANIAN",
+    "countryCode": "+1671",
+    "blocked": false
+  }, {
+    "id": 103,
+    "country": "GUATEMALA",
+    "nationality": "GUATEMALAN",
+    "countryCode": "+502",
+    "blocked": false
+  }, {
+    "id": 104,
+    "country": "GUERNSEY",
+    "nationality": "GUERNSEY",
+    "countryCode": "+44",
+    "blocked": false
+  }, {
+    "id": 105,
+    "country": "GUINEA",
+    "nationality": "GUINEAN",
+    "countryCode": "+224",
+    "blocked": true
+  }, {
+    "id": 106,
+    "country": "GUINEA-BISSAU",
+    "nationality": "GUINEAN",
+    "countryCode": "+245",
+    "blocked": true
+  }, {
+    "id": 107,
+    "country": "GUYANA",
+    "nationality": "GUYANESE",
+    "countryCode": "+592",
+    "blocked": false
+  }, {
+    "id": 108,
+    "country": "HAITI",
+    "nationality": "HAITIAN",
+    "countryCode": "+509",
+    "blocked": true
+  }, {
+    "id": 109,
+    "country": "HEARD AND MCDONALD ISLANDS",
+    "nationality": "AUSTRALIAN EXTERNAL TERRITORY",
+    "countryCode": "+6723",
+    "blocked": false
+  }, {
+    "id": 110,
+    "country": "HONDURAS",
+    "nationality": "HONDURAN",
+    "countryCode": "+504",
+    "blocked": false
+  }, {
+    "id": 111,
+    "country": "HONG KONG",
+    "nationality": "HONG KONG",
+    "countryCode": "+852",
+    "blocked": false
+  }, {
+    "id": 112,
+    "country": "HOWLAND ISLAND",
+    "nationality": "HOWLAND ISLAND",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 113,
+    "country": "HUNGARY",
+    "nationality": "HUNGARIAN",
+    "countryCode": "+36",
+    "blocked": false
+  }, {
+    "id": 114,
+    "country": "ICELAND",
+    "nationality": "ICELANDER",
+    "countryCode": "+354",
+    "blocked": false
+  }, {
+    "id": 115,
+    "country": "INDIA",
+    "nationality": "INDIAN",
+    "countryCode": "+91",
+    "blocked": false
+  }, {
+    "id": 116,
+    "country": "INDONESIA",
+    "nationality": "INDONESIAN",
+    "countryCode": "+62",
+    "blocked": false
+  }, {
+    "id": 117,
+    "country": "IRAN",
+    "nationality": "IRANIAN",
+    "countryCode": "+98",
+    "blocked": true
+  }, {
+    "id": 118,
+    "country": "IRAQ",
+    "nationality": "IRAQI",
+    "countryCode": "+964",
+    "blocked": true
+  }, {
+    "id": 119,
+    "country": "IRELAND",
+    "nationality": "IRISH",
+    "countryCode": "+353",
+    "blocked": false
+  }, {
+    "id": 120,
+    "country": "ISLE OF MAN",
+    "nationality": "MANX",
+    "countryCode": "+44",
+    "blocked": false
+  }, {
+    "id": 121,
+    "country": "ISRAEL",
+    "nationality": "ISRAELI",
+    "countryCode": "+972",
+    "blocked": false
+  }, {
+    "id": 122,
+    "country": "ITALY",
+    "nationality": "ITALIAN",
+    "countryCode": "+39",
+    "blocked": false
+  }, {
+    "id": 123,
+    "country": "JAMAICA",
+    "nationality": "JAMAICAN",
+    "countryCode": "+1876",
+    "blocked": false
+  }, {
+    "id": 124,
+    "country": "JAPAN",
+    "nationality": "JAPANESE",
+    "countryCode": "+81",
+    "blocked": false
+  }, {
+    "id": 125,
+    "country": "JARVIS ISLAND",
+    "nationality": "JARVIS ISLAND",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 126,
+    "country": "JERSEY",
+    "nationality": "JERSEY",
+    "countryCode": "+44",
+    "blocked": false
+  }, {
+    "id": 127,
+    "country": "JOHNSTON ATOLL",
+    "nationality": "JOHNSTON ATOLL",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 128,
+    "country": "JORDAN",
+    "nationality": "JORDANIAN",
+    "countryCode": "+962",
+    "blocked": false
+  }, {
+    "id": 129,
+    "country": "KAZAKHSTAN",
+    "nationality": "KAZAKHSTANI",
+    "countryCode": "+7",
+    "blocked": false
+  }, {
+    "id": 130,
+    "country": "KENYA",
+    "nationality": "KENYAN",
+    "countryCode": "+254",
+    "blocked": false
+  }, {
+    "id": 131,
+    "country": "KINGMAN REEF",
+    "nationality": "KINGMAN REEF",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 132,
+    "country": "KIRIBATI",
+    "nationality": "I-KIRIBATI",
+    "countryCode": "+686",
+    "blocked": false
+  }, {
+    "id": 133,
+    "country": "KOSOVO",
+    "nationality": "KOSOVAR",
+    "countryCode": "+381",
+    "blocked": false
+  }, {
+    "id": 134,
+    "country": "KUWAIT",
+    "nationality": "KUWAITI",
+    "countryCode": "+965",
+    "blocked": false
+  }, {
+    "id": 135,
+    "country": "KYRGYZSTAN",
+    "nationality": "KYRGYZSTANI",
+    "countryCode": "+996",
+    "blocked": false
+  }, {
+    "id": 136,
+    "country": "LAOS",
+    "nationality": "LAOTIAN",
+    "countryCode": "+856",
+    "blocked": true
+  }, {
+    "id": 137,
+    "country": "LATVIA",
+    "nationality": "LATVIAN",
+    "countryCode": "+371",
+    "blocked": false
+  }, {
+    "id": 138,
+    "country": "LEBANON",
+    "nationality": "LEBANESE",
+    "countryCode": "+961",
+    "blocked": false
+  }, {
+    "id": 139,
+    "country": "LESOTHO",
+    "nationality": "MOSOTHO",
+    "countryCode": "+266",
+    "blocked": false
+  }, {
+    "id": 140,
+    "country": "LIBERIA",
+    "nationality": "LIBERIAN",
+    "countryCode": "+231",
+    "blocked": false
+  }, {
+    "id": 141,
+    "country": "LIBYA",
+    "nationality": "LIBYAN",
+    "countryCode": "+218",
+    "blocked": true
+  }, {
+    "id": 142,
+    "country": "LIECHTENSTEIN",
+    "nationality": "LIECHTENSTEINER",
+    "countryCode": "+423",
+    "blocked": false
+  }, {
+    "id": 143,
+    "country": "LITHUANIA",
+    "nationality": "LITHUNIAN",
+    "countryCode": "+370",
+    "blocked": false
+  }, {
+    "id": 144,
+    "country": "LUXEMBOURG",
+    "nationality": "LUXEMBOURGER",
+    "countryCode": "+352",
+    "blocked": false
+  }, {
+    "id": 145,
+    "country": "MACAU",
+    "nationality": "MACANESE",
+    "countryCode": "+853",
+    "blocked": false
+  }, {
+    "id": 146,
+    "country": "MACEDONIA",
+    "nationality": "MACEDONIAN",
+    "countryCode": "+389",
+    "blocked": false
+  }, {
+    "id": 147,
+    "country": "MADAGASCAR",
+    "nationality": "MALAGASY",
+    "countryCode": "+261",
+    "blocked": false
+  }, {
+    "id": 148,
+    "country": "MALAWI",
+    "nationality": "MALAWIAN",
+    "countryCode": "+265",
+    "blocked": false
+  }, {
+    "id": 149,
+    "country": "MALAYSIA",
+    "nationality": "MALAYSIAN",
+    "countryCode": "+60",
+    "blocked": false
+  }, {
+    "id": 150,
+    "country": "MALDIVES",
+    "nationality": "MALDIVAN",
+    "countryCode": "+960",
+    "blocked": false
+  }, {
+    "id": 151,
+    "country": "MALI",
+    "nationality": "MALIAN",
+    "countryCode": "+223",
+    "blocked": false
+  }, {
+    "id": 152,
+    "country": "MALTA",
+    "nationality": "MALTESE",
+    "countryCode": "+356",
+    "blocked": false
+  }, {
+    "id": 153,
+    "country": "MARSHALL ISLANDS",
+    "nationality": "MARSHALLESE",
+    "countryCode": "+692",
+    "blocked": false
+  }, {
+    "id": 154,
+    "country": "MARTINIQUE",
+    "nationality": "MARTINICAN",
+    "countryCode": "+596",
+    "blocked": false
+  }, {
+    "id": 155,
+    "country": "MAURITANIA",
+    "nationality": "MAURITANIAN",
+    "countryCode": "+222",
+    "blocked": false
+  }, {
+    "id": 156,
+    "country": "MAURITIUS",
+    "nationality": "MAURITIAN",
+    "countryCode": "+230",
+    "blocked": false
+  }, {
+    "id": 157,
+    "country": "MAYOTTE",
+    "nationality": "MAHORAN",
+    "countryCode": "+262",
+    "blocked": false
+  }, {
+    "id": 158,
+    "country": "MEXICO",
+    "nationality": "MEXICAN",
+    "countryCode": "+52",
+    "blocked": false
+  }, {
+    "id": 159,
+    "country": "MICRONESIA",
+    "nationality": "MICRONESIAN",
+    "countryCode": "+691",
+    "blocked": false
+  }, {
+    "id": 160,
+    "country": "MIDWAY ISLANDS",
+    "nationality": "U.S. TERRITORY",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 161,
+    "country": "MOLDOVA",
+    "nationality": "MOLDOVAN",
+    "countryCode": "+373",
+    "blocked": false
+  }, {
+    "id": 162,
+    "country": "MONACO",
+    "nationality": "MONACAN",
+    "countryCode": "+377",
+    "blocked": false
+  }, {
+    "id": 163,
+    "country": "MONGOLIA",
+    "nationality": "MONGOLIAN",
+    "countryCode": "+976",
+    "blocked": false
+  }, {
+    "id": 164,
+    "country": "MONTENEGRO",
+    "nationality": "MONTENEGRIN",
+    "countryCode": "+382",
+    "blocked": false
+  }, {
+    "id": 165,
+    "country": "MONTSERRAT",
+    "nationality": "MONTSERRATIAN",
+    "countryCode": "+1664",
+    "blocked": false
+  }, {
+    "id": 166,
+    "country": "MOROCCO",
+    "nationality": "MOROCCAN",
+    "countryCode": "+212",
+    "blocked": false
+  }, {
+    "id": 167,
+    "country": "MOZAMBIQUE",
+    "nationality": "MOZAMBICAN",
+    "countryCode": "+258",
+    "blocked": false
+  }, {
+    "id": 168,
+    "country": "NAGORNO-KARABAKH",
+    "nationality": "NAGORNO-KARABAKH",
+    "countryCode": "+374",
+    "blocked": false
+  }, {
+    "id": 169,
+    "country": "NAMIBIA",
+    "nationality": "NAMIBIAN",
+    "countryCode": "+264",
+    "blocked": false
+  }, {
+    "id": 170,
+    "country": "NAURU",
+    "nationality": "NAURUAN",
+    "countryCode": "+674",
+    "blocked": false
+  }, {
+    "id": 171,
+    "country": "NAVASSA ISLAND",
+    "nationality": "NAVASSA ISLAND",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 172,
+    "country": "NEPAL",
+    "nationality": "NEPALESE",
+    "countryCode": "+977",
+    "blocked": false
+  }, {
+    "id": 173,
+    "country": "NETHERLANDS",
+    "nationality": "DUTCH",
+    "countryCode": "+31",
+    "blocked": false
+  }, {
+    "id": 174,
+    "country": "NEW CALEDONIA",
+    "nationality": "NEW CALEDONIAN",
+    "countryCode": "+687",
+    "blocked": false
+  }, {
+    "id": 175,
+    "country": "NEW ZEALAND",
+    "nationality": "NEW ZEALANDER",
+    "countryCode": "+64",
+    "blocked": false
+  }, {
+    "id": 176,
+    "country": "NICARAGUA",
+    "nationality": "NICARAGUAN",
+    "countryCode": "+505",
+    "blocked": false
+  }, {
+    "id": 177,
+    "country": "NIGER",
+    "nationality": "NIGERIEN",
+    "countryCode": "+227",
+    "blocked": false
+  }, {
+    "id": 178,
+    "country": "NIGERIA",
+    "nationality": "NIGERIAN",
+    "countryCode": "+234",
+    "blocked": false
+  }, {
+    "id": 179,
+    "country": "NIUE",
+    "nationality": "NIUEAN",
+    "countryCode": "+683",
+    "blocked": false
+  }, {
+    "id": 180,
+    "country": "NORFOLK ISLAND",
+    "nationality": "NORFOLK ISLANDER",
+    "countryCode": "+672",
+    "blocked": false
+  }, {
+    "id": 181,
+    "country": "NORTH KOREA",
+    "nationality": "NORTH KOREAN",
+    "countryCode": "+850",
+    "blocked": true
+  }, {
+    "id": 182,
+    "country": "NORTHERN CYPRUS",
+    "nationality": "U.S. TERRITORY",
+    "countryCode": "+90",
+    "blocked": false
+  }, {
+    "id": 183,
+    "country": "NORTHERN MARIANA ISLANDS",
+    "nationality": "U.S. TERRITORY",
+    "countryCode": "+1670",
+    "blocked": false
+  }, {
+    "id": 184,
+    "country": "NORWAY",
+    "nationality": "NORWEGIAN",
+    "countryCode": "+47",
+    "blocked": false
+  }, {
+    "id": 185,
+    "country": "OMAN",
+    "nationality": "OMANI",
+    "countryCode": "+968",
+    "blocked": false
+  }, {
+    "id": 186,
+    "country": "PAKISTAN",
+    "nationality": "PAKISTANI",
+    "countryCode": "+92",
+    "blocked": false
+  }, {
+    "id": 187,
+    "country": "PALAU",
+    "nationality": "PALAUAN",
+    "countryCode": "+680",
+    "blocked": false
+  }, {
+    "id": 188,
+    "country": "PALESTINE",
+    "nationality": "PALESTINIAN",
+    "countryCode": "+970",
+    "blocked": false
+  }, {
+    "id": 189,
+    "country": "PALMYRA ATOLL",
+    "nationality": "PALMYRA ATOLL",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 190,
+    "country": "PANAMA",
+    "nationality": "PANAMANIAN",
+    "countryCode": "+507",
+    "blocked": false
+  }, {
+    "id": 191,
+    "country": "PAPUA NEW GUINEA",
+    "nationality": "PAPUA NEW GUINEAN",
+    "countryCode": "+675",
+    "blocked": false
+  }, {
+    "id": 192,
+    "country": "PARAGUAY",
+    "nationality": "PARAGUAYAN",
+    "countryCode": "+595",
+    "blocked": false
+  }, {
+    "id": 193,
+    "country": "PERU",
+    "nationality": "PERUVIAN",
+    "countryCode": "+51",
+    "blocked": false
+  }, {
+    "id": 194,
+    "country": "PETER I ISLAND",
+    "nationality": "PETER I ISLAND",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 195,
+    "country": "PHILIPPINES",
+    "nationality": "FILIPINO",
+    "countryCode": "+63",
+    "blocked": false
+  }, {
+    "id": 196,
+    "country": "PITCAIRN",
+    "nationality": "PITCAIRN ISLANDER",
+    "countryCode": "+64",
+    "blocked": false
+  }, {
+    "id": 197,
+    "country": "PITCAIRN ISLANDS",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+870",
+    "blocked": false
+  }, {
+    "id": 198,
+    "country": "POLAND",
+    "nationality": "POLISH",
+    "countryCode": "+48",
+    "blocked": false
+  }, {
+    "id": 199,
+    "country": "PORTUGAL",
+    "nationality": "PORTUGUESE",
+    "countryCode": "+351",
+    "blocked": false
+  }, {
+    "id": 200,
+    "country": "PRIDNESTROVIE (TRANSNISTRIA)",
+    "nationality": "PRIDNESTROVIE (TRANSNISTRIA)",
+    "countryCode": "+373",
+    "blocked": false
+  }, {
+    "id": 201,
+    "country": "PUERTO RICO",
+    "nationality": "PUERTO RICAN",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 202,
+    "country": "QATAR",
+    "nationality": "QATARI",
+    "countryCode": "+974",
+    "blocked": false
+  }, {
+    "id": 203,
+    "country": "QUEEN MAUD LAND",
+    "nationality": "QUEEN MAUD LAND",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 204,
+    "country": "REUNION",
+    "nationality": "FRENCH OVERSEAS REGION",
+    "countryCode": "+262",
+    "blocked": false
+  }, {
+    "id": 205,
+    "country": "ROMANIA",
+    "nationality": "ROMANIAN",
+    "countryCode": "+40",
+    "blocked": false
+  }, {
+    "id": 206,
+    "country": "ROSS DEPENDENCY",
+    "nationality": "ROSS DEPENDENCY",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 207,
+    "country": "RUSSIAN FEDERATION",
+    "nationality": "RUSSIAN",
+    "countryCode": "+7",
+    "blocked": false
+  }, {
+    "id": 208,
+    "country": "RWANDA",
+    "nationality": "RWANDAN",
+    "countryCode": "+250",
+    "blocked": false
+  }, {
+    "id": 209,
+    "country": "SAINT BARTHELEMY",
+    "nationality": "FRENCH OVERSEAS COLLECTIVITY",
+    "countryCode": "+590",
+    "blocked": false
+  }, {
+    "id": 210,
+    "country": "SAINT HELENA",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+290",
+    "blocked": false
+  }, {
+    "id": 211,
+    "country": "SAINT KITTS AND NEVIS",
+    "nationality": "KITTIAN",
+    "countryCode": "+1869",
+    "blocked": false
+  }, {
+    "id": 212,
+    "country": "SAINT LUCIA",
+    "nationality": "SAINT LUCIAN",
+    "countryCode": "+1758",
+    "blocked": false
+  }, {
+    "id": 213,
+    "country": "SAINT MARTIN (FRANCE)",
+    "nationality": "FRENCH OVERSEAS COLLECTIVITY",
+    "countryCode": "+590",
+    "blocked": false
+  }, {
+    "id": 214,
+    "country": "SAINT MARTIN (NETHERLANDS)",
+    "nationality": "DUTCH",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 215,
+    "country": "SAINT PIERRE AND MIQUELON",
+    "nationality": "SAINT-PIERRAIS",
+    "countryCode": "+508",
+    "blocked": false
+  }, {
+    "id": 216,
+    "country": "SAINT VINCENT AND GRENADINES",
+    "nationality": "SAINT VINCENTIAN",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 217,
+    "country": "SAMOA",
+    "nationality": "SAMOAN",
+    "countryCode": "+685",
+    "blocked": false
+  }, {
+    "id": 218,
+    "country": "SAN MARINO",
+    "nationality": "SANMARINESE",
+    "countryCode": "+378",
+    "blocked": false
+  }, {
+    "id": 219,
+    "country": "SAO TOME AND PRINCIPE",
+    "nationality": "SAO TOMEAN",
+    "countryCode": "+239",
+    "blocked": false
+  }, {
+    "id": 220,
+    "country": "SAUDI ARABIA",
+    "nationality": "SAUDI ARABIAN",
+    "countryCode": "+966",
+    "blocked": false
+  }, {
+    "id": 221,
+    "country": "SENEGAL",
+    "nationality": "SENEGALESE",
+    "countryCode": "+221",
+    "blocked": false
+  }, {
+    "id": 222,
+    "country": "SERBIA",
+    "nationality": "SERBIAN",
+    "countryCode": "+381",
+    "blocked": false
+  }, {
+    "id": 223,
+    "country": "SEYCHELLES",
+    "nationality": "SEYCHELLOIS",
+    "countryCode": "+248",
+    "blocked": false
+  }, {
+    "id": 224,
+    "country": "SIERRA LEONE",
+    "nationality": "SIERRA LEONEAN",
+    "countryCode": "+232",
+    "blocked": false
+  }, {
+    "id": 225,
+    "country": "SINGAPORE",
+    "nationality": "SINGAPOREAN",
+    "countryCode": "+65",
+    "blocked": false
+  }, {
+    "id": 226,
+    "country": "SLOVAKIA",
+    "nationality": "SLOVAKIAN",
+    "countryCode": "+421",
+    "blocked": false
+  }, {
+    "id": 227,
+    "country": "SLOVENIA",
+    "nationality": "SLOVENIAN",
+    "countryCode": "+386",
+    "blocked": false
+  }, {
+    "id": 228,
+    "country": "SOLOMON ISLANDS",
+    "nationality": "SOLOMON ISLANDER",
+    "countryCode": "+677",
+    "blocked": false
+  }, {
+    "id": 229,
+    "country": "SOMALIA",
+    "nationality": "SOMALI",
+    "countryCode": "+252",
+    "blocked": true
+  }, {
+    "id": 230,
+    "country": "SOMALILAND",
+    "nationality": "SOMALILAND",
+    "countryCode": "+252",
+    "blocked": false
+  }, {
+    "id": 231,
+    "country": "SOUTH AFRICA",
+    "nationality": "SOUTH AFRICAN",
+    "countryCode": "+27",
+    "blocked": false
+  }, {
+    "id": 232,
+    "country": "SOUTH GEORGIA & SOUTH SANDWICH ISLANDS",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+500",
+    "blocked": false
+  }, {
+    "id": 233,
+    "country": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": null,
+    "blocked": false
+  }, {
+    "id": 234,
+    "country": "SOUTH KOREA",
+    "nationality": "SOUTH KOREAN",
+    "countryCode": "+82",
+    "blocked": false
+  }, {
+    "id": 235,
+    "country": "SOUTH OSSETIA",
+    "nationality": "SOUTH OSSETIA",
+    "countryCode": "+7",
+    "blocked": false
+  }, {
+    "id": 236,
+    "country": "SOUTH SUDAN",
+    "nationality": "SOUTH SUDANESE",
+    "countryCode": "+211",
+    "blocked": true
+  }, {
+    "id": 237,
+    "country": "SPAIN",
+    "nationality": "SPANISH",
+    "countryCode": "+34",
+    "blocked": false
+  }, {
+    "id": 238,
+    "country": "SRI LANKA",
+    "nationality": "SRI LANKAN",
+    "countryCode": "+94",
+    "blocked": false
+  }, {
+    "id": 239,
+    "country": "SUDAN",
+    "nationality": "SUDANESE",
+    "countryCode": "+249",
+    "blocked": true
+  }, {
+    "id": 240,
+    "country": "SURINAME",
+    "nationality": "SURINAMER",
+    "countryCode": "+597",
+    "blocked": false
+  }, {
+    "id": 241,
+    "country": "SVALBARD AND JAN MAYEN ISLANDS",
+    "nationality": "SVALBARD AND JAN MAYEN ISLANDS",
+    "countryCode": "47",
+    "blocked": false
+  }, {
+    "id": 242,
+    "country": "SWAZILAND",
+    "nationality": "SWAZI",
+    "countryCode": "+268",
+    "blocked": false
+  }, {
+    "id": 243,
+    "country": "SWEDEN",
+    "nationality": "SWEDISH",
+    "countryCode": "+46",
+    "blocked": false
+  }, {
+    "id": 244,
+    "country": "SWITZERLAND",
+    "nationality": "SWISS",
+    "countryCode": "+41",
+    "blocked": false
+  }, {
+    "id": 245,
+    "country": "SYRIA",
+    "nationality": "SYRIAN",
+    "countryCode": "+963",
+    "blocked": true
+  }, {
+    "id": 246,
+    "country": "TAIWAN",
+    "nationality": "TAIWANESE",
+    "countryCode": "+886",
+    "blocked": false
+  }, {
+    "id": 247,
+    "country": "TAJIKISTAN",
+    "nationality": "TAJIKISTANI",
+    "countryCode": "+992",
+    "blocked": false
+  }, {
+    "id": 248,
+    "country": "TANZANIA",
+    "nationality": "TANZANIAN",
+    "countryCode": "+255",
+    "blocked": false
+  }, {
+    "id": 249,
+    "country": "THAILAND",
+    "nationality": "THAI",
+    "countryCode": "+66",
+    "blocked": false
+  }, {
+    "id": 250,
+    "country": "TIMOR-LESTE",
+    "nationality": "TIMORESE",
+    "countryCode": "+670",
+    "blocked": false
+  }, {
+    "id": 251,
+    "country": "TOGO",
+    "nationality": "TOGOLESE",
+    "countryCode": "+228",
+    "blocked": false
+  }, {
+    "id": 252,
+    "country": "TOKELAU",
+    "nationality": "TOKELAUAN",
+    "countryCode": "+690",
+    "blocked": false
+  }, {
+    "id": 253,
+    "country": "TONGA",
+    "nationality": "TONGAN",
+    "countryCode": "+676",
+    "blocked": false
+  }, {
+    "id": 254,
+    "country": "TRINIDAD AND TOBAGO",
+    "nationality": "TRINIDADIAN",
+    "countryCode": "+1868",
+    "blocked": false
+  }, {
+    "id": 255,
+    "country": "TRISTAN DA CUNHA",
+    "nationality": "TRISTAN DA CUNHA",
+    "countryCode": "+290",
+    "blocked": false
+  }, {
+    "id": 256,
+    "country": "TUNISIA",
+    "nationality": "TUNISIAN",
+    "countryCode": "+216",
+    "blocked": false
+  }, {
+    "id": 257,
+    "country": "TURKEY",
+    "nationality": "TURKISH",
+    "countryCode": "+90",
+    "blocked": false
+  }, {
+    "id": 258,
+    "country": "TURKMENISTAN",
+    "nationality": "TURKMEN",
+    "countryCode": "+993",
+    "blocked": true
+  }, {
+    "id": 259,
+    "country": "TURKS AND CAICOS ISLANDS",
+    "nationality": "BRITISH OVERSEAS TERRITORY",
+    "countryCode": "+1649",
+    "blocked": false
+  }, {
+    "id": 260,
+    "country": "TUVALU",
+    "nationality": "TUVALUAN",
+    "countryCode": "+688",
+    "blocked": false
+  }, {
+    "id": 261,
+    "country": "UGANDA",
+    "nationality": "UGANDAN",
+    "countryCode": "+256",
+    "blocked": true
+  }, {
+    "id": 262,
+    "country": "UKRAINE",
+    "nationality": "UKRAINIAN",
+    "countryCode": "+380",
+    "blocked": false
+  }, {
+    "id": 263,
+    "country": "UNITED ARAB EMIRATES",
+    "nationality": "EMIRIAN",
+    "countryCode": "+971",
+    "blocked": false
+  }, {
+    "id": 264,
+    "country": "UNITED KINGDOM",
+    "nationality": "BRITISH",
+    "countryCode": "+44",
+    "blocked": false
+  }, {
+    "id": 265,
+    "country": "UNITED STATES MINOR OUTLYING ISLANDS",
+    "nationality": "U.S. TERRITORY",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 266,
+    "country": "UNITED STATES OF AMERICA",
+    "nationality": "AMERICAN",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 267,
+    "country": "UNITED STATES VIRGIN ISLANDS",
+    "nationality": "U.S. TERRITORY",
+    "countryCode": "+1",
+    "blocked": false
+  }, {
+    "id": 268,
+    "country": "URUGUAY",
+    "nationality": "URUGUAYAN",
+    "countryCode": "+598",
+    "blocked": false
+  }, {
+    "id": 269,
+    "country": "UZBEKISTAN",
+    "nationality": "UZBEKISTANI",
+    "countryCode": "+998",
+    "blocked": true
+  }, {
+    "id": 270,
+    "country": "VANUATU",
+    "nationality": "NI-VANUATU",
+    "countryCode": "+678",
+    "blocked": true
+  }, {
+    "id": 271,
+    "country": "VATICAN",
+    "nationality": "VATICAN",
+    "countryCode": "+379",
+    "blocked": false
+  }, {
+    "id": 272,
+    "country": "VENEZUELA",
+    "nationality": "VENEZUELAN",
+    "countryCode": "+58",
+    "blocked": true
+  }, {
+    "id": 273,
+    "country": "VIETNAM",
+    "nationality": "VIETNAMESE",
+    "countryCode": "+84",
+    "blocked": false
+  }, {
+    "id": 274,
+    "country": "WAKE ISLAND",
+    "nationality": "WAKE ISLAND",
+    "countryCode": "+1808",
+    "blocked": false
+  }, {
+    "id": 275,
+    "country": "WALLIS AND FUTUNA ISLANDS",
+    "nationality": "FRENCH OVERSEAS COLLECTIVITY",
+    "countryCode": "+681",
+    "blocked": false
+  }, {
+    "id": 276,
+    "country": "WESTERN SAHARAN",
+    "nationality": "WESTERN SAHARAN",
+    "countryCode": "+212",
+    "blocked": false
+  }, {
+    "id": 277,
+    "country": "YEMEN",
+    "nationality": "YEMENI",
+    "countryCode": "+967",
+    "blocked": true
+  }, {
+    "id": 278,
+    "country": "ZAMBIA",
+    "nationality": "ZAMBIAN",
+    "countryCode": "+260",
+    "blocked": false
+  }, {
+    "id": 279,
+    "country": "ZIMBABWE",
+    "nationality": "ZIMBABWEAN",
+    "countryCode": "+263",
+    "blocked": false
+  }],
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  }
+}
