@@ -612,13 +612,21 @@ button:active:focus {
   }
   .btn-group--toggle{
     .direct-form-btn--radio{
-      padding:16px 0px;
+      padding:0.90rem;
       min-width:100px;
       background-color:$white-color;
       border:1px solid $light-teal-color;
       color:$teal-color;
-      font-family:$muli;
+      font-family:$muli-regular;
       font-size:16px;
+      white-space: normal;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 51px;
+      @extend .flex;
+      @extend .align-center;
+      @extend .justify-center;
       &.active{
         background-color:$teal-color;
         color:$white-color;
@@ -667,6 +675,7 @@ button:active:focus {
       .input-group-append {
         .btn-primary{
           height:50px;
+          box-shadow: none !important;
         }
       }
       .dropdown-menu{
