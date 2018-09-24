@@ -4,7 +4,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
-
+import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
@@ -157,11 +157,22 @@ export class SignUpService {
    * set user account details.
    * @param data - user account details.
    */
-  setForgotPasswordInfo(data) {
+  setForgotPasswordInfo(email) {
     // API Call here
-    return this.apiService.requestForgotPasswordLink(data);
+     const data = this.constructForgotPasswordInfo(email);
+     return this.apiService.requestForgotPasswordLink(data);
   }
 
+  /**
+   * construct the json for forgot password.
+   * @param data - email and redirect uri.
+   */
+  constructForgotPasswordInfo(data) {
+    return {
+      email : data,
+      redirectUrl : 'http://localhost:4200/#/account/reset-password' + '?key='
+    };
+  }
   /**
    * get login info.
    * @param data - user account details.
@@ -197,9 +208,19 @@ export class SignUpService {
    * @param data - user account details.
    */
   // tslint:disable-next-line:no-identical-functions
-  setResetPasswordInfo(data) {
+  setResetPasswordInfo(password , key) {
     // API Call here
+    const data = this.constructResetPasswordInfo(password , key);
     return this.apiService.requestResetPassword(data);
   }
-
+  /**
+   * construct the json for reset password.
+   * @param data - email and redirect uri.
+   */
+  constructResetPasswordInfo(pass , key) {
+    return {
+      password : pass,
+      resetKey : key
+    };
+  }
 }

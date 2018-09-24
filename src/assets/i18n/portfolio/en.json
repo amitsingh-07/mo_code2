@@ -4,7 +4,7 @@
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data"
   },
   "PROFILE": {
-    "TITLE": "What’s Your Profile?",
+    "TITLE": "What's Your Profile?",
     "DESCRIPTION": "Please choose the profile that best describes you."
   },
   "GET_STARTED": {
@@ -167,7 +167,7 @@
     }
   },
   "LTC_ASSESSMENT": {
-    "TITLE": "Long-Term Care",
+    "TITLE": "Long Term Care",
     "SUB_TITLE": "Select the type of caregiver that you prefer.",
     "DESCRIPTION_PART1": "If one is unable to perform at least ",
     "DESCRIPTION_BOLD": "3 of these activities (washing, feeding, dressing, toileting, mobility and transferring)",
@@ -240,6 +240,8 @@
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
+    "INFO": "Information",
+    "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Financials",
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund!",
