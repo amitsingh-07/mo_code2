@@ -58,6 +58,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.headerService.setHeaderVisibility(false);
     this.buildLoginForm();
+    this.authService.authenticate().subscribe((token) => {
+    });
   }
 
   /**
