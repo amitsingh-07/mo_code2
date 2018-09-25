@@ -2,20 +2,22 @@ import { readFileSync, writeFile, writeFileSync } from 'fs';
 import * as beautify from 'json-beautify';
 
 // tslint:disable-next-line:no-var-requires
-require('dotenv').config();
-// tslint:disable-next-line:no-var-requires
 require('json-beautify');
 
 const supportedEnvironments = new Set(['dev', 'uat', 'prod']);
-let environment = process.env.NODE_ENV || 'DEV';
-console.log('Available environment variables :' + JSON.stringify(process.env));
-console.log('process.env.NODE_ENV :' + process.env.NODE_ENV);
+let environment = 'dev';
+const pwd = __dirname;
+console.log('current working directory :' + __dirname);
+if (pwd.indexOf('mo_dev_web_build') > -1) {
+  environment = 'dev';
+} else if (pwd.indexOf('mo_uat_web_build') > -1) {
+  environment = 'uat';
+} else if (pwd.indexOf('mo_prod_web_build') > -1) {
+  environment = 'prod';
+}
+
 console.log('******* CURRENT ENVIRONMENT :' + environment);
 environment = environment.toLowerCase();
-
-if (!supportedEnvironments.has(environment)) {
-  environment = 'uat';
-}
 
 const inputPath = `./angular.config.json`;
 const targetPath = `./angular.json`;
