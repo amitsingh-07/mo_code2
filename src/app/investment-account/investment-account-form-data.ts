@@ -33,4 +33,11 @@ export class InvestmentAccountFormData {
     nationality: any;
     unitedStatesResident: string;
     singaporeanResident: string;
+
+    // Tax Info
+    Taxcountry: any;
+    haveTin: any;
+    Tin: any;
+    noTinReason: any;
+
 }

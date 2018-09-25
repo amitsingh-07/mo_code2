@@ -36,6 +36,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   sliderMaxValue = 99;
   sliderDesc: string;
   dob: string;
+  isSufficientInvYears = false;
 
   constructor(
     // tslint:disable-next-line
@@ -97,6 +98,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
       const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
       self.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
     }, 1);
+    this.isSufficientInvYears = (value > PORTFOLIO_CONFIG.personal_info.min_investment_period) ?  true : false;
   }
 
   setSliderDescByRange(value) {

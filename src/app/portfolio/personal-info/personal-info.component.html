@@ -62,7 +62,7 @@
             </div>
           </div>
           <div>
-            <button type="button" id="personalInforNextBtn" [disabled]="!personalInfoForm.controls.investmentPeriod.value" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue"
+            <button type="button" id="personalInforNextBtn" [disabled]="!isSufficientInvYears" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue"
               id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>

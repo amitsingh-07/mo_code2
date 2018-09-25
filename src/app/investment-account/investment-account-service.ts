@@ -97,6 +97,14 @@ export class InvestmentAccountService {
             singaporeanResident: this.investmentAccountFormData.singaporeanResident
             };
     }
+
+    getTaxInfo() {
+        return {
+            Tin: this.investmentAccountFormData.Tin,
+            country: this.investmentAccountFormData.Taxcountry,
+            };
+    }
+
     setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {
         this.investmentAccountFormData.nationalitylist = nationalitylist;
         this.investmentAccountFormData.nationality = selectedNationality;
