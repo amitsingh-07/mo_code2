@@ -1,5 +1,4 @@
-import { MyInfoService } from './../Services/my-info.service';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
@@ -14,7 +13,6 @@ import { MyInfoService } from './../Services/my-info.service';
 import { apiConstants } from './api.constants';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
-import { Jsonp } from '@angular/http';
 
 const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
 
@@ -361,7 +359,7 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
-  }
+    }
   getNationalityList() {
     const url = '../assets/mock-data/nationalityList.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
@@ -439,9 +437,14 @@ export class ApiService {
         })
       );
   }
-  getDirectSearch(data) {
-    const url = '../assets/mock-data/directResults.json';
-    return this.httpClient.get<IServerResponse>(url);
+  getDirectSearch(payload) {
+     const url = '../assets/mock-data/directResults.json';
+     return this.httpClient.get<IServerResponse>(url);
+
+    // return this.http.post(apiConstants.endpoint.getRecommendations, payload)
+    //   .pipe(
+    //     catchError((error: HttpErrorResponse) => this.handleError(error))
+    //   );
   }
 
   getAddressUsingPostalCode(code) {
@@ -469,4 +472,3 @@ export class ApiService {
   }
 
 }
-

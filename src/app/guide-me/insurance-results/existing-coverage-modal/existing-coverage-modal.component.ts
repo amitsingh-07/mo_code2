@@ -30,7 +30,7 @@ export class ExistingCoverageModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal, private guideMeService: GuideMeService,
-    private config: ConfigService, private formatter: Formatter) {
+    private config: ConfigService) {
     this.existingCoverageValues = this.guideMeService.getExistingCoverageValues();
     if (!this.existingCoverageValues) {
       this.existingCoverageValues = this.guideMeService.getEmptyExistingCoverage();
@@ -95,7 +95,7 @@ export class ExistingCoverageModalComponent implements OnInit {
       if (!thisControl.value) {
         thisControl.setValue(0);
       } else {
-        const intValue = this.formatter.getIntValue(thisControl.value);
+        const intValue = Formatter.getIntValue(thisControl.value);
         thisControl.setValue(intValue);
       }
     });

@@ -48,7 +48,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     private router: Router, public headerService: HeaderService,
     private translate: TranslateService, public guideMeService: GuideMeService,
     private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal,
-    private googleAnalyticsService: GoogleAnalyticsService, private formatter: Formatter) {
+    private googleAnalyticsService: GoogleAnalyticsService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
@@ -156,19 +156,19 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       }
       switch (protectionNeed.id) {
         case 1:
-          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.lifeProtectionCoverage);
+          protectionNeed.existingCoverage.value = Formatter.getIntValue(emittedValue.lifeProtectionCoverage);
           break;
         case 2:
-          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.criticalIllnessCoverage);
+          protectionNeed.existingCoverage.value = Formatter.getIntValue(emittedValue.criticalIllnessCoverage);
           break;
         case 3:
-          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.occupationalDisabilityCoveragePerMonth);
+          protectionNeed.existingCoverage.value = Formatter.getIntValue(emittedValue.occupationalDisabilityCoveragePerMonth);
           break;
         case 4:
           protectionNeed.existingCoverage.value = emittedValue.selectedHospitalPlan;
           break;
         case 5:
-          protectionNeed.existingCoverage.value = this.formatter.getIntValue(emittedValue.longTermCareCoveragePerMonth);
+          protectionNeed.existingCoverage.value = Formatter.getIntValue(emittedValue.longTermCareCoveragePerMonth);
           break;
       }
       return protectionNeed.existingCoverage.value;

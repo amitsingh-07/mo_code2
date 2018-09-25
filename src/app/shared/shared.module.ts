@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -6,7 +7,11 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
+import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
+import { OrderByPipe } from './Pipes/order-by.pipe';
+import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
+import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -17,7 +22,9 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
+    NgbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -25,7 +32,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     })],
-  exports: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent],
-  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent]
+  exports: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe, OrderByPipe],
+  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
+    OrderByPipe, RecommendationsModalComponent]
 })
-export class SharedModule {}
+export class SharedModule { }

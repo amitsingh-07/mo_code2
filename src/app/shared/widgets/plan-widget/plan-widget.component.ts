@@ -16,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
+import { RecommendationsModalComponent } from '../../modal/recommendations-modal/recommendations-modal.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
 
 @Component({
@@ -136,13 +137,24 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   comparePlanErrorForMobileModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = '2 plans only';
-    ref.componentInstance.errorMessage = 'you can select maximum of 2 plans for compare';
+    ref.componentInstance.errorMessage = 'Select maximum 2 plans to compare';
     return false;
   }
   comparePlanErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = '4 plans only';
-    ref.componentInstance.errorMessage = 'you can select maximum of 4 plans for compare';
+    ref.componentInstance.errorMessage = 'Select maximum 4 plans to compare';
+  }
+  openCommissionModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.MESSAGE');
+    return false;
+  }
+  openRatingModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.RATING.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
   }
   compareplan() {
     if (this.planSelected && this.planSelected.length  < 4) {

@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 
@@ -54,6 +55,6 @@ export class EmailVerificationComponent implements OnInit {
    * redirect to login page.
    */
   redirectToLogin() {
-    this.router.navigate([]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 }

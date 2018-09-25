@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { formConstants } from '../shared/form-constants';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { HospitalPlan } from './../guide-me/hospital-plan/hospital-plan';
 import { ILifeProtectionNeedsData } from './../guide-me/life-protection/life-protection';
 import {
     ICriticalIllnessData,
@@ -12,8 +14,10 @@ import {
     ILifeProtection,
     ILongTermCareNeedsData,
     IOccupationalDisabilityData,
+    IProtectionTypeData,
     IRecommendationRequest
 } from './../shared/interfaces/recommendations.request';
+import { Formatter } from './../shared/utils/formatter.util';
 import { DirectService } from './direct.service';
 
 @Injectable({
@@ -31,14 +35,14 @@ export class DirectApiService {
     }
 
     getSearchResults(data) {
-        return this.apiService.getDirectSearch(data);
+        return this.apiService.getDirectSearch(this.constructRecommendationsRequest());
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {
         const requestObj = {} as IRecommendationRequest;
         requestObj.sessionId = this.authService.getSessionId();
 
-        requestObj.enquiryProtectionTypeData = [this.directService.getProductCategory()];
+        requestObj.enquiryProtectionTypeData = this.getProtectionTypeData();
         requestObj.existingInsuranceList = [this.directService.getEmptyExistingCoverage()];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
@@ -55,13 +59,26 @@ export class DirectApiService {
         return requestObj;
     }
 
+    getProtectionTypeData() {
+        const productCategory = this.directService.getProductCategory();
+        return [
+            {
+                protectionTypeId: productCategory.id,
+                protectionType: productCategory.prodCatName
+            } as IProtectionTypeData
+        ];
+    }
     getHospitalPlanData() {
-        const hospitalPlan = this.directService.getHospitalPlanForm();
-        const hospitalPlanData: IHospitalizationNeedsData = {
-            hospitalClassId: hospitalPlan.selectedPlan.hospitalClassId,
-            isFullRider: hospitalPlan.fullOrPartialRider
-        };
-        return hospitalPlanData;
+        if (this.directService.getProductCategory().id === formConstants.PROTECTION_TYPES.HOSPITAL_PLAN) {
+            const hospitalPlan = this.directService.getHospitalPlanForm();
+            const hospitalPlanData: IHospitalizationNeedsData = {
+                hospitalClassId: hospitalPlan.selectedPlan.hospitalClassId,
+                isFullRider: hospitalPlan.fullOrPartialRider
+            };
+            return hospitalPlanData;
+        } else {
+            return {} as HospitalPlan;
+        }
     }
 
     getCriticalIllnessData() {
@@ -110,7 +127,7 @@ export class DirectApiService {
     getLifeProtectionData() {
         const lifeProtection = this.directService.getLifeProtectionForm();
         const lifeProtectionData: ILifeProtectionNeedsData = {
-            coverageAmount: lifeProtection.coverageAmt,
+            coverageAmount: lifeProtection.coverageAmt ? Formatter.getIntValue(lifeProtection.coverageAmt) : 0,
             coverageDuration: lifeProtection.duration,
             isPremiumWaiver: lifeProtection.premiumWaiver
         };
@@ -119,7 +136,7 @@ export class DirectApiService {
 
     getEnquiryData() {
         const userInfo = this.directService.getUserInfo();
-        const smoker: boolean = userInfo.smoker.toLowerCase() === 'smoker' ? true : false;
+        const smoker: boolean = userInfo.smoker && userInfo.smoker.toLowerCase() === 'smoker' ? true : false;
         const dobObj = userInfo.dob;
         const dob = dobObj.day + '-' + dobObj.month + '-' + dobObj.year;
         const enquiryData = {
