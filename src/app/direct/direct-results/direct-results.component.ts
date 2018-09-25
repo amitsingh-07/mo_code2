@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ViewChildren
+import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ViewChildren, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,14 +16,15 @@ import { DirectService } from './../direct.service';
 @Component({
   selector: 'app-direct-results',
   templateUrl: './direct-results.component.html',
-  styleUrls: ['./direct-results.component.scss']
+  styleUrls: ['./direct-results.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DirectResultsComponent implements IPageComponent {
 
   sortList: IDropDownData[] = [];
 
   pageTitle = '';
-  isComparePlanEnabled = true;
+  isComparePlanEnabled = false;
   toggleBackdropVisibility = false;
   searchResult;
   filteredResult;
@@ -189,7 +190,7 @@ export class DirectResultsComponent implements IPageComponent {
     this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
   }
 
-  enableComparePlan() {
+  toggleComparePlans() {
     this.isComparePlanEnabled = !this.isComparePlanEnabled;
   }
 
