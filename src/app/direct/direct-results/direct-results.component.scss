@@ -2,6 +2,9 @@
 @import '../../../mixins';
 
 app-direct-results {
+  position: absolute;
+  left: 0;
+  width: 100%;
   .init-direct-results {
     padding: 50px 0px 100px 0px;
 
@@ -42,9 +45,9 @@ app-direct-results {
   }
 
   .grp-results {
-    margin-top: 10px;
-    margin-right: 30px;
-    margin-left: 30px;
+    padding-top: 10px;
+    max-width: 1024px;
+    margin: 0 auto;
   }
 
   .btn-small {
