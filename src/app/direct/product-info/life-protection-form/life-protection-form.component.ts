@@ -1,11 +1,13 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
-
+import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
 import { DirectService } from './../../direct.service';
 
 @Component({
@@ -32,7 +34,8 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
-    private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe) {
+    private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
+    private router: Router) {
       const today: Date = new Date();
       config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
       config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
@@ -69,8 +72,9 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
         if (this.save()) {
           console.log('triggered');
           this.directService.setMinProdInfo(this.summarizeDetails());
+          this.router.navigate([DIRECT_ROUTE_PATHS.RESULTS]);
+          this.directService.triggerSearch('');
         }
-        this.directService.triggerSearch('');
       }
     });
   }
