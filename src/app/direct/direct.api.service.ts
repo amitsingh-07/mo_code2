@@ -17,6 +17,7 @@ import {
     IProtectionTypeData,
     IRecommendationRequest
 } from './../shared/interfaces/recommendations.request';
+import { Formatter } from './../shared/utils/formatter.util';
 import { DirectService } from './direct.service';
 
 @Injectable({
@@ -34,124 +35,7 @@ export class DirectApiService {
     }
 
     getSearchResults(data) {
-        //return this.apiService.getDirectSearch(this.constructRecommendationsRequest());
-        const data = {
-            "sessionId": "undefined",
-            "criticalIllnessNeedsData": {
-                "coverageAmount": 300000,
-                "coverageYears": 10,
-                "isEarlyCriticalIllness": false,
-                "annualSalary": 0,
-                "ciMultiplier": 0
-            },
-            "enquiryProtectionTypeData": [
-                {
-                    "status": true,
-                    "protectionTypeId": 2,
-                    "protectionType": "Critical Illness",
-                    "protectionDesc": "E.g. Cancer, Heart Attack, Stroke"
-                }
-            ],
-            "existingInsuranceList": [
-                {
-                    "criticalIllnessCoverage": 0,
-                    "lifeProtectionCoverage": 0,
-                    "longTermCareCoveragePerMonth": 0,
-                    "occupationalDisabilityCoveragePerMonth": 0
-                }
-            ],
-            "financialStatusMapping": {
-                "assets": {
-                    "cash": "999999",
-                    "cpf": "888888",
-                    "homeProperty": "6666666",
-                    "investmentProperties": "55555555",
-                    "otherInvestments": "77777777",
-                    "otherAssets": "777777"
-                },
-                "income": {
-                    "monthlySalary": "80000",
-                    "annualBonus": "900000",
-                    "otherIncome": "8999"
-                },
-                "liabilities": {
-                    "propertyLoan": "989898",
-                    "carLoan": "98989",
-                    "otherLoan": "9898"
-                },
-                "expenses": {
-                    "monthlyInstallments": "89898",
-                    "otherExpenses": "6767"
-                }
-            },
-            "hospitalizationNeeds": {
-                "hospitalClass": "",
-                "hospitalClassDescription": "",
-                "hospitalClassId": 0,
-                "isFullRider": false
-            },
-            "occupationalDisabilityNeeds": {
-                "coverageAmount": 0,
-                "percentageCoverage": 0,
-                "maxAge": 0,
-                "selectedEmployee": ""
-            },
-            "longTermCareNeeds": {
-                "careGiverType": "",
-                "careGiverDescription": "",
-                "careGiverTypeId": 0,
-                "monthlyPayout": 0
-            },
-            "dependentsData": [
-                {
-                    "gender": "Male",
-                    "relationship": "Spouse",
-                    "age": 1,
-                    "dependentProtectionNeeds": {
-                        "dependentId": 0,
-                        "educationCourse": "Medicine",
-                        "monthlySupportAmount": 72,
-                        "countryOfEducation": "Singapore",
-                        "nationality": "Singaporean",
-                        "universityEntryAge": 0,
-                        "yearsNeeded": 0
-                    }
-                }
-            ],
-            "lifeProtectionNeeds": {
-                "coverageAmount": 109070,
-                "coverageDuration": 65,
-                "isPremiumWaiver": true
-            },
-            "enquiryData": {
-                "id": 0,
-                "profileStatusId": "1",
-                "customerId": 0,
-                "careGiverId": 4,
-                "hospitalClassId": 5,
-                "sessionTrackerId": 1,
-                "gender": "female",
-                "dateOfBirth": "22-8-1978",
-                "isSmoker": false,
-                "employmentStatusId": 0,
-                "numberOfDependents": 2,
-                "hasPremiumWaiver": false,
-                "type": "insurance-guided"
-            },
-            "srsApprovedPlans": {
-                "id": 0,
-                "singlePremium": 0,
-                "payoutStartAge": 0,
-                "payoutType": ""
-            },
-            "retirementIncomePlan": {
-                "id": 0,
-                "retirementIncome": 0,
-                "payoutStartAge": 0,
-                "payoutDuration": ""
-            }
-        };
-        return this.apiService.getDirectSearch(data);
+        return this.apiService.getDirectSearch(this.constructRecommendationsRequest());
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {
@@ -243,7 +127,7 @@ export class DirectApiService {
     getLifeProtectionData() {
         const lifeProtection = this.directService.getLifeProtectionForm();
         const lifeProtectionData: ILifeProtectionNeedsData = {
-            coverageAmount: lifeProtection.coverageAmt,
+            coverageAmount: lifeProtection.coverageAmt ? Formatter.getIntValue(lifeProtection.coverageAmt) : 0,
             coverageDuration: lifeProtection.duration,
             isPremiumWaiver: lifeProtection.premiumWaiver
         };

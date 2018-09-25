@@ -1,4 +1,3 @@
-import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
+import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
 import { DirectService } from './../../direct.service';
 
 @Component({
