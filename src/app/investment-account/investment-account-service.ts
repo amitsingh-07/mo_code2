@@ -93,18 +93,22 @@ export class InvestmentAccountService {
         return {
             nationalitylist: this.investmentAccountFormData.nationalitylist,
             nationality: this.investmentAccountFormData.nationality,
+            unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
+            singaporeanResident: this.investmentAccountFormData.singaporeanResident
             };
     }
+
     getTaxInfo() {
         return {
             Tin: this.investmentAccountFormData.Tin,
             country: this.investmentAccountFormData.Taxcountry,
             };
     }
-    setNationality(nationalitylist: any, nationalityObj: any) {
+
+    setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {
         this.investmentAccountFormData.nationalitylist = nationalitylist;
-        this.investmentAccountFormData.nationality = nationalityObj;
-
+        this.investmentAccountFormData.nationality = selectedNationality;
+        this.investmentAccountFormData.unitedStatesResident = unitedStatesResident;
+        this.investmentAccountFormData.singaporeanResident = singaporeanResident;
     }
-
 }
