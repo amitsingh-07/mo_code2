@@ -4,6 +4,8 @@
 app-settings-widget {
         .form-group{
             background-color: #ffffff;
+            border-radius: 10px;
+            
             input[type='radio']:checked + label, input[type='checkbox']:checked + label {
                 color:#ffffff ;
                 background: #00A7A7;
