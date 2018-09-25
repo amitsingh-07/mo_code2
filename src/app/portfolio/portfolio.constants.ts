@@ -21,7 +21,8 @@ export let PORTFOLIO_CONFIG = {
         max: 99,
         content: 'PERSONAL_INFO.RANGE_14_DESC'
       }
-    ]
+    ],
+    min_investment_period: 3 // years
   },
   my_financials: {
     sufficient_emergency_fund: 'yes'

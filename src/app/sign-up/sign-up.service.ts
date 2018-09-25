@@ -170,7 +170,7 @@ export class SignUpService {
   constructForgotPasswordInfo(data) {
     return {
       email : data,
-      redirectUrl : 'http://localhost:4200/#/account/reset-password' + '?key='
+      redirectUrl : window.location.origin + '/#/account/reset-password' + '?key='
     };
   }
   /**
