@@ -1,24 +1,28 @@
-<div class="flex-row">
-  <div class="flex-col-5">
-    <label for="name" id="select_nationality_lab">Nationality</label>
-  </div>
-  <div class="flex-col-7">
-    <div class="dropdown-control">
-      <div ngbDropdown>
+<div class="container-fluid">
+  <div class="flex-row">
+    <div class="flex-col-5">
+      <label for="name" id="tax-info-label">Country of Tax Residence</label>
+    </div>
+    <div class="flex-col-7">
+      <form name="TaxInfoForm" [formGroup]="TaxInfoForm">
+        <div class="dropdown-control">
+          <div ngbDropdown>
 
-        <button  class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
-          <span *ngIf="afterSelectedNationality" class="dependent-count" id="select_nationality_dropdown_nationality">{{ nationalityObj.nationality |   titlecase  }}</span>
-          <span *ngIf="beforeSelectedNationality" class="dependent-count" id="select_nationality_dropdown_defaltvalue" >Select Nationlity</span>
+            <button class="btn btn-dropdown" ngbDropdownToggle >
+              <span class="dependent-count" id="select_nationality_dropdown_nationality">{{ nationalityObj.nationality | titlecase }}</span>
+              <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span>
 
-        </button>
+            </button>
 
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectNationality(nationalityObj)"
-            id="selectNationality-country-option-{{i}}">
-            {{nationalityObj.nationality  | titlecase}}
-          </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectNationality(nationalityObj)"
+                id="selectNationality-country-option-{{i}}">
+                {{nationalityObj.nationality | titlecase}}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

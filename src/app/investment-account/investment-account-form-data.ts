@@ -34,4 +34,11 @@ export class InvestmentAccountFormData {
     selectNationalitySingapore: string;
     otherCountryQuestionOne: string;
     otherCountryQuestionTwo: string;
+
+    // Tax Info
+    Taxcountry: any;
+    haveTin: any;
+    Tin: any;
+    noTinReason: any;
+
 }

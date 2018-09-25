@@ -95,6 +95,12 @@ export class InvestmentAccountService {
             nationality: this.investmentAccountFormData.nationality,
             };
     }
+    getTaxInfo() {
+        return {
+            Tin: this.investmentAccountFormData.Tin,
+            country: this.investmentAccountFormData.Taxcountry,
+            };
+    }
     setNationality(nationalitylist: any, nationalityObj: any) {
         this.investmentAccountFormData.nationalitylist = nationalitylist;
         this.investmentAccountFormData.nationality = nationalityObj;
