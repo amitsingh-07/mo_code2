@@ -48,6 +48,7 @@ import { RecommendationsModalComponent } from './shared/modal/recommendations-mo
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
+import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -119,9 +120,11 @@ export function tokenGetterFn() {
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
     }, Formatter, CurrencyPipe],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent,
-    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent]
+  entryComponents: [
+    HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent,
+    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
+    SettingsWidgetComponent]
 })
 
 export class AppModule {
