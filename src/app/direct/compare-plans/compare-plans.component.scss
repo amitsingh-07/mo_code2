@@ -1,26 +1,35 @@
 @import '../../../variables';
 @import '../../../mixins';
-.rt-round {
-  border-top-right-radius: 6px !important;
-  .bg-white{
-    border-right: 0px !important;
+
+app-compare-plans {
+  .rt-round {
+    border-top-right-radius: 6px !important;
+
+    .bg-white {
+      border-right: 0px !important;
+    }
   }
-}
-.rb-round{
-  border-bottom-right-radius: 6px;
-}
-.lb-round{
-  border-bottom-left-radius: 6px;
-}
-.bg-white{
+
+  .rb-round {
+    border-bottom-right-radius: 6px;
+  }
+
+  .lb-round {
+    border-bottom-left-radius: 6px;
+  }
+
+  .bg-white {
     background: transparent !important;
     color: black;
     border-right: 2px solid #00a7a7;
-    padding:20px;    
-}
+    padding: 20px;
+  }
 
+  img {
+    max-width: 50% !important;
+  }
 
-.title {
+  .title {
     margin-top: -30px;
     text-align: center;
     justify-content: center;
@@ -28,39 +37,46 @@
     color: #fff;
     z-index: 99;
     line-height: 1.9;
-   span{
-     background: #2d8289;
-   }
-  .tooltip-compare {
-    background: url("../../../assets/images/tooltip-compare.svg") no-repeat;
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
-    text-align: center;
-    margin-left: 9.6px;
+
+    span {
+      background: #2d8289;
+      width: 300px;
+    }
+
+    .tooltip-compare {
+      background: url("../../../assets/images/tooltip-compare.svg") no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      text-align: center;
+      margin-left: 9.6px;
+    }
   }
-}
-.heading{
+
+  .heading {
     justify-content: center;
     background-color: #2d8289;
     z-index: 99;
-    color: #fff; 
+    color: #fff;
     height: 30px;
     width: 100%;
-}
-// .lc-radius{
-//     border-bottom-left-radius: 6px;
-//     border-bottom-right-radius: 6px;
-//  } 
-// .lc-radius::nth-last-child(1){
-//   border-bottom-right-radius: 6px;
-// }
-.compare-modal {
+  }
+
+  // .lc-radius{
+  //     border-bottom-left-radius: 6px;
+  //     border-bottom-right-radius: 6px;
+  //  } 
+  // .lc-radius::nth-last-child(1){
+  //   border-bottom-right-radius: 6px;
+  // }
+  .compare-modal {
     justify-content: center;
+
     .insurance-plan-widget__container {
       background: transparent;
     }
-    .insurance-plan-widget{
+
+    .insurance-plan-widget {
       background: #fff;
       padding: 0 !important;
       color: black;
@@ -68,14 +84,17 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      &:first-child{
+
+      &:first-child {
         border-top-left-radius: 6px;
       }
-      &::nth-last-child(1){
+
+      &::nth-last-child(1) {
         border-top-right-radius: 6px;
       }
     }
-    .insurance-plan-widget-content{
+
+    .insurance-plan-widget-content {
       background: #fff;
       padding: 0 !important;
       color: black;
@@ -84,30 +103,36 @@
       flex-direction: column;
       justify-content: space-between;
       border-right: 2px solid #00a7a7;
-      &.lc-radius{
-        &:first-child{
+
+      &.lc-radius {
+        &:first-child {
           border-bottom-left-radius: 6px;
         }
       }
+
       .plan-content {
         display: flex;
         background: transparent;
-        color:#5E5E5E !important;
-        padding:20px;
+        color: #5E5E5E !important;
+        padding: 20px;
         justify-content: center;
-        &.feature-list{
+
+        &.feature-list {
           flex-direction: column;
         }
-        img{
+
+        img {
           width: 36px;
           height: 35px;
           object-fit: contain;
         }
-        .features{
+
+        .features {
           display: flex;
           justify-content: flex-start;
           padding: 10px 0;
-          img{
+
+          img {
             width: 15px;
             height: 15px;
             margin-right: 9px;
@@ -115,31 +140,33 @@
         }
       }
     }
-}
-.plan-wrapper {
-  flex: 0 0 50%;
-  max-width: 50%;
-
-  @include allmobiles {
-    flex: 0 0 47%;
-    max-width: 47%;
   }
-}
 
-.plan-wrapper:nth-child(1) {
-  @include allmobiles {
-    margin-right: 3px;
-    padding-right: 3px;
-  }
-}
+  .plan-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
 
-.plan-wrapper:nth-child(2) {
-  @include allmobiles {
-    margin-right: 0px;
-    padding-left: 3px;
+    @include allmobiles {
+      flex: 0 0 47%;
+      max-width: 47%;
+    }
   }
-}
-.insurance-plan-widget__container {
+
+  .plan-wrapper:nth-child(1) {
+    @include allmobiles {
+      margin-right: 3px;
+      padding-right: 3px;
+    }
+  }
+
+  .plan-wrapper:nth-child(2) {
+    @include allmobiles {
+      margin-right: 0px;
+      padding-left: 3px;
+    }
+  }
+
+  .insurance-plan-widget__container {
     padding-top: 15px;
 
     @include allmobiles {
@@ -185,13 +212,13 @@
     }
 
     .insurer-logo {
-        height: 80px;
-        text-align: center;
-        margin-bottom: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+      height: 80px;
+      text-align: center;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     .insurance-plan-widget__container__rank__wrapper {
       @extend .flex;
@@ -231,5 +258,6 @@
         text-align: center;
       }
     }
-   
+
   }
+}

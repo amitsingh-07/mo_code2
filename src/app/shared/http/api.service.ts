@@ -437,9 +437,14 @@ export class ApiService {
         })
       );
   }
-  getDirectSearch(data) {
-    const url = '../assets/mock-data/directResults.json';
-    return this.httpClient.get<IServerResponse>(url);
+  getDirectSearch(payload) {
+     const url = '../assets/mock-data/directResults.json';
+     return this.httpClient.get<IServerResponse>(url);
+
+    // return this.http.post(apiConstants.endpoint.getRecommendations, payload)
+    //   .pipe(
+    //     catchError((error: HttpErrorResponse) => this.handleError(error))
+    //   );
   }
 
   getAddressUsingPostalCode(code) {
