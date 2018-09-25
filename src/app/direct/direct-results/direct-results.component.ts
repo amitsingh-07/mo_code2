@@ -28,7 +28,7 @@ export class DirectResultsComponent implements IPageComponent {
   toggleBackdropVisibility = false;
   searchResult;
   filteredResult = [];
-  filteredCountSubject = new Subject<number>();
+  filteredCountSubject = new Subject<any>();
   subscription: Subscription;
 
   selectedCategory: IProductCategory;
