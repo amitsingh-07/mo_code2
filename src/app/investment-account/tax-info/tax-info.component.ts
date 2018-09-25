@@ -35,6 +35,7 @@ export class TaxInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.country = 'Select Country' ;
     this.getNationalityList();
     this.taxInfoFormValues = this.investmentAccountService.getTaxInfo();
     this.TaxInfoForm = new FormGroup({

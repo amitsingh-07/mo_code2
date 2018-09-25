@@ -33,6 +33,7 @@ export class CurrencyInputPortfolioDirective implements AfterViewInit {
         const currentElement = this.el.nativeElement.value;
         const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
         this.el.nativeElement.value = (currentElement).replace(Regexp, '');
+        this.control.control.setValue((currentElement).replace(Regexp, ''));
     }
 
     @HostListener('blur', ['$event'])
