@@ -449,12 +449,12 @@ button:active:focus {
     padding:12px 64px 12px 20px;
     border-radius: 8px;
     color: $teal-color;
-    width:calc(100% - 160px);
+    width: 1024px;
     max-height:70px; 
     min-height:64px;
-    max-width: calc(1024px - 160px);
+    //max-width: calc(1024px - 160px);
     min-width:337px;
-    box-shadow: 0 6px 8px 0 rgba(138, 155, 169, 0.3);
+    box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
     
     @include minMobilemaxPhablet{
       width:100% !important;

@@ -38,17 +38,11 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.directService.setProdCategoryIndex(5);
     this.formValues = this.directService.getEducationForm();
-    this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
-    this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
     this.educationForm = this.formBuilder.group({
-      selfgender: [this.formValues.selfgender],
       childgender: [this.formValues.childgender, Validators.required],
-      selfdob: [this.formValues.selfdob],
       childdob: [this.formValues.childdob, Validators.required],
-      smoker: [this.formValues.smoker],
       contribution: [this.formValues.contribution],
-      selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge],
-      premiumWaiver: [this.formValues.premiumWaiver, Validators.required]
+      selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge]
     });
     if (this.formValues.contribution !== undefined ) {
        this.selectMonthlyContribution(this.formValues.contribution);
@@ -91,9 +85,6 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     sum_string += 'Save $' + this.educationForm.value.contribution + '/ mth, ';
     if (this.educationForm.value.selectedunivercityEntryAge) {
       sum_string += 'Uni Entry Age of ' + this.educationForm.value.selectedunivercityEntryAge;
-    }
-    if (this.isSelfFormEnabled) {
-      sum_string += ', Premium Waiver Rider';
     }
     return sum_string;
   }
