@@ -46,8 +46,9 @@
   "BUTTON": {
     "PROCEED": "Proceed",
     "COMPARE": "Compare",
-    "SELECT_PLAN": "Select Plan",
-    "DETAILS": "Details"
+    "UN_SELECT": "Plan Selected",
+    "DETAILS": "Details",
+    "SELECT_PLAN": "Select Plan"
   },
   "CUSTOM_MODAL": {
     "MODAL_TITLE": "Insurance Results",
