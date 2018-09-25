@@ -1,7 +1,5 @@
-import { Route } from '@angular/compiler/src/core';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
-import { CallBackComponent } from 'src/app/call-back/call-back.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: '', redirectTo: 'guideme', pathMatch: 'full'},

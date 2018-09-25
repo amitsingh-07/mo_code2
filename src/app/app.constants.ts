@@ -8,5 +8,6 @@ export let appConstants = {
     defaultContentTypeHeader: '',
     userLocalStorage: '',
     loginPageUrl: GUIDE_ME_ROUTES.ROOT,
-    accessTokenServer: ''
+    accessTokenServer: '',
+    MY_INFO_CALLBACK_URL: 'myinfo'
 };
