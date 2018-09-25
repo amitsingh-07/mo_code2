@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HostListener } from '@angular/core';
 import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
+import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 
 @Component({
   selector: 'app-account-created',
@@ -31,6 +31,7 @@ export class AccountCreatedComponent implements OnInit {
    * redirect to login page.
    */
   redirectToLogin() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 
 }
