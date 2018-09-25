@@ -346,6 +346,12 @@
   border-top:1px solid #e1e1e1;
   text-overflow: ellipsis;
   z-index:130;
+  @include iPadLandscape {
+    padding: 20px;
+  }
+  @include tablet {
+    padding: 20px;
+  }
   &.show {
     display:flex;
   }

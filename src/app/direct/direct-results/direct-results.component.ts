@@ -28,7 +28,7 @@ export class DirectResultsComponent implements IPageComponent {
   toggleBackdropVisibility = false;
   searchResult;
   filteredResult = [];
-  filteredCountSubject = new Subject<number>();
+  filteredCountSubject = new Subject<any>();
   subscription: Subscription;
 
   selectedCategory: IProductCategory;
@@ -47,7 +47,7 @@ export class DirectResultsComponent implements IPageComponent {
   fullPartialRider = [{value: 'All', checked: true}, { value: 'Partial Rider', checked: false}, { value: 'Full Rider', checked: false}];
   payoutYears = [{value: 'All', checked: true}, { value: '12 Years', checked: false}, { value: 'Lifetime', checked: false}];
   claimCriteria = [{value: 'All', checked: true}, { value: 'Standard', checked: false}, { value: 'Lenient', checked: false}];
-
+  
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
     private router: Router, private translate: TranslateService, public headerService: HeaderService) {
