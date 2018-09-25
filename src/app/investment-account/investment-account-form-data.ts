@@ -31,9 +31,8 @@ export class InvestmentAccountFormData {
     // SELECTNATIONLITY
     nationalitylist: any;
     nationality: any;
-    selectNationalitySingapore: string;
-    otherCountryQuestionOne: string;
-    otherCountryQuestionTwo: string;
+    unitedStatesResident: string;
+    singaporeanResident: string;
 
     // Tax Info
     Taxcountry: any;
