@@ -359,7 +359,7 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
-    }
+  }
   getNationalityList() {
     const url = '../assets/mock-data/nationalityList.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)
@@ -438,13 +438,12 @@ export class ApiService {
       );
   }
   getDirectSearch(payload) {
-     const url = '../assets/mock-data/directResults.json';
-     return this.httpClient.get<IServerResponse>(url);
-
-    // return this.http.post(apiConstants.endpoint.getRecommendations, payload)
-    //   .pipe(
-    //     catchError((error: HttpErrorResponse) => this.handleError(error))
-    //   );
+    //  const url = '../assets/mock-data/directResults.json';
+    //  return this.httpClient.get<IServerResponse>(url);
+    return this.http.post(apiConstants.endpoint.getRecommendations, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getAddressUsingPostalCode(code) {

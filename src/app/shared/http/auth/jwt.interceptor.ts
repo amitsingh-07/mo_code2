@@ -1,24 +1,24 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 
+import { Observable } from 'rxjs/Observable';
+
 import {
-    HttpErrorResponse,
-    HttpEvent,
-    HttpHandler,
-    HttpHeaders,
-    HttpInterceptor,
-    HttpRequest,
+    HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
     HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 
-import { appConstants } from './../../../app.constants';
-import { CustomErrorHandlerService } from './../custom-error-handler.service';
-import { RequestCache } from './../http-cache.service';
-import { IServerResponse } from './../interfaces/server-response.interface';
+import { environment } from '../../../../environments/environment.dev';
+import { appConstants } from '../../../app.constants';
+import { apiConstants } from '../api.constants';
+import { CustomErrorHandlerService } from '../custom-error-handler.service';
+import { RequestCache } from '../http-cache.service';
+import { IServerResponse } from '../interfaces/server-response.interface';
 import { AuthenticationService } from './authentication.service';
+
+const exceptionUrlList: Set<string> = new Set([apiConstants.endpoint.authenticate]);
 
 @Injectable({ providedIn: 'root' })
 export class JwtInterceptor implements HttpInterceptor {
@@ -46,12 +46,12 @@ export class JwtInterceptor implements HttpInterceptor {
 
         return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
-                cache.put(request, event);
                 // do stuff with response if you want
                 const data = event.body;
                 if (data.responseMessage && data.responseMessage.responseCode < 6000) {
                     this.errorHandler.handleCustomError(data);
                 } else {
+                    this.saveCache(request, event);
                     return data;
                 }
             }
@@ -65,5 +65,12 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             }
         });
+    }
+
+    saveCache(request: HttpRequest<any>, event: HttpResponse<IServerResponse>) {
+        const apiPath = request.url.split(environment.apiBaseUrl + '/')[1];
+        if (!exceptionUrlList.has(apiPath)) {
+            this.cache.put(request, event);
+        }
     }
 }
