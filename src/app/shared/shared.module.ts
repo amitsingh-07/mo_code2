@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,9 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
+    NgbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

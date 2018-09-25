@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
@@ -7,7 +7,8 @@ import { DirectService } from './../direct.service';
 @Component({
   selector: 'app-compare-plans',
   templateUrl: './compare-plans.component.html',
-  styleUrls: ['./compare-plans.component.scss']
+  styleUrls: ['./compare-plans.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ComparePlansComponent implements OnInit {
   pageTitle: string;
