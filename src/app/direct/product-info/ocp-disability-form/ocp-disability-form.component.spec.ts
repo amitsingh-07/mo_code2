@@ -5,7 +5,7 @@ import { OcpDisabilityFormComponent } from './ocp-disability-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IOcpDisability } from './ocp-disability-form.interface';
 
-describe('HospitalPlanFormComponent', () => {
+describe('OcpDisabilityFormComponent', () => {
   let component: OcpDisabilityFormComponent;
   let fixture: ComponentFixture<OcpDisabilityFormComponent>;
   let directService: DirectService;

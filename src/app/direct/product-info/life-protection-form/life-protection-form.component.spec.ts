@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LifeProtectionFormComponent } from './life-protection-form.component';
 import { ILifeProtection } from './life-protection.interface';
 
-describe('HospitalPlanFormComponent', () => {
+describe('LifeProtectionFormComponent', () => {
   let component: LifeProtectionFormComponent;
   let fixture: ComponentFixture<LifeProtectionFormComponent>;
   let directService: DirectService;

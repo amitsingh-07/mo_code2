@@ -5,7 +5,7 @@ import { CriticalIllnessFormComponent } from './critical-illness-form.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ICriticalIllness } from './critical-illness.interface';
 
-describe('HospitalPlanFormComponent', () => {
+describe('CriticalIllnessFormComponent', () => {
   let component: CriticalIllnessFormComponent;
   let fixture: ComponentFixture<CriticalIllnessFormComponent>;
   let directService: DirectService;

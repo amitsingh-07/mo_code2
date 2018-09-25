@@ -5,7 +5,7 @@ import { RetirementIncomeFormComponent } from './retirement-income-form.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IRetirementIncome } from './retirement-income.interface';
 
-describe('HospitalPlanFormComponent', () => {
+describe('RetirementIncomeFormComponent', () => {
   let component: RetirementIncomeFormComponent;
   let fixture: ComponentFixture<RetirementIncomeFormComponent>;
   let directService: DirectService;
