@@ -35,6 +35,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   coverageMax = 75;
   coverageAmount = 0;
   monthlyIncome: IMyIncome;
+  pageData;
 
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -61,6 +62,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('OCP_DISABILITY.TITLE');
       this.modalData = this.translate.instant('OCP_DISABILITY.MODAL_DATA');
+      this.pageData = this.translate.instant('OCP_DISABILITY');
       this.employeeList = this.translate.instant('OCP_DISABILITY.EMPLOYEE_TYPE');
       this.defaultEmployee = this.employeeList[0].status;
       this.setPageTitle(this.pageTitle, null, true);

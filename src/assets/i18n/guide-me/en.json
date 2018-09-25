@@ -117,7 +117,7 @@
     },
     "DROP_DOWN_OPTIONS": {
       "GENDER": ["Male", "Female"],
-      "RELATIONSHIP": ["Spouse", "Sibling", "Parent", "Children"],
+      "RELATIONSHIP": ["Children", "Parent", "Spouse", "Siblings"],
       "EDU_SUPPORT_COURSE": ["Medicine", "Non-Medicine"],
       "EDU_SUPPORT_COUNTRY": ["Singapore", "USA", "United Kingdom", "Australia"],
       "EDU_SUPPORT_NATIONALITY": ["Singaporean", "Singapore PR", "Foreigner"]
@@ -125,17 +125,22 @@
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
-    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires Critical Illness coverage till their intended retirement age.",
+    "DESCRIPTION": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b>Critical Illness</b>.",
     "COVERAGE_AMT": "Coverage Amount",
     "COVERAGE_AMT_DESC": "Based on the information below",
     "ANNUAL_SALARY": "Annual Salary",
     "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
     "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
-    "UNTIL_RETIREMENT_AGE": "Till the retirement age of "
+    "UNTIL_RETIREMENT_AGE": "Till the retirement age of ",
+    "MODAL_DATA": {
+      "title": "Critical Illness",
+      "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b>Critical Illness</b>.</p>",
+      "imageName": "ci-assessment.png"
+    }
   },
   "OCP_DISABILITY": {
     "TITLE": "Occupational Disability",
-    "DESCRIPTION": "This coverage is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.",
+    "DESCRIPTION": "This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.",
     "OCP_DISABILITY_FRM_TITLE": "Coverage Amount",
     "OCP_DISABILITY_HINT": "Based on the information below",
     "EMPLOYEE_FIELD": "I am a",
@@ -153,7 +158,7 @@
     ],
     "MODAL_DATA": {
       "title": "Occupational Disability",
-      "description": "<h4>Occupational Disability</h4><p>This is especially crucial in the early to mid-phase of work life as any disability affecting your ability to work would drastically affect your goal to be financially independent.</p>",
+      "description": "<h4>Occupational Disability</h4><p>This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.</p>",
       "imageName": "occupationdisability_modal.png"
     }
   },
