@@ -1,4 +1,4 @@
-import { readFileSync, writeFile, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import * as beautify from 'json-beautify';
 
 // tslint:disable-next-line:no-var-requires
@@ -36,13 +36,3 @@ config.projects[defaultProject].architect.build.configurations.common = config.p
 writeFileSync(targetPath, beautify(config, null, 2, 100));
 
 console.log(`Final angular configuration generated at ${targetPath}`);
-
-const myInfoClientId = process.env.MY_INFO_CLIENT_ID || 'STG2-MYINFO-SELF-TEST';
-const constantsPath = `./src/environments/constants.ts`;
-const constantsConfig = `
-export const environmentConstants = {
-  myInfoClientId: '${myInfoClientId}'
-};
-`;
-writeFileSync(constantsPath, constantsConfig);
-console.log(`Environment variables configured at ${constantsPath}`);
