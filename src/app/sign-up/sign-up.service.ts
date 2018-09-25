@@ -8,6 +8,7 @@ import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
+import { CtyptoService } from '../shared/utils/crypto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,12 @@ export class SignUpService {
 
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
-  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
-    this.getAccountInfo();
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService,
+    public authService: AuthenticationService,
+    public ctyptoService: CtyptoService) {
+      this.getAccountInfo();
   }
 
   /**
@@ -106,7 +111,7 @@ export class SignUpService {
    */
   getMobileNumber() {
     return {
-      number : this.signUpFormData.mobileNumber,
+      number: this.signUpFormData.mobileNumber,
       code: this.signUpFormData.countryCode
     };
   }
@@ -149,7 +154,7 @@ export class SignUpService {
    */
   getForgotPasswordInfo() {
     return {
-      email : this.signUpFormData.forgotPassEmail
+      email: this.signUpFormData.forgotPassEmail
     };
   }
 
@@ -159,8 +164,8 @@ export class SignUpService {
    */
   setForgotPasswordInfo(email) {
     // API Call here
-     const data = this.constructForgotPasswordInfo(email);
-     return this.apiService.requestForgotPasswordLink(data);
+    const data = this.constructForgotPasswordInfo(email);
+    return this.apiService.requestForgotPasswordLink(data);
   }
 
   /**
@@ -169,8 +174,8 @@ export class SignUpService {
    */
   constructForgotPasswordInfo(data) {
     return {
-      email : data,
-      redirectUrl : window.location.origin + '/#/account/reset-password' + '?key='
+      email: data,
+      redirectUrl: window.location.origin + '/#/account/reset-password' + '?key='
     };
   }
   /**
@@ -208,19 +213,19 @@ export class SignUpService {
    * @param data - user account details.
    */
   // tslint:disable-next-line:no-identical-functions
-  setResetPasswordInfo(password , key) {
+  setResetPasswordInfo(password, key) {
     // API Call here
-    const data = this.constructResetPasswordInfo(password , key);
+    const data = this.constructResetPasswordInfo(this.ctyptoService.encrypt(password), key);
     return this.apiService.requestResetPassword(data);
   }
   /**
    * construct the json for reset password.
    * @param data - email and redirect uri.
    */
-  constructResetPasswordInfo(pass , key) {
+  constructResetPasswordInfo(pass, key) {
     return {
-      password : pass,
-      resetKey : key
+      password: pass,
+      resetKey: key
     };
   }
 }
