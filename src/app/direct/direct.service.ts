@@ -156,6 +156,12 @@ export class DirectService {
   setLifeProtectionForm(data: ILifeProtection) {
     this.directFormData.lifeProtection = data;
     this.gaDirectSuccess('life-protection');
+    const userInfo = this.getUserInfo();
+    userInfo.dob = data.dob;
+    userInfo.gender = data.gender;
+    userInfo.smoker = data.smoker;
+    this.setUserInfo(userInfo);
+    this.commit();
   }
 
   getLifeProtectionForm(): ILifeProtection {
@@ -303,4 +309,3 @@ export class DirectService {
     return this.directFormData.srsApprovedPlans;
   }
 }
-

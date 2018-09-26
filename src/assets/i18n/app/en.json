@@ -84,5 +84,15 @@
       "CLAIM_CRITERIA": "Claim Criteria"
     },
     "NO_RESULTS": "Please change your filter settings" 
+  },
+  "PROD_INFO_TOOLTIP": {
+    "COMMISSION": {
+          "TITLE": "Commission Rebate",
+          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
+      },
+    "RATING": {
+          "TITLE": "Insurer’s Rating",
+          "MESSAGE": "<div><div class='mb20'>This measures the financial stability of the insurers. The ranking is as follows:</div><div class='insurer-rating'> <div class='rating title'> <span>S&P / FITCH <br/>Rating</span> </div><div class='rating-desc title'> <span>Rating Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>Prime</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>High Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>Upper Medium Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>Lower Medium Grade</span> </div></div></div>"
+      }
   }
 }
