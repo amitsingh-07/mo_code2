@@ -27,35 +27,53 @@ export class PlanFilterPipe implements PipeTransform {
 
             this.filterData = filters;
             this.filteredList = plans.filter((plan) => {
-                const insurerName = (typeof (this.filterData.insurerName) === 'undefined' ? true
-                    : this.filterData.insurerName.has(plan.insurer.insurerName));
+                const isInsurerName = typeof (this.filterData.insurerName) === 'undefined'
+                    || this.filterData.insurerName.size === 0;
+                const insurerName = isInsurerName ? true
+                    : this.filterData.insurerName.has(plan.insurer.insurerName);
 
-                const financialRating = (typeof (this.filterData.financialRating) === 'undefined' ? true
-                    : this.filterData.financialRating.has(plan.insurer.rating));
+                const isFinancialRating = typeof (this.filterData.financialRating) === 'undefined'
+                    || this.filterData.financialRating.size === 0;
+                const financialRating = isFinancialRating ? true
+                    : this.filterData.financialRating.has(plan.insurer.rating);
 
-                const premiumFrequency = (typeof (this.filterData.premiumFrequency) === 'undefined' ? true
-                    : this.filterData.premiumFrequency.has(plan.premium.premiumFrequency));
+                const isPremiumFrequency = typeof (this.filterData.premiumFrequency) === 'undefined'
+                    || this.filterData.premiumFrequency.size === 0;
+                const premiumFrequency = isPremiumFrequency ? true
+                    : this.filterData.premiumFrequency.has(plan.premium.premiumFrequency);
 
-                const claimFeature = (typeof (this.filterData.claimFeature) === 'undefined' ? true
-                    : this.filterData.claimFeature.has(plan.insurer.rating));
+                const isClaimFeature = typeof (this.filterData.claimFeature) === 'undefined'
+                    || this.filterData.claimFeature.size === 0;
+                const claimFeature = isClaimFeature ? true
+                    : this.filterData.claimFeature.has(plan.insurer.rating);
 
-                const deferredPeriod = (typeof (this.filterData.deferredPeriod) === 'undefined' ? true
-                    : this.filterData.deferredPeriod.has(plan.insurer.rating));
+                const isDeferredPeriod = typeof (this.filterData.deferredPeriod) === 'undefined'
+                    || this.filterData.deferredPeriod.size === 0;
+                const deferredPeriod = isDeferredPeriod ? true
+                    : this.filterData.deferredPeriod.has(plan.insurer.rating);
 
-                const escalatingBenefit = (typeof (this.filterData.escalatingBenefit) === 'undefined' ? true
-                    : this.filterData.escalatingBenefit.has(plan.insurer.rating));
+                const isEscalatingBenefit = typeof (this.filterData.escalatingBenefit) === 'undefined'
+                    || this.filterData.escalatingBenefit.size === 0;
+                const escalatingBenefit = isEscalatingBenefit ? true
+                    : this.filterData.escalatingBenefit.has(plan.insurer.rating);
 
-                const fullPartialRider = (typeof (this.filterData.fullPartialRider) === 'undefined' ? true
-                    : this.filterData.fullPartialRider.has(plan.insurer.rating));
+                const isFullPartialRider = typeof (this.filterData.fullPartialRider) === 'undefined'
+                    || this.filterData.fullPartialRider.size === 0;
+                const fullPartialRider = isFullPartialRider ? true
+                    : this.filterData.fullPartialRider.has(plan.insurer.rating);
 
-                const payoutYears = (typeof (this.filterData.payoutYears) === 'undefined' ? true
-                    : this.filterData.payoutYears.has(plan.insurer.rating));
+                const isPayoutYears = typeof (this.filterData.payoutYears) === 'undefined'
+                    || this.filterData.payoutYears.size === 0;
+                const payoutYears = isPayoutYears ? true
+                    : this.filterData.payoutYears.has(plan.premium.payoutAge);
 
-                const claimCriteria = (typeof (this.filterData.claimCriteria) === 'undefined' ? true
-                    : this.filterData.claimCriteria.has(plan.insurer.rating));
+                const isClaimCriteria = typeof (this.filterData.claimCriteria) === 'undefined'
+                    || this.filterData.claimCriteria.size === 0;
+                const claimCriteria = isClaimCriteria ? true
+                    : this.filterData.claimCriteria.has(plan.insurer.rating);
 
                 return insurerName && financialRating && premiumFrequency && claimFeature &&
-                deferredPeriod && escalatingBenefit && fullPartialRider && payoutYears && claimCriteria;
+                    deferredPeriod && escalatingBenefit && fullPartialRider && payoutYears && claimCriteria;
             });
         } else {
             this.filteredList = plans;

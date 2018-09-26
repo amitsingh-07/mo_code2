@@ -2,99 +2,135 @@
 @import '../../../../mixins';
 
 app-settings-widget {
-        .form-group{
-            background-color: #ffffff;
-            border-radius: 10px;
-            
-            input[type='radio']:checked + label, input[type='checkbox']:checked + label {
-                color:#ffffff ;
-                background: #00A7A7;
-                padding: 0px !important;
-                border-radius: 3px;
-            }
-            input[type='radio'] + label, input[type='checkbox'] + label {
-                background: none;
-                padding: 0px !important;
-            }
-            input[type='checkbox'] + label .input-label-normal{
-                color:#00AAA8;
-            }
-            input[type='checkbox']:checked + label .input-label-normal{
-                color:#ffffff ;
-                font-family: $muli-semi-bold;
-            }
-            .flex-row{
-                font-size: 16px;
-                padding: 10px 25px;
-                border-bottom: none;
-                @include allmobiles {
-                    border-bottom: 1px solid #d1edec;
-                }
-                label{
-                    font-family: $muli-semi-bold;
-                    color: #2D8289;
-                }
-                .title{
-                    font-family: "Muli Semi Bold", sans-serif;
-                    font-size: 24px;
-                    color: #00a7a7;
-                    height: 60.4px;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                    @include allmobiles {
-                        justify-content: center;
-                    }
-                }
-                .fixed-btn--sm{
-                    font-family: $muli;
-                    &:hover{
-                        font-family: $muli-semi-bold;
-                        background: #00A7A7 !important;
-                    }
-                    &:active{
-                        font-family: $muli-semi-bold;
-                        background: #00A7A7 !important;
-                    }
-                    &:focus{
-                        font-family: $muli-semi-bold;
-                        background: #00A7A7 !important;
-                    }
-                }
-            }
-            .flex-col{
-                margin-bottom: 25px;
-                @include allmobiles{
-                    margin-bottom: 10px;
-                }
-                label{
-                    font-family: $muli-semi-bold;
-                    color: #2D8289;
-                    padding: 0 25px;
-                }
-                .form-group-single-column {
-                    flex-wrap: wrap;
-                    padding: 0 25px;
-                    .checkbox-button{
-                        border: 1px solid #99CFCE;
-                        margin-right: 7px;
-                        padding: 0;
-                        .input-label-normal{
-                            padding: 9px 11px;
-                            
-                        }
-                    }
-                }
-            }
-            .btn-group--toggle{
-                .flex-row{
-                    padding: 0;
-                    border: none;
-                }
-            }
-            .dropdown-menu.show{
-                left: inherit !important;
-                right: 0 !important;
-            }
+  .with-help-icon {
+    .help-icon {
+      background: url("../../../../assets/images/tooltip-icon.svg") no-repeat;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      text-align: center;
+      z-index: 99999;
+      display: inline-block;
+      margin-bottom: -5px;
+      margin-left: 5px;
+    }
+  }
+
+  .form-group {
+    background-color: #ffffff;
+    border-radius: 10px;
+
+    input[type='radio']:checked+label,
+    input[type='checkbox']:checked+label {
+      color: #ffffff;
+      background: #00A7A7;
+      padding: 0px !important;
+      border-radius: 3px;
+    }
+
+    input[type='radio']+label,
+    input[type='checkbox']+label {
+      background: none;
+      padding: 0px !important;
+    }
+
+    input[type='checkbox']+label .input-label-normal {
+      color: #00AAA8;
+    }
+
+    input[type='checkbox']:checked+label .input-label-normal {
+      color: #ffffff;
+      font-family: $muli-semi-bold;
+    }
+
+    .flex-row {
+      font-size: 16px;
+      padding: 10px 25px;
+      border-bottom: none;
+
+      @include allmobiles {
+        border-bottom: 1px solid #d1edec;
+      }
+
+      label {
+        font-family: $muli-semi-bold;
+        color: #2D8289;
+      }
+
+      .title {
+        font-family: "Muli Semi Bold", sans-serif;
+        font-size: 24px;
+        color: #00a7a7;
+        height: 60.4px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        @include allmobiles {
+          justify-content: center;
         }
+      }
+
+      .fixed-btn--sm {
+        font-family: $muli;
+
+        &:hover {
+          font-family: $muli-semi-bold;
+          background: #00A7A7 !important;
+        }
+
+        &:active {
+          font-family: $muli-semi-bold;
+          background: #00A7A7 !important;
+        }
+
+        &:focus {
+          font-family: $muli-semi-bold;
+          background: #00A7A7 !important;
+        }
+      }
+    }
+
+    .flex-col {
+      margin-bottom: 25px;
+
+      @include allmobiles {
+        margin-bottom: 10px;
+      }
+
+      label {
+        font-family: $muli-semi-bold;
+        color: #2D8289;
+        padding: 0 25px;
+      }
+
+      .form-group-single-column {
+        flex-wrap: wrap;
+        padding: 0 25px;
+
+        .checkbox-button {
+          border: 1px solid #99CFCE;
+          margin-right: 7px;
+          padding: 0;
+
+          .input-label-normal {
+            padding: 9px 11px;
+
+          }
+        }
+      }
+    }
+
+    .btn-group--toggle {
+      .flex-row {
+        padding: 0;
+        border: none;
+      }
+    }
+
+    .dropdown-menu.show {
+      left: inherit !important;
+      right: 0 !important;
+    }
+  }
 }

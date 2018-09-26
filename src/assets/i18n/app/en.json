@@ -81,7 +81,8 @@
       "PAYOUT_YEARS": "Payout Years",
       "CLAIM_CRITERIA": "Claim Criteria"
     },
-    "NO_RESULTS": "Please change your filter settings" 
+    "NO_FILTER_RESULTS": "Please change your filter settings",
+    "NO_RESULTS": "No results found"
   },
   "PROD_INFO_TOOLTIP": {
     "COMMISSION": {

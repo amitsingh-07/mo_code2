@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation, ElementRef, Inject, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,10 +8,13 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { IDropDownData } from '../../shared/widgets/settings-widget/settings-widget.component';
 import { IProductCategory } from '../product-info/product-category/product-category';
 import { HeaderService } from './../../shared/header/header.service';
+import { Formatter } from './../../shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './../../shared/widgets/settings-widget/settings-widget.component';
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
+
+const settingsHeaderIcon = 'navbar__helpIcon--mobile-settings';
 
 @Component({
   selector: 'app-direct-results',
@@ -26,7 +29,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   pageTitle = '';
   isComparePlanEnabled = false;
   toggleBackdropVisibility = false;
-  searchResult;
+  searchResult = [];
   filteredResult = [];
   filteredCountSubject = new Subject<any>();
   subscription: Subscription;
@@ -38,15 +41,17 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   sortProperty;
   types;
 
+  resultsEmptyMessage = '';
+
   premiumFrequency: any = [{ value: 'per month', name: 'Monthly', checked: true }, { value: 'per year', name: 'Yearly', checked: false }];
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
-  claimFeature = [{ value: 'All', checked: true }, { value: 'Single Claim', checked: false }, { value: 'Multiple Claim', checked: false }];
-  deferredPeriod = [{ value: 'All', checked: true }, { value: '3 Months', checked: false }, { value: '6 Months', checked: false }];
-  escalatingBenefit = [{ value: 'All', checked: true }, { value: '0%', checked: false }, { value: '3%', checked: false }];
-  fullPartialRider = [{ value: 'All', checked: true }, { value: 'Partial Rider', checked: false }, { value: 'Full Rider', checked: false }];
-  payoutYears = [{ value: 'All', checked: true }, { value: '12 Years', checked: false }, { value: 'Lifetime', checked: false }];
-  claimCriteria = [{ value: 'All', checked: true }, { value: 'Standard', checked: false }, { value: 'Lenient', checked: false }];
+  payoutYears: any = { All: 'All' };
+  claimFeature: any = { All: 'All' };
+  deferredPeriod: any = { All: 'All' };
+  escalatingBenefit: any = { All: 'All' };
+  fullPartialRider: any = { All: 'All' };
+  claimCriteria: any = { All: 'All' };
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
@@ -57,6 +62,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
       this.sortList = this.translate.instant('SETTINGS.SORT');
       this.types = this.translate.instant('SETTINGS.TYPES');
+      this.resultsEmptyMessage = this.translate.instant('SETTINGS.NO_RESULTS');
       this.sortProperty = this.sortList[0].value;
       this.setPageTitle(this.pageTitle);
       this.getRecommendations();
@@ -78,12 +84,24 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
     this.selectedCategory = this.directService.getProductCategory();
     this.directApiService.getSearchResults(this.directService.getProductCategory())
       .subscribe((data) => {
+        if (data.responseMessage.responseCode === 6004) {
+          this.resultsEmptyMessage = data.responseMessage.responseDescription;
+          return;
+        }
+
         this.searchResult = data.objectList[0].productProtectionTypeList;
         this.filteredResult = this.searchResult;
         for (const productLists of data.objectList[0].productProtectionTypeList) {
           for (const productList of productLists.productList) {
-            this.insurers[productList.insurer.insurerName.replace(/ /g, '_')] = productList.insurer.insurerName;
-            this.insurersFinancialRating[productList.insurer.rating.replace(/ /g, '_')] = productList.insurer.rating;
+            this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
+            this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
+
+            this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            this.deferredPeriod[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            this.escalatingBenefit[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            this.fullPartialRider[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
           }
         }
         this.insurers = Object.values(this.insurers).map((key) => {
@@ -92,10 +110,32 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
         this.insurersFinancialRating = Object.values(this.insurersFinancialRating).map((key) => {
           return { value: key, checked: key === 'All' ? true : false };
         });
+        this.payoutYears = Object.values(this.payoutYears).map((key) => {
+          return { value: key, checked: key === 'All' ? true : false };
+        });
+        this.claimFeature = Object.values(this.claimFeature).map((key) => {
+          return { value: key, checked: key === 'All' ? true : false };
+        });
+        this.deferredPeriod = Object.values(this.deferredPeriod).map((key) => {
+          return { value: key, checked: key === 'All' ? true : false };
+        });
+        this.escalatingBenefit = Object.values(this.escalatingBenefit).map((key) => {
+          return { value: key, checked: key === 'All' ? true : false };
+        });
+        this.fullPartialRider = Object.values(this.fullPartialRider).map((key) => {
+          return { value: key, checked: key === 'All' ? true : false };
+        });
+        this.claimCriteria = Object.values(this.claimCriteria).map((key) => {
+          return { value: key, checked: key === 'All' ? true : false };
+        });
+
         const premiumFrequency = {
           title: this.types.PREMIUM_FREQUENCY, name: 'premiumFrequency', filterTypes: this.premiumFrequency, allBtn: false
         };
-        const insurers = { title: 'Insurers', name: 'insurerName', filterTypes: this.insurers, allBtn: true };
+        const insurers = {
+          title: 'Insurers', toolTip: 'This is insurer name', name: 'insurerName',
+          filterTypes: this.insurers, allBtn: true
+        };
         const insurersFinancialRating = {
           title: this.types.INSURANCE_FINANCIAL_RATING, name: 'financialRating',
           filterTypes: this.insurersFinancialRating, allBtn: true
@@ -124,12 +164,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
           title: this.types.CLAIM_CRITERIA, toolTip: '', name: 'claimCriteria',
           filterTypes: this.claimCriteria, allBtn: true
         };
+
         this.filters.push(premiumFrequency);
         this.filters.push(insurers);
         this.filters.push(insurersFinancialRating);
         switch (this.selectedCategory.id - 1) {
           case 1:
-            this.filters.push({ title: 'Claim Feature', toolTip: '', filterTypes: this.claimFeature, allBtn: true });
+            this.filters.push(claimFeature);
             break;
           case 2:
             delete this.filters[1];
@@ -160,7 +201,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title, null, true);
+    this.headerService.setPageTitle(title, null, false, true);
   }
 
   showSettingsPopUp() {
@@ -171,8 +212,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.filters = this.filters;
     ref.componentInstance.sort = this.sortList;
-    ref.componentInstance.selectedFilters.subscribe((data) => {
-      console.log(data);
+    ref.componentInstance.isMobile = true;
+    ref.componentInstance.filterProducts.subscribe((data) => {
+      this.filterProducts(data);
+      ref.dismiss();
     });
     this.headerService.showMobilePopUp('removeClicked');
   }
