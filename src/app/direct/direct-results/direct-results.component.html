@@ -1,42 +1,44 @@
 <app-edit-product-info (click)="editProdInfo()"></app-edit-product-info>
 <div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>
-<div id="resultsContainer" [hidden]="filteredResult.length <= 0">
-  <div class="flex-row grp-results hidden-sm-md">
-    <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
-      <div>
-        <div style="justify-content: center;">
-          <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
-            <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
-            <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-              (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
-          </div>
+<div id="results-web" class="flex-row grp-results hidden-sm-md">
+  <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
+    <div>
+      <div style="justify-content: center;">
+        <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
+          <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+          <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
+            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
-    </div>
-    <div class="flex-col-4 hidden-sm-md">
-      <button ngbButtonLabel class="direct-form-btn--radio btn btn-small" (click)="toggleComparePlans()" style="float:left;"
-        [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button>
-      <label class="lbl">{{filteredResult.length}} Plans Found</label>
-      <div style="clear: both; margin-bottom: 10px;"></div>
-      <app-settings-widget *ngIf="sortList.length <= 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)"></app-settings-widget>
     </div>
   </div>
-  <div class="hidden-lg">
-    <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
-      <div>
-        <div style="justify-content: center;">
-          <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
-            <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
-            <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-              (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
-          </div>
+  <div class="flex-col-4 hidden-sm-md">
+    <button ngbButtonLabel class="direct-form-btn--radio btn btn-small" (click)="toggleComparePlans()" style="float:left;"
+      [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button>
+    <label class="lbl">{{filteredResult.length}} Plans Found</label>
+    <div style="clear: both; margin-bottom: 10px;"></div>
+    <app-settings-widget *ngIf="sortList.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)"></app-settings-widget>
+  </div>
+</div>
+<div id="results-mobile" class="hidden-lg">
+  <div class="flex-row" *ngFor="let category of searchResult; let i = index" style="padding: 10px">
+    <!-- <div>
+      <div style="justify-content: center;">
+        <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
+          <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+          <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
+            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
+    </div> -->
+    <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
+      <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+      <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
+      (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
     </div>
   </div>
 </div>
-
-<div [hidden]="filteredResult?.length > 0" style="text-align: center;">{{ resultsEmptyMessage }}</div>
+<div [hidden]="filteredResult?.length > 0">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
 
 <!-- Floating plan selection footer -->
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
@@ -56,3 +58,4 @@
   </div>
 </div>
 <!-- / Floating plan selection for compare plans footer -->
+

@@ -265,3 +265,4 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
     this.sortProperty = data.sortProperty;
   }
 }
+

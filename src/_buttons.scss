@@ -438,6 +438,9 @@ button:active:focus {
 }
 
 .min-prod-info{
+  @include tablet {
+    padding: 0 20px;
+  }
   .min-prod-info__block{
     position: relative;
     display: flex;
@@ -453,7 +456,7 @@ button:active:focus {
     max-height:70px; 
     min-height:64px;
     //max-width: calc(1024px - 160px);
-    min-width:337px;
+    //min-width:337px;
     box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
     
     @include minMobilemaxPhablet{

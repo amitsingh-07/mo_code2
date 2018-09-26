@@ -48,6 +48,12 @@ app-direct-results {
     padding-top: 10px;
     max-width: 1024px;
     margin: 0 auto;
+    @include iPadLandscape {
+      padding: 20px;
+    }
+    @include tablet {
+      padding: 20px;
+    }
   }
 
   .btn-small {
@@ -74,14 +80,22 @@ app-direct-results {
     border: none;
     margin-bottom: 20px;
     padding-bottom: 5px;
+    @include allmobiles {
+      margin-bottom: 0;
+    }
 
     .insurance-plan-widget {
       border-radius: 10px;
       background: white;
-      padding: 10px !important;
+      padding: 20px !important;
+      @include allmobiles {
+        padding: 0px !important;
+        margin: 10px 5px;
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
+      }
 
       .insurance-plan-widget__container .insurance-plan-widget__container__discount__block {
-        margin: 0 -13px;
+        margin: 0 -23px;
       }
 
       .insurer-logo img {
@@ -92,5 +106,10 @@ app-direct-results {
         color: $text-color-secondary;
       }
     }
+  }
+}
+.results-mobile {
+  .flex-col-6 {
+    padding: 20px;
   }
 }
