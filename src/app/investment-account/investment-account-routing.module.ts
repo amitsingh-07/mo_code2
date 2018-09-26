@@ -7,6 +7,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
+import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 const routes: Routes = [
   { path: INVESTMENT_ACCOUNT_ROUTES.ROOT, redirectTo: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY, pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: INVESTMENT_ACCOUNT_ROUTES.RESIDENTIAL_ADDRESS, component: ResidentialAddressComponent },
   { path: INVESTMENT_ACCOUNT_ROUTES.EMPLOYMENT_DETAILS, component: EmploymentDetailsComponent },
   { path: INVESTMENT_ACCOUNT_ROUTES.TAX_INFO, component: TaxInfoComponent },
+  { path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS, component: UploadDocumentsComponent },
 ];
 
 @NgModule({
