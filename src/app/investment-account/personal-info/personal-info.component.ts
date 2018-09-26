@@ -22,7 +22,11 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   formValues: any;
   passportMinDate: any;
   passportMaxDate: any;
-
+  selectedNationalityFormValues: any;
+  unitedStatesResident: string;
+  showPassport = false;
+  showNric = true;
+  disabledFullName: true;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -42,22 +46,43 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       this.passportMaxDate = { year: (today.getFullYear() + 20), month: (today.getMonth() + 1), day: today.getDate() };
     });
   }
-
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title);
+  }
   ngOnInit() {
-    this.invPersonalInfoForm = this.formBuilder.group({
-      fullName: ['KOGANTI SAIDEVI', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      firstName: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      lastName: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      nricNumber: ['', Validators.required],
-      passportNumber: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      passportExpiry: ['', Validators.required],
-      dob: ['', Validators.required],
+    this.selectedNationalityFormValues = this.investmentAccountService.getNationality();
+    this.formValues = this.investmentAccountService.getPersonalInfo();
+    if (this.selectedNationalityFormValues.nationality.nationality === 'SINGAPOREAN' ||
+      this.selectedNationalityFormValues.singaporeanResident === 'yes') {
+      this.invPersonalInfoForm = this.buildFormForNricNumber();
+      this.showPassport = false;
+      this.showNric = true;
+    } else {
+      this.invPersonalInfoForm = this.buildFormForPassportDetails();
+      this.showPassport = true;
+      this.showNric = false;
+    }
+  }
+  buildFormForNricNumber(): FormGroup {
+    return this.formBuilder.group({
+      fullName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      nricNumber: [this.formValues.nricNumber, Validators.required],
+      dob: [this.formValues.dob, Validators.required],
       gender: ['male', Validators.required]
     });
   }
-
-  setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+  buildFormForPassportDetails(): FormGroup {
+    return this.formBuilder.group({
+      fullName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      passportNumber: [this.formValues.passportNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      passportExpiry: [this.formValues.passportExpiry, Validators.required],
+      dob: [this.formValues.dob, Validators.required],
+      gender: ['male', Validators.required]
+    });
   }
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
@@ -83,5 +108,4 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
     }
   }
-
 }
