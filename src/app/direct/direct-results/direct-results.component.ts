@@ -1,14 +1,14 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, ViewChildren, ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
 import { Subject, Subscription } from 'rxjs';
+
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { OrderByPipe } from '../../shared/Pipes/order-by.pipe';
 import { IDropDownData } from '../../shared/widgets/settings-widget/settings-widget.component';
 import { IProductCategory } from '../product-info/product-category/product-category';
 import { HeaderService } from './../../shared/header/header.service';
+import { SettingsWidgetComponent } from './../../shared/widgets/settings-widget/settings-widget.component';
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
@@ -19,7 +19,7 @@ import { DirectService } from './../direct.service';
   styleUrls: ['./direct-results.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DirectResultsComponent implements IPageComponent {
+export class DirectResultsComponent implements IPageComponent, OnInit {
 
   sortList: IDropDownData[] = [];
 
@@ -38,7 +38,7 @@ export class DirectResultsComponent implements IPageComponent {
   sortProperty;
   types;
 
-  premiumFrequency: any = [{value: 'per month', name: 'Monthly', checked: true}, { value: 'per year', name: 'Yearly', checked: false}];
+  premiumFrequency: any = [{ value: 'per month', name: 'Monthly', checked: true }, { value: 'per year', name: 'Yearly', checked: false }];
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
   claimFeature = [{value: 'All', checked: true}, { value: 'Single Claim', checked: false}, { value: 'Multiple Claim', checked: false}];
@@ -50,7 +50,8 @@ export class DirectResultsComponent implements IPageComponent {
   
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
-    private router: Router, private translate: TranslateService, public headerService: HeaderService) {
+    private router: Router, private translate: TranslateService, public headerService: HeaderService,
+    public modal: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
@@ -62,6 +63,14 @@ export class DirectResultsComponent implements IPageComponent {
     });
     this.subscription = this.filteredCountSubject.subscribe((planList) => {
       this.filteredResult = planList;
+    });
+  }
+
+  ngOnInit() {
+    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+      if (event === this.pageTitle) {
+        this.showSettingsPopUp();
+      }
     });
   }
 
@@ -151,7 +160,21 @@ export class DirectResultsComponent implements IPageComponent {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.headerService.setPageTitle(title, null, true);
+  }
+
+  showSettingsPopUp() {
+    const ref = this.modal.open(SettingsWidgetComponent, {
+      centered: true,
+      windowClass: 'help-modal-dialog'
+    });
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.filters = this.filters;
+    ref.componentInstance.sort = this.sortList;
+    ref.componentInstance.selectedFilters.subscribe((data) => {
+      console.log(data);
+    });
+    this.headerService.showMobilePopUp('removeClicked');
   }
 
   editProdInfo() {

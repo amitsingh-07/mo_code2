@@ -5,11 +5,11 @@ import { IEnvironment } from './environment.interface';
 // The list of file replacements can be found in `angular.json`.
 
 export const environment: IEnvironment = {
-  production: false,
-  isDebugMode: true,
-  apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
-  myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://localhost:3001'
+  production: true,
+  isDebugMode: false,
+  apiBaseUrl: 'https://bfa-uat.ntucbfa.com',
+  myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
+  myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

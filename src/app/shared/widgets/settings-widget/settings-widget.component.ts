@@ -13,12 +13,14 @@ export interface IDropDownData {
 })
 export class SettingsWidgetComponent implements OnInit {
 
+  @Input() sort: any = [];
   @Input() filters: any = [];
   @Output() filterProducts = new EventEmitter();
+  @Output() selectedFilters = new EventEmitter();
 
   filterArgs: any = {};
+  selectedFiltersList;
   defaultSort: IDropDownData;
-  @Input() sort: any = [];
   constructor() {
 
   }
@@ -49,6 +51,7 @@ export class SettingsWidgetComponent implements OnInit {
     }
     if (checkedLength === length - 1) {
       delete this.filterArgs[name];
+      this.selectedFiltersList = this.filterArgs;
       return false;
     }
     return true;
@@ -97,5 +100,10 @@ export class SettingsWidgetComponent implements OnInit {
       }
     }
     this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
+    this.selectedFiltersList = this.filterArgs;
+  }
+
+  applyFilters() {
+    this.selectedFilters.emit({ filters: this.selectedFiltersList, sortProperty: this.defaultSort.value });
   }
 }
