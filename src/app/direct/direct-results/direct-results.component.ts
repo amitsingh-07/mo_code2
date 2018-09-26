@@ -33,6 +33,7 @@ export class DirectResultsComponent implements IPageComponent {
 
   selectedCategory: IProductCategory;
   selectedPlans: any[] = [];
+  selectedComparePlans: any[] = [];
   filters = [];
   filterArgs;
   sortProperty;
@@ -176,17 +177,17 @@ export class DirectResultsComponent implements IPageComponent {
 
   comparePlan(data) {
     if (data.selected) {
-      this.selectedPlans.push(data.plan);
+      this.selectedComparePlans.push(data.plan);
     } else {
-      const index: number = this.selectedPlans.indexOf(data.plan);
+      const index: number = this.selectedComparePlans.indexOf(data.plan);
       if (index !== -1) {
-        this.selectedPlans.splice(index, 1);
+        this.selectedComparePlans.splice(index, 1);
       }
     }
   }
 
   compare() {
-    this.directService.setSelectedPlans(this.selectedPlans);
+    this.directService.setSelectedPlans(this.selectedComparePlans);
     this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
   }
 

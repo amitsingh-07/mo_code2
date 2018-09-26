@@ -46,6 +46,7 @@
       "TITLE": "About Me"
     }
   },
+
   "HOSPITAL_PLAN": {
     "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
@@ -125,7 +126,15 @@
         "NEED_UNDERWRITING":"Need Underwriting",
         "CASH_VALUE":"Cash Value",
         "PAYOUT_DETAILS":"Payout Details",
-        "UNIQUE_FEATURES":"Unique Features"
+        "UNIQUE_FEATURES":"Unique Features",
+        "ERROR_MODEL_FOR_MOBILE": {
+          "TITLE":"2 plans only",
+          "MESSAGE":"You can Select Maximum of 2 plans for compare"
+        },
+        "ERROR_MODEL_FOR_WEB": {
+          "TITLE":"4 plans only",
+          "MESSAGE":"You can Select Maximum of 4 plans for compare"
+        }
       },
       "RESULTS": {
         "TITLE": "Plans"
