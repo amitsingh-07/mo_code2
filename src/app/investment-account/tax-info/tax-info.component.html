@@ -1,28 +1,107 @@
-<div class="container-fluid">
-  <div class="flex-row">
-    <div class="flex-col-5">
-      <label for="name" id="tax-info-label">Country of Tax Residence</label>
+<div class="app-select-nationality">
+  <div class="step-indicator-container">
+    <div class="container-fluid">
+      <app-step-indicator [count]="7" [activeStepIndex]="4"></app-step-indicator>
     </div>
-    <div class="flex-col-7">
-      <form name="TaxInfoForm" [formGroup]="TaxInfoForm">
-        <div class="dropdown-control">
-          <div ngbDropdown>
+  </div>
+  <div class="container-fluid">
+    <form name="TaxInfoForm" [formGroup]="TaxInfoForm">
+      <div class="flex-row">
+        <div class="flex-col-5">
+          <label for="name" id="tax-info-label">Country of Tax Residence</label>
+        </div>
+        <div class="flex-col-7">
 
-            <button class="btn btn-dropdown" ngbDropdownToggle >
-              <span class="dependent-count" id="select_nationality_dropdown_nationality">{{ country | titlecase }}</span>
-              <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
+          <div class="dropdown-control">
+            <div ngbDropdown>
 
-            </button>
+              <button class="btn btn-dropdown" ngbDropdownToggle>
+                <span class="dependent-count" id="tax_Info_dropdown_country">{{ country | titlecase }}</span>
+                <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectCountry(nationalityObj)"
-                id="selectNationality-country-option-{{i}}">
-                {{nationalityObj.nationality | titlecase}}
               </button>
+
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectCountry(nationalityObj)"
+                  id="selectNationality-country-option-{{i}}">
+                  {{nationalityObj.nationality | titlecase}}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </form>
+      </div>
+      <!-- Do you have a TIN question -->
+      <div class="flex-row mb10">
+        <div class="flex-col-11 mt15">
+          <div class="form-group-with-bg--content-label" id="tax_Info_question-one">Do you have a Taxpayer Identification Number (TIN) for the above country?
+          </div>
+        </div>
+
+      </div>
+      <!-- Button part -->
+      <div class="flex-row">
+        <div class="flex-col-12 mb10">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin" #radioTin>
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                  <input ngbButton type="radio" id="tin_yes" value="yes"> Yes
+                </label>
+              </div>
+              <div class="flex-col-6">
+
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                  <input ngbButton type="radio" id="tin_no" value="no">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Dropdown -->
+      <div class="flex-row" *ngIf="TaxInfoForm.controls.radioTin.value === 'no'">
+        <div class="flex-col-5">
+          <label for="name" id="tax-info-reason_label">Reason</label>
+        </div>
+        <div class="flex-col-7">
+
+          <div class="dropdown-control" >
+            <div ngbDropdown>
+
+              <button class="btn btn-dropdown" ngbDropdownToggle>
+                <span class="dependent-count" id="tax_Info_dropdown_country">{{ reason | titlecase }}</span>
+                <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
+
+              </button>
+
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectReason(nationalityObj)"
+                  id="selectReason-country-option-{{i}}">
+                  {{nationalityObj.nationality | titlecase}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <!-- Tin text box -->
+<!-- Second Dropdown -->
+<div class="flex-row" *ngIf="TaxInfoForm.controls.radioTin.value === 'yes'">
+  <div class="flex-col-5">
+    <label for="name" id="tax-info-reason_label">TIN Number</label>
+  </div>
+  <div class="flex-col-7">
+
+    <div class="dropdown-control" >
+      <input type="text" id="invPersInfoInpt1" class="form-control"  formControlName="tinNumber">
     </div>
   </div>
+</div>
+
+    </form>
+  </div>
+  <button type="button" id="personalInforNextBtn" (click)="goToNext(addressForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              id="getStrdBtn3">Continue</button>
 </div>

@@ -3,10 +3,11 @@
 body{
     background-color: #00a7a7;
 }
-app-select-nationality{
-    .container-fluid {
-        padding-top: 0px !important;
-    }
+.app-select-nationality{
+    // .container-fluid {
+    //     padding-top: 0px;
+    //     padding-bottom: 0px;
+    // }
     .flex-row {
     align-items: center;
     }
@@ -58,7 +59,24 @@ letter-spacing: -0.3px;
   padding-left: 17px;
   padding-right: 14px;
 }
+.step-indicator-container {
+    background-color: #fff;
+    padding: 10px 0px;
+    position: relative;
+    top: 66px;
+    margin-bottom: 15px;
 
+    .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .step-indicator-container {
+      top: 0px;
+    }
+  }
 // .QuestionLabel{
 //     width: 83%;
 // }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,6 +22,7 @@ export class TaxInfoComponent implements OnInit {
   nationalityObj: any;
   nationality: any;
   country: any;
+  reason: any;
   constructor(
     public headerService: HeaderService,
     public activeModal: NgbActiveModal,
@@ -36,9 +37,12 @@ export class TaxInfoComponent implements OnInit {
 
   ngOnInit() {
     this.country = 'Select Country' ;
+    this.reason = 'Select' ;
     this.getNationalityList();
     this.taxInfoFormValues = this.investmentAccountService.getTaxInfo();
     this.TaxInfoForm = new FormGroup({
+      radioTin: new FormControl (this.taxInfoFormValues.haveTin, Validators.required),
+      reason: new FormControl (this.taxInfoFormValues.reason, Validators.required)
   });
   }
   getNationalityList() {
@@ -52,5 +56,10 @@ selectCountry(nationalityObj) {
   this.nationalityObj = nationalityObj;
   this.nationality = this.nationalityObj.nationality;
   this.country = this.nationalityObj.country;
+}
+selectReason(nationalityObj) {
+  this.reason = this.nationalityObj.country;
+}
+goToNext(form) {
 }
 }
