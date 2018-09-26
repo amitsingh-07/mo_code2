@@ -58,7 +58,7 @@ export class SelectNationalityComponent implements OnInit {
         this.getNationalityList();
         this.selectNationalityFormValues = this.investmentAccountService.getNationality();
         this.nationalityObj = this.selectNationalityFormValues.nationality;
-        this.nationality = this.selectNationalityFormValues.nationality && this.selectNationalityFormValues.nationality.nationality ? this.selectNationalityFormValues.nationality.nationality : 'Select Nationlity';
+        this.nationality = this.selectNationalityFormValues.nationality && this.selectNationalityFormValues.nationality.nationality ? this.selectNationalityFormValues.nationality.nationality : 'Select Nationality';
         this.selectNationalityForm = new FormGroup({
             nationality: new FormControl(this.selectNationalityFormValues.nationality)
         });
