@@ -56,6 +56,7 @@
           "MESSAGE": "<div><div class='mb20'>This measures the financial stability of the insurers. The ranking is as follows:</div><div class='insurer-rating'> <div class='rating title'> <span>S&P / FITCH <br/>Rating</span> </div><div class='rating-desc title'> <span>Rating Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>Prime</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>High Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>Upper Medium Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>Lower Medium Grade</span> </div></div></div>"
       }
   },
+
   "HOSPITAL_PLAN": {
     "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
@@ -135,7 +136,15 @@
         "NEED_UNDERWRITING":"Need Underwriting",
         "CASH_VALUE":"Cash Value",
         "PAYOUT_DETAILS":"Payout Details",
-        "UNIQUE_FEATURES":"Unique Features"
+        "UNIQUE_FEATURES":"Unique Features",
+        "ERROR_MODEL_FOR_MOBILE": {
+          "TITLE":"2 plans only",
+          "MESSAGE":"You can Select Maximum of 2 plans for compare"
+        },
+        "ERROR_MODEL_FOR_WEB": {
+          "TITLE":"4 plans only",
+          "MESSAGE":"You can Select Maximum of 4 plans for compare"
+        }
       },
       "RESULTS": {
         "TITLE": "Plans"

@@ -55,7 +55,7 @@
         </button>
       </div>
       <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
-        <button type="button" (click)="compareplan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>
+        <button type="button" (click)="compareplan()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>
       </div>
     </div>
 </div>

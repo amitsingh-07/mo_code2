@@ -11,7 +11,8 @@
     "LBL_NONSMOKER": "Non-Smoker",
     "LBL_YES": "Yes",
     "LBL_NO": "No",
-    "LBL_CONTINUE": "Continue"
+    "LBL_CONTINUE": "Continue",
+    "SUBLBL_MAX4":" (Max 4)"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth"
