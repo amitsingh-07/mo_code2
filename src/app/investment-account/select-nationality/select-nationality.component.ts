@@ -58,16 +58,16 @@ export class SelectNationalityComponent implements OnInit {
         this.getNationalityList();
         this.selectNationalityFormValues = this.investmentAccountService.getNationality();
         this.nationalityObj = this.selectNationalityFormValues.nationality;
-        this.nationality = this.selectNationalityFormValues.nationality && this.selectNationalityFormValues.nationality.nationality ? this.selectNationalityFormValues.nationality.nationality : 'Select Nationlity';
+        this.nationality = this.selectNationalityFormValues.nationality && this.selectNationalityFormValues.nationality.nationality ? this.selectNationalityFormValues.nationality.nationality : 'Select Nationality';
         this.selectNationalityForm = new FormGroup({
             nationality: new FormControl(this.selectNationalityFormValues.nationality)
         });
-
         this.addOtherCountryResidentControl();
-
         if (this.nationality === 'Select Nationlity') {
             this.removeFormControl();
         } else if (this.nationality === 'SINGAPOREAN') {
+            this.singaporeNationality = true;
+            this.notSingaporeNationality = false;
             this.selectNationalityForm.removeControl('singaporeanResident');
         }
     }
@@ -140,7 +140,6 @@ export class SelectNationalityComponent implements OnInit {
         if (this.blocked || this.nationality === 'AMERICAN') {
             this.showErrorMessage(this.editModalData.modalTitle, this.editModalData.modalMessage);
         } else if (this.nationality === 'SINGAPOREAN') {
-            this.addSingaporeanResidentControl();
             if (this.save(form)) {
                 if (form.controls.unitedStatesResident.value === 'yes') {
                     this.showErrorMessage(this.editModalData1.modalTitle1, this.editModalData1.modalMessage1);
@@ -151,7 +150,6 @@ export class SelectNationalityComponent implements OnInit {
                 return false;
             }
         } else {
-            this.addOtherCountryResidentControl();
             if (this.save(form)) {
                 if ((form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'yes')
                     || (form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'no')) {
