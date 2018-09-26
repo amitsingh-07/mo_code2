@@ -63,7 +63,7 @@ export class SelectNationalityComponent implements OnInit {
             nationality: new FormControl(this.selectNationalityFormValues.nationality)
         });
         this.addOtherCountryResidentControl();
-        if (this.nationality === 'Select Nationlity') {
+        if (this.nationality === 'Select Nationality') {
             this.removeFormControl();
         } else if (this.nationality === 'SINGAPOREAN') {
             this.singaporeNationality = true;
