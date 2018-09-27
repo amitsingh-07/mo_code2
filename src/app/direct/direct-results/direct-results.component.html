@@ -21,6 +21,11 @@
   </div>
 </div>
 <div id="results-mobile" class="hidden-lg">
+    <div class="results-mobile__compare-plan">
+        <div class="results-mobile__compare-plan--lbl"><label class="lbl">{{filteredResult.length}} Plans Found</label></div>
+        <div class="results-mobile__compare-plan--btn"><button ngbButtonLabel class="direct-form-btn--radio btn btn-small" (click)="toggleComparePlans()" style="float:left;"
+        [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button></div>
+    </div>
   <div class="flex-row" *ngFor="let category of searchResult; let i = index" style="padding: 10px">
     <!-- <div>
       <div style="justify-content: center;">

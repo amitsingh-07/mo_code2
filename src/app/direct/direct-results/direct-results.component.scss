@@ -48,12 +48,16 @@ app-direct-results {
     padding-top: 10px;
     max-width: 1024px;
     margin: 0 auto;
-    @include iPadLandscape {
-      padding: 20px;
-    }
-    @include tablet {
-      padding: 20px;
-    }
+    padding: 10px;
+    // @include iPadLandscape {
+    //   padding: 40px;
+    // }
+    // @include iPadProLandscape {
+    //   padding: 40px;
+    // }
+    // @include tablet {
+    //   padding: 40px;
+    // }
   }
 
   .btn-small {
@@ -63,6 +67,11 @@ app-direct-results {
       color: white;
       padding: 5px 10px !important;
       border: 1px solid #fff;
+      @include allmobiles {
+        color: $app-backgrnd-color;
+        padding: 5px 10px !important;
+        border: 1px solid $app-backgrnd-color;
+      }
   }
 
   .compare {
@@ -111,5 +120,16 @@ app-direct-results {
 .results-mobile {
   .flex-col-6 {
     padding: 20px;
+  }
+}
+.results-mobile__compare-plan {
+  @extend .flex;
+  @extend .space-btwn;
+  background: $white-color;
+  padding: 0 15px 15px;
+  .results-mobile__compare-plan--lbl {
+    font-family: $muli-semi-bold;
+    font-size: 17px;
+    color: $black-color;
   }
 }

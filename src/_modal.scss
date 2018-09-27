@@ -346,12 +346,6 @@
   border-top:1px solid #e1e1e1;
   text-overflow: ellipsis;
   z-index:130;
-  @include iPadLandscape {
-    padding: 20px;
-  }
-  @include tablet {
-    padding: 20px;
-  }
   &.show {
     display:flex;
   }
@@ -359,6 +353,9 @@
     margin-top:65.6px;
     padding-top:15px;
     border-top:#89d0cf 1px solid;
+  }
+  @include allmobiles {
+    box-shadow: none;
   }
 }
 .prod-info__backdrop {

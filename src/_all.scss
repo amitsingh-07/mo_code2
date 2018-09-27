@@ -223,6 +223,7 @@ a.link-white {
   padding: 5px 10px;
   width: fit-content;
   padding-bottom: 10px !important;
+  box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.18);
 
   @include allmobiles {
     padding-bottom: 0 !important;
