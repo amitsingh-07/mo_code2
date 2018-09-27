@@ -7,7 +7,7 @@
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
           <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
           <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
+            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" [comparePlanSelected] = "selectedComparePlans"  (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
     </div>
@@ -45,10 +45,10 @@
 </div>
 
 <!-- Floating plan selection for compare plans footer -->
-<div *ngIf="isComparePlanEnabled && (selectedPlans && selectedPlans.length > 1)" align="center" class="floating-footer-wrapper">
+<div *ngIf="isComparePlanEnabled && (selectedComparePlans && selectedComparePlans.length > 1)" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
-    <span class="selected-count">{{selectedPlans.length}}</span>
-    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
+    <span class="selected-count">{{selectedComparePlans.length}}</span>
+    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}<span class="hidden-sm-md">{{ 'COMMON.SUBLBL_MAX4' | translate}}</span></span>
     <span class="btn-proceed" (click)="compare()">{{ 'BUTTON.COMPARE' | translate}}</span>
   </div>
 </div>

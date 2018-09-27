@@ -318,7 +318,17 @@ input::placeholder {
   color: $app-backgrnd-color !important;
 }
 
-input[type='radio']+label,
+input[type='radio']+label {
+  margin: 0;
+  clear: none;
+  padding: 0px 0 0px 35px;
+  cursor: pointer;
+  background: url("./assets/images/radio-normal.svg") left center no-repeat;
+}
+input[type='radio']:checked+label {
+  background-image: url("./assets/images/radio-select.png");
+}
+
 input[type='checkbox']+label {
   margin: 0;
   clear: none;
@@ -327,7 +337,6 @@ input[type='checkbox']+label {
   background: url("./assets/images/check-box-normal.svg") left center no-repeat;
 }
 
-input[type='radio']:checked+label,
 input[type='checkbox']:checked+label {
   background-image: url("./assets/images/check-box-select.svg");
 }

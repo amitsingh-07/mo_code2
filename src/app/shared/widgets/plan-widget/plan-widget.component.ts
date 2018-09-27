@@ -31,6 +31,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() comparePlan;
   @Input() bestValue;
   @Input() planSelected;
+  @Input() comparePlanSelected;
 
   icon;
   insurerLogo;
@@ -136,14 +137,14 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
   comparePlanErrorForMobileModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = '2 plans only';
-    ref.componentInstance.errorMessage = 'Select maximum 2 plans to compare';
+    ref.componentInstance.errorTitle = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_MOBILE.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_MOBILE.MESSAGE');
     return false;
   }
   comparePlanErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = '4 plans only';
-    ref.componentInstance.errorMessage = 'Select maximum 4 plans to compare';
+    ref.componentInstance.errorTitle = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_WEB.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_WEB.MESSAGE');
   }
   openCommissionModal() {
     const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
@@ -157,9 +158,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
   }
   compareplan() {
-    if (this.planSelected && this.planSelected.length  < 4) {
+    if (this.comparePlanSelected && this.comparePlanSelected.length  < 4) {
       if (window.innerWidth <= this.mobileThreshold) {
-        if (this.planSelected.length >= 2) {
+        if (this.comparePlanSelected.length >= 2 && !this.isComparePlanSelected) {
           this.comparePlanErrorForMobileModal();
           return false;
         }
