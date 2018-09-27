@@ -1,4 +1,4 @@
-<nav *ngIf="showNavbar" class="navbar fixed-top center nav--shadow" [ngClass]="{'nav--shadow': navShadowVisible}">
+<nav *ngIf="showNavbar" class="navbar fixed-top center" #navbar [ngClass]="{'nav--shadow': showNavShadow}">
     <div class="navbar-wrapper space-between">
         <div class="navbar-group space-between">
             <div class="navbar-brand">
@@ -13,7 +13,7 @@
                 <span class="navbar__menu-icon"></span>
                 </button>
             </div>
-        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/direct">Compare</a>
@@ -85,5 +85,6 @@
             </div>
         </div>
     </nav>
-<div [ngbCollapse]="isNavbarCollapsed" (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
+<nav *ngIf="showNavbar" class="navbar--sub"></nav>
+<div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
     </div>

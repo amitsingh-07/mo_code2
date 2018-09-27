@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'},
   // Legacy Routes
   {path: 'learn', loadChildren: './article/article.module#ArticleModule'},
+  {path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule'},
   {path: 'subscribe', component: SubscribeComponent }
 ];
 
