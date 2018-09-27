@@ -42,8 +42,9 @@ export class TaxInfoComponent implements OnInit {
     this.taxInfoFormValues = this.investmentAccountService.getTaxInfo();
     this.TaxInfoForm = new FormGroup({
       radioTin: new FormControl (this.taxInfoFormValues.haveTin, Validators.required),
-      reason: new FormControl (this.taxInfoFormValues.reason, Validators.required)
-  });
+      reason: new FormControl (this.taxInfoFormValues.reason, Validators.required),
+      tinNumber : new FormControl (this.taxInfoFormValues.tinNumber, Validators.required)
+      });
   }
   getNationalityList() {
     this.investmentAccountService.getNationalityList().subscribe((data) => {
@@ -61,5 +62,12 @@ selectReason(nationalityObj) {
   this.reason = this.nationalityObj.country;
 }
 goToNext(form) {
+}
+showHelpModal() {
+  const ref = this.modal.open(ErrorModalComponent, { centered: true });
+  ref.componentInstance.errorTitle = 'Taxpayer Identification No.';
+  // tslint:disable-next-line:max-line-length
+  ref.componentInstance.errorDescription = 'This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to www.oecd.org.For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No. ';
+  return false;
 }
 }

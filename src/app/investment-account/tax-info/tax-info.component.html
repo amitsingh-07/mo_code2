@@ -37,12 +37,14 @@
           <div class="form-group-with-bg--content-label" id="tax_Info_question-one">Do you have a Taxpayer Identification Number (TIN) for the above country?
           </div>
         </div>
-
+        <div class="flex-col-1">
+          <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
+        </div>
       </div>
       <!-- Button part -->
       <div class="flex-row">
         <div class="flex-col-12 mb10">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin" #radioTin>
+          <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
