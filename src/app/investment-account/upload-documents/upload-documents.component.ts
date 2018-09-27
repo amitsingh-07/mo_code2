@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -42,28 +42,24 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
+    this.isUserNationalitySingapore = true;
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
   }
 
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
-      nricFrontImage: [this.formValues.nationality.country, Validators.required],
-      nricBackImage: [this.formValues.postalCode, Validators.required],
-      proofOfAddress: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]]
+      nricFrontImage: [this.formValues.nricFrontImage],
+      nricBackImage: [this.formValues.nricBackImage],
+      mailAdressProof: [this.formValues.mailAdressProof]
     });
   }
 
   buildFormForOtherCountry(): FormGroup {
     return this.formBuilder.group({
-      passportImage: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
-      proofOfAddress: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      proofOf: [this.formValues.address2],
-      city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      zipCode: [this.formValues.zipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+      passportImage: [this.formValues.passportImage],
+      resAddressProof: [this.formValues.resAddressProof],
+      mailAdressProof: [this.formValues.mailAdressProof]
     });
   }
 
@@ -87,6 +83,27 @@ export class UploadDocumentsComponent implements OnInit {
     });
   }
 
+  openFileDialog(elem) {
+    elem.click();
+  }
+
+  setThumbnail(fileElem, thumbElem) {
+    const file: File = fileElem.target.files[0];
+    const reader: FileReader  = new FileReader();
+    reader.onloadend = () => {
+      thumbElem.src = reader.result;
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      thumbElem.src = '';
+    }
+  }
+
+  getFileName(fileElem) {
+    return fileElem.files[0].name;
+  }
+
   goToNext(form) {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
@@ -96,13 +113,7 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setResidentialAddressFormData(form.value);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
     }
   }
 
-
-  selectFile() {
-
-  }
 }

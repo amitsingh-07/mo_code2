@@ -1,48 +1,70 @@
 <div class="upload-doc-nric">
   <div class="step-indicator-container">
     <div class="container-fluid">
-      <app-step-indicator [count]="7" [activeStepIndex]="0"></app-step-indicator>
+      <div class="page-caption">Help us verify your identity and prevent fraud.</div>
+      <app-step-indicator [count]="7" [activeStepIndex]="5"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid">
     <div class="content">
-      <div class="row">
-        <div class="col-12 sub-title-block">
-         <div class="sub-title"><span>Proof Of Identity (NRIC)</span></div>
-        </div>
-        <div class="upload-doc">
-          <div class="upload-desc" (click)="selectFile()">
-            <div><img class="image-fluid" src="../../../assets/images/web-icon.jpg" alt=""></div>
-            <div class="upload-content">
-              <div>Front NRIC</div>
-              <div>Tap to Upload</div>
-              <input type="file" [formControl]="someFileControl" name="nricFront" accept="image/*" class="is-hidden">
-            </div>
+      <form id="upload_doc_form" name="uploadForm" [formGroup]="uploadForm">
+        <div class="row">
+          <div class="col-12 sub-title-block">
+            <div class="sub-title"><span>Proof Of Identity (NRIC)</span></div>
           </div>
-          <div class="upload-desc" (click)="selectFile()">
-              <div><img class="image-fluid" src="../../../assets/images/web-icon.jpg" alt=""></div>
+          <div class="upload-doc">
+            <div class="upload-desc" (click)="openFileDialog(nricFront)">
+              <div class="thumb-container">
+                <div class="thumb-close-icon" *ngIf="uploadForm.controls.nricFrontImage.value">
+                  <img src="../../../assets/images/close-button.svg" alt="x" />
+                </div>
+                <img #frontThumb class="thumbnail image-fluid" src="../../../assets/images/cam-icon.png" />
+              </div>
               <div class="upload-content">
-                <div>Front NRIC</div>
-                <div>Tap to Upload</div>
-                <input type="file" [formControl]="someFileControl" name="nricBack" accept="image/*" class="is-hidden">
+                <div class="title">Front NRIC</div>
+                <div class="sub-text" *ngIf="!uploadForm.controls.nricFrontImage.value">Tap to Upload</div>
+                <div class="sub-text" *ngIf="uploadForm.controls.nricFrontImage.value" [innerHtml]="getFileName(nricFront)"></div>
+                <input type="file" #nricFront formControlName="nricFrontImage" (change)="setThumbnail($event, frontThumb)"
+                  name="nricFront" accept="image/*" class="is-hidden">
               </div>
             </div>
+            <div class="upload-desc" (click)="openFileDialog(nricBack)">
+              <div class="thumb-container">
+                <div class="thumb-close-icon" *ngIf="uploadForm.controls.nricBackImage.value">
+                  <img src="../../../assets/images/close-button.svg" alt="x" />
+                </div>
+                <img #backThumb class="thumbnail image-fluid" src="../../../assets/images/cam-icon.png" />
+              </div>
+              <div class="upload-content">
+                <div class="title">Back NRIC</div>
+                <div class="sub-text" *ngIf="!uploadForm.controls.nricBackImage.value">Tap to Upload</div>
+                <div class="sub-text" *ngIf="uploadForm.controls.nricBackImage.value" [innerHtml]="getFileName(nricBack)"></div>
+                <input type="file" #nricBack formControlName="nricBackImage" (change)="setThumbnail($event, backThumb)"
+                  name="nricBack" accept="image/*" class="is-hidden">
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12 sub-title-block">
-          <div class="sub-title">
-            <span>Proof Of Mailing Address</span>
-            <span><img class="image-fluid" src="../../../assets/images/tooltip-icon-white.svg" alt=""></span>
-          </div>
-          <div class="sub-title-desc">This document must match the information<br/> provided under “Mailing Address” earlier.</div>
-          <div class="upload-file">
-              <button type="button" class="btn btn-primary" (click)="selectFile()">Choose File</button>
+        <div class="row">
+          <div class="col-12 sub-title-block">
+            <div class="sub-title">
+              <span>Proof Of Mailing Address</span>
+              <span><img class="image-fluid" src="../../../assets/images/tooltip-icon-white.svg" alt=""></span>
+            </div>
+            <div class="sub-title-desc">This document must match the information<br /> provided under “Mailing Address”
+              earlier.</div>
+            <div class="upload-file">
+              <input type="hidden" name="mailAdressProof" formControlName="mailAdressProof" />
+              <button type="button" class="btn btn-primary">Choose File</button>
               <label>no file selected</label>
+            </div>
+            <input type="file" name="proofOfAddress" class="is-hidden">
           </div>
-          <input type="file" name="proofOfAddress" class="is-hidden">
-        </div>        
-      </div>
+        </div>
+
+        <button type="button" id="uploadDocumentNextBtn" (click)="goToNext(uploadForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+          id="uploadDocument_submit_btn">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
+      </form>
     </div>
   </div>
 </div>
