@@ -33,11 +33,11 @@ export class SettingsWidgetComponent implements OnInit {
       for (const filter of this.filters) {
         this.filterArgs[filter.name] = new Set([]);
       }
-      this.defaultSort = this.sort[0];
       this.filterArgs['premiumFrequency'].add('per month');
     } else {
       this.filterArgs = this.selectedFilterList;
     }
+    this.defaultSort = this.sort[0];
   }
 
   setSort(sort) {
@@ -109,8 +109,9 @@ export class SettingsWidgetComponent implements OnInit {
     this.filterProducts.emit(this.filterResults);
   }
 
-  showFilterTooltip(msg) {
+  showFilterTooltip(toolTip) {
     const ref = this.modal.open(ToolTipModalComponent, { centered: true });
-    ref.componentInstance.tooltipMessage = msg;
+    ref.componentInstance.tooltipTitle = toolTip.title;
+    ref.componentInstance.tooltipMessage = toolTip.message;
   }
 }
