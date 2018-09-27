@@ -85,6 +85,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
      ref.componentInstance.isButtonEnabled = true;
      ref.result.then(() => {
+       this.myInfoService.setMyInfoAttributes('cpfbalances');
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
