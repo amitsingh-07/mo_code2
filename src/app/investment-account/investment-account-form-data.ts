@@ -40,4 +40,10 @@ export class InvestmentAccountFormData {
     Tin: any;
     noTinReason: any;
 
+    // Upload documents
+    nricFrontImage: File;
+    nricBackImage: File;
+    mailAdressProof: File;
+    passportImage: File;
+    resAddressProof: File;
 }
