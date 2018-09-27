@@ -18,13 +18,17 @@ import { IPageComponent } from './../../shared/interfaces/page-component.interfa
 export class TaxInfoComponent implements OnInit {
   taxInfoForm: FormGroup;
   nationalitylist: any;
+  noTinReasonlist: any;
   taxInfoFormValues: any;
   nationalityObj: any;
   nationality: any;
   country: any;
   reason: any;
+  pageTitle: string;
+  translator: any;
   constructor(
     public headerService: HeaderService,
+    private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
@@ -32,18 +36,24 @@ export class TaxInfoComponent implements OnInit {
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
+      this.pageTitle = this.translate.instant('TAX_INFO.TITLE');
+      this.translator = this.translate.instant('TAX_INFO');
+      this.setPageTitle(this.pageTitle);
     });
+  }
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title);
   }
 
   ngOnInit() {
     this.country = 'Select Country' ;
     this.reason = 'Select' ;
     this.getNationalityList();
+    this.getReasonList();
     this.taxInfoFormValues = this.investmentAccountService.getTaxInfo();
     this.taxInfoForm = new FormGroup({
       radioTin: new FormControl (this.taxInfoFormValues.haveTin, Validators.required),
-     // reason: new FormControl (this.taxInfoFormValues.reason, Validators.required),
-      tinNumber : new FormControl (this.taxInfoFormValues.tinNumber, Validators.required)
+      taxCountry: new FormControl (this.taxInfoFormValues.country, Validators.required),
       });
   }
   getNationalityList() {
@@ -51,15 +61,23 @@ export class TaxInfoComponent implements OnInit {
         this.nationalitylist = data.objectList;
         console.log(this.nationalitylist);
     });
+  }
+  getReasonList() {
+    this.investmentAccountService.getNoTinReasonList().subscribe((data) => {
+        this.noTinReasonlist = data.objectList;
+        console.log(this.noTinReasonlist);
+    });
+  }
 
-}
 selectCountry(nationalityObj) {
   this.nationalityObj = nationalityObj;
   this.nationality = this.nationalityObj.nationality;
   this.country = this.nationalityObj.country;
+  this.taxInfoForm.controls['taxCountry'].setValue(this.country);
 }
-selectReason(nationalityObj) {
-  this.reason = this.nationalityObj.country;
+selectReason(reasonObj) {
+  this.reason = reasonObj.reason;
+  this.taxInfoForm.controls.reasonDropdown.controls['noTinReason'].setValue( this.reason);
 }
 goToNext(form) {
   if (!form.valid) {
@@ -71,7 +89,7 @@ goToNext(form) {
     ref.componentInstance.errorMessageList = error.errorMessages;
     return false;
   } else {
-   // this.investmentAccountService.setResidentialAddressFormData(form.value);
+    this.investmentAccountService.setTaxInfoFormData(form.value);
    // this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
   }
 }
@@ -88,10 +106,25 @@ markAllFieldsDirty(form) {
 }
 showHelpModal() {
   const ref = this.modal.open(ErrorModalComponent, { centered: true });
-  ref.componentInstance.errorTitle = 'Taxpayer Identification No.';
+  ref.componentInstance.errorTitle = this.translator.TAX_MODEL_TITLE;
   // tslint:disable-next-line:max-line-length
-  ref.componentInstance.errorDescription = 'This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to www.oecd.org.For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No. ';
+  ref.componentInstance.errorDescription =  this.translator.TAX_MODEL_DESC;
   return false;
+}
+yesClick() {
+  this.taxInfoForm.addControl('tinNumberText', this.formBuilder.group({
+    tinNumber : new FormControl (this.taxInfoFormValues.Tin, Validators.required)
+  }));
+  this.taxInfoForm.removeControl('reasonDropdown');
+}
+noClick() {
+  this.taxInfoForm.addControl('reasonDropdown', this.formBuilder.group({
+    noTinReason : new FormControl (this.taxInfoFormValues.noTinReason, Validators.required)
+  }));
+  this.taxInfoForm.removeControl('tinNumberText');
+}
+setDropDownValue(key, value) {
+  this.taxInfoForm.controls[key].setValue(value);
 }
 
 }

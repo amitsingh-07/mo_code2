@@ -126,6 +126,20 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid TIN',
                 errorMessage: 'Please enter your TIN number.'
             }
+        },
+        taxCountry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid country',
+                errorMessage: 'Please select your country.'
+            }
+        },
+        noTinReason: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid reason',
+                errorMessage: 'Please select a reason.'
+            }
         }
     };
 }

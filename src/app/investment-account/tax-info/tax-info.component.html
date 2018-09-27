@@ -7,16 +7,16 @@
   <div class="container-fluid">
     <form name="taxInfoForm" [formGroup]="taxInfoForm">
       <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="name" id="tax-info-label">Country of Tax Residence</label>
+        <div class="flex-col-4" class="country_text">
+          <label for="name" id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
         </div>
-        <div class="flex-col-7">
+        <div class="flex-col-8">
 
           <div class="dropdown-control">
             <div ngbDropdown>
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span class="dependent-count" id="tax_Info_dropdown_country">{{ country | titlecase }}</span>
+                <span class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ country | titlecase }}</span>
                 <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
               </button>
@@ -34,7 +34,7 @@
       <!-- Do you have a TIN question -->
       <div class="flex-row mb10">
         <div class="flex-col-11 mt15">
-          <div class="form-group-with-bg--content-label" id="tax_Info_question-one">Do you have a Taxpayer Identification Number (TIN) for the above country?
+          <div class="tin_question_text" id="tax_Info_question-one">{{ 'TAX_INFO.TIN_QUESTION' | translate}}
           </div>
         </div>
         <div class="flex-col-1">
@@ -48,13 +48,13 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="tin_yes" value="yes"> Yes
+                  <input ngbButton type="radio" id="tin_yes" value="yes" (click)="yesClick()"> {{ 'TAX_INFO.YES_lABEL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="tin_no" value="no">No</label>
+                  <input ngbButton type="radio" id="tin_no" value="no" (click)="noClick()">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
       <!-- Second Dropdown -->
       <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'no'">
         <div class="flex-col-5">
-          <label for="name" id="tax-info-reason_label">Reason</label>
+          <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' | translate}}</label>
         </div>
         <div class="flex-col-7">
 
@@ -78,9 +78,9 @@
               </button>
 
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectReason(nationalityObj)"
+                <button class="dropdown-item" *ngFor="let reasonListObj of noTinReasonlist; let i = index;" (click)="selectReason(reasonListObj)"
                   id="selectReason-country-option-{{i}}">
-                  {{nationalityObj.nationality | titlecase}}
+                  {{reasonListObj.reason | titlecase}}
                 </button>
               </div>
             </div>
@@ -92,11 +92,11 @@
 <!-- Second Dropdown -->
 <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'yes'">
   <div class="flex-col-5">
-    <label for="name" id="tax-info-reason_label">TIN Number</label>
+    <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' | translate}}</label>
   </div>
   <div class="flex-col-7">
 
-    <div class="dropdown-control" >
+    <div class="dropdown-control"  formGroupName="tinNumberText">
       <input type="text" id="invPersInfoInpt1" class="form-control"  formControlName="tinNumber">
     </div>
   </div>
@@ -105,5 +105,5 @@
     </form>
   </div>
   <button type="button" id="personalInforNextBtn" [disabled]="taxInfoForm.controls.radioTin.value == null" (click)="goToNext(taxInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-              id="getStrdBtn3">Continue</button>
+              id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE' | translate}}</button>
 </div>
