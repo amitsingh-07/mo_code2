@@ -1,4 +1,4 @@
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FooterService } from './../shared/footer/footer.service';
 import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';

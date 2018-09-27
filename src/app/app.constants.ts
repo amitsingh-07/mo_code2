@@ -1,4 +1,4 @@
-import { apiConstants } from './shared/http/api.constants';
+import { GUIDE_ME_ROUTES } from './guide-me/guide-me-routes.constants';
 
 export let appConstants = {
     APP_JWT_TOKEN_KEY: 'app-jwt-token',
@@ -7,6 +7,7 @@ export let appConstants = {
     accessTokenLocalStorage: '',
     defaultContentTypeHeader: '',
     userLocalStorage: '',
-    loginPageUrl: apiConstants.endpoint.login,
-    accessTokenServer: ''
+    loginPageUrl: GUIDE_ME_ROUTES.ROOT,
+    accessTokenServer: '',
+    MY_INFO_CALLBACK_URL: 'myinfo'
 };

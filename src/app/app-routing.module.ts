@@ -1,7 +1,5 @@
-import { Route } from '@angular/compiler/src/core';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
-import { CallBackComponent } from 'src/app/call-back/call-back.component';
+import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
@@ -15,10 +13,11 @@ const routes: Routes = [
   {path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule'},
   // {component: CallBackComponent, matcher: test},
   {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'},
-  // Legacy Routes
-  {path: 'learn', loadChildren: './article/article.module#ArticleModule'},
   {path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule'},
-  {path: 'subscribe', component: SubscribeComponent }
+  {path: 'subscribe', component: SubscribeComponent },
+  {path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule'},
+  // Legacy Routes
+  {path: 'learn', loadChildren: './article/article.module#ArticleModule'}
 ];
 
 @NgModule({

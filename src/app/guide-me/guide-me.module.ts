@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
+import { SlickModule } from 'ngx-slick';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
@@ -14,7 +15,6 @@ import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.c
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
-import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
@@ -57,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    SlickModule.forRoot()
   ],
   declarations: [
     ProfileComponent,
@@ -78,11 +79,7 @@ export function createTranslateLoader(http: HttpClient) {
     InsuranceResultsComponent,
     InsuranceResultComponent,
     RecommendationsComponent,
-    PlanWidgetComponent,
-    CustomCurrencyPipe,
-    ComparePlansComponent,
-    PlanDetailsWidgetComponent,
-    ProductDetailComponent
+    CustomCurrencyPipe
   ],
   providers: [CurrencyPipe, CustomCurrencyPipe],
   entryComponents: [ProductDetailComponent]

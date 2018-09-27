@@ -1,4 +1,12 @@
 /*Form group with bg styles*/
+.form-group {
+.flex-col-4 {
+    label {
+      font-size: 18px;
+      font-family: $muli-semi-bold;
+    }
+  }
+}
 .form-group-with-bg {
   .flex-row {
     @extend .align-center;
@@ -6,10 +14,11 @@
 
   border-radius: 8px;
   background: #f4fafb;
+  margin-bottom: 16px;
 
   .form-group-with-bg--header {
-    background: #FFF;
-    padding: 10px 15px 0px;
+    background: $white-color;
+    padding: 15px 20px 5px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 
@@ -33,13 +42,16 @@
       color: #5e5e5e !important;
       font-size: 16px;
     }
+    .flex-row {
+      align-items: start;
+    }
   }
 
   .total {
     color: #00a7a7;
     font-family: $muli-semi-bold;
     position: relative;
-    top: -17px;
+    //top: -17px;
     font-size: 22px;
     @extend .block;
     @extend .text-right;
@@ -47,37 +59,30 @@
   }
 
   .form-group-with-bg--content {
-    .flex-row {
-      margin-bottom: 10px;
+    .flex-row:not(:last-child) {
+      margin-bottom: 22px;
     }
-
-    padding: 0.90rem;
-
+    padding: 20px;
     .form-group-with-bg--content-label {
       color: #2d8289;
       font-family: $muli-semi-bold;
-      margin-right: 3vw;
-
+      margin-right: 10px;
       .form-group-with-bg--header-single-label {
         font-family: $muli-semi-bold;
         color: #000000;
         padding: 10px 0 18px 0;
         font-size: 18px;
       }
-
       position: relative;
       font-size: 18px;
-
       a.link {
         text-decoration: underline !important;
         color: #2d8289 !important;
       }
-
       .with-help-icon {
         @extend .flex;
         @extend .align-center;
       }
-
       .help-icon {
         background-image: url("./assets/images/help-icon.png");
         //position: absolute;
@@ -88,14 +93,12 @@
         cursor: pointer;
         background-repeat: no-repeat;
         margin-left: 10px;
-
         @include allmobiles {
           //top: 15px;
           //right: 30px;
         }
       }
     }
-
     .form-group-with-bg--content-sub-label {
       font-family: $muli-regular;
       color: #2d8289;
@@ -118,10 +121,10 @@
   }
 
   .checkbox-button {
-    background: #FFFFFF;
+    background: $white-color;
     font-family: $muli-bold;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     position: relative;
     border: none;
     border-radius: 6px;
@@ -518,6 +521,10 @@ input::placeholder {
       padding-right: 0;
       text-align: right;
     }
+
+    &.grey{
+      color:$text-color-secondary;
+    }
   }
 
   &.form-control-right {
@@ -743,7 +750,8 @@ input::placeholder {
 
   .signup-wrapper__header-icon {
     width: 30%;
-    height: 30%;
+    /* height: 30%; */
+    display:block;
 
     @include allmobiles {
       width: 138px;

@@ -1,11 +1,11 @@
-import { ILongTermCareNeedsData } from './interfaces/recommendations.request';
-import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from '../shared/http/api.service';
+import { ILongTermCareNeedsData } from './../shared/interfaces/recommendations.request';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
+import { ILifeProtectionNeedsData } from './life-protection/life-protection';
 
 @Injectable({
   providedIn: 'root'
@@ -89,8 +89,8 @@ export class GuideMeCalculateService {
     let protectionSupportSum: number = null;
     const lifeProtection = this.guideMeService.getLifeProtection().dependents;
     lifeProtection.forEach((dependent) => {
-      if (dependent.supportAmountRange) {
-        protectionSupportSum += dependent.supportAmountRange * 12 * dependent.yearsNeeded;
+      if (dependent.supportAmount) {
+        protectionSupportSum += dependent.supportAmount * 12 * dependent.yearsNeeded;
       }
     });
     return protectionSupportSum;
@@ -149,8 +149,15 @@ export class GuideMeCalculateService {
   }
 
   getLifeProtectionData() {
+    let exCoverage = 0;
+    try {
+      if (this.existingCoverage.lifeProtectionCoverage) {
+        exCoverage = parseInt(this.existingCoverage.lifeProtectionCoverage + '', 10);
+      }
+    } catch (e) { }
+
     const lifeProtectionData = {} as ILifeProtectionNeedsData;
-    lifeProtectionData.coverageAmount = this.getLifeProtectionSummary() - this.existingCoverage.lifeProtectionCoverage;
+    lifeProtectionData.coverageAmount = this.getLifeProtectionSummary() - exCoverage;
     if (isNaN(lifeProtectionData.coverageAmount) || lifeProtectionData.coverageAmount < 0) {
       lifeProtectionData.coverageAmount = 0;
     }
@@ -160,8 +167,14 @@ export class GuideMeCalculateService {
   }
 
   getCriticalIllnessData() {
+    let exCoverage = 0;
+    try {
+      if (this.existingCoverage.criticalIllnessCoverage) {
+        exCoverage = parseInt(this.existingCoverage.criticalIllnessCoverage + '', 10);
+      }
+    } catch (e) { }
     const ciData = this.guideMeService.getCiAssessment();
-    ciData.coverageAmount -= this.existingCoverage.criticalIllnessCoverage;
+    ciData.coverageAmount -= exCoverage;
     if (isNaN(ciData.coverageAmount) || ciData.coverageAmount < 0) {
       ciData.coverageAmount = 0;
     }
@@ -169,8 +182,15 @@ export class GuideMeCalculateService {
   }
 
   getOcpData() {
+    let exCoverage = 0;
+    try {
+      if (this.existingCoverage.occupationalDisabilityCoveragePerMonth) {
+        exCoverage = parseInt(this.existingCoverage.occupationalDisabilityCoveragePerMonth + '', 10);
+      }
+    } catch (e) { }
+
     const ocpData = this.guideMeService.getMyOcpDisability();
-    ocpData.coverageAmount -= this.existingCoverage.occupationalDisabilityCoveragePerMonth;
+    ocpData.coverageAmount -= exCoverage;
     if (isNaN(ocpData.coverageAmount) || ocpData.coverageAmount < 0) {
       ocpData.coverageAmount = 0;
     }
@@ -178,8 +198,15 @@ export class GuideMeCalculateService {
   }
 
   getLtcData() {
+    let exCoverage = 0;
+    try {
+      if (this.existingCoverage.longTermCareCoveragePerMonth) {
+        exCoverage = parseInt(this.existingCoverage.longTermCareCoveragePerMonth + '', 10);
+      }
+    } catch (e) { }
+
     const ltcData: ILongTermCareNeedsData = this.guideMeService.getLongTermCare();
-    ltcData.monthlyPayout = this.guideMeService.selectLongTermCareValues() - this.existingCoverage.longTermCareCoveragePerMonth;
+    ltcData.monthlyPayout = this.guideMeService.selectLongTermCareValues() - exCoverage;
     if (isNaN(ltcData.monthlyPayout) || ltcData.monthlyPayout < 0) {
       ltcData.monthlyPayout = 0;
     }

@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -10,6 +9,7 @@ import { CtyptoService} from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -19,10 +19,10 @@ export class SignUpApiService {
 
     constructor(private http: HttpClient,
                 private apiService: ApiService,
+                private authService: AuthenticationService,
                 private signUpService: SignUpService,
                 private guideMeService: GuideMeService,
                 private selectedPlansService: SelectedPlansService,
-                public datepipe: DatePipe,
                 public ctyptoService: CtyptoService
                ) {
     }
@@ -43,13 +43,17 @@ export class SignUpApiService {
     const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const customDob = new Date(getGuideMeFormData.customDob);
-    const dob = this.datepipe.transform(customDob, 'yyyy-MM-dd').toString() + 'T00:00:00';
+    const formatDob = getGuideMeFormData.customDob.split(/\//g);
+    const customDob = formatDob[2] + '-' + formatDob[1] + '-' + formatDob[0];
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
           typeId: plan.typeId,
-          productName: plan.productName
+          productName: plan.productName,
+          premium : {
+            premiumAmount: plan.premium.premiumAmount,
+            premiumFrequency: plan.premium.premiumFrequency
+          }
         }
       );
     }
@@ -64,7 +68,7 @@ export class SignUpApiService {
         notificationByEmail: true,
         countryCode: getAccountInfo.countryCode,
         notificationByPhone: true,
-        dateOfBirth: dob,
+        dateOfBirth: customDob,
         gender: getGuideMeFormData.gender,
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
@@ -179,6 +183,15 @@ export class SignUpApiService {
     return {
         email: data
     };
+  }
+
+  /**
+   * verify credentials .
+   * @param username - email / mobile no.
+   * @param password - password.
+   */
+  verifyLogin(userEmail, userPassword) {
+    return this.authService.authenticate(userEmail, this.ctyptoService.encrypt(userPassword));
   }
 
 }

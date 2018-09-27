@@ -240,6 +240,8 @@
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
+    "INFO": "Information",
+    "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Financials",
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund!",
@@ -257,6 +259,7 @@
     "PORTFOLIO":"Portfolio",
     "PROJECTED_PORTF_VALUE":"Projected Portfolio Value in",
     "YEARS":"years",
+    "CONTINUE":"Continue",
     "PROJECTED_RETURNS":"Projected Returns",
     "WHATS_THE_RISK":"What’s the risk?",
     "ASSET_ALLOCATION_BREAKDOWN":"Asset Allocation Breakdown",
@@ -284,5 +287,4 @@
     "TITLE": "Portfolio Recommendation",
     "BUTTON_TITLE": "View My Portfolio"
   }
-
 }

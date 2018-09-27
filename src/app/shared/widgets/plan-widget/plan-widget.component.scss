@@ -41,13 +41,16 @@ app-plan-widget {
       background-color: #ff872f !important;
       border-color: #ff872f !important;
       box-shadow: none;
+      @include allmobiles {
+        border-radius: 0;
+      }
     }
 
     .info-icon {
       position: absolute;
       right: 5px;
       top: 5px;
-      z-index: 9999;
+      z-index: 999;
       cursor: pointer;
     }
 
@@ -60,6 +63,12 @@ app-plan-widget {
       justify-content: flex-end;
       @include allmobiles {
         justify-content: center;
+        img {
+          width: 70% !important;
+        }
+      }
+      img {
+        width: 80%;
       }
     }
 
@@ -71,13 +80,14 @@ app-plan-widget {
 
     .insurance-plan-widget__container {
       padding-top: 15px;
+      min-height: 440px;
 
       @include allmobiles {
         min-height: 251px;
       }
 
       h4 {
-        height: 44px;
+        //height: 44px;
         font-size: 21px;
         color: $black-color;
         font-family: $muli-semi-bold;
@@ -157,6 +167,11 @@ app-plan-widget {
           @extend .justify-center;
           @extend .align-center;
           flex-direction: column;
+          flex: 1;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0;
+          }
         }
 
         .feature-head {
@@ -166,6 +181,9 @@ app-plan-widget {
 
         .feature-caption {
           font-size: 16px;
+          @include tablet {
+            font-size: 14px !important;
+          }
           font-family: $muli-semi-bold;
           width: 100px;
           margin-bottom: 10px;

@@ -33,6 +33,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
   helpModal: Event;
   helpModalTrigger: boolean;
+  modalData;
+  pageData;
 
   private subscription: Subscription;
 
@@ -57,6 +59,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
+      this.pageData = this.translate.instant('CI_ASSESSMENT');
+      this.modalData = this.translate.instant('CI_ASSESSMENT.MODAL_DATA');
       this.setPageTitle(this.pageTitle, null, true);
     });
   }
@@ -97,7 +101,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    this.guideMeService.protectionNeedsPageIndex--;
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
@@ -119,9 +123,9 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       windowClass: 'help-modal-dialog'
     });
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.description = '<h4>Critical Illness</h4><p>This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <b>Critical Illness</b> coverage till their intended retirement age.</p>';
-    ref.componentInstance.title = 'Critical Illness';
-    ref.componentInstance.img = assetImgPath + 'ci-assessment.png';
+    ref.componentInstance.description = this.modalData.description;
+    ref.componentInstance.title = this.modalData.title;
+    ref.componentInstance.img = assetImgPath + this.modalData.imageName;
     this.headerService.showMobilePopUp('removeClicked');
   }
 
@@ -138,7 +142,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   goToNext(form) {
     if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { CriticalIllnessData } from './ci-assessment/ci-assessment';
@@ -21,7 +22,7 @@ import { IMyOcpDisability } from './ocp-disability/ocp-disability.interface';
 import { Profile } from './profile/profile';
 import { ProtectionNeeds } from './protection-needs/protection-needs';
 
-const SESSION_STORAGE_KEY = 'app_session_storage_key';
+const SESSION_STORAGE_KEY = 'app_guided_session';
 const INSURANCE_RESULTS_COUNTER_KEY = 'insurance_results_counter';
 
 const PROTECTION_NEEDS_LIFE_PROTECTION_ID = 1;
@@ -57,8 +58,13 @@ export class GuideMeService {
   private result_icon: string;
   private result_value;
 
-  constructor(private http: HttpClient, private modal: NgbModal, private authService: AuthenticationService) {
+  constructor(private http: HttpClient, private modal: NgbModal,
+              private authService: AuthenticationService, private translate: TranslateService ) {
     this.getGuideMeFormData();
+    this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
+    if (this.guideMeFormData.existingCoverageValues) {
+      this.isExistingCoverAdded = true;
+    }
   }
 
   commit() {
@@ -191,6 +197,7 @@ export class GuideMeService {
   getPlanDetails() {
     return this.guideMePlanData;
   }
+
   getMyLiabilities(): IMyLiabilities {
     if (!this.guideMeFormData.liabilities) {
       this.guideMeFormData.liabilities = {} as IMyLiabilities;
@@ -262,6 +269,7 @@ export class GuideMeService {
   }
 
   /*Additions of currency Values */
+  // tslint:disable-next-line:cognitive-complexity
   additionOfCurrency(formValues) {
     let sum: any = 0;
     for (const i in formValues) {
@@ -309,6 +317,24 @@ export class GuideMeService {
     return selectedProtectionNeeds;
   }
 
+  resetProtectionNeedsPageIndex() {
+    this.protectionNeedsPageIndex = 0;
+    this.guideMeFormData.protectionNeedsPageIndex = 0;
+    this.commit();
+  }
+
+  decrementProtectionNeedsIndex() {
+    this.protectionNeedsPageIndex--;
+    this.guideMeFormData.protectionNeedsPageIndex--;
+    this.commit();
+  }
+
+  incrementProtectionNeedsIndex() {
+    this.protectionNeedsPageIndex++;
+    this.guideMeFormData.protectionNeedsPageIndex++;
+    this.commit();
+  }
+
   getNextProtectionNeedsPage() {
     const selectedProtectionNeedsPage = [];
     const protectionNeeds = this.getSelectedProtectionNeedsList();
@@ -336,23 +362,48 @@ export class GuideMeService {
       return selectedProtectionNeedsPage[this.protectionNeedsPageIndex];
     } else {
       this.setInsuranceResultsModalCounter(0);
-      this.resetExistingCoverage();
+      delete this.guideMeFormData.existingCoverageValues;
+      this.commit();
       return GUIDE_ME_ROUTE_PATHS.INSURANCE_RESULTS;
     }
   }
 
-  resetExistingCoverage() {
-    this.setExistingCoverageValues({
+  getEmptyExistingCoverage() {
+    const hospitalPlan = {
+      hospitalClassId: 0,
+      hospitalClass: 'None',
+      hospitalClassDescription: ''
+    } as HospitalPlan;
+
+    const existingCoverage = {
       criticalIllnessCoverage: 0,
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
       occupationalDisabilityCoveragePerMonth: 0,
-      selectedHospitalPlan: {
-        id: 0,
+      selectedHospitalPlan: hospitalPlan
+    };
+    return existingCoverage;
+  }
+
+  resetExistingCoverage() {
+    let hospitalPlan = this.getHospitalPlan();
+    if (!hospitalPlan) {
+      hospitalPlan = {
+        hospitalClassId: 0,
         hospitalClass: 'None',
         hospitalClassDescription: ''
-      }
-    });
+      } as HospitalPlan;
+    }
+    const existingCoverage = {
+      criticalIllnessCoverage: 0,
+      lifeProtectionCoverage: 0,
+      longTermCareCoveragePerMonth: 0,
+      occupationalDisabilityCoveragePerMonth: 0,
+      selectedHospitalPlan: hospitalPlan
+    };
+    this.setExistingCoverageValues(existingCoverage);
+
+    return existingCoverage;
   }
 
   clearProtectionNeedsData() {
@@ -419,20 +470,18 @@ export class GuideMeService {
 
   setExistingCoverageValues(data: IExistingCoverage) {
     this.guideMeFormData.existingCoverageValues = data;
+    this.guideMeFormData.isExistingCoverAdded = true;
     this.commit();
   }
 
   getExistingCoverageValues(): IExistingCoverage {
-    if (!this.guideMeFormData.existingCoverageValues) {
-      this.guideMeFormData.existingCoverageValues = { selectedHospitalPlan: 'Private Hospital' } as IExistingCoverage;
-    }
     return this.guideMeFormData.existingCoverageValues;
   }
 
   openFetchPopup() {
     this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
-    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data';
-    this.loadingModalRef.componentInstance.errorMessage = 'You will be redirected to SingPass';
+    this.loadingModalRef.componentInstance.errorTitle = this.translate.instant('MYINFO.FETCH_MODAL_DATA.TITLE');
+    this.loadingModalRef.componentInstance.errorMessage = this.translate.instant('MYINFO.FETCH_MODAL_DATA.DESCRIPTION');
   }
 
   closeFetchPopup() {
@@ -447,14 +496,18 @@ export class GuideMeService {
     const currentLongTerm = this.getLongTermCare();
     let currentValue;
     switch (currentLongTerm.careGiverType) {
-      case 'Nursing Home': currentValue = 2600;
-                           break;
-      case 'Daycare Support': currentValue = 1800;
-                              break;
-      case 'Domestic Helper': currentValue = 1200;
-                              break;
-      case 'Family Member': currentValue = 600;
-                            break;
+      case 'Nursing Home':
+        currentValue = 2600;
+        break;
+      case 'Daycare Support':
+        currentValue = 1800;
+        break;
+      case 'Domestic Helper':
+        currentValue = 1200;
+        break;
+      case 'Family Member':
+        currentValue = 600;
+        break;
     }
     return currentValue;
   }

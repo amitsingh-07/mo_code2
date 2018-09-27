@@ -21,13 +21,9 @@ const HEADER_AUTHORIZATION = 'Authorization';
   providedIn: 'root'
 })
 export class HttpService extends Http {
-  helperService: HelperService;
-  router: Router;
 
-  constructor(backend: XHRBackend, options: RequestOptions) {
+  constructor(backend: XHRBackend, options: RequestOptions, private helperService: HelperService, private router: Router) {
     super(backend, options);
-    this.helperService = AppModule.injector.get(HelperService);
-    this.router = AppModule.injector.get(Router);
   }
 
   request(

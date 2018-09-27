@@ -5,7 +5,7 @@
     <div class="col-md-3 col-md-pull-9 hidden-lg mt20 insurer-logo">
       <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
     </div>
-    <div class="row mt10 mb10">
+    <div class="row">
       <div class="col-md-8 col-md-push-3">
         <h4>{{productName}}</h4>
         <h2>{{premiumAmount | currency}}
@@ -28,12 +28,12 @@
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
           <div class="feature-head">{{data.insurer.rating}}</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
-          <div class="help-icon"></div>
+          <div class="help-icon" (click)="openRatingModal()"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
           <div class="feature-head">50%</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
-          <div class="help-icon"></div>
+          <div class="help-icon" (click)="openCommissionModal()"></div>
         </div>
       </div>
 
@@ -44,12 +44,15 @@
       </div>
     </div>
   </div>
-  <div class="row row-btn-bottom">
-      <div class="col-md-6 d-none d-md-flex hidden-sm-md widget-btn-view" *ngIf = "!isComparePlanEnabled">
+  <div class="flex row-btn-bottom">
+      <div class="flex-1 hidden-sm-md widget-btn-view mr10" *ngIf = "!isComparePlanEnabled">
         <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
       </div>
-      <div class="col-md-6 col-btn-bottom widget-btn-select" *ngIf = "!isComparePlanEnabled">
-        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
+      <div class="flex-1 widget-btn-select" *ngIf = "!isComparePlanEnabled">
+        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
+            <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
+            <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
+        </button>
       </div>
       <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
         <button type="button" (click)="compareplan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>

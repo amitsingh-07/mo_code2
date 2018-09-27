@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { GUIDE_ME_ROUTE_PATHS } from '../guide-me/guide-me-routes.constants';
-import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { appConstants } from './../app.constants';
 import { GuideMeService } from './../guide-me/guide-me.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class CallBackComponent implements OnInit {
               private guideMeService: GuideMeService ) { }
 
   ngOnInit() {
-    if (this.route.url['value'][0].path === 'callback' ) {
+    if (this.route.url['value'][0].path === appConstants.MY_INFO_CALLBACK_URL ) {
     if (this.guideMeService.myInfoValue) {
       this.guideMeService.isMyInfoEnabled = false;
     } else {
@@ -26,7 +26,7 @@ export class CallBackComponent implements OnInit {
       this.data = this.route.url['value'][0].parameters.data;
       this.data = this.data.substr(this.data.indexOf('=') + 1, this.data.indexOf('&') - this.data.indexOf('=') - 1);
       this.guideMeService.setMyInfoValue(this.data);
-      this.router.navigate([GUIDE_ME_ROUTE_PATHS.ASSETS]);
+      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
     }
    }
   }

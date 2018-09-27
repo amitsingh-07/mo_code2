@@ -1,11 +1,11 @@
 import 'hammerjs';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,6 +33,7 @@ import {
 } from './guide-me/life-protection/life-protection-form/life-protection-modal/life-protection-modal.component';
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
+import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -46,6 +47,7 @@ import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
+import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
@@ -96,6 +98,7 @@ export function tokenGetterFn() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     HttpModule,
     TranslateModule.forRoot({
       loader: {
@@ -115,6 +118,10 @@ export function tokenGetterFn() {
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
@@ -123,7 +130,7 @@ export function tokenGetterFn() {
   bootstrap: [AppComponent],
   entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent,
-    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent]
+    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent]
 })
 
 export class AppModule {

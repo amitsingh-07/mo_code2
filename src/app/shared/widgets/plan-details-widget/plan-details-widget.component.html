@@ -13,16 +13,16 @@
     </div>
     <div class="insurance-plan-widget__container__discount__block">{{data.promotion.promoDiscount}}</div>
     <div style="margin-bottom: 15px;">
-      <div class="insurance-plan-widget__container__rank__wrapper">
-        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
+      <div class="insurance-plan-widget__container__rank__wrapper flex-row" style="display: flex; flex: 1">
+        <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
         </div>
-        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
+        <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRating">
           <div class="feature-head">{{data.insurer.rating}}</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
         </div>
-        <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowDiscount">
+        <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowDiscount">
           <div class="feature-head">50%</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
         </div>
@@ -36,12 +36,15 @@
       </div>
     </div>
   </div>
-  <div class="row row-btn-bottom">
-    <div class="col-md-6 d-none d-md-flex widget-btn-view">
+  <div class="flex row-btn-bottom">
+    <div class="flex-1 widget-btn-view mr10">
       <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
     </div>
-    <div class="col-md-6 col-btn-bottom widget-btn-select">
-      <button type="button" (click)="selectPlan()" class="btn btn-select width100">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
+    <div class="flex-1 widget-btn-select">
+      <button type="button" (click)="selectPlan()" class="btn btn-select width100">
+          <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
+          <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
+      </button>
     </div>
   </div>
   <div class="row mt10 brochure">

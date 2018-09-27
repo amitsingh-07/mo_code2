@@ -91,29 +91,29 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.refreshDependentForm();
   }
 
-  onNoUiSliderChange(sliderValue, index) {
-    let value = sliderValue;
-    if (value !== null) {
-      value = value.toString().replace(Regexp, '');
-    }
-    let amount = this.currencyPipe.transform(value, 'USD');
-    if (amount !== null) {
-      amount = amount.split('.')[0].replace('$', '');
-      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].setValue(amount);
-      this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(amount, 10));
-    }
-  }
+  // onNoUiSliderChange(sliderValue, index) {
+  //   let value = sliderValue;
+  //   if (value !== null) {
+  //     value = value.toString().replace(Regexp, '');
+  //   }
+  //   let amount = this.currencyPipe.transform(value, 'USD');
+  //   if (amount !== null) {
+  //     amount = amount.split('.')[0].replace('$', '');
+  //     this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].setValue(amount);
+  //     this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(amount, 10));
+  //   }
+  // }
 
-  updateSlider(slider, index) {
-    let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].value;
-    if (sliderValue === null) {
-      sliderValue = 0;
-    }
-    sliderValue = (sliderValue + '').replace(Regexp, '');
-    slider.writeValue(sliderValue);
+  // updateSlider(slider, index) {
+  //   let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].value;
+  //   if (sliderValue === null) {
+  //     sliderValue = 0;
+  //   }
+  //   sliderValue = (sliderValue + '').replace(Regexp, '');
+  //   slider.writeValue(sliderValue);
 
-    this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(sliderValue, 10));
-  }
+  //   this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(sliderValue, 10));
+  // }
 
   showLifeProtectionModal() {
     const ref = this.modal.open(LifeProtectionModalComponent, {
@@ -128,6 +128,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.guideMeService.updateDependentCount(value);
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   refreshDependentForm() {
     if (this.lifeProtectionForm) {
       // no of existing form less than selected dependent count
@@ -161,7 +162,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       gender: this.genderOptions[0],
       relationship: this.relationshipOptions[0],
       age: 24,
-      supportAmount: '',
+      supportAmount: 0,
       supportAmountValue: 0,
       yearsNeeded: this.yearsNeededOptions[0],
       educationSupport: false,
@@ -211,7 +212,7 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   submitDependentForm(form) {
     if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
-        this.guideMeService.protectionNeedsPageIndex++;
+        this.guideMeService.incrementProtectionNeedsIndex();
       });
     }
   }

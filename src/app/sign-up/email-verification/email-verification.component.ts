@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 
@@ -12,6 +13,8 @@ import { SignUpService } from './../sign-up.service';
   styleUrls: ['./email-verification.component.scss']
 })
 export class EmailVerificationComponent implements OnInit {
+  email: string;
+  emailVerified: boolean;
   constructor(
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -27,6 +30,7 @@ export class EmailVerificationComponent implements OnInit {
    * Getting email confirmation code from URL.
    */
   ngOnInit() {
+    this.emailVerified = false;
     this.route.queryParams.subscribe((queryParams) => {
       this.verifyEmail(queryParams.confirmation_token);
     });
@@ -38,7 +42,12 @@ export class EmailVerificationComponent implements OnInit {
    */
   verifyEmail(verifyCode) {
     this.authService.authenticate().subscribe((token) => {
-      this.signUpApiService.verifyEmail(verifyCode).subscribe();
+      this.signUpApiService.verifyEmail(verifyCode).subscribe((data) => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.emailVerified = true;
+          this.email = data.objectList[0].email;
+        }
+      });
     });
   }
 
@@ -46,6 +55,6 @@ export class EmailVerificationComponent implements OnInit {
    * redirect to login page.
    */
   redirectToLogin() {
-    this.router.navigate([]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 }

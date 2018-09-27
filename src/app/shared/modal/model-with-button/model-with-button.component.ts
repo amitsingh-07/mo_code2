@@ -1,12 +1,10 @@
-import { Component, Input, OnInit, ViewEncapsulation, Output,EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit,  Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
 import { RiskProfileComponent } from '../../../portfolio/risk-profile/risk-profile.component';
-
-
 @Component({
   selector: 'app-model-with-button',
   templateUrl: './model-with-button.component.html',
@@ -16,10 +14,11 @@ import { RiskProfileComponent } from '../../../portfolio/risk-profile/risk-profi
 export class ModelWithButtonComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
-  @Input() forgotPassword: any;
   @Input() ButtonTitle: any;
- @Output() selectNationalityError = new EventEmitter();
-
+  @Input() ButtonNavigation: any;
+  @Input() secondButton: any;
+  @Input() secondButtonTitle: any;
+  @Output() yesButtonClick = new EventEmitter<any>();
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -31,12 +30,19 @@ export class ModelWithButtonComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  goNext() {
-    this.activeModal.dismiss('Cross click');
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
+  modelButtonClick() {
+      if (this.secondButton) {
+        this.yesButtonClick.emit('Yes');
+      }
+      this.activeModal.dismiss('Cross click');
+      this.router.navigate([this.ButtonNavigation]);
     }
-   selectNationalityHomepage() {
-     this.selectNationalityError.emit(null);
+    // tslint:disable-next-line:no-identical-functions
+    secondmodelButtonClick() {
+      if (this.secondButton) {
+        this.yesButtonClick.emit('No');
+      }
+      this.activeModal.dismiss('Cross click');
+      this.router.navigate([this.ButtonNavigation]);
     }
   }

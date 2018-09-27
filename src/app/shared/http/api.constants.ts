@@ -14,14 +14,17 @@ export let apiConstants = {
         resendOTP: 'account/account-microservice/api/resendOTP',
         setPassword: 'account/account-microservice/api/setPassword',
         verifyEmail: 'account/account-microservice/api/verifyEmail',
+        resetPassword: 'account/account-microservice/api/resetPassword',
+        forgotPassword: 'account/account-microservice/api/forgotPassword',
         portfolio: {
             setInvestmentObjective: 'invest/api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: 'invest/investment-microservice/RiskAssessment',
             updateRiskAssessment: 'invest/RiskAssessment',
-            getAllocationDetails: 'invest/portfolio/recommend',
-            countrylist:'invest/investment-microservice/countrylist'
-            
-            
+            getAllocationDetails: 'invest/portfolio/recommend'
+        },
+        investmentAccount: {
+            nationalitylist: 'invest/investment-microservice/countrylist',
+            getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false'
         }
     }
 };

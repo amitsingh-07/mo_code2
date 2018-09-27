@@ -8,7 +8,6 @@ import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
 import { RiskProfile } from './risk-profile/riskprofile';
-
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_session_storage_key';
 
@@ -63,6 +62,30 @@ export class PortfolioService {
   }
   getFormError(formCtrlName: string, validation: string): string {
     return this.personalFormError.formFieldErrors[formCtrlName][validation];
+  }
+
+  doFinancialValidations(form) {
+    const invalid = [];
+    // tslint:disable-next-line:triple-equals
+    if (Number(form.value.initialInvestment) == 0 && Number(form.value.monthlyInvestment) == 0) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['zero']);
+      return this.personalFormError.formFieldErrors['financialValidations']['zero'];
+    } else if (Number(form.value.initialInvestment) <= 100 && Number(form.value.monthlyInvestment) <= 50) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['more']);
+      return this.personalFormError.formFieldErrors['financialValidations']['more'];
+      // tslint:disable-next-line:max-line-length
+    } else if (Number(form.value.initialInvestment) > Number(form.value.totalAssets) && Number(form.value.monthlyInvestment) > Number(form.value.percentageOfSaving) * Number(form.value.monthlyIncome)) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment']);
+      return this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment'];
+    } else if (Number(form.value.initialInvestment) > Number(form.value.totalAssets)) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreasset']);
+      return this.personalFormError.formFieldErrors['financialValidations']['moreasset'];
+    } else if (Number(form.value.monthlyInvestment) > Number(form.value.percentageOfSaving) * Number(form.value.monthlyIncome)) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreinvestment']);
+      return this.personalFormError.formFieldErrors['financialValidations']['moreinvestment'];
+    } else {
+      return false;
+    }
   }
 
   setPersonalInfo(data: PersonalInfo) {
@@ -170,7 +193,7 @@ export class PortfolioService {
   constructQueryParams(options) {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
-    Object.keys(objectKeys).map( (e) => {
+    Object.keys(objectKeys).map((e) => {
       console.log('key= ${e} value = ${objectKeys[e]}');
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
@@ -182,8 +205,5 @@ export class PortfolioService {
   }
   getSelectedFund() {
     return this.portfolioFormData.selectedFund;
-  }
-  getNationalityList(){
-    return this.apiService.getNationalityList();
   }
 }

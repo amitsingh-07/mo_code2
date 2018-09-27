@@ -22,12 +22,12 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 const assetImgPath = './assets/images/';
 
 const profileHelpImages = {
-  helpImg_1: 'profile-single-professional.png',
-  helpImg_2: 'profile-married-with-no-kids.png',
-  helpImg_3: 'profile-parent.png',
-  helpImg_4: 'profile-student.png',
-  helpImg_5: 'profile-retiree.png',
-  helpImg_6: 'profile-homemaker.png',
+  helpImg_1: 'single-professional.svg',
+  helpImg_2: 'married-with-no-kids.svg',
+  helpImg_3: 'iamparent.svg',
+  helpImg_4: 'iamstudent.svg',
+  helpImg_5: 'iamretiree.svg',
+  helpImg_6: 'homemaker.svg',
 };
 
 @Component({

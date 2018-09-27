@@ -32,6 +32,7 @@ export class ForgotPasswordComponent implements OnInit {
   defaultCountryCode;
   countryCodeOptions;
   heighlightMobileNumber;
+  buttonTitle;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -51,6 +52,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.emailNotFoundTitle = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND');
       this.emailNotFoundDesc = this.translate.instant('FORGOTPASSWORD.EMAIL_NOT_FOUND_DESC');
+      this.buttonTitle = this.translate.instant('COMMON.TRY_AGAIN');
     });
   }
 
@@ -76,11 +78,19 @@ export class ForgotPasswordComponent implements OnInit {
     ref.componentInstance.errorMessage = error.errorMessage;
     return false;
   } else {
-    this.signUpService.setForgotPasswordInfo(form.value.email);
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
-    ref.componentInstance.errorMessage = this.emailNotFoundDesc;
-    ref.componentInstance.forgotPassword = 'YES';
+    this.signUpService.setForgotPasswordInfo(form.value.email).subscribe((data) => {
+      console.log('incomingData' + data.responseMessage.responseCode);
+      // tslint:disable-next-line:triple-equals
+      if ( data.responseMessage.responseCode == 6004) {
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
+      ref.componentInstance.errorMessage = this.emailNotFoundDesc;
+      ref.componentInstance.ButtonTitle = this.buttonTitle;
+      // tslint:disable-next-line:triple-equals
+      } else if (data.responseMessage.responseCode == 6000) {
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+      }
+    });
   }
 }
 goBack() {

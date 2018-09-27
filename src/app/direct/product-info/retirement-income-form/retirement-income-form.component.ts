@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { DirectService } from '../../direct.service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   encapsulation: ViewEncapsulation.None
 })
-export class RetirementIncomeFormComponent implements OnInit {
+export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   retirementIncomeForm: FormGroup;
   categorySub: any;
   formValues: any;
@@ -75,6 +75,10 @@ export class RetirementIncomeFormComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.categorySub.unsubscribe();
+  }
+
     selectRetirementIncome(selectedRetirementIncome) {
     this.selectedRetirementIncome = selectedRetirementIncome;
   }
@@ -91,18 +95,26 @@ export class RetirementIncomeFormComponent implements OnInit {
   }
 
   showPayoutFeatureModal() {
-    this.directService.showToolTipModal(
-      this.translate.instant('RETIREMENT_INCOME.TOOLTIP.TITLE'),
-      this.translate.instant('RETIREMENT_INCOME.TOOLTIP.MESSAGE')
-      );
-  }
+      if (this.payoutFeature === 'Guaranteed') {
+      this.directService.showToolTipModal(
+      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
+      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
+      } else if (this.payoutFeature === 'Variable') {
+      this.directService.showToolTipModal(
+      this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.TITLE'),
+      this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.MESSAGE'));
+      } else {
+      this.directService.showToolTipModal(
+      this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.TITLE'),
+      this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.MESSAGE'));
+      }
+    }
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string += '$' + this.selectedRetirementIncome + ', ';
-    sum_string += '$' + this.selectedPayoutAge + ', ';
-    sum_string += this.payoutDuration + ', ';
-    sum_string += this.payoutFeature;
+    sum_string += '$' + this.selectedRetirementIncome + ' / mth,  ';
+    sum_string += 'Payout Age ' + this.selectedPayoutAge + ', ';
+    sum_string += 'Payout For ' + this.payoutDuration ;
     return sum_string;
   }
 

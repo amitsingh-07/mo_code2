@@ -1,13 +1,15 @@
 export class CreateAccountFormError {
     formFieldErrors: object = {
+        errorTitle: 'Invalid Form',
         countryCode: {
                 required : {
                         errorTitle: 'Invalid Country Code',
-                        errorMessage: 'Please enter your country code'
+                        errorMessage: 'Please enter your country code.'
                 },
         },
         mobileNumber: {
                 required : {
+                        // tslint:disable-next-line:no-duplicate-string
                         errorTitle: 'Invalid Mobile Number',
                         errorMessage: 'Please enter your mobile number'
                 },
@@ -68,8 +70,30 @@ export class CreateAccountFormError {
         },
         loginPassword: {
                 required : {
+                        // tslint:disable-next-line:no-duplicate-string
+                        errorTitle: 'Password required',
+                        // tslint:disable-next-line:no-duplicate-string
+                        errorMessage: 'Please enter your Password'
+                }
+        },
+        resetPassword1: {
+                required : {
                         errorTitle: 'Password required',
                         errorMessage: 'Please enter your Password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number and 8-20 Alphanumeric Characters  '
+                }
+        },
+        confirmpassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your Password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number 8-20 Alphanumeric Characters  '
                 }
         }
     };

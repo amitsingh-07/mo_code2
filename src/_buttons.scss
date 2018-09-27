@@ -27,7 +27,10 @@ button:active:focus {
   &.btn-primary {
     background-color: $btn-primary-backgrnd-color;
     border-color: $btn-primary-backgrnd-color;
-    box-shadow: 0 2px 14px 0 $btn-primary-shadow-color;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
+    @include allmobiles {
+      box-shadow: none !important;
+    }
     &:hover {
       background-color: #0de0de !important;
     }
@@ -81,12 +84,15 @@ button:active:focus {
     color: $app-backgrnd-color;
     &:hover {
       background-color: transparent;
+      border: 1px solid #00c5c4 !important;
+      color: $app-backgrnd-color !important;
     }
     &:focus,
     &:active {
       outline: none !important;
-      background: transparent !important;
-      border-color: none !important;
+      border: 1px solid #00c5c4 !important;
+      color: $app-backgrnd-color !important;
+      background-color: transparent !important;
     }
   }
   &:disabled {
@@ -393,17 +399,18 @@ button:active:focus {
   font-family:$muli-semi-bold;
   max-height:70px;
   cursor: pointer;
-  @include fontSize(13px);
+  font-size: 20px;
+  white-space: nowrap;
   text-align:center;
   @include allmobiles {
     position: fixed;
     width:100%;
-    bottom:0px;
-    left:0px;
+    bottom:0;
+    left:0;
     max-width:100%;
     border-radius:0px;
     z-index:5;
-    @include fontSize(12px);
+    font-size: 20px;
   }
 }
 
@@ -442,12 +449,12 @@ button:active:focus {
     padding:12px 64px 12px 20px;
     border-radius: 8px;
     color: $teal-color;
-    width:calc(100% - 160px);
+    width: 1024px;
     max-height:70px; 
     min-height:64px;
-    max-width: calc(1024px - 160px);
+    //max-width: calc(1024px - 160px);
     min-width:337px;
-    box-shadow: 0 6px 8px 0 rgba(138, 155, 169, 0.3);
+    box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
     
     @include minMobilemaxPhablet{
       width:100% !important;
@@ -605,13 +612,21 @@ button:active:focus {
   }
   .btn-group--toggle{
     .direct-form-btn--radio{
-      padding:16px 0px;
+      padding:0.90rem;
       min-width:100px;
       background-color:$white-color;
       border:1px solid $light-teal-color;
       color:$teal-color;
-      font-family:$muli;
+      font-family:$muli-regular;
       font-size:16px;
+      white-space: normal;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 51px;
+      @extend .flex;
+      @extend .align-center;
+      @extend .justify-center;
       &.active{
         background-color:$teal-color;
         color:$white-color;
@@ -660,6 +675,7 @@ button:active:focus {
       .input-group-append {
         .btn-primary{
           height:50px;
+          box-shadow: none !important;
         }
       }
       .dropdown-menu{

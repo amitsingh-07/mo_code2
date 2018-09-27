@@ -2,7 +2,7 @@ import { DefaultFormatter, NouisliderComponent } from 'ng2-nouislider';
 
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
-    AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
+  AfterViewInit, Component, HostListener, OnInit, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,8 +16,12 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
+import { FinancialValidator } from './my-financial-validator';
 import { IMyFinancials } from './my-financials.interface';
 
+import {
+  ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-my-financials',
   templateUrl: './my-financials.component.html',
@@ -31,6 +35,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   heplDate: any;
   pageTitle: string;
   form: any;
+  translator: any;
 
   constructor(
     private router: Router,
@@ -46,6 +51,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
       self.heplDate = this.translate.instant('MY_FINANCIALS.heplDate');
+      self.translator = this.translate.instant('MY_FINANCIALS');
       this.setPageTitle(self.pageTitle);
     });
   }
@@ -57,13 +63,13 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
 
     this.myFinancialsForm = new FormGroup({
-      monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome, Validators.required),
-      percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving, Validators.required),
-      totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets, Validators.required),
-      totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities, Validators.required),
+      monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome),
+      percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving),
+      totalAssets: new FormControl(this.myFinancialsFormValues.totalAssets),
+      totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities),
       initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
-      monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment, Validators.required),
-      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund, Validators.required)
+      monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
+      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund)
 
     });
   }
@@ -80,20 +86,49 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     return false;
   }
 
-  save(form: any) {
+  goToNext(form) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+    }
+    const error = this.portfolioService.doFinancialValidations(form);
+    console.log('error' + error);
+    if (error) {
+      // tslint:disable-next-line:no-commented-code
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.errorTitle;
+      ref.componentInstance.errorMessage = error.errorMessage;
+      // tslint:disable-next-line:triple-equals
+      if (error.errorTitle == this.translator.INFO) {
+        ref.componentInstance.secondButton = this.translator.LABEL_YES;
+        ref.componentInstance.secondButtonTitle = this.translator.LABEL_NO;
+        ref.componentInstance.ButtonTitle = this.translator.LABEL_YES;
+        ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
+          // tslint:disable-next-line:triple-equals
+          if (emittedValue == this.translator.LABEL_NO) {
+            return false;
+          } else {
+            this.saveAndProceed(form);
+          }
+        });
+      } else {
+        ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
+        return false;
+      }
+    } else {
+
+      this.saveAndProceed(form);
+    }
+  }
+  saveAndProceed(form: any) {
     this.portfolioService.setMyFinancials(form.value);
     // CALL API
     this.portfolioService.savePersonalInfo().subscribe((data) => {
       if (data) {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
+        this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
       }
     });
-    return true;
-  }
-
-  goToNext(form) {
-    if (this.save(form)) {
-      this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
-    }
   }
 }

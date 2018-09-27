@@ -1,5 +1,6 @@
 @import '../../../variables';
 
+
 .question-info {
   position: relative;
   top: 66px;
@@ -47,9 +48,17 @@
 input[type='radio']+label {
   //background: url("../../../assets/images/edit_button.svg") no-repeat;
   background: url("../../../assets/images/radio-normal.svg") left center no-repeat;
+
 }
 input[type='radio']:checked+label {
   background-image: url("../../../assets/images/radio-select.png");
+}
+
+.form-group-single-column .checkbox-button .input-label-grey {
+  color:#313644;
+  font-family: $muli;
+  font-weight: 600;
+  font-size:18px;
 }
 
 

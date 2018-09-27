@@ -3,7 +3,8 @@
         "CONTINUE": "Continue",
         "VERIFY": "Verify", 
         "LOGIN": "Log In",
-        "CREATE_ACCOUNT": "Create Account"
+        "CREATE_ACCOUNT": "Create Account",
+        "TRY_AGAIN": "Try Again"
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",
@@ -14,7 +15,7 @@
             "LAST_NAME": "Last Name",
             "EMAIL": "Email Address",
             "TERMS_OF_USE": "I agree to MoneyOwl's <u><a href='https://www.google.com/' target='_blank'>Terms of Use</a></u> and <a href='https://www.google.com/' target='_blank'>Privacy Policy</a>",
-            "MARKETING_ACCEPTANCE": "I consent receive marketing materials from MoneyOwl and partners of MoneyOwl."
+            "MARKETING_ACCEPTANCE": "I consent to receive marketing materials from MoneyOwl and partners of MoneyOwl."
         }
     },
     "VERIFY_MOBILE": {
@@ -30,6 +31,9 @@
         "ERROR_MODAL": {
             "ERROR_TITLE": "Incorrect OTP Code",
             "ERROR_MESSAGE": "You have keyed in an invalid OTP Code"
+        },
+        "EXPIRED_ERROR_MODAL": {
+            "ERROR_MESSAGE": "Your OTP is expired. Please click on Request New Code link to get new OTP"
         },
         "LOADING": {
             "VERIFYING" : "Verifying...",
@@ -53,7 +57,10 @@
         }     
     },
     "EMAIL_VERIFICATION": {
-        "TITLE": "Email Verified!"        
+        "LOADING": {
+            "VERIFYING" : "Verifying...",
+            "VERIFIED": "Email Verified!"
+        }
     },
     "ACCOUNT_CREATED": {
         "TITLE": "Account Created!",

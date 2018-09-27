@@ -5,6 +5,7 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -12,7 +13,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
+import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
+import { RecommendationsModalComponent } from '../../modal/recommendations-modal/recommendations-modal.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
 
 @Component({
@@ -26,6 +30,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() type;
   @Input() comparePlan;
   @Input() bestValue;
+  @Input() planSelected;
 
   icon;
   insurerLogo;
@@ -40,6 +45,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   canShowDiscount = true;
   isComparePlanEnabled = false;
   isRankContainerSet = false;
+  mobileThreshold = 576;
 
   coverageDuration;
   premiumDuration;
@@ -50,8 +56,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
   constructor(
     private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
-    private renderer: Renderer2) {
+    private renderer: Renderer2, private translate: TranslateService) {
     this.highlights = [];
+    this.translate.use('en');
   }
 
   ngDoCheck() {
@@ -107,6 +114,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
 
   viewDetails() {
+    // tslint:disable-next-line:no-commented-code
     // this.view.emit(this.temp);
     const data = this.temp;
     const ref = this.modal.open(ProductDetailComponent, { centered: true });
@@ -126,8 +134,45 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
+  comparePlanErrorForMobileModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = '2 plans only';
+    ref.componentInstance.errorMessage = 'Select maximum 2 plans to compare';
+    return false;
+  }
+  comparePlanErrorModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = '4 plans only';
+    ref.componentInstance.errorMessage = 'Select maximum 4 plans to compare';
+  }
+  openCommissionModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.MESSAGE');
+    return false;
+  }
+  openRatingModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.RATING.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
+  }
   compareplan() {
-    this.isComparePlanSelected = !this.isComparePlanSelected;
+    if (this.planSelected && this.planSelected.length  < 4) {
+      if (window.innerWidth <= this.mobileThreshold) {
+        if (this.planSelected.length >= 2) {
+          this.comparePlanErrorForMobileModal();
+          return false;
+        }
+      }
+      this.isComparePlanSelected = !this.isComparePlanSelected;
+    } else {
+      if (this.isComparePlanSelected) {
+        this.isComparePlanSelected = !this.isComparePlanSelected;
+      } else {
+        this.comparePlanErrorModal();
+        return false;
+      }
+    }
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }
