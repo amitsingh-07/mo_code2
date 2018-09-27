@@ -120,6 +120,7 @@
         "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
       },
       "COMPARE_PLANS": {
+        "RESULTS":"Results",
         "INSURER_FINANCIAL_RATING":"Insurer Financial Rating",
         "COVARAGE_DURATION":"Covarage Duration",
         "PREMIUM_DURATION":"Premium Duration",

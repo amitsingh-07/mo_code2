@@ -16,7 +16,7 @@ export class ComparePlansComponent implements OnInit {
   constructor(public headerService: HeaderService, public directService: DirectService, public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('GET_STARTED.TITLE');
+      this.pageTitle = this.translate.instant('COMPARE_PLANS.RESULTS');
       this.setPageTitle(this.pageTitle);
    });
   }
