@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation, ElementRef, Inject, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -32,6 +32,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   searchResult = [];
   filteredResult = [];
   filteredCountSubject = new Subject<any>();
+  selectedFilterList = [];
   subscription: Subscription;
 
   selectedCategory: IProductCategory;
@@ -213,6 +214,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
     ref.componentInstance.filters = this.filters;
     ref.componentInstance.sort = this.sortList;
     ref.componentInstance.isMobile = true;
+    ref.componentInstance.selectedFilterList = this.selectedFilterList;
     ref.componentInstance.filterProducts.subscribe((data) => {
       this.filterProducts(data);
       ref.dismiss();
@@ -261,8 +263,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   }
 
   filterProducts(data: any) {
-    this.filterArgs = data.filters;
+    this.filterArgs = this.selectedFilterList =  data.filters;
     this.sortProperty = data.sortProperty;
   }
 }
-

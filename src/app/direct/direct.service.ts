@@ -112,7 +112,6 @@ export class DirectService {
   /* Product Category drop down Handler */
   setProductCategory(prodCat: IProductCategory) {
     this.directFormData.prodCategory = prodCat;
-    console.log(this.directFormData.prodCategory);
     this.commit();
   }
 

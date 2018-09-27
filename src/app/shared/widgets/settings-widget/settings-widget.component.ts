@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ToolTipModalComponent } from '../../modal/tooltip-modal/tooltip-modal.component';
 
 export interface IDropDownData {
   displayText: string;
@@ -16,20 +19,25 @@ export class SettingsWidgetComponent implements OnInit {
   @Input() sort: any = [];
   @Input() filters: any = [];
   @Input() isMobile: boolean;
+  @Input() selectedFilterList: any = [];
   @Output() filterProducts: EventEmitter<any>;
 
   filterResults: any = {};
   filterArgs: any = {};
   defaultSort: IDropDownData;
-  constructor() {
+  constructor(private modal: NgbModal) {
     this.filterProducts = new EventEmitter();
   }
   ngOnInit() {
-    for (const filter of this.filters) {
-      this.filterArgs[filter.name] = new Set([]);
+    if (!this.selectedFilterList) {
+      for (const filter of this.filters) {
+        this.filterArgs[filter.name] = new Set([]);
+      }
+      this.defaultSort = this.sort[0];
+      this.filterArgs['premiumFrequency'].add('per month');
+    } else {
+      this.filterArgs = this.selectedFilterList;
     }
-    this.defaultSort = this.sort[0];
-    this.filterArgs['premiumFrequency'].add('per month');
   }
 
   setSort(sort) {
@@ -102,6 +110,7 @@ export class SettingsWidgetComponent implements OnInit {
   }
 
   showFilterTooltip(msg) {
-    console.log(msg);
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    ref.componentInstance.tooltipMessage = msg;
   }
 }
