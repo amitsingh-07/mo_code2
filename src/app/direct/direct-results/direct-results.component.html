@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="flex-col-4 hidden-sm-md">
+  <div class="flex-col-4 hidden-sm-md" [hidden]="filteredResult?.length === 0">
     <button ngbButtonLabel class="direct-form-btn--radio btn btn-small" (click)="toggleComparePlans()" style="float:left;"
       [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button>
     <label class="lbl">{{filteredResult.length}} Plans Found</label>

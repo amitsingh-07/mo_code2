@@ -132,39 +132,46 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
         });
 
         const premiumFrequency = {
-          title: this.types.PREMIUM_FREQUENCY, toolTip: '', name: 'premiumFrequency',
+          title: this.types.PREMIUM_FREQUENCY, name: 'premiumFrequency',
           filterTypes: this.premiumFrequency, allBtn: false
         };
         const insurers = {
-          title: this.types.INSURERS, toolTip: '', name: 'insurerName',
+          title: this.types.INSURERS, name: 'insurerName',
           filterTypes: this.insurers, allBtn: true
         };
         const insurersFinancialRating = {
-          title: this.types.INSURANCE_FINANCIAL_RATING, toolTip: '', name: 'financialRating',
+          title: this.types.INSURANCE_FINANCIAL_RATING, name: 'financialRating',
           filterTypes: this.insurersFinancialRating, allBtn: true
         };
         const claimFeature = {
-          title: this.types.CLAIM_FEATURE, toolTip: this.toolTips.CLIAM_FEATURE, name: 'claimFeature',
+          title: this.types.CLAIM_FEATURE, toolTip: { title: this.types.CLAIM_FEATURE, message: this.toolTips.CLIAM_FEATURE },
+          name: 'claimFeature',
           filterTypes: this.claimFeature, allBtn: true
         };
         const deferredPeriod = {
-          title: this.types.DEFERRED_PERIOD, toolTip: this.toolTips.DEFERRED_PERIOD, name: 'deferredPeriod',
+          title: this.types.DEFERRED_PERIOD, toolTip: { title: this.types.DEFERRED_PERIOD, message: this.toolTips.DEFERRED_PERIOD },
+          name: 'deferredPeriod',
           filterTypes: this.deferredPeriod, allBtn: true
         };
         const escalatingBenefit = {
-          title: this.types.ESCALATING_BENEFIT, toolTip: this.toolTips.ESCALATING_BENEFIT, name: 'escalatingBenefit',
+          title: this.types.ESCALATING_BENEFIT,
+          toolTip: { title: this.types.ESCALATING_BENEFIT, message: this.toolTips.ESCALATING_BENEFIT },
+          name: 'escalatingBenefit',
           filterTypes: this.escalatingBenefit, allBtn: true
         };
         const fullPartialRider = {
-          title: this.types.FULL_PARTIAL_RIDER, toolTip: this.toolTips.FULL_PARTIAL_RIDER, name: 'fullPartialRider',
+          title: this.types.FULL_PARTIAL_RIDER,
+          toolTip: { title: this.types.FULL_PARTIAL_RIDER, message: this.toolTips.FULL_PARTIAL_RIDER },
+          name: 'fullPartialRider',
           filterTypes: this.fullPartialRider, allBtn: true
         };
         const payoutYears = {
-          title: this.types.PAYOUT_YEARS, toolTip: '', name: 'payoutYears',
+          title: this.types.PAYOUT_YEARS, name: 'payoutYears',
           filterTypes: this.payoutYears, allBtn: true
         };
         const claimCriteria = {
-          title: this.types.CLAIM_CRITERIA, toolTip: this.toolTips.CLAIM_CRITERIA, name: 'claimCriteria',
+          title: this.types.CLAIM_CRITERIA, toolTip: { title: this.types.CLAIM_CRITERIA, message: this.toolTips.CLAIM_CRITERIA },
+          name: 'claimCriteria',
           filterTypes: this.claimCriteria, allBtn: true
         };
 
