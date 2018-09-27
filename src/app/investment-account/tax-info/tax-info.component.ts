@@ -16,7 +16,7 @@ import { IPageComponent } from './../../shared/interfaces/page-component.interfa
   styleUrls: ['./tax-info.component.scss']
 })
 export class TaxInfoComponent implements OnInit {
-  TaxInfoForm: FormGroup;
+  taxInfoForm: FormGroup;
   nationalitylist: any;
   taxInfoFormValues: any;
   nationalityObj: any;
@@ -40,9 +40,9 @@ export class TaxInfoComponent implements OnInit {
     this.reason = 'Select' ;
     this.getNationalityList();
     this.taxInfoFormValues = this.investmentAccountService.getTaxInfo();
-    this.TaxInfoForm = new FormGroup({
+    this.taxInfoForm = new FormGroup({
       radioTin: new FormControl (this.taxInfoFormValues.haveTin, Validators.required),
-      reason: new FormControl (this.taxInfoFormValues.reason, Validators.required),
+     // reason: new FormControl (this.taxInfoFormValues.reason, Validators.required),
       tinNumber : new FormControl (this.taxInfoFormValues.tinNumber, Validators.required)
       });
   }
@@ -62,6 +62,29 @@ selectReason(nationalityObj) {
   this.reason = this.nationalityObj.country;
 }
 goToNext(form) {
+  if (!form.valid) {
+    this.markAllFieldsDirty(form);
+    const error = this.investmentAccountService.getFormErrorList(form);
+    console.log(error);
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = error.title;
+    ref.componentInstance.errorMessageList = error.errorMessages;
+    return false;
+  } else {
+   // this.investmentAccountService.setResidentialAddressFormData(form.value);
+   // this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+  }
+}
+markAllFieldsDirty(form) {
+  Object.keys(form.controls).forEach((key) => {
+    if (form.get(key).controls) {
+      Object.keys(form.get(key).controls).forEach((nestedKey) => {
+        form.get(key).controls[nestedKey].markAsDirty();
+      });
+    } else {
+      form.get(key).markAsDirty();
+    }
+  });
 }
 showHelpModal() {
   const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -70,4 +93,5 @@ showHelpModal() {
   ref.componentInstance.errorDescription = 'This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to www.oecd.org.For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No. ';
   return false;
 }
+
 }

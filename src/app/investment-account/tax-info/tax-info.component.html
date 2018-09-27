@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="container-fluid">
-    <form name="TaxInfoForm" [formGroup]="TaxInfoForm">
+    <form name="taxInfoForm" [formGroup]="taxInfoForm">
       <div class="flex-row">
         <div class="flex-col-5">
           <label for="name" id="tax-info-label">Country of Tax Residence</label>
@@ -62,7 +62,7 @@
       </div>
 
       <!-- Second Dropdown -->
-      <div class="flex-row" *ngIf="TaxInfoForm.controls.radioTin.value === 'no'">
+      <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'no'">
         <div class="flex-col-5">
           <label for="name" id="tax-info-reason_label">Reason</label>
         </div>
@@ -90,7 +90,7 @@
 
      <!-- Tin text box -->
 <!-- Second Dropdown -->
-<div class="flex-row" *ngIf="TaxInfoForm.controls.radioTin.value === 'yes'">
+<div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'yes'">
   <div class="flex-col-5">
     <label for="name" id="tax-info-reason_label">TIN Number</label>
   </div>
@@ -104,6 +104,6 @@
 
     </form>
   </div>
-  <button type="button" id="personalInforNextBtn" (click)="goToNext(addressForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+  <button type="button" id="personalInforNextBtn" [disabled]="taxInfoForm.controls.radioTin.value == null" (click)="goToNext(taxInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="getStrdBtn3">Continue</button>
 </div>

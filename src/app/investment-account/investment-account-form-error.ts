@@ -119,6 +119,13 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid zipcode in mailing address',
                 errorMessage: 'Zipcode should not contain special characters in mailing address.'
             }
+        },
+        tinNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid TIN',
+                errorMessage: 'Please enter your TIN number.'
+            }
         }
     };
 }
