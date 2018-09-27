@@ -1,5 +1,8 @@
 <div [ngClass]="{'modal--freeze': modalFreeze}">
   <div>
-    <app-product-info></app-product-info>
-  </div> 
+    <app-product-info (formSubmitCallback)="formSubmitCallback()"></app-product-info>
+  </div>
+  <div>
+    <ng-template #directResults></ng-template>
+  </div>
 </div>

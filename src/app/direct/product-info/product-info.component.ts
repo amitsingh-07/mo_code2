@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +16,9 @@ import { DirectService } from './../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ProductInfoComponent implements OnInit {
+
+  @Output() formSubmitCallback: EventEmitter<any> = new EventEmitter();
+
   modalRef: NgbModalRef;
   initLoad = true;
   innerWidth: any;
@@ -103,6 +106,7 @@ export class ProductInfoComponent implements OnInit {
         this.toggleVisibility = false;
         this.toggleBackdropVisibility = false;
         this.directService.setModalFreeze(false);
+        this.formSubmitCallback.emit(data);
       }
     });
     this.directService.modalToolTipTrigger.subscribe((data) => {
