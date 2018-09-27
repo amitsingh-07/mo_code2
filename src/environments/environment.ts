@@ -9,7 +9,7 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://localhost:3001'
+  myInfoCallbackBaseUrl: 'http://localhost:3001/callback'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

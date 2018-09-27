@@ -9,11 +9,15 @@ import { appConstants } from './../../app.constants';
 export class MyInfoService {
   authApiUrl = 'https://myinfosgstg.api.gov.sg/dev/v1/authorise';
   clientId = environment.myInfoClientId;
-  attributes = 'name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel';
+  private attributes = '';
   purpose = 'demonstrating MyInfo APIs';
-  redirectUrl = environment.myInfoCallbackBaseUrl + '/' + appConstants.MY_INFO_CALLBACK_URL;
+  redirectUrl = environment.myInfoCallbackBaseUrl;
   state = Math.floor(100 + Math.random() * 90);
   constructor() { }
+
+  setMyInfoAttributes(attributes) {
+    this.attributes = attributes;
+  }
 
   goToMyInfo() {
     window.sessionStorage.setItem('currentUrl', window.location.hash);

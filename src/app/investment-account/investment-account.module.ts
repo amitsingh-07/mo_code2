@@ -9,11 +9,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
-import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
+import { TaxInfoComponent } from './tax-info/tax-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -43,8 +44,8 @@ export function createTranslateLoader(http: HttpClient) {
     PersonalInfoComponent,
     ResidentialAddressComponent,
     SelectNationalityComponent,
-    EmploymentDetailsComponent
-
+    EmploymentDetailsComponent,
+    TaxInfoComponent
   ],
   providers: [CurrencyPipe]
 })

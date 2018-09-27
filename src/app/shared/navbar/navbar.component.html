@@ -1,0 +1,90 @@
+<nav *ngIf="showNavbar" class="navbar fixed-top center" #navbar [ngClass]="{'nav--shadow': showNavShadow}">
+    <div class="navbar-wrapper space-between">
+        <div class="navbar-group space-between">
+            <div class="navbar-brand">
+                <div class="navbar__logo--primary hidden-sm-md" routerLink="/">
+                    </div>
+                <div class="navbar__logo--tertiary hidden-lg" routerLink="/">
+                    </div>
+                <div class="navbar__separator hidden-sm-md">
+                    </div>
+                </div>
+            <button class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar__menu-icon"></span>
+                </button>
+            </div>
+        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault" #navbar>
+            <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/direct">Compare</a>
+                    </li>
+                <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="id01.open();" (mouseleave)="id01.close();">
+                    <a class="nav-link dropdown-toggle" id="id01" href="#" ngbDropdownToggle>Products</a>
+                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id01">
+                        <button class="dropdown-item">Protection</button>
+                        <button class="dropdown-item">Savings</button>
+                        <button class="dropdown-item">Retirement</button>
+                    </div>
+                    </li>
+                <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="id02.open();" (mouseleave)="id02.close();">
+                    <a class="nav-link dropdown-toggle" id="id02" href="#" ngbDropdownToggle>Learn</a>
+                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id02">
+                        <button class="dropdown-item">Our Articles</button>
+                        <button class="dropdown-item">Trending Articles</button>
+                        <button class="dropdown-item">Comparison Tables</button>
+                        <button class="dropdown-item">Guide Me</button> 
+                    </div>
+                </li>
+                <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="id03.open();" (mouseleave)="id03.close()">
+                    <a class="nav-link dropdown-toggle" id="id03" href="#" ngbDropdownToggle >Help</a>
+                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id03">
+                        <button class="dropdown-item">Life Insurance Calculator</button>
+                        <button class="dropdown-item">Critical Illness Calculator</button>
+                        <button class="dropdown-item">Savings Calculator</button>
+                        <button class="dropdown-item">Education Saving Calculator</button>
+                        <button class="dropdown-item">Retirement Income Calculator</button>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="id04.open();" (mouseleave)="id04.close();">
+                    <a class="nav-link dropdown-toggle" id="id04" href="#" ngbDropdownToggle>Promotions</a>
+                    <div class="dropdown-menu right row" ngbDropdownMenu aria-labelledby="id04">
+                        <div class="nav-group">
+                            <p>Promotions</p>
+                            </div>
+                        <div class="nav-group">
+                            <p>Packages</p>
+                            </div>
+                    </div>
+                    </li>
+                <li class="nav-item"><a>About Us</a></li>
+            </ul>
+            <ul class="navbar-nav search-wrapper space-between align-right" [ngClass]="{'open': showSearchBar}">
+                <li class="nav-item" [ngClass]="{'open': showSearchBar}">        
+                    <div class="navbar-search" [ngClass]="{'form-control': showSearchBar}">
+                        <div class="search-trigger" (click)="openSearchBar(true)">
+                            <img class="" src="../../../assets/images/search-icon.svg"/>
+                            <span class="hidden-lg">Search</span>
+                        </div>
+                        <div class="search-input" [ngClass]="{'open': showSearchBar}">
+                            <input type="text" placeholder="Enter your search here"/>
+                            <div class="close-btn" (click)="openSearchBar(false)">
+                                <img src="../../../assets/images/close.svg"/>
+                            </div> 
+                        </div>
+                    </div>            
+                    </li>
+            </ul>
+            <ul class="navbar-nav secondary space-between">
+                 <li class="nav-item link-login" routerLink="signup">
+                    <a>
+                        <i class="material-icons hidden-lg">person</i>
+                        <span>Login</span>
+                        </a>
+                </li>
+                </ul> 
+            </div>
+        </div>
+    </nav>
+<nav *ngIf="showNavbar" class="navbar--sub"></nav>
+<div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
+    </div>

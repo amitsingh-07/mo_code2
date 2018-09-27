@@ -7,7 +7,7 @@
           <div class="form-group">
             <div class="flex-row">
               <div class="flex-col-5">
-                <label for="name" id="personalInfoBornOnLabl">{{ 'PERSONAL_INFO.BORN_ON' | translate}}</label>
+                <label for="name" class="I-was-born-on" id="personalInfoBornOnLabl">{{ 'PERSONAL_INFO.BORN_ON' | translate}}</label>
               </div>
               <div class="flex-col-7">
                 <div class="datepicker-control">
@@ -58,11 +58,11 @@
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
                 <span  id="personalInfoInvestmentYears"class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
                 {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
-              <div [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
+              <div class="A-moderately-long-in" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
             </div>
           </div>
           <div>
-            <button type="button" id="personalInforNextBtn" [disabled]="!personalInfoForm.controls.investmentPeriod.value" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+            <button type="button" id="personalInforNextBtn" [disabled]="!isSufficientInvYears" (click)="goToNext(personalInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 Continue"
               id="getStrdBtn3">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </form>
