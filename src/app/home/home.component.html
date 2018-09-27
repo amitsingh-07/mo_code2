@@ -1,0 +1,133 @@
+<div class="home__wrapper">
+    <div class="banner" #banner>
+        <div class="banner-bg">
+            <div class="banner-bg--image"></div>
+        </div>
+        <div class="banner-container">
+            <div class="banner-image">
+                <img src="./../../assets/images/banner1-thumbnail.svg"/>
+            </div> 
+            <div class="banner-content">
+                <div class="banner--title">
+                    Making Wise Decisions Easy
+                    </div>
+                <div class="banner--subtitle">
+                    Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver financial advice that integrates national schemes.
+                    </div>
+                <div class="btn btn-primary-dark findOutMore-btn" (click)="goToSection(insurance)">
+                    <span>Find Out More</span>
+                    </div>
+            </div>
+        </div> 
+        </div>
+    <div class="home__content" #sectionContainer>
+        <div class="home__navbar" #homeNavBar [ngClass]="{'fixed': homeNavBarFixed,'hide': homeNavBarHide}">
+            <div class="home__navbar--inner">
+                <div class="navbar__btn" #homeNavInsurance (click)="goToSection(insurance)">
+                    <span class="navbar__btn--title">Insurance</span>
+                </div>
+                <div class="navbar__btn" #homeNavWill (click)="goToSection(will)">
+                    <span class="navbar__btn--title">Will Writing</span>
+                    </div>
+                <div class="navbar__btn" #homeNavInvest (click)="goToSection(investment)">
+                    <span class="navbar__btn--title">Investments</span>
+                    </div>
+                <div class="navbar__btn" #homeNavComprehensive (click)="goToSection(comprehensive)">
+                    <span class="navbar__btn--title">Comprehensive</span>
+                    <span class="navbar__btn--subtitle">(with national scheme)</span> 
+                    </div>
+                <div class="home__navbar--border"></div>
+                </div>
+            </div>
+        <div class="home__navbar--sub" [ngClass]="{'show': homeNavBarFixed}"></div>
+        <div class="home__section" #insurance>
+            <div class="home__section--img primary">
+                <img class="human" src="./../../assets/images/home-insurance.png"/>
+                <img class="robo" src="./../../assets/images/home-insurance-robo.svg"/>
+            </div>
+            <div class="home__section--text-container primary">
+                <p class="home__section--title">Low-cost Insurance suited to your needs</p>
+                <p class="home__section--desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta. </p>
+                <div class="btn btn-primary-dark home__section--btn" routerLink="/guideme">
+                    <span>Assess My Needs</span>
+                </div>
+                <a class="home__section--subtext" routerLink="/direct">Or I Know What I Need!</a>
+            </div> 
+            <div class="home__seperator primary">
+                <img src="./../../assets/images/seperator1.svg"/>
+                </div>
+            </div>
+        <div class="home__section" #will>
+            <div class="home__section--text-container secondary">
+                <div class="home__section--tag">
+                    <img src="./../../assets/images/free-tag.svg"/>
+                    </div>
+                <p class="home__section--title">Will Writing Online, anytime & anywhere</p>
+                <p class="home__section--desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta.</p>
+                <div class="btn btn-primary-dark home__section--btn">
+                    <span>Start Writing</span>
+                    </div>
+                </div>
+            <div class="home__section--img secondary">
+                <img class="human" src="./../../assets/images/home-will.png"/>
+                <img class="robo" src="./../../assets/images/home-will-robo.svg"/>
+                </div>
+            <div class="home__seperator secondary">
+                <img src="./../../assets/images/seperator2.svg"/>
+                </div>
+            </div>
+        <div class="home__section" #investment>
+            <div class="home__section--img tertiary">
+                <img class="robo" src="./../../assets/images/home-investment-robo.svg">
+                <img class="human" src="./../../assets/images/home-investment.png"/>
+                </div>
+            <div class="home__section--text-container tertiary">
+                <p class="home__section--title">Investment Themes that reflect your goals</p>
+                <p class="home__section--desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta. </p>
+                <button class="btn btn-secondary home__section--btn" disabled>
+                    <span>Coming Soon</span>
+                    </button>
+                </div>
+            <div class="home__seperator tertiary">
+                <img src="./../../assets/images/seperator3.svg"/>
+            </div>
+            </div>
+        <div class="home__section" #comprehensive>
+            <div class="home__section--text-container quaternary">
+                <p class="home__section--title">Comprehensive Financial Planning</p>
+                <p class="home__section--desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta.</p>
+                <button class="btn btn-secondary home__section--btn" disabled>
+                    <span>Coming Soon</span>
+                    </button>   
+                </div> 
+            <div class="home__section--img quaternary">
+                <img class="human" src="./../../assets/images/home-comprehensive.png"/>
+                <img class="robo" src="./../../assets/images/home-comprehensive-robo.svg">
+                </div>
+            </div>
+        <div class="subscribe__section"  #subscribeSection>
+            <div class="subscribe__section--bg"></div>
+            <div class="subscribe__form--plugin">
+                <div class="subscribe-title--container">
+                    <div class="subscribe--title">
+                        Join our newsletter and get wiser every day!
+                    </div>
+                    <div class="subscribe--icon">
+                        <img src="./../../assets/images/owl--mini.svg"/>
+                    </div> 
+                    </div>
+                <div class="subscribe-input--container form-control">
+                    <input type="email" placeholder="Email"/>
+                    <button class="btn btn-primary-dark subscribe-btn">Subscribe</button> 
+                    </div>
+                <p class="subscribe--subtext">Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!</p>
+                </div>
+            <div class="subscribe__section--footer" #subscribeFooter>
+                <div class="orange"></div>
+                </div>
+            </div>
+        </div> 
+        <div style="min-height:500px">
+
+        </div>
+</div>

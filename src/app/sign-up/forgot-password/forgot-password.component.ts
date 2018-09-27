@@ -81,7 +81,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.signUpService.setForgotPasswordInfo(form.value.email).subscribe((data) => {
       console.log('incomingData' + data.responseMessage.responseCode);
       // tslint:disable-next-line:triple-equals
-      if ( data.responseMessage.responseCode == 5004) {
+      if ( data.responseMessage.responseCode == 6004) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
       ref.componentInstance.errorMessage = this.emailNotFoundDesc;

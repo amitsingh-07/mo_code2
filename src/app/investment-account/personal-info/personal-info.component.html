@@ -18,17 +18,17 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
+                  <label for="name" id="invPersInfoLbl1" >{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
                 </div>
-                <div class="flex-col-7">
-                  <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
+                  <input type="text"   id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
                 </div>
               </div>
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="name" id="invPersInfoLbl2">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('firstName').valid && !invPersonalInfoForm.get('firstName').pristine}">
                   <input type="text" id="invPersInfoInpt2" class="form-control" #firstName formControlName="firstName">
                 </div>
               </div>
@@ -36,27 +36,27 @@
                 <div class="flex-col-5">
                   <label for="name" id="invPersInfoLbl3">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('lastName').valid && !invPersonalInfoForm.get('lastName').pristine}">
                   <input type="text" id="invPersInfoInpt3" class="form-control" #lastName formControlName="lastName">
                 </div>
               </div>
-              <div class="flex-row">
+              <div class="flex-row" *ngIf="showNric">
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl4">{{ 'PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
+                  <label for="name"  id="invPersInfoLbl4">{{ 'PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
                   <input type="text" id="invPersInfoInpt4" class="form-control" #nricNumber formControlName="nricNumber">
                 </div>
               </div>
-              <div class="flex-row">
+              <div class="flex-row"   *ngIf="showPassport" >
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl5">{{ 'PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
+                  <label for="name" id="invPersInfoLbl5" >{{ 'PERSONAL_INFO.PASSPORT_NUMBER' | translate}}</label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('passportNumber').valid && !invPersonalInfoForm.get('passportNumber').pristine}">
                   <input type="text" id="invPersInfoInpt5" class="form-control" #passportNumber formControlName="passportNumber">
                 </div>
               </div>
-              <div class="flex-row">
+              <div class="flex-row"  *ngIf="showPassport" >
                 <div class="flex-col-5">
                   <label for="name" id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
                 </div>
@@ -64,7 +64,7 @@
                   <div class="datepicker-control">
                     <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine}">
                       <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY"
-                        formControlName="passportExpiry" name="passportExpiry" ngbDatepicker #e="ngbDatepicker" id="invPersInfoInpt6">
+                        formControlName="passportExpiry" name="passportExpiry" [minDate]= this.passportMinDate  [maxDate] = this.passportMaxDate  ngbDatepicker #e="ngbDatepicker" id="invPersInfoInpt6">
                       <div class="input-group-append">
                         <button (click)="e.toggle()" class="btn btn-primary" type="button" id="invPersInfoBtn1">
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('passportExpiry').valid || invPersonalInfoForm.get('passportExpiry').pristine"
@@ -85,7 +85,7 @@
                   <div class="datepicker-control">
                     <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine}">
                       <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY"
-                        formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker" id="invPersInfoInpt7">
+                        formControlName="dob" name="dp" ngbDatepicker   #d="ngbDatepicker" id="invPersInfoInpt7">
                       <div class="input-group-append">
                         <button (click)="d.toggle()" class="btn btn-primary" type="button" id="invPersInfoBtn1">
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('dob').valid || invPersonalInfoForm.get('dob').pristine"
@@ -123,7 +123,7 @@
               </div>
             </div>
             <div>
-              <button type="button" [disabled]="!invPersonalInfoForm.valid" (click)="goToNext(invPersonalInfoForm)"
+              <button type="button"  (click)="goToNext(invPersonalInfoForm)"
                 class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="invPersInfoBtn3">{{
                 'LABEL.CONTINUE' | translate}}</button>
             </div>
