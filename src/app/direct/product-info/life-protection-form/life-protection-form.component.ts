@@ -72,8 +72,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
         if (this.save()) {
           console.log('triggered');
           this.directService.setMinProdInfo(this.summarizeDetails());
-          this.router.navigate([DIRECT_ROUTE_PATHS.RESULTS]);
-          this.directService.triggerSearch('');
+          // this.router.navigate([DIRECT_ROUTE_PATHS.RESULTS]);
         }
       }
     });

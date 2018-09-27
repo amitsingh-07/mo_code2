@@ -72,6 +72,7 @@
       {"displayText": "Financial Rating (Lowest-Highest)", "value": "-insurer.rating" }
     ],
     "TYPES": {
+      "INSURERS": "Insurers",
       "PREMIUM_FREQUENCY": "Premium Frequency",
       "INSURANCE_FINANCIAL_RATING": "Insurers' Financial Rating",
       "CLAIM_FEATURE": "Claim Feature",

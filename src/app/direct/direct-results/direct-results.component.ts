@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation, ElementRef, Inject, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -32,6 +32,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   searchResult = [];
   filteredResult = [];
   filteredCountSubject = new Subject<any>();
+  selectedFilterList = [];
   subscription: Subscription;
 
   selectedCategory: IProductCategory;
@@ -40,7 +41,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   filterArgs;
   sortProperty;
   types;
-
+  toolTips;
   resultsEmptyMessage = '';
 
   premiumFrequency: any = [{ value: 'per month', name: 'Monthly', checked: true }, { value: 'per year', name: 'Yearly', checked: false }];
@@ -65,6 +66,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
       this.resultsEmptyMessage = this.translate.instant('SETTINGS.NO_RESULTS');
       this.sortProperty = this.sortList[0].value;
       this.setPageTitle(this.pageTitle);
+      this.toolTips = this.translate.instant('FILTER_TOOLTIPS');
       this.getRecommendations();
     });
     this.subscription = this.filteredCountSubject.subscribe((planList) => {
@@ -130,30 +132,31 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
         });
 
         const premiumFrequency = {
-          title: this.types.PREMIUM_FREQUENCY, name: 'premiumFrequency', filterTypes: this.premiumFrequency, allBtn: false
+          title: this.types.PREMIUM_FREQUENCY, toolTip: '', name: 'premiumFrequency',
+          filterTypes: this.premiumFrequency, allBtn: false
         };
         const insurers = {
-          title: 'Insurers', toolTip: 'This is insurer name', name: 'insurerName',
+          title: this.types.INSURERS, toolTip: '', name: 'insurerName',
           filterTypes: this.insurers, allBtn: true
         };
         const insurersFinancialRating = {
-          title: this.types.INSURANCE_FINANCIAL_RATING, name: 'financialRating',
+          title: this.types.INSURANCE_FINANCIAL_RATING, toolTip: '', name: 'financialRating',
           filterTypes: this.insurersFinancialRating, allBtn: true
         };
         const claimFeature = {
-          title: this.types.CLAIM_FEATURE, toolTip: '', name: 'claimFeature',
+          title: this.types.CLAIM_FEATURE, toolTip: this.toolTips.CLIAM_FEATURE, name: 'claimFeature',
           filterTypes: this.claimFeature, allBtn: true
         };
         const deferredPeriod = {
-          title: this.types.DEFERRED_PERIOD, toolTip: '', name: 'deferredPeriod',
+          title: this.types.DEFERRED_PERIOD, toolTip: this.toolTips.DEFERRED_PERIOD, name: 'deferredPeriod',
           filterTypes: this.deferredPeriod, allBtn: true
         };
         const escalatingBenefit = {
-          title: this.types.ESCALATING_BENEFIT, toolTip: '', name: 'escalatingBenefit',
+          title: this.types.ESCALATING_BENEFIT, toolTip: this.toolTips.ESCALATING_BENEFIT, name: 'escalatingBenefit',
           filterTypes: this.escalatingBenefit, allBtn: true
         };
         const fullPartialRider = {
-          title: this.types.FULL_PARTIAL_RIDER, toolTip: '', name: 'fullPartialRider',
+          title: this.types.FULL_PARTIAL_RIDER, toolTip: this.toolTips.FULL_PARTIAL_RIDER, name: 'fullPartialRider',
           filterTypes: this.fullPartialRider, allBtn: true
         };
         const payoutYears = {
@@ -161,7 +164,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
           filterTypes: this.payoutYears, allBtn: true
         };
         const claimCriteria = {
-          title: this.types.CLAIM_CRITERIA, toolTip: '', name: 'claimCriteria',
+          title: this.types.CLAIM_CRITERIA, toolTip: this.toolTips.CLAIM_CRITERIA, name: 'claimCriteria',
           filterTypes: this.claimCriteria, allBtn: true
         };
 
@@ -213,6 +216,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
     ref.componentInstance.filters = this.filters;
     ref.componentInstance.sort = this.sortList;
     ref.componentInstance.isMobile = true;
+    ref.componentInstance.selectedFilterList = this.selectedFilterList;
     ref.componentInstance.filterProducts.subscribe((data) => {
       this.filterProducts(data);
       ref.dismiss();
@@ -261,8 +265,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   }
 
   filterProducts(data: any) {
-    this.filterArgs = data.filters;
+    this.filterArgs = this.selectedFilterList =  data.filters;
     this.sortProperty = data.sortProperty;
   }
 }
-
