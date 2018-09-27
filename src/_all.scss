@@ -44,6 +44,7 @@ h2 {
 h6 {
   font-family: $muli-regular;
   font-size: 18px;
+  font-weight: 400;
 }
 
 /*Nav Bar Styles*/
@@ -181,7 +182,7 @@ h6 {
 
 .modal .close {
   position: absolute !important;
-  right: 12px !important;
+  right: 25px !important;
   top: 15px !important;
   text-shadow: none !important;
   background: url("./assets/images/close-button-dark.svg") !important;
@@ -194,7 +195,7 @@ h6 {
   // top: 14px;
   // right: 5px;
   @include allmobiles {
-    top: 22px !important;
+    top: 30px !important;
     //opacity: 1 !important;
   }
 }

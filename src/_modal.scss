@@ -29,7 +29,7 @@
   padding: 15px 25px;
 
   @include allmobiles {
-    padding: 15px !important;
+    padding: 25px !important;
   }
 
   .form-group {
@@ -109,7 +109,7 @@
     right: 10px;
     top: 5px;
     font-size: 32px;
-    opacity: 0.4;
+    opacity: 0.4 !important;
     text-shadow: none;
   }
 
