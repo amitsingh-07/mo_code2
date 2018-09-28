@@ -16,6 +16,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
+import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
@@ -113,7 +114,9 @@ export function tokenGetterFn() {
       }
     })
   ],
-  providers: [NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+  providers: [
+    NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+    ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
@@ -144,4 +147,3 @@ export class AppModule {
     AppModule.injector = injector;
   }
 }
-
