@@ -7,7 +7,7 @@ import {
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent implements OnInit, AfterViewInit, OnChanges {
+export class LoaderComponent implements OnInit, OnChanges {
 
   @Input() isVisible;
   @Input() messageTitle;
