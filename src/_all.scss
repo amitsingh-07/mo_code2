@@ -558,44 +558,68 @@ body {
       position: relative;
       display: flex;
       flex-direction: row;
+      justify-content:center;
+      .footer__group--inner{
+        display:flex;
+        width:100%;
+        flex-direction:row;
+        max-width:1024px;
+        align-self:center;
+      }
       &.primary{
-        justify-content:flex-start;
         background-color:$teal-color;
         color:$white-color;
         padding:0px 45px;
         border-bottom:1px solid $light-teal-color;
+        .footer__group--inner{
+          @include minMobilemaxPhablet{
+            flex-direction:column;
+          }
+        }
         @include minMobilemaxPhablet{
-          flex-direction:column;
           padding:0px;
         }
+        
       }
       &.secondary{
-        justify-content:space-between;
         background-color:$teal-color;
         color:$white-color;
         padding:30px 45px;
         flex-wrap:wrap;
-        @include minMobilemaxPhablet{
+        .footer__group--inner{
           justify-content:flex-start;
+          @include minMobilemaxPhablet{
+            flex-direction:column;
+          }
+        }
+        @include minMobilemaxPhablet{
           padding:20px;
         }
       }
       &.tertiary{
-        justify-content:space-between;
         background-color:$dark-teal-color;
         color:$white-color;
         border-bottom:1px solid $light-teal-color;
         padding:20px 45px 25px 45px;
-        @include minMobilemaxPhablet{
-          flex-direction:column;
-          padding:20px 20px 25px 20px;
+        .footer__group--inner{
+          justify-content:space-between;
+          flex-direction:row;
+          @include minMobilemaxPhablet{
+            flex-direction:column;
+            }
+          }
+          @include minMobilemaxPhablet{
+            padding:20px 20px 25px 20px;
+          }
         }
-      }
       &.quaternary{
-        justify-content:flex-start;
         background-color:$dark-teal-color;
         color:$white-color;
         padding:10px 45px 15px 45px;
+        .footer__group--inner{
+          justify-content:space-between;
+          flex-direction:row;
+        }
         @include minMobilemaxPhablet{
           padding:10px 20px 25px 20px;
         }
@@ -658,6 +682,7 @@ body {
       display:flex;
       flex-direction:column;
       max-width:240px;
+      margin-right:20px;
       @include minMobilemaxPhablet{
         margin-right:20px;
         margin-bottom:20px;
