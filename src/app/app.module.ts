@@ -16,6 +16,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
+import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
@@ -124,7 +125,7 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, ArticleService]
     }, Formatter, CurrencyPipe],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -144,4 +145,3 @@ export class AppModule {
     AppModule.injector = injector;
   }
 }
-
