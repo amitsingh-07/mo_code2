@@ -77,7 +77,7 @@ selectCountry(nationalityObj) {
 }
 selectReason(reasonObj) {
   this.reason = reasonObj.reason;
-  this.taxInfoForm.controls.reasonDropdown.controls['noTinReason'].setValue( this.reason);
+  this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue( this.reason);
 }
 goToNext(form) {
   if (!form.valid) {
