@@ -1,6 +1,11 @@
 import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
+
+import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
+import { SubscribeMember } from './../shared/Services/subscribeMember';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +19,11 @@ export class HomeComponent implements OnInit {
   public mobileThreshold = 567;
   public navBarElement: ElementRef;
 
-  constructor(public headerService: HeaderService, public navbarService: NavbarService,
-              public el: ElementRef, private render: Renderer2) {
+  subscribeForm: FormGroup;
+  formValues: SubscribeMember;
+
+  constructor(public headerService: HeaderService, public navbarService: NavbarService, private router: Router,
+              public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService) {
                 navbarService.existingNavbar.subscribe((param: ElementRef) => {
                   this.navBarElement = param;
                   this.checkScrollStickyHomeNav();
@@ -48,6 +56,11 @@ export class HomeComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarShadowVisibility(true);
     this.headerService.setHeaderOverallVisibility(false);
+
+    this.formValues = this.mailChimpApiService.getSubscribeFormData();
+    this.subscribeForm = new FormGroup({
+      email: new FormControl(this.formValues.email),
+    });
   }
 
   checkScrollStickyHomeNav() {
@@ -127,5 +140,10 @@ export class HomeComponent implements OnInit {
     const selectedSection = elementName.getBoundingClientRect();
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - homeNavbarHeight;
     window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth' });
+  }
+
+  subscribeMember() {
+    this.mailChimpApiService.setSubscribeFormData(this.subscribeForm.value, true);
+    this.router.navigateByUrl('/about-us/subscribe');
   }
 }

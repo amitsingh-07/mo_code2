@@ -19,12 +19,15 @@ export class MailchimpApiService {
     return this.subscribeFormData;
   }
 
-  setSubscribeFormData(data: SubscribeMember) {
+  setSubscribeFormData(data: SubscribeMember, redirect?: boolean) {
     this.subscribeFormData.email = data.email;
     this.subscribeFormData.firstName = data.firstName;
     this.subscribeFormData.lastName = data.lastName;
     console.log(this.subscribeFormData);
-    this.registerUser();
+
+    if (!redirect) {
+      this.registerUser();
+    }
   }
   registerUser() {
     const subscriber = this.subscribeFormData;

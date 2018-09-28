@@ -107,7 +107,7 @@
             </div>
         <div class="subscribe__section"  #subscribeSection>
             <div class="subscribe__section--bg"></div>
-            <div class="subscribe__form--plugin">
+            <form class="subscribe__form--plugin" name="subscribeForm" id="subscribeForm" [formGroup]="subscribeForm">
                 <div class="subscribe-title--container">
                     <div class="subscribe--title">
                         Join our newsletter and get wiser every day!
@@ -117,11 +117,11 @@
                     </div> 
                     </div>
                 <div class="subscribe-input--container form-control">
-                    <input type="email" placeholder="Email"/>
-                    <button class="btn btn-primary-dark subscribe-btn">Subscribe</button> 
+                    <input type="email" placeholder="Email" formControlName="email"/>
+                    <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">Subscribe</button> 
                     </div>
                 <p class="subscribe--subtext">Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!</p>
-                </div>
+                </form>
             <div class="subscribe__section--footer" #subscribeFooter>
                 <div class="orange"></div>
                 </div>
