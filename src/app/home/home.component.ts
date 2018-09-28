@@ -1,8 +1,11 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit,
+         Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from './../shared/header/header.service';
+import { PopupModalComponent } from './../shared/modal/popup-modal/popup-modal.component';
 import { NavbarService } from './../shared/navbar/navbar.service';
 
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
@@ -16,17 +19,19 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
 })
 export class HomeComponent implements OnInit {
   pageTitle: string;
+  public firstLoad = true;
   public homeNavBarHide = false;
   public homeNavBarFixed = false;
   public mobileThreshold = 567;
   public navBarElement: ElementRef;
+  modalRef: NgbModalRef;
 
   subscribeForm: FormGroup;
   formValues: SubscribeMember;
 
   constructor(public headerService: HeaderService, public navbarService: NavbarService, private router: Router,
               public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
-              public readonly translate: TranslateService) {
+              public readonly translate: TranslateService, private modal: NgbModal) {
                 navbarService.existingNavbar.subscribe((param: ElementRef) => {
                   this.navBarElement = param;
                   this.checkScrollStickyHomeNav();
@@ -36,6 +41,10 @@ export class HomeComponent implements OnInit {
                     this.pageTitle = this.translate.instant('HOME.TITLE');
                     this.setPageTitle(this.pageTitle);
                 });
+                if (this.firstLoad) {
+                  this.triggerPopup();
+                  this.firstLoad = false;
+                }
               }
 
   @ViewChild('banner') BannerElement: ElementRef;
@@ -64,7 +73,6 @@ export class HomeComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarShadowVisibility(true);
     this.headerService.setHeaderOverallVisibility(false);
-
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.subscribeForm = new FormGroup({
       email: new FormControl(this.formValues.email),
@@ -73,6 +81,10 @@ export class HomeComponent implements OnInit {
 
   setPageTitle(title: string) {
     this.headerService.setPageTitle(title);
+  }
+
+  triggerPopup() {
+    this.modalRef = this.modal.open(PopupModalComponent, { centered: true, windowClass: 'modal-popup' });
   }
 
   checkScrollStickyHomeNav() {
