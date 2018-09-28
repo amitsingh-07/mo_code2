@@ -17,13 +17,18 @@ export class MyInfoService {
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
+    window.sessionStorage.setItem('attributes', this.attributes);
+  }
+
+  getMyInfoAttributes() {
+    return window.sessionStorage.getItem('attributes');
   }
 
   goToMyInfo() {
     window.sessionStorage.setItem('currentUrl', window.location.hash);
     const authoriseUrl = this.authApiUrl +
       '?client_id=' + this.clientId +
-      '&attributes=' + this.attributes +
+      '&attributes=' + this.getMyInfoAttributes() +
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
