@@ -44,7 +44,6 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(0);
     /* Building the form */
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
@@ -68,11 +67,10 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
       premiumWaiver: [this.formValues.premiumWaiver]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '0') {
         if (this.save()) {
           console.log('triggered');
           this.directService.setMinProdInfo(this.summarizeDetails());
-          // this.router.navigate([DIRECT_ROUTE_PATHS.RESULTS]);
         }
       }
     });

@@ -36,7 +36,6 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(3);
     this.formValues = this.directService.getHospitalPlanForm();
     this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider ? this.formValues.fullOrPartialRider : 'yes';
     this.hospitalForm = this.formBuilder.group({
@@ -46,7 +45,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       selectedPlan: [this.formValues.selectedPlan]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '3') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }

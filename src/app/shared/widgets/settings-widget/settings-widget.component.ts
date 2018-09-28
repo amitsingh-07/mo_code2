@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToolTipModalComponent } from '../../modal/tooltip-modal/tooltip-modal.component';
 
@@ -25,7 +25,7 @@ export class SettingsWidgetComponent implements OnInit {
   filterResults: any = {};
   filterArgs: any = {};
   defaultSort: IDropDownData;
-  constructor(private modal: NgbModal) {
+  constructor(private modal: NgbModal,public activeModal: NgbActiveModal) {
     this.filterProducts = new EventEmitter();
   }
   ngOnInit() {
@@ -110,7 +110,9 @@ export class SettingsWidgetComponent implements OnInit {
     console.log(this.filterResults);
     this.filterProducts.emit(this.filterResults);
   }
-
+  close() {
+    this.activeModal.close();
+  }
   showFilterTooltip(toolTip) {
     const ref = this.modal.open(ToolTipModalComponent, { centered: true });
     ref.componentInstance.tooltipTitle = toolTip.title;

@@ -41,7 +41,6 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-      this.directService.setProdCategoryIndex(6);
       this.formValues = this.directService.getRetirementIncomeForm();
       this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
       if (this.formValues.retirementIncome !== undefined ) {
@@ -66,7 +65,7 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
         payoutFeature: [this.formValues.payoutFeature]
       });
       this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '6') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }

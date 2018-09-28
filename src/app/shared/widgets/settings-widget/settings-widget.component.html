@@ -1,7 +1,14 @@
-<div class="form-group">
-  <div class="flex-row mb0">
+<div class="form-group" style="padding-bottom: 50px;
+height: 500px;
+overflow-y: auto;
+padding-top: 89px;">
+  <div class="flex-row mb0" style="position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99999;
+  background: #fff;">
     <div class="title flex-col-12">
-      Settings
+      Settings <div> <button aria-label="Close" class="close" id="modalBtn" type="button" (click)="close()"><span aria-hidden="true"></span></button></div>
     </div>
   </div>
   <div class="flex-row">
@@ -41,5 +48,9 @@
       </div>
     </div>
   </div>
-  <button class="hidden-lg btn" (click)="applyFilters()">Apply Filters</button>
+  <div class="settings-filter-btn-wrapper">
+    <button class="hidden-lg btn btn-primary btn__footer--fixed width100" (click)="applyFilters()">Apply Filters</button>
+  </div>
 </div>
+
+
