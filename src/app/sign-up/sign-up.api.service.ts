@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CtyptoService} from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
-import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -192,6 +192,10 @@ export class SignUpApiService {
    */
   verifyLogin(userEmail, userPassword) {
     return this.authService.authenticate(userEmail, this.ctyptoService.encrypt(userPassword));
+  }
+
+  getUserProfileInfo() {
+    return this.apiService.getUserProfileInfo();
   }
 
 }

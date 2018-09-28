@@ -49,7 +49,10 @@
         <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
       </div>
       <div class="flex-1 widget-btn-select" *ngIf = "!isComparePlanEnabled">
-        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">{{ 'BUTTON.SELECT_PLAN' | translate }}</button>
+        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
+            <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
+            <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
+        </button>
       </div>
       <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
         <button type="button" (click)="compareplan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>

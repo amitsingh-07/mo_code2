@@ -31,9 +31,8 @@ export class InvestmentAccountFormData {
     // SELECTNATIONLITY
     nationalitylist: any;
     nationality: any;
-    selectNationalitySingapore: string;
-    otherCountryQuestionOne: string;
-    otherCountryQuestionTwo: string;
+    unitedStatesResident: string;
+    singaporeanResident: string;
 
     // Tax Info
     Taxcountry: any;
@@ -41,4 +40,10 @@ export class InvestmentAccountFormData {
     Tin: any;
     noTinReason: any;
 
+    // Upload documents
+    nricFrontImage: File;
+    nricBackImage: File;
+    mailAdressProof: File;
+    passportImage: File;
+    resAddressProof: File;
 }
