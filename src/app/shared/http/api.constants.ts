@@ -18,6 +18,7 @@ export let apiConstants = {
         verifyEmail: 'account/account-microservice/api/verifyEmail',
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
+        userProfileInfo: 'account/account-microservice/api/getProfileSummary',
         portfolio: {
             setInvestmentObjective: PORTFOLIO_API_BASE_URL + 'api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: PORTFOLIO_API_BASE_URL + 'RiskAssessment',
