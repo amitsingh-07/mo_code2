@@ -127,7 +127,7 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, ArticleService]
     }, Formatter, CurrencyPipe],
   bootstrap: [AppComponent],
   entryComponents: [
