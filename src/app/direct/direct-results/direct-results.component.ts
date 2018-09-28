@@ -67,6 +67,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   filterTypes;
   filterModalData;
+  totalProductCount: number;
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
@@ -119,12 +120,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
           this.resultsEmptyMessage = data.responseMessage.responseDescription;
           return;
         }
-
+        this.totalProductCount = 0;
         this.enquiryId = data.objectList[0].enquiryId;
         this.searchResult = data.objectList[0].productProtectionTypeList;
         this.filteredResult = this.searchResult;
         for (const productLists of data.objectList[0].productProtectionTypeList) {
           for (const productList of productLists.productList) {
+            this.totalProductCount++;
             if (productList.insurer && productList.insurer.insurerName) {
               this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
             }
@@ -349,6 +351,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   toggleComparePlans() {
     this.selectedPlans = [];
+    this.selectedComparePlans = [];
     this.isComparePlanEnabled = !this.isComparePlanEnabled;
     this.planWidgets.forEach((widget) => {
       widget.unselectPlan();
