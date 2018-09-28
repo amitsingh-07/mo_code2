@@ -36,10 +36,10 @@ export class GuideMeCalculateService {
       if (country === singapore && course === nonmedicine && nationality === singaporean) {
         educationSum[0] = 49600;
         educationSum[1] = 48000;
-      } else if (country === singapore && course === nonmedicine && singaporePR) {
+      } else if (country === singapore && course === nonmedicine && nationality === singaporePR) {
         educationSum[0] = 69400;
         educationSum[1] = 48000;
-      } else if (country === singapore && course === nonmedicine && foreigner) {
+      } else if (country === singapore && course === nonmedicine && nationality === foreigner) {
         educationSum[0] = 106200;
         educationSum[1] = 48000;
       } else if (country === australia && course === nonmedicine) {
