@@ -112,26 +112,32 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselNext() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
-    if (bound.right > containerBound.right) {
-      this.mobileHeaderMenu.nativeElement.scrollTo(
-        {
-          left: (this.mobileHeaderMenu.nativeElement.scrollLeft + bound.width),
-          behavior: 'smooth'
-        });
+    const boundElement = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'');
+    if (boundElement) {
+      const bound = boundElement.getBoundingClientRect();
+      if (bound.right > containerBound.right) {
+        this.mobileHeaderMenu.nativeElement.scrollTo(
+          {
+            left: (this.mobileHeaderMenu.nativeElement.scrollLeft + bound.width),
+            behavior: 'smooth'
+          });
+      }
     }
   }
 
   moveCarouselPrev() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const bound = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'').getBoundingClientRect();
-    if (bound.left < containerBound.left) {
-      this.mobileHeaderMenu.nativeElement.scrollTo(
-        {
-          left: (this.mobileHeaderMenu.nativeElement.scrollLeft - bound.width),
-          behavior: 'smooth'
-        });
+    const boundElement = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'')
+    if (boundElement) {
+      const bound = boundElement.getBoundingClientRect();
+      if (bound.left < containerBound.left) {
+        this.mobileHeaderMenu.nativeElement.scrollTo(
+          {
+            left: (this.mobileHeaderMenu.nativeElement.scrollLeft - bound.width),
+            behavior: 'smooth'
+          });
+      }
     }
   }
 
@@ -158,26 +164,31 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   updateCoverageDetails() {
-    this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
-    switch (this.activeRecommendationType) {
-      case 'Life Protection':
-        this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
-        break;
-      case 'Critical Illness':
-        const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
-        this.coverageAmount = criticalIllnessValues.coverageAmount + '';
-        break;
-      case 'Occupational Disability':
-        const ocpData = this.calculateService.getOcpData();
-        this.coverageAmount = ocpData.coverageAmount + '';
-        break;
-      case 'Long Term Care':
-        const ltcData = this.calculateService.getLtcData();
-        this.coverageAmount = ltcData.monthlyPayout + '';
-        break;
-      case 'Hospital Plan':
-        this.coverageAmount = '';
-        break;
+    if (this.activeRecommendationList.productList[0]) {
+      this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
+      switch (this.activeRecommendationType) {
+        case 'Life Protection':
+          this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
+          break;
+        case 'Critical Illness':
+          const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
+          this.coverageAmount = criticalIllnessValues.coverageAmount + '';
+          break;
+        case 'Occupational Disability':
+          const ocpData = this.calculateService.getOcpData();
+          this.coverageAmount = ocpData.coverageAmount + '';
+          break;
+        case 'Long Term Care':
+          const ltcData = this.calculateService.getLtcData();
+          this.coverageAmount = ltcData.monthlyPayout + '';
+          break;
+        case 'Hospital Plan':
+          this.coverageAmount = '';
+          break;
+      }
+    } else {
+      this.coverageAmount = '';
+      this.premiumFrom = '';
     }
   }
 

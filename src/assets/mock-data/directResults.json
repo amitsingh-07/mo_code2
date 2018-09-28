@@ -58,7 +58,9 @@
           "intrestRateOfReturn": "0.00",
           "ranking": 2,
           "lastUpdatedDate": "2017-02-21T16:00:00.000+0000",
-          "lastUpdatedBy": null
+          "lastUpdatedBy": null,
+          "deferredPeriod": "3 Months",
+          "escalatingBenefit": "0%"
         },
         "promotion": {
           "insurerId": "AVV",
@@ -72,7 +74,10 @@
           "lastUpdatedTime": "2018-01-03T01:34:01.000+0000",
           "lastUpdatedBy": null
         },
-        "authorised": true
+        "authorised": true,
+        "rider" : {
+          "riderName": "Full Rider"
+        }
       }, {
         "id": "P113",
         "riderId": 0,
@@ -120,7 +125,9 @@
           "intrestRateOfReturn": "0.00",
           "ranking": 1,
           "lastUpdatedDate": "2017-03-26T16:00:00.000+0000",
-          "lastUpdatedBy": null
+          "lastUpdatedBy": null,
+          "deferredPeriod": "3 Months",
+          "escalatingBenefit": "0%"
         },
         "promotion": {
           "insurerId": "TKM",
@@ -134,7 +141,10 @@
           "lastUpdatedTime": "2018-05-25T02:03:28.000+0000",
           "lastUpdatedBy": null
         },
-        "authorised": true
+        "authorised": true,
+        "rider" : {
+          "riderName": "Full Rider"
+        }
       },
       {
         "id": "P104",
@@ -183,7 +193,9 @@
           "intrestRateOfReturn": "0.00",
           "ranking": 2,
           "lastUpdatedDate": "2017-02-21T16:00:00.000+0000",
-          "lastUpdatedBy": null
+          "lastUpdatedBy": null,
+          "deferredPeriod": "6 Months",
+          "escalatingBenefit": "3%"
         },
         "promotion": {
           "insurerId": "AVV",
@@ -197,7 +209,10 @@
           "lastUpdatedTime": "2018-01-03T01:34:01.000+0000",
           "lastUpdatedBy": null
         },
-        "authorised": true
+        "authorised": true,
+        "rider" : {
+          "riderName": "Partial Rider"
+        }
       }, {
         "id": "P113",
         "riderId": 0,
@@ -245,7 +260,9 @@
           "intrestRateOfReturn": "0.00",
           "ranking": 1,
           "lastUpdatedDate": "2017-03-26T16:00:00.000+0000",
-          "lastUpdatedBy": null
+          "lastUpdatedBy": null,
+          "deferredPeriod": "6 Months",
+          "escalatingBenefit": "0%"
         },
         "promotion": {
           "insurerId": "TKM",
@@ -259,7 +276,10 @@
           "lastUpdatedTime": "2018-05-25T02:03:28.000+0000",
           "lastUpdatedBy": null
         },
-        "authorised": true
+        "authorised": true,
+        "rider" : {
+          "riderName": "Partial Rider"
+        }
       },
       {
         "id": "P104",
@@ -308,7 +328,9 @@
           "intrestRateOfReturn": "0.00",
           "ranking": 2,
           "lastUpdatedDate": "2017-02-21T16:00:00.000+0000",
-          "lastUpdatedBy": null
+          "lastUpdatedBy": null,
+          "deferredPeriod": "6 Months",
+          "escalatingBenefit": "6%"
         },
         "promotion": {
           "insurerId": "AVV",
@@ -322,7 +344,10 @@
           "lastUpdatedTime": "2018-01-03T01:34:01.000+0000",
           "lastUpdatedBy": null
         },
-        "authorised": true
+        "authorised": true,
+        "rider" : {
+          "riderName": "Full Rider"
+        }
       }, {
         "id": "P113",
         "riderId": 0,
@@ -370,7 +395,9 @@
           "intrestRateOfReturn": "0.00",
           "ranking": 1,
           "lastUpdatedDate": "2017-03-26T16:00:00.000+0000",
-          "lastUpdatedBy": null
+          "lastUpdatedBy": null,
+          "deferredPeriod": "12 Months",
+          "escalatingBenefit": "3%"
         },
         "promotion": {
           "insurerId": "TKM",
@@ -384,7 +411,10 @@
           "lastUpdatedTime": "2018-05-25T02:03:28.000+0000",
           "lastUpdatedBy": null
         },
-        "authorised": true
+        "authorised": true,
+        "rider" : {
+          "riderName": "Full Rider"
+        }
       }]
     }]
   }]

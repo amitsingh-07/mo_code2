@@ -8,6 +8,8 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { ProductDetailComponent } from './../shared/components/product-detail/product-detail.component';
+import { HeaderService } from './../shared/header/header.service';
+import { NavbarService } from './../shared/navbar/navbar.service';
 import { SharedModule } from './../shared/shared.module';
 import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
@@ -30,6 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
     http,
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/guide-me/', suffix: '.json' },
       { prefix: './assets/i18n/direct/', suffix: '.json' }
     ]);
 }
@@ -60,6 +63,9 @@ export function createTranslateLoader(http: HttpClient) {
     ComparePlansComponent,
     SrsApprovedPlansFormComponent],
   providers: [CurrencyPipe],
-  entryComponents: [ProductDetailComponent]
+  entryComponents: [ProductDetailComponent, DirectResultsComponent]
 })
-export class DirectModule { }
+export class DirectModule {
+  constructor(public navbarService: NavbarService, public headerService: HeaderService) {
+  }
+}

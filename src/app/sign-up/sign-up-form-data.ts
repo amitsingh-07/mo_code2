@@ -17,4 +17,7 @@ export class SignUpFormData {
     // Reset Password
     resetPassword1: string;
     confirmPassword: string;
+
+    // User information after the login
+    userProfileInfo: any;
 }

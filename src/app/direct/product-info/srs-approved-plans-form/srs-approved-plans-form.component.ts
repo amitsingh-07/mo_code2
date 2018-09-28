@@ -40,7 +40,6 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(7);
     /* Building the form */
     this.formValues = this.directService.getSrsApprovedPlansForm();
     this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
@@ -59,7 +58,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
       this.selectPayoutStartAge(this.formValues.payoutStartAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '7') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }

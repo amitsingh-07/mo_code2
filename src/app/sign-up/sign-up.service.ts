@@ -228,4 +228,12 @@ export class SignUpService {
       resetKey: key
     };
   }
+
+  getUserProfileInfo() {
+    return this.signUpFormData.userProfileInfo;
+  }
+
+  setUserProfileInfo(userInfo) {
+    this.signUpFormData.userProfileInfo = userInfo;
+  }
 }
