@@ -196,6 +196,7 @@ h6 {
   // right: 5px;
   @include allmobiles {
     top: 30px !important;
+    z-index: 9;
     //opacity: 1 !important;
   }
 }

@@ -55,7 +55,6 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(2);
     this.formValues = this.directService.getOcpDisabilityForm();
     if (this.formValues.employmentType !== undefined ) {
       this.selectEmployeeType(this.formValues.employmentType, true);
@@ -73,7 +72,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       duration: [this.formValues.duration]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-    if (data !== '') {
+    if (data !== '' && data === '2') {
       if (this.save()) {
         this.directService.setMinProdInfo(this.summarizeDetails());
       }

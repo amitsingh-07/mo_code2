@@ -36,7 +36,6 @@ export class EducationFormComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(5);
     this.formValues = this.directService.getEducationForm();
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
     this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
@@ -57,7 +56,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
        this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '5') {
          if (this.save()) {
             this.directService.setMinProdInfo(this.summarizeDetails());
          }

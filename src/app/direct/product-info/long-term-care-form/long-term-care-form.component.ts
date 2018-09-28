@@ -31,7 +31,6 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
      }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(4);
     this.formValues = this.directService.getLongTermCareForm();
     this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.longTermCareForm = this.formBuilder.group({
@@ -40,7 +39,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
       monthlyPayout: [this.formValues.monthlyPayout]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '4') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
