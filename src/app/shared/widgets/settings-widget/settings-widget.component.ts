@@ -33,7 +33,9 @@ export class SettingsWidgetComponent implements OnInit {
       for (const filter of this.filters) {
         this.filterArgs[filter.name] = new Set([]);
       }
-      this.filterArgs['premiumFrequency'].add('per month');
+      if (this.filterArgs['premiumFrequency']) {
+        this.filterArgs['premiumFrequency'].add('per month');
+      }
     } else {
       this.filterArgs = this.selectedFilterList;
     }
