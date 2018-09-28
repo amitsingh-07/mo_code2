@@ -1,3 +1,5 @@
+const PORTFOLIO_API_BASE_URL = 'invest/investment-microservice/';
+
 export let apiConstants = {
     endpoint : {
         authenticate: 'account/account-microservice/authenticate',
@@ -17,10 +19,10 @@ export let apiConstants = {
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
         portfolio: {
-            setInvestmentObjective: 'invest/api/CustomerInvestmentObjective',
-            getRiskAssessmentQuestions: 'invest/investment-microservice/RiskAssessment',
-            updateRiskAssessment: 'invest/RiskAssessment',
-            getAllocationDetails: 'invest/portfolio/recommend'
+            setInvestmentObjective: PORTFOLIO_API_BASE_URL + 'api/CustomerInvestmentObjective',
+            getRiskAssessmentQuestions: PORTFOLIO_API_BASE_URL + 'RiskAssessment',
+            updateRiskAssessment: PORTFOLIO_API_BASE_URL + 'RiskAssessment',
+            getAllocationDetails: PORTFOLIO_API_BASE_URL + 'portfolio/recommend'
         },
         investmentAccount: {
             nationalitylist: 'invest/investment-microservice/countrylist',
