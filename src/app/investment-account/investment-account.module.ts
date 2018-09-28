@@ -11,6 +11,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
+import { PersonalDeclarationComponent } from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
@@ -47,7 +48,8 @@ export function createTranslateLoader(http: HttpClient) {
     SelectNationalityComponent,
     EmploymentDetailsComponent,
     TaxInfoComponent,
-    UploadDocumentsComponent
+    UploadDocumentsComponent,
+    PersonalDeclarationComponent
   ],
   providers: [CurrencyPipe]
 })

@@ -90,6 +90,9 @@ export class InvestmentAccountService {
     getNationalityList() {
         return this.apiService.getNationalityList();
     }
+    getSourceList() {
+        return this.apiService.getSourceofIncomeList();
+    }
     getNationality() {
         return {
             nationalitylist: this.investmentAccountFormData.nationalitylist,
@@ -104,6 +107,20 @@ export class InvestmentAccountService {
             Tin: this.investmentAccountFormData.Tin,
             country: this.investmentAccountFormData.Taxcountry,
             };
+    }
+    getPersonalDeclaration() {
+          return {
+            sourceOfIncome: this.investmentAccountFormData.sourceOfIncome,
+            ExistingEmploye: this.investmentAccountFormData.ExistingEmploye,
+            pep: this.investmentAccountFormData.pep,
+            beneficial: this.investmentAccountFormData.beneficial
+            };
+    }
+    setPersonalDeclarationData(data) {
+        this.investmentAccountFormData.sourceOfIncome = data.sourceOfIncome;
+        this.investmentAccountFormData.ExistingEmploye = data.radioEmploye;
+        this.investmentAccountFormData.pep = data.radioPEP;
+        this.investmentAccountFormData.beneficial = data.radioBeneficial;
     }
 
     setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {

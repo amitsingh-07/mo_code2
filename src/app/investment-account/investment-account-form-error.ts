@@ -197,6 +197,13 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid date of birth',
                 errorMessage: 'passportExpiry date should not contain alphabet.'
             }
+        },
+        sourceOfIncome: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid sourcwe',
+                errorMessage: 'Please select your source of investment funds.'
+            }
         }
     };
 
