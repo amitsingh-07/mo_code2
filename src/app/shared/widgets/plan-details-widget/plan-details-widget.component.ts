@@ -36,12 +36,9 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   canShowRanking = true;
   canShowRating = true;
   canShowDiscount = true;
-
   isRankContainerSet = false;
-
   coverageDuration;
   premiumDuration;
-
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
 
@@ -107,20 +104,17 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
     this.view.emit(this.temp);
   }
   brochureDownload() {
-    this.Brochure(this.temp, 'Brochure.json');
+    this.Brochure(this.temp.brochureLink, 'Brochure.json');
   }
   // tslint:disable-next-line:member-ordering
   Brochure = (() => {
     const a = document.createElement('a');
     document.body.appendChild(a);
-    return ((data, fileName) => {
-      const json = JSON.stringify(data);
-      const blob = new Blob([json], { type: 'octet/stream' });
-      const url = window.URL.createObjectURL(blob);
-      a.href = url;
+    return ((link, fileName) => {
+      a.href = link;
       a.download = fileName;
       a.click();
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(link);
     });
   })();
 

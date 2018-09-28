@@ -52,10 +52,8 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
 
   ngOnInit() {
     this.longTermCareFormValues = this.guideMeService.getLongTermCare();
-    this.longTermCareFormValues.careGiverTypeId = this.longTermCareFormValues.careGiverTypeId ?
-    this.longTermCareFormValues.careGiverTypeId.toString() : this.longTermCareFormValues.careGiverTypeId;
     this.longTermCareForm = new FormGroup({
-      careGiverType: new FormControl(this.longTermCareFormValues.careGiverTypeId, Validators.required)
+      careGiverType: new FormControl(this.longTermCareFormValues.careGiverTypeId + '', Validators.required)
     });
     if (this.longTermCareFormValues.careGiverTypeId) {
       this.isFormValid = true;
