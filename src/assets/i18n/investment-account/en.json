@@ -48,7 +48,13 @@
         }
   },
   "UPLOAD_DOCUMENTS": {
-    "TITLE": "Upload Documents"
+    "TITLE": "Upload Documents",
+    "MAILING_ADDRESS_PROOF": {
+      "MODAL": {
+        "TITLE": "Proof Of Mailing Address",
+        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+      }
+    }
   }
 
 }
