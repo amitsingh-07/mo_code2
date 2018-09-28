@@ -2,58 +2,82 @@
 @import './mixins';
 
 /*Global Styles*/
-html, body {
+html,
+body {
   height: 100%;
 }
-ul, ul li {
+
+ul,
+ul li {
   list-style: none;
 }
+
 *:focus {
   outline: none;
 }
+
 body {
-    //background-color: $app-backgrnd-color;
-    -webkit-overflow-scrolling: touch;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-family: $muli-regular;
-    color: $module-fill-color;
-    padding:0px;
-    margin:0px;
-    background: url("./assets/images/body-bg.png");
-    background-repeat: repeat-x;
-    max-width: 1024px;
-    margin: 0 auto;
-    background-color: $app-backgrnd-color !important;
-    @include allmobiles {
-      background: $app-backgrnd-color;
-    }
-  }
-  
-  /*Heading Styles*/
-  h2 {
-    font-family: $muli-semi-bold;
-    font-size: 36px;
-  }
-  h6 {
-    font-family: $muli-regular;
-    font-size: 18px;
-  }
-  /*Nav Bar Styles*/
-  .container-fluid {
-    padding-top: 50px;
-    padding-left: 75px;
-    padding-right: 75px;
-    padding-bottom: 65px;
+  //background-color: $app-backgrnd-color;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-family: $muli-regular;
+  color: $module-fill-color;
+  padding: 0px;
+  margin: 0px;
+  background: url("./assets/images/body-bg.png");
+  background-repeat: repeat-x;
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: $app-backgrnd-color !important;
+
+  @include allmobiles {
+    background: $app-backgrnd-color;
   }
   .navbar {
     padding-left: 0;
     padding-right: 0;
     background-color: $module-fill-color;
     box-shadow: none;
+}
+
+/*Heading Styles*/
+h2 {
+  font-family: $muli-semi-bold;
+  font-size: 36px;
+}
+
+h6 {
+  font-family: $muli-regular;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/*Nav Bar Styles*/
+.container-fluid {
+  padding-top: 50px;
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-bottom: 65px;
+}
+
+.navbar {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: $module-fill-color;
+  box-shadow: none;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: $app-backgrnd-color;
+  justify-content: space-between;
+
+  //box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
+  >.container,
+  >.container-fluid {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    color: $app-backgrnd-color;
     justify-content: space-between;
     height:84px;
     padding:0px;
@@ -758,39 +782,136 @@ body {
       }
     }
   }
-
-  .span--content-inline--underline {
-    @include allmobiles{
-      color: #ffffff;
-    }
-    color: #04a6a7;
-    text-decoration: underline;
-    font-family: $muli-bold;
   }
-  .modal-backdrop.show {
-    opacity: 0.8;
 }
-.modal .close {
-    position: absolute !important;
-    right: 12px !important;
-    top: 15px !important;
-    text-shadow: none !important;
+
+.navbar__logo,
+.navbar__back-btn--web {
+  background-repeat: no-repeat;
+  display: block;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.navbar__logo {
+  background-image: url("./assets/images/logo.png");
+  width: 130px;
+  margin-top: 20px;
+}
+
+.navbar__back-btn--web {
+  background-image: url("./assets/images/back-web.svg");
+  width: 55px;
+  height: 43px;
+  cursor: pointer;
+}
+
+.navbar__back-btn--web {
+  &:hover {
+    background-image: url("./assets/images/back-web-hover.png");
+  }
+}
+
+.navbar__back-btn--mobile {
+  background-image: url("./assets/images/back-mobile-btn.svg");
+  width: 25px;
+  height: 100%;
+  position: absolute;
+  left: 20px;
+  top: 25px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.navbar__logo__divider {
+  padding: 0 5px;
+  color: #8cd7d7;
+}
+
+.navbar__logo__subtitle {
+  line-height: 52px;
+  padding-left: 5px;
+  font-size: 16px;
+  font-family: $muli-bold;
+}
+
+.navbar__helpIcon--mobile {
+  position: absolute;
+  display: inline-block;
+  background-image: url("./assets/images/baseline-help-24-px.png");
+  width: 20px;
+  height: 20px;
+  top: 22px;
+  right: 13px;
+  z-index: 1;
+}
+
+.navbar__helpIcon--mobile-settings {
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  top: 22px;
+  right: 13px;
+  z-index: 1;
+  background-image: url("./assets/images/settings-icon.png");
+}
+
+.navbar__closeIcon {
+  position: absolute;
+  display: inline-block;
+  background: url("./assets/images/prodInfoSelectClose.svg") !important;
+  width: 20px;
+  height: 20px;
+  top: 22px;
+  right: 13px;
+  z-index: 1;
+
+  @include allmobiles {
     background: url("./assets/images/close-button-dark.svg") !important;
     width: 18px;
     height: 18px;
-    background-repeat: no-repeat !important;
-    // position: relative;
-    // float: right;
-    // top: 14px;
-    // right: 5px;
-    @include allmobiles {
-      top: 22px !important;
-      //opacity: 1 !important;
-    }
+  }
 }
+
+.span--content-inline--underline {
+  @include allmobiles {
+    color: #ffffff;
+  }
+
+  color: #04a6a7;
+  text-decoration: underline;
+  font-family: $muli-bold;
+}
+
+.modal-backdrop.show {
+  opacity: 0.8;
+}
+
+.modal .close {
+  position: absolute !important;
+  right: 25px !important;
+  top: 15px !important;
+  text-shadow: none !important;
+  background: url("./assets/images/close-button-dark.svg") !important;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat !important;
+
+  // position: relative;
+  // float: right;
+  // top: 14px;
+  // right: 5px;
+  @include allmobiles {
+    top: 30px !important;
+    z-index: 9;
+    //opacity: 1 !important;
+  }
+}
+
 a.link-white {
-    color: $white-color;
-    text-decoration: underline;
+  color: $white-color;
+  text-decoration: underline;
 }
 
 
@@ -800,6 +921,7 @@ a.link-white {
   position: fixed;
   bottom: 10px;
   left: 0;
+  z-index: 999;
   @include allmobiles {
     bottom: 0;
   }
@@ -811,6 +933,7 @@ a.link-white {
   padding: 5px 10px;
   width: fit-content;
   padding-bottom: 10px !important;
+  box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.18);
 
   @include allmobiles {
     padding-bottom: 0 !important;

@@ -1,4 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+import { MobileModalComponent } from './../../../guide-me/mobile-modal/mobile-modal.component';
+import { ToolTipModalComponent } from './../../modal/tooltip-modal/tooltip-modal.component';
 
 export interface IDropDownData {
   displayText: string;
@@ -13,89 +17,118 @@ export interface IDropDownData {
 })
 export class SettingsWidgetComponent implements OnInit {
 
+  @Input() sort: any = [];
   @Input() filters: any = [];
-  @Output() filterProducts = new EventEmitter();
+  @Input() isMobile: boolean;
+  @Input() selectedFilterList: any;
+  @Output() filterProducts: EventEmitter<any>;
+  @Output() showFilterTooltip: EventEmitter<any>;
 
+  filterResults: any = {};
   filterArgs: any = {};
   defaultSort: IDropDownData;
-  @Input() sort: any = [];
-  constructor() {
+  types;
+  modalData;
 
+  constructor(private translate: TranslateService) {
+    this.filterProducts = new EventEmitter();
+    this.showFilterTooltip = new EventEmitter();
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.types = this.translate.instant('SETTINGS.TYPES');
+      this.modalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
+    });
   }
-
   ngOnInit() {
+    if (this.selectedFilterList && this.selectedFilterList.premiumFrequency) {
+      this.filterArgs = this.selectedFilterList;
+      if (!this.selectedFilterList['premiumFrequency']) {
+        this.filterArgs['premiumFrequency'] = new Set(['per month']);
+      }
+    } else {
+      for (const filter of this.filters) {
+        this.filterArgs[filter.name] = new Set([]);
+      }
+      this.filterArgs['premiumFrequency'] = new Set(['per month']);
+    }
+
     this.defaultSort = this.sort[0];
-    this.filterArgs['premiumFrequency'] = new Set([]);
-    this.filterArgs['premiumFrequency'].add('per month');
   }
 
   setSort(sort) {
     this.defaultSort = sort;
-    this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
+    this.filterResults = { filters: this.filterArgs, sortProperty: this.defaultSort.value };
+    if (!this.isMobile) {
+      this.applyFilters();
+    }
   }
 
-  uncheck(index, value, c_index, name) {
-    const length = this.filters[index].filterTypes.length;
-    let checkedLength = 0;
+  unCheckOthers(index, value, c_index, name) {
     for (const fil of this.filters[index].filterTypes) {
       if (value === 'All' && fil.value !== 'All') {
         fil.checked = false;
-      } else if (value !== 'All' && value !== fil.value) {
-        this.filters[index].filterTypes[0].checked = false;
-      }
-      if (fil.checked) {
-        checkedLength++;
       }
     }
-    if (checkedLength === length - 1) {
-      delete this.filterArgs[name];
-      return false;
-    }
-    return true;
   }
 
-  applyFilter(name, value, allBtn, p_index, c_index) {
+  applyFilter(name, value, hasAllBtn, p_index, c_index) {
+
     this.filters[p_index].filterTypes[c_index].checked = !this.filters[p_index].filterTypes[c_index].checked;
-    if (allBtn) {
-      if (!this.uncheck(p_index, value, c_index, name)) {
-        return false;
-      }
-    }
 
-    if (name === 'premiumFrequency') {
-      this.filterArgs[name].clear();
-    }
-
-    if (this.filterArgs.hasOwnProperty(name)) {
+    if (hasAllBtn) {
       if (value === 'All') {
-        delete this.filterArgs[name];
+        setTimeout(() => {
+          this.unCheckOthers(p_index, value, c_index, name);
+          this.filterArgs[name].clear();
+          this.filters[p_index].filterTypes[c_index].checked = true;
+        }, 0);
       } else {
+        this.filters[p_index].filterTypes[0].checked = false;
         if (this.filterArgs[name].has(value)) {
           this.filterArgs[name].delete(value);
-          if (this.filterArgs[name].size === 0) {
-            delete this.filterArgs[name];
-          }
         } else {
           this.filterArgs[name].add(value);
         }
+        const selectedFilterLength = this.filterArgs[name].size;
+        if (selectedFilterLength === 0) {
+          this.filters[p_index].filterTypes[0].checked = true;
+        }
+
       }
-    } else {
-      if (value !== 'All') {
-        this.filterArgs[name] = new Set([]);
+    } else if (name === 'premiumFrequency') {
+      this.filterArgs[name].clear();
+      if (this.filterArgs[name].has(value)) {
+        this.filterArgs[name].delete(value);
+      } else {
         this.filterArgs[name].add(value);
       }
-    }
 
-    if (value === 'All') {
-      setTimeout(() => { this.filters[p_index].filterTypes[c_index].checked = true; }, 0);
-    } else if (name === 'premiumFrequency') {
       if (this.filters[p_index].filterTypes[c_index].checked) {
         const i = c_index === 1 ? 0 : 1;
         this.filters[p_index].filterTypes[i].checked = !this.filters[p_index].filterTypes[i].checked;
       } else {
-        setTimeout(() => { this.filters[p_index].filterTypes[c_index].checked = true; }, 0);
+        setTimeout(() => {
+          this.filters[p_index].filterTypes[c_index].checked = true;
+        }, 0);
       }
     }
+
+    this.filterResults = { filters: this.filterArgs, sortProperty: this.defaultSort.value };
+    if (!this.isMobile) {
+      this.applyFilters();
+    }
+  }
+
+  applyFilters() {
+    console.log({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
     this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
+  }
+
+  showTooltip(toolTip) {
+    this.showFilterTooltip.emit(toolTip);
+  }
+
+  close() {
+    this.filterProducts.emit(null);
   }
 }

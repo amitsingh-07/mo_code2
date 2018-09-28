@@ -216,6 +216,11 @@ line-height: lineHeightRem($size);
   }
 }
 
+@mixin iPadLandscape {
+	@media (min-device-width:769px) and (max-device-width:1024px) {
+    @content;
+	}
+}
 /* iPad Pro */
 
 /* Landscape */

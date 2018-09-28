@@ -29,21 +29,21 @@
         </div>
     </div>
     <div>
-      <app-life-protection-form *ngIf="selectedCategoryId == 0"></app-life-protection-form>
-      <app-critical-illness-form *ngIf="selectedCategoryId == 1"></app-critical-illness-form>
-      <app-ocp-disability-form *ngIf="selectedCategoryId == 2"></app-ocp-disability-form>
-      <app-hospital-plan-form *ngIf="selectedCategoryId == 3"></app-hospital-plan-form>
-      <app-long-term-care-form *ngIf="selectedCategoryId == 4"></app-long-term-care-form>
-      <app-education-form *ngIf="selectedCategoryId == 5"></app-education-form>
-      <app-retirement-income-form *ngIf="selectedCategoryId == 6"></app-retirement-income-form>
-      <app-srs-approved-plans-form *ngIf="selectedCategoryId == 7"></app-srs-approved-plans-form>
+      <app-life-protection-form [hidden]="selectedCategoryId != 0"></app-life-protection-form>
+      <app-critical-illness-form [hidden]="selectedCategoryId != 1"></app-critical-illness-form>
+      <app-ocp-disability-form [hidden]="selectedCategoryId != 2"></app-ocp-disability-form>
+      <app-hospital-plan-form [hidden]="selectedCategoryId != 3"></app-hospital-plan-form>
+      <app-long-term-care-form [hidden]="selectedCategoryId != 4"></app-long-term-care-form>
+      <app-education-form [hidden]="selectedCategoryId != 5"></app-education-form>
+      <app-retirement-income-form [hidden]="selectedCategoryId != 6"></app-retirement-income-form>
+      <app-srs-approved-plans-form [hidden]="selectedCategoryId != 7"></app-srs-approved-plans-form>
     </div>
   </div> 
-  <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search()">
+  <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search(selectedCategoryId)">
     {{searchText}} 
   </button>
 </div>
-<app-edit-product-info (click)="editProdInfo()"></app-edit-product-info>
+
 <!-- <div class="min-prod-info" [ngClass]="{'show': !toggleVisibility}">
     <div class="min-prod-info__block">
       <img  class="min-prod-info__block-icon" src="../../../assets/images/{{productCategorySelectedLogo}}"/>

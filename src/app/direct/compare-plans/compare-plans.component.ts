@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -13,12 +14,18 @@ import { DirectService } from './../direct.service';
 export class ComparePlansComponent implements OnInit {
   pageTitle: string;
   plansData: any[] = [];
-  constructor(public headerService: HeaderService, public directService: DirectService, public readonly translate: TranslateService) {
+  cashValueTooltipData;
+  underwritingTooltipData;
+  constructor(
+    public headerService: HeaderService, public directService: DirectService,
+    public readonly translate: TranslateService, private _location: Location) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('COMPARE_PLANS.RESULTS');
+      this.pageTitle = this.translate.instant('COMPARE_PLANS.TITLE');
+      this.cashValueTooltipData = this.translate.instant('COMPARE_PLANS.CASH_VALUE_TOOLTIP');
+      this.underwritingTooltipData = this.translate.instant('COMPARE_PLANS.NEED_UNDERWRITING_TOOLTIP');
       this.setPageTitle(this.pageTitle);
-   });
+    });
   }
 
   ngOnInit() {
@@ -29,4 +36,17 @@ export class ComparePlansComponent implements OnInit {
     this.headerService.setPageTitle(title);
   }
 
+  showCashValueTooltip() {
+    this.directService.showToolTipModal(
+      this.cashValueTooltipData['TITLE'], this.cashValueTooltipData['DESCRIPTION']);
+  }
+
+  showUnderwritingTooltip() {
+    this.directService.showToolTipModal(
+      this.underwritingTooltipData['TITLE'], this.underwritingTooltipData['DESCRIPTION']);
+  }
+
+  close() {
+    this._location.back();
+  }
 }

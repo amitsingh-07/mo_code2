@@ -14,6 +14,7 @@ export class HeaderService {
     private headerOverallVisibility = new BehaviorSubject(true);
     private headerVisibility = new BehaviorSubject(true);
     private headerDropshadow = new BehaviorSubject(true);
+    private pageSettingsIcon = new BehaviorSubject(true);
 
     currentPageTitle = this.pageTitle.asObservable();
     currentPageSubTitle = this.pageSubTitle.asObservable();
@@ -23,10 +24,11 @@ export class HeaderService {
     currentHeaderOverallVisibility = this.headerOverallVisibility.asObservable();
     currentHeaderVisibility = this.headerVisibility.asObservable();
     currentHeaderDropshadow = this.headerDropshadow.asObservable();
+    currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
 
     constructor() { }
 
-    setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
+    setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
         this.pageTitle.next(title);
         if (subTitle) {
             this.pageSubTitle.next(subTitle);
@@ -37,6 +39,12 @@ export class HeaderService {
             this.pageHelpIcon.next(true);
         } else {
             this.pageHelpIcon.next(false);
+        }
+
+        if (settingsIcon) {
+            this.pageSettingsIcon.next(true);
+        } else {
+            this.pageSettingsIcon.next(false);
         }
 
         this.headerVisibility.next(true);
