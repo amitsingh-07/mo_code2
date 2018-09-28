@@ -96,6 +96,9 @@ export class InvestmentAccountService {
     getNationalityList() {
         return this.apiService.getNationalityList();
     }
+    getSourceList() {
+        return this.apiService.getSourceofIncomeList();
+    }
     getNoTinReasonList() {
         return this.apiService.getNoTinReasonList();
     }
@@ -105,7 +108,7 @@ export class InvestmentAccountService {
             nationality: this.investmentAccountFormData.nationality,
             unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
             singaporeanResident: this.investmentAccountFormData.singaporeanResident
-            };
+        };
     }
 
     getTaxInfo() {
@@ -114,7 +117,21 @@ export class InvestmentAccountService {
             country: this.investmentAccountFormData.Taxcountry,
             haveTin: this.investmentAccountFormData.haveTin,
             noTinReason: this.investmentAccountFormData.noTinReason
-            };
+        };
+    }
+    getPersonalDeclaration() {
+        return {
+            sourceOfIncome: this.investmentAccountFormData.sourceOfIncome,
+            ExistingEmploye: this.investmentAccountFormData.ExistingEmploye,
+            pep: this.investmentAccountFormData.pep,
+            beneficial: this.investmentAccountFormData.beneficial
+        };
+    }
+    setPersonalDeclarationData(data) {
+        this.investmentAccountFormData.sourceOfIncome = data.sourceOfIncome;
+        this.investmentAccountFormData.ExistingEmploye = data.radioEmploye;
+        this.investmentAccountFormData.pep = data.radioPEP;
+        this.investmentAccountFormData.beneficial = data.radioBeneficial;
     }
 
     setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {
@@ -132,7 +149,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.passportExpiry = data.passportExpiry;
         this.investmentAccountFormData.dob = data.dob;
         this.investmentAccountFormData.gender = data.gender;
-      }
+    }
     getPersonalInfo() {
         return {
             fullName: this.investmentAccountFormData.fullName,
