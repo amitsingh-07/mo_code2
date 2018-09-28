@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showNavbar = true;
   showNavShadow = false;
   showSearchBar = false;
+  isNavbarCollapsed = false;
 
   innerWidth: any;
   mobileThreshold = 567;
