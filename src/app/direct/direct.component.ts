@@ -1,12 +1,12 @@
 import {
+  AfterViewInit,
   Component,
   ComponentFactoryResolver,
   OnInit,
   Type,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation,
-  HostListener
+  ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -33,7 +33,7 @@ export class DirectComponent implements OnInit, IPageComponent {
   isMobileView: boolean;
   modalFreeze: boolean;
   pageTitle: string;
-  searchClicked = false;
+  showingResults = false;
 
   constructor(
     private router: Router, public headerService: HeaderService,
@@ -49,10 +49,7 @@ export class DirectComponent implements OnInit, IPageComponent {
     this.showProductInfo();
   }
 
-  ngOnInit() { }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  ngOnInit() {
     if (window.innerWidth < mobileThreshold) {
       this.isMobileView = true;
     } else {
@@ -73,14 +70,30 @@ export class DirectComponent implements OnInit, IPageComponent {
   }
 
   formSubmitCallback() {
+    this.showingResults = true;
+    this.removeComponent(DirectResultsComponent);
     this.addComponent(DirectResultsComponent);
   }
 
   addComponent(componentClass: Type<any>) {
-    this.container.clear();
     // Create component dynamically inside the ng-template
     const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
-    const compRef = this.container.createComponent(componentFactory);
-    compRef.instance.isMobileView = this.isMobileView;
+    const component = this.container.createComponent(componentFactory);
+    component.instance.isMobileView = this.isMobileView;
+
+    // Push the component so that we can keep track of which components are created
+    this.components.push(component);
+  }
+
+  removeComponent(componentClass: Type<any>) {
+    // Find the component
+    const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
+    const componentIndex = this.components.indexOf(component);
+
+    if (componentIndex !== -1) {
+      // Remove component from both view and array
+      this.container.remove(this.container.indexOf(component));
+      this.components.splice(componentIndex, 1);
+    }
   }
 }

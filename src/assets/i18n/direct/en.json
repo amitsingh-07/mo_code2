@@ -1,4 +1,8 @@
 {
+  "DIRECT_GET_STARTED": {
+    "TITLE": "Get Started",
+    "SUBTITLE": "Just a few simple questions to get you started."
+  },
   "COVERAGE": {
     "TITLE": "Pick A Coverage Type",
     "MOBILE_TITLE": "Protection Type"
@@ -119,11 +123,20 @@
         "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
       },
       "COMPARE_PLANS": {
+        "TITLE": "Results",
         "INSURER_FINANCIAL_RATING":"Insurer Financial Rating",
-        "COVARAGE_DURATION":"Covarage Duration",
+        "COVARAGE_DURATION":"Coverage Duration",
         "PREMIUM_DURATION":"Premium Duration",
         "NEED_UNDERWRITING":"Need Underwriting",
+        "NEED_UNDERWRITING_TOOLTIP": {
+          "TITLE": "Requires Underwriting",
+          "DESCRIPTION" : "Before you can be insured under this plan, the insurer will first evaluate you."
+        },
         "CASH_VALUE":"Cash Value",
+        "CASH_VALUE_TOOLTIP": {
+          "TITLE": "Cash Value",
+          "DESCRIPTION" : "When this plan matures, you will receive a cash payout!"
+        },
         "PAYOUT_DETAILS":"Payout Details",
         "UNIQUE_FEATURES":"Unique Features"
       },
@@ -136,7 +149,7 @@
         "ESCALATING_BENEFIT": "This feature gives you a 3% yearly increase in payout to help beat inflation.",
         "FULL_PARTIAL_RIDER": "Full Rider: <br/>This rider provides coverage for both co-insurance and deductible components. <br/><br/>Partial Rider: <br/>This rider only provides coverage for either co-insurance or deductible.",
         "CLAIM_CRITERIA": {
-            "TITLE": "Long-Term Care",
+            "TITLE": "Claim Criteria",
             "DESCRIPTION": "<p><strong>Standard:</strong> To be eligible for a payout, you will have to be unable to perform 3 out of 6 Activities of Daily Living (ADLs).</p><p><strong>Lenient:</strong> To be eligible for a payout, you will have to be unable to perform 2 out of 6 Activities of Daily Living (ADLs).</p>",
             "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"../assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/transferring.png\"/></div>\n</div>"
         }

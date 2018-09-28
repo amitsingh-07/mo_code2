@@ -1,13 +1,14 @@
-<app-edit-product-info (click)="editProdInfo()" [ngClass]="{'is-hidden' : isComparePlanEnabled}"></app-edit-product-info>
+<app-edit-product-info (editProdInfo)="editProdInfo()" [ngClass]="{'is-hidden' : isComparePlanEnabled && isMobileView}"></app-edit-product-info>
 <div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>
-<div id="results-web" class="flex-row grp-results hidden-sm-md">
+<div id="results-web" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
   <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
     <div>
       <div style="justify-content: center;">
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
           <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
-          <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
+          <app-plan-widget #planWidget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0"
+            [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)" (view)="viewDetails($event)"
+            [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
     </div>
@@ -17,18 +18,21 @@
       [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button>
     <label class="lbl">{{filteredResult.length}} Plans Found</label>
     <div style="clear: both; margin-bottom: 10px;"></div>
-    <app-settings-widget *ngIf="filters.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)"></app-settings-widget>
+    <app-settings-widget *ngIf="filters.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)" (showFilterTooltip)="showSettingsToolTip($event)"></app-settings-widget>
+    <div [hidden]="!isComparePlanEnabled" class="overlay"></div>
   </div>
 </div>
-<div id="results-mobile" class="hidden-lg">
+<div id="results-mobile" *ngIf="isMobileView" class="hidden-lg">
 
-  <div class="compare-plan-header" *ngIf = "isComparePlanEnabled">Compare <button aria-label="Close" class="compare-plan-header--close" id="modalBtn" type="button" (click)="close()"><span aria-hidden="true"></span></button></div>
-    <div class="results-mobile__compare-plan" [ngClass]="{'is-hidden' : isComparePlanEnabled}">
-        <div class="results-mobile__compare-plan--lbl"><label class="lbl">{{filteredResult.length}} Plans Found</label></div>
-        <div class="results-mobile__compare-plan--btn"><button ngbButtonLabel class="direct-form-btn--radio btn btn-small" (click)="toggleComparePlans()" style="float:left;"
-        [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button></div>
-    </div>
-  <div class="flex-row" [ngClass]="{'mt60' : isComparePlanEnabled}" *ngFor="let category of searchResult; let i = index" style="padding: 10px">
+  <div class="compare-plan-header" *ngIf="isComparePlanEnabled">Compare <button aria-label="Close" class="compare-plan-header--close"
+      id="modalBtn" type="button" (click)="toggleComparePlans()"><span aria-hidden="true"></span></button></div>
+  <div class="results-mobile__compare-plan" [ngClass]="{'is-hidden' : isComparePlanEnabled}">
+    <div class="results-mobile__compare-plan--lbl"><label class="lbl">{{filteredResult.length}} Plans Found</label></div>
+    <div class="results-mobile__compare-plan--btn"><button ngbButtonLabel class="direct-form-btn--radio btn btn-small"
+        (click)="toggleComparePlans()" style="float:left;" [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button></div>
+  </div>
+  <div class="flex-row" [ngClass]="{'mt60' : isComparePlanEnabled}" *ngFor="let category of searchResult; let i = index"
+    style="padding: 10px">
     <!-- <div>
       <div style="justify-content: center;">
         <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
@@ -40,19 +44,19 @@
     </div> -->
     <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
       <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
-      <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-      (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
+      <app-plan-widget #planWidget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
+        (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
     </div>
   </div>
 </div>
-<div [hidden]="filteredResult?.length > 0">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
+<div [hidden]="filteredResult?.length > 0 || !enquiryId">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
 
 <!-- Floating plan selection footer -->
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
     <span class="selected-count">{{selectedPlans.length}}</span>
     <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
-    <span class="btn-proceed" (click)="proceed()">{{ 'BUTTON.PROCEED' | translate}}</span>
+    <span class="btn-proceed" (click)="proceedSelection()">{{ 'BUTTON.PROCEED' | translate}}</span>
   </div>
 </div>
 
@@ -65,4 +69,3 @@
   </div>
 </div>
 <!-- / Floating plan selection for compare plans footer -->
-

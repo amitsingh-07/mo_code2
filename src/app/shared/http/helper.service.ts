@@ -1,7 +1,8 @@
-import { ErrorModalComponent } from './../modal/error-modal/error-modal.component';
-import { IError } from './interfaces/error.interface';
 import { Injectable } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
+import { ErrorModalComponent } from './../modal/error-modal/error-modal.component';
+import { IError } from './interfaces/error.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,14 @@ export class HelperService {
 
   hideLoader() {
     // this.loadingModalRef.close();
+  }
+
+  showHttpErrorModal(error: IError) {
+    if (error && error.error && error.message) {
+      this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
+      this.loadingModalRef.componentInstance.errorTitle = error.error;
+      this.loadingModalRef.componentInstance.errorMessage = error.message;
+    }
   }
 
   showCustomErrorModal(error: IError) {

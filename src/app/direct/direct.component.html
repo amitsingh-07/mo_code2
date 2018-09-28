@@ -5,4 +5,9 @@
   <div>
     <ng-template #directResults></ng-template>
   </div>
+  <div [hidden]="showingResults" class="banner-image">
+      <img src="assets/images/get-started-image.svg" id="directImgBnr" />
+      <div class="direct-banner-title">{{ 'DIRECT_GET_STARTED.TITLE' | translate }}</div>
+      <div class="direct-banner-sub-title">{{ 'DIRECT_GET_STARTED.SUBTITLE' | translate }}</div>
+  </div>
 </div>

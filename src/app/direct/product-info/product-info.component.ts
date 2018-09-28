@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit, Output, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,6 +17,7 @@ import { DirectService } from './../direct.service';
 })
 export class ProductInfoComponent implements OnInit {
 
+  @Input() isEditMode: boolean;
   @Output() formSubmitCallback: EventEmitter<any> = new EventEmitter();
 
   modalRef: NgbModalRef;
@@ -77,6 +78,12 @@ export class ProductInfoComponent implements OnInit {
         this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
       }
     });
+
+    this.directService.modalFreezeCheck.subscribe((freezeCheck) => {
+      if (freezeCheck) {
+        this.editProdInfo();
+      }
+    });
   }
 
   ngOnInit() {
@@ -126,8 +133,9 @@ export class ProductInfoComponent implements OnInit {
   editProdInfo() {
     this.toggleVisibility = true;
     if (this.innerWidth < this.mobileThreshold) {
+      this.toggleSelectVisibility = false;
       this.toggleBackdropVisibility = false;
-      this.directService.setModalFreeze(true);
+      this.toggleFormVisibility = true;
     } else {
       this.toggleBackdropVisibility = true;
     }

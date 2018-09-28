@@ -1,6 +1,7 @@
 @import '../../../../variables';
 @import '../../../../mixins';
 
+
 app-settings-widget {
   .with-help-icon {
     .help-icon {
@@ -19,11 +20,13 @@ app-settings-widget {
   .form-group {
     background-color: #ffffff;
     border-radius: 10px;
+
     @include allmobiles {
       border-radius: 0;
       margin-bottom: 0;
       padding-bottom: 20px;
     }
+
     input[type='radio']:checked+label,
     input[type='checkbox']:checked+label {
       color: #ffffff;
@@ -138,6 +141,7 @@ app-settings-widget {
     }
   }
 }
+
 .settings-filter-btn-wrapper {
   text-align: center;
   padding: 0 25px;
@@ -152,11 +156,12 @@ app-settings-widget {
     background: #fff;
   }
 }
+
 @include allmobiles {
-.settings-block {
-  padding-bottom: 50px !important;
-  height: 500px;
-  overflow-y: auto;
-  padding-top: 89px !important;
-}
+  .settings-block {
+    padding-bottom: 50px !important;
+    height: 100vh;
+    overflow-y: auto;
+    padding-top: 89px !important;
+  }
 }

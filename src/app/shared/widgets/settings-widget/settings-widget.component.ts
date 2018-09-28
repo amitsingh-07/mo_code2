@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
-import { ToolTipModalComponent } from '../../modal/tooltip-modal/tooltip-modal.component';
+import { MobileModalComponent } from './../../../guide-me/mobile-modal/mobile-modal.component';
+import { ToolTipModalComponent } from './../../modal/tooltip-modal/tooltip-modal.component';
 
 export interface IDropDownData {
   displayText: string;
@@ -16,36 +17,41 @@ export interface IDropDownData {
 })
 export class SettingsWidgetComponent implements OnInit {
 
-  @Input() sort: any;
-  @Input() filters: any;
+  @Input() sort: any = [];
+  @Input() filters: any = [];
   @Input() isMobile: boolean;
   @Input() selectedFilterList: any;
   @Output() filterProducts: EventEmitter<any>;
+  @Output() showFilterTooltip: EventEmitter<any>;
 
   filterResults: any = {};
   filterArgs: any = {};
   defaultSort: IDropDownData;
   types;
+  modalData;
 
-  constructor(private modal: NgbModal, private translate: TranslateService) {
+  constructor(private translate: TranslateService) {
     this.filterProducts = new EventEmitter();
+    this.showFilterTooltip = new EventEmitter();
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.types = this.translate.instant('SETTINGS.TYPES');
       this.modalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
-      });
+    });
   }
   ngOnInit() {
-    if (!this.selectedFilterList) {
+    if (this.selectedFilterList && this.selectedFilterList.premiumFrequency) {
+      this.filterArgs = this.selectedFilterList;
+      if (!this.selectedFilterList['premiumFrequency']) {
+        this.filterArgs['premiumFrequency'] = new Set(['per month']);
+      }
+    } else {
       for (const filter of this.filters) {
         this.filterArgs[filter.name] = new Set([]);
       }
-      if (this.filterArgs['premiumFrequency']) {
-        this.filterArgs['premiumFrequency'].add('per month');
-      }
-    } else {
-      this.filterArgs = this.selectedFilterList;
+      this.filterArgs['premiumFrequency'] = new Set(['per month']);
     }
+
     this.defaultSort = this.sort[0];
   }
 
@@ -114,25 +120,15 @@ export class SettingsWidgetComponent implements OnInit {
   }
 
   applyFilters() {
-    console.log(this.filterResults);
-    this.filterProducts.emit(this.filterResults);
+    console.log({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
+    this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
   }
+
+  showTooltip(toolTip) {
+    this.showFilterTooltip.emit(toolTip);
+  }
+
   close() {
-    this.activeModal.close();
-  }
-  showFilterTooltip(toolTip) {
-    if(toolTip.title === this.types.CLAIM_CRITERIA) {
-      const ref = this.modal.open(MobileModalComponent, {
-        centered: true
-      });
-      ref.componentInstance.mobileTitle = this.modalData.TITLE;
-      ref.componentInstance.description = this.modalData.DESCRIPTION;
-      ref.componentInstance.icon_description = this.modalData.LOGO_DESCRIPTION;
-    } else {
-    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
-    ref.componentInstance.tooltipTitle = toolTip.title;
-    ref.componentInstance.tooltipMessage = toolTip.message;
-    }
+    this.filterProducts.emit(null);
   }
 }
-
