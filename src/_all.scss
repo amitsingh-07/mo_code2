@@ -19,9 +19,6 @@ body {
     color: $module-fill-color;
     padding:0px;
     margin:0px;
-    background: url("./assets/images/body-bg.png");
-    background-repeat: repeat-x;
-    max-width: 1024px;
     margin: 0 auto;
     background-color: $app-backgrnd-color !important;
     @include allmobiles {
@@ -70,9 +67,11 @@ body {
     }
     &.header{
       padding:0.5rem 1rem;
+      justify-content:center;
       @include minMobilemaxPhablet{
         height:auto;
         min-height:65.5px;
+        border-bottom:1px solid #e1e1e1;
       }  
     }
     .navbar-nav{
@@ -125,7 +124,7 @@ body {
         overflow:hidden;
         height:0px;
         &.show{
-          height:400px;
+          height:300px;
         }
       }
       .navbar-nav{

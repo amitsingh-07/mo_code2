@@ -1,16 +1,18 @@
 <!--Header Start-->
 <nav *ngIf="showOverallHeader" class="navbar header fixed-top hidden-sm-md" [ngClass]="{'nav--dropshadow': showHeaderDropshadow}">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <span class="navbar__back-btn--web" (click)="goBack()"></span>
-        </li>
-        <li class="nav-item">
-            <span class="navbar__logo--secondary" routerLink="/"></span>
-        </li>
-        <li class="nav-item">
-            <span class="navbar__logo__subtitle">Insurance Adviser</span>
-        </li>
-    </ul>
+    <div class="navbar-wrapper">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <span class="navbar__back-btn--web" (click)="goBack()"></span>
+            </li>
+            <li class="nav-item">
+                <span class="navbar__logo--secondary" routerLink="/"></span>
+            </li>
+            <li class="nav-item">
+                <span class="navbar__logo__subtitle">Insurance Adviser</span>
+            </li>
+        </ul>
+    </div> 
 </nav>
 <nav *ngIf="showOverallHeader" class="navbar--sub"></nav>
 <nav *ngIf="showHeader && showOverallHeader" class="navbar header fixed-top hidden-lg">
