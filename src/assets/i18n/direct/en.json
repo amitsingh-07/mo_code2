@@ -134,7 +134,7 @@
         "CLIAM_FEATURE": "With a single payout feature, you will only be eligible for a one-time payout in the event you are diagnosed with either early, intermediate or late stage critical illness. A multiple payout feature allows for additional payouts to be made to you in the event of a re-diagnosis of early, intermediate or late stage critical illness.",
         "DEFERRED_PERIOD": "This indicates the length of waiting time between your diagnosis of a disability and the point where the payout occurs.",
         "ESCALATING_BENEFIT": "This feature gives you a 3% yearly increase in payout to help beat inflation.",
-        "FULL_PARTIAL_RIDER": "Full Rider: This rider provides coverage for both co-insurance and deductible components. Partial Rider: This rider only provides coverage for either co-insurance or deductible.",
+        "FULL_PARTIAL_RIDER": "Full Rider: <br/>This rider provides coverage for both co-insurance and deductible components. <br/><br/>Partial Rider: <br/>This rider only provides coverage for either co-insurance or deductible.",
         "CLAIM_CRITERIA": "Standard: To be eligible for a payout, you will have to be unable to perform 3 out of 6 Activities of Daily Living (ADLs). Lenient: To be eligible for a payout, you will have to be unable to perform 2 out of 6 Activities of Daily Living (ADLs)."
       }
   }

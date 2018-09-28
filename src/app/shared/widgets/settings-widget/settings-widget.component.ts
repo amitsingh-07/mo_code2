@@ -16,10 +16,10 @@ export interface IDropDownData {
 })
 export class SettingsWidgetComponent implements OnInit {
 
-  @Input() sort: any = [];
-  @Input() filters: any = [];
+  @Input() sort: any;
+  @Input() filters: any;
   @Input() isMobile: boolean;
-  @Input() selectedFilterList: any = [];
+  @Input() selectedFilterList: any;
   @Output() filterProducts: EventEmitter<any>;
 
   filterResults: any = {};

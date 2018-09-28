@@ -95,15 +95,31 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
         this.filteredResult = this.searchResult;
         for (const productLists of data.objectList[0].productProtectionTypeList) {
           for (const productList of productLists.productList) {
-            this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-            this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
-            this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
-
-            this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-            this.deferredPeriod[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-            this.escalatingBenefit[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-            this.fullPartialRider[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            if (productList.insurer && productList.insurer.insurerName) {
+              this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            }
+            if (productList.insurer && productList.insurer.rating) {
+              this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
+            }
+            if (productList.premium && productList.premium.payoutAge) {
+              this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
+            }
+            if (productList.premium && productList.premium.deferredPeriod) {
+              this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;
+            }
+            if (productList.premium && productList.premium.escalatingBenefit) {
+              this.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
+              productList.premium.escalatingBenefit;
+            }
+            if (productList.rider && productList.rider.riderName) {
+              this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
+            }
+            if (productList.insurer && productList.insurer.insurerName) {
+              this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            }
+            if (productList.insurer && productList.insurer.insurerName) {
             this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+            }
           }
         }
         this.insurers = Object.values(this.insurers).map((key) => {
