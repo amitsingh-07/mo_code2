@@ -32,6 +32,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() bestValue;
   @Input() planSelected;
   @Input() comparePlanSelected;
+  @Input() isDirect;
 
   icon;
   insurerLogo;
@@ -122,6 +123,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     ref.componentInstance.plan = data;
     ref.componentInstance.protectionType = this.type;
     ref.componentInstance.bestValue = this.bestValue;
+    if (this.isDirect) {
+      ref.componentInstance.isDirect = true;
+    }
     ref.result.then((plan) => {
       if (plan) {
         this.isSelected = true;

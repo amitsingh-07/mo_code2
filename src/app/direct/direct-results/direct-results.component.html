@@ -7,7 +7,7 @@
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
           <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
           <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" [comparePlanSelected] = "selectedComparePlans"  (compare)="comparePlan($event)"></app-plan-widget>
+            (select)="selectPlan($event)" (view)="viewDetails($event)" [isDirect] = "true" [planSelected]="selectedPlans" [comparePlanSelected] = "selectedComparePlans"  (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
           <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
           <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
+            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" [isDirect] = "true" (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
     </div>
