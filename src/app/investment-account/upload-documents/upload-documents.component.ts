@@ -118,7 +118,7 @@ export class UploadDocumentsComponent implements OnInit {
     return fileName;
   }
 
-  clearFileSelection(control, event, thumbElem) {
+  clearFileSelection(control, event, thumbElem?) {
     event.stopPropagation();
     control.setValue('');
     debugger;
