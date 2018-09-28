@@ -34,8 +34,8 @@ export class PersonalDeclarationComponent implements OnInit {
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-      this.pageTitle = this.translate.instant('TAX_INFO.TITLE');
-      this.translator = this.translate.instant('TAX_INFO');
+      this.pageTitle = this.translate.instant('PERSONAL_DECLARATION.TITLE');
+      this.translator = this.translate.instant('PERSONAL_DECLARATION');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -69,17 +69,17 @@ this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
   }
   showHelpModalPep() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Politically Exposed Person';
+    ref.componentInstance.errorTitle = this.translator.PEP;
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription =  'Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.';
+    ref.componentInstance.errorDescription =  this.translator.PEP_DESC;
     return false;
   }
   // tslint:disable-next-line:no-identical-functions
   showHelpModalBeneficial() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Beneficial Owner';
+    ref.componentInstance.errorTitle = this.translator.BENEFICIAL;
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription =  'This person is the decision maker of the investment funds and has full control over the assets.';
+    ref.componentInstance.errorDescription = this.translator.BENEFICIAL_DESC ;
     return false;
   }
   goToNext(form) {

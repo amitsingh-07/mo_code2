@@ -8,8 +8,7 @@
     <form name="personalDeclarationForm" [formGroup]="personalDeclarationForm">
       <div class="flex-row">
         <div class="flex-col-4" class="country_text">
-          <label for="name" id="personal-declaration-label">Source Of
-            Investment Funds</label>
+          <label for="name" id="personal-declaration-label"> {{ 'PERSONAL_DECLARATION.SOURCE' | translate}}</label>
         </div>
         <div class="flex-col-8">
 
@@ -35,7 +34,7 @@
       <!-- First question -->
       <div class="flex-row mb10">
         <div class="flex-col-11 mt15">
-          <div class="tin_question_text" id="question-one">Are you a director, officer, trading representative or employee of SGX trading, excluding iFAST?
+          <div class="tin_question_text" id="question-one">{{ 'PERSONAL_DECLARATION.QUESTION1' | translate}}
           </div>
         </div>
         <!-- <div class="flex-col-1">
@@ -49,13 +48,13 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="empolye_yes" value="yes" (click)="yesClick()"> Yes
+                  <input ngbButton type="radio" id="empolye_yes" value="yes" (click)="yesClick()"> {{ 'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="empolye_no" value="no" (click)="noClick()">No</label>
+                  <input ngbButton type="radio" id="empolye_no" value="no" (click)="noClick()">{{ 'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>
           </div>
@@ -65,7 +64,7 @@
       <!-- second question -->
       <div class="flex-row mb10">
         <div class="flex-col-11 mt15">
-          <div class="tin_question_text" id="question-two">Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?
+          <div class="tin_question_text" id="question-two">{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
           </div>
         </div>
         <div class="flex-col-1">
@@ -79,13 +78,13 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_yes" value="yes" (click)="yesClick()"> Yes
+                  <input ngbButton type="radio" id="pep_yes" value="yes" (click)="yesClick()"> {{ 'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_no" value="no" (click)="noClick()">No</label>
+                  <input ngbButton type="radio" id="pep_no" value="no" (click)="noClick()">{{ 'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>
           </div>
@@ -95,7 +94,7 @@
 <!-- third question -->
 <div class="flex-row mb10">
   <div class="flex-col-11 mt15">
-    <div class="tin_question_text" id="question-three">Are you the beneficial owner of this account?
+    <div class="tin_question_text" id="question-three">{{ 'PERSONAL_DECLARATION.QUESTION3' | translate}}
     </div>
   </div>
   <div class="flex-col-1">
@@ -109,13 +108,13 @@
       <div class="flex-row">
         <div class="flex-col-6">
           <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-            <input ngbButton type="radio" id="ben_yes" value="yes" (click)="yesClick()"> Yes
+            <input ngbButton type="radio" id="ben_yes" value="yes" (click)="yesClick()"> {{ 'PERSONAL_DECLARATION.YES_lBL' | translate}}
           </label>
         </div>
         <div class="flex-col-6">
 
           <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-            <input ngbButton type="radio" id="ben_no" value="no" (click)="noClick()">No</label>
+            <input ngbButton type="radio" id="ben_no" value="no" (click)="noClick()">{{ 'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
         </div>
       </div>
     </div>
@@ -125,5 +124,5 @@
 </form>
   </div>
   <button type="button" id="personalInforNextBtn" (click)="goToNext(personalDeclarationForm)" [disabled]="disableButton()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-              id="getStrdBtn3">Continue</button>
+              id="getStrdBtn3">{{ 'PERSONAL_DECLARATION.CONTINUE' | translate}}</button>
 </div>
