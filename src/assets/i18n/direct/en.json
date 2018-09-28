@@ -135,7 +135,11 @@
         "DEFERRED_PERIOD": "This indicates the length of waiting time between your diagnosis of a disability and the point where the payout occurs.",
         "ESCALATING_BENEFIT": "This feature gives you a 3% yearly increase in payout to help beat inflation.",
         "FULL_PARTIAL_RIDER": "Full Rider: <br/>This rider provides coverage for both co-insurance and deductible components. <br/><br/>Partial Rider: <br/>This rider only provides coverage for either co-insurance or deductible.",
-        "CLAIM_CRITERIA": "Standard: To be eligible for a payout, you will have to be unable to perform 3 out of 6 Activities of Daily Living (ADLs). Lenient: To be eligible for a payout, you will have to be unable to perform 2 out of 6 Activities of Daily Living (ADLs)."
+        "CLAIM_CRITERIA": {
+            "TITLE": "Long-Term Care",
+            "DESCRIPTION": "<p><strong>Standard:</strong> To be eligible for a payout, you will have to be unable to perform 3 out of 6 Activities of Daily Living (ADLs).</p><p><strong>Lenient:</strong> To be eligible for a payout, you will have to be unable to perform 2 out of 6 Activities of Daily Living (ADLs).</p>",
+            "LOGO_DESCRIPTION": "<div class=\"modal__icon-container\"><div  class=\"modal__icons\"><img src=\"../assets/images/washing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/feeding.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/dressing.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/toileting.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/mobility.png\"/></div>\n<div class=\"modal__icons\"><img src=\"../assets/images/transferring.png\"/></div>\n</div>"
+        }
       }
   }
 

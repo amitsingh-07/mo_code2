@@ -16,9 +16,8 @@
                 width: 512px;
                 margin: 0 auto;
             }
-            
-            .link-txt-wrap {
-                padding: 30px;
+            .related-topics{
+                flex-direction: row !important;
             }
             .link-txt-wrap {
                 padding: 30px;
@@ -48,12 +47,7 @@
             height: auto;
             margin: auto;
         }
-
-        .divider{
-            border-top: solid 0.5px #979797;
-            margin: 0;
-        }
-
+ 
         .welcome-msg {
             font-family: "Muli", Semi Bold ;
             font-size: 24px;
@@ -63,6 +57,11 @@
             padding: 20px;
         }
  
+        .divider{
+            border-top: solid 0.5px #979797;
+            margin: 0;
+        }
+
         .welcome-desc{
             font-family: "Muli", Light;
             font-size: 18px;
@@ -79,7 +78,7 @@
             padding: 20px;
             margin-bottom: 17px;
         }
-
+        
         .title-logo {
             display: flex;
             flex-direction: row;
@@ -167,7 +166,6 @@
             flex-direction: row;
             justify-content: flex-start;
             flex-wrap: wrap;
-            padding-left: 0px;
         }
 
         .selected-plans ul li{
@@ -193,6 +191,32 @@
             font-family: "Muli", Light;
             font-weight: 100;
         }
+        .topic-title{
+            height: 38px;
+            font-family: "Muli", Semi Bold;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.1px;
+            text-align: center;
+            color: #000000;
+        }
+        .related-topics{
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            border-radius: 3px;
+            background-color: #f0f9fa;
+            border: solid 0.5px #c0eded;
+            margin-bottom: 50px;
+        }
+        
+        .related-topics .btn{
+            font-size: 11px;
+            width: 105px;
+            height: 30px;
+            border-radius: 3px;
+            box-shadow: 0 3px 3.5px 0 rgba(0, 0, 0, 0.14);
+        }
 
         .link-txt-wrap {
             display: flex;
@@ -200,27 +224,19 @@
             justify-content: space-between;
             align-items: center;
             color: #000000;
-            border-radius: 3px;
+            font-size: 12px;
+            font-family: "Muli", Light;
             background-color: #f0f9fa;
-            border: solid 0.5px #c0eded;
-            font-size: 18px;
-            font-family: "Muli", semi bold;
-            font-weight: bold;
-            font-style: italic;
+            font-weight: 300;
             padding-top: 13.5px;
             padding-bottom: 42.5px;
             text-align: center;
-            margin-bottom: 50px;
+            padding: 10px !important;
         }
 
         .link-txt-wrap .btn{
             font-style: normal;
-            font-weight: normal;
-        }
-
-        .link-txt-wrap img {
-            width: 248.5px;
-            height: 205px;
+            font-weight: bold;
         }
 
         .footer {
@@ -276,10 +292,23 @@
                 <li><div>8.</div> <div><span>SRS-Approved Plan</span><span>My Protector Term Plan <br/>$122.70/month</span></div></li>
             </ul>
         </div>
-        <div class="link-txt-wrap">
-            <img src="http://localhost:4200/assets/images/welcome-msg.svg" alt="">
-            <div>We are offering free Will writing service <br/>(worth $150), click here to get started!</div>
-            <div class="btn"><a href="#">Start Will Writing</a></div>
+        <div class="topic-title">Read our top articles:</div>
+        <div class="related-topics">
+            <div class="link-txt-wrap">
+                <img src="http://localhost:4200/assets/images/child-education@3x.png" alt="">
+                <div>5 Best Child’s Education<br/>Savings Plans</div>
+                <div class="btn"><a href="#">Read Now</a></div>
+            </div>
+            <div class="link-txt-wrap">
+                <img src="http://localhost:4200/assets/images/insurance-overlooked@3x.png" alt="">
+                <div>The Most Overlooked<br/>Insurance</div>
+                <div class="btn"><a href="#">Read Now</a></div>
+            </div>
+            <div class="link-txt-wrap">
+                <img src="http://localhost:4200/assets/images/life-staging@3x.png" alt="">
+                <div>Life Stage<br/>Planning</div>
+                <div class="btn"><a href="#">Read Now</a></div>
+            </div>
         </div>
         <div class="divider"></div>
         <div class="footer">

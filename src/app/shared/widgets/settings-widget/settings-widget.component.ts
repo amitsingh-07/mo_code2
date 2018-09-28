@@ -25,8 +25,15 @@ export class SettingsWidgetComponent implements OnInit {
   filterResults: any = {};
   filterArgs: any = {};
   defaultSort: IDropDownData;
-  constructor(private modal: NgbModal) {
+  types;
+
+  constructor(private modal: NgbModal, private translate: TranslateService) {
     this.filterProducts = new EventEmitter();
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.types = this.translate.instant('SETTINGS.TYPES');
+      this.modalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
+      });
   }
   ngOnInit() {
     if (!this.selectedFilterList) {
@@ -110,8 +117,17 @@ export class SettingsWidgetComponent implements OnInit {
   }
 
   showFilterTooltip(toolTip) {
+    if(toolTip.title === this.types.CLAIM_CRITERIA) {
+      const ref = this.modal.open(MobileModalComponent, {
+        centered: true
+      });
+      ref.componentInstance.mobileTitle = this.modalData.TITLE;
+      ref.componentInstance.description = this.modalData.DESCRIPTION;
+      ref.componentInstance.icon_description = this.modalData.LOGO_DESCRIPTION;
+    } else {
     const ref = this.modal.open(ToolTipModalComponent, { centered: true });
     ref.componentInstance.tooltipTitle = toolTip.title;
     ref.componentInstance.tooltipMessage = toolTip.message;
+    }
   }
 }

@@ -5,7 +5,8 @@ import {
   Type,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  HostListener
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +16,8 @@ import { HeaderService } from './../shared/header/header.service';
 import { IPageComponent } from './../shared/interfaces/page-component.interface';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectService } from './direct.service';
+
+const mobileThreshold = 567;
 
 @Component({
   selector: 'app-direct',
@@ -27,6 +30,7 @@ export class DirectComponent implements OnInit, IPageComponent {
   @ViewChild('directResults', { read: ViewContainerRef }) container: ViewContainerRef;
   components = [];
 
+  isMobileView: boolean;
   modalFreeze: boolean;
   pageTitle: string;
   searchClicked = false;
@@ -46,6 +50,15 @@ export class DirectComponent implements OnInit, IPageComponent {
   }
 
   ngOnInit() { }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (window.innerWidth < mobileThreshold) {
+      this.isMobileView = true;
+    } else {
+      this.isMobileView = false;
+    }
+  }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?) {
     this.headerService.setPageTitle(title, null, helpIcon);
@@ -67,6 +80,7 @@ export class DirectComponent implements OnInit, IPageComponent {
     this.container.clear();
     // Create component dynamically inside the ng-template
     const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
-    this.container.createComponent(componentFactory);
+    const compRef = this.container.createComponent(componentFactory);
+    compRef.instance.isMobileView = this.isMobileView;
   }
 }

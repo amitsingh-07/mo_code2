@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewEncapsulation, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -23,6 +23,8 @@ const settingsHeaderIcon = 'navbar__helpIcon--mobile-settings';
   encapsulation: ViewEncapsulation.None
 })
 export class DirectResultsComponent implements IPageComponent, OnInit {
+
+  @Input() isMobileView: boolean;
 
   sortList: IDropDownData[] = [];
 
@@ -109,7 +111,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
             }
             if (productList.premium && productList.premium.escalatingBenefit) {
               this.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
-              productList.premium.escalatingBenefit;
+                productList.premium.escalatingBenefit;
             }
             if (productList.rider && productList.rider.riderName) {
               this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
@@ -118,7 +120,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
               this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
             }
             if (productList.insurer && productList.insurer.insurerName) {
-            this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+              this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
             }
           }
         }
@@ -267,6 +269,14 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
     }
   }
 
+  showMobileMaxSelection() {
+
+  }
+
+  showWebMaxSelection() {
+
+  }
+
   comparePlan(data) {
     if (data.selected) {
       this.selectedPlans.push(data.plan);
@@ -288,7 +298,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit {
   }
 
   filterProducts(data: any) {
-    this.filterArgs = this.selectedFilterList =  data.filters;
+    this.filterArgs = this.selectedFilterList = data.filters;
     this.sortProperty = data.sortProperty;
   }
 }
