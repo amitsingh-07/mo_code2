@@ -130,6 +130,10 @@ export class ProductInfoComponent implements OnInit {
         element.active = true;
       }
     });
+
+    if (this.innerWidth < this.mobileThreshold) {
+      this.selectProductCategory(this.productCategoryList[0], 0);
+    }
   }
 
   search() {
