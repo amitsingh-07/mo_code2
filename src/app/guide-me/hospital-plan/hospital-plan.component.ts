@@ -8,8 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { GuideMeService } from '../guide-me.service';
 import { GuideMeApiService } from '../guide-me.api.service';
+import { GuideMeService } from '../guide-me.service';
 import { HospitalPlan } from './hospital-plan';
 
 const assetImgPath = './assets/images/';
@@ -47,10 +47,14 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.hospitalPlanFormValues = this.guideMeService.getHospitalPlan();
+    this.hospitalPlanFormValues.hospitalClassId = this.hospitalPlanFormValues.hospitalClassId ?
+    this.hospitalPlanFormValues.hospitalClassId.toString() : this.hospitalPlanFormValues.hospitalClassId;
     this.hospitalPlanForm = new FormGroup({
-      hospitalPlan: new FormControl(this.hospitalPlanFormValues, Validators.required)
+      hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalClassId, Validators.required)
     });
-
+    if (this.hospitalPlanFormValues.hospitalClassId) {
+      this.isFormValid = true;
+    }
     this.guideMeApiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
@@ -74,19 +78,19 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
     this.isFormValid = true;
   }
 
-  save() {
-      const selectedPlan: HospitalPlan = {
-        hospitalClass: this.hospitalPlanFormValues.hospitalClass,
-        hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
-        hospitalClassId: this.hospitalPlanFormValues.hospitalClassId,
-        isFullRider: false
-      };
-      this.guideMeService.setHospitalPlan(selectedPlan);
-      return true;
+  save(form) {
+    const selectedPlan: HospitalPlan = {
+      hospitalClass: this.hospitalPlanFormValues.hospitalClass,
+      hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
+      hospitalClassId: this.hospitalPlanFormValues.hospitalClassId,
+      isFullRider: false
+    };
+    this.guideMeService.setHospitalPlan(selectedPlan);
+    return true;
   }
 
   goToNext(form) {
-    if (this.save()) {
+    if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
         this.guideMeService.incrementProtectionNeedsIndex();
       });
