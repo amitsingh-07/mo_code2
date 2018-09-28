@@ -57,6 +57,12 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailZipCode = data.mailingAddress.mailZipCode;
         }
     }
+    setTaxInfoFormData(data) {
+        this.investmentAccountFormData.Taxcountry = data.Taxcountry;
+        this.investmentAccountFormData.haveTin = data.radioTin;
+        this.investmentAccountFormData.Tin = data.tinNumber;
+        this.investmentAccountFormData.noTinReason = data.noTinReason;
+    }
     // tslint:disable-next-line
     getFormErrorList(form) {
         const controls = form.controls;
@@ -90,6 +96,9 @@ export class InvestmentAccountService {
     getNationalityList() {
         return this.apiService.getNationalityList();
     }
+    getNoTinReasonList() {
+        return this.apiService.getNoTinReasonList();
+    }
     getNationality() {
         return {
             nationalitylist: this.investmentAccountFormData.nationalitylist,
@@ -103,6 +112,8 @@ export class InvestmentAccountService {
         return {
             Tin: this.investmentAccountFormData.Tin,
             country: this.investmentAccountFormData.Taxcountry,
+            haveTin: this.investmentAccountFormData.haveTin,
+            noTinReason: this.investmentAccountFormData.noTinReason
             };
     }
 
