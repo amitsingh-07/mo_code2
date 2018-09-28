@@ -104,7 +104,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
     this.view.emit(this.temp);
   }
   brochureDownload() {
-    this.Brochure(this.temp.brochureLink, 'Brochure.json');
+    this.Brochure(this.temp.brochureLink, 'brochure.pdf');
   }
   // tslint:disable-next-line:member-ordering
   Brochure = (() => {
