@@ -24,6 +24,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   @Input() data;
   @Input() type;
   @Input() bestValue;
+  @Input() isDirect;
 
   icon;
   insurerLogo;
@@ -52,7 +53,6 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   }
 
   ngDoCheck() {
-
   }
 
   ngOnInit() {
