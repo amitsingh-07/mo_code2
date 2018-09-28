@@ -16,7 +16,7 @@
       [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button>
     <label class="lbl">{{filteredResult.length}} Plans Found</label>
     <div style="clear: both; margin-bottom: 10px;"></div>
-    <app-settings-widget *ngIf="sortList.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)"></app-settings-widget>
+    <app-settings-widget *ngIf="filters.length > 0" [filters]="filters" [selectedFilterList]="selectedFilterList" [sort]="sortList" (filterProducts)="filterProducts($event)"></app-settings-widget>
   </div>
 </div>
 <div id="results-mobile" class="hidden-lg">
