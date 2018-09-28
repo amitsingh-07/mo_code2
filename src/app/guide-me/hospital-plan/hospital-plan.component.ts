@@ -47,10 +47,8 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
 
   ngOnInit() {
     this.hospitalPlanFormValues = this.guideMeService.getHospitalPlan();
-    this.hospitalPlanFormValues.hospitalClassId = this.hospitalPlanFormValues.hospitalClassId ?
-    this.hospitalPlanFormValues.hospitalClassId.toString() : this.hospitalPlanFormValues.hospitalClassId;
     this.hospitalPlanForm = new FormGroup({
-      hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalClassId, Validators.required)
+      hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalClassId + '', Validators.required)
     });
     if (this.hospitalPlanFormValues.hospitalClassId) {
       this.isFormValid = true;
