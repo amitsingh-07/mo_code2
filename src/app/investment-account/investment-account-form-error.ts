@@ -120,6 +120,27 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Zipcode should not contain special characters in mailing address.'
             }
         },
+        tinNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid TIN',
+                errorMessage: 'Please enter your TIN number.'
+            }
+        },
+        taxCountry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid country',
+                errorMessage: 'Please select your country.'
+            }
+        },
+        noTinReason: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid reason',
+                errorMessage: 'Please select a reason.'
+            }
+        },
         fullName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string

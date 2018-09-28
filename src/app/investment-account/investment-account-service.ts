@@ -57,6 +57,12 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailZipCode = data.mailingAddress.mailZipCode;
         }
     }
+    setTaxInfoFormData(data) {
+        this.investmentAccountFormData.Taxcountry = data.Taxcountry;
+        this.investmentAccountFormData.haveTin = data.radioTin;
+        this.investmentAccountFormData.Tin = data.tinNumber;
+        this.investmentAccountFormData.noTinReason = data.noTinReason;
+    }
     // tslint:disable-next-line
     getFormErrorList(form) {
         const controls = form.controls;
@@ -93,28 +99,33 @@ export class InvestmentAccountService {
     getSourceList() {
         return this.apiService.getSourceofIncomeList();
     }
+    getNoTinReasonList() {
+        return this.apiService.getNoTinReasonList();
+    }
     getNationality() {
         return {
             nationalitylist: this.investmentAccountFormData.nationalitylist,
             nationality: this.investmentAccountFormData.nationality,
             unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
             singaporeanResident: this.investmentAccountFormData.singaporeanResident
-            };
+        };
     }
 
     getTaxInfo() {
         return {
             Tin: this.investmentAccountFormData.Tin,
             country: this.investmentAccountFormData.Taxcountry,
-            };
+            haveTin: this.investmentAccountFormData.haveTin,
+            noTinReason: this.investmentAccountFormData.noTinReason
+        };
     }
     getPersonalDeclaration() {
-          return {
+        return {
             sourceOfIncome: this.investmentAccountFormData.sourceOfIncome,
             ExistingEmploye: this.investmentAccountFormData.ExistingEmploye,
             pep: this.investmentAccountFormData.pep,
             beneficial: this.investmentAccountFormData.beneficial
-            };
+        };
     }
     setPersonalDeclarationData(data) {
         this.investmentAccountFormData.sourceOfIncome = data.sourceOfIncome;
@@ -138,7 +149,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.passportExpiry = data.passportExpiry;
         this.investmentAccountFormData.dob = data.dob;
         this.investmentAccountFormData.gender = data.gender;
-      }
+    }
     getPersonalInfo() {
         return {
             fullName: this.investmentAccountFormData.fullName,
