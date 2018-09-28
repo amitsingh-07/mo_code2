@@ -133,3 +133,33 @@ app-direct-results {
     color: $black-color;
   }
 }
+.compare-plan-header {
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  height: 66px; 
+  z-index: 9999; 
+  background: $app-backgrnd-color;
+  text-align: center;
+  color: $white-color;
+  font-family: $muli-semi-bold;
+  border-bottom: 1px solid $white-color;
+  font-size: 24px;
+  line-height: 66px;
+  button {
+    position: absolute;
+    right: 15px !important;
+    top: 25px !important;
+  }
+}
+.compare-plan-header--close {
+    right: 12px !important;
+    text-shadow: none !important;
+    background: url("../../../assets/images/close-btn-white.png") !important;
+    width: 23px;
+    height: 23px;
+    background-repeat: no-repeat !important;
+    top: 20px !important;
+    border: none;
+    line-height: 65px;
+}

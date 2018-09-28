@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToolTipModalComponent } from '../../modal/tooltip-modal/tooltip-modal.component';
 
@@ -40,7 +40,9 @@ export class SettingsWidgetComponent implements OnInit {
       for (const filter of this.filters) {
         this.filterArgs[filter.name] = new Set([]);
       }
-      this.filterArgs['premiumFrequency'].add('per month');
+      if (this.filterArgs['premiumFrequency']) {
+        this.filterArgs['premiumFrequency'].add('per month');
+      }
     } else {
       this.filterArgs = this.selectedFilterList;
     }
@@ -115,7 +117,9 @@ export class SettingsWidgetComponent implements OnInit {
     console.log(this.filterResults);
     this.filterProducts.emit(this.filterResults);
   }
-
+  close() {
+    this.activeModal.close();
+  }
   showFilterTooltip(toolTip) {
     if(toolTip.title === this.types.CLAIM_CRITERIA) {
       const ref = this.modal.open(MobileModalComponent, {
@@ -131,3 +135,4 @@ export class SettingsWidgetComponent implements OnInit {
     }
   }
 }
+

@@ -19,7 +19,11 @@ app-settings-widget {
   .form-group {
     background-color: #ffffff;
     border-radius: 10px;
-
+    @include allmobiles {
+      border-radius: 0;
+      margin-bottom: 0;
+      padding-bottom: 20px;
+    }
     input[type='radio']:checked+label,
     input[type='checkbox']:checked+label {
       color: #ffffff;
@@ -133,4 +137,8 @@ app-settings-widget {
       right: 0 !important;
     }
   }
+}
+.settings-filter-btn-wrapper {
+  text-align: center;
+  padding: 0 25px;
 }
