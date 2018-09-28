@@ -47,9 +47,9 @@
       </button>
     </div>
   </div>
-  <div class="row mt10 brochure">
-      <div class="col-md-6 col-btn-bottom widget-btn-select">
-        <button type="button" (click)="brochureDownload()" class="btn width100">Download Brochure</button>
+  <div class="row mt20" *ngIf = "isDirect">
+      <div class="col-md-12 col-btn-bottom" [hidden]="!this.data.brochureLink">
+        <button type="button" (click)="brochureDownload()" class="btn width100 brochure">Download Brochure (2MB)</button>
       </div>
     </div>
 </div>

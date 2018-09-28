@@ -12,6 +12,7 @@ export class ProductDetailComponent implements OnInit {
   @Input() plan: any;
   @Input() protectionType = '';
   @Input() bestValue = false;
+  @Input() isDirect;
 
   expandedList = [];
   current = 0;

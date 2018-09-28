@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 import { DirectApiService } from '../direct.api.service';
 import { DirectService } from '../direct.service';
+import { HeaderService } from './../../shared/header/header.service';
 
 @Component({
   selector: 'app-edit-product-info',
@@ -9,8 +11,12 @@ import { DirectService } from '../direct.service';
   styleUrls: ['./edit-product-info.component.scss']
 })
 export class EditProductInfoComponent implements OnInit {
+
+  @Output() editProdInfo: EventEmitter<any> = new EventEmitter();
+
+  pageTitle;
   toggleVisibility = true;
-  mobileThreshold = 567 ;
+  mobileThreshold = 567;
   toggleBackdropVisibility = false;
   productCategoryList: any;
   productCategorySelectedIndex: number;
@@ -19,16 +25,17 @@ export class EditProductInfoComponent implements OnInit {
   initLoad = true;
   productCategorySelectedLogo: string;
 
-  constructor(private route: Router, private directService: DirectService, private directApiService: DirectApiService) { }
+  constructor(
+    private directService: DirectService, private directApiService: DirectApiService,
+    private translate: TranslateService, private headerService: HeaderService) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((results) => {
+      this.pageTitle = this.translate.instant('PROFILE.TITLE2');
+    });
+  }
 
   ngOnInit() {
-    this.directApiService.getProdCategoryList().subscribe((data) => {
-    this.productCategoryList = data.objectList;
-    this.directService.prodCategoryIndex.subscribe((index) => {
-    this.productCategorySelectedIndex = index;
-    this.initCategorySetup(index);
-      });
-    });
+
     this.directService.prodSearchInfoData.subscribe((data) => {
       if (data !== '') {
         this.minProdSearch = data;
@@ -39,31 +46,22 @@ export class EditProductInfoComponent implements OnInit {
         this.toggleBackdropVisibility = false;
         this.directService.setModalFreeze(false);
       }
+      this.initCategorySetup();
     });
   }
 
-  initCategorySetup(prodCategoryIndex) {
-    this.productCategoryList.forEach((element, i) => {
-      element.active = false;
-      if (i === prodCategoryIndex) {
-        this.productCategorySelected = element.prodCatName;
-        this.productCategorySelectedIndex = element.prodCatIcon;
-        this.productCategorySelectedLogo = element.prodCatIcon;
-        element.active = true;
-      }
-    });
+  initCategorySetup() {
+    const element = this.directService.getProductCategory();
+    this.productCategorySelected = element.prodCatName;
+    this.productCategorySelectedIndex = element.id;
+    this.productCategorySelectedLogo = element.prodCatIcon;
   }
 
-  editProdInfo() {
+  editProdInfoForm() {
     this.directService.currentIndexValue = this.productCategorySelectedIndex;
     this.toggleVisibility = true;
-    if (window.innerWidth < this.mobileThreshold) {
-      this.toggleBackdropVisibility = false;
-      this.directService.setModalFreeze(true);
-    } else {
-      this.toggleBackdropVisibility = true;
-    }
-    this.route.navigate(['direct']);
+    this.headerService.setPageTitle(this.pageTitle);
+    this.directService.setModalFreeze(true);
   }
 
 }

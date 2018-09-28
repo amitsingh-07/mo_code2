@@ -32,6 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
     http,
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/guide-me/', suffix: '.json' },
       { prefix: './assets/i18n/direct/', suffix: '.json' }
     ]);
 }
@@ -62,7 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
     ComparePlansComponent,
     SrsApprovedPlansFormComponent],
   providers: [CurrencyPipe],
-  entryComponents: [ProductDetailComponent]
+  entryComponents: [ProductDetailComponent, DirectResultsComponent]
 })
 export class DirectModule {
   constructor(public navbarService: NavbarService, public headerService: HeaderService) {

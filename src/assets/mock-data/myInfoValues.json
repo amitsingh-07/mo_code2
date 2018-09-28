@@ -1,9 +1,342 @@
 {
-  "responseMessage": {
-    "responseCode": 6000,
-    "responseDescription": "Successful response"
-  },
-  "objectList": [{
-    "CPF": 4000
-  }]
+	"responseCode": 6000,
+	"responseMessage": "Successful response",
+	"person": {
+		"edulevel": {
+			"lastupdated": "2017-03-29",
+			"source": "2",
+			"classification": "C",
+			"value": "3"
+		},
+		"regadd": {
+			"country": "SG",
+			"unit": "128",
+			"street": "BEDOK NORTH AVENUE 1",
+			"lastupdated": "2016-03-11",
+			"block": "548",
+			"source": "1",
+			"postal": "460548",
+			"classification": "C",
+			"floor": "09",
+			"building": ""
+		},
+		"mobileno": {
+			"code": "65",
+			"prefix": "+",
+			"lastupdated": "2017-09-20",
+			"source": "4",
+			"classification": "C",
+			"nbr": "97324992"
+		},
+		"hanyupinyinname": {
+			"lastupdated": "2015-06-01",
+			"source": "1",
+			"classification": "C",
+			"value": ""
+		},
+		"marriedname": {
+			"lastupdated": "2015-06-01",
+			"source": "1",
+			"classification": "C",
+			"value": ""
+		},
+		"assessableincome": {
+			"lastupdated": "2015-12-23",
+			"source": "1",
+			"classification": "C",
+			"value": "1456789.00"
+		},
+		"cpfcontributions": {
+			"cpfcontribution": [{
+				"date": "2016-12-01",
+				"amount": "500.00",
+				"month": "2016-11",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2016-12-12",
+				"amount": "500.00",
+				"month": "2016-12",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2016-12-21",
+				"amount": "500.00",
+				"month": "2016-12",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-01-01",
+				"amount": "500.00",
+				"month": "2016-12",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-01-12",
+				"amount": "500.00",
+				"month": "2017-01",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-01-21",
+				"amount": "500.00",
+				"month": "2017-01",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-02-01",
+				"amount": "500.00",
+				"month": "2017-01",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-02-12",
+				"amount": "500.00",
+				"month": "2017-02",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-02-21",
+				"amount": "500.00",
+				"month": "2017-02",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-03-01",
+				"amount": "500.00",
+				"month": "2017-02",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-03-12",
+				"amount": "500.00",
+				"month": "2017-03",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-03-21",
+				"amount": "500.00",
+				"month": "2017-03",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-04-01",
+				"amount": "500.00",
+				"month": "2017-03",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-04-12",
+				"amount": "500.00",
+				"month": "2017-04",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-04-21",
+				"amount": "500.00",
+				"month": "2017-04",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-05-01",
+				"amount": "500.00",
+				"month": "2017-04",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-05-12",
+				"amount": "500.00",
+				"month": "2017-05",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-05-21",
+				"amount": "500.00",
+				"month": "2017-05",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-06-01",
+				"amount": "500.00",
+				"month": "2017-05",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-06-12",
+				"amount": "500.00",
+				"month": "2017-06",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-06-21",
+				"amount": "500.00",
+				"month": "2017-06",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-07-01",
+				"amount": "500.00",
+				"month": "2017-06",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-07-12",
+				"amount": "500.00",
+				"month": "2017-07",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-07-21",
+				"amount": "500.00",
+				"month": "2017-07",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-08-01",
+				"amount": "500.00",
+				"month": "2017-07",
+				"employer": "Crystal Horse Invest Pte Ltd"
+			}, {
+				"date": "2017-08-12",
+				"amount": "750.00",
+				"month": "2017-08",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-08-21",
+				"amount": "750.00",
+				"month": "2017-08",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-09-01",
+				"amount": "750.00",
+				"month": "2017-08",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-09-12",
+				"amount": "750.00",
+				"month": "2017-09",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-09-21",
+				"amount": "750.00",
+				"month": "2017-09",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-10-01",
+				"amount": "750.00",
+				"month": "2017-09",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-10-12",
+				"amount": "750.00",
+				"month": "2017-10",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-10-21",
+				"amount": "750.00",
+				"month": "2017-10",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-11-01",
+				"amount": "750.00",
+				"month": "2017-10",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-11-12",
+				"amount": "750.00",
+				"month": "2017-11",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-11-21",
+				"amount": "750.00",
+				"month": "2017-11",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-12-01",
+				"amount": "750.00",
+				"month": "2017-11",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-12-12",
+				"amount": "750.00",
+				"month": "2017-12",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2017-12-21",
+				"amount": "750.00",
+				"month": "2017-12",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2018-01-01",
+				"amount": "750.00",
+				"month": "2017-12",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2018-01-12",
+				"amount": "750.00",
+				"month": "2018-01",
+				"employer": "Delta Marine Consultants PL"
+			}, {
+				"date": "2018-01-21",
+				"amount": "750.00",
+				"month": "2018-01",
+				"employer": "Delta Marine Consultants PL"
+			}],
+			"lastupdated": "2015-12-23",
+			"source": "1",
+			"classification": "C"
+		},
+		"email": {
+			"lastupdated": "2017-09-20",
+			"source": "4",
+			"classification": "C",
+			"value": "test@gmail.com"
+		},
+		"race": {
+			"lastupdated": "2016-03-11",
+			"source": "1",
+			"classification": "C",
+			"value": "CN"
+		},
+		"housingtype": {
+			"lastupdated": null,
+			"source": "1",
+			"classification": "C",
+			"value": ""
+		},
+		"sex": {
+			"lastupdated": "2016-03-11",
+			"source": "1",
+			"classification": "C",
+			"value": "F"
+		},
+		"hdbtype": {
+			"lastupdated": "2015-12-23",
+			"source": "1",
+			"classification": "C",
+			"value": "111"
+		},
+		"cpfbalances": {
+			"oa": "1581.48",
+			"ma": "11470.70",
+			"lastupdated": "2015-12-23",
+			"source": "1",
+			"classification": "C",
+			"sa": "21967.09"
+		},
+		"hanyupinyinaliasname": {
+			"lastupdated": "2015-06-01",
+			"source": "1",
+			"classification": "C",
+			"value": ""
+		},
+		"marital": {
+			"lastupdated": "2017-03-29",
+			"source": "1",
+			"classification": "C",
+			"value": "1"
+		},
+		"aliasname": {
+			"lastupdated": "2015-06-01",
+			"source": "1",
+			"classification": "C",
+			"value": "TRICIA TAN XIAO HUI"
+		},
+		"nationality": {
+			"lastupdated": "2016-03-11",
+			"source": "1",
+			"classification": "C",
+			"value": "SG"
+		},
+		"dob": {
+			"lastupdated": "2016-03-11",
+			"source": "1",
+			"classification": "C",
+			"value": "1958-05-17"
+		},
+		"name": {
+			"lastupdated": "2015-06-01",
+			"source": "1",
+			"classification": "C",
+			"value": "TAN XIAO HUI"
+		},
+		"uinfin": "S9812381D"
+	}
+
 }

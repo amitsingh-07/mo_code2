@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, HostListener } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, HostListener, ChangeDetectorRef } from '@angular/core';
 import { NavbarService } from './navbar.service';
 
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
 
-  constructor(private navbarService: NavbarService, config: NgbDropdownConfig, private renderer: Renderer2) {
+  constructor(
+    private navbarService: NavbarService, config: NgbDropdownConfig, private renderer: Renderer2,
+    private cdr: ChangeDetectorRef) {
     config.autoClose = true;
   }
 
@@ -41,6 +43,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarShadowVisibility.subscribe((showNavShadow) => {
       this.showNavShadow = showNavShadow;
+      this.cdr.detectChanges();
     });
   }
 

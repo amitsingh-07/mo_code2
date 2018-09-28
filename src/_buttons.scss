@@ -109,6 +109,23 @@ button:active:focus {
       background-color: $btn-disabled-bg !important;
     }
   }
+  &.btn-primary-modal {
+    background-color: $app-backgrnd-color;
+    border: 1px solid $app-backgrnd-color;
+    color: $white-color;
+    &:hover {
+      background-color: transparent;
+      border: 1px solid $app-backgrnd-color !important;
+      color: $white-color !important;
+    }
+    &:focus,
+    &:active {
+      outline: none !important;
+      border: 1px solid $app-backgrnd-color !important;
+      color: $white-color !important;
+      background-color: transparent !important;
+    }
+  }
 }
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
   outline: none !important;
@@ -441,6 +458,9 @@ button:active:focus {
 }
 
 .min-prod-info{
+  @include tablet {
+    padding: 0 20px;
+  }
   .min-prod-info__block{
     position: relative;
     display: flex;
@@ -452,13 +472,16 @@ button:active:focus {
     padding:12px 64px 12px 20px;
     border-radius: 8px;
     color: $teal-color;
-    width: 1024px;
+    width: 1000px;
     max-height:70px; 
     min-height:64px;
     //max-width: calc(1024px - 160px);
-    min-width:337px;
+    //min-width:337px;
     box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
-    
+
+    @include allmobiles {
+      box-shadow: 0 8px 12px 0 rgba(138, 155, 169, 0.3);
+    }
     @include minMobilemaxPhablet{
       width:100% !important;
       min-width:0px;
@@ -541,7 +564,11 @@ button:active:focus {
         color:$teal-color;
         font-size:16px;
         line-height:1.1;
-        margin-top: 4px;
+        margin-top: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 98%;
       }
     }
   }
