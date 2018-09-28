@@ -13,7 +13,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
-import { ScrollSpyModule } from 'ngx-scrollspy';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
@@ -52,7 +51,6 @@ import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-moda
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
-import { SubscribeComponent } from './subscribe/subscribe.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -87,8 +85,7 @@ export function tokenGetterFn() {
     FooterComponent,
     NumberOnlyDirective,
     CallBackComponent,
-    HomeComponent,
-    SubscribeComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

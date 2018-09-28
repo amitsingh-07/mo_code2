@@ -115,7 +115,10 @@ body {
       flex-direction:row;
       flex-basis:auto;
       justify-content:space-between;
-      max-width:550px;
+      max-width:450px;
+      &.searchOpen{
+        max-width:600px;
+      }
       @include minMobilemaxPhablet{
         flex-direction:column;
         width:100%;
@@ -130,6 +133,7 @@ body {
         &.primary{
           justify-content:space-between;
           flex-basis:80%;
+          margin-right:20px;
           @include minMobilemaxPhablet{
             justify-content:flex-start;
             flex-basis:unset;
@@ -340,6 +344,7 @@ body {
       .dropdown-menu{
         &.show{
           position: absolute;
+          top:35px !important;
         }
         &.right{
           right:0px;

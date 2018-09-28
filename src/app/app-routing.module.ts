@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { SubscribeComponent } from './subscribe/subscribe.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,7 +13,6 @@ const routes: Routes = [
   // {component: CallBackComponent, matcher: test},
   {path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule'},
   {path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule'},
-  {path: 'subscribe', component: SubscribeComponent },
   {path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule'},
   // Legacy Routes
   {path: 'learn', loadChildren: './article/article.module#ArticleModule'}
