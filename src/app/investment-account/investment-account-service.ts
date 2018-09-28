@@ -89,22 +89,41 @@ export class InvestmentAccountService {
     getNationalityList() {
         return this.apiService.getNationalityList();
     }
+    getIndustryList() {
+        return this.apiService.getIndustryList();
+    }
+    getOccupationList() {
+        return this.apiService.getOccupationList();
+    }
+    getEmployementStatusList() {
+        return this.apiService.getEmployementStatusList();
+    }
     getNationality() {
         return {
             nationalitylist: this.investmentAccountFormData.nationalitylist,
             nationality: this.investmentAccountFormData.nationality,
-            };
+        };
     }
     getTaxInfo() {
         return {
             Tin: this.investmentAccountFormData.Tin,
             country: this.investmentAccountFormData.Taxcountry,
-            };
+        };
     }
     setNationality(nationalitylist: any, nationalityObj: any) {
         this.investmentAccountFormData.nationalitylist = nationalitylist;
         this.investmentAccountFormData.nationality = nationalityObj;
 
     }
+    getEmployementDetails() {
+        return {
+            CompanyName: this.investmentAccountFormData.CompanyName,
+            contactNumber: this.investmentAccountFormData.contactNumber
+        };
+    }
+    // setEmployementDetails(CompanyName: string, contactNumber: string) {
+    //     CompanyName: this.investmentAccountFormData.CompanyName;
+    //     contactNumber: this.investmentAccountFormData.contactNumber;
+    // }
 
 }

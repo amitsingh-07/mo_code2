@@ -1,9 +1,434 @@
-<div class="residential-address">
+<div class="employement-details">
+
+  <div class="step-indicator-container">
+    <div class="container-fluid">
+      <app-step-indicator [count]="7" [activeStepIndex]="2"></app-step-indicator>
+    </div>
+  </div>
+
   <div class="container-fluid">
     <div class="content">
       <div class="row">
         <div class="col-12">
-          &lt;&lt;&lt; Employment Details Placeholder &gt;&gt;&gt;
+          <div class="autofill-link">
+
+            <div class="autofill-text">Autofill Forms Via</div>
+
+
+            <div class="autofill-logo">
+              <img class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" />
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+          <form id="employement_details_form" name="employeDetailsFrom" [formGroup]="employementDetailsForm">
+            <!-- EMPLOyeMENT STATUS -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="employement_details_status" id="employement_details_status-lbl">Employment Status
+                  </label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>{{employementstatus}}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let option of  employementStatusList; let i = index;" (click)="setEmployementValue(option)"
+                          id="residentialAddress-country-option-{{i}}">{{option}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Company name -->
+            <div class="flex-row mb10">
+              <div class="flex-col-5">
+                <label for="name" id="empliyement_status_Lbl">Company Name
+                </label>
+              </div>
+              <div class="flex-col-7">
+                <input type="text" id="empliyement_status_company_input" class="form-control">
+              </div>
+            </div>
+
+            <!-- Industry -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="employement_details_status" id="employement_details_status-lbl">Industry
+                  </label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>Employement
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let option of industryList; let i = index;" (click)="setIndustryValue(option.industry)"
+                          id="residentialAddress-country-option-{{i}}">{{option.industry | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Occupation -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="employement_details_status" id="employement_details_status-lbl">Occupation
+                  </label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>Occupation
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue(option.occupation)"
+                          id="residentialAddress-country-option-{{i}}">{{option.occupation | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-row mb10">
+              <div class="flex-col-5">
+                <label for="name" id="empliyement_status_Lbl">Contact Number
+                </label>
+              </div>
+              <div class="flex-col-7">
+                <input type="number" id="empliyement_status_company_input" class="form-control">
+              </div>
+            </div>
+
+
+
+            <!-- <div class="form-group-single-column  mb10 flex-col">
+              <div class="checkbox-button two-label">
+                <input id="residentialAddress_mailingsame_radio" name="isMailingAddressSame" (change)="addOrRemoveMailingAddress()" name="protectionNeed"
+                  type="checkbox" class="field checkbox" value="true">
+                <label for="residentialAddress_mailingsame_radio" id="residentialAddress_mailingsame_lbl">
+                  <div class="input-label-black" id="residentialAddress_optionhead_lbl">Employer's Address</div>
+                  <div class="input-label-normal" id="residentialAddress_optionhead_desc">
+                    Same as Mailing Address</div>
+                </label>
+              </div>
+            </div> -->
+
+
+            
+            <!-- COUNTRY -->
+             <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{ 'RESIDENTIAL_ADDRESS.COUNTRY'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.country)}">
+                    <div ngbDropdown>
+                      <button  class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                        ngbDropdownToggle>{{employementDetailsForm.controls.country.value}}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('country',option.country, i)"
+                          id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- POSTAL CODE -->
+            <div class="form-group" *ngIf="isUserNationalitySingapore">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-postalcode-drpdown" id="residentialAddress-postalcode-lbl">{{ 'RESIDENTIAL_ADDRESS.POSTAL_CODE'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control with-button" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.postalCode)}">
+                    <div class="row">
+                      <div class="col-7">
+                        <input type="text" class="input-control grey" formControlName="postalCode" id="residentialAddress-postalcode-txt" />
+
+                      </div>
+                      <div class="col-5">
+                        <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.postalCode.value, employementDetailsForm.controls.address1, employementDetailsForm.controls.address2)" class="btn btn-secondary right">{{
+                          'COMMON.LABEL.RETRIEVE' | translate}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-address1-txt" id="residentialAddress-address1-lbl">{{'RESIDENTIAL_ADDRESS.ADDRESS_1'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.address1)}">
+                    <input type="text" class="input-control grey" formControlName="address1" id="residentialAddress-address1-txt" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ADDRESS 2 -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-address2-txt" id="residentialAddress-address2-lbl">{{'RESIDENTIAL_ADDRESS.ADDRESS_2'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.address2)}">
+                    <input type="text" class="input-control grey" formControlName="address2" id="residentialAddress-address2-txt" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- UNIT NO -->
+            <div class="form-group" *ngIf="isUserNationalitySingapore">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-unitno-txt" id="residentialAddress-unitno-lbl">{{'RESIDENTIAL_ADDRESS.UNIT_NO'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.unitNo)}">
+                    <input type="text" class="input-control grey" formControlName="unitNo" id="residentialAddress-unitno-txt" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CITY -->
+            <div class="form-group" *ngIf="!isUserNationalitySingapore">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-city-txt" id="residentialAddress-city-lbl">{{'RESIDENTIAL_ADDRESS.CITY'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.city)}">
+                    <input type="text" class="input-control grey" formControlName="city" id="residentialAddress-city-txt" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STATE -->
+            <div class="form-group" *ngIf="!isUserNationalitySingapore">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-state-txt" id="residentialAddress-state-lbl">{{'RESIDENTIAL_ADDRESS.STATE'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.state)}">
+                    <input type="text" class="input-control grey" formControlName="state"
+                      id="residentialAddress-state-txt" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ZIP CODE -->
+            <div class="form-group" *ngIf="!isUserNationalitySingapore">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-zipcode-txt" id="residentialAddress-zipcode-lbl">{{'RESIDENTIAL_ADDRESS.ZIPCODE'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.zipCode)}">
+                    <input type="text" class="input-control grey" formControlName="zipCode"
+                      id="residentialAddress-zipcode-txt" />
+                  </div>
+                </div>
+              </div>
+            </div>
+               
+
+            <div class="form-group-single-column  mb10 flex-col">
+              <div class="checkbox-button two-label">
+                <input id="residentialAddress_mailingsame_radio" name="isMailingAddressSame" (change)="addOrRemoveMailingAddress()"
+                  name="protectionNeed" formControlName="isMailingAddressSame" type="checkbox" class="field checkbox" value="true">
+                <label for="residentialAddress_mailingsame_radio" id="residentialAddress_mailingsame_lbl">
+                  <div class="input-label-black" id="residentialAddress_optionhead_lbl">Employer's Address</div>
+                  <div class="input-label-normal" id="residentialAddress_optionhead_desc">Same as Residential Address</div>
+                </label>
+              </div>
+            </div>
+           
+            
+
+            <div *ngIf="!employementDetailsForm.get('isMailingAddressSame').value" formGroupName="mailingAddress">
+              <!-- COUNTRY -->
+              <div class="form-group">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailcountry-drpdown" id="residentialAddress-mailcountry-lbl">{{ 'RESIDENTIAL_ADDRESS.COUNTRY'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="dropdown-control">
+                      <div ngbDropdown>
+                        <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                          ngbDropdownToggle>{{employementDetailsForm.controls.mailingAddress.controls.mailCountry.value}}
+                        </button>
+                        <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                          <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',option.country, 'mailingAddress')"
+                            id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- POSTAL CODE -->
+              <div class="form-group" *ngIf="isUserNationalitySingapore">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailpostalcode-drpdown" id="residentialAddress-mailpostalcode-lbl">{{
+                      'RESIDENTIAL_ADDRESS.POSTAL_CODE' | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+
+                    <div class="form-control with-button" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.mailingAddress.controls.mailPostalCode)}">
+                      <div class="row">
+                        <div class="col-7">
+                          <input type="text" class="input-control grey" formControlName="mailPostalCode" id="residentialAddress-mailpostalcode-txt"
+                          />
+                        </div>
+                        <div class="col-5">
+                          <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.mailingAddress.controls.mailPostalCode.value, employementDetailsForm.controls.mailingAddress.controls.mailAddress1, employementDetailsForm.controls.mailingAddress.controls.mailAddress2)" class="btn btn-secondary right">{{
+                            'COMMON.LABEL.RETRIEVE' | translate}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ADDRESS 1 -->
+              <div class="form-group">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailaddress1-txt" id="residentialAddress-mailaddress1-lbl">{{'RESIDENTIAL_ADDRESS.ADDRESS_1'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.mailingAddress.controls.mailAddress1)}">
+                      <input type="text" class="input-control grey" formControlName="mailAddress1" id="residentialAddress-mailaddress1-txt" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ADDRESS 2 -->
+              <div class="form-group">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailaddress2-txt" id="residentialAddress-mailaddress2-lbl">{{'RESIDENTIAL_ADDRESS.ADDRESS_2'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.mailingAddress.controls.mailAddress2)}">
+                      <input type="text" class="input-control grey" formControlName="mailAddress2"
+                        id="residentialAddress-mailaddress2-txt" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- UNIT NO -->
+              <div class="form-group" *ngIf="isUserNationalitySingapore">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailunitno-txt" id="residentialAddress-mailunitno-lbl">{{'RESIDENTIAL_ADDRESS.UNIT_NO'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.mailingAddress.controls.mailUnitNo)}">
+                      <input type="text" class="input-control grey" formControlName="mailUnitNo" id="residentialAddress-mailunitno-txt" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CITY -->
+              <div class="form-group" *ngIf="!isUserNationalitySingapore">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailcity-txt" id="residentialAddress-mailcity-lbl">{{'RESIDENTIAL_ADDRESS.CITY'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.mailingAddress.controls.mailCity)}">
+                      <input type="text" class="input-control grey" formControlName="mailCity"
+                        id="residentialAddress-mailcity-txt" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STATE -->
+              <div class="form-group" *ngIf="!isUserNationalitySingapore">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailstate-txt" id="residentialAddress-mailstate-lbl">{{'RESIDENTIAL_ADDRESS.STATE'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.mailingAddress.controls.mailState)}">
+                      <input type="text" class="input-control grey" formControlName="mailState"
+                        id="residentialAddress-mailstate-txt" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ZIP CODE -->
+              <div class="form-group" *ngIf="!isUserNationalitySingapore">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailzipcode-txt" id="residentialAddress-mailzipcode-lbl">{{'RESIDENTIAL_ADDRESS.ZIPCODE'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control" [ngClass]="{'inline-error-inv':getInlineErrorStatus(employementDetailsForm.controls.mailingAddress.controls.mailZipCode)}">
+                      <input type="text" class="input-control grey" formControlName="mailZipCode"
+                        id="residentialAddress-mailzipcode-txt" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <button type="button" id="personalInforNextBtn" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
+          </form>
         </div>
       </div>
     </div>

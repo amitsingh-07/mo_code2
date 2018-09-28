@@ -41,4 +41,9 @@ export class InvestmentAccountFormData {
     Tin: any;
     noTinReason: any;
 
+    // EmployementDetails
+
+    CompanyName: string;
+    contactNumber: string;
+
 }
