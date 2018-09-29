@@ -52,4 +52,8 @@ export class RequestCache {
             }
         });
     }
+
+    reset() {
+        this.cache = new Map();
+    }
 }

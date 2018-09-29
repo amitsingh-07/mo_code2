@@ -101,4 +101,8 @@ export class DirectComponent implements OnInit, IPageComponent {
       this.components.splice(componentIndex, 1);
     }
   }
+
+  closeEditMode() {
+    this.directService.setModalFreeze(false);
+  }
 }

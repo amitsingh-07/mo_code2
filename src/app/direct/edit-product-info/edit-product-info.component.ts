@@ -32,6 +32,12 @@ export class EditProductInfoComponent implements OnInit {
     this.translate.get('COMMON').subscribe((results) => {
       this.pageTitle = this.translate.instant('PROFILE.TITLE2');
     });
+
+    this.directService.modalFreezeCheck.subscribe((freezeCheck) => {
+      if (!freezeCheck) {
+        this.toggleVisibility = false;
+      }
+    });
   }
 
   ngOnInit() {

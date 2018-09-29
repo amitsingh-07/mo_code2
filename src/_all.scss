@@ -82,6 +82,7 @@ h6 {
   &.header{
     padding:0.5rem 1rem;
     justify-content:center;
+    position: absolute;
     @include minMobilemaxPhablet{
       height:auto;
       min-height:65.5px;
