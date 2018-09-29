@@ -30,4 +30,27 @@ app-direct {
     margin-top: 10px;
     margin-bottom: 100px;
   }
+
+  .btn-close-edit {
+    display: block;
+    position: absolute;
+    width: 1024px;
+    z-index: 1050;
+    top: 0px;
+
+    span.btn-close {
+      right: 0px;
+      position: absolute;
+      top: 0px;
+      color: black;
+    }
+
+    span.block {
+      top: 0px;
+      left: 0px;
+      height: 76px;
+      width: 60px;
+      background: #ffffff;
+    }
+  }
 }

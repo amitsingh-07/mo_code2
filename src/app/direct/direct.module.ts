@@ -32,7 +32,6 @@ export function createTranslateLoader(http: HttpClient) {
     http,
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/guide-me/', suffix: '.json' },
       { prefix: './assets/i18n/direct/', suffix: '.json' }
     ]);
 }
