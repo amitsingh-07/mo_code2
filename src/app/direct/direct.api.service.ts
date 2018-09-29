@@ -20,6 +20,17 @@ import {
 import { Formatter } from './../shared/utils/formatter.util';
 import { DirectService } from './direct.service';
 
+const PRODUCT_CATEGORY_INDEX = {
+    LIFE_PROTECTION: 1,
+    CRITICAL_ILLNESS: 2,
+    OCCUPATIONAL_DISABILITY: 3,
+    HOSPITAL_PLAN: 4,
+    LONG_TERM_CARE: 5,
+    EDUCATION_FUND: 6,
+    RETIREMENT_INCOME: 7,
+    SRS_PLANS: 8
+};
+
 @Injectable({
     providedIn: 'root'
 })
@@ -46,6 +57,26 @@ export class DirectApiService {
         requestObj.existingInsuranceList = [this.directService.getEmptyExistingCoverage()];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
+
+        const category = this.directService.getProductCategory();
+        switch (category.id) {
+            case PRODUCT_CATEGORY_INDEX.LIFE_PROTECTION:
+                break;
+            case PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS:
+                break;
+            case PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY:
+                break;
+            case PRODUCT_CATEGORY_INDEX.HOSPITAL_PLAN:
+                break;
+            case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
+                break;
+            case PRODUCT_CATEGORY_INDEX.EDUCATION_FUND:
+                break;
+            case PRODUCT_CATEGORY_INDEX.RETIREMENT_INCOME:
+                break;
+            case PRODUCT_CATEGORY_INDEX.SRS_PLANS:
+                break;
+        }
 
         requestObj.hospitalizationNeeds = this.getHospitalPlanData();
         requestObj.criticalIllnessNeedsData = this.getCriticalIllnessData();

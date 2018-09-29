@@ -1,24 +1,40 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
+
+import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
+import { SubscribeMember } from './../shared/Services/subscribeMember';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-
+  pageTitle: string;
   public homeNavBarHide = false;
   public homeNavBarFixed = false;
   public mobileThreshold = 567;
   public navBarElement: ElementRef;
 
-  constructor(public headerService: HeaderService, public navbarService: NavbarService,
-              public el: ElementRef, private render: Renderer2) {
+  subscribeForm: FormGroup;
+  formValues: SubscribeMember;
+
+  constructor(public headerService: HeaderService, public navbarService: NavbarService, private router: Router,
+              public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
+              public readonly translate: TranslateService) {
                 navbarService.existingNavbar.subscribe((param: ElementRef) => {
                   this.navBarElement = param;
                   this.checkScrollStickyHomeNav();
+                });
+                this.translate.use('en');
+                this.translate.get('COMMON').subscribe((result: string) => {
+                    this.pageTitle = this.translate.instant('HOME.TITLE');
+                    this.setPageTitle(this.pageTitle);
                 });
               }
 
@@ -48,6 +64,15 @@ export class HomeComponent implements OnInit {
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarShadowVisibility(true);
     this.headerService.setHeaderOverallVisibility(false);
+
+    this.formValues = this.mailChimpApiService.getSubscribeFormData();
+    this.subscribeForm = new FormGroup({
+      email: new FormControl(this.formValues.email),
+    });
+  }
+
+  setPageTitle(title: string) {
+    this.headerService.setPageTitle(title);
   }
 
   checkScrollStickyHomeNav() {
@@ -127,5 +152,10 @@ export class HomeComponent implements OnInit {
     const selectedSection = elementName.getBoundingClientRect();
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - homeNavbarHeight;
     window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth' });
+  }
+
+  subscribeMember() {
+    this.mailChimpApiService.setSubscribeFormData(this.subscribeForm.value, true);
+    this.router.navigateByUrl('/about-us/subscribe');
   }
 }

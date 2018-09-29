@@ -68,6 +68,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   filterTypes;
   filterModalData;
+  totalProductCount: number;
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
@@ -365,6 +366,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   toggleComparePlans() {
     this.selectedPlans = [];
+    this.selectedComparePlans = [];
     this.isComparePlanEnabled = !this.isComparePlanEnabled;
     this.planWidgets.forEach((widget) => {
       widget.unselectPlan();
@@ -377,3 +379,4 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.sortProperty = data.sortProperty;
   }
 }
+

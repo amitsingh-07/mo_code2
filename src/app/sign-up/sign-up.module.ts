@@ -17,6 +17,7 @@ import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -53,7 +54,8 @@ export function createTranslateLoader(http: HttpClient) {
     ForgotPasswordComponent,
     ForgotPasswordResultComponent,
     ResetPasswordComponent,
-    SuccessMessageComponent
+    SuccessMessageComponent,
+    DashboardComponent
   ],
   providers: [SignUpAccessGuard]
 })

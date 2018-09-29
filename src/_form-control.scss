@@ -243,7 +243,7 @@
     .input-label-white {
       color: #ffffff;
       font-family: $muli-semi-bold;
-      font-size: 21px;
+      font-size: 22px;
       line-height: 1.3;
 
       @include allmobiles {
@@ -256,7 +256,7 @@
     }
 
     .input-label-normal {
-      font-family: $muli;
+      font-family: $muli-regular;
       @include fontSize(10px);
       color: #ffffff;
       opacity: 0.8;
@@ -293,7 +293,7 @@
         @include fontSize(8.5px);
       }
     }
-  }
+ }
 
   input[type='radio']:checked+label,
   input[type='checkbox']:checked+label {

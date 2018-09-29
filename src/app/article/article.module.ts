@@ -12,6 +12,6 @@ import { ArticleService } from './article.service';
     CommonModule,
     ArticleRoutingModule
   ],
-  declarations: [ArticleComponent, ArticleService, ArticleCategoryComponent, ArticleEntryComponent]
+  declarations: [ArticleComponent, ArticleCategoryComponent, ArticleEntryComponent]
 })
 export class ArticleModule { }

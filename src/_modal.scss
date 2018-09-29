@@ -382,15 +382,10 @@
   &.show {
     display: flex;
   }
-
-  @include minMobilemaxPhablet {
-    margin-top: 65.6px;
-    padding-top: 15px;
-    border-top: #89d0cf 1px solid;
-  }
-
-  @include allmobiles {
-    box-shadow: none;
+  @include minMobilemaxPhablet{
+    margin-top:20px;
+    padding-top:15px;
+    border-top:#89d0cf 1px solid;
   }
 }
 
@@ -427,3 +422,4 @@
 .product-details-modal-dialog {
   max-height: 100% !important;
 }
+

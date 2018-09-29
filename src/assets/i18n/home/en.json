@@ -1,0 +1,43 @@
+{
+    "GENERAL": {
+        "TITLE": "Home",
+        "COMING_SOON": "Coming Soon"
+    },
+    "BANNER": {
+        "TITLE": "Making Wise Decisions Easy",
+        "DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver financial advice that integrates national schemes.",
+        "FIND_OUT_MORE": "Find Out More"
+    },
+    "INSURANCE": {
+        "LABEL": "Insurance",
+        "TITLE": "Low-cost Insurance suited to your needs",
+        "DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta.",
+        "LINK1": "Assess My Needs",
+        "LINK2": "Or I Know What I Need!" 
+    },
+    "WILL": {
+        "LABEL": "Will Writing",
+        "TITLE": "Will Writing Online, anytime & anywhere",
+        "DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta.",
+        "LINK1": "Start Writing"
+    },
+    "INVESTMENT": {
+        "LABEL": "Investments",
+        "TITLE": "Investment Themes that reflect your goals",
+        "DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta",
+        "LINK1": ""
+    },
+    "COMPREHENSIVE": {
+        "LABEL": "Comprehensive",
+        "SUB_LABEL": "(with national scheme)",
+        "TITLE": "Comprehensive Financial Planning",
+        "DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat massa vitae egestas porta",
+        "LINK": ""
+    },
+    "NEWSLETTER": {
+        "TITLE": "Join our newsletter and get wiser every day!",
+        "PLACEHOLDER": "Email",
+        "SUBSCRIBE": "Subscribe",
+        "SUBTEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!"
+    }
+}
