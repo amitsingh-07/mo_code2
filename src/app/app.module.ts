@@ -33,7 +33,9 @@ import {
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
+import { HomeComponent } from './home/home.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
+import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
 import { JwtInterceptor } from './shared/http/auth/jwt.interceptor';
@@ -46,9 +48,11 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
+import { SubscribeComponent } from './subscribe/subscribe.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -79,8 +83,12 @@ export function tokenGetterFn() {
     RestrictAlphabetsDirective,
     jqxSliderComponent,
     HeaderComponent,
+    NavbarComponent,
+    FooterComponent,
     NumberOnlyDirective,
-    CallBackComponent
+    CallBackComponent,
+    HomeComponent,
+    SubscribeComponent
   ],
   imports: [
     BrowserModule,
@@ -137,3 +145,4 @@ export class AppModule {
     AppModule.injector = injector;
   }
 }
+

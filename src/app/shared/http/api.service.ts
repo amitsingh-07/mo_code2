@@ -69,12 +69,22 @@ export class ApiService {
       );
   }
 
-  getMyInfoData() {
+  getMyInfoData(code) {
     const url = '../assets/mock-data/myInfoValues.json';
-    return this.http.get(apiConstants.endpoint.getMyInfoValues)
+    return this.http.post(apiConstants.endpoint.getMyInfoValues, code)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
+          // this.guideMeService.closeFetchPopup();
+          // const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          // ref.componentInstance.errorTitle = 'Oops, Error!';
+          // ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+          // ref.componentInstance.isError = true;
+          // ref.result.then(() => {
+          //   this.myInfoService.goToMyInfo();
+          // }).catch((e) => {
+          // });
+          if (error.error instanceof ErrorEvent) {
           this.guideMeService.closeFetchPopup();
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
           ref.componentInstance.errorTitle = 'Oops, Error!';
@@ -84,15 +94,8 @@ export class ApiService {
             this.myInfoService.goToMyInfo();
           }).catch((e) => {
           });
-          if (error.error instanceof ErrorEvent) {
-            // this.guideMeService.closeFetchPopup();
-            // const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            // ref.componentInstance.errorTitle = 'Oops, Error!';
-            // ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
-            // ref.componentInstance.isButtonEnabled = true;
-            // ref.componentInstance.isError = true;
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+          console.error('An error occurred:', error.error.message);
           } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
@@ -439,13 +442,17 @@ export class ApiService {
         })
       );
   }
+  
+  // tslint:disable-next-line:no-identical-functions
   getDirectSearch(payload) {
-    const url = '../assets/mock-data/directResults.json';
-    return this.httpClient.get<IServerResponse>(url);
-    // return this.http.post(apiConstants.endpoint.getRecommendations, payload)
-    //   .pipe(
-    //     catchError((error: HttpErrorResponse) => this.handleError(error))
-    //   );
+    // const url = '../assets/mock-data/directResults.json';
+    // return this.httpClient.get<IServerResponse>(url);
+    return this.http.post(apiConstants.endpoint.getRecommendations, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return this.handleError(error);
+        })
+      );
   }
 
   getAddressUsingPostalCode(code) {

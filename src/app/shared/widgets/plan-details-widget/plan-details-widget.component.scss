@@ -10,6 +10,12 @@ app-plan-details-widget {
     border: solid 3px #ff872f !important;
   }
 
+  .brochure {
+    background: #fff;
+    color:#00a7a7;
+    border-radius: 6px;
+    border: solid 1px rgba(0, 167, 167, 0.4);
+  }
   .insurance-plan-widget {
     position: relative;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
@@ -159,3 +165,4 @@ app-plan-details-widget {
     }
   }
 }
+

@@ -25,10 +25,6 @@ app-compare-plans {
     padding: 20px;
   }
 
-  img {
-    max-width: 50% !important;
-  }
-
   .title {
     margin-top: -30px;
     text-align: center;
@@ -218,6 +214,9 @@ app-compare-plans {
       display: flex;
       align-items: center;
       justify-content: center;
+      img {
+        max-width: 50% !important;
+      }
     }
 
     .insurance-plan-widget__container__rank__wrapper {

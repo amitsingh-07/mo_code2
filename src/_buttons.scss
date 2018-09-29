@@ -734,3 +734,57 @@ button:active:focus {
   display: inline-block;
   margin-right: 15px;
 }
+
+/* Home Navbar */
+.home__navbar{
+  .navbar__btn{
+    position: relative;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    flex-grow:1;
+    flex-basis:25%;
+    justify-content:flex-start;
+    align-content:center;
+    cursor: pointer;
+    transition:0.3s;
+    box-sizing: border-box;
+    border-bottom:2px solid transparent;
+    padding-top:20px;
+    z-index:2;
+    &:hover{
+      border-bottom:2px solid $orange-color;
+    }
+    &.active{
+      border-bottom:2px solid $orange-color;
+    }
+    @include minMobilemaxPhablet{
+      min-width:120px;
+      &:hover{
+        border-bottom:0px;
+      }
+    }
+    .navbar__btn--title{
+        position: relative;
+        display:block;
+        font-family:$muli-semi-bold;
+        text-align:center;
+        color:$black-color;
+        font-size:21px;
+        @include minMobilemaxPhablet{
+          font-size:16px;
+        }
+    }
+    .navbar__btn--subtitle{
+        position: relative;
+        display:block;
+        font-family:$muli-semi-bold;
+        text-align:center;
+        color:$black-color;
+        font-size:12px;
+        @include minMobilemaxPhablet{
+          font-size:11px;
+        }
+    }
+  }
+}

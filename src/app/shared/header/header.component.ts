@@ -16,7 +16,9 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   subTitle = '';
   helpIcon = false;
   // helpIcon: boolean;
+  showOverallHeader = true;
   showHeader = true;
+  showHeaderDropshadow = true;
   closeIcon = false;
   settingsIcon = false;
 
@@ -31,7 +33,12 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.headerService.currentHeaderOverallVisibility.subscribe((showOverallHeader) => this.showOverallHeader = showOverallHeader);
     this.headerService.currentHeaderVisibility.subscribe((showHeader) => this.showHeader = showHeader);
+    this.headerService.currentHeaderDropshadow.subscribe((showHeaderDropshadow) => {
+      this.showHeaderDropshadow = showHeaderDropshadow;
+      console.log(this.showHeaderDropshadow);
+    });
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {

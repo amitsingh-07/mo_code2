@@ -85,7 +85,7 @@ export class DirectApiService {
         const ci = this.directService.getCriticalIllnessForm();
         const ciData: ICriticalIllnessData = {
             coverageYears: ci.duration,
-            coverageAmount: ci.coverageAmt,
+            coverageAmount: Formatter.getIntValue(ci.coverageAmt),
             isEarlyCriticalIllness: ci.earlyCI,
         } as ICriticalIllnessData;
 

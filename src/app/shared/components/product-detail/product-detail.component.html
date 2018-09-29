@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="pr20 pl20">
-    <app-plan-details-widget [data]="plan" (select)="selectPlan(plan)" [type]="protectionType"></app-plan-details-widget>
+    <app-plan-details-widget [data]="plan" (select)="selectPlan(plan)" [type]="protectionType" [isDirect] ="isDirect"></app-plan-details-widget>
   </div>
   <div id="panel-group" class="mb10">
     <div class="panel panel-default" *ngFor="let item of items; let i = index">

@@ -123,6 +123,7 @@
         "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
       },
       "COMPARE_PLANS": {
+        "RESULTS":"Results",
         "TITLE": "Results",
         "INSURER_FINANCIAL_RATING":"Insurer Financial Rating",
         "COVARAGE_DURATION":"Coverage Duration",
@@ -138,7 +139,15 @@
           "DESCRIPTION" : "When this plan matures, you will receive a cash payout!"
         },
         "PAYOUT_DETAILS":"Payout Details",
-        "UNIQUE_FEATURES":"Unique Features"
+        "UNIQUE_FEATURES":"Unique Features",
+        "ERROR_MODEL_FOR_MOBILE": {
+          "TITLE":"Compare 2 Only",
+          "MESSAGE":"You can only compare a maximum of 2 plans at a time.e"
+        },
+        "ERROR_MODEL_FOR_WEB": {
+          "TITLE":"Compare 4 Only",
+          "MESSAGE":"You can only compare a maximum of 4 plans at a time.e"
+        }
       },
       "RESULTS": {
         "TITLE": "Plans"
@@ -155,5 +164,7 @@
         }
       }
   }
+
+
 
 

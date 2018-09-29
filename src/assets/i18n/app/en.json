@@ -11,7 +11,8 @@
     "LBL_NONSMOKER": "Non-Smoker",
     "LBL_YES": "Yes",
     "LBL_NO": "No",
-    "LBL_CONTINUE": "Continue"
+    "LBL_CONTINUE": "Continue",
+    "SUBLBL_MAX4":" (Max 4)"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth"
@@ -46,8 +47,9 @@
   "BUTTON": {
     "PROCEED": "Proceed",
     "COMPARE": "Compare",
-    "SELECT_PLAN": "Select Plan",
-    "DETAILS": "Details"
+    "UN_SELECT": "Plan Selected",
+    "DETAILS": "Details",
+    "SELECT_PLAN": "Select Plan"
   },
   "CUSTOM_MODAL": {
     "MODAL_TITLE": "Insurance Results",

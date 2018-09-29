@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ComponentFactoryResolver,
   OnInit,
@@ -12,8 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { FooterService } from './../shared/footer/footer.service';
 import { HeaderService } from './../shared/header/header.service';
 import { IPageComponent } from './../shared/interfaces/page-component.interface';
+import { NavbarService } from './../shared/navbar/navbar.service';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectService } from './direct.service';
 
@@ -36,20 +37,24 @@ export class DirectComponent implements OnInit, IPageComponent {
   showingResults = false;
 
   constructor(
-    private router: Router, public headerService: HeaderService,
-    private directService: DirectService, private translate: TranslateService,
+    private router: Router, public headerService: HeaderService, public navbarService: NavbarService,
+    public footerService: FooterService, private directService: DirectService, private translate: TranslateService,
     public modal: NgbModal, private route: ActivatedRoute,
-    private factoryResolver: ComponentFactoryResolver) {
+    private factoryResolver: ComponentFactoryResolver ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('PROFILE.TITLE');
-      this.setPageTitle(this.pageTitle, null, false);
+    this.pageTitle = this.translate.instant('PROFILE.TITLE');
+    this.setPageTitle(this.pageTitle, null, false);
     });
     this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
     this.showProductInfo();
-  }
+    }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(false);
+    this.headerService.setHeaderDropshadowVisibility(true);
+    this.headerService.setHeaderOverallVisibility(true);
+    this.footerService.setFooterVisibility(false);
     if (window.innerWidth < mobileThreshold) {
       this.isMobileView = true;
     } else {

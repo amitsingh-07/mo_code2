@@ -48,9 +48,11 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.hospitalPlanFormValues = this.guideMeService.getHospitalPlan();
     this.hospitalPlanForm = new FormGroup({
-      hospitalPlan: new FormControl(this.hospitalPlanFormValues, Validators.required)
+      hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalClassId + '', Validators.required)
     });
-
+    if (this.hospitalPlanFormValues.hospitalClassId) {
+      this.isFormValid = true;
+    }
     this.guideMeApiService.getHospitalPlanList().subscribe((data) => {
       this.hospitalPlanList = data.objectList; // Getting the information from the API
     });
@@ -74,19 +76,19 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
     this.isFormValid = true;
   }
 
-  save() {
-      const selectedPlan: HospitalPlan = {
-        hospitalClass: this.hospitalPlanFormValues.hospitalClass,
-        hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
-        hospitalClassId: this.hospitalPlanFormValues.hospitalClassId,
-        isFullRider: false
-      };
-      this.guideMeService.setHospitalPlan(selectedPlan);
-      return true;
+  save(form) {
+    const selectedPlan: HospitalPlan = {
+      hospitalClass: this.hospitalPlanFormValues.hospitalClass,
+      hospitalClassDescription: this.hospitalPlanFormValues.hospitalClassDescription,
+      hospitalClassId: this.hospitalPlanFormValues.hospitalClassId,
+      isFullRider: false
+    };
+    this.guideMeService.setHospitalPlan(selectedPlan);
+    return true;
   }
 
   goToNext(form) {
-    if (this.save()) {
+    if (this.save(form)) {
       this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
         this.guideMeService.incrementProtectionNeedsIndex();
       });
