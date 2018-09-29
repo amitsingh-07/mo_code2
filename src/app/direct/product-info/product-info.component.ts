@@ -82,6 +82,9 @@ export class ProductInfoComponent implements OnInit {
     this.directService.modalFreezeCheck.subscribe((freezeCheck) => {
       if (freezeCheck) {
         this.editProdInfo();
+      } else if (this.isEditMode) {
+        this.closeEditMode();
+        this.isEditMode = false;
       }
     });
   }
@@ -131,6 +134,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   editProdInfo() {
+    this.isEditMode = true;
     this.toggleVisibility = true;
     if (this.innerWidth < this.mobileThreshold) {
       this.toggleSelectVisibility = false;
@@ -139,6 +143,11 @@ export class ProductInfoComponent implements OnInit {
     } else {
       this.toggleBackdropVisibility = true;
     }
+  }
+
+  closeEditMode() {
+    this.toggleVisibility = false;
+    this.toggleBackdropVisibility = false;
   }
 
   openProductCategory(index) {

@@ -12,6 +12,7 @@ import {
   CreateAccountModelComponent
 } from './../../guide-me/recommendations/create-account-model/create-account-model.component';
 import { HeaderService } from './../../shared/header/header.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { Formatter } from './../../shared/utils/formatter.util';
@@ -39,7 +40,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   pageTitle = '';
   isComparePlanEnabled = false;
   toggleBackdropVisibility = false;
-  searchResult = [];
+  searchResult;
   filteredResult = [];
   filteredCountSubject = new Subject<any>();
   selectedFilterList = [];
@@ -70,13 +71,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
     private router: Router, private translate: TranslateService, public headerService: HeaderService,
-    public modal: NgbModal, private selectedPlansService: SelectedPlansService) {
+    public modal: NgbModal, private selectedPlansService: SelectedPlansService,
+    private authService: AuthenticationService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
       this.sortList = this.translate.instant('SETTINGS.SORT');
       this.filterTypes = this.translate.instant('SETTINGS.TYPES');
-      this.resultsEmptyMessage = this.translate.instant('SETTINGS.NO_RESULTS');
       this.sortProperty = this.sortList[0].value;
       this.setPageTitle(this.pageTitle);
       this.toolTips = this.translate.instant('FILTER_TOOLTIPS');
@@ -84,7 +85,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.filterTypes = this.translate.instant('SETTINGS.TYPES');
       this.filterModalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
 
-      this.getRecommendations();
+      this.authService.authenticate().subscribe((token) => {
+        this.getRecommendations();
+      });
     });
     this.filterCountSubscription = this.filteredCountSubject.subscribe((planList) => {
       this.filteredResult = planList;
@@ -119,6 +122,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
           return;
         }
 
+        this.resultsEmptyMessage = '';
         this.enquiryId = data.objectList[0].enquiryId;
         this.searchResult = data.objectList[0].productProtectionTypeList;
         this.filteredResult = this.searchResult;

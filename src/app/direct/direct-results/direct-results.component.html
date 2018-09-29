@@ -1,6 +1,6 @@
 <app-edit-product-info (editProdInfo)="editProdInfo()" [ngClass]="{'is-hidden' : isComparePlanEnabled && isMobileView}"></app-edit-product-info>
 <div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>
-<div id="results-web" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
+<div id="results-web" [hidden]="resultsEmptyMessage?.length > 0" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
   <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
     <div>
       <div style="justify-content: center;">
@@ -22,7 +22,7 @@
     <div [hidden]="!isComparePlanEnabled" class="overlay"></div>
   </div>
 </div>
-<div id="results-mobile" *ngIf="isMobileView" class="hidden-lg">
+<div id="results-mobile" *ngIf="isMobileView" [hidden]="resultsEmptyMessage?.length > 0" class="hidden-lg">
 
   <div class="compare-plan-header" *ngIf="isComparePlanEnabled">Compare <button aria-label="Close" class="compare-plan-header--close"
       id="modalBtn" type="button" (click)="toggleComparePlans()"><span aria-hidden="true"></span></button></div>
@@ -49,8 +49,10 @@
     </div>
   </div>
 </div>
-<div [hidden]="filteredResult?.length > 0 || !enquiryId">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
-
+<div style="text-align: center;">
+<div [hidden]="filteredResult?.length > 0 || resultsEmptyMessage?.length > 0">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
+<div [hidden]="resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
+</div>
 <!-- Floating plan selection footer -->
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">

@@ -21,6 +21,7 @@
     </span>
   </div>
 </div>
+<div [hidden]="resultsEmptyMessage?.length > 0">
 <div class="coverage-details-wrapper">
   <div class="coverage-details" *ngIf="coverageAmount != ''">
     <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
@@ -91,3 +92,5 @@
 </div>
 <!-- / Floating plan selection footer -->
 </div>
+</div>
+<div style="text-align: center;" [hidden]="resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>

@@ -90,14 +90,14 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
 
   showPremiumWaiverModal() {
     this.directService.showToolTipModal(
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
       );
   }
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string += this.translate.instant('LIFE_PROTECTION.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
+    sum_string += this.translate.instant('DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
     sum_string += this.duration;
     if (this.lifeProtectionForm.value.premiumWaiver === 'yes') {
       sum_string += ', Premium Waiver Rider';

@@ -26,6 +26,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   subTitle: string;
 
   modalRef: NgbModalRef;
+  resultsEmptyMessage = '';
   recommendationPlans;
   selectedPlans: any[] = [];
   coverageAmount = '';
@@ -92,6 +93,12 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     this.guideMeApiService.getRecommendations().subscribe(
       (data) => {
         window.scrollTo(0, 0);
+        if (data.responseMessage.responseCode === 6004) {
+          this.resultsEmptyMessage = data.responseMessage.responseDescription;
+          return;
+        }
+        
+        this.resultsEmptyMessage = '';
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.enquiryId = data.objectList[0].enquiryId;
         this.activeRecommendationType = this.recommendationPlans[0].protectionType;

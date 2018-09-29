@@ -23,7 +23,7 @@
       "TITLE": "Smoker Status"
     }
   } ,
-  "LIFE_PROTECTION": {
+  "DIRECT_LIFE_PROTECTION": {
     "COVERAGE_AMT": {
       "TITLE": "Coverage Amount",
       "DOLLAR": "$"
@@ -50,7 +50,7 @@
       "TITLE": "About Me"
     }
   },
-  "HOSPITAL_PLAN": {
+  "DIRECT_HOSPITAL_PLAN": {
     "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
       "TITLE": "Full / Partial Rider",
