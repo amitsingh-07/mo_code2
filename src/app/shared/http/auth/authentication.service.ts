@@ -61,9 +61,12 @@ export class AuthenticationService {
   public isAuthenticated(): boolean {
     // get the token
     const token = this.getToken();
+    if (!token) {
+      return false;
+    }
     // return a boolean reflecting
     // whether or not the token is expired
-    return this.jwtHelper.isTokenExpired(token);
+    return this.jwtHelper.isTokenExpired(token, 30 * 60);
   }
 
   saveEnquiryId(id) {

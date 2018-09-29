@@ -12,6 +12,7 @@ import {
   CreateAccountModelComponent
 } from './../../guide-me/recommendations/create-account-model/create-account-model.component';
 import { HeaderService } from './../../shared/header/header.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { Formatter } from './../../shared/utils/formatter.util';
@@ -39,7 +40,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   pageTitle = '';
   isComparePlanEnabled = false;
   toggleBackdropVisibility = false;
-  searchResult = [];
+  searchResult;
   filteredResult = [];
   filteredCountSubject = new Subject<any>();
   selectedFilterList = [];
@@ -71,13 +72,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
     private router: Router, private translate: TranslateService, public headerService: HeaderService,
-    public modal: NgbModal, private selectedPlansService: SelectedPlansService) {
+    public modal: NgbModal, private selectedPlansService: SelectedPlansService,
+    private authService: AuthenticationService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
       this.sortList = this.translate.instant('SETTINGS.SORT');
       this.filterTypes = this.translate.instant('SETTINGS.TYPES');
-      this.resultsEmptyMessage = this.translate.instant('SETTINGS.NO_RESULTS');
       this.sortProperty = this.sortList[0].value;
       this.setPageTitle(this.pageTitle);
       this.toolTips = this.translate.instant('FILTER_TOOLTIPS');
@@ -85,7 +86,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.filterTypes = this.translate.instant('SETTINGS.TYPES');
       this.filterModalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
 
-      this.getRecommendations();
+      if (this.authService.isAuthenticated()) {
+        this.getRecommendations();
+      } else {
+        this.authService.authenticate().subscribe((token) => {
+          this.getRecommendations();
+        });
+      }
     });
     this.filterCountSubscription = this.filteredCountSubject.subscribe((planList) => {
       this.filteredResult = planList;
@@ -110,154 +117,163 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.filterCountSubscription.unsubscribe();
   }
 
-  // tslint:disable-next-line:cognitive-complexity
   getRecommendations() {
     this.selectedCategory = this.directService.getProductCategory();
     this.directApiService.getSearchResults(this.directService.getProductCategory())
-      .subscribe((data) => {
-        if (data.responseMessage.responseCode === 6004) {
-          this.resultsEmptyMessage = data.responseMessage.responseDescription;
-          return;
-        }
-
-        this.enquiryId = data.objectList[0].enquiryId;
-        this.searchResult = data.objectList[0].productProtectionTypeList;
-        this.filteredResult = this.searchResult;
-        for (const productLists of data.objectList[0].productProtectionTypeList) {
-          for (const productList of productLists.productList) {
-            if (productList.insurer && productList.insurer.insurerName) {
-              this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-            }
-            if (productList.insurer && productList.insurer.rating) {
-              this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
-            }
-            if (productList.premium && productList.premium.payoutAge) {
-              this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
-            }
-            if (productList.premium && productList.premium.deferredPeriod) {
-              this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;
-            }
-            if (productList.premium && productList.premium.escalatingBenefit) {
-              this.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
-                productList.premium.escalatingBenefit;
-            }
-            if (productList.rider && productList.rider.riderName) {
-              this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
-            }
-            if (productList.insurer && productList.insurer.insurerName) {
-              this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-            }
-            if (productList.insurer && productList.insurer.insurerName) {
-              this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-            }
-          }
-        }
-        this.insurers = Object.values(this.insurers).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
+      .subscribe(
+        (data) => {
+          this.handleResponse(data);
+        },
+        (error) => {
+          this.resultsEmptyMessage = 'An error occurred. Please try again.';
         });
-        this.insurersFinancialRating = Object.values(this.insurersFinancialRating).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-        this.payoutYears = Object.values(this.payoutYears).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-        this.claimFeature = Object.values(this.claimFeature).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-        this.deferredPeriod = Object.values(this.deferredPeriod).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-        this.escalatingBenefit = Object.values(this.escalatingBenefit).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-        this.fullPartialRider = Object.values(this.fullPartialRider).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-        this.claimCriteria = Object.values(this.claimCriteria).map((key) => {
-          return { value: key, checked: key === 'All' ? true : false };
-        });
-
-        const premiumFrequency = {
-          title: this.filterTypes.PREMIUM_FREQUENCY, name: 'premiumFrequency',
-          filterTypes: this.premiumFrequency, allBtn: false
-        };
-        const insurers = {
-          title: this.filterTypes.INSURERS, name: 'insurerName',
-          filterTypes: this.insurers, allBtn: true
-        };
-        const insurersFinancialRating = {
-          title: this.filterTypes.INSURANCE_FINANCIAL_RATING, name: 'financialRating',
-          filterTypes: this.insurersFinancialRating, allBtn: true
-        };
-        const claimFeature = {
-          title: this.filterTypes.CLAIM_FEATURE, toolTip: { title: this.filterTypes.CLAIM_FEATURE, message: this.toolTips.CLIAM_FEATURE },
-          name: 'claimFeature',
-          filterTypes: this.claimFeature, allBtn: true
-        };
-        const deferredPeriod = {
-          title: this.filterTypes.DEFERRED_PERIOD, toolTip:
-            { title: this.filterTypes.DEFERRED_PERIOD, message: this.toolTips.DEFERRED_PERIOD },
-          name: 'deferredPeriod',
-          filterTypes: this.deferredPeriod, allBtn: true
-        };
-        const escalatingBenefit = {
-          title: this.filterTypes.ESCALATING_BENEFIT,
-          toolTip: { title: this.filterTypes.ESCALATING_BENEFIT, message: this.toolTips.ESCALATING_BENEFIT },
-          name: 'escalatingBenefit',
-          filterTypes: this.escalatingBenefit, allBtn: true
-        };
-        const fullPartialRider = {
-          title: this.filterTypes.FULL_PARTIAL_RIDER,
-          toolTip: { title: this.filterTypes.FULL_PARTIAL_RIDER, message: this.toolTips.FULL_PARTIAL_RIDER },
-          name: 'fullPartialRider',
-          filterTypes: this.fullPartialRider, allBtn: true
-        };
-        const payoutYears = {
-          title: this.filterTypes.PAYOUT_YEARS, name: 'payoutYears',
-          filterTypes: this.payoutYears, allBtn: true
-        };
-        const claimCriteria = {
-          title: this.filterTypes.CLAIM_CRITERIA, toolTip:
-            { title: this.filterTypes.CLAIM_CRITERIA, message: this.toolTips.CLAIM_CRITERIA },
-          name: 'claimCriteria',
-          filterTypes: this.claimCriteria, allBtn: true
-        };
-
-        this.filters.push(premiumFrequency);
-        this.filters.push(insurers);
-        this.filters.push(insurersFinancialRating);
-        switch (this.selectedCategory.id - 1) {
-          case 1:
-            this.filters.push(claimFeature);
-            break;
-          case 2:
-            delete this.filters[1];
-            delete this.filters[2];
-            this.filters.push(deferredPeriod);
-            this.filters.push(escalatingBenefit);
-            break;
-          case 3:
-            delete this.filters[0];
-            this.filters.push(fullPartialRider);
-            break;
-          case 4:
-            this.filters.push(payoutYears);
-            this.filters.push(claimCriteria);
-            break;
-          case 5:
-            delete this.filters[0];
-            break;
-          case 6:
-            this.filters.push(payoutYears);
-            break;
-          case 7:
-            delete this.filters[0];
-            break;
-        }
-        this.filters = this.filters.filter(() => true);
-      });
 
     window.scroll(0, 0);
+  }
+
+  // tslint:disable-next-line:cognitive-complexity
+  handleResponse(data) {
+    if (data.responseMessage.responseCode === 6004) {
+      this.resultsEmptyMessage = data.responseMessage.responseDescription;
+      return;
+    }
+
+    this.resultsEmptyMessage = '';
+    this.enquiryId = data.objectList[0].enquiryId;
+    this.searchResult = data.objectList[0].productProtectionTypeList;
+    this.filteredResult = this.searchResult;
+    for (const productLists of data.objectList[0].productProtectionTypeList) {
+      for (const productList of productLists.productList) {
+        if (productList.insurer && productList.insurer.insurerName) {
+          this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+        }
+        if (productList.insurer && productList.insurer.rating) {
+          this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
+        }
+        if (productList.premium && productList.premium.payoutAge) {
+          this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
+        }
+        if (productList.premium && productList.premium.deferredPeriod) {
+          this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;
+        }
+        if (productList.premium && productList.premium.escalatingBenefit) {
+          this.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
+            productList.premium.escalatingBenefit;
+        }
+        if (productList.rider && productList.rider.riderName) {
+          this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
+        }
+        if (productList.insurer && productList.insurer.insurerName) {
+          this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+        }
+        if (productList.insurer && productList.insurer.insurerName) {
+          this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+        }
+      }
+    }
+    this.insurers = Object.values(this.insurers).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.insurersFinancialRating = Object.values(this.insurersFinancialRating).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.payoutYears = Object.values(this.payoutYears).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.claimFeature = Object.values(this.claimFeature).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.deferredPeriod = Object.values(this.deferredPeriod).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.escalatingBenefit = Object.values(this.escalatingBenefit).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.fullPartialRider = Object.values(this.fullPartialRider).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.claimCriteria = Object.values(this.claimCriteria).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+
+    const premiumFrequency = {
+      title: this.filterTypes.PREMIUM_FREQUENCY, name: 'premiumFrequency',
+      filterTypes: this.premiumFrequency, allBtn: false
+    };
+    const insurers = {
+      title: this.filterTypes.INSURERS, name: 'insurerName',
+      filterTypes: this.insurers, allBtn: true
+    };
+    const insurersFinancialRating = {
+      title: this.filterTypes.INSURANCE_FINANCIAL_RATING, name: 'financialRating',
+      filterTypes: this.insurersFinancialRating, allBtn: true
+    };
+    const claimFeature = {
+      title: this.filterTypes.CLAIM_FEATURE, toolTip: { title: this.filterTypes.CLAIM_FEATURE, message: this.toolTips.CLIAM_FEATURE },
+      name: 'claimFeature',
+      filterTypes: this.claimFeature, allBtn: true
+    };
+    const deferredPeriod = {
+      title: this.filterTypes.DEFERRED_PERIOD, toolTip:
+        { title: this.filterTypes.DEFERRED_PERIOD, message: this.toolTips.DEFERRED_PERIOD },
+      name: 'deferredPeriod',
+      filterTypes: this.deferredPeriod, allBtn: true
+    };
+    const escalatingBenefit = {
+      title: this.filterTypes.ESCALATING_BENEFIT,
+      toolTip: { title: this.filterTypes.ESCALATING_BENEFIT, message: this.toolTips.ESCALATING_BENEFIT },
+      name: 'escalatingBenefit',
+      filterTypes: this.escalatingBenefit, allBtn: true
+    };
+    const fullPartialRider = {
+      title: this.filterTypes.FULL_PARTIAL_RIDER,
+      toolTip: { title: this.filterTypes.FULL_PARTIAL_RIDER, message: this.toolTips.FULL_PARTIAL_RIDER },
+      name: 'fullPartialRider',
+      filterTypes: this.fullPartialRider, allBtn: true
+    };
+    const payoutYears = {
+      title: this.filterTypes.PAYOUT_YEARS, name: 'payoutYears',
+      filterTypes: this.payoutYears, allBtn: true
+    };
+    const claimCriteria = {
+      title: this.filterTypes.CLAIM_CRITERIA, toolTip:
+        { title: this.filterTypes.CLAIM_CRITERIA, message: this.toolTips.CLAIM_CRITERIA },
+      name: 'claimCriteria',
+      filterTypes: this.claimCriteria, allBtn: true
+    };
+
+    this.filters.push(premiumFrequency);
+    this.filters.push(insurers);
+    this.filters.push(insurersFinancialRating);
+    switch (this.selectedCategory.id - 1) {
+      case 1:
+        this.filters.push(claimFeature);
+        break;
+      case 2:
+        delete this.filters[1];
+        delete this.filters[2];
+        this.filters.push(deferredPeriod);
+        this.filters.push(escalatingBenefit);
+        break;
+      case 3:
+        delete this.filters[0];
+        this.filters.push(fullPartialRider);
+        break;
+      case 4:
+        this.filters.push(payoutYears);
+        this.filters.push(claimCriteria);
+        break;
+      case 5:
+        delete this.filters[0];
+        break;
+      case 6:
+        this.filters.push(payoutYears);
+        break;
+      case 7:
+        delete this.filters[0];
+        break;
+    }
+    this.filters = this.filters.filter(() => true);
   }
 
   setPageTitle(title: string) {

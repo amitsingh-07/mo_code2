@@ -48,7 +48,7 @@ export class CustomErrorHandlerService {
           message: httpError.error.message
         };
         this.helper.showHttpErrorModal(error);
-        throw  console.error(httpError);
+        throw  new Error(this.parseCustomServerErrorToString(error));
     }
     // return an observable with a user-facing error message
     return throwError(

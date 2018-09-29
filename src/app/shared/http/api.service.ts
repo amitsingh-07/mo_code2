@@ -442,12 +442,16 @@ export class ApiService {
         })
       );
   }
+  
+  // tslint:disable-next-line:no-identical-functions
   getDirectSearch(payload) {
     // const url = '../assets/mock-data/directResults.json';
     // return this.httpClient.get<IServerResponse>(url);
     return this.http.post(apiConstants.endpoint.getRecommendations, payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
+        catchError((error: HttpErrorResponse) => {
+          return this.handleError(error);
+        })
       );
   }
 
