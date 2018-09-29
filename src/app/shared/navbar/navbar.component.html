@@ -13,20 +13,12 @@
                 <span class="navbar__menu-icon"></span>
                 </button>
             </div>
-        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault" #navbar>
+        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/direct">Compare</a>
                     </li>
                 <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="id01.open();" (mouseleave)="id01.close();">
-                    <a class="nav-link dropdown-toggle" id="id01" href="#" ngbDropdownToggle>Products</a>
-                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id01">
-                        <button class="dropdown-item">Protection</button>
-                        <button class="dropdown-item">Savings</button>
-                        <button class="dropdown-item">Retirement</button>
-                    </div>
-                    </li>
-                <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="id02.open();" (mouseleave)="id02.close();">
                     <a class="nav-link dropdown-toggle" id="id02" href="#" ngbDropdownToggle>Learn</a>
                     <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id02">
                         <button class="dropdown-item">Our Articles</button>
@@ -35,7 +27,7 @@
                         <button class="dropdown-item">Guide Me</button> 
                     </div>
                 </li>
-                <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="id03.open();" (mouseleave)="id03.close()">
+                <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="id02.open();" (mouseleave)="id02.close()">
                     <a class="nav-link dropdown-toggle" id="id03" href="#" ngbDropdownToggle >Help</a>
                     <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id03">
                         <button class="dropdown-item">Life Insurance Calculator</button>
@@ -45,18 +37,20 @@
                         <button class="dropdown-item">Retirement Income Calculator</button>
                     </div>
                 </li>
-                <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="id04.open();" (mouseleave)="id04.close();">
-                    <a class="nav-link dropdown-toggle" id="id04" href="#" ngbDropdownToggle>Promotions</a>
-                    <div class="dropdown-menu right row" ngbDropdownMenu aria-labelledby="id04">
-                        <div class="nav-group">
-                            <p>Promotions</p>
+                <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="id03.open();" (mouseleave)="id03.close();">
+                    <a class="nav-link dropdown-toggle" id="id04" href="#" ngbDropdownToggle>About Us</a>
+                    <div class="dropdown-menu right row" ngbDropdownMenu aria-labelledby="id03">
+                        <div class="nav-group" routerLink="/about-us">
+                            <p>About Us</p>
                             </div>
-                        <div class="nav-group">
-                            <p>Packages</p>
+                        <div class="nav-group" routerLink="/about-us/customer-reviews">
+                            <p>Customer Reviews</p>
+                            </div> 
+                        <div class="nav-group" routerLink="/about-us/subscribe">
+                            <p>Subscribe</p>
                             </div>
                     </div>
                     </li>
-                <li class="nav-item"><a>About Us</a></li>
             </ul>
             <ul class="navbar-nav search-wrapper space-between align-right" [ngClass]="{'open': showSearchBar}">
                 <li class="nav-item" [ngClass]="{'open': showSearchBar}">        

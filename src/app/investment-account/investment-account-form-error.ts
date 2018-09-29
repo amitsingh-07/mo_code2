@@ -120,6 +120,27 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Zipcode should not contain special characters in mailing address.'
             }
         },
+        tinNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid TIN',
+                errorMessage: 'Please enter your TIN number.'
+            }
+        },
+        taxCountry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid country',
+                errorMessage: 'Please select your country.'
+            }
+        },
+        noTinReason: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid reason',
+                errorMessage: 'Please select a reason.'
+            }
+        },
         fullName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
@@ -196,6 +217,13 @@ export class InvestmentAccountFormError {
             pattern: {
                 errorTitle: 'Invalid date of birth',
                 errorMessage: 'passportExpiry date should not contain alphabet.'
+            }
+        },
+        sourceOfIncome: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid sourcwe',
+                errorMessage: 'Please select your source of investment funds.'
             }
         }
     };

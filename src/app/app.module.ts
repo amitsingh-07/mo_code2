@@ -16,6 +16,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
+import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
@@ -52,14 +53,14 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
-import { SubscribeComponent } from './subscribe/subscribe.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
-      { prefix: './assets/i18n/app/', suffix: '.json' }
+      { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/home/', suffix: '.json' }
     ]);
 }
 
@@ -87,8 +88,7 @@ export function tokenGetterFn() {
     FooterComponent,
     NumberOnlyDirective,
     CallBackComponent,
-    HomeComponent,
-    SubscribeComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +114,9 @@ export function tokenGetterFn() {
       }
     })
   ],
-  providers: [NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+  providers: [
+    NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+    ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
@@ -145,4 +147,3 @@ export class AppModule {
     AppModule.injector = injector;
   }
 }
-

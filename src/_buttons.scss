@@ -44,6 +44,9 @@ button:active:focus {
       outline: none !important;
       background: $btn-primary-backgrnd-color !important;
     }
+    &.btn__footer--fixed{
+      font-family:$muli-bold;
+    }
   }
   &.btn-white {
     background-color: $white-color;
