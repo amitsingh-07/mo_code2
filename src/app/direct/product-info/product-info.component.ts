@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit, Output, ViewEncapsulation, Input } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -87,16 +96,21 @@ export class ProductInfoComponent implements OnInit {
         this.isEditMode = false;
       }
     });
+    this.getProductCategoryList();
+    this.initDisplaySetup();
+  }
+
+  getProductCategoryList() {
+    this.directApiService.getProdCategoryList().subscribe((data) => {
+      this.productCategoryList = data.objectList; // Getting the information from the API
+      setTimeout(this.initCategorySetup(), 50);
+    });
   }
 
   ngOnInit() {
     // measuring width and height
     this.innerWidth = window.innerWidth;
-    this.initDisplaySetup();
-    this.directApiService.getProdCategoryList().subscribe((data) => {
-      this.productCategoryList = data.objectList; // Getting the information from the API
-      setTimeout(this.initCategorySetup(0), 50);
-    });
+
     this.directService.prodSearchInfoData.subscribe((data) => {
       if (data !== '') {
         this.minProdSearch = data;
@@ -125,8 +139,16 @@ export class ProductInfoComponent implements OnInit {
     }
   }
 
-  initCategorySetup(prodCategoryIndex) {
-    this.selectProductCategory(this.productCategoryList[prodCategoryIndex], prodCategoryIndex);
+  initCategorySetup() {
+    const selectedCategory = this.directService.getProductCategory();
+    let categoryIndex = selectedCategory.id;
+    if (selectedCategory && categoryIndex) {
+      categoryIndex = categoryIndex - 1;
+    } else {
+      categoryIndex = 0;
+    }
+
+    this.selectProductCategory(this.productCategoryList[categoryIndex], categoryIndex);
   }
 
   search(index) {

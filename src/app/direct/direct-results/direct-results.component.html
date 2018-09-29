@@ -1,5 +1,5 @@
-<app-edit-product-info (editProdInfo)="editProdInfo()" [ngClass]="{'is-hidden' : isComparePlanEnabled && isMobileView}"></app-edit-product-info>
-<div class="prod-info__backdrop show" [ngClass]="{'show': toggleBackdropVisibility}"></div>
+<app-edit-product-info (editProdInfo)="editProdInfo()" [hidden]="isComparePlanEnabled && isMobileView"></app-edit-product-info>
+<div class="prod-info__backdrop show" [hidden]="!toggleBackdropVisibility"></div>
 <div id="results-web" [hidden]="resultsEmptyMessage?.length > 0" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
   <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
     <div>

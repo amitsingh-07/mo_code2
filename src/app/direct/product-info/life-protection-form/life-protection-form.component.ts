@@ -48,7 +48,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
-    this.formValues = this.directService.getDirectFormData();
+    this.formValues = this.directService.getLifeProtectionForm();
     this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
     this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
