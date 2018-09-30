@@ -44,7 +44,6 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(1);
     /* Building the form */
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
@@ -69,10 +68,9 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     });
 
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '1') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
-          this.router.navigate([DIRECT_ROUTE_PATHS.RESULTS]);
           this.directService.triggerSearch('');
         }
       }
@@ -80,7 +78,9 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.categorySub.unsubscribe();
+    if (this.categorySub) {
+      this.categorySub.unsubscribe();
+    }
   }
 
   selectCoverageAmt(in_coverage_amt) {

@@ -1,8 +1,10 @@
 import { Location } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarService } from './navbar.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

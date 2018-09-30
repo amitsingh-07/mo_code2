@@ -1,6 +1,14 @@
 import 'rxjs/add/observable/timer';
 
-import { AfterViewInit, Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -28,7 +36,7 @@ const assetImgPath = './assets/images/';
   encapsulation: ViewEncapsulation.None
 })
 
-export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterViewInit {
+export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterViewInit, OnDestroy {
 
   existingCoverageValues: IExistingCoverage;
   criticalIllnessValues: CriticalIllnessData;
@@ -48,7 +56,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, public guideMeService: GuideMeService,
     private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal,
-    private googleAnalyticsService: GoogleAnalyticsService) {
+    private googleAnalyticsService: GoogleAnalyticsService, private cdr: ChangeDetectorRef) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
@@ -86,9 +94,11 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
       setInterval(() => {
         this.hideStaticModal = true;
+        this.cdr.detectChanges();
       }, 3000);
     } else {
       this.hideStaticModal = true;
+      this.cdr.detectChanges();
     }
   }
 
@@ -99,6 +109,10 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
     this.guideMeService.decrementProtectionNeedsIndex();
+  }
+
+  ngOnDestroy() {
+    this.cdr.detach();
   }
 
   viewDetails(index) {

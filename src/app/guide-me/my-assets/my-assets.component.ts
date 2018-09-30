@@ -25,6 +25,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   assetsForm: FormGroup;
   assetsFormValues: IMyAssets;
   assetsTotal: any;
+  cpfValue: number;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -52,10 +53,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     });
     if (this.guideMeService.isMyInfoEnabled) {
       this.guideMeApiService.getMyInfoData().subscribe((data) => {
+        this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
         this.guideMeService.closeFetchPopup();
-        this.assetsForm.controls['cpf'].setValue(data.objectList[0].CPF);
-        this.setFormTotalValue();
+        this.assetsForm.controls['cpf'].setValue(this.cpfValue);
         this.guideMeService.isMyInfoEnabled = false;
+        this.setFormTotalValue();
       });
       }
     this.setFormTotalValue();
@@ -85,7 +87,8 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
      ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
      ref.componentInstance.isButtonEnabled = true;
      ref.result.then(() => {
-      this.myInfoService.goToMyInfo();
+       this.myInfoService.setMyInfoAttributes('cpfbalances');
+       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
 

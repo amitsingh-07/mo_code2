@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-upload-documents',
@@ -22,6 +24,10 @@ export class UploadDocumentsComponent implements OnInit {
   formValues;
   countries;
   isUserNationalitySingapore;
+  defaultThumb;
+  showLoader;
+  loaderTitle;
+  loaderDesc;
 
   constructor(
     public readonly translate: TranslateService,
@@ -34,6 +40,8 @@ export class UploadDocumentsComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
       this.setPageTitle(this.pageTitle);
+      this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
+      this.showLoader = false;
     });
   }
 
@@ -49,9 +57,9 @@ export class UploadDocumentsComponent implements OnInit {
 
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
-      nricFrontImage: [this.formValues.nricFrontImage],
-      nricBackImage: [this.formValues.nricBackImage],
-      mailAdressProof: [this.formValues.mailAdressProof]
+      nricFrontImage: [this.formValues.nricFrontImage, Validators.required],
+      nricBackImage: [this.formValues.nricBackImage, Validators.required],
+      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
     });
   }
 
@@ -84,36 +92,61 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   openFileDialog(elem) {
-    elem.click();
+    if (!elem.files.length) {
+      elem.click();
+    }
   }
 
   setThumbnail(fileElem, thumbElem) {
     const file: File = fileElem.target.files[0];
-    const reader: FileReader  = new FileReader();
+    const reader: FileReader = new FileReader();
     reader.onloadend = () => {
       thumbElem.src = reader.result;
     };
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      thumbElem.src = '';
+      thumbElem.src = window.location.origin + '/assets/images/' + this.defaultThumb;
     }
   }
 
   getFileName(fileElem) {
-    return fileElem.files[0].name;
+    let fileName = '';
+    if (fileElem.files.length) {
+      fileName = fileElem.files[0].name;
+    }
+    return fileName;
+  }
+
+  clearFileSelection(control, event, thumbElem?) {
+    event.stopPropagation();
+    control.setValue('');
+    debugger;
+    if (thumbElem) {
+      thumbElem.src = window.location.origin + '/assets/images/' + this.defaultThumb;
+    }
+  }
+
+  showProofOfMailingDetails() {
+    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MAILING_ADDRESS_PROOF.MODAL.TITLE');
+    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MAILING_ADDRESS_PROOF.MODAL.MESSAGE');
+    this.showModal(errorTitle, errorDesc);
+  }
+
+  showModal(errorTitle, errorDesc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorDescription = errorDesc;
   }
 
   goToNext(form) {
-    if (!form.valid) {
-      this.markAllFieldsDirty(form);
-      const error = this.investmentAccountService.getFormErrorList(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
-      return false;
-    } else {
-    }
+    this.showLoader = true;
+    this.loaderTitle = 'Uploading';
+    this.loaderDesc = 'Please be patient, upload may take a few minutes.';
+    setTimeout(() => {
+      this.showLoader = false;
+    }, 5000);
+
   }
 
 }

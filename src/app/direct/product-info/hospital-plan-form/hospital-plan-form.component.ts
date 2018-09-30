@@ -30,13 +30,12 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       config.outsideDays = 'collapsed';
       this.translate.use('en');
       this.translate.get('COMMON').subscribe((result: string) => {
-      this.planType = this.translate.instant('HOSPITAL_PLAN.HOSPITAL_PLANS');
+      this.planType = this.translate.instant('DIRECT_HOSPITAL_PLAN.HOSPITAL_PLANS');
       this.selectedPlan = this.planType[0];
     });
      }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(3);
     this.formValues = this.directService.getHospitalPlanForm();
     this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider ? this.formValues.fullOrPartialRider : 'yes';
     this.hospitalForm = this.formBuilder.group({
@@ -46,7 +45,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       selectedPlan: [this.formValues.selectedPlan]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '3') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
@@ -91,13 +90,13 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   showFullOrPartialRider() {
     if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
       this.directService.showToolTipModal(
-        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.TITLE'),
-        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.MESSAGE')
+        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.TITLE'),
+        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.MESSAGE')
       );
     } else {
       this.directService.showToolTipModal(
-        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.TITLE'),
-        this.translate.instant('HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.MESSAGE')
+        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.TITLE'),
+        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.MESSAGE')
       );
     }
   }

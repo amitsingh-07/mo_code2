@@ -22,6 +22,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   showHeader = true;
   showHeaderDropshadow = true;
   closeIcon = false;
+  settingsIcon = false;
 
   constructor(public navbarService: NavbarService, public headerService: HeaderService,
               private _location: Location , private router: Router) {  }
@@ -31,6 +32,7 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
     this.headerService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
     this.headerService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
     this.headerService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
+    this.headerService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
   }
 
   ngAfterViewInit() {
@@ -42,8 +44,8 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
     });
   }
 
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, this.subTitle, this.helpIcon);
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
+    this.headerService.setPageTitle(title, this.subTitle, this.helpIcon, this.settingsIcon);
   }
 
   hideHeader() {

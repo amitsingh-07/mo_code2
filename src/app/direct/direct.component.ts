@@ -1,14 +1,24 @@
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { FooterService } from './../shared/footer/footer.service';
-import { HeaderService } from './../shared/header/header.service';
-import { NavbarService } from './../shared/navbar/navbar.service';
-import { DirectService } from './direct.service';
-
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  Type,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
+import { FooterService } from './../shared/footer/footer.service';
+import { HeaderService } from './../shared/header/header.service';
 import { IPageComponent } from './../shared/interfaces/page-component.interface';
-import { ProductInfoComponent } from './product-info/product-info.component';
+import { NavbarService } from './../shared/navbar/navbar.service';
+import { DirectResultsComponent } from './direct-results/direct-results.component';
+import { DirectService } from './direct.service';
+
+const mobileThreshold = 567;
 
 @Component({
   selector: 'app-direct',
@@ -18,12 +28,19 @@ import { ProductInfoComponent } from './product-info/product-info.component';
 })
 
 export class DirectComponent implements OnInit, IPageComponent {
+  @ViewChild('directResults', { read: ViewContainerRef }) container: ViewContainerRef;
+  components = [];
+
+  isMobileView: boolean;
   modalFreeze: boolean;
   pageTitle: string;
+  showingResults = false;
+
   constructor(
     private router: Router, public navbarService: NavbarService,
     public footerService: FooterService, private directService: DirectService, private translate: TranslateService,
-    public modal: NgbModal ) {
+    public modal: NgbModal, private route: ActivatedRoute,
+    private factoryResolver: ComponentFactoryResolver ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PROFILE.TITLE');
@@ -36,6 +53,11 @@ export class DirectComponent implements OnInit, IPageComponent {
   ngOnInit() {
     this.navbarService.setNavbarMode(2);
     this.footerService.setFooterVisibility(false);
+    if (window.innerWidth < mobileThreshold) {
+      this.isMobileView = true;
+    } else {
+      this.isMobileView = false;
+    }
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?) {
@@ -50,6 +72,35 @@ export class DirectComponent implements OnInit, IPageComponent {
     console.log('Show Product Info');
   }
 
-  searchPlans() {
+  formSubmitCallback() {
+    this.showingResults = true;
+    this.removeComponent(DirectResultsComponent);
+    this.addComponent(DirectResultsComponent);
+  }
+
+  addComponent(componentClass: Type<any>) {
+    // Create component dynamically inside the ng-template
+    const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
+    const component = this.container.createComponent(componentFactory);
+    component.instance.isMobileView = this.isMobileView;
+
+    // Push the component so that we can keep track of which components are created
+    this.components.push(component);
+  }
+
+  removeComponent(componentClass: Type<any>) {
+    // Find the component
+    const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
+    const componentIndex = this.components.indexOf(component);
+
+    if (componentIndex !== -1) {
+      // Remove component from both view and array
+      this.container.remove(this.container.indexOf(component));
+      this.components.splice(componentIndex, 1);
+    }
+  }
+
+  closeEditMode() {
+    this.directService.setModalFreeze(false);
   }
 }

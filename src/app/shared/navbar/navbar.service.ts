@@ -23,14 +23,17 @@ export class NavbarService {
   private pageSubTitle = new BehaviorSubject('');
   private pageHelpIcon = new BehaviorSubject(true);
   private pageProdInfoIcon = new BehaviorSubject(false);
+
   private mobileModal = new BehaviorSubject('');
   private closeProdInfo = new BehaviorSubject('');
+  private pageSettingsIcon = new BehaviorSubject(true);
 
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
   currentPageHelpIcon = this.pageHelpIcon.asObservable();
   currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
   currentMobileModalEvent = this.mobileModal.asObservable();
+  currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
 
   constructor() {}
 
@@ -60,7 +63,7 @@ export class NavbarService {
 
   /* Header Functions*/
   // Setting Page Title
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
         this.pageTitle.next(title);
         if (subTitle) {
             this.pageSubTitle.next(subTitle);
@@ -71,6 +74,11 @@ export class NavbarService {
             this.pageHelpIcon.next(true);
         } else {
             this.pageHelpIcon.next(false);
+        }
+        if (settingsIcon) {
+          this.pageSettingsIcon.next(true);
+        } else {
+            this.pageSettingsIcon.next(false);
         }
     }
   // Showing Mobile PopUp Trigger

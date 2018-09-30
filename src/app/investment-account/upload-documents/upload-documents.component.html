@@ -1,3 +1,5 @@
+<app-loader [isVisible]="showLoader" [messageTitle]="loaderTitle" [messageDesc]="loaderDesc"></app-loader>
+
 <div class="upload-doc-nric">
   <div class="step-indicator-container">
     <div class="container-fluid">
@@ -13,12 +15,13 @@
             <div class="sub-title"><span>Proof Of Identity (NRIC)</span></div>
           </div>
           <div class="upload-doc">
-            <div class="upload-desc" (click)="openFileDialog(nricFront)">
-              <div class="thumb-container">
-                <div class="thumb-close-icon" *ngIf="uploadForm.controls.nricFrontImage.value">
+            <!-- FRONT IMAGE UPLOAD -->
+            <div class="upload-desc">
+              <div class="thumb-container" (click)="openFileDialog(nricFront)">
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricFrontImage, $event, frontThumb)" *ngIf="uploadForm.controls.nricFrontImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
-                <img #frontThumb class="thumbnail image-fluid" src="../../../assets/images/cam-icon.png" />
+                <img #frontThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
               </div>
               <div class="upload-content">
                 <div class="title">Front NRIC</div>
@@ -28,12 +31,14 @@
                   name="nricFront" accept="image/*" class="is-hidden">
               </div>
             </div>
-            <div class="upload-desc" (click)="openFileDialog(nricBack)">
-              <div class="thumb-container">
-                <div class="thumb-close-icon" *ngIf="uploadForm.controls.nricBackImage.value">
+
+            <!-- BACK IMAGE UPLOAD -->
+            <div class="upload-desc">
+              <div class="thumb-container" (click)="openFileDialog(nricBack)">
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricBackImage, $event, backThumb)" *ngIf="uploadForm.controls.nricBackImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
-                <img #backThumb class="thumbnail image-fluid" src="../../../assets/images/cam-icon.png" />
+                <img #backThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
               </div>
               <div class="upload-content">
                 <div class="title">Back NRIC</div>
@@ -45,20 +50,26 @@
             </div>
           </div>
         </div>
+
+        <!-- MAILING ADDRESS PROOF UPLOAD -->
         <div class="row">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
               <span>Proof Of Mailing Address</span>
-              <span><img class="image-fluid" src="../../../assets/images/tooltip-icon-white.svg" alt=""></span>
+              <div (click)="showProofOfMailingDetails()"><img class="image-fluid" src="../../../assets/images/tooltip-icon-white.svg" alt=""></div>
             </div>
             <div class="sub-title-desc">This document must match the information<br /> provided under “Mailing Address”
               earlier.</div>
-            <div class="upload-file">
-              <input type="hidden" name="mailAdressProof" formControlName="mailAdressProof" />
-              <button type="button" class="btn btn-primary">Choose File</button>
-              <label>no file selected</label>
+            <div class="upload-file" [class.selected]="uploadForm.controls.mailAdressProof.value">
+              <button type="button" class="btn btn-primary" (click)="openFileDialog(mailAdressProof)">
+                <span class="unselected-state">Choose File</span>
+                <span class="selected-state">Uploaded</span>
+              </button>
+              <label class="unselected-state">no file selected</label>
+              <label class="selected-state" [innerHtml]="getFileName(mailAdressProof)"></label>
+              <div class="selected-state" (click)="clearFileSelection(uploadForm.controls.mailAdressProof, $event)"><img src="../assets/images/close-button.svg" alt="" /></div>
             </div>
-            <input type="file" name="proofOfAddress" class="is-hidden">
+            <input type="file" #mailAdressProof formControlName="mailAdressProof" name="proofOfMailAddress" class="is-hidden">
           </div>
         </div>
 

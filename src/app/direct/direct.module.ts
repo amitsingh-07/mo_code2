@@ -62,7 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     ComparePlansComponent,
     SrsApprovedPlansFormComponent],
   providers: [CurrencyPipe],
-  entryComponents: [ProductDetailComponent]
+  entryComponents: [ProductDetailComponent, DirectResultsComponent]
 })
 export class DirectModule {
   constructor(public navbarService: NavbarService, public headerService: HeaderService) {

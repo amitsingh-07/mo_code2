@@ -16,6 +16,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
+import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
@@ -52,6 +53,7 @@ import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-moda
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
+import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -114,7 +116,9 @@ export function tokenGetterFn() {
       }
     })
   ],
-  providers: [NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+  providers: [
+    NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+    ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
@@ -128,9 +132,11 @@ export function tokenGetterFn() {
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
     }, Formatter, CurrencyPipe],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent, PopupModalComponent,
-    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent]
+  entryComponents: [
+    HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
+    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
+    SettingsWidgetComponent]
 })
 
 export class AppModule {
