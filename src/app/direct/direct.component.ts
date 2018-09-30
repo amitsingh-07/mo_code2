@@ -45,6 +45,7 @@ export class DirectComponent implements OnInit, IPageComponent {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PROFILE.TITLE');
       this.setPageTitle(this.pageTitle, null, false);
+      this.directService.setModalFreeze(true);
     });
     this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
     this.showProductInfo();
