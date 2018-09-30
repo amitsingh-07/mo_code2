@@ -8,7 +8,7 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { OrderByPipe } from '../../shared/Pipes/order-by.pipe';
 import { IDropDownData } from '../../shared/widgets/settings-widget/settings-widget.component';
 import { IProductCategory } from '../product-info/product-category/product-category';
-import { HeaderService } from './../../shared/header/header.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
@@ -51,7 +51,7 @@ export class DirectResultsComponent implements IPageComponent {
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
-    private router: Router, private translate: TranslateService, public headerService: HeaderService) {
+    private router: Router, private translate: TranslateService, public navbarService: NavbarService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
@@ -152,7 +152,7 @@ export class DirectResultsComponent implements IPageComponent {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   editProdInfo() {

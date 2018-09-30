@@ -62,6 +62,9 @@ body {
       align-items: center;
       justify-content: space-between;
     }
+    li{
+      list-style-type: none;
+    }
     @include minMobilemaxPhablet{
       height:auto;
     }
@@ -78,6 +81,38 @@ body {
       flex-basis: 100%;
       @include minMobilemaxPhablet{
         flex-direction:column;
+        min-height:65.5px;
+      }
+    }
+    .navbar-header{
+      position: relative;
+      display:inline-flex;
+      z-index:0;
+      flex-basis:100%;
+      height:100%;
+      min-height:60px;
+      padding:0px;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      margin-bottom:0px;
+      &.top{
+        padding:8px 15px;
+      }
+      .navbar__title--mobile {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .navbar__subtitle--mobile {
+        max-width: 346px;
+        text-align: center;
+        color: #5e5e5e;
+        letter-spacing:-0.2px;
+        line-height: 1.25;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 12px;
       }
     }
     .navbar-wrapper{
@@ -101,8 +136,13 @@ body {
         align-items:center;
         @include minMobilemaxPhablet{
           width:100%;
+          min-height:45px;
           box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25); 
-          
+          &.navbar--hidden{
+            height:0px;
+            min-height:0px;
+            overflow:hidden;
+          }
         }
         button{
           outline:none;
@@ -137,6 +177,7 @@ body {
             justify-content:flex-start;
             flex-basis:unset;
             order:2;
+            margin-right:0px;
           }
           &.hide{
             width:0px;
@@ -368,15 +409,25 @@ body {
     @include minMobilemaxPhablet{
       height:45px;
     }
+    &.headerMode{
+      @include minMobilemaxPhablet{
+        height:0px;
+      }
+    }
   }
   .nav--shadow{
     box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);  
   }
-  .navbar__menu-icon{
-    background-image: url("./assets/images/menu-icon.svg");
-    display:block;
-    width:24px;
-    height:24px;   
+  .navbar-toggler{
+    position: absolute;
+    display: block;
+    right:0px;
+    .navbar__menu-icon{
+      background-image: url("./assets/images/menu-icon.svg");
+      display:block;
+      width:24px;
+      height:24px;   
+    }
   }
   .navbar-brand{
     position: relative;
@@ -385,8 +436,17 @@ body {
     align-items: center;
     justify-content: center;
     @include minMobilemaxPhablet{
+      position: absolute;
+      display:flex;
+      left:0px;
       max-height:45.5px;
       padding:0rem 1rem;
+      margin-right:unset;
+      z-index:2;
+      &.top{
+        top:8px;
+        padding-top:5px;
+      }
     }
   }
   .navbar__logo--secondary,
@@ -417,28 +477,30 @@ body {
     display:inline-block;
     background-color:$teal-color;
     width:2px;
-    height:25px;
+    height:28px;
     opacity:0.2;
     margin-left:15px;
   }
   .navbar__back-btn--web {
     background-image: url("./assets/images/back-web.svg");
-    width: 55px;
-    height: 43px;
+    width: 46px;
+    height: 38px;
+    margin-right:5px;
     cursor: pointer;
   }
   .navbar__back-btn--web {
     &:hover {
-      background-image: url("./assets/images/back-web-hover.png");
+      background-image: url("./assets/images/back-web-hover.svg");
     }
   }
   .navbar__back-btn--mobile {
     background-image: url("./assets/images/back-mobile-btn.svg");
     width: 25px;
-    height: 100%;
-    position: absolute;
-    left: 20px;
-    top: 25px;
+    height: 25px;
+    position: relative;
+    display:block;
+    left: 4px;
+    top: 5px;
     cursor: pointer;
     background-repeat: no-repeat;
   }
@@ -448,9 +510,20 @@ body {
   }
   .navbar__logo__subtitle {
     line-height: 52px;
-    padding-left: 5px;
+    padding-left: 12px;
     font-size: 16px;
     font-family: $muli-bold;
+    p{
+      margin-bottom:0px;
+      line-height:20px;
+    }
+    .secondary{
+      font-family: $muli;
+      font-size: 13px;
+      line-height:16px;
+      color: #7e8181;
+      letter-spacing:-0.1px;
+    }
   }
   .navbar__helpIcon--mobile {
     position: absolute;

@@ -5,9 +5,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Router } from '@angular/router';
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
@@ -27,7 +27,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   assetsTotal: any;
 
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private modal: NgbModal, private location: Location,
     private myInfoService: MyInfoService,
     public guideMeApiService: GuideMeApiService,
@@ -92,7 +92,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
    }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   goToNext(form) {

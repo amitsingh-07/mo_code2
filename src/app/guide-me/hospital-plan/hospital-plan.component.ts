@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { GuideMeService } from '../guide-me.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeApiService } from '../guide-me.api.service';
+import { GuideMeService } from '../guide-me.service';
 import { HospitalPlan } from './hospital-plan';
 
 const assetImgPath = './assets/images/';
@@ -34,7 +34,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   constructor(
     private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
-    public modal: NgbModal, public headerService: HeaderService,
+    public modal: NgbModal, public navbarService: NavbarService,
     private guideMeApiService: GuideMeApiService
   ) {
     this.translate.use('en');
@@ -62,7 +62,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string, subTitle?: string) {
-    this.headerService.setPageTitle(title, subTitle, false);
+    this.navbarService.setPageTitle(title, subTitle, false);
   }
 
   validateForm(hospitalPlan) {

@@ -6,8 +6,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { CriticalIllnessData } from '../ci-assessment/ci-assessment';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
@@ -45,7 +45,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   planData;
 
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, public guideMeService: GuideMeService,
     private guideMeCalculateService: GuideMeCalculateService, public modal: NgbModal,
     private googleAnalyticsService: GoogleAnalyticsService) {
@@ -93,7 +93,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+    this.navbarService.setPageTitle(title, null, helpIcon);
   }
 
   @HostListener('window:popstate', ['$event'])

@@ -21,31 +21,29 @@ export class DirectComponent implements OnInit, IPageComponent {
   modalFreeze: boolean;
   pageTitle: string;
   constructor(
-    private router: Router, public headerService: HeaderService, public navbarService: NavbarService,
+    private router: Router, public navbarService: NavbarService,
     public footerService: FooterService, private directService: DirectService, private translate: TranslateService,
     public modal: NgbModal ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-    this.pageTitle = this.translate.instant('PROFILE.TITLE');
-    this.setPageTitle(this.pageTitle, null, false);
+      this.pageTitle = this.translate.instant('PROFILE.TITLE');
+      this.setPageTitle(this.pageTitle, null, false);
     });
     this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
     this.showProductInfo();
     }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(false);
-    this.headerService.setHeaderDropshadowVisibility(true);
-    this.headerService.setHeaderOverallVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+    this.navbarService.setPageTitle(title, null, helpIcon);
   }
 
   setProdInfoBtnVisibility(isVisible: boolean) {
-    this.headerService.setProdButtonVisibility(isVisible);
+    this.navbarService.setProdButtonVisibility(isVisible);
   }
 
   showProductInfo() {

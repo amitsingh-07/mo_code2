@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { SlickComponent } from 'ngx-slick';
 
 import { Router } from '../../../../node_modules/@angular/router';
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
@@ -48,7 +48,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
-    private translate: TranslateService, public headerService: HeaderService,
+    private translate: TranslateService, public navbarService: NavbarService,
     private guideMeApiService: GuideMeApiService, private calculateService: GuideMeCalculateService,
     private currency: CurrencyPipe, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router) {
@@ -106,7 +106,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   setPageTitle(title: string, subTitle: string) {
-    this.headerService.setPageTitle(title, subTitle);
+    this.navbarService.setPageTitle(title, subTitle);
   }
 
   moveCarouselNext() {

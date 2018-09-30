@@ -10,10 +10,10 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
-import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { FinancialValidator } from './my-financial-validator';
@@ -42,7 +42,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     private modal: NgbModal,
     private portfolioService: PortfolioService,
     private formBuilder: FormBuilder,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
@@ -57,7 +57,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();

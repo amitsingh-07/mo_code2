@@ -17,7 +17,7 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   pageTitle: string;
   public firstLoad = true;
   public homeNavBarHide = false;
@@ -40,9 +40,14 @@ export class HomeComponent implements OnInit {
                 this.translate.get('COMMON').subscribe((result: string) => {
                     this.pageTitle = this.translate.instant('HOME.TITLE');
                     this.setPageTitle(this.pageTitle);
+                    this.navbarService.setNavbarVisibility(true);
+                    this.navbarService.setNavbarMode(1);
+                    this.navbarService.setNavbarMobileVisibility(true);
+                    this.navbarService.setNavbarShadowVisibility(true);
+                    this.headerService.setHeaderOverallVisibility(false);
                 });
                 if (this.firstLoad) {
-                  this.triggerPopup();
+                  // this.triggerPopup();
                   this.firstLoad = false;
                 }
               }
@@ -70,13 +75,13 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarShadowVisibility(true);
-    this.headerService.setHeaderOverallVisibility(false);
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.subscribeForm = new FormGroup({
       email: new FormControl(this.formValues.email),
     });
+  }
+
+  ngAfterViewInit() {
   }
 
   setPageTitle(title: string) {

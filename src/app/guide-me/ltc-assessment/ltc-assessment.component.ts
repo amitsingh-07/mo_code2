@@ -7,8 +7,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { MobileModalComponent } from '../mobile-modal/mobile-modal.component';
@@ -38,7 +38,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   constructor(
     private formBuilder: FormBuilder, private router: Router,
     private translate: TranslateService, private guideMeService: GuideMeService,
-    public modal: NgbModal, public headerService: HeaderService,
+    public modal: NgbModal, public navbarService: NavbarService,
     private guideMeApiService: GuideMeApiService
   ) {
     this.translate.use('en');
@@ -60,7 +60,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
       this.longTermCareList = data.objectList; // Getting the information from the API
     });
 
-    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+    this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
         this.showMobilePopUp();
       }
@@ -77,7 +77,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, subTitle, helpIcon);
+    this.navbarService.setPageTitle(title, subTitle, helpIcon);
   }
 
   validateForm(careGiver) {
@@ -115,6 +115,6 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
     ref.componentInstance.mobileTitle = this.modalData.TITLE;
     ref.componentInstance.description = this.modalData.DESCRIPTION;
     ref.componentInstance.icon_description = this.modalData.LOGO_DESCRIPTION;
-    this.headerService.showMobilePopUp('removeClicked');
+    this.navbarService.showMobilePopUp('removeClicked');
   }
 }
