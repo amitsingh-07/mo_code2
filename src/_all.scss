@@ -41,6 +41,9 @@ body {
     padding-left: 75px;
     padding-right: 75px;
     padding-bottom: 65px;
+    &.max-width--1024{
+      max-width:1024px;
+    }
   }
   .navbar {
     padding-left: 0;
