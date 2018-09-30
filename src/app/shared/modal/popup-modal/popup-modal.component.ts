@@ -11,7 +11,7 @@ export class PopupModalComponent implements OnInit {
   @Input() popupTitle: any;
   @Input() popupMessage: any;
 
-  constructor() { }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
