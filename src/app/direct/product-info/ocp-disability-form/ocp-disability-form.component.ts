@@ -47,20 +47,19 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-    this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
-    this.defaultEmployee = this.employmentTypeList[0];
-    this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
-    this.duration = this.durationValues[0];
+      this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
+      this.defaultEmployee = this.employmentTypeList[0];
+      this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
+      this.duration = this.durationValues[0];
     });
   }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(2);
     this.formValues = this.directService.getOcpDisabilityForm();
-    if (this.formValues.employmentType !== undefined ) {
+    if (this.formValues.employmentType !== undefined) {
       this.selectEmployeeType(this.formValues.employmentType, true);
     }
-    if (this.formValues.duration !== undefined ) {
+    if (this.formValues.duration !== undefined) {
       this.selectDuration(this.formValues.duration);
     }
     this.ocpDisabilityForm = this.formBuilder.group({
@@ -73,13 +72,13 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       duration: [this.formValues.duration]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-    if (data !== '') {
-      if (this.save()) {
-        this.directService.setMinProdInfo(this.summarizeDetails());
+      if (data !== '' && data === '2') {
+        if (this.save()) {
+          this.directService.setMinProdInfo(this.summarizeDetails());
+        }
+        this.directService.triggerSearch('');
       }
-      this.directService.triggerSearch('');
-    }
-  });
+    });
   }
 
   ngAfterViewInit() {
@@ -114,7 +113,11 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string += '$' + this.ocpDisabilityForm.controls['monthlySalary'].value +  ' / mth, ';
+    let monthlySalaryValue = this.ocpDisabilityForm.controls['monthlySalary'].value;
+    if (!monthlySalaryValue) {
+      monthlySalaryValue = 0;
+    }
+    sum_string += '$' + monthlySalaryValue +  ' / mth, ';
     sum_string += this.duration;
     return sum_string;
   }

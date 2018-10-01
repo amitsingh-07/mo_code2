@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -42,6 +42,7 @@ export class SelectNationalityComponent implements OnInit {
         public headerService: HeaderService,
         public activeModal: NgbActiveModal,
         private router: Router,
+        private formBuilder: FormBuilder,
         private investmentAccountService: InvestmentAccountService,
         private modal: NgbModal,
         public authService: AuthenticationService,
@@ -58,41 +59,33 @@ export class SelectNationalityComponent implements OnInit {
         this.getNationalityList();
         this.selectNationalityFormValues = this.investmentAccountService.getNationality();
         this.nationalityObj = this.selectNationalityFormValues.nationality;
-        this.nationality = this.selectNationalityFormValues.nationality && this.selectNationalityFormValues.nationality.nationality ? this.selectNationalityFormValues.nationality.nationality : 'Select Nationality';
+        this.nationality = this.selectNationalityFormValues.nationality &&
+            this.selectNationalityFormValues.nationality.nationality ?
+            this.selectNationalityFormValues.nationality.nationality : 'Select Nationality';
         this.selectNationalityForm = new FormGroup({
             nationality: new FormControl(this.selectNationalityFormValues.nationality)
         });
-        this.addOtherCountryResidentControl();
-        if (this.nationality === 'Select Nationality') {
-            this.removeFormControl();
+        this.buildFormControls();
+    }
+
+    buildFormControls() {
+        if (this.nationality === 'Select Nationality' || this.blocked) {
+            this.singaporeNationality = false;
+            this.notSingaporeNationality = false;
         } else if (this.nationality === 'SINGAPOREAN') {
             this.singaporeNationality = true;
             this.notSingaporeNationality = false;
-            this.selectNationalityForm.removeControl('singaporeanResident');
+            this.selectNationalityForm = new FormGroup({
+                unitedStatesResident: new FormControl(this.selectNationalityFormValues.unitedStatesResident, Validators.required)
+            });
+        } else {
+            this.singaporeNationality = true;
+            this.notSingaporeNationality = true;
+            this.selectNationalityForm = new FormGroup({
+                unitedStatesResident: new FormControl(this.selectNationalityFormValues.unitedStatesResident, Validators.required),
+                singaporeanResident: new FormControl(this.selectNationalityFormValues.singaporeanResident, Validators.required)
+            });
         }
-    }
-
-    removeFormControl() {
-        this.singaporeNationality = false;
-        this.notSingaporeNationality = false;
-        this.selectNationalityForm.removeControl('singaporeanResident');
-        this.selectNationalityForm.removeControl('unitedStatesResident');
-    }
-
-    addSingaporeanResidentControl() {
-        this.singaporeNationality = true;
-        this.notSingaporeNationality = false;
-        this.selectNationalityForm.addControl('unitedStatesResident',
-            new FormControl(this.selectNationalityFormValues.unitedStatesResident, Validators.required));
-    }
-
-    addOtherCountryResidentControl() {
-        this.singaporeNationality = true;
-        this.notSingaporeNationality = true;
-        this.selectNationalityForm.addControl('singaporeanResident',
-            new FormControl(this.selectNationalityFormValues.singaporeanResident, Validators.required));
-        this.selectNationalityForm.addControl('unitedStatesResident',
-            new FormControl(this.selectNationalityFormValues.unitedStatesResident, Validators.required));
     }
 
     selectNationality(nationalityObj) {
@@ -100,32 +93,21 @@ export class SelectNationalityComponent implements OnInit {
         this.blocked = this.nationalityObj.blocked;
         this.nationality = this.nationalityObj.nationality;
         this.country = this.nationalityObj.country;
-        this.removeFormControl();
-        if (this.nationality === 'SINGAPOREAN') {
-            this.addSingaporeanResidentControl();
-        } else if (!this.blocked) {
-            this.addOtherCountryResidentControl();
-        }
+        this.buildFormControls();
     }
-    getNationalityList() {
 
+    getNationalityList() {
         this.authService.authenticate().subscribe((token) => {
             this.investmentAccountService.getNationalityList().subscribe((data) => {
                 this.nationalitylist = data.objectList;
                 console.log(this.nationalitylist);
             });
         });
-
     }
-    save(form): any {
-        if (!form.valid) {
-            return false;
-        }
+    save(form) {
         const singaporeanResident = form.controls.singaporeanResident ? form.controls.singaporeanResident.value : '';
         this.investmentAccountService.setNationality(this.nationalitylist, this.nationalityObj,
             form.controls.unitedStatesResident.value, singaporeanResident);
-
-        return true;
     }
 
     showErrorMessage(modalTitle: any, modalMessage: any) {
@@ -139,26 +121,17 @@ export class SelectNationalityComponent implements OnInit {
     }
 
     goToNext(form) {
-        if (this.blocked || this.nationality === 'AMERICAN') {
+        if (this.blocked) {
             this.showErrorMessage(this.editModalData.modalTitle, this.editModalData.modalMessage);
-        } else if (this.nationality === 'SINGAPOREAN') {
-            if (this.save(form)) {
-                if (form.controls.unitedStatesResident.value === 'yes') {
-                    this.showErrorMessage(this.editModalData1.modalTitle1, this.editModalData1.modalMessage1);
-                } else {
-                    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
-                }
+        } else if (form.valid && form.controls.unitedStatesResident) {
+            if ((this.nationality === 'SINGAPOREAN' &&
+                form.controls.unitedStatesResident.value === 'yes') ||
+                ((form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'yes')
+                    || (form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'no'))) {
+                this.showErrorMessage(this.editModalData1.modalTitle1, this.editModalData1.modalMessage1);
             } else {
-                return false;
-            }
-        } else {
-            if (this.save(form)) {
-                if ((form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'yes')
-                    || (form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'no')) {
-                    this.showErrorMessage(this.editModalData1.modalTitle1, this.editModalData1.modalMessage1);
-                } else {
-                    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
-                }
+                this.save(form);
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
             }
         }
     }

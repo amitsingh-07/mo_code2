@@ -51,7 +51,7 @@ export class GuideMeApiService {
     }
 
     getMyInfoData() {
-        return this.apiService.getMyInfoData();
+        return this.apiService.getMyInfoData(this.guideMeService.myInfoValue);
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {

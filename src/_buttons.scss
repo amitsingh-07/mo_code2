@@ -44,6 +44,9 @@ button:active:focus {
       outline: none !important;
       background: $btn-primary-backgrnd-color !important;
     }
+    &.btn__footer--fixed{
+      font-family:$muli-bold;
+    }
   }
   &.btn-white {
     background-color: $white-color;
@@ -104,6 +107,23 @@ button:active:focus {
     border: none;
     &:hover {
       background-color: $btn-disabled-bg !important;
+    }
+  }
+  &.btn-primary-modal {
+    background-color: $app-backgrnd-color;
+    border: 1px solid $app-backgrnd-color;
+    color: $white-color;
+    &:hover {
+      background-color: transparent;
+      border: 1px solid $app-backgrnd-color !important;
+      color: $white-color !important;
+    }
+    &:focus,
+    &:active {
+      outline: none !important;
+      border: 1px solid $app-backgrnd-color !important;
+      color: $white-color !important;
+      background-color: transparent !important;
     }
   }
 }
@@ -438,6 +458,9 @@ button:active:focus {
 }
 
 .min-prod-info{
+  @include tablet {
+    padding: 0 20px;
+  }
   .min-prod-info__block{
     position: relative;
     display: flex;
@@ -449,13 +472,16 @@ button:active:focus {
     padding:12px 64px 12px 20px;
     border-radius: 8px;
     color: $teal-color;
-    width: 1024px;
+    width: 1000px;
     max-height:70px; 
     min-height:64px;
     //max-width: calc(1024px - 160px);
-    min-width:337px;
+    //min-width:337px;
     box-shadow: 0 8px 6px -6px rgba(138, 155, 169, 0.3);
-    
+
+    @include allmobiles {
+      box-shadow: 0 8px 12px 0 rgba(138, 155, 169, 0.3);
+    }
     @include minMobilemaxPhablet{
       width:100% !important;
       min-width:0px;
@@ -538,7 +564,11 @@ button:active:focus {
         color:$teal-color;
         font-size:16px;
         line-height:1.1;
-        margin-top: 4px;
+        margin-top: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 98%;
       }
     }
   }
@@ -706,4 +736,58 @@ button:active:focus {
 .btn-txt-wrap {
   display: inline-block;
   margin-right: 15px;
+}
+
+/* Home Navbar */
+.home__navbar{
+  .navbar__btn{
+    position: relative;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    flex-grow:1;
+    flex-basis:25%;
+    justify-content:flex-start;
+    align-content:center;
+    cursor: pointer;
+    transition:0.3s;
+    box-sizing: border-box;
+    border-bottom:2px solid transparent;
+    padding-top:20px;
+    z-index:2;
+    &:hover{
+      border-bottom:2px solid $orange-color;
+    }
+    &.active{
+      border-bottom:2px solid $orange-color;
+    }
+    @include minMobilemaxPhablet{
+      min-width:120px;
+      &:hover{
+        border-bottom:0px;
+      }
+    }
+    .navbar__btn--title{
+        position: relative;
+        display:block;
+        font-family:$muli-semi-bold;
+        text-align:center;
+        color:$black-color;
+        font-size:21px;
+        @include minMobilemaxPhablet{
+          font-size:16px;
+        }
+    }
+    .navbar__btn--subtitle{
+        position: relative;
+        display:block;
+        font-family:$muli-semi-bold;
+        text-align:center;
+        color:$black-color;
+        font-size:12px;
+        @include minMobilemaxPhablet{
+          font-size:11px;
+        }
+    }
+  }
 }

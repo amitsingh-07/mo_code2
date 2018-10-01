@@ -1,6 +1,6 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -12,6 +12,7 @@ import { ProductDetailComponent } from '../shared/components/product-detail/prod
 import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
+import { NavbarService } from './../shared/navbar/navbar.service';
 import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
@@ -83,4 +84,9 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [CurrencyPipe, CustomCurrencyPipe],
   entryComponents: [ProductDetailComponent]
 })
-export class GuideMeModule { }
+export class GuideMeModule {
+
+  constructor(public navbarService: NavbarService) {
+    this.navbarService.setNavbarVisibility(false);
+  }
+}

@@ -36,7 +36,6 @@ export class EducationFormComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(5);
     this.formValues = this.directService.getEducationForm();
     this.educationForm = this.formBuilder.group({
       childgender: [this.formValues.childgender, Validators.required],
@@ -51,7 +50,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
        this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '5') {
          if (this.save()) {
             this.directService.setMinProdInfo(this.summarizeDetails());
          }
@@ -107,8 +106,8 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   }
   showPremiumWaiverModal() {
     this.directService.showToolTipModal(
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
       );
   }
 }
