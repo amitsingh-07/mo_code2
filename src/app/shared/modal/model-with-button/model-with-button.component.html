@@ -11,17 +11,6 @@
   <div class="modal-body-message" *ngIf="errorMessage" id="errorModelMessage">{{errorMessage}}</div>
   <div class="modal-body-message" *ngIf="errorMessageHTML" id="errorModelMessage" [innerHTML]="errorMessageHTML"></div>
   <div class="row">
-    <div class="col-12">
-      <button type="button" *ngIf="ButtonTitle" class="Rectangle-2 " (click)="modelButtonClick()" id="errorModeButton">
-        {{ButtonTitle}}
-      </button>
-    </div>
-    <div class="col-12" *ngIf="secondButton">
-      <button type="button" class="Rectangle-2 " (click)="secondmodelButtonClick()" id="errorModeButton">
-        {{secondButtonTitle}}
-      </button>
-    </div>
-
     <div class="col-12" *ngIf="primaryActionLabel">
       <button type="button" class="Rectangle-2 " (click)="primaryActionSelected()" id="errorModeButton">
         {{primaryActionLabel}}
