@@ -19,6 +19,13 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() secondButton: any;
   @Input() secondButtonTitle: any;
   @Output() yesButtonClick = new EventEmitter<any>();
+
+  @Input() errorMessageHTML: any;
+  @Input() primaryActionLabel: any;
+  @Input() secondaryActionLabel: any;
+  @Output() primaryAction =  new EventEmitter<any>();
+  @Output() secondaryAction = new EventEmitter<any>();
+
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -45,4 +52,15 @@ export class ModelWithButtonComponent implements OnInit {
       this.activeModal.dismiss('Cross click');
       this.router.navigate([this.ButtonNavigation]);
     }
+
+    primaryActionSelected() {
+      this.primaryAction.emit();
+      this.activeModal.dismiss('Cross click');
+    }
+
+    secondaryActionSelected() {
+      this.secondaryAction.emit();
+      this.activeModal.dismiss('Cross click');
+    }
+
   }
