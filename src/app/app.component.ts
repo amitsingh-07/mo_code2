@@ -18,9 +18,14 @@ export class AppComponent {
   constructor(private log: LoggerService, private translate: TranslateService, private googleAnalyticsService: GoogleAnalyticsService,
               private modal: NgbModal) {
     this.translate.setDefaultLang('en');
+    this.triggerPopup();
   }
 
   onActivate(event) {
     window.scroll(0, 0);
+  }
+
+  triggerPopup() {
+    this.modalRef = this.modal.open(PopupModalComponent, { centered: true, windowClass: 'popup-modal-dialog' });
   }
 }

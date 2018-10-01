@@ -20,7 +20,6 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   pageTitle: string;
-  public firstLoad = true;
   public homeNavBarHide = false;
   public homeNavBarFixed = false;
   public mobileThreshold = 567;
@@ -47,10 +46,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
                     this.navbarService.setNavbarShadowVisibility(true);
                     this.footerService.setFooterVisibility(true);
                 });
-                if (this.firstLoad) {
-                  this.triggerPopup();
-                  this.firstLoad = false;
-                }
               }
 
   @ViewChild('banner') BannerElement: ElementRef;
@@ -87,10 +82,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
-  }
-
-  triggerPopup() {
-    this.modalRef = this.modal.open(PopupModalComponent, { centered: true, windowClass: 'popup-modal-dialog' });
   }
 
   checkScrollStickyHomeNav() {
