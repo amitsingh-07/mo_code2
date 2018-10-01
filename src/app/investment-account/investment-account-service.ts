@@ -162,4 +162,9 @@ export class InvestmentAccountService {
             gender: this.investmentAccountFormData.gender
         };
     }
+
+    // Upload Document
+    uploadDocument(formData) {
+        return this.apiService.uploadDocument(formData);
+    }
 }

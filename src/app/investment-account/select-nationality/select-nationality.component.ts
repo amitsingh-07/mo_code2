@@ -132,8 +132,10 @@ export class SelectNationalityComponent implements OnInit {
         const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
         ref.componentInstance.errorTitle = modalTitle;
         ref.componentInstance.errorMessage = modalMessage;
-        ref.componentInstance.ButtonTitle = this.editModalData.ButtonTitle;
-        ref.componentInstance.selectNationalityError = INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY;
+        ref.componentInstance.primaryActionLabel = this.editModalData.ButtonTitle;
+        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+            // return to homepage.
+        });
     }
 
     goToNext(form) {
