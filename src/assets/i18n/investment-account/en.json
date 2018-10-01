@@ -61,6 +61,18 @@
   },
   "UPLOAD_DOCUMENTS": {
     "TITLE": "Upload Documents",
+    "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+    "PROOF_OF_IDENTITY": "Proof Of Identity",
+    "NRIC": "NRIC",
+    "PASSPORT": "Passport",
+    "FRONT_NRIC": "Front NRIC",
+    "BACK_NRIC": "Back NRIC",
+    "TAP_TO_UPLOAD": "Tap to Upload",
+    "PROOF_OF_MAILING": "Proof Of Mailing Address",
+    "PROOF_OF_MAILING_SUBTEXT": "This document must match the information provided under \"Mailing Address\" earlier.",
+    "CHOOSE_FILE": "Choose File",
+    "UPLOADED": "Uploaded",
+    "NO_FILE_SELECTED": "no file selected",
     "MODAL": {
       "MAILING_ADDRESS_PROOF": {
         "TITLE": "Proof Of Mailing Address",

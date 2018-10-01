@@ -8,7 +8,7 @@ import { LoaderComponent } from '../../shared/components/loader/loader.component
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
@@ -100,8 +100,51 @@ export class UploadDocumentsComponent implements OnInit {
     }
   }
 
-  setThumbnail(fileElem, thumbElem) {
-    const file: File = fileElem.target.files[0];
+  fileSelected(controlname, fileElem, thumbElem?) {
+    const selectedFile: File = fileElem.target.files[0];
+    const fileSize: number = selectedFile.size;
+    if (fileSize <= 10485760) {
+      const formData: FormData = new FormData();
+      switch (controlname) {
+        case 'NRIC_FRONT': {
+          formData.append('nricFront', selectedFile);
+          break;
+        }
+        case 'NRIC_BACK': {
+          formData.append('nricBack', selectedFile);
+          break;
+        }
+        case 'MAILING_ADDRESS': {
+          formData.append('mailingAddressProof', selectedFile);
+          break;
+        }
+        case 'RESIDENTIAL_ADDRESS': {
+          formData.append('residentialAddressProof', selectedFile);
+          break;
+        }
+        case 'PASSPORT': {
+          formData.append('passport', selectedFile);
+          break;
+        }
+      }
+      this.uploadDocument(formData, selectedFile, thumbElem);
+    }
+  }
+
+  uploadDocument(formData, selectedFile, thumbElem?) {
+    this.showUploadLoader();
+    this.investmentAccountService.uploadDocument(formData).subscribe((data) => {
+      if (data) {
+        this.hideUploadLoader();
+        if (thumbElem) {
+          this.setThumbnail(thumbElem, selectedFile);
+        }
+      }
+    });
+  }
+
+  setThumbnail(thumbElem, file) {
+    // Set Thumbnail
     const reader: FileReader = new FileReader();
     reader.onloadend = () => {
       thumbElem.src = reader.result;
@@ -154,12 +197,17 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   proceed(form) {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+  }
+
+  showUploadLoader() {
     this.showLoader = true;
     this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
     this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
-    setTimeout(() => {
-      this.showLoader = false;
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
-    }, 5000);
   }
+
+  hideUploadLoader() {
+    this.showLoader = false;
+  }
+
 }
