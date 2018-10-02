@@ -49,9 +49,6 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
     this.formValues = this.directService.getDirectFormData();
-    this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
-    this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'non-smoker';
-    this.formValues.earlyCI = this.formValues.earlyCI ? this.formValues.earlyCI : 'yes';
     if (this.formValues.duration !== undefined) {
       this.selectDuration(this.formValues.dependent);
     }
