@@ -278,7 +278,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title, null, false, true);
+    setTimeout(() => {
+      this.navbarService.setPageTitle(title, null, false, true);
+    }, 0);
   }
 
   showSettingsPopUp() {

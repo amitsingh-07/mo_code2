@@ -147,5 +147,6 @@ export class AppModule {
   static injector: Injector;
   constructor(injector: Injector) {
     AppModule.injector = injector;
+
   }
 }

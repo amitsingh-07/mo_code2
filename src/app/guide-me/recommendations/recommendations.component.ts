@@ -34,6 +34,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   activeRecommendationType;
   activeRecommendationList;
   enquiryId;
+  protectionNeedTypes;
 
   enableScroll = false;
 
@@ -58,6 +59,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RECOMMENDATIONS.TITLE');
       this.subTitle = this.translate.instant('RECOMMENDATIONS.DESCRIPTION');
+      this.protectionNeedTypes = this.translate.instant('PROTECTION_NEED_TYPES');
       this.setPageTitle(this.pageTitle, this.subTitle);
     });
   }
@@ -97,7 +99,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
           this.resultsEmptyMessage = data.responseMessage.responseDescription;
           return;
         }
-        
         this.resultsEmptyMessage = '';
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.enquiryId = data.objectList[0].enquiryId;
@@ -174,22 +175,22 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     if (this.activeRecommendationList.productList[0]) {
       this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
       switch (this.activeRecommendationType) {
-        case 'Life Protection':
+        case this.protectionNeedTypes.LIFE_PROTECTION:
           this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
-        case 'Critical Illness':
+        case this.protectionNeedTypes.CRITICAL_ILLNESS:
           const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
           this.coverageAmount = criticalIllnessValues.coverageAmount + '';
           break;
-        case 'Occupational Disability':
+        case this.protectionNeedTypes.OCCUPATION_DISABILITY:
           const ocpData = this.calculateService.getOcpData();
           this.coverageAmount = ocpData.coverageAmount + '';
           break;
-        case 'Long Term Care':
+        case this.protectionNeedTypes.LONG_TERM_CARE:
           const ltcData = this.calculateService.getLtcData();
           this.coverageAmount = ltcData.monthlyPayout + '';
           break;
-        case 'Hospital Plan':
+        case this.protectionNeedTypes.HOSPITAL_PLAN:
           this.coverageAmount = '';
           break;
       }

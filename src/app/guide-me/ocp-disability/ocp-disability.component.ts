@@ -27,15 +27,15 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   liabilitiesTotal: number;
   formValues: IMyOcpDisability;
   modalData: any;
+  pageData;
   employeeList;
   defaultEmployee;
-  retirementAge = 65;
+  retirementAge;
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
-  coveragePercent = 75;
-  coverageMax = 75;
+  coveragePercent;
+  coverageMax;
   coverageAmount = 0;
   monthlyIncome: IMyIncome;
-  pageData;
 
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -63,6 +63,9 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
       this.pageTitle = this.translate.instant('OCP_DISABILITY.TITLE');
       this.modalData = this.translate.instant('OCP_DISABILITY.MODAL_DATA');
       this.pageData = this.translate.instant('OCP_DISABILITY');
+      this.retirementAge = this.pageData.RETIREMENTAGE;
+      this.coveragePercent = this.pageData.COVERAGEPERCENT;
+      this.coverageMax = this.pageData.COVERAGEPERCENT;
       this.employeeList = this.translate.instant('OCP_DISABILITY.EMPLOYEE_TYPE');
       this.defaultEmployee = this.employeeList[0].status;
       this.setPageTitle(this.pageTitle, null, true);
@@ -74,7 +77,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.showMobilePopUp('removeClicked');
     this.formValues = this.guideMeService.getMyOcpDisability();
-    if (this.guideMeService.isMyOcpDisabilityFormValid && this.formValues.maxAge) {
+    if (this.formValues && this.formValues.maxAge) {
       this.selectRetirementAge(this.formValues.maxAge);
       this.selectEmployeeType(this.formValues.selectedEmployee, false);
       this.coveragePercent = this.formValues.percentageCoverage;
@@ -124,7 +127,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   selectEmployeeType(status, setSlider) {
     this.defaultEmployee = status;
-    this.coverageMax = this.defaultEmployee === 'Salaried Employee' ? 75 : 65;
+    this.coverageMax = this.defaultEmployee === 'Salaried Employee' ? this.coverageMax : this.retirementAge;
     if (setSlider) {
       this.setSliderValues(this.coverageMax);
     }

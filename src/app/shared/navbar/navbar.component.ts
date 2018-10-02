@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   subTitle = '';
   helpIcon = false;
   closeIcon = false;
+  settingsIcon = false;
 
   innerWidth: any;
   mobileThreshold = 567;
@@ -45,6 +46,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
     this.navbarService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
+    this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
   }
 
   ngAfterViewInit() {

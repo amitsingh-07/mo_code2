@@ -4,7 +4,7 @@
           <div class="row">
             <div class="col-lg-7 col-md-6 hidden-sm-md">
               <h2>{{ pageTitle }}</h2>
-              <h6 [innerHTML]="pageData.DESCRIPTION"></h6>
+              <h6 [innerHTML]="'CI_ASSESSMENT.DESCRIPTION' | translate"></h6>
               <div class="banner-image">
                 <img src="assets/images/critical-illness.svg" />
               </div>
@@ -53,9 +53,9 @@
                               <div class="flex-col-3">
                                   <div class="dropdown-control">
                                       <div ngbDropdown id="RetirementAgeDropDown">
-                                          <button class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
+                                          <button class="btn btn-dropdown" id="retirementAgeDropdown" ngbDropdownToggle aria-expanded="false">
                                             <span>{{untilRetirementAge}}</span></button>
-                                          <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
+                                          <div ngbDropdownMenu class="dropdown" aria-labelledby="retirementAgeDropdown">
                                             <button class="dropdown-item" *ngFor="let count of retirementAgeItems" (click)="selectRetirementAge(count)">{{count}}</button>
                                           </div>
                                         </div>

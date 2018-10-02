@@ -28,8 +28,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   ciAssessmentForm: FormGroup;
   ciAssessmentFormValues: CriticalIllnessData;
   ciCoverageAmt: any;
-  ciMultiplier = 4;
-  untilRetirementAge = 65;
+  ciMultiplier;
+  untilRetirementAge;
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
   helpModal: Event;
   helpModalTrigger: boolean;
@@ -60,6 +60,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
       this.pageData = this.translate.instant('CI_ASSESSMENT');
+      this.ciMultiplier = this.pageData.CI_MULTIPLIER;
+      this.untilRetirementAge = this.pageData.UNTIL_RETIREMENTAGE;
       this.modalData = this.translate.instant('CI_ASSESSMENT.MODAL_DATA');
       this.setPageTitle(this.pageTitle, null, true);
     });
@@ -69,7 +71,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMobileVisibility(true);
     this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
-    this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears;
+    this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears ? this.ciAssessmentFormValues.coverageYears : 65;
     let monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
     if (!monthlySalary) {
       monthlySalary = 0;
@@ -149,3 +151,4 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     }
   }
 }
+

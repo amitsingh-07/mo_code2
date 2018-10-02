@@ -8,6 +8,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None
 })
 export class PopupModalComponent implements OnInit {
+  @Input() popupTitle: any;
+  @Input() popupMessage: any;
+
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {

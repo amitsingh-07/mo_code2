@@ -206,7 +206,7 @@
     class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate }}</button>
 
   <!-- PAGE INDICATOR -->
-  <div class="page-indicator" *ngIf="!isFormControlDisabled">
+  <div class="page-indicator" [hidden]="isFormControlDisabled">
     <span [class.active]="i == activeFormIndex" *ngFor="let item of getPageIndicatorCount(); let i = index;"></span>
   </div>
 </div>

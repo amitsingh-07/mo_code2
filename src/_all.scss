@@ -536,6 +536,9 @@ body {
     right:13px;
     z-index:1;
     }
+  .navbar__helpIcon--mobile-settings {
+    background-image: url("./assets/images/settings-icon.png");
+    }
   .navbar__closeIcon {
     position: absolute;
     display: inline-block;

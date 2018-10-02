@@ -15,7 +15,8 @@
     "SUBLBL_MAX4":" (Max 4)"
   },
   "SUFFIX": {
-    "PER_MONTH": "/ mth"
+    "PER_MONTH": "/ mth",
+    "PER_YEAR": "/ year"
   },
   "LABEL": {
     "GENDER": "Gender",
@@ -34,10 +35,18 @@
     "SAVE": "Save",
     "SUPPORT_AMOUNT": "Support Amount",
     "YEARS_NEEDED": "Years Needed",
-    "TRY_AGAIN":"Try Again"
+    "TRY_AGAIN":"Try Again",
+    "PROCEED":"Proceed"
   },
   "ADD_EXISTING_COVERAGES" : {
     "TITLE": "Add Existing Coverages",
+    "LIFE_PROTECTION": "Life Protection",
+    "CRITICAL_ILLNESS": "Critical Illness",
+    "OCCUPATION_DISABILITY": "Occupational Disability",
+    "LONG_TERM_CARE": "Long-Term Care",
+    "HOSPITAL_PLAN": "Hospital Plan"
+  },
+  "PROTECTION_NEED_TYPES": {
     "LIFE_PROTECTION": "Life Protection",
     "CRITICAL_ILLNESS": "Critical Illness",
     "OCCUPATION_DISABILITY": "Occupational Disability",
