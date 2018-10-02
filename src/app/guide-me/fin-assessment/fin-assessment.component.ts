@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 
@@ -18,14 +18,14 @@ export class FinAssessmentComponent implements IPageComponent, OnInit {
 
   constructor(
     private guideMeService: GuideMeService, private router: Router,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     public readonly translate: TranslateService) {
 
     this.translate.use('en');
   }
 
   ngOnInit() {
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(false);
   }
 
   setPageTitle(title: string) {

@@ -47,6 +47,7 @@ import { LoggerService } from './shared/logger/logger.service';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
+import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -81,6 +82,7 @@ export function tokenGetterFn() {
     InsuranceResultModalComponent,
     CreateAccountModelComponent,
     ExistingCoverageModalComponent,
+    PopupModalComponent,
     RestrictAlphabetsDirective,
     jqxSliderComponent,
     HeaderComponent,
@@ -132,7 +134,7 @@ export function tokenGetterFn() {
   bootstrap: [AppComponent],
   entryComponents: [
     HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent,
+    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
     SettingsWidgetComponent]
 })
@@ -145,5 +147,6 @@ export class AppModule {
   static injector: Injector;
   constructor(injector: Injector) {
     AppModule.injector = injector;
+
   }
 }

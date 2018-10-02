@@ -48,10 +48,10 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.coverageAmtValuesTemp.forEach((element, index) => {
       this.coverageAmtValues[index] = this.directService.convertToCurrency(element);
     });
-    this.formValues = this.directService.getDirectFormData();
-    this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
-    this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
-    this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
+    this.formValues = this.directService.getLifeProtectionForm();
+    this.formValues.gender = this.formValues.gender;
+    this.formValues.smoker = this.formValues.smoker;
+    this.formValues.premiumWaiver = this.formValues.premiumWaiver;
     if (this.formValues.duration !== undefined ) {
       this.selectDuration(this.formValues.dependent);
     }
@@ -90,14 +90,14 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
 
   showPremiumWaiverModal() {
     this.directService.showToolTipModal(
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
       );
   }
 
   summarizeDetails() {
     let sum_string = '';
-    sum_string += this.translate.instant('LIFE_PROTECTION.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
+    sum_string += this.translate.instant('DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
     sum_string += this.duration;
     if (this.lifeProtectionForm.value.premiumWaiver === 'yes') {
       sum_string += ', Premium Waiver Rider';
@@ -124,3 +124,4 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   }
 
 }
+

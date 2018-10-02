@@ -22,7 +22,6 @@ export class SubscribeComponent implements OnInit {
 
   ngOnInit() {
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
-    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarShadowVisibility(true);
     this.headerService.setHeaderDropshadowVisibility(false);
     this.headerService.setHeaderOverallVisibility(false);

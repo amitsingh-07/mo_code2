@@ -42,7 +42,7 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
       this.formValues = this.directService.getRetirementIncomeForm();
-      this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
+      this.formValues.smoker = this.formValues.smoker;
       if (this.formValues.retirementIncome !== undefined ) {
         this.selectRetirementIncome(this.formValues.retirementIncome);
       }

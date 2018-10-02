@@ -23,7 +23,7 @@
       "TITLE": "Smoker Status"
     }
   } ,
-  "LIFE_PROTECTION": {
+  "DIRECT_LIFE_PROTECTION": {
     "COVERAGE_AMT": {
       "TITLE": "Coverage Amount",
       "DOLLAR": "$"
@@ -50,20 +50,15 @@
       "TITLE": "About Me"
     }
   },
-
-  "HOSPITAL_PLAN": {
+  "DIRECT_HOSPITAL_PLAN": {
     "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
       "TITLE": "Full / Partial Rider",
       "SUBTITLE": "(optional)",
       "TOOLTIP": {
-        "FULL_RIDER": {
-          "TITLE": "Full Rider",
-          "MESSAGE": "This rider provides coverage for both co-insurance and deductible components."
-        },
-        "PARTIAL_RIDER": {
-          "TITLE": "Partial Rider",
-          "MESSAGE": "This rider only provides coverage for either co-insurance or deductible."
+        "FULL_OR_PARTIAL_RIDER": {
+          "TITLE": "Full/Partial Rider",
+          "MESSAGE": "<p><strong>Full Rider:</strong> This rider provides coverage for both co-insurance and deductible components.</p><p><strong>Partial Rider:</strong> This rider only provides coverage for either co-insurance or deductible.</p>"
         }
       }
     },
@@ -105,8 +100,8 @@
       "PAYOUT_DURATION_LIST": [ "Lifetime", "Limited Years" ],
       "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable", "Increasing"],
       "FIXED_TOOLTIP": {
-          "TITLE": "Fixed payouts",
-          "MESSAGE": "These monthly payouts are a guaranteed amount that you will receive."
+          "TITLE": "Payout Feature",
+          "MESSAGE": "<p><strong>Fixed payouts:</strong> These monthly payouts are a guaranteed amount that you will receive.</p><p><strong>Variable payouts:</strong> These monthly payouts consists of a guaranteed amount that you will receive and non-guaranteed amount that is dependent on the performance of the insurer’s participative fund.</p><p><strong>Increasing payout:</strong> These monthly payouts can increase yearly.</p>"
       },
       "VARIABLE_TOOLTIP": {
           "TITLE": "Variable payouts",
@@ -124,12 +119,12 @@
         "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
       },
       "COMPARE_PLANS": {
-        "RESULTS":"Results",
+        "RESULTS": "Results",
         "TITLE": "Results",
-        "INSURER_FINANCIAL_RATING":"Insurer Financial Rating",
-        "COVARAGE_DURATION":"Coverage Duration",
-        "PREMIUM_DURATION":"Premium Duration",
-        "NEED_UNDERWRITING":"Need Underwriting",
+        "INSURER_FINANCIAL_RATING": "Insurer Financial Rating",
+        "COVARAGE_DURATION": "Coverage Duration",
+        "PREMIUM_DURATION": "Premium Duration",
+        "NEED_UNDERWRITING": "Need Underwriting",
         "NEED_UNDERWRITING_TOOLTIP": {
           "TITLE": "Requires Underwriting",
           "DESCRIPTION" : "Before you can be insured under this plan, the insurer will first evaluate you."
@@ -143,12 +138,17 @@
         "UNIQUE_FEATURES":"Unique Features",
         "ERROR_MODEL_FOR_MOBILE": {
           "TITLE":"Compare 2 Only",
-          "MESSAGE":"You can only compare a maximum of 2 plans at a time.e"
+          "MESSAGE":"You can only compare a maximum of 2 plans at a time."
         },
         "ERROR_MODEL_FOR_WEB": {
           "TITLE":"Compare 4 Only",
-          "MESSAGE":"You can only compare a maximum of 4 plans at a time.e"
+          "MESSAGE":"You can only compare a maximum of 4 plans at a time."
         }
+      },
+      "DIRECT_RESULTS": {
+        "COMPARE_PLANS": "Compare Plans",
+        "PLANS_FOUND": " Plans Found",
+        "COMPARE": "Compare"
       },
       "RESULTS": {
         "TITLE": "Plans"
@@ -165,6 +165,7 @@
         }
       }
   }
+
 
 
 
