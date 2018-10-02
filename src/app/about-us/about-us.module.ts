@@ -8,6 +8,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AboutUsRoutingModule } from './about-us-routing.module';
 import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -23,6 +24,6 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule, ReactiveFormsModule, NgbModule.forRoot(),
     AboutUsRoutingModule
   ],
-  declarations: [CustomerReviewsComponent, SubscribeComponent]
+  declarations: [CustomerReviewsComponent, SubscribeComponent, ContactUsComponent]
 })
 export class AboutUsModule { }

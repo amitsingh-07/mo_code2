@@ -51,6 +51,8 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMobileVisibility(true);
     this.longTermCareFormValues = this.guideMeService.getLongTermCare();
     this.longTermCareForm = new FormGroup({
       careGiverType: new FormControl(this.longTermCareFormValues.careGiverTypeId + '', Validators.required)

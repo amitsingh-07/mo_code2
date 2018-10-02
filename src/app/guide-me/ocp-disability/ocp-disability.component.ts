@@ -70,6 +70,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.showMobilePopUp('removeClicked');
     this.formValues = this.guideMeService.getMyOcpDisability();

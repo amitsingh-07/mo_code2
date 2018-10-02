@@ -66,6 +66,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMobileVisibility(true);
     this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
     this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears;
     let monthlySalary = this.guideMeService.getMyIncome().monthlySalary;

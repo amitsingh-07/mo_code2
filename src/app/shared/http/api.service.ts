@@ -69,6 +69,60 @@ export class ApiService {
       );
   }
 
+  // -------------------------- ARTICLES MODULE ---------------------------------------
+  getGetStartedArticles() {
+    const url = '../../../assets/mock-data/recentArticles.json';
+    return this.http.getMock(url)
+      .pipe(
+          catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getRecentArticles(quantity?: number) {
+    const payload = {number: 0};
+    if (quantity) {
+      payload.number = quantity;
+    }
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.post(apiConstants.endpoint.article.getRecentArticles, payload)
+    const url = '../../../assets/mock-data/recentArticles.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getArticle(art_id) {
+    const payload = { article_id: art_id };
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.post(apiConstants.endpoint.article.getArticle, payload)
+    const url = '../../../assets/mock-data/currentArticle.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getArticleCategoryList(category_name) {
+    const payload = { category: category_name };
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.post(apiConstants.endpoint.article.getArticleCategoryList, payload)
+    const url = '../../../assets/mock-data/articleCategoryList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  getArticleCategory() {
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
+    const url = '../../../assets/mock-data/articleCategory.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getMyInfoData(code) {
     const url = '../assets/mock-data/myInfoValues.json';
     return this.http.post(apiConstants.endpoint.getMyInfoValues, code)

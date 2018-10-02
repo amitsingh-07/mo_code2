@@ -577,6 +577,10 @@ body {
   top:0px;
   left:0px;
   z-index:2;
+  @include minPhabletmaxTablet{
+    padding-left:20px;
+    padding-right:20px;
+  }
   @include minMobilemaxPhablet{
     display:none;
   }
@@ -588,7 +592,7 @@ body {
     padding-top:20px;
     span{
       font-size:14px;
-      color:$black-color;
+      color:$teal-color;
       cursor: pointer;
       &:hover{
         text-decoration:underline;
@@ -598,6 +602,7 @@ body {
         font-size:10px;
         margin:0px 2px;
         cursor: default;
+        color:$black-color;
         &::after{
           content:'>';
           display:inline-block;
@@ -611,7 +616,7 @@ body {
         }
       }
       &:last-child{
-        color:$teal-color;
+        color:$black-color;
         cursor: default;
         &:hover{
           text-decoration:none;
