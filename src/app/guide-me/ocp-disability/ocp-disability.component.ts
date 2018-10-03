@@ -30,10 +30,10 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   pageData;
   employeeList;
   defaultEmployee;
-  retirementAge;
+  retirementAge = 65;
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
-  coveragePercent;
-  coverageMax;
+  coveragePercent = 75;
+  coverageMax = 75;
   coverageAmount = 0;
   monthlyIncome: IMyIncome;
 
@@ -63,9 +63,6 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
       this.pageTitle = this.translate.instant('OCP_DISABILITY.TITLE');
       this.modalData = this.translate.instant('OCP_DISABILITY.MODAL_DATA');
       this.pageData = this.translate.instant('OCP_DISABILITY');
-      this.retirementAge = this.pageData.RETIREMENTAGE;
-      this.coveragePercent = this.pageData.COVERAGEPERCENT;
-      this.coverageMax = this.pageData.COVERAGEPERCENT;
       this.employeeList = this.translate.instant('OCP_DISABILITY.EMPLOYEE_TYPE');
       this.defaultEmployee = this.employeeList[0].status;
       this.setPageTitle(this.pageTitle, null, true);
@@ -126,7 +123,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   selectEmployeeType(status, setSlider) {
     this.defaultEmployee = status;
-    this.coverageMax = this.defaultEmployee === 'Salaried Employee' ? this.coverageMax : this.retirementAge;
+    this.coverageMax = this.defaultEmployee === 'Salaried Employee' ? 75 : 65;
     if (setSlider) {
       this.setSliderValues(this.coverageMax);
     }

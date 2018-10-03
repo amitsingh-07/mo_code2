@@ -31,6 +31,10 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   selectedPlans: any[] = [];
   coverageAmount = '';
   premiumFrom = '';
+  perMonth = '';
+  perYear = '';
+  premiumFrequency = '';
+
   activeRecommendationType;
   activeRecommendationList;
   enquiryId;
@@ -60,6 +64,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       this.pageTitle = this.translate.instant('RECOMMENDATIONS.TITLE');
       this.subTitle = this.translate.instant('RECOMMENDATIONS.DESCRIPTION');
       this.protectionNeedTypes = this.translate.instant('PROTECTION_NEED_TYPES');
+      this.perMonth = this.translate.instant('SUFFIX.PER_MONTH');
+      this.perYear = this.translate.instant('SUFFIX.PER_YEAR');
       this.setPageTitle(this.pageTitle, this.subTitle);
     });
   }
@@ -173,7 +179,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   updateCoverageDetails() {
     if (this.activeRecommendationList.productList[0]) {
-      this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
+      const data = this.activeRecommendationList.productList[0];
+      this.premiumFrom = data.premium.premiumAmount;
+      if (data.premium.premiumFrequency === 'per month') {
+        this.premiumFrequency = this.perMonth;
+      } else if (data.premium.premiumFrequency === 'per year') {
+        this.premiumFrequency = this.perYear;
+      }
       switch (this.activeRecommendationType) {
         case this.protectionNeedTypes.LIFE_PROTECTION:
           this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
