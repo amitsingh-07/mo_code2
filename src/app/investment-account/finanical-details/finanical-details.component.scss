@@ -1,15 +1,6 @@
 @import '../../../variables';
 
-.employement-details {
-  .dropdown-control .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    height: calc(70vh);
-    }
-.dropdown-item {
-    white-space: normal;
-}
-
+.financial-details {
 
   .inline-error-inv {
     color: $inline-error-border-color;
@@ -20,13 +11,15 @@
       color: $inline-error-border-color !important;
     }
   }
- label {
+
+
+  label {
     font-size: 18px;
     font-family: $muli-semi-bold;
   }
 
   .input-control {
-    text-align: left;
+    text-align: right;
   }
 
   .step-indicator-container {
@@ -144,5 +137,10 @@
       color: #e57300;
     }
     
+   
   }
+}
+.form-group-with-bg--content-label{
+    font-size: 18px;
+font-family: "Muli Semi Bold", sans-serif;
 }

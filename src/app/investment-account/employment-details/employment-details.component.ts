@@ -23,14 +23,22 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class EmploymentDetailsComponent implements OnInit {
   pageTitle: string;
-  employementStatusList: ['Employed', 'Self Employed', 'Unemployed'];
-  industryList: any;
-  occupationList: any;
+  employementStatusList: any = ['Employed', 'Self Employed', 'Unemployed'];
   employementDetailsForm: FormGroup;
   formValues: any;
   countries;
-  employementstatus = 'Employed';
+
   isUserNationalitySingapore;
+  option: any;
+  showEmployment = true;
+  occupation;
+  industry: any;
+  empStatus: any;
+  industryList;
+  occupationList;
+  employementstatus;
+  showEmploymentControls: boolean;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -52,25 +60,21 @@ export class EmploymentDetailsComponent implements OnInit {
   ngOnInit() {
     this.getOccupationList();
     this.getIndustryList();
-    // this.getEmployementStatusList();
-    this.formValues = this.investmentAccountService.getEmployementDetails();
     this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
-    this.employementDetailsForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
-    this.addOrRemoveMailingAddress();
 
+    const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0];
+    if (employStatus === 'Unemployed') {
+      this.employementDetailsForm = this.buildFormUnemployement(employStatus);
+      this.showEmploymentControls = false;
+    } else {
+      this.employementDetailsForm = this.buildFormEmployement(employStatus);
+      this.showEmploymentControls = true;
+    }
+    this.addOrRemoveMailingAddress();
   }
 
-  // getEmployementStatusList() {
-  //   this.authService.authenticate().subscribe((token) => {
-  //     this.investmentAccountService.getEmployementStatusList().subscribe((data) => {
-  //       this.employementStatusList = data.objectList;
-  //       console.log(this.employementStatusList);
-  //     });
-  //   });
-
-  // }
   getIndustryList() {
     this.authService.authenticate().subscribe((token) => {
       this.investmentAccountService.getIndustryList().subscribe((data) => {
@@ -89,106 +93,78 @@ export class EmploymentDetailsComponent implements OnInit {
     });
 
   }
-  setDropDownValue(key, value) {
+  setEmployementStatus(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
+    if (value === 'Unemployed') {
+      this.employementDetailsForm = this.buildFormUnemployement(value);
+      this.showEmploymentControls = false;
+    } else {
+      this.employementDetailsForm = this.buildFormEmployement(value);
+      this.showEmploymentControls = true;
+    }
   }
-  setNestedDropDownValue(key, value, nestedKey) {
-    this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
+  setIndustryValue(key, value) {
+    this.employementDetailsForm.controls[key].setValue(value);
+
+    console.log(this.industry);
+
   }
-  buildFormForSingapore(): FormGroup {
-    return this.formBuilder.group({
-      country: [this.formValues.nationality.country, Validators.required],
-      postalCode: [this.formValues.postalCode, Validators.required],
-      address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [this.formValues.address2],
-      unitNo: [this.formValues.unitNo, Validators.required],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
-    });
+  setOccupationValue(key, value) {
+    this.employementDetailsForm.controls[key].setValue(value);
+
+    console.log(this.occupation);
   }
 
-  buildFormForOtherCountry(): FormGroup {
+  setDropDownValue(key, value, nestedKey) {
+    this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
+  }
+
+  buildFormEmployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
-      country: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
-      address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [this.formValues.address2],
-      city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      zipCode: [this.formValues.zipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+      employmentStatus: [empStatus,  Validators.required],
+      companyName: [this.formValues.companyName, Validators.required],
+      occupation: [this.formValues.occupation ? this.formValues.occupation : 'Select Occupation', Validators.required],
+      industry: [this.formValues.industry ? this.formValues.industry : 'Select Induatry', Validators.required],
+      contactNumber: [this.formValues.contactNumber],
+      isEmployeAddresSame: [this.formValues.isEmployeAddresSame]
+    });
+  }
+  buildFormUnemployement(empStatus: string): FormGroup {
+    return this.formBuilder.group({
+      employmentStatus: [empStatus, Validators.required]
     });
   }
 
   addOrRemoveMailingAddress() {
-    if (this.employementDetailsForm.controls.isMailingAddressSame.value !== true) {
+    if (!this.employementDetailsForm.controls.isEmployeAddresSame.value) {
       if (this.isUserNationalitySingapore) { // Singapore
-        this.employementDetailsForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.formValues.nationality.country, Validators.required],
-          mailPostalCode: [this.formValues.mailPostalCode, Validators.required],
-          mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [this.formValues.mailAddress2],
-          mailUnitNo: [this.formValues.mailUnitNo, Validators.required]
+        this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
+          empCountry: [this.formValues.nationality.country, Validators.required],
+          empPostalCode: [this.formValues.empPostalCode, Validators.required],
+          empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          empAddress2: [this.formValues.empAddress2],
+          empUnitNo: [this.formValues.empUnitNo, Validators.required]
         }));
       } else { // Other Countries
-        this.employementDetailsForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
-          mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [this.formValues.mailAddress2],
-          mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          mailState: [this.formValues.mailState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          mailZipCode: [this.formValues.mailZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+        this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
+          empCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
+          empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          empAddress2: [this.formValues.empAddress2],
+          empCity: [this.formValues.empCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+          empState: [this.formValues.empState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+          empZipCode: [this.formValues.empZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
         }));
       }
     } else {
-      this.employementDetailsForm.removeControl('mailingAddress');
+      this.employementDetailsForm.removeControl('employeaddress');
     }
-  }
-
-  getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
-  }
-
-  markAllFieldsDirty(form) {
-    Object.keys(form.controls).forEach((key) => {
-      if (form.get(key).controls) {
-        Object.keys(form.get(key).controls).forEach((nestedKey) => {
-          form.get(key).controls[nestedKey].markAsDirty();
-        });
-      } else {
-        form.get(key).markAsDirty();
-      }
-    });
-  }
-
-  retrieveAddress(postalCode, address1Control, address2Control) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe((response: any) => {
-      if (response) {
-        if (response.Status.code === 200) {
-          const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-          const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-          address1Control.setValue(address1);
-          address2Control.setValue(address2);
-        } else {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-          address1Control.setValue('');
-          address2Control.setValue('');
-        }
-      }
-    });
   }
 
   goToNext(form) {
     if (!form.valid) {
-      this.markAllFieldsDirty(form);
-      const error = this.investmentAccountService.getFormErrorList(form);
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setResidentialAddressFormData(form.value);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.TAX_INFO]);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
     }
   }
 }

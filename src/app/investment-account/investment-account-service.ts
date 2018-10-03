@@ -34,6 +34,7 @@ export class InvestmentAccountService {
     }
     setDefaultValueForFormData() {
         this.investmentAccountFormData.isMailingAddressSame = INVESTMENT_ACCOUNT_CONFIG.residential_info.isMailingAddressSame;
+        this.investmentAccountFormData.isEmployeAddresSame = INVESTMENT_ACCOUNT_CONFIG.employmentDetails.isEmployeAddresSame;
     }
     setResidentialAddressFormData(data) {
         this.investmentAccountFormData.country = data.country;
@@ -56,6 +57,8 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailZipCode = data.mailingAddress.mailZipCode;
         }
     }
+
+
     // tslint:disable-next-line
     getFormErrorList(form) {
         const controls = form.controls;
@@ -117,13 +120,32 @@ export class InvestmentAccountService {
     }
     getEmployementDetails() {
         return {
-            CompanyName: this.investmentAccountFormData.CompanyName,
-            contactNumber: this.investmentAccountFormData.contactNumber
+            employmentStatus: this.investmentAccountFormData.employmentStatus,
+            companyName: this.investmentAccountFormData.companyName,
+            occupation: this.investmentAccountFormData.occupation,
+            industry: this.investmentAccountFormData.industry,
+            contactNumber: this.investmentAccountFormData.contactNumber,
+            isEmployeAddresSame: this.investmentAccountFormData.contactNumber
         };
     }
-    // setEmployementDetails(CompanyName: string, contactNumber: string) {
-    //     CompanyName: this.investmentAccountFormData.CompanyName;
-    //     contactNumber: this.investmentAccountFormData.contactNumber;
-    // }
+    setEmployeAddressFormData(data) {
+        this.investmentAccountFormData.employmentStatus = data.employmentStatus;
+        this.investmentAccountFormData.companyName = data.companyName;
+        this.investmentAccountFormData.occupation = data.occupation;
+        this.investmentAccountFormData.companyName = data.companyName;
+        this.investmentAccountFormData.contactNumber = data.contactNumber;
+        this.investmentAccountFormData.isEmployeAddresSame = data.isEmployeAddresSame;
+
+        if (!data.isEmployeAddresSame) {
+            this.investmentAccountFormData.empCountry = data.employeaddress.empCountry;
+            this.investmentAccountFormData.empPostalCode = data.employeaddress.empPostalCode;
+            this.investmentAccountFormData.empAddress1 = data.employeaddress.empAddress1;
+            this.investmentAccountFormData.empAddress1 = data.employeaddress.empAddress1;
+            this.investmentAccountFormData.empUnitNo = data.employeaddress.empUnitNo;
+            this.investmentAccountFormData.empCity = data.employeaddress.empCity;
+            this.investmentAccountFormData.empState = data.employeaddress.empState;
+            this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
+        }
+    }
 
 }

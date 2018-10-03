@@ -43,7 +43,18 @@ export class InvestmentAccountFormData {
 
     // EmployementDetails
 
-    CompanyName: string;
+    employmentStatus: string;
+    companyName: string;
+    occupation: string;
+    industry: string;
     contactNumber: string;
-
+    isEmployeAddresSame: boolean;
+    empCountry: string;
+    empPostalCode: number;
+    empAddress1: string;
+    empAddress2: string;
+    empUnitNo: string;
+    empCity: string;
+    empState: string;
+    empZipCode: number;
 }

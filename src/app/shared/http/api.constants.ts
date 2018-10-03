@@ -25,7 +25,7 @@ export let apiConstants = {
         investmentAccount: {
             nationalitylist: 'invest/investment-microservice/countrylist',
             getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
-            lndustrylist: 'invest/investment-microservice/lndustrylist',
+            lndustrylist: 'invest/investment-microservice/industrylist',
             occupationlist: 'invest/investment-microservice/occupationlist'
         }
     }

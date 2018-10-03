@@ -15,6 +15,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
+import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -45,7 +46,8 @@ export function createTranslateLoader(http: HttpClient) {
     ResidentialAddressComponent,
     SelectNationalityComponent,
     EmploymentDetailsComponent,
-    TaxInfoComponent
+    TaxInfoComponent,
+    FinanicalDetailsComponent
   ],
   providers: [CurrencyPipe]
 })

@@ -403,7 +403,7 @@ export class ApiService {
       );
   }
   getIndustryList() {
-    //const url = '../assets/mock-data/nationalityList.json';
+    const url = '../assets/mock-data/industryList.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.lndustrylist)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
@@ -416,7 +416,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            //return this.httpClient.get<IServerResponse>(url);
+            return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
@@ -424,8 +424,10 @@ export class ApiService {
       );
   }
   getOccupationList() {
-   // const url = '../assets/mock-data/nationalityList.json';
-    return this.http.get(apiConstants.endpoint.investmentAccount.occupationlist)
+    const url = '../assets/mock-data/occupationList.json';
+    // console.log(url + 'occupationalist');
+   // return this.http.get(apiConstants.endpoint.investmentAccount.occupationlist)
+       return this.http.get(url)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -437,7 +439,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            //return this.httpClient.get<IServerResponse>(url);
+            return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
