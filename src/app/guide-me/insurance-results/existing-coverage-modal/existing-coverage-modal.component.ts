@@ -55,11 +55,13 @@ export class ExistingCoverageModalComponent implements OnInit {
       switch (protectionNeed.id) {
         case 1:
           this.isLifeProtection = true;
-          this.existingCoverageValues.lifeProtectionCoverage = protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
+          this.existingCoverageValues.lifeProtectionCoverage =
+            protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
           break;
         case 2:
           this.isCriticalIllness = true;
-          this.existingCoverageValues.criticalIllnessCoverage = protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
+          this.existingCoverageValues.criticalIllnessCoverage =
+            protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
           break;
         case 3:
           this.isOccupationalDisability = true;
@@ -73,7 +75,8 @@ export class ExistingCoverageModalComponent implements OnInit {
           break;
         case 5:
           this.isLongTermCare = true;
-          this.existingCoverageValues.longTermCareCoveragePerMonth = protectionNeed.existingCoverage.value;
+          this.existingCoverageValues.longTermCareCoveragePerMonth =
+            protectionNeed.existingCoverage ? protectionNeed.existingCoverage.value : 0;
           break;
       }
     });
@@ -102,7 +105,6 @@ export class ExistingCoverageModalComponent implements OnInit {
 
     this.guideMeService.isExistingCoverAdded = true;
     this.existingCoverageForm.controls.selectedHospitalPlan.setValue(this.selectedHospitalPlan);
-    this.guideMeService.setHospitalPlan(this.selectedHospitalPlan);
     this.guideMeService.setExistingCoverageValues(this.existingCoverageForm.value);
     this.dataOutput.emit(this.existingCoverageForm.value);
     this.activeModal.close();

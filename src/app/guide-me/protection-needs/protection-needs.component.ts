@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { GuideMeApiService } from '../guide-me.api.service';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { ProtectionNeeds } from './protection-needs';
@@ -29,7 +29,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
 
   constructor(
     private formBuilder: FormBuilder, private guideMeService: GuideMeService,
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private guideMeApiService: GuideMeApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -48,10 +48,11 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
       this.buildForm(data.objectList);
       this.protectionNeedsList = data.objectList;
     });
+    this.navbarService.setNavbarMobileVisibility(true);
   }
 
   setPageTitle(title: string, subTitle: string) {
-    this.headerService.setPageTitle(title, subTitle);
+    this.navbarService.setPageTitle(title, subTitle);
   }
 
   buildForm(responseData?) {

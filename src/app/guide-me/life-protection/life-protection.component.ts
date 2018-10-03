@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 
@@ -28,7 +28,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
   dependentCountOptions = [0, 1, 2, 3, 4, 5];
 
   constructor(
-    public headerService: HeaderService, private formBuilder: FormBuilder,
+    public navbarService: NavbarService, private formBuilder: FormBuilder,
     public translate: TranslateService, public guideMeService: GuideMeService , public modal: NgbModal
   ) {
     this.translate.use('en');
@@ -40,11 +40,12 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
     const dependantCount = this.guideMeService.getUserInfo().dependent ? this.guideMeService.getUserInfo().dependent : 0;
     this.lpDependentCountForm = this.formBuilder.group({
       dependentCount: dependantCount
     });
-    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+    this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
         this.showMobilePopUp();
       }
@@ -61,7 +62,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+    this.navbarService.setPageTitle(title, null, helpIcon);
   }
 
   setDropDownDependentCount(value, i) {
@@ -73,7 +74,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
     ref.componentInstance.description = this.modalData.description;
     ref.componentInstance.title = this.modalData.title;
     ref.componentInstance.img = assetImgPath + this.modalData.imageName;
-    this.headerService.showMobilePopUp('removeClicked');
+    this.navbarService.showMobilePopUp('removeClicked');
   }
 
 }

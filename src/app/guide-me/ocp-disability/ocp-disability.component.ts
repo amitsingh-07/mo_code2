@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 
-import { HeaderService } from '../../shared/header/header.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { IMyIncome } from '../income/income.interface';
@@ -27,15 +27,15 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   liabilitiesTotal: number;
   formValues: IMyOcpDisability;
   modalData: any;
+  pageData;
   employeeList;
   defaultEmployee;
-  retirementAge = 65;
+  retirementAge;
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
-  coveragePercent = 75;
-  coverageMax = 75;
+  coveragePercent;
+  coverageMax;
   coverageAmount = 0;
   monthlyIncome: IMyIncome;
-  pageData;
 
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -54,7 +54,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   private subscription: Subscription;
 
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private guideMeService: GuideMeService, private translate: TranslateService,
     public modal: NgbModal, private formBuilder: FormBuilder) {
 
@@ -63,6 +63,9 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
       this.pageTitle = this.translate.instant('OCP_DISABILITY.TITLE');
       this.modalData = this.translate.instant('OCP_DISABILITY.MODAL_DATA');
       this.pageData = this.translate.instant('OCP_DISABILITY');
+      this.retirementAge = this.pageData.RETIREMENTAGE;
+      this.coveragePercent = this.pageData.COVERAGEPERCENT;
+      this.coverageMax = this.pageData.COVERAGEPERCENT;
       this.employeeList = this.translate.instant('OCP_DISABILITY.EMPLOYEE_TYPE');
       this.defaultEmployee = this.employeeList[0].status;
       this.setPageTitle(this.pageTitle, null, true);
@@ -70,9 +73,10 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngOnInit() {
-    this.headerService.showMobilePopUp('removeClicked');
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.showMobilePopUp('removeClicked');
     this.formValues = this.guideMeService.getMyOcpDisability();
-    if (this.guideMeService.isMyOcpDisabilityFormValid && this.formValues.maxAge) {
+    if (this.formValues && this.formValues.maxAge) {
       this.selectRetirementAge(this.formValues.maxAge);
       this.selectEmployeeType(this.formValues.selectedEmployee, false);
       this.coveragePercent = this.formValues.percentageCoverage;
@@ -88,7 +92,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
     this.ocpDisabilityForm = this.formBuilder.group({
     });
     // tslint:disable-next-line:max-line-length
-    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+    this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
         this.showMobilePopUp();
       }
@@ -122,7 +126,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
 
   selectEmployeeType(status, setSlider) {
     this.defaultEmployee = status;
-    this.coverageMax = this.defaultEmployee === 'Salaried Employee' ? 75 : 65;
+    this.coverageMax = this.defaultEmployee === 'Salaried Employee' ? this.coverageMax : this.retirementAge;
     if (setSlider) {
       this.setSliderValues(this.coverageMax);
     }
@@ -134,7 +138,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
     this.ocpDisabilitySlider.slider.updateOptions({ range: { min: 0, max: value } });
   }
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+    this.navbarService.setPageTitle(title, null, helpIcon);
   }
 
   showMobilePopUp() {
@@ -142,7 +146,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
     ref.componentInstance.description = this.modalData.description;
     ref.componentInstance.title = this.modalData.title;
     ref.componentInstance.img = assetImgPath + this.modalData.imageName;
-    this.headerService.showMobilePopUp('removeClicked');
+    this.navbarService.showMobilePopUp('removeClicked');
   }
 
   save(form: any) {

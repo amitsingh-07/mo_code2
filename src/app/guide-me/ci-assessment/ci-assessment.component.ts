@@ -6,8 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 import { Subscription } from 'rxjs';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
 import { CriticalIllnessData } from './ci-assessment';
@@ -28,8 +28,8 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   ciAssessmentForm: FormGroup;
   ciAssessmentFormValues: CriticalIllnessData;
   ciCoverageAmt: any;
-  ciMultiplier = 4;
-  untilRetirementAge = 65;
+  ciMultiplier;
+  untilRetirementAge;
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
   helpModal: Event;
   helpModalTrigger: boolean;
@@ -53,13 +53,15 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   };
 
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private guideMeService: GuideMeService,
     public modal: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
       this.pageData = this.translate.instant('CI_ASSESSMENT');
+      this.ciMultiplier = this.pageData.CI_MULTIPLIER;
+      this.untilRetirementAge = this.pageData.UNTIL_RETIREMENTAGE;
       this.modalData = this.translate.instant('CI_ASSESSMENT.MODAL_DATA');
       this.setPageTitle(this.pageTitle, null, true);
     });
@@ -67,7 +69,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
 
   ngOnInit() {
     this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
-    this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears;
+    this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears ? this.ciAssessmentFormValues.coverageYears : 65;
     let monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
     if (!monthlySalary) {
       monthlySalary = 0;
@@ -84,7 +86,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     });
     this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciAssessmentFormValues.ciMultiplier;
     // tslint:disable-next-line:max-line-length
-    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+    this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
         this.showMobilePopUp();
       }
@@ -105,7 +107,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+    this.navbarService.setPageTitle(title, null, helpIcon);
   }
 
   onSliderChange(value): void {
@@ -126,7 +128,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     ref.componentInstance.description = this.modalData.description;
     ref.componentInstance.title = this.modalData.title;
     ref.componentInstance.img = assetImgPath + this.modalData.imageName;
-    this.headerService.showMobilePopUp('removeClicked');
+    this.navbarService.showMobilePopUp('removeClicked');
   }
 
   save(form: any) {
@@ -147,3 +149,4 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     }
   }
 }
+

@@ -9,6 +9,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
@@ -40,6 +41,7 @@ export class SelectNationalityComponent implements OnInit {
     countries: ['Singapore', 'India'];
     constructor(
         public headerService: HeaderService,
+        public navbarService: NavbarService,
         public activeModal: NgbActiveModal,
         private router: Router,
         private formBuilder: FormBuilder,
@@ -55,7 +57,8 @@ export class SelectNationalityComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.headerService.setHeaderVisibility(false);
+        this.navbarService.setNavbarMobileVisibility(true);
+        this.navbarService.setNavbarMode(1);
         this.getNationalityList();
         this.selectNationalityFormValues = this.investmentAccountService.getNationality();
         this.nationalityObj = this.selectNationalityFormValues.nationality;

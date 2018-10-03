@@ -32,7 +32,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
 
   ngOnInit() {
     this.formValues = this.directService.getLongTermCareForm();
-    this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
+    this.formValues.gender = this.formValues.gender;
     this.longTermCareForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],

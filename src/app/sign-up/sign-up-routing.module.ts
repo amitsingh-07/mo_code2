@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
@@ -54,7 +55,8 @@ const routes: Routes = [
     component: SuccessMessageComponent
   },
   { path: SIGN_UP_ROUTES.DASHBOARD,
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

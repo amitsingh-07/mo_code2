@@ -17,7 +17,6 @@ export class CustomerReviewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarShadowVisibility(true);
     this.headerService.setHeaderOverallVisibility(false);
   }

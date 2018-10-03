@@ -42,11 +42,8 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
       if (this.title === 'Hospital Plan') {
 
         const hospitalPlan: any = this.guideMeService.getHospitalPlan().hospitalClass;
-        if (hospitalPlan.indexOf(' ') < 0) {
-          this.amount = hospitalPlan;
-        } else {
-          this.amount = hospitalPlan.substr(0, hospitalPlan.indexOf(' '));
-        }
+        this.amount = hospitalPlan;
+
         this.viewDetailsBtn = false;
       }
     }

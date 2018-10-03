@@ -230,10 +230,14 @@ export class SignUpService {
   }
 
   getUserProfileInfo() {
+    if (window.sessionStorage && sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY)) {
+      this.signUpFormData = JSON.parse(sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY));
+    }
     return this.signUpFormData.userProfileInfo;
   }
 
   setUserProfileInfo(userInfo) {
     this.signUpFormData.userProfileInfo = userInfo;
+    this.commit();
   }
 }

@@ -5,9 +5,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { LoggerService } from '../../shared/logger/logger.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PORTFOLIO_CONFIG } from '../portfolio.constants';
 import { PortfolioService } from '../portfolio.service';
@@ -36,7 +36,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
     private portfolioService: PortfolioService,
     private route: ActivatedRoute,
     private router: Router,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     public log: LoggerService) {
@@ -51,6 +51,8 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.riskFormValues = this.portfolioService.getPortfolioFormData();
     const self = this;
     this.route.params.subscribe((params) => {
@@ -67,7 +69,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   getQuestions() {

@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { SlickComponent } from 'ngx-slick';
 
 import { Router } from '../../../../node_modules/@angular/router';
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
@@ -34,6 +34,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   activeRecommendationType;
   activeRecommendationList;
   enquiryId;
+  protectionNeedTypes;
 
   enableScroll = false;
 
@@ -49,7 +50,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
-    private translate: TranslateService, public headerService: HeaderService,
+    private translate: TranslateService, public navbarService: NavbarService,
     private guideMeApiService: GuideMeApiService, private calculateService: GuideMeCalculateService,
     private currency: CurrencyPipe, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router) {
@@ -58,6 +59,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RECOMMENDATIONS.TITLE');
       this.subTitle = this.translate.instant('RECOMMENDATIONS.DESCRIPTION');
+      this.protectionNeedTypes = this.translate.instant('PROTECTION_NEED_TYPES');
       this.setPageTitle(this.pageTitle, this.subTitle);
     });
   }
@@ -97,7 +99,6 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
           this.resultsEmptyMessage = data.responseMessage.responseDescription;
           return;
         }
-        
         this.resultsEmptyMessage = '';
         this.recommendationPlans = data.objectList[0].productProtectionTypeList;
         this.enquiryId = data.objectList[0].enquiryId;
@@ -113,7 +114,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   setPageTitle(title: string, subTitle: string) {
-    this.headerService.setPageTitle(title, subTitle);
+    this.navbarService.setPageTitle(title, subTitle);
   }
 
   moveCarouselNext() {
@@ -174,22 +175,22 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     if (this.activeRecommendationList.productList[0]) {
       this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
       switch (this.activeRecommendationType) {
-        case 'Life Protection':
+        case this.protectionNeedTypes.LIFE_PROTECTION:
           this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
-        case 'Critical Illness':
+        case this.protectionNeedTypes.CRITICAL_ILLNESS:
           const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
           this.coverageAmount = criticalIllnessValues.coverageAmount + '';
           break;
-        case 'Occupational Disability':
+        case this.protectionNeedTypes.OCCUPATION_DISABILITY:
           const ocpData = this.calculateService.getOcpData();
           this.coverageAmount = ocpData.coverageAmount + '';
           break;
-        case 'Long Term Care':
+        case this.protectionNeedTypes.LONG_TERM_CARE:
           const ltcData = this.calculateService.getLtcData();
           this.coverageAmount = ltcData.monthlyPayout + '';
           break;
-        case 'Hospital Plan':
+        case this.protectionNeedTypes.HOSPITAL_PLAN:
           this.coverageAmount = '';
           break;
       }

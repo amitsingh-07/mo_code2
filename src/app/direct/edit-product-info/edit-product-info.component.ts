@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { DirectApiService } from '../direct.api.service';
 import { DirectService } from '../direct.service';
-import { HeaderService } from './../../shared/header/header.service';
 
 @Component({
   selector: 'app-edit-product-info',
@@ -27,7 +27,7 @@ export class EditProductInfoComponent implements OnInit {
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
-    private translate: TranslateService, private headerService: HeaderService) {
+    private translate: TranslateService, private navbarService: NavbarService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((results) => {
       this.pageTitle = this.translate.instant('PROFILE.TITLE2');
@@ -66,7 +66,7 @@ export class EditProductInfoComponent implements OnInit {
   editProdInfoForm() {
     this.directService.currentIndexValue = this.productCategorySelectedIndex;
     this.toggleVisibility = true;
-    this.headerService.setPageTitle(this.pageTitle);
+    this.navbarService.setPageTitle(this.pageTitle);
     this.directService.setModalFreeze(true);
   }
 
