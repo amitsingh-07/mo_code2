@@ -65,6 +65,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   escalatingBenefit: any = { All: 'All' };
   fullPartialRider: any = { All: 'All' };
   claimCriteria: any = { All: 'All' };
+  isResultsLoaded = false;
 
   filterTypes;
   filterModalData;
@@ -87,6 +88,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.filterTypes = this.translate.instant('SETTINGS.TYPES');
       this.filterModalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
 
+      this.isResultsLoaded = false;
       if (this.authService.isAuthenticated()) {
         this.getRecommendations();
       } else {
@@ -124,9 +126,11 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       .subscribe(
         (data) => {
           this.handleResponse(data);
+          this.isResultsLoaded = true;
         },
         (error) => {
           this.resultsEmptyMessage = 'An error occurred. Please try again.';
+          this.isResultsLoaded = true;
         });
 
     window.scroll(0, 0);

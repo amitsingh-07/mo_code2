@@ -57,10 +57,19 @@ export class DirectApiService {
         requestObj.existingInsuranceList = [this.directService.getEmptyExistingCoverage()];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
+        requestObj.enquiryData = this.getEnquiryData();
+        requestObj.hospitalizationNeeds = this.getHospitalPlanData();
+        requestObj.criticalIllnessNeedsData = this.getCriticalIllnessData();
+        requestObj.occupationalDisabilityNeeds = this.getOcpData();
+
+        requestObj.longTermCareNeeds = this.getLtcData();
+        requestObj.dependentsData = this.getDependentsData();
+        requestObj.lifeProtectionNeeds = this.getLifeProtectionData();
 
         const category = this.directService.getProductCategory();
         switch (category.id) {
             case PRODUCT_CATEGORY_INDEX.LIFE_PROTECTION:
+                requestObj.enquiryData.hasPremiumWaiver = requestObj.lifeProtectionNeeds.isPremiumWaiver;
                 break;
             case PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS:
                 break;
@@ -77,16 +86,6 @@ export class DirectApiService {
             case PRODUCT_CATEGORY_INDEX.SRS_PLANS:
                 break;
         }
-
-        requestObj.hospitalizationNeeds = this.getHospitalPlanData();
-        requestObj.criticalIllnessNeedsData = this.getCriticalIllnessData();
-        requestObj.occupationalDisabilityNeeds = this.getOcpData();
-
-        requestObj.longTermCareNeeds = this.getLtcData();
-        requestObj.dependentsData = this.getDependentsData();
-        requestObj.lifeProtectionNeeds = this.getLifeProtectionData();
-        requestObj.enquiryData = this.getEnquiryData();
-
         return requestObj;
     }
 
