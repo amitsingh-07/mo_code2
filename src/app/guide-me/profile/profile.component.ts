@@ -66,14 +66,14 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.authService.authenticate().subscribe((token) => {
       this.guideMeApiService.getProfileList().subscribe((data) => this.profileList = data.objectList);
     });
-    this.navbarService.setNavbarVisibility(false);
+    this.navbarService.setNavbarMode(2);
     this.headerService.setHeaderDropshadowVisibility(true);
     this.headerService.setHeaderOverallVisibility(true);
     this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   showHelpModal(id) {

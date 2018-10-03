@@ -4,8 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { IMyIncome } from './income.interface';
@@ -32,7 +32,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   private el: HTMLInputElement;
 
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private guideMeService: GuideMeService,
     private currencyPipe: CurrencyPipe) {
 
@@ -50,7 +50,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
       annualBonus: new FormControl(this.incomeFormValues.annualBonus),
       otherIncome: new FormControl(this.incomeFormValues.otherIncome)
     });
-
+    this.navbarService.setNavbarMobileVisibility(true);
     this.setFormTotalValue();
   }
 
@@ -59,7 +59,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   setFormTotalValue() {

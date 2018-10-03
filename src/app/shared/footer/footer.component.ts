@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { FooterService } from './footer.service';
 
@@ -8,8 +8,8 @@ import { FooterService } from './footer.service';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit, AfterViewInit {
-  showFooter = true;
-  constructor(private footerService: FooterService) { }
+  showFooter = false;
+  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
@@ -17,6 +17,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.footerService.currentFooterVisibility.subscribe((showFooter) => {
       this.showFooter = showFooter;
+      this.cdr.detectChanges();
     });
   }
 

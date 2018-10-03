@@ -10,9 +10,9 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
@@ -42,7 +42,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     // tslint:disable-next-line
     private router: Router,
     private formBuilder: FormBuilder,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     private config: NgbDatepickerConfig,
     private portfolioService: PortfolioService,
     private modal: NgbModal,
@@ -87,7 +87,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   onSliderChange(value): void {
