@@ -59,6 +59,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
 
     this.myFinancialsForm = new FormGroup({

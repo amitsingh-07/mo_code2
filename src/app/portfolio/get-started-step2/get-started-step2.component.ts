@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 
 @Component({
@@ -17,7 +18,12 @@ export class GetStartedStep2Component implements OnInit {
   description2 = this.translate.instant('GETSTARTED_STEP2.DESCRIPTION');
   tab = '2';
 
-  constructor(public readonly translate: TranslateService, private router: Router, public headerService: HeaderService) {
+  constructor(
+    public readonly translate: TranslateService,
+    public navbarService: NavbarService,
+    private router: Router,
+    public headerService: HeaderService
+  ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.title = this.translate.instant('GETSTARTED_STEP2.TITLE');
@@ -27,7 +33,7 @@ export class GetStartedStep2Component implements OnInit {
   }
 
   ngOnInit() {
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(false);
   }
 
   goNext() {
