@@ -139,6 +139,7 @@ export class GuideMeCalculateService {
   }
 
   getLifeProtectionData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.lifeProtectionCoverage) {
@@ -157,6 +158,7 @@ export class GuideMeCalculateService {
   }
 
   getCriticalIllnessData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.criticalIllnessCoverage) {
@@ -168,7 +170,7 @@ export class GuideMeCalculateService {
     ciData.annualSalary = data.annualSalary;
     ciData.ciMultiplier = data.ciMultiplier;
     ciData.isEarlyCriticalIllness = data.isEarlyCriticalIllness;
-    ciData.coverageAmount -= exCoverage;
+    ciData.coverageAmount = data.coverageAmount - exCoverage;
     ciData.coverageYears = 'Till Age ' + data.coverageYears;
     if (isNaN(ciData.coverageAmount) || ciData.coverageAmount < 0) {
       ciData.coverageAmount = 0;
@@ -177,6 +179,7 @@ export class GuideMeCalculateService {
   }
 
   getOcpData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.occupationalDisabilityCoveragePerMonth) {
@@ -194,6 +197,7 @@ export class GuideMeCalculateService {
   }
 
   getLtcData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.longTermCareCoveragePerMonth) {
