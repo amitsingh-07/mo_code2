@@ -8,6 +8,7 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
@@ -27,12 +28,14 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   showPassport = false;
   showNric = true;
   disabledFullName: true;
+  userProfileInfo;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     private config: NgbDatepickerConfig,
     private modal: NgbModal,
+    private signUpService: SignUpService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
@@ -53,7 +56,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.selectedNationalityFormValues = this.investmentAccountService.getNationality();
+    // get profile
     this.formValues = this.investmentAccountService.getPersonalInfo();
+    this.populateFullName();
     if (this.selectedNationalityFormValues.nationality.nationality === 'SINGAPOREAN' ||
       this.selectedNationalityFormValues.singaporeanResident === 'yes') {
       this.invPersonalInfoForm = this.buildFormForNricNumber();
@@ -96,6 +101,12 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         form.get(key).markAsDirty();
       }
     });
+  }
+  populateFullName() {
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.formValues.firstName = this.userProfileInfo.firstName;
+    this.formValues.lastName = this.userProfileInfo.lastName;
+    this.formValues.fullName = this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
   }
   goToNext(form) {
     if (!form.valid) {

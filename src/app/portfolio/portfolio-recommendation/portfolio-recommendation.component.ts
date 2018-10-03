@@ -3,7 +3,7 @@ import 'rxjs/add/observable/timer';
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
 import {
-  AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
+    AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,8 +13,9 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
@@ -40,6 +41,7 @@ export class PortfolioRecommendationComponent implements OnInit {
   constructor(
     private router: Router,
     public headerService: HeaderService,
+    public navbarService: NavbarService,
     private translate: TranslateService,
     private currencyPipe: CurrencyPipe,
     public authService: AuthenticationService,
@@ -52,19 +54,20 @@ export class PortfolioRecommendationComponent implements OnInit {
       self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel');
       self.helpDate = this.translate.instant('PORTFOLIO_RECOMMENDATION.helpDate');
       self.buttonTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.CONTINUE');
-      this.setPageTitle(this.pageTitle, null, false);
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     console.log(this.selectedRiskProfile.riskProfileName);
   }
 
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
   showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });

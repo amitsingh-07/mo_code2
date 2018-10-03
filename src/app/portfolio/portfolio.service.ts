@@ -56,6 +56,7 @@ export class PortfolioService {
     this.portfolioFormData.riskProfileId = data.id;
     this.portfolioFormData.riskProfileName = data.type;
     this.portfolioFormData.htmlDescription = data.htmlDesc;
+    this.commit();
   }
 
   currentFormError(form) {
