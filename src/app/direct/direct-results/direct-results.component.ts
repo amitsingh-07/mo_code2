@@ -21,6 +21,7 @@ import { SettingsWidgetComponent } from './../../shared/widgets/settings-widget/
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
+import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
 
 const mobileThreshold = 567;
 
@@ -168,12 +169,14 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.rider && productList.rider.riderName) {
           this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
         }
+        /*
         if (productList.insurer && productList.insurer.insurerName) {
           this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
         if (productList.insurer && productList.insurer.insurerName) {
           this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
+        */
       }
     }
     this.insurers = Object.values(this.insurers).map((key) => {
@@ -250,31 +253,31 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.filters.push(premiumFrequency);
     this.filters.push(insurers);
     this.filters.push(insurersFinancialRating);
-    switch (this.selectedCategory.id - 1) {
-      case 1:
+    switch (this.selectedCategory.id) {
+      case PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS:
         this.filters.push(claimFeature);
         break;
-      case 2:
+      case PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY:
         delete this.filters[1];
         delete this.filters[2];
         this.filters.push(deferredPeriod);
         this.filters.push(escalatingBenefit);
         break;
-      case 3:
+      case PRODUCT_CATEGORY_INDEX.HOSPITAL_PLAN:
         delete this.filters[0];
         this.filters.push(fullPartialRider);
         break;
-      case 4:
+      case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
         this.filters.push(payoutYears);
         this.filters.push(claimCriteria);
         break;
-      case 5:
+      case PRODUCT_CATEGORY_INDEX.EDUCATION_FUND:
         delete this.filters[0];
         break;
-      case 6:
+      case PRODUCT_CATEGORY_INDEX.RETIREMENT_INCOME:
         this.filters.push(payoutYears);
         break;
-      case 7:
+      case PRODUCT_CATEGORY_INDEX.SRS_PLANS:
         delete this.filters[0];
         break;
     }
