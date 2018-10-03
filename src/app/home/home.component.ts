@@ -1,11 +1,15 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit,
+         Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { HeaderService } from './../shared/header/header.service';
-import { NavbarService } from './../shared/navbar/navbar.service';
 
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
+import { FooterService } from './../shared/footer/footer.service';
+import { NavbarService } from './../shared/navbar/navbar.service';
+
+import { PopupModalComponent } from './../shared/modal/popup-modal/popup-modal.component';
 import { SubscribeMember } from './../shared/Services/subscribeMember';
 
 @Component({
@@ -14,19 +18,20 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   pageTitle: string;
   public homeNavBarHide = false;
   public homeNavBarFixed = false;
   public mobileThreshold = 567;
   public navBarElement: ElementRef;
+  modalRef: NgbModalRef;
 
   subscribeForm: FormGroup;
   formValues: SubscribeMember;
 
-  constructor(public headerService: HeaderService, public navbarService: NavbarService, private router: Router,
+  constructor(public navbarService: NavbarService, public footerService: FooterService,
               public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
-              public readonly translate: TranslateService) {
+              public readonly translate: TranslateService, private modal: NgbModal, private router: Router) {
                 navbarService.existingNavbar.subscribe((param: ElementRef) => {
                   this.navBarElement = param;
                   this.checkScrollStickyHomeNav();
@@ -35,6 +40,11 @@ export class HomeComponent implements OnInit {
                 this.translate.get('COMMON').subscribe((result: string) => {
                     this.pageTitle = this.translate.instant('HOME.TITLE');
                     this.setPageTitle(this.pageTitle);
+                    this.navbarService.setNavbarVisibility(true);
+                    this.navbarService.setNavbarMode(1);
+                    this.navbarService.setNavbarMobileVisibility(true);
+                    this.navbarService.setNavbarShadowVisibility(true);
+                    this.footerService.setFooterVisibility(true);
                 });
               }
 
@@ -61,18 +71,17 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarShadowVisibility(true);
-    this.headerService.setHeaderOverallVisibility(false);
-
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.subscribeForm = new FormGroup({
       email: new FormControl(this.formValues.email),
     });
   }
 
+  ngAfterViewInit() {
+  }
+
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   checkScrollStickyHomeNav() {

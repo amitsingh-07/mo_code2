@@ -11,9 +11,9 @@ import { MobileModalComponent } from './../../guide-me/mobile-modal/mobile-modal
 import {
   CreateAccountModelComponent
 } from './../../guide-me/recommendations/create-account-model/create-account-model.component';
-import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { Formatter } from './../../shared/utils/formatter.util';
 import { PlanWidgetComponent } from './../../shared/widgets/plan-widget/plan-widget.component';
@@ -72,7 +72,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
-    private router: Router, private translate: TranslateService, public headerService: HeaderService,
+    private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService) {
     this.translate.use('en');
@@ -101,7 +101,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   ngOnInit() {
-    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+    this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
         this.showSettingsPopUp();
       }
@@ -278,7 +278,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title, null, false, true);
+    setTimeout(() => {
+      this.navbarService.setPageTitle(title, null, false, true);
+    }, 0);
   }
 
   showSettingsPopUp() {
@@ -299,7 +301,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     ref.componentInstance.showFilterTooltip.subscribe((toolTip) => {
       this.showSettingsToolTip(toolTip);
     });
-    this.headerService.showMobilePopUp('removeClicked');
+    this.navbarService.showMobilePopUp('removeClicked');
   }
 
   showSettingsToolTip(toolTip) {

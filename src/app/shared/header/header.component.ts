@@ -1,8 +1,10 @@
+
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IPageComponent } from '../interfaces/page-component.interface';
+import { NavbarService } from './../navbar/navbar.service';
 import { HeaderService } from './header.service';
 
 @Component({
@@ -22,7 +24,8 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
   closeIcon = false;
   settingsIcon = false;
 
-  constructor(public headerService: HeaderService, private _location: Location , private router: Router) {  }
+  constructor(public navbarService: NavbarService, public headerService: HeaderService,
+              private _location: Location , private router: Router) {  }
 
   ngOnInit() {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);

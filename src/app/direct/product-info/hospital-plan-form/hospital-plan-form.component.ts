@@ -24,20 +24,20 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
     private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
-      const today: Date = new Date();
-      config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-      config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-      config.outsideDays = 'collapsed';
-      this.translate.use('en');
-      this.translate.get('COMMON').subscribe((result: string) => {
+    const today: Date = new Date();
+    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.outsideDays = 'collapsed';
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
       this.planType = this.translate.instant('DIRECT_HOSPITAL_PLAN.HOSPITAL_PLANS');
       this.selectedPlan = this.planType[0];
     });
-     }
+  }
 
   ngOnInit() {
     this.formValues = this.directService.getHospitalPlanForm();
-    this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider ? this.formValues.fullOrPartialRider : 'yes';
+    this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider;
     this.hospitalForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
@@ -88,16 +88,9 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   }
 
   showFullOrPartialRider() {
-    if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
-      this.directService.showToolTipModal(
-        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.TITLE'),
-        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_RIDER.MESSAGE')
-      );
-    } else {
-      this.directService.showToolTipModal(
-        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.TITLE'),
-        this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.PARTIAL_RIDER.MESSAGE')
-      );
-    }
+    this.directService.showToolTipModal(
+      this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_OR_PARTIAL_RIDER.TITLE'),
+      this.translate.instant('DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TOOLTIP.FULL_OR_PARTIAL_RIDER.MESSAGE')
+    );
   }
 }

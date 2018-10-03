@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AuthGuardService } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -24,10 +25,8 @@ export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
-        { prefix: './assets/i18n/app/', suffix: '.json' },
-        { prefix: './assets/i18n/sign-up/', suffix: '.json' },
-        { prefix: './assets/i18n/guide-me/', suffix: '.json' },
-        { prefix: './assets/i18n/direct/', suffix: '.json' }
+      { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/sign-up/', suffix: '.json' }
     ]);
 }
 

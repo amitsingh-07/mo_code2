@@ -65,7 +65,7 @@ export interface ILifeProtection {
 }
 
 export interface ICriticalIllnessData {
-    coverageYears: number;
+    coverageYears: string;
     coverageAmount: number;
     isEarlyCriticalIllness: boolean;
     annualSalary?: number;
@@ -74,7 +74,7 @@ export interface ICriticalIllnessData {
 
 export interface IOccupationalDisabilityData {
     percentageCoverage: number;
-    coverageDuration: number;
+    coverageDuration: string;
     coverageAmount: number;
     employmentStatusId: number;
     maxAge: number;
@@ -102,4 +102,5 @@ export interface IRetirementIncomePlan {
     retirementIncome: number;
     payoutStartAge: number;
     payoutDuration: string;
+    payoutFeature: string;
 }

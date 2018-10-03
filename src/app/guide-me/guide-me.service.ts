@@ -213,7 +213,7 @@ export class GuideMeService {
 
   getCiAssessment(): CriticalIllnessData {
     if (!this.guideMeFormData.criticalIllness) {
-      this.guideMeFormData.criticalIllness = { coverageYears: 65 } as CriticalIllnessData;
+      this.guideMeFormData.criticalIllness = {} as CriticalIllnessData;
     }
     return this.guideMeFormData.criticalIllness;
   }

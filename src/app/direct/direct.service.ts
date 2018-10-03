@@ -233,6 +233,11 @@ export class DirectService {
   setRetirementIncomeForm(data: IRetirementIncome) {
     this.directFormData.retirementIncome = data;
     this.gaDirectSuccess('retirement-income');
+    const userInfo = this.getUserInfo();
+    userInfo.dob = data.dob;
+    userInfo.gender = data.gender;
+    this.setUserInfo(userInfo);
+    this.commit();
   }
 
   getOcpDisabilityForm(): IOcpDisability {
@@ -260,6 +265,11 @@ export class DirectService {
   setEducationForm(data: IEducation) {
     this.directFormData.education = data;
     this.gaDirectSuccess('education');
+    const userInfo = this.getUserInfo();
+    userInfo.dob = data.childdob;
+    userInfo.gender = data.childgender;
+    this.setUserInfo(userInfo);
+    this.commit();
   }
 
   setHospitalPlanForm(data: IHospital) {
@@ -300,6 +310,11 @@ export class DirectService {
 
   setSrsApprovedPlansForm(data: ISrsApprovedPlans) {
     this.directFormData.srsApprovedPlans = data;
+    const userInfo = this.getUserInfo();
+    userInfo.dob = data.dob;
+    userInfo.gender = data.gender;
+    this.setUserInfo(userInfo);
+    this.commit();
   }
   getSrsApprovedPlansForm() {
     if (!this.directFormData.srsApprovedPlans) {

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { HeaderService } from '../../shared/header/header.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { IPageComponent } from './../../shared/interfaces/page-component.interface';
-
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
@@ -30,7 +30,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     private config: NgbDatepickerConfig,
     private modal: NgbModal,
     private investmentAccountService: InvestmentAccountService,
@@ -47,9 +47,11 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     });
   }
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.selectedNationalityFormValues = this.investmentAccountService.getNationality();
     this.formValues = this.investmentAccountService.getPersonalInfo();
     if (this.selectedNationalityFormValues.nationality.nationality === 'SINGAPOREAN' ||
