@@ -17,9 +17,6 @@ import { PortfolioService } from '../../portfolio/portfolio.service';
 
 import { PortfolioFormData } from '../../portfolio/portfolio-form-data';
 
-@Injectable({
-  providedIn: 'root'
-})
 @Component({
   selector: 'app-finanical-details',
   templateUrl: './finanical-details.component.html',
@@ -55,7 +52,7 @@ export class FinanicalDetailsComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('FINANCIIAL_DETAILS.TITLE');
+      this.pageTitle = this.translate.instant('FINANCIAL_DETAILS.TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -63,10 +60,13 @@ export class FinanicalDetailsComponent implements OnInit {
   ngOnInit() {
     this.formValues = this.portfolioService.getMyFinancials();
     this.financialDetails = this.formBuilder.group({
-      monthlyIncome: ['3123', Validators.required],
-      percentageOfSaving: ['43gfd24', Validators.required],
-      totalAssets: ['3gdf234', Validators.required],
-      totalLiabilities: ['3fg243', Validators.required],
+      annualHouseHoldIncome: [this.formValues.annualHouseHoldIncome, Validators.required],
+      numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
+      financialMonthlyIncome: [ this.formValues.monthlyIncome, Validators.required],
+      financialPercentageOfSaving: [this.formValues.percentageOfSaving, Validators.required],
+      financialTotalAssets: [this.formValues.totalAssets, Validators.required],
+      financialTotalLiabilities: [this.formValues.totalLiabilities, Validators.required],
+
     });
   }
   setPageTitle(title: string) {
@@ -74,9 +74,36 @@ export class FinanicalDetailsComponent implements OnInit {
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
     this.annualHouseHoldIncomeRange = annualHouseHoldIncome;
+    this.financialDetails.controls['annualHouseHoldIncome'].setValue( this.annualHouseHoldIncomeRange);
+
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
     this.numberOfHouseHoldMembers = HouseHoldMembers;
+    this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(this.numberOfHouseHoldMembers);
+  }
+  markAllFieldsDirty(form) {
+    Object.keys(form.controls).forEach((key) => {
+      if (form.get(key).controls) {
+        Object.keys(form.get(key).controls).forEach((nestedKey) => {
+          form.get(key).controls[nestedKey].markAsDirty();
+        });
+      } else {
+        form.get(key).markAsDirty();
+      }
+    });
+  }
+  goToNext(form) {
+    if (!form.valid) {
+      this.markAllFieldsDirty(form);
+      const error = this.investmentAccountService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
+    } else {
+      this.investmentAccountService.setFinancialFormData(form.value);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.TAX_INFO]);
+    }
   }
 
 }

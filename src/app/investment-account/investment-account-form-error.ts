@@ -225,7 +225,132 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid sourcwe',
                 errorMessage: 'Please select your source of investment funds.'
             }
+        },
+        companyName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid companany name',
+                errorMessage: 'Please enter compnany Name.'
+            }
+        },
+        occupation: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid occupation',
+                errorMessage: 'Please select your occupation.'
+            }
+        },
+        industry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid industry name',
+                errorMessage: 'Please select your industry'
+            }
+        },
+        contactNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid contact number',
+                errorMessage: 'Please enter contact number.'
+            }
+        },
+        empPostalCode: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid postal code',
+                errorMessage: 'Please enter postal code.'
+            }
+        },
+        empAddress1: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement address1',
+                errorMessage: 'Please enter employement address1.'
+            }
+        },
+        empAddress2: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement address2',
+                errorMessage: 'Please enter employement address2.'
+            }
+        },
+
+        empUnitNo: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement unit number',
+                errorMessage: 'Please enter  employement unit number'
+            }
+        },
+
+        empCity: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement employement city',
+                errorMessage: 'Please enter employement city.'
+            }
+        },
+
+        empState: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement State',
+                errorMessage: 'Please enter employement State.'
+            }
+        },
+
+        empZipCode: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement ZipCode',
+                errorMessage: 'Please enter employement ZipCode.'
+            }
+        },
+        annualHouseHoldIncome: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid annual HouseHoldIncome',
+                errorMessage: 'Please enter annual HouseHoldIncome.'
+            }
+        },
+        numberOfHouseHoldMembers: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+
+                errorTitle: 'Invalid number Of House Hold Members',
+                errorMessage: 'Please enter number Of House Hold Members.'
+            }
+        },
+        financialMonthlyIncome: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid financial Monthly Income',
+                errorMessage: 'Please enter financial Monthly Income.'
+            }
+        },
+        financialPercentageOfSaving: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid financial Percentage Of Saving',
+                errorMessage: 'Please enter financial Percentage Of Saving.'
+            }
+        },
+        financialTotalAssets: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid financial TotalAssets',
+                errorMessage: 'Please enter financial TotalAssets.'
+            }
+        },
+        financialTotalLiabilities: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  financial Total Liabilities',
+                errorMessage: 'Please enter financial Total Liabilities.'
+            }
         }
+
     };
 
 }

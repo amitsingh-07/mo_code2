@@ -76,16 +76,16 @@
             <div class="form-group">
             <div class="form-group-with-bg--content">
               <div class="flex-row">
-                <div class="flex-col-6">
+                <div class="flex-col-5">
                   <div class="form-group-with-bg--content-label" for="name" id="myFinancialMonthlyIncomeLbl">Annual Income
                   </div>
                 </div>
-                <div class="flex-col-6 form-group" >
+                <div class="flex-col-7 form-group" >
                   <div class="form-control">
                     <i id="myFinancialDollarSybmOne">$</i>
                     <div name="monthlyIncome">
                       <input class="input-control" type="text" id="myFinancialMonthlyIncomeInput" appCurrencyInputPortfolio maxLength="7" #monthlyIncome
-                      formControlName="monthlyIncome">
+                      formControlName="financialMonthlyIncome">
                     </div>
                   </div>
                 </div>
@@ -95,15 +95,15 @@
 
               <div class="form-group">
               <div class="flex-row">
-                <div class="flex-col-6">
+                <div class="flex-col-5">
                   <div class="form-group-with-bg--content-label" for="name" id="myFinancialSavedIncomeLbl">% Of Income Saved</div>
                 </div>
-                <div class="flex-col-6">
+                <div class="flex-col-7">
                   <div class="form-control form-control-right">
 
                     <div name="percentageOfSaving">
                       <input class="input-control" id="myFinancialSavedIncomeInput" type="text" appPercentageInput maxLength="3" #percentageOfSaving
-                      formControlName="percentageOfSaving">
+                      formControlName="financialPercentageOfSaving">
                       <i id="myFinancialPersentage" class="right">%</i>
                     </div>
                   </div>
@@ -113,17 +113,17 @@
 
               <div class="form-group">
               <div class="flex-row">
-                <div class="flex-col-6">
+                <div class="flex-col-5">
                   <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">Total Assets
 
                   </div>
                 </div>
-                <div class="flex-col-6">
+                <div class="flex-col-7">
                   <div class="form-control">
                     <i id="myFinancialDollerSymbTwo">$</i>
                     <div name="totalAssets">
                       <input class="input-control" type="text" id="myFinancialTotalAssetInput" appCurrencyInputPortfolio maxLength="7" #totalAssets
-                      formControlName="totalAssets">
+                      formControlName="financialTotalAssets">
                     </div>
                   </div>
                 </div>
@@ -133,16 +133,16 @@
 
               <div class="form-group">
               <div class="flex-row">
-                <div class="flex-col-6">
+                <div class="flex-col-5">
                   <div class="form-group-with-bg--content-label" for="name" id="myFinancialLoansLbl">Total Loans
 
                   </div>
                 </div>
-                <div class="flex-col-6">
+                <div class="flex-col-7">
                   <div class="form-control">
                     <i id="myFinancialDollerSymbThree">$</i>
                     <div name="totalLiabilities">
-                      <input class="input-control" formControlName="totalLiabilities"  type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio maxLength="7" #totalLiabilities
+                      <input class="input-control" formControlName="financialTotalLiabilities"  type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio maxLength="7" #totalLiabilities
                         >
                     </div>
                   </div>
@@ -167,7 +167,7 @@
 
 
 
-            <button type="button" id="personalInforNextBtn" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
+            <button type="button" id="personalInforNextBtn"  (click)="goToNext(financialDetails)"class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
           </form>
         </div>
       </div>

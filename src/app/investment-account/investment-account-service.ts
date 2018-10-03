@@ -183,27 +183,41 @@ export class InvestmentAccountService {
         };
     }
     setEmployeAddressFormData(data) {
-        this.investmentAccountFormData.employmentStatus = data.employmentStatus;
-        this.investmentAccountFormData.companyName = data.companyName;
-        this.investmentAccountFormData.occupation = data.occupation;
-        this.investmentAccountFormData.companyName = data.companyName;
-        this.investmentAccountFormData.contactNumber = data.contactNumber;
-        this.investmentAccountFormData.isEmployeAddresSame = data.isEmployeAddresSame;
+        if (data.employmentStatus !== 'Unemployed') {
+            this.investmentAccountFormData.employmentStatus = data.employmentStatus;
+            this.investmentAccountFormData.companyName = data.companyName;
+            this.investmentAccountFormData.occupation = data.occupation;
+            this.investmentAccountFormData.industry = data.industry;
+            this.investmentAccountFormData.contactNumber = data.contactNumber;
+            this.investmentAccountFormData.isEmployeAddresSame = data.isEmployeAddresSame;
 
-        if (!data.isEmployeAddresSame) {
-            this.investmentAccountFormData.empCountry = data.employeaddress.empCountry;
-            this.investmentAccountFormData.empPostalCode = data.employeaddress.empPostalCode;
-            this.investmentAccountFormData.empAddress1 = data.employeaddress.empAddress1;
-            this.investmentAccountFormData.empAddress1 = data.employeaddress.empAddress1;
-            this.investmentAccountFormData.empUnitNo = data.employeaddress.empUnitNo;
-            this.investmentAccountFormData.empCity = data.employeaddress.empCity;
-            this.investmentAccountFormData.empState = data.employeaddress.empState;
-            this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
+            if (!data.isEmployeAddresSame) {
+                this.investmentAccountFormData.empCountry = data.employeaddress.empCountry;
+                this.investmentAccountFormData.empPostalCode = data.employeaddress.empPostalCode;
+                this.investmentAccountFormData.empAddress1 = data.employeaddress.empAddress1;
+                this.investmentAccountFormData.empAddress2 = data.employeaddress.empAddress2;
+                this.investmentAccountFormData.empUnitNo = data.employeaddress.empUnitNo;
+                this.investmentAccountFormData.empCity = data.employeaddress.empCity;
+                this.investmentAccountFormData.empState = data.employeaddress.empState;
+                this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
+            }
+        } else {
+            this.investmentAccountFormData.employmentStatus = data.employmentStatus;
         }
     }
 
     // Upload Document
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
+    }
+    setFinancialFormData(data) {
+        this.investmentAccountFormData.annualHouseHoldIncome = data.annualHouseHoldIncome;
+        this.investmentAccountFormData.numberOfHouseHoldMembers = data.numberOfHouseHoldMembers;
+        this.investmentAccountFormData.financialMonthlyIncome = data.financialMonthlyIncome;
+        this.investmentAccountFormData.financialPercentageOfSaving = data.financialPercentageOfSaving;
+        this.investmentAccountFormData.financialTotalAssets = data.financialTotalAssets;
+        this.investmentAccountFormData.financialTotalLiabilities = data.financialTotalLiabilities;
+        this.investmentAccountFormData.isEmployeAddresSame = data.isEmployeAddresSame;
+
     }
 }

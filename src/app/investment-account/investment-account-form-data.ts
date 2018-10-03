@@ -43,6 +43,7 @@ export class InvestmentAccountFormData {
     // EmployementDetails
 
     employmentStatus: string;
+    employStatus: string;
     companyName: string;
     occupation: string;
     industry: string;
@@ -69,4 +70,12 @@ export class InvestmentAccountFormData {
     pep: any;
     beneficial: any;
 
+    // financial details
+   
+    annualHouseHoldIncome: string;
+    numberOfHouseHoldMembers: number;
+    financialMonthlyIncome: string;
+    financialPercentageOfSaving: string;
+    financialTotalAssets: string;
+    financialTotalLiabilities: string;
 }

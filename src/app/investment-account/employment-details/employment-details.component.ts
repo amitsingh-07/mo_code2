@@ -95,6 +95,7 @@ export class EmploymentDetailsComponent implements OnInit {
   }
   setEmployementStatus(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
+    const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0];
     if (value === 'Unemployed') {
       this.employementDetailsForm = this.buildFormUnemployement(value);
       this.showEmploymentControls = false;
@@ -117,11 +118,11 @@ export class EmploymentDetailsComponent implements OnInit {
 
   setDropDownValue(key, value, nestedKey) {
     this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
-  }
+}
 
   buildFormEmployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
-      employmentStatus: [empStatus,  Validators.required],
+      employmentStatus: [empStatus, Validators.required],
       companyName: [this.formValues.companyName, Validators.required],
       occupation: [this.formValues.occupation ? this.formValues.occupation : 'Select Occupation', Validators.required],
       industry: [this.formValues.industry ? this.formValues.industry : 'Select Induatry', Validators.required],
@@ -131,10 +132,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
   buildFormUnemployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
-      employmentStatus: [empStatus, Validators.required]
+      employmentStatus: [empStatus, Validators.required],
     });
   }
-
   addOrRemoveMailingAddress() {
     if (!this.employementDetailsForm.controls.isEmployeAddresSame.value) {
       if (this.isUserNationalitySingapore) { // Singapore
@@ -160,10 +160,46 @@ export class EmploymentDetailsComponent implements OnInit {
     }
   }
 
+  retrieveAddress(postalCode, address1Control, address2Control) {
+    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe((response: any) => {
+      if (response) {
+        if (response.Status.code === 200) {
+          const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+          const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+          address1Control.setValue(address1);
+          address2Control.setValue(address2);
+        } else {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+          address1Control.setValue('');
+          address2Control.setValue('');
+        }
+      }
+    });
+  }
+
+  markAllFieldsDirty(form) {
+    Object.keys(form.controls).forEach((key) => {
+      if (form.get(key).controls) {
+        Object.keys(form.get(key).controls).forEach((nestedKey) => {
+          form.get(key).controls[nestedKey].markAsDirty();
+        });
+      } else {
+        form.get(key).markAsDirty();
+      }
+    });
+  }
   goToNext(form) {
     if (!form.valid) {
+      this.markAllFieldsDirty(form);
+      const error = this.investmentAccountService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
+      this.investmentAccountService.setEmployeAddressFormData(form.value);
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
     }
   }
