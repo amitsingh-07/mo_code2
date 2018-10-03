@@ -19,7 +19,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   srsApprovedPlansForm: FormGroup;
   formValues: any;
-  payoutStartAge = 0;
+  payoutStartAge = '';
   age;
   payoutStartAgeList = Array(100).fill(0).map((x, i) => x += i * 1);
   payoutTypeList;
@@ -35,21 +35,20 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.payoutTypeList = this.translate.instant('SRS_SELECTED_PLANS.SINGLE_PREMIUM_LIST');
-      this.payoutType = this.payoutTypeList[0];
+      this.payoutType = '';
       });
   }
 
   ngOnInit() {
     /* Building the form */
     this.formValues = this.directService.getSrsApprovedPlansForm();
-    this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : 0;
     this.srsApprovedPlansForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       singlePremium: [this.formValues.singlePremium],
-      payoutStartAge: [this.formValues.payoutStartAge],
-      payoutType: [this.formValues.payoutType]
+      payoutStartAge: [this.formValues.payoutStartAge, Validators.required],
+      payoutType: [this.formValues.payoutType, Validators.required]
     });
     if (this.formValues.payoutType !== undefined) {
       this.selectPayoutType(this.formValues.payoutType);

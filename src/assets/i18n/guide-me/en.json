@@ -53,7 +53,8 @@
     "INVESTMENTS": "Investments",
     "INVESTMENTS_HINT": "(E.g. Stocks, Unit Trusts, ETF)",
     "OTHERS": "Others",
-    "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)"
+    "OTHERS_HINT": "(E.g. Car, Jewelry, Trust fund)",
+    "FILL_VIA_SINGPASS":"Fill Via SingPass"
   },
   "MY_LIABILITIES": {
     "TITLE": "My Liabilities",
@@ -94,6 +95,7 @@
     "EDUCATION_SUPPORT_NATIONALITY": "Nationality",
     "YEARS_MODAL_DESC": "Click on your dependant’s profile type for a general guideline on the years needed.",
     "PROFILE_TYPE": ["spouse", "child", "family"],
+    "DEPENDENT_COUNT_OPTIONS": [0, 1, 2, 3, 4, 5],
     "YEARS_NEEDED": [{
         "id": 0,
         "className": "spouse",
@@ -125,22 +127,24 @@
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
-    "DESCRIPTION": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b>Critical Illness</b>.",
+    "DESCRIPTION": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.",
     "COVERAGE_AMT": "Coverage Amount",
     "COVERAGE_AMT_DESC": "Based on the information below",
     "ANNUAL_SALARY": "Annual Salary",
     "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
     "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
     "UNTIL_RETIREMENT_AGE": "Till the retirement age of ",
+    "CI_MULTIPLIER": 4,
+    "UNTIL_RETIREMENTAGE": 65,
     "MODAL_DATA": {
       "title": "Critical Illness",
-      "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b>Critical Illness</b>.</p>",
+      "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.</p>",
       "imageName": "ci-assessment.png"
     }
   },
   "OCP_DISABILITY": {
     "TITLE": "Occupational Disability",
-    "DESCRIPTION": "This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.",
+    "DESCRIPTION": "This coverage provides monthly payouts to replace a portion of your salary in the event of <b class=\"text-bold\">Occupational Disability</b>. A person usually requires coverage until their retirement age.",
     "OCP_DISABILITY_FRM_TITLE": "Coverage Amount",
     "OCP_DISABILITY_HINT": "Based on the information below",
     "EMPLOYEE_FIELD": "I am a",
@@ -149,6 +153,8 @@
     "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
     "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
     "MODAL_TITLE": "Occupational Disability",
+    "RETIREMENTAGE": 65,
+    "COVERAGEPERCENT": 75,
     "EMPLOYEE_TYPE": [{
         "status": "Salaried Employee"
       },
@@ -212,7 +218,7 @@
     },
     "PLANS": {
       "COVARAGE_NEEDED": "Coverage Needed",
-      "LESS_EXISTING_COVARAGE": "Less Existing Coverage",
+      "LESS_EXISTING_COVERAGE": "Less Existing Coverage",
       "DOLLER":"$",
       "PERSENTAGE":"%",
       "LIFE_PROTECTION":{ 
@@ -231,13 +237,13 @@
         "YEARS_TO_REPLACE":"Years To Replace",
         "YEARS":" Years"
         }, 
-      "OCCUPATIONAL_dISABILITY": { 
+      "OCCUPATIONAL_DISABILITY": { 
         "TITLE": "Occupational Disability",
         "ICON": "occupational-disability-icon.svg",
         "MONTHLY_SALARY":"Monthly Salary",
         "PERSENTAGE_TO_REPLACE":"% to Replace"
         },
-      "LONG_TERMCARE":{ 
+      "LONG_TERM_CARE":{ 
         "TITLE": "Long-Term Care",
         "ICON": "long-term-care-icon.svg",
         "FOR_MONTH":" / mth"
@@ -251,6 +257,8 @@
   },
   "RECOMMENDATIONS": {
     "TITLE": "Recommendations",
-    "DESCRIPTION": "Personalise your insurance coverage by selecting the plans you are interested in."
+    "DESCRIPTION": "Personalise your insurance coverage by selecting the plans you are interested in.",
+    "COVERAGE": "Coverage:",
+    "PREMIUM_FROM": "Premium from:"
   }
 }

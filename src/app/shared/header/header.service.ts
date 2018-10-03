@@ -9,6 +9,7 @@ export class HeaderService {
     private pageSubTitle = new BehaviorSubject('');
     private pageHelpIcon = new BehaviorSubject(true);
     private pageProdInfoIcon = new BehaviorSubject(false);
+
     private mobileModal = new BehaviorSubject('');
     private closeProdInfo = new BehaviorSubject('');
     private headerOverallVisibility = new BehaviorSubject(true);

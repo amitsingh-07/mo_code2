@@ -29,7 +29,9 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   icon;
   insurerLogo;
   premiumAmount;
+  premiumFrequency = '';
   productName;
+  promoDiscount;
   highlights = [];
   temp;
   isSelected = false;
@@ -42,10 +44,17 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   @Output() view = new EventEmitter();
   @Output() select = new EventEmitter();
 
+  perMonth = '';
+  perYear = '';
+
   constructor(
     private currency: CurrencyPipe, private translate: TranslateService,
     private elRef: ElementRef, private renderer: Renderer2) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((data) => {
+      this.perMonth = this.translate.instant('SUFFIX.PER_MONTH');
+      this.perYear = this.translate.instant('SUFFIX.PER_YEAR');
+    });
     this.highlights = [];
   }
 
@@ -57,6 +66,14 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
+      if (this.data.premium.premiumFrequency === 'per month') {
+        this.premiumFrequency = this.perMonth;
+      } else if (this.data.premium.premiumFrequency === 'per year') {
+        this.premiumFrequency = this.perYear;
+      }
+      if (this.data.promotion && this.data.promotion.promoDiscount) {
+        this.promoDiscount = this.data.promotion.promoDiscount;
+      }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.coverageDuration;
       this.premiumDuration = this.data.premiumDuration;

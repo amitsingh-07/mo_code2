@@ -21,7 +21,7 @@
                   <label for="name" id="invPersInfoLbl1" >{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
-                  <input type="text"   id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
+                  <input type="text" disabled id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
                 </div>
               </div>
               <div class="flex-row">
@@ -29,7 +29,7 @@
                   <label for="name" id="invPersInfoLbl2">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('firstName').valid && !invPersonalInfoForm.get('firstName').pristine}">
-                  <input type="text" id="invPersInfoInpt2" class="form-control" #firstName formControlName="firstName">
+                  <input [attr.disabled]="invPersonalInfoForm.controls.firstName.value" type="text" id="invPersInfoInpt2" class="form-control" #firstName formControlName="firstName">
                 </div>
               </div>
               <div class="flex-row">
@@ -37,7 +37,7 @@
                   <label for="name" id="invPersInfoLbl3">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('lastName').valid && !invPersonalInfoForm.get('lastName').pristine}">
-                  <input type="text" id="invPersInfoInpt3" class="form-control" #lastName formControlName="lastName">
+                  <input type="text" [attr.disabled]="invPersonalInfoForm.controls.lastName.value" id="invPersInfoInpt3" class="form-control" #lastName formControlName="lastName">
                 </div>
               </div>
               <div class="flex-row" *ngIf="showNric">

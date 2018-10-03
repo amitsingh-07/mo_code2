@@ -1,3 +1,5 @@
+@import '../../variables';
+@import '../../mixins';
 app-direct {
 
   .banner-image {
@@ -6,7 +8,7 @@ app-direct {
   }
 
   .direct-banner-title {
-    font-family: Muli;
+    font-family: $muli-semi-bold;
     font-size: 36px;
     font-weight: 600;
     font-style: normal;
@@ -14,11 +16,11 @@ app-direct {
     line-height: normal;
     letter-spacing: -0.4px;
     text-align: center;
-    color: #ffffff;
+    color: $white-color;
   }
 
   .direct-banner-sub-title {
-    font-family: Muli;
+    font-family: $muli-regular;
     font-size: 18px;
     font-weight: normal;
     font-style: normal;
@@ -33,24 +35,31 @@ app-direct {
 
   .btn-close-edit {
     display: block;
-    position: absolute;
-    width: 1024px;
-    z-index: 1050;
+    position: relative;
+    z-index: 1040;
     top: 0px;
+    height: 84px;
+    margin: 0 auto;
+    max-width: 1024px;
+    margin-top: -84px;
 
     span.btn-close {
-      right: 0px;
+      right: 20px;
       position: absolute;
-      top: 0px;
-      color: black;
+      top: 20px;
+      background: url("../../assets/images/direct-btn-close.svg");
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
     }
-
+    /*
     span.block {
       top: 0px;
       left: 0px;
       height: 76px;
-      width: 60px;
-      background: #ffffff;
+      width: 76px;
+      background: $white-color;
     }
+    */
   }
 }

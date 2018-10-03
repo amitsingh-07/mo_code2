@@ -1,6 +1,6 @@
 <app-edit-product-info (editProdInfo)="editProdInfo()" [hidden]="isComparePlanEnabled && isMobileView"></app-edit-product-info>
 <div class="prod-info__backdrop show" [hidden]="!toggleBackdropVisibility"></div>
-<div id="results-web" [hidden]="resultsEmptyMessage?.length > 0" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
+<div id="results-web" [hidden]="!isResultsLoaded || resultsEmptyMessage?.length > 0" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
   <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
     <div>
       <div style="justify-content: center;">
@@ -13,23 +13,23 @@
       </div>
     </div>
   </div>
-  <div class="flex-col-4 hidden-sm-md" [hidden]="searchResult?.length === 0">
+  <div class="flex-col-4 hidden-sm-md" [hidden]="!isResultsLoaded || searchResult?.length === 0">
     <button ngbButtonLabel class="direct-form-btn--radio btn btn-small" (click)="toggleComparePlans()" style="float:left;"
-      [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button>
-    <label class="lbl">{{filteredResult.length}} Plans Found</label>
+      [ngClass]="{'compare' : isComparePlanEnabled}">{{ 'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button>
+    <label class="lbl">{{filteredResult.length}}{{ 'DIRECT_RESULTS.PLANS_FOUND' | translate}}</label>
     <div style="clear: both; margin-bottom: 10px;"></div>
     <app-settings-widget *ngIf="filters.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)" (showFilterTooltip)="showSettingsToolTip($event)"></app-settings-widget>
     <div [hidden]="!isComparePlanEnabled" class="overlay"></div>
   </div>
 </div>
-<div id="results-mobile" *ngIf="isMobileView" [hidden]="resultsEmptyMessage?.length > 0" class="hidden-lg">
+<div id="results-mobile" *ngIf="isMobileView" [hidden]="!isResultsLoaded || resultsEmptyMessage?.length > 0" class="hidden-lg">
 
-  <div class="compare-plan-header" *ngIf="isComparePlanEnabled">Compare <button aria-label="Close" class="compare-plan-header--close"
+  <div class="compare-plan-header" *ngIf="isComparePlanEnabled">{{ 'DIRECT_RESULTS.COMPARE' | translate}}<button aria-label="Close" class="compare-plan-header--close"
       id="modalBtn" type="button" (click)="toggleComparePlans()"><span aria-hidden="true"></span></button></div>
   <div class="results-mobile__compare-plan" [ngClass]="{'is-hidden' : isComparePlanEnabled}">
-    <div class="results-mobile__compare-plan--lbl"><label class="lbl">{{filteredResult.length}} Plans Found</label></div>
+    <div class="results-mobile__compare-plan--lbl"><label class="lbl">{{filteredResult.length}}{{ 'DIRECT_RESULTS.PLANS_FOUND' | translate}}</label></div>
     <div class="results-mobile__compare-plan--btn"><button ngbButtonLabel class="direct-form-btn--radio btn btn-small"
-        (click)="toggleComparePlans()" style="float:left;" [ngClass]="{'compare' : isComparePlanEnabled}">Compare Plans</button></div>
+        (click)="toggleComparePlans()" style="float:left;" [ngClass]="{'compare' : isComparePlanEnabled}">{{ 'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button></div>
   </div>
   <div class="flex-row" [ngClass]="{'mt60' : isComparePlanEnabled}" *ngFor="let category of searchResult; let i = index"
     style="padding: 10px">
@@ -50,8 +50,8 @@
   </div>
 </div>
 <div style="text-align: center;">
-<div [hidden]="filteredResult?.length > 0 || resultsEmptyMessage?.length > 0">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
-<div [hidden]="resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
+<div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
+<div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
 </div>
 <!-- Floating plan selection footer -->
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">

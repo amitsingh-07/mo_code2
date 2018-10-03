@@ -45,7 +45,7 @@
                     <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="genderDropDown"
                       ngbDropdownToggle>{{item.controls.gender.value}}
                     </button>
-                    <div class="dropdown" ngbDropdownMenu aria-labelledby="genderDropDown">
+                    <div class="dropdown" ngbDropdownMenu aria-labelledby="genderDropDown" style="height: auto !important;">
                       <button class="dropdown-item" *ngFor="let option of genderOptions" (click)="setDropDownValue('gender', option, i)">{{option}}</button>
                     </div>
                   </div>
@@ -206,7 +206,7 @@
     class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate }}</button>
 
   <!-- PAGE INDICATOR -->
-  <div class="page-indicator" *ngIf="!isFormControlDisabled">
+  <div class="page-indicator" [hidden]="isFormControlDisabled">
     <span [class.active]="i == activeFormIndex" *ngFor="let item of getPageIndicatorCount(); let i = index;"></span>
   </div>
 </div>

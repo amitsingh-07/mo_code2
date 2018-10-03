@@ -11,9 +11,9 @@ import { MobileModalComponent } from './../../guide-me/mobile-modal/mobile-modal
 import {
   CreateAccountModelComponent
 } from './../../guide-me/recommendations/create-account-model/create-account-model.component';
-import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { Formatter } from './../../shared/utils/formatter.util';
 import { PlanWidgetComponent } from './../../shared/widgets/plan-widget/plan-widget.component';
@@ -21,6 +21,7 @@ import { SettingsWidgetComponent } from './../../shared/widgets/settings-widget/
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
+import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
 
 const mobileThreshold = 567;
 
@@ -65,6 +66,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   escalatingBenefit: any = { All: 'All' };
   fullPartialRider: any = { All: 'All' };
   claimCriteria: any = { All: 'All' };
+  isResultsLoaded = false;
 
   filterTypes;
   filterModalData;
@@ -72,7 +74,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   constructor(
     private directService: DirectService, private directApiService: DirectApiService,
-    private router: Router, private translate: TranslateService, public headerService: HeaderService,
+    private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService) {
     this.translate.use('en');
@@ -87,6 +89,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       this.filterTypes = this.translate.instant('SETTINGS.TYPES');
       this.filterModalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
 
+      this.isResultsLoaded = false;
       if (this.authService.isAuthenticated()) {
         this.getRecommendations();
       } else {
@@ -101,7 +104,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   ngOnInit() {
-    this.subscription = this.headerService.currentMobileModalEvent.subscribe((event) => {
+    this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
       if (event === this.pageTitle) {
         this.showSettingsPopUp();
       }
@@ -124,9 +127,11 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       .subscribe(
         (data) => {
           this.handleResponse(data);
+          this.isResultsLoaded = true;
         },
         (error) => {
           this.resultsEmptyMessage = 'An error occurred. Please try again.';
+          this.isResultsLoaded = true;
         });
 
     window.scroll(0, 0);
@@ -164,12 +169,14 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.rider && productList.rider.riderName) {
           this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
         }
+        /*
         if (productList.insurer && productList.insurer.insurerName) {
           this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
         if (productList.insurer && productList.insurer.insurerName) {
           this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
+        */
       }
     }
     this.insurers = Object.values(this.insurers).map((key) => {
@@ -246,31 +253,31 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.filters.push(premiumFrequency);
     this.filters.push(insurers);
     this.filters.push(insurersFinancialRating);
-    switch (this.selectedCategory.id - 1) {
-      case 1:
+    switch (this.selectedCategory.id) {
+      case PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS:
         this.filters.push(claimFeature);
         break;
-      case 2:
+      case PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY:
         delete this.filters[1];
         delete this.filters[2];
         this.filters.push(deferredPeriod);
         this.filters.push(escalatingBenefit);
         break;
-      case 3:
+      case PRODUCT_CATEGORY_INDEX.HOSPITAL_PLAN:
         delete this.filters[0];
         this.filters.push(fullPartialRider);
         break;
-      case 4:
+      case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
         this.filters.push(payoutYears);
         this.filters.push(claimCriteria);
         break;
-      case 5:
+      case PRODUCT_CATEGORY_INDEX.EDUCATION_FUND:
         delete this.filters[0];
         break;
-      case 6:
+      case PRODUCT_CATEGORY_INDEX.RETIREMENT_INCOME:
         this.filters.push(payoutYears);
         break;
-      case 7:
+      case PRODUCT_CATEGORY_INDEX.SRS_PLANS:
         delete this.filters[0];
         break;
     }
@@ -278,7 +285,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title, null, false, true);
+    setTimeout(() => {
+      this.navbarService.setPageTitle(title, null, false, true);
+    }, 0);
   }
 
   showSettingsPopUp() {
@@ -299,7 +308,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     ref.componentInstance.showFilterTooltip.subscribe((toolTip) => {
       this.showSettingsToolTip(toolTip);
     });
-    this.headerService.showMobilePopUp('removeClicked');
+    this.navbarService.showMobilePopUp('removeClicked');
   }
 
   showSettingsToolTip(toolTip) {

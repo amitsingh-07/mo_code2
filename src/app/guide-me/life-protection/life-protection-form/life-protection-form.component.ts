@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { GuideMeService } from '../../guide-me.service';
+import { IDependent } from './dependent.interface';
 import { LifeProtectionModalComponent } from './life-protection-modal/life-protection-modal.component';
 
 const Regexp = new RegExp('[,]', 'g');
@@ -35,13 +36,15 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   isNavPrevEnabled;
   isNavNextEnabled;
   dependentCountOptions = [0, 1, 2, 3, 4, 5];
-  genderOptions;
-  relationshipOptions;
-  ageOptions;
-  yearsNeededOptions;
-  eduSupportCourse;
-  eduSupportCountry;
-  eduSupportNationality;
+  genderOptions = [];
+  relationshipOptions = [];
+  ageOptions = [];
+  yearsNeededOptions = [];
+  eduSupportCourse = [];
+  eduSupportCountry = [];
+  eduSupportNationality = [];
+
+  lifeProtectionFormValues = { dependents: [] as IDependent[] };
 
   dependentSliderConfig: any = {
     behaviour: 'snap',
@@ -72,10 +75,12 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       this.eduSupportCourse = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_COURSE');
       this.eduSupportCountry = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_COUNTRY');
       this.eduSupportNationality = this.translate.instant('LIFE_PROTECTION.DROP_DOWN_OPTIONS.EDU_SUPPORT_NATIONALITY');
+      this.dependentCountOptions = this.translate.instant('LIFE_PROTECTION.DEPENDENT_COUNT_OPTIONS');
     });
 
     this.yearsNeededOptions = Array(MAX_YEARS_NEEDED).fill(0).map((e, i) => i);
     this.ageOptions = Array(MAX_AGE).fill(0).map((e, i) => i);
+    this.lifeProtectionFormValues = this.guideMeService.getLifeProtection();
   }
 
   ngOnInit() {
@@ -90,30 +95,6 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.refreshDependentForm();
   }
-
-  // onNoUiSliderChange(sliderValue, index) {
-  //   let value = sliderValue;
-  //   if (value !== null) {
-  //     value = value.toString().replace(Regexp, '');
-  //   }
-  //   let amount = this.currencyPipe.transform(value, 'USD');
-  //   if (amount !== null) {
-  //     amount = amount.split('.')[0].replace('$', '');
-  //     this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].setValue(amount);
-  //     this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(amount, 10));
-  //   }
-  // }
-
-  // updateSlider(slider, index) {
-  //   let sliderValue = this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmount'].value;
-  //   if (sliderValue === null) {
-  //     sliderValue = 0;
-  //   }
-  //   sliderValue = (sliderValue + '').replace(Regexp, '');
-  //   slider.writeValue(sliderValue);
-
-  //   this.lifeProtectionForm.controls.dependents['controls'][index].controls['supportAmountValue'].setValue(parseInt(sliderValue, 10));
-  // }
 
   showLifeProtectionModal() {
     const ref = this.modal.open(LifeProtectionModalComponent, {
@@ -141,8 +122,8 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
         this.isFormControlDisabled = true;
       } else if (this.dependentFormCount <= this.dependentCount) {
         while (this.dependentFormCount < this.dependentCount) {
-          this.lifeProtectionForm.controls.dependents['controls'].push(this.createDependentForm());
           this.dependentFormCount++;
+          this.lifeProtectionForm.controls.dependents['controls'].push(this.createDependentForm());
         }
       } else { // no of existing form higher than selected dependent count
         while ((this.dependentFormCount > this.dependentCount) && (this.dependentFormCount > 1)) {
@@ -157,21 +138,44 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
     this.updateNavLinks();
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   createDependentForm(): FormGroup {
-    return this.formBuilder.group({
-      gender: this.genderOptions[0],
-      relationship: this.relationshipOptions[0],
-      age: 24,
-      supportAmount: 0,
-      supportAmountValue: 0,
-      yearsNeeded: this.yearsNeededOptions[0],
-      educationSupport: false,
-      supportAmountRange: 0,
-      eduSupportCourse: this.eduSupportCourse[0],
-      eduSupportCountry: this.eduSupportCountry[0],
-      eduSupportNationality: this.eduSupportNationality[0],
-      eduFormSaved: false
-    });
+    let formGroup;
+    if (this.dependentCount <= 0) {
+      formGroup = this.formBuilder.group({
+        gender: this.genderOptions[0],
+        relationship: this.relationshipOptions[0],
+        age: 24,
+        supportAmount: 0,
+        supportAmountValue: 0,
+        yearsNeeded: this.yearsNeededOptions[0],
+        educationSupport: false,
+        supportAmountRange: 0,
+        eduSupportCourse: this.eduSupportCourse[0],
+        eduSupportCountry: this.eduSupportCountry[0],
+        eduSupportNationality: this.eduSupportNationality[0],
+        eduFormSaved: false
+      });
+    } else {
+      console.log(this.dependentFormCount);
+      const thisDependent = this.lifeProtectionFormValues.dependents[this.dependentFormCount - 1];
+      formGroup = this.formBuilder.group({
+        gender: thisDependent && thisDependent.gender ? thisDependent.gender : this.genderOptions[0],
+        relationship: thisDependent && thisDependent.relationship ? thisDependent.relationship : this.relationshipOptions[0],
+        age: thisDependent && thisDependent.age ? thisDependent.age : 24,
+        supportAmount: thisDependent && thisDependent.supportAmount ? thisDependent.supportAmount : 0,
+        supportAmountValue: thisDependent && thisDependent.supportAmountValue ? thisDependent.supportAmountValue : 0,
+        yearsNeeded: thisDependent && thisDependent.yearsNeeded ? thisDependent.yearsNeeded : this.yearsNeededOptions[0],
+        educationSupport: thisDependent && thisDependent.educationSupport ? thisDependent.educationSupport : false,
+        supportAmountRange: thisDependent && thisDependent.supportAmountRange ? thisDependent.supportAmountRange : 0,
+        eduSupportCourse: thisDependent && thisDependent.eduSupportCourse ? thisDependent.eduSupportCourse : this.eduSupportCourse[0],
+        eduSupportCountry: thisDependent && thisDependent.eduSupportCountry ? thisDependent.eduSupportCountry : this.eduSupportCountry[0],
+        eduSupportNationality: thisDependent && thisDependent.eduSupportNationality
+          ? thisDependent.eduSupportNationality : this.eduSupportNationality[0],
+        eduFormSaved: thisDependent && thisDependent.eduFormSaved ? thisDependent.eduFormSaved : false
+      });
+    }
+    return formGroup;
   }
 
   addDependent(): void {

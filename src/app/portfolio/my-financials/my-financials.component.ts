@@ -10,13 +10,12 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 import { TranslateService } from '@ngx-translate/core';
 
 import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
-import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
-import { FinancialValidator } from './my-financial-validator';
 import { IMyFinancials } from './my-financials.interface';
 
 import {
@@ -42,7 +41,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     private modal: NgbModal,
     private portfolioService: PortfolioService,
     private formBuilder: FormBuilder,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     public authService: AuthenticationService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
@@ -57,9 +56,11 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
 
     this.myFinancialsForm = new FormGroup({
@@ -101,23 +102,21 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       // tslint:disable-next-line:triple-equals
       if (error.errorTitle == this.translator.INFO) {
-        ref.componentInstance.secondButton = this.translator.LABEL_YES;
-        ref.componentInstance.secondButtonTitle = this.translator.LABEL_NO;
-        ref.componentInstance.ButtonTitle = this.translator.LABEL_YES;
-        ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
+        ref.componentInstance.primaryActionLabel = this.translator.LABEL_YES;
+        ref.componentInstance.secondaryActionLabel = this.translator.LABEL_NO;
+        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-          if (emittedValue == this.translator.LABEL_NO) {
-            return false;
-          } else {
-            this.saveAndProceed(form);
-          }
+          this.saveAndProceed(form);
+        });
+        ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
+          // tslint:disable-next-line:triple-equals
+          return false;
         });
       } else {
         ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
         return false;
       }
     } else {
-
       this.saveAndProceed(form);
     }
   }

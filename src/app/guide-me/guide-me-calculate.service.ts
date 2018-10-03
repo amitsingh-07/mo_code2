@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from '../shared/http/api.service';
-import { ILongTermCareNeedsData } from './../shared/interfaces/recommendations.request';
+import { ICriticalIllnessData, ILongTermCareNeedsData } from './../shared/interfaces/recommendations.request';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
@@ -116,8 +116,8 @@ export class GuideMeCalculateService {
     const assets = this.guideMeService.getMyAssets();
     let myAssets: number;
     // tslint:disable-next-line:radix
-    myAssets = Math.floor(assets.cash) + Math.floor(assets.cpf) + Math.floor(assets.homeProperty)
-      + Math.floor(assets.investmentProperties) + Math.floor(assets.otherInvestments);
+    myAssets = Math.floor(assets.cash) + Math.floor(assets.cpf) + Math.floor(assets.investmentProperties)
+      + Math.floor(assets.otherInvestments);
     return myAssets;
   }
 
@@ -139,6 +139,7 @@ export class GuideMeCalculateService {
   }
 
   getLifeProtectionData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.lifeProtectionCoverage) {
@@ -157,14 +158,20 @@ export class GuideMeCalculateService {
   }
 
   getCriticalIllnessData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.criticalIllnessCoverage) {
         exCoverage = parseInt(this.existingCoverage.criticalIllnessCoverage + '', 10);
       }
     } catch (e) { }
-    const ciData = this.guideMeService.getCiAssessment();
-    ciData.coverageAmount -= exCoverage;
+    const data = this.guideMeService.getCiAssessment();
+    const ciData: ICriticalIllnessData = {} as ICriticalIllnessData;
+    ciData.annualSalary = data.annualSalary;
+    ciData.ciMultiplier = data.ciMultiplier;
+    ciData.isEarlyCriticalIllness = data.isEarlyCriticalIllness;
+    ciData.coverageAmount = data.coverageAmount - exCoverage;
+    ciData.coverageYears = 'Till Age ' + data.coverageYears;
     if (isNaN(ciData.coverageAmount) || ciData.coverageAmount < 0) {
       ciData.coverageAmount = 0;
     }
@@ -172,6 +179,7 @@ export class GuideMeCalculateService {
   }
 
   getOcpData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.occupationalDisabilityCoveragePerMonth) {
@@ -180,6 +188,7 @@ export class GuideMeCalculateService {
     } catch (e) { }
 
     const ocpData = this.guideMeService.getMyOcpDisability();
+    ocpData.coverageDuration = 'Till Age ' + ocpData.maxAge;
     ocpData.coverageAmount -= exCoverage;
     if (isNaN(ocpData.coverageAmount) || ocpData.coverageAmount < 0) {
       ocpData.coverageAmount = 0;
@@ -188,6 +197,7 @@ export class GuideMeCalculateService {
   }
 
   getLtcData() {
+    this.existingCoverage = this.guideMeService.getExistingCoverageValues();
     let exCoverage = 0;
     try {
       if (this.existingCoverage.longTermCareCoveragePerMonth) {

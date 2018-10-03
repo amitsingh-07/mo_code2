@@ -87,6 +87,5 @@ export function createTranslateLoader(http: HttpClient) {
 export class GuideMeModule {
 
   constructor(public navbarService: NavbarService) {
-    this.navbarService.setNavbarVisibility(false);
   }
 }

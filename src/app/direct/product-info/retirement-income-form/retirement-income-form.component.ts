@@ -20,9 +20,9 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   payoutFeature;
   payoutDuration;
   retirementIncomeList = Array(16).fill(500).map((x, i) => x += i * 100);
-  selectedRetirementIncome = 500;
+  selectedRetirementIncome = '';
   payoutAgeList = Array(16).fill(55).map((x, i) => x += i * 1);
-  selectedPayoutAge = 55;
+  selectedPayoutAge = '';
   payoutDurationList;
   payoutFeatureList;
 
@@ -33,38 +33,39 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-    this.payoutDurationList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_DURATION_LIST');
-    this.payoutDuration = this.payoutDurationList[0];
-    this.payoutFeatureList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_FEATURE_LIST');
-    this.payoutFeature = this.payoutFeatureList[0];
+      this.payoutDurationList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_DURATION_LIST');
+      this.payoutDuration = '';
+      this.payoutFeatureList = this.translate.instant('RETIREMENT_INCOME.PAYOUT_FEATURE_LIST');
+      this.payoutFeature = '';
     });
-    }
+  }
 
-    ngOnInit() {
-      this.formValues = this.directService.getRetirementIncomeForm();
-      this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
-      if (this.formValues.retirementIncome !== undefined ) {
-        this.selectRetirementIncome(this.formValues.retirementIncome);
-      }
-      if (this.formValues.payoutAge !== undefined ) {
-        this.selectPayoutAge(this.formValues.payoutAge);
-      }
-      if (this.formValues.payoutDuration !== undefined ) {
-        this.selectPayoutDuration(this.formValues.payoutDuration);
-      }
-      if (this.formValues.payoutFeature !== undefined ) {
-        this.selectPayoutFeature(this.formValues.payoutFeature);
-      }
-      this.retirementIncomeForm = this.formBuilder.group({
-        gender: [this.formValues.gender, Validators.required],
-        dob: [this.formValues.dob, Validators.required],
-        smoker: [this.formValues.smoker, Validators.required],
-        retirementIncome: [this.formValues.retirementIncome],
-        payoutAge: [this.formValues.payoutAge],
-        payoutDuration: [this.formValues.payoutDuration],
-        payoutFeature: [this.formValues.payoutFeature]
-      });
-      this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
+  ngOnInit() {
+    this.formValues = this.directService.getRetirementIncomeForm();
+    this.formValues.smoker = this.formValues.smoker;
+
+    this.retirementIncomeForm = this.formBuilder.group({
+      gender: [this.formValues.gender, Validators.required],
+      dob: [this.formValues.dob, Validators.required],
+      smoker: [this.formValues.smoker, Validators.required],
+      retirementIncome: [this.formValues.retirementIncome, Validators.required],
+      payoutAge: [this.formValues.payoutAge, Validators.required],
+      payoutDuration: [this.formValues.payoutDuration, Validators.required],
+      payoutFeature: [this.formValues.payoutFeature, Validators.required]
+    });
+    if (this.formValues.retirementIncome !== undefined) {
+      this.selectRetirementIncome(this.formValues.retirementIncome);
+    }
+    if (this.formValues.payoutAge !== undefined) {
+      this.selectPayoutAge(this.formValues.payoutAge);
+    }
+    if (this.formValues.payoutDuration !== undefined) {
+      this.selectPayoutDuration(this.formValues.payoutDuration);
+    }
+    if (this.formValues.payoutFeature !== undefined) {
+      this.selectPayoutFeature(this.formValues.payoutFeature);
+    }
+    this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '6') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
@@ -78,42 +79,46 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     this.categorySub.unsubscribe();
   }
 
-    selectRetirementIncome(selectedRetirementIncome) {
+  selectRetirementIncome(selectedRetirementIncome) {
     this.selectedRetirementIncome = selectedRetirementIncome;
+    this.retirementIncomeForm.controls.retirementIncome.setValue(this.selectedRetirementIncome);
   }
 
   selectPayoutAge(selectedPayoutAge) {
     this.selectedPayoutAge = selectedPayoutAge;
+    this.retirementIncomeForm.controls.payoutAge.setValue(this.selectedPayoutAge);
   }
 
   selectPayoutDuration(payoutDuration) {
     this.payoutDuration = payoutDuration;
+    this.retirementIncomeForm.controls.payoutDuration.setValue(this.payoutDuration);
   }
   selectPayoutFeature(payoutFeature) {
     this.payoutFeature = payoutFeature;
+    this.retirementIncomeForm.controls.payoutFeature.setValue(this.payoutFeature);
   }
 
   showPayoutFeatureModal() {
-      if (this.payoutFeature === 'Guaranteed') {
+    if (this.payoutFeature  ===  'Guaranteed') {
       this.directService.showToolTipModal(
-      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
-      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
-      } else if (this.payoutFeature === 'Variable') {
+        this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
+        this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
+    }  else  if (this.payoutFeature  ===  'Variable') {
       this.directService.showToolTipModal(
-      this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.TITLE'),
-      this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.MESSAGE'));
-      } else {
+        this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.TITLE'),
+        this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.MESSAGE'));
+    }  else  {
       this.directService.showToolTipModal(
-      this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.TITLE'),
-      this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.MESSAGE'));
-      }
+        this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.TITLE'),
+        this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.MESSAGE'));
     }
+  }
 
   summarizeDetails() {
     let sum_string = '';
     sum_string += '$' + this.selectedRetirementIncome + ' / mth,  ';
     sum_string += 'Payout Age ' + this.selectedPayoutAge + ', ';
-    sum_string += 'Payout For ' + this.payoutDuration ;
+    sum_string += 'Payout For ' + this.payoutDuration;
     return sum_string;
   }
 

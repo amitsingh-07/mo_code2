@@ -5,5 +5,5 @@ export interface IOcpDisability {
     employmentType: number;
     monthlySalary: number;
     percentageCoverage: number;
-    duration: number;
+    duration: string;
 }

@@ -5,8 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AuthGuardService } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -17,16 +20,13 @@ import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
-        { prefix: './assets/i18n/app/', suffix: '.json' },
-        { prefix: './assets/i18n/sign-up/', suffix: '.json' },
-        { prefix: './assets/i18n/guide-me/', suffix: '.json' },
-        { prefix: './assets/i18n/direct/', suffix: '.json' }
+      { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/sign-up/', suffix: '.json' }
     ]);
 }
 
@@ -57,6 +57,6 @@ export function createTranslateLoader(http: HttpClient) {
     SuccessMessageComponent,
     DashboardComponent
   ],
-  providers: [SignUpAccessGuard]
+  providers: [SignUpAccessGuard, AuthGuardService]
 })
 export class SignUpModule { }

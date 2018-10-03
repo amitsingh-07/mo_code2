@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -31,6 +32,7 @@ tocken;
     private modal: NgbModal,
     public authService: AuthenticationService,
     public headerService: HeaderService,
+    public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -51,8 +53,9 @@ tocken;
     });
   }
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
     this.queryParams = this.route.snapshot.queryParams;
-    this.headerService.setHeaderVisibility(false);
     this.buildResetPasswordForm();
     console.log('the tocken is ' + this.queryParams.key);
     this.tocken = encodeURIComponent(this.queryParams.key);

@@ -41,6 +41,7 @@ export class RequestCache {
     }
 
     put(req: HttpRequest<any>, response: HttpResponse<any>): void {
+        /*
         const url = this.getUrl(req);
         const entry = { url, response, lastRead: Date.now() };
         this.cache.set(url, entry);
@@ -51,6 +52,7 @@ export class RequestCache {
                 this.cache.delete(expiredEntry.url);
             }
         });
+        */
     }
 
     reset() {
