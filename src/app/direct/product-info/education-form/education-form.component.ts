@@ -36,19 +36,12 @@ export class EducationFormComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
-    this.directService.setProdCategoryIndex(5);
     this.formValues = this.directService.getEducationForm();
-    this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'nonsmoker';
-    this.formValues.premiumWaiver = this.formValues.premiumWaiver ? this.formValues.premiumWaiver : 'yes';
     this.educationForm = this.formBuilder.group({
-      selfgender: [this.formValues.selfgender],
       childgender: [this.formValues.childgender, Validators.required],
-      selfdob: [this.formValues.selfdob],
       childdob: [this.formValues.childdob, Validators.required],
-      smoker: [this.formValues.smoker],
       contribution: [this.formValues.contribution],
-      selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge],
-      premiumWaiver: [this.formValues.premiumWaiver, Validators.required]
+      selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge]
     });
     if (this.formValues.contribution !== undefined ) {
        this.selectMonthlyContribution(this.formValues.contribution);
@@ -57,7 +50,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
        this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '') {
+      if (data !== '' && data === '5') {
          if (this.save()) {
             this.directService.setMinProdInfo(this.summarizeDetails());
          }
@@ -92,9 +85,6 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     if (this.educationForm.value.selectedunivercityEntryAge) {
       sum_string += 'Uni Entry Age of ' + this.educationForm.value.selectedunivercityEntryAge;
     }
-    if (this.isSelfFormEnabled) {
-      sum_string += ', Premium Waiver Rider';
-    }
     return sum_string;
   }
   save() {
@@ -116,8 +106,8 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   }
   showPremiumWaiverModal() {
     this.directService.showToolTipModal(
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
-      this.translate.instant('LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
+      this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
       );
   }
 }

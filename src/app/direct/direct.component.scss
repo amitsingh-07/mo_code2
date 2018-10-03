@@ -1,0 +1,56 @@
+app-direct {
+
+  .banner-image {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .direct-banner-title {
+    font-family: Muli;
+    font-size: 36px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .direct-banner-sub-title {
+    font-family: Muli;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.22;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 10px;
+    margin-bottom: 100px;
+  }
+
+  .btn-close-edit {
+    display: block;
+    position: absolute;
+    width: 1024px;
+    z-index: 1050;
+    top: 0px;
+
+    span.btn-close {
+      right: 0px;
+      position: absolute;
+      top: 0px;
+      color: black;
+    }
+
+    span.block {
+      top: 0px;
+      left: 0px;
+      height: 76px;
+      width: 60px;
+      background: #ffffff;
+    }
+  }
+}

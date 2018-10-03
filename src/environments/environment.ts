@@ -1,5 +1,6 @@
 import { isDebugMode } from '../app/shared/logger/console-logger.service';
 import { IEnvironment } from './environment.interface';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -9,8 +10,9 @@ export const environment: IEnvironment = {
   isDebugMode: true,
   apiBaseUrl: 'https://bfa-dev.ntucbfa.cloud',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
-  myInfoCallbackBaseUrl: 'https://localhost:3001'
+  myInfoCallbackBaseUrl: 'http://localhost:3001/callback'
 };
+
 /*
  * In development mode, to ignore zone related error stack frames such as
  * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can

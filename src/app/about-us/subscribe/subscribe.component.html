@@ -1,0 +1,26 @@
+<div class="subcribe-wrapper">
+  <form name="subscribeForm" class="subscribe__form--main" id="subscribeForm" [formGroup]="subscribeForm">
+    <div class="mail-icon__container">
+        <i class="material-icons mail-icon">email</i>
+    </div>
+    <div class="subscribe-title">
+      <h1>Join Our Newsletter Today!</h1>
+      <p>To stay updated on the latest information</p>
+    </div>
+    <div class="row space-between">
+      <div class="flex-col-6">
+        <p>First Name</p>
+        <input class="form-control" type="text" formControlName="firstName"/>
+      </div>
+      <div class="flex-col-6">
+        <p>Last Name</p>
+        <input class="form-control" type="text" formControlName="lastName"/>
+      </div>
+      <div class="flex-col-12">
+        <p>Email</p>
+        <input type="text" class="form-control" formControlName="email"/>
+      </div>
+    </div> 
+      <div class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">Subscribe</div>
+    </form>
+</div> 

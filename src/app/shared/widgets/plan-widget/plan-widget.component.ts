@@ -31,6 +31,8 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() comparePlan;
   @Input() bestValue;
   @Input() planSelected;
+  @Input() comparePlanSelected;
+  @Input() isDirect;
 
   icon;
   insurerLogo;
@@ -117,10 +119,18 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     // tslint:disable-next-line:no-commented-code
     // this.view.emit(this.temp);
     const data = this.temp;
-    const ref = this.modal.open(ProductDetailComponent, { centered: true });
+    const ref = this.modal.open(ProductDetailComponent,
+      {
+        centered: true,
+        windowClass: 'product-details-modal-dialog'
+      }
+    );
     ref.componentInstance.plan = data;
     ref.componentInstance.protectionType = this.type;
     ref.componentInstance.bestValue = this.bestValue;
+    if (this.isDirect) {
+      ref.componentInstance.isDirect = true;
+    }
     ref.result.then((plan) => {
       if (plan) {
         this.isSelected = true;
@@ -130,20 +140,25 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     });
   }
 
+  unselectPlan() {
+    this.isComparePlanSelected = false;
+    this.isSelected = false;
+  }
+
   selectPlan() {
     this.isSelected = !this.isSelected;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
   comparePlanErrorForMobileModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = '2 plans only';
-    ref.componentInstance.errorMessage = 'Select maximum 2 plans to compare';
+    ref.componentInstance.errorTitle = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_MOBILE.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_MOBILE.MESSAGE');
     return false;
   }
   comparePlanErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = '4 plans only';
-    ref.componentInstance.errorMessage = 'Select maximum 4 plans to compare';
+    ref.componentInstance.errorTitle = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_WEB.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('COMPARE_PLANS.ERROR_MODEL_FOR_WEB.MESSAGE');
   }
   openCommissionModal() {
     const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
@@ -156,23 +171,23 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.RATING.TITLE');
     ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
   }
+
   compareplan() {
-    if (this.planSelected && this.planSelected.length  < 4) {
+    if (!this.isComparePlanSelected) {
       if (window.innerWidth <= this.mobileThreshold) {
-        if (this.planSelected.length >= 2) {
+        if (this.comparePlanSelected.length >= 2 && !this.isComparePlanSelected) {
           this.comparePlanErrorForMobileModal();
           return false;
         }
-      }
-      this.isComparePlanSelected = !this.isComparePlanSelected;
-    } else {
-      if (this.isComparePlanSelected) {
-        this.isComparePlanSelected = !this.isComparePlanSelected;
       } else {
-        this.comparePlanErrorModal();
-        return false;
+        if (this.planSelected && this.planSelected.length >= 4) {
+          this.comparePlanErrorModal();
+          return false;
+        }
       }
     }
+    this.isComparePlanSelected = !this.isComparePlanSelected;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }
+

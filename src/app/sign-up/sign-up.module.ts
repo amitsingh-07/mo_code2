@@ -17,13 +17,16 @@ import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
         { prefix: './assets/i18n/app/', suffix: '.json' },
-        { prefix: './assets/i18n/sign-up/', suffix: '.json' }
+        { prefix: './assets/i18n/sign-up/', suffix: '.json' },
+        { prefix: './assets/i18n/guide-me/', suffix: '.json' },
+        { prefix: './assets/i18n/direct/', suffix: '.json' }
     ]);
 }
 
@@ -51,7 +54,8 @@ export function createTranslateLoader(http: HttpClient) {
     ForgotPasswordComponent,
     ForgotPasswordResultComponent,
     ResetPasswordComponent,
-    SuccessMessageComponent
+    SuccessMessageComponent,
+    DashboardComponent
   ],
   providers: [SignUpAccessGuard]
 })

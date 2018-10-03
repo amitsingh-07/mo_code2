@@ -1,0 +1,32 @@
+{
+    "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+    },
+    "objectList": [{
+      "id": 1,
+      "description": "",
+      "source": " Personal Savings"
+    }, {
+      "id": 2,
+      "description": "",
+      "source": "Inheritance/Gift"
+    }, {
+      "id": 3,
+      "description": "",
+      "source": "Investment Earnings"
+    }, {
+      "id": 4,
+      "description": "",
+      "source": "Reason 4"
+    }, {
+      "id": 5,
+      "description": "",
+      "source": "Reason 5"
+    }, {
+      "id": 6,
+      "description": "",
+      "source": "Other"
+    }]
+  
+  }

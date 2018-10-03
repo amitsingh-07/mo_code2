@@ -11,7 +11,8 @@
     "LBL_NONSMOKER": "Non-Smoker",
     "LBL_YES": "Yes",
     "LBL_NO": "No",
-    "LBL_CONTINUE": "Continue"
+    "LBL_CONTINUE": "Continue",
+    "SUBLBL_MAX4":" (Max 4)"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth"
@@ -46,8 +47,9 @@
   "BUTTON": {
     "PROCEED": "Proceed",
     "COMPARE": "Compare",
-    "SELECT_PLAN": "Select Plan",
-    "DETAILS": "Details"
+    "UN_SELECT": "Plan Selected",
+    "DETAILS": "Details",
+    "SELECT_PLAN": "Select Plan"
   },
   "CUSTOM_MODAL": {
     "MODAL_TITLE": "Insurance Results",
@@ -72,6 +74,7 @@
       {"displayText": "Financial Rating (Lowest-Highest)", "value": "-insurer.rating" }
     ],
     "TYPES": {
+      "INSURERS": "Insurers",
       "PREMIUM_FREQUENCY": "Premium Frequency",
       "INSURANCE_FINANCIAL_RATING": "Insurers' Financial Rating",
       "CLAIM_FEATURE": "Claim Feature",
@@ -81,6 +84,17 @@
       "PAYOUT_YEARS": "Payout Years",
       "CLAIM_CRITERIA": "Claim Criteria"
     },
-    "NO_RESULTS": "Please change your filter settings" 
+    "NO_FILTER_RESULTS": "Please change your filter settings",
+    "NO_RESULTS": "No results found"
+  },
+  "PROD_INFO_TOOLTIP": {
+    "COMMISSION": {
+          "TITLE": "Commission Rebate",
+          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
+      },
+    "RATING": {
+          "TITLE": "Insurer’s Rating",
+          "MESSAGE": "<div><div class='mb20'>This measures the financial stability of the insurers. The ranking is as follows:</div><div class='insurer-rating'> <div class='rating title'> <span>S&P / FITCH <br/>Rating</span> </div><div class='rating-desc title'> <span>Rating Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>Prime</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>High Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>Upper Medium Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>Lower Medium Grade</span> </div></div></div>"
+      }
   }
 }

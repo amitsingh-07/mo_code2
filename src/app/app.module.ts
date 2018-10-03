@@ -16,6 +16,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
+import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
@@ -33,7 +34,9 @@ import {
 import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.component';
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
+import { HomeComponent } from './home/home.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
+import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthenticationService } from './shared/http/auth/authentication.service';
 import { JwtInterceptor } from './shared/http/auth/jwt.interceptor';
@@ -46,15 +49,18 @@ import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
 import { RecommendationsModalComponent } from './shared/modal/recommendations-modal/recommendations-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
+import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
-      { prefix: './assets/i18n/app/', suffix: '.json' }
+      { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/home/', suffix: '.json' }
     ]);
 }
 
@@ -78,8 +84,11 @@ export function tokenGetterFn() {
     RestrictAlphabetsDirective,
     jqxSliderComponent,
     HeaderComponent,
+    NavbarComponent,
+    FooterComponent,
     NumberOnlyDirective,
-    CallBackComponent
+    CallBackComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +114,9 @@ export function tokenGetterFn() {
       }
     })
   ],
-  providers: [NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+  providers: [
+    NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
+    ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
@@ -119,9 +130,11 @@ export function tokenGetterFn() {
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
     }, Formatter, CurrencyPipe],
   bootstrap: [AppComponent],
-  entryComponents: [HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
-    LifeProtectionModalComponent, MobileModalComponent,
-    InsuranceResultModalComponent, CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent]
+  entryComponents: [
+    HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent,
+    CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
+    SettingsWidgetComponent]
 })
 
 export class AppModule {

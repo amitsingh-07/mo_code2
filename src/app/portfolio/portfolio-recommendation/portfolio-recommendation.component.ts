@@ -3,7 +3,7 @@ import 'rxjs/add/observable/timer';
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
 import {
-    AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
+  AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
@@ -76,9 +76,11 @@ export class PortfolioRecommendationComponent implements OnInit {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
     ref.componentInstance.errorMessage = this.editPortfolio.modalMessage;
-    ref.componentInstance.ButtonTitle = this.buttonTitle;
-    ref.componentInstance.ButtonNavigation = PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT;
-    }
+    ref.componentInstance.primaryActionLabel = this.buttonTitle;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
+    });
+  }
   showWhatTheRisk() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
 
@@ -106,21 +108,21 @@ export class PortfolioRecommendationComponent implements OnInit {
       this.breakdownSelectionindex = event;
       this.isAllocationOpen = true;
     } else {
-        if (event !== this.breakdownSelectionindex) {
-          // different tab
-          this.breakdownSelectionindex = event;
-          this.isAllocationOpen = true;
-          } else {
-          // same tab click
-          this.breakdownSelectionindex = null;
-          this.isAllocationOpen = false;
-        }
+      if (event !== this.breakdownSelectionindex) {
+        // different tab
+        this.breakdownSelectionindex = event;
+        this.isAllocationOpen = true;
+      } else {
+        // same tab click
+        this.breakdownSelectionindex = null;
+        this.isAllocationOpen = false;
+      }
     }
   }
 
   modelButtonClick() {
     alert('functinality');
-   }
+  }
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);

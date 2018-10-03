@@ -119,6 +119,113 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid zipcode in mailing address',
                 errorMessage: 'Zipcode should not contain special characters in mailing address.'
             }
+        },
+        tinNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid TIN',
+                errorMessage: 'Please enter your TIN number.'
+            }
+        },
+        taxCountry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid country',
+                errorMessage: 'Please select your country.'
+            }
+        },
+        noTinReason: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid reason',
+                errorMessage: 'Please select a reason.'
+            }
+        },
+        fullName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid full name',
+                errorMessage: 'Please enter full name.'
+            },
+            pattern: {
+                errorTitle: 'Invalid full name',
+                errorMessage: 'full name should not contain alphabet.'
+            }
+        },
+        firstName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid full name',
+                errorMessage: 'Please enter  first Name.'
+            },
+            pattern: {
+                errorTitle: 'Invalid full name',
+                errorMessage: 'first Name should not contain alphabet.'
+            }
+        },
+
+        lastName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid full name',
+                errorMessage: 'Please enter last Name.'
+            },
+            pattern: {
+                errorTitle: 'Invalid full name',
+                errorMessage: 'last Name should not contain alphabet.'
+            }
+        },
+        nricNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid NRIC number',
+                errorMessage: 'Please enter NRIC number.'
+            },
+            pattern: {
+                errorTitle: 'Invalid NRIC number',
+                errorMessage: 'NRIC number should not contain alphabet.'
+            }
+        },
+        passportNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid passport  number',
+                errorMessage: 'Please enter passport  number.'
+            },
+            pattern: {
+                errorTitle: 'Invalid passport  number',
+                errorMessage: 'passport number should not contain alphabet.'
+            }
+        },
+        passportExpiry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid passport expiry date',
+                errorMessage: 'Please enter passport expiry date.'
+            },
+            pattern: {
+                errorTitle: 'Invalid passport expiry date',
+                errorMessage: 'passport expiry date should not contain alphabet.'
+            }
+        },
+        dob: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid date of birth',
+                errorMessage: 'Please enter Date of birth date.'
+            },
+            pattern: {
+                errorTitle: 'Invalid date of birth',
+                errorMessage: 'passportExpiry date should not contain alphabet.'
+            }
+        },
+        sourceOfIncome: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid sourcwe',
+                errorMessage: 'Please select your source of investment funds.'
+            }
         }
     };
+
 }

@@ -11,6 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     <style>
+        @media (min-width:768px) {
+            .container{
+                width: 512px;
+                margin: 0 auto;
+            }
+            .message {
+                padding-left: 24px !important;
+            }
+            .link-txt-wrap {
+                padding-left: 24px !important;
+            }
+        }
         body {
             margin: 0;
             padding: 0;
@@ -46,10 +58,15 @@
  
         .title-logo img {
             margin: 0;
-            width: 33.7px;
-            height: 43.4px;
+            width: 34px;
+            height: 43.5px;
         }
- 
+        
+        .divider{
+            border-top: solid 0.5px #979797;
+            margin: 0;
+        }
+
         .title-txt {
             display: flex;
             font-family: "Muli", Bold;
@@ -65,14 +82,13 @@
         }
  
         .container {
-            width: 512px;
             margin: 0 auto;
-            text-align: center;
-            padding: 10px 30px;
+            text-align: left;
+            padding: 10px;
         }
  
         .container div {
-            padding: 10px;
+            padding: 10px 0px;
         }
  
         .title div {
@@ -82,7 +98,6 @@
         .btn {
             font-size: 18px;
             font-family: "Muli";
-            margin: auto;
             padding: 0.90rem;
             border-radius: 6px;
             text-align: center;
@@ -96,27 +111,30 @@
  
         .txt-semi {
             font-family: "Muli", Semi Bold;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 600;
-            text-align: center;
             color: #000000;
+            margin-bottom: 20px;
         }
  
         .txt-nrml {
             font-family: "Muli";
             font-size: 20px;
-            text-align: center;
             color: #000000;
         }
- 
+
+        .message{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
         .link-txt-wrap {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            font-family: "Muli",;
-            font-size: 14px;
-            text-align: center;
+            font-family: "Muli",Light;
+            font-size: 18px;
             color: #000000;
         }
  
@@ -128,7 +146,6 @@
             font-size: 10px;
             font-weight: 300;
             font-family: "Muli", Light;
-            text-align: center;
             color: #000000;
         }
 
@@ -156,17 +173,19 @@
                 <img src="http://localhost:4200/assets/images/email-owl.svg" alt="">
                 <div class="title-txt"><span>Money</span><span>Owl</span></div>
             </div>
-            <div>Making Wise Decisions Easy</div>
         </div>
-        <div class="txt-semi">Forgot your password?<br/>That’s okay, we are here to help!</div>
-        <div class="txt-nrml">Click on the button below to reset your password</div>
-        <div class="btn"><a href="#">Reset Password</a></div>
+        <div class="divider"></div>
+        <div class="message">
+            <div class="txt-semi">Forgot your password?<br/>That’s okay, we are here to help!</div>
+            <div class="btn"><a href="#">Reset Password</a></div>
+        </div>
         <div class="link-txt-wrap">
             <div>
-                If you did not request to change your password, simply ignore <br/>this email and your password will safely remain unchanged.
+                If you did not request to change your<br/>password, simply ignore this email and your<br/>password will safely remain unchanged.
             </div>
             <div>Let’s get back to making wise decisions easy!</div>
         </div>
+        <div class="divider"></div>
         <div class="footer">
             <span>Problems or questions? Call us at 6329 9189 or</span>
             <span>email enquiries@moneyowl.com.sg</span>

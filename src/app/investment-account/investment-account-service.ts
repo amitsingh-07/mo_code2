@@ -6,6 +6,7 @@ import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
+import { PersonalInfo } from './personal-info/personal-info';
 
 @Injectable({
     providedIn: 'root'
@@ -57,8 +58,12 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailZipCode = data.mailingAddress.mailZipCode;
         }
     }
-
-
+    setTaxInfoFormData(data) {
+        this.investmentAccountFormData.Taxcountry = data.Taxcountry;
+        this.investmentAccountFormData.haveTin = data.radioTin;
+        this.investmentAccountFormData.Tin = data.tinNumber;
+        this.investmentAccountFormData.noTinReason = data.noTinReason;
+    }
     // tslint:disable-next-line
     getFormErrorList(form) {
         const controls = form.controls;
@@ -101,22 +106,71 @@ export class InvestmentAccountService {
     getEmployementStatusList() {
         return this.apiService.getEmployementStatusList();
     }
+    getSourceList() {
+        return this.apiService.getSourceofIncomeList();
+    }
+    getNoTinReasonList() {
+        return this.apiService.getNoTinReasonList();
+    }
     getNationality() {
         return {
             nationalitylist: this.investmentAccountFormData.nationalitylist,
             nationality: this.investmentAccountFormData.nationality,
+            unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
+            singaporeanResident: this.investmentAccountFormData.singaporeanResident
         };
     }
+
     getTaxInfo() {
         return {
             Tin: this.investmentAccountFormData.Tin,
             country: this.investmentAccountFormData.Taxcountry,
+            haveTin: this.investmentAccountFormData.haveTin,
+            noTinReason: this.investmentAccountFormData.noTinReason
         };
     }
-    setNationality(nationalitylist: any, nationalityObj: any) {
-        this.investmentAccountFormData.nationalitylist = nationalitylist;
-        this.investmentAccountFormData.nationality = nationalityObj;
+    getPersonalDeclaration() {
+        return {
+            sourceOfIncome: this.investmentAccountFormData.sourceOfIncome,
+            ExistingEmploye: this.investmentAccountFormData.ExistingEmploye,
+            pep: this.investmentAccountFormData.pep,
+            beneficial: this.investmentAccountFormData.beneficial
+        };
+    }
+    setPersonalDeclarationData(data) {
+        this.investmentAccountFormData.sourceOfIncome = data.sourceOfIncome;
+        this.investmentAccountFormData.ExistingEmploye = data.radioEmploye;
+        this.investmentAccountFormData.pep = data.radioPEP;
+        this.investmentAccountFormData.beneficial = data.radioBeneficial;
+    }
 
+    setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {
+        this.investmentAccountFormData.nationalitylist = nationalitylist;
+        this.investmentAccountFormData.nationality = selectedNationality;
+        this.investmentAccountFormData.unitedStatesResident = unitedStatesResident;
+        this.investmentAccountFormData.singaporeanResident = singaporeanResident;
+    }
+    setPersonalInfo(data: PersonalInfo) {
+        this.investmentAccountFormData.fullName = data.fullName;
+        this.investmentAccountFormData.firstName = data.firstName;
+        this.investmentAccountFormData.lastName = data.lastName;
+        this.investmentAccountFormData.nricNumber = data.nricNumber;
+        this.investmentAccountFormData.passportNumber = data.passportNumber;
+        this.investmentAccountFormData.passportExpiry = data.passportExpiry;
+        this.investmentAccountFormData.dob = data.dob;
+        this.investmentAccountFormData.gender = data.gender;
+    }
+    getPersonalInfo() {
+        return {
+            fullName: this.investmentAccountFormData.fullName,
+            firstName: this.investmentAccountFormData.firstName,
+            lastName: this.investmentAccountFormData.lastName,
+            nricNumber: this.investmentAccountFormData.nricNumber,
+            passportNumber: this.investmentAccountFormData.passportNumber,
+            passportExpiry: this.investmentAccountFormData.passportExpiry,
+            dob: this.investmentAccountFormData.dob,
+            gender: this.investmentAccountFormData.gender
+        };
     }
     getEmployementDetails() {
         return {
@@ -148,4 +202,8 @@ export class InvestmentAccountService {
         }
     }
 
+    // Upload Document
+    uploadDocument(formData) {
+        return this.apiService.uploadDocument(formData);
+    }
 }

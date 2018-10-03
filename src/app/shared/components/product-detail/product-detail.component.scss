@@ -9,11 +9,13 @@ app-product-detail {
   @include allmobiles {
     border-radius: 0;
   }
+
   .insurer-logo {
     img {
       width: 50% !important;
     }
   }
+
   .best-value-icon {
     display: block;
     position: absolute;
@@ -33,7 +35,12 @@ app-product-detail {
 
   .modal .close {
     opacity: 1;
-    right: -13px !important;
+    position: absolute !important;
+    @include allmobiles {
+      right: 25px !important;
+      top: 15px !important;
+      z-index: 9 !important;
+    }
   }
 
   app-plan-details-widget .insurance-plan-widget {

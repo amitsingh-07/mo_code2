@@ -7,8 +7,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { ProductDetailComponent } from './../shared/components/product-detail/product-detail.component';
+import { HeaderService } from './../shared/header/header.service';
+import { NavbarService } from './../shared/navbar/navbar.service';
 import { SharedModule } from './../shared/shared.module';
-import { PlanWidgetComponent } from './../shared/widgets/plan-widget/plan-widget.component';
 import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectRoutingModule } from './direct-routing.module';
@@ -59,6 +61,10 @@ export function createTranslateLoader(http: HttpClient) {
     OcpDisabilityFormComponent, EditProductInfoComponent,
     ComparePlansComponent,
     SrsApprovedPlansFormComponent],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe],
+  entryComponents: [ProductDetailComponent, DirectResultsComponent]
 })
-export class DirectModule { }
+export class DirectModule {
+  constructor(public navbarService: NavbarService, public headerService: HeaderService) {
+  }
+}

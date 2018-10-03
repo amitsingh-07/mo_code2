@@ -9,4 +9,14 @@ export class Formatter {
         valueString = valueString.replace(Regexp, '');
         return valueString;
     }
+
+    static createObjectKey(value: any) {
+        if (!value) {
+            return '_';
+        } else if (isNaN(value)) {
+            return value.replace(/ /g, '_');
+        } else {
+            return '_' + value;
+        }
+    }
 }
