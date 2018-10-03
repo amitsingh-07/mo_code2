@@ -15,7 +15,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
   formValues: any;
   longTermCareForm: FormGroup;
   monthlyPayoutList = Array(26).fill(500).map((x, i) => x += i * 100);
-  selectedMonthlyPayout = 500;
+  selectedMonthlyPayout = '';
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -36,7 +36,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
     this.longTermCareForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      monthlyPayout: [this.formValues.monthlyPayout]
+      monthlyPayout: [this.formValues.monthlyPayout, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '4') {
@@ -54,6 +54,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
 
   selectMonthlyPayout(selectedMonthlyPayout) {
     this.selectedMonthlyPayout = selectedMonthlyPayout;
+    this.longTermCareForm.controls.monthlyPayout.setValue(this.selectedMonthlyPayout);
   }
 
   summarizeDetails() {

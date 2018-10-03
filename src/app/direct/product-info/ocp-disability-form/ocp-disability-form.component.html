@@ -69,9 +69,10 @@
            <div class="dropdown-control">
               <div ngbDropdown id="durationDropDown">
                  <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
-                 <span class="duration">{{defaultEmployee}}</span>
+                 <span class="duration">{{defaultEmployee=='' ? 'Select' :defaultEmployee}}</span>
                  </button>
                  <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                    <button class="dropdown-item" (click)="selectEmployeeType('',false)">{{'COMMON.LBL_SELECT' | translate}}</button>
                     <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList" (click)="selectEmployeeType(employmentType,true)">
                     {{employmentType}}
                     </button>
@@ -112,9 +113,10 @@
            <div class="dropdown-control">
               <div ngbDropdown id="durationDropDown">
                  <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
-                 <span class="duration">{{duration}}</span>
+                 <span class="duration">{{duration == '' ? 'select' : duration }}</span>
                  </button>
                  <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                    <button class="dropdown-item" (click)="selectDuration('')">select</button>
                     <button type="button" class="dropdown-item" *ngFor="let duration of durationValues" (click)="selectDuration(duration)">
                     {{duration}}
                     </button>
