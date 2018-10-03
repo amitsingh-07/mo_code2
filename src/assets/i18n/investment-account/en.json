@@ -70,6 +70,8 @@
     "TAP_TO_UPLOAD": "Tap to Upload",
     "PROOF_OF_MAILING": "Proof Of Mailing Address",
     "PROOF_OF_MAILING_SUBTEXT": "This document must match the information provided under \"Mailing Address\" earlier.",
+    "PROOF_OF_RESIDENT": "Proof Of Residential Address",
+    "PROOF_OF_RESIDENT_SUBTEXT": "This document must match the information provided under \"Residential Address\" earlier.",
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
@@ -77,6 +79,10 @@
       "MAILING_ADDRESS_PROOF": {
         "TITLE": "Proof Of Mailing Address",
         "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+      },
+      "RES_ADDRESS_PROOF": {
+        "TITLE": "Proof Of Residential Address",
+        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
       },
       "UPLOAD_LATER": {
         "TITLE": "Upload Documents Later?",
