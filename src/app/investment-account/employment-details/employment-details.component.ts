@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-employment-details',
@@ -17,6 +18,7 @@ export class EmploymentDetailsComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
+    public navbarService: NavbarService,
     private modal: NgbModal ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -26,7 +28,7 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   ngOnInit() {

@@ -51,6 +51,8 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.riskFormValues = this.portfolioService.getPortfolioFormData();
     const self = this;
     this.route.params.subscribe((params) => {

@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ModelWithButtonComponent } from '../../shared/modal/model-with-button/model-with-button.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -26,6 +27,7 @@ export class PersonalDeclarationComponent implements OnInit {
   personalDeclarationFormValues: any;
   constructor(
     public headerService: HeaderService,
+    public navbarService: NavbarService,
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private router: Router,
@@ -40,7 +42,7 @@ export class PersonalDeclarationComponent implements OnInit {
     });
   }
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
   selectSource(sourceObj) {
 this.source = sourceObj.source;
@@ -53,6 +55,7 @@ this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
     });
   }
   ngOnInit() {
+    this.navbarService.setNavbarMode(2);
     this.source = 'Select' ;
     this.getSourceList();
     this.personalDeclarationFormValues = this.investmentAccountService.getPersonalDeclaration();

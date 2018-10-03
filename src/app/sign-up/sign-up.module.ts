@@ -7,6 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AuthGuardService } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
@@ -56,6 +57,6 @@ export function createTranslateLoader(http: HttpClient) {
     SuccessMessageComponent,
     DashboardComponent
   ],
-  providers: [SignUpAccessGuard]
+  providers: [SignUpAccessGuard, AuthGuardService]
 })
 export class SignUpModule { }

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 
 @Component({
@@ -24,6 +25,7 @@ export class GetStartedStep1Component implements OnInit {
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     private router: Router,
+    public navbarService: NavbarService,
     public headerService: HeaderService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -35,8 +37,7 @@ export class GetStartedStep1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.headerService.setHeaderVisibility(false);
-
+    this.navbarService.setNavbarMobileVisibility(false);
     this.authService.authenticate().subscribe((token) => {
      console.log(token);
     });
