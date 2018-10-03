@@ -51,8 +51,6 @@ export class FinanicalDetailsComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public portfolioService: PortfolioService,
-    
-
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
