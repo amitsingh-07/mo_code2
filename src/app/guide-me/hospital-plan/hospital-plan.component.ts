@@ -46,8 +46,7 @@ export class HospitalPlanComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarDirectGuided(true);
     this.hospitalPlanFormValues = this.guideMeService.getHospitalPlan();
     this.hospitalPlanForm = new FormGroup({
       hospitalPlan: new FormControl(this.hospitalPlanFormValues.hospitalClassId + '', Validators.required)

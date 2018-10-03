@@ -52,11 +52,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.navbarService.currentNavbarMobileVisibility.subscribe((showMobileNavbar) => {
       this.showMobileNavbar = showMobileNavbar;
-      console.log('Current Mobile Navbar Mode:' + showMobileNavbar);
+      // console.log('Current Mobile Navbar Mode:' + showMobileNavbar);
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
-      console.log('Current NavbarMode: ' + this.navbarMode);
+      // console.log('Current NavbarMode: ' + this.navbarMode);
       this.cdr.detectChanges();
     });
     this.navbarService.currentNavbarShadowVisibility.subscribe((showNavShadow) => {

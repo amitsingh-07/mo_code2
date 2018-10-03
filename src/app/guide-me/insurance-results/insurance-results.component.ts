@@ -83,6 +83,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
   }
 
   ngAfterViewInit() {
