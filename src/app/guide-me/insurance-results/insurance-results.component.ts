@@ -195,6 +195,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       }
       return protectionNeed.existingCoverage.value;
     });
+
+    this.getProtectionNeeds();
   }
 
   getProtectionNeeds() {
