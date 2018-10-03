@@ -478,7 +478,8 @@ button:active:focus {
     padding:12px 64px 12px 20px;
     border-radius: 8px;
     color: $teal-color;
-    width: 1000px;
+    width:100%;
+    max-width:864px;
     max-height:70px; 
     min-height:64px;
     //max-width: calc(1024px - 160px);

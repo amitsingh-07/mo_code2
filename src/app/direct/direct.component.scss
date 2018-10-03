@@ -36,7 +36,10 @@ app-direct {
   .btn-close-edit {
     display: block;
     position: absolute;
-    width: 1024px;
+    width:100%;
+    max-width:1024px;
+    left:50%;
+    transform:translateX(-50%);
     z-index: 1050;
     top: 0px;
 
