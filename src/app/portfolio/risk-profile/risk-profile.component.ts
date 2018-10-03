@@ -4,9 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
-import {
-    ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
@@ -33,6 +31,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     private router: Router,
     public headerService: HeaderService,
     private portfolioService: PortfolioService,
+    public navbarService: NavbarService,
     private modal: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -42,6 +41,8 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
     this.iconImage = ProfileIcons[this.selectedRiskProfile.riskProfileId - 1]['icon'];
   }
@@ -65,7 +66,7 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
   }
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
 }

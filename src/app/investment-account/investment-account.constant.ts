@@ -4,6 +4,6 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
         isMailingAddressSame: true
     },
     upload_documents: {
-        default_thumb: 'cam-icon.png'
+        default_thumb: 'cam-icon.svg'
     }
 };

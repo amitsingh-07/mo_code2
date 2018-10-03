@@ -20,20 +20,20 @@ export class LoaderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.animate();
-  }
-
-  animate() {
     if (this.isVisible) {
-      this.interval = setInterval(() => {
-        if (this.anim.nativeElement.innerHTML.length < 3) {
-          this.anim.nativeElement.innerHTML += '.';
-        } else {
-          this.anim.nativeElement.innerHTML = '';
-        }
-      }, 500);
+      this.animate();
     } else {
       clearInterval(this.interval);
     }
+  }
+
+  animate() {
+    this.interval = setInterval(() => {
+      if (this.anim.nativeElement.innerHTML.length < 3) {
+        this.anim.nativeElement.innerHTML += '.';
+      } else {
+        this.anim.nativeElement.innerHTML = '';
+      }
+    }, 500);
   }
 }

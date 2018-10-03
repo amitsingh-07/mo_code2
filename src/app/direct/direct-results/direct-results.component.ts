@@ -388,3 +388,4 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.sortProperty = data.sortProperty;
   }
 }
+
