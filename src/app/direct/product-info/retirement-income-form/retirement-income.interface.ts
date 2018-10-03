@@ -1,7 +1,7 @@
 export interface IRetirementIncome {
     gender: string;
     dob: string;
-    smoker: number;
+    smoker: string;
     retirementIncome: number;
     payoutAge: number;
     payoutDuration: string;

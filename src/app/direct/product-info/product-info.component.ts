@@ -97,7 +97,6 @@ export class ProductInfoComponent implements OnInit {
       }
     });
     this.getProductCategoryList();
-    this.initDisplaySetup();
   }
 
   getProductCategoryList() {
@@ -129,6 +128,7 @@ export class ProductInfoComponent implements OnInit {
       }
     });
     this.googleAnalyticsService.startTime('initialDirectSearch');
+    this.initDisplaySetup();
   }
 
   // Initial Display setup

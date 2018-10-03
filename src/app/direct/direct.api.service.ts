@@ -130,7 +130,6 @@ export class DirectApiService {
             coverageDuration: ocp.duration,
             coverageAmount: ocp.monthlySalary,
             employmentStatusId: ocp.employmentType,
-            maxAge: ocp.duration
         } as IOccupationalDisabilityData;
         return ocpData;
     }

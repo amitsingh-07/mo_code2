@@ -4,14 +4,14 @@
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
         <h2>{{premiumAmount | currency}}
-          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+          <span class="text-small">{{ premiumFrequency }}</span>
         </h2>
       </div>
       <div class="insurer-logo" style="width: 35%">
         <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
       </div>
     </div>
-    <div class="insurance-plan-widget__container__discount__block">{{data.promotion.promoDiscount}}</div>
+    <div *ngIf="promoDiscount" class="insurance-plan-widget__container__discount__block">{{promoDiscount}}</div>
     <div style="margin-bottom: 15px;">
       <div class="insurance-plan-widget__container__rank__wrapper flex-row" style="display: flex; flex: 1">
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">

@@ -9,7 +9,7 @@ import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
 import { RiskProfile } from './risk-profile/riskprofile';
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
-const SESSION_STORAGE_KEY = 'app_session_storage_key';
+const SESSION_STORAGE_KEY = 'app_engage_journey_session';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,19 @@ export class PortfolioService {
   private portfolioFormData: PortfolioFormData = new PortfolioFormData();
   private personalFormError: any = new PersonalFormError();
   constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+    this.getPortfolioFormData();
+  }
+
+  commit() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.portfolioFormData));
+    }
   }
 
   getPortfolioFormData(): PortfolioFormData {
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+      this.portfolioFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    }
     return this.portfolioFormData;
   }
 
@@ -46,6 +56,7 @@ export class PortfolioService {
     this.portfolioFormData.riskProfileId = data.id;
     this.portfolioFormData.riskProfileName = data.type;
     this.portfolioFormData.htmlDescription = data.htmlDesc;
+    this.commit();
   }
 
   currentFormError(form) {
@@ -70,7 +81,7 @@ export class PortfolioService {
     if (Number(this.removeCommas(form.value.initialInvestment)) == 0 && Number(this.removeCommas(form.value.monthlyInvestment)) == 0) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['zero']);
       return this.personalFormError.formFieldErrors['financialValidations']['zero'];
-    // tslint:disable-next-line:max-line-length
+      // tslint:disable-next-line:max-line-length
     } else if (Number(this.removeCommas(form.value.initialInvestment)) <= 100 && Number(this.removeCommas(form.value.monthlyInvestment)) <= 50) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['more']);
       return this.personalFormError.formFieldErrors['financialValidations']['more'];
@@ -81,7 +92,7 @@ export class PortfolioService {
     } else if (Number(this.removeCommas(form.value.initialInvestment)) > Number(this.removeCommas(form.value.totalAssets))) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreasset']);
       return this.personalFormError.formFieldErrors['financialValidations']['moreasset'];
-    // tslint:disable-next-line:max-line-length
+      // tslint:disable-next-line:max-line-length
     } else if (Number(this.removeCommas(form.value.monthlyInvestment)) > Number(this.removeCommas(form.value.percentageOfSaving)) * Number(this.removeCommas(form.value.monthlyIncome))) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreinvestment']);
       return this.personalFormError.formFieldErrors['financialValidations']['moreinvestment'];
@@ -92,14 +103,15 @@ export class PortfolioService {
 
   removeCommas(str) {
     while (str.search(',') >= 0) {
-        str = (str + '').replace(',', '');
+      str = (str + '').replace(',', '');
     }
     return str;
-}
+  }
 
   setPersonalInfo(data: PersonalInfo) {
     this.portfolioFormData.dob = data.dob;
     this.portfolioFormData.investmentPeriod = data.investmentPeriod;
+    this.commit();
   }
 
   // RISK ASSESSMENT
@@ -114,6 +126,7 @@ export class PortfolioService {
   }
   setRiskAssessment(data, questionIndex) {
     this.portfolioFormData['riskAssessQuest' + questionIndex] = data;
+    this.commit();
   }
 
   // SAVE FOR STEP 2
@@ -164,6 +177,7 @@ export class PortfolioService {
     this.portfolioFormData.initialInvestment = formData.initialInvestment;
     this.portfolioFormData.monthlyInvestment = formData.monthlyInvestment;
     this.portfolioFormData.suffEmergencyFund = formData.suffEmergencyFund;
+    this.commit();
   }
 
   // SAVE FOR STEP 1

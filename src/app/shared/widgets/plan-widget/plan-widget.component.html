@@ -10,14 +10,14 @@
         <h4>{{productName}}</h4>
         <h2>{{premiumAmount | currency}}
           <br class="hidden-lg"/>
-          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+          <span class="text-small">{{ premiumFrequency }}</span>
         </h2>
       </div>
       <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
         <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
       </div>
     </div>
-    <div class="insurance-plan-widget__container__discount__block hidden-sm-md">{{data.promotion.promoDiscount}}</div>
+    <div *ngIf="promoDiscount" class="insurance-plan-widget__container__discount__block hidden-sm-md">{{promoDiscount}}</div>
     <div style="margin-bottom: 15px;" class="hidden-sm-md">
       <div class="insurance-plan-widget__container__rank__wrapper">
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
@@ -55,7 +55,7 @@
         </button>
       </div>
       <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
-        <button type="button" (click)="compareplan()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>
+        <button type="button" (click)="comparePlans()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>
       </div>
     </div>
 </div>

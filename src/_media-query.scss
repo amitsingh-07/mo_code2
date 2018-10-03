@@ -124,7 +124,7 @@
 
 .mobile-top-extended {
   @include allmobiles {
-    top: 50px;
+    top: 30px;
     &.more {
       top: 70px;
     }

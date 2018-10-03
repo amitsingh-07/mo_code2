@@ -2,7 +2,7 @@ export interface IMyOcpDisability {
     coverageAmount: number;
     maxAge: number;
     percentageCoverage: any;
-    coverageDuration: number;
+    coverageDuration: string;
     employmentStatusId: number;
     selectedEmployee: string;
 }
