@@ -53,7 +53,7 @@ export class VerifyMobileComponent implements OnInit {
     this.showCodeSentText = false;
     this.mobileNumberVerified = false;
     this.mobileNumber = this.signUpService.getMobileNumber();
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
     this.buildVerifyMobileForm();
   }
 

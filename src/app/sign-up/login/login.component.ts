@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.buildLoginForm();

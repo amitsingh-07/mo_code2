@@ -51,6 +51,7 @@ tocken;
     });
   }
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.queryParams = this.route.snapshot.queryParams;
