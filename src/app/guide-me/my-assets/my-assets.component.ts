@@ -54,20 +54,36 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     if (this.guideMeService.isMyInfoEnabled) {
       this.guideMeApiService.getMyInfoData().subscribe((data) => {
         this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
-        this.guideMeService.closeFetchPopup();
         this.assetsForm.controls['cpf'].setValue(this.cpfValue);
         this.guideMeService.isMyInfoEnabled = false;
         this.setFormTotalValue();
+        this.closeMyInfoPopup(false);
+      }, (error) => {
+        this.closeMyInfoPopup(true);
       });
-      }
+    }
     this.setFormTotalValue();
-    }
-    ngOnDestroy(): void {
-      this.locationSubscription.unsubscribe();
-    }
+  }
+  ngOnDestroy(): void {
+    this.locationSubscription.unsubscribe();
+  }
 
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.assetsForm.value);
+  }
+
+  closeMyInfoPopup(error: boolean) {
+    this.guideMeService.closeFetchPopup();
+    if (error) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = 'Oops, Error!';
+      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+      ref.componentInstance.isError = true;
+      ref.result.then(() => {
+        this.myInfoService.goToMyInfo();
+      }).catch((e) => {
+      });
+    }
   }
 
   /* Onchange Currency Addition */
@@ -82,17 +98,17 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   openModal() {
-     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-     ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
-     ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-     ref.componentInstance.isButtonEnabled = true;
-     ref.result.then(() => {
-       this.myInfoService.setMyInfoAttributes('cpfbalances');
-       this.myInfoService.goToMyInfo();
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
+    ref.componentInstance.isButtonEnabled = true;
+    ref.result.then(() => {
+      this.myInfoService.setMyInfoAttributes('cpfbalances');
+      this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
 
-   }
+  }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

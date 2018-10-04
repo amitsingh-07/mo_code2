@@ -5,8 +5,8 @@ import { CallBackComponent } from './call-back/call-back.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {component: CallBackComponent, matcher: validateUrl},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'myinfo', component: CallBackComponent},
   {path: 'home', component: HomeComponent },
   {path: 'direct', loadChildren: './direct/direct.module#DirectModule'},
   {path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule'},
