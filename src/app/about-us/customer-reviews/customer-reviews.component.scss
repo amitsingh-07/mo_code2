@@ -135,6 +135,21 @@
                 color:$teal-color;
             }
         }
+        .reviewer{
+            position: relative;
+            display:inline-block;
+            width:auto;
+            margin-top:20px;
+            .name{
+                position:relative;
+                display:inline-block;
+                line-height:1.1;
+                font-size:14px;
+                margin-bottom:3px;
+                text-align:center;
+                color:$dark-teal-color;
+            }
+        }
         
         
         

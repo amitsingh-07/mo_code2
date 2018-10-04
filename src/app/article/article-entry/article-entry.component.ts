@@ -17,6 +17,7 @@ export class ArticleEntryComponent implements OnInit {
   private art_content: any;
   private title: string;
   private category: string;
+  private author: string;
 
   constructor(public navbarService: NavbarService, public footerService: FooterService, private route: ActivatedRoute,
               public articleApiService: ArticleApiService) {}
@@ -37,6 +38,9 @@ export class ArticleEntryComponent implements OnInit {
 
     this.articleApiService.getArticleContent(this.art_id).subscribe((data) => {
       this.art_content = data;
+      this.title = 'Understanding MediShield Life & What should you do (Part 1: MediShield Life in a Nutshell)';
+      this.category = 'Protection';
+      this.author = 'Shawn Lee';
     });
 
     this.navbarService.setNavbarMode(1);

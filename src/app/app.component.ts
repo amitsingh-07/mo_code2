@@ -18,7 +18,7 @@ export class AppComponent {
   constructor(private log: LoggerService, private translate: TranslateService, private googleAnalyticsService: GoogleAnalyticsService,
               private modal: NgbModal) {
     this.translate.setDefaultLang('en');
-    this.triggerPopup();
+    // this.triggerPopup();
   }
 
   onActivate(event) {

@@ -1,0 +1,52 @@
+[
+    {
+        "artId": 20,
+        "title": "Singapore's Term Life Insurance Comparison Table (June 2018) ",
+        "date": "2018-06-05",
+        "summary": "We have launched this table, updated monthly, to compare Term Life Insurance policies across insurance companies in Singapore. ",
+        "keywords": "compare and save, compare, first compare web portal, dpi, direct purchase insurance, term insurance,singapore insurance company, life insurance,do-it-your-way-insurance, do it your way, doityourway, diyinsurance, diy insurance, diyinsurance articles, singapore's cheapest term insurance table, singapore cheapest term insurance, cheap term insurance, singapore cheap insurance, cheapest singapore insurance, cheapest term insurance, aviva myprotector level plus, axa life term insurance (to age)",
+        "tag": {
+            "tagId": 2,
+            "tagName": "General"
+        },
+        "profile": {
+            "profileId": 5,
+            "author": "Shawn Lee",
+            "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+            "title": "Brand Management Executive"
+        },
+        "articleTagMap": [
+            {
+                "tagId": 2,
+                "lastUpdate": "2018-03-06T05:40:40.000+0000"
+            },
+            {
+                "tagId": 8,
+                "lastUpdate": "2018-03-06T05:40:40.000+0000"
+            }
+        ]
+    },
+    {
+        "artId": 53,
+        "title": "Singapore's Term Life Plus Critical Illness Insurance Comparison Table (June 2018) ",
+        "date": "2018-06-05",
+        "summary": "Compare all Term Life with Critical Illness insurance plans in Singapore and find out which is best today. This article is updated monthly.",
+        "keywords": "Term insurance, compare term insurance, compare critical illness, critical illness, life insurance, life insurance singapore",
+        "tag": {
+            "tagId": 2,
+            "tagName": "General"
+        },
+        "profile": {
+            "profileId": 5,
+            "author": "Shawn Lee",
+            "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+            "title": "Brand Management Executive"
+        },
+        "articleTagMap": [
+            {
+                "tagId": 2,
+                "lastUpdate": "2018-03-06T05:40:40.000+0000"
+            }
+        ]
+    }
+]

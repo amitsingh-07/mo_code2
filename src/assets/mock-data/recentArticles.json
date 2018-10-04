@@ -1,26 +1,198 @@
-{
-    "responseMessage": {
-      "responseCode": 6000,
-      "responseDescription": "Successful response"
-    },
-    "objectList": [{
-        "id": 26,
-        "art_title": "Life Stage Planning",
-        "art_author": "Providend",
-        "art_date": "2018-12-23",
-        "art_tags": ["Protection", "Whole Life Insurance"]
-      }, {
-        "id": 27,
-        "art_title": "Choosing the Right Endowment",
-        "art_author": "Providend",
-        "art_date": "2018-12-23",
-        "art_tags": ["Savings"]
-      }, {
-        "id": 28,
-        "art_title": "Understanding Reitrement Income",
-        "art_author": "Providend",
-        "art_date": "2015-12-23",
-        "art_tags": ["Retirement Income Plans", "Retirement Income"]
-      } 
-    ]
-}
+[
+  {
+      "artId": 20,
+      "title": "Singapore's Term Life Insurance Comparison Table (June 2018) ",
+      "date": "2018-06-05",
+      "summary": "We have launched this table, updated monthly, to compare Term Life Insurance policies across insurance companies in Singapore. ",
+      "keywords": "compare and save, compare, first compare web portal, dpi, direct purchase insurance, term insurance,singapore insurance company, life insurance,do-it-your-way-insurance, do it your way, doityourway, diyinsurance, diy insurance, diyinsurance articles, singapore's cheapest term insurance table, singapore cheapest term insurance, cheap term insurance, singapore cheap insurance, cheapest singapore insurance, cheapest term insurance, aviva myprotector level plus, axa life term insurance (to age)",
+      "tag": {
+          "tagId": 2,
+          "tagName": "General"
+      },
+      "profile": {
+          "profileId": 5,
+          "author": "Shawn Lee",
+          "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+          "title": "Brand Management Executive"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 2,
+              "lastUpdate": "2018-03-06T05:40:40.000+0000"
+          },
+          {
+              "tagId": 8,
+              "lastUpdate": "2018-03-06T05:40:40.000+0000"
+          }
+      ]
+  },
+  {
+      "artId": 53,
+      "title": "Singapore's Term Life Plus Critical Illness Insurance Comparison Table (June 2018) ",
+      "date": "2018-06-05",
+      "summary": "Compare all Term Life with Critical Illness insurance plans in Singapore and find out which is best today. This article is updated monthly.",
+      "keywords": "Term insurance, compare term insurance, compare critical illness, critical illness, life insurance, life insurance singapore",
+      "tag": {
+          "tagId": 2,
+          "tagName": "General"
+      },
+      "profile": {
+          "profileId": 5,
+          "author": "Shawn Lee",
+          "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+          "title": "Brand Management Executive"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 2,
+              "lastUpdate": "2018-03-06T05:40:40.000+0000"
+          }
+      ]
+  },
+  {
+      "artId": 61,
+      "title": "Singapore's Child Education Savings Plan Comparison Table",
+      "date": "2018-05-18",
+      "summary": "If you are looking to get started, we have done all the math for you. Here are the best Child's Education Savings plans in Singapore!",
+      "keywords": "Best Child Education Savings Plans, Endowment Plans in Singapore, Education Plans in Singapore, Best Endowment, Saving for University, Save for child's education",
+      "tag": {
+          "tagId": 5,
+          "tagName": "Savings"
+      },
+      "profile": {
+          "profileId": 5,
+          "author": "Shawn Lee",
+          "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+          "title": "Brand Management Executive"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 5,
+              "lastUpdate": "2018-05-17T23:53:23.000+0000"
+          },
+          {
+              "tagId": 11,
+              "lastUpdate": "2018-05-17T23:53:23.000+0000"
+          }
+      ]
+  },
+  {
+      "artId": 47,
+      "title": "Cheat Sheet: Best Savings Accounts For Kids 2018",
+      "date": "2018-01-31",
+      "summary": "If you are a parent and are looking at setting up a bank account for your child, we have compiled the key features of 7 kids’ bank accounts in Singapore.\r\n",
+      "keywords": "Kids savings accounts in singapore, children's savings accounts, red packets, Chinese New Year, good saving habits, healthy relationship with money, concept of savings, comparison",
+      "tag": {
+          "tagId": 5,
+          "tagName": "Savings"
+      },
+      "profile": {
+          "profileId": 5,
+          "author": "Shawn Lee",
+          "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+          "title": "Brand Management Executive"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 5,
+              "lastUpdate": "2018-05-17T23:53:23.000+0000"
+          }
+      ]
+  },
+  {
+      "artId": 60,
+      "title": "Singapore's Whole Life Insurance Comparison Table",
+      "date": "2018-01-17",
+      "summary": "Compare Whole Life Insurance across insurance companies in Singapore. Find out which is the best!",
+      "keywords": "Whole life insurance,compare whole life,best whole life,best whole life insurance,whole life comparison",
+      "tag": {
+          "tagId": 2,
+          "tagName": "General"
+      },
+      "profile": {
+          "profileId": 5,
+          "author": "Shawn Lee",
+          "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+          "title": "Brand Management Executive"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 2,
+              "lastUpdate": "2018-03-06T05:40:40.000+0000"
+          }
+      ]
+  },
+  {
+      "artId": 59,
+      "title": "Why Most Needs can be Covered by Term Insurance?",
+      "date": "2017-12-21",
+      "summary": "Mark is a good friend of mine. Some years back he had the opportunity of his life time to build...\r\n",
+      "keywords": "Term Insurance, Whole Life Insurance, Insurance Coverage, Term vs Whole Life\r\n",
+      "tag": {
+          "tagId": 3,
+          "tagName": "Protection"
+      },
+      "profile": {
+          "profileId": 2,
+          "author": "Christopher Tan",
+          "desc": "Mr. Christopher Tan CFP®, MBA (Chief Executive Officer), has close to two decades of experience in the wealth management and financial planning industry.<br><br>\r\nChristopher has also spoken on financial planning issues to hundreds of entities, both local and overseas, including at the CFA Institute Annual Conference held in Singapore. <br><br>\r\nIn 2014, he was appointed by the Singapore Government to be part of the CPF Advisory Panel. <br><br>\r\nChristopher also holds a Master of Business Administration Degree from University of Warwick, which has one of the top business schools in the world.\r\n",
+          "title": "CEO, Providend Ltd"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 3,
+              "lastUpdate": "2018-03-06T06:06:24.000+0000"
+          }
+      ]
+  },
+  {
+      "artId": 56,
+      "title": "Here's How Much Your Child's Future University Education Will Cost In Singapore",
+      "date": "2017-12-08",
+      "summary": "Of the many heavy responsibilities that comes with parenthood, it includes the financial demands of having a...",
+      "keywords": "parenthood, child’s tertiary education, expenses, tuition fees, university degree, cost of living, inflation rate, financial commitment",
+      "tag": {
+          "tagId": 5,
+          "tagName": "Savings"
+      },
+      "profile": {
+          "profileId": 5,
+          "author": "Shawn Lee",
+          "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+          "title": "Brand Management Executive"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 5,
+              "lastUpdate": "2018-05-17T23:53:23.000+0000"
+          },
+          {
+              "tagId": 11,
+              "lastUpdate": "2018-05-17T23:53:23.000+0000"
+          }
+      ]
+  },
+  {
+      "artId": 57,
+      "title": "A Visual Guide to SRS Part I",
+      "date": "2017-12-08",
+      "summary": "In a snapshot, the SRS is a voluntary scheme to encourage us to save for retirement, over and above our CPF savings.",
+      "keywords": "Supplementary retirement scheme, save for retirement, CPF savings, tax savings, SRS contribution, SRS withdrawal, tax relief, invest",
+      "tag": {
+          "tagId": 6,
+          "tagName": "Retirement Income"
+      },
+      "profile": {
+          "profileId": 5,
+          "author": "Shawn Lee",
+          "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+          "title": "Brand Management Executive"
+      },
+      "articleTagMap": [
+          {
+              "tagId": 6,
+              "lastUpdate": "2018-03-06T05:48:03.000+0000"
+          }
+      ]
+  }
+]
