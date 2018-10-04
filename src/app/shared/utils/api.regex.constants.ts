@@ -12,5 +12,5 @@ export const RegexConstants = {
     },
     EmailOrMobile: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{8,10})+$/,
     AlphanumericWithSpaces: /^[a-zA-Z0-9\s]*$/,
+    SixDigitNumber: /^[0-9]{6}$/
 };
-

@@ -55,7 +55,7 @@ export class ResidentialAddressComponent implements OnInit {
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
       country: [this.formValues.nationality.country, Validators.required],
-      postalCode: [this.formValues.postalCode, Validators.required],
+      postalCode: [this.formValues.postalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [this.formValues.address2],
       unitNo: [this.formValues.unitNo, Validators.required],
