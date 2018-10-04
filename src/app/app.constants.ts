@@ -9,5 +9,7 @@ export let appConstants = {
     userLocalStorage: '',
     loginPageUrl: GUIDE_ME_ROUTES.ROOT,
     accessTokenServer: '',
-    MY_INFO_CALLBACK_URL: 'myinfo'
+    MY_INFO_CALLBACK_URL: 'myinfo',
+    JOURNEY_TYPE_DIRECT: 'DIRECT',
+    JOURNEY_TYPE_GUIDED: 'GUIDED',
 };

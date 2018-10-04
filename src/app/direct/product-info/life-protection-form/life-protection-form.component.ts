@@ -63,7 +63,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     });
 
     if (this.formValues.duration !== undefined ) {
-      this.selectDuration(this.formValues.dependent);
+      this.selectDuration(this.formValues.duration);
     }
     if (this.formValues.coverageAmt !== undefined ) {
       this.selectCoverageAmt(this.formValues.coverageAmt);

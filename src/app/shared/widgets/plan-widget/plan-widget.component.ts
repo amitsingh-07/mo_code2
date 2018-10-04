@@ -199,7 +199,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
           return false;
         }
       } else {
-        if (this.planSelected && this.planSelected.length >= 4) {
+        if (this.comparePlanSelected && this.comparePlanSelected.length >= 4) {
           this.comparePlanErrorModal();
           return false;
         }
