@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HostListener } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidatePassword } from './password.validator';

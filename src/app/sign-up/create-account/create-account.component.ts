@@ -2,9 +2,9 @@ import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -31,16 +31,17 @@ export class CreateAccountComponent implements OnInit {
   countryCodeOptions;
   editNumber;
 
-  constructor(private formBuilder: FormBuilder,
-              private modal: NgbModal,
-              public navbarService: NavbarService,
-              private signUpApiService: SignUpApiService,
-              private signUpService: SignUpService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private translate: TranslateService,
-              private _location: Location,
-              private selectedPlansService: SelectedPlansService
+  constructor(
+    private formBuilder: FormBuilder,
+    private modal: NgbModal,
+    public navbarService: NavbarService,
+    private signUpApiService: SignUpApiService,
+    private signUpService: SignUpService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private translate: TranslateService,
+    private _location: Location,
+    private selectedPlansService: SelectedPlansService
   ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {

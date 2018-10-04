@@ -15,7 +15,8 @@ import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { ProductDetailComponent } from './../../shared/components/product-detail/product-detail.component';
+import { appConstants } from './../../app.constants';
+import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
@@ -49,8 +50,9 @@ export class ProfileComponent implements IPageComponent, OnInit {
     private guideMeService: GuideMeService, private router: Router,
     private modal: NgbModal, public headerService: HeaderService, public navbarService: NavbarService, public footerService: FooterService,
     public readonly translate: TranslateService, public authService: AuthenticationService,
-    public log: LoggerService, private guideMeApiService: GuideMeApiService, private googleAnalytics: GoogleAnalyticsService) {
-
+    public log: LoggerService, private guideMeApiService: GuideMeApiService, private googleAnalytics: GoogleAnalyticsService,
+    private appService: AppService) {
+    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_GUIDED);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PROFILE.TITLE');

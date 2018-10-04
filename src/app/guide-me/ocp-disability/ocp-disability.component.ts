@@ -139,7 +139,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   showMobilePopUp() {
-    const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
+    const ref = this.modal.open(HelpModalComponent, { centered: true });
     ref.componentInstance.description = this.modalData.description;
     ref.componentInstance.title = this.modalData.title;
     ref.componentInstance.img = assetImgPath + this.modalData.imageName;

@@ -1,3 +1,5 @@
+import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
+import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -15,7 +17,9 @@ import {
     ILongTermCareNeedsData,
     IOccupationalDisabilityData,
     IProtectionTypeData,
-    IRecommendationRequest
+    IRecommendationRequest,
+    IRetirementIncomePlan,
+    ISrsApprovedPlanData
 } from './../shared/interfaces/recommendations.request';
 import { Formatter } from './../shared/utils/formatter.util';
 import { PRODUCT_CATEGORY_INDEX } from './direct.constants';
@@ -55,6 +59,8 @@ export class DirectApiService {
         requestObj.longTermCareNeeds = this.getLtcData();
         requestObj.dependentsData = this.getDependentsData();
         requestObj.lifeProtectionNeeds = this.getLifeProtectionData();
+        requestObj.retirementIncomePlan = this.getRetirementIncomePlanData();
+        requestObj.srsApprovedPlans = this.getSrsApprovedPlanData();
 
         const category = this.directService.getProductCategory();
         switch (category.id) {
@@ -175,5 +181,26 @@ export class DirectApiService {
         } as IEnquiryData;
 
         return enquiryData;
+    }
+
+    getSrsApprovedPlanData(): ISrsApprovedPlanData {
+        const srsPlan = this.directService.getSrsApprovedPlansForm();
+        return {
+            id: 0,
+            singlePremium: srsPlan.singlePremium,
+            payoutStartAge: srsPlan.payoutStartAge,
+            payoutType: srsPlan.payoutType
+        };
+    }
+
+    getRetirementIncomePlanData(): IRetirementIncomePlan {
+        const incomeForm = this.directService.getRetirementIncomeForm();
+        return {
+            id: 0,
+            retirementIncome: incomeForm.retirementIncome,
+            payoutStartAge: incomeForm.payoutAge,
+            payoutDuration: incomeForm.payoutDuration,
+            payoutFeature: incomeForm.payoutFeature
+        };
     }
 }

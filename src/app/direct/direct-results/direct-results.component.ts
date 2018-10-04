@@ -57,7 +57,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   toolTips;
   resultsEmptyMessage = '';
   enquiryId;
-  premiumFrequency: any = [{ value: 'per month', name: 'Monthly', checked: true }, { value: 'per year', name: 'Yearly', checked: false }];
+  premiumFrequency: any = [{ value: 'per month', name: 'Monthly', checked: false }, { value: 'per year', name: 'Yearly', checked: false }];
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
   payoutYears: any = { All: 'All' };
@@ -386,5 +386,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   filterProducts(data: any) {
     this.filterArgs = this.selectedFilterList = data.filters;
     this.sortProperty = data.sortProperty;
+    this.selectedComparePlans = [];
+    this.selectedPlans = [];
   }
 }

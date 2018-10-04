@@ -76,8 +76,10 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       monthlySalary = 0;
     }
     this.ciAssessmentFormValues.annualSalary = monthlySalary * 12;
-    if (this.ciAssessmentFormValues.ciMultiplier === undefined) {
+    if (!this.ciAssessmentFormValues.ciMultiplier) {
       this.ciAssessmentFormValues.ciMultiplier = this.ciMultiplier;
+    } else {
+      this.ciMultiplier = this.ciAssessmentFormValues.ciMultiplier;
     }
     this.ciAssessmentForm = new FormGroup({
       coverageAmount: new FormControl(this.ciAssessmentFormValues.coverageAmount),
@@ -121,10 +123,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   }
 
   showMobilePopUp() {
-    const ref = this.modal.open(HelpModalComponent, {
-      centered: true,
-      windowClass: 'help-modal-dialog'
-    });
+    const ref = this.modal.open(HelpModalComponent, { centered: true });
     // tslint:disable-next-line:max-line-length
     ref.componentInstance.description = this.modalData.description;
     ref.componentInstance.title = this.modalData.title;

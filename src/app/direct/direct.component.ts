@@ -11,8 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { appConstants } from './../app.constants';
+import { AppService } from './../app.service';
 import { FooterService } from './../shared/footer/footer.service';
-import { HeaderService } from './../shared/header/header.service';
 import { IPageComponent } from './../shared/interfaces/page-component.interface';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
@@ -40,7 +41,8 @@ export class DirectComponent implements OnInit, IPageComponent {
     private router: Router, public navbarService: NavbarService,
     public footerService: FooterService, private directService: DirectService, private translate: TranslateService,
     public modal: NgbModal, private route: ActivatedRoute,
-    private factoryResolver: ComponentFactoryResolver ) {
+    private factoryResolver: ComponentFactoryResolver, private appService: AppService) {
+    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_DIRECT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PROFILE.TITLE');
@@ -49,7 +51,7 @@ export class DirectComponent implements OnInit, IPageComponent {
     });
     this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
     this.showProductInfo();
-    }
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
