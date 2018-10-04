@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -25,6 +26,9 @@ import { PortfolioFormData } from '../../portfolio/portfolio-form-data';
 export class FinanicalDetailsComponent implements OnInit {
   pageTitle: string;
   financialDetails: FormGroup;
+  FinancialFormData;
+  selectRangeValue = 'select Range';
+  selectNumber = 'Select Number';
   formValues;
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
@@ -48,6 +52,7 @@ export class FinanicalDetailsComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     public portfolioService: PortfolioService,
+    public navbarService: NavbarService,
     private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
@@ -58,28 +63,32 @@ export class FinanicalDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formValues = this.portfolioService.getMyFinancials();
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
+    this.FinancialFormData = this.portfolioService.getMyFinancials();
+    this.formValues = this.investmentAccountService.getFinancialFormData();
     this.financialDetails = this.formBuilder.group({
-      annualHouseHoldIncome: [this.formValues.annualHouseHoldIncome, Validators.required],
-      numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
-      financialMonthlyIncome: [ this.formValues.monthlyIncome, Validators.required],
-      financialPercentageOfSaving: [this.formValues.percentageOfSaving, Validators.required],
-      financialTotalAssets: [this.formValues.totalAssets, Validators.required],
-      financialTotalLiabilities: [this.formValues.totalLiabilities, Validators.required],
-
+      annualHouseHoldIncomeRange: [this.formValues.annualHouseHoldIncomeRange ?
+        this.formValues.annualHouseHoldIncomeRange : 'Select Range' , Validators.required],
+      numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers ?
+        this.formValues.numberOfHouseHoldMembers : 'Select Number', Validators.required],
+        monthlyIncome: [this.FinancialFormData.monthlyIncome, Validators.required],
+        percentageOfSaving: [this.FinancialFormData.percentageOfSaving, Validators.required],
+        totalAssets: [this.FinancialFormData.totalAssets, Validators.required],
+        totalLiabilities: [this.FinancialFormData.totalLiabilities, Validators.required]
     });
-  }
+    }
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
-    this.annualHouseHoldIncomeRange = annualHouseHoldIncome;
-    this.financialDetails.controls['annualHouseHoldIncome'].setValue( this.annualHouseHoldIncomeRange);
+    this.selectRangeValue = annualHouseHoldIncome;
+    this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(this.selectRangeValue);
 
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
-    this.numberOfHouseHoldMembers = HouseHoldMembers;
-    this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(this.numberOfHouseHoldMembers);
+    this.selectNumber = HouseHoldMembers;
+    this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(this.selectNumber);
   }
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {

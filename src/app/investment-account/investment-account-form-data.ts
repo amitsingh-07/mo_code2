@@ -57,6 +57,7 @@ export class InvestmentAccountFormData {
     empCity: string;
     empState: string;
     empZipCode: number;
+    
     // Upload documents
     nricFrontImage: File;
     nricBackImage: File;
@@ -71,11 +72,10 @@ export class InvestmentAccountFormData {
     beneficial: any;
 
     // financial details
-   
-    annualHouseHoldIncome: string;
+    annualHouseHoldIncomeRange: string;
     numberOfHouseHoldMembers: number;
-    financialMonthlyIncome: string;
-    financialPercentageOfSaving: string;
-    financialTotalAssets: string;
-    financialTotalLiabilities: string;
-}
+    monthlyIncome: string;
+    percentageOfSaving: string;
+    totalAssets: string;
+    totalLiabilities: string;
+    }

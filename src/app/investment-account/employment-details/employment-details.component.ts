@@ -54,6 +54,8 @@ export class EmploymentDetailsComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.getOccupationList();
     this.getIndustryList();
     this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
@@ -98,6 +100,7 @@ export class EmploymentDetailsComponent implements OnInit {
     } else {
       this.employementDetailsForm = this.buildFormEmployement(value);
       this.showEmploymentControls = true;
+
     }
   }
   setIndustryValue(key, value) {
@@ -187,7 +190,7 @@ export class EmploymentDetailsComponent implements OnInit {
     });
   }
   goToNext(form) {
-    if (!form.valid) {
+  if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });

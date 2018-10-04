@@ -430,7 +430,7 @@ export class ApiService {
   }
   getOccupationList() {
     const url = '../assets/mock-data/occupationList.json';
-    return this.http.get(url)
+    return this.http.get(apiConstants.endpoint.investmentAccount.occupationlist)
     .pipe( // tslint:disable-next-line
       catchError((error: HttpErrorResponse) => {
         if (error.error instanceof ErrorEvent) {

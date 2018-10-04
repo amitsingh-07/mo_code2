@@ -36,8 +36,6 @@ export class InvestmentAccountService {
         }
         return this.investmentAccountFormData;
     }
-
-
     /* Residential Address */
     getCountriesFormData() {
         const countries = this.investmentAccountFormData.nationalitylist;
@@ -196,7 +194,15 @@ export class InvestmentAccountService {
             occupation: this.investmentAccountFormData.occupation,
             industry: this.investmentAccountFormData.industry,
             contactNumber: this.investmentAccountFormData.contactNumber,
-            isEmployeAddresSame: this.investmentAccountFormData.contactNumber
+            isEmployeAddresSame: this.investmentAccountFormData.isEmployeAddresSame,
+            empCountry: this.investmentAccountFormData.empCountry,
+            empPostalCode: this.investmentAccountFormData.empPostalCode,
+            empAddress1: this.investmentAccountFormData.empAddress1,
+            empAddress2: this.investmentAccountFormData.empAddress2,
+            empUnitNo: this.investmentAccountFormData.empUnitNo,
+            empCity: this.investmentAccountFormData.empCity,
+            empState: this.investmentAccountFormData.empState,
+            empZipCode: this.investmentAccountFormData.empZipCode,
         };
     }
     setEmployeAddressFormData(data) {
@@ -217,24 +223,37 @@ export class InvestmentAccountService {
                 this.investmentAccountFormData.empCity = data.employeaddress.empCity;
                 this.investmentAccountFormData.empState = data.employeaddress.empState;
                 this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
+                
             }
+            
         } else {
             this.investmentAccountFormData.employmentStatus = data.employmentStatus;
+            
         }
+        this.commit();
     }
 
     // Upload Document
-    uploadDocument(formData) {
+  uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
     }
     setFinancialFormData(data) {
-        this.investmentAccountFormData.annualHouseHoldIncome = data.annualHouseHoldIncome;
+        this.investmentAccountFormData.annualHouseHoldIncomeRange = data.annualHouseHoldIncomeRange;
         this.investmentAccountFormData.numberOfHouseHoldMembers = data.numberOfHouseHoldMembers;
-        this.investmentAccountFormData.financialMonthlyIncome = data.financialMonthlyIncome;
-        this.investmentAccountFormData.financialPercentageOfSaving = data.financialPercentageOfSaving;
-        this.investmentAccountFormData.financialTotalAssets = data.financialTotalAssets;
-        this.investmentAccountFormData.financialTotalLiabilities = data.financialTotalLiabilities;
-        this.investmentAccountFormData.isEmployeAddresSame = data.isEmployeAddresSame;
-
+        this.investmentAccountFormData.monthlyIncome = data.monthlyIncome;
+        this.investmentAccountFormData.percentageOfSaving = data.percentageOfSaving;
+        this.investmentAccountFormData.totalAssets = data.totalAssets;
+        this.investmentAccountFormData.totalLiabilities = data.totalLiabilities;
+        this.commit();
+    }
+    getFinancialFormData() {
+        return {
+            annualHouseHoldIncomeRange: this.investmentAccountFormData.annualHouseHoldIncomeRange,
+            numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers,
+            monthlyIncome: this.investmentAccountFormData.monthlyIncome,
+            percentageOfSaving: this.investmentAccountFormData.percentageOfSaving,
+            totalAssets: this.investmentAccountFormData.totalAssets,
+            totalLiabilities: this.investmentAccountFormData.totalLiabilities
+        };
     }
 }

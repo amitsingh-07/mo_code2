@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
     component: SelectNationalityComponent,
-    canActivate: [AuthGuard]
+     canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_INFO,
@@ -35,17 +35,22 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.RESIDENTIAL_ADDRESS,
     component: ResidentialAddressComponent,
-    canActivate: [AuthGuard]
+     canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.EMPLOYMENT_DETAILS,
     component: EmploymentDetailsComponent,
+     canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.FINANICAL_DETAILS,
+    component: FinanicalDetailsComponent ,
     canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.TAX_INFO,
     component: TaxInfoComponent,
-    canActivate: [AuthGuard]
+     canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS,
@@ -54,7 +59,7 @@ const routes: Routes = [
   },
   { path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
     component: PersonalDeclarationComponent,
-    canActivate: [AuthGuard]
+     canActivate: [AuthGuard]
   }
 ];
 

@@ -69,7 +69,7 @@
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
-                          {{employementDetailsForm.controls.industry.value}}
+                          {{employementDetailsForm.controls.industry.value | titlecase}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setIndustryValue('industry',option.industry,i)"
@@ -84,15 +84,15 @@
               <!-- Occupation -->
               <div class="form-group">
                 <div class="flex-row">
-                  <div class="flex-col-5">
-                    <label for="employement_details_status" id="employement_details_status-lbl">oocupation
+                  <div class="flex-col-5"> 
+                    <label for="employement_details_status" id="employement_details_status-lbl">occupation   
                     </label>
                   </div>
                   <div class="flex-col-7">
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
-                          {{employementDetailsForm.controls.occupation.value}}
+                          {{employementDetailsForm.controls.occupation.value | titlecase}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue('occupation',option.occupation,i)"
