@@ -34,6 +34,7 @@ body {
   h6 {
     font-family: $muli-regular;
     font-size: 18px;
+    font-weight: 400;
   }
   /*Nav Bar Styles*/
   .container-fluid {
@@ -870,7 +871,7 @@ body {
 
 .span--content-inline--underline {
   @include allmobiles {
-    color: #ffffff;
+    color: $app-backgrnd-color;
   }
 
   color: #04a6a7;
