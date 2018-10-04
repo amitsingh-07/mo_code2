@@ -20,13 +20,15 @@ export class CustomErrorHandlerService {
     private auth: AuthenticationService, private helper: HelperService,
     private router: Router) { }
 
-  public handleCustomError(data: IServerResponse) {
+  public handleCustomError(data: IServerResponse, showError?: boolean) {
     if (!errorCodes.has(data.responseMessage.responseCode)) {
       const error: IError = {
         error: data.responseMessage.responseCode,
         message: data.responseMessage.responseDescription
       };
-      this.helper.showCustomErrorModal(error);
+      if (typeof showError === undefined || showError) {
+        this.helper.showCustomErrorModal(error);
+      }
       throw new Error(this.parseCustomServerErrorToString(error));
     }
   }
@@ -86,7 +88,7 @@ export class CustomErrorHandlerService {
 
       return { title, body };
     } else {
-      return { title: 'unknown', body: 'unknown'};
+      return { title: 'unknown', body: 'unknown' };
     }
   }
 

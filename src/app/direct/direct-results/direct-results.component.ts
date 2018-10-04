@@ -386,5 +386,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   filterProducts(data: any) {
     this.filterArgs = this.selectedFilterList = data.filters;
     this.sortProperty = data.sortProperty;
+    this.selectedComparePlans = [];
+    this.selectedPlans = [];
   }
 }

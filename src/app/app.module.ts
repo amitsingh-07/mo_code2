@@ -55,6 +55,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
+import { UrlRedirectComponent } from './url-redirect.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -91,7 +92,8 @@ export function tokenGetterFn() {
     FooterComponent,
     NumberOnlyDirective,
     CallBackComponent,
-    HomeComponent
+    HomeComponent,
+    UrlRedirectComponent
   ],
   imports: [
     BrowserModule,

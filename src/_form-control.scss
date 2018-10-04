@@ -327,7 +327,7 @@ input[type='radio']+label {
   background: url("./assets/images/radio-normal.svg") left center no-repeat;
 }
 input[type='radio']:checked+label {
-  background-image: url("./assets/images/radio-select.png");
+  background-image: url("./assets/images/radio-select.svg");
 }
 
 input[type='checkbox']+label {
