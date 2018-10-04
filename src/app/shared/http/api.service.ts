@@ -71,7 +71,7 @@ export class ApiService {
 
   getMyInfoData(data) {
     const url = '../assets/mock-data/myInfoValues.json';
-    return this.http.post(apiConstants.endpoint.getMyInfoValues, data.code)
+    return this.http.post(apiConstants.endpoint.getMyInfoValues, data.code, true)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
