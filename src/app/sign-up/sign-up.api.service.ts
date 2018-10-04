@@ -6,26 +6,29 @@ import { GuideMeService } from '../guide-me/guide-me.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
-import { CtyptoService} from '../shared/utils/crypto';
+import { CryptoService } from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { appConstants } from './../app.constants';
+import { AppService } from './../app.service';
+import { DirectService } from './../direct/direct.service';
+import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
 import { SignUpFormData } from './sign-up-form-data';
 import { SignUpService } from './sign-up.service';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class SignUpApiService {
-    private signUpFormData: SignUpFormData = new SignUpFormData();
+  private signUpFormData: SignUpFormData = new SignUpFormData();
 
-    constructor(private http: HttpClient,
-                private apiService: ApiService,
-                private authService: AuthenticationService,
-                private signUpService: SignUpService,
-                private guideMeService: GuideMeService,
-                private selectedPlansService: SelectedPlansService,
-                public ctyptoService: CtyptoService
-               ) {
-    }
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService, private authService: AuthenticationService,
+    private signUpService: SignUpService, private guideMeService: GuideMeService,
+    private selectedPlansService: SelectedPlansService, public cryptoService: CryptoService,
+    private directService: DirectService, private appService: AppService
+  ) {
+  }
 
   /**
    * get countries code.
@@ -40,17 +43,23 @@ export class SignUpApiService {
    */
   createAccountBodyRequest(): ISignUp {
     const selectedPlan: IPlan[] = [];
-    const getGuideMeFormData = this.guideMeService.getGuideMeFormData();
+    let userInfo: UserInfo;
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) {
+      userInfo = this.directService.getUserInfo();
+    } else {
+      userInfo = this.guideMeService.getUserInfo();
+    }
     const getAccountInfo = this.signUpService.getAccountInfo();
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
-    const formatDob = getGuideMeFormData.customDob.split(/\//g);
-    const customDob = formatDob[2] + '-' + formatDob[1] + '-' + formatDob[0];
+    const formatDob = userInfo.dob;
+    const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;
+
     for (const plan of selectedPlanData.plans) {
       selectedPlan.push(
         {
           typeId: plan.typeId,
           productName: plan.productName,
-          premium : {
+          premium: {
             premiumAmount: plan.premium.premiumAmount,
             premiumFrequency: plan.premium.premiumFrequency
           }
@@ -60,7 +69,7 @@ export class SignUpApiService {
     return {
       customer: {
         id: 0,
-        isSmoker: (getGuideMeFormData.smoker === 'non-smoker') ? false : true,
+        isSmoker: (userInfo.smoker === 'non-smoker') ? false : true,
         givenName: getAccountInfo.firstName,
         surName: getAccountInfo.lastName,
         email: getAccountInfo.email,
@@ -69,10 +78,10 @@ export class SignUpApiService {
         countryCode: getAccountInfo.countryCode,
         notificationByPhone: true,
         dateOfBirth: customDob,
-        gender: getGuideMeFormData.gender,
+        gender: userInfo.gender,
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
-      enquiryId : selectedPlanData.enquiryId,
+      enquiryId: selectedPlanData.enquiryId,
       selectedProducts: selectedPlan
     };
   }
@@ -84,7 +93,7 @@ export class SignUpApiService {
   requestNewOTPBodyRequest(): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
     return {
-        customerRef: custRef
+      customerRef: custRef
     };
   }
 
@@ -94,8 +103,8 @@ export class SignUpApiService {
   verifyOTPBodyRequest(code): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
     return {
-        customerRef: custRef,
-        otp: code
+      customerRef: custRef,
+      otp: code
     };
   }
 
@@ -106,11 +115,11 @@ export class SignUpApiService {
     const custRef = this.signUpService.getCustomerRef();
     const resCode = this.signUpService.getResetCode();
     return {
-        customerRef: custRef,
-        password: this.ctyptoService.encrypt(pwd),
-        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
-        resetType: 'New',
-        resetCode: resCode
+      customerRef: custRef,
+      password: this.cryptoService.encrypt(pwd),
+      callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+      resetType: 'New',
+      resetCode: resCode
     };
   }
 
@@ -119,7 +128,7 @@ export class SignUpApiService {
    */
   verifyEmailBodyRequest(verifyCode): IVerifyCode {
     return {
-        code: verifyCode
+      code: verifyCode
     };
   }
 
@@ -181,7 +190,7 @@ export class SignUpApiService {
    */
   setRequestPasswordPayload(data) {
     return {
-        email: data
+      email: data
     };
   }
 
@@ -191,7 +200,7 @@ export class SignUpApiService {
    * @param password - password.
    */
   verifyLogin(userEmail, userPassword) {
-    return this.authService.authenticate(userEmail, this.ctyptoService.encrypt(userPassword));
+    return this.authService.authenticate(userEmail, this.cryptoService.encrypt(userPassword));
   }
 
   getUserProfileInfo() {

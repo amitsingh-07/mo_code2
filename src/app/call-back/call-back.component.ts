@@ -13,21 +13,24 @@ import { GuideMeService } from './../guide-me/guide-me.service';
 export class CallBackComponent implements OnInit {
 
   data: any;
-  constructor(private router: Router, private route: ActivatedRoute, private modal: NgbModal,
-              private guideMeService: GuideMeService ) { }
+  constructor(
+    private router: Router, private route: ActivatedRoute, private modal: NgbModal,
+    private guideMeService: GuideMeService) { }
 
   ngOnInit() {
-    if (this.route.url['value'][0].path === appConstants.MY_INFO_CALLBACK_URL ) {
-    if (this.guideMeService.myInfoValue) {
-      this.guideMeService.isMyInfoEnabled = false;
+    if (window.sessionStorage.currentUrl && this.route.queryParams['value'] && this.route.queryParams['value']['code']) {
+      if (this.guideMeService.myInfoValue) {
+        this.guideMeService.isMyInfoEnabled = false;
+      } else {
+        this.guideMeService.openFetchPopup();
+        this.guideMeService.isMyInfoEnabled = true;
+        this.data = this.route.queryParams['value'];
+        this.guideMeService.setMyInfoValue(this.data);
+        this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+      }
     } else {
-      this.guideMeService.openFetchPopup();
-      this.guideMeService.isMyInfoEnabled = true;
-      this.data = this.route.url['value'][0].parameters.data;
-      this.data = this.data.substr(this.data.indexOf('=') + 1, this.data.indexOf('&') - this.data.indexOf('=') - 1);
-      this.guideMeService.setMyInfoValue(this.data);
-      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+      this.router.navigate(['home']);
     }
-   }
+
   }
 }

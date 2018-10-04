@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from './../../../environments/environment';
-import { appConstants } from './../../app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyInfoService {
-  authApiUrl = 'https://myinfosgstg.api.gov.sg/dev/v1/authorise';
+  authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
   purpose = 'demonstrating MyInfo APIs';

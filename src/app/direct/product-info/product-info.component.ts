@@ -113,9 +113,7 @@ export class ProductInfoComponent implements OnInit {
     this.directService.prodSearchInfoData.subscribe((data) => {
       if (data !== '') {
         this.minProdSearch = data;
-        if (this.initLoad === true) { // Initial Load Case
-          this.initLoad = false;
-        }
+        this.initLoad = false;
         this.toggleVisibility = false;
         this.toggleBackdropVisibility = false;
         this.directService.setModalFreeze(false);
@@ -205,7 +203,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   openToolTipModal(data) {
-    this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
+    this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true });
     this.modalRef.componentInstance.tooltipTitle = data.title;
     this.modalRef.componentInstance.tooltipMessage = data.message;
     this.directService.showToolTipModal('', '');
