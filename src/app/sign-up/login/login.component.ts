@@ -8,9 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
 } from '../../investment-account/investment-account-routes.constants';
-import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
     this.buildLoginForm();
     this.authService.authenticate().subscribe((token) => {
     });

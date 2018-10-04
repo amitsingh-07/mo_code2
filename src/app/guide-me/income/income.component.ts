@@ -51,7 +51,6 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
       annualBonus: new FormControl(this.incomeFormValues.annualBonus),
       otherIncome: new FormControl(this.incomeFormValues.otherIncome)
     });
-    this.navbarService.setNavbarMobileVisibility(true);
     this.setFormTotalValue();
   }
 

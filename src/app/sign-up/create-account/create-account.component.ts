@@ -5,9 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderService } from '../../shared/header/header.service';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -33,7 +33,7 @@ export class CreateAccountComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbModal,
-              public headerService: HeaderService,
+              public navbarService: NavbarService,
               private signUpApiService: SignUpApiService,
               private signUpService: SignUpService,
               private route: ActivatedRoute,
@@ -55,7 +55,7 @@ export class CreateAccountComponent implements OnInit {
     if (!this.selectedPlansService.getSelectedPlan()) {
       this.router.navigate(['/']);
     }
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
   }

@@ -43,6 +43,8 @@ body {
     padding-bottom: 65px;
     &.max-width--1024{
       max-width:1024px;
+      padding-left:0px;
+      padding-right:0px;
     }
   }
   .navbar {

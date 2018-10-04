@@ -1,0 +1,104 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.article-category{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background-color:#e8f2f3;
+}
+
+.article-category__header{
+    position: relative;
+    display:block;
+    width:100%;
+    max-width:1024px;
+    padding-left:20px; 
+}
+
+.article-category__container{
+    position: relative;
+    display:flex;
+    width:100%;
+    max-width:1024px;;
+    flex-direction:row;
+    justify-content:space-between;
+    margin-top:60px;
+}
+
+.article-category__list{
+    position: relative;
+    display:inline-flex;
+    flex-direction:column;
+    margin-left:auto; 
+    align-items:flex-start;
+    justify-content:center;
+    flex-basis: calc(30% - 10px);
+    padding:10px 10px 20px 10px;
+    overflow:hidden;
+    .article-category__title{
+        position: relative;
+        display: block;
+        width:100%;
+        font-size:15px;
+        font-family:$muli-bold;
+        color:$dark-teal-color;
+        margin-bottom:10px;
+        i{
+            font-size:15px;
+            transform:translateY(2px);
+            margin-right:2px;
+            
+        }
+    }
+    .category-container{
+        position: relative;
+        display: block;
+        width:100%;
+        border:1px solid #e1e1e1;
+        border-radius:6px;
+        overflow:hidden;
+        .category{
+            position: relative;
+            display:flex;
+            padding:10px;
+            border-bottom:1px solid #e1e1e1;
+            background-color:$white-color;
+            justify-content:space-between;
+            align-items:center;
+            transition:0.3s;
+            cursor: pointer;
+            &:hover{
+                background-color:#e1e1e1;
+            }
+            a{
+                color:$black-color;
+                opacity:0.9;
+            }
+            span{
+                position: relative;
+                display:block;
+                background-color:$teal-color;
+                padding:0px 8px;
+                border-radius:20px;
+                color:$white-color;
+                font-size:15px;
+                font-family:$muli-semi-bold;
+            }
+        }
+    }
+} 
+
+.article-category__articles{
+    position: relative; 
+    display: flex;
+    flex-basis: calc(70% - 10px);
+    margin-right:auto;
+    background-color:aqua;
+}
+
+
+

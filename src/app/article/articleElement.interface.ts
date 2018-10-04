@@ -4,4 +4,5 @@ export interface IArticleElement {
     art_author: string;
     art_date: string;
     art_tags: string[];
+    art_desc?: string;
 }

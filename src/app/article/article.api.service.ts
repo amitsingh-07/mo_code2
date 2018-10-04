@@ -28,6 +28,10 @@ export class ArticleApiService {
     return this.apiService.getArticle(art_id);
   }
 
+  getArticleContent(art_id: number) {
+    return this.apiService.getArticleContent(art_id);
+  }
+
   getArticleCategory() {
     return this.apiService.getArticleCategory();
   }

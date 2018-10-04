@@ -56,6 +56,13 @@ export class BaseService {
       );
   }
 
+  getArticle(url) {
+    return this.httpClient
+      .get(url, { responseType: 'text' })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
   post(url, postBody: any) {
     this.helperService.showLoader();
     return this.httpClient

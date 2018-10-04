@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -37,7 +37,7 @@ export class ForgotPasswordComponent implements OnInit {
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
     private modal: NgbModal,
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -57,7 +57,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
     this.buildForgotPasswordForm();
   }
 

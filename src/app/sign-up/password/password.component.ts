@@ -5,9 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderService } from '../../shared/header/header.service';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
@@ -23,7 +23,7 @@ export class PasswordComponent implements OnInit {
   passwordForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              public headerService: HeaderService,
+              public navbarService: NavbarService,
               private modal: NgbModal,
               private selectedPlansService: SelectedPlansService,
               private signUpApiService: SignUpApiService,
@@ -43,7 +43,7 @@ export class PasswordComponent implements OnInit {
    */
   ngOnInit() {
     this.buildPasswordForm();
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
   }
 
   /**

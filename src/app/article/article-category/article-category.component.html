@@ -1,3 +1,46 @@
-<p>
-  article-category works!
-</p>
+<div class="article-category">
+  <div class="article-category__header">
+    <div class="sub-navigation">
+      <div class="sub-navigation--inner">
+        <span routerLink="/">Home</span>
+        <span class="separator"></span>
+        <span>Articles</span>
+        <span class="separator"></span>
+        <span>{{category}}</span>
+        </div>
+      </div> 
+    </div>
+  <div class="article-category__container">
+    <div class="article-category__articles">
+      <div class="article-category__element">
+          <div class="article-element__image">
+            <img src="../../../assets/articles/images/8/thumbnail.jpg"/>
+          </div>
+          <div class="article-element__desc">
+            <div class="article-title">
+                <a>Singapore's Term Life Insurance Comparison Table (September 2018)</a></div>
+            <div class="article-description">We have launched this table, updated monthly, to compare Term Life Insurance policies across insurance companies in Singapore.</div>
+          </div> 
+        </div>
+      </div>
+    <div class="article-category__list">
+      <div class="article-category__title">
+        <i class="material-icons">local_offer</i>
+        <span>Category</span>
+        </div>
+      <div class="category-container">
+        <div class="category">
+          <a>Protection</a>
+          <span>4</span>
+          </div>
+        <div class="category">
+          <a>Critical Illness</a> 
+          <span>5</span>
+          </div>
+        <div class="category">
+          <a>Retirement Income</a>
+          <span>3</span>
+          </div> 
+        </div>
+      </div>  
+  </div> 
