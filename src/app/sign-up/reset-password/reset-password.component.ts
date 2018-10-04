@@ -51,8 +51,9 @@ tocken;
     });
   }
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
     this.queryParams = this.route.snapshot.queryParams;
-    this.navbarService.setNavbarDirectGuided(false);
     this.buildResetPasswordForm();
     console.log('the tocken is ' + this.queryParams.key);
     this.tocken = encodeURIComponent(this.queryParams.key);

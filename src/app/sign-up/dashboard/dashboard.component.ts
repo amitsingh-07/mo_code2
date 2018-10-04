@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { NavbarService } from '../../shared/navbar/navbar.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SignUpService } from './../sign-up.service';
 
 @Component({
@@ -22,11 +22,5 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.translate.use('en');
-    this.setPageTitle();
   }
-
-  setPageTitle() {
-    this.navbarService.setPageTitle('');
-  }
-
 }

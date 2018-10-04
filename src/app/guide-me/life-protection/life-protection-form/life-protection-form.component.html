@@ -45,7 +45,7 @@
                     <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="genderDropDown"
                       ngbDropdownToggle>{{item.controls.gender.value}}
                     </button>
-                    <div class="dropdown" ngbDropdownMenu aria-labelledby="genderDropDown">
+                    <div class="dropdown" ngbDropdownMenu aria-labelledby="genderDropDown" style="height: auto !important;">
                       <button class="dropdown-item" *ngFor="let option of genderOptions" (click)="setDropDownValue('gender', option, i)">{{option}}</button>
                     </div>
                   </div>

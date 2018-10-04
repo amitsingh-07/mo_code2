@@ -127,7 +127,7 @@
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
-    "DESCRIPTION": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b>Critical Illness</b>.",
+    "DESCRIPTION": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.",
     "COVERAGE_AMT": "Coverage Amount",
     "COVERAGE_AMT_DESC": "Based on the information below",
     "ANNUAL_SALARY": "Annual Salary",
@@ -138,13 +138,13 @@
     "UNTIL_RETIREMENTAGE": 65,
     "MODAL_DATA": {
       "title": "Critical Illness",
-      "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b>Critical Illness</b>.</p>",
+      "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.</p>",
       "imageName": "ci-assessment.png"
     }
   },
   "OCP_DISABILITY": {
     "TITLE": "Occupational Disability",
-    "DESCRIPTION": "This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.",
+    "DESCRIPTION": "This coverage provides monthly payouts to replace a portion of your salary in the event of <b class=\"text-bold\">Occupational Disability</b>. A person usually requires coverage until their retirement age.",
     "OCP_DISABILITY_FRM_TITLE": "Coverage Amount",
     "OCP_DISABILITY_HINT": "Based on the information below",
     "EMPLOYEE_FIELD": "I am a",

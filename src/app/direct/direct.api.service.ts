@@ -18,18 +18,8 @@ import {
     IRecommendationRequest
 } from './../shared/interfaces/recommendations.request';
 import { Formatter } from './../shared/utils/formatter.util';
+import { PRODUCT_CATEGORY_INDEX } from './direct.constants';
 import { DirectService } from './direct.service';
-
-const PRODUCT_CATEGORY_INDEX = {
-    LIFE_PROTECTION: 1,
-    CRITICAL_ILLNESS: 2,
-    OCCUPATIONAL_DISABILITY: 3,
-    HOSPITAL_PLAN: 4,
-    LONG_TERM_CARE: 5,
-    EDUCATION_FUND: 6,
-    RETIREMENT_INCOME: 7,
-    SRS_PLANS: 8
-};
 
 @Injectable({
     providedIn: 'root'
@@ -57,10 +47,19 @@ export class DirectApiService {
         requestObj.existingInsuranceList = [this.directService.getEmptyExistingCoverage()];
 
         requestObj.financialStatusMapping = {} as IFinancialStatusMapping;
+        requestObj.enquiryData = this.getEnquiryData();
+        requestObj.hospitalizationNeeds = this.getHospitalPlanData();
+        requestObj.criticalIllnessNeedsData = this.getCriticalIllnessData();
+        requestObj.occupationalDisabilityNeeds = this.getOcpData();
+
+        requestObj.longTermCareNeeds = this.getLtcData();
+        requestObj.dependentsData = this.getDependentsData();
+        requestObj.lifeProtectionNeeds = this.getLifeProtectionData();
 
         const category = this.directService.getProductCategory();
         switch (category.id) {
             case PRODUCT_CATEGORY_INDEX.LIFE_PROTECTION:
+                requestObj.enquiryData.hasPremiumWaiver = requestObj.lifeProtectionNeeds.isPremiumWaiver;
                 break;
             case PRODUCT_CATEGORY_INDEX.CRITICAL_ILLNESS:
                 break;
@@ -77,16 +76,6 @@ export class DirectApiService {
             case PRODUCT_CATEGORY_INDEX.SRS_PLANS:
                 break;
         }
-
-        requestObj.hospitalizationNeeds = this.getHospitalPlanData();
-        requestObj.criticalIllnessNeedsData = this.getCriticalIllnessData();
-        requestObj.occupationalDisabilityNeeds = this.getOcpData();
-
-        requestObj.longTermCareNeeds = this.getLtcData();
-        requestObj.dependentsData = this.getDependentsData();
-        requestObj.lifeProtectionNeeds = this.getLifeProtectionData();
-        requestObj.enquiryData = this.getEnquiryData();
-
         return requestObj;
     }
 

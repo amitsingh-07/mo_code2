@@ -5,16 +5,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import {
+    ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 
-import {
-  ModelWithButtonComponent
-} from '../../shared/modal/model-with-button/model-with-button.component';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -57,7 +57,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
     this.buildForgotPasswordForm();
   }
 
@@ -85,7 +86,7 @@ export class ForgotPasswordComponent implements OnInit {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
       ref.componentInstance.errorTitle = this.emailNotFoundTitle ;
       ref.componentInstance.errorMessage = this.emailNotFoundDesc;
-      ref.componentInstance.ButtonTitle = this.buttonTitle;
+      ref.componentInstance.primaryActionLabel = this.buttonTitle;
       // tslint:disable-next-line:triple-equals
       } else if (data.responseMessage.responseCode == 6000) {
         this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);

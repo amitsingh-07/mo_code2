@@ -149,6 +149,9 @@ body {
             overflow:hidden;
             }
           }
+          @include allmobiles {
+            box-shadow: none;
+          }
         button{
           outline:none;
           }

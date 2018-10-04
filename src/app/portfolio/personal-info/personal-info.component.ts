@@ -79,6 +79,8 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.formValues = this.portfolioService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
       dob: [this.formValues.dob, Validators.required],

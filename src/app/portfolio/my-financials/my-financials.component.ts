@@ -16,7 +16,6 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
-import { FinancialValidator } from './my-financial-validator';
 import { IMyFinancials } from './my-financials.interface';
 
 import {
@@ -60,6 +59,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
 
     this.myFinancialsForm = new FormGroup({
@@ -101,23 +102,21 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       // tslint:disable-next-line:triple-equals
       if (error.errorTitle == this.translator.INFO) {
-        ref.componentInstance.secondButton = this.translator.LABEL_YES;
-        ref.componentInstance.secondButtonTitle = this.translator.LABEL_NO;
-        ref.componentInstance.ButtonTitle = this.translator.LABEL_YES;
-        ref.componentInstance.yesButtonClick.subscribe((emittedValue) => {
+        ref.componentInstance.primaryActionLabel = this.translator.LABEL_YES;
+        ref.componentInstance.secondaryActionLabel = this.translator.LABEL_NO;
+        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-          if (emittedValue == this.translator.LABEL_NO) {
-            return false;
-          } else {
-            this.saveAndProceed(form);
-          }
+          this.saveAndProceed(form);
+        });
+        ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
+          // tslint:disable-next-line:triple-equals
+          return false;
         });
       } else {
         ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
         return false;
       }
     } else {
-
       this.saveAndProceed(form);
     }
   }

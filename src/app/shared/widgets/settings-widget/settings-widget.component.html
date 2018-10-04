@@ -1,7 +1,8 @@
 <div class="form-group settings-block">
   <div class="flex-row mb0 settings-header">
     <div class="title flex-col-12">
-      Settings <div> <button aria-label="Close" class="close" id="modalBtn" type="button" (click)="close()"><span aria-hidden="true"></span></button></div>
+      Settings <div> <button aria-label="Close" class="close" id="modalBtn" type="button" (click)="close()"><span
+            aria-hidden="true"></span></button></div>
     </div>
   </div>
   <div class="flex-row">
@@ -23,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div class="flex-col" *ngFor="let filter of filters; let p_index = index">
+  <div class="flex-col" [hidden]="filter.filterTypes.length === 1 && filter.allBtn" *ngFor="let filter of filters; let p_index = index">
     <label>
       <div>
         <div class="input-label-normal with-help-icon">{{filter.title}}
@@ -45,5 +46,3 @@
     <button class="hidden-lg btn btn-primary btn__footer--fixed width100" (click)="applyFilters()">Apply Filters</button>
   </div>
 </div>
-
-

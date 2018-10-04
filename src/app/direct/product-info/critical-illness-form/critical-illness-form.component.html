@@ -73,9 +73,10 @@
           <div class="dropdown-control">
               <div ngbDropdown id="coverageAmtDropDown">
                 <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                  <span class="coverage_amt">{{ 'CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR' | translate}}{{coverage_amt}}</span>
+                  <span class="coverage_amt"><span *ngIf = 'coverage_amt != ""'>{{ 'CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR' | translate}}</span>{{coverage_amt == '' ? 'Select' : coverage_amt}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button class="dropdown-item" (click)="selectCoverageAmt('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                   <button type="button" class="dropdown-item" *ngFor="let ele_coverageAmt of coverageAmtValues" (click)="selectCoverageAmt(ele_coverageAmt)">
                     {{ 'CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR' | translate}}{{ele_coverageAmt}}
                   </button>
@@ -92,9 +93,10 @@
           <div class="dropdown-control">
               <div ngbDropdown id="durationDropDown">
                 <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
-                  <span class="duration">{{duration}}</span>
+                  <span class="duration">{{duration == '' ? 'Select' : duration}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                  <button class="dropdown-item" (click)="selectDuration('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                   <button type="button" class="dropdown-item" *ngFor="let ele_duration of durationValues" (click)="selectDuration(ele_duration)">
                     {{ele_duration}}
                   </button>

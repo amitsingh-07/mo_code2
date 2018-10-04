@@ -56,7 +56,8 @@ export class LoginComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
     this.buildLoginForm();
     this.authService.authenticate().subscribe((token) => {
     });

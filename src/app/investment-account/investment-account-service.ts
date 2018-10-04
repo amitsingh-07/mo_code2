@@ -8,6 +8,8 @@ import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import { PersonalInfo } from './personal-info/personal-info';
 
+const SESSION_STORAGE_KEY = 'app_inv_account_session';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -17,12 +19,24 @@ export class InvestmentAccountService {
     private investmentAccountFormError: any = new InvestmentAccountFormError();
 
     constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+        this.getInvestmentAccountFormData();
         this.setDefaultValueForFormData();
     }
 
+    commit() {
+        if (window.sessionStorage) {
+            sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.investmentAccountFormData));
+        }
+    }
+
+    // Return the entire Form Data
     getInvestmentAccountFormData() {
+        if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+            this.investmentAccountFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+        }
         return this.investmentAccountFormData;
     }
+
 
     /* Residential Address */
     getCountriesFormData() {
@@ -56,6 +70,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailState = data.mailingAddress.mailState;
             this.investmentAccountFormData.mailZipCode = data.mailingAddress.mailZipCode;
         }
+        this.commit();
     }
     setTaxInfoFormData(data) {
         this.investmentAccountFormData.Taxcountry = data.Taxcountry;
@@ -139,6 +154,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.nationality = selectedNationality;
         this.investmentAccountFormData.unitedStatesResident = unitedStatesResident;
         this.investmentAccountFormData.singaporeanResident = singaporeanResident;
+        this.commit();
     }
     setPersonalInfo(data: PersonalInfo) {
         this.investmentAccountFormData.fullName = data.fullName;
@@ -149,6 +165,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.passportExpiry = data.passportExpiry;
         this.investmentAccountFormData.dob = data.dob;
         this.investmentAccountFormData.gender = data.gender;
+        this.commit();
     }
     getPersonalInfo() {
         return {
@@ -161,5 +178,10 @@ export class InvestmentAccountService {
             dob: this.investmentAccountFormData.dob,
             gender: this.investmentAccountFormData.gender
         };
+    }
+
+    // Upload Document
+    uploadDocument(formData) {
+        return this.apiService.uploadDocument(formData);
     }
 }

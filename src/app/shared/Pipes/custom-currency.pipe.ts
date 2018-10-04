@@ -22,9 +22,9 @@ export class CustomCurrencyPipe implements PipeTransform {
       } else if (value >= 10000 && value <= 999999) {
         return '$' + (value / 1000).toFixed(0) + 'K';
       } else if (value >= 1000000 && value <= 999999999) {
-        return '$' + (value / 1000000).toFixed(0) + 'M';
+        return '$' + (value / 1000000).toFixed(1) + 'M';
       } else if (value >= 1000000000 && value <= 999999999999) {
-        return '$' + (value / 1000000000).toFixed(0) + 'B';
+        return '$' + (value / 1000000000).toFixed(2) + 'B';
       } else {
         return value ;
       }

@@ -14,11 +14,11 @@
         letter-spacing: -0.2px;
         color: $welcome-user-txt-color;
         background: $white-color;
-        padding: 1px 26% 0;
-        top: 78px;
+        padding: 16px 26% 0;
+        top: 84px;
         box-shadow: 0 0px 14px 0 rgba(0, 0, 0, 0.25);
         @include allmobiles{
-            padding: 0 20px;
+            padding: 16px 20px 0;
             top: 49px;
             justify-content: space-between;
         }
@@ -56,6 +56,7 @@
         margin: 0 auto;
         width: 50%;
         padding: 10px 30px;
+        min-height: 416px;
         @include allmobiles{
             margin: 0 auto;
             width: 100%;
