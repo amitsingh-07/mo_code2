@@ -15,14 +15,18 @@ export class InvestmentAccountFormError {
         },
         postalCode: {
             required: {
-                errorTitle: 'Invalid postal code',
+                errorTitle: 'Invalid Postal Code',
                 errorMessage: 'Please enter your postal code.'
             },
+            pattern: {
+                errorTitle: 'Invalid Postal Code',
+                errorMessage: 'Postal Code should not contain alphabets or special characters.'
+            }
         },
         mailPostalCode: {
             required: {
-                errorTitle: 'Invalid postal code in mailing address',
-                errorMessage: 'Please enter your postal code in mailing address.'
+                errorTitle: 'Invalid Postal Code in mailing address',
+                errorMessage: 'Please enter your Postal Code in mailing address.'
             },
         },
         address1: {

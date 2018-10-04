@@ -53,7 +53,7 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isUserNationalitySingapore = true;
+    this.isUserNationalitySingapore = false;
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
   }
@@ -176,6 +176,15 @@ export class UploadDocumentsComponent implements OnInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.TITLE');
     const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.MESSAGE');
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorDescription = errorDesc;
+  }
+
+  // tslint:disable-next-line:no-identical-functions
+  showProofOfResDetails() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.TITLE');
+    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.MESSAGE');
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorDescription = errorDesc;
   }
