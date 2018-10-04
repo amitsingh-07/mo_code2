@@ -101,9 +101,12 @@ export class PortfolioService {
   }
 
   removeCommas(str) {
+  if(str.lenght>3)
+  {
     while (str.search(',') >= 0) {
       str = (str + '').replace(',', '');
     }
+  }
     return str;
   }
 
