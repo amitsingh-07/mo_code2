@@ -3,8 +3,6 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
-
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
@@ -12,7 +10,9 @@ import { DirectService } from './../../direct.service';
 @Component({
   selector: 'app-srs-approved-plans-form',
   templateUrl: './srs-approved-plans-form.component.html',
-  styleUrls: ['./srs-approved-plans-form.component.scss']
+  styleUrls: ['./srs-approved-plans-form.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  encapsulation: ViewEncapsulation.None
 })
 export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   categorySub: any;
