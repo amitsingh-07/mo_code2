@@ -70,7 +70,7 @@ export class ApiService {
   }
   // -------------------------- ARTICLES MODULE ---------------------------------------
   getGetStartedArticles() {
-    const url = '../../../assets/mock-data/recentArticles.json';
+    const url = '../../../assets/mock-data/getStartedArticles.json';
     return this.http.getMock(url)
       .pipe(
           catchError((error: HttpErrorResponse) => this.handleError(error))

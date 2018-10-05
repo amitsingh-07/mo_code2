@@ -161,7 +161,7 @@ body {
       flex-direction:row;
       flex-basis:auto;
       justify-content:space-between;
-      max-width:450px;
+      max-width:380px;
       &.searchOpen{
         max-width:600px;
         }
@@ -384,8 +384,18 @@ body {
         min-width:200px;
         }
       .dropdown-toggle{
+        padding-right:20px;
         &::after{
-          display:none;
+          background-image: url('./assets/images/nav-dropdown-icon.svg');
+          background-size:12px 8px;
+          background-repeat: no-repeat;
+          width: 15px;
+          height: 10px;
+          border: none;
+          position: absolute;
+          margin-left:5px;
+          top: calc(50% + 2px);
+          transform:translateY(-50%);
           }
         }
       .dropdown-menu{

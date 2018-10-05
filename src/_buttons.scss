@@ -770,9 +770,6 @@ button:active:focus {
     }
     @include minMobilemaxPhablet{
       min-width:120px;
-      &:hover{
-        border-bottom:0px;
-      }
     }
     .navbar__btn--title{
         position: relative;

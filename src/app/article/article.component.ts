@@ -17,14 +17,15 @@ export class ArticleComponent implements OnInit {
   recentArticleList: IArticleElement[];
 
   constructor(public navbarService: NavbarService, public footerService: FooterService,
-              private articleService: ArticleService, public articleApiService: ArticleApiService) { }
+              private articleService: ArticleService, public articleApiService: ArticleApiService) {}
 
   ngOnInit() {
     this.articleApiService.getGetStartedArticle().subscribe((data) => {
-      this.getStartedArticleList = this.articleService.getArticleElementList(data.objectList);
+      this.getStartedArticleList = this.articleService.getArticleElementList(data);
+      console.log(this.getStartedArticleList);
     });
     this.articleApiService.getRecentArticle(8).subscribe((data) => {
-      this.recentArticleList = this.articleService.getArticleElementList(data.objectList);
+      this.recentArticleList = this.articleService.getArticleElementList(data);
       console.log(this.recentArticleList);
     });
     this.footerService.setFooterVisibility(true);

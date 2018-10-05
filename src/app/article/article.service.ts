@@ -12,7 +12,6 @@ export class ArticleService {
 
   getArticleElementList(data): IArticleElement[] {
     const articleElementArray = [];
-    console.log(data);
     data.forEach((articleElement) => {
       articleElementArray.push(this.createArticleElement(articleElement));
     });
@@ -20,12 +19,13 @@ export class ArticleService {
   }
 
   createArticleElement(articleElement): IArticleElement {
+    console.log(articleElement);
     const thisArticleElement = {
-              id: articleElement.id,
-              art_title: articleElement.art_title,
-              art_author: articleElement.art_author,
-              art_date: articleElement.art_date,
-              art_tags: articleElement.art_tags
+              id: articleElement.artId,
+              art_title: articleElement.title,
+              art_author: articleElement.profile.author,
+              art_date: articleElement.date,
+              art_tags: articleElement.articleTagMap
             } as IArticleElement;
     return thisArticleElement;
     }

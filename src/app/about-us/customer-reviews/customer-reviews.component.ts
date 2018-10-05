@@ -30,7 +30,6 @@ export class CustomerReviewsComponent implements OnInit {
   }
 
   getNumber(count) {
-    console.log(count);
     return Array(+count).fill(0).map((x, i ) => i);
   }
 }
