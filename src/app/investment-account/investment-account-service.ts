@@ -116,9 +116,6 @@ export class InvestmentAccountService {
     getOccupationList() {
         return this.apiService.getOccupationList();
     }
-    getEmployementStatusList() {
-        return this.apiService.getEmployementStatusList();
-    }
     getAllDropDownList() {
         return this.apiService.getAllDropdownList();
     }
