@@ -29,13 +29,42 @@
     "ZIPCODE": "Zip Code",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
-      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+      "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
     }
   },
   "EMPLOYMENT_DETAILS": {
-    "TITLE": "Employment Details"
+    "TITLE": "Employment Details",
+    "EMPLOYEMEN_STATUS": "Employmen Status",
+    "COMPANY_NAME": "Company Name",
+    "INDUSTRY": "Industry",
+    "OCCUPATION": "Occupation",
+    "CONTACT_NUMBER": "Contact Number",
+    "COUNTRY": "Country",
+    "POSTAL_CODE": "Postal Code",
+    "ADDRESS_1": "Address Line 1",
+    "ADDRESS_2": "Address Line 2",
+    "UNIT_NO": "Unit No",
+    "CITY": "City",
+    "STATE": "State / Province / Region",
+    "ZIPCODE": "Zip Code",
+    "EMPLOYERS_ADDRESS": "Employer's Address",
+    "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
+    "CONTINUE": "Continue",
+   
+    "ERROR": {
+      "POSTAL_CODE_TITLE": "Error !",
+      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+    }
   },
   "SELECT_NATIONALITY": {
+    "SELECT_NATIONALITY_LBL": "Nationality",
+    "QUESTION_ONE": "Are you a United States Permanent Resident / Tax Resident?",
+    "QUESTION_TWO": "Are you a Singaporean Permanent Resident?",
+    "NATIONALITY_LEB": "Nationality",
+    "SELECT_NATIONALITY_LAB2": "To continue, please tell us what is your nationality",
+    "YES_lABEL": "Yes",
+    "NO_LABEL": "No",
+    "CONTINUE": "Continue",
     "editModalData": {
       "modalTitle": "Unable To Proceed",
       "modalMessage": "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance",
@@ -46,6 +75,16 @@
       "modalMessage1": "Thank you for your interest in MoneyOwl! Unfortunately, we are currently unable to set up investment accounts for US Citizens, Permanent Residents and Tax Residents. ",
       "ButtonTitle1": "Return To Homepage"
     }
+  },
+  "FINANCIAL_DETAILS": {
+    "TITLE": "Financial Details",
+    "ANNUAL_HOUSEHOLD_INCOME": "Annual Household Income",
+    "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
+    "ANNUAL_INCOME": "Annual Income",
+    "PERS_OF_INCOME_SAVED": "% Of Income Saved",
+    "TOTAL_ASSETS": "Total Assets",
+    "TOTAL_LOANS": "Total Loans"
+    
   },
   "TAX_INFO": {
     "TITLE": "Tax Information",
@@ -70,6 +109,8 @@
     "TAP_TO_UPLOAD": "Tap to Upload",
     "PROOF_OF_MAILING": "Proof Of Mailing Address",
     "PROOF_OF_MAILING_SUBTEXT": "This document must match the information provided under \"Mailing Address\" earlier.",
+    "PROOF_OF_RESIDENT": "Proof Of Residential Address",
+    "PROOF_OF_RESIDENT_SUBTEXT": "This document must match the information provided under \"Residential Address\" earlier.",
     "CHOOSE_FILE": "Choose File",
     "UPLOADED": "Uploaded",
     "NO_FILE_SELECTED": "no file selected",
@@ -77,6 +118,10 @@
       "MAILING_ADDRESS_PROOF": {
         "TITLE": "Proof Of Mailing Address",
         "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+      },
+      "RES_ADDRESS_PROOF": {
+        "TITLE": "Proof Of Residential Address",
+        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
       },
       "UPLOAD_LATER": {
         "TITLE": "Upload Documents Later?",

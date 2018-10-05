@@ -45,12 +45,12 @@ export class PersonalDeclarationComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   selectSource(sourceObj) {
-this.source = sourceObj.source;
+this.source = sourceObj.name;
 this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
   }
   getSourceList() {
-    this.investmentAccountService.getSourceList().subscribe((data) => {
-        this.sourceOfIncomeList = data.objectList;
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+        this.sourceOfIncomeList = data.objectList.investmentSource;
         console.log(this.sourceOfIncomeList);
     });
   }
@@ -96,6 +96,7 @@ this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
       return false;
     } else {
       this.investmentAccountService.setPersonalDeclarationData(form.value);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
     }
   }
   markAllFieldsDirty(form) {

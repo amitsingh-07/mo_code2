@@ -1,52 +1,17 @@
 @import '../../../variables';
 
-.residential-address {
+.financial-details {
 
-  .postal-code-control {
-    display: flex;
+  .inline-error-inv {
+    color: $inline-error-border-color;
+    border: 1px solid $inline-error-border-color !important;
+    color: $inline-error-border-color;
 
-    div.control {
-      display: flex;
-      flex: 3;
-    }
-
-    div.button {
-      display: flex;
-      flex: 2;
+    input {
+      color: $inline-error-border-color !important;
     }
   }
 
-  .inline-error{
-    .btn{
-      &.btn-secondary{
-        background-color:#ff872f !important;
-      }  
-    }    
-  }
-
-
-  .dropdown-control {
-    .btn-dropdown {
-      color: #00a7a7;
-    }
-    border-radius: 6px;
-    position: relative;
-    //width: 43vw;
-    
-    position: relative;
-    background: #FFF;
-    cursor: pointer;
-    .dropdown-toggle {
-      padding: 0.90rem;
-      //padding-right: 0;
-      &:disabled {
-        cursor: not-allowed;
-        &:hover {
-          background-color: transparent !important;
-        }
-      }
-    }
-  }
 
   label {
     font-size: 18px;
@@ -54,7 +19,8 @@
   }
 
   .input-control {
-    text-align: left;
+    text-align: right;
+    color: #5e5e5e;
   }
 
   .step-indicator-container {
@@ -105,12 +71,12 @@
 
       &:focus {
         background-color: #ff730c !important;
-        color: #fff !important;
+        color:#fff !important;
       }
 
       &:active {
         background-color: #ff730c !important;
-        color: #fff !important;
+        color:#fff !important;
       }
 
     }
@@ -145,30 +111,37 @@
   }
 
 
-  .autofill-link {
-    border: 1px solid $secondary-action-color;
-    padding: 23px 34px;
-    background-color: #fff;
-    border-radius: 6px;
-    margin-bottom: 20px;
+  .autofill-link{
+    border:1px solid $secondary-action-color;
+    padding:23px 34px;
+    background-color:#fff;
+    border-radius:6px;
+    margin-bottom:20px;
     cursor: pointer;
     display: flex;
 
-    .autofill-text,
-    .autofill-logo {}
-
-    .autofill-logo {
-
-      width: 35%;
+    .autofill-text, .autofill-logo{
+        
+        
     }
 
-    .autofill-text {
-      width: 65%;
+    .autofill-logo{
+      
+      width:35%;
+  }
+
+    .autofill-text{
+      width:65%;
       font-family: Muli;
       font-size: 18px;
       font-weight: bold;
       color: #e57300;
     }
-
+    
+   
   }
+}
+.form-group-with-bg--content-label{
+    font-size: 18px;
+font-family: "Muli Semi Bold", sans-serif;
 }
