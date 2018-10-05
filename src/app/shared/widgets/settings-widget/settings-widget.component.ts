@@ -1,8 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
-import { MobileModalComponent } from './../../../guide-me/mobile-modal/mobile-modal.component';
-import { ToolTipModalComponent } from './../../modal/tooltip-modal/tooltip-modal.component';
 
 export interface IDropDownData {
   displayText: string;
@@ -40,16 +37,18 @@ export class SettingsWidgetComponent implements OnInit {
     });
   }
   ngOnInit() {
+    console.log('selectedfilterlist');
+    console.log(this.selectedFilterList);
     if (this.selectedFilterList && this.selectedFilterList.premiumFrequency) {
       this.filterArgs = this.selectedFilterList;
       if (!this.selectedFilterList['premiumFrequency']) {
-        this.filterArgs['premiumFrequency'] = new Set(['per month']);
+        this.filterArgs['premiumFrequency'] = new Set(['monthly']);
       }
     } else {
       for (const filter of this.filters) {
         this.filterArgs[filter.name] = new Set([]);
       }
-      this.filterArgs['premiumFrequency'] = new Set(['per month']);
+      this.filterArgs['premiumFrequency'] = new Set(['monthly']);
     }
 
     this.defaultSort = this.sort[0];
@@ -71,6 +70,7 @@ export class SettingsWidgetComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   applyFilter(name, value, hasAllBtn, p_index, c_index) {
 
     this.filters[p_index].filterTypes[c_index].checked = !this.filters[p_index].filterTypes[c_index].checked;
@@ -97,19 +97,12 @@ export class SettingsWidgetComponent implements OnInit {
       }
     } else if (name === 'premiumFrequency') {
       this.filterArgs[name].clear();
-      if (this.filterArgs[name].has(value)) {
-        this.filterArgs[name].delete(value);
-      } else {
-        this.filterArgs[name].add(value);
-      }
+      this.filterArgs[name].add(value);
 
-      if (this.filters[p_index].filterTypes[c_index].checked) {
-        const i = c_index === 1 ? 0 : 1;
-        this.filters[p_index].filterTypes[i].checked = !this.filters[p_index].filterTypes[i].checked;
+      if (c_index === 0) {
+        this.filters[p_index].filterTypes[1].checked = false;
       } else {
-        setTimeout(() => {
-          this.filters[p_index].filterTypes[c_index].checked = true;
-        }, 0);
+        this.filters[p_index].filterTypes[0].checked = false;
       }
     }
 

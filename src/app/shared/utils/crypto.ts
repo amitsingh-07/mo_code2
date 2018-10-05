@@ -4,7 +4,7 @@ import { sha512 } from 'js-sha512';
 @Injectable({
   providedIn: 'root'
 })
-export class CtyptoService {
+export class CryptoService {
   constructor() { }
 
   encrypt(value: any) {

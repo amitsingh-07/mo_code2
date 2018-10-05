@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpApiService } from './../sign-up.api.service';
@@ -29,13 +29,14 @@ export class VerifyMobileComponent implements OnInit {
   progressModal: boolean;
   newCodeRequested: boolean;
 
-  constructor(private formBuilder: FormBuilder,
-              public headerService: HeaderService,
-              private modal: NgbModal,
-              private signUpApiService: SignUpApiService,
-              private signUpService: SignUpService,
-              private router: Router,
-              private translate: TranslateService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public navbarService: NavbarService,
+    private modal: NgbModal,
+    private signUpApiService: SignUpApiService,
+    private signUpService: SignUpService,
+    private router: Router,
+    private translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
@@ -52,7 +53,7 @@ export class VerifyMobileComponent implements OnInit {
     this.showCodeSentText = false;
     this.mobileNumberVerified = false;
     this.mobileNumber = this.signUpService.getMobileNumber();
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.buildVerifyMobileForm();
   }
 
@@ -75,10 +76,11 @@ export class VerifyMobileComponent implements OnInit {
    */
   save(form: any) {
     if (form.valid) {
-      let otp = '';
+      const otpArr = [];
       for (const value of Object.keys(form.value)) {
-        otp += form.value[value];
+        otpArr.push(form.value[value]);
         if (value === 'otp6') {
+          const otp = otpArr.join('');
           this.verifyOTP(otp);
         }
       }
@@ -130,7 +132,7 @@ export class VerifyMobileComponent implements OnInit {
    * redirect to create account page.
    */
   editNumber() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true}]);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true }]);
   }
 
   /**
@@ -141,6 +143,9 @@ export class VerifyMobileComponent implements OnInit {
   onlyNumber(currentElement, nextElement) {
     const elementName = currentElement.getAttribute('formcontrolname');
     currentElement.value = currentElement.value.replace(RegexConstants.OnlyNumeric, '');
+    if (currentElement.value.length > 1) {
+      currentElement.value = currentElement.value.charAt(0);
+    }
     this.verifyMobileForm.controls[elementName].setValue(currentElement.value);
     if (currentElement.value && nextElement !== undefined && nextElement !== 'undefined') {
       nextElement.focus();
@@ -154,14 +159,14 @@ export class VerifyMobileComponent implements OnInit {
    * @param showErrorButton - show try again button or not.
    */
   openErrorModal(title, message, showErrorButton) {
-      this.progressModal = false;
-      const error = {
-        errorTitle : title,
-        errorMessage: message
-      };
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      ref.componentInstance.showErrorButton = showErrorButton;
+    this.progressModal = false;
+    const error = {
+      errorTitle: title,
+      errorMessage: message
+    };
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = error.errorTitle;
+    ref.componentInstance.errorMessage = error.errorMessage;
+    ref.componentInstance.showErrorButton = showErrorButton;
   }
 }

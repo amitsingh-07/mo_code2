@@ -34,6 +34,7 @@ body {
   h6 {
     font-family: $muli-regular;
     font-size: 18px;
+    font-weight: 400;
   }
   /*Nav Bar Styles*/
   .container-fluid {
@@ -146,6 +147,9 @@ body {
             min-height:0px;
             overflow:hidden;
             }
+          }
+          @include allmobiles {
+            box-shadow: none;
           }
         button{
           outline:none;
@@ -867,7 +871,7 @@ body {
 
 .span--content-inline--underline {
   @include allmobiles {
-    color: #ffffff;
+    color: $app-backgrnd-color;
   }
 
   color: #04a6a7;
@@ -897,6 +901,7 @@ body {
     top: 30px !important;
     z-index: 9;
     //opacity: 1 !important;
+    right: 15px !important;
   }
 }
 

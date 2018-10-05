@@ -1,8 +1,8 @@
 <div [ngClass]="{'modal--freeze': modalFreeze}">
   <div>
     <div class="btn-close-edit hidden-sm-md" [hidden]="!modalFreeze">
-      <span class="block"></span>
-      <span class="btn-close" (click)="closeEditMode()">close</span>
+      <!-- <span class="block"></span> -->
+      <span class="btn-close" (click)="closeEditMode()"></span>
     </div>
     <app-product-info (formSubmitCallback)="formSubmitCallback()"></app-product-info>
   </div>

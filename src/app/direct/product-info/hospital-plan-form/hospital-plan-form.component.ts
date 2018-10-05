@@ -31,7 +31,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.planType = this.translate.instant('DIRECT_HOSPITAL_PLAN.HOSPITAL_PLANS');
-      this.selectedPlan = this.planType[0];
+      this.selectedPlan = '';
     });
   }
 
@@ -41,8 +41,8 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     this.hospitalForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      fullOrPartialRider: [this.formValues.fullOrPartialRider, Validators.required],
-      selectedPlan: [this.formValues.selectedPlan]
+      selectedPlan: [this.formValues.selectedPlan, Validators.required],
+      fullOrPartialRider: [this.formValues.fullOrPartialRider, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '3') {
@@ -82,6 +82,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
+
     form.value.selectedPlan = this.selectedPlan;
     this.directService.setHospitalPlanForm(form.value);
     return true;

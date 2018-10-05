@@ -16,6 +16,8 @@ export interface IRecommendationRequest {
     longTermCareNeeds: ILongTermCareNeedsData;
     lifeProtectionNeeds: ILifeProtectionNeedsData;
     existingInsuranceList: IExistingCoverage[];
+    srsApprovedPlans: ISrsApprovedPlanData;
+    retirementIncomePlan: IRetirementIncomePlan;
     sessionId: string;
 }
 
@@ -90,7 +92,7 @@ export interface ILongTermCareNeedsData {
     monthlyPayout: number;
 }
 
-export interface ISrsApprovedPlans {
+export interface ISrsApprovedPlanData {
     id: number;
     singlePremium: number;
     payoutStartAge: number;
