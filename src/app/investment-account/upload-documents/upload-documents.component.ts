@@ -107,8 +107,8 @@ export class UploadDocumentsComponent implements OnInit {
 
   fileSelected(controlname, fileElem, thumbElem?) {
     const selectedFile: File = fileElem.target.files[0];
-    const fileSize: number = selectedFile.size;
-    if (fileSize <= 10485760) {
+    const fileSize: number = selectedFile.size  / 1024 / 1024; // in MB
+    if (fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size) {
       switch (controlname) {
         case 'NRIC_FRONT': {
           this.formData.append('nricFront', selectedFile);
@@ -134,6 +134,8 @@ export class UploadDocumentsComponent implements OnInit {
       if (thumbElem) {
         this.setThumbnail(thumbElem, selectedFile);
       }
+    } else {
+      console.log('file size exceeded');
     }
   }
 
