@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, share } from 'rxjs/operators';
 
+import { IProductCategory } from '../direct/product-info/product-category/product-category';
 import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
 
 export interface IConfig {
   useMyInfo: boolean;
   hospitalPlanData: HospitalPlan[];
+  productCategory: IProductCategory[];
 }
 
 @Injectable({
