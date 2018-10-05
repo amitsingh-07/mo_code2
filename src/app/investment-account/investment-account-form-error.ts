@@ -20,7 +20,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Postal Code should not contain alphabets or special characters.'
+                errorMessage: 'Postal Code should contain only 6 digit number.'
             }
         },
         mailPostalCode: {
@@ -28,26 +28,30 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid Postal Code in mailing address',
                 errorMessage: 'Please enter your Postal Code in mailing address.'
             },
+            pattern: {
+                errorTitle: 'Invalid Postal Code',
+                errorMessage: 'Postal Code should contain only 6 digit number.'
+            }
         },
         address1: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid Address 1',
-                errorMessage: 'Please enter address 1.'
+                errorTitle: 'Invalid Address Line 1',
+                errorMessage: 'Please enter Address Line 1.'
             },
             pattern: {
-                errorTitle: 'Invalid Address 1',
-                errorMessage: 'Address 1 should not contain special characters.'
+                errorTitle: 'Invalid Address Line 1',
+                errorMessage: 'Address Line 1 should not contain special characters.'
             }
         },
         mailAddress1: {
             required: {
-                errorTitle: 'Invalid Address 1 in mailing address.',
-                errorMessage: 'Please enter address 1 in mailing address.'
+                errorTitle: 'Invalid Address Line 1 in mailing address.',
+                errorMessage: 'Please enter Address Line 1 in mailing address.'
             },
             pattern: {
-                errorTitle: 'Invalid mail Address 1',
-                errorMessage: 'Address 1 should not contain special characters in mailing address.'
+                errorTitle: 'Invalid mail Address Line 1',
+                errorMessage: 'Address Line 1 should not contain special characters in mailing address.'
             }
         },
         unitNo: {
@@ -69,7 +73,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid city',
-                errorMessage: 'City should not countain numbers and special characters.'
+                errorMessage: 'City should not contain numbers and special characters.'
             }
         },
         mailCity: {
@@ -79,7 +83,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid city in mailing address',
-                errorMessage: 'City should not countain numbers and special characters in mailing address.'
+                errorMessage: 'City should not contain numbers and special characters in mailing address.'
             }
         },
         state: {
@@ -89,7 +93,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid state',
-                errorMessage: 'State should not countain numbers and special characters.'
+                errorMessage: 'State should not contain numbers and special characters.'
             }
         },
         mailState: {
@@ -99,7 +103,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid state in mailing address',
-                errorMessage: 'State should not countain numbers and special characters in mailing address.'
+                errorMessage: 'State should not contain numbers and special characters in mailing address.'
             }
         },
         zipCode: {
@@ -263,6 +267,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid postal code',
                 errorMessage: 'Please enter postal code.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Postal Code',
+                errorMessage: 'Postal Code should contain only 6 digit number.'
             }
         },
         empAddress1: {

@@ -1,3 +1,5 @@
+import { catchError } from 'rxjs/operators';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -124,22 +126,28 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe((response: any) => {
-      if (response) {
-        if (response.Status.code === 200) {
-          const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-          const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-          address1Control.setValue(address1);
-          address2Control.setValue(address2);
-        } else {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-          address1Control.setValue('');
-          address2Control.setValue('');
+    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
+      (response: any) => {
+        if (response) {
+          if (response.Status.code === 200) {
+            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+            const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+            address1Control.setValue(address1);
+            address2Control.setValue(address2);
+          } else {
+            const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+            address1Control.setValue('');
+            address2Control.setValue('');
+          }
         }
-      }
-    });
+      },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+      });
   }
 
   goToNext(form) {

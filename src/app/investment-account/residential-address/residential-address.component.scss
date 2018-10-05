@@ -16,6 +16,14 @@
     }
   }
 
+  .inline-error{
+    .btn{
+      &.btn-secondary{
+        background-color:#ff872f !important;
+      }  
+    }    
+  }
+
 
   .dropdown-control {
     .btn-dropdown {

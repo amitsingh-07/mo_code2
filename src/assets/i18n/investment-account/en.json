@@ -29,7 +29,7 @@
     "ZIPCODE": "Zip Code",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
-      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+      "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
     }
   },
   "EMPLOYMENT_DETAILS": {

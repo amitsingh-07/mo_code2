@@ -142,7 +142,7 @@ getInlineErrorStatus(control) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
           empCountry: [this.formValues.nationality.country, Validators.required],
-          empPostalCode: [this.formValues.empPostalCode, Validators.required],
+          empPostalCode: [this.formValues.empPostalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empAddress2: [this.formValues.empAddress2],
           empUnitNo: [this.formValues.empUnitNo, Validators.required]
@@ -158,28 +158,33 @@ getInlineErrorStatus(control) {
         }));
       }
     } else {
-      this.employementDetailsForm.removeControl('employeaddress');
-      
+      this.employementDetailsForm.removeControl('employeaddress'); 
     }
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe((response: any) => {
-      if (response) {
-        if (response.Status.code === 200) {
-          const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-          const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-          address1Control.setValue(address1);
-          address2Control.setValue(address2);
-        } else {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-          address1Control.setValue('');
-          address2Control.setValue('');
+    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
+      (response: any) => {
+        if (response) {
+          if (response.Status.code === 200) {
+            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+            const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+            address1Control.setValue(address1);
+            address2Control.setValue(address2);
+          } else {
+            const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+            address1Control.setValue('');
+            address2Control.setValue('');
+          }
         }
-      }
-    });
+      },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+      });
   }
 
   markAllFieldsDirty(form) {
