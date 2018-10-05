@@ -33,15 +33,35 @@
     }
   },
   "EMPLOYMENT_DETAILS": {
-    "TITLE": "Employment Details"
+    "TITLE": "Employment Details",
+    "EMPLOYEMEN_STATUS": "Employmen Status",
+    "COMPANY_NAME": "Company Name",
+    "INDUSTRY": "Industry",
+    "OCCUPATION": "Occupation",
+    "CONTACT_NUMBER": "Contact Number",
+    "COUNTRY": "Country",
+    "POSTAL_CODE": "Postal Code",
+    "ADDRESS_1": "Address Line 1",
+    "ADDRESS_2": "Address Line 2",
+    "UNIT_NO": "Unit No",
+    "CITY": "City",
+    "STATE": "State / Province / Region",
+    "ZIPCODE": "Zip Code",
+    "EMPLOYERS_ADDRESS": "Employer's Address",
+    "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
+    "CONTINUE": "Continue",
+   
+    "ERROR": {
+      "POSTAL_CODE_TITLE": "Error !",
+      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+    }
   },
   "SELECT_NATIONALITY": {
-    "SELECT_NATIONALITY_DEsc":"To continue, please tell us what is your nationality",
     "SELECT_NATIONALITY_LBL": "Nationality",
-    "SELECT_NATIONALITY_QUESTION_TWO": "Are you a Singaporean Permanent Resident?.",
-    "SELECT_NATIONALITY_QUESTION_ONE": "Are you a Singaporean Permanent Resident?.",
-    "COUNTRY_TEXT": "Country of Tax Residence",
-    "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
+    "QUESTION_ONE": "Are you a United States Permanent Resident / Tax Resident?",
+    "QUESTION_TWO": "Are you a Singaporean Permanent Resident?",
+    "NATIONALITY_LEB": "Nationality",
+    "SELECT_NATIONALITY_LAB2": "To continue, please tell us what is your nationality",
     "YES_lABEL": "Yes",
     "NO_LABEL": "No",
     "CONTINUE": "Continue",
@@ -58,7 +78,13 @@
   },
   "FINANCIAL_DETAILS": {
     "TITLE": "Financial Details",
-     "CONTINUE": "Continue"
+    "ANNUAL_HOUSEHOLD_INCOME": "Annual Household Income",
+    "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
+    "ANNUAL_INCOME": "Annual Income",
+    "PERS_OF_INCOME_SAVED": "% Of Income Saved",
+    "TOTAL_ASSETS": "Total Assets",
+    "TOTAL_LOANS": "Total Loans"
+    
   },
   "TAX_INFO": {
     "TITLE": "Tax Information",

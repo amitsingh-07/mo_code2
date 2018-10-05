@@ -27,7 +27,7 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="employement_details_status-lbl">Employment Status
+                  <label for="employement_details_status" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.EMPLOYEMEN_STATUS' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-7">
@@ -50,7 +50,7 @@
             <div *ngIf="showEmploymentControls">
               <div class="flex-row mb10">
                 <div class="flex-col-5">
-                  <label for="name" id="empliyement_status_Lbl">Company Name
+                  <label for="name" id="empliyement_status_Lbl">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-7">
@@ -62,7 +62,7 @@
               <div class="form-group">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <label for="employement_details_status" id="employement_details_status-lbl">Industry
+                    <label for="employement_details_status" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.INDUSTRY' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-7">
@@ -85,7 +85,7 @@
               <div class="form-group">
                 <div class="flex-row">
                   <div class="flex-col-5"> 
-                    <label for="employement_details_status" id="employement_details_status-lbl">occupation   
+                    <label for="employement_details_status" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.OCCUPATION' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-7">
@@ -106,7 +106,7 @@
 
               <div class="flex-row mb10">
                 <div class="flex-col-5">
-                  <label for="name" id="empliyement_status_Lbl">Contact Number
+                  <label for="name" id="empliyement_status_Lbl">{{ 'EMPLOYMENT_DETAILS.CONTACT_NUMBER' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-7">
@@ -122,8 +122,8 @@
                   <input id="residentialAddress_mailingsame_radio" name="isEmployeAddresSame" (change)="addOrRemoveMailingAddress()" type="checkbox" class="field checkbox"
                     formControlName="isEmployeAddresSame" value="true">
                   <label for="residentialAddress_mailingsame_radio" id="residentialAddress_mailingsame_lbl">
-                    <div class="input-label-black" id="residentialAddress_optionhead_lbl">Employement Address</div>
-                    <div class="input-label-normal" id="residentialAddress_optionhead_desc">Same as Residential Address</div>
+                    <div class="input-label-black" id="residentialAddress_optionhead_lbl">{{ 'EMPLOYMENT_DETAILS.EMPLOYERS_ADDRESS' | translate}}</div>
+                    <div class="input-label-normal" id="residentialAddress_optionhead_desc">{{ 'EMPLOYMENT_DETAILS.SAME_AS_MAILING_ADDRESS' | translate}}</div>
                   </label>
                 </div>
               </div>
@@ -136,7 +136,7 @@
               <div class="form-group">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="residentialAddress-mailcountry-drpdown" id="residentialAddress-mailcountry-lbl">{{ 'RESIDENTIAL_ADDRESS.COUNTRY' | translate}}</label>
+                      <label for="residentialAddress-mailcountry-drpdown" id="residentialAddress-mailcountry-lbl">{{ 'EMPLOYMENT_DETAILS.COUNTRY' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="dropdown-control">
@@ -158,7 +158,7 @@
               <div class="form-group" *ngIf="isUserNationalitySingapore">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="residentialAddress-mailpostalcode-drpdown" id="residentialAddress-mailpostalcode-lbl">{{ 'RESIDENTIAL_ADDRESS.POSTAL_CODE' | translate}}</label>
+                      <label for="residentialAddress-mailpostalcode-drpdown" id="residentialAddress-mailpostalcode-lbl">{{ 'EMPLOYMENT_DETAILS.POSTAL_CODE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
 
@@ -169,7 +169,7 @@
                             />
                           </div>
                           <div class="col-5">
-                            <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.mailingAddress.controls.mailPostalCode.value, employementDetailsForm.controls.mailingAddress.controls.mailAddress1, employementDetailsForm.controls.mailingAddress.controls.mailAddress2)"
+                            <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
                               class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                             </button>
                           </div>
@@ -183,7 +183,7 @@
               <div class="form-group">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <label for="residentialAddress-mailaddress1-txt" id="residentialAddress-mailaddress1-lbl">{{'RESIDENTIAL_ADDRESS.ADDRESS_1' | translate}}</label>
+                    <label for="residentialAddress-mailaddress1-txt" id="residentialAddress-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1' | translate}}</label>
                   </div>
                   <div class="flex-col-7">
                     <div class="form-control">
@@ -198,7 +198,7 @@
               <div class="form-group">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="residentialAddress-mailaddress2-txt" id="residentialAddress-mailaddress2-lbl">{{'RESIDENTIAL_ADDRESS.ADDRESS_2' | translate}}</label>
+                      <label for="residentialAddress-mailaddress2-txt" id="residentialAddress-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="form-control">
@@ -212,7 +212,7 @@
               <div class="form-group" *ngIf="isUserNationalitySingapore">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="residentialAddress-mailunitno-txt" id="residentialAddress-mailunitno-lbl">{{'RESIDENTIAL_ADDRESS.UNIT_NO' | translate}}</label>
+                      <label for="residentialAddress-mailunitno-txt" id="residentialAddress-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="form-control" >
@@ -226,7 +226,7 @@
               <div class="form-group" *ngIf="!isUserNationalitySingapore">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="residentialAddress-mailcity-txt" id="residentialAddress-mailcity-lbl">{{'RESIDENTIAL_ADDRESS.CITY' | translate}}</label>
+                      <label for="residentialAddress-mailcity-txt" id="residentialAddress-mailcity-lbl">{{'EMPLOYMENT_DETAILS.CITY' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="form-control">
@@ -240,7 +240,7 @@
               <div class="form-group" *ngIf="!isUserNationalitySingapore">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="residentialAddress-mailstate-txt" id="residentialAddress-mailstate-lbl">{{'RESIDENTIAL_ADDRESS.STATE' | translate}}</label>
+                      <label for="residentialAddress-mailstate-txt" id="residentialAddress-mailstate-lbl">{{'EMPLOYMENT_DETAILS.STATE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="form-control">
@@ -254,7 +254,7 @@
               <div class="form-group" *ngIf="!isUserNationalitySingapore">
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="residentialAddress-mailzipcode-txt" id="residentialAddress-mailzipcode-lbl">{{'RESIDENTIAL_ADDRESS.ZIPCODE' | translate}}</label>
+                      <label for="residentialAddress-mailzipcode-txt" id="residentialAddress-mailzipcode-lbl">{{'EMPLOYMENT_DETAILS.ZIPCODE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
                       <div class="form-control">

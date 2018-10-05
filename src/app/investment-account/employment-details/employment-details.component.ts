@@ -132,6 +132,7 @@ export class EmploymentDetailsComponent implements OnInit {
   buildFormUnemployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
       employmentStatus: [empStatus, Validators.required],
+      isEmployeAddresSame: [this.formValues.isEmployeAddresSame]
     });
   }
   addOrRemoveMailingAddress() {
@@ -156,6 +157,7 @@ export class EmploymentDetailsComponent implements OnInit {
       }
     } else {
       this.employementDetailsForm.removeControl('employeaddress');
+      
     }
   }
 
