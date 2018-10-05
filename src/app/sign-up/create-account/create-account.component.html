@@ -20,7 +20,7 @@
                 <button class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false">
                   <span>{{defaultCountryCode}}</span>
                 </button>
-                <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1">
+                <div ngbDropdownMenu class="dropdown" aria-labelledby="dropdownBasic1" style="height: auto;">
                   <button class="dropdown-item" *ngFor="let option of countryCodeOptions" (click)="setCountryCode(option.code)">{{option.code}}</button>
                 </div>
                 </div>

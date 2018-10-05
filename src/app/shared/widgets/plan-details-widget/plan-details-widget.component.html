@@ -3,8 +3,11 @@
     <div class="row mt10 mb10">
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
-        <h2>{{premiumAmount | currency}}
-          <span class="text-small">{{ premiumFrequency }}</span>
+        <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
+          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate }}</span>
+        </h2>
+        <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
+          <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
         </h2>
       </div>
       <div class="insurer-logo" style="width: 35%">

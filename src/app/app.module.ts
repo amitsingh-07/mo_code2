@@ -1,6 +1,6 @@
 import 'hammerjs';
 
-import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -121,7 +121,7 @@ export function tokenGetterFn() {
   ],
   providers: [
     NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
-    AppService,
+    AppService, TitleCasePipe,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },

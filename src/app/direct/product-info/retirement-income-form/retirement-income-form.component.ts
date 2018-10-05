@@ -99,19 +99,9 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   }
 
   showPayoutFeatureModal() {
-    if (this.payoutFeature  ===  'Guaranteed') {
-      this.directService.showToolTipModal(
-        this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
-        this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
-    }  else  if (this.payoutFeature  ===  'Variable') {
-      this.directService.showToolTipModal(
-        this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.TITLE'),
-        this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.MESSAGE'));
-    }  else  {
-      this.directService.showToolTipModal(
-        this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.TITLE'),
-        this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.MESSAGE'));
-    }
+    this.directService.showToolTipModal(
+      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
+      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
   }
 
   summarizeDetails() {
