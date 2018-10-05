@@ -68,8 +68,8 @@ export class ResidentialAddressComponent implements OnInit {
       country: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [this.formValues.address2],
-      city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       zipCode: [this.formValues.zipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       isMailingAddressSame: [this.formValues.isMailingAddressSame]
     });
@@ -90,8 +90,8 @@ export class ResidentialAddressComponent implements OnInit {
           mailCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           mailAddress2: [this.formValues.mailAddress2],
-          mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          mailState: [this.formValues.mailState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+          mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+          mailState: [this.formValues.mailState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
           mailZipCode: [this.formValues.mailZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
         }));
       }

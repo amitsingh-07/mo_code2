@@ -1,0 +1,17 @@
+{
+	"objectList": [{
+			"id": 940,
+			"occupation": "ACADEMIC TUTORING SERVICES (EG TUITION CENTRES",
+			"ssocId": "85494"
+		},
+		{
+			"id": 806,
+			"occupation": "ACCOUNTING AND AUDITING SERVICES (INCLUDING TAXATION ADVISORY SERVICES)",
+			"ssocId": "69201"
+		}
+	],
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	}
+}
