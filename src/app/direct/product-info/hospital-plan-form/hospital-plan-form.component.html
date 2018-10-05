@@ -28,7 +28,7 @@
         </div>
       <div #usrFrmDp class="flex-col-8 direct-form-grp">
         <div class="datepicker-control">
-          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !hospitalForm.get('dob').valid && !hospitalForm.get('dob').pristine}">
+          <div class="input-group date-picker mb0">
             <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
             name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             <div class="input-group-append">
@@ -69,9 +69,9 @@
       <div class="flex-row ">
           <div class="flex-col-4">
             <label for="name" id="getStrdLbl5">{{ 'DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.TITLE'  | translate}}</label>
-            <br/>
-            <label for="name" id="getStrdLbl5" class="subtitle">{{ 'DIRECT_HOSPITAL_PLAN.FULL_OR_PARTIAL_RIDER.SUBTITLE'  | translate}}</label>
-            <div class="tooltip-icon" (click)="showFullOrPartialRider()"></div>
+            <div class="tooltip-container">
+              <div class="tooltip-icon" (click)="showFullOrPartialRider()"></div>
+            </div>
             </div>
           <div class="flex-col-8 direct-form-grp">
               <div class="btn-group--toggle" ngbRadioGroup name="radiofullOrPartialRider" formControlName="fullOrPartialRider">

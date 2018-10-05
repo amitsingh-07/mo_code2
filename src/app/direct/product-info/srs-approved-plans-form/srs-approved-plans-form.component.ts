@@ -46,7 +46,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     this.srsApprovedPlansForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      singlePremium: [this.formValues.singlePremium],
+      singlePremium: [this.formValues.singlePremium, Validators.required],
       payoutStartAge: [this.formValues.payoutStartAge, Validators.required],
       payoutType: [this.formValues.payoutType, Validators.required]
     });
@@ -105,6 +105,9 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
 
   save() {
     const form = this.srsApprovedPlansForm;
+    if (form.controls.singlePremium.value < 1) {
+      form.controls['singlePremium'].setErrors({required: true});
+    }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
