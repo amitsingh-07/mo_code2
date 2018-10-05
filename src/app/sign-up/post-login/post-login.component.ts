@@ -46,12 +46,10 @@ export class PostLoginComponent implements OnInit {
     this._location.back();
   }
   noButClick() {
-     this.signUpService.clearData();
-     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
   }
 
   yesButClick() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }
 
 }

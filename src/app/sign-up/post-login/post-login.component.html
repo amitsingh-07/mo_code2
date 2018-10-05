@@ -4,29 +4,32 @@
     <div class="row">
       <div class="col-lg-7 col-md-6">
         <div class="signup-wrapper">
-          <h2 class="prelogin-wrapper__title order1 sm-order2 ml10 mb20" id="login_welcometxt_lbl">Are you an existing MoneyOwl user.? </h2>
+          <h2 class="prelogin-wrapper__title order1 sm-order2 ml10 mb20" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
           <!--
           <div class="signup-wrapper__description order2">
               <p>{{ 'LOGIN.DESCRIPTION' | translate}}</p>
             </div>
             -->
-          <img class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/post-login-icon.svg" />
+          <img id="pos_login_img" class="signup-wrapper__header-icon order3 sm-order1" src="assets/images/post-login-icon.svg" />
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
         <!-- <form id="loginForm" name="loginForm" [formGroup]="loginForm"> -->
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
-             
-               <button class="yes-login-but" id="yes_btn" (click)="yesButClick()">Yes,Login Now</button>
-             
+              <div class="col-12">
+              <div class="autofill-link">
+                <div class="autofill-text">{{ 'POSTLOGIN.PROCEED' | translate}} </div>
+                <div class="autofill-logo"><img id="post_login_singpass_img" class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" /></div>
+              </div>
+             </div>
             </div>
           </div>
 
           <div class="flex-row mb20">
             <div class="flex-col-12 stretch">
               
-                <button class="no-login-but" id="no_btn" (click)="noButClick()">No, Create Account</button>
+                <button class="no-login-but" id="without_singpass_btn" (click)="noButClick()">{{ 'POSTLOGIN.PROCEED_WITHOUT' | translate}}</button>
               
 
               
