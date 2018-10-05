@@ -186,7 +186,7 @@
                     <label for="residentialAddress-mailaddress1-txt" id="residentialAddress-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1' | translate}}</label>
                   </div>
                   <div class="flex-col-7">
-                    <div class="form-control">
+                    <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress1)}">
                       <input type="text" class="input-control grey" formControlName="empAddress1" id="residentialAddress-mailaddress1-txt" />
                     </div>
                   </div>
@@ -201,7 +201,7 @@
                       <label for="residentialAddress-mailaddress2-txt" id="residentialAddress-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="form-control">
+                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress2)}">
                         <input type="text" class="input-control grey" formControlName="empAddress2" id="residentialAddress-mailaddress2-txt" />
                       </div>
                     </div>
@@ -215,7 +215,7 @@
                       <label for="residentialAddress-mailunitno-txt" id="residentialAddress-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="form-control" >
+                      <div class="form-control"  [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empUnitNo)}">
                         <input type="text" class="input-control grey" formControlName="empUnitNo" id="residentialAddress-mailunitno-txt" />
                       </div>
                     </div>
@@ -229,7 +229,7 @@
                       <label for="residentialAddress-mailcity-txt" id="residentialAddress-mailcity-lbl">{{'EMPLOYMENT_DETAILS.CITY' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="form-control">
+                      <div class="form-control"  [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empCity)}">
                         <input type="text" class="input-control grey" formControlName="empCity" id="residentialAddress-mailcity-txt" />
                       </div>
                     </div>
@@ -243,7 +243,7 @@
                       <label for="residentialAddress-mailstate-txt" id="residentialAddress-mailstate-lbl">{{'EMPLOYMENT_DETAILS.STATE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="form-control">
+                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empState)}">
                         <input type="text" class="input-control grey" formControlName="empState" id="residentialAddress-mailstate-txt" />
                       </div>
                     </div>
@@ -257,7 +257,7 @@
                       <label for="residentialAddress-mailzipcode-txt" id="residentialAddress-mailzipcode-lbl">{{'EMPLOYMENT_DETAILS.ZIPCODE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
-                      <div class="form-control">
+                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empZipCode)}">
                         <input type="text" class="input-control grey" formControlName="empZipCode" id="residentialAddress-mailzipcode-txt" />
                       </div>
                     </div>

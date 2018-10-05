@@ -118,7 +118,9 @@ export class EmploymentDetailsComponent implements OnInit {
   setDropDownValue(key, value, nestedKey) {
     this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
 }
-
+getInlineErrorStatus(control) {
+  return (!control.pristine && !control.valid);
+}
   buildFormEmployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
       employmentStatus: [empStatus, Validators.required],

@@ -1,6 +1,9 @@
 @import '../../../variables';
 
 .employement-details {
+  .flex-row {
+  align-items: center;
+  }
   .dropdown-control .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;

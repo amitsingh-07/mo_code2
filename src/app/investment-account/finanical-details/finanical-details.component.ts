@@ -90,6 +90,9 @@ export class FinanicalDetailsComponent implements OnInit {
     this.selectNumber = HouseHoldMembers;
     this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(this.selectNumber);
   }
+  getInlineErrorStatus(control) {
+    return (!control.pristine && !control.valid);
+  }
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
