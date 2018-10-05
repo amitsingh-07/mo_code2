@@ -8,8 +8,9 @@ import { LoaderComponent } from '../../shared/components/loader/loader.component
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -31,6 +32,7 @@ export class UploadDocumentsComponent implements OnInit {
   showLoader;
   loaderTitle;
   loaderDesc;
+  formData: FormData = new FormData();
 
   constructor(
     public readonly translate: TranslateService,
@@ -38,6 +40,7 @@ export class UploadDocumentsComponent implements OnInit {
     private router: Router,
     public headerService: HeaderService,
     private modal: NgbModal,
+    public navbarService: NavbarService,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -49,11 +52,13 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   ngOnInit() {
-    this.isUserNationalitySingapore = false;
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
+    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
   }
@@ -104,41 +109,40 @@ export class UploadDocumentsComponent implements OnInit {
     const selectedFile: File = fileElem.target.files[0];
     const fileSize: number = selectedFile.size;
     if (fileSize <= 10485760) {
-      const formData: FormData = new FormData();
       switch (controlname) {
         case 'NRIC_FRONT': {
-          formData.append('nricFront', selectedFile);
+          this.formData.append('nricFront', selectedFile);
           break;
         }
         case 'NRIC_BACK': {
-          formData.append('nricBack', selectedFile);
+          this.formData.append('nricBack', selectedFile);
           break;
         }
         case 'MAILING_ADDRESS': {
-          formData.append('mailingAddressProof', selectedFile);
+          this.formData.append('mailingAddressProof', selectedFile);
           break;
         }
         case 'RESIDENTIAL_ADDRESS': {
-          formData.append('residentialAddressProof', selectedFile);
+          this.formData.append('residentialAddressProof', selectedFile);
           break;
         }
         case 'PASSPORT': {
-          formData.append('passport', selectedFile);
+          this.formData.append('passport', selectedFile);
           break;
         }
       }
-      this.uploadDocument(formData, selectedFile, thumbElem);
+      if (thumbElem) {
+        this.setThumbnail(thumbElem, selectedFile);
+      }
     }
   }
 
-  uploadDocument(formData, selectedFile, thumbElem?) {
+  uploadDocument() {
     this.showUploadLoader();
-    this.investmentAccountService.uploadDocument(formData).subscribe((data) => {
+    this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
       if (data) {
         this.hideUploadLoader();
-        if (thumbElem) {
-          this.setThumbnail(thumbElem, selectedFile);
-        }
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
       }
     });
   }
@@ -206,7 +210,7 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   proceed(form) {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+    this.uploadDocument();
   }
 
   showUploadLoader() {
