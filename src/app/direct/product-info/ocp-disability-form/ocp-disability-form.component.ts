@@ -59,7 +59,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     this.ocpDisabilityForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker],
       employmentType: [this.formValues.employmentType, Validators.required],
       monthlySalary: [this.formValues.monthlySalary],
       percentageCoverage: [this.formValues.percentageCoverage],

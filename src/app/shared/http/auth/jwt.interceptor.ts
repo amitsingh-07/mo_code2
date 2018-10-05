@@ -33,6 +33,7 @@ export class JwtInterceptor implements HttpInterceptor {
         return cachedResponse ? Observable.of(cachedResponse) : this.sendRequest(request, next, this.cache);
     }
 
+    // tslint:disable-next-line:cognitive-complexity
     sendRequest(
         request: HttpRequest<any>,
         next: HttpHandler,

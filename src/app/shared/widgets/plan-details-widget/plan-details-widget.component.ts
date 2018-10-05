@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import {
   AfterViewChecked,
   Component,
@@ -25,16 +25,18 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   @Input() type;
   @Input() bestValue;
   @Input() isDirect;
+  @Input() frequencyType;
+  @Input() isSelected;
 
   icon;
   insurerLogo;
   premiumAmount;
+  premiumAmountYearly;
   premiumFrequency = '';
   productName;
   promoDiscount;
   highlights = [];
   temp;
-  isSelected = false;
   canShowRanking = true;
   canShowRating = true;
   canShowDiscount = true;
@@ -49,7 +51,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   constructor(
     private currency: CurrencyPipe, private translate: TranslateService,
-    private elRef: ElementRef, private renderer: Renderer2) {
+    private elRef: ElementRef, private renderer: Renderer2, private titleCasePipe: TitleCasePipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
       this.perMonth = this.translate.instant('SUFFIX.PER_MONTH');
@@ -66,22 +68,19 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
-      if (this.data.premium.premiumFrequency === 'per month') {
-        this.premiumFrequency = this.perMonth;
-      } else if (this.data.premium.premiumFrequency === 'per year') {
-        this.premiumFrequency = this.perYear;
-      }
       if (this.data.promotion && this.data.promotion.promoDiscount) {
         this.promoDiscount = this.data.promotion.promoDiscount;
       }
       this.productName = this.data.productName;
-      this.coverageDuration = this.data.coverageDuration;
+      this.coverageDuration = this.data.premium.durationName;
       this.premiumDuration = this.data.premiumDuration;
+      this.premiumAmountYearly = this.data.premium.premiumAmountYearly;
+
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
-      this.highlights.push({ title: 'Coverage Duration:', description: this.data.coverageDuration });
-      this.highlights.push({ title: 'Premium Duration:', description: this.data.premiumDuration });
+      this.highlights.push({ title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) });
+      this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
       if (this.type === 'long term care') {
         this.canShowDiscount = false;
         this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
@@ -118,7 +117,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   }
 
   viewDetails() {
-    this.view.emit(this.temp);
+    this.isSelected = !this.isSelected;
+    this.view.emit({plan: this.temp, selected: this.isSelected});
   }
   brochureDownload() {
     this.Brochure(this.temp.brochureLink, 'brochure.pdf');

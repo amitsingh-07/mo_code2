@@ -14,7 +14,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
   categorySub: any;
   formValues: any;
   longTermCareForm: FormGroup;
-  monthlyPayoutList = Array(26).fill(500).map((x, i) => x += i * 100);
+  monthlyPayoutList = Array(21).fill(500).map((x, i) => x += i * 100);
   selectedMonthlyPayout = '';
 
   constructor(

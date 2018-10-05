@@ -10,6 +10,16 @@ app-plan-details-widget {
     border: solid 3px #ff872f !important;
   }
 
+  .plan-selected {
+    color: #fff;
+    background-color: #ff872f !important;
+    border-color: #ff872f !important;
+    box-shadow: none;
+    @include allmobiles {
+      border-radius: 0;
+    }
+  }
+  
   .brochure {
     background: #fff;
     color:#00a7a7;

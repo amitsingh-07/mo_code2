@@ -47,7 +47,7 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     this.retirementIncomeForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker],
       retirementIncome: [this.formValues.retirementIncome, Validators.required],
       payoutAge: [this.formValues.payoutAge, Validators.required],
       payoutDuration: [this.formValues.payoutDuration, Validators.required],
@@ -99,19 +99,9 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   }
 
   showPayoutFeatureModal() {
-    if (this.payoutFeature  ===  'Guaranteed') {
-      this.directService.showToolTipModal(
-        this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
-        this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
-    }  else  if (this.payoutFeature  ===  'Variable') {
-      this.directService.showToolTipModal(
-        this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.TITLE'),
-        this.translate.instant('RETIREMENT_INCOME.VARIABLE_TOOLTIP.MESSAGE'));
-    }  else  {
-      this.directService.showToolTipModal(
-        this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.TITLE'),
-        this.translate.instant('RETIREMENT_INCOME.INCREASING_TOOLTIP.MESSAGE'));
-    }
+    this.directService.showToolTipModal(
+      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.TITLE'),
+      this.translate.instant('RETIREMENT_INCOME.FIXED_TOOLTIP.MESSAGE'));
   }
 
   summarizeDetails() {
