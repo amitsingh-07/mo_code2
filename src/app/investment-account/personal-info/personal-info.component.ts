@@ -72,9 +72,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   buildFormForNricNumber(): FormGroup {
     return this.formBuilder.group({
-      fullName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      fullName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       nricNumber: [this.formValues.nricNumber, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       gender: ['male', Validators.required]
@@ -82,9 +82,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   buildFormForPassportDetails(): FormGroup {
     return this.formBuilder.group({
-      fullName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      fullName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       passportNumber: [this.formValues.passportNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       passportExpiry: [this.formValues.passportExpiry, Validators.required],
       dob: [this.formValues.dob, Validators.required],

@@ -1,7 +1,7 @@
 const PORTFOLIO_API_BASE_URL = 'invest/investment-microservice/';
 
 export let apiConstants = {
-    endpoint : {
+    endpoint: {
         authenticate: 'account/account-microservice/authenticate',
         login: 'login',
         getProfileList: 'account/account-microservice/api/getProfileTypeList',
@@ -37,7 +37,10 @@ export let apiConstants = {
         },
         investmentAccount: {
             nationalitylist: 'invest/investment-microservice/countrylist',
-            getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false'
-        }
+            getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
+            lndustrylist: 'invest/investment-microservice/industrylist',
+            occupationlist: 'invest/investment-microservice/occupationlist',
+            allDropdownlist: 'invest/investment-microservice/optionListCollection',
+}
     }
 };

@@ -27,7 +27,7 @@
         </div>
       <div #usrFrmDp class="flex-col-8 direct-form-grp">
         <div class="datepicker-control">
-          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !retirementIncomeForm.get('dob').valid && !retirementIncomeForm.get('dob').pristine}">
+          <div class="input-group date-picker mb0">
             <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
             name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             <div class="input-group-append">
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-    <div class="flex-row">
+    <div class="flex-row" style="display:none;">
       <div class="flex-col-3">
         <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE'  | translate}}</label>
         </div>
@@ -70,7 +70,7 @@
             <div class="dropdown-control">
                 <div ngbDropdown id="coverageAmtDropDown">
                   <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                    <span class="coverage_amt"><span *ngIf = 'selectedRetirementIncome != ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{selectedRetirementIncome =='' ?'Select' : selectedRetirementIncome}}<i class="normal" *ngIf = 'selectedRetirementIncome != ""'>{{ ' / mth' | translate}}</i></span> 
+                    <span class="coverage_amt"><span *ngIf = 'selectedRetirementIncome != ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{selectedRetirementIncome =='' ?'Select' : selectedRetirementIncome}}<i class="normal" *ngIf = 'selectedRetirementIncome != ""'>{{ 'SUFFIX.PER_MONTH' | translate}}</i></span> 
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <button class="dropdown-item" (click)="selectRetirementIncome('')">{{'COMMON.LBL_SELECT' | translate}}</button>

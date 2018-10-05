@@ -1,3 +1,4 @@
+import { ConfigService, IConfig } from './../../config/config.service';
 import { Location } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -26,17 +27,22 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   assetsFormValues: IMyAssets;
   assetsTotal: any;
   cpfValue: number;
+  useMyInfo: boolean;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
     private modal: NgbModal, private location: Location,
     private myInfoService: MyInfoService,
-    public guideMeApiService: GuideMeApiService,
+    public guideMeApiService: GuideMeApiService, private configService: ConfigService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
       this.setPageTitle(this.pageTitle);
+    });
+
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.useMyInfo = config.useMyInfo;
     });
   }
 

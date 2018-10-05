@@ -13,6 +13,8 @@ export class ProductDetailComponent implements OnInit {
   @Input() protectionType = '';
   @Input() bestValue = false;
   @Input() isDirect;
+  @Input() frequencyType;
+  @Input() isSelected;
 
   expandedList = [];
   current = 0;

@@ -59,9 +59,9 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     this.ocpDisabilityForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker],
       employmentType: [this.formValues.employmentType, Validators.required],
-      monthlySalary: [this.formValues.monthlySalary],
+      monthlySalary: [this.formValues.monthlySalary, Validators.required],
       percentageCoverage: [this.formValues.percentageCoverage],
       duration: [this.formValues.duration, Validators.required]
     });
@@ -128,6 +128,9 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
 
   save() {
     const form = this.ocpDisabilityForm;
+    if (form.controls.monthlySalary.value < 1) {
+      form.controls['monthlySalary'].setErrors({required: true});
+    }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -138,7 +141,6 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-
     form.value.employmentType = this.selectEmployeeType;
     form.value.duration = this.duration;
     form.value.percentageCoverage = this.coveragePercent;

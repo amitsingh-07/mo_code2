@@ -28,8 +28,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
 
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(10);
-  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99',
-    'Whole Life', 'Whole Life w/Multiplier'];
+  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99'];
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -56,7 +55,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.criticalIllnessForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker],
       coverageAmt: [this.formValues.coverageAmt, Validators.required],
       duration: [this.formValues.duration, Validators.required],
       earlyCI: [this.formValues.earlyCI, Validators.required]

@@ -53,9 +53,6 @@ export class CreateAccountComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    if (!this.selectedPlansService.getSelectedPlan()) {
-      this.router.navigate(['/']);
-    }
     this.navbarService.setNavbarDirectGuided(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
@@ -121,7 +118,7 @@ export class CreateAccountComponent implements OnInit {
    */
   getCountryCode() {
     this.signUpApiService.getCountryCodeList().subscribe((data) => {
-      this.countryCodeOptions = data;
+      this.countryCodeOptions = [data[0]];
       const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
       this.setCountryCode(countryCode);
     });

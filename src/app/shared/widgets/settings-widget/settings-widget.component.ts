@@ -37,16 +37,18 @@ export class SettingsWidgetComponent implements OnInit {
     });
   }
   ngOnInit() {
+    console.log('selectedfilterlist');
+    console.log(this.selectedFilterList);
     if (this.selectedFilterList && this.selectedFilterList.premiumFrequency) {
       this.filterArgs = this.selectedFilterList;
       if (!this.selectedFilterList['premiumFrequency']) {
-        this.filterArgs['premiumFrequency'] = new Set(['per month']);
+        this.filterArgs['premiumFrequency'] = new Set(['monthly']);
       }
     } else {
       for (const filter of this.filters) {
         this.filterArgs[filter.name] = new Set([]);
       }
-      this.filterArgs['premiumFrequency'] = new Set(['per month']);
+      this.filterArgs['premiumFrequency'] = new Set(['monthly']);
     }
 
     this.defaultSort = this.sort[0];

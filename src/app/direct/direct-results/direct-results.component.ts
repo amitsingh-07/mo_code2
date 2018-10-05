@@ -6,6 +6,7 @@ import { Subject, Subscription } from 'rxjs';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { IDropDownData } from '../../shared/widgets/settings-widget/settings-widget.component';
+import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
 import { IProductCategory } from '../product-info/product-category/product-category';
 import { MobileModalComponent } from './../../guide-me/mobile-modal/mobile-modal.component';
 import {
@@ -21,7 +22,6 @@ import { SettingsWidgetComponent } from './../../shared/widgets/settings-widget/
 import { DIRECT_ROUTE_PATHS } from './../direct-routes.constants';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
-import { PRODUCT_CATEGORY_INDEX } from '../direct.constants';
 
 const mobileThreshold = 567;
 
@@ -35,6 +35,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   @Input() isMobileView: boolean;
   @ViewChildren('planWidget') planWidgets: QueryList<PlanWidgetComponent>;
+
+  premiumFrequencyType;
 
   sortList: IDropDownData[] = [];
 
@@ -57,7 +59,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   toolTips;
   resultsEmptyMessage = '';
   enquiryId;
-  premiumFrequency: any = [{ value: 'per month', name: 'Monthly', checked: false }, { value: 'per year', name: 'Yearly', checked: false }];
+  premiumFrequency: any = [{ value: 'monthly', name: 'Monthly', checked: true }, { value: 'yearly', name: 'Yearly', checked: false }];
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
   payoutYears: any = { All: 'All' };
@@ -77,6 +79,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     private router: Router, private translate: TranslateService, public navbarService: NavbarService,
     public modal: NgbModal, private selectedPlansService: SelectedPlansService,
     private authService: AuthenticationService) {
+    this.premiumFrequencyType = 'monthly';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
@@ -122,6 +125,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   getRecommendations() {
+    this.premiumFrequencyType = 'monthly';
     this.selectedCategory = this.directService.getProductCategory();
     this.directApiService.getSearchResults(this.directService.getProductCategory())
       .subscribe(
@@ -384,7 +388,12 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   filterProducts(data: any) {
-    this.filterArgs = this.selectedFilterList = data.filters;
+    this.selectedFilterList = data.filters;
+    this.filterArgs = data.filters;
+    if (this.filterArgs.premiumFrequency && this.filterArgs.premiumFrequency.size > 0) {
+      this.premiumFrequencyType = Array.from(this.filterArgs.premiumFrequency)[0];
+      this.filterArgs.premiumFrequency.clear();
+    }
     this.sortProperty = data.sortProperty;
     this.selectedComparePlans = [];
     this.selectedPlans = [];

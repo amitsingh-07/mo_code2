@@ -27,7 +27,7 @@
         </div>
         <div #usrFrmDp class="flex-col-8 direct-form-grp">
            <div class="datepicker-control">
-              <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !ocpDisabilityForm.get('dob').valid && !ocpDisabilityForm.get('dob').pristine}">
+              <div class="input-group date-picker mb0">
                  <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"
                  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                  <div class="input-group-append">
@@ -39,7 +39,7 @@
            </div>
         </div>
      </div>
-     <div class="flex-row">
+     <div class="flex-row" style="display:none;">
         <div class="flex-col-3">
            <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE' | translate}}</label>
         </div>
@@ -96,7 +96,7 @@
      </div>
      <div class="flex-row">
         <div class="flex-col-8">
-                      <label for="name" id="getStrLbl6">{{ 'OCCUPATIONAL_DISABILITY.COVER' | translate}}</label>&nbsp;<span class="span--content-inline--underline">{{coveragePercent}}%</span><label>&nbsp;{{'OCCUPATIONAL_DISABILITY.OF'  | translate }}</label><p><label>{{'OCCUPATIONAL_DISABILITY.MONTHLY_SALARY' | translate}}</label></p></div>
+                      <label for="name" id="getStrLbl6">{{ 'OCCUPATIONAL_DISABILITY.COVER' | translate}}</label>&nbsp;<span class="span--content-inline--underline">{{coveragePercent}}%</span><label>&nbsp;{{'OCCUPATIONAL_DISABILITY.OF'  | translate }}</label><p><label>{{'OCCUPATIONAL_DISABILITY.MY_MONTHLY_SALARY' | translate}}</label></p></div>
      </div>
      <nouislider #ocpDisabilityFormSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]='coverageMax'
      [step]="1" [tooltips]="[ true ]"></nouislider>

@@ -1,16 +1,15 @@
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { LoaderComponent } from './components/loader/loader.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
-import { PopupModalComponent } from './modal/popup-modal/popup-modal.component';
+import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
@@ -45,7 +44,8 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
-    OrderByPipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
+    OrderByPipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
+    LoaderComponent, ConfirmationModalComponent,
     TermsAndConditionsComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,

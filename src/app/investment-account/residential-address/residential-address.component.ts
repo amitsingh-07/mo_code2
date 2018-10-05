@@ -1,3 +1,5 @@
+import { catchError } from 'rxjs/operators';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -55,7 +57,7 @@ export class ResidentialAddressComponent implements OnInit {
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
       country: [this.formValues.nationality.country, Validators.required],
-      postalCode: [this.formValues.postalCode, Validators.required],
+      postalCode: [this.formValues.postalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [this.formValues.address2],
       unitNo: [this.formValues.unitNo, Validators.required],
@@ -68,8 +70,8 @@ export class ResidentialAddressComponent implements OnInit {
       country: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [this.formValues.address2],
-      city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       zipCode: [this.formValues.zipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       isMailingAddressSame: [this.formValues.isMailingAddressSame]
     });
@@ -90,8 +92,8 @@ export class ResidentialAddressComponent implements OnInit {
           mailCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           mailAddress2: [this.formValues.mailAddress2],
-          mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          mailState: [this.formValues.mailState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+          mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+          mailState: [this.formValues.mailState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
           mailZipCode: [this.formValues.mailZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
         }));
       }
@@ -124,22 +126,28 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe((response: any) => {
-      if (response) {
-        if (response.Status.code === 200) {
-          const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-          const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-          address1Control.setValue(address1);
-          address2Control.setValue(address2);
-        } else {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-          address1Control.setValue('');
-          address2Control.setValue('');
+    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
+      (response: any) => {
+        if (response) {
+          if (response.Status.code === 200) {
+            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+            const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+            address1Control.setValue(address1);
+            address2Control.setValue(address2);
+          } else {
+            const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+            address1Control.setValue('');
+            address2Control.setValue('');
+          }
         }
-      }
-    });
+      },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+      });
   }
 
   goToNext(form) {
