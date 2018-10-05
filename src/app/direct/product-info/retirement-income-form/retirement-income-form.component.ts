@@ -47,7 +47,7 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     this.retirementIncomeForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker],
       retirementIncome: [this.formValues.retirementIncome, Validators.required],
       payoutAge: [this.formValues.payoutAge, Validators.required],
       payoutDuration: [this.formValues.payoutDuration, Validators.required],

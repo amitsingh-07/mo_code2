@@ -153,9 +153,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     if (this.isDirect) {
       ref.componentInstance.isDirect = true;
     }
-    ref.result.then((plan) => {
-      if (plan) {
-        this.isSelected = true;
+    ref.result.then((result) => {
+      if (result.plan) {
+        this.isSelected = result.selected;
         this.select.emit({ plan: this.temp, selected: this.isSelected });
       }
     }).catch((e) => {

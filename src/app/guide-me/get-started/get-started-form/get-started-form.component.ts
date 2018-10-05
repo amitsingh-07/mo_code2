@@ -47,7 +47,7 @@ export class GetStartedFormComponent implements OnInit {
     this.userInfoForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required]
+      smoker: [this.formValues.smoker]
     });
   }
 

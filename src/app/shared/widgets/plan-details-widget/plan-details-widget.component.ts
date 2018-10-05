@@ -117,7 +117,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   }
 
   viewDetails() {
-    this.view.emit(this.temp);
+    this.isSelected = !this.isSelected;
+    this.view.emit({plan: this.temp, selected: this.isSelected});
   }
   brochureDownload() {
     this.Brochure(this.temp.brochureLink, 'brochure.pdf');

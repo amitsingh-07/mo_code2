@@ -26,22 +26,23 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   coverage_amt = '';
   duration = '';
 
-  coverageAmtValuesTemp = Array(20).fill(100000).map((x, i) => x += i * 100000);
-  coverageAmtValues = Array(20);
-  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99',
-                    'Whole Life', 'Whole Life w/Multiplier'];
+  coverageAmtValuesTemp: number[] = Array(10).fill(100000).map((x, i) => x += i * 100000);
+  coverageAmtValues = Array(12);
+  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99'];
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe,
     private router: Router) {
-      const today: Date = new Date();
-      config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-      config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-      config.outsideDays = 'collapsed';
-      this.translate.use('en');
-    }
+    const today: Date = new Date();
+    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.outsideDays = 'collapsed';
+    this.translate.use('en');
+    this.coverageAmtValuesTemp.push(1500000);
+    this.coverageAmtValuesTemp.push(2000000);
+  }
 
   ngOnInit() {
     /* Building the form */
@@ -56,16 +57,16 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.lifeProtectionForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
+      smoker: [this.formValues.smoker],
       coverageAmt: [this.formValues.coverageAmt, Validators.required],
       duration: [this.formValues.duration, Validators.required],
       premiumWaiver: [this.formValues.premiumWaiver, Validators.required]
     });
 
-    if (this.formValues.duration !== undefined ) {
+    if (this.formValues.duration !== undefined) {
       this.selectDuration(this.formValues.duration);
     }
-    if (this.formValues.coverageAmt !== undefined ) {
+    if (this.formValues.coverageAmt !== undefined) {
       this.selectCoverageAmt(this.formValues.coverageAmt);
     }
 
@@ -97,7 +98,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.directService.showToolTipModal(
       this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
       this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
-      );
+    );
   }
 
   summarizeDetails() {
