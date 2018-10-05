@@ -13,6 +13,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { ngxZendeskWebwidgetModule } from 'ngx-zendesk-webwidget';
+import { ZendeskConfig } from './zendeskConfig';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appConstants } from './app.constants';
@@ -98,6 +101,7 @@ export function tokenGetterFn() {
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    ngxZendeskWebwidgetModule.forRoot(ZendeskConfig),
     AppRoutingModule,
     RouterModule,
     FormsModule,
@@ -117,7 +121,7 @@ export function tokenGetterFn() {
       config: {
         tokenGetter: tokenGetterFn
       }
-    })
+    }),
   ],
   providers: [
     NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,

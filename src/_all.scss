@@ -85,8 +85,7 @@ body {
       flex-basis: 100%;
       @include minMobilemaxPhablet{
         flex-direction:column;
-        min-height:65.5px;
-      }
+        }
       }
     .navbar-header{
       position: relative;
@@ -161,7 +160,7 @@ body {
       flex-direction:row;
       flex-basis:auto;
       justify-content:space-between;
-      max-width:380px;
+      max-width:200px;
       &.searchOpen{
         max-width:600px;
         }
@@ -170,16 +169,16 @@ body {
         width:100%;
         overflow:hidden;
         height:0px;
+        max-width:unset;
         &.show{
-          height:300px;
+          height:auto;
         }
       }
       .navbar-nav{
         transition:0.5s;
         &.primary{
           justify-content:space-between;
-          flex-basis:80%;
-          margin-right:20px;
+          flex-basis:100%;
           @include minMobilemaxPhablet{
             justify-content:flex-start;
             flex-basis:unset;
@@ -244,14 +243,19 @@ body {
           }
           @include minMobilemaxPhablet{
             display:flex;
+            flex-direction:column;
             width:100%;
             align-items:center;
             min-height:50px;
             border-bottom:1px solid #e1e1e1;
             &:hover{
-              background-color:$dark-aqua-color;
               a{
                 color:$white-color;
+                background-color:$teal-color;
+                &::after{
+                  background-image:url('./assets/images/nav-dropdown-icon--white.svg');
+                  top:27px;
+                }
               }
             }
           }
@@ -396,6 +400,12 @@ body {
           margin-left:5px;
           top: calc(50% + 2px);
           transform:translateY(-50%);
+          @include minMobilemaxPhablet{
+            right:15px;
+            &:hover{
+              background-image: url('./assets/images/nav-dropdown-icon--white.svg');
+            }
+            }
           }
         }
       .dropdown-menu{
@@ -407,9 +417,12 @@ body {
           right:0px;
           left:unset !important;
           }
-        @include allmobiles{
-          position: relative;
+        @include minMobilemaxPhablet{
+          padding:0px;
           &.show{
+            position: relative;
+            width:100%;
+            border:0px;
             top:0px !important;
             left:0px !important;
             }
@@ -877,7 +890,9 @@ body {
     }
     a{ 
       cursor: pointer;
+      color:$white-color;
       &:hover{
+        color:$white-color;
         text-decoration:underline;
       }
     }

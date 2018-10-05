@@ -37,8 +37,8 @@
          
         <div *ngIf="(navbarMode == 1 || navbarMode == 3)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
-                <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="id01.open();" (mouseleave)="id01.close();">
-                    <a class="nav-link dropdown-toggle" id="id01" href="#" ngbDropdownToggle>Products</a>
+                <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
+                    <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Products</a>
                     <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id01">
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">Insurance</button>
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="will">Will Writing</button>
@@ -46,7 +46,8 @@
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="comprehensive">Comprehensive</button>
                         </div>
                     </li>
-                <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="id02.open();" (mouseleave)="id02.close();">
+                <!--
+                <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
                     <a class="nav-link dropdown-toggle" id="id02" href="#" ngbDropdownToggle>Learn</a>
                     <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id02">
                         <button class="dropdown-item" [routerLink]="['/articles']">Recent Articles</button>
@@ -54,8 +55,9 @@
                         <button class="dropdown-item" [routerLink]="['/articles/entry/8']">Trending</button> 
                         </div>
                     </li>
+                -->
                 <!--
-                <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="id03.open();" (mouseleave)="id03.close()">
+                <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="openDropdown(id03);" (mouseleave)="closeDropdown.close(id03);">
                     <a class="nav-link dropdown-toggle" id="id03" href="#" ngbDropdownToggle >Help</a>
                     <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id03">
                         <button class="dropdown-item">Life Insurance Calculator</button>
@@ -66,8 +68,8 @@
                     </div>
                     </li>
                 -->
-                <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="id04.open();" (mouseleave)="id04.close();">
-                    <a class="nav-link dropdown-toggle" id="id04" [routerLink]="['/about-us']" ngbDropdownToggle>About Us</a>
+                <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
+                    <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
                     <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id04">
                         <button class="dropdown-item" [routerLink]="['/about-us']">About Us</button>
                         <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">Customer Reviews</button>
@@ -93,6 +95,7 @@
                     </li>
                 </ul>
             -->
+            <!--
             <ul class="navbar-nav secondary space-between">
                  <li class="nav-item link-login" routerLink="signup">
                     <a>
@@ -101,6 +104,7 @@
                         </a>
                     </li>
                 </ul> 
+            -->
             </div>
         </div>
     </nav>
