@@ -29,7 +29,7 @@
     <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
     <br class="hidden-lg" />
     {{ 'RECOMMENDATIONS.PREMIUM_FROM' | translate}}
-    <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ 'SUFFIX.PER_MONTH' | translate}}
+    <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ premiumFrequency }}
   </div>
 </div>
 <!-- <button class="comparePlans_btn">

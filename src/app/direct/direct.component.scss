@@ -35,8 +35,11 @@ app-direct {
 
   .btn-close-edit {
     display: block;
+    position: absolute;
+    width: 1024px;
+    z-index: 1050;
     position: relative;
-    z-index: 9999;
+    z-index: 1040;
     top: 0px;
     height: 84px;
     margin: 0 auto;
@@ -52,6 +55,7 @@ app-direct {
       height: 45px;
       cursor: pointer;
     }
+
     /*
     span.block {
       top: 0px;

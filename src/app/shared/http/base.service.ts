@@ -45,10 +45,16 @@ export class BaseService {
       );
   }
 
-  post(url, postBody: any) {
-    this.helperService.showLoader();
+  post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+    if (showLoader) {
+      this.helperService.showLoader();
+    }
+    let param = '';
+    if (showError) {
+      param = '?alert=' + showError;
+    }
     return this.httpClient
-      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}`, postBody)
+      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
       .finally(() => {
         this.helperService.hideLoader();
       });

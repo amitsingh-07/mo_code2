@@ -7,6 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import {
+  ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
@@ -65,9 +68,9 @@ export class UploadDocumentsComponent implements OnInit {
 
   buildFormForOtherCountry(): FormGroup {
     return this.formBuilder.group({
-      passportImage: [this.formValues.passportImage],
-      resAddressProof: [this.formValues.resAddressProof],
-      mailAdressProof: [this.formValues.mailAdressProof]
+      passportImage: [this.formValues.passportImage, Validators.required],
+      resAddressProof: [this.formValues.resAddressProof, Validators.required],
+      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
     });
   }
 
@@ -97,8 +100,51 @@ export class UploadDocumentsComponent implements OnInit {
     }
   }
 
-  setThumbnail(fileElem, thumbElem) {
-    const file: File = fileElem.target.files[0];
+  fileSelected(controlname, fileElem, thumbElem?) {
+    const selectedFile: File = fileElem.target.files[0];
+    const fileSize: number = selectedFile.size;
+    if (fileSize <= 10485760) {
+      const formData: FormData = new FormData();
+      switch (controlname) {
+        case 'NRIC_FRONT': {
+          formData.append('nricFront', selectedFile);
+          break;
+        }
+        case 'NRIC_BACK': {
+          formData.append('nricBack', selectedFile);
+          break;
+        }
+        case 'MAILING_ADDRESS': {
+          formData.append('mailingAddressProof', selectedFile);
+          break;
+        }
+        case 'RESIDENTIAL_ADDRESS': {
+          formData.append('residentialAddressProof', selectedFile);
+          break;
+        }
+        case 'PASSPORT': {
+          formData.append('passport', selectedFile);
+          break;
+        }
+      }
+      this.uploadDocument(formData, selectedFile, thumbElem);
+    }
+  }
+
+  uploadDocument(formData, selectedFile, thumbElem?) {
+    this.showUploadLoader();
+    this.investmentAccountService.uploadDocument(formData).subscribe((data) => {
+      if (data) {
+        this.hideUploadLoader();
+        if (thumbElem) {
+          this.setThumbnail(thumbElem, selectedFile);
+        }
+      }
+    });
+  }
+
+  setThumbnail(thumbElem, file) {
+    // Set Thumbnail
     const reader: FileReader = new FileReader();
     reader.onloadend = () => {
       thumbElem.src = reader.result;
@@ -121,32 +167,47 @@ export class UploadDocumentsComponent implements OnInit {
   clearFileSelection(control, event, thumbElem?) {
     event.stopPropagation();
     control.setValue('');
-    debugger;
     if (thumbElem) {
       thumbElem.src = window.location.origin + '/assets/images/' + this.defaultThumb;
     }
   }
 
   showProofOfMailingDetails() {
-    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MAILING_ADDRESS_PROOF.MODAL.TITLE');
-    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MAILING_ADDRESS_PROOF.MODAL.MESSAGE');
-    this.showModal(errorTitle, errorDesc);
-  }
-
-  showModal(errorTitle, errorDesc) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.TITLE');
+    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.MESSAGE');
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorDescription = errorDesc;
   }
 
   goToNext(form) {
-    this.showLoader = true;
-    this.loaderTitle = 'Uploading';
-    this.loaderDesc = 'Please be patient, upload may take a few minutes.';
-    setTimeout(() => {
-      this.showLoader = false;
-    }, 5000);
+    if (!form.valid) {
+      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE');
+      const errorMessage = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE');
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = errorTitle;
+      ref.componentInstance.errorMessageHTML = errorMessage;
+      ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
+      ref.componentInstance.primaryAction.subscribe(($e) => {
+        this.proceed(form);
+      });
+    } else {
+      this.proceed(form);
+    }
+  }
 
+  proceed(form) {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+  }
+
+  showUploadLoader() {
+    this.showLoader = true;
+    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
+    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
+  }
+
+  hideUploadLoader() {
+    this.showLoader = false;
   }
 
 }

@@ -23,8 +23,8 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   lifeProtectionForm: FormGroup;
   formValues: any;
-  coverage_amt = '100,000';
-  duration = 'Till Age 65';
+  coverage_amt = '';
+  duration = '';
 
   coverageAmtValuesTemp = Array(20).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(20);
@@ -52,20 +52,23 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.formValues.gender = this.formValues.gender;
     this.formValues.smoker = this.formValues.smoker;
     this.formValues.premiumWaiver = this.formValues.premiumWaiver;
-    if (this.formValues.duration !== undefined ) {
-      this.selectDuration(this.formValues.dependent);
-    }
-    if (this.formValues.coverageAmt !== undefined ) {
-      this.selectCoverageAmt(this.formValues.coverageAmt);
-    }
+
     this.lifeProtectionForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       smoker: [this.formValues.smoker, Validators.required],
-      coverageAmt: [this.formValues.coverageAmt],
-      duration: [this.formValues.duration],
-      premiumWaiver: [this.formValues.premiumWaiver]
+      coverageAmt: [this.formValues.coverageAmt, Validators.required],
+      duration: [this.formValues.duration, Validators.required],
+      premiumWaiver: [this.formValues.premiumWaiver, Validators.required]
     });
+
+    if (this.formValues.duration !== undefined ) {
+      this.selectDuration(this.formValues.duration);
+    }
+    if (this.formValues.coverageAmt !== undefined ) {
+      this.selectCoverageAmt(this.formValues.coverageAmt);
+    }
+
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '0') {
         if (this.save()) {
@@ -82,10 +85,12 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
 
   selectCoverageAmt(in_coverage_amt) {
     this.coverage_amt = in_coverage_amt;
+    this.lifeProtectionForm.controls.coverageAmt.setValue(this.coverage_amt);
   }
 
   selectDuration(in_duration) {
     this.duration = in_duration;
+    this.lifeProtectionForm.controls.duration.setValue(this.duration);
   }
 
   showPremiumWaiverModal() {
@@ -119,9 +124,10 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     }
     form.value.coverageAmt = this.coverage_amt;
     form.value.duration = this.duration;
-    this.directService.setLifeProtectionForm(form.value);
+    const values = form.value;
+    values.premiumWaiver = values.premiumWaiver === 'yes' ? true : false;
+    this.directService.setLifeProtectionForm(values);
     return true;
   }
 
 }
-
