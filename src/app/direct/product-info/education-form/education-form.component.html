@@ -1,5 +1,5 @@
 <form name="educationForm" id="educationForm" [formGroup]="educationForm" class="flex-row" style="margin-bottom: 0px;">
-  <div class="form-group direct-form">
+  <div class="form-group direct-form margin-auto">
     <div class="educationForm-title">{{ 'EDUCATION.ABOUT_CHILD.TITLE' | translate}}</div>
     <div class="frm-data">
       <div class="flex-row pl20 pr20">
@@ -53,9 +53,10 @@
           <div class="dropdown-control">
             <div ngbDropdown id="coverageAmtDropDown">
               <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                <span class="coverage_amt">{{contribution | currency:'USD':'symbol-narrow':'1.0-0'}}</span>
+                <span class="coverage_amt"><span *ngIf = 'contribution != ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{contribution == ''? 'Select': contribution}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" (click)="selectMonthlyContribution('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                 <button type="button" class="dropdown-item" *ngFor="let contribution of monthlyContribution" (click)="selectMonthlyContribution(contribution)">
                   {{contribution | currency:'USD':'symbol-narrow':'1.0-0'}}
                 </button>
@@ -73,9 +74,10 @@
           <div class="dropdown-control">
             <div ngbDropdown id="coverageAmtDropDown">
               <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                <span class="coverage_amt">{{selectedunivercityEntryAge}}</span>
+                <span class="coverage_amt">{{selectedunivercityEntryAge == '' ? 'Select' : selectedunivercityEntryAge}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item" (click)="selectEntryAge('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                 <button type="button" class="dropdown-item" *ngFor="let EntryAge of univercityEntryAge" (click)="selectEntryAge(EntryAge)">
                   {{EntryAge}}
                 </button>

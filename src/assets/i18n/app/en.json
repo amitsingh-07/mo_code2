@@ -12,7 +12,8 @@
     "LBL_YES": "Yes",
     "LBL_NO": "No",
     "LBL_CONTINUE": "Continue",
-    "SUBLBL_MAX4":" (Max 4)"
+    "SUBLBL_MAX4":" (Max 4)",
+    "LBL_SELECT": "Select"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",

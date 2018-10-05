@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-    <div class="flex-row">
+    <div class="flex-row" style="display:none;">
       <div class="flex-col-3">
         <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE'  | translate}}</label>
         </div>
@@ -70,10 +70,10 @@
             <div class="dropdown-control">
                 <div ngbDropdown id="coverageAmtDropDown">
                   <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                    <span class="coverage_amt">{{selectedRetirementIncome | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                    <i class="normal">{{ ' / mth' | translate}}</i>
+                    <span class="coverage_amt"><span *ngIf = 'selectedRetirementIncome != ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{selectedRetirementIncome =='' ?'Select' : selectedRetirementIncome}}<i class="normal" *ngIf = 'selectedRetirementIncome != ""'>{{ ' / mth' | translate}}</i></span> 
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button class="dropdown-item" (click)="selectRetirementIncome('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                     <button type="button" class="dropdown-item" *ngFor="let selectedRetirementIncome of retirementIncomeList" (click)="selectRetirementIncome(selectedRetirementIncome)">
                     {{selectedRetirementIncome | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </button>
@@ -90,9 +90,10 @@
               <div class="dropdown-control">
                   <div ngbDropdown id="coverageAmtDropDown">
                     <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
-                      <span class="coverage_amt">{{selectedPayoutAge}}</span>
+                      <span class="coverage_amt">{{selectedPayoutAge=='' ?'Select' : selectedPayoutAge}}</span>
                     </button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button class="dropdown-item" (click)="selectPayoutAge('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                       <button type="button" class="dropdown-item" *ngFor="let selectedPayoutAge of payoutAgeList" (click)="selectPayoutAge(selectedPayoutAge)">
                       {{selectedPayoutAge}}
                       </button>
@@ -109,9 +110,10 @@
         <div class="dropdown-control">
             <div ngbDropdown id="durationDropDown">
               <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
-                <span class="duration">{{payoutDuration}}</span>
+                <span class="duration">{{ payoutDuration=='' ?'Select' : payoutDuration}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                <button class="dropdown-item" (click)="selectPayoutDuration('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                 <button type="button" class="dropdown-item" *ngFor="let payoutDuration of payoutDurationList" (click)="selectPayoutDuration(payoutDuration)">
                   {{payoutDuration}}
                 </button>
@@ -129,9 +131,10 @@
             <div class="dropdown-control">
                 <div ngbDropdown id="durationDropDown">
                   <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
-                    <span class="duration">{{payoutFeature}}</span>
+                    <span class="duration">{{payoutFeature == ''? 'Select' : payoutFeature}}</span>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                    <button class="dropdown-item" (click)="selectPayoutFeature('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                     <button type="button" class="dropdown-item" *ngFor="let payoutFeature of payoutFeatureList" (click)="selectPayoutFeature(payoutFeature)">
                       {{payoutFeature}}
                     </button>

@@ -23,13 +23,12 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   criticalIllnessForm: FormGroup;
   formValues: any;
-  coverage_amt = '100,000';
-  duration = 'Till Age 65';
+  coverage_amt = '';
+  duration = '';
 
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(10);
-  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99',
-    'Whole Life', 'Whole Life w/Multiplier'];
+  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99'];
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -52,20 +51,22 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.formValues.gender = this.formValues.gender;
     this.formValues.smoker = this.formValues.smoker;
     this.formValues.earlyCI = this.formValues.earlyCI;
+
+    this.criticalIllnessForm = this.formBuilder.group({
+      gender: [this.formValues.gender, Validators.required],
+      dob: [this.formValues.dob, Validators.required],
+      smoker: [this.formValues.smoker],
+      coverageAmt: [this.formValues.coverageAmt, Validators.required],
+      duration: [this.formValues.duration, Validators.required],
+      earlyCI: [this.formValues.earlyCI, Validators.required]
+    });
+
     if (this.formValues.duration !== undefined) {
       this.selectDuration(this.formValues.dependent);
     }
     if (this.formValues.coverageAmt !== undefined) {
       this.selectCoverageAmt(this.formValues.coverageAmt);
     }
-    this.criticalIllnessForm = this.formBuilder.group({
-      gender: [this.formValues.gender, Validators.required],
-      dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
-      coverageAmt: [this.formValues.coverageAmt],
-      duration: [this.formValues.duration],
-      earlyCI: [this.formValues.earlyCI]
-    });
 
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '1') {
@@ -85,10 +86,12 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
 
   selectCoverageAmt(in_coverage_amt) {
     this.coverage_amt = in_coverage_amt;
+    this.criticalIllnessForm.controls.coverageAmt.setValue(this.coverage_amt);
   }
 
   selectDuration(in_duration) {
     this.duration = in_duration;
+    this.criticalIllnessForm.controls.duration.setValue(this.duration);
   }
 
   summarizeDetails() {

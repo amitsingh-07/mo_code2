@@ -2,15 +2,15 @@ import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderService } from '../../shared/header/header.service';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
@@ -31,16 +31,17 @@ export class CreateAccountComponent implements OnInit {
   countryCodeOptions;
   editNumber;
 
-  constructor(private formBuilder: FormBuilder,
-              private modal: NgbModal,
-              public headerService: HeaderService,
-              private signUpApiService: SignUpApiService,
-              private signUpService: SignUpService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private translate: TranslateService,
-              private _location: Location,
-              private selectedPlansService: SelectedPlansService
+  constructor(
+    private formBuilder: FormBuilder,
+    private modal: NgbModal,
+    public navbarService: NavbarService,
+    private signUpApiService: SignUpApiService,
+    private signUpService: SignUpService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private translate: TranslateService,
+    private _location: Location,
+    private selectedPlansService: SelectedPlansService
   ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -52,10 +53,7 @@ export class CreateAccountComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    if (!this.selectedPlansService.getSelectedPlan()) {
-      this.router.navigate(['/']);
-    }
-    this.headerService.setHeaderVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
   }
@@ -120,7 +118,7 @@ export class CreateAccountComponent implements OnInit {
    */
   getCountryCode() {
     this.signUpApiService.getCountryCodeList().subscribe((data) => {
-      this.countryCodeOptions = data;
+      this.countryCodeOptions = [data[0]];
       const countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.countryCodeOptions[0].code;
       this.setCountryCode(countryCode);
     });

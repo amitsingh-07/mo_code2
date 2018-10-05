@@ -22,10 +22,5 @@
         "id":4,
         "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward",
         "hospitalClass": "Government Hospital Ward B2"
-    },
-    {
-        "id":5,
-        "hospitalClassDescription": "Option for maternity, Out- patient treatment",
-        "hospitalClass": "Global Healthcare Coverage"
     }]
   }

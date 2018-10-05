@@ -33,6 +33,7 @@ export class JwtInterceptor implements HttpInterceptor {
         return cachedResponse ? Observable.of(cachedResponse) : this.sendRequest(request, next, this.cache);
     }
 
+    // tslint:disable-next-line:cognitive-complexity
     sendRequest(
         request: HttpRequest<any>,
         next: HttpHandler,
@@ -49,7 +50,11 @@ export class JwtInterceptor implements HttpInterceptor {
                 // do stuff with response if you want
                 const data = event.body;
                 if (data.responseMessage && data.responseMessage.responseCode < 6000) {
-                    this.errorHandler.handleCustomError(data);
+                    let showError = true;
+                    if (this.parseQuery['alert'] && this.parseQuery['alert'] === 'false') {
+                        showError = false;
+                    }
+                    this.errorHandler.handleCustomError(data, showError);
                 } else {
                     this.saveCache(request, event);
                     return data;
@@ -60,7 +65,6 @@ export class JwtInterceptor implements HttpInterceptor {
                 if (err.status === 401 || err.status === 403) {
                     this.auth.logout();
                     this.errorHandler.handleAuthError(err);
-                    this.router.navigate([appConstants.loginPageUrl]);
                 } else {
                     this.errorHandler.handleError(err);
                 }
@@ -73,5 +77,15 @@ export class JwtInterceptor implements HttpInterceptor {
         if (!exceptionUrlList.has(apiPath)) {
             this.cache.put(request, event);
         }
+    }
+
+    parseQuery(queryString) {
+        const hashes = queryString.slice(queryString.indexOf('?') + 1).split('&');
+        return hashes.reduce((params, hash) => {
+            const split = hash.indexOf('=');
+            const key = hash.slice(0, split);
+            const val = hash.slice(split + 1);
+            return Object.assign(params, { [key]: decodeURIComponent(val) });
+        }, {});
     }
 }

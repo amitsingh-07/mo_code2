@@ -13,7 +13,7 @@
     <div class="dependant-profile pl0" >
       <div class="dependant-profile-box" [ngClass]="{'active': selectedOption==profile}" *ngFor="let profile of profileType" (click)="showMessage(profile)">
           <div class="dependant-profile-{{profile}}-image" ></div>
-          {{profile}}
+          {{profile | titlecase}}
         </div>
     </div>
 

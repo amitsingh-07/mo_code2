@@ -69,31 +69,13 @@ export class ApiService {
       );
   }
 
-  getMyInfoData(code) {
+  getMyInfoData(data) {
     const url = '../assets/mock-data/myInfoValues.json';
-    return this.http.post(apiConstants.endpoint.getMyInfoValues, code)
+    return this.http.post(apiConstants.endpoint.getMyInfoValues, data.code, true)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
-          // this.guideMeService.closeFetchPopup();
-          // const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          // ref.componentInstance.errorTitle = 'Oops, Error!';
-          // ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
-          // ref.componentInstance.isError = true;
-          // ref.result.then(() => {
-          //   this.myInfoService.goToMyInfo();
-          // }).catch((e) => {
-          // });
           if (error.error instanceof ErrorEvent) {
-          this.guideMeService.closeFetchPopup();
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = 'Oops, Error!';
-          ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
-          ref.componentInstance.isError = true;
-          ref.result.then(() => {
-            this.myInfoService.goToMyInfo();
-          }).catch((e) => {
-          });
             // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error.message);
           } else {
@@ -102,7 +84,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            return this.httpClient.get<IServerResponse>(url);
+            //return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
