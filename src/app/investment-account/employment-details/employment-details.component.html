@@ -38,8 +38,8 @@
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let empStatus of employementStatusList; let i = index;" (click)="setEmployementStatus('employmentStatus', empStatus)"
-                          id="residentialAddress-country-option-{{i}}">{{empStatus}}</button>
+                        <button class="dropdown-item" *ngFor="let empStatus of employementStatusList; let i = index;" (click)="setEmployementStatus('employmentStatus', empStatus.name)"
+                          id="residentialAddress-country-option-{{i}}">{{empStatus.name}}</button>
                       </div>
                     </div>
                   </div>

@@ -18,7 +18,7 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class EmploymentDetailsComponent implements OnInit {
   pageTitle: string;
-  employementStatusList: any = ['Employed', 'Self Employed', 'Unemployed'];
+  employementStatusList: any ;
   employementDetailsForm: FormGroup;
   formValues: any;
   countries;
@@ -58,18 +58,18 @@ export class EmploymentDetailsComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.getOccupationList();
     this.getIndustryList();
+    this.getEmployeList();
     this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
-
-    const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0];
+    const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : 'Employed';
     if (employStatus === 'Unemployed') {
-      this.employementDetailsForm = this.buildFormUnemployement(employStatus);
-      this.showEmploymentControls = false;
-    } else {
-      this.employementDetailsForm = this.buildFormEmployement(employStatus);
-      this.showEmploymentControls = true;
-    }
+          this.employementDetailsForm = this.buildFormUnemployement(employStatus);
+          this.showEmploymentControls = false;
+        } else {
+          this.employementDetailsForm = this.buildFormEmployement(employStatus);
+          this.showEmploymentControls = true;
+        }
     this.addOrRemoveMailingAddress();
   }
 
@@ -91,9 +91,24 @@ export class EmploymentDetailsComponent implements OnInit {
     });
 
   }
+  getEmployeList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+        this.employementStatusList = data.objectList.employmentStatus;
+        console.log(this.employementStatusList);
+        const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0].name;
+        if (employStatus === 'Unemployed') {
+          this.employementDetailsForm = this.buildFormUnemployement(employStatus);
+          this.showEmploymentControls = false;
+        } else {
+          this.employementDetailsForm = this.buildFormEmployement(employStatus);
+          this.showEmploymentControls = true;
+        }
+        this.addOrRemoveMailingAddress();
+    });
+  }
   setEmployementStatus(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
-    const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0];
+    const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0].name;
     if (value === 'Unemployed') {
       this.employementDetailsForm = this.buildFormUnemployement(value);
       this.showEmploymentControls = false;
@@ -159,7 +174,6 @@ getInlineErrorStatus(control) {
       }
     } else {
       this.employementDetailsForm.removeControl('employeaddress');
-      
     }
   }
 

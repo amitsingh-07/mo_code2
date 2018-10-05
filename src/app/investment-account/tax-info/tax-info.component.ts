@@ -71,9 +71,9 @@ export class TaxInfoComponent implements OnInit {
     });
   }
   getReasonList() {
-    this.investmentAccountService.getNoTinReasonList().subscribe((data) => {
-        this.noTinReasonlist = data.objectList;
-        console.log(this.noTinReasonlist);
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+        this.noTinReasonlist = data.objectList.noTinReason;
+        console.log('Got Something' + this.noTinReasonlist);
     });
   }
 
@@ -84,7 +84,7 @@ selectCountry(nationalityObj) {
   this.taxInfoForm.controls['taxCountry'].setValue(this.country);
 }
 selectReason(reasonObj) {
-  this.reason = reasonObj.reason;
+  this.reason = reasonObj.name;
   this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue( this.reason);
 }
 goToNext(form) {
@@ -98,7 +98,7 @@ goToNext(form) {
     return false;
   } else {
     this.investmentAccountService.setTaxInfoFormData(form.value);
-   // this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_DECLARATION]);
   }
 }
 markAllFieldsDirty(form) {

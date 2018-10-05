@@ -32,18 +32,7 @@ export class FinanicalDetailsComponent implements OnInit {
   formValues;
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
-  annualHouseHoldIncomeRanges: any =
-    [
-      '$2,000',
-      '$2,001 to $4,000',
-      '$4,001 to $6,000',
-      '$6,001 to $8,000',
-      '$8,001 to $10,000',
-      '$10,001 to $12,000',
-      '$12,001 to $14,000',
-      '$14,000 to $16,000',
-      '$16,001 to $18,000',
-      'Above $18,001'];
+  annualHouseHoldIncomeRanges: any ;
   numberOfHouseHoldMembersList = Array(11).fill(0).map((x, i) => i);
 
   constructor(
@@ -65,6 +54,7 @@ export class FinanicalDetailsComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+    this.getIncomeRangeList();
     this.FinancialFormData = this.portfolioService.getMyFinancials();
     this.formValues = this.investmentAccountService.getFinancialFormData();
     this.financialDetails = this.formBuilder.group({
@@ -81,8 +71,14 @@ export class FinanicalDetailsComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+  getIncomeRangeList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+        this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
+        console.log(this.annualHouseHoldIncomeRanges);
+    });
+  }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
-    this.selectRangeValue = annualHouseHoldIncome;
+    this.selectRangeValue = annualHouseHoldIncome.name;
     this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(this.selectRangeValue);
 
   }

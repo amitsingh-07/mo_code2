@@ -39,7 +39,7 @@
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let annualHouseHoldIncome of annualHouseHoldIncomeRanges; let i = index;" (click)="setAnnualHouseHoldIncomeRange(annualHouseHoldIncome)"
-                          id="residentialAddress-country-option-{{i}}">{{annualHouseHoldIncome}}</button>
+                          id="residentialAddress-country-option-{{i}}">{{annualHouseHoldIncome.name}}</button>
                       </div>
                     </div>
                   </div>
