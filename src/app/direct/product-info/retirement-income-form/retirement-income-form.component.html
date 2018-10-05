@@ -27,7 +27,7 @@
         </div>
       <div #usrFrmDp class="flex-col-8 direct-form-grp">
         <div class="datepicker-control">
-          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !retirementIncomeForm.get('dob').valid && !retirementIncomeForm.get('dob').pristine}">
+          <div class="input-group date-picker mb0">
             <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
             name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             <div class="input-group-append">

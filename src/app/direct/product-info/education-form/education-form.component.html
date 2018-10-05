@@ -31,7 +31,7 @@
         </div>
         <div #usrFrmDp class="flex-col-8 direct-form-grp">
           <div class="datepicker-control">
-            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !educationForm.get('childdob').valid && !educationForm.get('childdob').pristine}">
+            <div class="input-group date-picker mb0">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="childdob" name="dp1"
                 ngbDatepicker #e="ngbDatepicker" (click)="e.toggle()">
               <div class="input-group-append">

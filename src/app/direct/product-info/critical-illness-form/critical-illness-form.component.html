@@ -27,14 +27,12 @@
           </div>
         <div #usrFrmDp class="flex-col-8 direct-form-grp">
           <div class="datepicker-control">
-            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !criticalIllnessForm.get('dob').valid  && !criticalIllnessForm.get('dob').pristine}">
+            <div class="input-group date-picker mb0">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
               name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                  <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="criticalIllnessForm.get('dob').valid || criticalIllnessForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
-                  />
-                  <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="!criticalIllnessForm.get('dob').valid && !criticalIllnessForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                  <img class="date-picker-image--valid" id="getStrdImg1" src="./assets/images/calendar-normal.svg"
                   />
                 </button>
                 </div>
@@ -108,7 +106,6 @@
       <div class="flex-row">
         <div class="flex-col-3">
           <label for="name" id="getStrLbl7">{{ 'CRITICAL_ILLNESS.EARLY_CI.TITLE' | translate}}</label>
-          <label class="subtitle" for="name" id="getStrLbl8">{{ 'CRITICAL_ILLNESS.EARLY_CI.SUBTITLE' | translate}}</label>
           </div>
         <div class="flex-col-8 direct-form-grp">
           <div class="btn-group--toggle" ngbRadioGroup name="radioEarlyCI" formControlName="earlyCI">
