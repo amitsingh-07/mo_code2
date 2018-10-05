@@ -119,11 +119,8 @@ export class InvestmentAccountService {
     getEmployementStatusList() {
         return this.apiService.getEmployementStatusList();
     }
-    getSourceList() {
-        return this.apiService.getSourceofIncomeList();
-    }
-    getNoTinReasonList() {
-        return this.apiService.getNoTinReasonList();
+    getAllDropDownList() {
+        return this.apiService.getAllDropdownList();
     }
     getNationality() {
         return {

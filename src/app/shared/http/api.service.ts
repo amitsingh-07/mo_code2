@@ -470,9 +470,9 @@ export class ApiService {
       })
     );
   }
-  getNoTinReasonList() {
+  getAllDropdownList() {
     const url = '../assets/mock-data/reason.json';
-    return this.http.get(url)
+    return this.http.get(apiConstants.endpoint.investmentAccount.allDropdownlist)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
