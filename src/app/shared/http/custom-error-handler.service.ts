@@ -1,28 +1,34 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Response, ResponseOptions } from '@angular/http';
+import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 
+import { appConstants } from './../../app.constants';
 import { AuthenticationService } from './auth/authentication.service';
 import { HelperService } from './helper.service';
 import { IError } from './interfaces/error.interface';
 import { IServerResponse } from './interfaces/server-response.interface';
 
-const errorCodes =  new Set([5007, 5009]);
+const errorCodes = new Set([5007, 5009]);
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomErrorHandlerService {
-  constructor(private auth: AuthenticationService, private helper: HelperService) { }
+  constructor(
+    private auth: AuthenticationService, private helper: HelperService,
+    private router: Router) { }
 
-  public handleCustomError(data: IServerResponse) {
+  public handleCustomError(data: IServerResponse, showError?: boolean) {
     if (!errorCodes.has(data.responseMessage.responseCode)) {
       const error: IError = {
         error: data.responseMessage.responseCode,
         message: data.responseMessage.responseDescription
       };
-      this.helper.showCustomErrorModal(error);
+      if (typeof showError === undefined || showError) {
+        this.helper.showCustomErrorModal(error);
+      }
       throw new Error(this.parseCustomServerErrorToString(error));
     }
   }
@@ -33,9 +39,14 @@ export class CustomErrorHandlerService {
     // clear stored credentials; they're invalid
     // redirect to the login route
     // or show a modal
+    const customError: IError = {
+      error: [],
+      message: 'Your session has been expired.'
+    };
+    this.helper.showCustomErrorModal(customError);
     this.auth.logout();
     // navigate back to the login page
-    // this.router.navigate(['/login']);
+    this.router.navigate([appConstants.loginPageUrl]);
   }
 
   public handleError(httpError: HttpErrorResponse) {
@@ -43,12 +54,12 @@ export class CustomErrorHandlerService {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', httpError.error.message);
     } else {
-        const error: IError = {
-          error: httpError.error.error,
-          message: httpError.error.message
-        };
-        this.helper.showHttpErrorModal(error);
-        throw  new Error(this.parseCustomServerErrorToString(error));
+      const error: IError = {
+        error: httpError.error.error,
+        message: httpError.error.message
+      };
+      this.helper.showHttpErrorModal(error);
+      throw new Error(this.parseCustomServerErrorToString(error));
     }
     // return an observable with a user-facing error message
     return throwError(
@@ -68,13 +79,17 @@ export class CustomErrorHandlerService {
   }
 
   parseCustomServerError(error: IError): any {
-    const title = error.message;
-    let body = '';
-    for (const errorMsg of error.error) {
-      body += `${errorMsg}. `;
-    }
+    if (error.message && error.error) {
+      const title = error.message;
+      let body = '';
+      for (const errorMsg of error.error) {
+        body += `${errorMsg}. `;
+      }
 
-    return { title, body };
+      return { title, body };
+    } else {
+      return { title: 'unknown', body: 'unknown' };
+    }
   }
 
   createCustomError(error: IError): Response {

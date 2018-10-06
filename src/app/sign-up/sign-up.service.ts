@@ -8,7 +8,7 @@ import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
-import { CtyptoService } from '../shared/utils/crypto';
+import { CryptoService } from '../shared/utils/crypto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class SignUpService {
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    public ctyptoService: CtyptoService) {
+    public cryptoService: CryptoService) {
       this.getAccountInfo();
   }
 
@@ -215,7 +215,7 @@ export class SignUpService {
   // tslint:disable-next-line:no-identical-functions
   setResetPasswordInfo(password, key) {
     // API Call here
-    const data = this.constructResetPasswordInfo(this.ctyptoService.encrypt(password), key);
+    const data = this.constructResetPasswordInfo(this.cryptoService.encrypt(password), key);
     return this.apiService.requestResetPassword(data);
   }
   /**
@@ -230,10 +230,14 @@ export class SignUpService {
   }
 
   getUserProfileInfo() {
+    if (window.sessionStorage && sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY)) {
+      this.signUpFormData = JSON.parse(sessionStorage.getItem(SIGNUP_SESSION_STORAGE_KEY));
+    }
     return this.signUpFormData.userProfileInfo;
   }
 
   setUserProfileInfo(userInfo) {
     this.signUpFormData.userProfileInfo = userInfo;
+    this.commit();
   }
 }

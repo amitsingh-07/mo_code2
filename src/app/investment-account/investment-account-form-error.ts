@@ -15,35 +15,43 @@ export class InvestmentAccountFormError {
         },
         postalCode: {
             required: {
-                errorTitle: 'Invalid postal code',
+                errorTitle: 'Invalid Postal Code',
                 errorMessage: 'Please enter your postal code.'
             },
+            pattern: {
+                errorTitle: 'Invalid Postal Code',
+                errorMessage: 'Postal Code should contain only 6 digit number.'
+            }
         },
         mailPostalCode: {
             required: {
-                errorTitle: 'Invalid postal code in mailing address',
-                errorMessage: 'Please enter your postal code in mailing address.'
+                errorTitle: 'Invalid Postal Code in mailing address',
+                errorMessage: 'Please enter your Postal Code in mailing address.'
             },
+            pattern: {
+                errorTitle: 'Invalid Postal Code',
+                errorMessage: 'Postal Code should contain only 6 digit number.'
+            }
         },
         address1: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid Address 1',
-                errorMessage: 'Please enter address 1.'
+                errorTitle: 'Invalid Address Line 1',
+                errorMessage: 'Please enter Address Line 1.'
             },
             pattern: {
-                errorTitle: 'Invalid Address 1',
-                errorMessage: 'Address 1 should not contain special characters.'
+                errorTitle: 'Invalid Address Line 1',
+                errorMessage: 'Address Line 1 should not contain special characters.'
             }
         },
         mailAddress1: {
             required: {
-                errorTitle: 'Invalid Address 1 in mailing address.',
-                errorMessage: 'Please enter address 1 in mailing address.'
+                errorTitle: 'Invalid Address Line 1 in mailing address.',
+                errorMessage: 'Please enter Address Line 1 in mailing address.'
             },
             pattern: {
-                errorTitle: 'Invalid mail Address 1',
-                errorMessage: 'Address 1 should not contain special characters in mailing address.'
+                errorTitle: 'Invalid mail Address Line 1',
+                errorMessage: 'Address Line 1 should not contain special characters in mailing address.'
             }
         },
         unitNo: {
@@ -65,7 +73,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid city',
-                errorMessage: 'City should not countain numbers and special characters.'
+                errorMessage: 'City should not contain numbers and special characters.'
             }
         },
         mailCity: {
@@ -75,7 +83,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid city in mailing address',
-                errorMessage: 'City should not countain numbers and special characters in mailing address.'
+                errorMessage: 'City should not contain numbers and special characters in mailing address.'
             }
         },
         state: {
@@ -85,7 +93,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid state',
-                errorMessage: 'State should not countain numbers and special characters.'
+                errorMessage: 'State should not contain numbers and special characters.'
             }
         },
         mailState: {
@@ -95,7 +103,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid state in mailing address',
-                errorMessage: 'State should not countain numbers and special characters in mailing address.'
+                errorMessage: 'State should not contain numbers and special characters in mailing address.'
             }
         },
         zipCode: {
@@ -225,7 +233,136 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid sourcwe',
                 errorMessage: 'Please select your source of investment funds.'
             }
+        },
+        companyName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid companany name',
+                errorMessage: 'Please enter compnany Name.'
+            }
+        },
+        occupation: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid occupation',
+                errorMessage: 'Please select your occupation.'
+            }
+        },
+        industry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid industry name',
+                errorMessage: 'Please select your industry'
+            }
+        },
+        contactNumber: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid contact number',
+                errorMessage: 'Please enter contact number.'
+            }
+        },
+        empPostalCode: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid postal code',
+                errorMessage: 'Please enter postal code.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Postal Code',
+                errorMessage: 'Postal Code should contain only 6 digit number.'
+            }
+        },
+        empAddress1: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement address1',
+                errorMessage: 'Please enter employement address1.'
+            }
+        },
+        empAddress2: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement address2',
+                errorMessage: 'Please enter employement address2.'
+            }
+        },
+
+        empUnitNo: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement unit number',
+                errorMessage: 'Please enter  employement unit number'
+            }
+        },
+
+        empCity: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement employement city',
+                errorMessage: 'Please enter employement city.'
+            }
+        },
+
+        empState: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement State',
+                errorMessage: 'Please enter employement State.'
+            }
+        },
+
+        empZipCode: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid employement ZipCode',
+                errorMessage: 'Please enter employement ZipCode.'
+            }
+        },
+        annualHouseHoldIncome: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid annual HouseHoldIncome',
+                errorMessage: 'Please enter annual HouseHoldIncome.'
+            }
+        },
+        numberOfHouseHoldMembers: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+
+                errorTitle: 'Invalid number Of House Hold Members',
+                errorMessage: 'Please enter number Of House Hold Members.'
+            }
+        },
+        monthlyIncome: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid financial Monthly Income',
+                errorMessage: 'Please enter Monthly Income.'
+            }
+        },
+        percentageOfSaving: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid financial Percentage Of Saving',
+                errorMessage: 'Please enter Percentage Of Saving.'
+            }
+        },
+        totalAssets: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid financial TotalAssets',
+                errorMessage: 'Please enter  TotalAssets.'
+            }
+        },
+        totalLiabilities: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  financial Total Liabilities',
+                errorMessage: 'Please enter Total Liabilities.'
+            }
         }
+
     };
 
 }

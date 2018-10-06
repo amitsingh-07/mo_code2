@@ -48,29 +48,31 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
-      this.defaultEmployee = this.employmentTypeList[0];
+      this.defaultEmployee = '';
       this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
-      this.duration = this.durationValues[0];
+      this.duration = '';
     });
   }
 
   ngOnInit() {
     this.formValues = this.directService.getOcpDisabilityForm();
+    this.ocpDisabilityForm = this.formBuilder.group({
+      gender: [this.formValues.gender, Validators.required],
+      dob: [this.formValues.dob, Validators.required],
+      smoker: [this.formValues.smoker],
+      employmentType: [this.formValues.employmentType, Validators.required],
+      monthlySalary: [this.formValues.monthlySalary, Validators.required],
+      percentageCoverage: [this.formValues.percentageCoverage],
+      duration: [this.formValues.duration, Validators.required]
+    });
+
     if (this.formValues.employmentType !== undefined) {
       this.selectEmployeeType(this.formValues.employmentType, true);
     }
     if (this.formValues.duration !== undefined) {
       this.selectDuration(this.formValues.duration);
     }
-    this.ocpDisabilityForm = this.formBuilder.group({
-      gender: [this.formValues.gender, Validators.required],
-      dob: [this.formValues.dob, Validators.required],
-      smoker: [this.formValues.smoker, Validators.required],
-      employmentType: [this.formValues.employmentType],
-      monthlySalary: [this.formValues.monthlySalary],
-      percentageCoverage: [this.formValues.percentageCoverage],
-      duration: [this.formValues.duration]
-    });
+
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '2') {
         if (this.save()) {
@@ -91,6 +93,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
 
   selectDuration(selectedDuration) {
     this.duration = selectedDuration;
+    this.ocpDisabilityForm.controls.duration.setValue(this.duration);
   }
 
   onSliderChange(value) {
@@ -100,6 +103,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   selectEmployeeType(status, setSlider) {
     this.defaultEmployee = status;
     this.coverageMax = this.defaultEmployee === 'Salaried' ? 75 : 65;
+    this.ocpDisabilityForm.controls.employmentType.setValue(this.defaultEmployee);
     if (setSlider) {
       this.setSliderValues(this.coverageMax);
     }
@@ -124,6 +128,9 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
 
   save() {
     const form = this.ocpDisabilityForm;
+    if (form.controls.monthlySalary.value < 1) {
+      form.controls['monthlySalary'].setErrors({required: true});
+    }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();

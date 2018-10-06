@@ -1,3 +1,4 @@
+import { ConfigService, IConfig } from './../../config/config.service';
 import { Location } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -26,17 +27,22 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   assetsFormValues: IMyAssets;
   assetsTotal: any;
   cpfValue: number;
+  useMyInfo: boolean;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
     private modal: NgbModal, private location: Location,
     private myInfoService: MyInfoService,
-    public guideMeApiService: GuideMeApiService,
+    public guideMeApiService: GuideMeApiService, private configService: ConfigService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
       this.setPageTitle(this.pageTitle);
+    });
+
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.useMyInfo = config.useMyInfo;
     });
   }
 
@@ -54,20 +60,36 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     if (this.guideMeService.isMyInfoEnabled) {
       this.guideMeApiService.getMyInfoData().subscribe((data) => {
         this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
-        this.guideMeService.closeFetchPopup();
         this.assetsForm.controls['cpf'].setValue(this.cpfValue);
         this.guideMeService.isMyInfoEnabled = false;
         this.setFormTotalValue();
+        this.closeMyInfoPopup(false);
+      }, (error) => {
+        this.closeMyInfoPopup(true);
       });
-      }
+    }
     this.setFormTotalValue();
-    }
-    ngOnDestroy(): void {
-      this.locationSubscription.unsubscribe();
-    }
+  }
+  ngOnDestroy(): void {
+    this.locationSubscription.unsubscribe();
+  }
 
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.assetsForm.value);
+  }
+
+  closeMyInfoPopup(error: boolean) {
+    this.guideMeService.closeFetchPopup();
+    if (error) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = 'Oops, Error!';
+      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+      ref.componentInstance.isError = true;
+      ref.result.then(() => {
+        this.myInfoService.goToMyInfo();
+      }).catch((e) => {
+      });
+    }
   }
 
   /* Onchange Currency Addition */
@@ -82,17 +104,17 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   openModal() {
-     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-     ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
-     ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
-     ref.componentInstance.isButtonEnabled = true;
-     ref.result.then(() => {
-       this.myInfoService.setMyInfoAttributes('cpfbalances');
-       this.myInfoService.goToMyInfo();
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
+    ref.componentInstance.isButtonEnabled = true;
+    ref.result.then(() => {
+      this.myInfoService.setMyInfoAttributes('cpfbalances');
+      this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });
 
-   }
+  }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);

@@ -51,6 +51,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
   animateStaticModal = false;
   hideStaticModal = false;
   planData;
+  lblPerMonth;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -61,6 +62,7 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('INSURANCE_RESULTS.TITLE');
       this.planData = this.translate.instant('INSURANCE_RESULTS.PLANS');
+      this.lblPerMonth = this.translate.instant('SUFFIX.PER_MONTH');
       this.setPageTitle(this.pageTitle, null, false);
       setTimeout(() => {
         this.getProtectionNeeds();
@@ -193,6 +195,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       }
       return protectionNeed.existingCoverage.value;
     });
+
+    this.getProtectionNeeds();
   }
 
   getProtectionNeeds() {
@@ -317,7 +321,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
       coverage = {
         title: this.planData.LESS_EXISTING_COVERAGE,
         value: this.existingCoverageValues.occupationalDisabilityCoveragePerMonth ?
-          this.existingCoverageValues.occupationalDisabilityCoveragePerMonth : 0
+          this.existingCoverageValues.occupationalDisabilityCoveragePerMonth : 0,
+          monthEnabled: this.lblPerMonth
       } as IResultItemEntry;
     }
     const entries = [] as IResultItemEntry[];

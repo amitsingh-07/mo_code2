@@ -5,5 +5,6 @@ export const environment: IEnvironment = {
   isDebugMode: false,
   apiBaseUrl: 'https://moneyowl.com.sg',
   myInfoClientId: 'PROD-201820691C-MONEYOWL-BFA',
-  myInfoCallbackBaseUrl: 'https://moneyowl.com.sg'
+  myInfoCallbackBaseUrl: 'https://moneyowl.com.sg/myinfo',
+  myInfoAuthorizeUrl: 'https://myinfosg.api.gov.sg/v2/authorise'
 };

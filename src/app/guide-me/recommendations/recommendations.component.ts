@@ -9,7 +9,6 @@ import { IPageComponent } from '../../shared/interfaces/page-component.interface
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
-import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
@@ -31,6 +30,10 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   selectedPlans: any[] = [];
   coverageAmount = '';
   premiumFrom = '';
+  perMonth = '';
+  perYear = '';
+  premiumFrequency = '';
+
   activeRecommendationType;
   activeRecommendationList;
   enquiryId;
@@ -60,6 +63,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       this.pageTitle = this.translate.instant('RECOMMENDATIONS.TITLE');
       this.subTitle = this.translate.instant('RECOMMENDATIONS.DESCRIPTION');
       this.protectionNeedTypes = this.translate.instant('PROTECTION_NEED_TYPES');
+      this.perMonth = this.translate.instant('SUFFIX.PER_MONTH');
+      this.perYear = this.translate.instant('SUFFIX.PER_YEAR');
       this.setPageTitle(this.pageTitle, this.subTitle);
     });
   }
@@ -136,7 +141,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselPrev() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'')
+    const boundElement = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'');
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.left < containerBound.left) {
@@ -173,7 +178,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   updateCoverageDetails() {
     if (this.activeRecommendationList.productList[0]) {
-      this.premiumFrom = this.activeRecommendationList.productList[0].premium.premiumAmount;
+      const data = this.activeRecommendationList.productList[0];
+      this.premiumFrom = data.premium.premiumAmount;
+      if (data.premium.premiumFrequency === 'per month') {
+        this.premiumFrequency = this.perMonth;
+      } else if (data.premium.premiumFrequency === 'per year') {
+        this.premiumFrequency = this.perYear;
+      }
       switch (this.activeRecommendationType) {
         case this.protectionNeedTypes.LIFE_PROTECTION:
           this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';

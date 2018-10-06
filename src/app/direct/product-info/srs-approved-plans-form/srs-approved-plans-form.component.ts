@@ -3,8 +3,6 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
-
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
@@ -12,14 +10,16 @@ import { DirectService } from './../../direct.service';
 @Component({
   selector: 'app-srs-approved-plans-form',
   templateUrl: './srs-approved-plans-form.component.html',
-  styleUrls: ['./srs-approved-plans-form.component.scss']
+  styleUrls: ['./srs-approved-plans-form.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  encapsulation: ViewEncapsulation.None
 })
 export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   categorySub: any;
   modalRef: NgbModalRef;
   srsApprovedPlansForm: FormGroup;
   formValues: any;
-  payoutStartAge = 0;
+  payoutStartAge = '';
   age;
   payoutStartAgeList = Array(100).fill(0).map((x, i) => x += i * 1);
   payoutTypeList;
@@ -35,21 +35,20 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.payoutTypeList = this.translate.instant('SRS_SELECTED_PLANS.SINGLE_PREMIUM_LIST');
-      this.payoutType = this.payoutTypeList[0];
+      this.payoutType = '';
       });
   }
 
   ngOnInit() {
     /* Building the form */
     this.formValues = this.directService.getSrsApprovedPlansForm();
-    this.formValues.gender = this.formValues.gender;
     this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : 0;
     this.srsApprovedPlansForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      singlePremium: [this.formValues.singlePremium],
-      payoutStartAge: [this.formValues.payoutStartAge],
-      payoutType: [this.formValues.payoutType]
+      singlePremium: [this.formValues.singlePremium, Validators.required],
+      payoutStartAge: [this.formValues.payoutStartAge, Validators.required],
+      payoutType: [this.formValues.payoutType, Validators.required]
     });
     if (this.formValues.payoutType !== undefined) {
       this.selectPayoutType(this.formValues.payoutType);
@@ -106,6 +105,9 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
 
   save() {
     const form = this.srsApprovedPlansForm;
+    if (form.controls.singlePremium.value < 1) {
+      form.controls['singlePremium'].setErrors({required: true});
+    }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();

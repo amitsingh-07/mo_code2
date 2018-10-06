@@ -4,4 +4,5 @@ export interface IEnvironment {
     apiBaseUrl: string;
     myInfoClientId: string;
     myInfoCallbackBaseUrl: string;
+    myInfoAuthorizeUrl: string;
 }

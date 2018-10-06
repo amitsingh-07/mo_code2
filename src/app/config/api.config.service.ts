@@ -9,7 +9,7 @@ import { IApiConfig } from './api.config.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigService {
+export class ApiConfigService {
   private configUrl = 'assets/api.config.json';
 
   constructor(private http: HttpClient) { }

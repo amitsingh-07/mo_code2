@@ -10,19 +10,18 @@ import { DirectService } from './../../direct.service';
 @Component({
   selector: 'app-education-form',
   templateUrl: './education-form.component.html',
-  styleUrls: ['./education-form.component.scss']
+  styleUrls: ['./education-form.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  encapsulation: ViewEncapsulation.None
 })
 export class EducationFormComponent implements OnInit, OnDestroy {
-  dobValue;
   categorySub: any;
   modalRef: NgbModalRef;
   educationForm: FormGroup;
   formValues: any;
-  contribution = '100';
+  contribution = '';
   isSelfFormEnabled = true;
-  childdob: string;
-  childgender: string;
-  selectedunivercityEntryAge = this.formValues && this.formValues.gender === 'male' ? '20' : '18';
+  selectedunivercityEntryAge = '';
   monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
   univercityEntryAge = Array(4).fill(18).map((x, i) => x += i);
   constructor(
@@ -40,8 +39,8 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     this.educationForm = this.formBuilder.group({
       childgender: [this.formValues.childgender, Validators.required],
       childdob: [this.formValues.childdob, Validators.required],
-      contribution: [this.formValues.contribution],
-      selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge]
+      contribution: [this.formValues.contribution, Validators.required],
+      selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge, Validators.required]
     });
     if (this.formValues.contribution !== undefined ) {
        this.selectMonthlyContribution(this.formValues.contribution);

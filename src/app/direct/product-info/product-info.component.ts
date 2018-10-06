@@ -12,8 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ProtectionNeeds } from '../../guide-me/protection-needs/protection-needs';
 import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
+import { ConfigService, IConfig } from './../../config/config.service';
 import { HeaderService } from './../../shared/header/header.service';
+import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
@@ -78,7 +81,8 @@ export class ProductInfoComponent implements OnInit {
     public headerService: HeaderService, private directService: DirectService,
     private modal: NgbModal, private translate: TranslateService, private route: ActivatedRoute,
     private directApiService: DirectApiService, private googleAnalyticsService: GoogleAnalyticsService,
-    private cdRef: ChangeDetectorRef) {
+    private cdRef: ChangeDetectorRef, private configService: ConfigService,
+    private authService: AuthenticationService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       if (this.innerWidth < this.mobileThreshold) {
@@ -100,9 +104,29 @@ export class ProductInfoComponent implements OnInit {
   }
 
   getProductCategoryList() {
+    if (this.authService.isAuthenticated()) {
+      this.getProductCategory();
+    } else {
+      this.authService.authenticate().subscribe((token) => {
+        this.getProductCategory();
+      });
+    }
+  }
+
+  getProductCategory() {
+    this.productCategoryList = [];
     this.directApiService.getProdCategoryList().subscribe((data) => {
-      this.productCategoryList = data.objectList; // Getting the information from the API
-      setTimeout(this.initCategorySetup(), 50);
+      this.configService.getConfig().subscribe((config: IConfig) => {
+        data.objectList.forEach((type: ProtectionNeeds) => {
+          for (const category of config.productCategory) {
+            if (type.protectionTypeId === category.id) {
+              this.productCategoryList.push(category);
+            }
+          }
+        });
+        setTimeout(this.initCategorySetup(), 50);
+
+      });
     });
   }
 
@@ -113,9 +137,7 @@ export class ProductInfoComponent implements OnInit {
     this.directService.prodSearchInfoData.subscribe((data) => {
       if (data !== '') {
         this.minProdSearch = data;
-        if (this.initLoad === true) { // Initial Load Case
-          this.initLoad = false;
-        }
+        this.initLoad = false;
         this.toggleVisibility = false;
         this.toggleBackdropVisibility = false;
         this.directService.setModalFreeze(false);
@@ -205,7 +227,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   openToolTipModal(data) {
-    this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
+    this.modalRef = this.modal.open(ToolTipModalComponent, { centered: true });
     this.modalRef.componentInstance.tooltipTitle = data.title;
     this.modalRef.componentInstance.tooltipMessage = data.message;
     this.directService.showToolTipModal('', '');
