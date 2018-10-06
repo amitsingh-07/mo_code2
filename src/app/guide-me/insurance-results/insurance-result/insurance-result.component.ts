@@ -2,6 +2,7 @@ import { Component, DoCheck, EventEmitter, Input, OnInit, Output, ViewEncapsulat
 
 import { GuideMeService } from '../../guide-me.service';
 import { IResultItem } from './insurance-result';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-insurance-result',
@@ -17,6 +18,7 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
   temp;
   isMonthEnabled;
   viewDetailsBtn = true;
+  plans;
 
   @Output() Details = new EventEmitter();
 
@@ -33,13 +35,13 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
       this.title = this.data.title;
       this.temp = this.data;
       // Is Month Enabled
-      if (this.title === 'Occupational Disability' || this.title === 'Long-Term Care') {
+      if (this.title === this.plans.OCCUPATIONAL_DISABILITY.TITLE || this.title === this.plans.LONG_TERM_CARE.TITLE) {
         this.isMonthEnabled = true;
       } else {
         this.isMonthEnabled = false;
       }
       // View Details Button
-      if (this.title === 'Hospital Plan') {
+      if (this.title === this.plans.HOSPITAL_PLAN.TITLE) {
 
         const hospitalPlan: any = this.guideMeService.getHospitalPlan().hospitalClass;
         this.amount = hospitalPlan;
@@ -49,7 +51,13 @@ export class InsuranceResultComponent implements DoCheck, OnInit {
     }
   }
 
-  constructor(private guideMeService: GuideMeService) { }
+  constructor(private guideMeService: GuideMeService, private translate: TranslateService) {
+
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe(() => {
+        this.plans = this.translate.instant('INSURANCE_RESULTS.PLANS');
+      });
+    }
 
   ngOnInit() {
   }

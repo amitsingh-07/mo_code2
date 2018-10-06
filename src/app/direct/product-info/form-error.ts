@@ -1,79 +1,127 @@
 export class FormError {
         formFieldErrors: object = {
                 gender: {
-                        required: { errorTitle: 'Invalid Gender', errorMessage: 'Select the gender' }
+                        required: { errorTitle: 'Invalid Gender', errorMessage: 'Please select your gender' }
                 },
                 dob: {
                         required: {
-                                errorTitle: 'Invalid Birth Year',
-                                errorMessage: 'Please re-check your entry. You have keyed in an invalid birth year.'
+                                errorTitle: 'Invalid Date of Birth',
+                                errorMessage: 'You have selected an invalid date of birth. Please check your entry.'
                         }
                 },
                 premiumWaiver: {
                         required: {
                                 errorTitle: 'Invalid Premium Waiver',
-                                errorMessage: 'Select premium waiver'
+                                errorMessage: 'Please select an option.'
                         }
                 },
                 childgender: {
-                        required: { errorTitle: 'Invalid Gender', errorMessage: 'Select the gender' }
+                        required: { errorTitle: 'Invalid Gender', errorMessage: 'Please select your gender' }
                 },
                 childdob: {
                         required: {
-                                errorTitle: 'Invalid Birth Year',
-                                errorMessage: 'Please re-check your entry. You have keyed in an invalid birth year.'
+                                errorTitle: 'Invalid Date of Birth',
+                                errorMessage: 'You have selected an invalid date of birth. Please check your entry.'
                         }
                 },
                 earlyCI: {
                         required: {
                                 errorTitle: 'Invalid Early CI',
-                                errorMessage: 'Select Early CI option.'
+                                errorMessage: 'Please select an option.'
                         }
                 },
                 employmentType : {
-                        required: { errorTitle: 'Invalid Employment Type', errorMessage: 'Select employment type' }
+                        required: {
+                                errorTitle: 'Invalid Employment Type',
+                                errorMessage: 'You have selected an invalid employment type. Please check your entry.'
+                        }
+                },
+                monthlySalary : {
+                        required: {
+                                errorTitle: 'Invalid Monthly Salary',
+                                errorMessage: 'Please enter a number greater than 0.'
+                        }
                 },
                 smoker: {
-                        required: { errorTitle: 'Invalid Smoker', errorMessage: 'Select one option' }
+                        required: { errorTitle: 'Invalid Smoker Status', errorMessage: 'Please select your status' }
                 },
                 coverageAmt: {
-                        required: { errorTitle: 'Invalid Coverage Amount', errorMessage: 'Select Coverage Amount' }
+                        required: {
+                                errorTitle: 'Invalid Coverage Amount',
+                                errorMessage: 'You have selected an invalid coverage amount. Please check your entry.'
+                        }
                 },
                 duration: {
-                        required: { errorTitle: 'Invalid Duration', errorMessage: 'Select Duration' }
+                        required: {
+                                errorTitle: 'Invalid Duration',
+                                errorMessage: 'You have selected an invalid duration. Please check your entry.'
+                        }
                 },
                 selectedPlan: {
-                        required: { errorTitle: 'Invalid Plan Type', errorMessage: 'Select Plan Type' }
+                        required: { errorTitle: 'Invalid Plan Type', errorMessage: 'Please select a hospital plan type' }
                 },
                 fullOrPartialRider: {
-                        required: { errorTitle: 'Invalid Full / Partial Rider', errorMessage: 'Select Yes or No' }
+                        required: { errorTitle: 'Invalid Rider Option', errorMessage: 'Please select an option.' }
                 },
                 monthlyPayout: {
-                        required: { errorTitle: 'Invalid Monthly Payout', errorMessage: 'Select Monthly Payout' }
+                        required: {
+                                errorTitle: 'Invalid Monthly Payout',
+                                errorMessage: 'You have selected an invalid monthly payout amount. Please check your entry.'
+                        }
                 },
                 contribution: {
-                        required: { errorTitle: 'Invalid Contribution', errorMessage: 'Select Contribution' }
+                        required: {
+                                errorTitle: 'Invalid Monthly Contribution',
+                                errorMessage: 'You have selected an invalid monthly contribution. Please check your entry.'
+                        }
                 },
                 selectedunivercityEntryAge: {
-                        required: { errorTitle: 'Invalid Univercity Entry Age', errorMessage: 'Select Univercity Entry Age' }
+                        required: {
+                                errorTitle: 'Invalid Univercity Entry Age',
+                                errorMessage: 'You have selected an invalid university entry age. Please check your entry'
+                        }
                 },
                 retirementIncome: {
-                        required: { errorTitle: 'Invalid Retirement Income', errorMessage: 'Select Retirement Income' }
+                        required: {
+                                errorTitle: 'Invalid Retirement Income Amount',
+                                errorMessage: 'You have selected an invalid retirement income amount. Please check your entry.'
+                        }
                 },
                 payoutAge: {
-                        required: { errorTitle: 'Invalid Payout Age', errorMessage: 'Select Payout Age' }
+                        required: {
+                                errorTitle: 'Invalid Payout Start Age',
+                                errorMessage: 'You have selected an invalid payout start age. Please check your entry.'
+                        }
                 },
                 payoutDuration: {
-                        required: { errorTitle: 'Invalid Payout Duration', errorMessage: 'Select Payout Duration' }
+                        required: {
+                                errorTitle: 'Invalid Payout Duration',
+                                errorMessage: 'You have selected an invalid payout duration. Please check your entry'
+                        }
                 },
                 payoutFeature: {
-                        required: { errorTitle: 'Invalid Payout Feature', errorMessage: 'Select Payout Feature' }
+                        required: {
+                                errorTitle: 'Invalid Payout Feature',
+                                errorMessage: 'You have selected an invalid payout feature. Please check your entry.'
+                        }
                 },
                 payoutStartAge: {
-                        required: { errorTitle: 'Invalid Payout Start Age', errorMessage: 'Select Payout Start Age' }
+                        required: {
+                                errorTitle: 'Invalid Payout Start Age',
+                                errorMessage: 'You have selected an invalid payout start age. Please check your entry'
+                        }
                 },
                 payoutType: {
-                        required: { errorTitle: 'Invalid Payout Type', errorMessage: 'Select Payout Type' }
+                        required: {
+                                errorTitle: 'Invalid Payout Type',
+                                errorMessage: 'You have selected an invalid payout type. Please check your entry.'
+                        }
+                },
+                singlePremium: {
+                        required: {
+                                errorTitle: 'Invalid Single Premium Amount',
+                                errorMessage: 'Please enter a number greater than 0.'
+                        }
                 }
         };
 }

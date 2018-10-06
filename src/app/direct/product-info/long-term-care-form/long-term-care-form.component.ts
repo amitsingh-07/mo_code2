@@ -1,14 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 
 @Component({
   selector: 'app-long-term-care-form',
   templateUrl: './long-term-care-form.component.html',
-  styleUrls: ['./long-term-care-form.component.scss']
+  styleUrls: ['./long-term-care-form.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  encapsulation: ViewEncapsulation.None
 })
 export class LongTermCareFormComponent implements OnInit , OnDestroy {
   categorySub: any;

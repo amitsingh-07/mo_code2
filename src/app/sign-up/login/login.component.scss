@@ -1,8 +1,35 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
-input::-ms-clear, input::-ms-reveal {
+input::-ms-clear,
+input::-ms-reveal {
   display: none;
+}
+
+/* 
+input::-webkit-textfield-decoration-container {
+  display: none; 
+}
+input::-webkit-caps-lock-indicator {
+}
+*/
+
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  position: absolute;
+  right: 0;
+}
+
+.inline-error {
+  .show-password{
+    background: url("../../../assets/images/show-password.svg") !important;
+    background-repeat:no-repeat !important;
+  }
+  .hide-password {
+    background-image: url("../../../assets/images/hide-password.svg") !important;
+    background-repeat:no-repeat !important;
+  }
 }
 
 .forgot-link {
@@ -39,7 +66,7 @@ input::-ms-clear, input::-ms-reveal {
 }
 
 @include ExtraSmallDevice {
-  .mobile-only{
-    display:none;
+  .mobile-only {
+    display: none;
   }
 }

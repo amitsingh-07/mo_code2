@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs/Observable';
+import { AppService } from './app.service';
 import { Component, HostListener } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs/Observable';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { GoogleAnalyticsService } from './shared/ga/google-analytics.service';
@@ -18,10 +19,12 @@ export class AppComponent implements IComponentCanDeactivate {
   modalRef: NgbModalRef;
 
   constructor(
-    private log: LoggerService, private translate: TranslateService,
+    private log: LoggerService, private translate: TranslateService, private appService: AppService,
     private googleAnalyticsService: GoogleAnalyticsService, private modal: NgbModal) {
     this.translate.setDefaultLang('en');
-    this.triggerPopup();
+    if (!this.appService.isSessionActive()) {
+      this.triggerPopup();
+    }
   }
 
   onActivate(event) {
@@ -30,6 +33,9 @@ export class AppComponent implements IComponentCanDeactivate {
 
   triggerPopup() {
     this.modalRef = this.modal.open(PopupModalComponent, { centered: true, windowClass: 'popup-modal-dialog' });
+    this.modalRef.result.then(() => {
+      this.appService.startAppSession();
+    });
   }
 
   @HostListener('window:beforeunload')

@@ -40,6 +40,24 @@ export class InvestmentAccountFormData {
     Tin: any;
     noTinReason: any;
 
+    // EmployementDetails
+
+    employmentStatus: string;
+    employStatus: string;
+    companyName: string;
+    occupation: string;
+    industry: string;
+    contactNumber: string;
+    isEmployeAddresSame: boolean;
+    empCountry: string;
+    empPostalCode: number;
+    empAddress1: string;
+    empAddress2: string;
+    empUnitNo: string;
+    empCity: string;
+    empState: string;
+    empZipCode: number;
+    
     // Upload documents
     nricFrontImage: File;
     nricBackImage: File;
@@ -53,4 +71,11 @@ export class InvestmentAccountFormData {
     pep: any;
     beneficial: any;
 
-}
+    // financial details
+    annualHouseHoldIncomeRange: string;
+    numberOfHouseHoldMembers: number;
+    monthlyIncome: string;
+    percentageOfSaving: string;
+    totalAssets: string;
+    totalLiabilities: string;
+    }

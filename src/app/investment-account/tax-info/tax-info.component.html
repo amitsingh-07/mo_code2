@@ -80,7 +80,7 @@
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" *ngFor="let reasonListObj of noTinReasonlist; let i = index;" (click)="selectReason(reasonListObj)"
                   id="selectReason-country-option-{{i}}">
-                  {{reasonListObj.reason | titlecase}}
+                  {{reasonListObj.name | titlecase}}
                 </button>
               </div>
             </div>

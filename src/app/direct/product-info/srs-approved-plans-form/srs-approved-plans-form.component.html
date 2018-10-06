@@ -27,14 +27,12 @@
           </div>
         <div #usrFrmDp class="flex-col-8 direct-form-grp">
           <div class="datepicker-control">
-            <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !srsApprovedPlansForm.get('dob').valid  && !srsApprovedPlansForm.get('dob').pristine}">
+            <div class="input-group date-picker mb0">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
               name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                  <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="srsApprovedPlansForm.get('dob').valid || srsApprovedPlansForm.get('dob').pristine" src="./assets/images/calendar-normal.svg"
-                  />
-                  <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="!srsApprovedPlansForm.get('dob').valid && !srsApprovedPlansForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                  <img class="date-picker-image--valid" id="getStrdImg1" src="./assets/images/calendar-normal.svg"
                   />
                 </button>
                 </div>

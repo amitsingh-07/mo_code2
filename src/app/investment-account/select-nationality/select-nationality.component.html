@@ -18,7 +18,7 @@
           nationality</div>
         <div class="flex-row">
           <div class="flex-col-5">
-            <label for="name" id="select_nationality_lab">Nationality</label>
+            <label for="name" id="select_nationality_lab">{{ 'SELECT_NATIONALITY.NATIONALITY_LEB' | translate}}</label>
           </div>
           <div class="flex-col-7">
             <div class="dropdown-control">
@@ -42,8 +42,7 @@
         <div *ngIf="singaporeNationality">
           <div class="flex-row mb10">
             <div class="flex-col-12 mt15">
-              <div class="form-group-with-bg--content-label" id="select_nationality_question-one" for="name">Are you a
-                United States Permanent Resident / Tax Resident?
+              <div class="form-group-with-bg--content-label" id="select_nationality_question-one" for="name">{{ 'SELECT_NATIONALITY.QUESTION_ONE' | translate}}
               </div>
             </div>
           </div>
@@ -54,13 +53,13 @@
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_yes" value="yes"> Yes
+                      <input ngbButton type="radio" id="select_nationlity_yes" value="yes">{{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-6">
 
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_no" value="no">No</label>
+                      <input ngbButton type="radio" id="select_nationlity_no" value="no">{{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
                   </div>
                 </div>
               </div>
@@ -70,8 +69,8 @@
         <div *ngIf="notSingaporeNationality">
           <div class="flex-row mb10">
             <div class=flex-col-10>
-              <div class="form-group-with-bg--content-label" id="select_nationality_question-two" for="name">Are you a
-                Singaporean Permanent Resident?
+              <div class="form-group-with-bg--content-label" id="select_nationality_question-two" for="name">
+                {{ 'SELECT_NATIONALITY.QUESTION_TWO' | translate}}
               </div>
             </div>
           </div>
@@ -82,12 +81,12 @@
                 <div class="flex-row">
                   <div class="flex-col-6 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_yes1" value="yes"> Yes
+                      <input ngbButton type="radio" id="select_nationlity_yes1" value="yes"> {{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-6 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_no1" value="no"> No</label>
+                      <input ngbButton type="radio" id="select_nationlity_no1" value="no"> {{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
                   </div>
                 </div>
               </div>
@@ -96,7 +95,7 @@
         </div>
       </form>
       <button type="button" (click)="goToNext(selectNationalityForm)" id="select-nationality_continue_btn" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-        id="riskProfileBtn">Continue</button>
+        id="riskProfileBtn">{{ 'SELECT_NATIONALITY.CONTINUE' | translate}}</button>
     </div>
   </div>
 </div>
