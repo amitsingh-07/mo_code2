@@ -41,6 +41,26 @@
         "SUBSCRIBE": "Subscribe",
         "SUBTEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!"
     },
+    "TRUSTED": {
+        "TITLE":"The Trusted Place to be insured",
+        "SUB_TITLE":"Why have <span>355,000</span> users trusted us?",
+        "REASONS": [{
+                "IMAGE":"../../assets/images/mas-licensed.svg",
+                "LABEL":"MAS-Licensed"
+            },{
+                "IMAGE":"../../assets/images/high-tech.svg",
+                "LABEL":"High-Tech, High-Touch"
+            },{
+                "IMAGE":"../../assets/images/salary-advice.svg",
+                "LABEL":"Salaried Advisers"
+            },{
+                "IMAGE":"../../assets/images/national.svg",
+                "LABEL":"Integration of National Schemes"
+            },{
+                "IMAGE":"../../assets/images/secure.svg",
+                "LABEL":"Secure Platform"
+            }]
+    },
     "REVIEWS": {
         "TITLE": "Our Customers' Review",
         "REVIEW1": {

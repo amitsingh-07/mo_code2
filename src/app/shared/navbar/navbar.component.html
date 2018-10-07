@@ -39,7 +39,7 @@
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
                     <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Products</a>
-                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id01">
+                    <div class="dropdown-menu perma" ngbDropdownMenu aria-labelledby="id01">
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">Insurance</button>
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="will">Will Writing</button>
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="invest">Investment</button>
@@ -70,7 +70,7 @@
                 -->
                 <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
                     <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
-                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id04">
+                    <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
                         <button class="dropdown-item" [routerLink]="['/about-us']">About Us</button>
                         <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">Customer Reviews</button>
                         <!-- <button class="dropdown-item">Subscribe</button> -->

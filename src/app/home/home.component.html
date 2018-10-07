@@ -136,30 +136,14 @@
             <div class="licensed-tab__trust-container">
                 <img src="../../assets/images/trust-us-icon.svg"/>
                 <div class="licensed-tab__text-container">
-                    <p class="primary ">The Trusted Place to be insured</p>
-                    <p class="secondary">Why have <span>355,000</span> users trusted us?</p>
+                    <p class="primary ">{{'TRUSTED.TITLE'  | translate}}</p>
+                    <p class="secondary" [innerHTML]="trustedSubTitle"></p>
                     </div>
                 </div>
-            <div class="licensed-tab__icon-container">
+            <div class="licensed-tab__icon-container" *ngFor="let reason of trustedReasons">
                 <div class="licensed-tab__icon">
-                    <img src="../../assets/images/mas-licensed.svg"/>
-                    <p>MAS-Licensed</p>
-                    </div>
-                <div class="licensed-tab__icon">
-                    <img src="../../assets/images/high-tech.svg"/>
-                    <p>High-Tech, High-Touch</p>
-                    </div>
-                <div class="licensed-tab__icon">
-                    <img src="../../assets/images/salary-advice.svg"/>
-                    <p>Salaried Advisers</p>
-                    </div>
-                <div class="licensed-tab__icon">
-                    <img src="../../assets/images/national.svg"/>
-                    <p>Integration of National Schemes</p>
-                    </div>
-                <div class="licensed-tab__icon">
-                    <img src="../../assets/images/secure.svg"/>
-                    <p>Secure Platform</p>
+                    <img src="{{reason.IMAGE}}"/>
+                    <p>{{reason.LABEL}}</p>
                     </div>
                 </div>
             </div>

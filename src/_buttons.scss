@@ -789,6 +789,9 @@ button:active:focus {
         text-align:center;
         color:$black-color;
         font-size:12px;
+        @include minPhabletmaxTablet{
+          font-size:11px;
+        }
         @include minMobilemaxPhablet{
           font-size:11px;
         }

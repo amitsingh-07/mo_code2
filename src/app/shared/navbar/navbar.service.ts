@@ -46,6 +46,7 @@ export class NavbarService {
     this.setNavbarVisibility(true);
     this.setNavbarMode(2);
     this.setNavbarMobileVisibility(secondaryVisible);
+    this.setNavbarShadowVisibility(false);
   }
   setNavbarVisibility(isVisible: boolean) {
     this.navbarVisibility.next(isVisible);
