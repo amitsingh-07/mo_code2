@@ -1,3 +1,39 @@
-<p>
-  article-entry works!
-</p>
+<div class="article-entry">
+  <div class="article-entry__header">
+    <div class="sub-navigation">
+      <div class="sub-navigation--inner">
+          <span routerLink="/">Home</span>
+          <span class="separator"></span>
+          <span>Articles</span>
+          <span class="separator"></span>
+          <span>{{category}}</span>
+          <span class="separator"></span>
+          <span>{{title}}</span>
+          </div>
+      </div>
+    </div>
+  <div class="article-entry__wrapper row">
+    <div class="article-entry__content">
+      <div class="page-header">
+        <div class="art-tag__container">
+            <div class="art-tag__element"><i class="material-icons">local_offer</i>Protection</div>
+            <div class="art-tag__element"><i class="material-icons">local_offer</i>Term Life</div>
+          </div>
+        <div class="page-header--inner">
+          <h1>{{title}}</h1>
+          <div class="author">
+            <div class="dp"> 
+              <img src="" />
+            </div>
+          </div>
+          </div>
+      </div>
+      <div class="page-box" [innerHtml]="art_content">
+
+      </div>
+        </div>
+    <div class="article-entry__sidepanel">
+      Something should be in here
+      </div>
+  </div>
+</div> 

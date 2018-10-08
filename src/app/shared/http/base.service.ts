@@ -45,6 +45,25 @@ export class BaseService {
       );
   }
 
+  getMock(url) {
+    return this.httpClient
+      .get<IServerResponse>(url)
+      .finally(() => {
+        this.helperService.hideLoader();
+      })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  getArticle(url) {
+    return this.httpClient
+      .get(url, { responseType: 'text' })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
     if (showLoader) {
       this.helperService.showLoader();

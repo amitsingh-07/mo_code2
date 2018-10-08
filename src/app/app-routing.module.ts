@@ -11,17 +11,20 @@ const routes: Routes = [
     path: '', canDeactivate: [PendingChangesGuard], children: [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'myinfo', component: CallBackComponent },
       { path: 'home', component: HomeComponent },
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
-      { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
+      /*
+      { path: 'myinfo', component: CallBackComponent },
+      { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
+      */
       // Legacy Routes
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' }
+
     ]
   }
 ];

@@ -69,6 +69,79 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // -------------------------- ARTICLES MODULE ---------------------------------------
+  getGetStartedArticles() {
+    const url = '../../../assets/mock-data/getStartedArticles.json';
+    return this.http.getMock(url)
+      .pipe(
+          catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getRecentArticles(quantity?: number) {
+    const payload = {number: 0};
+    if (quantity) {
+      payload.number = quantity;
+    }
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.post(apiConstants.endpoint.article.getRecentArticles, payload)
+    const url = '../../../assets/mock-data/recentArticles.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getArticle(art_id) {
+    const payload = { article_id: art_id };
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.post(apiConstants.endpoint.article.getArticle, payload)
+    const url = '../../../assets/mock-data/currentArticle.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getArticleContent(art_id) {
+      const url = '../../../assets/articles/' + art_id + '.jsp';
+      return this.http.getArticle(url)
+        .pipe(
+          catchError((error: HttpErrorResponse) => this.handleError(error))
+        );
+  }
+
+  getArticleCategoryList(category_name) {
+    const payload = { category: category_name };
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.post(apiConstants.endpoint.article.getArticleCategoryList, payload)
+    const url = '../../../assets/mock-data/articleCategoryList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getArticleCategory() {
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
+    const url = '../../../assets/mock-data/articleCategory.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // ---------------------------- ABOUT US MODULE ----------------------------
+  getCustomerReviewList() {
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.get(apiConstants.endpoint.aboutus.getCustomerReview)
+    const url = '../../../assets/mock-data/customerReview.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   getMyInfoData(data) {
     const url = '../assets/mock-data/myInfoValues.json';

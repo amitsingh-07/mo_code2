@@ -1,0 +1,43 @@
+<div class="about-us__wrapper">
+  <div class="about-us__header">
+    <div class="about-us__header--bg">
+      </div>
+    <div class="about-us__header--inner"> 
+      <div class="sub-navigation">
+        <div class="sub-navigation--inner">
+            <span routerLink="/">Home</span>
+            <span class="separator"></span>
+            <span routerLink="/about-us">About-Us</span>
+          </div>
+        </div>
+      <div class="header--title">
+        <h1>{{ 'ABOUT_US.TITLE' | translate}}</h1>
+        </div>
+      </div>
+    </div>
+  <div class="about-us__container">
+    <div class="about-us__section primary">
+      <div class="about-us__section--inner">
+        <h2 class="section--title">{{ 'ABOUT_US.WHO_WE_ARE.TITLE' | translate}}</h2>
+        <div class="section--desc" [innerHTML]="this.translate.instant('ABOUT_US.WHO_WE_ARE.MESSAGE')">
+          </div> 
+        </div>
+      </div>
+    <div class="about-us__section secondary">
+      <div class="about-us__section--inner">
+        <h2 class="section--title">{{ 'ABOUT_US.PEOPLE.TITLE' | translate}}</h2>
+        <div class="about-us__people" *ngFor="let individual of people">
+          <div class="about-us__people--img">
+              <img src="../../../assets/images/about-us/{{individual.DP}}"/>
+            </div>
+          <div class="about-us__people--desc">
+              <p class="name">{{individual.NAME}}</p>
+              <p class="job">{{individual.TITLE}}</p>
+              <div class="about-us__people--cv" [innerHTML]="individual.CV"> 
+                </div>  
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

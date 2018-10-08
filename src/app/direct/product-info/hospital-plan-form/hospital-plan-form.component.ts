@@ -10,10 +10,11 @@ import { DirectService } from './../../direct.service';
 @Component({
   selector: 'app-hospital-plan-form',
   templateUrl: './hospital-plan-form.component.html',
-  styleUrls: ['./hospital-plan-form.component.scss']
+  styleUrls: ['./hospital-plan-form.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
+  encapsulation: ViewEncapsulation.None
 })
 export class HospitalPlanFormComponent implements OnInit, OnDestroy {
-  dobValue;
   categorySub: any;
   modalRef: NgbModalRef;
   hospitalForm: FormGroup;
