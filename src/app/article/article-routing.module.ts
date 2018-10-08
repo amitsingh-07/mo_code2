@@ -6,15 +6,14 @@ import { ArticleEntryComponent } from './article-entry/article-entry.component';
 import { ArticleComponent } from './article.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: '/', component: ArticleComponent},
-  { path: '/category/:name', component: ArticleCategoryComponent},
-  { path: '/entry/:id', component: ArticleEntryComponent},
+  { path: '', component: ArticleComponent},
+  { path: 'category/:name', component: ArticleCategoryComponent},
+  { path: 'entry/:id', component: ArticleEntryComponent},
 
   /* Legacy Routes */
-  { path: '/learn-about-insurance', component: ArticleComponent},
-  { path: '/learn-articles:id', component: ArticleCategoryComponent},
-  { path: 'html:id', component: ArticleEntryComponent}
+  { path: 'learn-about-insurance', redirectTo: '', pathMatch: 'full'},
+  { path: 'learn-articles?category=:name', redirectTo: 'category/:name', pathMatch: 'full'},
+  { path: 'html', component: ArticleEntryComponent}
   // There is learn/learn-articles?category=All so use Activated Routes to get search params properly
 ];
 
@@ -22,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ArticleRoutingModule { }
+export class ArticleRoutingModule {}

@@ -21,21 +21,18 @@
     </div>
     <div class="customer-reviews__content">
       <div class="customer-reviews__inner-content">
-        <div class="customer-review card card-block" *ngFor="let number of numbers">
+        <div class="customer-review card card-block" *ngFor="let customerReview of customerReviewList">
           <h6 class="review">
-            "Dennis has been very patient in our email correspondence and in providing the Benefit Illustration for my term plan. "
+            {{customerReview.message}}
           </h6>
           <div class="rating-container">
             <div class="rating--icon">
-              <i class="material-icons">star</i>
-              <i class="material-icons">star</i>
-              <i class="material-icons">star</i>
-              <i class="material-icons">star</i>
+              <i class="material-icons" *ngFor="let number of getNumber(customerReview.rating)">star</i>
               </div>
-            <div class="rating--text">(5/5)</div> 
+            <div class="rating--text">({{customerReview.rating}}/5 stars)</div> 
             </div>
           <div class="reviewer">
-            Ong Yan Ting, Executive
+            <p class="name">{{customerReview.name}}, {{customerReview.job}}</p>
             </div>
           </div>
         </div>

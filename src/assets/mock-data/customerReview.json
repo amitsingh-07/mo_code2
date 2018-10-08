@@ -1,0 +1,254 @@
+[
+    {
+        "reviewId": 8,
+        "name": "Haw Chee Chuan",
+        "job": "Valuation Specialist",
+        "message": "I like DIYInsurance. It is fast and informative. Thank you Dennis.",
+        "rating": "5",
+        "date": "2015-09-15",
+        "lastUpdate": "2016-03-23T06:34:43.000+0000"
+    },
+    {
+        "reviewId": 14,
+        "name": "Chia Qize Felix",
+        "job": "Client",
+        "message": "Platform is very user friendly. Anna and Dennis provides information and valuable advice promptly.",
+        "rating": "5",
+        "date": "2015-08-24",
+        "lastUpdate": "2016-03-23T06:25:06.000+0000"
+    },
+    {
+        "reviewId": 17,
+        "name": "Goh Teck Heng",
+        "job": "Retiree",
+        "message": "Professional and friendly advisor. Keep it up.",
+        "rating": "5",
+        "date": "2015-08-18",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 29,
+        "name": "Tan Wang Chay",
+        "job": "Secretary",
+        "message": "Prompt response to queries, clear and precise explanations. Eddy's the reason I bought - He's an excellent advisor and he recommended suitable plans. Strive on.\r\n",
+        "rating": "5",
+        "date": "2015-07-21",
+        "lastUpdate": "2016-03-23T06:30:58.000+0000"
+    },
+    {
+        "reviewId": 31,
+        "name": "Norlinda",
+        "job": "Administration",
+        "message": "There was no pushing of products, Keep on going and expanding DIYInsurance. There is very useful information for insurance newbies.",
+        "rating": "4",
+        "date": "2015-10-07",
+        "lastUpdate": "2016-03-23T06:31:21.000+0000"
+    },
+    {
+        "reviewId": 38,
+        "name": "Lim Li Prudence",
+        "job": "Engineer",
+        "message": "Good comparison between different companies.",
+        "rating": "5",
+        "date": "2015-06-27",
+        "lastUpdate": "2016-03-23T06:33:59.000+0000"
+    },
+    {
+        "reviewId": 39,
+        "name": "Wu Hanxing",
+        "job": "Pacific Wells",
+        "message": "Fast responses. Keep carrying on.",
+        "rating": "4",
+        "date": "2015-06-26",
+        "lastUpdate": "2016-03-23T06:35:04.000+0000"
+    },
+    {
+        "reviewId": 45,
+        "name": "Poh Yu Heng",
+        "job": "Engineer",
+        "message": "Fast & easy. Good job. ",
+        "rating": "4",
+        "date": "2015-08-06",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 46,
+        "name": "Koh Ruoshi",
+        "job": "Sales Executive",
+        "message": "I am able to compare across insurance companies and their plans.",
+        "rating": "5",
+        "date": "2015-08-06",
+        "lastUpdate": "2016-03-23T06:26:29.000+0000"
+    },
+    {
+        "reviewId": 47,
+        "name": "Jin Yi Ming",
+        "job": "Analyst",
+        "message": "Advisor was accomodating and approachable. ",
+        "rating": "5",
+        "date": "2015-05-06",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 48,
+        "name": "Vorapol Supanusanti",
+        "job": "Investment Associate",
+        "message": "Clear value proposition.",
+        "rating": "5",
+        "date": "2015-05-06",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 50,
+        "name": "Alex Tan",
+        "job": "Business Ops Manager",
+        "message": "Fair comparison, good & logical educational materials. Keep it up",
+        "rating": "5",
+        "date": "2015-05-21",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 51,
+        "name": "Wong Teck Foo",
+        "job": "Client",
+        "message": "Good response. Good service. ",
+        "rating": "4",
+        "date": "2015-05-14",
+        "lastUpdate": "2016-01-28T03:22:25.000+0000"
+    },
+    {
+        "reviewId": 52,
+        "name": "Chiang Weila",
+        "job": "Client",
+        "message": "No sales talk.",
+        "rating": "4",
+        "date": "2015-05-13",
+        "lastUpdate": "2016-01-28T03:22:25.000+0000"
+    },
+    {
+        "reviewId": 53,
+        "name": "Dommaraju Premchand",
+        "job": "Asst. Professor",
+        "message": "Quick response and efficient. Great job in making insurance affordable. ",
+        "rating": "5",
+        "date": "2015-11-05",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 54,
+        "name": "Nur Filza Taib",
+        "job": "Legal Executive",
+        "message": "I was given explanations about insurance in an easy to understand manner. The website was easy to navigate and that helped to view the policies available. Keep up the good work and all the best for the future.\r\n",
+        "rating": "5",
+        "date": "2015-08-05",
+        "lastUpdate": "2016-03-23T06:26:45.000+0000"
+    },
+    {
+        "reviewId": 57,
+        "name": "Winnie Lim",
+        "job": "Test Analyst System Specialist",
+        "message": "Anna is very helpful and she helped me to generate to get the best quote. DIYInsurance provides good service and competitive insurance premium. Well done DIYInsurance! Keep it up. \r\n",
+        "rating": "5",
+        "date": "2015-04-27",
+        "lastUpdate": "2016-03-23T06:30:37.000+0000"
+    },
+    {
+        "reviewId": 88,
+        "name": "Ang Sook Lin Kryslyn",
+        "job": "Staff Nurse",
+        "message": "Service is very prompt and professional. My questions were answered clearly and my doubts were clarified effectively. I was offered a cheaper and better policy by Daniel which I appreciate. The quotations are affordable. Thanks!",
+        "rating": "5",
+        "date": "2015-11-12",
+        "lastUpdate": "2016-03-23T06:26:10.000+0000"
+    },
+    {
+        "reviewId": 94,
+        "name": "Melissa Wong",
+        "job": "Manager",
+        "message": "Very good service. Prompt and helpful.",
+        "rating": "5",
+        "date": "2015-11-25",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 98,
+        "name": "Aloysius Foo",
+        "job": "Teacher",
+        "message": "Very polite and timely emails by the advisor.",
+        "rating": "5",
+        "date": "2015-11-16",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    },
+    {
+        "reviewId": 101,
+        "name": "Tan Pan Yew Ivan",
+        "job": "Auditor",
+        "message": "Dennis Hoe provided good customer service. He explained the insurance plans well.",
+        "rating": "5",
+        "date": "2015-04-11",
+        "lastUpdate": "2016-03-23T06:33:07.000+0000"
+    },
+    {
+        "reviewId": 102,
+        "name": "Sim Kwee Hor",
+        "job": "Career Coach",
+        "message": "Dennis Hoe is very professional. He explained every clause of the policy and answer my questions well. Thank you for going the extra mile.",
+        "rating": "5",
+        "date": "2015-02-11",
+        "lastUpdate": "2016-03-23T06:33:28.000+0000"
+    },
+    {
+        "reviewId": 110,
+        "name": "Ong Yan Ting",
+        "job": "Executive",
+        "message": "Dennis has been very patient in our email correspondence and in providing the Benefit Illustration for my term plan.\r\n",
+        "rating": "4",
+        "date": "2015-12-10",
+        "lastUpdate": "2016-03-23T06:25:27.000+0000"
+    },
+    {
+        "reviewId": 113,
+        "name": "Wendy Chew",
+        "job": "License Compliance Manager",
+        "message": "The advisor is clear and helpful. He understands the product well and assists me on my financial plan.\r\n",
+        "rating": "5",
+        "date": "2015-05-10",
+        "lastUpdate": "2016-03-23T06:25:42.000+0000"
+    },
+    {
+        "reviewId": 114,
+        "name": "Lana Le",
+        "job": "HR Manager",
+        "message": "1. Very prompt responses to my requests and queries. 2. Good pool of information for clients' comparison of available options.",
+        "rating": "5",
+        "date": "2015-02-10",
+        "lastUpdate": "2016-03-23T06:34:18.000+0000"
+    },
+    {
+        "reviewId": 117,
+        "name": "Goh Han Cheng",
+        "job": "Audit Senior",
+        "message": "Good service, clear cut, staff is approachable and is able to answer queries within a day.",
+        "rating": "5",
+        "date": "2015-09-28",
+        "lastUpdate": "2016-03-23T06:31:55.000+0000"
+    },
+    {
+        "reviewId": 118,
+        "name": "Johnston Liew",
+        "job": "Plant Operator",
+        "message": "We find DIYInsurance better because we have done our own reading and homework. We had an idea of what we wanted but what makes it complete is the service and additional knowledge provided by the planner. It really helps.",
+        "rating": "4",
+        "date": "2015-09-25",
+        "lastUpdate": "2016-03-23T06:36:15.000+0000"
+    },
+    {
+        "reviewId": 119,
+        "name": "Lee Qi Xian",
+        "job": "Bank Executive",
+        "message": "Good service provided by Daniel.",
+        "rating": "4",
+        "date": "2015-09-23",
+        "lastUpdate": "2016-01-27T22:30:00.000+0000"
+    }
+]

@@ -1,0 +1,26 @@
+{
+    "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+    },
+    "objectList": [{
+      "id": 26,
+      "art_title": "Life Stage Planning",
+      "art_author": "Providend",
+      "art_date": "2018-12-23",
+      "art_tags": ["Protection", "Whole Life Insurance"]
+    }, {
+      "id": 27,
+      "art_title": "Choosing the Right Endowment",
+      "art_author": "Providend",
+      "art_date": "2018-12-23",
+      "art_tags": ["Savings"]
+    }, {
+      "id": 28,
+      "art_title": "Understanding Reitrement Income",
+      "art_author": "Providend",
+      "art_date": "2015-12-23",
+      "art_tags": ["Retirement Income Plans", "Retirement Income"]
+    } 
+  ]
+}

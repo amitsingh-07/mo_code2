@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ArticleCategoryComponent } from './article-category/article-category.component';
 import { ArticleEntryComponent } from './article-entry/article-entry.component';
@@ -10,7 +11,8 @@ import { ArticleService } from './article.service';
 @NgModule({
   imports: [
     CommonModule,
-    ArticleRoutingModule
+    ArticleRoutingModule,
+    NgbModule
   ],
   declarations: [ArticleComponent, ArticleCategoryComponent, ArticleEntryComponent]
 })
