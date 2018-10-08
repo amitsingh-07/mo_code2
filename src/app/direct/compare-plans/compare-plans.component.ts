@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { Location, TitleCasePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -9,7 +9,8 @@ import { DirectService } from './../direct.service';
   selector: 'app-compare-plans',
   templateUrl: './compare-plans.component.html',
   styleUrls: ['./compare-plans.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [TitleCasePipe]
 })
 export class ComparePlansComponent implements OnInit {
   pageTitle: string;
@@ -18,7 +19,8 @@ export class ComparePlansComponent implements OnInit {
   underwritingTooltipData;
   constructor(
     public headerService: HeaderService, public directService: DirectService,
-    public readonly translate: TranslateService, private _location: Location) {
+    public readonly translate: TranslateService, private _location: Location,
+    public titlecase: TitleCasePipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('COMPARE_PLANS.TITLE');

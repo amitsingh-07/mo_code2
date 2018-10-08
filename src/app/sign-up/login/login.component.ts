@@ -111,7 +111,13 @@ export class LoginComponent implements OnInit {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword).subscribe((data) => {
         this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
           this.signUpService.setUserProfileInfo(userInfo.objectList);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          const redirect_url = this.signUpService.getRedirectUrl();
+          if (redirect_url) {
+            this.signUpService.clearRedirectUrl();
+            this.router.navigate([redirect_url]);
+          } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          }
         });
       });
     }
