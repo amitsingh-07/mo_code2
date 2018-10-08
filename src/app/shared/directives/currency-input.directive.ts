@@ -18,24 +18,9 @@ export class CurrencyInputDirective implements AfterViewInit {
         this.formatCurrency();
     }
 
-    @HostListener('keydown', ['$event'])
-    onKeyDown(event: KeyboardEvent) {
-        const e = event as KeyboardEvent;
-        if (this.el.nativeElement.value.length < this.maxLength) {
-            this.el.nativeElement.value = this.el.nativeElement.value.replace(/[^0-9]/g, '');
-        } else if (
-            this.el.nativeElement.value.length > this.maxLength &&
-            e.keyCode !== 8 && e.keyCode !== 37 && e.keyCode !== 39 && e.keyCode !== 9) {
-
-            if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
-                e.preventDefault();
-            } else if (
-                (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&
-                (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
-        }
-
+    @HostListener('keyup', ['$event'])
+    onKeyUp(event: KeyboardEvent) {
+        this.el.nativeElement.value = this.el.nativeElement.value.replace(/[^0-9]/g, '');
     }
 
     @HostListener('focus', ['$event'])

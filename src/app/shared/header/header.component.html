@@ -1,25 +1,34 @@
 <!--Header Start-->
-<nav class="navbar fixed-top hidden-sm-md">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <span class="navbar__back-btn--web" (click)="goBack()"></span>
-        </li>
-        <li class="nav-item">
-            <span class="navbar__logo" routerLink="/"></span>
-        </li>
-        <li class="nav-item">
-            <span class="navbar__logo__subtitle">Insurance Adviser</span>
-        </li>
-    </ul>
+<nav *ngIf="showOverallHeader" class="navbar header fixed-top hidden-sm-md" [ngClass]="{'nav--dropshadow': showHeaderDropshadow}">
+    <div class="navbar-wrapper">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <span class="navbar__back-btn--web" (click)="goBack()"></span>
+            </li>
+            <li class="nav-item">
+                <span class="navbar__logo--secondary" routerLink="/"></span>
+            </li>
+            <li class="nav-item">
+                <span class="navbar__logo__subtitle">Insurance Adviser</span>
+            </li>
+        </ul>
+    </div> 
 </nav>
-<nav *ngIf="showHeader" class="navbar fixed-top hidden-lg">
+<nav *ngIf="showOverallHeader" class="navbar--sub"></nav>
+<nav *ngIf="showHeader && showOverallHeader" class="navbar header fixed-top hidden-lg">
     <ul class="navbar-nav">
         <li class="nav-item">
             <span class="navbar__back-btn--mobile" (click)="goBack()"></span>
             <div class="navbar__title--mobile">{{pageTitle}}</div>
-            <div class="navbar__subtitle--mobile">{{subTitle}}</div>
+			<div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
             <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
                 <div class="tooltip-icon"></div> 
+            </div>
+            <div class="navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
+                    <div class="tooltip-icon"></div> 
+                </div>
+            <div class="navbar__closeIcon" *ngIf="closeIcon" (click)="closeProdInfo()">
+                <div class="close-icon"></div>
             </div>
         </li>
     </ul>

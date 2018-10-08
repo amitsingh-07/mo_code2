@@ -1,0 +1,106 @@
+<nav class="navbar fixed-top center" #navbar [ngClass]="{'nav--shadow': showNavShadow}">
+    <div class="navbar-wrapper space-between">
+        <div class="navbar-group space-between" [ngClass]="{'navbar--hidden': !showMobileNavbar}">
+            <div class="navbar-brand" [ngClass]="{'top': subTitle}">
+                <li *ngIf="(navbarMode == 2 || navbarMode == 3)" class="nav-item">
+                    <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
+                    <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
+                </li>
+                <li class="navbar__logo--primary hidden-sm-md" routerLink="/">
+                    </li>
+                <li *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
+                    </li>
+                <li *ngIf="(navbarMode == 2 || navbarMode == 3)" class="navbar__separator hidden-sm-md">
+                    </li>
+                <li *ngIf="(navbarMode == 2 || navbarMode == 3)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
+                    <p>Insurance Adviser</p>
+                    <p class="secondary">powered by DIYInsurance</p>
+                    </li>
+                </div>
+            <button *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar__menu-icon"></span>
+                </button>
+            <ul *ngIf="(navbarMode == 2 || navbarMode == 3)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
+                <div class="navbar__title--mobile">{{pageTitle}}</div>
+                <div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
+                <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
+                    <div class="tooltip-icon"></div> 
+                    </div>
+                <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
+                        <div class="tooltip-icon"></div> 
+                    </div>
+                <div class="navbar__closeIcon" *ngIf="closeIcon" (click)="closeProdInfo()">
+                    <div class="close-icon"></div>
+                </div>
+                </ul> 
+            </div>
+         
+        <div *ngIf="(navbarMode == 1 || navbarMode == 3)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+            <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/direct">Compare</a>
+                    </li>
+                <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="id01.open();" (mouseleave)="id01.close();">
+                    <a class="nav-link dropdown-toggle" id="id02" href="#" ngbDropdownToggle>Learn</a>
+                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id02">
+                        <button class="dropdown-item">Our Articles</button>
+                        <button class="dropdown-item">Trending Articles</button>
+                        <button class="dropdown-item">Comparison Tables</button>
+                        <button class="dropdown-item">Guide Me</button> 
+                    </div>
+                    </li>
+                <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="id02.open();" (mouseleave)="id02.close()">
+                    <a class="nav-link dropdown-toggle" id="id03" href="#" ngbDropdownToggle >Help</a>
+                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id03">
+                        <button class="dropdown-item">Life Insurance Calculator</button>
+                        <button class="dropdown-item">Critical Illness Calculator</button>
+                        <button class="dropdown-item">Savings Calculator</button>
+                        <button class="dropdown-item">Education Saving Calculator</button>
+                        <button class="dropdown-item">Retirement Income Calculator</button>
+                    </div>
+                    </li>
+                <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="id03.open();" (mouseleave)="id03.close();">
+                    <a class="nav-link dropdown-toggle" id="id04" href="#" ngbDropdownToggle>About Us</a>
+                    <div class="dropdown-menu right row" ngbDropdownMenu aria-labelledby="id03">
+                        <div class="nav-group" routerLink="/about-us">
+                            <p>About Us</p>
+                            </div>
+                        <div class="nav-group" routerLink="/about-us/customer-reviews">
+                            <p>Customer Reviews</p>
+                            </div> 
+                        <div class="nav-group" routerLink="/about-us/subscribe">
+                            <p>Subscribe</p>
+                            </div>
+                    </div>
+                    </li>
+            </ul>
+            <ul class="navbar-nav search-wrapper space-between align-right" [ngClass]="{'open': showSearchBar}">
+                <li class="nav-item" [ngClass]="{'open': showSearchBar}">        
+                    <div class="navbar-search" [ngClass]="{'form-control': showSearchBar}">
+                        <div class="search-trigger" (click)="openSearchBar(true)">
+                            <img class="" src="../../../assets/images/search-icon.svg"/>
+                            <span class="hidden-lg">Search</span>
+                        </div>
+                        <div class="search-input" [ngClass]="{'open': showSearchBar}">
+                            <input type="text" placeholder="Enter your search here"/>
+                            <div class="close-btn" (click)="openSearchBar(false)">
+                                <img src="../../../assets/images/close.svg"/>
+                            </div> 
+                        </div>
+                    </div>            
+                    </li>
+                </ul>
+            <ul class="navbar-nav secondary space-between">
+                 <li class="nav-item link-login" routerLink="signup">
+                    <a>
+                        <i class="material-icons hidden-lg">person</i>
+                        <span>Login</span>
+                        </a>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+    </nav>
+<nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2)}"></nav>
+<div [ngbCollapse]="isNavbarCollapsed" #navbarDropshadow (click)="isNavbarCollapsed = !isNavbarCollapsed" class="collapse navbar-collapse navbar__backdrop" id="navbarsDefault">
+    </div>

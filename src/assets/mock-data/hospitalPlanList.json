@@ -1,0 +1,26 @@
+{
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    },
+    "objectList": [{
+        "id": 1,
+        "hospitalClassDescription": "Choose any doctor, Stay in any hospital",
+        "hospitalClass": "Private Hospital"
+    },
+    {
+        "id":2,
+        "hospitalClassDescription": "Choose any doctor, Stay in single ward",
+        "hospitalClass": "Government Hospital Ward A"
+    },
+    {
+        "id":3,
+        "hospitalClassDescription": "Choose any doctor, Up to 4-bedded ward",
+        "hospitalClass": "Government Hospital Ward B1"
+    },
+    {
+        "id":4,
+        "hospitalClassDescription": "Assigned doctor, Up to 9-bedded ward",
+        "hospitalClass": "Government Hospital Ward B2"
+    }]
+  }

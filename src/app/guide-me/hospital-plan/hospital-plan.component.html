@@ -1,0 +1,31 @@
+<!--Hospital Plan Screen-->
+<div class="container-fluid max-width--1024 mobile-top-extended">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2>{{ 'HOSPITAL_PLAN.TITLE' | translate}}</h2>
+        <h6 class="col-lg-9 col-sm-10 col-xs-12 flex--pad-mt-reset">{{ 'HOSPITAL_PLAN.DESCRIPTION' | translate}}</h6>
+        <div class="banner-image">
+          <img src="assets/images/hospital-plan.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <form name="hospitalPlanForm" [formGroup]="hospitalPlanForm" id="hospitalPlanForm">
+          <div class="form-group mb0 sm-mb50 flex-col flex__box--sm-horz">
+            <div class="special-radio-button hidden" *ngFor="let hospitalPlanData of hospitalPlanList; let i = index">
+              <input id="hospitalPlan_{{i+1}}" (change)="validateForm(hospitalPlanData)" name="hospitalPlan" formControlName="hospitalPlan" type="radio" class="field radio" value="{{hospitalPlanData.id}}"
+              tabindex="{{i+1}}" />
+                <label for="hospitalPlan_{{i+1}}">
+                  <div class="input-label-white">{{hospitalPlanData.hospitalClass}}</div>
+                  <div class="input-label-normal">{{hospitalPlanData.hospitalClassDescription}}</div>
+                </label>
+            </div>
+          </div>
+          <div>
+            <button type="button" [disabled]="!isFormValid" (click)="goToNext(hospitalPlanForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

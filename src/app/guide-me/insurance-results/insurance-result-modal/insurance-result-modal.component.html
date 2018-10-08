@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" />
+  </div>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title" id="view_details_title">{{data.title}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true"></span>
+  </button>
+  <div class="form-group">
+    <div class="flex-row" *ngFor="let inputValue of data.inputValues; let i = index">
+      <div class="flex-col-7">
+        <label id="ir-vd-title-{{data.id}}-{{i}}">{{inputValue.title}}</label>
+      </div>
+      <div class="flex-col-5">
+        <span id="ir-vd-value-{{data.id}}-{{i}}">{{inputValue.currency}}{{inputValue.value | currency : '' : '': '1.0-2'}}</span><span>{{inputValue.type}}</span><span id="view_details_for_month">{{inputValue.monthEnabled}}</span>
+      </div>
+    </div>
+    <div class="flex-row" *ngIf ="data.existingCoverage">
+        <div class="flex-col-7 label-orange">
+          <label id="view_details_existing_covarage_text">{{data.existingCoverage.title}}</label>
+        </div>
+        <div class="flex-col-5 label-orange">
+          <span id="view_details_existing_covarage_value">{{data.existingCoverage.value | currency:'USD':'symbol-narrow':'1.0-2'}} {{data.existingCoverage.monthEnabled}}</span>
+        </div>
+      </div>
+      <div class="separator-solid"></div>
+      <div class="flex-row">
+        <div class="flex-col-7">
+          <label id="view_details_total_text">{{data.total.title}}</label>
+        </div>
+        <div class="flex-col-5">
+          <span class="total" id="view_details_total_value">{{ finalTotal | currency:'USD':'symbol-narrow':'1.0-0'}}</span><span class="total" *ngIf="isMonthEnabled"> {{ 'SUFFIX.PER_MONTH' | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

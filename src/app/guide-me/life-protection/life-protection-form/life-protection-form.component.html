@@ -1,0 +1,212 @@
+<div>
+  <div class="dependent-count--btn mb10 hidden-sm-md">
+    <i class="dependent-count--btn--prev-arrow" (click)="navigateDependentForm('prev')" [style.visibility]="isNavPrevEnabled ? 'visible' : 'hidden'"></i>
+    {{ 'LABEL.DEPENDANT' | translate}} {{ !isFormControlDisabled ? activeFormIndex+1 : 0}}
+    <i class="dependent-count--btn--next-arrow" (click)="navigateDependentForm('next')" [style.visibility]="isNavNextEnabled ? 'visible' : 'hidden'"></i>
+  </div>
+  <div class="flex-row dependent-count mt30 hidden-lg">
+    <div class="flex-col-6">
+      <label class="label-bold">{{ 'LIFE_PROTECTION.I_HAVE' | translate}}</label>
+    </div>
+    <div class="flex-col-6">
+      <div class="dropdown-control">
+        <div ngbDropdown id="dependentCountMobile">
+          <button class="btn btn-dropdown without-border" id="dependentCountDropdown" ngbDropdownToggle aria-expanded="false">
+            <span>{{dependentCount}}</span>&nbsp;{{ 'LABEL.DEPENDANT' | translate}}<span *ngIf="dependentCount > 1">s</span>
+          </button>
+          <div ngbDropdownMenu class="dropdown" aria-labelledby="dependentCountDropdown">
+            <button class="dropdown-item" *ngFor="let option of dependentCountOptions" (click)="setDropDownDependentCount(option, i)">{{option}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form id="lifeProtectionForm" name="lifeProtectionForm" [formGroup]="lifeProtectionForm">
+    <div class="form-group-with-bg" [class.show]="activeFormIndex == i" formArrayName="dependents" *ngFor="let item of lifeProtectionForm.get('dependents')['controls']; let i = index;">
+      <div [formGroupName]="i">
+        <!-- <div class="overlay-block hidden-sm-md" *ngIf="item.controls.educationSupport.value"></div> -->
+        <!--Form Header-->
+        <div>
+          <div class="form-group-with-bg--header">
+            <div class="flex-row">
+              <div class="form-group-with-bg--header-single-label">{{ 'LABEL.DEPENDANT' | translate}} {{
+                !isFormControlDisabled ? i+1 : 0}}</div>
+            </div>
+          </div>
+          <!--Form Content-->
+          <div class="form-group-with-bg--content">
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.GENDER' | translate}}</div>
+              </div>
+              <div class="flex-col-6">
+                <div class="dropdown-control">
+                  <div ngbDropdown id="dependantGender">
+                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="genderDropDown"
+                      ngbDropdownToggle>{{item.controls.gender.value}}
+                    </button>
+                    <div class="dropdown" ngbDropdownMenu aria-labelledby="genderDropDown" style="height: auto !important;">
+                      <button class="dropdown-item" *ngFor="let option of genderOptions" (click)="setDropDownValue('gender', option, i)">{{option}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.RELATIONSHIP' | translate}}</div>
+              </div>
+              <div class="flex-col-6">
+                <div class="dropdown-control">
+                  <div ngbDropdown id="dependantRelationship">
+                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="relationshipDropdown"
+                      ngbDropdownToggle>{{item.controls.relationship.value}}
+                    </button>
+                    <div class="dropdown" ngbDropdownMenu aria-labelledby="relationshipDropdown">
+                      <button class="dropdown-item" *ngFor="let option of relationshipOptions" (click)="setDropDownValue('relationship',option, i)">{{option}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">{{ 'LABEL.AGE' | translate}}</div>
+              </div>
+              <div class="flex-col-6">
+                <div class="dropdown-control">
+                  <div ngbDropdown id="dependantAge">
+                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="ageDropdown"
+                      ngbDropdownToggle>{{item.controls.age.value}}
+                    </button>
+                    <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="ageDropdown">
+                      <button class="dropdown-item" *ngFor="let option of ageOptions" (click)="setDropDownValue('age',option, i)">{{option}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">
+                    <div class="with-help-icon">{{ 'LABEL.SUPPORT_AMOUNT' | translate}}
+                  <span class="help-icon" (click)="showSupportAmountModal()"></span></div>
+                </div>
+              </div>
+              <div class="flex-col-6">
+                <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
+                  <i class="fixed-currency">$</i>
+                  <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control"
+                    appCurrencyInput maxLength="4" #supportAmount formControlName="supportAmount" value="0">
+                  <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <div class="form-group-with-bg--content-label" for="name">
+                    <div class="with-help-icon">{{ 'LABEL.YEARS_NEEDED' | translate}}
+                  <span class="help-icon" (click)="showLifeProtectionModal()"></span></div>
+                </div>
+              </div>
+              <div class="flex-col-6">
+                <div class="dropdown-control">
+                  <div ngbDropdown id="yearsNeeded">
+                    <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown" id="yearsNeededDropdown"
+                      ngbDropdownToggle>{{item.controls.yearsNeeded.value}}
+                    </button>
+                    <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="yearsNeededDropdown">
+                      <button class="dropdown-item" *ngFor="let option of yearsNeededOptions" (click)="setDropDownValue('yearsNeeded',option, i)">{{option}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isChild(item.controls.age.value)">
+          <div class="education-support">
+            <div class="checkbox-button one-label">
+              <input [attr.disabled]="isFormControlDisabled" id="educationSupport{{i}}" name="educationSupport"
+                formControlName="educationSupport" type="checkbox" class="field checkbox" value="Education Support <br> I want to fund this child for a university education if i pass away">
+              <label for="educationSupport{{i}}">
+                <div class="title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_TITLE' | translate}}</div>
+                <div class="sub-title">{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_DESC' | translate}}</div>
+              </label>
+            </div>
+          </div>
+          <div class="education-support-details" *ngIf="item.controls.educationSupport.value">
+            <div class="form-group-with-bg dark">
+              <label>{{ 'LIFE_PROTECTION.EDUCATION_SUPPORT_SUBTITLE' | translate}} </label>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <div class="form-group-with-bg--content-label" for="name">{{
+                    'LIFE_PROTECTION.EDUCATION_SUPPORT_COURSE' | translate}}</div>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown id="eduSupportCourse">
+                      <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="courseDropdown"
+                        ngbDropdownToggle>{{item.controls.eduSupportCourse.value}}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let option of eduSupportCourse" (click)="setDropDownValue('eduSupportCourse',option, i)">{{option}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <div class="form-group-with-bg--content-label" for="name">{{
+                    'LIFE_PROTECTION.EDUCATION_SUPPORT_COUNTRY' | translate}}</div>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown id="eduSupportCountry">
+                      <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="countryDropdown"
+                        ngbDropdownToggle>{{item.controls.eduSupportCountry.value}}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="countryDropdown">
+                        <button class="dropdown-item" *ngFor="let option of eduSupportCountry" (click)="setDropDownValue('eduSupportCountry',option, i)">{{option}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <div class="form-group-with-bg--content-label" for="name">{{
+                    'LIFE_PROTECTION.EDUCATION_SUPPORT_NATIONALITY' | translate}}</div>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown id="eduSupportNationality">
+                      <button [attr.disabled]="isFormControlDisabled" class="btn btn-dropdown without-border" id="nationalityDropdown"
+                        ngbDropdownToggle>{{item.controls.eduSupportNationality.value}}
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="nationalityDropdown">
+                        <button class="dropdown-item" *ngFor="let option of eduSupportNationality" (click)="setDropDownValue('eduSupportNationality',option, i)">{{option}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- Action Buttons -->
+  <button id="nextDependentBtn" [class.show]="isNavNextEnabled" (click)="navigateDependentForm('next')" type="button"
+    class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LIFE_PROTECTION.LBL_NEXT_DEPENDANT' |
+    translate }}</button>
+  <button id="submitDepFormBtn" [class.show]="!isNavNextEnabled" (click)="submitDependentForm(lifeProtectionForm)" type="button"
+    class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100">{{ 'LABEL.CONTINUE' | translate }}</button>
+
+  <!-- PAGE INDICATOR -->
+  <div class="page-indicator" [hidden]="isFormControlDisabled">
+    <span [class.active]="i == activeFormIndex" *ngFor="let item of getPageIndicatorCount(); let i = index;"></span>
+  </div>
+</div>

@@ -1,0 +1,178 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-plan-details-widget {
+  .hidden {
+    display: none !important;
+  }
+
+  .plan-selected-wrapper {
+    border: solid 3px #ff872f !important;
+  }
+
+  .plan-selected {
+    color: #fff;
+    background-color: #ff872f !important;
+    border-color: #ff872f !important;
+    box-shadow: none;
+    @include allmobiles {
+      border-radius: 0;
+    }
+  }
+  
+  .brochure {
+    background: #fff;
+    color:#00a7a7;
+    border-radius: 6px;
+    border: solid 1px rgba(0, 167, 167, 0.4);
+  }
+  .insurance-plan-widget {
+    position: relative;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
+
+    .img-fluid {
+      height: 70px;
+      width: 70px;
+    }
+
+    .brochure {
+      display: none;
+    }
+
+    .row-btn-bottom {}
+
+    .btn-select {
+      background-color: #00a7a7;
+      color: #ffffff;
+    }
+
+    .info-icon {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+
+    .insurer-logo {
+      height: 80px;
+      text-align: center;
+      margin-bottom: 10px;
+      align-items: center;
+
+      img {
+        width: 80%;
+      }
+
+      @include allmobiles {
+        img {
+          width: 50% !important;
+        }
+      }
+    }
+
+    border: solid 3px #fff;
+
+    .insurance-plan-widget__container {
+      padding-top: 15px;
+
+      h4 {
+        max-height: 44px;
+        font-size: 21px;
+        color: $black-color;
+        font-family: $muli-semi-bold;
+      }
+
+      h2 {
+        font-size: 36px;
+        color: $app-backgrnd-color;
+        font-family: $muli-semi-bold;
+
+        .text-small {
+          color: #2d8289;
+          font-size: 18px;
+          font-family: $muli-regular;
+          margin-left: 5px;
+        }
+      }
+
+      .insurance-plan-widget__container__discount__block {
+        border-top: 1px solid #c2d9ec;
+        border-bottom: 1px solid #c2d9ec;
+        padding: 0 20px;
+        color: #e46f6f;
+        font-family: $muli-bold;
+        font-size: 16px;
+        position: relative;
+        margin: 0 -20px;
+        background: url("../../../../assets/images/promo-tag.svg");
+        background-repeat: no-repeat;
+        background-position: 26px 9px;
+        padding-left: 40px;
+      }
+
+      .insurance-plan-widget__container__rank__wrapper {
+        @extend .flex;
+        //@extend .space-btwn;
+        @extend .justify-center;
+        margin: 15px 0;
+
+        .one-plan-width {
+          width: 100% !important;
+        }
+
+        .two-plan-width {
+          width: 47% !important;
+        }
+
+        .three-plan-width {
+          width: 30% !important;
+        }
+
+        .insurance-plan-widget__container__rank-box {
+          background-color: #c0eded;
+          border-radius: 8px;
+          padding: 4%;
+          width: 30%;
+          text-align: center;
+          color: $app-backgrnd-color;
+          @extend .flex;
+          @extend .justify-center;
+          @extend .align-center;
+          flex-direction: column;
+          flex: 1;
+          width: 25%;
+          margin-right: 10px;
+        }
+
+        .insurance-plan-widget__container__rank-box:nth-last-child(1) {
+          margin-right: 0px !important;
+        }
+
+        .feature-head {
+          font-size: 24px;
+          font-family: $muli-bold;
+        }
+
+        .feature-caption {
+          font-size: 16px;
+
+          @include tablet {
+            font-size: 14px !important;
+          }
+
+          font-family: $muli-semi-bold;
+          width: 100px;
+          margin-bottom: 10px;
+        }
+
+        .help-icon {
+          background: url("../../../../assets/images/tooltip-icon.svg") no-repeat;
+          height: 20px;
+          width: 20px;
+          cursor: pointer;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+

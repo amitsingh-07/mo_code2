@@ -1,11 +1,110 @@
 {
+  "COMMON": {
+    "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
+    "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLANS_SELECTED": "Plans Selected",
+    "LBL_SEARCH_PLAN": "Search Plans",
+    "LBL_UPDATE_PLAN": "Update Plan",
+    "LBL_MALE": "Male",
+    "LBL_FEMALE": "Female",
+    "LBL_SMOKER": "Smoker",
+    "LBL_NONSMOKER": "Non-Smoker",
+    "LBL_YES": "Yes",
+    "LBL_NO": "No",
+    "LBL_CONTINUE": "Continue",
+    "SUBLBL_MAX4":" (Max 4)",
+    "LBL_SELECT": "Select"
+  },
+  "SUFFIX": {
+    "PER_MONTH": "/ mth",
+    "PER_YEAR": "/ year"
+  },
   "LABEL": {
+    "GENDER": "Gender",
     "CONTINUE": "Continue",
+    "SET_UP_INVESTMENT_ACCOUNT": "Set Up Investment Account",
     "MALE": "Male",
     "FEMALE": "Female",
     "DEPENDANT": "Dependant",
     "DEPENDENT": "Dependent",
+    "DEPENDANT_PLURAL": "Dependants",
+    "DEPENDENT_PLURAL": "Dependents",
     "SMOKER": "Smoker",
-    "NON_SMOKER": "Non - Smoker"
+    "NON_SMOKER": "Non - Smoker",
+    "RELATIONSHIP": "Relationship",
+    "AGE": "Age",
+    "SAVE": "Save",
+    "SUPPORT_AMOUNT": "Support Amount",
+    "YEARS_NEEDED": "Years Needed",
+    "TRY_AGAIN":"Try Again",
+    "PROCEED":"Proceed"
+  },
+  "ADD_EXISTING_COVERAGES" : {
+    "TITLE": "Add Existing Coverages",
+    "LIFE_PROTECTION": "Life Protection",
+    "CRITICAL_ILLNESS": "Critical Illness",
+    "OCCUPATION_DISABILITY": "Occupational Disability",
+    "LONG_TERM_CARE": "Long-Term Care",
+    "HOSPITAL_PLAN": "Hospital Plan"
+  },
+  "PROTECTION_NEED_TYPES": {
+    "LIFE_PROTECTION": "Life Protection",
+    "CRITICAL_ILLNESS": "Critical Illness",
+    "OCCUPATION_DISABILITY": "Occupational Disability",
+    "LONG_TERM_CARE": "Long-Term Care",
+    "HOSPITAL_PLAN": "Hospital Plan"
+  },
+  "BUTTON": {
+    "PROCEED": "Proceed",
+    "COMPARE": "Compare",
+    "UN_SELECT": "Plan Selected",
+    "DETAILS": "Details",
+    "SELECT_PLAN": "Select Plan"
+  },
+  "CUSTOM_MODAL": {
+    "MODAL_TITLE": "Insurance Results",
+    "MODAL_DESC":"In the final step, we will be sharing with you the coverage you need based on our assessment."
+  },
+  "PRODUCT_DETAILS": {
+    "LBL_ABOUT_POLICY": "About Policy",
+    "LBL_REASONS_TO_BUY": "Reasons To Buy This Plan",
+    "LBL_PAYOUT": "Payout Details",
+    "LBL_UNIQUE_FEATURES": "Unique Features",
+    "LBL_RANKING": "Ranking By Price",
+    "LBL_RATING": "Insurer's Rating",
+    "LBL_COMMISSION": "Commission Rebate"
+  },
+  "SETTINGS": {
+    "SORT_BY": "Sort by",
+    "SORT" : [
+      {"displayText": "Highest Ranking", "value": "premium.ranking" },
+      {"displayText": "Insurer Name (A-Z)", "value": "+insurer.insurerName" },
+      {"displayText": "Insurer Name (Z-A)", "value": "-insurer.insurerName" },
+      {"displayText": "Financial Rating (Highest-Lowest)", "value": "+insurer.rating" },
+      {"displayText": "Financial Rating (Lowest-Highest)", "value": "-insurer.rating" }
+    ],
+    "TYPES": {
+      "INSURERS": "Insurers",
+      "PREMIUM_FREQUENCY": "Premium Frequency",
+      "INSURANCE_FINANCIAL_RATING": "Insurers' Financial Rating",
+      "CLAIM_FEATURE": "Claim Feature",
+      "DEFERRED_PERIOD": "Deferred Period",
+      "ESCALATING_BENEFIT": "Escalating Benefit",
+      "FULL_PARTIAL_RIDER": "Full / Partial Rider",
+      "PAYOUT_YEARS": "Payout Years",
+      "CLAIM_CRITERIA": "Claim Criteria"
+    },
+    "NO_FILTER_RESULTS": "Please change your filter settings",
+    "NO_RESULTS": "No results found"
+  },
+  "PROD_INFO_TOOLTIP": {
+    "COMMISSION": {
+          "TITLE": "Commission Rebate",
+          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
+      },
+    "RATING": {
+          "TITLE": "Insurer’s Rating",
+          "MESSAGE": "<div><div class='mb20'>This measures the financial stability of the insurers. The ranking is as follows:</div><div class='insurer-rating'> <div class='rating title'> <span>S&P / FITCH <br/>Rating</span> </div><div class='rating-desc title'> <span>Rating Description</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AAA</span> </div><div class='rating-desc'> <span>Prime</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>AA+</span> <span>AA</span> <span>AA-</span> </div><div class='rating-desc'> <span>High Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>A+</span> <span>A</span> <span>A-</span> </div><div class='rating-desc'> <span>Upper Medium Grade</span> </div></div><div class='insurer-rating'> <div class='rating'> <span>BBB+</span> <span>BBB</span> <span>BBB-</span> </div><div class='rating-desc'> <span>Lower Medium Grade</span> </div></div></div>"
+      }
   }
 }

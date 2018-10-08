@@ -1,0 +1,88 @@
+<form id="existingCoverageForm" name="existingCoverageForm" [formGroup]="existingCoverageForm" autocomplete="off">
+<div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" />
+  </div>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title">{{ 'ADD_EXISTING_COVERAGES.TITLE' | translate}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true"></span>
+  </button>
+  <div class="form-group">
+    <div class="flex-row" *ngIf = "isLifeProtection">
+      <div class="flex-col-6">
+        <label>{{ 'ADD_EXISTING_COVERAGES.LIFE_PROTECTION' | translate}}</label>
+      </div>
+      <div class="flex-col-6">
+        <div class="form-control">
+          <i>$</i>
+          <div name="cpf">
+            <input autocomplete="off" class="input-control" maxLength="10" name="LIFE_PROTECTION" type="text" appRestrictAlphabets formControlName="lifeProtectionCoverage" value="0">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row " *ngIf="isCriticalIllness">
+      <div class="flex-col-6">
+        <label>{{ 'ADD_EXISTING_COVERAGES.CRITICAL_ILLNESS' | translate}}</label>
+      </div>
+      <div class="flex-col-6">
+        <div class="form-control">
+          <i>$</i>
+          <div name="cpf">
+            <input autocomplete="off" class="input-control" type="text" maxLength="10" name="CRITICAL_ILLNESS" appRestrictAlphabets formControlName="criticalIllnessCoverage" value="0">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row " *ngIf="isOccupationalDisability">
+      <div class="flex-col-6">
+        <label>{{ 'ADD_EXISTING_COVERAGES.OCCUPATION_DISABILITY' | translate}}</label>
+      </div>
+      <div class="flex-col-6">
+        <div class="form-control form-control-right">
+          <i>$</i>
+          <div name="cpf">
+            <input autocomplete="off" class="input-control" type="text" maxLength="5" name="OCCUPATION_DISABILITY" appRestrictAlphabets formControlName="occupationalDisabilityCoveragePerMonth" value="0">
+          </div>
+          <i class="right">{{ 'SUFFIX.PER_MONTH' | translate}}</i>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row" *ngIf="isLongTermCare">
+      <div class="flex-col-6">
+        <label>{{ 'ADD_EXISTING_COVERAGES.LONG_TERM_CARE' | translate}}</label>
+      </div>
+      <div class="flex-col-6">
+        <div class="form-control form-control-right">
+          <i>$</i>
+          <div name="cpf">
+            <input autocomplete="off" class="input-control"  type="text" maxLength="5" name="LONG_TERM_CARE" appRestrictAlphabets formControlName="longTermCareCoveragePerMonth" value="0">
+          </div>
+          <i class="right">{{ 'SUFFIX.PER_MONTH' | translate}}</i>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-row " *ngIf="isHospitalPlan">
+      <div class="flex-col-6">
+        <label>{{ 'ADD_EXISTING_COVERAGES.HOSPITAL_PLAN' | translate}}</label>
+      </div>
+      <div class="flex-col-6">
+        <div class="dropdown-control">
+          <div ngbDropdown id="HospitalPlanDropDown">
+            <button class="btn btn-dropdown" id="hospitalPlanDropDown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
+              <span id="selected_hospital_plan" class="btn-txt-wrap">{{selectedHospitalPlan.hospitalClass}}</span>
+            </button>
+            <div ngbDropdownMenu class="dropdown" aria-labelledby="hospitalPlanDropDown">
+              <button class="dropdown-item" *ngFor="let currentPlan of hospitalPlanList" (click)="selectHospitalPlan(currentPlan)">{{currentPlan.hospitalClass}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" (click)="save()" class="btn btn__footer--fixed btn-primary width100 mt5" id="incomeBtn">{{ 'LABEL.SAVE' | translate}}</button>
+</div>
+</form>

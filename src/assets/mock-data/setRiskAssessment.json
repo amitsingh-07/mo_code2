@@ -1,0 +1,12 @@
+{
+  "objectList": {
+    "id": 4,
+    "type": "Moderately Aggressive",
+    "order": 1,
+    "htmlDesc": null
+  },
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  }
+}

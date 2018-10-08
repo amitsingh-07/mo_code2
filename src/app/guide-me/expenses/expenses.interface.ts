@@ -1,4 +1,5 @@
 export interface IMyExpenses {
-    monthlyInstallment: number;
+    monthlyInstallments: number;
+    livingExpenses: number;
     otherExpenses: number;
 }

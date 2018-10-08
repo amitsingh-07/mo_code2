@@ -1,7 +1,7 @@
 export class UserInfo {
         gender: string ;
-        dob: string;
+        dob: any;
         customDob: string;
         smoker: string;
-        dependent: string;
+        dependent: number;
     }

@@ -1,5 +1,5 @@
 <!--Expense Screen-->
-<div class="container-fluid">
+<div class="container-fluid max-width--1024">
   <div class="row">
     <div class="col-lg-7 col-md-6 hidden-sm-md">
       <h2>{{ pageTitle }}</h2>
@@ -10,23 +10,41 @@
     </div>
     <div class="col-lg-5 col-md-6">
         <form id="expensesForm" name="expensesForm" [formGroup]="expensesForm">
-          <div  class="form-with-bg">
+          <div  class="form-group-with-bg">
             <!--Form Header-->
-            <div class="form-with-bg--header">
-                <div class="form-group flex-row">
-                  <div class="form-with-bg--header-label">{{ 'MY_EXPENSES.MONTHLY_EXPENSES' | translate}}<div class="form-with-bg--header-sub-label">{{ 'MY_EXPENSES.WHAT_YOU_SPEND' | translate}}</div></div>
-                  <div class="total">{{expensesTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+            <div class="form-group-with-bg--header">
+                <div class="flex-row">
+                  <div class="flex-col-7">
+                    <div class="form-group-with-bg--header-label">{{ 'MY_EXPENSES.MONTHLY_EXPENSES' | translate}}<div class="form-group-with-bg--header-sub-label">{{ 'MY_EXPENSES.WHAT_YOU_SPEND' | translate}}</div></div>
+                  </div>
+                  <div class="flex-col-5">
+                    <div class="total">{{expensesTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  </div>  
                 </div>
               </div>
               <!--Form Content-->
-              <div class="form-with-bg--content">
-                <div class="form-group flex-row">
-                  <div class="form-with-bg--content-label">{{ 'MY_EXPENSES.MONTHLY_INSTALLMENT' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_EXPENSES.MONTHLY_INSTALLMENT_HINT' | translate}}</div></div>
-                  <div class="input-control" [ngClass]="{'readonly': monthlyInstallment.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #otherExpenses formControlName="otherExpenses" value="0"></div>
+              <div class="form-group-with-bg--content">
+                <div class="flex-row">
+                  <div class="flex-col-6">
+                    <div class="form-group-with-bg--content-label">{{ 'MY_EXPENSES.MONTHLY_INSTALLMENT' | translate}}<div class="form-group-with-bg--content-sub-label">{{ 'MY_EXPENSES.MONTHLY_INSTALLMENT_HINT' | translate}}</div></div>
+                  </div>
+                  <div class="flex-col-6">
+                    <div class="form-control">
+                        <i>$</i>
+                      <div [ngClass]="{'readonly': monthlyInstallments.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="5" #monthlyInstallments formControlName="monthlyInstallments" value="0"></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group flex-row">
-                  <div class="form-with-bg--content-label">{{ 'MY_EXPENSES.OTHER_EXPENSES' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_EXPENSES.OTHER_EXPENSES_HINT' | translate}}</div></div>
-                  <div class="input-control" [ngClass]="{'readonly': otherExpenses.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="5" #monthlyInstallment formControlName="monthlyInstallment" value="0"></div>
+                <div class="flex-row">
+                  <div class="flex-col-6">
+                    <div class="form-group-with-bg--content-label">{{ 'MY_EXPENSES.OTHER_EXPENSES' | translate}}<div class="form-group-with-bg--content-sub-label">{{ 'MY_EXPENSES.OTHER_EXPENSES_HINT' | translate}}</div></div>
+                  </div>
+                  <div class="flex-col-6">
+                    <div class="form-control">
+                        <i>$</i>
+                      <div [ngClass]="{'readonly': otherExpenses.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="5" #otherExpenses formControlName="otherExpenses" value="0"></div>
+                    </div>
+                </div>
                 </div>
               </div>
             </div>

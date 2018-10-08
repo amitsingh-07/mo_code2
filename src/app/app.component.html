@@ -1,6 +1,19 @@
 <div>
-  <app-header></app-header>
+  <app-navbar></app-navbar>
+  <!-- <app-header></app-header> -->
 </div>
 <div>
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
+<div>
+  <app-footer></app-footer>
+</div>
+<!-- 
+<div style="margin: 0 auto; max-width: 1024px;">
+  <div class="flex__wrapper">
+    <app-header></app-header>
+  </div>
+  <div class="flex__wrapper" style="padding-left: 0; padding-right: 0;">
+    <router-outlet></router-outlet>
+  </div>
+</div> -->

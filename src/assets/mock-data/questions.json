@@ -1,0 +1,228 @@
+{
+	"objectList": [
+		{
+			"id": 1,
+			"description": "Based on the investment amount I have indicated, I am willing to take a maximum loss of",
+			"text": null,
+			"options": [
+				{
+					"id": 1,
+					"text": "0%",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 1,
+					"customUserInput": null,
+					"listingOrder": 1
+				},
+				{
+					"id": 2,
+					"text": "1% to 10%",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 2,
+					"customUserInput": null,
+					"listingOrder": 2
+				},
+				{
+					"id": 3,
+					"text": "10% to 15%",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 3,
+					"customUserInput": null,
+					"listingOrder": 3
+				},
+				{
+					"id": 4,
+					"text": ">15%",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 4,
+					"customUserInput": null,
+					"listingOrder": 4
+				}
+			],
+			"listOrder": 1
+		},
+		{
+			"id": 2,
+			"description": "If the value of my investment portfolio were to drop by 30% in 3 months, I would",
+			"text": null,
+			"options": [
+				{
+					"id": 5,
+					"text": "Sell all of my investments",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 5,
+					"customUserInput": null,
+					"listingOrder": 1
+				},
+				{
+					"id": 6,
+					"text": "Sell some of my investments",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 6,
+					"customUserInput": null,
+					"listingOrder": 2
+				},
+				{
+					"id": 7,
+					"text": "Do nothing",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 7,
+					"customUserInput": null,
+					"listingOrder": 3
+				},
+				{
+					"id": 8,
+					"text": "Buy more investments",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 8,
+					"customUserInput": null,
+					"listingOrder": 4
+				}
+			],
+			"listOrder": 2
+		},
+		{
+			"id": 3,
+			"description": "In the event of a market decline, I would sell portions of my riskier assets and invest the money in safer assets instead.",
+			"text": null,
+			"options": [
+				{
+					"id": 9,
+					"text": "Strongly Agree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 9,
+					"customUserInput": null,
+					"listingOrder": 1
+				},
+				{
+					"id": 10,
+					"text": "Agree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 10,
+					"customUserInput": null,
+					"listingOrder": 2
+				},
+				{
+					"id": 11,
+					"text": "Disagree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 11,
+					"customUserInput": null,
+					"listingOrder": 3
+				},
+				{
+					"id": 12,
+					"text": "Strongly Disagree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 12,
+					"customUserInput": null,
+					"listingOrder": 4
+				}
+			],
+			"listOrder": 3
+		},
+		{
+			"id": 4,
+			"description": "Generally, I prefer stable investments and I'm willing to accept the lower returns for such investments.",
+			"text": null,
+			"options": [
+				{
+					"id": 9,
+					"text": "Strongly Agree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 13,
+					"customUserInput": null,
+					"listingOrder": 1
+				},
+				{
+					"id": 10,
+					"text": "Agree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 14,
+					"customUserInput": null,
+					"listingOrder": 2
+				},
+				{
+					"id": 11,
+					"text": "Disagree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 15,
+					"customUserInput": null,
+					"listingOrder": 3
+				},
+				{
+					"id": 12,
+					"text": "Strongly Disagree",
+					"description": null,
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 16,
+					"customUserInput": null,
+					"listingOrder": 4
+				}
+			],
+			"listOrder": 4
+		},
+		{
+			"id": 5,
+			"description": "The Investment portfolio that I am most likely to choose is",
+			"text": null,
+			"options": [
+				{
+					"id": 13,
+					"text": "Portfolio 1",
+					"description": "Highest ups and downs, Highest potential return",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 17,
+					"customUserInput": null,
+					"listingOrder": 1
+				},
+				{
+					"id": 14,
+					"text": "Portfolio 2",
+					"description": "High ups and downs, High potential return",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 18,
+					"customUserInput": null,
+					"listingOrder": 2
+				},
+				{
+					"id": 15,
+					"text": "Portfolio 3",
+					"description": "Moderate ups and downs, Moderate potential return",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 19,
+					"customUserInput": null,
+					"listingOrder": 3
+				},
+				{
+					"id": 16,
+					"text": "Portfolio 4",
+					"description": "Lowest ups and downs, Lowest potential return",
+					"optionType": "SINGLE_SELECT",
+					"questionOptionId": 20,
+					"customUserInput": null,
+					"listingOrder": 4
+				}
+			],
+			"listOrder": 5
+		}
+	],
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	}
+}

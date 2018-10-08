@@ -1,10 +1,11 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Router } from '../../../../node_modules/@angular/router';
-import { HeaderService } from '../../shared/header/header.service';
+import { Router } from '@angular/router';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
 import { IMyExpenses } from './expenses.interface';
 
@@ -20,7 +21,7 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   expensesTotal: any;
 
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -32,8 +33,8 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.expensesFormValues = this.guideMeService.getMyExpenses();
     this.expensesForm = new FormGroup({
-      monthlyInstallment: new FormControl(this.expensesFormValues.monthlyInstallment, Validators.required),
-      otherExpenses: new FormControl(this.expensesFormValues.otherExpenses, Validators.required)
+      monthlyInstallments: new FormControl(this.expensesFormValues.monthlyInstallments),
+      otherExpenses: new FormControl(this.expensesFormValues.otherExpenses)
     });
 
     this.setFormTotalValue();
@@ -50,17 +51,17 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   }
 
   save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setMyIncome(form.value);
-    }
+    this.guideMeService.setMyExpenses(form.value);
     return true;
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 
   goToNext(form) {
-    this.router.navigate(['../guideme/assets']);
+    if (this.save(form)) {
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.ASSETS]);
+    }
   }
 }

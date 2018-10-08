@@ -1,0 +1,274 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+app-life-protection-form {
+  .dependent-count {
+   &.flex-row {
+      @extend .align-center;
+      @include allmobiles {
+        margin-top: 0 !important;
+        margin-bottom: 10px;
+      }
+    }
+    .dropdown-control {
+      border: none !important;
+    }
+  }
+  .page-indicator {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 20px 0px 30px 0px;
+  }
+  .page-indicator span {
+    width: 11px;
+    height: 11px;
+    background-color: #73cece;
+    border-radius: 10px;
+    margin-right: 10px;
+    display: block;
+  }
+  .page-indicator span:last-child {
+    margin-right: 0px;
+  }
+  .page-indicator span.active {
+    background-color: #fff;
+  }
+  #lifeprotectionForm {
+    margin: 80px 0px 100px 0px;
+  }
+  #nextDependentBtn {
+    display: none;
+  }
+  #submitDepFormBtn {
+    display: block;
+  }
+  /* Desktop Overrides */
+  @media (min-width: 576px) {
+    
+    #nextDependentBtn,
+    #submitDepFormBtn {
+      display: none;
+    }
+    #nextDependentBtn.show,
+    #submitDepFormBtn.show {
+      display: block;
+    }
+    .page-indicator {
+      display: flex;
+    }
+    #lifeprotectionForm {
+      margin: 0px;
+    }
+  }
+  #lifeProtectionForm {
+    .form-group-with-bg {
+      position: relative;
+      .overlay-block {
+        height: 100%;
+        position: absolute;
+        background: #000000;
+        opacity: 0.5;
+        z-index: 2;
+        width: 100%;
+        border-radius: 7px;
+      }
+    }
+    @media (min-width: 600px) {
+      .form-group-with-bg {
+        display: none;
+      }
+      .form-group-with-bg.show {
+        display: block;
+        margin-bottom: 30px;
+      }
+      .education-support-details {
+        .form-group-with-bg {
+          display: block;
+        }
+      }
+    }
+    .input-control {
+      @include allmobiles() {
+        //width: 51vw !important;
+      }
+      input {
+        &:disabled {
+          cursor: not-allowed;
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+    .dropdown-control {
+      .btn-dropdown {
+        color: #00a7a7;
+      }
+      border-radius: 6px;
+      position: relative;
+      //width: 43vw;
+      &:after {
+        background-image: url('../../../../assets/images/dropdown-icon.svg');
+        width: 16px;
+        height: 10px;
+        border: none;
+        position: absolute;
+        top: 23px;
+        right: 10px;
+      }
+      position: relative;
+      background: #FFF;
+      cursor: pointer;
+      .dropdown-toggle {
+        padding: 0.90rem;
+        //padding-right: 0;
+        &:disabled {
+          cursor: not-allowed;
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+    .link {
+      text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        cursor: pointer;
+    }
+    @include allmobiles {
+      .link {
+        text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+        cursor: pointer;
+      }
+    }
+    @include iPadProPortrait {
+      .link {
+        text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+        cursor: pointer;
+      }
+    }
+    @include iPadProLandscape {
+      .link {
+        text-decoration: underline !important;
+        color: #2d8289 !important;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+        cursor: pointer;
+      }
+    }
+  }
+  @include allmobiles {
+    .form-group-with-bg {
+      margin-bottom: 15px;
+    }
+  }
+  .education-support-wrapper {
+    @include allmobiles {
+      &.education-checked {
+        position: relative !important;
+      }
+    }
+    &.education-checked {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+  .education-support {
+    background-color: #2d8289;
+    padding: 0.90rem;
+    border-radius: 6px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    //position: relative;
+    font-size: 16px;
+    //z-index: 3;
+    margin-top: -7px;
+    input[type='checkbox']+label {
+      background: url("../../../../assets/images/check-box-normal.svg") left top no-repeat;
+    }
+    input[type='checkbox']:checked+label {
+      background-image: url("../../../../assets/images/check-box-select.svg");
+    }
+    .title {
+      font-family: $muli-bold;
+      position: relative;
+      top: -6px;
+    }
+    .sub-title {
+      position: relative;
+      top: -4px;
+      font-family: $muli-regular;
+      opacity: 0.75;
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
+  .education-support-details {
+    //position: relative;
+    //z-index: 3;
+    .form-group-with-bg {
+      padding: 0.90rem;
+      label {
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+      }
+      @include allmobiles {
+        .dropdown-menu.show {
+          width: 130px;
+        }
+      }
+      &.dark {
+        padding: 15px 20px;
+        label {
+          margin-bottom: 15px;
+        }
+        .flex-row {
+          margin-bottom: 15px;
+        }
+        background: #276f75;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        position: relative;
+        margin-top: -7px;
+        .form-group-with-bg--content-label {
+          flex-basis: 48vw;
+          margin-right: 2vw;
+          color: #ffffff;
+          font-family: "Muli Semi Bold", sans-serif;
+          position: relative;
+          font-size: 18px;
+        }
+        .dropdown-control {
+          border: none !important;
+        }
+      }
+    }
+  }
+  .btn:disabled:hover {
+    background: #fff !important;
+  }
+  .dependent-count {
+    @extend .align-center;
+  }
+  .with-help-icon {
+    width: 100px;
+    .help-icon {
+      margin-left: 0 !important;
+    }
+  }
+}
+

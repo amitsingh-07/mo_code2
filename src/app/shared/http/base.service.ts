@@ -9,8 +9,8 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 
-import { appConstants } from './../../app.constants';
-import { ConfigService, IConfig } from './../../config/config.service';
+import { environment } from '../../../environments/environment';
+import { ConfigService, IConfig } from '../../config/config.service';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
 import { HttpService } from './http.service';
@@ -23,12 +23,6 @@ import { IServerResponse } from './interfaces/server-response.interface';
 export class BaseService {
   config$: Observable<IConfig>;
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
   constructor(
     public http: HttpService,
     public httpClient: HttpClient,
@@ -38,40 +32,32 @@ export class BaseService {
   ) {
     this.config$ = this.configService.getConfig();
   }
+
   get(url) {
-    // Helper service to start ng2-slim-loading-bar progress bar
     this.helperService.showLoader();
-    return this.config$.mergeMap((config) => {
-      return this.http
-        .get(`${config.apiBaseUrl}/${url}`)
-        .map((res: Response) => {
-          return this.handleResponse(res);
-        })
-        .catch((error: Response) =>
-          Observable.throw(this.errorHandler.tryParseError(error))
-        )
-        .finally(() => {
-          // stop ng2-slim-loading-bar progress bar
-          this.helperService.hideLoader();
-        });
-    });
+    return this.httpClient
+      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`)
+      .finally(() => {
+        this.helperService.hideLoader();
+      })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
   }
 
-  post(url, postBody: any) {
-    this.helperService.showLoader();
-    return this.config$.mergeMap((config) => {
-      return this.httpClient
-        .post<IServerResponse>(`${config.apiBaseUrl}/${url}`, postBody, this.httpOptions)
-        .pipe(
-          catchError(this.errorHandler.tryParseError)
-        )
-        .map((res: Response) => {
-          return this.handleResponse(res);
-        })
-        .finally(() => {
-          this.helperService.hideLoader();
-        });
-    });
+  post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+    if (showLoader) {
+      this.helperService.showLoader();
+    }
+    let param = '';
+    if (showError) {
+      param = '?alert=' + showError;
+    }
+    return this.httpClient
+      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
+      .finally(() => {
+        this.helperService.hideLoader();
+      });
   }
 
   delete(url, postBody: any) {
@@ -126,22 +112,16 @@ export class BaseService {
   handleResponse(res): IServerResponse {
     // My API sends a new jwt access token with each request,
     // so store it in the local storage, replacing the old one.
-    this.refreshToken(res);
     const data = res;
     if (data.responseMessage.responseCode < 6000) {
       const error: IError = {
         error: data.responseMessage.responseCode,
-        message: data.responseMessage.responseDescription };
+        message: data.responseMessage.responseDescription
+      };
       throw new Error(this.errorHandler.parseCustomServerErrorToString(error));
     } else {
       return data;
     }
   }
 
-  refreshToken(res: IServerResponse) {
-    // const token = res.headers.get(appConstants.accessTokenServer);
-    // if (token) {
-    //   localStorage.setItem(appConstants.accessTokenLocalStorage, `${token}`);
-    // }
-  }
 }

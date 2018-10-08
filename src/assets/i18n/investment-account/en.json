@@ -1,0 +1,151 @@
+{
+  "COMMON": {
+    "LABEL": {
+      "CONTINUE": "Continue",
+      "RETRIEVE": "Retrieve"
+    }
+  },
+  "PERSONAL_INFO": {
+    "TITLE": "Personal Information",
+    "DESCRIPTION": "Please choose the profile that best describes you.",
+    "FULL_NAME": "Full Name",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "NRIC_NUMBER": "NRIC Number",
+    "PASSPORT_NUMBER": "Passport Number",
+    "PASSPORT_EXPIRY": "Passport Expiry",
+    "DOB": "Date of Birth",
+    "GENDER": "Gender"
+  },
+  "RESIDENTIAL_ADDRESS": {
+    "TITLE": "Residential Address",
+    "COUNTRY": "Country",
+    "POSTAL_CODE": "Postal Code",
+    "ADDRESS_1": "Address Line 1",
+    "ADDRESS_2": "Address Line 2",
+    "UNIT_NO": "Unit No.",
+    "CITY": "City",
+    "STATE": "State / Province / Region",
+    "ZIPCODE": "Zip Code",
+    "ERROR": {
+      "POSTAL_CODE_TITLE": "Error !",
+      "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+    }
+  },
+  "EMPLOYMENT_DETAILS": {
+    "TITLE": "Employment Details",
+    "EMPLOYEMEN_STATUS": "Employmen Status",
+    "COMPANY_NAME": "Company Name",
+    "INDUSTRY": "Industry",
+    "OCCUPATION": "Occupation",
+    "CONTACT_NUMBER": "Contact Number",
+    "COUNTRY": "Country",
+    "POSTAL_CODE": "Postal Code",
+    "ADDRESS_1": "Address Line 1",
+    "ADDRESS_2": "Address Line 2",
+    "UNIT_NO": "Unit No",
+    "CITY": "City",
+    "STATE": "State / Province / Region",
+    "ZIPCODE": "Zip Code",
+    "EMPLOYERS_ADDRESS": "Employer's Address",
+    "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
+    "CONTINUE": "Continue",
+   
+    "ERROR": {
+      "POSTAL_CODE_TITLE": "Error !",
+      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+    }
+  },
+  "SELECT_NATIONALITY": {
+    "SELECT_NATIONALITY_LBL": "Nationality",
+    "QUESTION_ONE": "Are you a United States Permanent Resident / Tax Resident?",
+    "QUESTION_TWO": "Are you a Singaporean Permanent Resident?",
+    "NATIONALITY_LEB": "Nationality",
+    "SELECT_NATIONALITY_LAB2": "To continue, please tell us what is your nationality",
+    "YES_lABEL": "Yes",
+    "NO_LABEL": "No",
+    "CONTINUE": "Continue",
+    "editModalData": {
+      "modalTitle": "Unable To Proceed",
+      "modalMessage": "We are unable to onboard customers from the selected country online. Please contact our Client Service Team for assistance",
+      "ButtonTitle": "Return To Homepage"
+    },
+    "editModalData1": {
+      "modalTitle1": "Oops, Unable To Proceed",
+      "modalMessage1": "Thank you for your interest in MoneyOwl! Unfortunately, we are currently unable to set up investment accounts for US Citizens, Permanent Residents and Tax Residents. ",
+      "ButtonTitle1": "Return To Homepage"
+    }
+  },
+  "FINANCIAL_DETAILS": {
+    "TITLE": "Financial Details",
+    "ANNUAL_HOUSEHOLD_INCOME": "Annual Household Income",
+    "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
+    "ANNUAL_INCOME": "Annual Income",
+    "PERS_OF_INCOME_SAVED": "% Of Income Saved",
+    "TOTAL_ASSETS": "Total Assets",
+    "TOTAL_LOANS": "Total Loans"
+    
+  },
+  "TAX_INFO": {
+    "TITLE": "Tax Information",
+    "TAX_MODEL_TITLE": "Taxpayer Identification No.",
+    "TAX_MODEL_DESC": "This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to www.oecd.org.For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.",
+    "COUNTRY_TEXT": "Country of Tax Residence",
+    "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
+    "YES_lABEL": "Yes",
+    "NO_LABEL": "No",
+    "REASON_TEXT": "Reason",
+    "TIN_TEXT": "TIN Number",
+    "CONTINUE": "Continue"
+  },
+  "UPLOAD_DOCUMENTS": {
+    "TITLE": "Upload Documents",
+    "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+    "PROOF_OF_IDENTITY": "Proof Of Identity",
+    "NRIC": "NRIC",
+    "PASSPORT": "Passport",
+    "FRONT_NRIC": "Front NRIC",
+    "BACK_NRIC": "Back NRIC",
+    "TAP_TO_UPLOAD": "Tap to Upload",
+    "PROOF_OF_MAILING": "Proof Of Mailing Address",
+    "PROOF_OF_MAILING_SUBTEXT": "This document must match the information provided under \"Mailing Address\" earlier.",
+    "PROOF_OF_RESIDENT": "Proof Of Residential Address",
+    "PROOF_OF_RESIDENT_SUBTEXT": "This document must match the information provided under \"Residential Address\" earlier.",
+    "CHOOSE_FILE": "Choose File",
+    "UPLOADED": "Uploaded",
+    "NO_FILE_SELECTED": "no file selected",
+    "MODAL": {
+      "MAILING_ADDRESS_PROOF": {
+        "TITLE": "Proof Of Mailing Address",
+        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+      },
+      "RES_ADDRESS_PROOF": {
+        "TITLE": "Proof Of Residential Address",
+        "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
+      },
+      "UPLOAD_LATER": {
+        "TITLE": "Upload Documents Later?",
+        "MESSAGE": "<p>You may save your progress and log in later to upload your verification documents. However, this will delay the set up of your investment account.</p><p>Would you like to continue?</p>",
+        "CONFIRM_PROCEED": "Yes! Upload Later"
+      },
+      "UPLOADING_LOADER": {
+        "TITLE": "Uploading",
+        "MESSAGE": "Please be patient, upload may take a few minutes."
+      }
+    }
+  },
+  "PERSONAL_DECLARATION": {
+    "SOURCE": "Source Of Investment Funds",
+    "TITLE": "Personal Declaration",
+    "PEP": "Politically Exposed Person",
+    "PEP_DESC": "Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.",
+    "BENEFICIAL": "Beneficial Owner",
+    "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
+    "QUESTION1": "Are you a director, officer, trading representative or employee of SGX trading, excluding iFAST?",
+    "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
+    "QUESTION3": "Are you the beneficial owner of this account?",
+    "YES_lBL": "Yes",
+    "NO_LBL": "No",
+    "CONTINUE": "Continue"
+  }
+}

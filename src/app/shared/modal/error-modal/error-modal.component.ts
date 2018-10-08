@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,10 +10,25 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ErrorModalComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
+  @Input() errorMessageList: string[];
+  @Input() showErrorButton: boolean;
+  @Input() errorDescription: any;
+  @Input() isButtonEnabled: boolean;
+  @Input() isError: boolean;
+  @Output() selected: EventEmitter<any> = new EventEmitter();
+  @Output() retry: EventEmitter<any> = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
 
+  goBack() {
+    this.selected.emit();
+    this.activeModal.close();
+  }
+  tryAgain() {
+    this.retry.emit();
+    this.activeModal.close();
+  }
 }

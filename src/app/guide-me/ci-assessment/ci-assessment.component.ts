@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
+import { NouisliderComponent } from 'ng2-nouislider';
+import { Subscription } from 'rxjs';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { GuideMeService } from '../guide-me.service';
 import { HelpModalComponent } from '../help-modal/help-modal.component';
-import { HeaderService } from './../../shared/header/header.service';
-import { GuideMeService } from './../guide-me.service';
+import { CriticalIllnessData } from './ci-assessment';
 
 const assetImgPath = './assets/images/';
 
@@ -20,53 +21,131 @@ const assetImgPath = './assets/images/';
   encapsulation: ViewEncapsulation.None
 })
 
-export class CiAssessmentComponent implements IPageComponent, OnInit {
-  @ViewChild('incomeSlider') incomeSlider: jqxSliderComponent;
+export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('ciMultiplierSlider') ciMultiplierSlider: NouisliderComponent;
   pageTitle: string;
   mobileModalEvent: Event;
-  critIllnessForm: FormGroup;
-  critIllnessFormValues: any;
-  ciMultiplier = 4;
-  retirementAge = 65;
+  ciAssessmentForm: FormGroup;
+  ciAssessmentFormValues: CriticalIllnessData;
+  ciCoverageAmt: any;
+  ciMultiplier;
+  untilRetirementAge;
   retirementAgeItems = Array(3).fill(55).map((x, i) => x += i * 5);
   helpModal: Event;
   helpModalTrigger: boolean;
+  modalData;
+  pageData;
 
-  constructor(private guideMeService: GuideMeService, private router: Router,
-              public modal: NgbModal, public headerService: HeaderService,
-              public readonly translate: TranslateService) {
-                this.translate.use('en');
-                this.pageTitle = this.translate.instant('CRITICAL_ILLNESS_ASSESSMENT.TITLE');
-                this.setPageTitle(this.pageTitle, null, true);
-                this.critIllnessFormValues = {
-                  annualSalary: 0,
-                  coverageMultiplier: 0,
-                  retirementAge: 0,
-                  };
+  private subscription: Subscription;
+
+  ciSliderConfig: any = {
+    behaviour: 'snap',
+    start: 0,
+    connect: [true, false],
+    format: {
+      to: (value) => {
+        return Math.round(value);
+      },
+      from: (value) => {
+        return Math.round(value);
+      }
+    }
+  };
+
+  constructor(
+    private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private guideMeService: GuideMeService,
+    public modal: NgbModal) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('CI_ASSESSMENT.TITLE');
+      this.pageData = this.translate.instant('CI_ASSESSMENT');
+      this.ciMultiplier = this.pageData.CI_MULTIPLIER;
+      this.untilRetirementAge = this.pageData.UNTIL_RETIREMENTAGE;
+      this.modalData = this.translate.instant('CI_ASSESSMENT.MODAL_DATA');
+      this.setPageTitle(this.pageTitle, null, true);
+    });
   }
 
   ngOnInit() {
-    this.critIllnessForm = new FormGroup({
-      annualSalary: new FormControl(this.critIllnessFormValues.annualSalary)
+    this.ciAssessmentFormValues = this.guideMeService.getCiAssessment();
+    this.untilRetirementAge = this.ciAssessmentFormValues.coverageYears ? this.ciAssessmentFormValues.coverageYears : 65;
+    let monthlySalary = this.guideMeService.getMyIncome().monthlySalary;
+    if (!monthlySalary) {
+      monthlySalary = 0;
+    }
+    this.ciAssessmentFormValues.annualSalary = monthlySalary * 12;
+    if (!this.ciAssessmentFormValues.ciMultiplier) {
+      this.ciAssessmentFormValues.ciMultiplier = this.ciMultiplier;
+    } else {
+      this.ciMultiplier = this.ciAssessmentFormValues.ciMultiplier;
+    }
+    this.ciAssessmentForm = new FormGroup({
+      coverageAmount: new FormControl(this.ciAssessmentFormValues.coverageAmount),
+      annualSalary: new FormControl(this.ciAssessmentFormValues.annualSalary),
+      ciMultiplier: new FormControl(this.ciAssessmentFormValues.ciMultiplier),
+      coverageYears: new FormControl(this.ciAssessmentFormValues.coverageYears)
     });
-    this.headerService.initMobilePopUp();
-    this.headerService.currentMobileModalEvent.subscribe((Event) => this.showMobilePopUp());
+    this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciAssessmentFormValues.ciMultiplier;
+    // tslint:disable-next-line:max-line-length
+    this.subscription = this.navbarService.currentMobileModalEvent.subscribe((event) => {
+      if (event === this.pageTitle) {
+        this.showMobilePopUp();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.ciMultiplierSlider.writeValue(this.ciAssessmentFormValues.ciMultiplier);
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.guideMeService.decrementProtectionNeedsIndex();
   }
 
   setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+    this.navbarService.setPageTitle(title, null, helpIcon);
   }
 
-  onSliderChange(): void {
-    this.ciMultiplier = this.incomeSlider.getValue();
+  onSliderChange(value): void {
+    this.ciMultiplier = value;
+    this.ciCoverageAmt = this.ciAssessmentFormValues.annualSalary * this.ciMultiplier;
+  }
+
+  selectRetirementAge(count) {
+    this.untilRetirementAge = count;
   }
 
   showMobilePopUp() {
-    console.log('Show Mobile Popup Triggered');
-    const ref = this.modal.open(HelpModalComponent, { centered: true, windowClass: 'help-modal-dialog' });
+    const ref = this.modal.open(HelpModalComponent, { centered: true });
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.description = '<h4>Critical Illness</h4><p>This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <b>Critical Illness</b> coverage till their intended retirement age.</p>';
-    ref.componentInstance.title = 'Critical Illness';
-    ref.componentInstance.img = assetImgPath + 'ci-assessment.png';
+    ref.componentInstance.description = this.modalData.description;
+    ref.componentInstance.title = this.modalData.title;
+    ref.componentInstance.img = assetImgPath + this.modalData.imageName;
+    this.navbarService.showMobilePopUp('removeClicked');
+  }
+
+  save(form: any) {
+    if (form.valid) {
+      this.ciAssessmentForm.controls.coverageYears.setValue(this.untilRetirementAge);
+      this.ciAssessmentForm.controls.coverageAmount.setValue(this.ciCoverageAmt);
+      this.ciAssessmentForm.controls.ciMultiplier.setValue(this.ciMultiplier);
+      this.guideMeService.setCiAssessment(form.value);
+    }
+    return true;
+  }
+
+  goToNext(form) {
+    if (this.save(form)) {
+      this.router.navigate([this.guideMeService.getNextProtectionNeedsPage()]).then(() => {
+        this.guideMeService.incrementProtectionNeedsIndex();
+      });
+    }
   }
 }
+

@@ -1,27 +1,46 @@
 @import '../../../variables';
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@import '../../../mixins';
+@include allmobiles {
   .help-modal-dialog {
     .help-modal-body {
       h4 {
         color: $modal-body-title-color !important;
         text-transform: capitalize;
         margin-bottom: 25px;
-        font-size: 18pt;
+        font-size: 22px;
         font-family: $muli-semi-bold;
       }
     }
   }
+    button.close {
+      width: 25px !important;
+      height: 25px !important;
+      background: url("../../../assets/images/close-button-dark.svg") !important;
+      position: absolute !important;
+      right: 15px !important;
+      top: 25px !important;
+      // float: right;
+      // position: relative;
+      // top: 14px;
+      // right: 5px;
+      background-repeat: no-repeat !important;
+    }
+    .modal .close {
+      opacity: 1;
+    }
 }
 
 @media only screen and (min-width: 600px) {
-  .modal-backdrop {
-    &.show {
-    opacity: 0.8;
-  }
-  }
   .modal-content {
-    position: absolute;
-    top: 0;
+    @include tablet {
+      left: 15%;
+    }
+    @include iPadProLandscape {
+      left: 10%;
+    }
+    @include iPadProPortrait {
+      left: 10%;
+    }
   }
   .modal {
     position: absolute;
@@ -37,28 +56,32 @@
       margin-bottom: 20px;
     }
     button.close {
-      background: $module-fill-color;
-      border-radius: 50%;
+      background: $module-fill-color !important;
+      border-radius: 50% !important;
       height: 50px;
       width: 50px;
       opacity: 1;
-      right: 46%;
-      top: 3%;
-      padding: 0px;
+      right: 46% !important;
+      top: 4% !important;
+      padding: 0px !important;
     }
     button.close span {
       width: 25px;
-    height: 25px;
-    color: #bfbfbf;
-    top: -3px;
-    position: absolute;
-    right: 17px;
-    font-weight: normal;
-    font-size: 50px;
+      height: 25px;
+      background: url("../../../assets/images/close-button-dark.svg");
+      position: absolute;
+      right: 8px;
+      top: 16px;
+      background-repeat: no-repeat;
+      // position: relative;
+      // float: right;
+      // top: 14px;
+      // right: 5px;
     }
     .modal-dialog {
       right: 20% !important;
-      top: 10% !important;
+      top: 0 !important;
+      overflow: hidden;
     }
     .help-modal-image {
       background-size: cover !important;
@@ -75,6 +98,7 @@
     .help-modal-body {
       background: transparent !important;
       color: $white-color;
+      padding: 30px 25px;
       h4 {
         color: $white-color !important;
         text-transform: capitalize;
@@ -84,6 +108,9 @@
       }
       p {
         margin-bottom: 20px;
+        @include tablet {
+          width: 300px;
+        }
       }
       b {
         color: $modal-txt-highlight-color;

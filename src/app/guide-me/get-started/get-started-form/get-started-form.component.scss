@@ -1,38 +1,42 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+app-get-started-form {
+  .flex-col-5 {
+    font-size: 18px !important;
+    font-family: $muli-semi-bold !important;
+  }
+  .flex-col-6 {
+    label {
+    white-space: normal ;
+      line-height: normal;
+    }
+  }
 #userInfoForm .col-sm-7 {
   opacity: 1 !important;
 }
-.form__block {
-  margin-left: 0;
-  padding-left: 0;
+strong {
+  font-family: $muli-bold;
+  font-size: 16px;
 }
-.form__row {
-  display: flex;
-  margin-bottom: 5px;
-  .form__col--left {
-    flex-basis: 40vw;
-    display: flex;
-    align-items: center;
+.input-group {
+  .btn-primary {
+    box-shadow: none !important;
   }
-  .form__col--right {
-    flex-basis: 60vw;
-    .input-group {
-      &.inline-error {
-        .btn-primary {
-          background: transparent !important;
-          border: transparent;
-        }
-      }
+  &.inline-error {
+    .btn-primary {
+      background: transparent !important;
+      border: transparent;
     }
   }
 }
-
 .dropdown-control {
   .btn-dropdown {
     span.dependent-count {
       color: $app-backgrnd-color;
       margin-right: 4px;
+      + span {
+        color: #5e5e5e;
+      }
     }
   }
   .dropdown-item {
@@ -44,33 +48,11 @@
   @include allmobiles {
     //margin-top: 50px;
   }
-}
-.fixed-btn--sm {
-  @include tablet {
-    width: 100px;
-    white-space: normal;
-  }
-  @include allmobiles {
-    width: 100px;
-    padding: 5px 10px;
-    white-space: normal;
-  }
-}
-.fixed-btn--lg {
-  @include allmobiles {
-    width: 210px;
-    padding: .90rem;
-  }
-  @include tablet {
-    width: 210px;
-  }
-}
-.input-group {
-  @include allmobiles {
-    width: 210px !important;
-  }
-  @include tablet {
-    width: 210px !important;
+  .flex-col-6 {
+    label {
+    white-space: normal !important;
+      line-height: normal;
+    }
   }
 }
 .input-group.date-picker {
@@ -93,5 +75,4 @@
   width: 480px;
   margin-top: 50px;
 }
-
-
+}

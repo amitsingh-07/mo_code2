@@ -1,0 +1,110 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-product-detail {
+  background: #fff;
+  color: #000;
+  border-radius: 8px;
+
+  @include allmobiles {
+    border-radius: 0;
+  }
+
+  .insurer-logo {
+    img {
+      width: 50% !important;
+    }
+  }
+
+  .best-value-icon {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    z-index: 9;
+  }
+
+  button.close {
+    width: 25px !important;
+    height: 25px !important;
+    background: url("../../../../assets/images/close-button-dark.svg") !important;
+    position: absolute !important;
+    top: 25px !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .modal .close {
+    opacity: 1;
+    position: absolute !important;
+    @include allmobiles {
+      right: 25px !important;
+      top: 15px !important;
+      z-index: 9 !important;
+    }
+  }
+
+  app-plan-details-widget .insurance-plan-widget {
+    box-shadow: none;
+    border: none;
+
+    .insurance-plan-widget__container {
+      .insurance-plan-widget__container__rank-box {
+        width: 145px !important;
+
+        @include allmobiles {
+          width: 115px !important;
+        }
+      }
+    }
+
+    .widget-btn-view {
+      display: none !important;
+    }
+
+    .widget-btn-select {
+      flex: 0 0 100%;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  #panel-group {
+    margin-top: 20px;
+
+    @include allmobiles {
+      margin-bottom: 0 !important;
+    }
+
+    .panel:nth-last-child(1) {
+      border-bottom: none !important;
+    }
+
+    .panel {
+      padding-top: 10px 0;
+      border: 1px solid #c2d9ec;
+      margin-top: -1px;
+
+      .panel-heading {
+        cursor: pointer;
+
+        h5.panel-title {
+          font-family: $muli-semi-bold;
+
+          i {
+            color: #2d8288;
+            float: right;
+            font-size: 16px;
+            padding-top: 5px;
+          }
+        }
+      }
+
+      .panel-collapse {
+        color: $text-color-secondary;
+        border-top: 1px solid #c2d9ec;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}

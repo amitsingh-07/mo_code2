@@ -1,0 +1,44 @@
+<div class="customer-review__wrapper">
+  <div class="sub-navigation">
+    <div class="sub-navigation--inner">
+      <span routerLink="/">Home</span>
+      <span class="separator"></span>
+      <span routerLink="/about-us">About-Us</span>
+      <span class="separator"></span>
+      <span>Customer Reviews</span>
+      </div>
+  </div>
+  <div class="banner" #banner>
+    <div class="banner-bg">
+        <div class="banner-bg--image"></div>
+    </div>
+    <div class="banner-container">
+      <div class="">
+        <h1>Customer Reviews</h1>
+        <h3>Hear what our clients say about us</h3>
+        </div>
+    </div> 
+    </div>
+    <div class="customer-reviews__content">
+      <div class="customer-reviews__inner-content">
+        <div class="customer-review card card-block" *ngFor="let number of numbers">
+          <h6 class="review">
+            "Dennis has been very patient in our email correspondence and in providing the Benefit Illustration for my term plan. "
+          </h6>
+          <div class="rating-container">
+            <div class="rating--icon">
+              <i class="material-icons">star</i>
+              <i class="material-icons">star</i>
+              <i class="material-icons">star</i>
+              <i class="material-icons">star</i>
+              </div>
+            <div class="rating--text">(5/5)</div> 
+            </div>
+          <div class="reviewer">
+            Ong Yan Ting, Executive
+            </div>
+          </div>
+        </div>
+        
+      </div>
+  </div>

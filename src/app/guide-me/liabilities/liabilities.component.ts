@@ -1,11 +1,12 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Router } from '../../../../node_modules/@angular/router';
-import { HeaderService } from '../../shared/header/header.service';
+import { Router } from '@angular/router';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
-import { GuideMeService } from './../guide-me.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
+import { GuideMeService } from '../guide-me.service';
 import { IMyLiabilities } from './liabilities.interface';
 
 @Component({
@@ -20,7 +21,7 @@ export class LiabilitiesComponent implements IPageComponent, OnInit {
   liabilitiesTotal: number;
 
   constructor(
-    private router: Router, public headerService: HeaderService,
+    private router: Router, public navbarService: NavbarService,
     private guideMeService: GuideMeService, private translate: TranslateService) {
 
     this.translate.use('en');
@@ -32,11 +33,11 @@ export class LiabilitiesComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.assetsFormValues = this.guideMeService.getMyLiabilities();
     this.liabilitiesForm = new FormGroup({
-      propertyLoan: new FormControl(this.assetsFormValues.propertyLoan, Validators.required),
-      carLoan: new FormControl(this.assetsFormValues.carLoan, Validators.required),
-      others: new FormControl(this.assetsFormValues.otherLiabilities, Validators.required)
+      propertyLoan: new FormControl(this.assetsFormValues.propertyLoan),
+      carLoan: new FormControl(this.assetsFormValues.carLoan),
+      otherLoan: new FormControl(this.assetsFormValues.otherLoan)
     });
-
+    this.navbarService.setNavbarMobileVisibility(true);
     this.setFormTotalValue();
   }
 
@@ -51,16 +52,17 @@ export class LiabilitiesComponent implements IPageComponent, OnInit {
   }
 
   save(form: any) {
-    if (form.valid) {
-      this.guideMeService.setMyLiabilities(form.value);
-    }
+    this.guideMeService.setMyLiabilities(form.value);
     return true;
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
-  goToNext() {
-    this.router.navigate(['../guideme/insure-assessment']);
+
+  goToNext(form) {
+    if (this.save(form)) {
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.INSURE_ASSESSMENT]);
+    }
   }
 }

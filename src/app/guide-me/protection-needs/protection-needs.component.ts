@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { GuideMeApiService } from '../guide-me.api.service';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeService } from '../guide-me.service';
+import { ProtectionNeeds } from './protection-needs';
 
 @Component({
   selector: 'app-protection-needs',
@@ -17,7 +20,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   protectionNeedsForm: FormGroup;
   protectionNeedsArray: FormArray;
   protectionNeedsList: any[];
-  formValues: any;
+  formValues: ProtectionNeeds[];
   isFormLoaded: boolean;
   currentFormData: any;
 
@@ -26,8 +29,8 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
 
   constructor(
     private formBuilder: FormBuilder, private guideMeService: GuideMeService,
-    private router: Router, public headerService: HeaderService,
-    private translate: TranslateService) {
+    private router: Router, public navbarService: NavbarService,
+    private translate: TranslateService, private guideMeApiService: GuideMeApiService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PROTECTION_NEEDS.TITLE');
@@ -41,14 +44,15 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
     this.protectionNeedsForm = this.formBuilder.group({
       protectionNeedsArray: this.formBuilder.array([])
     });
-    this.guideMeService.getProtectionNeedsList().subscribe((data) => {
+    this.guideMeApiService.getProtectionNeedsList().subscribe((data) => {
       this.buildForm(data.objectList);
       this.protectionNeedsList = data.objectList;
     });
+    this.navbarService.setNavbarMobileVisibility(true);
   }
 
   setPageTitle(title: string, subTitle: string) {
-    this.headerService.setPageTitle(title, subTitle);
+    this.navbarService.setPageTitle(title, subTitle);
   }
 
   buildForm(responseData?) {
@@ -63,8 +67,8 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   }
   createItem(responseObj, i): FormGroup {
     return this.formBuilder.group({
-      status: (this.formValues.protectionNeedData && this.formValues.protectionNeedData[i])
-        ? this.formValues.protectionNeedData[i].status : true,
+      status: (this.formValues && this.formValues[i] && this.formValues[i].status !== undefined)
+        ? this.formValues[i].status : true,
       protectionTypeId: responseObj.protectionTypeId,
       protectionType: responseObj.protectionType,
       protectionDesc: responseObj.protectionDesc
@@ -87,7 +91,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
 
   goToNext(form: any) {
     if (this.save(form)) {
-      this.router.navigate(['../guideme/financial-assessment']);
+      this.router.navigate([GUIDE_ME_ROUTE_PATHS.FINANCIAL_ASSESSMENT]);
     }
   }
 }

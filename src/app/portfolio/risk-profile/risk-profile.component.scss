@@ -1,0 +1,228 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+
+.hide-custom-modal {
+    display: none;
+  }
+
+  .fade-out-animation {
+    -webkit-animation: fadeOut 1000ms ease-in-out;
+    /* Chrome, Safari, Opera */
+    animation: fadeOut 1000ms ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+    position: fixed;
+  }
+
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 0.8;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Standard syntax */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .custom-modal-backdrop {
+    background: $white-color;
+    position: fixed;
+    opacity: 0.95;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+  }
+
+  .custom-modal-wrapper {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    @extend .flex;
+    @extend .justify-center;
+    @extend .align-center;
+  }
+
+  .custom-modal-content {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .custom-modal--icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 20%;
+
+    @include allmobiles {
+      img {
+        width: 60%;
+      }
+    }
+  }
+
+  .custom-modal--title {
+    color: #00aaa8;
+    font-family: $muli-regular;
+    font-size: 36px;
+    letter-spacing: -0.4px;
+    line-height: 1.11;
+    margin-top: 20px;
+  }
+
+  .custom-modal--desc {
+    color: #5e5e5e;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    font-family: $muli-regular;
+    padding: 0 35%;
+
+    @include allmobiles {
+      padding: 0 10%;
+    }
+  }
+
+
+  
+.risk-profile-block {
+    .container-fluid {
+        padding-top: 30px !important;
+        @include allmobiles {
+            padding-top: 10px !important;
+        }
+    }
+    .fin-accessment-block__tab-container {
+        @extend .flex;
+        @extend .space-btwn;
+        width: 100%;
+        .fin-accessment-block__tab {
+            width: calc(50% - 10px);
+            opacity:0.2;
+            padding-right: 10px;
+            background-color:$app-backgrnd-secondary-color;
+            min-height:5px;
+            &.active {
+               opacity:1; 
+            }
+        }
+    }
+    .risk-profile-block__content {
+        @include tablet {
+            .banner-image img {
+                max-width:90%;
+                margin: 20px
+            }
+        }
+        @include allmobiles {
+            .banner-image img {
+                max-width:70%;
+                margin: 20px
+
+            }
+        }
+        @include iPadProPortrait {
+            .banner-image img {
+                max-width:80%;
+                margin: 20px
+
+            }
+        }
+    }
+    .risk-profile-block__content__desc {
+        // margin-top: 100px;
+        text-align: left;
+        @include allmobiles {
+            //margin-top: 45px;            text-align: center;
+        }
+        @include tablet {
+            //margin-top: 45px;
+            margin-top: 0px;
+        }
+    }
+    .risk-profile-block__content__heading {
+        opacity: 0.55;
+        font-family: $muli-regular;
+        font-size: 36px;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.4px;
+        color: $white-color;
+        margin-bottom:15px;
+    }
+    .risk-profile-block__content__title {
+        font-family: $muli;
+        font-size: 24px;
+        line-height: normal;
+        letter-spacing: -0.3px;
+        color: $white-color;
+        font-weight: bold;
+        text-align: center;
+    }
+    .risk-profile-block__content__sub-title {
+        font-family: $muli;
+        font-size: 16px;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 23px;
+        letter-spacing: -0.2px;
+        color: $white-color;
+
+       
+    }
+    .btn-proceed {
+        font-family: Muli;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #ffffff;
+        
+    }
+}
+
+.Convservative {
+    width: 159px;
+    height: 30px;
+    font-family: Muli;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .banner-image img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    padding-top: 10vh;
+}

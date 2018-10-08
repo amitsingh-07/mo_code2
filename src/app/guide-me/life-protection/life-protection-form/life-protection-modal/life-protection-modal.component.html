@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <div class="modal-title popup-header-icon">
+    <img src="./assets/images/owl.svg" />
+  </div>
+</div>
+<div class="modal-body white-bg">
+  <div class="modal-body-title">{{ 'LABEL.YEARS_NEEDED' | translate}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true"></span>
+  </button>
+  <div class="modal-body-message">
+    <p>{{ 'LIFE_PROTECTION.YEARS_MODAL_DESC' | translate}}</p>
+    <div class="dependant-profile pl0" >
+      <div class="dependant-profile-box" [ngClass]="{'active': selectedOption==profile}" *ngFor="let profile of profileType" (click)="showMessage(profile)">
+          <div class="dependant-profile-{{profile}}-image" ></div>
+          {{profile | titlecase}}
+        </div>
+    </div>
+
+    <ng-container *ngFor="let years of yearsNeeded">
+    <div *ngIf="years.className == selectedOption" class="dependant-profile-desc {{years.className}}">
+        {{years.message}}
+        <div class="arrow-up"></div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+.post-login-dashboard{
+   .welcome-user{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        @extend .flex;
+        @extend .align-center;
+        font-family: $muli-light;
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1.36;
+        letter-spacing: -0.2px;
+        color: $welcome-user-txt-color;
+        background: $white-color;
+        padding: 16px 26% 0;
+        top: 84px;
+        box-shadow: 0 0px 14px 0 rgba(0, 0, 0, 0.25);
+        @include allmobiles{
+            padding: 16px 20px 0;
+            top: 49px;
+            justify-content: space-between;
+        }
+        @include iphone5{
+            top: 50px;
+        }
+        @include min768max768{
+            padding: 0 24%;
+        }
+        @include phablet{
+            top: 50px;
+            padding: 0 20px;
+        }
+        @include iPadProPortrait{
+            padding: 0 18%;
+        }
+        span{
+            font-family: $muli-bold;
+        }
+        img{
+            width: 112px;
+            height: 94px;
+            margin-left: 30px;
+        }
+    }
+    .welcome-desc{
+        position: relative;
+        top:199px;
+        font-family: $muli-regular;
+        font-size: 21px;
+        line-height: 1.19;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: $white-color;
+        margin: 0 auto;
+        width: 50%;
+        padding: 10px 30px;
+        min-height: 416px;
+        @include allmobiles{
+            margin: 0 auto;
+            width: 100%;
+        }
+        @include phablet{
+            margin: 0 auto;
+        } 
+        @include min768max768{
+            margin: 0 auto;
+            width: 60%;
+        }
+        div:first-child{
+            font-family: $muli-semi-bold;
+            font-size: 36px;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: -0.4px;
+            margin-bottom: 15px;
+        }
+    }
+}

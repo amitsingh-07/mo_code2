@@ -1,0 +1,12 @@
+@import '../../../variables';
+@import '../../../mixins';
+app-life-protection {
+  @include tablet {
+    .dependent-count {
+      justify-content: space-between;
+      label {
+        margin-right: 0 !important;
+      }
+    }
+  }
+}

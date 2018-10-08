@@ -1,0 +1,109 @@
+<div class="app-select-nationality">
+  <div class="step-indicator-container">
+    <div class="container-fluid">
+      <app-step-indicator [count]="7" [activeStepIndex]="4"></app-step-indicator>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <form name="taxInfoForm" [formGroup]="taxInfoForm">
+      <div class="flex-row">
+        <div class="flex-col-4" class="country_text">
+          <label for="name" id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
+        </div>
+        <div class="flex-col-8">
+
+          <div class="dropdown-control">
+            <div ngbDropdown>
+
+              <button class="btn btn-dropdown" ngbDropdownToggle>
+                <span class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ country | titlecase }}</span>
+                <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
+
+              </button>
+
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectCountry(nationalityObj)"
+                  id="selectNationality-country-option-{{i}}">
+                  {{nationalityObj.nationality | titlecase}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Do you have a TIN question -->
+      <div class="flex-row mb10">
+        <div class="flex-col-11 mt15">
+          <div class="tin_question_text" id="tax_Info_question-one">{{ 'TAX_INFO.TIN_QUESTION' | translate}}
+          </div>
+        </div>
+        <div class="flex-col-1">
+          <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModal()"></i>
+        </div>
+      </div>
+      <!-- Button part -->
+      <div class="flex-row">
+        <div class="flex-col-12 mb10">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                  <input ngbButton type="radio" id="tin_yes" value="yes" (click)="yesClick()"> {{ 'TAX_INFO.YES_lABEL' | translate}}
+                </label>
+              </div>
+              <div class="flex-col-6">
+
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                  <input ngbButton type="radio" id="tin_no" value="no" (click)="noClick()">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Dropdown -->
+      <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'no'">
+        <div class="flex-col-5">
+          <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' | translate}}</label>
+        </div>
+        <div class="flex-col-7">
+
+          <div class="dropdown-control" >
+            <div ngbDropdown>
+
+              <button class="btn btn-dropdown" ngbDropdownToggle>
+                <span class="dependent-count" id="tax_Info_dropdown_country">{{ reason | titlecase }}</span>
+                <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
+
+              </button>
+
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" *ngFor="let reasonListObj of noTinReasonlist; let i = index;" (click)="selectReason(reasonListObj)"
+                  id="selectReason-country-option-{{i}}">
+                  {{reasonListObj.name | titlecase}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <!-- Tin text box -->
+<!-- Second Dropdown -->
+<div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'yes'">
+  <div class="flex-col-5">
+    <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' | translate}}</label>
+  </div>
+  <div class="flex-col-7">
+
+    <div class="dropdown-control"  formGroupName="tinNumberText">
+      <input type="text" id="invPersInfoInpt1" class="form-control"  formControlName="tinNumber">
+    </div>
+  </div>
+</div>
+
+    </form>
+  </div>
+  <button type="button" id="personalInforNextBtn" [disabled]="taxInfoForm.controls.radioTin.value == null" (click)="goToNext(taxInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              id="getStrdBtn3">{{ 'TAX_INFO.CONTINUE' | translate}}</button>
+</div>

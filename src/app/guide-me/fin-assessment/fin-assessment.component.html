@@ -1,21 +1,25 @@
-<div class="container-fluid col-lg-12 block__wrapper flex--pad-mt-reset absolute-top">
-    <div class="col-lg-12 block__carousel-bar-container"> 
-        <div class="block__carousel-bar active"></div>
-        <div class="block__carousel-bar"></div>
-    </div>
-    <div class="col-lg-12 container-fluid flex__box--horz block__content">
-        <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset">
-                <img class="flex--left-align img__header-img" src="assets/images/group.svg"/>
+<!--Financial Assessment-->
+<div class="fin-accessment-block">
+    <div class="container-fluid max-width--1024">
+        <div class="fin-accessment-block__tab-container"> 
+            <div class="fin-accessment-block__tab active"></div>
+            <div class="fin-accessment-block__tab"></div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 flex--pad-mt-reset flex--xs-grow">
-                <div class="block__start-text-container flex--right-align flex--xs-grow">
-                    <p class="p__step-title">{{ 'FINANCIAL_ASSESSMENT.CONTENT_STEP' | translate}}</p>
-                    <p class="p__start-title">{{ 'FINANCIAL_ASSESSMENT.CONTENT_TITLE' | translate}}</p>
-                    <p class="p__start-sub-title">{{ 'FINANCIAL_ASSESSMENT.CONTENT_DESC' | translate}}</p>
-                    <button class="button__proceed" (click)="goNext()">
-                        Proceed
-                    </button>
-                </div>
+
+        <div class="fin-accessment-block__content">
+        <div class="row text-center">
+            <div class="col-sm-12 col-md-6">
+                <div class="banner-image"><img src="assets/images/group.svg" id="finAccssImg" /></div>
+            </div>
+            <div class="col-sm-12 col-md-6 fin-accessment-block__content__desc">
+                <p class="fin-accessment-block__content__heading" id="finAccssHeading">{{ 'FINANCIAL_ASSESSMENT.CONTENT_STEP' | translate}}</p>
+                <p class="fin-accessment-block__content__title mb10" id="finAccssTitle">{{ 'FINANCIAL_ASSESSMENT.CONTENT_TITLE' | translate}}</p>
+                <p class="fin-accessment-block__content__sub-title mb40" id="finAccssSubTitle">{{ 'FINANCIAL_ASSESSMENT.CONTENT_DESC' | translate}}</p>
+                <button class="btn btn-proceed" (click)="goNext()">
+                        {{ 'LABEL.PROCEED' | translate}}
+                </button>
+            </div>
+        </div>
         </div>
     </div>
-  </div>
+</div>

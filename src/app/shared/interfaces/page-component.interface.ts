@@ -1,6 +1,6 @@
-import { HeaderService } from './../header/header.service';
+import { NavbarService } from '../navbar/navbar.service';
 export interface IPageComponent {
     pageTitle: string;
-    headerService: HeaderService;
+    navbarService: NavbarService;
     setPageTitle(title: string, subTitle?: string, showIcon?: boolean): void;
 }

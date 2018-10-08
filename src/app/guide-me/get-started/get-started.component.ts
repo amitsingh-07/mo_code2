@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from './../../shared/header/header.service';
-import { IPageComponent } from './../../shared/interfaces/page-component.interface';
+import { IPageComponent } from '../../shared/interfaces/page-component.interface';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-get-started',
@@ -14,7 +14,7 @@ export class GetStartedComponent implements IPageComponent, OnInit {
   pageTitle: string;
 
   constructor(
-    public headerService: HeaderService,
+    public navbarService: NavbarService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -27,6 +27,6 @@ export class GetStartedComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.headerService.setPageTitle(title);
+    this.navbarService.setPageTitle(title);
   }
 }

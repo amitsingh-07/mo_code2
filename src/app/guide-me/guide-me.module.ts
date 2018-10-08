@@ -1,29 +1,63 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { NgModule, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
-import { jqxSliderComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxslider';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NouisliderModule } from 'ng2-nouislider';
+import { SlickModule } from 'ngx-slick';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { ProductDetailComponent } from '../shared/components/product-detail/product-detail.component';
+import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
 import { SharedModule } from '../shared/shared.module';
-import { CurrencyInputDirective } from './../shared/directives/currency-input.directive';
-import { GuideMeRoutingModule } from './/guide-me-routing.module';
+import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
+import { NavbarService } from './../shared/navbar/navbar.service';
+import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { FinAssessmentComponent } from './fin-assessment/fin-assessment.component';
 import { GetStartedFormComponent } from './get-started/get-started-form/get-started-form.component';
 import { GetStartedComponent } from './get-started/get-started.component';
+import { GuideMeRoutingModule } from './guide-me-routing.module';
+import { HospitalPlanComponent } from './hospital-plan/hospital-plan.component';
 import { IncomeComponent } from './income/income.component';
+import { InsuranceResultComponent } from './insurance-results/insurance-result/insurance-result.component';
+import { InsuranceResultsComponent } from './insurance-results/insurance-results.component';
 import { InsureAssessmentComponent } from './insure-assessment/insure-assessment.component';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
+import { LifeProtectionFormComponent } from './life-protection/life-protection-form/life-protection-form.component';
+import { LifeProtectionComponent } from './life-protection/life-protection.component';
+import { LtcAssessmentComponent } from './ltc-assessment/ltc-assessment.component';
 import { MyAssetsComponent } from './my-assets/my-assets.component';
+import { OcpDisabilityComponent } from './ocp-disability/ocp-disability.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProtectionNeedsComponent } from './protection-needs/protection-needs.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new MultiTranslateHttpLoader(
+    http,
+    [
+      { prefix: './assets/i18n/app/', suffix: '.json' },
+      { prefix: './assets/i18n/guide-me/', suffix: '.json' }
+    ]);
+}
 
 @NgModule({
   imports: [
     CommonModule, GuideMeRoutingModule, ReactiveFormsModule, NgbModule.forRoot(),
-    TranslateModule.forChild(SharedModule.getTranslateConfig('guide-me'))
+    NouisliderModule,
+    SharedModule,
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    SlickModule.forRoot()
   ],
   declarations: [
     ProfileComponent,
@@ -34,12 +68,24 @@ import { ProtectionNeedsComponent } from './protection-needs/protection-needs.co
     ExpensesComponent,
     MyAssetsComponent,
     LiabilitiesComponent,
-    CurrencyInputDirective,
-    jqxSliderComponent,
     FinAssessmentComponent,
     InsureAssessmentComponent,
-    CiAssessmentComponent
+    LifeProtectionComponent,
+    LifeProtectionFormComponent,
+    LtcAssessmentComponent,
+    CiAssessmentComponent,
+    OcpDisabilityComponent,
+    HospitalPlanComponent,
+    InsuranceResultsComponent,
+    InsuranceResultComponent,
+    RecommendationsComponent,
+    CustomCurrencyPipe
   ],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe, CustomCurrencyPipe],
+  entryComponents: [ProductDetailComponent]
 })
-export class GuideMeModule { }
+export class GuideMeModule {
+
+  constructor(public navbarService: NavbarService) {
+  }
+}

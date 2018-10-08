@@ -1,0 +1,12 @@
+@import '../../../../mixins';
+app-existing-coverage-modal {
+    .form-group {
+        @include allmobiles {
+            padding-bottom: 30px;
+          }
+    }
+    .dropdown-control .dropdown-menu.show {
+        right: 0 !important;
+        left: inherit !important;
+    }
+}

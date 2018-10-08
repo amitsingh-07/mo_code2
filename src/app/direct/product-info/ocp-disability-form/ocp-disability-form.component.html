@@ -1,0 +1,129 @@
+<form name="ocpDisabilityForm" id="ocpDisabilityForm" [formGroup]="ocpDisabilityForm" class="flex-row ">
+  <div class="form-group direct-form">
+     <div class="flex-row">
+        <div class="flex-col-3">
+           <label for="name" id="getStrdLbl1">{{ 'PROFILE.GENDER.TITLE' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+           <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+              <div class="flex-row mb0">
+                 <div>
+                    <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
+                    <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
+                    </label>
+                 </div>
+                 <div>
+                    <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
+                    <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
+                    </label>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="flex-row">
+        <div class="flex-col-3">
+           <label for="name" id="getStrdLbl4">{{ 'PROFILE.DOB.TITLE' | translate}}</label>
+        </div>
+        <div #usrFrmDp class="flex-col-8 direct-form-grp">
+           <div class="datepicker-control">
+              <div class="input-group date-picker mb0">
+                 <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"
+                 ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                 <div class="input-group-append">
+                    <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                    <img class="date-picker-image--valid" src="./assets/images/calendar-normal.svg" />
+                    </button>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="flex-row" style="display:none;">
+        <div class="flex-col-3">
+           <label for="name" id="getStrdLbl5">{{ 'PROFILE.SMOKER.TITLE' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+           <div class="btn-group--toggle" ngbRadioGroup name="radioSmoker" formControlName="smoker">
+              <div class="flex-row mb0">
+                 <div>
+                    <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl2">
+                    <input ngbButton type="radio" value="nonsmoker" id="getStrdInpt1" /> {{ 'COMMON.LBL_NONSMOKER' |
+                    translate}}
+                    </label>
+                 </div>
+                 <div>
+                    <label ngbButtonLabel class="direct-form-btn--radio" id="getStrdLbl3">
+                    <input ngbButton type="radio" value="smoker" id="getStrdInpt2" /> {{ 'COMMON.LBL_SMOKER' | translate}}
+                    </label>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="flex-row">
+        <div class="flex-col-3">
+           <label for="name" id="getStrLbl7">{{ 'OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+           <div class="dropdown-control">
+              <div ngbDropdown id="durationDropDown">
+                 <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                 <span class="duration">{{defaultEmployee=='' ? 'Select' :defaultEmployee}}</span>
+                 </button>
+                 <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                    <button class="dropdown-item" (click)="selectEmployeeType('',false)">{{'COMMON.LBL_SELECT' | translate}}</button>
+                    <button type="button" class="dropdown-item" *ngFor="let employmentType of employmentTypeList" (click)="selectEmployeeType(employmentType,true)">
+                    {{employmentType}}
+                    </button>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="form-group direct-form second-form">
+     <div class="flex-row">
+        <div class="flex-col-3">
+           <label for="name" id="getStrLbl6">{{ 'OCCUPATIONAL_DISABILITY.MONTHLY_SALARY' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+           <div class="form-control">
+            <i>$</i>
+            <div name="monthlySalary" [ngClass]="{'readonly': monthlySalary.value != 0}"><input  class="input-control" type="text" appCurrencyInput maxLength="5" #monthlySalary formControlName="monthlySalary" value="0"></div>
+            </div>
+        </div>
+     </div>
+     <div class="flex-row">
+        <div class="flex-col-8">
+                      <label for="name" id="getStrLbl6">{{ 'OCCUPATIONAL_DISABILITY.COVER' | translate}}</label>&nbsp;<span class="span--content-inline--underline">{{coveragePercent}}%</span><label>&nbsp;{{'OCCUPATIONAL_DISABILITY.OF'  | translate }}</label><p><label>{{'OCCUPATIONAL_DISABILITY.MY_MONTHLY_SALARY' | translate}}</label></p></div>
+     </div>
+     <nouislider #ocpDisabilityFormSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]='coverageMax'
+     [step]="1" [tooltips]="[ true ]"></nouislider>
+     <div class="flex-row">
+      <div class="flex-col-12">
+     <div class="dash"></div>
+     </div>
+     </div>
+     <div class="flex-row">
+        <div class="flex-col-3">
+           <label for="name" id="getStrLbl7">{{ 'OCCUPATIONAL_DISABILITY.DURATION' | translate}}</label>
+        </div>
+        <div class="flex-col-8 direct-form-grp">
+           <div class="dropdown-control">
+              <div ngbDropdown id="durationDropDown">
+                 <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                 <span class="duration">{{duration == '' ? 'select' : duration }}</span>
+                 </button>
+                 <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+                    <button class="dropdown-item" (click)="selectDuration('')">select</button>
+                    <button type="button" class="dropdown-item" *ngFor="let duration of durationValues" (click)="selectDuration(duration)">
+                    {{duration}}
+                    </button>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</form>

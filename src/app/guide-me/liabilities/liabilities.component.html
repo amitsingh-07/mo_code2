@@ -1,38 +1,63 @@
 <!--Assets Screen-->
-<div class="container-fluid">
+<div class="container-fluid max-width--1024">
     <div class="row">
       <div class="col-lg-7 col-md-6 hidden-sm-md">
           <h2>{{ pageTitle }}</h2>
           <h6>{{ 'MY_LIABILITIES.DESCRIPTION' | translate}}</h6>
         <div class="banner-image">
-            <img src="assets/images/liabilities.png" />
+            <img src="assets/images/liabilities.svg" />
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
         <div>
           <form id="liabilitiesForm" name="liabilitiesForm" [formGroup]="liabilitiesForm">
-              <div  class="form-with-bg">
+              <div  class="form-group-with-bg">
                 <!--Form Header-->
-                <div class="form-with-bg--header">
-                    <div class="form-group flex-row">
-                      <div class="form-with-bg--header-label">{{ 'MY_LIABILITIES.MY_LIABILITIES_FRM_TITLE' | translate}}<div class="form-with-bg--header-sub-label">{{ 'MY_LIABILITIES.WHAT_YOU_OWE' | translate}}</div></div>
-                      <div class="total">{{liabilitiesTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                <div class="form-group-with-bg--header">
+                    <div class="flex-row">
+                      <div class="flex-col-6">
+                      <div class="form-group-with-bg--header-label">{{ 'MY_LIABILITIES.MY_LIABILITIES_FRM_TITLE' | translate}}<div class="form-group-with-bg--header-sub-label">{{ 'MY_LIABILITIES.WHAT_YOU_OWE' | translate}}</div></div>
+                      </div>
+                      <div class="flex-col-6">
+                        <div class="total">{{liabilitiesTotal | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      </div>  
                     </div>
                   </div>
                   <!--Form Content-->
-                  <div class="form-with-bg--content">
-                    <div class="form-group flex-row">
-                      <div class="form-with-bg--content-label" for="name">{{ 'MY_LIABILITIES.PROPERTY_LOAN' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_LIABILITIES.PROPERTY_LOAN_HINT' | translate}}</div></div>
-                      <div class="input-control" [ngClass]="{'readonly': propertyLoan.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #propertyLoan formControlName="propertyLoan" value="0"></div>
+                  <div class="form-group-with-bg--content">
+                    <div class="flex-row">
+                      <div class="flex-col-6">
+                      <div class="form-group-with-bg--content-label" for="name">{{ 'MY_LIABILITIES.PROPERTY_LOAN' | translate}}<div class="form-group-with-bg--content-sub-label">{{ 'MY_LIABILITIES.PROPERTY_LOAN_HINT' | translate}}</div></div>
+                      </div>
+                      <div class="flex-col-6">
+                      <div class="form-control">
+                        <i>$</i>
+                        <div [ngClass]="{'readonly': propertyLoan.value != 0}"><input  class="input-control" type="text" appCurrencyInput maxLength="7" #propertyLoan formControlName="propertyLoan" value="0"></div>
+                      </div>
+                      </div>  
                     </div>
-                    <div class="form-group flex-row">
-                      <div class="form-with-bg--content-label" for="name">{{ 'MY_LIABILITIES.CAR_LOAN' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_LIABILITIES.CAR_LOAN_HINT' | translate}}</div></div>
-                      <div name="annualBonus" class="input-control" [ngClass]="{'readonly': carLoan.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="6" #carLoan formControlName="carLoan" value="0"></div>
+                    <div class="flex-row">
+                      <div class="flex-col-6">
+                      <div class="form-group-with-bg--content-label" for="name">{{ 'MY_LIABILITIES.CAR_LOAN' | translate}}<div class="form-group-with-bg--content-sub-label">{{ 'MY_LIABILITIES.CAR_LOAN_HINT' | translate}}</div></div>
+                      </div>
+                      <div class="flex-col-6">
+                        <div class="form-control">
+                        <i>$</i>
+                      <div name="annualBonus" [ngClass]="{'readonly': carLoan.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="6" #carLoan formControlName="carLoan" value="0"></div>
+                    </div>    
                     </div>
-                    <div class="form-group flex-row">
-                        <div class="form-with-bg--content-label" for="name">{{ 'MY_LIABILITIES.OTHERS' | translate}}<div class="form-with-bg--content-sub-label">{{ 'MY_LIABILITIES.OTHERS_HINT' | translate}}</div></div>
-                        <div class="input-control" [ngClass]="{'readonly': others.value != 0}"><span class="fixed-currency">$</span><input type="text" appCurrencyInput maxLength="7" #others formControlName="others" value="0"></div>
                     </div>
+                    <div class="flex-row">
+                      <div class="flex-col-6">
+                        <div class="form-group-with-bg--content-label" for="name">{{ 'MY_LIABILITIES.OTHERS' | translate}}<div class="form-group-with-bg--content-sub-label">{{ 'MY_LIABILITIES.OTHERS_HINT' | translate}}</div></div>
+                      </div>
+                      <div class="flex-col-6">
+                        <div class="form-control">
+                          <i>$</i>
+                        <div [ngClass]="{'readonly': otherLoan.value != 0}"><input class="input-control" type="text" appCurrencyInput maxLength="7" #otherLoan formControlName="otherLoan" value="0"></div>
+                      </div>
+                      </div>
+                      </div>
                   </div>
               </div>
             <div>

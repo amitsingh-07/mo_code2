@@ -1,3 +1,7 @@
 export class ProtectionNeeds {
-    protectionNeedData: string = null;
+    protectionTypeId: number;
+    protectionType: string;
+    protectionDesc: string;
+
+    status: boolean;
 }

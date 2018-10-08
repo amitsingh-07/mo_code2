@@ -1,0 +1,32 @@
+<!--Long Term Care Screen-->
+<div class="container-fluid max-width--1024 mobile-top-extended">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 hidden-sm-md">
+        <h2>{{ 'LTC_ASSESSMENT.TITLE' | translate}}</h2>
+        <h6 class="col-lg-9 col-sm-10 col-xs-12 flex--pad-mt-reset">{{ 'LTC_ASSESSMENT.DESCRIPTION_PART1' | translate}}<b>{{ 'LTC_ASSESSMENT.DESCRIPTION_BOLD' | translate}}</b>{{ 'LTC_ASSESSMENT.DESCRIPTION_PART2' | translate}}</h6>
+        <h6>{{ 'LTC_ASSESSMENT.SUB_TITLE' | translate}}</h6>
+        <div class="banner-image">
+          <img src="assets/images/ltc-assessment.svg" />
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6">
+        <form name="longTermCareForm" [formGroup]="longTermCareForm" id="longTermCareForm">
+          <div class="form-group mb0 flex-col flex__box--sm-horz">
+            <div class="special-radio-button hidden" *ngFor="let longTermCare of longTermCareList; let i = index">
+              <input id="longTermCare_{{i+1}}" name="careGiverType" formControlName="careGiverType" type="radio" class="field radio" value="{{longTermCare.id}}"
+              tabindex="{{i+1}}"  (change)="validateForm(longTermCare)" />
+                <label for="longTermCare_{{i+1}}" class="ltc">
+                  <div class="input-label-white">{{longTermCare.careGiverType}}</div>
+                  <div class="input-label-top20">{{longTermCare.careGiverDescription}}</div>
+                </label>
+            </div>
+          </div>
+          <div>
+            <button type="button" [disabled]="!isFormValid" (click)="goToNext(longTermCareForm)" class="btn btn-primary btn__footer--fixed width100">{{ 'LABEL.CONTINUE' | translate}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

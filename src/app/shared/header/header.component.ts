@@ -1,8 +1,10 @@
+
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IPageComponent } from './../interfaces/page-component.interface';
+import { IPageComponent } from '../interfaces/page-component.interface';
+import { NavbarService } from './../navbar/navbar.service';
 import { HeaderService } from './header.service';
 
 @Component({
@@ -10,25 +12,40 @@ import { HeaderService } from './header.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements IPageComponent, OnInit {
+export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
 
   pageTitle: string;
   subTitle = '';
   helpIcon = false;
   // helpIcon: boolean;
+  showOverallHeader = true;
   showHeader = true;
+  showHeaderDropshadow = true;
+  closeIcon = false;
+  settingsIcon = false;
 
-  constructor(public headerService: HeaderService, private _location: Location , private router: Router) {  }
+  constructor(public navbarService: NavbarService, public headerService: HeaderService,
+              private _location: Location , private router: Router) {  }
 
   ngOnInit() {
     this.headerService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.headerService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
     this.headerService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
-    this.headerService.currentHeaderVisibility.subscribe((showHeader) => this.showHeader = showHeader);
+    this.headerService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
+    this.headerService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
   }
 
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, this.subTitle, this.helpIcon);
+  ngAfterViewInit() {
+    this.headerService.currentHeaderOverallVisibility.subscribe((showOverallHeader) => this.showOverallHeader = showOverallHeader);
+    this.headerService.currentHeaderVisibility.subscribe((showHeader) => this.showHeader = showHeader);
+    this.headerService.currentHeaderDropshadow.subscribe((showHeaderDropshadow) => {
+      this.showHeaderDropshadow = showHeaderDropshadow;
+      console.log(this.showHeaderDropshadow);
+    });
+  }
+
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
+    this.headerService.setPageTitle(title, this.subTitle, this.helpIcon, this.settingsIcon);
   }
 
   hideHeader() {
@@ -36,7 +53,11 @@ export class HeaderComponent implements IPageComponent, OnInit {
   }
 
   showMobilePopUp() {
-    this.headerService.showMobilePopUp('Clicked');
+    this.headerService.showMobilePopUp(this.pageTitle);
+  }
+
+  hideProdInfo() {
+    this.headerService.setProdButtonVisibility(false);
   }
 
   goBack() {

@@ -1,0 +1,144 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.customer-review__wrapper{
+    position: relative;
+    display:block;
+    background-color:$white-color;
+    .banner{
+        position: relative;
+        display:flex;
+        width:100%;
+        justify-content: center;
+        min-height:500px;
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+            justify-content:flex-start;
+            min-height:unset;
+        }
+    }
+    .banner-bg{
+        position: absolute;
+        display:block;
+        max-width:1024px;
+        width:100%;
+        height:100%;
+        @include minMobilemaxPhablet{
+            position: relative; 
+            height:300px;
+            order:2;
+        }
+        .banner-bg--image{
+            position: absolute;
+            display:block;
+            width:100%;
+            height:100%;
+            background-image:url('./../../../assets/images/about-us/customer_review.jpg');
+            background-repeat:no-repeat;
+            background-position:bottom right;
+            background-size:contain;
+            bottom:0px;
+            @include minPhabletmaxTablet{
+                height:calc(100% - 50px);
+            }
+            @include minMobilemaxPhablet{
+                
+            }
+        }
+    }
+    .banner-container{
+        position: relative;
+        display: inline-block;
+        width:100%;
+        max-width:1024px;
+        padding:70px 0px 0px 0px;
+        @include minMobilemaxPhablet{
+            padding:20px;
+            order:1;
+            margin-bottom:-80px;
+        }
+        h1{
+            font-family:$muli-bold;
+            font-weight:bold;
+            font-size:4rem;
+            color:$teal-color;
+            margin-bottom:unset;
+            line-height:1;
+            @include minMobilemaxPhablet{
+                font-size:3.5rem;
+            }
+        }
+        h3{
+            font-family:$muli-semi-bold;
+            color:$black-color;
+            opacity:0.9;
+            @include minMobilemaxPhablet{
+                font-size:1.5rem;
+            }
+        }
+        
+    }
+}
+
+.customer-reviews__content{
+    position: relative;
+    display:flex;
+    background-color:$light-aqua-color;
+    min-height:500px;
+    width:100%;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px;
+
+    .customer-reviews__inner-content{
+        position: relative;
+        display:block;
+        column-count:3;
+        max-width:1140px;
+        width:100%;
+        @include minPhabletmaxTablet{
+            column-count:2;
+        }
+        @include minMobilemaxPhablet{
+            column-count:1;
+        }
+    }
+    
+    .customer-review{
+        position: relative;
+        display:inline-flex;
+        width:100%;
+        justify-content:center;
+        align-items:center;
+        padding:40px;
+        margin-bottom:0.75rem;
+        border-radius:6px;
+        @include tablet{
+            padding:20px;
+        }
+        
+        h6{
+            font-family:$muli-regular;
+            color:$black-color;
+            opacity:0.9;
+            text-align:center;
+        }
+        .rating-container{
+            position: relative;
+            display:flex;
+            justify-content:center;
+            .rating--icon{
+                color:$orange-color;
+            }
+            .rating--text{
+                font-family:$muli-bold;
+                color:$teal-color;
+            }
+        }
+        
+        
+        
+        
+    }
+
+}
