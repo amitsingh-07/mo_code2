@@ -44,13 +44,13 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     this.incomeFormValues = this.guideMeService.getMyIncome();
     this.incomeForm = new FormGroup({
       monthlySalary: new FormControl(this.incomeFormValues.monthlySalary),
       annualBonus: new FormControl(this.incomeFormValues.annualBonus),
       otherIncome: new FormControl(this.incomeFormValues.otherIncome)
     });
-    this.navbarService.setNavbarMobileVisibility(true);
     this.setFormTotalValue();
   }
 

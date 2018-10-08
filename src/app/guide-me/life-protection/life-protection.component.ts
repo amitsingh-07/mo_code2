@@ -40,7 +40,7 @@ export class LifeProtectionComponent implements IPageComponent, OnInit , OnDestr
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarDirectGuided(true);
     const dependantCount = this.guideMeService.getUserInfo().dependent ? this.guideMeService.getUserInfo().dependent : 0;
     this.lpDependentCountForm = this.formBuilder.group({
       dependentCount: dependantCount

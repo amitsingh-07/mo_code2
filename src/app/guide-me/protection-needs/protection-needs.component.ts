@@ -40,6 +40,7 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     this.isFormLoaded = false;
     this.protectionNeedsForm = this.formBuilder.group({
       protectionNeedsArray: this.formBuilder.array([])
@@ -48,7 +49,6 @@ export class ProtectionNeedsComponent implements IPageComponent, OnInit {
       this.buildForm(data.objectList);
       this.protectionNeedsList = data.objectList;
     });
-    this.navbarService.setNavbarMobileVisibility(true);
   }
 
   setPageTitle(title: string, subTitle: string) {
