@@ -11,9 +11,11 @@
     <div class="t-c-content">
       <app-terms-and-conditions></app-terms-and-conditions>
       <app-privacy-policy></app-privacy-policy>
-      <app-disclosures></app-disclosures>
-      <button (click)="activeModal.close('proceed')" type="button" class="btn btn-primary">I Agree</button>
+      <app-disclosures style="margin-bottom: 40px;"></app-disclosures>
     </div>
+    <div style="display: flex; justify-content: center;">
+    <button (click)="activeModal.close('proceed')" type="button" class="btn btn-primary bottom-btn">I Agree</button>
+  </div>
   </div>
 </div>
 

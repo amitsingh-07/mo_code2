@@ -147,7 +147,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   openTermsOfConditions() {
-    const ref = this.modal.open(TermsComponent, { centered: true });
+    const ref = this.modal.open(TermsComponent, { centered: true, windowClass: 'full-height' });
     ref.result.then((data) => {
       if (data === 'proceed') {
         this.createAccount();
