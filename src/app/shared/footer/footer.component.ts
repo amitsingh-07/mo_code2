@@ -1,6 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import { ngxZendeskWebwidgetService } from 'ngx-zendesk-webwidget';
 import { FooterService } from './footer.service';
 
 @Component({
@@ -10,10 +9,7 @@ import { FooterService } from './footer.service';
 })
 export class FooterComponent implements OnInit, AfterViewInit {
   showFooter = false;
-  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef,
-              private _ngxZendeskWebwidgetService: ngxZendeskWebwidgetService) {
-                _ngxZendeskWebwidgetService.activate();
-              }
+  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
   }
@@ -23,10 +19,6 @@ export class FooterComponent implements OnInit, AfterViewInit {
       this.showFooter = showFooter;
       this.cdr.detectChanges();
     });
-  }
-
-  openLiveChat() {
-    this._ngxZendeskWebwidgetService.show();
   }
 
 }
