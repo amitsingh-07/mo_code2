@@ -65,8 +65,8 @@ export class CreateAccountComponent implements OnInit {
   buildAccountInfoForm() {
     this.formValues = this.signUpService.getAccountInfo();
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
-    this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : false;
-    this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : true;
+    this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : true;
+    this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
