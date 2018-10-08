@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-terms',
   templateUrl: './terms.component.html',
   styleUrls: ['./terms.component.scss'],
-  encapsulation: ViewEncapsulation.None;
+  encapsulation: ViewEncapsulation.None
 })
 export class TermsComponent implements OnInit {
 
