@@ -638,7 +638,7 @@ button:active:focus {
   max-width:215px;
   align-self:flex-start;
   @include allmobiles{
-    max-width:175px;
+    max-width:200px;
   }
   .btn-group--toggle{
     .direct-form-btn--radio{
@@ -672,8 +672,8 @@ button:active:focus {
         display:flex;
         justify-content: center;
         align-items: center;
-        min-width:82px;
-        max-width:82px;
+        min-width:90px;
+        max-width:90px;
         background-color:$teal-color;
         border-color:$dark-teal-color;
         color:$light-teal-color;
