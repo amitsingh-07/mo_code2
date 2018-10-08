@@ -8,6 +8,7 @@ import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
+const REDIRECT_URL_KEY = 'app_redirect_url';
 import { CryptoService } from '../shared/utils/crypto';
 
 @Injectable({
@@ -239,5 +240,19 @@ export class SignUpService {
   setUserProfileInfo(userInfo) {
     this.signUpFormData.userProfileInfo = userInfo;
     this.commit();
+  }
+
+  setRedirectUrl(url) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(REDIRECT_URL_KEY, url);
+    }
+  }
+
+  clearRedirectUrl() {
+    sessionStorage.removeItem(REDIRECT_URL_KEY);
+  }
+
+  getRedirectUrl() {
+    return sessionStorage.getItem(REDIRECT_URL_KEY);
   }
 }
