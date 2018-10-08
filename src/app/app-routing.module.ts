@@ -19,9 +19,10 @@ const routes: Routes = [
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       /*
       { path: 'myinfo', component: CallBackComponent },
+      */
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
-      */
+
       // Legacy Routes
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' }
 
