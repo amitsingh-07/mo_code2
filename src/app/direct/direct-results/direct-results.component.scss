@@ -2,6 +2,19 @@
 @import '../../../mixins';
 
 app-direct-results {
+  .best-value-icon {
+    position: absolute;
+    z-index: 1020;
+    margin-top: -1px;
+    margin-left: -3px;
+  }
+  
+  .best-value-icon--mobile {
+    z-index: 1020;
+    position: absolute;
+    margin-top: 15px;
+  }
+
   .overlay {
     position: absolute;
     background: rgba(0, 167, 167, 0.75);
