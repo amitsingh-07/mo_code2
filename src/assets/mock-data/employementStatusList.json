@@ -1,0 +1,21 @@
+{
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    },
+    "objectList": [{
+        "id": 1,
+        "employementstatus": "Employed"
+      
+    },
+    {
+        "id":2,
+        "employementstatus": "Self Employed"
+       
+    },
+    {
+        "id":3,
+        "employementstatus": "Unemployed"
+        
+    }]
+  }

@@ -90,5 +90,16 @@
         "EMAIL_NOT_FOUND_DESC":"The email you’ve entered doesn’t seem to exist in our database. Please try again."
 
 
+    },
+    "POSTLOGIN": {
+        "TITLE":"You are ready to set up your investment account!",
+        "PROCEED":"Proceed with",
+        "PROCEED_WITHOUT":"Proceed without SingPass"
+    },
+    "PRELOGIN": {
+        "TITLE":"Are you an existing MoneyOwl user.? ",
+        "YES_LOGIN":"Yes,Login Now",
+        "CREATE_ACCOUNT":"Proceed without SingPass"
     }
+
 }

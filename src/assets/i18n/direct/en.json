@@ -33,7 +33,6 @@
     },
     "PREMIUM_WAIVER": {
       "TITLE": "Premium Waiver",
-      "SUBTITLE": "(Optional)",
       "TOOLTIP": {
           "TITLE": "Premium Waiver Rider",
           "MESSAGE": "In the event that you are diagnosed with Critical Illness, your remaining premiums will be waived without affecting the payout benefit to you."
@@ -54,7 +53,6 @@
     "PLAN_TYPE": "Plan Type",
     "FULL_OR_PARTIAL_RIDER":{ 
       "TITLE": "Full / Partial Rider",
-      "SUBTITLE": "(optional)",
       "TOOLTIP": {
         "FULL_OR_PARTIAL_RIDER": {
           "TITLE": "Full/Partial Rider",
@@ -62,7 +60,7 @@
         }
       }
     },
-    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C", "Global Healthcare"]
+    "HOSPITAL_PLANS": ["Private", "Govt Ward A", "Govt Ward B1", "Govt Ward B2/C"]
     
   },
   "CRITICAL_ILLNESS": {
@@ -74,8 +72,7 @@
       "TITLE": "Duration"
       },
     "EARLY_CI": {
-      "TITLE": "Early CI",
-      "SUBTITLE": "(Optional)"
+      "TITLE": "Early CI"
       }
     },
   "LONG_TERM_CARE": {
@@ -87,7 +84,8 @@
       "EMPLOYMENT_TYPE":"Employment Type",
       "MONTHLY_SALARY":"Monthly Salary",
       "DURATION":"Duration",
-      "COVER": "Cover",
+      "COVER": "I need to cover",
+      "MY_MONTHLY_SALARY":"my monthly salary",
       "OF": "Of",
       "EMPLOYMENT_TYPE_LIST": ["Salaried", "Self-employed"],
       "DURATION_VALUES": ["Till Age 55", "Till Age 60", "Till Age 65"]

@@ -1,6 +1,6 @@
 import 'hammerjs';
 
-import { CurrencyPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { Injector, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -45,6 +45,7 @@ import { CustomErrorHandlerService } from './shared/http/custom-error-handler.se
 import { RequestCache } from './shared/http/http-cache.service';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
+import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
@@ -56,6 +57,7 @@ import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+import { PendingChangesGuard } from './changes.guard';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -121,7 +123,7 @@ export function tokenGetterFn() {
   ],
   providers: [
     NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
-    AppService,
+    AppService, TitleCasePipe, PendingChangesGuard,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -140,7 +142,7 @@ export function tokenGetterFn() {
     HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent]
+    SettingsWidgetComponent, ConfirmationModalComponent]
 })
 
 export class AppModule {

@@ -76,10 +76,11 @@ export class VerifyMobileComponent implements OnInit {
    */
   save(form: any) {
     if (form.valid) {
-      let otp = '';
+      const otpArr = [];
       for (const value of Object.keys(form.value)) {
-        otp += form.value[value];
+        otpArr.push(form.value[value]);
         if (value === 'otp6') {
+          const otp = otpArr.join('');
           this.verifyOTP(otp);
         }
       }
@@ -142,6 +143,9 @@ export class VerifyMobileComponent implements OnInit {
   onlyNumber(currentElement, nextElement) {
     const elementName = currentElement.getAttribute('formcontrolname');
     currentElement.value = currentElement.value.replace(RegexConstants.OnlyNumeric, '');
+    if (currentElement.value.length > 1) {
+      currentElement.value = currentElement.value.charAt(0);
+    }
     this.verifyMobileForm.controls[elementName].setValue(currentElement.value);
     if (currentElement.value && nextElement !== undefined && nextElement !== 'undefined') {
       nextElement.focus();
