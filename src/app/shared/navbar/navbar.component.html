@@ -34,16 +34,40 @@
                 </div>
                 </ul> 
             </div>
-         
+        
         <div *ngIf="(navbarMode == 1 || navbarMode == 3)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
-                    <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Products</a>
-                    <div class="dropdown-menu perma" ngbDropdownMenu aria-labelledby="id01">
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">Insurance</button>
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="will">Will Writing</button>
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="invest">Investment</button>
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="comprehensive">Comprehensive</button>
+                    <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
+                    <div class="dropdown-menu right perma" ngbDropdownMenu aria-labelledby="id01">
+                        <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">
+                            <img src="./../../../assets/images/nav/nav-insure-icon.svg"/>
+                            <div class="navbar--text">
+                                <span>Insurance</span>
+                                </div>
+                        </button>
+                        <button class="dropdown-item" [routerLink]="['/home']" fragment="will">
+                            <img src="./../../../assets/images/nav/nav-will-icon.svg"/>
+                            <div class="navbar--text">
+                                <span>Will Writing</span>
+                                <span class="sub">(Coming Soon)</span>
+                                </div>
+                            </button>
+                        <button class="dropdown-item" [routerLink]="['/home']" fragment="invest">
+                            <img src="./../../../assets/images/nav/nav-invest-icon.svg"/>
+                            <div class="navbar--text">
+                                <span>Investment</span>
+                                <span class="sub">(Coming Soon)</span>
+                                </div>
+                        </button>
+                        <button class="dropdown-item" [routerLink]="['/home']" fragment="comprehensive">
+                            <img src="./../../../assets/images/nav/nav-compre-icon.svg"/>
+                            <div class="navbar--text">
+                                <span>Comprehensive (integrating national schemes)</span>
+                                <span class="sub">(Coming Soon)</span>
+                                </div>
+                            </button>
+                        <div class="tip"></div>
                         </div>
                     </li>
                 <!--
@@ -71,8 +95,12 @@
                 <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
                     <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
                     <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
-                        <button class="dropdown-item" [routerLink]="['/about-us']">About Us</button>
-                        <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">Customer Reviews</button>
+                        <button class="dropdown-item" [routerLink]="['/about-us']">
+                            <div class="navbar--text">About Us</div>
+                            </button>
+                        <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">
+                            <div class="navbar--text">Customer Reviews</div>
+                            </button>
                         <!-- <button class="dropdown-item">Subscribe</button> -->
                     </div>
                     </li>

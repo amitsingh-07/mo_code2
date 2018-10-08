@@ -52,6 +52,9 @@
         width:100%;
         max-width:1024px;
         padding:70px 0px 0px 0px;
+        @include minPhabletmaxTablet{
+            padding:70px 20px 0px 20px;
+        }
         @include minMobilemaxPhablet{
             padding:20px;
             order:1;
@@ -64,6 +67,9 @@
             color:$teal-color;
             margin-bottom:unset;
             line-height:1;
+            @include minPhabletmaxTablet{
+                font-size:3.7rem;
+            }
             @include minMobilemaxPhablet{
                 font-size:3.5rem;
             }
@@ -72,6 +78,9 @@
             font-family:$muli-semi-bold;
             color:$black-color;
             opacity:0.9;
+            @include minPhabletmaxTablet{
+                font-size:1.5rem;
+            }
             @include minMobilemaxPhablet{
                 font-size:1.5rem;
             }

@@ -1,6 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 
-import { HeaderService } from './../../shared/header/header.service';
+import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 import { AboutUsApiService } from './../about-us.api.service';
@@ -15,7 +16,7 @@ import { ICustomerReview } from './customer-reviews.interface';
 export class CustomerReviewsComponent implements OnInit {
   customerReviewList: ICustomerReview[];
 
-  constructor(public headerService: HeaderService, public navbarService: NavbarService,
+  constructor(public navbarService: NavbarService, public footerService:FooterService,
               public aboutUsApiService: AboutUsApiService, private aboutUsService: AboutUsService) {
   }
 
@@ -23,6 +24,7 @@ export class CustomerReviewsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
+    this.footerService.setFooterVisibility(true);
 
     this.aboutUsApiService.getCustomerReviews().subscribe((data) => {
       this.customerReviewList = this.aboutUsService.getCustomerReviews(data);
