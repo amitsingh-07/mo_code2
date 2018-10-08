@@ -17,6 +17,11 @@ import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-d
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
+import { DisclosuresComponent } from './components/disclosures/disclosures.component';
+import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -40,7 +45,11 @@ export function createTranslateLoader(http: HttpClient) {
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
-    LoaderComponent, ConfirmationModalComponent]
+    LoaderComponent, ConfirmationModalComponent,
+    TermsAndConditionsComponent,
+    PrivacyPolicyComponent,
+    FairDealingComponent,
+    DisclosuresComponent]
 })
 export class SharedModule { }
 

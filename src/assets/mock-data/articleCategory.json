@@ -1,0 +1,20 @@
+{
+    "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+    },
+    "objectList": [{
+      "articleCategory": ["Child Education Endowment",
+                          "Critical Illness Insurance", 
+                          "General",
+                          "MediShieldLife",
+                          "Protection",
+                          "Retirement Income",
+                          "Retirement Income Plans",
+                          "Savings",
+                          "Term Life Insurance",
+                          "Video",
+                          "Whole Life Insurance",
+                          "All"]
+    }]
+}
