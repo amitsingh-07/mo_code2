@@ -15,7 +15,7 @@ export class AboutUsComponent implements OnInit {
   public people: any;
 
   constructor(private navbarService: NavbarService, private footerService: FooterService,
-              private translate: TranslateService) {
+              public translate: TranslateService) {
               this.translate.use('en');
               this.translate.get('COMMON').subscribe((result: string) => {
                 this.pageTitle = this.translate.instant('PROFILE.TITLE');

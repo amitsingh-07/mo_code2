@@ -12,7 +12,7 @@ import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbDropdownConfig]
 })
 export class ArticleCategoryComponent implements OnInit {
-  private category = 'Protection';
+  public category = 'Protection';
 
   constructor(public navbarService: NavbarService, public footerService: FooterService,
               private config: NgbDropdownConfig) {

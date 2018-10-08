@@ -14,9 +14,9 @@ import { ArticleApiService } from './../article.api.service';
 })
 export class ArticleEntryComponent implements OnInit {
   private art_id: number;
-  private art_content: any;
-  private title: string;
-  private category: string;
+  public art_content: any;
+  public title: string;
+  public category: string;
   private author: string;
 
   constructor(public navbarService: NavbarService, public footerService: FooterService, private route: ActivatedRoute,
