@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="compare-plan-header hidden-lg"  >
+  <div class="compare-plan-header hidden-lg">
     {{this.pageTitle}}
     <button aria-label="Close" class="compare-plan-header--close" id="modalBtn" type="button" (click)="close()">
       <span aria-hidden="true"></span>
@@ -24,7 +24,7 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"><span>{{ 'COMPARE_PLANS.INSURER_FINANCIAL_RATING' | translate}}</span></div>
+    <div class="flex-col-12 flex title"><div>{{ 'COMPARE_PLANS.INSURER_FINANCIAL_RATING' | translate}}</div></div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
@@ -33,16 +33,16 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"><span>{{ 'COMPARE_PLANS.COVARAGE_DURATION' | translate}}</span></div>
+    <div class="flex-col-12 flex title"><div>{{ 'COMPARE_PLANS.COVARAGE_DURATION' | translate}}</div></div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
-        <span>{{plan.coverageDuration}}</span>
+        <span>{{plan.premium.durationName | titlecase}}</span>
       </div>
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"><span>{{ 'COMPARE_PLANS.PREMIUM_DURATION' | translate}}</span></div>
+    <div class="flex-col-12 flex title"><div>{{ 'COMPARE_PLANS.PREMIUM_DURATION' | translate}}</div></div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
@@ -51,8 +51,12 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"><span>{{ 'COMPARE_PLANS.NEED_UNDERWRITING' | translate}}</span><span (click)="showUnderwritingTooltip()"
-        class="tooltip-compare"></span></div>
+    <div class="flex-col-12 flex title">
+      <div>
+        {{ 'COMPARE_PLANS.NEED_UNDERWRITING' | translate}}
+        <span (click)="showUnderwritingTooltip()" class="tooltip-compare"></span>
+      </div>
+    </div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
@@ -61,8 +65,14 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"><span>{{ 'COMPARE_PLANS.CASH_VALUE' | translate}}</span><span (click)="showCashValueTooltip()"
-        class="tooltip-compare"></span></div>
+    <div class="flex-col-12 flex title">
+      <div>
+        {{ 'COMPARE_PLANS.CASH_VALUE' | translate}}
+      <span (click)="showCashValueTooltip()"
+        class="tooltip-compare">
+      </span>
+      </div>
+      </div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
@@ -71,7 +81,7 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"><span>{{ 'COMPARE_PLANS.PAYOUT_DETAILS' | translate}}</span></div>
+    <div class="flex-col-12 flex title"><div>{{ 'COMPARE_PLANS.PAYOUT_DETAILS' | translate}}</div></div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content flex">
@@ -80,7 +90,7 @@
       <div class="heading">&nbsp;</div>
     </div>
 
-    <div class="flex-col-12 flex title"><span>{{ 'COMPARE_PLANS.UNIQUE_FEATURES' | translate}}</span></div>
+    <div class="flex-col-12 flex title"><div>{{ 'COMPARE_PLANS.UNIQUE_FEATURES' | translate}}</div></div>
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'lb-round': i == 0, 'hidden-sm-md': i > 1, 'rb-round': i == plansData.length - 1}">
       <div class="plan-content feature-list">

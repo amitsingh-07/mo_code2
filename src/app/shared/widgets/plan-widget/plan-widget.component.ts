@@ -17,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { RecommendationsModalComponent } from '../../modal/recommendations-modal/recommendations-modal.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
+import { SelectedPlansService } from './../../Services/selected-plans.service';
 
 @Component({
   selector: 'app-plan-widget',
@@ -64,7 +65,8 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
   constructor(
     private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
-    private renderer: Renderer2, private translate: TranslateService, private titleCasePipe: TitleCasePipe) {
+    private renderer: Renderer2, private translate: TranslateService, private titleCasePipe: TitleCasePipe,
+    private planService: SelectedPlansService) {
     this.highlights = [];
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
@@ -78,9 +80,6 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    if (!this.comparePlanSelected) {
-      this.comparePlanSelected = [];
-    }
     if (this.data) {
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;

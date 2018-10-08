@@ -11,13 +11,11 @@ app-plan-details-widget {
   }
 
   .plan-selected {
+    border-radius: 6px;
     color: #fff;
     background-color: #ff872f !important;
     border-color: #ff872f !important;
     box-shadow: none;
-    @include allmobiles {
-      border-radius: 0;
-    }
   }
   
   .brochure {
@@ -59,7 +57,7 @@ app-plan-details-widget {
       align-items: center;
 
       img {
-        width: 80%;
+        width: 50%;
       }
 
       @include allmobiles {

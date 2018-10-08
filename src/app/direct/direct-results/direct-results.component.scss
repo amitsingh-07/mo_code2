@@ -134,7 +134,8 @@ app-direct-results {
   @extend .flex;
   @extend .space-btwn;
   background: $white-color;
-  padding: 0 15px 15px;
+  padding: 16px 15px 15px;
+  margin-top: -15px;
   .results-mobile__compare-plan--lbl {
     font-family: $muli-semi-bold;
     font-size: 17px;

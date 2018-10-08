@@ -834,7 +834,7 @@ input::placeholder {
 
     @include allmobiles {
       width: 100%;
-      padding: 0px 30px;
+      padding: 0px 20px;
     }
 
     @include min300max350 {
@@ -879,7 +879,7 @@ input::placeholder {
 
     .tooltip-icon {
       position: relative;
-      right: -80px;
+      right: -105px;
       top: -50px;
       background: url("./assets/images/tooltip-icon.svg") no-repeat;
       height: 20px;
