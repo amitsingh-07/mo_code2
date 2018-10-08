@@ -109,6 +109,10 @@ export class DirectApiService {
 
     getCriticalIllnessData() {
         const ci = this.directService.getCriticalIllnessForm();
+        let earlyCI = false;
+        if (ci.earlyCI || (ci.earlyCI + '').toLowerCase() === 'yes') {
+            earlyCI = true;
+        }
         const ciData: ICriticalIllnessData = {
             coverageYears: ci.duration,
             coverageAmount: Formatter.getIntValue(ci.coverageAmt),
