@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
+  INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
 } from '../../investment-account/investment-account-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -46,13 +46,14 @@ export class PreLoginComponent implements OnInit {
   goBack() {
     this._location.back();
   }
-  noButClick() {
-     this.signUpService.clearData();
-     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+  navigateCreateAccount() {
+    this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.POSTLOGIN);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
   }
 
-  yesButClick() {
+  navigateLogin() {
+    this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.POSTLOGIN);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
-      }
+  }
 
 }

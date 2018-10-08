@@ -17,6 +17,7 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
 
@@ -129,5 +130,8 @@ export class PortfolioRecommendationComponent implements OnInit {
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+  }
+  goToNext() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.PRELOGIN]);
   }
 }

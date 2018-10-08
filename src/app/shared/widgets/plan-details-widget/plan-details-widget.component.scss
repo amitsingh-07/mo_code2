@@ -75,10 +75,15 @@ app-plan-details-widget {
       h4 {
         max-height: 44px;
         font-size: 21px;
+        
         color: $black-color;
         font-family: $muli-semi-bold;
       }
-
+      @media only screen and (min-device-width:768px) and (max-device-width:1024px) {
+        h4 {
+          font-size: 17px;
+        }
+      }
       h2 {
         font-size: 36px;
         color: $app-backgrnd-color;
@@ -91,7 +96,11 @@ app-plan-details-widget {
           margin-left: 5px;
         }
       }
-
+      @media only screen and (min-device-width:768px) and (max-device-width:1024px) { 
+        h2 {
+          font-size: 32px;
+        }
+      }
       .insurance-plan-widget__container__discount__block {
         border-top: 1px solid #c2d9ec;
         border-bottom: 1px solid #c2d9ec;
