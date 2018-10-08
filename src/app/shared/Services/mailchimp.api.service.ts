@@ -1,10 +1,6 @@
-import { HttpClient, HttpClientJsonpModule, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { throwError } from 'rxjs';
-import { Observable } from 'rxjs/Observable';
-import { catchError } from 'rxjs/operators';
-import { IServerResponse } from './../http/interfaces/server-response.interface';
+
 import { SubscribeMember } from './subscribeMember';
 
 @Injectable({
@@ -12,9 +8,9 @@ import { SubscribeMember } from './subscribeMember';
 })
 export class MailchimpApiService {
 
-  constructor(http: Http,  public httpClient: HttpClient) {}
+  constructor(http: HttpClient) {}
   private subscribeFormData: SubscribeMember = new SubscribeMember();
-
+  error = '';
   getSubscribeFormData() {
     return this.subscribeFormData;
   }
@@ -29,36 +25,24 @@ export class MailchimpApiService {
       this.registerUser();
     }
   }
+
   registerUser() {
     const subscriber = this.subscribeFormData;
-    const headersIn = new HttpHeaders().set('Authorization', 'Basic ' + btoa('password:5c7ba1f442ce24bdd8e3aff3e74dfef5-us19'))
-                                     .set('Content-Type', 'application/x-www-form-urlencoded');
-    const url = 'https://us19.api.mailchimp.com/3.0/lists/';
-    const list_id = '976555b4d3'; // To Hide in Env
-    const list_type = 'members';
-    let firstName = null;
-    let lastName = null;
+    const mailchimp_username = 'marketing@moneyowl.com.sg';
+    const mailchimp_dc = 'us-19';
+    const mailchimp_u = '5c7ba1f442ce24bdd8e3aff3e74dfef5';
+    const mailchimp_id = '976555b4d3';
+    const mailChimpEndpoint = 'https://' + mailchimp_username + '.' + mailchimp_dc +
+                              '.list-manage.com/subscribe/post-json?u=abc123&amp;id=' + mailchimp_id;
+    const params = new HttpParams()
+        .set('FNAME', subscriber.firstName)
+        .set('LNAME', subscriber.lastName)
+        .set('EMAIL', subscriber.email)
+        .set(mailchimp_u, ''); // hidden input name
 
-    // Configure Payload
-    const email  = subscriber.email;
-    firstName = subscriber.firstName;
-    lastName = subscriber.lastName;
+    const mailChimpUrl = mailChimpEndpoint + params.toString();
 
-    const payload = {
-          email_address: email,
-          status: 'subscribed',
-          merge_fields: {
-              FNAME: firstName,
-              LNAME: lastName
-          }
-      };
-    console.log(payload);
-    this.httpClient.post(url, payload, {headers: headersIn})
-              .subscribe((response) => {
-                console.log(response);
-          }, (err) => {
-            console.log('User authentication failed!');
-          });
+    console.log(mailChimpUrl);
   }
 
 }

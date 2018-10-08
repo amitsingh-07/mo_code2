@@ -61,6 +61,7 @@ export class ProfileComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     this.profileFormValues = this.guideMeService.getGuideMeFormData();
     this.profileForm = new FormGroup({
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
@@ -68,9 +69,6 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.authService.authenticate().subscribe((token) => {
       this.guideMeApiService.getProfileList().subscribe((data) => this.profileList = data.objectList);
     });
-    this.navbarService.setNavbarMode(2);
-    this.headerService.setHeaderDropshadowVisibility(true);
-    this.headerService.setHeaderOverallVisibility(true);
     this.footerService.setFooterVisibility(false);
   }
 

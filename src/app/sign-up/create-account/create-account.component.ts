@@ -7,10 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
@@ -53,7 +53,7 @@ export class CreateAccountComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
   }
