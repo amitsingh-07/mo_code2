@@ -180,11 +180,8 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     if (this.activeRecommendationList.productList[0]) {
       const data = this.activeRecommendationList.productList[0];
       this.premiumFrom = data.premium.premiumAmount;
-      if (data.premium.premiumFrequency === 'per month') {
-        this.premiumFrequency = this.perMonth;
-      } else if (data.premium.premiumFrequency === 'per year') {
-        this.premiumFrequency = this.perYear;
-      }
+
+      this.premiumFrequency = this.perMonth;
       switch (this.activeRecommendationType) {
         case this.protectionNeedTypes.LIFE_PROTECTION:
           this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
