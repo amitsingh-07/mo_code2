@@ -1,7 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
 
-import { HeaderService } from './../../shared/header/header.service';
+import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+
+import { AboutUsApiService } from './../about-us.api.service';
+import { AboutUsService } from './../about-us.service';
+import { ICustomerReview } from './customer-reviews.interface';
 
 @Component({
   selector: 'app-customer-reviews',
@@ -9,16 +14,24 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
   styleUrls: ['./customer-reviews.component.scss']
 })
 export class CustomerReviewsComponent implements OnInit {
+  customerReviewList: ICustomerReview[];
 
-  numbers = Array(5).fill(0).map((x, i) => i);
-
-  constructor(public headerService: HeaderService, public navbarService: NavbarService) {
-
+  constructor(public navbarService: NavbarService, public footerService:FooterService,
+              public aboutUsApiService: AboutUsApiService, private aboutUsService: AboutUsService) {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarShadowVisibility(true);
-    this.headerService.setHeaderOverallVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(1);
+    this.footerService.setFooterVisibility(true);
+
+    this.aboutUsApiService.getCustomerReviews().subscribe((data) => {
+      this.customerReviewList = this.aboutUsService.getCustomerReviews(data);
+    });
   }
 
+  getNumber(count) {
+    return Array(+count).fill(0).map((x, i ) => i);
+  }
 }

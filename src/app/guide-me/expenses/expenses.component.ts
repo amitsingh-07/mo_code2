@@ -31,6 +31,7 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     this.expensesFormValues = this.guideMeService.getMyExpenses();
     this.expensesForm = new FormGroup({
       monthlyInstallments: new FormControl(this.expensesFormValues.monthlyInstallments),

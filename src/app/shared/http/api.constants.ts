@@ -19,6 +19,16 @@ export let apiConstants = {
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
         userProfileInfo: 'account/account-microservice/api/getProfileSummary',
+        article: {
+            getRecentArticles: 'article/article-microservice/api/getRecentArticles',
+            getArticleCategoryList: 'article/article-microservice/api/getArticleCategoryList',
+            getArticleCategory: 'article/article-micorservice/api/getArticleCategory',
+            getArticle: 'article/article-microservice/api/getArticle'
+        },
+        aboutus: {
+            getCustomerReviews: 'aboutus/aboutus-microservice/api/getCustomerReviews',
+            sendContactUs: 'aboutus/aboutus-microservice/api/sendContactUs'
+        },
         portfolio: {
             setInvestmentObjective: PORTFOLIO_API_BASE_URL + 'api/CustomerInvestmentObjective',
             getRiskAssessmentQuestions: PORTFOLIO_API_BASE_URL + 'RiskAssessment',

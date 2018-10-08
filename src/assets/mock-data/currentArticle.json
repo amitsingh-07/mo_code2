@@ -1,0 +1,16 @@
+{
+    "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+    },
+    "objectList": [{
+        "id": 26,
+        "art_title": "Life Stage Planning",
+        "art_author": "Providend",
+        "art_date": "2018-12-23",
+        "art_tags": ["Protection", "Whole Life Insurance"],
+        "art_keywords": ["life stage planning"],
+        "art_desc": "We know insurance is necessary but can be costly. At DIYinsurance we help you to be even more prudent by identifying what ..."
+      }
+    ]
+}

@@ -9,7 +9,7 @@ import { FooterService } from './footer.service';
 })
 export class FooterComponent implements OnInit, AfterViewInit {
   showFooter = false;
-  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef) { }
+  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
   }

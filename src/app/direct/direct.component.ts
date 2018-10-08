@@ -54,7 +54,7 @@ export class DirectComponent implements OnInit, IPageComponent {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarDirectGuided(true);
     this.footerService.setFooterVisibility(false);
     if (window.innerWidth < mobileThreshold) {
       this.isMobileView = true;

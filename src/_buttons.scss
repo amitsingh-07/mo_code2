@@ -341,6 +341,12 @@ button:active:focus {
       &:nth-child(odd):last-child(){
         margin-right:auto;
       }
+      &:first-child {
+        &:last-child {
+          margin-left:auto;
+          margin-right:auto;
+        }
+      }
     }
   }
 }
@@ -472,7 +478,8 @@ button:active:focus {
     padding:12px 64px 12px 20px;
     border-radius: 8px;
     color: $teal-color;
-    width: 1000px;
+    width:100%;
+    max-width:864px;
     max-height:70px; 
     min-height:64px;
     //max-width: calc(1024px - 160px);
@@ -763,9 +770,6 @@ button:active:focus {
     }
     @include minMobilemaxPhablet{
       min-width:120px;
-      &:hover{
-        border-bottom:0px;
-      }
     }
     .navbar__btn--title{
         position: relative;
@@ -785,6 +789,9 @@ button:active:focus {
         text-align:center;
         color:$black-color;
         font-size:12px;
+        @include minPhabletmaxTablet{
+          font-size:11px;
+        }
         @include minMobilemaxPhablet{
           font-size:11px;
         }

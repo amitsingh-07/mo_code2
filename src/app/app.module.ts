@@ -19,6 +19,7 @@ import { appConstants } from './app.constants';
 import { AppService } from './app.service';
 import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
+import { PendingChangesGuard } from './changes.guard';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
   ExistingCoverageModalComponent
@@ -57,7 +58,6 @@ import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { UrlRedirectComponent } from './url-redirect.component';
-import { PendingChangesGuard } from './changes.guard';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -119,7 +119,7 @@ export function tokenGetterFn() {
       config: {
         tokenGetter: tokenGetterFn
       }
-    })
+    }),
   ],
   providers: [
     NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
