@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="277" height="238" viewBox="0 0 277 238">
+    <defs>
+        <path id="a" d="M1.718 2.81c45.596-5.13 105.823-2.06 151.197 0 2.283 37.127 4.468 77.718 0 105.272H4.126C.302 64.338-1.623 41.652 1.718 2.809z"/>
+        <filter id="c" width="110.4%" height="220%" x="-5.2%" y="-60%" filterUnits="objectBoundingBox">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+        </filter>
+        <filter id="d" width="109.4%" height="123.1%" x="-4.7%" y="-11.5%" filterUnits="objectBoundingBox">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E7EDF9" d="M74.445 150.23c36.054 11.476 30.533 91.31 103.23 87.648 72.696-3.661 59.83-62.225 69.363-82.482 5.727-12.61 49.632-60.945 19.48-103.597-30.153-42.653-70.882-29.222-111.154-31.748C116.562 17.617 91.999 0 74.445 0 33.33 0 0 33.337 0 74.46c0 41.124 38.391 64.294 74.445 75.77z" opacity=".626"/>
+        <path fill="#00C9C3" d="M55.61 15.848c50.08-5.746 116.231-2.307 166.068 0 2.507 41.59 4.908 87.061 0 117.927H58.254c-4.2-49.003-6.314-74.416-2.645-117.927z"/>
+        <g transform="translate(61.778 19.763)">
+            <mask id="b" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <use fill="#FDFEFF" xlink:href="#a"/>
+            <path fill="#F4F5FA" d="M-3.111-9.316h158.084v19.442H-3.11z" mask="url(#b)"/>
+        </g>
+        <text fill="#636363" filter="url(#c)" font-family="Muli-Regular, Muli" font-size="4" letter-spacing="-.169" transform="translate(26 12)">
+            <tspan x="85.556" y="44.197">Summary of your will</tspan>
+        </text>
+        <text fill="#636363" filter="url(#d)" font-family="Muli-Regular, Muli" font-size="1" letter-spacing="-.042" transform="translate(26 12)">
+            <tspan x="82.444" y="60.974">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </tspan> <tspan x="82.444" y="65.974">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </tspan> <tspan x="82.444" y="70.974">eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </tspan> <tspan x="82.444" y="75.974">commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut </tspan> <tspan x="82.444" y="80.974">enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </tspan>
+        </text>
+        <path fill="#0B9C97" d="M58.373 131.935C36.626 159.1 35.81 157.952 28.71 166.629c-2.323 2.84-2.323 5.726-1.732 11.69 47.864 11.76 174.082 15.13 222.824 3.357 0-3.358-.493-7.216-1.417-8.954-8.846-16.646-8.733-15.158-26.607-40.787-43.783 2.362-115.075 1.174-163.405 0z"/>
+        <path fill="#00C9C3" d="M58.373 131.935C36.626 156.613 35.81 155.57 28.71 163.452c-2.323 2.58-2.323 5.202-1.732 10.62 47.864 10.684 174.082 13.744 222.824 3.05 0-3.05-.493-6.556-1.417-8.134-8.846-15.122-8.733-13.771-26.607-37.053-43.783 2.146-115.075 1.067-163.405 0z"/>
+        <path fill="#0D9C98" d="M65.578 139.064l-11.53 14.176H224.7l-7.834-14.176zM127.826 159.5l-7.849 12.035h40.365l-5.484-12.035z"/>
+        <g transform="translate(139 89)">
+            <path fill="#FFA1A8" stroke="#FFA1A8" d="M31.69 9.13c-.804 0-3.457.785-7.96 2.355v6.066c1.45 1.8 2.557 3.194 3.32 4.18 1.143 1.482 1.612 2.626 2.888 3.859 2.548.663 5.123.663 7.725 0 .648-1.984.972-3.948.972-5.895 0-1.946-.831-4.994-2.494-9.143-2.163-.948-3.647-1.422-4.45-1.422z"/>
+            <path fill="#1C2C57" d="M3.115 9.134l47.832 3.345a1.512 1.512 0 0 1-.21 3.016L2.904 12.15.287 10.493l2.828-1.36z"/>
+            <path fill="#FCC1BD" stroke="#FCC1BD" d="M51.338 39.635c0-.804-2.25-26.255-2.499-28.2C46.372 10.145 33.407 0 30.85 0c-1.17 0-3.773 1.782-6.737 3.034-3.519 1.485-7.365 2.479-7.365 2.479s-4.441.143-5.032.774c-.59.63-1.487 2.102-.678 2.666.81.565 4.154.934 7.173 1.159 3.019.224 6.893.223 7.474 0 .674-.26 4.531-1.895 5.342-2.299.852.644 5.96 3.225 6.957 4.235 0 1.408 1.41 7.709-.997 9.225s-3.592 1.199-8.364.977c-3.324-1.33-9.365-9.803-11.255-10.815-1.573-.857-4.24-2.482-5.11-.397-.462 1.109 2.674 4.39 4.49 7.98 1.6 3.16 1.802 6.65 2.826 7.804 1.458 1.641 8.065 7.996 19.82 19.065 7.963-3.06 11.945-5.145 11.945-6.252z"/>
+            <path fill="#004472" stroke="#004472" d="M38.898 55.268l9.144 26.794c3.015.41 5.243.41 6.685 0 3.035-.861 1.996-2.779 6.141-3.412 4.146-.632 8.302 3.412 12.434 2.319 7.95-2.103 8.647-6.2 6.393-11.248-4.262-7.38-9.915-15.732-16.96-25.054l-23.837 10.6z"/>
+            <path fill="#053B60" stroke="#053B60" d="M38.898 55.268l9.144 26.794c2.778.41 4.888.41 6.33 0 3.034-.861 1.933-1.115 3.724-2.458-2.015-3.669-6.114-12.575-12.299-26.718l-6.899 2.382z"/>
+            <ellipse cx="54.968" cy="87.391" fill="#004472" stroke="#004472" rx="2.603" ry="2.609"/>
+            <path fill="#FFF" stroke="#FFF" d="M39.492 46.63c1.285-.989 8.426-4.254 12.886-6.822 4.532 1.555 10.041 3.983 10.041 4.42 0 .436-23.281 10.903-23.728 10.903-.447 0 .378-6.81.801-8.5z"/>
+        </g>
+    </g>
+</svg>

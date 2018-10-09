@@ -1,3 +1,56 @@
-<p>
-  introduction works!
-</p>
+<div class="container-fluid max-width--1024">
+  <div class="content">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
+        <h2>Before You Proceed...</h2>
+        <h6 class="hidden-sm-md sub-title">we went you to know what your getting involved in.</h6>
+        <div class="banner-image">
+          <img src="assets/images/will-start.svg" />
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6  col-sm-12 promocode">
+        <form name="promocodeForm" [formGroup]="promocodeForm">
+        <div class="instructions">
+          <div class="mask"> why write a will with us?</div>
+          <div class="instruction-content">
+            <div>Will writing can be easy and straightfoward. You don’t need a lawyer!</div>
+            <div>Having a will ensures that your estate is distributed according to your wishes and avoids any potential
+              disputes.</div>
+            <div>MoneyOwl’s step-by-step will writing process is simple, easy and safe. With unlimited edits, you can edit
+              your will whenever you need.</div>
+            <div><span>To write a will, you should be…</span>
+              <span> - 21 years old and above</span>
+              <span> - Of sound mind</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="FAQ">Find out more in FAQ</div>
+
+        <div class="offer-code">
+          <div class="time-period">Free for limited time period!</div>
+          <div class="brdr-btm mb25 hidden-sm-md"></div>
+          <div>
+            <input type="text" placeholder="Enter your pomocode"/>
+          </div>
+          <div>No promo code? <span>Get one now!</span></div>
+        </div>
+
+        <div class="no-promo">
+            <div class="instruction-content">
+              <div>your promocode will be sent via email!</div>
+              <input type="email" placeholder="Enter an E-mail address"/>
+              <!-- <img src="assets/images/mail-sent.svg"> -->
+              <div>Get exclusive access to promotions, personal finance tips and updates on the latest news.</div>
+              <button type="button" (click)="goToNext(incomeForm)" class="btn"
+                id="incomeBtn">Get My Code</button>  
+            </div>
+          </div>
+
+          <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-primary width100"
+                id="incomeBtn">continue</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
