@@ -53,10 +53,9 @@ app-direct-results {
   }
 
   .grp-results {
-    padding-top: 10px;
-    max-width: 1024px;
+    max-width: 984px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
     // @include iPadLandscape {
     //   padding: 40px;
     // }
@@ -69,8 +68,8 @@ app-direct-results {
   }
 
   .btn-small {
-      font-size: 14px;
-      font-family: $muli;
+      font-size: 16px;
+      font-family: $muli-semi-bold;
       background: transparent;
       color: white;
       padding: 5px 10px !important;
@@ -90,7 +89,8 @@ app-direct-results {
   .lbl {
     float:right; 
     margin-top: 7px;
-    font-size: 12px;
+    font-size: 16px;
+    font-famil: $muli-semi-bold;
   }
 
   .plan-wrapper {
@@ -124,7 +124,7 @@ app-direct-results {
       }
     }
   }
-}
+
 .results-mobile {
   .flex-col-6 {
     padding: 20px;
@@ -182,4 +182,8 @@ app-direct-results {
     left: 0;
     z-index: 999;
   }
+}
+.insurance-plan-widget__container {
+  height: auto;
+}
 }

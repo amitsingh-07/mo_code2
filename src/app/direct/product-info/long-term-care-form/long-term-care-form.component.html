@@ -49,7 +49,7 @@
         <div class="flex-col-8 direct-form-grp">
           <div class="dropdown-control">
               <div ngbDropdown id="coverageAmtDropDown">
-                <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                   <span class="coverage_amt"><span *ngIf = 'selectedMonthlyPayout != ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{selectedMonthlyPayout == '' ? 'Select' : selectedMonthlyPayout}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">

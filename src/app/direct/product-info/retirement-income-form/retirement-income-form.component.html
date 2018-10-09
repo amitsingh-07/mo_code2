@@ -69,7 +69,7 @@
           <div class="flex-col-8 direct-form-grp">
             <div class="dropdown-control">
                 <div ngbDropdown id="coverageAmtDropDown">
-                  <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                  <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                     <span class="coverage_amt"><span *ngIf = 'selectedRetirementIncome != ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{selectedRetirementIncome =='' ?'Select' : selectedRetirementIncome}}<i class="normal" *ngIf = 'selectedRetirementIncome != ""'>{{ 'SUFFIX.PER_MONTH' | translate}}</i></span> 
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -89,7 +89,7 @@
             <div class="flex-col-8 direct-form-grp">
               <div class="dropdown-control">
                   <div ngbDropdown id="coverageAmtDropDown">
-                    <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                    <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                       <span class="coverage_amt">{{selectedPayoutAge=='' ?'Select' : selectedPayoutAge}}</span>
                     </button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -109,7 +109,7 @@
       <div class="flex-col-8 direct-form-grp">
         <div class="dropdown-control">
             <div ngbDropdown id="durationDropDown">
-              <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+              <button type="button" class="btn btn-dropdown" id="dropdownDuration" ngbDropdownToggle>
                 <span class="duration">{{ payoutDuration=='' ?'Select' : payoutDuration}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownDuration">
@@ -132,7 +132,7 @@
           <div class="flex-col-8 direct-form-grp">
             <div class="dropdown-control">
                 <div ngbDropdown id="durationDropDown">
-                  <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                  <button type="button" class="btn btn-dropdown" id="dropdownDuration" ngbDropdownToggle>
                     <span class="duration">{{payoutFeature == ''? 'Select' : payoutFeature}}</span>
                   </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownDuration">
