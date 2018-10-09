@@ -1,7 +1,9 @@
-import { Location } from '@angular/common';
+import { CurrencyPipe, Location, TitleCasePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ProductDetailComponent } from '../../shared/components/product-detail/product-detail.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { DirectService } from './../direct.service';
 
@@ -9,7 +11,8 @@ import { DirectService } from './../direct.service';
   selector: 'app-compare-plans',
   templateUrl: './compare-plans.component.html',
   styleUrls: ['./compare-plans.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [TitleCasePipe]
 })
 export class ComparePlansComponent implements OnInit {
   pageTitle: string;
@@ -18,7 +21,8 @@ export class ComparePlansComponent implements OnInit {
   underwritingTooltipData;
   constructor(
     public headerService: HeaderService, public directService: DirectService,
-    public readonly translate: TranslateService, private _location: Location) {
+    public readonly translate: TranslateService, private _location: Location,
+    public titlecase: TitleCasePipe, private modal: NgbModal, private currency: CurrencyPipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('COMPARE_PLANS.TITLE');
@@ -48,5 +52,17 @@ export class ComparePlansComponent implements OnInit {
 
   close() {
     this._location.back();
+  }
+
+  viewDetails(plan) {
+    const ref = this.modal.open(ProductDetailComponent,
+      {
+        centered: true,
+        windowClass: 'product-details-modal-dialog'
+      }
+    );
+    ref.componentInstance.plan = plan;
+    ref.componentInstance.isViewMode = true;
+    ref.componentInstance.bestValue = plan.bestValue;
   }
 }
