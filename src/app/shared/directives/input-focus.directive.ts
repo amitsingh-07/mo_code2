@@ -16,7 +16,7 @@ export class InputFocusDirective implements AfterViewInit {
     @HostListener('focus', ['$event'])
     onFocus() {
         // this.el.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        this.el.nativeElement.scrollIntoView(true);
-        window.scrollBy(0, -100); // 100 as offset for header height
+        // this.el.nativeElement.scrollIntoView(true);
+        // window.scrollBy(0, -15); // 100 as offset for header height
     }
 }
