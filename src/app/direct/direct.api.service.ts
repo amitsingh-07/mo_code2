@@ -109,10 +109,16 @@ export class DirectApiService {
 
     getCriticalIllnessData() {
         const ci = this.directService.getCriticalIllnessForm();
+        let earlyCI = false;
+        if (ci.earlyCI &&
+            ((ci.earlyCI + '').toLowerCase() === 'yes') || (ci.earlyCI + '').toLowerCase() === 'true') {
+            earlyCI = true;
+        }
+
         const ciData: ICriticalIllnessData = {
             coverageYears: ci.duration,
             coverageAmount: Formatter.getIntValue(ci.coverageAmt),
-            isEarlyCriticalIllness: ci.earlyCI,
+            isEarlyCriticalIllness: earlyCI,
         } as ICriticalIllnessData;
 
         return ciData;
@@ -123,7 +129,7 @@ export class DirectApiService {
         const ocpData: IOccupationalDisabilityData = {
             percentageCoverage: ocp.percentageCoverage,
             coverageDuration: ocp.duration,
-            coverageAmount: ocp.monthlySalary,
+            coverageAmount: ocp.monthlySalary * ocp.percentageCoverage,
             employmentStatusId: ocp.employmentType,
         } as IOccupationalDisabilityData;
         return ocpData;

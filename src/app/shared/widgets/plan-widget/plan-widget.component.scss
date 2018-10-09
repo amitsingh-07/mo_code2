@@ -13,6 +13,7 @@ app-plan-widget {
     background: #fff;
     color:#00a7a7;
     border-radius: 6px;
+    margin-bottom: 15px;
     border: solid 1px rgba(0, 167, 167, 0.4);
   }
   .insurance-plan-widget {
@@ -46,9 +47,6 @@ app-plan-widget {
       background-color: #ff872f !important;
       border-color: #ff872f !important;
       box-shadow: none;
-      @include allmobiles {
-        border-radius: 0;
-      }
     }
 
     .info-icon {
@@ -64,16 +62,16 @@ app-plan-widget {
       text-align: center;
       margin-bottom: 10px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-end;
       @include allmobiles {
         justify-content: center;
         img {
-          width: 70% !important;
+          width: 50% !important;
         }
       }
       img {
-        width: 80%;
+        width: 65%;
       }
     }
 
@@ -96,14 +94,17 @@ app-plan-widget {
         font-size: 21px;
         color: $black-color;
         font-family: $muli-semi-bold;
-
         @include allmobiles {
           font-size: 16px;
           text-align: center;
           min-height: 38px;
         }
       }
-
+      @media only screen and (min-device-width:768px) and (max-device-width:1024px) {
+        h4 {
+          font-size: 17px;
+        }
+      }
       h2 {
         font-size: 36px;
         color: $app-backgrnd-color;
@@ -128,7 +129,11 @@ app-plan-widget {
           }
         }
       }
-
+     @media only screen and (min-device-width:768px) and (max-device-width:1024px) {
+        h2 {
+          font-size: 32px;
+        }
+      }
       .insurance-plan-widget__container__discount__block {
         border-top: 1px solid #c2d9ec;
         border-bottom: 1px solid #c2d9ec;

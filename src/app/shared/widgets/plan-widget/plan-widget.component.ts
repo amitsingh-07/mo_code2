@@ -17,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { RecommendationsModalComponent } from '../../modal/recommendations-modal/recommendations-modal.component';
 import { ProductDetailComponent } from './../../components/product-detail/product-detail.component';
+import { SelectedPlansService } from './../../Services/selected-plans.service';
 
 @Component({
   selector: 'app-plan-widget',
@@ -33,6 +34,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() comparePlanSelected;
   @Input() isDirect;
   @Input() frequencyType;
+  @Input() isViewMode;
 
   icon;
   insurerLogo;
@@ -64,7 +66,8 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
   constructor(
     private currency: CurrencyPipe, public modal: NgbModal, private elRef: ElementRef,
-    private renderer: Renderer2, private translate: TranslateService, private titleCasePipe: TitleCasePipe) {
+    private renderer: Renderer2, private translate: TranslateService, private titleCasePipe: TitleCasePipe,
+    private planService: SelectedPlansService) {
     this.highlights = [];
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
@@ -78,9 +81,6 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    if (!this.comparePlanSelected) {
-      this.comparePlanSelected = [];
-    }
     if (this.data) {
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
@@ -146,6 +146,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
     );
     ref.componentInstance.plan = data;
+    ref.componentInstance.isViewMode = this.isViewMode;
     ref.componentInstance.isSelected = this.isSelected;
     ref.componentInstance.frequencyType = this.frequencyType;
     ref.componentInstance.protectionType = this.type;
@@ -169,6 +170,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
   selectPlan() {
     this.isSelected = !this.isSelected;
+    this.temp.bestValue = this.bestValue;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
   comparePlanErrorForMobileModal() {
@@ -209,6 +211,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
     }
     this.isComparePlanSelected = !this.isComparePlanSelected;
+    this.temp.bestValue = this.bestValue;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }

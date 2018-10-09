@@ -131,6 +131,10 @@
       "UPLOADING_LOADER": {
         "TITLE": "Uploading",
         "MESSAGE": "Please be patient, upload may take a few minutes."
+      },
+      "FILE_SIZE_EXCEEDED": {
+        "TITLE": "Error !",
+        "MESSAGE": "File of size more than 2 MB is not allowed."
       }
     }
   },

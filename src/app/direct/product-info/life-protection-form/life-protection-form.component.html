@@ -70,7 +70,7 @@
         <div class="flex-col-8 direct-form-grp">
           <div class="dropdown-control">
               <div ngbDropdown id="coverageAmtDropDown">
-                <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                   <span class="coverage_amt"><span *ngIf = 'coverage_amt!= ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{coverage_amt== ''?'Select':coverage_amt}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -90,7 +90,7 @@
         <div class="flex-col-8 direct-form-grp">
           <div class="dropdown-control">
               <div ngbDropdown id="durationDropDown">
-                <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                <button type="button" class="btn btn-dropdown" id="dropdownDuration" ngbDropdownToggle>
                   <span class="duration">{{ duration== '' ? 'Select' : duration}} </span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownDuration">
@@ -105,9 +105,9 @@
         </div>
       <div class="flex-row">
         <div class="flex-col-3">
-          <label for="name" id="getStrLbl7">{{ 'DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TITLE' | translate}}</label>
-          <div class="tooltip-container">
-            <div class="tooltip-icon" (click)="showPremiumWaiverModal()"></div>
+            <div class="form-group-with-bg--content-label" for="name">
+                <div class="with-help-icon">{{ 'DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TITLE' | translate}}
+              <span class="help-icon" (click)="showPremiumWaiverModal()"></span></div>
             </div>
           </div>
         <div class="flex-col-8 direct-form-grp">
