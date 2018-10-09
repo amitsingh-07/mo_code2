@@ -2,6 +2,18 @@
 @import '../../../mixins';
 
 app-compare-plans {
+
+  .best-value-icon {
+    position: absolute;
+    top: 5px;
+    left: -3px;
+  }
+  .info-icon {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+  }
   .rt-round {
     border-top-right-radius: 6px !important;
 
@@ -193,7 +205,7 @@ app-compare-plans {
     }
 
     h2 {
-      font-size: 16px;
+      font-size: 24px;
       color: $app-backgrnd-color;
       font-family: $muli-semi-bold;
 

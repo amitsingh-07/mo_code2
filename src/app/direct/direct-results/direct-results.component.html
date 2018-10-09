@@ -7,6 +7,8 @@
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
           <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best_value.svg" />
           <app-plan-widget #planWidget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType"
+          <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best_value.svg" />
+          <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType"
             [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)" (view)="viewDetails($event)" [isDirect] = "true" [comparePlanSelected] = "selectedComparePlans"
             [planSelected]="selectedPlans" (compare)="comparePlan($event)" ></app-plan-widget>
         </div>
@@ -45,6 +47,8 @@
     <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
       <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best_value.svg" />
       <app-plan-widget #planWidget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType" [comparePlan]="isComparePlanEnabled"
+      <img class="best-value-icon--mobile" *ngIf="j == 0" src="./assets/images/best_value.svg" />
+      <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType" [comparePlan]="isComparePlanEnabled"
         (select)="selectPlan($event)" [isDirect] = "true" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)" [comparePlanSelected] = "selectedComparePlans"></app-plan-widget>
     </div>
   </div>

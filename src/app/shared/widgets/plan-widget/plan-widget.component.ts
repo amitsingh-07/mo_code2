@@ -34,6 +34,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   @Input() comparePlanSelected;
   @Input() isDirect;
   @Input() frequencyType;
+  @Input() isViewMode;
 
   icon;
   insurerLogo;
@@ -145,6 +146,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
     );
     ref.componentInstance.plan = data;
+    ref.componentInstance.isViewMode = this.isViewMode;
     ref.componentInstance.isSelected = this.isSelected;
     ref.componentInstance.frequencyType = this.frequencyType;
     ref.componentInstance.protectionType = this.type;
@@ -168,6 +170,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
   selectPlan() {
     this.isSelected = !this.isSelected;
+    this.temp.bestValue = this.bestValue;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
   comparePlanErrorForMobileModal() {
@@ -208,6 +211,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
     }
     this.isComparePlanSelected = !this.isComparePlanSelected;
+    this.temp.bestValue = this.bestValue;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }

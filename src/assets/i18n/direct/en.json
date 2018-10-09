@@ -141,7 +141,9 @@
         "ERROR_MODEL_FOR_WEB": {
           "TITLE":"Compare 4 Only",
           "MESSAGE":"You can only compare a maximum of 4 plans at a time."
-        }
+        },
+        "PERCENTAGE_PER_ANNUM": " p.a",
+        "PROJECTED_RETURN": "Projected Return"
       },
       "DIRECT_RESULTS": {
         "COMPARE_PLANS": "Compare Plans",
