@@ -24,6 +24,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   selectedunivercityEntryAge = '';
   monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
   univercityEntryAge = Array(4).fill(18).map((x, i) => x += i);
+  doberror = false;
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
@@ -92,7 +93,9 @@ export class EducationFormComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
+      if (!form.controls['childdob'].valid && form.controls['childgender'].valid) {
+        this.doberror = true;
+      }
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];

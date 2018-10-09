@@ -1,3 +1,5 @@
+@import './variables';
+@import './mixins';
 .position-bottom {
   .modal-content {
     position: absolute !important;
@@ -548,7 +550,24 @@
 .product-details-modal-dialog {
   max-height: 100% !important;
 }
-
+.modal-body {
+  &.white-bg {
+    .close {
+      top: 22px !important;
+      right: 25px !important;
+    }
+  }
+}
+@include allmobiles {
+  .modal-body {
+    &.white-bg {
+      .close {
+        top: 26px !important;
+        right: 25px !important;
+      }
+    }
+  }
+}
 .full-height {
   &.modal {
     display: block !important;

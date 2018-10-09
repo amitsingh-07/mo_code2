@@ -16,9 +16,14 @@
         <div class="flex-row mt10 mb10">
           <div class="col-md-12 col-md-push-3">
             <h4 class="mb20">{{plan.productName}}</h4>
-            <h2>{{plan.premium.premiumAmount | currency:'USD':'symbol-narrow':'1.0-0'}}
-              <br class="hidden-lg" />
-              <span class="text-small">/ mth</span>
+            <h2 [hidden]="plan.premium.intrestRateOfReturn">{{plan.premium.premiumAmount | currency}}
+              <br />
+              <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+            </h2>
+            <h2 [hidden]="!plan.premium.intrestRateOfReturn">{{plan.premium.intrestRateOfReturn}}%
+              <span class="text-small">{{ 'COMPARE_PLANS.PERCENTAGE_PER_ANNUM' | translate}}</span>
+              <br />
+              <span class="text-small">{{ 'COMPARE_PLANS.PROJECTED_RETURN' | translate}}</span>
             </h2>
           </div>
         </div>

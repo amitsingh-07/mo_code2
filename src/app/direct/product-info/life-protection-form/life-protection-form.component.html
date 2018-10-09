@@ -27,13 +27,15 @@
           </div>
         <div #usrFrmDp class="flex-col-8 direct-form-grp">
           <div class="datepicker-control">
-            <div class="input-group date-picker mb0">
+            <div class="input-group date-picker mb0"  [ngClass]="{'inline-error': doberror && !lifeProtectionForm.get('dob').valid  && !lifeProtectionForm.get('dob').pristine}">
               <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
               name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
               <div class="input-group-append">
                 <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                  <img class="date-picker-image--valid" id="getStrdImg1" src="./assets/images/calendar-normal.svg"
-                  />
+                    <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="lifeProtectionForm.get('dob').valid || lifeProtectionForm.get('dob').pristine || !doberror" src="./assets/images/calendar-normal.svg"
+                    />
+                    <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !lifeProtectionForm.get('dob').valid && !lifeProtectionForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                    />
                 </button>
                 </div>
               </div>
@@ -70,7 +72,7 @@
         <div class="flex-col-8 direct-form-grp">
           <div class="dropdown-control">
               <div ngbDropdown id="coverageAmtDropDown">
-                <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+                <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                   <span class="coverage_amt"><span *ngIf = 'coverage_amt!= ""'>{{ 'DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR' | translate}}</span>{{coverage_amt== ''?'Select':coverage_amt}}</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -90,7 +92,7 @@
         <div class="flex-col-8 direct-form-grp">
           <div class="dropdown-control">
               <div ngbDropdown id="durationDropDown">
-                <button type="button" class="btn btn-dropdown without-border" id="dropdownDuration" ngbDropdownToggle>
+                <button type="button" class="btn btn-dropdown" id="dropdownDuration" ngbDropdownToggle>
                   <span class="duration">{{ duration== '' ? 'Select' : duration}} </span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownDuration">
