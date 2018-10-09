@@ -63,8 +63,8 @@ app-recommendations {
 
   .container-fluid {
     padding-top: 0 !important;
-    padding-left: 125px !important;
-    padding-right: 125px !important;
+    //padding-left: 125px !important;
+    //padding-right: 125px !important;
     //height: 100vh;
     position: relative;
     border-top: 1px solid #76adb2;
@@ -237,7 +237,7 @@ app-recommendations {
   .best-value-icon {
     display: block;
     position: absolute;
-    top: 2px;
+    top: 0;
     left: 13px;
     z-index: 9;
   }
@@ -253,6 +253,9 @@ app-recommendations {
         //background: #2d8289;
         max-width: 1024px;
         margin: 0 auto;
+        @include iPadLandscape {
+          padding-left: 100px;
+        }
         @include allmobiles {
           border: none;
           padding-left: 0px !important;
