@@ -624,6 +624,12 @@ body{
             align-items:center;
             padding:20px 20px;
         }
+        @include min300max325{
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            padding:20px 20px;
+        }
     }
     .licensed-tab__trust-container{
         position: relative;
@@ -664,6 +670,11 @@ body{
         margin-top:30px;
         justify-content:space-between;
         @include minMobilemaxPhablet{
+            overflow-x:auto;
+            width:100%;
+            padding:-15px 0px;
+        }
+        @include min300max325{
             overflow-x:auto;
             width:100%;
             padding:-15px 0px;
@@ -713,6 +724,9 @@ body{
         color:$teal-color;
         font-size:20px;
         @include minMobilemaxPhablet{
+            text-align: center;
+        }
+        @include min300max325{
             text-align: center;
         }
     }

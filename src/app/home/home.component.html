@@ -140,8 +140,8 @@
                     <p class="secondary" [innerHTML]="trustedSubTitle"></p>
                     </div>
                 </div>
-            <div class="licensed-tab__icon-container" *ngFor="let reason of trustedReasons">
-                <div class="licensed-tab__icon">
+            <div class="licensed-tab__icon-container">
+                <div class="licensed-tab__icon" *ngFor="let reason of trustedReasons">
                     <img src="{{reason.IMAGE}}"/>
                     <p>{{reason.LABEL}}</p>
                     </div>
