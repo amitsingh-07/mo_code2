@@ -26,6 +26,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   durationValues;
   coverageMax = 75;
   coveragePercent = 75;
+  doberror = false;
 
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -135,7 +136,9 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
+      if (!form.controls['dob'].valid && form.controls['gender'].valid) {
+        this.doberror = true;
+      }
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];

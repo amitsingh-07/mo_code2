@@ -25,7 +25,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   formValues: any;
   coverage_amt = '';
   duration = '';
-
+  doberror = false;
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(10);
   durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99'];
@@ -110,7 +110,9 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
+      if (!form.controls['dob'].valid && form.controls['gender'].valid) {
+        this.doberror = true;
+      }
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
