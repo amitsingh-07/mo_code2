@@ -108,7 +108,7 @@ app-direct-results {
 
   .plan-wrapper {
     border: none;
-    margin-bottom: 20px;
+    //margin-bottom: 20px;
     padding-bottom: 5px;
     @include allmobiles {
       margin-bottom: 0;
@@ -118,6 +118,7 @@ app-direct-results {
       border-radius: 10px;
       background: white;
       padding: 20px !important;
+      margin-bottom: 20px;
       @include allmobiles {
         padding: 0px !important;
         margin: 10px 5px;
