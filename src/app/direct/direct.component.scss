@@ -45,6 +45,9 @@ app-direct {
     span.btn-close {
       right: 20px;
       position: absolute;
+      @include iPadLandscape {
+        position: fixed;
+      }
       top: 20px;
       background: url("../../assets/images/direct-btn-close.svg");
       width: 45px;
