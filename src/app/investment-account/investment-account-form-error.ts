@@ -238,10 +238,10 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid companany name',
-                errorMessage: 'Please enter compnany Name.'
+                errorMessage: 'Please enter company Name.'
             },
             pattern: {
-                errorTitle: 'Invalid companany  name',
+                errorTitle: 'Invalid company  name',
                 errorMessage: 'company name should contain alphabet.'
             }
         },
