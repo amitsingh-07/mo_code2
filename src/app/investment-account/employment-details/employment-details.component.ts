@@ -139,10 +139,10 @@ getInlineErrorStatus(control) {
   buildFormEmployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
       employmentStatus: [empStatus, Validators.required],
-      companyName: [this.formValues.companyName, Validators.required],
+      companyName: [this.formValues.companyName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       occupation: [this.formValues.occupation ? this.formValues.occupation : 'Select Occupation', Validators.required],
       industry: [this.formValues.industry ? this.formValues.industry : 'Select Industry', Validators.required],
-      contactNumber: [this.formValues.contactNumber, Validators.required],
+      contactNumber: [this.formValues.contactNumber, [Validators.required, Validators.pattern(RegexConstants.ContactNumber)]],
       isEmployeAddresSame: [this.formValues.isEmployeAddresSame]
     });
   }
