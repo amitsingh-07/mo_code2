@@ -47,6 +47,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     this.locationSubscription = this.location.subscribe(() => this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]));
     this.assetsFormValues = this.guideMeService.getMyAssets();
     this.assetsForm = new FormGroup({

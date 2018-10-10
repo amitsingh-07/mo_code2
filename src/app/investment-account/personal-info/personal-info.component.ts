@@ -75,7 +75,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       fullName: [this.formValues.fullName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       firstName: [this.formValues.firstName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      nricNumber: [this.formValues.nricNumber, Validators.required],
+      nricNumber: [this.formValues.nricNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       dob: [this.formValues.dob, Validators.required],
       gender: ['male', Validators.required]
     });

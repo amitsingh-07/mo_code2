@@ -24,6 +24,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   payoutStartAgeList = Array(100).fill(0).map((x, i) => x += i * 1);
   payoutTypeList;
   payoutType;
+  doberror = false;
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
@@ -112,7 +113,9 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
+      if (!form.controls['dob'].valid && form.controls['gender'].valid) {
+        this.doberror = true;
+      }
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];

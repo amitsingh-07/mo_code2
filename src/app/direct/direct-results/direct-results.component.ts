@@ -50,6 +50,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   subscription: Subscription;
   filterCountSubscription: Subscription;
 
+  isViewMode = false;
   selectedCategory: IProductCategory;
   selectedPlans: any[] = [];
   selectedComparePlans: any[] = [];
@@ -380,6 +381,11 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   toggleComparePlans() {
     this.selectedPlans = [];
     this.selectedComparePlans = [];
+    if (!this.isComparePlanEnabled) {
+      this.isViewMode = true;
+    } else {
+      this.isViewMode = false;
+    }
     this.isComparePlanEnabled = !this.isComparePlanEnabled;
     this.planWidgets.forEach((widget) => {
       widget.unselectPlan();

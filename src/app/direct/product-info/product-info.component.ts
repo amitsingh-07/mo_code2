@@ -43,6 +43,7 @@ export class ProductInfoComponent implements OnInit {
   toggleFormVisibility = true;
   searchText: string;
   productCategoryList: any;
+  selectedCategory: any;
 
   productCategorySelected: string;
   productCategorySelectedLogo: string;
@@ -162,9 +163,9 @@ export class ProductInfoComponent implements OnInit {
   }
 
   initCategorySetup() {
-    const selectedCategory = this.directService.getProductCategory();
-    let categoryIndex = selectedCategory.id;
-    if (selectedCategory && categoryIndex) {
+    this.selectedCategory = this.directService.getProductCategory();
+    let categoryIndex = this.selectedCategory.id;
+    if (this.selectedCategory && categoryIndex) {
       categoryIndex = categoryIndex - 1;
     } else {
       categoryIndex = 0;
@@ -174,6 +175,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   search(index) {
+    this.directService.setProductCategory(this.selectedCategory);
     this.directService.triggerSearch(index + '');
   }
 
@@ -210,7 +212,7 @@ export class ProductInfoComponent implements OnInit {
 
   selectProductCategory(data, index) {
     this.productCategorySelected = data.prodCatName;
-    this.directService.setProductCategory(data);
+    this.selectedCategory = data;
     this.selectedCategoryId = index;
     this.setActiveProductCategory(index);
   }

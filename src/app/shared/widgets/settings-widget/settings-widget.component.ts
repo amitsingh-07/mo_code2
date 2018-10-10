@@ -52,6 +52,15 @@ export class SettingsWidgetComponent implements OnInit {
     }
 
     this.defaultSort = this.sort[0];
+    this.refreshFilters();
+  }
+
+  refreshFilters() {
+    if (this.selectedFilterList && this.selectedFilterList.length > 1) {
+
+    } else {
+      
+    }
   }
 
   setSort(sort) {

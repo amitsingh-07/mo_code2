@@ -24,7 +24,7 @@ export class InsureAssessmentComponent implements IPageComponent, OnInit {
     this.translate.use('en');
   }
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
   }
 
   setPageTitle(title: string) {
