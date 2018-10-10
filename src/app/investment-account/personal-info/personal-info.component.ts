@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -15,7 +16,8 @@ import { InvestmentAccountService } from '../investment-account-service';
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
-  styleUrls: ['./personal-info.component.scss']
+  styleUrls: ['./personal-info.component.scss'],
+  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }]
 })
 export class PersonalInfoComponent implements IPageComponent, OnInit {
   pageTitle: string;
@@ -90,7 +92,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       dob: [this.formValues.dob, Validators.required],
       gender: ['male', Validators.required]
     });
-  }
+ }
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
