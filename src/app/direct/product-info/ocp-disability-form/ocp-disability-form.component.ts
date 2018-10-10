@@ -144,6 +144,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
+    form.value.smoker = 'nonsmoker';
     form.value.employmentType = this.selectEmployeeType;
     form.value.duration = this.duration;
     form.value.percentageCoverage = this.coveragePercent;

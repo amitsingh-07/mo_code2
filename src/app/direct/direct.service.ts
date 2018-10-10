@@ -247,11 +247,6 @@ export class DirectService {
   }
 
   setOcpDisabilityForm(data: IOcpDisability) {
-    if (data.smoker) {
-      data.smoker = 'smoker';
-    } else {
-      data.smoker = 'non-smoker';
-    }
     this.directFormData.ocpDisability = data;
     this.gaDirectSuccess('occupational-disability');
     const userInfo = this.getUserInfo();
