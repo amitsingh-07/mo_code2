@@ -18,11 +18,11 @@ const routes: Routes = [
   { path: WILL_WRITING_ROUTES.FAQ, component: FaqComponent },
   { path: WILL_WRITING_ROUTES.CHECK_ELIGIBILITY, component: CheckEligibilityComponent },
   { path: WILL_WRITING_ROUTES.HOW_IT_WORKS, component: HowItWorksComponent },
-  { path: WILL_WRITING_ROUTES.HOW_IT_WORKS, component: TellUsAboutYourselfComponent },
-  { path: WILL_WRITING_ROUTES.HOW_IT_WORKS, component: AboutMeComponent },
-  { path: WILL_WRITING_ROUTES.HOW_IT_WORKS, component: MyFamilyComponent },
-  { path: WILL_WRITING_ROUTES.HOW_IT_WORKS, component: MyChildGuardianComponent },
-  { path: WILL_WRITING_ROUTES.HOW_IT_WORKS, component: DistributeYourEstateComponent }
+  { path: WILL_WRITING_ROUTES.TELL_US_ABOUT_YOURSELF, component: TellUsAboutYourselfComponent },
+  { path: WILL_WRITING_ROUTES.ABOUT_ME, component: AboutMeComponent },
+  { path: WILL_WRITING_ROUTES.MY_FAMILY, component: MyFamilyComponent },
+  { path: WILL_WRITING_ROUTES.MY_CHILD_GUARDIAN, component: MyChildGuardianComponent },
+  { path: WILL_WRITING_ROUTES.DISTRIBUTE_YOUR_ESTATE, component: DistributeYourEstateComponent }
 ];
 
 @NgModule({
