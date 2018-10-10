@@ -62,6 +62,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   }
 
   selectHospitalPlan(plan, index) {
+    index += 1;
     this.selectedPlan = { hospitalClass: plan, hospitalClassId: index } as HospitalPlan;
     this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan.hospitalClass);
   }
