@@ -53,7 +53,7 @@ export class EmploymentDetailsComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-  ngOnInit() {
+ ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getOccupationList();
@@ -141,8 +141,8 @@ getInlineErrorStatus(control) {
       employmentStatus: [empStatus, Validators.required],
       companyName: [this.formValues.companyName, Validators.required],
       occupation: [this.formValues.occupation ? this.formValues.occupation : 'Select Occupation', Validators.required],
-      industry: [this.formValues.industry ? this.formValues.industry : 'Select Induatry', Validators.required],
-      contactNumber: [this.formValues.contactNumber],
+      industry: [this.formValues.industry ? this.formValues.industry : 'Select Industry', Validators.required],
+      contactNumber: [this.formValues.contactNumber, Validators.required],
       isEmployeAddresSame: [this.formValues.isEmployeAddresSame]
     });
   }
