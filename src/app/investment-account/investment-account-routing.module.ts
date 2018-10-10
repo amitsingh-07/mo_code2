@@ -13,9 +13,9 @@ import { ResidentialAddressComponent } from './residential-address/residential-a
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
+import { AdditionalDeclarationInfoComponent } from './additional-declaration-info/additional-declaration-info.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-
 const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
@@ -64,6 +64,9 @@ const routes: Routes = [
   },
   { path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
     component: AcknowledgementComponent,
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,
+    component: AdditionalDeclarationInfoComponent,
   }
 ];
 

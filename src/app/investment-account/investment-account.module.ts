@@ -10,6 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
+import { AdditionalDeclarationInfoComponent } from './additional-declaration-info/additional-declaration-info.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
@@ -53,7 +54,8 @@ export function createTranslateLoader(http: HttpClient) {
     FinanicalDetailsComponent,
     UploadDocumentsComponent,
     PersonalDeclarationComponent,
-    AcknowledgementComponent
+    AcknowledgementComponent,
+    AdditionalDeclarationInfoComponent
   ],
   providers: [CurrencyPipe]
 })
