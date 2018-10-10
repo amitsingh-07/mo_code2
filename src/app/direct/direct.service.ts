@@ -273,6 +273,8 @@ export class DirectService {
 
   setHospitalPlanForm(data: IHospital) {
     this.directFormData.hospital = data;
+
+    this.directFormData.hospital = data;
     this.gaDirectSuccess('hospital-plan');
     const userInfo = this.getUserInfo();
     userInfo.dob = data.dob;
