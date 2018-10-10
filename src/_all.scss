@@ -761,7 +761,6 @@ body {
       background-color:$teal-color;
       color:$white-color;
       padding:0px 45px;
-      border-bottom:1px solid $light-teal-color;
       .footer__group--inner{
         @include minMobilemaxPhablet{
           flex-direction:column;
@@ -790,7 +789,7 @@ body {
     &.tertiary{
       background-color:$dark-teal-color;
       color:$white-color;
-      border-bottom:1px solid $light-teal-color;
+      border-bottom:1px solid #95C0C3;
       padding:20px 45px 25px 45px;
       .footer__group--inner{
         justify-content:space-between;
@@ -917,11 +916,25 @@ body {
       font-family:$muli-regular;
       font-size:16px;
       letter-spacing:-0.3px;
+      max-width:324px;
       p{
         margin-bottom:auto;
+        &.corporate-link--section{
+          margin-top:20px;
+        }
       }
       span{
         font-family:$muli-semi-bold;
+        &.sub-text{
+          font-family:$muli-regular;
+        }
+      }
+      a{ 
+        font-family:$muli-regular;
+        color:$white-color;
+        &:hover{
+          color:$white-color;
+        }
       }
     }
   }

@@ -79,7 +79,8 @@
   top: 0px;
   left: 0px;
   background-color: $teal-color;
-
+  border-top-left-radius:6px;
+  border-top-right-radius:6px;
   .orange {
     position: absolute;
     display: block;
@@ -88,6 +89,7 @@
     background-color: $orange-color;
     top: 0px;
     left: 0px;
+    border-top-left-radius:6px;
   }
 }
 

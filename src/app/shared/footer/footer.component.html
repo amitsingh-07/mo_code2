@@ -3,11 +3,11 @@
     <div class="footer__group--inner">
       <div class="footer-link__btn" [routerLink]="['/about-us']">
         <span class="icon contact-icon"></span>
-        <span>About Us</span>
+        <span>{{'FOOTER.TOP_SECTION.ABOUT_US.TITLE' | translate }}</span>
         </div>
       <div class="footer-link__btn" onclick="javascript:void($zopim.livechat.window.openPopout())">
         <span class="icon chat-icon"></span>
-        <span>Live Chat</span> 
+        <span>{{'FOOTER.TOP_SECTION.LIVE_CHAT.TITLE' | translate}}</span> 
       </div>
       
       <!--
@@ -49,16 +49,38 @@
       <div class="footer__group--inner">
         <div class="footer-address">
           <div class="footer-address__header">
-              23 Keong Saik Road 
-              Singapore 089130
-            </div>
+            {{'FOOTER.MIDDLE_SECTION.ADDRESS.LABEL' | translate}}
+          </div>
           <div class="footer-address__body">
-              <p><span>Main (Advisory):</span> (65) 6329 9188</p>
-              <p><span>Main (General):</span> (65) 6329 9189</p>
-              <p><span>Email:</span> enquiries@moneyowl.com.sg</p>
-              <p><span>For Corporate Financial Literacy Programme and Partnership:</span> partnership@moneyowl.com.sg</p>
-              <p style="margin-top: 25px;"><span>Operating Hours:</span> 9am - 6pm, Mon - Fri</p>
-              <p>excluding Public Holidays</p>
+              <p>
+                <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_ADVISORY.LABEL' | translate}}:</span>
+                <a href="callto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_ADVISORY.LINK' | translate}}">
+                  {{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_ADVISORY.LINK_LABEL' | translate}}
+                  </a>  
+                </p>
+              <p>
+                <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LABEL' | translate}}:</span>
+                <a href="callto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LINK' | translate}}">
+                  {{'FOOTER.MIDDLE_SECTION.CONTACT_US.MAIN_GENERAL.LINK_LABEL' | translate}}
+                  </a>
+                </p>
+              <p>
+                <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LABEL' | translate}}:</span>
+                <a href="mailto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LINK' | translate}}" target="_top">
+                  {{'FOOTER.MIDDLE_SECTION.CONTACT_US.EMAIL.LINK_LABEL' | translate}}
+                  </a>
+                </p>
+              <p class="corporate-link--section">
+                <span>{{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LABEL' | translate}}:</span>
+                <a href="mailto:{{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LINK' | translate}}" target="_top">
+                  {{'FOOTER.MIDDLE_SECTION.CONTACT_US.CORPORATE.LINK_LABEL' | translate}} 
+                </a> 
+                </p>
+              <p style="margin-top: 25px;">
+                <span>{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.LABEL' | translate}}:</span>
+                <span class="sub-text"> {{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.CONTENT' | translate}}</span>
+              </p>
+              <p>{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.EXCEPTION' | translate}}</p>
             </div>
           </div>
           <!-- 
@@ -78,13 +100,13 @@
   <div class="footer__group quaternary">
     <div class="footer__group--inner">
       <div class="footer-copyright">
-        <span>MoneyOwl Private Limited is a licensed financial adviser regulated by the Monetary Authority of Singapore. Company Registration No. 201820691C</span>
+        <span>{{'FOOTER.BOTTOM_SECTION.CITATION' | translate}}</span>
         <span>
-          <a routerLink="/disclosures">Disclosures</a> | 
-          <a routerLink="/fair-dealing">Fair Dealing</a> | 
-          <a routerLink="/privacy-policy">Privacy Policy</a> | 
-          <a routerLink="/terms-and-conditions">Site Terms and Conditions</a> | 
-          © 2018 MoneyOwl Pte Ltd. All Rights Reserved.
+          <a routerLink="/terms-and-conditions">{{'FOOTER.BOTTOM_SECTION.LEGAL.TERMS_AND_CONDITIONS.LABEL' | translate}}</a> | 
+          <a routerLink="/privacy-policy">{{'FOOTER.BOTTOM_SECTION.LEGAL.PRIVACY_POLICY.LABEL' | translate}}</a> | 
+          <a routerLink="/disclosures">{{'FOOTER.BOTTOM_SECTION.LEGAL.DISCLOSURE.LABEL' | translate}}</a> | 
+          <a routerLink="/fair-dealing">{{'FOOTER.BOTTOM_SECTION.LEGAL.FAIR_DEALING.LABEL' | translate}}</a> | 
+          {{'FOOTER.BOTTOM_SECTION.ALL_RIGHTS_RESERVED' | translate}}      
         </span>
       </div>
       </div>
