@@ -527,7 +527,10 @@ body {
       }
     }
   .nav--shadow{
-    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25) !important;  
+    box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25) !important;
+    @include minMobilemaxPhablet{
+      box-shadow:none !important;
+      }
     }
   .navbar-toggler{
     position: absolute;
