@@ -319,7 +319,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please enter employement ZipCode.'
             }
         },
-        annualHouseHoldIncome: {
+        annualHouseHoldIncomeRange: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid annual HouseHoldIncome',

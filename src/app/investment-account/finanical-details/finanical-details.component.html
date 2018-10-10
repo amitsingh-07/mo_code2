@@ -35,7 +35,8 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button ngbDropdownToggle class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"> {{financialDetails.controls.annualHouseHoldIncomeRange.value}}
+                      <button ngbDropdownToggle class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"> 
+                        {{financialDetails.controls.annualHouseHoldIncomeRange.value ? financialDetails.controls.annualHouseHoldIncomeRange.value :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let annualHouseHoldIncome of annualHouseHoldIncomeRanges; let i = index;" (click)="setAnnualHouseHoldIncomeRange(annualHouseHoldIncome)"
@@ -59,7 +60,7 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
-                        {{financialDetails.controls.numberOfHouseHoldMembers.value}}
+                        {{financialDetails.controls.numberOfHouseHoldMembers.value ? financialDetails.controls.numberOfHouseHoldMembers.value :'Select Number'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let numberOfHouseHoldMembers of numberOfHouseHoldMembersList; let i = index;" (click)="setnumberOfHouseHoldMembers(numberOfHouseHoldMembers)"
