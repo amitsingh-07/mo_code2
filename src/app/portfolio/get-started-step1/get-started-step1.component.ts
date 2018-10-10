@@ -6,6 +6,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-get-started-step1',
@@ -26,7 +27,8 @@ export class GetStartedStep1Component implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
-    public headerService: HeaderService) {
+    public headerService: HeaderService,
+    public footerService: FooterService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
@@ -37,7 +39,8 @@ export class GetStartedStep1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
     this.authService.authenticate().subscribe((token) => {
      console.log(token);
     });
