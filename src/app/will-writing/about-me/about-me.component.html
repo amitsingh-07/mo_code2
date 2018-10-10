@@ -1,3 +1,106 @@
-<p>
-  about-me works!
-</p>
+<div class="personal-info">  
+  <div class="container-fluid">
+    <div class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="autofill-link">
+            <div class="autofill-text">{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}</div>
+            <div class="autofill-logo"><img class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" /></div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+          <form [formGroup]="aboutMeForm" id="aboutMeForm" name="aboutMeForm">
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="aboutMeFormLbl1" >{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <input type="text" id="aboutMeFormInpt1" class="form-control" #name formControlName="name">
+                </div>
+              </div>              
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name"  id="aboutMeFormLbl2">{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC_NUMBER' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <input type="text" id="aboutMeFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="name" id="aboutMeFormLbl3">{{ 'WILL_WRITING.ABOUT_ME.FORM.I_AM_A' | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+                    <div class="flex-row mb0">
+                      <div class="flex-col-6">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17" id="aboutMeFormLbl4">
+                          <input ngbButton type="radio" value="male" id="aboutMeFormInpt3"> {{ 'LABEL.MALE' |
+                          translate}}
+                        </label>
+                      </div>
+                      <div class="flex-col-6">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="aboutMeFormLbl5">
+                          <input ngbButton type="radio" value="female" id="aboutMeFormInpt4"> {{ 'LABEL.FEMALE' |
+                          translate}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-3">
+                  <label for="name" id="aboutMeFormLbl6">{{ 'WILL_WRITING.ABOUT_ME.FORM.AND' | translate}}</label>
+                </div>
+                <div class="flex-col-8 direct-form-grp">
+                  <div class="dropdown-control">
+                      <div ngbDropdown id="maritalStatusDropDown">
+                        <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
+                          <span *ngIf="maritalStatus === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="maritalStatus !== ''">{{maritalStatus}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownMaritalStatus">
+                          <button class="dropdown-item" (click)="selectMaritalStatus('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+                          <button type="button" class="dropdown-item" *ngFor="let status of maritalStatusList; let i=index" (click)="selectMaritalStatus(i)">
+                            {{status.text}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-3">
+                  <label for="name" id="aboutMeFormLbl7">{{ 'WILL_WRITING.ABOUT_ME.FORM.WITH' | translate}}</label>
+                </div>
+                <div class="flex-col-8 direct-form-grp">
+                  <div class="dropdown-control">
+                      <div ngbDropdown id="noOfChildrenDropDown">
+                        <button type="button" class="btn btn-dropdown" id="dropdownNoOfChildren" ngbDropdownToggle>
+                          <span *ngIf="noOfChildren === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="noOfChildren !== ''">{{noOfChildren}} {{'WILL_WRITING.ABOUT_ME.FORM.CHILDREN' | translate}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownNoOfChildren">
+                            <button class="dropdown-item" (click)="selectNoOfChildren('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+                          <button type="button" class="dropdown-item" *ngFor="let children of noOfChildrenList" (click)="selectNoOfChildren(children)">
+                            {{children}} {{ 'WILL_WRITING.ABOUT_ME.FORM.CHILDREN' | translate}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+              </div>
+            </div>
+            <div>
+              <button type="button"  (click)="goToNext(aboutMeForm)"
+                class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="aboutMeFormBtn1">
+                {{'LABEL.CONTINUE' | translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

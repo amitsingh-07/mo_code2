@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { WillWritingFormData } from './will-writing-form-data';
+import { WillWritingFormError } from './will-writing-form-error';
 import { IAboutMe, IChild, IGuardian, ISpouse } from './will-writing-types';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
@@ -11,6 +12,8 @@ const SESSION_STORAGE_KEY = 'app_will_writing_session';
 })
 export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
+  private willWritingFormError: any = new WillWritingFormError();
+
   constructor(private http: HttpClient) {
     // get data from session storage
     this.getWillWritingFormData();
@@ -42,6 +45,25 @@ export class WillWritingService {
     if (window.sessionStorage) {
       sessionStorage.clear();
     }
+  }
+
+  /**
+   * get form errors.
+   * @param form - form details.
+   * @returns first error of the form.
+   */
+  getFormError(form, formName) {
+    const controls = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.willWritingFormError[formName].formFieldErrors.errorTitle;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        errors.errorMessages.push(
+          this.willWritingFormError[formName].formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+      }
+    }
+    return errors;
   }
 
   /**

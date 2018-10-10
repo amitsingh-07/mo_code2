@@ -1,11 +1,50 @@
 {
-    "COMMON": {
-        
-    },
-    "TELL_US_YOURSELF": {
-        "STEP_1": "Step 1",
-        "TITLE": "Tell us yourself",
-        "SUB_TITLE": "In the next step, we will be gathering personal information about you."
+    "WILL_WRITING": {
+        "COMMON": {
+            "STEP_1": "Step 1",
+            "STEP_2": "Step 2",
+            "ADD_GUARDIAN": "Add Guardian"
+        },
+        "ABOUT_ME": {
+            "TITLE": "About Me",
+            "SUB_TITLE": "Help us verify your identity as the testator (maker) of the will.",
+            "FORM": {
+                "NAME": "My name is (as in NRIC)",
+                "NRIC_NUMBER": "NRIC number is",
+                "I_AM_A": "I am a",
+                "AND": "and",
+                "WITH": "with",
+                "CHILDREN": "children",
+                "MARITAL_STATUS_LIST": [{"text":"single", "value":"single"},{"text":"married", "value":"married"}]
+            }
+        },
+        "MY_FAMILY": {
+            "TITLE": "My Family",
+            "SUB_TITLE": "Tell us more about your family.",
+            "FORM": {
+                "MY_SPOUSE": "My Spouse",
+                "MY_CHILD": "My Child",
+                "NAME": "My name is (as in NRIC)",
+                "NRIC": "NRIC number is",
+                "DOB": "Date of Birth"
+            }
+        },
+        "MY_CHILDS_GUARDIAN": {
+            "TITLE": "My Child's Guardian",
+            "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
+            "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
+            "FORM_TITLE": "I would like my guardian to be…",
+            "FORM": {
+                "MY_SPOUSE": "My Spouse",
+                "MY_CHILD": "My Child",
+                "NAME": "My name is (as in NRIC)",
+                "NRIC": "NRIC number is",
+                "DOB": "Date of Birth"
+            }
+        },
+        "TELL_US_YOURSELF": {            
+            "TITLE": "Tell us yourself",
+            "SUB_TITLE": "In the next step, we will be gathering personal information about you."
+        }
     }
-    
 }
