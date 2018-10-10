@@ -1,3 +1,58 @@
-<p>
-  article works!
-</p>
+<div class="learn-about-finance">
+  <div class="learn-about__header">
+    <div class="learn-about__header--inner">
+        <div class="sub-navigation">
+          <div class="sub-navigation--inner">
+            <span routerLink="/">Home</span>
+            <span class="separator"></span>
+            <span>Articles</span>
+            </div>
+        </div>
+        <h1>Gain Insights on the financial world</h1>
+      </div>
+    </div>
+  <div class="learn-about__container">
+    <div class="learn-about__section primary">
+      <h4>Getting Started</h4>
+      <p>New to personal finance? Take a look at these articles first</p>
+      <div class="learn-about__get-started">
+          <div class="get-started--card" *ngFor="let article of getStartedArticleList">
+            <div class="art-tag__container">
+              <a class="art-tag__element" *ngFor="let tag of article.art_tags"><i class="material-icons">local_offer</i>{{tag}}</a>
+              </div>
+            <div class="article-card--img">
+              <img src="./../../assets/images/temp/thumbnail.jpg"/>
+              </div>
+            <div class="article-card--desc">
+              <a class="art-title">{{article.art_title}}</a>
+              <p class="art-desc">
+                <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
+                <span>{{article.art_date}}</span>
+              </p>
+              </div>
+            </div> 
+        </div>
+      </div>
+    <div class="learn-about__section secondary">
+      <h4>Latest Articles</h4>
+      <p>Stay updated for the latest updates</p>
+      <div class="learn-about__recent-articles">
+        <div class="recent-article--card" *ngFor="let article of recentArticleList">
+          <div class="article-card--img col-xl-5 col-lg-4 col-md-4 col-sm-5 col-xs-12">
+            <img src="./../../assets/images/temp/thumbnail.jpg"/>
+            </div>
+          <div class="article-card--desc col-xl-7 col-lg-8 col-md-8 col-sm-7 col-xs-12">
+            <a class="art-title">{{article.art_title}}</a>
+            <p class="art-desc">
+              <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
+              <span>{{article.art_date}}</span>
+              </p>
+            <div class="art-tag__container latest-art">
+              <div class="art-tag__element" *ngFor="let tag of article.art_tags"><i class="material-icons">local_offer</i>{{tag}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

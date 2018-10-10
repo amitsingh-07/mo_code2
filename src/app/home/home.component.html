@@ -5,7 +5,7 @@
         </div>
         <div class="banner-container">
             <div class="banner-image">
-                <img src="./../../assets/images/banner1-thumbnail.svg"/>
+                <img src="assets/images/banner1-thumbnail.svg"/>
             </div> 
             <div class="banner-content">
                 <div class="banner--title">
@@ -36,14 +36,14 @@
                     <span class="navbar__btn--title">{{'COMPREHENSIVE.LABEL' | translate}}</span>
                     <span class="navbar__btn--subtitle">{{'COMPREHENSIVE.SUB_LABEL' | translate}}</span> 
                     </div>
-                <div class="home__navbar--border"></div>
+                <div class="home__navbar--border" [ngClass]="{'hide': homeNavBarFixed}"></div>
                 </div>
             </div>
         <div class="home__navbar--sub" [ngClass]="{'show': homeNavBarFixed}"></div>
         <div class="home__section" #insurance>
             <div class="home__section--img primary">
-                <img class="human" src="./../../assets/images/home-insurance.png"/>
-                <img class="robo" src="./../../assets/images/home-insurance-robo.svg"/>
+                <img class="human" src="assets/images/home-insurance.png"/>
+                <img class="robo" src="assets/images/home-insurance-robo.svg"/>
             </div>
             <div class="home__section--text-container primary">
                 <p class="home__section--title">{{'INSURANCE.TITLE' | translate }}</p>
@@ -54,32 +54,34 @@
                 <a class="home__section--subtext" routerLink="/direct">{{'INSURANCE.LINK2' | translate}}</a>
             </div> 
             <div class="home__seperator primary">
-                <img src="./../../assets/images/seperator1.svg"/>
+                <img class="hidden-sm" src="assets/images/seperator1.svg"/>
+                <img class="show-sm" src="assets/images/mob-seperator1.svg"/>
                 </div>
             </div>
         <div class="home__section" #will>
             <div class="home__section--text-container secondary">
                 <div class="home__section--tag">
-                    <img src="./../../assets/images/free-tag.svg"/>
+                    <img src="assets/images/free-tag.svg"/>
                     </div>
                 <p class="home__section--title">{{'WILL.TITLE' | translate}}</p>
                 <p class="home__section--desc">{{'WILL.DESCRIPTION' | translate}}</p>
-                <div class="btn btn-primary-dark home__section--btn">
-                    <span>{{'WILL.LINK1' | translate}}</span>
-                    </div>
+                <button class="btn btn-secondary home__section--btn" disabled>
+                    <span>{{'GENERAL.COMING_SOON' | translate}}</span>
+                    </button>
                 </div>
             <div class="home__section--img secondary">
-                <img class="human" src="./../../assets/images/home-will.png"/>
-                <img class="robo" src="./../../assets/images/home-will-robo.svg"/>
+                <img class="human" src="assets/images/home-will.png"/>
+                <img class="robo" src="assets/images/home-will-robo.svg"/>
                 </div>
             <div class="home__seperator secondary">
-                <img src="./../../assets/images/seperator2.svg"/>
+                <img class="hidden-sm" src="assets/images/seperator2.svg"/>
+                <img class="show-sm" src="assets/images/mob-seperator2.svg"/>
                 </div>
             </div>
         <div class="home__section" #investment>
             <div class="home__section--img tertiary">
-                <img class="robo" src="./../../assets/images/home-investment-robo.svg">
-                <img class="human" src="./../../assets/images/home-investment.png"/>
+                <img class="robo" src="assets/images/home-investment-robo.svg">
+                <img class="human" src="assets/images/home-investment.png"/>
                 </div>
             <div class="home__section--text-container tertiary">
                 <p class="home__section--title">{{'INVESTMENT.TITLE' | translate}}</p>
@@ -89,31 +91,35 @@
                     </button>
                 </div>
             <div class="home__seperator tertiary">
-                <img src="./../../assets/images/seperator3.svg"/>
+                <img class="hidden-sm" src="assets/images/seperator3.svg"/>
+                <img class="show-sm" src="assets/images/mob-seperator3.svg"/>
             </div>
             </div>
         <div class="home__section" #comprehensive>
             <div class="home__section--text-container quaternary">
                 <p class="home__section--title">{{'COMPREHENSIVE.TITLE' | translate}}</p>
+                <p class="home__section--sub-title">{{'COMPREHENSIVE.SUB_TITLE' | translate}}</p>
                 <p class="home__section--desc">{{'COMPREHENSIVE.DESCRIPTION' | translate}}</p>
                 <button class="btn btn-secondary home__section--btn" disabled>
                     <span>{{'GENERAL.COMING_SOON' | translate}}</span>
                     </button>   
                 </div> 
             <div class="home__section--img quaternary">
-                <img class="human" src="./../../assets/images/home-comprehensive.png"/>
-                <img class="robo" src="./../../assets/images/home-comprehensive-robo.svg">
+                <img class="human" src="assets/images/home-comprehensive.png"/>
+                <img class="robo" src="assets/images/home-comprehensive-robo.svg">
                 </div>
             </div>
+        
         <div class="subscribe__section"  #subscribeSection>
             <div class="subscribe__section--bg"></div>
+            <!--
             <form class="subscribe__form--plugin" name="subscribeForm" id="subscribeForm" [formGroup]="subscribeForm">
                 <div class="subscribe-title--container">
                     <div class="subscribe--title">
                         {{'NEWSLETTER.TITLE' | translate}}
                     </div>
                     <div class="subscribe--icon">
-                        <img src="./../../assets/images/owl--mini.svg"/>
+                        <img src="assets/images/owl--mini.svg"/>
                     </div> 
                     </div>
                 <div class="subscribe-input--container form-control">
@@ -122,12 +128,82 @@
                     </div>
                 <p class="subscribe--subtext">{{'NEWSLETTER.SUBTEXT' | translate}}</p>
                 </form>
+            -->
             <div class="subscribe__section--footer" #subscribeFooter>
                 <div class="orange"></div>
                 </div>
             </div>
         </div> 
-        <div style="min-height:500px">
-
+    <div class="home__licensed-tab-section">
+        <div class="home__licensed-tab-section--inner">
+            <div class="licensed-tab__trust-container">
+                <img src="assets/images/trust-us-icon.svg"/>
+                <div class="licensed-tab__text-container">
+                    <p class="primary ">{{'TRUSTED.TITLE'  | translate}}</p>
+                    <p class="secondary" [innerHTML]="trustedSubTitle"></p>
+                    </div>
+                </div>
+            <div class="licensed-tab__icon-container">
+                <div class="licensed-tab__icon" *ngFor="let reason of trustedReasons">
+                    <img src="{{reason.IMAGE}}"/>
+                    <p>{{reason.LABEL}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="home__reviews">
+        <div class="home__review--header">
+            {{'REVIEWS.TITLE' | translate}}
+            </div>
+        <div class="home__reviews--inner">
+            <div class="home__review--element">
+                <div class="home__review--text">
+                    {{'REVIEWS.REVIEW1.MESSAGE' | translate}}
+                    </div>
+                <div class="home__review--rating">
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <span>(5/5)</span> 
+                    </div>
+                <div class="home__review--reviewer">
+                    {{'REVIEWS.REVIEW1.REVIEWER' | translate}}
+                    </div> 
+                </div>
+            <div class="home__review--element">
+                <div class="home__review--text">
+                    {{'REVIEWS.REVIEW2.MESSAGE' | translate}}
+                    </div>
+                <div class="home__review--rating">
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <span>(5/5)</span> 
+                    </div>
+                <div class="home__review--reviewer">
+                    {{'REVIEWS.REVIEW2.REVIEWER' | translate}}
+                    </div> 
+                </div>
+            <div class="home__review--element">
+                <div class="home__review--text">
+                    {{'REVIEWS.REVIEW3.MESSAGE' | translate}}
+                    </div>
+                <div class="home__review--rating">
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i>
+                    <span>(5/5)</span> 
+                    </div>
+                <div class="home__review--reviewer">
+                    {{'REVIEWS.REVIEW3.REVIEWER' | translate}}
+                    </div> 
+                </div>
+            </div>
         </div>
 </div>

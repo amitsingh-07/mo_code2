@@ -34,7 +34,7 @@
   },
   "EMPLOYMENT_DETAILS": {
     "TITLE": "Employment Details",
-    "EMPLOYEMEN_STATUS": "Employmen Status",
+    "EMPLOYEMEN_STATUS": "Employment Status",
     "COMPANY_NAME": "Company Name",
     "INDUSTRY": "Industry",
     "OCCUPATION": "Occupation",
@@ -131,6 +131,10 @@
       "UPLOADING_LOADER": {
         "TITLE": "Uploading",
         "MESSAGE": "Please be patient, upload may take a few minutes."
+      },
+      "FILE_SIZE_EXCEEDED": {
+        "TITLE": "Error !",
+        "MESSAGE": "File of size more than 2 MB is not allowed."
       }
     }
   },

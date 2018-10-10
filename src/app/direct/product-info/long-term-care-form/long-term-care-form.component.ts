@@ -19,7 +19,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
   longTermCareForm: FormGroup;
   monthlyPayoutList = Array(21).fill(500).map((x, i) => x += i * 100);
   selectedMonthlyPayout = '';
-
+  doberror = false;
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
@@ -72,7 +72,9 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
+      if (!form.controls['dob'].valid && form.controls['gender'].valid) {
+        this.doberror = true;
+      }
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];

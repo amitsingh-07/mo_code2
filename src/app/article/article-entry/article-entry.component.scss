@@ -1,0 +1,96 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.article-entry{
+    position: relative;
+    display:flex; 
+    width:100%;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background-color:$lighter-aqua-color;
+}
+.article-entry__header{
+    position: relative;
+    display:block;
+    width:100%;
+    height:60px;
+    background-color:$light-aqua-color;
+    .sub-navigation{
+        position: relative;
+    }
+}
+.article-entry__wrapper{
+    position: relative;
+    display:flex;
+    flex-direction:row;
+    max-width:1024px;
+    padding:40px 0px;
+    justify-content:space-between;
+}
+
+.article-entry__content{
+    position: relative;
+    display:block;
+    width:calc(100% - 300px);
+    color:$teal-color;
+    background-color:$white-color;
+    overflow:auto;
+    @include minPhabletmaxTablet{
+        flex-basis:100%;
+    }
+    .page-header{
+        position: relative;
+        display:flex;
+        padding:20px 30px;
+        flex-direction:column;
+        .art-tag__container{
+            position: relative;
+            display:flex;
+            top:5px;
+            left:5px;
+            justify-content:flex-start;
+            align-items:center;
+            flex-wrap:wrap;
+            z-index:2;
+            .art-tag__element{
+                position: relative;
+                display:inline-block;
+                width:auto;
+                border-radius:4px;
+                background-color:$white-color;
+                border: 1px solid #e1e1e1;  
+                color:$dark-teal-color;
+                font-size:12px;
+                font-family:$muli-semi-bold;
+                padding:2px 5px;
+                margin-right:5px;
+                margin-bottom:5px;
+                cursor: pointer;
+                i{
+                    font-size:14px;
+                    transform:translateY(2px);
+                    margin-right:2px;
+                    }
+                }
+            }
+        .page-header--inner{
+            position: relative;
+            display:block;
+            margin:0px;
+            margin-top:10px;
+        }
+    }
+    .page-box{
+        padding:40px 30px;
+    }
+}
+
+.article-entry__sidepanel{
+    position: relative;
+    display:inline-block;
+    width:280px;
+    height:100%;
+    padding:20px;
+    background-color:$dark-teal-color;
+}

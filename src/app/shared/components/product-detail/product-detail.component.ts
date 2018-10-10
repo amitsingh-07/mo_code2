@@ -15,6 +15,7 @@ export class ProductDetailComponent implements OnInit {
   @Input() isDirect;
   @Input() frequencyType;
   @Input() isSelected;
+  @Input() isViewMode;
 
   expandedList = [];
   current = 0;

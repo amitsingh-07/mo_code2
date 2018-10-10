@@ -1,0 +1,21 @@
+
+
+<div class="modal-header">
+</div>
+<div class="modal-body white-bg">
+  <!-- <div class="modal-body-title t-c-title">Terms & Conditions</div> -->
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+  <div class="modal-body-message">
+    <div class="t-c-content">
+      <app-terms-and-conditions></app-terms-and-conditions>
+      <app-privacy-policy></app-privacy-policy>
+      <app-disclosures style="margin-bottom: 40px;"></app-disclosures>
+    </div>
+    <div style="display: flex; justify-content: center;">
+    <button (click)="activeModal.close('proceed')" type="button" class="btn btn-primary bottom-btn">I Agree</button>
+  </div>
+  </div>
+</div>
+

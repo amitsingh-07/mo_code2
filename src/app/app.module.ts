@@ -19,6 +19,7 @@ import { appConstants } from './app.constants';
 import { AppService } from './app.service';
 import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
+import { PendingChangesGuard } from './changes.guard';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
   ExistingCoverageModalComponent
@@ -36,6 +37,7 @@ import { MobileModalComponent } from './guide-me/mobile-modal/mobile-modal.compo
 import { CreateAccountModelComponent } from './guide-me/recommendations/create-account-model/create-account-model.component';
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
+import { TermsComponent } from './shared/components/terms/terms.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -57,7 +59,6 @@ import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { UrlRedirectComponent } from './url-redirect.component';
-import { PendingChangesGuard } from './changes.guard';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -119,7 +120,7 @@ export function tokenGetterFn() {
       config: {
         tokenGetter: tokenGetterFn
       }
-    })
+    }),
   ],
   providers: [
     NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
@@ -142,7 +143,7 @@ export function tokenGetterFn() {
     HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent]
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent]
 })
 
 export class AppModule {

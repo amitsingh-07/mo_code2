@@ -1,25 +1,28 @@
+import { element } from 'protractor';
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit,
          Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-
+import { SlickComponent } from 'ngx-slick';
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { FooterService } from './../shared/footer/footer.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 
-import { PopupModalComponent } from './../shared/modal/popup-modal/popup-modal.component';
 import { SubscribeMember } from './../shared/Services/subscribeMember';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  providers: [NgbCarouselConfig],
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   pageTitle: string;
+  trustedSubTitle: any;
+  trustedReasons: any;
   public homeNavBarHide = false;
   public homeNavBarFixed = false;
   public mobileThreshold = 567;
@@ -29,9 +32,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   subscribeForm: FormGroup;
   formValues: SubscribeMember;
 
-  constructor(public navbarService: NavbarService, public footerService: FooterService,
+  constructor(public navbarService: NavbarService, public footerService: FooterService, carouselConfig: NgbCarouselConfig,
               public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
-              public readonly translate: TranslateService, private modal: NgbModal, private router: Router) {
+              public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private route: ActivatedRoute) {
+                carouselConfig.showNavigationArrows = true;
+                carouselConfig.showNavigationIndicators = true;
+                carouselConfig.wrap = false;
                 navbarService.existingNavbar.subscribe((param: ElementRef) => {
                   this.navBarElement = param;
                   this.checkScrollStickyHomeNav();
@@ -39,6 +45,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
                 this.translate.use('en');
                 this.translate.get('COMMON').subscribe((result: string) => {
                     this.pageTitle = this.translate.instant('HOME.TITLE');
+                    this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
+                    this.trustedReasons = this.translate.instant('TRUSTED.REASONS');
                     this.setPageTitle(this.pageTitle);
                     this.navbarService.setNavbarVisibility(true);
                     this.navbarService.setNavbarMode(1);
@@ -72,8 +80,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
+    this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     this.subscribeForm = new FormGroup({
       email: new FormControl(this.formValues.email),
+    });
+    this.route.fragment.subscribe((fragment: string) => {
+      if ( fragment === 'insurance' ) {
+        this.goToSection(this.InsuranceElement.nativeElement);
+      } else
+      if ( fragment === 'will') {
+        this.goToSection(this.WillElement.nativeElement);
+      } else
+      if ( fragment === 'invest') {
+        this.goToSection(this.InvestElement.nativeElement);
+      } else
+      if ( fragment === 'comprehensive') {
+        this.goToSection(this.ComprehensiveElement.nativeElement);
+      }
     });
   }
 
@@ -116,9 +139,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   checkScrollHomeNav() {
-    const triggerPosition = window.pageYOffset + (window.outerHeight / 2); // To set the trigger point as center of the screen
+    let difference = 0;
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
-    const homeNavbarHeight = 0 * ((homeNavBarElement.bottom - homeNavBarElement.top) + 50);
+    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
+    if (this.homeNavBarFixed) {
+      difference = homeNavbarHeight;
+    }
+    let triggerPosition = window.pageYOffset + (window.outerHeight / 2) - difference; // To set the trigger point as center of the screen
+    if (innerWidth < this.mobileThreshold) {
+      triggerPosition = homeNavBarElement.bottom + window.pageYOffset - document.documentElement.clientTop;
+    }
     const insuranceElement = this.InsuranceElement.nativeElement.getBoundingClientRect();
     const OffsetInsurance = [insuranceElement.top + window.pageYOffset - document.documentElement.clientTop,
                              insuranceElement.bottom + window.pageYOffset - document.documentElement.clientTop];
@@ -133,34 +163,44 @@ export class HomeComponent implements OnInit, AfterViewInit {
                                  comprehensiveElement.bottom + window.pageYOffset - document.documentElement.clientTop];
     if (triggerPosition >= OffsetInsurance[0] && triggerPosition < OffsetInsurance[1]) {
       // within insurance
+      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+      this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
       this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     } else
     if (triggerPosition >= OffsetWill[0] && triggerPosition < OffsetWill[1]) {
       // within will
+      this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
       this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
       this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
       this.render.addClass(this.HomeNavWill.nativeElement, 'active');
     } else
     if (triggerPosition >= OffsetInvest[0] && triggerPosition < OffsetInvest[1]) {
       // within invest
+      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
       this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
       this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavInvest.nativeElement, 'active');
     } else
     if (triggerPosition >= OffsetComprehensive[0] && triggerPosition < OffsetComprehensive[1]) {
       // within comprehensive
+      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
       this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
+      this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavComprehensive.nativeElement, 'active');
     }
   }
 
   goToSection(elementName) {
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
-    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top) - 50;
+    let difference = 50;
+    if (innerWidth < this.mobileThreshold) {
+      difference = 0;
+    }
+    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top) + difference;
     const selectedSection = elementName.getBoundingClientRect();
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - homeNavbarHeight;
-    window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth' });
+    elementName.scrollIntoView({block: 'center', inline: 'center', behavior: 'smooth'});
   }
 
   subscribeMember() {

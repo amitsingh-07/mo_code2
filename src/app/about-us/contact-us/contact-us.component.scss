@@ -1,0 +1,23 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.contact-us__wrapper{
+    position: relative;
+    display: block;
+    .banner{
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+    .banner-container{
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+}
+
+.contact-us__content{
+    position: relative;
+    display: block;
+    
+}

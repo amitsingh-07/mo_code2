@@ -61,7 +61,7 @@
                 <div>
                     <div class="row" *ngIf="recommendation.productList && recommendation.productList.length > 0" style="justify-content: center; margin-left: 0; margin-right: 0">
                       <div class="col-md-6 col-sm-6 col-6 plan-wrapper" *ngFor="let plan of recommendation.productList; let j = index;">
-                        <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+                        <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best_value.svg" />
                         <app-plan-widget [data]="plan" [type]="recommendation.protectionType" [bestValue]="j == 0" (select)="selectPlan($event)"
                           (view)="viewDetails($event)"></app-plan-widget>
                       </div>
@@ -93,4 +93,4 @@
 <!-- / Floating plan selection footer -->
 </div>
 </div>
-<div style="text-align: center;" [hidden]="resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
+<div class="text-center" [hidden]="resultsEmptyMessage?.length == 0"><p>Due to your unique situation, there are currently no available recommendation in our database.</p><p><img src="./assets/images/recommendation-no-result.svg"></p></div>

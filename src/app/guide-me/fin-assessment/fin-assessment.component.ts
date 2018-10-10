@@ -25,7 +25,7 @@ export class FinAssessmentComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
   }
 
   setPageTitle(title: string) {

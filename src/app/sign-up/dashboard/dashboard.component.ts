@@ -14,12 +14,12 @@ export class DashboardComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private signUpService: SignUpService,
-    private navbarService: NavbarService
-    ) { }
+    public navbarService: NavbarService) { }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(3);
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.translate.use('en');
   }

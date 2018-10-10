@@ -8,7 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
 } from '../../investment-account/investment-account-routes.constants';
-import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -40,7 +39,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -58,6 +56,7 @@ export class LoginComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.buildLoginForm();
@@ -112,7 +111,13 @@ export class LoginComponent implements OnInit {
       this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword).subscribe((data) => {
         this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
           this.signUpService.setUserProfileInfo(userInfo.objectList);
-          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          const redirect_url = this.signUpService.getRedirectUrl();
+          if (redirect_url) {
+            this.signUpService.clearRedirectUrl();
+            this.router.navigate([redirect_url]);
+          } else {
+            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+          }
         });
       });
     }

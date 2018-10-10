@@ -25,6 +25,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
   formValues: any;
   coverage_amt = '';
   duration = '';
+  doberror = false;
 
   coverageAmtValuesTemp: number[] = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
@@ -117,7 +118,9 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-
+      if (!form.controls['dob'].valid && form.controls['gender'].valid) {
+        this.doberror = true;
+      }
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];

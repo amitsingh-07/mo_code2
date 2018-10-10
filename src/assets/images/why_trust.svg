@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="69px" height="105px" viewBox="0 0 69 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="3.19737897%" y1="108.012502%" x2="84.4639093%" y2="26.7006205%" id="linearGradient-1">
+            <stop stop-color="#FFD694" offset="0%"></stop>
+            <stop stop-color="#FFAD5B" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Latest" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1024px---homepage-copy-4" transform="translate(-63.000000, -2576.000000)" fill-rule="nonzero">
+            <g id="Group-5" transform="translate(63.000000, 2574.000000)">
+                <rect id="Rectangle-20" fill="#00A7A7" x="48" y="51" width="10" height="56" rx="2"></rect>
+                <rect id="Rectangle-20-Copy" fill="#45BABA" x="36" y="74" width="10" height="33" rx="2"></rect>
+                <rect id="Rectangle-20-Copy-2" fill="#6CD4D4" x="24" y="87" width="10" height="20" rx="2"></rect>
+                <rect id="Rectangle-20-Copy-3" fill="#71D1D1" x="12" y="100" width="10" height="7" rx="2"></rect>
+                <rect id="Rectangle-20-Copy-4" fill="#84D7D7" x="0" y="103" width="10" height="4" rx="2"></rect>
+                <path d="M32.1591602,55.7493558 L28.828259,55.0355912 L40.4210529,42.388907 L43.5827239,58.1972623 L40.22191,57.4770879 C38.7451306,63.5837163 36.7751048,68.2248952 30,75 C22,83 3.44869618,96.0093292 3,95 C2.55130382,93.9906708 17,83 24,72 C29.6447359,63.1297008 31.0151853,60.3601122 32.1591602,55.7493558 Z" id="Combined-Shape" fill="url(#linearGradient-1)"></path>
+                <polygon id="Star" stroke="#FF902C" stroke-width="3" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" transform="translate(52.500000, 27.790319) rotate(20.000000) translate(-52.500000, -27.790319) " points="52.5 36.8693034 43.5385072 41.580639 45.25 31.60187 38 24.5348667 48.0192536 23.0789839 52.5 14 56.9807464 23.0789839 67 24.5348667 59.75 31.60187 61.4614928 41.580639"></polygon>
+                <polygon id="Star-Copy" stroke="#F9B571" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" transform="translate(28.593719, 11.196796) rotate(-19.000000) translate(-28.593719, -11.196796) " points="28.5937194 16.6799127 23.1815594 19.5252536 24.21519 13.4987249 19.8366606 9.23071354 25.8876394 8.35145485 28.5937194 2.86833788 31.2997994 8.35145485 37.3507783 9.23071354 32.9722488 13.4987249 34.0058794 19.5252536"></polygon>
+                <polygon id="Star-Copy-2" stroke="#F5BE87" stroke-width="2" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" points="21.5 37.2517567 17.4827791 39.3637347 18.25 34.8904935 15 31.7225264 19.4913895 31.0698893 21.5 27 23.5086105 31.0698893 28 31.7225264 24.75 34.8904935 25.5172209 39.3637347"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,6 +1,35 @@
+@import '../../../variables';
 @import '../../../mixins';
 
 app-product-info {
+  .with-help-icon {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+    align-self: center; 
+    width: 100px;
+    font-family: "Muli Semi Bold", sans-serif;
+    color: #2d8289;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+
+    @include allmobiles {
+      color: $white-color !important;
+    }
+  }
+  .help-icon {
+      background: url("./../../../assets/images/tooltip-icon.svg") no-repeat;
+      width: 35px;
+      height: 20px;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      @include allmobiles {
+          background: url("./../../../assets/images/tooltip-icon-white.svg") no-repeat !important;
+      }
+  }
   .direct-form-grp .dropdown-control {
     @include allmobiles {
       border: none;

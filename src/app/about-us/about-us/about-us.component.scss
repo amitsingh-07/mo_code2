@@ -1,0 +1,176 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.about-us__wrapper{
+    position: relative;
+    display:flex;
+    width:100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+    background-color:$lighter-aqua-color;
+}
+
+.about-us__header{
+    position: relative;
+    display:flex;
+    width:100%;
+    justify-content: center;
+    background-color:$lighter-aqua-color;
+    overflow:hidden;
+    .about-us__header--bg{
+        position: absolute;
+        display:block;
+        background-image:url('./../../../assets/images/banner-bg.svg');
+        background-repeat:repeat-x;
+        background-size:120%;
+        background-position-y:-90px;
+        z-index:1;  
+        width:100%;
+        height:200px;
+        background-color:$white-color;
+        @include minMobilemaxPhablet{
+            height:0px;
+        }
+    }
+    .about-us__header--inner{
+        position: relative;
+        display: block;
+        width:100%;
+        max-width:1024px;
+        z-index:2;
+        .header--title{
+            position: relative;
+            display:block;
+            margin-top:60px;
+            color:$teal-color;
+            margin-bottom:30px;
+            font-family:$muli-bold;
+            @include minPhabletmaxTablet{
+                padding:0px 20px 20px 20px;
+            }
+            @include minMobilemaxPhablet{
+                padding:20px;
+                margin:0px;
+            }
+        }
+    }
+    
+}
+
+.about-us__container{
+    position: relative;
+    display: flex;
+    width: 100%;
+    background-color:$lighter-aqua-color;
+    min-height:500px;
+    flex-direction:column;
+    .about-us__section{
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content:center;
+        &.primary{
+            background-color:$white-color;
+        }
+        &.secondary{
+            background-color:$lighter-aqua-color;
+        }
+    }
+    .about-us__section--inner{
+        position: relative;
+        display:block;
+        width:100%;
+        max-width:1024px;
+        padding:100px 0px;
+        @include minPhabletmaxTablet{
+            padding:50px;
+        }
+        @include minMobilemaxPhablet{
+            padding:15px;
+        }
+        .section--title{
+            position: relative;
+            display:block;
+            width:100%;
+            font-family:$muli-semi-bold;
+            color:$teal-color;
+            margin-bottom:50px;
+            @include minMobilemaxPhablet{
+                font-size:28px;
+                text-align:center;
+            }
+        }
+        .section--desc{
+            position: relative;
+            display:block;
+            width:100%;
+            font-family:$muli;
+            color:$black-color;
+        }
+    }
+
+    .about-us__people{
+        position: relative;
+        display:flex;
+        width:100%;
+        height:auto;
+        flex-direction:row;
+        justify-content:space-between;
+        padding-bottom:50px;
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+            justify-content:center;
+            align-items: center;
+        }
+        &:first-child{
+            padding-top:20px;
+        }
+        .about-us__people--img{
+            position: relative;
+            display:inline-block;
+            width:250px;
+            height:250px;
+            border-radius:50%;
+            overflow:hidden;
+            @include minMobilemaxPhablet{
+                width:220px;
+                height:220px;
+                margin-bottom:20px;
+            }
+            img{
+                position: absolute;
+                display:block;
+                width:100%;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%); 
+            }
+        }
+        .about-us__people--desc{
+            position: relative;
+            display:flex;
+            flex-basis:calc(100% - 300px);
+            flex-direction:column;
+            .name{
+                font-family:$muli-bold;
+                color:$black-color;
+                font-size:18px;
+                margin-bottom:0px;
+            }
+            .job{
+                font-family:$muli-bold;
+                font-size:14px;
+                color:#afb1b1;
+            }
+            .about-us__people--cv{
+                p{
+                    font-family:$muli;
+                    color:$black-color;
+                    font-size:14px;
+                }
+            }
+        }
+    }
+    
+}
