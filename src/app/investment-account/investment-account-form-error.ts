@@ -239,6 +239,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid companany name',
                 errorMessage: 'Please enter compnany Name.'
+            },
+            pattern: {
+                errorTitle: 'Invalid companany  name',
+                errorMessage: 'company name should contain alphabet.'
             }
         },
         occupation: {
@@ -260,6 +264,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid contact number',
                 errorMessage: 'Please enter contact number.'
+            },
+            pattern: {
+                errorTitle: 'Invalid  contact number',
+                errorMessage: ' Please enter valid Contact Number.'
             }
         },
         empPostalCode: {
