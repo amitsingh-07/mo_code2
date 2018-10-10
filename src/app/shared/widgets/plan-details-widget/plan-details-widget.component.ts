@@ -27,6 +27,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   @Input() isDirect;
   @Input() frequencyType;
   @Input() isSelected;
+  @Input() isViewMode;
 
   icon;
   insurerLogo;

@@ -31,13 +31,13 @@ export class LiabilitiesComponent implements IPageComponent, OnInit {
     });
   }
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     this.assetsFormValues = this.guideMeService.getMyLiabilities();
     this.liabilitiesForm = new FormGroup({
       propertyLoan: new FormControl(this.assetsFormValues.propertyLoan),
       carLoan: new FormControl(this.assetsFormValues.carLoan),
       otherLoan: new FormControl(this.assetsFormValues.otherLoan)
     });
-    this.navbarService.setNavbarMobileVisibility(true);
     this.setFormTotalValue();
   }
 

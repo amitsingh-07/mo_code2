@@ -11,13 +11,11 @@ app-plan-details-widget {
   }
 
   .plan-selected {
+    border-radius: 6px;
     color: #fff;
     background-color: #ff872f !important;
     border-color: #ff872f !important;
     box-shadow: none;
-    @include allmobiles {
-      border-radius: 0;
-    }
   }
   
   .brochure {
@@ -59,7 +57,7 @@ app-plan-details-widget {
       align-items: center;
 
       img {
-        width: 80%;
+        width: 50%;
       }
 
       @include allmobiles {
@@ -77,10 +75,15 @@ app-plan-details-widget {
       h4 {
         max-height: 44px;
         font-size: 21px;
+        
         color: $black-color;
         font-family: $muli-semi-bold;
       }
-
+      @include iPadLandscape {
+        h4 {
+          font-size: 17px;
+        }
+      }
       h2 {
         font-size: 36px;
         color: $app-backgrnd-color;
@@ -93,7 +96,11 @@ app-plan-details-widget {
           margin-left: 5px;
         }
       }
-
+      @include iPadLandscape { 
+        h2 {
+          font-size: 32px;
+        }
+      }
       .insurance-plan-widget__container__discount__block {
         border-top: 1px solid #c2d9ec;
         border-bottom: 1px solid #c2d9ec;

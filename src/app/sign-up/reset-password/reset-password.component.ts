@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -31,7 +30,6 @@ tocken;
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -53,6 +51,7 @@ tocken;
     });
   }
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.queryParams = this.route.snapshot.queryParams;
@@ -91,7 +90,7 @@ tocken;
         // tslint:disable-next-line:triple-equals
         if ( data.responseMessage.responseCode == 6000) {
           // tslint:disable-next-line:max-line-length
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset'}, fragment: 'loading'});
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!'}, fragment: 'loading'});
         }
       });
       console.log(form.value);

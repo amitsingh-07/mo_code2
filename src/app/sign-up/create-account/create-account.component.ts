@@ -5,12 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { TermsComponent } from '../../shared/components/terms/terms.component';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
@@ -53,7 +54,7 @@ export class CreateAccountComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
   }
@@ -64,7 +65,7 @@ export class CreateAccountComponent implements OnInit {
   buildAccountInfoForm() {
     this.formValues = this.signUpService.getAccountInfo();
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
-    this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : false;
+    this.formValues.termsOfConditions = this.formValues.termsOfConditions ? this.formValues.termsOfConditions : true;
     this.formValues.marketingAcceptance = this.formValues.marketingAcceptance ? this.formValues.marketingAcceptance : false;
     this.createAccountForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
@@ -93,7 +94,7 @@ export class CreateAccountComponent implements OnInit {
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);
-      this.createAccount();
+      this.openTermsOfConditions();
     }
   }
 
@@ -143,5 +144,14 @@ export class CreateAccountComponent implements OnInit {
 
   goBack() {
     this._location.back();
+  }
+
+  openTermsOfConditions() {
+    const ref = this.modal.open(TermsComponent, { centered: true, windowClass: 'full-height' });
+    ref.result.then((data) => {
+      if (data === 'proceed') {
+        this.createAccount();
+      }
+    });
   }
 }

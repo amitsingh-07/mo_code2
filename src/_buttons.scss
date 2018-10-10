@@ -341,6 +341,12 @@ button:active:focus {
       &:nth-child(odd):last-child(){
         margin-right:auto;
       }
+      &:first-child {
+        &:last-child {
+          margin-left:auto;
+          margin-right:auto;
+        }
+      }
     }
   }
 }
@@ -473,7 +479,7 @@ button:active:focus {
     border-radius: 8px;
     color: $teal-color;
     width:100%;
-    max-width:864px;
+    max-width:950px;
     max-height:70px; 
     min-height:64px;
     //max-width: calc(1024px - 160px);
@@ -639,7 +645,7 @@ button:active:focus {
   max-width:215px;
   align-self:flex-start;
   @include allmobiles{
-    max-width:175px;
+    max-width:200px;
   }
   .btn-group--toggle{
     .direct-form-btn--radio{
@@ -673,8 +679,8 @@ button:active:focus {
         display:flex;
         justify-content: center;
         align-items: center;
-        min-width:82px;
-        max-width:82px;
+        min-width:90px;
+        max-width:90px;
         background-color:$teal-color;
         border-color:$dark-teal-color;
         color:$light-teal-color;
@@ -719,7 +725,7 @@ button:active:focus {
     }
     
   .dropdown-control{
-    border:1px solid $light-teal-color;
+    //border:1px solid $light-teal-color;
     border-radius:6px;
     .dropdown-menu{
       @include allmobiles{

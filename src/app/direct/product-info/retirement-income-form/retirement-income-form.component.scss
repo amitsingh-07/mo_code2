@@ -1,10 +1,13 @@
-.form-group{
-    &.direct-form{
-        .tooltip-icon{
-            top:-40px;
-        }
+app-retirement-income-form {
+  .form-group {
+    &.direct-form {
+      .tooltip-icon {
+        top: -40px;
+      }
     }
-}
-.normal{
+  }
+
+  .normal {
     color: #2D8288;
+  }
 }
