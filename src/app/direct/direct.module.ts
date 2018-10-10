@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -61,7 +61,7 @@ export function createTranslateLoader(http: HttpClient) {
     OcpDisabilityFormComponent, EditProductInfoComponent,
     ComparePlansComponent,
     SrsApprovedPlansFormComponent],
-  providers: [CurrencyPipe],
+  providers: [CurrencyPipe, TitleCasePipe],
   entryComponents: [ProductDetailComponent, DirectResultsComponent]
 })
 export class DirectModule {

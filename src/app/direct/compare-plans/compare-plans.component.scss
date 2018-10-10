@@ -2,6 +2,18 @@
 @import '../../../mixins';
 
 app-compare-plans {
+
+  .best-value-icon {
+    position: absolute;
+    top: 5px;
+    left: -3px;
+  }
+  .info-icon {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+  }
   .rt-round {
     border-top-right-radius: 6px !important;
 
@@ -33,10 +45,17 @@ app-compare-plans {
     color: #fff;
     z-index: 99;
     line-height: 1.9;
-
-    span {
+    div {
       background: #2d8289;
-      width: 300px;
+      width: 550px;
+
+      @include allmobiles{
+        width: 300px;
+      }
+    }
+
+    .wide {
+      width: 650px;
     }
 
     .tooltip-compare {
@@ -46,6 +65,8 @@ app-compare-plans {
       cursor: pointer;
       text-align: center;
       margin-left: 9.6px;
+      position: absolute;
+      margin-top: 5px;
     }
   }
 
@@ -70,6 +91,7 @@ app-compare-plans {
 
     .insurance-plan-widget__container {
       background: transparent;
+      text-align: center;
     }
 
     .insurance-plan-widget {
@@ -172,7 +194,7 @@ app-compare-plans {
     h4 {
       height: 26px;
       font-size: 16px;
-      color: $black-color;
+      color: $form-block-title-color;
       font-family: $muli-semi-bold;
 
       @include allmobiles {
@@ -183,7 +205,7 @@ app-compare-plans {
     }
 
     h2 {
-      font-size: 16px;
+      font-size: 24px;
       color: $app-backgrnd-color;
       font-family: $muli-semi-bold;
 
@@ -215,7 +237,10 @@ app-compare-plans {
       align-items: center;
       justify-content: center;
       img {
-        max-width: 50% !important;
+        max-width: 35% !important;
+        @include allmobiles {
+          max-width: 50% !important;
+        }
       }
     }
 
