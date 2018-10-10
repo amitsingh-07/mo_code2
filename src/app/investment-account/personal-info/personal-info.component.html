@@ -58,13 +58,13 @@
               </div>
               <div class="flex-row"  *ngIf="showPassport" >
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
+                  <label for="passportExpiry" id="invPersInfoLbl6">{{ 'PERSONAL_INFO.PASSPORT_EXPIRY' | translate}}</label>
                 </div>
                 <div #usrFrmDp class="flex-col-7">
                   <div class="datepicker-control">
                     <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine}">
                       <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY"
-                        formControlName="passportExpiry" name="passportExpiry" [minDate]= this.passportMinDate  [maxDate] = this.passportMaxDate  ngbDatepicker #e="ngbDatepicker" id="invPersInfoInpt6">
+                        formControlName="passportExpiry" name="passportExpiry" [minDate]= this.passportMinDate  [maxDate] = this.passportMaxDate ngbDatepicker   #e="ngbDatepicker" id="invPersInfoInpt6">
                       <div class="input-group-append">
                         <button (click)="e.toggle()" class="btn btn-primary" type="button" id="invPersInfoBtn1">
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('passportExpiry').valid || invPersonalInfoForm.get('passportExpiry').pristine"
@@ -79,7 +79,7 @@
               </div>
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl7">{{ 'PERSONAL_INFO.DOB' | translate}}</label>
+                  <label for="dob" id="invPersInfoLbl7">{{ 'PERSONAL_INFO.DOB' | translate}}</label>
                 </div>
                 <div #usrFrmDp class="flex-col-7">
                   <div class="datepicker-control">
@@ -100,7 +100,7 @@
               </div>
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="name" id="invPersInfoLbl8">{{ 'PERSONAL_INFO.GENDER' | translate}}</label>
+                  <label for="gender" id="invPersInfoLbl8">{{ 'PERSONAL_INFO.GENDER' | translate}}</label>
                 </div>
                 <div class="flex-col-7">
                   <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">

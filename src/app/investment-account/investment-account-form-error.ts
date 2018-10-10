@@ -191,7 +191,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid NRIC number',
-                errorMessage: 'NRIC number should not contain alphabet.'
+                errorMessage: 'NRIC number should not contain special characters.'
             }
         },
         passportNumber: {
@@ -200,9 +200,9 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid passport  number',
                 errorMessage: 'Please enter passport  number.'
             },
-            pattern: {
+          pattern: {
                 errorTitle: 'Invalid passport  number',
-                errorMessage: 'passport number should not contain alphabet.'
+                errorMessage: 'passport number should not contain special characters.'
             }
         },
         passportExpiry: {

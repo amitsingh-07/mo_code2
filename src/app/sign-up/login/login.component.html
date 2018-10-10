@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid max-width--1024 plr20">
   <div class="back-btn hidden-lg" (click)="goBack()"></div>
   <div class="content">
     <div class="row">
@@ -18,7 +18,7 @@
           <div class="flex-row mb15">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginUsername)}">
-                <input type="text" id="login_username_txt" class="form-control" #loginUsername formControlName="loginUsername" required>
+                <input type="text" appInputFocus id="login_username_txt" class="form-control" #loginUsername formControlName="loginUsername" required>
                 <label class="form-control-placeholder" for="login_username_txt" id="login_username_lbl">{{ 'LOGIN.FORM.USERNAME' | translate}}</label>
               </div>
             </div>
@@ -27,7 +27,7 @@
           <div class="flex-row mb20">
             <div class="flex-col-12 stretch">
               <div class="form-group-floating-label" [ngClass]="{'inline-error':getInlineErrorStatus(loginForm.controls.loginPassword)}">
-                <input type="password" #loginPassword id="login_password_txt" class="form-control" formControlName="loginPassword" required>
+                <input type="password" appInputFocus #loginPassword id="login_password_txt" class="form-control" formControlName="loginPassword" required>
                 <label class="form-control-placeholder" for="login_password_txt" id="login_password_lbl">{{ 'LOGIN.FORM.PASSWORD' | translate}}</label>
                 <span id="login_showpassword_button" [ngClass]="(loginPassword.type === 'text') ? 'show-password' : 'hide-password'" (click)="showHidePassword(loginPassword)"></span>
               </div>
