@@ -12,6 +12,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 
+import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
@@ -60,6 +61,9 @@ const routes: Routes = [
   { path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
     component: PersonalDeclarationComponent,
      canActivate: [AuthGuard]
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
+    component: AcknowledgementComponent,
   }
 ];
 
