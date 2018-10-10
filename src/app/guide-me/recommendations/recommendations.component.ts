@@ -182,6 +182,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       this.premiumFrom = data.premium.premiumAmount;
 
       this.premiumFrequency = this.perMonth;
+      /*
       switch (this.activeRecommendationType) {
         case this.protectionNeedTypes.LIFE_PROTECTION:
           this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
@@ -202,6 +203,10 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
           this.coverageAmount = '';
           break;
       }
+      */
+
+      this.coverageAmount = data.premium.sumAssured;
+
     } else {
       this.coverageAmount = '';
       this.premiumFrom = '';

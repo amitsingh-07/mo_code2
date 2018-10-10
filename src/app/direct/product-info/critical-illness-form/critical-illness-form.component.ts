@@ -27,7 +27,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   duration = '';
   doberror = false;
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
-  coverageAmtValues = Array(10);
+  coverageAmtValues = Array(12);
   durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99'];
 
   constructor(
@@ -40,6 +40,9 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
+
+    this.coverageAmtValuesTemp.push(1500000);
+    this.coverageAmtValuesTemp.push(2000000);
   }
 
   ngOnInit() {
