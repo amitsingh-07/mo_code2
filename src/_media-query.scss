@@ -37,6 +37,30 @@
   }
 }
 
+.hidden-sm{
+  @include ExtraSmallDevice {
+    display: none !important;
+  }
+  @include allmobiles {
+    display: none !important;
+  }
+}
+
+.show-sm{
+  @include LargeDevice {
+    display: none !important;
+  }
+  @include MediumDevice {
+    display:none !important;
+  }
+  @include minPhabletmaxTablet {
+    display:none !important;
+  }
+  
+}
+
+
+
 .fixed-top {
   @include allmobiles {
     position: fixed !important;

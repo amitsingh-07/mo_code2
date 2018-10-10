@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit,
          Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -79,6 +80,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
+    this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     this.subscribeForm = new FormGroup({
       email: new FormControl(this.formValues.email),
     });
@@ -137,9 +139,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   checkScrollHomeNav() {
-    const triggerPosition = window.pageYOffset + (window.outerHeight / 2); // To set the trigger point as center of the screen
+    let difference = 0;
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
-    const homeNavbarHeight = 0 * ((homeNavBarElement.bottom - homeNavBarElement.top) + 50);
+    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
+    if (this.homeNavBarFixed) {
+      difference = homeNavbarHeight;
+    }
+    let triggerPosition = window.pageYOffset + (window.outerHeight / 2) - difference; // To set the trigger point as center of the screen
+    if (innerWidth < this.mobileThreshold) {
+      triggerPosition = homeNavBarElement.bottom + window.pageYOffset - document.documentElement.clientTop;
+    }
     const insuranceElement = this.InsuranceElement.nativeElement.getBoundingClientRect();
     const OffsetInsurance = [insuranceElement.top + window.pageYOffset - document.documentElement.clientTop,
                              insuranceElement.bottom + window.pageYOffset - document.documentElement.clientTop];
@@ -154,24 +163,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
                                  comprehensiveElement.bottom + window.pageYOffset - document.documentElement.clientTop];
     if (triggerPosition >= OffsetInsurance[0] && triggerPosition < OffsetInsurance[1]) {
       // within insurance
+      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+      this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
       this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     } else
     if (triggerPosition >= OffsetWill[0] && triggerPosition < OffsetWill[1]) {
       // within will
+      this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
       this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
       this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
       this.render.addClass(this.HomeNavWill.nativeElement, 'active');
     } else
     if (triggerPosition >= OffsetInvest[0] && triggerPosition < OffsetInvest[1]) {
       // within invest
+      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
       this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
       this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavInvest.nativeElement, 'active');
     } else
     if (triggerPosition >= OffsetComprehensive[0] && triggerPosition < OffsetComprehensive[1]) {
       // within comprehensive
+      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
       this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
+      this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavComprehensive.nativeElement, 'active');
     }
   }
@@ -185,7 +200,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top) + difference;
     const selectedSection = elementName.getBoundingClientRect();
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - homeNavbarHeight;
-    window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth' });
+    elementName.scrollIntoView({block: 'center', inline: 'center', behavior: 'smooth'});
   }
 
   subscribeMember() {

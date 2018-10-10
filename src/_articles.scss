@@ -1,0 +1,212 @@
+@import './variables';
+@import './mixins';
+
+.hdivider{
+    height:25px;
+}
+
+.page-box{
+    /* Article Colors */
+    .primary-color{
+        color:$teal-color;
+    }
+
+    .width25{
+        width:25px;
+    }
+    
+
+    /* Heading */
+    h1,h2,h3 {
+        font-family:$muli-bold;
+    }
+    h4,h5,h6 {
+        font-family:$muli-semi-bold;
+    }
+
+    p{
+        color:$black-color;
+        font-size:1rem;
+        margin-bottom:0px;
+    }
+    small{
+        display:block;
+        color:$black-color;
+        font-family:$muli-regular;
+    }
+    a{
+        color:$orange-color;
+        font-family:$muli-bold;
+    }
+    
+    img{
+        max-width:100%;
+    }
+
+    /* Table Styles */
+    .table-responsive{
+        display:block;
+        width:100%;
+        min-height:0.1%;
+        overflow-x:auto;
+    }
+    .table{
+        width:100%;
+        max-width:100%;
+        font-size:0.9em;
+        margin-bottom:0;
+        &.table-bordered{
+            border:1px solid $border-grey-color;
+        }
+        &.table-condensed{
+            th,td { 
+                padding: .35rem .60rem;
+            }
+        }
+        &.table-subtype{
+            tr{
+                border-bottom:0px;
+                &:first-child{
+                    background-color:$teal-grey-color;
+                    color:$white-color;
+                }
+                td{
+                    padding:10px 15px;
+                }
+            }
+        }
+        &.table-nostyle{
+            tr{
+                &:first-child{
+                    td{
+                        background-color:$white-color !important;
+                    }
+                }
+            }
+            td{
+                &:first-child{
+                    font-family:$muli;
+                    $background-color:$white-color;
+                }
+            }
+        }
+    }
+    
+    tr{
+        border-bottom:2px solid $teal-color;
+        &:first-child{
+            background-color:$lighter-aqua-color;
+            font-family:$muli-bold;
+            td{
+                text-align: center;
+            }
+        }
+    }
+
+    td{ 
+        color:$black-color;
+        &:first-child{
+            font-family:$muli-bold;  
+            padding:10px; 
+            background-color:$lighter-aqua-color;
+            color:$black-color;
+            text-align:left;
+            vertical-align:middle;
+        }
+    }
+    
+
+    /* Image Styling */
+    .partners{
+        img{
+            width:60px;
+            height:60px;
+            max-width: unset;
+        }
+    }
+    /* Button Styling */
+    .cell--dark-green{
+        a{
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            font-size:0.85rem;
+            line-height:1.5;
+            border-radius:5px;
+            color:$white-color;
+            background-color:$orange-color; 
+            border-color:$orange-color;
+            padding:3px 10px;
+            small{
+                color:$white-color;
+            }
+            i{
+                margin-left:5px;
+                color:$white-color;
+            }
+            &:hover{
+                background-color:$orange-color;
+                border-color:$orange-color; 
+                color:$white-color;
+                filter:brightness(0.8);
+            }
+        }
+    }
+    /* List Styling */
+    ol{
+        li{
+            color:$black-color;
+        }
+    }
+    ul{
+        display:block;
+        margin-block-start:1em;
+        margin-block-end:1em;
+        margin-inline-start:0px;
+        margin-inline-end:0px;
+        padding-inline-start:40px;
+        li{
+            list-style-type:disc;
+            color:$black-color;
+        }
+        &.list-unstyled{
+            li{
+                list-style-type:none;
+            }
+        }
+    }
+    /* Custom Cell Styles */
+    .cell--clean{
+        font-weight:normal;
+        background-color:transparent !important;
+        font-family:$muli !important;
+        vertical-align:middle;
+    }
+    .cell--vmiddle{
+        vertical-align:middle;
+    }
+    .cell--header{
+        background-color:$lighter-aqua-color;
+        font-family:$muli-bold;
+    }
+    .cell--lighter-aqua{
+        background-color:$lighter-aqua-color;
+    }
+    .cell--dark-green{
+        background-color:$dark-teal-color;
+        color:$white-color;
+    }
+    /* Custom Border Styles */
+    .border--clean{
+        border:0px;
+    }
+    
+    .text-xs-center{
+        font-size:12px;
+        text-align:center !important;
+    }
+
+    
+}
+
+
