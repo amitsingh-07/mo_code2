@@ -1,11 +1,15 @@
+import { IAboutMe, IChild, IGuardian, ISpouse } from './will-writing-types';
+
 export class WillWritingFormData {
-    protectionNeedsPageIndex: number;
-    isExistingCoverAdded = false;
-    myProfile: number;
-    email: string;
-    gender: string;
-    dob: any;
-    customDob: string;
-    smoker: string;
-    dependent: number;
+    // about me info
+    aboutMe: IAboutMe;
+
+    // spouse info
+    spouse: ISpouse;
+
+    // children info
+    children: IChild[];
+
+    // guardian info
+    guardian: IGuardian[];
 }

@@ -79,7 +79,7 @@ app-plan-details-widget {
         color: $black-color;
         font-family: $muli-semi-bold;
       }
-      @media only screen and (min-device-width:768px) and (max-device-width:1024px) {
+      @include iPadLandscape {
         h4 {
           font-size: 17px;
         }
@@ -96,7 +96,7 @@ app-plan-details-widget {
           margin-left: 5px;
         }
       }
-      @media only screen and (min-device-width:768px) and (max-device-width:1024px) { 
+      @include iPadLandscape { 
         h2 {
           font-size: 32px;
         }

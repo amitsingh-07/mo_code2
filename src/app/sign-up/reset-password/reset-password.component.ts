@@ -90,7 +90,7 @@ tocken;
         // tslint:disable-next-line:triple-equals
         if ( data.responseMessage.responseCode == 6000) {
           // tslint:disable-next-line:max-line-length
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset'}, fragment: 'loading'});
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!'}, fragment: 'loading'});
         }
       });
       console.log(form.value);

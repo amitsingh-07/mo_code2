@@ -5,7 +5,7 @@
     <div>
       <div style="justify-content: center;">
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
-          <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+          <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best_value.svg" />
           <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType"
             [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)" (view)="viewDetails($event)" [isDirect] = "true" [comparePlanSelected] = "selectedComparePlans"
             [planSelected]="selectedPlans" (compare)="comparePlan($event)" ></app-plan-widget>
@@ -33,17 +33,8 @@
   </div>
   <div class="flex-row" [ngClass]="{'mt60' : isComparePlanEnabled}" *ngFor="let category of searchResult; let i = index"
     style="padding: 10px">
-    <!-- <div>
-      <div style="justify-content: center;">
-        <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
-          <img class="best-value-icon is-hidden" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
-          <app-plan-widget [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled"
-            (select)="selectPlan($event)" (view)="viewDetails($event)" [planSelected]="selectedPlans" [isDirect] = "true" (compare)="comparePlan($event)"></app-plan-widget>
-        </div>
-      </div>
-    </div> -->
     <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
-      <img class="best-value-icon--mobile" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
+      <img class="best-value-icon--mobile" *ngIf="j == 0" src="./assets/images/best_value.svg" />
       <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType" [comparePlan]="isComparePlanEnabled"
         (select)="selectPlan($event)" [isDirect] = "true" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)" [comparePlanSelected] = "selectedComparePlans"></app-plan-widget>
     </div>

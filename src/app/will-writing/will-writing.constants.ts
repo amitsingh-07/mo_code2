@@ -1,0 +1,5 @@
+export const WILL_WRITING_CONFIG = {
+    MAX_GUARDIAN : 2,
+    MAX_BENEFICIARIES : 10,
+    MAX_TRUSTEE: 2
+};

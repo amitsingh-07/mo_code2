@@ -28,15 +28,18 @@
         </div>
       <div #usrFrmDp class="flex-col-8 direct-form-grp">
         <div class="datepicker-control">
-          <div class="input-group date-picker mb0">
-            <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
-            name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-            <div class="input-group-append">
-              <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                <img class="date-picker-image--valid" src="./assets/images/calendar-normal.svg"/>
-              </button>
-              </div>
-            </div>
+            <div class="input-group date-picker mb0"  [ngClass]="{'inline-error': doberror && !hospitalForm.get('dob').valid  && !hospitalForm.get('dob').pristine}">
+                <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
+                name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                <div class="input-group-append">
+                  <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                      <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="hospitalForm.get('dob').valid || hospitalForm.get('dob').pristine || !doberror" src="./assets/images/calendar-normal.svg"
+                      />
+                      <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !hospitalForm.get('dob').valid && !hospitalForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
+                      />
+                  </button>
+                  </div>
+                </div>
           </div>
         </div>
       </div>
@@ -52,7 +55,7 @@
       <div class="flex-col-8 direct-form-grp">
         <div class="dropdown-control">
             <div ngbDropdown id="planTypeDropDown">
-              <button type="button" class="btn btn-dropdown without-border" id="dropdownBasic1" ngbDropdownToggle>
+              <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
                 <span class="coverage_amt">{{selectedPlan == ''? 'Select' : selectedPlan}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">

@@ -1,4 +1,4 @@
-import { Location, TitleCasePipe } from '@angular/common';
+import { CurrencyPipe, Location, TitleCasePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +22,7 @@ export class ComparePlansComponent implements OnInit {
   constructor(
     public headerService: HeaderService, public directService: DirectService,
     public readonly translate: TranslateService, private _location: Location,
-    public titlecase: TitleCasePipe, private modal: NgbModal) {
+    public titlecase: TitleCasePipe, private modal: NgbModal, private currency: CurrencyPipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('COMPARE_PLANS.TITLE');
