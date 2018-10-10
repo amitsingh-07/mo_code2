@@ -214,7 +214,7 @@
 
   &.show {
     display: flex;
-    z-index: 1034;
+    z-index: 1029;
     min-height: 150px;
     max-height: none;
 
@@ -380,6 +380,7 @@
         overflow-x: hidden;
         flex-direction: column;
         justify-content: flex-start;
+        padding-bottom: 60px;
       }
     }
   }
@@ -424,7 +425,7 @@
   z-index: -2;
 
   &.show {
-    z-index: 1029;
+    z-index: 1028;
     opacity: 0.8;
   }
 

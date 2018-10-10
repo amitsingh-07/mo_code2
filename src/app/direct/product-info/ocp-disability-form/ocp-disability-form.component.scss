@@ -23,6 +23,9 @@ app-ocp-disability-form {
   .span--content-inline--underline {
     color: $white-color;
     font-size: 18px;
+    @include desktop {
+      color: $app-backgrnd-color;
+    }
   }
   .fixed-tenure {
     font-family: $muli;
