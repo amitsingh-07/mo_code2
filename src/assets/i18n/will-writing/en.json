@@ -1,5 +1,11 @@
 {
     "COMMON": {
         
+    },
+    "TELL_US_YOURSELF": {
+        "STEP_1": "Step 1",
+        "TITLE": "Tell us yourself",
+        "SUB_TITLE": "In the next step, we will be gathering personal information about you."
     }
+    
 }
