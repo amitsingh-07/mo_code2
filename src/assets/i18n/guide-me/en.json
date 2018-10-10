@@ -115,7 +115,7 @@
     "MODAL_DATA": {
       "title": "Life Protection",
       "description": "<h4>Life Protection</h4><p>If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.</p>",
-      "imageName": "lifeProtection_modal.png"
+      "imageName": "life-protection-mobile.svg"
     },
     "DROP_DOWN_OPTIONS": {
       "GENDER": ["Male", "Female"],
@@ -139,7 +139,7 @@
     "MODAL_DATA": {
       "title": "Critical Illness",
       "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.</p>",
-      "imageName": "ci-assessment.png"
+      "imageName": "ci-assessment.svg"
     }
   },
   "OCP_DISABILITY": {
@@ -165,7 +165,7 @@
     "MODAL_DATA": {
       "title": "Occupational Disability",
       "description": "<h4>Occupational Disability</h4><p>This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.</p>",
-      "imageName": "occupationdisability_modal.png"
+      "imageName": "occupation-disability.svg"
     }
   },
   "LTC_ASSESSMENT": {
