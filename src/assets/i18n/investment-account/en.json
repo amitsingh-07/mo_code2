@@ -2,7 +2,8 @@
   "COMMON": {
     "LABEL": {
       "CONTINUE": "Continue",
-      "RETRIEVE": "Retrieve"
+      "RETRIEVE": "Retrieve",
+      "VIEW_DETAILS": "View Details"
     }
   },
   "PERSONAL_INFO": {
@@ -151,5 +152,22 @@
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
+  },
+  "CONFIRM_PORTFOLIO": {
+    "TITLE": "Your Portfolio",
+    "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
+    "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
+    "PROJECTED_RETURNS": "Projected Returns",
+    "WHATS_THE_RISK": "What's the risk?",
+    "PROJECTED_VALUE": "Projected Value",
+    "IN": "in",
+    "YEAR": "year",
+    "YEARS": "Years",
+    "CHECK_FEES": "Check out our competitive fees.",
+    "ONE_TIME_INVESTMENT": "one-time investment",
+    "AND": "&",
+    "MONTHLY_INVESTMENT": "monthly investment",
+    "FOR": "for",
+    "I_WANT_TO_START_INVEST": "I Want To Start Investing"
   }
 }

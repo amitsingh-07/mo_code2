@@ -6,7 +6,7 @@ import { EmploymentDetailsComponent } from './employment-details/employment-deta
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import {
-    PersonalDeclarationComponent
+  PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
@@ -14,6 +14,7 @@ import { SelectNationalityComponent } from './select-nationality/select-national
 
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
     component: SelectNationalityComponent,
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_INFO,
@@ -35,31 +36,37 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.RESIDENTIAL_ADDRESS,
     component: ResidentialAddressComponent,
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.EMPLOYMENT_DETAILS,
     component: EmploymentDetailsComponent,
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FINANICAL_DETAILS,
-    component: FinanicalDetailsComponent ,
+    component: FinanicalDetailsComponent,
     canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.TAX_INFO,
     component: TaxInfoComponent,
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS,
     component: UploadDocumentsComponent,
     canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
     component: PersonalDeclarationComponent,
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.CONFIRM_PORTFOLIO,
+    component: ConfirmPortfolioComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

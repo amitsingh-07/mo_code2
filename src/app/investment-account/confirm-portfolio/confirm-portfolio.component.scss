@@ -1,0 +1,205 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.confirm-portfolio {
+  .strong {
+    font-weight: bold;
+  }
+  
+  .step-indicator-container {
+    background-color: #fff;
+    padding: 10px 0px;
+    position: relative;
+    top: 60px;
+    margin-bottom: 15px;
+
+    .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .page-caption {
+      color: $text-color-secondary;
+      font-size: 16px;
+      font-family: $muli;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .step-indicator-container {
+      top: 0px;
+    }
+  }
+
+  .portfolio-short-desc {
+    text-align: center;
+    font-size: 18px;
+    font-family: $muli;
+  }
+
+  .portfolio-detail {
+
+    font-family: $muli;
+    margin: 15px 0px 0px 0px;
+    background-color: #2d8289;
+    border-radius: 6px 6px 0px 0px;
+
+    .portfolio-head {
+      padding: 15px 20px;
+      border-bottom: 1px solid #00a7a7;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .portfolio-content {
+      padding: 15px 20px;
+
+      .projection {
+
+        .graph {
+          position: relative;
+          padding-right: 30px;
+
+          img {
+            width: 100%;
+          }
+
+          .graph-caption {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            font-size: 15px;
+          }
+
+          .growth-icon {
+            position: absolute;
+            right: 0px;
+            top: -5px;
+            width: 24%;
+
+            img {}
+          }
+        }
+
+        .values {
+          display: flex;
+          flex-direction: row;
+          margin: 10px 0px;
+
+          .amount {
+            flex: 6;
+            font-weight: bold;
+            flex-direction: column;
+
+            div {
+              font-size: 32px;
+            }
+
+            a {
+              color: #98dfdf;
+              font-size: 16px;
+              padding-right: 30px;
+              background: url('../../../assets/images/investment-account/edit_pencil.svg') no-repeat right;
+            }
+          }
+
+
+          .year {
+            display: flex;
+            flex: 2;
+            flex-direction: column;
+            align-items: flex-end;
+            color: #98dfdf;
+            font-size: 14px;
+          }
+        }
+
+
+
+
+
+      }
+    }
+  }
+
+  .projected-returns {
+    font-family: $muli;
+    display: flex;
+    background-color: #fff;
+    padding: 15px 20px;
+    margin-top: -5px;
+    border-radius: 6px;
+
+    .caption {
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 4;
+
+      .title {
+        color: #2d8289;
+        font-weight: bold;
+        font-size: 16px;
+
+        img {
+          margin: 0px 5px;
+        }
+      }
+
+      .whatsrisk {
+        color: #00a7a7;
+        text-decoration: underline;
+        font-size: 15px;
+      }
+    }
+
+    .percentage {
+      color: #11b600;
+      font-weight: bold;
+      font-size: 24px;
+      flex: 3;
+      justify-content: center;
+      display: flex;
+    }
+  }
+
+
+  .breakdown {
+    font-family: $muli;
+    margin: 30px 0px;
+
+    .title {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 5px;
+      margin-left:20px;
+    }
+
+    .allocation-content {
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      color: #333;
+    }
+  }
+
+  .fees-promo{
+    display:flex;
+    padding:25px 15px;
+    background-color:#2d8289;
+    border-radius:6px;
+    align-items:center;
+    margin-bottom:65px;
+
+    img{
+      width:50px;
+    }
+    div{
+      font-size: 16px;
+      font-weight: bold;
+      margin-left:15px;
+    }
+  }
+}
