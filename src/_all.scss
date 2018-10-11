@@ -1095,7 +1095,7 @@ a.link-white {
 }
 
 .lbl-selected {
-  font-family: Muli;
+  font-family: $muli-regular;
   font-size: 18px;
   line-height: 1.11;
   letter-spacing: -0.2px;
@@ -1110,7 +1110,7 @@ a.link-white {
 }
 
 .btn-proceed {
-  font-family: Muli;
+  font-family: $muli-bold;
   font-size: 22px;
   font-weight: bold;
   letter-spacing: -0.2px;

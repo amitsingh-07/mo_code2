@@ -53,7 +53,7 @@
                   <label for="name" id="empliyement_status_Lbl">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}
                   </label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !employementDetailsForm.get('companyName').valid && !employementDetailsForm.get('companyName').pristine}">
                   <input type="text" formControlName="companyName" id="empliyement_status_company_input" class="form-control">
                 </div>
               </div>
@@ -66,7 +66,7 @@
                     </label>
                   </div>
                   <div class="flex-col-7">
-                    <div class="dropdown-control">
+                    <div class="dropdown-control employe-dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
                           {{employementDetailsForm.controls.industry.value | titlecase}}
@@ -89,7 +89,7 @@
                     </label>
                   </div>
                   <div class="flex-col-7">
-                    <div class="dropdown-control">
+                    <div class="dropdown-control employe-dropdown-control">
                       <div ngbDropdown>
                         <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
                           {{employementDetailsForm.controls.occupation.value | titlecase}}
@@ -109,9 +109,9 @@
                   <label for="name" id="empliyement_status_Lbl">{{ 'EMPLOYMENT_DETAILS.CONTACT_NUMBER' | translate}}
                   </label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !employementDetailsForm.get('contactNumber').valid && !employementDetailsForm.get('contactNumber').pristine}">
 
-                  <input type="number" formControlName="contactNumber" id="empliyement_status_company_input" class="form-control">
+                  <input type="text" formControlName="contactNumber" id="empliyement_status_company_input" class="form-control">
                 </div>
               </div>
 

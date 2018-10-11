@@ -459,6 +459,8 @@ button:active:focus {
     }
     @include allmobiles{
       min-height:60px;
+      position: fixed;
+      bottom: 0;
       }
     }
 }

@@ -247,11 +247,6 @@ export class DirectService {
   }
 
   setOcpDisabilityForm(data: IOcpDisability) {
-    if (data.smoker) {
-      data.smoker = 'smoker';
-    } else {
-      data.smoker = 'non-smoker';
-    }
     this.directFormData.ocpDisability = data;
     this.gaDirectSuccess('occupational-disability');
     const userInfo = this.getUserInfo();
@@ -272,6 +267,8 @@ export class DirectService {
   }
 
   setHospitalPlanForm(data: IHospital) {
+    this.directFormData.hospital = data;
+
     this.directFormData.hospital = data;
     this.gaDirectSuccess('hospital-plan');
     const userInfo = this.getUserInfo();
