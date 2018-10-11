@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
+import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { appConstants } from './../../../app.constants';
@@ -25,7 +26,8 @@ export class AuthenticationService {
   authenticate(userEmail?: string, userPassword?: string) {
     const authenticateUrl = apiConstants.endpoint.authenticate;
     const authenticateBody = {
-      email: userEmail ? userEmail : '',
+      email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
+      mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
       password: userPassword ? userPassword : '',
       secretKey: this.getAppSecretKey()
     };
@@ -46,6 +48,11 @@ export class AuthenticationService {
       sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
       sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
     }
+  }
+
+  isUserNameEmail(username: string) {
+    const emailPattern = new RegExp(RegexConstants.Email);
+    return emailPattern.test(username);
   }
 
   logout() {

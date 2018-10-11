@@ -14,5 +14,6 @@ export const RegexConstants = {
     AlphanumericWithSpaces: /^[a-zA-Z0-9\s]*$/,
     SixDigitNumber: /^[0-9]{6}$/,
     OnlyAlphaWithoutLimit: /^[a-zA-Z\s]*$/,
-    ContactNumber: /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/
+    ContactNumber: /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/,
+    Email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
 };
