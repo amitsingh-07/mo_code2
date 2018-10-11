@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6  col-sm-12 promocode">
-        <form name="promocodeForm" [formGroup]="promocodeForm">
+        <div name="promocodeForm">
         <div class="instructions">
           <div class="mask" id="intro-why-will">{{ 'INTRODUCTION.WHY_WILL' | translate}}</div>
           <div class="instruction-content">
@@ -41,14 +41,14 @@
               <img src="assets/images/mail-sent.svg" *ngIf = "false"  id="intro-mail-sent-img">
               <div *ngIf = "true"  id="intro-email-content">{{ 'INTRODUCTION.EMAIL_CONTENT' | translate}}</div>
               <div *ngIf = "false"  id="intro-sent-success">{{ 'INTRODUCTION.SENT_SUCCESS' | translate}}</div>
-              <button type="button" (click)="goToNext(incomeForm)" class="btn"
+              <button type="button" class="btn"
               id="intro-get-my-code">{{ 'COMMON.GET_MY_CODE' | translate}}</button>  
             </div>
           </div>
 
-          <button type="button" (click)="goToNext(incomeForm)" class="btn btn__footer--fixed btn-primary width100"
+          <button type="button" class="btn btn__footer--fixed btn-primary width100"
           id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
