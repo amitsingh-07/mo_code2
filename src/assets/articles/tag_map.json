@@ -1,0 +1,40 @@
+{
+    "tag_map":{
+            "1": {
+                "tag_name": "Getting Started"
+            },
+            "2": {
+                "tag_name": "General"
+            },
+            "3": {
+                "tag_name": "Protection"
+            },
+            "4": {
+                "tag_name": "Medishield Life"
+            },
+            "5": {
+                "tag_name": "Savings"
+            },
+            "6" : {
+                "tag_name": "Retirement Income Plans"
+            },
+            "7": {
+                "tag_name": "Video"
+            },
+            "8": {
+                "tag_name": "Term Life Insurance"
+            },
+            "9": {
+                "tag_name": "Whole Life Insurance"
+            },
+            "10": {
+                "tag_name": "Critical Illness Insurance"
+            },
+            "11": {
+                "tag_name": "Child Education Endowment"
+            },
+            "12": {
+                 "tag_name": "Retirement Income"
+            }
+        }
+    }

@@ -22,12 +22,12 @@ const routes: Routes = [
       /*
       { path: 'myinfo', component: CallBackComponent },
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
+      { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
       */
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
 
       // Legacy Routes
-      { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
       { path: 'terms-and-conditions', component: TermsAndConditionsComponent},
       { path: 'privacy-policy', component: PrivacyPolicyComponent},
       { path: 'disclosures', component: DisclosuresComponent},
