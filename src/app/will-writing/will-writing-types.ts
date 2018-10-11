@@ -22,3 +22,9 @@ export interface IGuardian {
     relationship: string;
     nric: string;
 }
+
+export interface IEligibility {
+    singaporean: string;
+    assets: string;
+    religion: string;
+}
