@@ -914,6 +914,12 @@ body {
       @include minMobilemaxPhablet{
         margin-bottom:10px;
       }
+      a{
+        color:$white-color;
+        &:hover{
+          text-decoration: unset;
+        }
+      }
     }
     .footer-address__body{
       font-family:$muli-regular;

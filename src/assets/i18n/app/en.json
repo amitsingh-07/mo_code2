@@ -159,16 +159,17 @@
     },
     "MIDDLE_SECTION": {
       "ADDRESS": {
-        "LABEL": "23 Keong Saik Road Singapore 089130"
+        "LABEL": "23 Keong Saik Road Singapore 089130",
+        "LINK": "https://goo.gl/maps/T9YkbhYcAgm"
       }, 
       "CONTACT_US": {
         "MAIN_ADVISORY": {
-          "LABEL": "Main (Advisory)",
+          "LABEL": "Advisory Line",
           "LINK_LABEL": "(65) 6329 9188",
           "LINK": "6329 9188"
         },
         "MAIN_GENERAL": {
-          "LABEL": "Main (General)",
+          "LABEL": "General Line",
           "LINK_LABEL": "(65) 6329 9189",
           "LINK": "6329 9189"
         },
