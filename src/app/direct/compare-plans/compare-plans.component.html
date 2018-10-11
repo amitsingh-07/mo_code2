@@ -17,12 +17,12 @@
           <div class="col-md-12 col-md-push-3">
             <h4 class="mb20">{{plan.productName}}</h4>
             <h2 [hidden]="plan.premium.intrestRateOfReturn">
-              <ng-template [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</ng-template>
-              <ng-template [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</ng-template>
+              <span [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</span>
+              <span [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</span>
               <br />
               <span class="text-small">
-                <ng-template [hidden]="frequencyFilter !== 'monthly'">{{ 'SUFFIX.PER_MONTH' | translate}}</ng-template>
-                <ng-template [hidden]="frequencyFilter !== 'yearly'">{{ 'SUFFIX.PER_YEAR' | translate}}</ng-template>
+                <span [hidden]="frequencyFilter !== 'monthly'">{{ 'SUFFIX.PER_MONTH' | translate}}</span>
+                <span [hidden]="frequencyFilter !== 'yearly'">{{ 'SUFFIX.PER_YEAR' | translate}}</span>
               </span>
             </h2>
             <h2 [hidden]="!plan.premium.intrestRateOfReturn">{{plan.premium.intrestRateOfReturn}}%
