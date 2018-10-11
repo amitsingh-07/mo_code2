@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../../shared/modal/tooltip-modal/tooltip-modal.component';
+import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { DirectService } from './../../direct/direct.service';
 import { WillWritingService } from './../will-writing.service';
 
@@ -60,12 +60,6 @@ export class CheckEligibilityComponent implements OnInit {
 
   save(form: any) {
     if (!form.valid) {
-      Object.keys(form.controls).forEach((key) => {
-        form.get(key).markAsDirty();
-      });
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.directService.currentFormError(form)['errorTitle'];
-      ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
     this.willWritingService.setEligibilityDetails(form.value);
@@ -89,6 +83,7 @@ export class CheckEligibilityComponent implements OnInit {
 
   goToNext(form) {
     if (this.save(form)) {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.TELL_US_ABOUT_YOURSELF]);
     }
   }
 

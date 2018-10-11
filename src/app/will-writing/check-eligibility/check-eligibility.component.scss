@@ -195,3 +195,14 @@
         flex-direction: column-reverse;
     }
 }
+
+.inline-error{
+    border-radius: 6px !important;
+    border: solid 2px #ff872f !important;
+    .duration{
+        color: #e57300 !important;
+    }
+    .btn-dropdown{
+        border-radius: none;
+    }
+}

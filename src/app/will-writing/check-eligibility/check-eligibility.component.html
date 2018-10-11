@@ -2,10 +2,10 @@
   <div class="content">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
-        <h2>Before You Proceed...</h2>
-        <h6 class="hidden-sm-md sub-title">we went you to know what your getting involved in.</h6>
+        <h2>Check Your Eligibility</h2>
+        <h6 class="hidden-sm-md sub-title">Let’s check if our will writing tool is suitable for you.</h6>
         <div class="banner-image">
-          <img src="assets/images/will-start.svg" />
+          <img src="assets/images/eligibility.jpg" />
         </div>
       </div>
       <div class="col-lg-6 col-md-6  col-sm-12 promocode">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="flex-col-8 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="singaporean" formControlName="singaporean">
-                    <div class="flex-row mb0">
+                    <div class="flex-row mb0" style="justify-content: space-between;">
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl2">
                           <input ngbButton type="radio" value="yes" id="eligibilityInpt1"> {{ 'Yes' | translate}}
@@ -41,7 +41,7 @@
                 </div>
                 <div class="flex-col-8 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="assets" formControlName="assets">
-                    <div class="flex-row mb0">
+                    <div class="flex-row mb0" style="justify-content: space-between;">
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl5">
                           <input ngbButton type="radio" (click) = "changeState($event)" value="yes" id="eligibilityInpt3"> {{ 'Yes' | translate}}
@@ -53,10 +53,10 @@
                         </label>
                       </div>
                     </div>
-                    <div class ="label" *ngIf="isAssets">
-                      As your assets may fall under a different jurisdiction, a simple will is not suitable for you. Do contact our partner legal services for a more comprehensive will writing service ______
-                    </div>
                   </div>
+                </div>
+                <div class ="label" *ngIf="isAssets">
+                  As your assets may fall under a different jurisdiction, a simple will is not suitable for you. Do contact our partner legal services for a more comprehensive will writing service ______
                 </div>
               </div>
               <div class="flex-row">
@@ -82,11 +82,12 @@
                   As you are covered under the muslim intestate law, you require a more comprehensive will writing service. Do contact our partner legal services ______ 
                 </div>
               </div>
+              <div>
+                <button type="button" [disabled]="!eligibilityForm.valid" (click)="goToNext(eligibilityForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                  id="eligibilityBtn2">{{ 'Continue' | translate}}</button>
+              </div>
             </div>
-            <div>
-              <button type="button" [disabled]="!eligibilityForm.valid" (click)="goToNext(eligibilityForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-                id="eligibilityBtn2">{{ 'Continue' | translate}}</button>
-            </div>
+            
           </form>
         </div>
 
