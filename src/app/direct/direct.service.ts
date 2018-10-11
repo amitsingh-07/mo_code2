@@ -319,4 +319,16 @@ export class DirectService {
     }
     return this.directFormData.srsApprovedPlans;
   }
+
+  setPremiumFrequencyFilter(data: string) {
+    this.directFormData.premiumFrequencyFilter = data;
+    this.commit();
+  }
+
+  getPremiumFrequencyFilter() {
+    if (!this.directFormData.premiumFrequencyFilter) {
+      this.directFormData.premiumFrequencyFilter = 'monthly';
+    }
+    return this.directFormData.premiumFrequencyFilter;
+  }
 }
