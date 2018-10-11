@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
-import { IAboutMe, IChild, IGuardian, ISpouse } from './will-writing-types';
+import { IAboutMe, IChild, IGuardian, ISpouse, IMyFamily } from './will-writing-types';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 
@@ -84,6 +84,17 @@ export class WillWritingService {
   setAboutMeInfo(data: IAboutMe) {
     this.willWritingFormData.aboutMe = data;
     this.commit();
+  }
+
+  /**
+   * get about me details.
+   * @returns about me details.
+   */
+  getMyFamilyInfo(): IMyFamily {
+    return {
+      spouse: this.getSpouseInfo(),
+      children: this.getChildInfo()
+    };
   }
 
   /**

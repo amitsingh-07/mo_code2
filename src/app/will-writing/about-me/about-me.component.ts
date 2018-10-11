@@ -63,13 +63,15 @@ export class AboutMeComponent implements OnInit {
       maritalStatus: [this.formValues.maritalStatus, [Validators.required]],
       noOfChildren: [this.formValues.noOfChildren, [Validators.required]]
     });
-    if (this.formValues.maritalStatus !== undefined) {
-      const index = this.maritalStatusList.findIndex((status) => status.value === this.formValues.maritalStatus);
-      this.selectMaritalStatus(index);
-    }
-    if (this.formValues.noOfChildren !== undefined) {
-      this.selectNoOfChildren(this.formValues.noOfChildren);
-    }
+    setTimeout(() => {
+      if (this.formValues.maritalStatus !== undefined) {
+        const index = this.maritalStatusList.findIndex((status) => status.value === this.formValues.maritalStatus);
+        this.selectMaritalStatus(index);
+      }
+      if (this.formValues.noOfChildren !== undefined) {
+        this.selectNoOfChildren(this.formValues.noOfChildren);
+      }
+    }, 100);
   }
 
   /**

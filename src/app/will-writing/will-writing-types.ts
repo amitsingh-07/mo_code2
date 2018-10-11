@@ -6,6 +6,11 @@ export interface IAboutMe {
     noOfChildren: number;
 }
 
+export interface IMyFamily {
+    spouse: ISpouse;
+    children: IChild[];
+}
+
 export interface ISpouse {
     name: string;
     nricNumber: string;
