@@ -26,6 +26,11 @@
         "SENT_VIA_EMAIL": "Your promocode will be sent via email!",
         "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
         "SENT_SUCCESS": "Your promo code has successfully been sent to your email."
+    },
+    "DISTRIBUTE_YOUR_ESTATE": {
+        "TITLE": "Distribute Your Estate",
+        "STEP_2": "Step 2",
+        "SUB_TITLE": "In the next step, you will decide who inherits which portion of your estate."
     }
     
 }
