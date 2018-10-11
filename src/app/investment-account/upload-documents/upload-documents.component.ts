@@ -215,8 +215,9 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorMessageHTML = errorMessage;
       ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
-      ref.componentInstance.primaryAction.subscribe(($e) => {
-        this.proceed(form);
+      ref.componentInstance.primaryAction.subscribe(() => {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+
       });
     } else {
       this.proceed(form);

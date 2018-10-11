@@ -19,6 +19,8 @@ import { SelectNationalityComponent } from './select-nationality/select-national
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
+import { UploadDocumentsLaterComponent } from './upload-documents-later/upload-documents-later.component';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -51,7 +53,8 @@ export function createTranslateLoader(http: HttpClient) {
     TaxInfoComponent,
     FinanicalDetailsComponent,
     UploadDocumentsComponent,
-    PersonalDeclarationComponent
+    PersonalDeclarationComponent,
+    UploadDocumentsLaterComponent
   ],
   providers: [CurrencyPipe]
 })

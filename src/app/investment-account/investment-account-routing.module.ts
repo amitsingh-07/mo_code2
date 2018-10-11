@@ -15,6 +15,8 @@ import { SelectNationalityComponent } from './select-nationality/select-national
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
+import { UploadDocumentsLaterComponent } from './upload-documents-later/upload-documents-later.component';
+
 const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
@@ -55,6 +57,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS,
     component: UploadDocumentsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_LATER,
+    component: UploadDocumentsLaterComponent,
     canActivate: [AuthGuard]
   },
   { path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
