@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TellUsAboutYourselfComponent implements OnInit {
 
-  constructor(private translate: TranslateService) { 
+  constructor(private translate: TranslateService) {
     this.translate.use('en');
   }
 
