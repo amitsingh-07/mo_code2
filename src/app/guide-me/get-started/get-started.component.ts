@@ -24,6 +24,7 @@ export class GetStartedComponent implements IPageComponent, OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
   }
 
   setPageTitle(title: string) {

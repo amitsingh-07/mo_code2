@@ -8,7 +8,7 @@ import { LoaderComponent } from '../../shared/components/loader/loader.component
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -105,38 +105,50 @@ export class UploadDocumentsComponent implements OnInit {
     }
   }
 
-  fileSelected(controlname, fileElem, thumbElem?) {
+  fileSelected(control, controlname, fileElem, thumbElem?) {
     const selectedFile: File = fileElem.target.files[0];
-    const fileSize: number = selectedFile.size  / 1024 / 1024; // in MB
+    const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
     if (fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size) {
-      switch (controlname) {
-        case 'NRIC_FRONT': {
-          this.formData.append('nricFront', selectedFile);
-          break;
-        }
-        case 'NRIC_BACK': {
-          this.formData.append('nricBack', selectedFile);
-          break;
-        }
-        case 'MAILING_ADDRESS': {
-          this.formData.append('mailingAddressProof', selectedFile);
-          break;
-        }
-        case 'RESIDENTIAL_ADDRESS': {
-          this.formData.append('residentialAddressProof', selectedFile);
-          break;
-        }
-        case 'PASSPORT': {
-          this.formData.append('passport', selectedFile);
-          break;
-        }
-      }
+      const payloadKey = this.getPayloadKey(controlname);
+      this.formData.append(payloadKey, selectedFile);
       if (thumbElem) {
         this.setThumbnail(thumbElem, selectedFile);
       }
     } else {
-      console.log('file size exceeded');
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE');
+      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE');
+      ref.componentInstance.errorTitle = errorTitle;
+      ref.componentInstance.errorDescription = errorDesc;
+      control.setValue('');
     }
+  }
+
+  getPayloadKey(controlname) {
+    let payloadKey;
+    switch (controlname) {
+      case 'NRIC_FRONT': {
+        payloadKey = 'nricFront';
+        break;
+      }
+      case 'NRIC_BACK': {
+        payloadKey = 'nricBack';
+        break;
+      }
+      case 'MAILING_ADDRESS': {
+        payloadKey = 'mailingAddressProof';
+        break;
+      }
+      case 'RESIDENTIAL_ADDRESS': {
+        payloadKey = 'residentialAddressProof';
+        break;
+      }
+      case 'PASSPORT': {
+        payloadKey = 'passport';
+        break;
+      }
+    }
+    return payloadKey;
   }
 
   uploadDocument() {

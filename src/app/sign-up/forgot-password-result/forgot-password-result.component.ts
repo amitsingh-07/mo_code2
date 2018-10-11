@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -22,7 +22,7 @@ export class ForgotPasswordResultComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    public headerService: HeaderService) {
+    public navbarService: NavbarService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });

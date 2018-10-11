@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  <div class="flex row-btn-bottom">
+  <div class="flex row-btn-bottom" [hidden]="isViewMode">
     <div class="flex-1 widget-btn-view mr10">
       <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
     </div>
@@ -50,7 +50,7 @@
       </button>
     </div>
   </div>
-  <div class="row mt20" *ngIf = "isDirect">
+  <div class="row mt20" *ngIf = "isDirect"  [hidden]="isViewMode">
       <div class="col-md-12 col-btn-bottom" [hidden]="!this.data.brochureLink">
         <button type="button" (click)="brochureDownload()" class="btn width100 brochure">Download Brochure (2MB)</button>
       </div>

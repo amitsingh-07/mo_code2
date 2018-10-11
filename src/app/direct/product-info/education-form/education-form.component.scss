@@ -1,6 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
-
+app-education-form {
 .form-group {
   &.direct-form {
     border: 1px solid $form-title-backgrnd-color;
@@ -76,4 +76,5 @@ fieldset {
     background: $form-title-mob-backgrnd-color;
     font-size: 16px;
   }
+}
 }
