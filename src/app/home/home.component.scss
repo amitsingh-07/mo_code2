@@ -585,8 +585,9 @@ body{
                 }
             }
             &.tertiary{
-                right:159px;
-                bottom:-105px;
+                right:160px;
+                bottom:-100px;
+                transform: rotate(3deg);
                 @include minPhabletmaxTablet{
                     bottom:-85px;
                     right:-60px;

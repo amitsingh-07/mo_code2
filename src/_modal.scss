@@ -443,14 +443,15 @@
 .popup-modal-dialog {
   max-height: 100% !important;
   z-index: 1040 !important;
-
+  overflow-y:hidden !important;
   @include minMobilemaxPhablet {
     width: calc(100% - 20px);
-    height: calc(100%);
+    height: auto;
     top: 50% !important;
     left: 50% !important;
     bottom: unset !important;
     transform: translate(-50%, -50%);
+    overflow-y:hidden !important;
   }
 
   .modal-dialog {
@@ -462,11 +463,16 @@
     padding: 0px;
     margin-bottom: 0px;
   }
-
+  .modal-content{
+    @include minMobilemaxPhablet{
+      height:100%;
+    }
+  }
   .modal-body {
     position: relative;
     display: block;
     width: 100%;
+    height: 100%;
     border-radius:6px !important;
     .modal-body-message {
       position: relative;
@@ -478,7 +484,7 @@
       align-content: center;
 
       @include minMobilemaxPhablet {
-        min-height: calc(100vh - 70px);
+        max-height:calc(100% - 50px);
       }
     }
 
@@ -510,6 +516,12 @@
         display: flex;
         justify-content: center;
         margin-top: 15px;
+        @include min300max325{
+          img {
+            max-width:300px;
+            width:100%;
+          }
+        }
       }
 
       .sub-text {
