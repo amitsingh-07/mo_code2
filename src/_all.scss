@@ -1052,39 +1052,35 @@ a.link-white {
 }
 
 .floating-footer {
-  background-color: #fff;
+  background-color: $white-color;
   border-radius: 6px;
-  padding: 5px 10px;
+  padding: 8px 20px 14px 20px;
   width: fit-content;
-  padding-bottom: 10px !important;
+  //padding-bottom: 10px !important;
   box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.18);
 
   @include allmobiles {
     padding-bottom: 0 !important;
     width: 100%;
     border-radius: 0;
-    height: 50px;
+    height: 53px;
   }
 }
 
 .selected-count {
   background-color: #ff872f;
-  width: 39px;
-  height: 26px;
-  padding: 0 15px;
+  padding: 2px 15px 6px 15px;
   border-radius: 13px;
-  font-family: Muli;
+  font-family: $muli-bold;
   font-size: 18px;
-  font-weight: bold;
   letter-spacing: -0.1px;
-  color: #ffffff;
-  padding-bottom: 3px;
+  color: $white-color;
   margin-right: 10px;
 
   @include allmobiles {
     float: left;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 10px;
+    //margin-top: 10px;
   }
 }
 
@@ -1098,7 +1094,7 @@ a.link-white {
 
   @include allmobiles {
     margin-right: 0;
-    padding-top: 13px;
+    padding-top: 10px;
     float: left;
   }
 }
@@ -1114,7 +1110,7 @@ a.link-white {
 
   @include allmobiles {
     float: right;
-    padding-top: 5px;
-    margin-right: 20px;
+    padding-top: 0;
+    margin-right: 10px;
   }
 }
