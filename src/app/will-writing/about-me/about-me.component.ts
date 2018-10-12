@@ -89,7 +89,7 @@ export class AboutMeComponent implements OnInit {
    * @param index - marital Status List index.
    */
   selectMaritalStatus(index: number) {
-    this.maritalStatus = this.maritalStatusList[index].value;
+    this.maritalStatus = this.maritalStatusList[index].text;
     this.aboutMeForm.controls['maritalStatus'].setValue(this.maritalStatus);
   }
 
