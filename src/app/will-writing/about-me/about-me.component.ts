@@ -5,7 +5,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IAboutMe } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -18,37 +17,28 @@ import { WillWritingService } from '../will-writing.service';
 })
 export class AboutMeComponent implements OnInit {
 
-  pageTitle: string;
-
   aboutMeForm: FormGroup;
   formValues: IAboutMe;
   maritalStatus = '';
   noOfChildren = '';
   maritalStatusList;
-  noOfChildrenList: number[] = Array(WILL_WRITING_CONFIG.MAX_CHILDREN_COUNT).fill(1).map((x, i) => x += i * 1);
+  noOfChildrenList: number[] = Array(WILL_WRITING_CONFIG.MAX_CHILDREN_COUNT).fill(0).map((x, i) => x += i * 1);
 
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
-    public navbarService: NavbarService,
     private router: Router,
     private translate: TranslateService,
     private willWritingService: WillWritingService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('WILL_WRITING.ABOUT_ME.TITLE');
       this.maritalStatusList = this.translate.instant('WILL_WRITING.ABOUT_ME.FORM.MARITAL_STATUS_LIST');
-      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
     this.buildAboutMeForm();
-  }
-
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
   }
 
   /**

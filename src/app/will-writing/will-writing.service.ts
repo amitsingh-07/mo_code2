@@ -93,7 +93,7 @@ export class WillWritingService {
   getMyFamilyInfo(): IMyFamily {
     return {
       spouse: this.getSpouseInfo(),
-      children: this.getChildInfo()
+      children: this.getChildrenInfo()
     };
   }
 
@@ -121,7 +121,7 @@ export class WillWritingService {
    * get children details.
    * @returns children details.
    */
-  getChildInfo(): IChild[] {
+  getChildrenInfo(): IChild[] {
     if (!this.willWritingFormData.children) {
       this.willWritingFormData.children = [] as IChild[];
     }
@@ -132,8 +132,16 @@ export class WillWritingService {
    * set children details.
    * @param data - children details.
    */
-  setChildInfo(data: IChild) {
+  setChildrenInfo(data: IChild) {
     this.willWritingFormData.children.push(data);
+    this.commit();
+  }
+
+  /**
+   * clear children details.
+   */
+  clearChildrebInfo() {
+    this.willWritingFormData.children = [];
     this.commit();
   }
 

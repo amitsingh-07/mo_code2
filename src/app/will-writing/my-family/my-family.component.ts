@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IMyFamily, ISpouse } from '../will-writing-types';
+import { IChild, IMyFamily, ISpouse } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
 
 @Component({
@@ -18,12 +18,10 @@ import { WillWritingService } from '../will-writing.service';
 })
 export class MyFamilyComponent implements OnInit {
 
-  private pageTitle;
-
   myFamilyForm: FormGroup;
   familyFormValues: IMyFamily;
   childrenCount: number;
-  childrenArr: FormArray;
+  childrenFormValues: IChild[];
 
   constructor(
     private config: NgbDatepickerConfig,
@@ -39,9 +37,6 @@ export class MyFamilyComponent implements OnInit {
     config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
-    this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('WILL_WRITING.MY_FAMILY.TITLE');
-    });
   }
 
   ngOnInit() {
@@ -53,20 +48,29 @@ export class MyFamilyComponent implements OnInit {
    */
   buildMyFamilyForm() {
     this.familyFormValues = this.willWritingService.getMyFamilyInfo();
+    this.childrenFormValues = this.familyFormValues.children;
     this.childrenCount = this.willWritingService.getAboutMeInfo().noOfChildren;
     this.myFamilyForm = this.formBuilder.group({
       name: [this.familyFormValues.spouse.name, [Validators.required]],
       nricNumber: [this.familyFormValues.spouse.nricNumber, [Validators.required]],
-      childrens: this.formBuilder.array([ this.buildChildrenForm() ])
+      childrens: this.formBuilder.array([this.buildChildrenForm(0)]),
+    });
+    for (let i = 1; i <= this.childrenCount - 1 ; i++) {
+      this.addChildrenForm(i);
+    }
+  }
+
+  buildChildrenForm(index: number): FormGroup {
+    return this.formBuilder.group({
+        name: [this.childrenFormValues.length > 0 ? this.childrenFormValues[index].name : '', [Validators.required]],
+        nricNumber: [this.childrenFormValues.length > 0 ? this.childrenFormValues[index].nricNumber : '', [Validators.required]],
+        dob: [this.childrenFormValues.length > 0 ? this.childrenFormValues[index].dob : '', [Validators.required]]
     });
   }
 
-  buildChildrenForm(): FormGroup {
-    return this.formBuilder.group({
-        name: ['', [Validators.required]],
-        nricNumber: ['', [Validators.required]],
-        dob: ['', [Validators.required]]
-    });
+  addChildrenForm(index: number): void {
+    const items: FormArray = this.myFamilyForm.get('childrens') as FormArray;
+    items.push(this.buildChildrenForm(index));
   }
 
   /**
@@ -84,7 +88,11 @@ export class MyFamilyComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.willWritingService.setAboutMeInfo(form.value);
+      this.willWritingService.setSpouseInfo({name: form.value.name, nricNumber: form.value.nricNumber});
+      this.willWritingService.clearChildrebInfo();
+      for (const children of form.value.childrens) {
+        this.willWritingService.setChildrenInfo(children);
+      }
       return true;
     }
   }
