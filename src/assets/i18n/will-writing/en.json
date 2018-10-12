@@ -1,31 +1,82 @@
 {
-    "COMMON": {
-     "LETS_GO": "Let's go",
-     "SEND_NOW": "Send now",
-     "GET_MY_CODE": "Get My Code"  
-    },
-    "TELL_US_YOURSELF": {
-        "STEP_1": "Step 1",
-        "TITLE": "Tell us yourself",
-        "SUB_TITLE": "In the next step, we will be gathering personal information about you."
-    },
-    "INTRODUCTION": {
-        "TITLE": "Before You Proceed...",
-        "SUB_TITLE": "we went you to know what your getting involved in.",
-        "WHY_WILL": "Why write a will with us?",
-        "WHY_WILL_CONTENT_1": "Will writing can be easy and straightforward. You don’t need a lawyer!",
-        "WHY_WILL_CONTENT_2": "Having a will ensures that your estate is distributed according to your wishes and avoids any potential disputes.",
-        "WHY_WILL_CONTENT_3": "MoneyOwl’s step-by-step will writing process is simple, easy and safe. With unlimited edits, you can edit your will whenever you need.",
-        "WHY_WILL_CONTENT_4": "To write a will, you should be…",
-        "WHY_WILL_CONTENT_4A": "- 21 years old and above",
-        "WHY_WILL_CONTENT_4B": "- Of sound mind",
-        "FAQ_LINK_TITLE": "Find out more in FAQ",
-        "OFFER_PERIOD": "Free for limited time period!",
-        "NO_PROMOCODE": "No Promocode? ",
-        "GET_NOW": "Get now!",
-        "SENT_VIA_EMAIL": "Your promocode will be sent via email!",
-        "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
-        "SENT_SUCCESS": "Your promo code has successfully been sent to your email."
+    "WILL_WRITING": {
+        "COMMON": {
+            "LETS_GO": "Let's go",
+            "SEND_NOW": "Send now",
+            "GET_MY_CODE": "Get My Code",  
+            "STEP_1": "Step 1",
+            "STEP_2": "Step 2",
+            "STEP_3": "Step 3",
+            "ADD_GUARDIAN": "Add Guardian"
+        },
+        "INTRODUCTION": {
+            "TITLE": "Before You Proceed...",
+            "SUB_TITLE": "we went you to know what your getting involved in.",
+            "WHY_WILL": "Why write a will with us?",
+            "WHY_WILL_CONTENT_1": "Will writing can be easy and straightforward. You don’t need a lawyer!",
+            "WHY_WILL_CONTENT_2": "Having a will ensures that your estate is distributed according to your wishes and avoids any potential disputes.",
+            "WHY_WILL_CONTENT_3": "MoneyOwl’s step-by-step will writing process is simple, easy and safe. With unlimited edits, you can edit your will whenever you need.",
+            "WHY_WILL_CONTENT_4": "To write a will, you should be…",
+            "WHY_WILL_CONTENT_4A": "- 21 years old and above",
+            "WHY_WILL_CONTENT_4B": "- Of sound mind",
+            "FAQ_LINK_TITLE": "Find out more in FAQ",
+            "OFFER_PERIOD": "Free for limited time period!",
+            "NO_PROMOCODE": "No Promocode? ",
+            "GET_NOW": "Get now!",
+            "SENT_VIA_EMAIL": "Your promocode will be sent via email!",
+            "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
+            "SENT_SUCCESS": "Your promo code has successfully been sent to your email."
+        },
+        "TELL_US_YOURSELF": {
+            "TITLE": "Tell us yourself",
+            "SUB_TITLE": "In the next step, we will be gathering personal information about you."
+        },
+        "ABOUT_ME": {
+            "TITLE": "About Me",
+            "SUB_TITLE": "Help us verify your identity as the testator (maker) of the will.",
+            "FORM": {
+                "NAME": "My name is",
+                "SUB_LBL": "(as in NRIC)",
+                "NRIC": "NRIC",
+                "NUMBER": " number is",
+                "I_AM_A": "I am a",
+                "AND": "and",
+                "WITH": "with",
+                "CHILDREN": "children",
+                "MARITAL_STATUS_LIST": [{"text":"single", "value":"single"},{"text":"married", "value":"married"}]
+            }
+        },
+        "MY_FAMILY": {
+            "TITLE": "My Family",
+            "SUB_TITLE": "Tell us more about your family.",
+            "FORM": {
+                "MY_SPOUSE": "My Spouse",
+                "MY_CHILD": "My Child",
+                "NAME": "My name is (as in NRIC)",
+                "NRIC": "NRIC number is",
+                "DOB": "Date of Birth"
+            }
+        },
+        "MY_CHILDS_GUARDIAN": {
+            "TITLE": "My Child's Guardian",
+            "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
+            "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
+            "FORM_TITLE": "I would like my guardian to be…",
+            "FORM": {
+                "MY_SPOUSE": "My Spouse",
+                "MY_CHILD": "My Child",
+                "NAME": "My name is (as in NRIC)",
+                "NRIC": "NRIC number is",
+                "DOB": "Date of Birth"
+            }
+        },
+        "DISTRIBUTE_YOUR_ESTATE": {
+            "TITLE": "Distribute Your Estate",
+            "SUB_TITLE": "In the next step, you will decide who inherits which portion of your estate."
+        },
+        "APPOINT_YOUR_EXECUTOR_TRUSTEE": {
+            "TITLE": "Appoint Your Executor & Trustee",
+            "SUB_TITLE": "In the next step, you will appoint someone to manage your finances and carry out the wishes of your will."
+        } 
     }
-    
 }

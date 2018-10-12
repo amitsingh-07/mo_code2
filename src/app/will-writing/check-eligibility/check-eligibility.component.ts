@@ -18,7 +18,7 @@ export class CheckEligibilityComponent implements OnInit {
   religion = '';
   isAssets = false;
   isMuslim = false;
-  religionList = ['Muslim', 'Hindu', 'Christian'];
+  religionList = ['Christian', 'Buddhist', 'Muslim', 'Hindu', 'None', 'Others'];
   constructor(private formBuilder: FormBuilder, private willWritingService: WillWritingService,
               private router: Router, private modal: NgbModal, private directService: DirectService) { }
 
@@ -28,13 +28,10 @@ export class CheckEligibilityComponent implements OnInit {
     this.eligibilityForm = this.formBuilder.group({
       singaporean: [this.formValues.singaporean, Validators.required],
       assets: [this.formValues.assets, Validators.required],
-      religion : [this.formValues.religion]
+      religion : [this.formValues.religion, Validators.required]
     });
     if (this.formValues.religion !== undefined) {
       this.selectReligion(this.formValues.religion);
-    }
-    if (this.formValues.assets === 'no') {
-      this.isAssets = true;
     }
 
   }
@@ -42,20 +39,10 @@ export class CheckEligibilityComponent implements OnInit {
   selectReligion(selectedReligion) {
     this.religion = selectedReligion;
     this.eligibilityForm.controls['religion'].setValue(this.religion);
-    if (selectedReligion === 'Muslim') {
-      this.isMuslim = true;
-    } else {
-      this.isMuslim = false;
-    }
   }
 
   changeState(event) {
     console.log(event['target'].value);
-    if (event && event['target'].value === 'no') {
-      this.isAssets = true;
-    } else {
-      this.isAssets = false;
-    }
   }
 
   save(form: any) {

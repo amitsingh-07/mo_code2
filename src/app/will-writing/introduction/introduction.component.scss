@@ -93,6 +93,7 @@
 .mask {
     background-color: #2d8289;
     font-size: 22px;
+    font-family: $muli-bold;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     padding: 15px 0;
@@ -102,6 +103,7 @@
     margin-top: 70px;
     @include allmobiles {
         margin-top: 25px;
+        padding: 0;
     }
     .FAQ {
         margin-top: 16px;

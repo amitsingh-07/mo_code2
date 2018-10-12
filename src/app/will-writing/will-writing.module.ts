@@ -17,6 +17,7 @@ import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.
 import { MyFamilyComponent } from './my-family/my-family.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { WillWritingRoutingModule } from './will-writing-routing.module';
+import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -51,7 +52,8 @@ export function createTranslateLoader(http: HttpClient) {
     IntroductionComponent,
     MyChildGuardianComponent,
     MyFamilyComponent,
-    TellUsAboutYourselfComponent
+    TellUsAboutYourselfComponent,
+    AppointYourExecutorTrusteeComponent
   ]
 })
 export class WillWritingModule { }

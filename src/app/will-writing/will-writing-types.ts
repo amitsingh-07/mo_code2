@@ -1,26 +1,31 @@
 export interface IAboutMe {
     name: string;
-    nric: string;
+    nricNumber: string;
     gender: string;
     maritalStatus: string;
     noOfChildren: number;
 }
 
+export interface IMyFamily {
+    spouse: ISpouse;
+    children: IChild[];
+}
+
 export interface ISpouse {
     name: string;
-    nric: string;
+    nricNumber: string;
 }
 
 export interface IChild {
     name: string;
-    nric: string;
+    nricNumber: string;
     dob: string;
 }
 
 export interface IGuardian {
     name: string;
     relationship: string;
-    nric: string;
+    nricNumber: string;
 }
 
 export interface IEligibility {
