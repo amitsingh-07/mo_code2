@@ -78,6 +78,13 @@
         "APPOINT_YOUR_EXECUTOR_TRUSTEE": {
             "TITLE": "Appoint Your Executor & Trustee",
             "SUB_TITLE": "In the next step, you will appoint someone to manage your finances and carry out the wishes of your will."
-        } 
+        },
+        "ELIGIBILITY": {
+            "TITLE": "Check Your Eligibility",
+            "SUB_TITLE": "Let’s check if our will writing tool is suitable for you.",
+            "RELIGION_LIST": [{"text":"Christian", "value":"christian"}, { "text":"Buddhist", "value":"buddhist"}, { "text":"Muslim", "value":"muslim"}, { "text":"Hindu", "value":"hindu"}, { "text":"None", "value":"none"}, {"text":"Others", "value":"others"}],
+            "ARE_YOU_SINGAPOREAN":"Are you a Singaporean?",
+            "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?"
+        }
     }
 }

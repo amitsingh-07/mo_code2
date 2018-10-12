@@ -1,7 +1,10 @@
-import { IAboutMe, IChild, IGuardian, ISpouse } from './will-writing-types';
+import { IAboutMe, IChild, IGuardian, ISpouse, IEligibility } from './will-writing-types';
 
 export class WillWritingFormData {
-    // about me info
+
+    // eligibility info
+    eligibility: IEligibility;
+        // about me info
     aboutMe: IAboutMe;
 
     // spouse info

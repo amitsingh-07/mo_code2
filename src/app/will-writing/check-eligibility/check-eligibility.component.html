@@ -1,3 +1,96 @@
-<p>
-  check-eligibility works!
-</p>
+<div class="mobile-header hidden-lg">
+  <div class="back"></div>
+  <div class="autofill-text">{{ 'WILL_WRITING.ELIGIBILITY.TITLE' | translate}}</div>
+</div>
+<div class="container-fluid max-width--1024">
+  <div class="content">
+    <div class="flex-row">
+      <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
+        <h2 class="hidden-sm-md">{{ 'WILL_WRITING.ELIGIBILITY.TITLE' | translate}}</h2>
+        <h6 class="sub-title">{{ 'WILL_WRITING.ELIGIBILITY.SUB_TITLE' | translate}}</h6>
+        <div class="banner-image hidden-sm-md">
+          <img src="assets/images/eligibility.jpg" />
+        </div>
+        <div class="mobile-logo mb5 hidden-lg"><img src="assets/images/will-writing/owl-mobile.svg" /></div>
+      </div>
+      <div class="col-lg-6 col-md-6  col-sm-12 promocode">
+        <div class="doselfCheck setpOneForm">
+          <form name="eligibilityForm" id="eligibilityForm" [formGroup]="eligibilityForm" class="flex-row">
+            <div class="form-group direct-form">
+              <div class="flex-row">
+                <div class="flex-col-4">
+                  <label class="label" for="name" id="eligibilityLbl1">{{ 'WILL_WRITING.ELIGIBILITY.ARE_YOU_SINGAPOREAN' | translate}}</label>
+                </div>
+                <div class="flex-col-8 direct-form-grp">
+                  <div class="btn-group--toggle" ngbRadioGroup name="singaporean" formControlName="singaporean">
+                    <div class="flex-row mb0" style="justify-content: space-between;">
+                      <div>
+                        <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl2">
+                          <input ngbButton type="radio" value="yes" id="eligibilityInpt1"> {{ 'COMMON.LBL_YES' | translate}}
+                        </label>
+                      </div>
+                      <div>
+                        <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl3">
+                          <input ngbButton type="radio" value="no" id="eligibilityInpt2" > {{ 'COMMON.LBL_NO' | translate}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-4">
+                  <label class="label" (click)="openModal()" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
+                    translate}}</label>
+                    <span class="help-icon" (click)="showPremiumWaiverModal()"></span>
+                </div>
+                <div class="flex-col-8 direct-form-grp">
+                  <div class="btn-group--toggle" ngbRadioGroup name="assets" formControlName="assets">
+                    <div class="flex-row mb0" style="justify-content: space-between;">
+                      <div>
+                        <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl5">
+                          <input ngbButton type="radio" (click) = "changeState($event)" value="yes" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
+                        </label>
+                      </div>
+                      <div>
+                        <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl6" [ngClass]="{'inline-error': isAssets}">
+                          <input ngbButton type="radio" (click) = "changeState($event)" value="no" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div class="flex-col-4">
+                  <label class="label with-help-icon" for="name" id="eligibilityLbl7">{{ 'Religion' | translate}}</label>
+                </div>
+                <div class="flex-col-8 direct-form-grp">
+                  <div class="dropdown-control">
+                    <div ngbDropdown id="religionDropDown" [ngClass]="{'inline-error': isMuslim}">
+                      <button type="button" class="btn btn-dropdown" id="religionDropDown" ngbDropdownToggle>
+                        <span class="duration">{{religion == '' ? 'Select' : religion}}</span>
+                      </button>
+                      <div ngbDropdownMenu aria-labelledby="religionDropDown">
+                        <button class="dropdown-item" (click)="selectReligion('')">{{'Select' | translate}}</button>
+                        <button type="button" class="dropdown-item" *ngFor="let religion of religionList" (click)="selectReligion(religion.value)">
+                          {{religion.text}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button type="button" [disabled]="!eligibilityForm.valid" (click)="goToNext(eligibilityForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                  id="eligibilityBtn2">{{ 'LABEL.CONTINUE' | translate}}</button>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
