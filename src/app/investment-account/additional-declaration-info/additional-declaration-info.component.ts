@@ -6,6 +6,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 @Component({
   selector: 'app-additional-declaration-info',
   templateUrl: './additional-declaration-info.component.html',
@@ -29,5 +30,6 @@ export class AdditionalDeclarationInfoComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   goNext() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_STEP1]);
 }
 }

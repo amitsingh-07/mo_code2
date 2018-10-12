@@ -224,5 +224,22 @@ letter-spacing: -0.3px;
     }
 
   }
+  .inline-error{
+    .btn{
+      &.btn-secondary{
+        background-color:#ff872f !important;
+      }  
+    }    
+  }
+  
+    .inline-error-inv {
+      color: $inline-error-border-color;
+      border: 1px solid $inline-error-border-color !important;
+      color: $inline-error-border-color;
+  
+      input {
+        color: $inline-error-border-color !important;
+      }
+    }
 
 }

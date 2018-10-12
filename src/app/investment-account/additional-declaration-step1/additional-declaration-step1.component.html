@@ -6,79 +6,197 @@
   </div>
   <div class="container-fluid">
     <form name="addInfoForm" [formGroup]="addInfoForm">
-  <!-- PEP question -->
-  <div class="flex-row mb10">
-    <div class="flex-col-11 mt15">
-      <div class="tin_question_text" id="pep_Info_question-one">{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
+      <!-- PEP question -->
+      <div class="flex-row mb10">
+        <div class="flex-col-11 mt15">
+          <div class="tin_question_text" id="pep_Info_question-one">{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
+          </div>
+        </div>
+        <div class="flex-col-1">
+          <i class="tooltip-icon" id="pep_Info_myFinancialHelpIcon" (click)="showHelpModalPep()"></i>
+        </div>
       </div>
-    </div>
-    <div class="flex-col-1">
-      <i class="tooltip-icon" id="myFinancialHelpIcon" (click)="showHelpModalPep()"></i>
-    </div>
-  </div>
-  <!-- Button part -->
-  <div class="flex-row">
-    <div class="flex-col-12 mb10">
-      <div class="btn-group--toggle" ngbRadioGroup name="radioPep" formControlName="radioPep" >
+      <!-- Button part -->
+      <div class="flex-row">
+        <div class="flex-col-12 mb10">
+          <div class="btn-group--toggle" ngbRadioGroup name="radioPep" formControlName="radioPep">
+            <div class="flex-row">
+              <div class="flex-col-6">
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                  <input ngbButton type="radio" id="pep_Info_tin_yes" value="yes"> Yes
+                </label>
+              </div>
+              <div class="flex-col-6">
+
+                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                  <input ngbButton type="radio" id="pep_Info_tin_no" disabled value="no">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Provide details of PEP  -->
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="tin_question_text" id="pep_Info_question-one">{{ 'ADDITIONAL_DECLARATION.PEP_INFO' | translate}}
+          </div>
+        </div>
+      </div>
+      <!-- Starting the actual form design  -->
+
+      <div class="form-group">
+        <!-- first name -->
         <div class="flex-row">
-          <div class="flex-col-6">
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-              <input ngbButton type="radio" id="tin_yes"  value="yes"> Yes
-            </label>
+          <div class="flex-col-5">
+            <label for="fName" id="pep_Info_invPersInfoLbl1">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
           </div>
-          <div class="flex-col-6">
-
-            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-              <input ngbButton type="radio" id="tin_no" disabled value="no" >No</label>
+          <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.fName)}">
+            <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #fName formControlName="fName">
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Provide details of PEP  -->
-  <div class="flex-row">
-    <div class="flex-col-12">
-      <div class="tin_question_text" id="pep_Info_question-one">Please provide the following details for the PEP
-      </div>
-    </div>
-  </div>
-  <!-- Starting the actual form design  -->
-
-  <div class="form-group">
-    <!-- first name -->
-    <div class="flex-row">
-      <div class="flex-col-5">
-        <label for="fName" id="invPersInfoLbl1" >First Name</label>
-      </div>
-      <div class="flex-col-7">
-        <input type="text"  id="invPersInfoInpt1" class="form-control" #fName formControlName="fName">
-      </div>
-    </div>
-
-    <!-- last name -->
-    <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="lName" id="invPersInfoLbl1" >Last Name</label>
+        <!-- last name -->
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label for="lName" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
+          </div>
+          <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.lName)}">
+            <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #lName formControlName="lName">
+          </div>
         </div>
-        <div class="flex-col-7">
-          <input type="text"  id="invPersInfoInpt1" class="form-control" #lName formControlName="lName">
+
+        <!-- company name -->
+        <div class="flex-row">
+          <div class="flex-col-5">
+            <label for="cName" id="pep_Info_invPersInfoLbl1">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}</label>
+          </div>
+          <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}"
+          >
+            <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #cName formControlName="cName">
+          </div>
         </div>
+
+        <!-- Occupation -->
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="employement_details_status" id="pep_Info_employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.OCCUPATION'
+                | translate}}
+              </label>
+            </div>
+            <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepoccupation)}">
+              <div class="dropdown-control">
+                <div ngbDropdown>
+                  <button class="btn btn-dropdown without-border grey" id="pep_Info_employement_details_status-drpdown" ngbDropdownToggle>
+                    {{selectedOccupation| titlecase}}
+                  </button>
+                  <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                    <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue(option.occupation)"
+                      id="pep_Info_residentialAddress-country-option-{{i}}">{{ option.occupation | titlecase}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COUNTRY -->
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="residentialAddress-mailcountry-drpdown" id="pep_Info_residentialAddress-mailcountry-lbl">{{ 'EMPLOYMENT_DETAILS.COUNTRY'
+                | translate}}</label>
+            </div>
+            <div class="flex-col-7">
+              <div class="dropdown-control">
+                <div ngbDropdown>
+                  <button class="btn btn-dropdown without-border grey" id="pep_Info_residentialAddress-country-drpdown" ngbDropdownToggle>{{selectedCountry}}
+                  </button>
+                  <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                    <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue(option)" id="pep_Info_residentialAddress-country-option-{{i}}">{{option}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POSTAL CODE -->
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="residentialAddress-mailpostalcode-drpdown" id="residentialAddress-mailpostalcode-lbl">{{ 'EMPLOYMENT_DETAILS.POSTAL_CODE'
+                | translate}}</label>
+            </div>
+            <div class="flex-col-7" >
+
+              <div class="form-control with-button">
+                <div class="row">
+                  <div class="col-7">
+                    <input type="text" class="input-control grey" formControlName="pepPostalCode" id="pep_Info_residentialAddress-mailpostalcode-txt"/>
+                  </div>
+                  <div class="col-5">
+                    <button type="button" (click)="retrieveAddress(addInfoForm.controls.pepPostalCode.value, addInfoForm.controls.pepAddress1, addInfoForm.controls.pepAddress2)"
+                      class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADDRESS 1 -->
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="residentialAddress-mailaddress1-txt" id="residentialAddress-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
+                | translate}}</label>
+            </div>
+            <div class="flex-col-7">
+              <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepAddress1)}">
+                <input type="text" class="input-control grey" formControlName="pepAddress1" id="pep_Info_residentialAddress-mailaddress1-txt" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ADDRESS 2 -->
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="residentialAddress-mailaddress2-txt" id="pep_Info_residentialAddress-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2'
+                | translate}}</label>
+            </div>
+            <div class="flex-col-7">
+              <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepAddress2)}">
+                <input type="text" class="input-control grey" formControlName="pepAddress2" id="pep_Info_residentialAddress-mailaddress2-txt" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNIT NO -->
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="residentialAddress-mailunitno-txt" id="pep_Info_residentialAddress-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO'
+                | translate}}</label>
+            </div>
+            <div class="flex-col-7">
+              <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.pepUnitNo)}">
+                <input type="text" class="input-control grey" formControlName="pepUnitNo" id="pep_Info_residentialAddress-mailunitno-txt" />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <!-- company name -->
-    <div class="flex-row">
-        <div class="flex-col-5">
-          <label for="cName" id="invPersInfoLbl1" >Company Name</label>
-        </div>
-        <div class="flex-col-7">
-          <input type="text"  id="invPersInfoInpt1" class="form-control" #cName formControlName="cName">
-        </div>
-      </div>
-    
+      <button type="button" id="pep_Info_personalInforNextBtn" (click)="goToNext(addInfoForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+        >{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
+    </form>
   </div>
 
-</form>
-  </div>
-
-  </div>
+</div>

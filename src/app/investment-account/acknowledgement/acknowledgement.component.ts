@@ -33,7 +33,7 @@ export class AcknowledgementComponent implements OnInit {
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-      this.pageTitle = 'Acknowledgement';
+      this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -45,6 +45,10 @@ export class AcknowledgementComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.footerService.setFooterVisibility(false);
+  }
+  goNext() {
+    const pepData = this.investmentAccountService.getPepData();
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
   }
 
 }
