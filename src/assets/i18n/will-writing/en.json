@@ -66,6 +66,10 @@
                 "NRIC": "NRIC number is",
                 "DOB": "Date of Birth"
             }
+        },
+        "DISTRIBUTE_YOUR_ESTATE": {
+            "TITLE": "Distribute Your Estate",
+            "SUB_TITLE": "In the next step, you will decide who inherits which portion of your estate."
         }
     }
 }
