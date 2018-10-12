@@ -494,7 +494,6 @@
       position: relative;
       display: flex;
       width: 100%;
-      height: 100%;
       justify-content: center;
       align-items: center;
       flex-direction: column;
@@ -610,6 +609,31 @@
     overflow-y: auto;
     @include allmobiles {
       height: 100vh;
+    }
+  }
+}
+
+.sign-up-terms-modal-dialog{
+  @include minMobilemaxPhablet{
+    max-height:unset !important;
+    height:100%;
+    margin:0px;
+  }
+  .modal-dialog {
+    width:100%;
+    max-width: 780px;
+    height:100%;
+    max-height: 560px;
+    @include tablet{
+      max-width:600px;
+    }
+    @include minPhabletmaxTablet{
+      max-width:500px;
+    }
+    @include minMobilemaxPhablet{
+      max-width:unset;
+      max-height:unset;
+      margin:0px !important;
     }
   }
 }

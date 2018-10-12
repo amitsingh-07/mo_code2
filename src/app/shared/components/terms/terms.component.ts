@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { NavbarService } from './../../navbar/navbar.service';
 
 @Component({
   selector: 'app-terms',
@@ -10,10 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TermsComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal, private translate: TranslateService) {
+  constructor(public navbarService: NavbarService, public activeModal: NgbActiveModal, private translate: TranslateService) {
     this.translate.use('en');
   }
   ngOnInit() {
   }
-
 }
