@@ -1,13 +1,14 @@
 <div class="personal-info">  
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="row">
+      <div class="flex-row">
         <div class="col-lg-7 col-md-7 col-12">
           <div class="heading">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
           <div class="autofill-link">
-            <div class="autofill-text">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
+            <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
             <div class="sub-title">{{ 'WILL_WRITING.ABOUT_ME.SUB_TITLE' | translate}}</div>
             <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/about-me.svg" /></div>
+            <div class="autofill-logo mobile-logo"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-12">
@@ -59,7 +60,7 @@
                 <div class="flex-col-5">
                   <label for="name" id="aboutMeFormLbl6">{{ 'WILL_WRITING.ABOUT_ME.FORM.AND' | translate}}</label>
                 </div>
-                <div class="flex-col-7 direct-form-grp">
+                <div class="flex-col-7">
                   <div class="dropdown-control">
                       <div ngbDropdown id="maritalStatusDropDown">
                         <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
@@ -80,7 +81,7 @@
                 <div class="flex-col-5">
                   <label for="name" id="aboutMeFormLbl7">{{ 'WILL_WRITING.ABOUT_ME.FORM.WITH' | translate}}</label>
                 </div>
-                <div class="flex-col-7 direct-form-grp">
+                <div class="flex-col-7">
                   <div class="dropdown-control">
                       <div ngbDropdown id="noOfChildrenDropDown">
                         <button type="button" class="btn btn-dropdown width100" id="dropdownNoOfChildren" ngbDropdownToggle>

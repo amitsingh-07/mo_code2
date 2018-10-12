@@ -3,6 +3,11 @@
 
 .container-fluid {
     background-color: #fff;
+    padding: 50px 60px 65px;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
 }
 .aboutMe {
     background-color: #fff;
@@ -27,7 +32,6 @@
         margin-bottom: 19px;
           
     }
-      
 }
 .heading {
     font-family: $muli;
@@ -36,7 +40,13 @@
     letter-spacing: -0.2px;
     color: #00a7a7;
 }
-
+.autofill-link {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
 .autofill-text{
     font-family: $muli;
     font-size: 36px;
@@ -52,4 +62,12 @@
     line-height: 1.22;
     letter-spacing: -0.2px;
     color: #00a7a7;
+}
+.mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
 }
