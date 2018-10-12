@@ -156,5 +156,12 @@
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
     "BACK_TO_DASHBOARD": "Back To Dashboard"
 
+  },
+  "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
+    "TITLE": "Additional Declarations",
+    "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
+    "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
+
   }
 }

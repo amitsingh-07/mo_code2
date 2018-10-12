@@ -21,6 +21,8 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 
 import { UploadDocumentsLaterComponent } from './upload-documents-later/upload-documents-later.component';
 
+import { AdditionalDeclarationScreen2Component } from './additional-declaration-screen2/additional-declaration-screen2.component';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -54,7 +56,8 @@ export function createTranslateLoader(http: HttpClient) {
     FinanicalDetailsComponent,
     UploadDocumentsComponent,
     PersonalDeclarationComponent,
-    UploadDocumentsLaterComponent
+    UploadDocumentsLaterComponent,
+    AdditionalDeclarationScreen2Component
   ],
   providers: [CurrencyPipe]
 })

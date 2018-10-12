@@ -17,6 +17,8 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 
 import { UploadDocumentsLaterComponent } from './upload-documents-later/upload-documents-later.component';
 
+import { AdditionalDeclarationScreen2Component } from './additional-declaration-screen2/additional-declaration-screen2.component';
+
 const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
@@ -66,6 +68,10 @@ const routes: Routes = [
   },
   { path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
     component: PersonalDeclarationComponent,
+     canActivate: [AuthGuard]
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONAL_DECLARATION_SCREEN_2,
+    component: AdditionalDeclarationScreen2Component,
      canActivate: [AuthGuard]
   }
 ];

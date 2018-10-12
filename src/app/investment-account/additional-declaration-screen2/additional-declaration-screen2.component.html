@@ -1,0 +1,181 @@
+<div class="additional_declaration-screen">
+
+  <div class="step-indicator-container">
+    <div class="container-fluid">
+      <app-step-indicator [count]="2" [activeStepIndex]="1"></app-step-indicator>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="content">
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12">
+          <form id="additional_declaration-screen_address_form" name="additional_declaration-screen">
+
+
+            <div class="flex-row mb10">
+              <div class="flex-col-5">
+                <div class="form-group-with-bg--content-label" for="name">Expected Number Of Transactions</div>
+              </div>
+              <div class="flex-col-7">
+
+                <div class="form-control form-control-right">
+
+                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome value="0">
+                  <i class="right">/year</i>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-row mb10">
+              <div class="flex-col-5">
+                <div class="form-group-with-bg--content-label" for="name">Expected Amount Per Transaction</div>
+              </div>
+              <div class="flex-col-7">
+
+                <div class="form-control form-control-right">
+
+                  <input type="text" class="input-control" appCurrencyInput maxLength="4" #otherIncome value="0">
+                  <i class="right">$</i>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="employement_details_status" id="employement_details_status-lbl"> Source Of Investment Funds
+                  </label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                        {{sourse ? sourse:'select Sourse' | titlecase}}
+
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource(sourceObj)"
+                          id="residentialAddress-country-option-{{i}}">{{sourceObj.name | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- one type -->
+
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5 mb10">
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">Please Elaborate
+
+                  </div>
+                </div>
+                <div class="flex-col-12">
+                  <div class="form-control">
+
+                    <div name="totalAssets">
+                      <input class="input-control" type="text" id="myFinancialTotalAssetInput" appCurrencyInputPortfolio maxLength="7" #totalAssets>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- two type -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-12 mb10">
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">Please indicate the employer that contributed most to your savings:
+
+                  </div>
+                </div>
+                <div class="flex-col-12">
+                  <div class="form-control">
+
+                    <div name="totalAssets">
+                      <input class="input-control" type="text" id="myFinancialTotalAssetInput" appCurrencyInputPortfolio maxLength="7" #totalAssets>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- three type -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-12 mb10">
+                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">Please indicate from whom you inherited the wealth and the reason for receiving the wealth:
+
+                  </div>
+                </div>
+                <div class="flex-col-12">
+                  <div class="form-control">
+
+                    <div name="totalAssets">
+                      <input class="input-control" type="text" id="myFinancialTotalAssetInput" appCurrencyInputPortfolio maxLength="7" #totalAssets>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  four type -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="employement_details_status" id="employement_details_status-lbl"> Source Of Investment Funds
+                  </label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                        {{sourse ? sourse:'select Sourse' | titlecase}}
+
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource(sourceObj)"
+                          id="residentialAddress-country-option-{{i}}">{{sourceObj.name | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="employement_details_status" id="employement_details_status-lbl"> Source Of Investment Funds
+                  </label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                        select Sourse
+
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                        <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource(sourceObj)"
+                          id="residentialAddress-country-option-{{i}}">{{sourceObj.name | titlecase}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!-- continue button -->
+            <button type="button" id="additional_declaration_tBtn" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
