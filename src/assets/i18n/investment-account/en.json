@@ -161,13 +161,25 @@
     "WHATS_THE_RISK": "What's the risk?",
     "PROJECTED_VALUE": "Projected Value",
     "IN": "in",
-    "YEAR": "year",
+    "YEAR": "Year",
     "YEARS": "Years",
     "CHECK_FEES": "Check out our competitive fees.",
     "ONE_TIME_INVESTMENT": "one-time investment",
     "AND": "&",
     "MONTHLY_INVESTMENT": "monthly investment",
     "FOR": "for",
-    "I_WANT_TO_START_INVEST": "I Want To Start Investing"
+    "I_WANT_TO_START_INVEST": "I Want To Start Investing",
+    "EDIT_INVESTMENT": {
+      "TITLE": "My Investment Portfolio",
+      "INVESTMENT_PERIOD": "Investment Period",
+      "ONE_TIME_INVESTMENT": "One-time Investment",
+      "MONTHLY_INVESTMENT": "Monthly Investment"
+    },
+    "MODAL": {
+      "PORTFOLIO_ASSETS": {
+        "TITLE": "Portfolio Assets",
+        "MESSAGE": "These assets that we have selected for you are only available to MoneyOwl customers! The only other investors allowed to purchase these types of asset classes are big fund houses such as xxx"
+      }
+    }
   }
 }

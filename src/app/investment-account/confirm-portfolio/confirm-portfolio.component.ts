@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NavigationStart, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
@@ -21,6 +21,9 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+import {
+  EditInvestmentModalComponent
+} from './edit-investment-modal/edit-investment-modal.component';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -151,15 +154,37 @@ export class ConfirmPortfolioComponent implements OnInit {
     }
   }
 
-  goToNext(form) {
-    if (!form.valid) {
-      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE');
-      const errorMessage = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE');
+  showPortfolioAssetModal() {
+      const errorTitle = this.translate.instant('CONFIRM_PORTFOLIO.MODAL.PORTFOLIO_ASSETS.TITLE');
+      const errorMessage = this.translate.instant('CONFIRM_PORTFOLIO.MODAL.PORTFOLIO_ASSETS.MESSAGE');
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.imgType = 2;
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorMessageHTML = errorMessage;
-      ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
-    } else {
-    }
   }
+
+  openEditInvestmentModal() {
+    const ref = this.modal.open(EditInvestmentModalComponent, {
+      centered: true
+    });
+    ref.componentInstance.investmentData = {
+      investmentPeriod: 5,
+      oneTimeInvestment: 12000,
+      monthlyInvestment: 1000
+    };
+    ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
+      // update form data
+      ref.close();
+    });
+    this.dismissPopup(ref);
+  }
+
+  dismissPopup(ref: NgbModalRef) {
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        ref.close();
+      }
+    });
+  }
+
 }

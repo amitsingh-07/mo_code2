@@ -21,6 +21,7 @@ import { ResidentialAddressComponent } from './residential-address/residential-a
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { EditInvestmentModalComponent } from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -56,7 +57,11 @@ export function createTranslateLoader(http: HttpClient) {
     FinanicalDetailsComponent,
     UploadDocumentsComponent,
     PersonalDeclarationComponent,
-    ConfirmPortfolioComponent
+    ConfirmPortfolioComponent,
+    EditInvestmentModalComponent
+  ],
+  entryComponents: [
+    EditInvestmentModalComponent
   ],
   providers: [CurrencyPipe]
 })

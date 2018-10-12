@@ -39,7 +39,7 @@
             <div class="values">
               <div class="amount">
                 <div>$<span id="portfolio_projectedValueValue_lbl">{{portfolio.projectedValue}}</span></div>
-                <a href="#">Edit</a>
+                <span class="editLink" (click)="openEditInvestmentModal()">Edit</span>
               </div>
               <div class="year">
                 <span>{{ 'CONFIRM_PORTFOLIO.YEAR' | translate }}</span>
@@ -85,7 +85,7 @@
         <div>{{ 'CONFIRM_PORTFOLIO.CHECK_FEES' | translate}}</div>
       </div>
 
-      <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button type="button" (click)="showPortfolioAssetModal()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{ 'CONFIRM_PORTFOLIO.I_WANT_TO_START_INVEST' | translate}}</button>
 
     </div>
