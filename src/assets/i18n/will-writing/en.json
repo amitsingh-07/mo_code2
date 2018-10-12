@@ -6,6 +6,7 @@
             "GET_MY_CODE": "Get My Code",  
             "STEP_1": "Step 1",
             "STEP_2": "Step 2",
+            "STEP_3": "Step 3",
             "ADD_GUARDIAN": "Add Guardian"
         },
         "INTRODUCTION": {
@@ -72,6 +73,10 @@
         "DISTRIBUTE_YOUR_ESTATE": {
             "TITLE": "Distribute Your Estate",
             "SUB_TITLE": "In the next step, you will decide who inherits which portion of your estate."
-        }
+        },
+        "APPOINT_YOUR_EXECUTOR_TRUSTEE": {
+            "TITLE": "Appoint Your Executor & Trustee",
+            "SUB_TITLE": "In the next step, you will appoint someone to manage your finances and carry out the wishes of your will."
+        } 
     }
 }

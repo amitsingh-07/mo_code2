@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AboutMeComponent } from './about-me/about-me.component';
+import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
 import { FaqComponent } from './faq/faq.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: WILL_WRITING_ROUTES.ABOUT_ME, component: AboutMeComponent },
   { path: WILL_WRITING_ROUTES.MY_FAMILY, component: MyFamilyComponent },
   { path: WILL_WRITING_ROUTES.MY_CHILD_GUARDIAN, component: MyChildGuardianComponent },
-  { path: WILL_WRITING_ROUTES.DISTRIBUTE_YOUR_ESTATE, component: DistributeYourEstateComponent }
+  { path: WILL_WRITING_ROUTES.DISTRIBUTE_YOUR_ESTATE, component: DistributeYourEstateComponent },
+  { path: WILL_WRITING_ROUTES.APPOINT_EXECUTOR_TRUSTEE, component: AppointYourExecutorTrusteeComponent}
 ];
 
 @NgModule({
