@@ -207,6 +207,9 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   save(form: any) {
     const formValues = [];
     form.controls.dependents.controls.forEach((formData) => {
+      if (isNaN(formData.value['supportAmount'])) {
+        formData.value['supportAmount'] = 0;
+      }
       formValues.push(formData.value);
     });
     this.guideMeService.setLifeProtection({ dependents: formValues });

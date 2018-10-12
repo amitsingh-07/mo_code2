@@ -52,6 +52,11 @@ export class ExpensesComponent implements IPageComponent, OnInit {
   }
 
   save(form: any) {
+    Object.keys(form.value).forEach((key) => {
+      if (isNaN) {
+        form.value[key] = 0;
+      }
+    });
     this.guideMeService.setMyExpenses(form.value);
     return true;
   }
