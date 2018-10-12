@@ -57,7 +57,7 @@ export class MyFamilyComponent implements OnInit {
     this.myFamilyForm = this.formBuilder.group({
       name: [this.familyFormValues.spouse.name, [Validators.required]],
       nricNumber: [this.familyFormValues.spouse.nricNumber, [Validators.required]],
-      childrens: this.formBuilder.array([ this.buildChildrenForm() ]),
+      childrens: this.formBuilder.array([ this.buildChildrenForm() ])
     });
   }
 
