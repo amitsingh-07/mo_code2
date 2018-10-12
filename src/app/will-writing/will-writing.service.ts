@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
-import { IAboutMe, IChild, IGuardian, ISpouse, IMyFamily } from './will-writing-types';
+import { IAboutMe, IChild, IEligibility, IGuardian, IMyFamily, ISpouse } from './will-writing-types';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 
@@ -154,6 +154,26 @@ export class WillWritingService {
    */
   setGuardianInfo(data: IGuardian) {
     this.willWritingFormData.guardian.push(data);
+    this.commit();
+  }
+
+  /**
+   * get eligibility details.
+   * @returns eligibility details.
+   */
+  getEligibilityDetails(): IEligibility {
+    if (!this.willWritingFormData.eligibility) {
+      this.willWritingFormData.eligibility = {} as IEligibility;
+    }
+    return this.willWritingFormData.eligibility;
+  }
+
+  /**
+   * set eligibility details.
+   * @param data - eligibility details.
+   */
+  setEligibilityDetails(data: IEligibility) {
+    this.willWritingFormData.eligibility = data;
     this.commit();
   }
 

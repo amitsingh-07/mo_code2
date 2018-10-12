@@ -27,3 +27,9 @@ export interface IGuardian {
     relationship: string;
     nricNumber: string;
 }
+
+export interface IEligibility {
+    singaporean: string;
+    assets: string;
+    religion: string;
+}
