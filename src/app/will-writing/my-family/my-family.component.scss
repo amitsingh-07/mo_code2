@@ -4,6 +4,7 @@
 .container-fluid {
     background-color: #fff;
     padding: 50px 60px 65px;
+    font-family: $muli-semi-bold;
     @include allmobiles{
         padding: 10px 0 !important;
         border-radius: 0;
@@ -14,7 +15,6 @@
     border-radius: 6px;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
     padding: 20px;
-    font-family: $muli;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.3px;
@@ -23,8 +23,8 @@
     @include allmobiles {
         margin-top: 25px;
     }
-    .title{
-        font-family: $muli;
+    .title {
+        font-family: $muli-bold;
         font-size: 20px;
         font-weight: bold;
         letter-spacing: -0.4px;
@@ -32,9 +32,50 @@
         margin-bottom: 19px;
           
     }
+    .sublbl {
+        font-family: $muli-regular;
+        font-size: 16px;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        font-weight: normal;
+    }
 }
+
+.mobile-header{
+    background-color: #fff;
+    position: relative;
+    .autofill-text {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        text-align: center;
+        color: #00a7a7;
+      }
+      .heading {
+            font-family: $muli-light;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: -0.2px;
+            text-align: center;
+            color: #00a7a7;
+        }
+      .back {
+        display:flex;
+        background: url("../../../assets/images/back-mobile.png") no-repeat;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        background-repeat: no-repeat;
+        border: 0;
+        margin-top: 15px;
+        cursor: pointer;
+        top: 5px;
+        margin-left: 19px;
+      }
+}
+
 .heading {
-    font-family: $muli;
+    font-family: $muli-light;
     font-size: 18px;
     font-weight: 300;
     letter-spacing: -0.2px;
@@ -48,7 +89,6 @@
     }
 }
 .autofill-text{
-    font-family: $muli;
     font-size: 36px;
     font-weight: 600;
     letter-spacing: -0.4px;
@@ -56,12 +96,11 @@
 }
 
 .sub-title {
-    font-family: $muli;
     font-size: 18px;
     font-weight: 600;
     line-height: 1.22;
     letter-spacing: -0.2px;
-    color: #00a7a7;
+    color: #333846;
 }
 .mobile-logo{
     display: none;

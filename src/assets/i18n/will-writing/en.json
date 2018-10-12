@@ -34,8 +34,10 @@
             "TITLE": "About Me",
             "SUB_TITLE": "Help us verify your identity as the testator (maker) of the will.",
             "FORM": {
-                "NAME": "My name is (as in NRIC)",
-                "NRIC_NUMBER": "NRIC number is",
+                "NAME": "My name is",
+                "SUB_LBL": "(as in NRIC)",
+                "NRIC": "NRIC",
+                "NUMBER": " number is",
                 "I_AM_A": "I am a",
                 "AND": "and",
                 "WITH": "with",
