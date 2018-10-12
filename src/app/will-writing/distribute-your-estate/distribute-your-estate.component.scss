@@ -91,3 +91,13 @@
         color: #066360; 
     }
 }
+.back-btn {
+	background-image: url("../../../assets/images/back-web.svg");
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 5%;
+    left: 20px;
+}
