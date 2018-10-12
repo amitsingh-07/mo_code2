@@ -53,7 +53,7 @@ export class LiabilitiesComponent implements IPageComponent, OnInit {
 
   save(form: any) {
     Object.keys(form.value).forEach((key) => {
-      if (isNaN) {
+      if (!form.value[key] || isNaN(form.value[key])) {
         form.value[key] = 0;
       }
     });

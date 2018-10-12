@@ -87,7 +87,7 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
 
   save(form: any) {
     Object.keys(form.value).forEach((key) => {
-      if (isNaN) {
+      if (!form.value[key] || isNaN(form.value[key])) {
         form.value[key] = 0;
       }
     });
