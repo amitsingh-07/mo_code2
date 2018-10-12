@@ -2,7 +2,7 @@
 @import "../../../_mixins.scss";
 
 body{
-  background-color: #2d8289 !important;
+  background-color: $dark-teal-color !important;
 }
 @media (max-width: 767px) and (min-width: 320px){
 
@@ -15,7 +15,7 @@ body{
    height: 0px !important; 
   
 }
-
+app-upload-documents-later{
 .custom-modal-backdrop {
     background: $white-color;
     position: fixed;
@@ -63,29 +63,7 @@ body{
     }
   }
 
-  .custom-modal--title {
-    color: #00aaa8;
-    font-family: $muli-regular;
-    font-size: 36px;
-    letter-spacing: -0.4px;
-    line-height: 1.11;
-    margin-top: 20px;
-  }
-
-  .custom-modal--desc {
-    color: #5e5e5e;
-    font-size: 18px;
-    line-height: 1.33;
-    letter-spacing: -0.2px;
-    font-family: $muli-regular;
-    padding: 0 35%;
-
-    @include allmobiles {
-      padding: 0 10%;
-    }
-  }
-
-  .upload-document-later-lab{
+ .upload-document-later-lab{
   font-family: $muli-bold;
   font-size: 24px;
   font-weight: bold;
@@ -106,7 +84,7 @@ body{
     color: #ffffff;
   }
   
-
+}
 
   
 

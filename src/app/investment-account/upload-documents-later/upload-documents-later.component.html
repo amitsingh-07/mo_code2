@@ -1,43 +1,20 @@
 <div class="content">
   <div class="custom-modal-content">
     <div>
-      <img src="assets/images/upload-document-later.svg" id="portfolioRecommendationCustModalImg2" />
+      <img src="assets/images/upload-document-later.svg" id="upload-document-later-back_to_img" />
     </div>
   </div>
 </div>
-
-
-    
-  <div class="content">
+<div class="content">
    <div class="col-lg-12 col-md-12">
-     <div class="upload-document-later-lab mb20">Almost There!
+     <div class="upload-document-later-lab mb20" id="upload-document-later-lab">{{ 'UPLOAD_DOCUMENTS_LATER.UPLOAD_DOCUMENTS_LATER_PAGE_HEADING' | translate}}
        
      </div>
-     <div class="upload-document-later-content">Please log in anytime
-        to upload your verification 
-       documents and your set up will be complete!
+     <div class="upload-document-later-content" id="upload-document-later-content">{{ 'UPLOAD_DOCUMENTS_LATER.UPLOAD_DOCUMENTS__LATER_PAGE_DESC' | translate}}
        
       </div>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <button type="button" id="personalInforNextBtn" (click)="goToNext(financialDetails)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-        id="getStrdBtn3">Back To Dashboard</button>
+<button type="button" id="upload-document-later-back_to_dash_board" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+        >{{ 'UPLOAD_DOCUMENTS_LATER.BACK_TO_DASHBOARD' | translate}}</button>
 
     </div>
   </div>
