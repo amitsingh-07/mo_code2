@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { ToolTipModalComponent } from '../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { DirectService } from './../../direct/direct.service';
@@ -18,9 +19,15 @@ export class CheckEligibilityComponent implements OnInit {
   religion = '';
   isAssets = false;
   isMuslim = false;
-  religionList = ['Christian', 'Buddhist', 'Muslim', 'Hindu', 'None', 'Others'];
+  religionList;
   constructor(private formBuilder: FormBuilder, private willWritingService: WillWritingService,
-              private router: Router, private modal: NgbModal, private directService: DirectService) { }
+              private router: Router, private modal: NgbModal, private directService: DirectService,
+              private translate: TranslateService) {
+                this.translate.use('en');
+                this.translate.get('COMMON').subscribe((result: string) => {
+                  this.religionList = this.translate.instant('WILL_WRITING.ELIGIBILITY.RELIGION_LIST');
+                });
+  }
 
   ngOnInit() {
     this.formValues = this.willWritingService.getEligibilityDetails();
