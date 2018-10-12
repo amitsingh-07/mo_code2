@@ -91,12 +91,12 @@
                       <div ngbDropdown id="noOfChildrenDropDown">
                         <button type="button" class="btn btn-dropdown width100" id="dropdownNoOfChildren" ngbDropdownToggle>
                           <span *ngIf="noOfChildren === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
-                          <span *ngIf="noOfChildren !== ''">{{noOfChildren}} {{'WILL_WRITING.ABOUT_ME.FORM.CHILDREN' | translate}}</span>
+                          <span *ngIf="noOfChildren !== ''">{{noOfChildren}} {{ (noOfChildren == 1 ? 'WILL_WRITING.ABOUT_ME.FORM.CHILD' : 'WILL_WRITING.ABOUT_ME.FORM.CHILDREN') | translate}}</span>
                         </button>
                         <div ngbDropdownMenu aria-labelledby="dropdownNoOfChildren">
                             <button class="dropdown-item" (click)="selectNoOfChildren('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                           <button type="button" class="dropdown-item" *ngFor="let children of noOfChildrenList" (click)="selectNoOfChildren(children)">
-                            {{children}} {{ 'WILL_WRITING.ABOUT_ME.FORM.CHILDREN' | translate}}
+                            {{children}} {{ (children == 1 ? 'WILL_WRITING.ABOUT_ME.FORM.CHILD' : 'WILL_WRITING.ABOUT_ME.FORM.CHILDREN') | translate}}
                           </button>
                         </div>
                       </div>

@@ -43,7 +43,8 @@
                 "AND": "and",
                 "WITH": "with",
                 "CHILDREN": "children",
-                "MARITAL_STATUS_LIST": [{"text":"single", "value":"single"},{"text":"married", "value":"married"}]
+                "CHILD": "Child",
+                "MARITAL_STATUS_LIST": [{"text":"Single", "value":"single"},{"text":"Married", "value":"married"}]
             }
         },
         "MY_FAMILY": {
