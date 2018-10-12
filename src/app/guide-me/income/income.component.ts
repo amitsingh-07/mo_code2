@@ -86,6 +86,11 @@ export class IncomeComponent implements IPageComponent, OnInit, AfterViewInit {
   }
 
   save(form: any) {
+    Object.keys(form.value).forEach((key) => {
+      if (isNaN) {
+        form.value[key] = 0;
+      }
+    });
     this.guideMeService.setMyIncome(form.value);
     return true;
   }

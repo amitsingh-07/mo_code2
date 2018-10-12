@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { Formatter } from '../../../shared/utils/formatter.util';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 
@@ -123,15 +124,16 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     if (!monthlySalaryValue) {
       monthlySalaryValue = 0;
     }
-    sum_string += '$' + (monthlySalaryValue * this.coveragePercent / 100) +  ' / mth, ';
+    sum_string += '$' + (monthlySalaryValue * this.coveragePercent / 100) + ' / mth, ';
     sum_string += this.duration;
     return sum_string;
   }
 
   save() {
     const form = this.ocpDisabilityForm;
-    if (form.controls.monthlySalary.value < 1) {
-      form.controls['monthlySalary'].setErrors({required: true});
+    if (form.controls.monthlySalary.value < 1
+      || isNaN(form.controls.monthlySalary.value)) {
+      form.controls['monthlySalary'].setErrors({ required: true });
     }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {

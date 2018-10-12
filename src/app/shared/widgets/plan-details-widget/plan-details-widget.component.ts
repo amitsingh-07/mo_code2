@@ -82,7 +82,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
       this.highlights.push({ title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) });
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
-      if (this.type === 'long term care') {
+      if (this.type === 'long-term care') {
         this.canShowDiscount = false;
         this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
       }
