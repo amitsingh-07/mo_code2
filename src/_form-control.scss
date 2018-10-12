@@ -774,6 +774,9 @@ input::placeholder {
     @include allmobiles {
       width: 138px;
       margin-bottom: 15px;
+      max-width:138px;
+      max-height:138px;
+      height:auto;
     }
   }
 }

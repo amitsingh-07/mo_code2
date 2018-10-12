@@ -2,7 +2,8 @@
   "COMMON": {
     "LABEL": {
       "CONTINUE": "Continue",
-      "RETRIEVE": "Retrieve"
+      "RETRIEVE": "Retrieve",
+      "SAVE_AND_CONTINUE": "Save and Continue"
     }
   },
   "PERSONAL_INFO": {
