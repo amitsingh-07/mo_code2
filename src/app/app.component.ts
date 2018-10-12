@@ -1,8 +1,8 @@
-import { AppService } from './app.service';
 import { Component, HostListener } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
+import { AppService } from './app.service';
 
 import { IComponentCanDeactivate } from './changes.guard';
 import { GoogleAnalyticsService } from './shared/ga/google-analytics.service';
