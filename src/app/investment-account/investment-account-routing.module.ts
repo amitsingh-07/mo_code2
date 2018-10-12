@@ -2,19 +2,25 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuardService as AuthGuard } from '../sign-up/auth-guard.service';
+import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
+import {
+    AdditionalDeclarationInfoComponent
+} from './additional-declaration-info/additional-declaration-info.component';
+import {
+    AdditionalDeclarationStep1Component
+} from './additional-declaration-step1/additional-declaration-step1.component';
+import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import {
-  PersonalDeclarationComponent
+    PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
-
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 
 const routes: Routes = [
   {
@@ -67,6 +73,15 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.CONFIRM_PORTFOLIO,
     component: ConfirmPortfolioComponent,
     canActivate: [AuthGuard]
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
+    component: AcknowledgementComponent,
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,
+    component: AdditionalDeclarationInfoComponent,
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
+    component: AdditionalDeclarationStep1Component,
   }
 ];
 

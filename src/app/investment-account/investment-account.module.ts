@@ -9,7 +9,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
+import {
+    AdditionalDeclarationInfoComponent
+} from './additional-declaration-info/additional-declaration-info.component';
+import {
+    AdditionalDeclarationStep1Component
+} from './additional-declaration-step1/additional-declaration-step1.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
+import {
+    EditInvestmentModalComponent
+} from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
@@ -21,7 +31,6 @@ import { ResidentialAddressComponent } from './residential-address/residential-a
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-import { EditInvestmentModalComponent } from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -58,7 +67,10 @@ export function createTranslateLoader(http: HttpClient) {
     UploadDocumentsComponent,
     PersonalDeclarationComponent,
     ConfirmPortfolioComponent,
-    EditInvestmentModalComponent
+    EditInvestmentModalComponent,
+    AcknowledgementComponent,
+    AdditionalDeclarationInfoComponent,
+    AdditionalDeclarationStep1Component
   ],
   entryComponents: [
     EditInvestmentModalComponent
