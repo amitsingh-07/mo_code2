@@ -2,7 +2,7 @@
     <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div>
   </div>
   <div class="modal-body white-bg">
-    <div class="modal-body-title">{{errorTitle}}</div>
+    <div class="modal-body-title" *ngIf="errorTitle">{{errorTitle}}</div>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true"></span>
       </button>
