@@ -21,6 +21,7 @@
     <app-settings-widget *ngIf="filters.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)" (showFilterTooltip)="showSettingsToolTip($event)"></app-settings-widget>
     <div [hidden]="!isComparePlanEnabled" class="overlay"></div>
   </div>
+  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%.</div>
 </div>
 <div id="results-mobile" *ngIf="isMobileView" [hidden]="!isResultsLoaded || resultsEmptyMessage?.length > 0" class="hidden-lg">
 
@@ -39,6 +40,7 @@
         (select)="selectPlan($event)" [isDirect] = "true" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)" [comparePlanSelected] = "selectedComparePlans"></app-plan-widget>
     </div>
   </div>
+  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%.</div>
 </div>
 <div style="text-align: center;">
 <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>

@@ -15,6 +15,9 @@ app-plan-widget {
     border-radius: 6px;
     margin-bottom: 15px;
     border: solid 1px rgba(0, 167, 167, 0.4);
+    &.plan-selected {
+      border-radius: 6px !important;
+    }
   }
   .insurance-plan-widget {
     position: relative;
@@ -34,6 +37,7 @@ app-plan-widget {
     .btn-select {
       background-color: #00a7a7;
       color: #ffffff;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18) !important;
 
       @include allmobiles {
         border-radius: 0px 0px 6px 6px;
@@ -54,8 +58,8 @@ app-plan-widget {
 
     .info-icon {
       position: absolute;
-      right: 5px;
-      top: 5px;
+      right: 8px;
+      top: 8px;
       z-index: 999;
       cursor: pointer;
     }
@@ -69,6 +73,7 @@ app-plan-widget {
       justify-content: flex-end;
       @include allmobiles {
         justify-content: center;
+        align-items: center;
         img {
           width: 50% !important;
         }
