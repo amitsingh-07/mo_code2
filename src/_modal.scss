@@ -22,7 +22,7 @@
 
 .modal-header {
   border: none;
-  padding: 0px;
+  padding: 0;
   justify-content: center;
   display: flex;
 }
@@ -30,10 +30,10 @@
 .modal-body {
   background: $module-fill-color;
   border-radius: 6px;
-  padding: 15px 25px;
+  padding: 20px;
 
   @include allmobiles {
-    padding: 20px 25px !important;
+    padding: 20px !important;
   }
 
   .form-group {
@@ -101,8 +101,8 @@
   line-height: normal;
   letter-spacing: -0.2px;
   color: #009999;
-  margin-bottom: 20px;
-  padding-right: 18px;
+  margin-bottom: 18px;
+  //padding: 0 15px 0 0;
 }
 
 .modal-body-message {
@@ -114,6 +114,7 @@
   line-height: 1.31;
   letter-spacing: -0.2px;
   color: #5e5e5e;
+  padding: 0 20px 0 0;
 
   .modal-text-secondary {
     font-weight: 600;
@@ -568,8 +569,8 @@
 .modal-body {
   &.white-bg {
     .close {
-      top: 22px !important;
-      right: 25px !important;
+      top: 20px !important;
+      right: 20px !important;
     }
   }
 }
@@ -577,8 +578,8 @@
   .modal-body {
     &.white-bg {
       .close {
-        top: 26px !important;
-        right: 25px !important;
+        top: 20px !important;
+        right: 20px !important;
       }
     }
   }

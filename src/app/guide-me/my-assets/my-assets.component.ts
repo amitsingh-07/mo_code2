@@ -100,6 +100,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   save(form: any) {
+    Object.keys(form.value).forEach((key) => {
+      if (!form.value[key] || isNaN(form.value[key])) {
+        form.value[key] = 0;
+      }
+    });
     this.guideMeService.setMyAssets(form.value);
     return true;
   }
