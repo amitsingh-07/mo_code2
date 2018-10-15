@@ -167,7 +167,7 @@
     .sub-title{
         color: #333846 !important;
         @include allmobiles {
-            padding: 10px;
+            padding: 8px !important;
         }
     }
     h2{
@@ -250,4 +250,15 @@ input[type='checkbox']+label {
 .header-container{
     padding: 0px !important;
 }
+
+.content-title {
+    width: 337px;
+    height: 23px;
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    padding:20px !important;
+  }
 
