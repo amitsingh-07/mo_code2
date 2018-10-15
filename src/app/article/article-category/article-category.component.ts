@@ -4,8 +4,11 @@ import { ArticleService } from './../article.service';
 
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { ArticleApiService } from './../article.api.service';
 
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+
+import { IArticleElement } from './../articleElement.interface';
 
 @Component({
   selector: 'app-article-category',
@@ -16,14 +19,15 @@ import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 export class ArticleCategoryComponent implements OnInit {
   public category = 'Protection';
   public category_id: number;
+  private articleListCategory: IArticleElement[];
   constructor(public navbarService: NavbarService, public footerService: FooterService,
-              private articleService: ArticleService,
+              private articleService: ArticleService, private articleApiService: ArticleApiService,
               private config: NgbDropdownConfig, private route: ActivatedRoute) {
               }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      if (params['name']) {
+      if (params['name'] !== undefined) {
         this.getCategoryArticles(params['name']);
       }
     });
@@ -41,6 +45,14 @@ export class ArticleCategoryComponent implements OnInit {
 
   getCategoryArticles(category_name: string) {
     this.category_id = +(this.articleService.getArticleId(category_name));
-    this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
+    if (this.category_id > 0) {
+      this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
+    } else {
+      this.category = 'All';
+    }
+    this.articleApiService.getArticleCategoryList(this.category).subscribe((data) => {
+      this.articleListCategory = this.articleService.getArticleElementList(data);
+      console.log(this.articleListCategory);
+    });
   }
 }

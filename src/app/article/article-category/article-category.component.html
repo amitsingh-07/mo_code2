@@ -12,24 +12,25 @@
     </div>
   <div class="article-category__container">
     <div class="article-category__articles">
-      <div class="article-category__element" *ngFor="let number of [0,1,2,3,4,5]">
-          <div class="article-element__image">
-            <img src="../../../assets/articles/images/8/thumbnail.jpg"/>
+      <div class="article-category__element" *ngFor="let article of articleListCategory">
+          <div class="article-element__image" [ngStyle]="{'background-image': 'url(../../../assets/articles/images/'+article.id+'/thumbnail.jpg)'}">
+            
           </div>
           <div class="article-element__desc">
             <div class="article-title">
-                <a>Singapore's Term Life Insurance Comparison Table (September 2018)</a>
+                <a>{{article.art_title}}</a>
               </div>
             <div class="article-description">
-                We have launched this table, updated monthly, to compare Term Life Insurance policies across insurance companies in Singapore.
+                {{article.art_desc}}
               </div>
             <div class="art-author__container">
-              <span class="author">By <a class="author-link">Shawn Lee</a></span>
-              <span> SEP 13, 2018</span>
+              <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
+              <span>{{article.art_date}}</span>
               </div>
             <div class="art-tag__container">
-              <div class="art-tag__element"><i class="material-icons">local_offer</i>Protection</div>
-              <div class="art-tag__element"><i class="material-icons">local_offer</i>Term Life</div>
+              <div class="art-tag__element" *ngFor="let article_tag of article.art_tags">
+                <i class="material-icons">local_offer</i>{{article_tag}}
+                </div>
             </div>
           </div> 
         </div>

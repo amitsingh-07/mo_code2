@@ -28,6 +28,7 @@ export class ArticleService {
     const thisArticleElement = {
               id: articleElement.artId,
               art_title: articleElement.title,
+              art_desc: articleElement.summary,
               art_author: articleElement.profile.author,
               art_date: articleElement.date,
               art_tags: articleTags
@@ -41,16 +42,17 @@ export class ArticleService {
   }
 
   getArticleId(art_tag_name: string) {
-    const art_map = this.articleApiService.getArticleTagMap();
-    const art_key = Object.keys(art_map.tag_map);
+    if (art_tag_name) {
+      const art_map = this.articleApiService.getArticleTagMap();
+      const art_key = Object.keys(art_map.tag_map);
 
-    for (let i = 0; i <= art_key.length; i++) {
-      const iteration_tag_name = art_map.tag_map[art_key[i]].tag_name;
-      if (iteration_tag_name.toLowerCase() === art_tag_name) {
-        return art_key[i];
+      for (let i = 0; i <= art_key.length - 1; i++) {
+        const iteration_tag_name = art_map.tag_map[art_key[i]].tag_name;
+        if (iteration_tag_name.toLowerCase() === art_tag_name) {
+          return art_key[i];
+        }
       }
-      console.log('1 iteration');
     }
-    return null;
+    return -1;
   }
 }
