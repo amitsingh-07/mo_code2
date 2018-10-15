@@ -1,0 +1,125 @@
+<app-page-title [step]="step" [pageTitle]="Beneficiaries"></app-page-title>
+<div class="container-fluid max-width--1024">
+  <div class="content">
+    <div class="flex-row">
+      <div class="col-lg-6 col-md-6 col-sm-12 header-container">
+        <div class="mobile-header">
+        <h2 id="intro-title" class ="hidden-sm-md">{{ 'My Beneficiaries' | translate}}</h2>
+        <h6 class="sub-title" id="sub-title">{{ 'Name the beneficiaries that you would like to inherit your estate.' | translate}}</h6>
+        <div class="banner-image hidden-sm-md">
+            <img src="assets/images/will-start.svg" id="intro-img"/>  
+        </div>
+        <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6  col-sm-12 beneficiaries-container">
+        <div name="beneficiariesForm">
+          <div><span class="content-title">I would like my guardian to be…</span></div>
+            <div>
+                  <div class="form-group-single-column  mb0 flex-col">
+                    <div class="checkbox-button two-label" >
+                      <input id="beneficiary1" name="beneficiary1"  type="checkbox" class="field checkbox"
+                        value="one" >
+                      <label for="beneficiary1" id="">
+                        <div class="input-label-black">heading</div>
+                        <div class="input-label-normal">sub heading</div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group-single-column  mb0 flex-col">
+                      <div class="checkbox-button two-label" >
+                        <input id="beneficiary2" name="beneficiary2"  type="checkbox" class="field checkbox"
+                          value="one" >
+                        <label for="beneficiary2" id="">
+                          <div class="input-label-black">heading</div>
+                          <div class="input-label-normal">sub heading</div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="form-group-single-column  mb0 flex-col">
+                        <div class="checkbox-button two-label" >
+                          <input id="beneficiary3" name="beneficiary3"  type="checkbox" class="field checkbox"
+                            value="one" >
+                          <label for="beneficiary3" id="">
+                            <div class="input-label-black">heading</div>
+                            <div class="input-label-normal">sub heading</div>
+                          </label>
+                        </div>
+                      </div>
+                      <div>
+                          <div class="col-12 add-beneficiaries-container">          
+                              <div  id="addGuardianForm" name="addGuardianForm">
+                                <div class="aboutMe">
+                                <div class="form-group">
+                                  <div class="flex-row title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
+                                  <div class="flex-row mb10">
+                                    <div class="flex-col-5">
+                                      <label for="name" id="addGuardianFormLbl1"><div>{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.NAME' | translate}}</div></label>
+                                    </div>
+                                    <div class="flex-col-7">
+                                      <input type="text" [ngClass]="{'inline-error': submitted && addGud.name.invalid}" id="addGuardianFormInpt1" class="form-control" #name formControlName="name">
+                                    </div>
+                                  </div>              
+                                  <div class="flex-row mb10">
+                                    <div class="flex-col-5">
+                                      <label for="name"  id="addGuardianFormLbl2"><div>{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.NRIC' | translate}}</div></label>
+                                    </div>
+                                    <div class="flex-col-7">
+                                      <input type="text" [ngClass]="{'inline-error': submitted && addGud.nricNumber.invalid}" id="addGuardianFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
+                                    </div>
+                                  </div>              
+                                  <div class="flex-row mb10">
+                                    <div class="flex-col-5">
+                                      <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.RELATIONSHIP' | translate}}</label>
+                                    </div>
+                                    <div class="flex-col-7">
+                                      <div class="dropdown-control" [ngClass]="{'inline-error': submitted && addGud.relationship.invalid}">
+                                          <div ngbDropdown id="relationshipDropDown">
+                                            <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle>
+                                              <span *ngIf="relationship === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                                              <span *ngIf="relationship !== ''">{{relationship}}</span>
+                                            </button>
+                                            <div ngbDropdownMenu aria-labelledby="dropdownRelationship">
+                                              <button class="dropdown-item" (click)="selectrelationship('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+                                              <button type="button" class="dropdown-item" *ngFor="let relationship of relationshipList; let i=index" (click)="selectRelationship(relationship)">
+                                                {{relationship.text}}
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div> 
+                                  </div>
+                                  
+                                  <div class="flex-row mb10 add-beneficiary">
+                                      <div class="flex-col-5">
+                                          <button type="button" class="btn width100">cancel</button>
+                                      </div>
+                                      <div class="flex-col-5">
+                                          <button type="button" class="btn btn-primary width100">Add now</button>
+                                      </div> 
+                                    </div>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="form-group-single-column  mb0 flex-col">
+                          <div class="checkbox-button two-label" >
+                            <img id ="add" src ="assets/images/will-writing/add.svg"/>
+                            <label for="add">
+                              <div class="input-label-black add-beneficiaries">Add Beneficiaries</div> 
+                            </label>
+                          </div>
+                        </div>
+
+                  <div>
+                    <button type="button" [disabled]="false" (click)="goToNext(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
