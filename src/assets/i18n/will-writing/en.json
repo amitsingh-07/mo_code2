@@ -104,10 +104,12 @@
         "ELIGIBILITY": {
             "TITLE": "Check Your Eligibility",
             "SUB_TITLE": "Let’s check if our will writing tool is suitable for you.",
+            "SUB_TITLE1":"Let’s check if our will writing",
+            "SUB_TITLE2":"tool is suitable for you.",
             "RELIGION_LIST": [{"text":"Christian", "value":"christian"}, { "text":"Buddhist", "value":"buddhist"}, { "text":"Muslim", "value":"muslim"}, { "text":"Hindu", "value":"hindu"}, { "text":"None", "value":"none"}, {"text":"Others", "value":"others"}],
             "ARE_YOU_SINGAPOREAN":"Are you a Singaporean?",
             "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?",
-            "TOOLTIP": "<p> Do note that only the following assets can be distributed via your will.</p><ul class='list-none' style='padding: 0;'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nominations nor trusts)</li><li>- Property (Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
+            "TOOLTIP": "<p> Do note that only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nominations nor trusts)</li><li>- Property (Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
         },
         "REVIEW_YOUR_DETAILS": {
             "TITLE":"Review Your Details",
