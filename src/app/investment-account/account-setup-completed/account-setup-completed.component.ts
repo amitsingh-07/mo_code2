@@ -14,12 +14,14 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
+
 @Component({
-  selector: 'app-acknowledgement',
-  templateUrl: './acknowledgement.component.html',
-  styleUrls: ['./acknowledgement.component.scss']
+  selector: 'app-account-setup-completed',
+  templateUrl: './account-setup-completed.component.html',
+  styleUrls: ['./account-setup-completed.component.scss']
 })
-export class AcknowledgementComponent implements OnInit {
+export class AccountSetupCompletedComponent implements OnInit {
+
   pageTitle: string;
   constructor(
     public headerService: HeaderService,
@@ -33,25 +35,12 @@ export class AcknowledgementComponent implements OnInit {
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-      this.pageTitle = this.translate.instant('ACKNOWLEDGEMENT.TITLE');
-      this.setPageTitle(this.pageTitle);
-    });
-  }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+      });
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
-  }
-  goNext() {
-    const pepData = this.investmentAccountService.getPepData();
-    // tslint:disable-next-line:triple-equals
-    if ( pepData == 'yes') {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
-    }
   }
 
 }

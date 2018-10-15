@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { AccountSetupCompletedComponent } from './account-setup-completed/account-setup-completed.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AdditionalDeclarationInfoComponent } from './additional-declaration-info/additional-declaration-info.component';
 import { AdditionalDeclarationStep1Component } from './additional-declaration-step1/additional-declaration-step1.component';
@@ -57,7 +58,8 @@ export function createTranslateLoader(http: HttpClient) {
     PersonalDeclarationComponent,
     AcknowledgementComponent,
     AdditionalDeclarationInfoComponent,
-    AdditionalDeclarationStep1Component
+    AdditionalDeclarationStep1Component,
+    AccountSetupCompletedComponent
   ],
   providers: [CurrencyPipe]
 })
