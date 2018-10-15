@@ -8,6 +8,7 @@ import { DistributeYourEstateComponent } from './distribute-your-estate/distribu
 import { FaqComponent } from './faq/faq.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
 import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.component';
 import { MyFamilyComponent } from './my-family/my-family.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: WILL_WRITING_ROUTES.MY_FAMILY, component: MyFamilyComponent },
   { path: WILL_WRITING_ROUTES.MY_CHILD_GUARDIAN, component: MyChildGuardianComponent },
   { path: WILL_WRITING_ROUTES.DISTRIBUTE_YOUR_ESTATE, component: DistributeYourEstateComponent },
-  { path: WILL_WRITING_ROUTES.APPOINT_EXECUTOR_TRUSTEE, component: AppointYourExecutorTrusteeComponent}
+  { path: WILL_WRITING_ROUTES.APPOINT_EXECUTOR_TRUSTEE, component: AppointYourExecutorTrusteeComponent},
+  { path: WILL_WRITING_ROUTES.MY_BENEFICIARIES, component: MyBeneficiariesComponent}
 ];
 
 @NgModule({
