@@ -11,6 +11,12 @@
       <ng-container *ngIf="errorMessageList">
         <p *ngFor="let errorMessage of errorMessageList"><span>{{errorMessage}}</span></p>
       </ng-container>
+      <ng-container *ngIf="multipleFormErrors">
+        <div *ngFor="let errorMessage of multipleFormErrors">
+          <p>{{errorMessage.formName}}</p>
+          <p *ngFor="let error of errorMessage.errors"><span>{{error}}</span></p>
+        </div>
+      </ng-container>
       <span *ngIf="errorDescription" [innerHTML]="errorDescription"></span>
     </div>
     <button *ngIf="showErrorButton" (click)="activeModal.dismiss('Close click')" type="button" class="btn btn__footer--fixed btn-primary width100">Try Again</button>

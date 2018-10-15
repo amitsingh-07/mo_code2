@@ -1,0 +1,36 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.mobile-header{
+    background-color: #fff;
+    position: relative;
+    .autofill-text {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        text-align: center;
+        color: #00a7a7;
+        padding: 10px;
+      }
+      .heading {
+            font-family: $muli-light;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: -0.2px;
+            text-align: center;
+            color: #00a7a7;
+        }
+      .back {
+        display:flex;
+        background: url("../../../assets/images/back-mobile.png") no-repeat;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        background-repeat: no-repeat;
+        border: 0;
+        margin-top: 15px;
+        cursor: pointer;
+        top: 5px;
+        margin-left: 19px;
+      }
+}

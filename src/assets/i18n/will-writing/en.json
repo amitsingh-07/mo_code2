@@ -7,7 +7,8 @@
             "STEP_1": "Step 1",
             "STEP_2": "Step 2",
             "STEP_3": "Step 3",
-            "ADD_GUARDIAN": "Add Guardian"
+            "ADD_GUARDIAN": "Add Guardian",
+            "MY_SPOUSE": "My Spouse"
         },
         "INTRODUCTION": {
             "TITLE": "Before You Proceed...",
@@ -43,7 +44,7 @@
                 "AND": "and",
                 "WITH": "with",
                 "CHILDREN": "children",
-                "CHILD": "Child",
+                "CHILD": "child",
                 "MARITAL_STATUS_LIST": [{"text":"Single", "value":"single"},{"text":"Married", "value":"married"}]
             }
         },
@@ -51,10 +52,9 @@
             "TITLE": "My Family",
             "SUB_TITLE": "Tell us more about your family.",
             "FORM": {
-                "MY_SPOUSE": "My Spouse",
                 "MY_CHILD": "My Child",
-                "NAME": "My name is (as in NRIC)",
-                "NRIC": "NRIC number is",
+                "NAME": "Name (as in NRIC)",
+                "NRIC": "NRIC Number",
                 "DOB": "Date of Birth"
             }
         },
@@ -62,13 +62,36 @@
             "TITLE": "My Child's Guardian",
             "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
             "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
-            "FORM_TITLE": "I would like my guardian to be…",
+            "FORM_TITLE": "I would like my guardian to be",
             "FORM": {
-                "MY_SPOUSE": "My Spouse",
-                "MY_CHILD": "My Child",
-                "NAME": "My name is (as in NRIC)",
-                "NRIC": "NRIC number is",
-                "DOB": "Date of Birth"
+                "NAME": "Name (as in NRIC)",
+                "RELATIONSHIP": "Relationship To You",
+                "NRIC": "NRIC Number",
+                "RELATIONSHIP_LIST": [
+                    {"text":"Child", "value":"child"},
+                    {"text":"Parent", "value":"parent"},
+                    {"text":"Sibling", "value":"sibling"},
+                    {"text":"Step-parent", "value":"step-parent"},
+                    {"text":"Step-child", "value":"step-child"},
+                    {"text":"Grandparent", "value":"grandparent"},
+                    {"teGrandauntxt":"Grandaunt", "value":"grandaunt"},
+                    {"text":"Granduncle", "value":"granduncle"},
+                    {"text":"Uncle", "value":"uncle"},
+                    {"text":"Aunt", "value":"aunt"},
+                    {"text":"Cousin", "value":"cousin"},
+                    {"text":"Nephew", "value":"nephew"},
+                    {"text":"Niece", "value":"niece"},
+                    {"text":"Ex-husband", "value":"ex-husband"},
+                    {"text":"Father-in-law", "value":"father-in-law"},
+                    {"text":"Mother-in-law", "value":"mother-in-law"},
+                    {"text":"Sibling-in-law", "value":"sibling-in-law"},
+                    {"text":"Son-in-law", "value":"son-in-law"},
+                    {"text":"Daughter-in-law", "value":"daughter-in-law"},
+                    {"text":"Grandchild", "value":"grandchild"},
+                    {"text":"Great grandchild", "value":"great grandchild"},
+                    {"text":"Other Relatives", "value":"other Relatives"},
+                    {"text":"Friend", "value":"friend"}
+                ]
             }
         },
         "DISTRIBUTE_YOUR_ESTATE": {

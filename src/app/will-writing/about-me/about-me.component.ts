@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IAboutMe } from '../will-writing-types';
@@ -16,6 +17,8 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
+  private pageTitle: string;
+  private step: string;
 
   aboutMeForm: FormGroup;
   formValues: IAboutMe;
@@ -23,6 +26,7 @@ export class AboutMeComponent implements OnInit {
   noOfChildren = '';
   maritalStatusList;
   noOfChildrenList: number[] = Array(WILL_WRITING_CONFIG.MAX_CHILDREN_COUNT).fill(0).map((x, i) => x += i * 1);
+  submitted: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +37,8 @@ export class AboutMeComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
+      this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
+      this.pageTitle = this.translate.instant('WILL_WRITING.ABOUT_ME.TITLE');
       this.maritalStatusList = this.translate.instant('WILL_WRITING.ABOUT_ME.FORM.MARITAL_STATUS_LIST');
     });
   }
@@ -47,8 +53,8 @@ export class AboutMeComponent implements OnInit {
   buildAboutMeForm() {
     this.formValues = this.willWritingService.getAboutMeInfo();
     this.aboutMeForm = this.formBuilder.group({
-      name: [this.formValues.name, [Validators.required]],
-      nricNumber: [this.formValues.nricNumber, [Validators.required]],
+      name: [this.formValues.name, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      nricNumber: [this.formValues.nricNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       gender: [this.formValues.gender, [Validators.required]],
       maritalStatus: [this.formValues.maritalStatus, [Validators.required]],
       noOfChildren: [this.formValues.noOfChildren, [Validators.required]]
@@ -56,7 +62,7 @@ export class AboutMeComponent implements OnInit {
     setTimeout(() => {
       if (this.formValues.maritalStatus !== undefined) {
         const index = this.maritalStatusList.findIndex((status) => status.value === this.formValues.maritalStatus);
-        this.selectMaritalStatus(index);
+        this.selectMaritalStatus(this.maritalStatusList[index]);
       }
       if (this.formValues.noOfChildren !== undefined) {
         this.selectNoOfChildren(this.formValues.noOfChildren);
@@ -69,6 +75,7 @@ export class AboutMeComponent implements OnInit {
    * @param form - user personal detail.
    */
   save(form: any) {
+    this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
@@ -84,13 +91,16 @@ export class AboutMeComponent implements OnInit {
     }
   }
 
+  get abtMe() { return this.aboutMeForm.controls; }
+
   /**
    * set marital status.
    * @param index - marital Status List index.
    */
-  selectMaritalStatus(index: number) {
-    this.maritalStatus = this.maritalStatusList[index].text;
-    this.aboutMeForm.controls['maritalStatus'].setValue(this.maritalStatus);
+  selectMaritalStatus(status) {
+    status = status ? status : {text: '', value: ''};
+    this.maritalStatus = status.text;
+    this.aboutMeForm.controls['maritalStatus'].setValue(status.value);
   }
 
   /**
@@ -108,7 +118,11 @@ export class AboutMeComponent implements OnInit {
    */
   goToNext(form) {
     if (this.save(form)) {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      if (form.value.maritalStatus === 'single' && form.value.noOfChildren === 0) {
+        this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
+      } else {
+        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      }
     }
   }
 

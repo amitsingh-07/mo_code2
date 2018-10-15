@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
+import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
 import { IAboutMe, IChild, IEligibility, IGuardian, IMyFamily, ISpouse } from './will-writing-types';
@@ -14,7 +17,10 @@ export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private modal: NgbModal
+  ) {
     // get data from session storage
     this.getWillWritingFormData();
   }
@@ -61,6 +67,39 @@ export class WillWritingService {
       if (controls[name].invalid) {
         errors.errorMessages.push(
           this.willWritingFormError[formName].formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+      }
+    }
+    return errors;
+  }
+
+  /**
+   * get form errors.
+   * @param form - form details.
+   * @returns first error of the form.
+   */
+  getMultipleFormError(form, formName) {
+    const forms = form.controls;
+    const errors: any = {};
+    errors.errorMessages = [];
+    errors.title = this.willWritingFormError[formName].formFieldErrors.errorTitle;
+
+    // tslint:disable-next-line:forin
+    for (const field in forms) {
+      let index = 1;
+      for (const control of forms[field].controls) {
+        const formGroup = { formName: field + ' ' + index , errors: []};
+        // tslint:disable-next-line:forin
+        for (const name in control.controls) {
+          if (control.controls[name].invalid) {
+            formGroup.errors.push(
+              this.willWritingFormError[formName].formFieldErrors[field][name][Object.keys(control.controls[name]['errors'])
+              [0]].errorMessage);
+          }
+        }
+        if (formGroup.errors.length > 0) {
+          errors.errorMessages.push(formGroup);
+        }
+        index ++;
       }
     }
     return errors;
@@ -140,7 +179,7 @@ export class WillWritingService {
   /**
    * clear children details.
    */
-  clearChildrebInfo() {
+  clearChildrenInfo() {
     this.willWritingFormData.children = [];
     this.commit();
   }
@@ -149,9 +188,9 @@ export class WillWritingService {
    * get guardian details.
    * @returns guardian details.
    */
-  getGuardianInfo(): IGuardian[] {
+  getGuardianInfo(): IGuardian {
     if (!this.willWritingFormData.guardian) {
-      this.willWritingFormData.guardian = [] as IGuardian[];
+      this.willWritingFormData.guardian = {} as IGuardian;
     }
     return this.willWritingFormData.guardian;
   }
@@ -161,7 +200,15 @@ export class WillWritingService {
    * @param data - guardian details.
    */
   setGuardianInfo(data: IGuardian) {
-    this.willWritingFormData.guardian.push(data);
+    this.willWritingFormData.guardian = data;
+    this.commit();
+  }
+
+  /**
+   * clear children details.
+   */
+  clearGuardianInfo() {
+    delete this.willWritingFormData.guardian;
     this.commit();
   }
 
@@ -183,6 +230,20 @@ export class WillWritingService {
   setEligibilityDetails(data: IEligibility) {
     this.willWritingFormData.eligibility = data;
     this.commit();
+  }
+
+  openToolTipModal(title: string, message: string) {
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    ref.componentInstance.tooltipTitle = title;
+    ref.componentInstance.tooltipMessage = message;
+    return false;
+  }
+
+  openErrorModal(title: string, message: string) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = message;
+    return false;
   }
 
 }
