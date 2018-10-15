@@ -33,3 +33,7 @@ export interface IEligibility {
     assets: string;
     religion: string;
 }
+
+export interface IPromoCode {
+    promoCode: string;
+}

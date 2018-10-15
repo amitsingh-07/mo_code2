@@ -1,4 +1,4 @@
-import { IAboutMe, IChild, IEligibility, IGuardian, ISpouse } from './will-writing-types';
+import { IAboutMe, IChild, IEligibility, IGuardian, IPromoCode, ISpouse } from './will-writing-types';
 
 export class WillWritingFormData {
 
@@ -15,4 +15,7 @@ export class WillWritingFormData {
 
     // guardian info
     guardian: IGuardian;
+
+    // promoCode info;
+    promoCode: IPromoCode;
 }

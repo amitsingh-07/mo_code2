@@ -1,4 +1,5 @@
 <div class="container-fluid max-width--1024">
+  <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
   <div class="content">
     <div class="flex-row">
       <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
@@ -29,12 +30,12 @@
           <div class="time-period"  id="intro-offer-period">{{ 'WILL_WRITING.INTRODUCTION.OFFER_PERIOD' | translate}}</div>
           <div class="brdr-btm mb25 hidden-sm-md"></div>
           <div>
-            <input type="text" placeholder="Enter your pomocode"  id="intro-promo-text-field"/>
+            <input type="text" formControlName="promoCode" placeholder="Enter your promocode"  id="intro-promo-text-field"/>
           </div>
-          <div  id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span  id="intro-get-now">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
+          <div  id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span (click)="getPromoCode()"  id="intro-get-now">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
         </div>
 
-        <div class="no-promo">
+        <!-- <div class="no-promo">
             <div class="instruction-content">
               <div  id="intro-sent-via-email">{{ 'WILL_WRITING.INTRODUCTION.SENT_VIA_EMAIL' | translate}}</div>
               <input type="email" placeholder="Enter an E-mail address" *ngIf = "true"  id="intro-email-text-field"/>
@@ -44,12 +45,13 @@
               <button type="button" class="btn"
               id="intro-get-my-code">{{ 'WILL_WRITING.COMMON.GET_MY_CODE' | translate}}</button>  
             </div>
-          </div>
+          </div> -->
 
-          <button type="button" class="btn btn__footer--fixed btn-primary width100"
+          <button type="button"  [disabled]="!promoCodeForm.valid" (click)="goToNext(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
           id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
         </div>
       </div>
     </div>
   </div>
+  </form>
 </div>

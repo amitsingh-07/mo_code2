@@ -6,7 +6,7 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
-import { IAboutMe, IChild, IEligibility, IGuardian, IMyFamily, ISpouse } from './will-writing-types';
+import { IAboutMe, IChild, IEligibility, IGuardian, IMyFamily, ISpouse, IPromoCode } from './will-writing-types';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 
@@ -229,6 +229,26 @@ export class WillWritingService {
    */
   setEligibilityDetails(data: IEligibility) {
     this.willWritingFormData.eligibility = data;
+    this.commit();
+  }
+
+  /**
+   * get PromoCode details.
+   * @returns PromoCode details.
+   */
+  getPromoCodeDetails(): IPromoCode {
+    if (!this.willWritingFormData.promoCode) {
+      this.willWritingFormData.promoCode = {} as IPromoCode;
+    }
+    return this.willWritingFormData.promoCode;
+  }
+
+  /**
+   * set PromoCode details.
+   * @param data - PromoCode details.
+   */
+  setPromoCodeDetails(data: IPromoCode) {
+    this.willWritingFormData.promoCode = data;
     this.commit();
   }
 

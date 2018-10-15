@@ -14,4 +14,13 @@ export class WillWritingApiService {
     getProfileList() {
         return this.apiService.getProfileList();
     }
+
+    getPromoCode() {
+        return this.apiService.getPromoCode();
+    }
+
+    verifyPromoCode(promoCode) {
+        return this.apiService.verifyPromoCode(promoCode);
+    }
+
 }
