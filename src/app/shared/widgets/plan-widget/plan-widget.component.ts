@@ -101,6 +101,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       );
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
       if (this.type === 'long-term care') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
         this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
       }

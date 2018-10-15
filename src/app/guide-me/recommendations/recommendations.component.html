@@ -23,10 +23,10 @@
 </div>
 <div [hidden]="resultsEmptyMessage?.length > 0">
 <div class="coverage-details-wrapper">
-  <div class="coverage-details" *ngIf="coverageAmount != ''">
+  <div *ngIf="recommendationPlans" class="coverage-details">
     <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
-    {{ 'RECOMMENDATIONS.COVERAGE' | translate}}
-    <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+    <span *ngIf="coverageAmount">{{ 'RECOMMENDATIONS.COVERAGE' | translate}}</span>
+    <span *ngIf="coverageAmount" class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
     <br class="hidden-lg" />
     {{ 'RECOMMENDATIONS.PREMIUM_FROM' | translate}}
     <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ premiumFrequency }}

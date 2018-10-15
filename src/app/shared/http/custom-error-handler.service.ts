@@ -41,7 +41,7 @@ export class CustomErrorHandlerService {
     // or show a modal
     const customError: IError = {
       error: [],
-      message: 'Your session has been expired.'
+      message: 'Your session has expired.'
     };
     this.helper.showCustomErrorModal(customError);
     this.auth.logout();
