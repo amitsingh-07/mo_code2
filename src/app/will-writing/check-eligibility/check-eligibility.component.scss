@@ -4,17 +4,18 @@
 .label{
     color:#2d8289;
 }
-
-.help-icon {
-    background-image: url("../../../assets/images/help-icon.png");
-    //position: absolute;
-    //right: 10px;
-    width: 35px;
-    height: 20px;
-    //top: 4px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    margin-left: 10px;
+.with-help-icon{
+    display:flex;
+    .help-icon {
+        background-image: url("../../../assets/images/help-icon.png");
+        width: 35px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        margin-left: -60px;
+        margin-top: 23px;
+        display: block;
+    }
 }
 .container-fluid {
     background-color: #fff;
@@ -213,6 +214,9 @@
     flex-direction: column;
     .sub-title{
         color: #333846;
+        @include allmobiles {
+            margin-bottom: 40px;
+        }
     }
     h2{
         color: #00a7a7;
@@ -244,5 +248,22 @@
         display:flex;
         justify-content: center;
         align-items: center;
+        margin-top: 40px;
+        margin-bottom: 10px;
     }
+}
+.direct-form-btn--radio {
+    background-color: #fff !important;
+}
+.direct-form-btn--radio.active {
+    background-color: #00a7a7 !important;
+    color: #ffffff !important;
+}
+.section {
+    margin-bottom: 56px;
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #2d8289;
 }
