@@ -13,6 +13,7 @@ import { WillWritingService } from './../will-writing.service';
 })
 export class CheckEligibilityComponent implements OnInit {
   private pageTitle: string;
+  private tooltip: string;
 
   formValues: any;
   eligibilityForm: FormGroup;
@@ -29,6 +30,7 @@ export class CheckEligibilityComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.religionList = this.translate.instant('WILL_WRITING.ELIGIBILITY.RELIGION_LIST');
       this.pageTitle = this.translate.instant('WILL_WRITING.ELIGIBILITY.TITLE');
+      this.tooltip = this.translate.instant('WILL_WRITING.ELIGIBILITY.TOOLTIP');
     });
   }
 
@@ -65,16 +67,7 @@ export class CheckEligibilityComponent implements OnInit {
 
   openToolTipModal() {
     const title = 'Assets to be Distributed';
-    const message = `
-
-    Do note that only the following assets can be distributed via your will.
-
-    - Bank Accounts (Non-joint)
-    - Investments (Non-joint)
-    - Insurance (Without nominations nor trusts)
-    - Property (Tenancy-In-Common)
-
-    To distribute your CPF, you should make a separate CPF nomination.`;
+    const message = this.tooltip;
     this.willWritingService.openToolTipModal(title, message);
   }
 
