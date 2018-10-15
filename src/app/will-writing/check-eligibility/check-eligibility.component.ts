@@ -47,6 +47,7 @@ export class CheckEligibilityComponent implements OnInit {
   }
 
   selectReligion(religion) {
+    religion = religion ? religion : {text: '', value: ''};
     this.religion = religion.text;
     this.eligibilityForm.controls['religion'].setValue(religion.value);
   }
@@ -80,7 +81,7 @@ export class CheckEligibilityComponent implements OnInit {
   openErrorModal() {
     const title = 'Assets to be Distributed';
     const message = '';
-    this.willWritingService.openErrorModal(title, message);
+    this.willWritingService.openErrorModal(title, message, false);
   }
 
   goToNext(form) {

@@ -34,6 +34,12 @@ export interface IEligibility {
     religion: string;
 }
 
+export interface IExecTrustee {
+    name: string;
+    relationship: string;
+    nricNumber: string;
+}
+
 export interface IPromoCode {
     promoCode: string;
 }

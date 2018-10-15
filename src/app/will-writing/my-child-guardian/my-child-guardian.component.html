@@ -19,7 +19,7 @@
               <div class="flex-row title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
               <div class="flex-row mb10">
                 <div class="flex-col-5">
-                  <label for="name" id="addGuardianFormLbl1"><div>{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.NAME' | translate}}</div></label>
+                  <label for="name" id="addGuardianFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div></label>
                 </div>
                 <div class="flex-col-7">
                   <input type="text" [ngClass]="{'inline-error': submitted && addGud.name.invalid}" id="addGuardianFormInpt1" class="form-control" #name formControlName="name">
@@ -27,7 +27,7 @@
               </div>              
               <div class="flex-row mb10">
                 <div class="flex-col-5">
-                  <label for="name"  id="addGuardianFormLbl2"><div>{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.NRIC' | translate}}</div></label>
+                  <label for="name"  id="addGuardianFormLbl2"><div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div></label>
                 </div>
                 <div class="flex-col-7">
                   <input type="text" [ngClass]="{'inline-error': submitted && addGud.nricNumber.invalid}" id="addGuardianFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
@@ -35,7 +35,7 @@
               </div>              
               <div class="flex-row mb10">
                 <div class="flex-col-5">
-                  <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.RELATIONSHIP' | translate}}</label>
+                  <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' | translate}}</label>
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': submitted && addGud.relationship.invalid}">

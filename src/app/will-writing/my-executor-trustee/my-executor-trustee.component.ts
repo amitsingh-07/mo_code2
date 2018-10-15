@@ -5,63 +5,48 @@ import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-boots
 import { TranslateService } from '@ngx-translate/core';
 
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IChild, IMyFamily, ISpouse } from '../will-writing-types';
+import { IChild, IMyFamily, ISpouse, IExecTrustee } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
 
 @Component({
-  selector: 'app-my-family',
-  templateUrl: './my-family.component.html',
-  providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
-  styleUrls: ['./my-family.component.scss']
+  selector: 'app-my-executor-trustee',
+  templateUrl: './my-executor-trustee.component.html',
+  styleUrls: ['./my-executor-trustee.component.scss']
 })
-export class MyFamilyComponent implements OnInit {
+export class MyExecutorTrusteeComponent implements OnInit {
   private pageTitle: string;
   private step: string;
 
-  myFamilyForm: FormGroup;
-  familyFormValues: IMyFamily;
-  childrenCount: number;
-  childrenFormValues: IChild[];
+  addExeTrusteeForm: FormGroup;
+  execTrusteeFormValues: IExecTrustee[];
   showSpouseDeatils: boolean;
-  showChildDetails: boolean;
   submitted: boolean;
 
   constructor(
-    private config: NgbDatepickerConfig,
     private formBuilder: FormBuilder,
-    private modal: NgbModal,
-    private parserFormatter: NgbDateParserFormatter,
     private router: Router,
     private translate: TranslateService,
     private willWritingService: WillWritingService
   ) {
-    const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-    config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
-      this.pageTitle = this.translate.instant('WILL_WRITING.MY_FAMILY.TITLE');
+      this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_3');
+      this.pageTitle = this.translate.instant('WILL_WRITING.My_EXECUTOR_TRUSTEE.TITLE');
     });
   }
 
   ngOnInit() {
     this.showSpouseDeatils = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
-    this.showChildDetails = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
-    this.buildMyFamilyForm();
+    this.buildAddExecTrusteeForm();
   }
 
   /**
    * build about me form.
    */
-  buildMyFamilyForm() {
-    this.familyFormValues = this.willWritingService.getMyFamilyInfo();
-    this.childrenFormValues = this.familyFormValues.children;
-    this.childrenCount = this.willWritingService.getAboutMeInfo().noOfChildren;
-    this.myFamilyForm = this.formBuilder.group({
+  buildAddExeTrusteeForm() {
+    this.execTrusteeFormValues = this.willWritingService.getExecTrusteeInfo();
+    this.addExeTrusteeForm = this.formBuilder.group({
       spouse: this.formBuilder.array([this.buildSpouseForm()]),
       childrens: this.formBuilder.array([this.buildChildrenForm(0)]),
     });

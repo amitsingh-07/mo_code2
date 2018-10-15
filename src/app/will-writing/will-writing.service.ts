@@ -6,7 +6,7 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
-import { IAboutMe, IChild, IEligibility, IGuardian, IMyFamily, ISpouse, IPromoCode } from './will-writing-types';
+import { IAboutMe, IChild, IEligibility, IExecTrustee, IGuardian, IMyFamily, IPromoCode, ISpouse } from './will-writing-types';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 
@@ -157,6 +157,14 @@ export class WillWritingService {
   }
 
   /**
+   * clear children details.
+   */
+  clearSpouseInfo() {
+    delete this.willWritingFormData.spouse;
+    this.commit();
+  }
+
+  /**
    * get children details.
    * @returns children details.
    */
@@ -244,6 +252,26 @@ export class WillWritingService {
   }
 
   /**
+   * get guardian details.
+   * @returns guardian details.
+   */
+  getExecTrusteeInfo(): IExecTrustee[] {
+    if (!this.willWritingFormData.execTrustee) {
+      this.willWritingFormData.execTrustee = [] as IExecTrustee[];
+    }
+    return this.willWritingFormData.execTrustee;
+  }
+
+  /**
+   * set guardian details.
+   * @param data - guardian details.
+   */
+  setExecTrusteeInfo(data: IExecTrustee) {
+    this.willWritingFormData.execTrustee.push(data);
+    this.commit();
+  }
+
+  /**
    * set PromoCode details.
    * @param data - PromoCode details.
    */
@@ -259,10 +287,14 @@ export class WillWritingService {
     return false;
   }
 
-  openErrorModal(title: string, message: string) {
+  openErrorModal(title: string, message: string, isMultipleForm: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
-    ref.componentInstance.errorMessage = message;
+    if (!isMultipleForm) {
+      ref.componentInstance.errorMessageList = message;
+    } else {
+      ref.componentInstance.multipleFormErrors = message;
+    }
     return false;
   }
 

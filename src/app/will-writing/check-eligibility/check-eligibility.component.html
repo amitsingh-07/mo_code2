@@ -70,7 +70,7 @@
                       </button>
                       <div ngbDropdownMenu aria-labelledby="religionDropDown">
                         <button class="dropdown-item" (click)="selectReligion('')">{{'Select' | translate}}</button>
-                        <button type="button" class="dropdown-item" *ngFor="let religion of religionList" (click)="selectReligion(religion.value)">
+                        <button type="button" class="dropdown-item" *ngFor="let religion of religionList" (click)="selectReligion(religion)">
                           {{religion.text}}
                         </button>
                       </div>
@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div>
-                <button type="button" [disabled]="!eligibilityForm.valid" (click)="goToNext(eligibilityForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                <button type="button" [disabled]="eligibilityForm.invalid" (click)="goToNext(eligibilityForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                   id="eligibilityBtn2">{{ 'LABEL.CONTINUE' | translate}}</button>
               </div>
             </div>

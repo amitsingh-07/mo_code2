@@ -1,0 +1,79 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    background-color: #fff;
+    padding: 50px 60px 65px;
+    font-family: $muli-semi-bold;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+}
+.aboutMe {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #2d8289;
+    margin-top: 70px;
+    @include allmobiles {
+        margin-top: 25px;
+    }
+    .title {
+        font-family: $muli-bold;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.4px;
+        color: #066360;
+        margin-bottom: 19px;
+          
+    }
+    .sublbl {
+        font-family: $muli-regular;
+        font-size: 16px;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        font-weight: normal;
+    }
+}
+
+.heading {
+    font-family: $muli-light;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    color: #00a7a7;
+}
+.autofill-link {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+.autofill-text{
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: #00a7a7;  
+}
+
+.sub-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.2px;
+    color: #333846;
+}
+.mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+}
