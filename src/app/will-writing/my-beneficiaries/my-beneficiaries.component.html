@@ -1,0 +1,65 @@
+<app-page-title [step]="step" [pageTitle]="Beneficiaries"></app-page-title>
+<div class="container-fluid max-width--1024">
+  <div class="content">
+    <div class="flex-row">
+      <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
+        <h2 id="intro-title">{{ 'WILL_WRITING.INTRODUCTION.TITLE' | translate}}</h2>
+        <h6 class="hidden-sm-md sub-title" id="intro-sub-title">{{ 'WILL_WRITING.INTRODUCTION.SUB_TITLE' | translate}}</h6>
+        <div class="banner-image">
+          <img src="assets/images/will-start.svg" id="intro-img"/>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6  col-sm-12 beneficiaries-container">
+        <div name="beneficiariesForm">
+            <div>
+                  <div class="form-group-single-column  mb0 flex-col">
+                    <div class="checkbox-button two-label" >
+                      <input id="beneficiary1" name="beneficiary1"  type="checkbox" class="field checkbox"
+                        value="one" >
+                      <label for="beneficiary1" id="">
+                        <div class="input-label-black">heading</div>
+                        <div class="input-label-normal">sub heading</div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group-single-column  mb0 flex-col">
+                      <div class="checkbox-button two-label" >
+                        <input id="beneficiary2" name="beneficiary2"  type="checkbox" class="field checkbox"
+                          value="one" >
+                        <label for="beneficiary2" id="">
+                          <div class="input-label-black">heading</div>
+                          <div class="input-label-normal">sub heading</div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="form-group-single-column  mb0 flex-col">
+                        <div class="checkbox-button two-label" >
+                          <input id="beneficiary3" name="beneficiary3"  type="checkbox" class="field checkbox"
+                            value="one" >
+                          <label for="beneficiary3" id="">
+                            <div class="input-label-black">heading</div>
+                            <div class="input-label-normal">sub heading</div>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="form-group-single-column  mb0 flex-col">
+                          <div class="checkbox-button two-label" >
+                            <img id ="add" src ="assets/images/will-writing/add.svg"/>
+                            <label for="add">
+                              <div class="input-label-black add-beneficiaries">Add Beneficiaries</div> 
+                            </label>
+                          </div>
+                        </div>
+
+                  <div>
+                    <button type="button" [disabled]="false" (click)="goToNext(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
