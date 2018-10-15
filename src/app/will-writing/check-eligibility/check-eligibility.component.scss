@@ -6,15 +6,17 @@
 }
 .with-help-icon{
     display:flex;
+    align-items: flex-end;
+    position: relative;
     .help-icon {
         background-image: url("../../../assets/images/help-icon.png");
-        width: 35px;
+        width: 40px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
-        margin-left: -60px;
-        margin-top: 23px;
-        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
     }
 }
 .container-fluid {
@@ -117,7 +119,9 @@
 .promocode {
     margin-top: 70px;
     @include allmobiles {
-        margin-top: 25px;
+        margin: 0;
+        padding: 40px 15px 55px;
+        background: #f7f7f7;
     }
     .FAQ {
         margin-top: 16px;
@@ -180,9 +184,20 @@
     display: flex;
     flex-direction: column;
     .sub-title{
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        text-align: left;
         color: #333846;
+        padding-right: 50px;
         @include allmobiles {
-            margin-bottom: 40px;
+            margin-bottom: 40px;        
+            text-align: center;
+            padding: 0 30px;
         }
     }
     h2{
@@ -215,7 +230,7 @@
         display:flex;
         justify-content: center;
         align-items: center;
-        margin-top: 40px;
+        margin-top: 20px;
         margin-bottom: 10px;
     }
 }
@@ -233,4 +248,12 @@
     font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
+    margin-bottom: 29px;
+}
+.dropdown-control{
+     .dropdown-menu{
+        &.show{
+            margin-bottom: 20px;
+        }
+    }
 }

@@ -4,7 +4,13 @@
     <div class="flex-row">
       <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
         <h2 class="hidden-sm-md">{{ 'WILL_WRITING.ELIGIBILITY.TITLE' | translate}}</h2>
-        <h6 class="sub-title">{{ 'WILL_WRITING.ELIGIBILITY.SUB_TITLE' | translate}}</h6>
+        <div class="sub-title">
+            <div class="hidden-lg">
+              <span>{{ 'WILL_WRITING.ELIGIBILITY.SUB_TITLE1' | translate}}</span>
+              <span>{{ 'WILL_WRITING.ELIGIBILITY.SUB_TITLE2' | translate}}</span>
+            </div>
+            <div class="hidden-sm-md">{{ 'WILL_WRITING.ELIGIBILITY.SUB_TITLE3' | translate}}</div>
+        </div>
         <div class="banner-image hidden-sm-md">
           <img src="assets/images/eligibility.jpg" />
         </div>
@@ -37,7 +43,7 @@
               </div>
               <div class="flex-row section">
                 <div class="flex-col-5 with-help-icon">
-                  <label class="label" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
+                  <label class="label mr10" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
                     translate}}</label>
                     <span class="help-icon" (click)="openToolTipModal()"></span>
                 </div>
