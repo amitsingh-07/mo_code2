@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IChild, IMyFamily, ISpouse, IExecTrustee } from '../will-writing-types';
+import { IExecTrustee } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
 
 @Component({
@@ -25,9 +24,9 @@ export class MyExecutorTrusteeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private translate: TranslateService,
-    private willWritingService: WillWritingService
+    private willWritingService: WillWritingService,
+    private router: Router,
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -38,51 +37,38 @@ export class MyExecutorTrusteeComponent implements OnInit {
 
   ngOnInit() {
     this.showSpouseDeatils = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
-    this.buildAddExecTrusteeForm();
+    this.buildExecTrusteeForm();
   }
 
   /**
    * build about me form.
    */
-  buildAddExeTrusteeForm() {
+  buildExecTrusteeForm() {
     this.execTrusteeFormValues = this.willWritingService.getExecTrusteeInfo();
     this.addExeTrusteeForm = this.formBuilder.group({
-      spouse: this.formBuilder.array([this.buildSpouseForm()]),
-      childrens: this.formBuilder.array([this.buildChildrenForm(0)]),
+      execTrustee: this.formBuilder.array([this.buildAddExecTrusteeForm(0)]),
     });
-    if (this.showChildDetails) {
-      for (let i = 1; i <= this.childrenCount - 1 ; i++) {
-        this.addChildrenForm(i);
+    if (this.execTrusteeFormValues.length) {
+      for (let i = 1; i <= this.execTrusteeFormValues.length - 1 ; i++) {
+        this.addExecTrusteeForm(i);
       }
     }
   }
 
-  buildSpouseForm(): FormGroup {
-    if (this.showSpouseDeatils) {
+  buildAddExecTrusteeForm(index: number): FormGroup {
       return this.formBuilder.group({
-        name: [this.familyFormValues.spouse.name, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-        nricNumber: [this.familyFormValues.spouse.nricNumber, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+          name: [this.execTrusteeFormValues.length > index ?
+            this.execTrusteeFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+          relationship: [this.execTrusteeFormValues.length > index ? this.execTrusteeFormValues[index].relationship : '',
+          [Validators.required]],
+          nricNumber: [this.execTrusteeFormValues.length > index ?
+            this.execTrusteeFormValues[index].nricNumber : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       });
-    }
-    return this.formBuilder.group({});
   }
 
-  buildChildrenForm(index: number): FormGroup {
-    if (this.showChildDetails) {
-      return this.formBuilder.group({
-          name: [this.childrenFormValues.length > index ?
-            this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          nricNumber: [this.childrenFormValues.length > index ?
-            this.childrenFormValues[index].nricNumber : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          dob: [this.childrenFormValues.length > index ? this.childrenFormValues[index].dob : '', [Validators.required]]
-      });
-    }
-    return this.formBuilder.group({});
-  }
-
-  addChildrenForm(index: number): void {
-    const items: FormArray = this.myFamilyForm.get('childrens') as FormArray;
-    items.push(this.buildChildrenForm(index));
+  addExecTrusteeForm(index: number): void {
+    const items: FormArray = this.addExeTrusteeForm.get('execTrustee') as FormArray;
+    items.push(this.buildAddExecTrusteeForm(index));
   }
 
   /**
@@ -98,7 +84,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
       const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
     } else {
-      if (this.showSpouseDeatils) {
+      /*if (this.showSpouseDeatils) {
         this.willWritingService.setSpouseInfo(form.value.spouse[0]);
       }
       if (this.showChildDetails) {
@@ -106,26 +92,9 @@ export class MyExecutorTrusteeComponent implements OnInit {
         for (const children of form.value.childrens) {
           this.willWritingService.setChildrenInfo(children);
         }
-      }
+      }*/
       return true;
     }
-  }
-
-  checkChildrenAge(childrens: IChild[]): boolean {
-    for (const children of childrens) {
-      const dob = children.dob;
-      const today = new Date();
-      const birthDate = new Date(dob['year'], dob['month'], dob['day']);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-      }
-      if (age < 21) {
-        return true;
-      }
-    }
-    return false;
   }
 
   /**
@@ -134,19 +103,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
    */
   goToNext(form) {
     if (this.save(form)) {
-      if (!this.showSpouseDeatils && this.showChildDetails && this.checkChildrenAge(form.value.childrens)) {
-          this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN]);
-      } else {
-        if (this.showSpouseDeatils && this.showChildDetails && this.checkChildrenAge(form.value.childrens)) {
-          const spouse = Object.assign({}, form.value.spouse[0]);
-          spouse.relationship = 'parent';
-          this.willWritingService.setGuardianInfo(spouse);
-        } else {
-          this.willWritingService.clearGuardianInfo();
-        }
-        this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
-      }
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
     }
   }
-
 }

@@ -14,34 +14,9 @@
           </div>
           <div class="col-lg-5 col-md-5 col-12">
   
-            <form [formGroup]="myFamilyForm" id="myFamilyForm" name="myFamilyForm">
-              <div *ngIf="showSpouseDeatils">
-                <div class="aboutMe" formArrayName="spouse" *ngFor="let spouse of myFamilyForm.get('spouse').controls; let i = index;">
-                  <div class="form-group" [formGroupName]="i">
-                    <div class="flex-row title">{{ 'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</div>
-                    <div class="flex-row mb10">
-                      <div class="flex-col-5">
-                        <label for="name" id="myFamilyFormLbl1">{{ 'WILL_WRITING.MY_FAMILY.FORM.NAME' | translate}}</label>
-                      </div>
-                      <div class="flex-col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
-                      </div>
-                    </div>
-                    <div class="flex-row mb10">
-                      <div class="flex-col-5">
-                        <label for="name" id="myFamilyFormLbl2">
-                          <div>{{ 'WILL_WRITING.MY_FAMILY.FORM.NRIC' | translate}}</div>
-                        </label>
-                      </div>
-                      <div class="flex-col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.nricNumber.invalid}" id="myFamilyFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div *ngIf="showChildDetails">
-                <div class="aboutMe" formArrayName="childrens" *ngFor="let children of myFamilyForm.get('childrens').controls; let i = index;">
+            <form [formGroup]="addExeTrusteeForm" id="addExeTrusteeForm" name="addExeTrusteeForm">              
+              <div>
+                <div class="aboutMe" formArrayName="execTrustee" *ngFor="let execTrustee of addExeTrusteeForm.get('execTrustee').controls; let i = index;">
                   <div class="form-group" [formGroupName]="i">
                     <div class="flex-row title">{{ 'WILL_WRITING.MY_FAMILY.FORM.MY_CHILD' | translate}} {{i+1}}</div>
                     <div class="flex-row mb10">
@@ -49,7 +24,7 @@
                         <label for="name" id="myFamilyFormLbl1">{{ 'WILL_WRITING.MY_FAMILY.FORM.NAME' | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && children.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
+                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
                       </div>
                     </div>
                     <div class="flex-row mb10">
@@ -59,34 +34,14 @@
                         </label>
                       </div>
                       <div class="flex-col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && children.controls.nricNumber.invalid}" id="myFamilyFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
-                      </div>
-                    </div>
-                    <div class="flex-row">
-                      <div class="flex-col-5">
-                        <label for="name" id="myFamilyFormLbl7">{{ 'WILL_WRITING.MY_FAMILY.FORM.DOB' | translate}}</label>
-                      </div>
-                      <div class="flex-col-7">
-                        <div class="datepicker-control">
-                          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': submitted && children.controls.dob.invalid}">
-                            <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-                            <div class="input-group-append">
-                              <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                                <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="!submitted || children.controls.dob.valid || children.controls.dob.pristine" src="./assets/images/calendar-normal.svg"
-                                />
-                                <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="submitted && children.controls.dob.invalid && !children.controls.dob.pristine" src="./assets/images/calendar-error.svg"
-                                />
-                              </button>
-                              </div>
-                            </div>
-                          </div>
+                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.controls.nricNumber.invalid}" id="myFamilyFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div>
-                <button type="button" (click)="goToNext(myFamilyForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                   id="myFamilyFormBtn1">
                   {{'LABEL.CONTINUE' | translate}}</button>
               </div>
