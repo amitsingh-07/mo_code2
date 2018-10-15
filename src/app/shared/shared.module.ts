@@ -21,6 +21,7 @@ import { DisclosuresComponent } from './components/disclosures/disclosures.compo
 import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
+import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -51,7 +52,8 @@ export function createTranslateLoader(http: HttpClient) {
     PrivacyPolicyComponent,
     FairDealingComponent,
     DisclosuresComponent,
-    TermsComponent]
+    TermsComponent,
+    TermsOfUseComponent]
 })
 export class SharedModule { }
 

@@ -48,11 +48,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   triggerPopup() {
     this.modalRef = this.modal.open(PopupModalComponent, {
       centered: true,
-      windowClass: 'popup-modal-dialog',
-      beforeDismiss: () => {
-        this.appService.startAppSession();
-        return true;
-      }
+      windowClass: 'popup-modal-dialog'
     });
   }
 

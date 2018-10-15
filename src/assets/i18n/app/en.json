@@ -111,16 +111,16 @@
     "TNC": {
       "SUB_NAV": {
         "PRIMARY": "Home",
-        "MAIN": "Terms and Conditions" 
+        "MAIN": "Terms of Use" 
       },
-      "TITLE": "Terms and Conditions"
+      "TITLE": "Terms of Use"
     },
     "PRIVACY_POLICY": {
       "SUB_NAV": {
         "PRIMARY": "Home",
-        "MAIN": "Privacy Policy"
+        "MAIN": "Terms and Conditions & Privacy Policy"
       },
-      "TITLE": "Privacy Policy"
+      "TITLE": "Terms and Conditions & Privacy Policy"
     },
     "DISCLOSURE": {
       "SUB_NAV": {
@@ -191,13 +191,13 @@
       }
     },
     "BOTTOM_SECTION": {
-      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Service Licence No: CMS100758-1.",
+      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Service Licence No: CMS100758.",
       "LEGAL": {
-        "TERMS_AND_CONDITIONS": {
-          "LABEL": "Terms and Conditions"
+        "TERMS_OF_USE": {
+          "LABEL": "Terms of Use"
         },
         "PRIVACY_POLICY": {
-          "LABEL": "Privacy Policy"
+          "LABEL": "Terms and Conditions & Privacy Policy"
         },
         "DISCLOSURE": {
           "LABEL": "Disclosure"
