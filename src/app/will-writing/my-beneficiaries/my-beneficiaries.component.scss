@@ -165,7 +165,10 @@
     display: flex;
     flex-direction: column;
     .sub-title{
-        color: #333846;
+        color: #333846 !important;
+        @include allmobiles {
+            padding: 10px;
+        }
     }
     h2{
         color: #00a7a7;
@@ -197,7 +200,54 @@ input[type='checkbox']+label {
   .add-beneficiaries{
       padding:5px;
   }
-  .checkbox-button .two-label{
-      padding-top:13px !important;
-      padding-bottom:17px !important;
+  
+  .form-group-single-column .checkbox-button.two-label {
+    padding: 20px !important;
   }
+  .mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.mobile-header {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: -12px;
+        color: #333846 !important;
+    }  
+}
+
+.add-beneficiaries-container {
+    background-color: #fff;
+    color:#2d8289;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+.beneficiaries-container{
+    padding: 0 10px
+}
+.aboutMe{
+    .btn {
+        padding: 8px !important;
+        font-family: $muli-regular !important;
+        color:#2d8289;
+        background-color: #fff;
+    }
+    .btn-primary{
+        background-color: #00a7a7;
+        color: #fff !important;
+        font-family: $muli-regular !important;
+    }
+}
+
+.header-container{
+    padding: 0px !important;
+}
+
