@@ -103,6 +103,7 @@
     @include allmobiles {
         margin-top: 25px;
         padding: 0;
+        margin-bottom: 40px;
     }
     .FAQ {
         margin-top: 16px;
@@ -252,13 +253,14 @@ input[type='checkbox']+label {
 }
 
 .content-title {
-    width: 337px;
-    height: 23px;
     font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.3px;
     color: #ffffff;
     padding:20px !important;
+  }
+  .add-beneficiary{
+      justify-content: flex-end;
   }
 
