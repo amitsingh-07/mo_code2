@@ -1,7 +1,4 @@
-<div class="mobile-header hidden-lg">
-  <div class="back"></div>
-  <div class="autofill-text">{{ 'WILL_WRITING.ELIGIBILITY.TITLE' | translate}}</div>
-</div>
+<app-page-title [pageTitle]="pageTitle"></app-page-title>
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="flex-row">
@@ -42,19 +39,19 @@
                 <div class="flex-col-5 with-help-icon">
                   <label class="label" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
                     translate}}</label>
-                    <span class="help-icon" (click)="openModal()"></span>
+                    <span class="help-icon" (click)="openToolTipModal()"></span>
                 </div>
                 <div class="flex-col-7 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="assets" formControlName="assets">
                     <div class="flex-row mb0" style="justify-content: space-between;">
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl5">
-                          <input ngbButton type="radio" (click) = "changeState($event)" value="yes" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
+                          <input ngbButton type="radio" value="yes" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
                         </label>
                       </div>
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl6" [ngClass]="{'inline-error': isAssets}">
-                          <input ngbButton type="radio" (click) = "changeState($event)" value="no" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
+                          <input ngbButton type="radio" value="no" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
                       </div>
                     </div>
