@@ -17,11 +17,11 @@
         <div class="doselfCheck setpOneForm">
           <form name="eligibilityForm" id="eligibilityForm" [formGroup]="eligibilityForm" class="flex-row">
             <div class="form-group direct-form">
-              <div class="flex-row">
-                <div class="flex-col-4">
+              <div class="flex-row section">
+                <div class="flex-col-5">
                   <label class="label" for="name" id="eligibilityLbl1">{{ 'WILL_WRITING.ELIGIBILITY.ARE_YOU_SINGAPOREAN' | translate}}</label>
                 </div>
-                <div class="flex-col-8 direct-form-grp">
+                <div class="flex-col-7 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="singaporean" formControlName="singaporean">
                     <div class="flex-row mb0" style="justify-content: space-between;">
                       <div>
@@ -38,13 +38,13 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row">
-                <div class="flex-col-4">
-                  <label class="label" (click)="openModal()" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
+              <div class="flex-row section">
+                <div class="flex-col-5 with-help-icon">
+                  <label class="label" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
                     translate}}</label>
-                    <span class="help-icon" (click)="showPremiumWaiverModal()"></span>
+                    <span class="help-icon" (click)="openModal()"></span>
                 </div>
-                <div class="flex-col-8 direct-form-grp">
+                <div class="flex-col-7 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="assets" formControlName="assets">
                     <div class="flex-row mb0" style="justify-content: space-between;">
                       <div>
@@ -61,11 +61,11 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row">
-                <div class="flex-col-4">
+              <div class="flex-row section">
+                <div class="flex-col-5">
                   <label class="label with-help-icon" for="name" id="eligibilityLbl7">{{ 'Religion' | translate}}</label>
                 </div>
-                <div class="flex-col-8 direct-form-grp">
+                <div class="flex-col-7 direct-form-grp">
                   <div class="dropdown-control">
                     <div ngbDropdown id="religionDropDown" [ngClass]="{'inline-error': isMuslim}">
                       <button type="button" class="btn btn-dropdown" id="religionDropDown" ngbDropdownToggle>
