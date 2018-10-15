@@ -7,6 +7,7 @@
             "STEP_1": "Step 1",
             "STEP_2": "Step 2",
             "STEP_3": "Step 3",
+            "STEP_4": "Step 4",
             "ADD_GUARDIAN": "Add Guardian",
             "MY_SPOUSE": "My Spouse"
         },
@@ -108,6 +109,10 @@
             "RELIGION_LIST": [{"text":"Christian", "value":"christian"}, { "text":"Buddhist", "value":"buddhist"}, { "text":"Muslim", "value":"muslim"}, { "text":"Hindu", "value":"hindu"}, { "text":"None", "value":"none"}, {"text":"Others", "value":"others"}],
             "ARE_YOU_SINGAPOREAN":"Are you a Singaporean?",
             "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?"
+        },
+        "REVIEW_YOUR_DETAILS": {
+            "TITLE":"Review Your Details",
+            "SUB_TITLE": "In the next step, please check that all details provided are accurate."
         }
     }
 }
