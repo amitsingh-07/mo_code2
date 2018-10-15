@@ -23,7 +23,6 @@
     h4,h5,h6 {
         font-family:$muli-semi-bold;
     }
-
     p{
         color:$black-color;
         font-size:1rem;
@@ -165,11 +164,20 @@
         margin-inline-start:0px;
         margin-inline-end:0px;
         padding-inline-start:40px;
+        @include minMobilemaxPhablet{
+            padding-inline-start:20px;
+        }
         li{
             list-style-type:disc;
             color:$black-color;
+            @include minMobilemaxPhablet{
+                font-size:0.9em !important;
+            }
         }
         &.list-unstyled{
+            @include minMobilemaxPhablet{
+                padding-inline-start:0px;
+            }
             li{
                 list-style-type:none;
             }

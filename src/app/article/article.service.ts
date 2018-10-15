@@ -42,8 +42,15 @@ export class ArticleService {
 
   getArticleId(art_tag_name: string) {
     const art_map = this.articleApiService.getArticleTagMap();
-    const art_id = Object.keys(art_map.tag_map).find((key) => Object[key] === art_tag_name);
-    console.log(art_id);
-    return  art_id;
+    const art_key = Object.keys(art_map.tag_map);
+
+    for (let i = 0; i <= art_key.length; i++) {
+      const iteration_tag_name = art_map.tag_map[art_key[i]].tag_name;
+      if (iteration_tag_name.toLowerCase() === art_tag_name) {
+        return art_key[i];
+      }
+      console.log('1 iteration');
+    }
+    return null;
   }
 }

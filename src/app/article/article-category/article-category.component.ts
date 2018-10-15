@@ -1,7 +1,6 @@
-import { ArticleService } from './../article.service';
-import { catchError } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ArticleService } from './../article.service';
 
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
@@ -16,7 +15,7 @@ import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ArticleCategoryComponent implements OnInit {
   public category = 'Protection';
-
+  public category_id: number;
   constructor(public navbarService: NavbarService, public footerService: FooterService,
               private articleService: ArticleService,
               private config: NgbDropdownConfig, private route: ActivatedRoute) {
@@ -25,15 +24,12 @@ export class ArticleCategoryComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       if (params['name']) {
-        this.category = params['name'];
-        console.log(this.category);
-        this.getCategoryArticles(this.category);
+        this.getCategoryArticles(params['name']);
       }
     });
     this.route.queryParams.subscribe((params) => {
       if (params['category']) {
-        this.category = params['category'];
-        this.getCategoryArticles(this.category);
+        this.getCategoryArticles(params['category']);
       }
     });
 
@@ -44,7 +40,7 @@ export class ArticleCategoryComponent implements OnInit {
   }
 
   getCategoryArticles(category_name: string) {
-    const category_id =  this.articleService.getArticleId(category_name);
-    console.log(category_id);
+    this.category_id = +(this.articleService.getArticleId(category_name));
+    this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
   }
 }
