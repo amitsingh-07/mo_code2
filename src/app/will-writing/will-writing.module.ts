@@ -7,7 +7,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { AboutMeComponent } from './about-me/about-me.component';
-import { AddGuardianComponent } from './add-guardian/add-guardian.component';
 import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
@@ -45,7 +44,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   declarations: [
     AboutMeComponent,
-    AddGuardianComponent,
     CheckEligibilityComponent,
     DistributeYourEstateComponent,
     FaqComponent,

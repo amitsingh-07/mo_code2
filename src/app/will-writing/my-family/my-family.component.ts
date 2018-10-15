@@ -161,7 +161,7 @@ export class MyFamilyComponent implements OnInit {
           spouse.relationship = 'parent';
           this.willWritingService.setGuardianInfo(spouse);
         } else {
-          this.willWritingService.setGuardianInfo({});
+          this.willWritingService.clearGuardianInfo();
         }
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
       }
