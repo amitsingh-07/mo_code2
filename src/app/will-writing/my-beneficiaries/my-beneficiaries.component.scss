@@ -168,7 +168,7 @@
     .sub-title{
         color: #333846 !important;
         @include allmobiles {
-            padding: 8px !important;
+            padding: 10px !important;
         }
     }
     h2{
@@ -215,12 +215,15 @@ input[type='checkbox']+label {
 }
 
 .mobile-header {
+         background-color: #00a7a7;
+         position: relative;
     @include allmobiles {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
         margin-top: -12px;
         color: #333846 !important;
+        background-color: #fff;
     }  
 }
 

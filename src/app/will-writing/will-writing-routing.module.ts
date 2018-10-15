@@ -13,6 +13,7 @@ import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.
 import { MyFamilyComponent } from './my-family/my-family.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { WILL_WRITING_ROUTES } from './will-writing-routes.constants';
+import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
 
 const routes: Routes = [
   { path: WILL_WRITING_ROUTES.ROOT, component: IntroductionComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: WILL_WRITING_ROUTES.MY_CHILD_GUARDIAN, component: MyChildGuardianComponent },
   { path: WILL_WRITING_ROUTES.DISTRIBUTE_YOUR_ESTATE, component: DistributeYourEstateComponent },
   { path: WILL_WRITING_ROUTES.APPOINT_EXECUTOR_TRUSTEE, component: AppointYourExecutorTrusteeComponent},
-  { path: WILL_WRITING_ROUTES.MY_BENEFICIARIES, component: MyBeneficiariesComponent}
+  { path: WILL_WRITING_ROUTES.MY_BENEFICIARIES, component: MyBeneficiariesComponent},
+  { path: WILL_WRITING_ROUTES.REVIEW_YOUR_DETAILS, component: ReviewYourDetailsComponent}
 ];
 
 @NgModule({
