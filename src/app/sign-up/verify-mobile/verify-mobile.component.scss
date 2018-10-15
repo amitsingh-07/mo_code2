@@ -1,55 +1,66 @@
 @import '../../../variables';
 @import '../../../mixins';
+
 .verify-mobile-block {
-	.verify-mobile-block__otp__title {
-		font-size: 18px;
-		font-family: $muli-regular;
-	}
-	.verify-mobile-block__phone-number {
-		font-size: 36px;
-		font-family: $muli-bold;
-	}
-	.verify-mobile-block__edit-link {
-		font-size: 18px;
-	}
-	.verify-mobile-block__otp {
-		@extend .flex;
-		@extend .space-btwn;
-		input {
-		  width: 48.7px;
-		  height: 60px;
-		  border-radius: 5.1px;
-		  background-color: $white-color;
-		  border: none;
-		  text-align: center;
-		  color: $app-backgrnd-color;
-		  font-size: 24px;
-		  font-family: $muli-regular;
-		}
-	}
+  .verify-mobile-block__otp__title {
+    font-size: 18px;
+    font-family: $muli-regular;
+  }
+
+  .verify-mobile-block__phone-number {
+    font-size: 36px;
+    font-family: $muli-bold;
+  }
+
+  .verify-mobile-block__edit-link {
+    font-size: 18px;
+  }
+
+  .verify-mobile-block__otp {
+    @extend .flex;
+    @extend .space-btwn;
+
+    input {
+      width: 48.7px;
+      height: 60px;
+      border-radius: 5.1px;
+      background-color: $white-color;
+      border: none;
+      text-align: center;
+      color: $app-backgrnd-color;
+      font-size: 24px;
+      font-family: $muli-regular;
+    }
+  }
 }
+
 .signup-wrapper__header-icon {
   @include allmobiles {
     display: none;
   }
 }
+
 .container-fluid {
   padding-top: 50px;
 }
+
 .signup-wrapper {
   h2 {
     margin-bottom: 20px;
   }
+
   .signup-wrapper__description {
     margin-bottom: 10px;
   }
+
   p {
     margin-bottom: -10px;
   }
 }
+
 /*Modal styles*/
 .mobile-verify-modal {
-.custom-modal-backdrop {
+  .custom-modal-backdrop {
     background: $app-backgrnd-color;
     position: fixed;
     opacity: 0.85;
@@ -59,6 +70,7 @@
     top: 0;
     left: 0;
   }
+
   .custom-modal-wrapper {
     top: 0;
     left: 0;
@@ -71,23 +83,28 @@
     @extend .justify-center;
     @extend .align-center;
   }
+
   .custom-modal-content {
     width: 100%;
     height: 100%;
+
     img {
       width: 100%;
       height: 100%;
     }
   }
- .custom-modal--icon {
+
+  .custom-modal--icon {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 20%;
+
     img {
       width: 185px;
       height: 185px;
     }
+
     @include allmobiles {
       img {
         width: 150px;
@@ -95,6 +112,7 @@
       }
     }
   }
+
   .custom-modal--title {
     color: $white-color;
     font-family: $muli-regular;
@@ -103,6 +121,7 @@
     line-height: 0.56;
     margin-top: 30px;
   }
+
   .custom-modal--desc {
     color: $white-color;
     font-size: 24px;
@@ -110,25 +129,30 @@
     letter-spacing: -0.2px;
     font-family: $muli-bold;
     padding: 0 35%;
+
     @include allmobiles {
       padding: 0 10%;
     }
   }
+
   .btn-primary {
-	  width: 275px;
+    width: 275px;
   }
+
   @include allmobiles {
-	.btn__footer--fixed {
-		width: 100%;
-	}
+    .btn__footer--fixed {
+      width: 100%;
+    }
   }
 }
+
 .loader-outer {
-    position: relative;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .loader {
     position: absolute;
     border: 10px solid #099c9c;
@@ -136,11 +160,14 @@
     border-top: 12px solid #ff9600;
     width: 205px;
     height: 205px;
+
     @include allmobiles {
       width: 160px;
       height: 160px;
     }
-    -webkit-animation: spin 2s linear infinite; /* Safari */
+
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
     animation: spin 2s linear infinite;
   }
 }
@@ -148,16 +175,158 @@
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .link-white {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.info-text{
+  text-decoration:underline;
+}
+
+
+
+
+/* OTP COUNTER */
+
+.retry-counter-wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .seconds-count {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    left:0px;
+    right:0px;
+    font-family: $muli-bold;
+    color:#00a7a7;
+    font-size:19px;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    background: #4dc1c1;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .spinner:after {
+    position: absolute;
+    content: "";
+    width: 70%;
+    height: 70%;
+    border-radius: 100%;
+    background: #fff;
+    top: 15%;
+    left: 15%;
+  }
+
+  .spinner span em {
+    background: #ff9600;
+    animation-duration: 30s;
+  }
+
+  /* No need to edit below this line */
+
+  @keyframes rotate-rt {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+
+  @keyframes rotate-lt {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    25% {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+
+  .spinner {
+    border-radius: 100%;
+    position: relative;
+  }
+
+  .spinner span {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  .spinner span:first-child {
+    left: 0;
+  }
+
+  .spinner span:last-child {
+    left: 50%;
+  }
+
+  .spinner span em {
+    border-radius: 999px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  .spinner span:first-child em {
+    left: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    animation-name: rotate-lt;
+    transform-origin: 0 50%;
+  }
+
+  .spinner span:last-child em {
+    left: -100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    animation-name: rotate-rt;
+    transform-origin: 100% 50%;
+  }
 }
