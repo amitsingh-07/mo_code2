@@ -9,7 +9,10 @@
             "STEP_3": "Step 3",
             "STEP_4": "Step 4",
             "ADD_GUARDIAN": "Add Guardian",
-            "MY_SPOUSE": "My Spouse"
+            "MY_SPOUSE": "My Spouse",
+            "NAME": "Name (as in NRIC)",
+            "RELATIONSHIP": "Relationship To You",
+            "NRIC": "NRIC Number"
         },
         "INTRODUCTION": {
             "TITLE": "Before You Proceed...",
@@ -54,8 +57,6 @@
             "SUB_TITLE": "Tell us more about your family.",
             "FORM": {
                 "MY_CHILD": "My Child",
-                "NAME": "Name (as in NRIC)",
-                "NRIC": "NRIC Number",
                 "DOB": "Date of Birth"
             }
         },
@@ -65,9 +66,6 @@
             "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
             "FORM_TITLE": "I would like my guardian to be",
             "FORM": {
-                "NAME": "Name (as in NRIC)",
-                "RELATIONSHIP": "Relationship To You",
-                "NRIC": "NRIC Number",
                 "RELATIONSHIP_LIST": [
                     {"text":"Child", "value":"child"},
                     {"text":"Parent", "value":"parent"},
@@ -113,6 +111,14 @@
         "REVIEW_YOUR_DETAILS": {
             "TITLE":"Review Your Details",
             "SUB_TITLE": "In the next step, please check that all details provided are accurate."
+        },
+        "My_EXECUTOR_TRUSTEE": {
+            "TITLE": "My Executor & Trustee",
+            "SUB_TITLE": "As this person plays a critical role in executing your will, please choose someone you trust.",
+            "FORM_TITLE": "I would like my executor & trustee to be:",
+            "TOOLTIPO": "",
+            "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee."
+
         }
     }
 }

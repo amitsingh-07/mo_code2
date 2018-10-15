@@ -13,7 +13,7 @@
       </ng-container>
       <ng-container *ngIf="multipleFormErrors">
         <div *ngFor="let errorMessage of multipleFormErrors">
-          <p>{{errorMessage.formName}}</p>
+          <p class="label">{{errorMessage.formName  | titlecase}}</p>
           <p *ngFor="let error of errorMessage.errors"><span>{{error}}</span></p>
         </div>
       </ng-container>

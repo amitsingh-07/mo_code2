@@ -15,11 +15,12 @@ import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
 import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.component';
+import { MyExecutorTrusteeComponent } from './my-executor-trustee/my-executor-trustee.component';
 import { MyFamilyComponent } from './my-family/my-family.component';
 import { PageTitleComponent } from './page-title/page-title.component';
+import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { WillWritingRoutingModule } from './will-writing-routing.module';
-import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -57,7 +58,8 @@ export function createTranslateLoader(http: HttpClient) {
     TellUsAboutYourselfComponent,
     AppointYourExecutorTrusteeComponent,
     MyBeneficiariesComponent,
-    ReviewYourDetailsComponent
+    ReviewYourDetailsComponent,
+    MyExecutorTrusteeComponent
   ]
 })
 export class WillWritingModule { }

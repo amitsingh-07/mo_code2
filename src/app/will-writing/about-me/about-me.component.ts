@@ -5,7 +5,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IAboutMe } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -81,11 +80,12 @@ export class AboutMeComponent implements OnInit {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'aboutMeForm');
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
-      return false;
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
     } else {
+      if (form.value.maritalStatus === 'single' && this.willWritingService.getSpouseInfo()) {
+        this.willWritingService.clearSpouseInfo();
+        this.willWritingService.clearGuardianInfo();
+      }
       this.willWritingService.setAboutMeInfo(form.value);
       return true;
     }
