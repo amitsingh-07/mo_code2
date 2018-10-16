@@ -12,7 +12,9 @@
             "MY_SPOUSE": "My Spouse",
             "NAME": "Name (as in NRIC)",
             "RELATIONSHIP": "Relationship To You",
-            "NRIC": "NRIC Number"
+            "NRIC": "NRIC Number",
+            "ADD": "Add",
+            "CANCEL": "Cancel"
         },
         "INTRODUCTION": {
             "TITLE": "Before You Proceed...",

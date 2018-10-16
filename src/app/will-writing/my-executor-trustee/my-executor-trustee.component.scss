@@ -88,7 +88,7 @@
         margin-bottom:20px;
         .trustee-form-btn{
             display: flex;
-            flex-direction: column-end;
+            justify-content: flex-end;
         }
         .btn{
             font-family: $muli-regular;
