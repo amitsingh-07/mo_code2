@@ -16,13 +16,13 @@
 
             <div class="flex-row mb10">
               <div class="flex-col-5">
-                <div class="form-group-with-bg--content-label" for="name">Expected Number Of Transactions</div>
+                <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_number_of_transaction_lab" for="name">Expected Number Of Transactions</div>
               </div>
               <div class="flex-col-7">
 
                 <div class="form-control form-control-right">
 
-                  <input type="text"  formControlName="expectedNumberOfTransation" class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
+                  <input type="text"    id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="expectedNumberOfTransation" class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
                   <i class="right">/year</i>
                 </div>
               </div>
@@ -30,13 +30,13 @@
 
             <div class="flex-row mb10">
               <div class="flex-col-5">
-                <div class="form-group-with-bg--content-label" for="name">Expected Amount Per Transaction</div>
+                <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_amount_of_transaction_lab"  for="name">Expected Amount Per Transaction</div>
               </div>
               <div class="flex-col-7">
 
                 <div class="form-control form-control-right">
 
-                  <input type="text"  formControlName="expectedAmountPerTranction" class="input-control" appCurrencyInput maxLength="6" #otherIncome value="0">
+                  <input type="text"  formControlName="expectedAmountPerTranction"   id="additional_declaration_Expected_amount_of_transaction_input"  class="input-control" appCurrencyInput maxLength="6" #otherIncome value="0">
                   <i class="right">$</i>
                 </div>
               </div>
@@ -46,19 +46,19 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="employement_details_status-lbl"> Source Of Investment Funds
+                  <label for="employement_details_status" id="additional_declaration_sourse-lbl"> Source Of Investment Funds
                   </label>
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border grey" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{additionDeclarationtwo.controls.source.value ?additionDeclarationtwo.controls.source.value :'Select Sourse'}}
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj.name)"
-                          id="residentialAddress-country-option-{{i}}">{{sourceObj.name | titlecase}}</button>
+                          id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj.name | titlecase}}</button>
                       </div>
                     </div>
                   </div>
@@ -75,7 +75,7 @@
             <div class="form-group" *ngIf="additionDeclarationtwo.controls.source.value == 'Saving'">
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
-                  <div class="form-group-with-bg--content-label" for="name"     id="myFinancialTotalAssetLbl">Please indicate the employer that contributed most to your savings:
+                  <div class="form-group-with-bg--content-label" for="name"     id="additional_declaration_personalSaving_lab">Please indicate the employer that contributed most to your savings:
 
                   </div>
                 </div>
@@ -83,7 +83,7 @@
                   <div class="form-control" formGroupName="personalSavingForm" >
 
                     <div name="totalAssets">
-                      <input class="input-control" type="text"  formControlName="personalSavings"  id="myFinancialTotalAssetInput" appCurrencyInputPortfolio  #totalAssets>
+                      <input class="input-control" type="text"  formControlName="personalSavings"  id="additional_declaration_personalSaving_input" appCurrencyInputPortfolio  #totalAssets>
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
             <div class="form-group"  *ngIf="additionDeclarationtwo.controls.source.value == 'Gift/Inheritanc'" >
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
-                  <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">Please indicate from whom you inherited the wealth and the reason for receiving the wealth:
+                  <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_Gift_inheritanc_lab">Please indicate from whom you inherited the wealth and the reason for receiving the wealth:
 
                   </div>
                 </div>
@@ -104,7 +104,7 @@
                   <div class="form-control" formGroupName="inheritanceGiftFrom">
 
                     <div name="totalAssets">
-                      <input class="input-control" type="text"   formControlName="inheritanceGift"  id="myFinancialTotalAssetInput" appCurrencyInputPortfolio  #totalAssets>
+                      <input class="input-control" type="text"   formControlName="inheritanceGift"  id="additional_declaration_Gift_inheritanc_input" appCurrencyInputPortfolio  #totalAssets>
                     </div>
                   </div>
                 </div>
@@ -116,19 +116,19 @@
             <div class="form-group" >
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="employement_details_status-lbl"> Investment Period  
+                  <label for="employement_details_status" id="additional_declaration_investment_period_lab"> Investment Period  
                   </label>
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border grey" id="additional_declaration_investment_period_lab-drpdown" ngbDropdownToggle>
                          {{additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value }}  
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let investmentPeriod of investmentPeriodList; let i = index;" (click)="selectInvestmentPeriod('investmentPeriod', investmentPeriod.name,'investmentEarnings')"
-                          id="residentialAddress-country-option-{{i}}">{{investmentPeriod.name | titlecase}}</button>
+                          id="additional_declaration_investment_period_lab-{{i}}">{{investmentPeriod.name | titlecase}}</button>
                       </div>
                     </div>
                   </div>
@@ -139,19 +139,19 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="employement_details_status-lbl"> Earnings Generated From 
+                  <label for="employement_details_status" id="additional_declaration_earnings_generated_lab-lbl"> Earnings Generated From 
                   </label>
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border grey" id="additional_declaration_earnings_generated_lab-drpdown" ngbDropdownToggle>
                          {{additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value }} 
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;" (click)="selectEarningsGenerated('earningsGenerated', generated.name, 'investmentEarnings')"
-                          id="residentialAddress-country-option-{{i}}">{{generated.name | titlecase}}</button>
+                          id="additional_declaration_earnings_generated_lab-drpdown-option-{{i}}">{{generated.name | titlecase}}</button>
                       </div>
                     </div>
                   </div>
