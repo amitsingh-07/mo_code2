@@ -275,14 +275,16 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.expectedNumberOfTransation = data.expectedNumberOfTransation;
         this.investmentAccountFormData.expectedAmountPerTranction = data.expectedAmountPerTranction;
         this.investmentAccountFormData.source = data.source;
-
-        if ( this.investmentAccountFormData.personalSavings === 'Salary') {
-            this.investmentAccountFormData.personalSavings = data.personalSavings;
+        if (data.source === 'Saving') {
+            this.investmentAccountFormData.personalSavings = data.personalSavingForm.personalSavings;
         }
-        this.investmentAccountFormData.inheritanceGift = data.inheritanceGift;
-        this.investmentAccountFormData.investmenteEarning = data.investmenteEarning;
-        this.investmentAccountFormData.investmentPeriod = data.investmentPeriod;
-        this.investmentAccountFormData.earningsGenerated = data.earningsGenerated;
-
+        if (data.source === 'Gift/Inheritanc') {
+            this.investmentAccountFormData.inheritanceGift = data.inheritanceGiftFrom.inheritanceGift;
+        }
+        if (data.source === 'Investment Earnings') {
+        this.investmentAccountFormData.investmentPeriod = data.investmentEarnings.investmentPeriod;
+        this.investmentAccountFormData.earningsGenerated = data.investmentEarnings.earningsGenerated;
+        }
+        this.commit();
     }
 }

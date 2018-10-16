@@ -67,7 +67,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
 
   addAndRemoveSourseFields() {
-    if (this.additionDeclarationtwo.controls.source.value === 'Salary') {
+    if (this.additionDeclarationtwo.controls.source.value === 'Saving') {
       this.additionDeclarationtwo.addControl('personalSavingForm', this.formBuilder.group({
         personalSavings: [this.formValues.personalSavings, Validators.required]
       }));
@@ -146,7 +146,6 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
   goToNext(form) {
     if (!form.valid) {
-
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });

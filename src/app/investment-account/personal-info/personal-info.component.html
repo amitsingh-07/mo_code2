@@ -63,10 +63,10 @@
                 <div #usrFrmDp class="flex-col-7">
                   <div class="datepicker-control">
                     <div class="input-group date-picker mb0" [ngClass]="{'inline-error': !invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine}">
-                      <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY"
+                      <input readonly (click)="e.toggle()" class="form-control" placeholder="DD / MM / YYYY"
                         formControlName="passportExpiry" name="passportExpiry" [minDate]= this.passportMinDate  [maxDate] = this.passportMaxDate ngbDatepicker   #e="ngbDatepicker" id="invPersInfoInpt6">
                       <div class="input-group-append">
-                        <button (click)="e.toggle()" class="btn btn-primary" type="button" id="invPersInfoBtn1">
+                        <button (click)="e.toggle()" class="btn btn-primary" type="button" id="invPersInfoBtn1"  >
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('passportExpiry').valid || invPersonalInfoForm.get('passportExpiry').pristine"
                             src="./assets/images/calendar-normal.svg" />
                           <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('passportExpiry').valid && !invPersonalInfoForm.get('passportExpiry').pristine"
