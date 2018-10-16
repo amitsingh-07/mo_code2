@@ -1,4 +1,11 @@
 {
+  "COMMON": {
+    "LABEL": {
+      "CONTINUE": "Continue",
+      "RETRIEVE": "Retrieve",
+      "VIEW_DETAILS": "View Details"
+    }
+  },
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
     "CAPTION": "Get Started",

@@ -395,6 +395,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   filterProducts(data: any) {
     this.selectedFilterList = data.filters;
+    if (this.selectedFilterList['premiumFrequency']) {
+      const frequency: string[] = Array.from(this.selectedFilterList['premiumFrequency']);
+      this.directService.setPremiumFrequencyFilter(frequency[0]);
+    }
     this.filterArgs = data.filters;
     if (this.filterArgs.premiumFrequency && this.filterArgs.premiumFrequency.size > 0) {
       this.premiumFrequencyType = Array.from(this.filterArgs.premiumFrequency)[0];

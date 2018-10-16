@@ -78,4 +78,16 @@ export class InvestmentAccountFormData {
     percentageOfSaving: string;
     totalAssets: string;
     totalLiabilities: string;
+
+    // Additional declaration PEP
+    radioPep: any;
+    fName: string;
+    lName: string;
+    cName: string;
+    pepoccupation: string;
+    pepCountry: string;
+    pepPostalCode: number;
+    pepAddress1: string;
+    pepAddress2: string;
+    pepUnitNo: string;
     }

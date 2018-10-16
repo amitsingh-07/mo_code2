@@ -39,4 +39,8 @@ export class ArticleApiService {
   getArticleCategoryList(category_name: string) {
     return this.apiService.getArticleCategoryList(category_name);
   }
+
+  getArticleTagMap() {
+    return require('../../assets/articles/tag_map.json');
+  }
 }
