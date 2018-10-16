@@ -6,9 +6,17 @@ app-plan-widget {
     display: none !important;
   }
 
-  .plan-selected-wrapper {
+  .plan-selected-wrapper::after {
     border: solid 3px #ff872f !important;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px;
   }
+
   .compareplan-btn{
     background: #fff;
     color:#00a7a7;
@@ -48,7 +56,7 @@ app-plan-widget {
       border-color: #ff872f !important;
       box-shadow: none;
       @include allmobiles {
-        border-radius: 0;
+        border-radius: 0 0 10px 10px;
       }
     }
 
