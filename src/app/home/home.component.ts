@@ -59,8 +59,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.navbarService.setNavbarShadowVisibility(true);
       this.footerService.setFooterVisibility(true);
     });
-
-    this.authService.clearSession();
   }
 
   @ViewChild('banner') BannerElement: ElementRef;
@@ -105,9 +103,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
               this.goToSection(this.ComprehensiveElement.nativeElement);
             }
     });
+    this.authService.clearSession();
   }
 
   ngAfterViewInit() {
+
   }
 
   setPageTitle(title: string) {
