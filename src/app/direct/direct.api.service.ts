@@ -129,7 +129,7 @@ export class DirectApiService {
         const ocpData: IOccupationalDisabilityData = {
             percentageCoverage: ocp.percentageCoverage,
             coverageDuration: ocp.duration,
-            coverageAmount: ocp.monthlySalary * ocp.percentageCoverage,
+            coverageAmount: ocp.monthlySalary * (ocp.percentageCoverage / 100),
             employmentStatusId: ocp.employmentType,
         } as IOccupationalDisabilityData;
         return ocpData;

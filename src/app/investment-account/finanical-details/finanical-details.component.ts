@@ -32,7 +32,7 @@ export class FinanicalDetailsComponent implements OnInit {
   formValues;
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
-  annualHouseHoldIncomeRanges: any ;
+  annualHouseHoldIncomeRanges: any;
   numberOfHouseHoldMembersList = Array(11).fill(0).map((x, i) => i);
 
   constructor(
@@ -58,23 +58,21 @@ export class FinanicalDetailsComponent implements OnInit {
     this.FinancialFormData = this.portfolioService.getMyFinancials();
     this.formValues = this.investmentAccountService.getFinancialFormData();
     this.financialDetails = this.formBuilder.group({
-      annualHouseHoldIncomeRange: [this.formValues.annualHouseHoldIncomeRange ?
-        this.formValues.annualHouseHoldIncomeRange : 'Select Range' , Validators.required],
-      numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers ?
-        this.formValues.numberOfHouseHoldMembers : 'Select Number', Validators.required],
-        monthlyIncome: [this.FinancialFormData.monthlyIncome, Validators.required],
-        percentageOfSaving: [this.FinancialFormData.percentageOfSaving, Validators.required],
-        totalAssets: [this.FinancialFormData.totalAssets, Validators.required],
-        totalLiabilities: [this.FinancialFormData.totalLiabilities, Validators.required]
+      annualHouseHoldIncomeRange: [this.formValues.annualHouseHoldIncomeRange, Validators.required],
+      numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
+      monthlyIncome: [this.FinancialFormData.monthlyIncome, Validators.required],
+      percentageOfSaving: [this.FinancialFormData.percentageOfSaving, Validators.required],
+      totalAssets: [this.FinancialFormData.totalAssets, Validators.required],
+      totalLiabilities: [this.FinancialFormData.totalLiabilities, Validators.required]
     });
-    }
+  }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
   getIncomeRangeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
-        this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
-        console.log(this.annualHouseHoldIncomeRanges);
+      this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
+      console.log(this.annualHouseHoldIncomeRanges);
     });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {

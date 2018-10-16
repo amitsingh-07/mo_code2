@@ -459,6 +459,8 @@ button:active:focus {
     }
     @include allmobiles{
       min-height:60px;
+      position: fixed;
+      bottom: 0;
       }
     }
 }
@@ -682,7 +684,7 @@ button:active:focus {
         min-width:90px;
         max-width:90px;
         background-color:$teal-color;
-        border-color:$dark-teal-color;
+        border-color:rgba(0, 135, 134, 0.4);
         color:$light-teal-color;
         white-space:normal;
         height:52px;
@@ -764,9 +766,12 @@ button:active:focus {
     z-index:2;
     &:hover{
       border-bottom:2px solid $orange-color;
+      @include minMobilemaxPhablet{
+        border-bottom:none;
+      }
     }
     &.active{
-      border-bottom:2px solid $orange-color;
+      border-bottom:2px solid $orange-color !important;
     }
     @include minMobilemaxPhablet{
       min-width:120px;

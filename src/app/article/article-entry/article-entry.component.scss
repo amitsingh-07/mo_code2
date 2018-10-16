@@ -32,7 +32,7 @@
 .article-entry__content{
     position: relative;
     display:block;
-    width:calc(100% - 325px);
+    width:calc(100% - 300px);
     color:$teal-color;
     background-color:$white-color;
     overflow:auto;
@@ -83,19 +83,13 @@
     }
     .page-box{
         padding:40px 30px;
-        .table-responsive{
-            overflow:auto;
-        }
-        img{
-            width:100%;
-        }
     }
 }
 
 .article-entry__sidepanel{
     position: relative;
     display:inline-block;
-    width:300px;
+    width:280px;
     height:100%;
     padding:20px;
     background-color:$dark-teal-color;

@@ -15,12 +15,12 @@
     margin-right: 10px;
     @include allmobiles {
       float: left;
-      margin-left: 20px;
-      margin-top: 10px;
+      margin-left: 10px;
+      //margin-top: 10px;
     }
   }
   .lbl-selected {
-    font-family: Muli;
+    font-family: $muli-regular;
     font-size: 18px;
     line-height: 1.11;
     letter-spacing: -0.2px;
@@ -28,7 +28,7 @@
     margin-right: 100px;
     @include allmobiles {
       margin-right: 0;
-      padding-top: 13px;
+      padding-top: 10px;
       float: left;
     }
   }

@@ -238,6 +238,10 @@
 .absolute-top {
   top: 0 !important
 }
+.plr20 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
 
 //Base Styles for mobile only
 @include min568max767{
@@ -411,4 +415,14 @@ nouislider {
 
 .margin-auto {
   margin: 0 auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+input::-ms-clear {
+  display: none !important;
 }

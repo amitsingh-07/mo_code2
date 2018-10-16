@@ -247,7 +247,7 @@ app-recommendations {
         padding-left: 20px;
         padding-top: 8px;
         padding-bottom: 8px;
-        font-size: 18px;
+        font-size: 16px;
         //padding-left: 145px !important;
         //padding-right: 125px !important;
         //background: #2d8289;
@@ -266,18 +266,21 @@ app-recommendations {
       }
   }
 
-  .coverage-type,
-  .coverage-amount,
-  .coverage-premium-from {
-    font-family: $muli-semi-bold;
+  .coverage-type
+ {
+    font-family: $muli-bold;
     margin-right: 50px;
-    font-size: 20px;
+    font-size: 22px;
 
     @include allmobiles {
       margin-right: 0px;
     }
   }
-
+  .coverage-amount,.coverage-premium-from {
+    font-family: $muli-bold;
+    font-size: 18px;
+    margin-right: 50px;
+  }
   .coverage-premium-from {
     margin-right: 0 !important;
   }
