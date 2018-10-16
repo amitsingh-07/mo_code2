@@ -2,7 +2,9 @@
   "COMMON": {
     "LABEL": {
       "CONTINUE": "Continue",
-      "RETRIEVE": "Retrieve"
+      "RETRIEVE": "Retrieve",
+      "VIEW_DETAILS": "View Details",
+      "SAVE_AND_CONTINUE": "Save and Continue"
     }
   },
   "PERSONAL_INFO": {
@@ -34,7 +36,7 @@
   },
   "EMPLOYMENT_DETAILS": {
     "TITLE": "Employment Details",
-    "EMPLOYEMEN_STATUS": "Employmen Status",
+    "EMPLOYEMEN_STATUS": "Employment Status",
     "COMPANY_NAME": "Company Name",
     "INDUSTRY": "Industry",
     "OCCUPATION": "Occupation",
@@ -43,14 +45,14 @@
     "POSTAL_CODE": "Postal Code",
     "ADDRESS_1": "Address Line 1",
     "ADDRESS_2": "Address Line 2",
-    "UNIT_NO": "Unit No",
+    "UNIT_NO": "Unit No.",
     "CITY": "City",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
     "EMPLOYERS_ADDRESS": "Employer's Address",
     "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
     "CONTINUE": "Continue",
-   
+
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
       "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
@@ -84,7 +86,7 @@
     "PERS_OF_INCOME_SAVED": "% Of Income Saved",
     "TOTAL_ASSETS": "Total Assets",
     "TOTAL_LOANS": "Total Loans"
-    
+
   },
   "TAX_INFO": {
     "TITLE": "Tax Information",
@@ -151,5 +153,44 @@
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
+  },
+  "CONFIRM_PORTFOLIO": {
+    "TITLE": "Your Portfolio",
+    "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
+    "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
+    "PROJECTED_RETURNS": "Projected Returns",
+    "WHATS_THE_RISK": "What's the risk?",
+    "PROJECTED_VALUE": "Projected Value",
+    "IN": "in",
+    "YEAR": "Year",
+    "YEARS": "Years",
+    "CHECK_FEES": "Check out our competitive fees.",
+    "ONE_TIME_INVESTMENT": "one-time investment",
+    "AND": "&",
+    "MONTHLY_INVESTMENT": "monthly investment",
+    "FOR": "for",
+    "I_WANT_TO_START_INVEST": "I Want To Start Investing",
+    "EDIT_INVESTMENT": {
+      "TITLE": "My Investment Portfolio",
+      "INVESTMENT_PERIOD": "Investment Period",
+      "ONE_TIME_INVESTMENT": "One-time Investment",
+      "MONTHLY_INVESTMENT": "Monthly Investment"
+    },
+    "MODAL": {
+      "PORTFOLIO_ASSETS": {
+        "TITLE": "Portfolio Assets",
+        "MESSAGE": "These assets that we have selected for you are only available to MoneyOwl customers! The only other investors allowed to purchase these types of asset classes are big fund houses such as xxx"
+      }
+    }
+  },
+  "ADDITIONAL_DECLARATION": {
+    "TITLE": "Additional Declarations",
+    "SELECT_OCCUPATION": "Select Occupation",
+    "PEP_INFO": "Please provide the following details for the PEP",
+    "PEP_MORE_DETAILS": "As you are closely related to/ are a Politically Exposed Person, we need to ask you a few more questions."
+  },
+  "ACKNOWLEDGEMENT": {
+    "TITLE": "Acknowledgement",
+    "AGREE": "I Agree"
   }
 }

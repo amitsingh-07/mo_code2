@@ -56,11 +56,11 @@
         <div class="dropdown-control">
             <div ngbDropdown id="planTypeDropDown">
               <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
-                <span class="coverage_amt">{{selectedPlan == ''? 'Select' : selectedPlan}}</span>
+                <span class="coverage_amt">{{selectedPlan && selectedPlan.hospitalClass !== ''? selectedPlan.hospitalClass : 'Select'}}</span>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item" (click)="selectHospitalPlan('')">{{'COMMON.LBL_SELECT' | translate}}</button>
-                <button type="button" class="dropdown-item" *ngFor="let plan of planType" (click)="selectHospitalPlan(plan)">
+                  <button class="dropdown-item" (click)="selectHospitalPlan('', 0)">{{'COMMON.LBL_SELECT' | translate}}</button>
+                <button type="button" class="dropdown-item" *ngFor="let plan of planType; let i = index;" (click)="selectHospitalPlan(plan, i)">
                 {{plan}}
                 </button>
               </div>

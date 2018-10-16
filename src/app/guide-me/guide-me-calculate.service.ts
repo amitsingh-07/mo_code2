@@ -153,7 +153,7 @@ export class GuideMeCalculateService {
       lifeProtectionData.coverageAmount = 0;
     }
     lifeProtectionData.coverageDuration = 0;
-    lifeProtectionData.isPremiumWaiver = true;
+    lifeProtectionData.isPremiumWaiver = false;
     return lifeProtectionData;
   }
 

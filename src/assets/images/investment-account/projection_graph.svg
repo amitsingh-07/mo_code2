@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="260px" height="64px" viewBox="0 0 260 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 8</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="35.7347577%" y1="50%" x2="75.456294%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#06C2C2" offset="0%"></stop>
+            <stop stop-color="#179393" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Mobile---28-aug" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3.2.1-Recommended-Portfolio-Global-Equities-(ux-new)-1" transform="translate(-50.000000, -356.000000)" fill="url(#linearGradient-1)">
+            <g id="Group-13" transform="translate(19.000000, 286.000000)">
+                <path d="M31,133.296703 C112.73913,119.230769 170.130435,107.157509 203.173913,97.0769231 C236.217391,86.996337 265.492754,77.970696 291,70 L291,134 L31,134 L31,133.296703 Z" id="Rectangle-8"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -31,8 +31,8 @@ export class AppService {
   }
 
   getJourneyType() {
-    if (window.sessionStorage && sessionStorage.getItem(SESSION_KEY)) {
-      this.journeyType = JSON.parse(sessionStorage.getItem(SESSION_KEY));
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+      this.journeyType = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
     return this.journeyType;
   }

@@ -19,9 +19,9 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   formValues: any;
   payoutFeature;
   payoutDuration;
-  retirementIncomeList = Array(16).fill(500).map((x, i) => x += i * 100);
+  retirementIncomeList = Array(11).fill(500).map((x, i) => x += i * 100);
   selectedRetirementIncome = '';
-  payoutAgeList = Array(16).fill(55).map((x, i) => x += i * 1);
+  payoutAgeList = [50, 55, 60, 65];
   selectedPayoutAge = '';
   payoutDurationList;
   payoutFeatureList;

@@ -1,3 +1,4 @@
+import { ArticleService } from './../article.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute  , Router } from '@angular/router';
 
@@ -27,24 +28,29 @@ export class ArticleEntryComponent implements OnInit {
       if (params['id']) {
         this.art_id = params['id'];
         console.log(this.art_id);
+        this.getArticleContent(this.art_id);
       }
     });
     this.route.queryParams.subscribe((params) => {
       if (params['art_id']) {
         this.art_id = params['art_id'];
         console.log(this.art_id);
+        this.getArticleContent(this.art_id);
       }
     });
 
-    this.articleApiService.getArticleContent(this.art_id).subscribe((data) => {
+    this.navbarService.setNavbarMode(1);
+    this.footerService.setFooterVisibility(true);
+  }
+
+  getArticleContent(art_id: number) {
+    this.articleApiService.getArticleContent(art_id).subscribe((data) => {
+      console.log('contentChanged');
       this.art_content = data;
       this.title = 'Understanding MediShield Life & What should you do (Part 1: MediShield Life in a Nutshell)';
       this.category = 'Protection';
       this.author = 'Shawn Lee';
     });
-
-    this.navbarService.setNavbarMode(1);
-    this.footerService.setFooterVisibility(true);
   }
 
   getArticle(id: number) {
