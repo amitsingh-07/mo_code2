@@ -2,7 +2,7 @@
 @import "../../../_mixins.scss";
 
 body{
-  background-color: $dark-teal-color !important;
+  background-color: $dark-teal-color ;
 }
 @media (max-width: 767px) and (min-width: 320px){
 

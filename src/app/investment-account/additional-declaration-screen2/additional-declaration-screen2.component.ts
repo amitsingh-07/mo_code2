@@ -26,6 +26,8 @@ import { InvestmentAccountService } from '../investment-account-service';
 export class AdditionalDeclarationScreen2Component implements OnInit {
   pageTitle: string;
   sourceOfIncomeList;
+  generatedList;
+  investmentPeriodList;
   additionDeclarationtwo: FormGroup;
   formValues;
   additionDeclarationtwoFormValues;
@@ -52,25 +54,85 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getSourceList();
+    this.getGeneratedFrom();
+    this.getInvestmentPeriod();
+    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.additionDeclarationtwo = this.formBuilder.group({
+      expectedNumberOfTransation: [this.formValues.expectedNumberOfTransation, Validators.required],
+      expectedAmountPerTranction: [this.formValues.esexpectedAmountPerTranction, Validators.required],
+      source: [this.formValues.source, Validators.required],
 
-    // this.additionDeclarationtwo = this.formBuilder.group({
-    //   source: [this.formValues.source, Validators.required],
-    //   expectedNumberOfTransation: [this.formValues.expectedNumberOfTransation, Validators.required],
-    //   expectedAmountPerTranction: [this.formValues.esexpectedAmountPerTranction, Validators.required]
-
-    // });
+    });
+    this.addAndRemoveSourseFields();
   }
+
+  addAndRemoveSourseFields() {
+    if (this.additionDeclarationtwo.controls.source.value === 'Salary') {
+      this.additionDeclarationtwo.addControl('personalSavingForm', this.formBuilder.group({
+        personalSavings: [this.formValues.personalSavings, Validators.required]
+      }));
+      this.additionDeclarationtwo.removeControl('investmentEarning');
+      this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
+    }
+    if (this.additionDeclarationtwo.controls.source.value === 'Gift/Inheritanc') {
+      this.additionDeclarationtwo.addControl('inheritanceGiftFrom', this.formBuilder.group({
+        inheritanceGift: [this.formValues.inheritanceGift, Validators.required]
+      }));
+
+      this.additionDeclarationtwo.removeControl('personalSavingForm');
+      this.additionDeclarationtwo.removeControl('investmentEarnings');
+
+    }
+    if (this.additionDeclarationtwo.controls.source.value === 'Investment Earnings') {
+      this.additionDeclarationtwo.addControl('investmentEarnings', this.formBuilder.group({
+        investmentPeriod: [this.formValues.investmentPeriod ?
+          this.formValues.investmentPeriod : 'Select Investment', Validators.required],
+        earningsGenerated: [this.formValues.earningsGenerated ?
+          this.formValues.earningsGenerated : 'Select Earnings', Validators.required],
+
+      }));
+
+      this.additionDeclarationtwo.removeControl('personalSavingForm');
+      this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
+    }
+  }
+
   getSourceList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
       console.log(this.sourceOfIncomeList);
     });
-  }
-
-  selectSource(sourceObj) {
-    this.sourse = sourceObj;
 
   }
+
+  getGeneratedFrom() {
+    this.investmentAccountService.getGeneratedFrom().subscribe((data) => {
+      this.generatedList = data.objectList;
+      console.log(this.generatedList + 'generated list form');
+    });
+  }
+  getInvestmentPeriod() {
+    this.investmentAccountService.getInvestmentPeriod().subscribe((data) => {
+      this.investmentPeriodList = data.objectList;
+      console.log(this.investmentPeriodList + 'generated investmentform');
+
+    });
+
+  }
+
+  selectInvestmentPeriod(key, value, nestedKey) {
+    this.additionDeclarationtwo.controls[nestedKey]['controls'][key].setValue(value);
+  }
+  selectEarningsGenerated(key, value, nestedKey) {
+    this.additionDeclarationtwo.controls[nestedKey]['controls'][key].setValue(value);
+  }
+
+  selectSource(key, value) {
+    this.additionDeclarationtwo.controls[key].setValue(value);
+    this.addAndRemoveSourseFields();
+
+  }
+
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
@@ -84,6 +146,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
   goToNext(form) {
     if (!form.valid) {
+
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -91,8 +154,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setEmployeAddressFormData(form.value);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
+      this.investmentAccountService.setAdditionDeclaration(form.value);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
     }
   }
 

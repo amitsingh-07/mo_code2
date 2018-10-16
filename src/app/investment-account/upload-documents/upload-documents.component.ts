@@ -218,6 +218,7 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.primaryAction.subscribe(() => {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
 
+        
       });
     } else {
       this.proceed(form);
