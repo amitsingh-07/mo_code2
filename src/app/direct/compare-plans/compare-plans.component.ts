@@ -19,6 +19,7 @@ export class ComparePlansComponent implements OnInit {
   plansData: any[] = [];
   cashValueTooltipData;
   underwritingTooltipData;
+  frequencyFilter: string;
   constructor(
     public headerService: HeaderService, public directService: DirectService,
     public readonly translate: TranslateService, private _location: Location,
@@ -30,6 +31,7 @@ export class ComparePlansComponent implements OnInit {
       this.underwritingTooltipData = this.translate.instant('COMPARE_PLANS.NEED_UNDERWRITING_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
+    this.frequencyFilter = this.directService.getPremiumFrequencyFilter();
   }
 
   ngOnInit() {

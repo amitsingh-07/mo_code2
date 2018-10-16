@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { Formatter } from '../../../shared/utils/formatter.util';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 
@@ -67,13 +68,6 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       duration: [this.formValues.duration, Validators.required]
     });
 
-    if (this.formValues.employmentType !== undefined) {
-      this.selectEmployeeType(this.formValues.employmentType, true);
-    }
-    if (this.formValues.duration !== undefined) {
-      this.selectDuration(this.formValues.duration);
-    }
-
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '2') {
         if (this.save()) {
@@ -85,6 +79,13 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngAfterViewInit() {
+    if (this.formValues.employmentType !== undefined) {
+      this.selectEmployeeType(this.formValues.employmentType, true);
+    }
+    if (this.formValues.duration !== undefined) {
+      this.selectDuration(this.formValues.duration);
+    }
+
     this.ocpDisabilityFormSlider.writeValue(this.coveragePercent);
   }
 
@@ -111,6 +112,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   }
 
   setSliderValues(value) {
+    this.coveragePercent = value;
     this.onSliderChange(value);
     this.ocpDisabilityFormSlider.writeValue(value);
     this.ocpDisabilityFormSlider.slider.updateOptions({ range: { min: 0, max: value } });
@@ -122,15 +124,16 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     if (!monthlySalaryValue) {
       monthlySalaryValue = 0;
     }
-    sum_string += '$' + monthlySalaryValue +  ' / mth, ';
+    sum_string += '$' + (monthlySalaryValue * this.coveragePercent / 100) + ' / mth, ';
     sum_string += this.duration;
     return sum_string;
   }
 
   save() {
     const form = this.ocpDisabilityForm;
-    if (form.controls.monthlySalary.value < 1) {
-      form.controls['monthlySalary'].setErrors({required: true});
+    if (form.controls.monthlySalary.value < 1
+      || isNaN(form.controls.monthlySalary.value)) {
+      form.controls['monthlySalary'].setErrors({ required: true });
     }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -144,6 +147,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
+    form.value.smoker = 'nonsmoker';
     form.value.employmentType = this.selectEmployeeType;
     form.value.duration = this.duration;
     form.value.percentageCoverage = this.coveragePercent;

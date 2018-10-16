@@ -11,13 +11,28 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { AccountSetupCompletedComponent } from './account-setup-completed/account-setup-completed.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
+<<<<<<< HEAD
 import { AdditionalDeclarationInfoComponent } from './additional-declaration-info/additional-declaration-info.component';
 import { AdditionalDeclarationStep1Component } from './additional-declaration-step1/additional-declaration-step1.component';
 import { AdditionalDeclarationSubmitComponent } from './additional-declaration-submit/additional-declaration-submit.component';
+=======
+import {
+    AdditionalDeclarationInfoComponent
+} from './additional-declaration-info/additional-declaration-info.component';
+import {
+    AdditionalDeclarationStep1Component
+} from './additional-declaration-step1/additional-declaration-step1.component';
+import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
+import {
+    EditInvestmentModalComponent
+} from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
+>>>>>>> 220277cee09d48fbb5dc110dd50fa345c265e909
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
-import { PersonalDeclarationComponent } from './personal-declaration/personal-declaration.component';
+import {
+    PersonalDeclarationComponent
+} from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
@@ -46,7 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    SharedModule
   ],
   declarations: [
     PersonalInfoComponent,
@@ -57,11 +73,16 @@ export function createTranslateLoader(http: HttpClient) {
     FinanicalDetailsComponent,
     UploadDocumentsComponent,
     PersonalDeclarationComponent,
+    ConfirmPortfolioComponent,
+    EditInvestmentModalComponent,
     AcknowledgementComponent,
     AdditionalDeclarationInfoComponent,
     AdditionalDeclarationStep1Component,
     AccountSetupCompletedComponent,
     AdditionalDeclarationSubmitComponent
+  ],
+  entryComponents: [
+    EditInvestmentModalComponent
   ],
   providers: [CurrencyPipe]
 })

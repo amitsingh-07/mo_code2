@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../../portfolio-routes.constants';
-
 @Component({
   selector: 'app-breakdown-accordion',
   templateUrl: './breakdown-accordion.component.html',

@@ -118,8 +118,9 @@ export class SelectNationalityComponent implements OnInit {
         ref.componentInstance.errorTitle = modalTitle;
         ref.componentInstance.errorMessage = modalMessage;
         ref.componentInstance.primaryActionLabel = this.editModalData.ButtonTitle;
-        ref.componentInstance.primaryAction.subscribe((emittedValue) => {
-            // return to homepage.
+        ref.componentInstance.primaryAction.subscribe(() => {
+            this.router.navigate(['home']);
+
         });
     }
 

@@ -12,6 +12,7 @@ import { RiskProfileComponent } from '../../../portfolio/risk-profile/risk-profi
   encapsulation: ViewEncapsulation.None
 })
 export class ModelWithButtonComponent implements OnInit {
+  @Input() imgType = 1;
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() errorMessageHTML: any;

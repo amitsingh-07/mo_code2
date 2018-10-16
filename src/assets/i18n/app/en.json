@@ -2,6 +2,7 @@
   "COMMON": {
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLAN_SELECTED": "Plan Selected",
     "LBL_PLANS_SELECTED": "Plans Selected",
     "LBL_SEARCH_PLAN": "Search Plans",
     "LBL_UPDATE_PLAN": "Update Plan",
@@ -17,7 +18,8 @@
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",
-    "PER_YEAR": "/ year"
+    "PER_YEAR": "/ year",
+    "SINGLE": "Single"
   },
   "LABEL": {
     "GENDER": "Gender",
@@ -147,6 +149,67 @@
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Login",
     "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
+  },
+  "FOOTER": {
+    "TOP_SECTION": {
+      "ABOUT_US": {
+          "TITLE": "About Us"
+      },
+      "LIVE_CHAT": {
+          "TITLE": "Live Chat"
+      }
+    },
+    "MIDDLE_SECTION": {
+      "ADDRESS": {
+        "LABEL": "23 Keong Saik Road Singapore 089130",
+        "LINK": "https://goo.gl/maps/T9YkbhYcAgm"
+      }, 
+      "CONTACT_US": {
+        "MAIN_ADVISORY": {
+          "LABEL": "Advisory Line",
+          "LINK_LABEL": "(65) 6329 9188",
+          "LINK": "6329 9188"
+        },
+        "MAIN_GENERAL": {
+          "LABEL": "General Line",
+          "LINK_LABEL": "(65) 6329 9189",
+          "LINK": "6329 9189"
+        },
+        "EMAIL": {
+          "LABEL": "Email",
+          "LINK_LABEL":"enquiries@moneyowl.com.sg",
+          "LINK": "enquiries@moneyowl.com.sg"
+        },
+        "CORPORATE": {
+          "LABEL": "For Corporate Financial Literacy Programme and Partnership",
+          "LINK_LABEL": "partnership@moneyowl.com.sg",
+          "LINK": "partnership@moneyowl.com.sg"
+        }
+      },
+      "OPERATING_HOURS": {
+        "LABEL": "Operating Hours",
+        "CONTENT": "9am - 6pm, Mon - Fri",
+        "EXCEPTION": "excluding Public Holidays"
+      }
+    },
+    "BOTTOM_SECTION": {
+      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Service Licence No: CMS100758-1.",
+      "LEGAL": {
+        "TERMS_AND_CONDITIONS": {
+          "LABEL": "Terms and Conditions"
+        },
+        "PRIVACY_POLICY": {
+          "LABEL": "Privacy Policy"
+        },
+        "DISCLOSURE": {
+          "LABEL": "Disclosure"
+        },
+        "FAIR_DEALING": {
+          "LABEL": "Fair Dealing"
+        }
+      },
+      "ALL_RIGHTS_RESERVED": "© 2018 MoneyOwl Pte Ltd. All Rights Reserved."
+    }
   }
 }
 

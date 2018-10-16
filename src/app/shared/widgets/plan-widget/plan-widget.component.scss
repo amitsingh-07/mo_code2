@@ -43,10 +43,13 @@ app-plan-widget {
     }
 
     .plan-selected {
-      color: #fff;
+      color: $white-color;
       background-color: #ff872f !important;
       border-color: #ff872f !important;
       box-shadow: none;
+      @include allmobiles {
+        border-radius: 0;
+      }
     }
 
     .info-icon {
