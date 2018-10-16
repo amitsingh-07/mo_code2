@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IExecTrustee } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
