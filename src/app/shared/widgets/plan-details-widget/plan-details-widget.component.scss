@@ -6,8 +6,15 @@ app-plan-details-widget {
     display: none !important;
   }
 
-  .plan-selected-wrapper {
+  .plan-selected-wrapper::after {
     border: solid 3px #ff872f !important;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px;
   }
 
   .plan-selected {

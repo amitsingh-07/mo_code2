@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 
 import { ApiService } from './../shared/http/api.service';
-import { IArticleElement } from './articleElement.interface';
+
+declare var require: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleApiService {
 
-  constructor(public apiService: ApiService) {}
+  constructor(public apiService: ApiService) { }
 
   getGetStartedArticle() {
     return this.apiService.getGetStartedArticles();
@@ -19,7 +20,7 @@ export class ArticleApiService {
     if (param) {
       quantity = param;
     }
-    const articleElementList =  this.apiService.getRecentArticles(quantity);
+    const articleElementList = this.apiService.getRecentArticles(quantity);
 
     return articleElementList;
   }
