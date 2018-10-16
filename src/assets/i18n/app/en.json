@@ -18,7 +18,8 @@
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",
-    "PER_YEAR": "/ year"
+    "PER_YEAR": "/ year",
+    "SINGLE": "Single"
   },
   "LABEL": {
     "GENDER": "Gender",

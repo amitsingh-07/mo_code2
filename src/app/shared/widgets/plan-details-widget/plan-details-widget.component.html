@@ -4,7 +4,8 @@
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
         <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
-          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate }}</span>
+          <span [hidden]="data.premium.premiumFrequency == 'single'" class="text-small">{{ 'SUFFIX.PER_MONTH' | translate }}</span>
+          <span [hidden]="data.premium.premiumFrequency != 'single'" class="text-small">{{ 'SUFFIX.SINGLE' | translate }}</span>
         </h2>
         <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
           <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
