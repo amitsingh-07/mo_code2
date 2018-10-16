@@ -8,9 +8,9 @@
         <div class="content">
             <div  id="fundDetailsContent" [innerHTML]="fund.htmlDesc"></div>
 
-                <a download href="../../../assets/docs/portfolio/fund/factsheet.pdf" class="btn btn__footer--fixed btn-primary width100" id="fundDetailsBtnOne" >{{'FUND_DETAILS.DOWNLOAD_FACTSHEET' | translate}}</a>
+                <a download href="../../../assets/docs/portfolio/fund/{{fund.factSheetFile}}" class="btn btn__footer--fixed btn-primary width100" id="fundDetailsBtnOne" >{{'FUND_DETAILS.DOWNLOAD_FACTSHEET' | translate}}</a>
             
-                <a download href="../../../assets/docs/portfolio/fund/highlightsheet.pdf" class="btn btn__footer--fixed btn-primary width100" id="fundDetailsBtnTwo" >{{'FUND_DETAILS.DOWNLOAD_HIGHLIGHT_FACTSHEET' | translate}}</a>
+                <a download href="../../../assets/docs/portfolio/fund/{{fund.highlightSheetFile}}" class="btn btn__footer--fixed btn-primary width100" id="fundDetailsBtnTwo" >{{'FUND_DETAILS.DOWNLOAD_HIGHLIGHT_FACTSHEET' | translate}}</a>
 
                 
            
