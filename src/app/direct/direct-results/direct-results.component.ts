@@ -273,6 +273,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         this.filters.push(fullPartialRider);
         break;
       case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
+        delete this.filters[0];
         this.filters.push(payoutYears);
         this.filters.push(claimCriteria);
         break;
