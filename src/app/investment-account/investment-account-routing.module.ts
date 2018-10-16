@@ -16,6 +16,7 @@ import { AccountSetupCompletedComponent } from './account-setup-completed/accoun
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import { AdditionalDeclarationInfoComponent } from './additional-declaration-info/additional-declaration-info.component';
 import { AdditionalDeclarationStep1Component } from './additional-declaration-step1/additional-declaration-step1.component';
+import { AdditionalDeclarationSubmitComponent } from './additional-declaration-submit/additional-declaration-submit.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 const routes: Routes = [
@@ -75,6 +76,9 @@ const routes: Routes = [
   },
   { path: INVESTMENT_ACCOUNT_ROUTES.SETUP_COMPLETED,
     component: AccountSetupCompletedComponent,
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_SUBMIT,
+    component: AdditionalDeclarationSubmitComponent,
   }
 ];
 

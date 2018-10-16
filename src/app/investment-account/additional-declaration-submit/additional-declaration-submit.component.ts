@@ -15,13 +15,12 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
-  selector: 'app-account-setup-completed',
-  templateUrl: './account-setup-completed.component.html',
-  styleUrls: ['./account-setup-completed.component.scss']
+  selector: 'app-additional-declaration-submit',
+  templateUrl: './additional-declaration-submit.component.html',
+  styleUrls: ['./additional-declaration-submit.component.scss']
 })
-export class AccountSetupCompletedComponent implements OnInit {
+export class AdditionalDeclarationSubmitComponent implements OnInit {
 
-  pageTitle: string;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -41,8 +40,7 @@ export class AccountSetupCompletedComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
   }
-  redirectToFund() {
-
-  }
+  redirectToDashboard() {
+}
 
 }
