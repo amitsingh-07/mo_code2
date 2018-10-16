@@ -1,0 +1,85 @@
+<app-page-title [pageTitle]="Beneficiaries"></app-page-title>
+<div class="container-fluid max-width--1024">
+  <div class="content">
+    <div class="flex-row">
+      <div class="col-lg-6 col-md-6 col-sm-12 header-container">
+        <div class="mobile-header">
+        <h2 id="intro-title" class ="hidden-sm-md">{{ 'My Beneficiaries' | translate}}</h2>
+        <h6 class="sub-title" id="sub-title">{{ 'Name the beneficiaries that you would like to inherit your estate.' | translate}}</h6>
+        <div class="banner-image hidden-sm-md">
+            <img src="assets/images/will-start.svg" id="intro-img"/>  
+        </div>
+        <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+        </div>
+      </div>
+      <div class="estate-distribution col-12">
+        <div class="distribution-img"><img src="assets/images/will-writing/estate-distribution-bg.png"/></div>
+        <div class="distribution-content">
+          <span class="title">Distribute your estate</span>
+          <span class="percentage">60%</span>
+          <span class="sub-title">Left to distribute</span>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6  col-sm-12 distribution-container">
+        <div class="estateDistributionForm">
+            <div>
+              <div class="estate-distribution-form">
+                <div class="form-title mb10">Estate Distribution</div>
+                  <div class="form-group-single-column mb15">
+                      <div class="col-6">
+                        <label for="beneficiary1" id="">
+                          <div class="input-label-black">heading</div>
+                          <div class="input-label-normal">sub heading</div>
+                        </label>
+                      </div>
+                      <div class="col-6">
+                          <div class="form-control">   
+                          <input id="beneficiary1" name="beneficiary1"  type="number" class="input-control"
+                            value="one" >
+                          <i>%</i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group-single-column mb15">
+                        <div class="col-6">
+                          <label for="beneficiary1" id="">
+                            <div class="input-label-black">heading</div>
+                            <div class="input-label-normal">sub heading</div>
+                          </label>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-control">   
+                            <input id="beneficiary1" name="beneficiary1"  type="number" class="input-control"
+                              value="one" >
+                            <i>%</i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group-single-column mb15">
+                          <div class="col-6">
+                            <label for="beneficiary1" id="">
+                              <div class="input-label-black">heading</div>
+                              <div class="input-label-normal">sub heading</div>
+                            </label>
+                          </div>
+                          <div class="col-6">
+                              <div class="form-control">   
+                              <input id="beneficiary1" name="beneficiary1"  type="number" class="input-control"
+                                value="one" >
+                              <i>%</i>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                  <div>
+                    <button type="button" [disabled]="false" (click)="goToNext(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

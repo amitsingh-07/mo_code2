@@ -77,3 +77,9 @@
         align-items: center;
     }
 }
+
+.myFamilyForm{
+    @include allmobiles{
+        margin-bottom:100px;
+    }
+}

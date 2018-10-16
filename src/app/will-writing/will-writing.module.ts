@@ -15,6 +15,7 @@ import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
 import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.component';
+import { MyEstateDistributionComponent } from './my-estate-distribution/my-estate-distribution.component';
 import { MyExecutorTrusteeComponent } from './my-executor-trustee/my-executor-trustee.component';
 import { MyFamilyComponent } from './my-family/my-family.component';
 import { PageTitleComponent } from './page-title/page-title.component';
@@ -59,7 +60,8 @@ export function createTranslateLoader(http: HttpClient) {
     AppointYourExecutorTrusteeComponent,
     MyBeneficiariesComponent,
     ReviewYourDetailsComponent,
-    MyExecutorTrusteeComponent
+    MyExecutorTrusteeComponent,
+    MyEstateDistributionComponent
   ]
 })
 export class WillWritingModule { }

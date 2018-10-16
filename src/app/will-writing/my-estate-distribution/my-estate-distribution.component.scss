@@ -2,7 +2,6 @@
 @import '../../../mixins';
 
 .container-fluid {
-    background-color: #fff;
     padding: 50px 60px 65px;
     @include allmobiles{
         padding: 10px 0 !important;
@@ -99,12 +98,12 @@
     padding: 15px 0;
     text-align: center;
   }
-.promocode {
+.beneficiaries-container {
     margin-top: 70px;
     @include allmobiles {
         margin-top: 25px;
         padding: 0;
-        margin-bottom: 70px;
+        margin-bottom: 40px;
     }
     .FAQ {
         margin-top: 16px;
@@ -167,7 +166,10 @@
     display: flex;
     flex-direction: column;
     .sub-title{
-        color: #333846;
+        color: #333846 !important;
+        @include allmobiles {
+            padding: 10px !important;
+        }
     }
     h2{
         color: #00a7a7;
@@ -183,3 +185,158 @@
         flex-direction: column-reverse;
     }
 }
+
+input[type='checkbox']+label {
+    margin: 0;
+    clear: none;
+    padding: 0px 0 0px 35px;
+    cursor: pointer;
+    background: url("../../../assets/images/check-box-normal.svg") left center no-repeat;
+  }
+  
+  input[type='checkbox']:checked+label {
+    background-image: url("../../../assets/images/check-box-select.svg");
+  }
+
+  .add-beneficiaries{
+      padding:5px;
+  }
+  
+  .form-group-single-column .checkbox-button.two-label {
+    padding: 20px !important;
+  }
+  .mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.mobile-header {
+         background-color: #00a7a7;
+         position: relative;
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: -12px;
+        padding-bottom: 100px;
+        color: #333846 !important;
+        background-color: #fff;
+    }  
+}
+
+.add-beneficiaries-container {
+    background-color: #fff;
+    color:#2d8289;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+.beneficiaries-container{
+    padding: 0 10px
+}
+.aboutMe{
+    .btn {
+        padding: 8px !important;
+        font-family: $muli-regular !important;
+        color:#2d8289;
+        background-color: #fff;
+    }
+    .btn-primary{
+        background-color: #00a7a7;
+        color: #fff !important;
+        font-family: $muli-regular !important;
+    }
+}
+
+.header-container{
+    padding: 0px !important;
+}
+
+.content-title {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    padding:20px !important;
+  }
+  .add-beneficiary{
+      justify-content: flex-end;
+  }
+  .estate-distribution {
+      @include allmobiles {   
+        z-index: 9999;
+        margin-top: -80px;
+      }
+      .distribution-img{
+        position: relative;
+        left: 0;
+        right: 0;
+        img{
+            @include allmobiles{
+                width: 100%;
+            }
+            
+        }
+      }
+      .distribution-content{
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        text-align: center;
+        .title{
+            font-family: $muli-semi-bold;
+        }
+        .percentage{
+            font-size: 48px !important;
+            font-family: $muli-bold;
+        }
+        .sub-title{
+            font-family: $muli-regular;
+        }
+        color: #ffffff;
+        display: flex;
+        position: absolute;
+        top: 12%;
+        flex-direction: column;
+        left: 0;
+        right: 0;
+        justify-content: center;
+        align-items: center;
+      }
+  }
+  .estate-distribution-form{
+      background-color: #fff;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      .input-label-black{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        color: #000000;
+      }
+      .input-label-normal {
+        font-family: $muli-regular;
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: -0.2px;
+        color: #5e5e5e;
+      }
+      .form-title {
+        font-family: $muli-bold;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.4px;
+        color: #066360;
+        padding-left: 10px;
+      }
+  }
+  .estateDistributionForm {
+      padding-bottom: 40px;
+  }
+

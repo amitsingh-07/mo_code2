@@ -12,9 +12,12 @@
             "MY_SPOUSE": "My Spouse",
             "NAME": "Name (as in NRIC)",
             "RELATIONSHIP": "Relationship To You",
-            "NRIC": "NRIC Number"
+            "NRIC": "NRIC Number",
+            "ADD": "Add",
+            "CANCEL": "Cancel"
         },
         "INTRODUCTION": {
+            "PAGE_TITLE": "Introduction",
             "TITLE": "Before You Proceed...",
             "SUB_TITLE": "we went you to know what your getting involved in.",
             "WHY_WILL": "Why write a will with us?",

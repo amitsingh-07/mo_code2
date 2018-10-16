@@ -19,11 +19,15 @@ export class IntroductionComponent implements OnInit {
   promoCodeError: string;
   promoCodeMsg: string;
   promoCode;
+  pageTitle;
   isPromoCodeValid = false;
   constructor(private formBuilder: FormBuilder, private translate: TranslateService,
               private router: Router, private willWritingService: WillWritingService,
               private willWritingApiService: WillWritingApiService) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('WILL_WRITING.INTRODUCTION.PAGE_TITLE');
+    });
    }
 
   ngOnInit() {
