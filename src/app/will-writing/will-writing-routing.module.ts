@@ -11,9 +11,9 @@ import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
 import { MyChildGuardianComponent } from './my-child-guardian/my-child-guardian.component';
 import { MyFamilyComponent } from './my-family/my-family.component';
+import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { WILL_WRITING_ROUTES } from './will-writing-routes.constants';
-import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
 
 const routes: Routes = [
   { path: WILL_WRITING_ROUTES.ROOT, component: IntroductionComponent },
