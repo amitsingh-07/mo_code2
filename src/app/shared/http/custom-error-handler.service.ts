@@ -44,7 +44,7 @@ export class CustomErrorHandlerService {
       message: 'Your session has expired.'
     };
     this.helper.showCustomErrorModal(customError);
-    this.auth.logout();
+    this.auth.clearSession();
     // navigate back to the login page
     this.router.navigate([appConstants.loginPageUrl]);
   }

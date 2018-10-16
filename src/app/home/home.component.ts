@@ -1,6 +1,9 @@
+import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { element } from 'protractor';
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit,
-         Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit, Component, ElementRef, HostListener, OnInit,
+  Renderer2, ViewChild, ViewEncapsulation
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -32,29 +35,33 @@ export class HomeComponent implements OnInit, AfterViewInit {
   subscribeForm: FormGroup;
   formValues: SubscribeMember;
 
-  constructor(public navbarService: NavbarService, public footerService: FooterService, carouselConfig: NgbCarouselConfig,
-              public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
-              public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private route: ActivatedRoute) {
-                carouselConfig.showNavigationArrows = true;
-                carouselConfig.showNavigationIndicators = true;
-                carouselConfig.wrap = false;
-                navbarService.existingNavbar.subscribe((param: ElementRef) => {
-                  this.navBarElement = param;
-                  this.checkScrollStickyHomeNav();
-                });
-                this.translate.use('en');
-                this.translate.get('COMMON').subscribe((result: string) => {
-                    this.pageTitle = this.translate.instant('HOME.TITLE');
-                    this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
-                    this.trustedReasons = this.translate.instant('TRUSTED.REASONS');
-                    this.setPageTitle(this.pageTitle);
-                    this.navbarService.setNavbarVisibility(true);
-                    this.navbarService.setNavbarMode(1);
-                    this.navbarService.setNavbarMobileVisibility(true);
-                    this.navbarService.setNavbarShadowVisibility(true);
-                    this.footerService.setFooterVisibility(true);
-                });
-              }
+  constructor(
+    public navbarService: NavbarService, public footerService: FooterService, carouselConfig: NgbCarouselConfig,
+    public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
+    public readonly translate: TranslateService, private modal: NgbModal, private router: Router, 
+    private route: ActivatedRoute, private authService: AuthenticationService) {
+    carouselConfig.showNavigationArrows = true;
+    carouselConfig.showNavigationIndicators = true;
+    carouselConfig.wrap = false;
+    navbarService.existingNavbar.subscribe((param: ElementRef) => {
+      this.navBarElement = param;
+      this.checkScrollStickyHomeNav();
+    });
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('HOME.TITLE');
+      this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
+      this.trustedReasons = this.translate.instant('TRUSTED.REASONS');
+      this.setPageTitle(this.pageTitle);
+      this.navbarService.setNavbarVisibility(true);
+      this.navbarService.setNavbarMode(1);
+      this.navbarService.setNavbarMobileVisibility(true);
+      this.navbarService.setNavbarShadowVisibility(true);
+      this.footerService.setFooterVisibility(true);
+    });
+
+    this.authService.clearSession();
+  }
 
   @ViewChild('banner') BannerElement: ElementRef;
   @ViewChild('homeNavBar') HomeNavBar: ElementRef;
@@ -74,9 +81,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:scroll', ['$event'])
   @HostListener('window:resize', [])
-    checkScroll() {
-      this.checkScrollHomeNav();
-    }
+  checkScroll() {
+    this.checkScrollHomeNav();
+  }
 
   ngOnInit() {
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
@@ -85,18 +92,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
       email: new FormControl(this.formValues.email),
     });
     this.route.fragment.subscribe((fragment: string) => {
-      if ( fragment === 'insurance' ) {
+      if (fragment === 'insurance') {
         this.goToSection(this.InsuranceElement.nativeElement);
       } else
-      if ( fragment === 'will') {
-        this.goToSection(this.WillElement.nativeElement);
-      } else
-      if ( fragment === 'invest') {
-        this.goToSection(this.InvestElement.nativeElement);
-      } else
-      if ( fragment === 'comprehensive') {
-        this.goToSection(this.ComprehensiveElement.nativeElement);
-      }
+        if (fragment === 'will') {
+          this.goToSection(this.WillElement.nativeElement);
+        } else
+          if (fragment === 'invest') {
+            this.goToSection(this.InvestElement.nativeElement);
+          } else
+            if (fragment === 'comprehensive') {
+              this.goToSection(this.ComprehensiveElement.nativeElement);
+            }
     });
   }
 
@@ -125,17 +132,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
       if (BannerBottom < navbarBottom) {
         this.homeNavBarFixed = true;
       } else
-      if (BannerBottom > navbarBottom) {
-        this.homeNavBarFixed = false;
-      }
+        if (BannerBottom > navbarBottom) {
+          this.homeNavBarFixed = false;
+        }
       /* Bottom Check */
       if (homeNavBarPosition > endTriggerPosition) {
         this.homeNavBarHide = true;
       }
     }
     if (navbarBottom < (endTriggerPosition - homeNavBarHeight)) {
-        this.homeNavBarHide = false;
-      }
+      this.homeNavBarHide = false;
+    }
   }
 
   checkScrollHomeNav() {
@@ -151,16 +158,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
     const insuranceElement = this.InsuranceElement.nativeElement.getBoundingClientRect();
     const OffsetInsurance = [insuranceElement.top + window.pageYOffset - document.documentElement.clientTop,
-                             insuranceElement.bottom + window.pageYOffset - document.documentElement.clientTop];
+    insuranceElement.bottom + window.pageYOffset - document.documentElement.clientTop];
     const willElement = this.WillElement.nativeElement.getBoundingClientRect();
     const OffsetWill = [willElement.top + window.pageYOffset - document.documentElement.clientTop,
-                        willElement.bottom + window.pageYOffset - document.documentElement.clientTop];
+    willElement.bottom + window.pageYOffset - document.documentElement.clientTop];
     const investElement = this.InvestElement.nativeElement.getBoundingClientRect();
     const OffsetInvest = [investElement.top + window.pageYOffset - document.documentElement.clientTop,
-                        investElement.bottom + window.pageYOffset - document.documentElement.clientTop];
+    investElement.bottom + window.pageYOffset - document.documentElement.clientTop];
     const comprehensiveElement = this.ComprehensiveElement.nativeElement.getBoundingClientRect();
     const OffsetComprehensive = [comprehensiveElement.top + window.pageYOffset - document.documentElement.clientTop,
-                                 comprehensiveElement.bottom + window.pageYOffset - document.documentElement.clientTop];
+    comprehensiveElement.bottom + window.pageYOffset - document.documentElement.clientTop];
     if (triggerPosition >= OffsetInsurance[0] && triggerPosition < OffsetInsurance[1]) {
       // within insurance
       this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
@@ -168,27 +175,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
       this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     } else
-    if (triggerPosition >= OffsetWill[0] && triggerPosition < OffsetWill[1]) {
-      // within will
-      this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
-      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-      this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
-      this.render.addClass(this.HomeNavWill.nativeElement, 'active');
-    } else
-    if (triggerPosition >= OffsetInvest[0] && triggerPosition < OffsetInvest[1]) {
-      // within invest
-      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-      this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
-      this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
-      this.render.addClass(this.HomeNavInvest.nativeElement, 'active');
-    } else
-    if (triggerPosition >= OffsetComprehensive[0] && triggerPosition < OffsetComprehensive[1]) {
-      // within comprehensive
-      this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-      this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
-      this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
-      this.render.addClass(this.HomeNavComprehensive.nativeElement, 'active');
-    }
+      if (triggerPosition >= OffsetWill[0] && triggerPosition < OffsetWill[1]) {
+        // within will
+        this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+        this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        this.render.addClass(this.HomeNavWill.nativeElement, 'active');
+      } else
+        if (triggerPosition >= OffsetInvest[0] && triggerPosition < OffsetInvest[1]) {
+          // within invest
+          this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+          this.render.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+          this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
+          this.render.addClass(this.HomeNavInvest.nativeElement, 'active');
+        } else
+          if (triggerPosition >= OffsetComprehensive[0] && triggerPosition < OffsetComprehensive[1]) {
+            // within comprehensive
+            this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+            this.render.removeClass(this.HomeNavInvest.nativeElement, 'active');
+            this.render.removeClass(this.HomeNavWill.nativeElement, 'active');
+            this.render.addClass(this.HomeNavComprehensive.nativeElement, 'active');
+          }
   }
 
   goToSection(elementName) {
@@ -200,7 +207,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top) + difference;
     const selectedSection = elementName.getBoundingClientRect();
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - homeNavbarHeight;
-    elementName.scrollIntoView({block: 'center', inline: 'center', behavior: 'smooth'});
+    elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
   }
 
   subscribeMember() {
