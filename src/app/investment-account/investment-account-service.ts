@@ -72,10 +72,11 @@ export class InvestmentAccountService {
         this.commit();
     }
     setTaxInfoFormData(data) {
-        this.investmentAccountFormData.Taxcountry = data.Taxcountry;
+        this.investmentAccountFormData.Taxcountry = data.taxCountry;
         this.investmentAccountFormData.haveTin = data.radioTin;
         this.investmentAccountFormData.Tin = data.tinNumber;
-        this.investmentAccountFormData.noTinReason = data.noTinReason;
+        this.investmentAccountFormData.noTinReason = data.reasonDropdown['noTinReason'];
+        this.commit();
     }
     // tslint:disable-next-line
     getFormErrorList(form) {
@@ -142,6 +143,24 @@ export class InvestmentAccountService {
             noTinReason: this.investmentAccountFormData.noTinReason
         };
     }
+    getPepInfo() {
+        return {
+            radioPep: this.investmentAccountFormData.radioPep,
+            fName: this.investmentAccountFormData.fName,
+            lName: this.investmentAccountFormData.lName,
+            cName: this.investmentAccountFormData.cName,
+            pepoccupation: this.investmentAccountFormData.pepoccupation,
+            pepCountry: this.investmentAccountFormData.pepCountry,
+            pepPostalCode: this.investmentAccountFormData.pepPostalCode,
+            pepAddress1: this.investmentAccountFormData.pepAddress1,
+            pepAddress2: this.investmentAccountFormData.pepAddress2,
+            pepUnitNo: this.investmentAccountFormData.pepUnitNo
+        };
+    }
+    getPepData() {
+        const pepVal = this.investmentAccountFormData.pep;
+        return pepVal;
+    }
     getPersonalDeclaration() {
         return {
             sourceOfIncome: this.investmentAccountFormData.sourceOfIncome,
@@ -155,6 +174,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.ExistingEmploye = data.radioEmploye;
         this.investmentAccountFormData.pep = data.radioPEP;
         this.investmentAccountFormData.beneficial = data.radioBeneficial;
+        this.commit();
     }
 
     setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {
@@ -232,7 +252,20 @@ export class InvestmentAccountService {
         }
         this.commit();
     }
-
+    // Additional info pep data
+    setAdditionalInfoFormData(data) {
+        this.investmentAccountFormData.radioPep = data.radioPep;
+        this.investmentAccountFormData.fName = data.fName;
+        this.investmentAccountFormData.lName = data.lName;
+        this.investmentAccountFormData.cName = data.cName;
+        this.investmentAccountFormData.pepoccupation = data.pepoccupation;
+        this.investmentAccountFormData.pepCountry = data.pepCountry;
+        this.investmentAccountFormData.pepPostalCode = data.pepPostalCode;
+        this.investmentAccountFormData.pepAddress1 = data.pepAddress1;
+        this.investmentAccountFormData.pepAddress2 = data.pepAddress2;
+        this.investmentAccountFormData.pepUnitNo = data.pepUnitNo;
+        this.commit();
+    }
     // Upload Document
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);

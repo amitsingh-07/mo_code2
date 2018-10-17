@@ -89,4 +89,16 @@ export class InvestmentAccountFormData {
     investmenteEarning: string;
     investmentPeriod: string;
     earningsGenerated: string;
+
+    // Additional declaration PEP
+    radioPep: any;
+    fName: string;
+    lName: string;
+    cName: string;
+    pepoccupation: string;
+    pepCountry: string;
+    pepPostalCode: number;
+    pepAddress1: string;
+    pepAddress2: string;
+    pepUnitNo: string;
 }

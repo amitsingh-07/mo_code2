@@ -131,7 +131,6 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
   // ---------------------------- ABOUT US MODULE ----------------------------
   getCustomerReviewList() {
     // tslint:disable-next-line:no-commented-code

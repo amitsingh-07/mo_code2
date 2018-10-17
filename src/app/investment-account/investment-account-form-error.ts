@@ -418,8 +418,71 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid  earnings Generated',
                 errorMessage: 'Please earnings Generated.'
             }
-        }
+        },
+        pepoccupation: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid occupation',
+                errorMessage: 'Please select your occupation.'
+            }
+        },
+        fName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid First Name',
+                errorMessage: 'Please enter your first name.'
+            }
+        },
+        lName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Last Name',
+                errorMessage: 'Please enter your last name.'
+            }
+        },
+        cName: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Company Name',
+                errorMessage: 'Please enter your Company name.'
+            }
+        },
+        pepCountry: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Country',
+                errorMessage: 'Please select your Country.'
+            }
+        },
+        pepPostalCode: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Postal code',
+                errorMessage: 'Please enter your postal code.'
+            }
+        },
+        pepAddress1: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Address',
+                errorMessage: 'Please enter your Address1.'
+            }
+        },
+        pepAddress2: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Address',
+                errorMessage: 'Please enter your Address2.'
+            }
+        },
 
+        pepUnitNo: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Unit No',
+                errorMessage: 'Please enter your Unit no.'
+            }
+        },
     };
 
 }
