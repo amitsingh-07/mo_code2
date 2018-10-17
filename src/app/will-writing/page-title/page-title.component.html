@@ -2,4 +2,5 @@
   <div class="back" (click)="goBack()"></div>
   <div *ngIf="step" class="heading">{{step}}</div>
   <div class="autofill-text">{{pageTitle}}</div>
+  <span *ngIf="showTooltip" class="help-icon" (click)="openToolTipModal()"></span>
 </div>  

@@ -36,3 +36,14 @@
         margin-left: 19px;
       }
 }
+
+.help-icon {
+  background-image: url("../../../assets/images/help-icon.png");
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  bottom: 13px;
+}

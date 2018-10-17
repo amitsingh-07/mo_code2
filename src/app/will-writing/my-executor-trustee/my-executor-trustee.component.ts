@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IExecTrustee } from '../will-writing-types';
+import { IExecTrustee, ISpouse } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
 
 @Component({
@@ -16,10 +16,16 @@ import { WillWritingService } from '../will-writing.service';
 export class MyExecutorTrusteeComponent implements OnInit {
   private pageTitle: string;
   private step: string;
+  private tooltip = {};
+
+  hasGuardian: boolean;
+  hasSpouse: boolean;
 
   addExeTrusteeForm: FormGroup;
-  execTrusteeFormValues: IExecTrustee[];
-  showSpouseDeatils: boolean;
+  execTrusteeList: IExecTrustee[] = [];
+  relationship = '';
+  relationshipList;
+  showAddExeTrusteeForm: boolean;
   submitted: boolean;
 
   constructor(
@@ -31,12 +37,21 @@ export class MyExecutorTrusteeComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_3');
-      this.pageTitle = this.translate.instant('WILL_WRITING.My_EXECUTOR_TRUSTEE.TITLE');
+      this.pageTitle = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE');
+      this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
+      this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_TITLE');
+      this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_MESSAGE');
     });
   }
 
   ngOnInit() {
-    this.showSpouseDeatils = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasGuardian = this.willWritingService.getGuardianInfo.length > 0;
+    if (this.willWritingService.getExecTrusteeInfo.length > 0 ) {
+      this.execTrusteeList = this.willWritingService.getExecTrusteeInfo();
+    } else if (this.hasSpouse) {
+      this.execTrusteeList.push(this.willWritingService.getSpouseInfo());
+    }
     this.buildExecTrusteeForm();
   }
 
@@ -44,31 +59,35 @@ export class MyExecutorTrusteeComponent implements OnInit {
    * build about me form.
    */
   buildExecTrusteeForm() {
-    this.execTrusteeFormValues = this.willWritingService.getExecTrusteeInfo();
     this.addExeTrusteeForm = this.formBuilder.group({
-      execTrustee: this.formBuilder.array([this.buildAddExecTrusteeForm(0)]),
+      name: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      relationship: ['', [Validators.required]],
+      nricNumber: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
     });
-    if (this.execTrusteeFormValues.length) {
-      for (let i = 1; i <= this.execTrusteeFormValues.length - 1 ; i++) {
-        this.addExecTrusteeForm(i);
-      }
+  }
+
+  get execTrustee() { return this.addExeTrusteeForm.controls; }
+
+  /**
+   * set marital status.
+   * @param index - marital Status List index.
+   */
+  selectRelationship(relationship) {
+    relationship = relationship ? relationship : {text: '', value: ''};
+    this.relationship = relationship.text;
+    this.addExeTrusteeForm.controls['relationship'].setValue(relationship.value);
+  }
+
+  addExecTrustee(form) {
+    if (this.save(form)) {
+      this.showAddExeTrusteeForm = false;
     }
   }
 
-  buildAddExecTrusteeForm(index: number): FormGroup {
-      return this.formBuilder.group({
-          name: [this.execTrusteeFormValues.length > index ?
-            this.execTrusteeFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          relationship: [this.execTrusteeFormValues.length > index ? this.execTrusteeFormValues[index].relationship : '',
-          [Validators.required]],
-          nricNumber: [this.execTrusteeFormValues.length > index ?
-            this.execTrusteeFormValues[index].nricNumber : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      });
-  }
-
-  addExecTrusteeForm(index: number): void {
-    const items: FormArray = this.addExeTrusteeForm.get('execTrustee') as FormArray;
-    items.push(this.buildAddExecTrusteeForm(index));
+  showHideForm() {
+    this.submitted = false;
+    this.addExeTrusteeForm.reset();
+    this.showAddExeTrusteeForm = !this.showAddExeTrusteeForm;
   }
 
   /**
@@ -81,20 +100,18 @@ export class MyExecutorTrusteeComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
+      const error = this.willWritingService.getFormError(form, 'addExecTrusteeForm');
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
     } else {
-      /*if (this.showSpouseDeatils) {
-        this.willWritingService.setSpouseInfo(form.value.spouse[0]);
-      }
-      if (this.showChildDetails) {
-        this.willWritingService.clearChildrenInfo();
-        for (const children of form.value.childrens) {
-          this.willWritingService.setChildrenInfo(children);
-        }
-      }*/
+      this.execTrusteeList.push(form.value);
       return true;
     }
+  }
+
+  openToolTipModal() {
+    const title = this.tooltip['title'];
+    const message = this.tooltip['message'];
+    this.willWritingService.openToolTipModal(title, message);
   }
 
   /**
