@@ -59,7 +59,7 @@
   "BUTTON": {
     "PROCEED": "Proceed",
     "COMPARE": "Compare",
-    "UN_SELECT": "Plan Selected",
+    "UN_SELECT": "Selected",
     "DETAILS": "Details",
     "SELECT_PLAN": "Select Plan"
   },
