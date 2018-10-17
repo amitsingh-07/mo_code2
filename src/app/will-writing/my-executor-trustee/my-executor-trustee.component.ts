@@ -26,6 +26,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
   relationship = '';
   relationshipList;
   showAddExeTrusteeForm: boolean;
+  showAddExeTrusteeBtn: boolean;
   submitted: boolean;
 
   constructor(
@@ -106,12 +107,6 @@ export class MyExecutorTrusteeComponent implements OnInit {
       this.execTrusteeList.push(form.value);
       return true;
     }
-  }
-
-  openToolTipModal() {
-    const title = this.tooltip['title'];
-    const message = this.tooltip['message'];
-    this.willWritingService.openToolTipModal(title, message);
   }
 
   /**
