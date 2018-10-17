@@ -1079,18 +1079,6 @@ a.link-white {
 
 .selected-count {
   background-color: #ff872f;
-<<<<<<< HEAD
-    padding: 0px 15px 0px 15px;
-    border-radius: 13px;
-    font-family: "Muli Bold", sans-serif;
-    font-size: 18px;
-    letter-spacing: -0.1px;
-    color: #ffffff;
-    margin-right: 10px;
-    height: 25px;
-    line-height: 20px;
-    display: inline-block;
-=======
   padding: 0px 15px 3px 15px;
   border-radius: 13px;
   font-family: $muli-bold;
@@ -1098,8 +1086,6 @@ a.link-white {
   letter-spacing: -0.1px;
   color: $white-color;
   margin-right: 10px;
->>>>>>> aefc25e8cdedc6efcc5dc5627a9f4eace8e334b9
-
   @include allmobiles {
     float: left;
     margin-left: 10px;
