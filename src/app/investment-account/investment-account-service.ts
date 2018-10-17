@@ -14,6 +14,10 @@ const SESSION_STORAGE_KEY = 'app_inv_account_session';
     providedIn: 'root'
 })
 export class InvestmentAccountService {
+    callBackInvestmentAccount = false;
+    disableAttributes = ['fullName'];
+    myInfoAttributes = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
+    'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
 
     private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
     private investmentAccountFormError: any = new InvestmentAccountFormError();
@@ -178,14 +182,30 @@ export class InvestmentAccountService {
         this.commit();
     }
     setPersonalInfo(data: PersonalInfo) {
-        this.investmentAccountFormData.fullName = data.fullName;
-        this.investmentAccountFormData.firstName = data.firstName;
-        this.investmentAccountFormData.lastName = data.lastName;
-        this.investmentAccountFormData.nricNumber = data.nricNumber;
-        this.investmentAccountFormData.passportNumber = data.passportNumber;
-        this.investmentAccountFormData.passportExpiry = data.passportExpiry;
-        this.investmentAccountFormData.dob = data.dob;
-        this.investmentAccountFormData.gender = data.gender;
+        if (data.fullName) {
+            this.investmentAccountFormData.fullName = data.fullName;
+        }
+        if (data.firstName) {
+            this.investmentAccountFormData.firstName = data.firstName;
+        }
+        if (data.lastName) {
+            this.investmentAccountFormData.lastName = data.lastName;
+        }
+        if (data.nricNumber) {
+            this.investmentAccountFormData.nricNumber = data.nricNumber;
+        }
+        if (data.passportNumber) {
+            this.investmentAccountFormData.passportNumber = data.passportNumber;
+        }
+        if (data.passportExpiry) {
+            this.investmentAccountFormData.passportExpiry = data.passportExpiry;
+        }
+        if (data.dob) {
+            this.investmentAccountFormData.dob = data.dob;
+        }
+        if (data.gender) {
+            this.investmentAccountFormData.gender = data.gender;
+        }
         this.commit();
     }
     getPersonalInfo() {
@@ -236,12 +256,9 @@ export class InvestmentAccountService {
                 this.investmentAccountFormData.empCity = data.employeaddress.empCity;
                 this.investmentAccountFormData.empState = data.employeaddress.empState;
                 this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
-                
             }
-            
         } else {
             this.investmentAccountFormData.employmentStatus = data.employmentStatus;
-            
         }
         this.commit();
     }
@@ -281,5 +298,147 @@ export class InvestmentAccountService {
             totalAssets: this.investmentAccountFormData.totalAssets,
             totalLiabilities: this.investmentAccountFormData.totalLiabilities
         };
+    }
+
+    setFormData(data) {
+        this.investmentAccountFormData.isMyInfoEnabled = true;
+        this.investmentAccountFormData.fullName = data.name.value;
+        if (data.nationality.value) {
+            this.investmentAccountFormData.nationality = data.nationality.value;
+            this.disableAttributes.push('nationality');
+        }
+        this.setMyInfoPersonal(data);
+        this.setMyInfoResidentialAddress(data);
+
+        // Employer name
+        if (data.employment.value) {
+            this.investmentAccountFormData.companyName = data.employment.value;
+            this.disableAttributes.push('companyName');
+        }
+
+        // Occupation
+        if (data.occupation.desc) {
+            this.investmentAccountFormData.occupation = data.occupation.desc;
+            this.disableAttributes.push('occupation');
+        }
+
+        // Annual Household Income
+
+        this.investmentAccountFormData.disableAttributes = this.disableAttributes;
+        this.commit();
+    }
+
+    // MyInfo - Personal data
+    setMyInfoPersonal(data) {
+        if (data.uinfin) {
+            this.investmentAccountFormData.nricNumber = data.uinfin;
+            this.disableAttributes.push('nricNumber');
+        }
+        if (data.passportnumber && data.passportnumber.value) {
+            this.investmentAccountFormData.passportNumber = data.passportnumber.value;
+            this.disableAttributes.push('passportNumber');
+        }
+        if (data.passportexpirydate && data.passportexpirydate.value) {
+            this.investmentAccountFormData.passportExpiry = this.dateFormat(data.passportexpirydate.value);
+            this.disableAttributes.push('passportExpiry');
+        }
+        if (data.dob.value) {
+            this.investmentAccountFormData.dob = this.dateFormat(data.dob.value);
+            this.disableAttributes.push('dob');
+        }
+        let sex = '';
+        if (data.sex.value === 'M') {
+            sex = 'male';
+        } else if (data.sex.value === 'F') {
+            sex = 'female';
+        }
+        if (sex) {
+            this.investmentAccountFormData.gender = sex;
+            this.disableAttributes.push('gender');
+        }
+    }
+
+    // MyInfo - Residential Address
+    setMyInfoResidentialAddress(data) {
+        // Register address
+        if (data.regadd.country) {
+            this.investmentAccountFormData.country = data.regadd.country;
+            this.disableAttributes.push('country');
+        }
+        let regUnitNumber = '# ';
+        if (data.regadd.floor) {
+            regUnitNumber = regUnitNumber + data.regadd.floor + ' - ';
+        }
+        if (data.regadd.unit) {
+            regUnitNumber = regUnitNumber + data.regadd.unit;
+        }
+        if (regUnitNumber) {
+            this.investmentAccountFormData.unitNo = regUnitNumber;
+            this.disableAttributes.push('unitNo');
+        }
+        if (data.regadd.block) {
+            this.investmentAccountFormData.address1 = 'Block ' + data.regadd.block;
+            this.disableAttributes.push('address1');
+        }
+        if (data.regadd.street) {
+            this.investmentAccountFormData.address2 = data.regadd.street;
+            this.disableAttributes.push('address2');
+        }
+        if (data.regadd.postal) {
+            this.investmentAccountFormData.zipCode = data.regadd.postal;
+            this.disableAttributes.push('zipCode');
+        }
+
+        // Email address
+        if (data.mailadd.country) {
+            this.investmentAccountFormData.mailCountry = data.mailadd.country;
+            this.disableAttributes.push('mailCountry');
+        }
+        let mailUnitNumber = '# ';
+        if (data.mailadd.floor) {
+            mailUnitNumber = mailUnitNumber + data.mailadd.floor + ' - ';
+        }
+        if (data.mailadd.unit) {
+            mailUnitNumber = mailUnitNumber + data.mailadd.unit;
+        }
+        if (mailUnitNumber) {
+            this.investmentAccountFormData.mailUnitNo = mailUnitNumber;
+            this.disableAttributes.push('mailUnitNo');
+        }
+        if (data.mailadd.block) {
+            this.investmentAccountFormData.mailAddress1 = 'Block ' + data.mailadd.block;
+            this.disableAttributes.push('mailAddress1');
+        }
+        if (data.mailadd.street) {
+            this.investmentAccountFormData.mailAddress2 = data.mailadd.street;
+            this.disableAttributes.push('mailAddress2');
+        }
+        if (data.mailadd.postal) {
+            this.investmentAccountFormData.mailZipCode = data.mailadd.postal;
+            this.disableAttributes.push('mailZipCode');
+        }
+    }
+
+    dateFormat(date: string) {
+        const dateArr: any = date.split('-');
+        return {year: Number(dateArr[0]), month: Number(dateArr[1]), day: Number(dateArr[2])};
+    }
+
+    isDisabled(fieldName): boolean {
+        let disable: boolean;
+        if (this.investmentAccountFormData.isMyInfoEnabled) {
+          if (this.investmentAccountFormData.disableAttributes.includes(fieldName)) {
+            disable = true;
+          } else {
+            disable = false;
+          }
+        } else {
+          if (['firstName', 'lastName'].includes(fieldName)) {
+            disable = true;
+          } else {
+            disable = false;
+          }
+        }
+        return disable;
     }
 }

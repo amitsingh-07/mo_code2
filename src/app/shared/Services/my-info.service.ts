@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { environment } from './../../../environments/environment';
+import { environment } from '../../../environments/environment';
+import { ApiService } from '../http/api.service';
+import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,10 @@ export class MyInfoService {
   purpose = 'demonstrating MyInfo APIs';
   redirectUrl = environment.myInfoCallbackBaseUrl;
   state = Math.floor(100 + Math.random() * 90);
-  constructor() { }
+  myInfoValue: any;
+  loadingModalRef: NgbModalRef;
+  isMyInfoEnabled = false;
+  constructor(private modal: NgbModal, private apiService: ApiService) { }
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
@@ -32,5 +38,37 @@ export class MyInfoService {
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
     window.location.href = authoriseUrl;
+  }
+
+  openFetchPopup() {
+    this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
+    this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
+    this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+  }
+
+  closeFetchPopup() {
+    this.loadingModalRef.close();
+  }
+
+  closeMyInfoPopup(error: boolean) {
+    this.closeFetchPopup();
+    if (error) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = 'Oops, Error!';
+      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+      ref.componentInstance.isError = true;
+      ref.result.then(() => {
+        this.goToMyInfo();
+      }).catch((e) => {
+      });
+    }
+  }
+
+  setMyInfoValue(code) {
+    this.myInfoValue = code;
+  }
+
+  getMyInfoData() {
+    return this.apiService.getMyInfoData(this.myInfoValue);
   }
 }

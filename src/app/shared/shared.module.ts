@@ -16,6 +16,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
+import { SingPassComponent } from './components/sing-pass/sing-pass.component';
 import {
     TermsAndConditionsComponent
 } from './components/terms-and-conditions/terms-and-conditions.component';
@@ -56,7 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
     })],
   exports: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent],
+    BreakdownBarComponent, BreakdownAccordionComponent, SingPassComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -66,6 +67,7 @@ export function createTranslateLoader(http: HttpClient) {
     DisclosuresComponent,
     TermsComponent,
     BreakdownBarComponent,
+    SingPassComponent,
     BreakdownAccordionComponent]
 })
 export class SharedModule { }

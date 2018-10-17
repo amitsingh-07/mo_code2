@@ -8,9 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import { ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
-import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
-import { MyInfoService } from './../Services/my-info.service';
 import { apiConstants } from './api.constants';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
@@ -26,7 +24,6 @@ export class ApiService {
     private configService: ConfigService,
     private http: BaseService,
     private modal: NgbModal,
-    private myInfoService: MyInfoService,
     private guideMeService: GuideMeService,
     private httpClient: HttpClient) { }
 

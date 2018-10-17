@@ -57,7 +57,7 @@ export class InvestmentAccountFormData {
     empCity: string;
     empState: string;
     empZipCode: number;
-    
+
     // Upload documents
     nricFrontImage: File;
     nricBackImage: File;
@@ -90,4 +90,8 @@ export class InvestmentAccountFormData {
     pepAddress1: string;
     pepAddress2: string;
     pepUnitNo: string;
+
+    // MyInfo
+    isMyInfoEnabled: boolean;
+    disableAttributes: any;
     }

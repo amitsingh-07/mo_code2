@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
-import { InvestmentAccountService } from '../../../investment-account/investment-account-service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { InvestmentAccountService } from '../../../investment-account/investment-account-service';
 import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
 import { MyInfoService } from '../../Services/my-info.service';
 

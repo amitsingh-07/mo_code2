@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MyInfoService } from '../shared/Services/my-info.service';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -20,6 +21,7 @@ export class GuideMeApiService {
     existingCoverage: IExistingCoverage;
     constructor(
         private http: HttpClient, private apiService: ApiService,
+        private myInfoService: MyInfoService,
         private authService: AuthenticationService, private guideMeService: GuideMeService,
         private calculateService: GuideMeCalculateService) {
         this.existingCoverage = this.guideMeService.getExistingCoverageValues();
@@ -51,7 +53,7 @@ export class GuideMeApiService {
     }
 
     getMyInfoData() {
-        return this.apiService.getMyInfoData(this.guideMeService.myInfoValue);
+        return this.apiService.getMyInfoData(this.myInfoService.myInfoValue);
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {

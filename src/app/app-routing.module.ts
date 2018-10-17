@@ -1,3 +1,4 @@
+import { CallBackComponent } from './call-back/call-back.component';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
@@ -19,8 +20,8 @@ const routes: Routes = [
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
       { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
-      /*
       { path: 'myinfo', component: CallBackComponent },
+      /*
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
       */

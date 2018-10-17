@@ -60,7 +60,7 @@ export class SelectNationalityComponent implements OnInit {
         this.navbarService.setNavbarMobileVisibility(true);
         this.navbarService.setNavbarMode(1);
         this.getNationalityList();
-        this.selectNationalityFormValues = this.investmentAccountService.getNationality();
+        this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
         this.nationalityObj = this.selectNationalityFormValues.nationality;
         this.nationality = this.selectNationalityFormValues.nationality &&
             this.selectNationalityFormValues.nationality.nationality ?
@@ -75,7 +75,7 @@ export class SelectNationalityComponent implements OnInit {
         if (this.nationality === 'Select Nationality' || this.blocked) {
             this.singaporeNationality = false;
             this.notSingaporeNationality = false;
-        } else if (this.nationality === 'SINGAPOREAN') {
+        } else if (['SINGAPOREAN', 'SG'].includes(this.nationality)) {
             this.singaporeNationality = true;
             this.notSingaporeNationality = false;
             this.selectNationalityForm = new FormGroup({
@@ -128,7 +128,7 @@ export class SelectNationalityComponent implements OnInit {
         if (this.blocked) {
             this.showErrorMessage(this.editModalData.modalTitle, this.editModalData.modalMessage);
         } else if (form.valid && form.controls.unitedStatesResident) {
-            if ((this.nationality === 'SINGAPOREAN' &&
+            if ((['SINGAPOREAN', 'SG'].includes(this.nationality) &&
                 form.controls.unitedStatesResident.value === 'yes') ||
                 ((form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'yes')
                     || (form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'no'))) {
@@ -138,5 +138,9 @@ export class SelectNationalityComponent implements OnInit {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
             }
         }
+    }
+
+    isDisabled() {
+        return this.investmentAccountService.isDisabled('nationality');
     }
 }
