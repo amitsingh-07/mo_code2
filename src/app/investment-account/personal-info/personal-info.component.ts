@@ -110,6 +110,10 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     this.formValues.lastName = this.userProfileInfo.lastName;
     this.formValues.fullName = this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
   }
+  toggleDate(openEle, closeEle) {
+    openEle.toggle();
+    closeEle.close();
+  }
   goToNext(form) {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
