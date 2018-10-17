@@ -2,6 +2,7 @@
   "COMMON": {
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLAN_SELECTED": "Plan Selected",
     "LBL_PLANS_SELECTED": "Plans Selected",
     "LBL_SEARCH_PLAN": "Search Plans",
     "LBL_UPDATE_PLAN": "Update Plan",
@@ -17,7 +18,8 @@
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",
-    "PER_YEAR": "/ year"
+    "PER_YEAR": "/ year",
+    "SINGLE": "Single"
   },
   "LABEL": {
     "GENDER": "Gender",

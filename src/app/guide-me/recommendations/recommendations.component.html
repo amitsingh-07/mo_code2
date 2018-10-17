@@ -23,38 +23,19 @@
 </div>
 <div [hidden]="resultsEmptyMessage?.length > 0">
 <div class="coverage-details-wrapper">
-  <div class="coverage-details" *ngIf="coverageAmount != ''">
+  <div *ngIf="recommendationPlans" class="coverage-details">
     <span class="coverage-type hidden-sm-md">{{activeRecommendationType}}</span>
-    {{ 'RECOMMENDATIONS.COVERAGE' | translate}}
-    <span class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+    <span *ngIf="coverageAmount">{{ 'RECOMMENDATIONS.COVERAGE' | translate}}</span>
+    <span *ngIf="coverageAmount" class="coverage-amount">{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
     <br class="hidden-lg" />
     {{ 'RECOMMENDATIONS.PREMIUM_FROM' | translate}}
     <span class="coverage-premium-from">{{premiumFrom | currency}}</span> {{ premiumFrequency }}
   </div>
 </div>
-<!-- <button class="comparePlans_btn">
-<span (click)="EnablecomparePlan()">compare plans</span></button> -->
 <div class="container-fluid">
   <div class="content">
     <div class="plan-carousel-container">
       <div class="recommendation-carousel-item">
-        <!-- CAROUSEL 
-        <ngb-carousel (swiperight)="moveCarouselPrev()" (swipeleft)="moveCarouselNext()" #recommendationCarousel="ngbCarousel"
-          [interval]="false" (slide)="slideCarousel($event)" [showNavigationArrows]="true" [showNavigationIndicators]="false"
-          [ngClass]="{'enable-scroll' : enableScroll}" style="display:none;">
-          <ng-template id="{{recommendation.protectionType}}" ngbSlide *ngFor="let recommendation of recommendationPlans; let i = index">
-            <div>
-              <div class="row" style="justify-content: center;">
-                <div class="col-md-6 col-sm-6 col-6 plan-wrapper" *ngFor="let plan of recommendation.productList; let j = index;">
-                  <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best-value-icon.png" />
-                  <app-plan-widget [data]="plan" [type]="recommendation.protectionType" [bestValue]="j == 0" [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)"
-                    (view)="viewDetails($event)" (compare)= "comparePlan($event)"></app-plan-widget>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </ngb-carousel>
-        <!-- / CAROUSEL -->
 
         <ngx-slick class="carousel" #recommendationCarousel="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)">
             <div ngxSlickItem *ngFor="let recommendation of recommendationPlans; let i = index" class="slide">
@@ -86,7 +67,8 @@
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
     <span class="selected-count">{{selectedPlans.length}}</span>
-    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
+    <span class="lbl-selected" [hidden]="selectedPlans.length >= 2">{{ 'COMMON.LBL_PLAN_SELECTED' | translate}}</span>
+    <span class="lbl-selected" [hidden]="selectedPlans.length < 2">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
     <span class="btn-proceed" (click)="proceed()">{{ 'BUTTON.PROCEED' | translate}}</span>
   </div>
 </div>

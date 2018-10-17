@@ -11,8 +11,10 @@ import {
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateService } from '../../../../../node_modules/@ngx-translate/core';
+import { RecommendationsModalComponent } from './../../modal/recommendations-modal/recommendations-modal.component';
 
 @Component({
   selector: 'app-plan-details-widget',
@@ -51,7 +53,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   perYear = '';
 
   constructor(
-    private currency: CurrencyPipe, private translate: TranslateService,
+    private currency: CurrencyPipe, private translate: TranslateService, public modal: NgbModal,
     private elRef: ElementRef, private renderer: Renderer2, private titleCasePipe: TitleCasePipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
@@ -74,7 +76,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
-      this.premiumDuration = this.data.premiumDuration;
+      this.premiumDuration = this.data.premium.premiumTerm;
       this.premiumAmountYearly = this.data.premium.premiumAmountYearly;
 
       this.temp = this.data;
@@ -119,7 +121,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   viewDetails() {
     this.isSelected = !this.isSelected;
-    this.view.emit({plan: this.temp, selected: this.isSelected});
+    this.view.emit({ plan: this.temp, selected: this.isSelected });
   }
   brochureDownload() {
     this.Brochure(this.temp.brochureLink, 'brochure.pdf');
@@ -141,4 +143,15 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
 
+  openCommissionModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.MESSAGE');
+    return false;
+  }
+  openRatingModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.RATING.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
+  }
 }

@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -45,9 +46,9 @@ tocken;
     this.formValues = this.signUpService.getResetPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      resetPassword1 : [this.formValues.resetPassword1, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,20}$/)]],
+      resetPassword1 : [this.formValues.resetPassword1, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]],
       // tslint:disable-next-line:max-line-length
-      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,20}$/)]]
+      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
     });
   }
   ngOnInit() {

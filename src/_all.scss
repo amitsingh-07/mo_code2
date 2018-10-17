@@ -647,6 +647,7 @@ body {
     top:22px;
     right:13px;
     z-index:1;
+    background-repeat: no-repeat;
     }
   .navbar__helpIcon--mobile-settings {
     background-image: url("./assets/images/settings-icon.png");
@@ -661,6 +662,7 @@ body {
     top:22px;
     right:13px;
     z-index:1;
+    background-repeat: no-repeat;
     @include allmobiles {
       background: url("./assets/images/close-button-dark.svg") !important;
       width:18px;
@@ -1077,6 +1079,7 @@ a.link-white {
 
 .selected-count {
   background-color: #ff872f;
+<<<<<<< HEAD
     padding: 0px 15px 0px 15px;
     border-radius: 13px;
     font-family: "Muli Bold", sans-serif;
@@ -1087,6 +1090,15 @@ a.link-white {
     height: 25px;
     line-height: 20px;
     display: inline-block;
+=======
+  padding: 0px 15px 3px 15px;
+  border-radius: 13px;
+  font-family: $muli-bold;
+  font-size: 18px;
+  letter-spacing: -0.1px;
+  color: $white-color;
+  margin-right: 10px;
+>>>>>>> aefc25e8cdedc6efcc5dc5627a9f4eace8e334b9
 
   @include allmobiles {
     float: left;

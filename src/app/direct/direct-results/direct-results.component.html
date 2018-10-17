@@ -50,7 +50,8 @@
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
     <span class="selected-count">{{selectedPlans.length}}</span>
-    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
+    <span class="lbl-selected" [hidden]="selectedPlans.length >= 2">{{ 'COMMON.LBL_PLAN_SELECTED' | translate}}</span>
+    <span class="lbl-selected" [hidden]="selectedPlans.length < 2">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}</span>
     <span class="btn-proceed" (click)="proceedSelection()">{{ 'BUTTON.PROCEED' | translate}}</span>
   </div>
 </div>

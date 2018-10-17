@@ -83,7 +83,8 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid password',
-                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number and 8-20 Alphanumeric Characters  '
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol and 8-20 Alphanumeric Characters  '
                 }
         },
         confirmpassword: {
@@ -93,7 +94,8 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid password',
-                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number 8-20 Alphanumeric Characters  '
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol and 8-20 Alphanumeric Characters  '
                 }
         }
     };

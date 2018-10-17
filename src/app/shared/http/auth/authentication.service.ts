@@ -55,7 +55,7 @@ export class AuthenticationService {
     return emailPattern.test(username);
   }
 
-  logout() {
+  clearSession() {
     // remove user from local storage to log user out
     this.cache.reset();
     sessionStorage.clear();
