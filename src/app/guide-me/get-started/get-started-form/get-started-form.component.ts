@@ -23,6 +23,7 @@ export class GetStartedFormComponent implements OnInit {
   formValues: any;
   dependents = 0;
   dependentItems = Array(6).fill(0).map((x, i) => i);
+  hideDependants;
 
   constructor(
     private router: Router,
@@ -41,7 +42,7 @@ export class GetStartedFormComponent implements OnInit {
     this.formValues = this.guideMeService.getUserInfo();
     this.formValues.gender = this.formValues.gender ? this.formValues.gender : 'male';
     this.formValues.smoker = this.formValues.smoker ? this.formValues.smoker : 'non-smoker';
-    if (this.formValues.dependent !== undefined ) {
+    if (this.formValues.dependent !== undefined) {
       this.selectDependentsCount(this.formValues.dependent);
     }
     this.userInfoForm = this.formBuilder.group({
@@ -49,6 +50,13 @@ export class GetStartedFormComponent implements OnInit {
       dob: [this.formValues.dob, Validators.required],
       smoker: [this.formValues.smoker]
     });
+
+    const profileId = this.guideMeService.getProfile().myProfile + '';
+    if (profileId === '4' || profileId === '5') {
+      this.hideDependants = true;
+    } else {
+      this.hideDependants = false;
+    }
   }
 
   selectDependentsCount(count) {

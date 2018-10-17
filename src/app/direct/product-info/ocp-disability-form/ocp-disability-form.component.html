@@ -119,7 +119,7 @@
                  <span class="duration">{{duration == '' ? 'Select' : duration }}</span>
                  </button>
                  <div ngbDropdownMenu aria-labelledby="dropdownDuration">
-                    <button class="dropdown-item" (click)="selectDuration('')">select</button>
+                    <button class="dropdown-item" (click)="selectDuration('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                     <button type="button" class="dropdown-item" *ngFor="let duration of durationValues" (click)="selectDuration(duration)">
                     {{duration}}
                     </button>

@@ -71,6 +71,7 @@ button:active:focus {
     background-color: $app-backgrnd-color;
     border-color: $app-backgrnd-color;
     color: $white-color;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18) !important;
     &:hover {
       background-color: #00c5c4;
     }
@@ -512,7 +513,7 @@ button:active:focus {
       cursor: pointer;
       @include minMobilemaxPhablet{
         height:101%;
-        width:40px;
+        width:45px;
       }
       .min-prod-info__block-btn--edit{
         position: absolute;

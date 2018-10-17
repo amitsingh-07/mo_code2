@@ -1,5 +1,14 @@
 @import './variables';
 @import './mixins';
+body.modal-open {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  background-color: $black-color;
+}
+.modal-backdrop.show {
+  opacity: 0.8 !important;
+}
 .position-bottom {
   .modal-content {
     position: absolute !important;
@@ -101,7 +110,7 @@
   line-height: normal;
   letter-spacing: -0.2px;
   color: #009999;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
   //padding: 0 15px 0 0;
 }
 
@@ -340,7 +349,7 @@
       font-size: 22px;
       letter-spacing: -0.2px;
       line-height: 1.0;
-      padding-bottom: 15px;
+      padding-bottom: 20px;
 
       @include allmobiles {
         display: flex;

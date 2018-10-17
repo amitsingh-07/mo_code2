@@ -178,6 +178,7 @@ getInlineErrorStatus(control) {
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
+    if (postalCode) {
     this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
       (response: any) => {
         if (response) {
@@ -188,8 +189,8 @@ getInlineErrorStatus(control) {
             address2Control.setValue(address2);
           } else {
             const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
             address1Control.setValue('');
             address2Control.setValue('');
           }
@@ -200,6 +201,11 @@ getInlineErrorStatus(control) {
         ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
         ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
       });
+    } else {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE');
+    }
   }
 
   markAllFieldsDirty(form) {

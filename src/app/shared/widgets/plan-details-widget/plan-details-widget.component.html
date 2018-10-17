@@ -55,7 +55,7 @@
     </div>
   </div>
   <div class="row mt20" *ngIf = "isDirect"  [hidden]="isViewMode">
-      <div class="col-md-12 col-btn-bottom" [hidden]="!this.data.brochureLink">
+      <div class="col-btn-bottom width100" [hidden]="!this.data.brochureLink">
         <button type="button" (click)="brochureDownload()" class="btn width100 brochure">Download Brochure (2MB)</button>
       </div>
     </div>
