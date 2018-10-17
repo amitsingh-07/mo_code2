@@ -28,6 +28,9 @@ export class VerifyMobileComponent implements OnInit {
   mobileNumberVerified: boolean;
   progressModal: boolean;
   newCodeRequested: boolean;
+  isRetryEnabled: boolean;
+  retryDuration = 30; // in seconds
+  retrySecondsLeft;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +58,7 @@ export class VerifyMobileComponent implements OnInit {
     this.mobileNumber = this.signUpService.getMobileNumber();
     this.navbarService.setNavbarDirectGuided(false);
     this.buildVerifyMobileForm();
+    this.startRetryCounter();
   }
 
   /**
@@ -118,6 +122,7 @@ export class VerifyMobileComponent implements OnInit {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;
+      this.startRetryCounter();
     });
   }
 
@@ -169,4 +174,21 @@ export class VerifyMobileComponent implements OnInit {
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.showErrorButton = showErrorButton;
   }
+
+  /**
+   * Run Animated counter for 30s.
+   */
+  startRetryCounter() {
+    this.isRetryEnabled = false;
+    this.retrySecondsLeft = this.retryDuration;
+    const self = this;
+    const downloadTimer = setInterval(() => {
+      --self.retrySecondsLeft;
+      if (self.retrySecondsLeft <= 0) {
+        clearInterval(downloadTimer);
+        this.isRetryEnabled = true;
+      }
+    }, 1000);
+  }
+
 }
