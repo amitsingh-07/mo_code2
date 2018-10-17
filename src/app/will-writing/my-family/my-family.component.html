@@ -19,7 +19,7 @@
               <div class="aboutMe" formArrayName="spouse" *ngFor="let spouse of myFamilyForm.get('spouse').controls; let i = index;">
                 <div class="form-group" [formGroupName]="i">
                   <div class="flex-row title">{{ 'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl1">{{ 'WILL_WRITING.COMMON.NAME' | translate}}</label>
                     </div>
@@ -27,7 +27,7 @@
                       <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
                     </div>
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl2">
                         <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
@@ -44,7 +44,7 @@
               <div class="aboutMe" formArrayName="childrens" *ngFor="let children of myFamilyForm.get('childrens').controls; let i = index;">
                 <div class="form-group" [formGroupName]="i">
                   <div class="flex-row title">{{ 'WILL_WRITING.MY_FAMILY.FORM.MY_CHILD' | translate}} {{i+1}}</div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl1">{{ 'WILL_WRITING.COMMON.NAME' | translate}}</label>
                     </div>
@@ -52,7 +52,7 @@
                       <input type="text" [ngClass]="{'inline-error': submitted && children.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
                     </div>
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl2">
                         <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
