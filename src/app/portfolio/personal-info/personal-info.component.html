@@ -51,14 +51,14 @@
 
             <div *ngIf="!personalInfoForm.controls.investmentPeriod.value">
                 <h5 id="personalInfoInvestmentHeading">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_HEAD' | translate}} </h5>
-                  <p id="personalInfoInvestmentDesc">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
+                  <p class="personalInfoInvestmentDesc" id="personalInfoInvestmentDesc">{{ 'PERSONAL_INFO.SELECT_INVESTMENT_DESC' | translate}}</p>
             </div>
 
             <div *ngIf="personalInfoForm.controls.investmentPeriod.value">
               <h5 id="personalInfoInvestmentContent">{{ 'PERSONAL_INFO.I_WANT_INVEST_LBL' | translate}}
                 <span  id="personalInfoInvestmentYears"class="period-count">{{personalInfoForm.controls.investmentPeriod.value}}</span>
                 {{ 'PERSONAL_INFO.YEARS' | translate}}</h5>
-              <div class="A-moderately-long-in" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
+              <div class="personalInfoSliderDesc" [innerHTML]="sliderDesc" id="personalInfoSliderDesc"></div>
             </div>
           </div>
           <div>
