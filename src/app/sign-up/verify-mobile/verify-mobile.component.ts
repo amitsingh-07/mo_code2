@@ -164,7 +164,7 @@ export class VerifyMobileComponent implements OnInit {
       errorTitle: title,
       errorMessage: message
     };
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-error-modal' });
     ref.componentInstance.errorTitle = error.errorTitle;
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.showErrorButton = showErrorButton;

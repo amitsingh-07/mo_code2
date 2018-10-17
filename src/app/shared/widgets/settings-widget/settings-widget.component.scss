@@ -72,7 +72,7 @@ app-settings-widget {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        border-bottom:solid 1px rgba(137, 208, 207, 0.4);
+        border-bottom: solid 1px rgba(137, 208, 207, 0.4);
 
         @include allmobiles {
           justify-content: center;
@@ -116,6 +116,7 @@ app-settings-widget {
       .form-group-single-column {
         flex-wrap: wrap;
         padding: 0 25px;
+
         .checkbox-button {
           border: 1px solid #99CFCE;
           margin-right: 7px;
@@ -146,7 +147,10 @@ app-settings-widget {
 
 .settings-filter-btn-wrapper {
   text-align: center;
-  padding: 0 25px;
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 @include allmobiles {
@@ -158,13 +162,15 @@ app-settings-widget {
     background: #fff;
   }
 }
+
 .settings-block {
   padding-bottom: 15px;
 }
+
 @include allmobiles {
   .settings-block {
     padding-bottom: 50px !important;
-    height: 100vh;
+    height: calc(100vh - 56px);
     overflow-y: auto;
     padding-top: 70px !important;
   }

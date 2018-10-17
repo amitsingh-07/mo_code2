@@ -113,7 +113,7 @@ export class LtcAssessmentComponent implements IPageComponent, OnInit, OnDestroy
 
   showMobilePopUp() {
     const ref = this.modal.open(MobileModalComponent, {
-      centered: true
+      centered: true, windowClass: 'ltc-mobile-modal'
     });
     ref.componentInstance.mobileTitle = this.modalData.TITLE;
     ref.componentInstance.description = this.modalData.DESCRIPTION;
