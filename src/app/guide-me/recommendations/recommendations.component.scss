@@ -130,13 +130,13 @@ app-recommendations {
 
   .carousel-content {
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 20px;
     color: #333;
     min-height: 550px;
     @include allmobiles {
       padding: 0px;
-      min-height: 300px;
+      min-height: 290px;
     }
   }
 

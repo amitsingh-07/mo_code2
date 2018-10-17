@@ -77,7 +77,9 @@
     "LBL_COMMISSION": "Commission Rebate"
   },
   "SETTINGS": {
+    "TITLE": "Settings",
     "SORT_BY": "Sort by",
+    "APPLY_FILTERS": "Apply Filters",
     "SORT" : [
       {"displayText": "Highest Ranking", "value": "premium.ranking" },
       {"displayText": "Insurer Name (A-Z)", "value": "+insurer.insurerName" },

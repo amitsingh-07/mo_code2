@@ -52,7 +52,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
       this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
       this.duration = '';
-      this.defaultEmployee = this.employmentTypeList[0];
+      this.defaultEmployee = '';
     });
   }
 

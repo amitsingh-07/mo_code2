@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-
+import { FooterService } from '../../shared/footer/footer.service';
 @Component({
   selector: 'app-get-started-step2',
   templateUrl: './get-started-step2.component.html',
@@ -22,7 +22,8 @@ export class GetStartedStep2Component implements OnInit {
     public readonly translate: TranslateService,
     public navbarService: NavbarService,
     private router: Router,
-    public headerService: HeaderService
+    public headerService: HeaderService,
+    public footerService: FooterService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -33,7 +34,8 @@ export class GetStartedStep2Component implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
   }
 
   goNext() {

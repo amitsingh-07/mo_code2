@@ -26,7 +26,9 @@
             "EDIT_NUMBER": "Edit Number",
             "DIDNT_RECIEVE": "Didn't Recieve it?",
             "REQUEST_NEW_CODE": "Request New Code",
-            "CODE_SENT": "Code sent!"
+            "CODE_SENT": "Code sent!",
+            "RETRY_IN": "Retry in",
+            "SECONDS_SUFFIX": "s"
         },
         "ERROR_MODAL": {
             "ERROR_TITLE": "Incorrect OTP Code",
