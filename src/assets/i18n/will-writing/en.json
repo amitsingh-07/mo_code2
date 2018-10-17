@@ -14,7 +14,30 @@
             "RELATIONSHIP": "Relationship To You",
             "NRIC": "NRIC Number",
             "ADD": "Add",
-            "CANCEL": "Cancel"
+            "CANCEL": "Cancel",
+            "RELATIONSHIP_LIST": [                    
+                {"text":"Sibling", "value":"sibling"},
+                {"text":"Step-parent", "value":"step-parent"},
+                {"text":"Step-child", "value":"step-child"},
+                {"text":"Grandparent", "value":"grandparent"},
+                {"teGrandauntxt":"Grandaunt", "value":"grandaunt"},
+                {"text":"Granduncle", "value":"granduncle"},
+                {"text":"Uncle", "value":"uncle"},
+                {"text":"Aunt", "value":"aunt"},
+                {"text":"Cousin", "value":"cousin"},
+                {"text":"Nephew", "value":"nephew"},
+                {"text":"Niece", "value":"niece"},
+                {"text":"Ex-husband", "value":"ex-husband"},
+                {"text":"Father-in-law", "value":"father-in-law"},
+                {"text":"Mother-in-law", "value":"mother-in-law"},
+                {"text":"Sibling-in-law", "value":"sibling-in-law"},
+                {"text":"Son-in-law", "value":"son-in-law"},
+                {"text":"Daughter-in-law", "value":"daughter-in-law"},
+                {"text":"Grandchild", "value":"grandchild"},
+                {"text":"Great grandchild", "value":"great grandchild"},
+                {"text":"Other Relatives", "value":"other Relatives"},
+                {"text":"Friend", "value":"friend"}
+            ]
         },
         "INTRODUCTION": {
             "PAGE_TITLE": "Introduction",
@@ -68,33 +91,8 @@
             "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
             "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
             "FORM_TITLE": "I would like my guardian to be",
-            "FORM": {
-                "RELATIONSHIP_LIST": [
-                    {"text":"Child", "value":"child"},
-                    {"text":"Parent", "value":"parent"},
-                    {"text":"Sibling", "value":"sibling"},
-                    {"text":"Step-parent", "value":"step-parent"},
-                    {"text":"Step-child", "value":"step-child"},
-                    {"text":"Grandparent", "value":"grandparent"},
-                    {"teGrandauntxt":"Grandaunt", "value":"grandaunt"},
-                    {"text":"Granduncle", "value":"granduncle"},
-                    {"text":"Uncle", "value":"uncle"},
-                    {"text":"Aunt", "value":"aunt"},
-                    {"text":"Cousin", "value":"cousin"},
-                    {"text":"Nephew", "value":"nephew"},
-                    {"text":"Niece", "value":"niece"},
-                    {"text":"Ex-husband", "value":"ex-husband"},
-                    {"text":"Father-in-law", "value":"father-in-law"},
-                    {"text":"Mother-in-law", "value":"mother-in-law"},
-                    {"text":"Sibling-in-law", "value":"sibling-in-law"},
-                    {"text":"Son-in-law", "value":"son-in-law"},
-                    {"text":"Daughter-in-law", "value":"daughter-in-law"},
-                    {"text":"Grandchild", "value":"grandchild"},
-                    {"text":"Great grandchild", "value":"great grandchild"},
-                    {"text":"Other Relatives", "value":"other Relatives"},
-                    {"text":"Friend", "value":"friend"}
-                ]
-            }
+            "TOOLTIP_TITLE": "What does guardian mean?",
+            "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your child after you have passed, until they reach the age of 21.</p><p>Taking over your role as the parent, the guardian will have the ability to make decisions that affect your child, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your child’s guardian to seek their agreement.</p>"
         },
         "DISTRIBUTE_YOUR_ESTATE": {
             "TITLE": "Distribute Your Estate",
@@ -118,13 +116,14 @@
             "TITLE":"Review Your Details",
             "SUB_TITLE": "In the next step, please check that all details provided are accurate."
         },
-        "My_EXECUTOR_TRUSTEE": {
+        "MY_EXECUTOR_TRUSTEE": {
             "TITLE": "My Executor & Trustee",
             "SUB_TITLE": "As this person plays a critical role in executing your will, please choose someone you trust.",
             "FORM_TITLE": "I would like my executor & trustee to be:",
-            "TOOLTIPO": "",
-            "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee."
-
+            "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
+            "BUTTON": "Add Executor & Trustee",
+            "TOOLTIP_TITLE": "What does executor & trustee do?",
+            "TOOLTIP_MESSAGE": "<p>After you have passed, your executor & trustee is in charge of carrying out the wishes of your will. Whilst the two roles hold different responsibilities, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes making funeral arrangements, settling outstanding bills or debts, managing your finances and distributing assets.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>"
         }
     }
 }

@@ -18,6 +18,7 @@ import { WillWritingService } from '../will-writing.service';
 export class MyChildGuardianComponent implements OnInit {
   private pageTitle: string;
   private step: string;
+  private tooltip = {};
 
   addGuardianForm: FormGroup;
   formValues: IGuardian;
@@ -36,7 +37,9 @@ export class MyChildGuardianComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE');
-      this.relationshipList = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.RELATIONSHIP_LIST');
+      this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
+      this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_TITLE');
+      this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_MESSAGE');
     });
   }
 
@@ -93,6 +96,12 @@ export class MyChildGuardianComponent implements OnInit {
     relationship = relationship ? relationship : {text: '', value: ''};
     this.relationship = relationship.text;
     this.addGuardianForm.controls['relationship'].setValue(relationship.value);
+  }
+
+  openToolTipModal() {
+    const title = this.tooltip['title'];
+    const message = this.tooltip['message'];
+    this.willWritingService.openToolTipModal(title, message);
   }
 
   /**

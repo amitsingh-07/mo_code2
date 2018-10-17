@@ -13,6 +13,7 @@ export interface IMyFamily {
 
 export interface ISpouse {
     name: string;
+    relationship: string;
     nricNumber: string;
 }
 
