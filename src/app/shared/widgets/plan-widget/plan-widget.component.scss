@@ -62,6 +62,7 @@ app-plan-widget {
         border-radius: 0px 0px 6px 6px;
         width: 100%;
         font-size: 16px;
+        padding:0.50rem;
       }
     }
 
@@ -73,6 +74,7 @@ app-plan-widget {
 
       @include allmobiles {
         border-radius: 0 0 6px 6px;
+        padding: 0.50rem;
       }
     }
 
@@ -252,6 +254,15 @@ app-plan-widget {
     .btn-select {
       border-radius: 6px;
       margin-bottom: 10px;
+    }
+  }
+  .col-btn-bottom {
+    @include allmobiles {
+      padding: 0 15px;
+      button {
+        padding: 0.50rem;
+        font-size: 18px;
+      }
     }
   }
 }

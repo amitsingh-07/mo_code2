@@ -42,7 +42,7 @@
   </div>
   <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%.</div>
 </div>
-<div style="text-align: center;">
+<div class="text-center mt15">
 <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
 <div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
 </div>

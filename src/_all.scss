@@ -1015,11 +1015,6 @@ body {
   text-decoration: underline;
   font-family: $muli-bold;
 }
-
-.modal-backdrop.show {
-  opacity: 0.8;
-}
-
 .modal .close {
   position: absolute !important;
   right: 25px !important;
@@ -1079,13 +1074,16 @@ a.link-white {
 
 .selected-count {
   background-color: #ff872f;
-  padding: 0px 15px 3px 15px;
+  padding: 0 13px 0 13px;
   border-radius: 13px;
   font-family: $muli-bold;
   font-size: 18px;
   letter-spacing: -0.1px;
   color: $white-color;
   margin-right: 10px;
+  line-height: 23px;
+  display: inline-block;
+  height: 26px;
   @include allmobiles {
     float: left;
     margin-left: 10px;
