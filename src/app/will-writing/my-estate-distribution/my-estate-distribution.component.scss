@@ -277,6 +277,7 @@ input[type='checkbox']+label {
         left: 0;
         right: 0;
         img{
+            width:100%;
             @include allmobiles{
                 width: 100%;
             }
@@ -316,7 +317,6 @@ input[type='checkbox']+label {
       .input-label-black{
         font-family: $muli-semi-bold;
         font-size: 18px;
-        font-weight: 600;
         letter-spacing: -0.3px;
         color: #000000;
       }
