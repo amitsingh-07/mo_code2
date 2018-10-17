@@ -54,18 +54,6 @@ export class SignUpApiService {
     const formatDob = userInfo.dob;
     const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;
 
-    for (const plan of selectedPlanData.plans) {
-      selectedPlan.push(
-        {
-          typeId: plan.typeId,
-          productName: plan.productName,
-          premium: {
-            premiumAmount: plan.premium.premiumAmount,
-            premiumFrequency: plan.premium.premiumFrequency
-          }
-        }
-      );
-    }
     return {
       customer: {
         id: 0,
@@ -82,7 +70,7 @@ export class SignUpApiService {
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
       enquiryId: selectedPlanData.enquiryId,
-      selectedProducts: selectedPlan
+      selectedProducts: selectedPlanData.plans
     };
   }
 

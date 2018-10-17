@@ -33,7 +33,7 @@
             display:block;
             width:100%;
             height:100%;
-            background-image:url('./../../../assets/images/about-us/customer_review.jpg');
+            background-image:url('./../../../assets/images/about-us/reviews_seated_guy.svg');
             background-repeat:no-repeat;
             background-position:bottom right;
             background-size:contain;
@@ -142,6 +142,17 @@
             .rating--text{
                 font-family:$muli-bold;
                 color:$teal-color;
+            }
+            @include min300max325{
+                flex-direction:column; 
+                .rating--text{
+                    align-items:center;
+                    text-align:center;
+                    line-height:1.0;
+                }
+                .rating--icon{
+                    line-height:1.0;
+                }
             }
         }
         .reviewer{

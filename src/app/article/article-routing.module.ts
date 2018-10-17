@@ -12,7 +12,7 @@ const routes: Routes = [
 
   /* Legacy Routes */
   { path: 'learn-about-insurance', redirectTo: '', pathMatch: 'full'},
-  { path: 'learn-articles?category=:name', redirectTo: 'category/:name', pathMatch: 'full'},
+  { path: 'learn-articles', component: ArticleCategoryComponent},
   { path: 'html', component: ArticleEntryComponent}
   // There is learn/learn-articles?category=All so use Activated Routes to get search params properly
 ];

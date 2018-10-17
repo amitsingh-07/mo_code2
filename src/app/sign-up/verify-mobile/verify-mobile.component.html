@@ -51,12 +51,12 @@
               </div>
             <div class="verify-mobile-block__otp">
                 
-                <input type="text" class="input-control text-align-center" #otp1 formControlName="otp1" (keyup)="onlyNumber(otp1,otp2)" size="1">
-                <input type="text" class="input-control text-align-center" #otp2 formControlName="otp2" (keyup)="onlyNumber(otp2,otp3)" size="1">
-                <input type="text" class="input-control text-align-center" #otp3 formControlName="otp3" (keyup)="onlyNumber(otp3,otp4)" size="1">
-                <input type="text" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="onlyNumber(otp4,otp5)" size="1">
-                <input type="text" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="onlyNumber(otp5,otp6)" size="1">
-                <input type="text" class="input-control text-align-center" #otp6 formControlName="otp6" (keyup)="onlyNumber(otp6, 'undefined')" size="1">  
+                <input type="number" step="0.01" class="input-control text-align-center" #otp1 formControlName="otp1" (keyup)="onlyNumber(otp1,otp2)" size="1">
+                <input type="number" step="0.01" class="input-control text-align-center" #otp2 formControlName="otp2" (keyup)="onlyNumber(otp2,otp3)" size="1">
+                <input type="number" step="0.01" class="input-control text-align-center" #otp3 formControlName="otp3" (keyup)="onlyNumber(otp3,otp4)" size="1">
+                <input type="number" step="0.01" class="input-control text-align-center" #otp4 formControlName="otp4" (keyup)="onlyNumber(otp4,otp5)" size="1">
+                <input type="number" step="0.01" class="input-control text-align-center" #otp5 formControlName="otp5" (keyup)="onlyNumber(otp5,otp6)" size="1">
+                <input type="number" step="0.01"   class="input-control text-align-center" #otp6 formControlName="otp6" (keyup)="onlyNumber(otp6, 'undefined')" size="1">  
               </div>
             <button (click)="save(verifyMobileForm)" [disabled]="verifyMobileForm.invalid" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'COMMON.VERIFY' | translate }}</button>
              </div>

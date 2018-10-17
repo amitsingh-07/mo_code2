@@ -19,6 +19,9 @@ import {
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
+
+import { AccountSetupCompletedComponent } from './account-setup-completed/account-setup-completed.component';
+import { AdditionalDeclarationSubmitComponent } from './additional-declaration-submit/additional-declaration-submit.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
@@ -82,6 +85,12 @@ const routes: Routes = [
   },
   { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
     component: AdditionalDeclarationStep1Component,
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.SETUP_COMPLETED,
+    component: AccountSetupCompletedComponent,
+  },
+  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_SUBMIT,
+    component: AdditionalDeclarationSubmitComponent,
   }
 ];
 

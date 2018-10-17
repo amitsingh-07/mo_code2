@@ -106,7 +106,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
 
   save() {
     const form = this.srsApprovedPlansForm;
-    if (form.controls.singlePremium.value < 1) {
+    if (form.controls.singlePremium.value < 1 || isNaN(form.controls.singlePremium.value)) {
       form.controls['singlePremium'].setErrors({required: true});
     }
     if (!form.valid) {

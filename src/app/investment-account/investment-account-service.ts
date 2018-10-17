@@ -72,10 +72,11 @@ export class InvestmentAccountService {
         this.commit();
     }
     setTaxInfoFormData(data) {
-        this.investmentAccountFormData.Taxcountry = data.Taxcountry;
+        this.investmentAccountFormData.Taxcountry = data.taxCountry;
         this.investmentAccountFormData.haveTin = data.radioTin;
         this.investmentAccountFormData.Tin = data.tinNumber;
-        this.investmentAccountFormData.noTinReason = data.noTinReason;
+        this.investmentAccountFormData.noTinReason = data.reasonDropdown['noTinReason'];
+        this.commit();
     }
     // tslint:disable-next-line
     getFormErrorList(form) {

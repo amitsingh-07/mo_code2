@@ -3,7 +3,8 @@
     "LABEL": {
       "CONTINUE": "Continue",
       "RETRIEVE": "Retrieve",
-      "VIEW_DETAILS": "View Details"
+      "VIEW_DETAILS": "View Details",
+      "SAVE_AND_CONTINUE": "Save and Continue"
     }
   },
   "PERSONAL_INFO": {
@@ -35,7 +36,7 @@
   },
   "EMPLOYMENT_DETAILS": {
     "TITLE": "Employment Details",
-    "EMPLOYEMEN_STATUS": "Employmen Status",
+    "EMPLOYEMEN_STATUS": "Employment Status",
     "COMPANY_NAME": "Company Name",
     "INDUSTRY": "Industry",
     "OCCUPATION": "Occupation",
@@ -44,7 +45,7 @@
     "POSTAL_CODE": "Postal Code",
     "ADDRESS_1": "Address Line 1",
     "ADDRESS_2": "Address Line 2",
-    "UNIT_NO": "Unit No",
+    "UNIT_NO": "Unit No.",
     "CITY": "City",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",

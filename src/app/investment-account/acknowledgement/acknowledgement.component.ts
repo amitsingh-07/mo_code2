@@ -48,7 +48,10 @@ export class AcknowledgementComponent implements OnInit {
   }
   goNext() {
     const pepData = this.investmentAccountService.getPepData();
+    // tslint:disable-next-line:triple-equals
+    if ( pepData == 'yes') {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+    }
   }
 
 }

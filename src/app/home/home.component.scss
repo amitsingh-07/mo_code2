@@ -101,7 +101,7 @@ body{
                     @include minMobilemaxPhablet{ 
                         font-size:37px;
                         max-width:319px;
-                        margin-top:65px;
+                        margin-top:25px;
                         text-align:center;
                     }
                 }
@@ -126,6 +126,7 @@ body{
                     justify-content:center;
                     align-items:center;
                     margin-top:35px;
+                    box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
                     span{
                         color:$white-color;
                         font-family:$muli-bold;
@@ -167,6 +168,9 @@ body{
         overflow-x:auto;
         overflow-y:hidden;
         justify-content:center;
+        @include minMobilemaxPhablet{
+            border-bottom: 2px solid #e5f3f4;
+        }
         &::-webkit-scrollbar {
             height:0px;
         }
@@ -206,11 +210,17 @@ body{
         }
         .home__navbar--border{
             position: absolute;
-            display:none;
+            display:block;
             width:100%;
             height:2px;
             bottom:0px;
             background-color:#e5f3f4;
+            @include minMobilemaxPhablet{
+                display:none;
+            }
+            &.hide{
+                display:none; 
+            }
         }
     }
     .home__navbar--sub{
@@ -241,6 +251,7 @@ body{
         @include minMobilemaxPhablet{
             flex-direction:column;
             height:unset;
+            padding:60px 0px;
         }
         .home__section--img{
             position: relative;
@@ -479,6 +490,9 @@ body{
                 font-size:18px;
                 line-height:1.1;
                 color:$teal-color;
+                @include minPhabletmaxTablet{
+                    font-size:16px;
+                }
             }
             .home__section--desc{
                 font-family:$muli-regular;
@@ -545,21 +559,43 @@ body{
         .home__seperator{ 
             position: absolute;
             display:block;
-            z-index:0;
+            z-index:-1;
             &.primary{
                 bottom:-77px;
                 right:118px;
+                @include minPhabletmaxTablet{
+                    bottom:-95px;
+                    right:-150px;
+                }
+                @include minMobilemaxPhablet{
+                    right:-25px;
+                    bottom:-155px;
+                }
             }
             &.secondary{
                 right:245px;
                 bottom:-99px;
+                @include minPhabletmaxTablet{
+                    bottom:-85px;
+                    right:-20px;
+                }
+                @include minMobilemaxPhablet{
+                    bottom:-130px;
+                    right:-5px;
+                }
             }
             &.tertiary{
-                right:159px;
-                bottom:-132px;
-            }
-            @include minMobilemaxPhablet{
-                display:none;
+                right:160px;
+                bottom:-100px;
+                transform: rotate(3deg);
+                @include minPhabletmaxTablet{
+                    bottom:-85px;
+                    right:-60px;
+                }
+                @include minMobilemaxPhablet{
+                    bottom:-130px;
+                    right:-90px;
+                }
             }
         }
     }
@@ -574,7 +610,7 @@ body{
         z-index:1;
         .subscribe__section--bg{
             position: absolute;
-            background-image:url('./../../assets/images/subscribe-bg.svg');
+            background-image:url('../../assets/images/banner-bg.svg');
             background-repeat: repeat-x;
             width:100%;
             height:507px;
@@ -624,6 +660,12 @@ body{
             align-items:center;
             padding:20px 20px;
         }
+        @include min300max325{
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            padding:20px 20px;
+        }
     }
     .licensed-tab__trust-container{
         position: relative;
@@ -664,6 +706,11 @@ body{
         margin-top:30px;
         justify-content:space-between;
         @include minMobilemaxPhablet{
+            overflow-x:auto;
+            width:100%;
+            padding:-15px 0px;
+        }
+        @include min300max325{
             overflow-x:auto;
             width:100%;
             padding:-15px 0px;
@@ -713,6 +760,9 @@ body{
         color:$teal-color;
         font-size:20px;
         @include minMobilemaxPhablet{
+            text-align: center;
+        }
+        @include min300max325{
             text-align: center;
         }
     }

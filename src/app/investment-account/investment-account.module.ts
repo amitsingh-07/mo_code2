@@ -9,6 +9,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import {
+    AccountSetupCompletedComponent
+} from './account-setup-completed/account-setup-completed.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import {
     AdditionalDeclarationInfoComponent
@@ -16,10 +19,14 @@ import {
 import {
     AdditionalDeclarationStep1Component
 } from './additional-declaration-step1/additional-declaration-step1.component';
+import {
+    AdditionalDeclarationSubmitComponent
+} from './additional-declaration-submit/additional-declaration-submit.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import {
     EditInvestmentModalComponent
 } from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
+import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
@@ -31,7 +38,6 @@ import { ResidentialAddressComponent } from './residential-address/residential-a
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -72,7 +78,9 @@ export function createTranslateLoader(http: HttpClient) {
     AcknowledgementComponent,
     AdditionalDeclarationInfoComponent,
     AdditionalDeclarationStep1Component,
-    FeesModalComponent
+    FeesModalComponent,
+    AccountSetupCompletedComponent,
+    AdditionalDeclarationSubmitComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
