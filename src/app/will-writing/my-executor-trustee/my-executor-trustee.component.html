@@ -1,41 +1,64 @@
 <div class="personal-info">
-    <app-page-title [step]="step" [pageTitle]="pageTitle"></app-page-title>
-    <div class="container-fluid max-width--1024">
-      <div class="content">
-        <div class="flex-row">
-          <div class="col-lg-7 col-md-7 col-12">
-            <div class="heading hidden-sm-md">{{'WILL_WRITING.COMMON.STEP_3' | translate}}</div>
-            <div class="autofill-link">
-              <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.My_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
-              <div class="sub-title mb20">{{ 'WILL_WRITING.My_EXECUTOR_TRUSTEE.SUB_TITLE' | translate}}</div>
-              <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/my-family.svg" /></div>
-              <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+  <app-page-title [step]="step" [pageTitle]="pageTitle" [tooltip]="tooltip"></app-page-title>
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <div class="flex-row">
+        <div class="col-lg-7 col-md-7 col-12">
+          <div class="heading hidden-sm-md">{{'WILL_WRITING.COMMON.STEP_3' | translate}}</div>
+          <div class="autofill-link">
+            <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
+            <div class="sub-title mb20">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.SUB_TITLE' | translate}}</div>
+            <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/my-family.svg" /></div>
+            <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-12 executer-trustee-container">
+          <div class="col-12 mb10">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.FORM_TITLE' | translate}}</div>
+          <div *ngFor="let execTrustee of execTrusteeList" class="form-group-single-column  mb0 flex-col">
+            <div class="checkbox-button two-label">
+              <input id="beneficiary1" name="beneficiary1" type="checkbox" class="field checkbox" value="one">
+              <label for="beneficiary1" id="">
+                <div class="input-label-black">{{execTrustee.name}}</div>
+                <div class="input-label-normal">My Spouse</div>
+              </label>
             </div>
           </div>
-          <div class="col-lg-5 col-md-5 col-12 executer-trustee-container">
-              <div class="col-12 mb10">{{ 'WILL_WRITING.My_EXECUTOR_TRUSTEE.FORM_TITLE' | translate}}</div>
-              <div class="form-group-single-column  mb0 flex-col">
-                  <div class="checkbox-button two-label" >
-                    <input id="beneficiary1" name="beneficiary1"  type="checkbox" class="field checkbox"
-                      value="one" >
-                    <label for="beneficiary1" id="">
-                      <div class="input-label-black">heading</div>
-                      <div class="input-label-normal">sub heading</div>
-                    </label>
-                  </div>
-                </div>
-            <div class="add-exeTrustee-form">
-            <form [formGroup]="addExeTrusteeForm" id="addExeTrusteeForm" name="addExeTrusteeForm">              
+          <div class="add-exeTrustee-form" *ngIf="this.showAddExeTrusteeForm">
+            <form [formGroup]="addExeTrusteeForm" id="addExeTrusteeForm" name="addExeTrusteeForm">
               <div>
-                <div class="aboutMe" formArrayName="execTrustee" *ngFor="let execTrustee of addExeTrusteeForm.get('execTrustee').controls; let i = index;">
-                  <div class="form-group" [formGroupName]="i">
-                    <div class="flex-row title">{{ 'WILL_WRITING.MY_FAMILY.FORM.MY_CHILD' | translate}} {{i+1}}</div>
+                <div class="aboutMe">
+                  <div class="form-group">
+                    <div class="flex-row title">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.BUTTON' | translate}}</div>
                     <div class="flex-row mb10">
                       <div class="flex-col-5">
                         <label for="name" id="myFamilyFormLbl1">{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
+                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.name.invalid}"
+                          id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
+                      </div>
+                    </div>
+                    <div class="flex-row mb10">
+                      <div class="flex-col-5">
+                        <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="dropdown-control" [ngClass]="{'inline-error': submitted && execTrustee.relationship.invalid}">
+                          <div ngbDropdown id="relationshipDropDown">
+                            <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle>
+                              <span *ngIf="relationship === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                              <span *ngIf="relationship !== ''">{{relationship}}</span>
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownRelationship">
+                              <button class="dropdown-item" (click)="selectrelationship('')">{{'COMMON.LBL_SELECT' |
+                                translate}}</button>
+                              <button type="button" class="dropdown-item" *ngFor="let relationship of relationshipList; let i=index"
+                                (click)="selectRelationship(relationship)">
+                                {{relationship.text}}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="flex-row mb10">
@@ -45,44 +68,42 @@
                         </label>
                       </div>
                       <div class="flex-col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.controls.nricNumber.invalid}" id="myFamilyFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
+                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.nricNumber.invalid && execTrustee.nricNumber}"
+                          id="myFamilyFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
                       </div>
                     </div>
                     <div class="flex-row trustee-form-btn">
-                    <div class="flex-col-5">
-                        <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn width100"
-                          id="myFamilyFormBtn1">
+                      <div class="flex-col-5">
+                        <button type="button" (click)="showHideForm()" class="btn width100" id="myFamilyFormBtn1">
                           {{'WILL_WRITING.COMMON.CANCEL' | translate}}</button>
                       </div>
                       <div class="flex-col-6">
-                          <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn btn-primary width100"
-                            id="myFamilyFormBtn1">
-                            {{'WILL_WRITING.COMMON.ADD' | translate}}</button>
+                        <button type="button" (click)="addExecTrustee(addExeTrusteeForm)" class="btn btn-primary width100" id="myFamilyFormBtn1">
+                          {{'WILL_WRITING.COMMON.ADD' | translate}}</button>
+                      </div>
                     </div>
-                  </div>
                   </div>
                 </div>
               </div>
             </form>
-            </div>
-
-            <div class="form-group-single-column  mb25 flex-col">
-                <div class="checkbox-button two-label" >
-                  <img id ="add" src ="assets/images/will-writing/add.svg"/>
-                  <label for="add">
-                    <div class="input-label-black add-trustees">Add Beneficiaries</div> 
-                  </label>
-                </div>
-              </div>
-              <div>
-                  <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-                    id="myFamilyFormBtn1">
-                    {{'LABEL.CONTINUE' | translate}}</button>
-                </div>
-
           </div>
+
+          <div class="form-group-single-column  mb25 flex-col" *ngIf="!showAddExeTrusteeForm">
+            <div class="checkbox-button two-label">
+              <img id="add" src="assets/images/will-writing/add.svg" />
+              <label for="add">
+                <div class="input-label-black add-trustees" (click)="showHideForm()">Add Beneficiaries</div>
+              </label>
+            </div>
+          </div>
+          <div>
+            <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              id="myFamilyFormBtn1">
+              {{'LABEL.CONTINUE' | translate}}</button>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
-  
+</div>

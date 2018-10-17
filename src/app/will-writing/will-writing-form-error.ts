@@ -128,4 +128,35 @@ export class WillWritingFormError {
                 }
         }
    };
+   addExecTrusteeForm: object = {
+        formFieldErrors: {
+                errorTitle: 'Invalid Form',
+                name: {
+                        required : {
+                                errorTitle: 'Invalid Name',
+                                errorMessage: 'Please enter your executor & trustee name'
+                        },
+                        pattern : {
+                                errorTitle: 'Invalid Name',
+                                errorMessage: 'Guardian name field can only contain alphabets value of 2 - 40 characters in length'
+                        }
+                },
+                nricNumber: {
+                        required : {
+                                errorTitle: 'Invalid NRCI Number',
+                                errorMessage: 'Please enter your executor & trustee NRCI number'
+                        },
+                        pattern : {
+                                errorTitle: 'Invalid NRCI Number',
+                                errorMessage: 'Executor & trustee NRIC field can only contain alphabets value of 2 - 40 characters in length'
+                        }
+                },
+                relationship: {
+                        required : {
+                                errorTitle: 'Invalid NRCI Number',
+                                errorMessage: 'Please select executor & trustee relationship to you'
+                        }
+                }
+        }
+   };
 }
