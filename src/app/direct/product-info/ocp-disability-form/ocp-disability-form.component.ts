@@ -62,7 +62,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       this.defaultEmployee = this.formValues.employmentType;
     }
     if (this.formValues.duration) {
-      this.duration = this.formValues.durationy;F
+      this.duration = this.formValues.duration;
     }
     this.ocpDisabilityForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
