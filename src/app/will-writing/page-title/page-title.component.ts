@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-page-title',
@@ -10,6 +10,7 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 export class PageTitleComponent implements OnInit {
   @Input() pageTitle: any;
   @Input() step: any;
+  @Output() showTooltip: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private _location: Location
@@ -20,6 +21,10 @@ export class PageTitleComponent implements OnInit {
 
   goBack() {
     this._location.back();
+  }
+
+  openToolTipModal(tooltip) {
+    this.showTooltip.emit();
   }
 
 }
