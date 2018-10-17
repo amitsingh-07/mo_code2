@@ -370,6 +370,55 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please enter Total Liabilities.'
             }
         },
+        expectedNumberOfTransation: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  expected Number Of Transation',
+                errorMessage: 'Please enter expected Number Of Transation.'
+            }
+        },
+        expectedAmountPerTranction: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  expected Amount Per Tranction',
+                errorMessage: 'Please enter expected Amount Per Tranction.'
+            }
+        },
+        sources: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  sources',
+                errorMessage: 'Please sources.'
+            }
+        },
+        personalSavings: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid personal Savings',
+                errorMessage: 'Please personal Savings.'
+            }
+        },
+        inheritanceGift: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  inheritance Gift',
+                errorMessage: 'Please inheritance Gift.'
+            }
+        },
+        investmentPeriod: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  investment Period',
+                errorMessage: 'Please investment Period.'
+            }
+        },
+        earningsGenerated: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  earnings Generated',
+                errorMessage: 'Please earnings Generated.'
+            }
+        },
         pepoccupation: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string

@@ -120,6 +120,12 @@ export class InvestmentAccountService {
     getAllDropDownList() {
         return this.apiService.getAllDropdownList();
     }
+    getGeneratedFrom() {
+        return this.apiService.getGeneratedFrom();
+    }
+    getInvestmentPeriod() {
+        return this.apiService.getInvestmentPeriod();
+    }
     getNationality() {
         return {
             nationalitylist: this.investmentAccountFormData.nationalitylist,
@@ -237,12 +243,12 @@ export class InvestmentAccountService {
                 this.investmentAccountFormData.empCity = data.employeaddress.empCity;
                 this.investmentAccountFormData.empState = data.employeaddress.empState;
                 this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
-                
+
             }
-            
+
         } else {
             this.investmentAccountFormData.employmentStatus = data.employmentStatus;
-            
+
         }
         this.commit();
     }
@@ -261,7 +267,7 @@ export class InvestmentAccountService {
         this.commit();
     }
     // Upload Document
-  uploadDocument(formData) {
+    uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
     }
     setFinancialFormData(data) {
@@ -282,5 +288,36 @@ export class InvestmentAccountService {
             totalAssets: this.investmentAccountFormData.totalAssets,
             totalLiabilities: this.investmentAccountFormData.totalLiabilities
         };
+    }
+    getAdditionDeclaration() {
+        return {
+            source: this.investmentAccountFormData.source,
+            expectedNumberOfTransation: this.investmentAccountFormData.expectedNumberOfTransation,
+            expectedAmountPerTranction: this.investmentAccountFormData.expectedAmountPerTranction,
+            personalSavings: this.investmentAccountFormData.personalSavings,
+
+            inheritanceGift: this.investmentAccountFormData.inheritanceGift,
+            investmenteEarning: this.investmentAccountFormData.investmenteEarning,
+            investmentPeriod: this.investmentAccountFormData.investmentPeriod,
+            earningsGenerated: this.investmentAccountFormData.earningsGenerated,
+
+        };
+    }
+    setAdditionDeclaration(data) {
+
+        this.investmentAccountFormData.expectedNumberOfTransation = data.expectedNumberOfTransation;
+        this.investmentAccountFormData.expectedAmountPerTranction = data.expectedAmountPerTranction;
+        this.investmentAccountFormData.source = data.source;
+        if (data.source === 'Saving') {
+            this.investmentAccountFormData.personalSavings = data.personalSavingForm.personalSavings;
+        }
+        if (data.source === 'Gift/Inheritanc') {
+            this.investmentAccountFormData.inheritanceGift = data.inheritanceGiftFrom.inheritanceGift;
+        }
+        if (data.source === 'Investment Earnings') {
+        this.investmentAccountFormData.investmentPeriod = data.investmentEarnings.investmentPeriod;
+        this.investmentAccountFormData.earningsGenerated = data.investmentEarnings.earningsGenerated;
+        }
+        this.commit();
     }
 }
