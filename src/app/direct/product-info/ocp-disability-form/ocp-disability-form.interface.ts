@@ -2,7 +2,7 @@ export interface IOcpDisability {
     gender: string;
     dob: string;
     smoker: string;
-    employmentType: number;
+    employmentType: string;
     monthlySalary: number;
     percentageCoverage: number;
     duration: string;
