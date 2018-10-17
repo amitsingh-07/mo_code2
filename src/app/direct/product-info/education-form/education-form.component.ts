@@ -23,7 +23,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   isSelfFormEnabled = true;
   selectedunivercityEntryAge = '';
   monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
-  univercityEntryAge = Array(4).fill(18).map((x, i) => x += i);
+  univercityEntryAge = Array(5).fill(18).map((x, i) => x += i);
   doberror = false;
   constructor(
     private directService: DirectService, private modal: NgbModal,
