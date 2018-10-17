@@ -156,7 +156,7 @@ export class UploadDocumentsComponent implements OnInit {
     this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
       if (data) {
         this.hideUploadLoader();
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
       }
     });
   }

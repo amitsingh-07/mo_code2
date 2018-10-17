@@ -50,7 +50,9 @@ export class AcknowledgementComponent implements OnInit {
     const pepData = this.investmentAccountService.getPepData();
     // tslint:disable-next-line:triple-equals
     if ( pepData == 'yes') {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+    } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.CONFIRM_PORTFOLIO]);
     }
   }
 
