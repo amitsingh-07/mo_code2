@@ -24,6 +24,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 import {
   EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
+import { FeesModalComponent } from './fees-modal/fees-modal.component';
+import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -155,12 +157,16 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   showPortfolioAssetModal() {
-      const errorTitle = this.translate.instant('CONFIRM_PORTFOLIO.MODAL.PORTFOLIO_ASSETS.TITLE');
-      const errorMessage = this.translate.instant('CONFIRM_PORTFOLIO.MODAL.PORTFOLIO_ASSETS.MESSAGE');
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.imgType = 2;
-      ref.componentInstance.errorTitle = errorTitle;
-      ref.componentInstance.errorMessageHTML = errorMessage;
+    const errorTitle = this.translate.instant('CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.TITLE');
+    const errorMessage = this.translate.instant('CONFIRM_PORTFOLIO.MODAL.PROJECTED_RETURNS.MESSAGE');
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.imgType = 1;
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorMessageHTML = errorMessage;
+  }
+
+  showFeesModal() {
+    const ref = this.modal.open(FeesModalComponent, { centered: true });
   }
 
   openEditInvestmentModal() {
@@ -185,6 +191,10 @@ export class ConfirmPortfolioComponent implements OnInit {
         ref.close();
       }
     });
+  }
+
+  goToWhatsTheRisk() {
+    this.router.navigate([ PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
   }
 
 }
