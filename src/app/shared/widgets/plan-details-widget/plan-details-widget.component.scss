@@ -10,6 +10,23 @@ app-plan-details-widget {
     border: solid 3px #ff872f !important;
   }
 
+  @include allmobiles {
+    .plan-selected-wrapper {
+      border: none !important;
+    }
+
+    .plan-selected-wrapper::after {
+      border: solid 3px #ff872f !important;
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: 10px;
+    }
+  }
+
   .plan-selected {
     border-radius: 6px;
     color: #fff;
@@ -17,13 +34,14 @@ app-plan-details-widget {
     border-color: #ff872f !important;
     box-shadow: none;
   }
-  
+
   .brochure {
     background: #fff;
-    color:#00a7a7;
+    color: #00a7a7;
     border-radius: 6px;
     border: solid 1px rgba(0, 167, 167, 0.4);
   }
+
   .insurance-plan-widget {
     position: relative;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
@@ -75,15 +93,17 @@ app-plan-details-widget {
       h4 {
         max-height: 44px;
         font-size: 21px;
-        
+
         color: $black-color;
         font-family: $muli-semi-bold;
       }
+
       @include iPadLandscape {
         h4 {
           font-size: 17px;
         }
       }
+
       h2 {
         font-size: 36px;
         color: $app-backgrnd-color;
@@ -96,11 +116,13 @@ app-plan-details-widget {
           margin-left: 5px;
         }
       }
-      @include iPadLandscape { 
+
+      @include iPadLandscape {
         h2 {
           font-size: 32px;
         }
       }
+
       .insurance-plan-widget__container__discount__block {
         border-top: 1px solid #c2d9ec;
         border-bottom: 1px solid #c2d9ec;
@@ -182,4 +204,3 @@ app-plan-details-widget {
     }
   }
 }
-

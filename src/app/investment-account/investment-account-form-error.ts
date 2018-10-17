@@ -44,6 +44,12 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Address Line 1 should not contain special characters.'
             }
         },
+        address2: {
+            pattern: {
+                errorTitle: 'Invalid Address Line 2',
+                errorMessage: 'Address Line 2 should not contain special characters.'
+            }
+        },
         mailAddress1: {
             required: {
                 errorTitle: 'Invalid Address Line 1 in mailing address.',
@@ -52,6 +58,12 @@ export class InvestmentAccountFormError {
             pattern: {
                 errorTitle: 'Invalid mail Address Line 1',
                 errorMessage: 'Address Line 1 should not contain special characters in mailing address.'
+            }
+        },
+        mailAddress2: {
+            pattern: {
+                errorTitle: 'Invalid mail Address Line 2',
+                errorMessage: 'Address Line 2 should not contain special characters in mailing address.'
             }
         },
         unitNo: {
@@ -202,7 +214,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid passport  number',
-                errorMessage: 'passport number should not contain special characters.'
+                errorMessage: 'Passport number should not contain special characters.'
             }
         },
         passportExpiry: {
@@ -213,7 +225,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid passport expiry date',
-                errorMessage: 'passport expiry date should not contain alphabet.'
+                errorMessage: 'Passport expiry date should not contain alphabet.'
             }
         },
         dob: {
@@ -224,7 +236,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid date of birth',
-                errorMessage: 'passportExpiry date should not contain alphabet.'
+                errorMessage: 'Passport Expiry date should not contain alphabet.'
             }
         },
         sourceOfIncome: {

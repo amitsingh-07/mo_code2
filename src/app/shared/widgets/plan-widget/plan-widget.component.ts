@@ -92,7 +92,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
-      this.premiumDuration = this.data.premiumDuration;
+      this.premiumDuration = this.data.premium.premiumTerm;
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
