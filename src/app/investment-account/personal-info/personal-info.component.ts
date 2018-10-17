@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,6 +20,8 @@ import { InvestmentAccountService } from '../investment-account-service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }]
 })
 export class PersonalInfoComponent implements IPageComponent, OnInit {
+  @ViewChild('expiryInput') expiryInput;
+  @ViewChild('dobInput') dobInput;
   pageTitle: string;
   invPersonalInfoForm: FormGroup;
   formValues: any;
