@@ -1,0 +1,59 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    padding: 50px 60px 65px;
+    font-family: $muli-semi-bold;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+    .content {
+        padding-bottom:70px;
+    }
+}
+
+.autofill-link {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+
+.autofill-text{
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: #00a7a7;  
+}
+
+.mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin-top: 17px;
+    }
+}
+.mobile-header {
+    @include allmobiles{
+        background-color: #ffffff;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: #333846;
+        padding: 12px 15px;
+        margin-top:-10px;
+    }
+}
+.form-title{
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    padding: 26px 19px;
+}
