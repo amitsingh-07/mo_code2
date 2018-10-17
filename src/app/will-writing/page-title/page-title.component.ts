@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { WillWritingService } from '../will-writing.service';
 
 @Component({
   selector: 'app-page-title',
@@ -10,10 +11,11 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 export class PageTitleComponent implements OnInit {
   @Input() pageTitle: any;
   @Input() step: any;
-  @Output() showTooltip: EventEmitter<any> = new EventEmitter();
+  @Input() tooltip: any;
 
   constructor(
-    private _location: Location
+    private _location: Location,
+    private willWritingService: WillWritingService
   ) { }
 
   ngOnInit() {
@@ -23,8 +25,10 @@ export class PageTitleComponent implements OnInit {
     this._location.back();
   }
 
-  openToolTipModal(tooltip) {
-    this.showTooltip.emit();
+  openToolTipModal() {
+    const title = this.tooltip['title'];
+    const message = this.tooltip['message'];
+    this.willWritingService.openToolTipModal(title, message);
   }
 
 }

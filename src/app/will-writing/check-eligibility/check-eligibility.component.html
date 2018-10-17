@@ -56,7 +56,7 @@
                         </label>
                       </div>
                       <div>
-                        <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl6" [ngClass]="{'inline-error': isAssets}">
+                        <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl6">
                           <input ngbButton type="radio" value="no" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
                       </div>
@@ -70,12 +70,13 @@
                 </div>
                 <div class="flex-col-7 direct-form-grp">
                   <div class="dropdown-control">
-                    <div ngbDropdown id="religionDropDown" [ngClass]="{'inline-error': isMuslim}">
+                    <div ngbDropdown id="religionDropDown">
                       <button type="button" class="btn btn-dropdown" id="religionDropDown" ngbDropdownToggle>
-                        <span class="duration">{{religion == '' ? 'Select' : religion}}</span>
+                        <span class="duration" *ngIf="religion === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                        <span class="duration" *ngIf="religion !== ''">{{religion}}</span>
                       </button>
                       <div ngbDropdownMenu aria-labelledby="religionDropDown">
-                        <button class="dropdown-item" (click)="selectReligion('')">{{'Select' | translate}}</button>
+                        <button class="dropdown-item" (click)="selectReligion('')">{{'COMMON.LBL_SELECT' | translate}}</button>
                         <button type="button" class="dropdown-item" *ngFor="let religion of religionList" (click)="selectReligion(religion)">
                           {{religion.text}}
                         </button>

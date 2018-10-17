@@ -98,12 +98,6 @@ export class MyChildGuardianComponent implements OnInit {
     this.addGuardianForm.controls['relationship'].setValue(relationship.value);
   }
 
-  openToolTipModal() {
-    const title = this.tooltip['title'];
-    const message = this.tooltip['message'];
-    this.willWritingService.openToolTipModal(title, message);
-  }
-
   /**
    * redirect to next page.
    * @param form - aboutMeForm.
