@@ -5,7 +5,7 @@
       <div class="col-lg-6 col-md-6 col-sm-12 header-container">
         <div class="mobile-header">
         <h2 id="intro-title" class ="hidden-sm-md">{{ 'My Beneficiaries' | translate}}</h2>
-        <h6 class="sub-title" id="sub-title">{{ 'Name the beneficiaries that you would like to inherit your estate.' | translate}}</h6>
+        <div class="sub-title" id="sub-title">{{ 'Name the beneficiaries that you would like to inherit your estate.' | translate}}</div>
         <div class="banner-image hidden-sm-md">
             <img src="assets/images/will-start.svg" id="intro-img"/>  
         </div>
@@ -14,46 +14,49 @@
       </div>
       <div class="col-lg-6 col-md-6  col-sm-12 beneficiaries-container">
         <div name="beneficiariesForm">
-          <div><span class="content-title">I would like my guardian to be…</span></div>
+          <div class="form-group-single-column  mb0 flex-col"><span class="content-title">I would like my guardian to be…</span></div>
             <div>
                   <div class="form-group-single-column  mb0 flex-col">
-                    <div class="checkbox-button two-label" >
+                    <div class="edit-block checkbox-button two-label" >
                       <input id="beneficiary1" name="beneficiary1"  type="checkbox" class="field checkbox"
                         value="one" >
                       <label for="beneficiary1" id="">
                         <div class="input-label-black">heading</div>
                         <div class="input-label-normal">sub heading</div>
                       </label>
+                      <span><img src="assets/images/will-writing/edit-icon.svg"/></span>
                     </div>
                   </div>
 
                   <div class="form-group-single-column  mb0 flex-col">
-                      <div class="checkbox-button two-label" >
+                      <div class="edit-block checkbox-button two-label" >
                         <input id="beneficiary2" name="beneficiary2"  type="checkbox" class="field checkbox"
                           value="one" >
                         <label for="beneficiary2" id="">
                           <div class="input-label-black">heading</div>
                           <div class="input-label-normal">sub heading</div>
                         </label>
+                        <span><img src="assets/images/will-writing/edit-icon.svg"/></span>
                       </div>
                     </div>
 
                     <div class="form-group-single-column  mb0 flex-col">
-                        <div class="checkbox-button two-label" >
+                        <div class="edit-block checkbox-button two-label" >
                           <input id="beneficiary3" name="beneficiary3"  type="checkbox" class="field checkbox"
                             value="one" >
                           <label for="beneficiary3" id="">
                             <div class="input-label-black">heading</div>
                             <div class="input-label-normal">sub heading</div>
                           </label>
+                          <span><img src="assets/images/will-writing/edit-icon.svg"/></span>
                         </div>
                       </div>
                       <div>
-                          <div class="col-12 add-beneficiaries-container">          
+                          <div class="add-beneficiaries-container">          
                               <div  id="addGuardianForm" name="addGuardianForm">
                                 <div class="aboutMe">
                                 <div class="form-group">
-                                  <div class="flex-row title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
+                                  <div class="col-12 flex-row title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
                                   <div class="flex-row mb10">
                                     <div class="flex-col-5">
                                       <label for="name" id="addGuardianFormLbl1"><div>{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM.NAME' | translate}}</div></label>
@@ -106,11 +109,9 @@
                             </div>
                       </div>
                       <div class="form-group-single-column  mb0 flex-col">
-                          <div class="checkbox-button two-label" >
-                            <img id ="add" src ="assets/images/will-writing/add.svg"/>
-                            <label for="add">
-                              <div class="input-label-black add-beneficiaries">Add Beneficiaries</div> 
-                            </label>
+                          <div class="add-beneficiaries checkbox-button two-label mb0" >
+                            <span><img id ="add" src ="assets/images/will-writing/add.svg"/></span>
+                              <span>Add Beneficiaries</span> 
                           </div>
                         </div>
 
