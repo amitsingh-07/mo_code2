@@ -7,7 +7,7 @@ export interface IAboutMe {
 }
 
 export interface IMyFamily {
-    spouse: ISpouse;
+    spouse: ISpouse[];
     children: IChild[];
 }
 
@@ -19,6 +19,7 @@ export interface ISpouse {
 
 export interface IChild {
     name: string;
+    relationship: string;
     nricNumber: string;
     dob: string;
 }
@@ -43,4 +44,11 @@ export interface IExecTrustee {
 
 export interface IPromoCode {
     promoCode: string;
+}
+
+export interface IBeneficiary {
+    name: string;
+    relationship: string;
+    nricNumber: string;
+    selected: boolean;
 }

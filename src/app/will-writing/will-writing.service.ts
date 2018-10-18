@@ -6,7 +6,8 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
-import { IAboutMe, IChild, IEligibility, IExecTrustee, IGuardian, IMyFamily, IPromoCode, ISpouse } from './will-writing-types';
+import { IAboutMe, IBeneficiary, IChild, IEligibility, 
+         IExecTrustee, IGuardian, IMyFamily, IPromoCode, ISpouse } from './will-writing-types';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 
@@ -16,7 +17,6 @@ const SESSION_STORAGE_KEY = 'app_will_writing_session';
 export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
-
   constructor(
     private http: HttpClient,
     private modal: NgbModal
@@ -140,9 +140,9 @@ export class WillWritingService {
    * get spouse details.
    * @returns spouse details.
    */
-  getSpouseInfo(): ISpouse {
+  getSpouseInfo(): ISpouse[] {
     if (!this.willWritingFormData.spouse) {
-      this.willWritingFormData.spouse = {} as ISpouse;
+      this.willWritingFormData.spouse = [] as ISpouse[];
     }
     return this.willWritingFormData.spouse;
   }
@@ -152,8 +152,8 @@ export class WillWritingService {
    * @param data - spouse details.
    */
   setSpouseInfo(data: ISpouse) {
-    data.relationship = 'parent';
-    this.willWritingFormData.spouse = data;
+    data.relationship = 'spouse';
+    this.willWritingFormData.spouse.push(data);
     this.commit();
   }
 
@@ -181,6 +181,7 @@ export class WillWritingService {
    * @param data - children details.
    */
   setChildrenInfo(data: IChild) {
+    data.relationship = 'child';
     this.willWritingFormData.children.push(data);
     this.commit();
   }
@@ -278,6 +279,26 @@ export class WillWritingService {
    */
   setPromoCodeDetails(data: IPromoCode) {
     this.willWritingFormData.promoCode = data;
+    this.commit();
+  }
+
+  /**
+   * get Beneficiary details.
+   * @returns Beneficiary details.
+   */
+  getBeneficiaryInfo(): IBeneficiary[] {
+    if (!this.willWritingFormData.beneficiary) {
+      this.willWritingFormData.beneficiary = [] as IBeneficiary[];
+    }
+    return this.willWritingFormData.beneficiary;
+  }
+
+  /**
+   * set Beneficiary details.
+   * @param data - Beneficiary details.
+   */
+  setBeneficiaryInfo(data: IBeneficiary[]) {
+    this.willWritingFormData.beneficiary = data;
     this.commit();
   }
 

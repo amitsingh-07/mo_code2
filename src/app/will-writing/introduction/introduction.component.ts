@@ -40,15 +40,13 @@ export class IntroductionComponent implements OnInit {
   verifyPromoCode(code) {
     // tslint:disable-next-line:no-commented-code
     // this.willWritingApiService.verifyPromoCode(code).subscribe((data) => {
-    //   // tslint:disable-next-line:no-commented-code
-    //   // this.promoCode = data;
+    //   this.promoCode = data;
     //   if (this.promoCodeForm.controls['promoCode'].value === this.promoCode) {
     //     this.isPromoCodeValid = true;
     //   } else {
     //     this.willWritingService.openErrorModal(this.promoCodeError , this.promoCodeMsg);
     //   }
     // }, (error) => {
-    //   // tslint:disable-next-line:no-commented-code
     //   // this.willWritingService.openErrorModal(this.errorTitle , this.errorMsg);
     // });
   }
