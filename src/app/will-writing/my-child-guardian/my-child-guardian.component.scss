@@ -57,3 +57,42 @@
     letter-spacing: -0.3px;
     padding: 26px 19px;
 }
+
+.myChildGuardian {
+    @include allmobiles{
+    background-color: #fff;
+    padding:21px;
+    border-radius: 6px;
+    color: #2d8289;
+    }
+    .addGuardian{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+        .btn{
+            @include allmobiles{
+                background-color: #fff;
+                color: #00a7a7;
+                font-family: $muli-semi-bold;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: -0.1px;
+                text-align: center;
+            }
+        }
+        .btn-primary{
+            @include allmobiles{
+                background-color: #00a7a7 !important;
+                color: #fff !important;
+                padding: 10px 10px;
+            }
+        }
+
+    }
+
+}
+
+.add-guardian{
+    padding: 10px 15px;
+
+}
