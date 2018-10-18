@@ -116,56 +116,6 @@
             margin-bottom: 8px;
         }
     }
-    .offer-code{
-        font-family: $muli-semi-bold;
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 2.5;
-        letter-spacing: -0.2px;
-        text-align: center;
-        color: #2d8289;
-        .brdr-btm{
-            border: solid 0.5px #00a7a7;
-        }
-        .time-period {
-            position: relative;
-            top: 26px;
-            width: 70%;
-            padding: 5px 10px;
-            background: #fff;
-            margin: 0 auto;
-            @include allmobiles{
-                position: none;
-                top: 0;
-                width: 100%;
-            }
-        }
-        input{
-            font-family: $muli-light;
-            font-weight: 300;
-            font-style: italic;
-            letter-spacing: -0.2px;
-            text-align: center;
-            color: #a4a4a4;
-            border-radius: 6px;
-            border: solid 1px #c2d9ec;
-            font-size: 16px;  
-        }
-        input::placeholder{
-            color: #a4a4a4;
-        }
-        div{
-            &:last-child{
-                font-family: $muli-regular;
-                color: #2d8289;
-                font-size: 16px;
-                span{
-                    font-family: $muli-bold;
-                    font-weight: bold;
-                }
-            }
-        }
-    }
 }
 .mobile-header{
     display: flex;
