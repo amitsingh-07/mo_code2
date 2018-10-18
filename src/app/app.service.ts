@@ -7,6 +7,7 @@ export const SESSION_KEY = 'app_session';
 })
 export class AppService {
   journeyType: string;
+  enquiryId: any;
   activeSession: string;
   constructor() { }
 
