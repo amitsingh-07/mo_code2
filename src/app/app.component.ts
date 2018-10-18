@@ -3,8 +3,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
-import { AppService } from './app.service';
 
+import { AppService } from './app.service';
 import { IComponentCanDeactivate } from './changes.guard';
 import { GoogleAnalyticsService } from './shared/ga/google-analytics.service';
 import { LoggerService } from './shared/logger/logger.service';

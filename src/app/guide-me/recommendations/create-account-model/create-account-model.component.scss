@@ -1,5 +1,6 @@
 @import '../../../../variables';
 @import '../../../../mixins';
+app-create-account-model {
 .selected-count {
     background-color: #ff872f;
     width: 39px;
@@ -34,8 +35,9 @@
   }
   .choose_ops{
       color:#5e5e5e;
-      font-weight: bold;
+      font-family: $muli-bold;
       text-align: center;
+      margin-top: 20px;
   }
 
   .back {
@@ -47,6 +49,17 @@
     background-repeat: no-repeat;
     border: 0;
     //margin-left: 15px;
-    margin-top: 15px;
+    margin-top: 6px;
     cursor: pointer;
   }
+  .modal-body {
+    position: relative;
+    .separator {
+      border-bottom: 1px solid rgba(141,154,168,0.35);
+      position: absolute;
+      top: 70px;
+      width: 100%;
+      left: 0;
+    }
+  }
+}

@@ -92,7 +92,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
-      this.premiumDuration = this.data.premiumDuration;
+      this.premiumDuration = this.data.premium.premiumTerm;
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
@@ -101,6 +101,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       );
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
       if (this.type === 'long-term care') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
         this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
       }

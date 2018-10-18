@@ -2,6 +2,7 @@
   "COMMON": {
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLAN_SELECTED": "Plan Selected",
     "LBL_PLANS_SELECTED": "Plans Selected",
     "LBL_SEARCH_PLAN": "Search Plans",
     "LBL_UPDATE_PLAN": "Update Plan",
@@ -17,7 +18,8 @@
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",
-    "PER_YEAR": "/ year"
+    "PER_YEAR": "/ year",
+    "SINGLE": "Single"
   },
   "LABEL": {
     "GENDER": "Gender",
@@ -57,7 +59,7 @@
   "BUTTON": {
     "PROCEED": "Proceed",
     "COMPARE": "Compare",
-    "UN_SELECT": "Plan Selected",
+    "UN_SELECT": "Selected",
     "DETAILS": "Details",
     "SELECT_PLAN": "Select Plan"
   },
@@ -75,7 +77,9 @@
     "LBL_COMMISSION": "Commission Rebate"
   },
   "SETTINGS": {
+    "TITLE": "Settings",
     "SORT_BY": "Sort by",
+    "APPLY_FILTERS": "Apply Filters",
     "SORT" : [
       {"displayText": "Highest Ranking", "value": "premium.ranking" },
       {"displayText": "Insurer Name (A-Z)", "value": "+insurer.insurerName" },

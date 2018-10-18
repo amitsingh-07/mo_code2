@@ -46,6 +46,7 @@
     "WHAT_YOU_OWN": "What You Own",
     "CASH": "Cash",
     "CPF": "CPF",
+    "CPF_ALL_ACCOUNTS": "(All Accounts)",
     "HOME_PROPERTY": "Home Property",
     "HOME_PROPERTY_HINT": "(Market Value)",
     "INVESTMENT_PROP": "Investment Properties",
@@ -119,7 +120,7 @@
     },
     "DROP_DOWN_OPTIONS": {
       "GENDER": ["Male", "Female"],
-      "RELATIONSHIP": ["Children", "Parent", "Spouse", "Siblings"],
+      "RELATIONSHIP": ["Child", "Parent", "Spouse", "Siblings"],
       "EDU_SUPPORT_COURSE": ["Medicine", "Non-Medicine"],
       "EDU_SUPPORT_COUNTRY": ["Singapore", "USA", "United Kingdom", "Australia"],
       "EDU_SUPPORT_NATIONALITY": ["Singaporean", "Singapore PR", "Foreigner"]
@@ -206,9 +207,9 @@
     "COVERAGE_YOU_NEED": "Coverage You Need",
     "ADD_COVERAGE": {
       "LBL": "Add Existing Coverage?",
-      "SUB_LBL": "Tap to add coverages",
+      "SUB_LBL": "Tap to add coverage",
       "EXISTING_LBL": "Existing Coverage Added",
-      "EXISTING_SUB_LBL": "Tap to edit coverages"
+      "EXISTING_SUB_LBL": "Tap to edit coverage"
     },
     "PROCEED": {
       "LBL": "Continue To Recommendations"

@@ -40,4 +40,12 @@ app-product-info {
       overflow: auto;
     }
   }
+
+  .product-info-form-wrapper {
+    padding-bottom: 0;
+
+    @include allmobiles {
+      //padding-bottom: 60px !important;
+    }
+  }
 }

@@ -182,28 +182,29 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       this.premiumFrom = data.premium.premiumAmount;
 
       this.premiumFrequency = this.perMonth;
-      /*
+
       switch (this.activeRecommendationType) {
         case this.protectionNeedTypes.LIFE_PROTECTION:
-          this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
+          //this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
         case this.protectionNeedTypes.CRITICAL_ILLNESS:
-          const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
-          this.coverageAmount = criticalIllnessValues.coverageAmount + '';
+          //const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
+          //this.coverageAmount = criticalIllnessValues.coverageAmount + '';
           break;
         case this.protectionNeedTypes.OCCUPATION_DISABILITY:
-          const ocpData = this.calculateService.getOcpData();
-          this.coverageAmount = ocpData.coverageAmount + '';
+          //const ocpData = this.calculateService.getOcpData();
+          //this.coverageAmount = ocpData.coverageAmount + '';
           break;
         case this.protectionNeedTypes.LONG_TERM_CARE:
-          const ltcData = this.calculateService.getLtcData();
-          this.coverageAmount = ltcData.monthlyPayout + '';
+          //const ltcData = this.calculateService.getLtcData();
+          //this.coverageAmount = ltcData.monthlyPayout + '';
+          this.premiumFrom = data.premium.premiumAmountYearly;
+          this.premiumFrequency = this.perYear;
           break;
         case this.protectionNeedTypes.HOSPITAL_PLAN:
-          this.coverageAmount = '';
+          //this.coverageAmount = '';
           break;
       }
-      */
 
       this.coverageAmount = data.premium.sumAssured;
 
