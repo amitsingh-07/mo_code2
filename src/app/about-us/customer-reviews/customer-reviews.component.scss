@@ -10,7 +10,7 @@
         display:flex;
         width:100%;
         justify-content: center;
-        min-height:500px;
+        min-height:400px;
         @include minMobilemaxPhablet{
             flex-direction:column;
             justify-content:flex-start;
@@ -35,12 +35,12 @@
             position: absolute;
             display:block;
             width:100%;
-            height:100%;
+            height:90%;
             background-image:url('./../../../assets/images/about-us/reviews_seated_guy.svg');
             background-repeat:no-repeat;
             background-position:bottom right;
             background-size:contain;
-            bottom:0px;
+            bottom:5%;
             @include minPhabletmaxTablet{
                 height:calc(100% - 50px);
             }
@@ -66,9 +66,9 @@
         h1{
             font-family:$muli-bold;
             font-weight:bold;
-            font-size:4rem;
+            font-size:3.5rem;
             color:$teal-color;
-            margin-bottom:unset;
+            margin-bottom:5px;
             line-height:1;
             @include minPhabletmaxTablet{
                 font-size:3.7rem;
@@ -81,6 +81,7 @@
             font-family:$muli-semi-bold;
             color:$black-color;
             opacity:0.9;
+            font-size:1.5rem;
             @include minPhabletmaxTablet{
                 font-size:1.5rem;
             }
@@ -125,6 +126,7 @@
         padding:40px;
         margin-bottom:0.75rem;
         border-radius:6px;
+        border:unset;
         @include tablet{
             padding:20px;
         }

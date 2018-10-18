@@ -246,6 +246,7 @@ body.modal-open {
 
     &.show {
       z-index: 1040;
+      justify-content: flex-start;
     }
 
     &.full {
@@ -392,12 +393,12 @@ body.modal-open {
 
       @include minMobilemaxPhablet {
         background-color: $teal-color;
-        height: 100%;
+        height: calc(100% - 60px);
         overflow-y: auto;
         overflow-x: hidden;
         flex-direction: column;
         justify-content: flex-start;
-        padding-bottom: 60px;
+        z-index:0;
       }
     }
   }

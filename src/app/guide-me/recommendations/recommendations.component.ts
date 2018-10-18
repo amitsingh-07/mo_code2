@@ -70,6 +70,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
     setTimeout(() => {
       this.getRecommendationsFromServer();
     }, 500);
