@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
     this.insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
     if (this.insuranceEnquiry && this.insuranceEnquiry.plans && this.insuranceEnquiry.plans.length > 0) {
       const payload: IEnquiryUpdate = {
-        customerId: this.signUpService.getCustomer().id,
+        customerId: this.appService.getCustomerId(),
         enquiryId: Formatter.getIntValue(this.insuranceEnquiry.enquiryId),
         selectedProducts: this.insuranceEnquiry.plans
       };

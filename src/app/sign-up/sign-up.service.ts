@@ -11,16 +11,12 @@ const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
 const REDIRECT_URL_KEY = 'app_redirect_url';
-const SESSION_CUSTOMER = 'app_customer_id';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SignUpService {
-  customer = {
-    id: ''
-  };
 
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
@@ -268,17 +264,5 @@ export class SignUpService {
 
   getRedirectUrl() {
     return sessionStorage.getItem(REDIRECT_URL_KEY);
-  }
-
-  getCustomer() {
-    if (window.sessionStorage && sessionStorage.getItem(SESSION_CUSTOMER)) {
-      this.customer = JSON.parse(sessionStorage.getItem(SESSION_CUSTOMER));
-    }
-    return this.signUpFormData.userProfileInfo;
-  }
-
-  setCustomer(customer) {
-    this.customer = customer;
-    this.save(SESSION_CUSTOMER, this.customer);
   }
 }
