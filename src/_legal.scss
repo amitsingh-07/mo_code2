@@ -115,6 +115,38 @@
                 }
             }
         }
+    .default-ol{
+        ol {
+            counter-reset: list;
+            padding-left: 15px;
+            .section--sub-title{ 
+                display:inline-block;
+                margin-bottom:10px;
+            }
+            li {
+                display: block;
+                margin-bottom:10px;
+                &:before {
+                    content: " ("counter(list, lower-alpha)") ";
+                    counter-increment: list;
+                }
+            }
+        }
+    }
+    .sub-default-ol{
+        ol{
+            counter-reset: list;
+            padding-left: 15px;
+            li {
+                display: block;
+                margin-bottom:10px;
+                &:before {
+                    content: " ("counter(list, lower-roman)") ";
+                    counter-increment: list;
+                    }
+                }
+            }
+    }
     ol {
         counter-reset: item;
         padding-left: 0px;

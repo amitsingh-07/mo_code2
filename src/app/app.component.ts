@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
@@ -14,30 +15,42 @@ import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.comp
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements IComponentCanDeactivate, AfterViewInit {
+export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit{
   title = 'Money Owl';
   modalRef: NgbModalRef;
+  initRoute = false;
 
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
-    private googleAnalyticsService: GoogleAnalyticsService, private modal: NgbModal) {
+    private googleAnalyticsService: GoogleAnalyticsService, private modal: NgbModal, public route: Router) {
     this.translate.setDefaultLang('en');
+  }
+
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.route.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {// Redirected out
+        if (!this.initRoute) {
+          if (val.url === '/home#diy') {
+            this.triggerPopup();
+          }
+          this.initRoute = true;
+        } else {
+          this.modalRef.close();
+        }
+      }
+    });
   }
 
   onActivate(event) {
     window.scroll(0, 0);
   }
 
-  ngAfterViewInit() {
-    if (!this.appService.isSessionActive()) {
-      this.triggerPopup();
-    }
-  }
-
   triggerPopup() {
-    this.modalRef = this.modal.open(PopupModalComponent, { centered: true, windowClass: 'popup-modal-dialog' });
-    this.modalRef.result.then(() => {
-      this.appService.startAppSession();
+    this.modalRef = this.modal.open(PopupModalComponent, {
+      centered: true,
+      windowClass: 'popup-modal-dialog'
     });
   }
 

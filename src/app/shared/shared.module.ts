@@ -16,9 +16,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
-import {
-    TermsAndConditionsComponent
-} from './components/terms-and-conditions/terms-and-conditions.component';
+import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
 import {
@@ -60,11 +58,11 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
-    TermsAndConditionsComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,
     DisclosuresComponent,
     TermsComponent,
+    TermsOfUseComponent,
     BreakdownBarComponent,
     BreakdownAccordionComponent]
 })
