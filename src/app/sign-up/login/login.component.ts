@@ -1,7 +1,7 @@
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +25,7 @@ import { LoginFormError } from './login-form-error';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   private loginFormError: any = new LoginFormError();
   private pageTitle: string;
   private description: string;
@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
   defaultCountryCode;
   countryCodeOptions;
   heighlightMobileNumber;
+  captchaSrc: any;
+  showCaptcha: boolean;
 
   constructor(
     // tslint:disable-next-line
@@ -66,6 +68,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    if (this.signUpService.isCaptchaShown()) {
+      this.showCaptcha = true;
+      const captchaControl = this.loginForm.controls['captcha'];
+      captchaControl.setValidators([Validators.required]);
+      this.refreshCaptcha();
+    }
+  }
+
   /**
    * show / hide password field.
    * @param el - selected element.
@@ -85,7 +96,8 @@ export class LoginComponent implements OnInit {
     this.formValues = this.signUpService.getLoginInfo();
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]]
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],
+      captcha: ['']
     });
   }
 
@@ -130,8 +142,21 @@ export class LoginComponent implements OnInit {
               this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
             }
           });
-        } else {
-          // Handle invalid login scenario
+        } else if (data.responseMessage.responseCode === 5016) {
+            const captchaControl = this.loginForm.controls['captcha'];
+            captchaControl.setErrors({notEquivalent: true});
+            captchaControl.reset();
+            this.refreshCaptcha();
+            this.doLogin(this.loginForm);
+        } else if (data.responseMessage.responseCode === 5011) {
+          const captchaControl = this.loginForm.controls['loginUsername'];
+          captchaControl.setErrors({invalidMatch: true});
+          this.doLogin(this.loginForm);
+          if (data.responseMessage.attempt >= 3) {
+            this.signUpService.isCaptchaShown();
+            this.showCaptcha = true;
+            captchaControl.setValidators([Validators.required]);
+          }
         }
       });
     }
@@ -160,5 +185,10 @@ export class LoginComponent implements OnInit {
 
   goBack() {
     this._location.back();
+  }
+
+  refreshCaptcha() {
+    const time = new Date().getMilliseconds();
+    this.captchaSrc = '/assets/images/captcha.png?sessionId=' + this.authService.getSessionId() + '&time=' + time;
   }
 }
