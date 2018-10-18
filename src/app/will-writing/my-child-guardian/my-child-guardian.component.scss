@@ -1,0 +1,148 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    padding: 50px 60px 65px;
+    font-family: $muli-semi-bold;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+    .content {
+        padding-bottom:70px;
+    }
+}
+
+.autofill-link {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .sub-title{
+        @include allmobiles{
+            width: 270px;
+        }
+    }
+}
+
+.autofill-text{
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: #00a7a7;  
+}
+
+.mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin-top: 17px;
+    }
+}
+.mobile-header {
+    @include allmobiles{
+        background-color: #ffffff;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: #333846;
+        padding: 12px 15px;
+        margin-top:-10px;
+    }
+}
+.form-title{
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    padding: 26px 0 19px;
+}
+
+.form-group-single-column{
+    .edit-block{
+        @extend .flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 28px;
+        padding-top: 13px;
+        span{
+            margin-bottom: 8px;
+        }
+    }
+}
+
+.myChildGuardian {
+        background-color: #f4fafb;
+        border-radius: 6px;
+        box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        margin-top: 70px;
+        @include allmobiles {
+            margin-top: 19px;
+        }
+        .flex-row{
+            padding: 0 19px 25px; 
+        }
+        .title {
+            background: $white-color;
+            font-family: $muli-bold;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: -0.4px;
+            color: #066360;
+            margin-bottom: 19px;
+            padding: 17px 19px; 
+            border-radius: 6px;
+        }
+        .sublbl {
+            font-family: $muli-regular;
+            font-size: 16px;
+            letter-spacing: -0.3px;
+            color: #2d8289;
+            font-weight: normal;
+        }
+    /*@include allmobiles{
+    background-color: #fff;
+    padding:21px;
+    border-radius: 6px;
+    color: #2d8289;
+    }*/
+    .addGuardian{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+        .btn{
+            @include allmobiles{
+                background-color: #f4fafb;
+                color: #00a7a7;
+                font-family: $muli-semi-bold;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: -0.1px;
+                text-align: center;
+            }
+        }
+        .btn-primary{
+            @include allmobiles{
+                background-color: #00a7a7 !important;
+                color: #fff !important;
+                padding: 10px 10px;
+            }
+        }
+
+    }
+
+}
+
+.add-guardian{
+    padding: 10px 15px;
+
+}

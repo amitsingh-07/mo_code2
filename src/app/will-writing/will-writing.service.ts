@@ -152,7 +152,7 @@ export class WillWritingService {
    * @param data - spouse details.
    */
   setSpouseInfo(data: ISpouse) {
-    data.relationship = 'parent';
+    data.relationship = 'spouse';
     this.willWritingFormData.spouse.push(data);
     this.commit();
   }

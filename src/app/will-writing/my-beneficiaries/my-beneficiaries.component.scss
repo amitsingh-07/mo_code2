@@ -100,75 +100,30 @@
   }
 .beneficiaries-container {
     margin-top: 70px;
+    padding: 0 20px;
     @include allmobiles {
         margin-top: 25px;
-        padding: 0;
-        margin-bottom: 40px;
+        margin-bottom: 80px;
     }
-    .FAQ {
-        margin-top: 16px;
-        font-size: 14px;
-        text-align: center;
-        color: #00c5c4;
-    }
-    .offer-code{
-        font-family: $muli-semi-bold;
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 2.5;
-        letter-spacing: -0.2px;
-        text-align: center;
-        color: #2d8289;
-        .brdr-btm{
-            border: solid 0.5px #00a7a7;
-        }
-        .time-period {
-            position: relative;
-            top: 26px;
-            width: 70%;
-            padding: 5px 10px;
-            background: #fff;
-            margin: 0 auto;
-            @include allmobiles{
-                position: none;
-                top: 0;
-                width: 100%;
-            }
-        }
-        input{
-            font-family: $muli-light;
-            font-weight: 300;
-            font-style: italic;
-            letter-spacing: -0.2px;
-            text-align: center;
-            color: #a4a4a4;
-            border-radius: 6px;
-            border: solid 1px #c2d9ec;
-            font-size: 16px;  
-        }
-        input::placeholder{
-            color: #a4a4a4;
-        }
-        div{
-            &:last-child{
-                font-family: $muli-regular;
-                color: #2d8289;
-                font-size: 16px;
-                span{
-                    font-family: $muli-bold;
-                    font-weight: bold;
-                }
-            }
+    
+    .edit-block{
+        @extend .flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 28px;
+        padding-top: 13px;
+        span{
+            margin-bottom: 8px;
         }
     }
 }
-.proceed-msg{
+.mobile-header{
     display: flex;
     flex-direction: column;
     .sub-title{
         color: #333846 !important;
         @include allmobiles {
-            padding: 10px !important;
+            width: 270px;
         }
     }
     h2{
@@ -199,11 +154,24 @@ input[type='checkbox']+label {
   }
 
   .add-beneficiaries{
-      padding:5px;
+      @extend .flex;
+      align-items: center;
+      padding: 15px 16px 14px !important;
+      span{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.3px;
+        color: #000000;
+        margin-right: 16px;
+      }
   }
   
   .form-group-single-column .checkbox-button.two-label {
-    padding: 20px !important;
+    padding: 20px;
   }
   .mobile-logo{
     display: none;
@@ -228,28 +196,52 @@ input[type='checkbox']+label {
 }
 
 .add-beneficiaries-container {
-    background-color: #fff;
-    color:#2d8289;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 20px;
-}
-.beneficiaries-container{
-    padding: 0 10px
-}
-.aboutMe{
-    .btn {
-        padding: 8px !important;
-        font-family: $muli-regular !important;
-        color:#2d8289;
-        font-size: 16px;
+    .aboutMe{
+        background-color: #f4fafb;
+        border-radius: 6px;
+        box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+        font-size: 18px;
         font-weight: 600;
-        background-color: #fff;
-    }
-    .btn-primary{
-        background-color: #00a7a7;
-        color: #fff !important;
-        font-family: $muli-regular !important;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        margin-top: 70px;
+        @include allmobiles {
+            margin-top: 19px !important;
+        }
+        .flex-row{
+            padding: 0 19px 25px; 
+        }
+        .title {
+            background: $white-color;
+            font-family: $muli-bold;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: -0.4px;
+            color: #066360;
+            margin-bottom: 19px;
+            padding: 17px 19px; 
+            border-radius: 6px;
+        }
+        .sublbl {
+            font-family: $muli-regular;
+            font-size: 16px;
+            letter-spacing: -0.3px;
+            color: #2d8289;
+            font-weight: normal;
+        }
+        .btn {
+            padding: 8px !important;
+            font-family: $muli-regular;
+            color:#2d8289;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #f4fafb;
+        }
+        .btn-primary{
+            background-color: #00a7a7;
+            color: #fff !important;
+            font-family: $muli-regular !important;
+        }
     }
 }
 
@@ -263,7 +255,7 @@ input[type='checkbox']+label {
     font-weight: 600;
     letter-spacing: -0.3px;
     color: #ffffff;
-    padding:20px !important;
+    padding:20px 0;
   }
   .add-beneficiary{
       justify-content: flex-end;

@@ -24,6 +24,7 @@ export class MyBeneficiariesComponent implements OnInit {
   myFamily: IMyFamily;
   isFormOpen = false;
   beneficiaryList: IBeneficiary[] = [];
+  isButtonEnabled = true;
 
   constructor(private translate: TranslateService, private formBuilder: FormBuilder,
               private navbarService: NavbarService, private willWritingService: WillWritingService,
@@ -31,7 +32,7 @@ export class MyBeneficiariesComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_2');
-      this.pageTitle = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE');
+      this.pageTitle = this.translate.instant('WILL_WRITING.MY_BENEFICIARY.TITLE');
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
     });
    }
@@ -100,9 +101,18 @@ export class MyBeneficiariesComponent implements OnInit {
     }
   }
 
+  getBeneficiaryLength(): number {
+    return this.beneficiaryList.filter((checked) => checked.selected === true).length;
+  }
+
   save() {
-    this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
-    return true;
+    const beneficiaryLength = this.getBeneficiaryLength();
+    if ( beneficiaryLength === 0 || beneficiaryLength > 7) {
+      return false;
+    } else {
+      this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
+      return true;
+    }
   }
 
   goToNext() {

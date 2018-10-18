@@ -3,7 +3,7 @@
   <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="flex-row">
-        <div class="col-lg-7 col-md-7 col-12">
+        <div class="col-lg-7 col-md-7 col-12 mobile-header-container">
           <div class="heading hidden-sm-md">{{'WILL_WRITING.COMMON.STEP_3' | translate}}</div>
           <div class="autofill-link">
             <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
@@ -14,19 +14,23 @@
         </div>
         <div class="col-lg-5 col-md-5 col-12 executer-trustee-container">
           <div class="col-12 mb10">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.FORM_TITLE' | translate}}</div>
+          <div class="form-group-single-column flex-col">
           <div *ngFor="let execTrustee of execTrusteeList" class="form-group-single-column  mb0 flex-col">
-            <div class="checkbox-button two-label">
-              <input id="beneficiary1" name="beneficiary1" type="checkbox" class="field checkbox" value="one">
-              <label for="beneficiary1" id="">
-                <div class="input-label-black">{{execTrustee.name}}</div>
-                <div class="input-label-normal">My Spouse</div>
-              </label>
-            </div>
+                  <div class="edit-block checkbox-button two-label" >
+                    <input id="beneficiary1" name="beneficiary1"  type="checkbox" class="field checkbox"
+                      value="one" >
+                    <label for="beneficiary1" id="">
+                      <div class="input-label-black">heading</div>
+                      <div class="input-label-normal">sub heading</div>
+                    </label>
+                    <span><img src="assets/images/will-writing/edit-icon.svg"/></span>
+                  </div>
+          </div>
           </div>
           <div class="add-exeTrustee-form" *ngIf="this.showAddExeTrusteeForm">
             <form [formGroup]="addExeTrusteeForm" id="addExeTrusteeForm" name="addExeTrusteeForm">
               <div>
-                <div class="aboutMe">
+                <div class="addExeTrusteeForm">
                   <div class="form-group">
                     <div class="flex-row title">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.BUTTON' | translate}}</div>
                     <div class="flex-row mb10">

@@ -4,12 +4,12 @@
     <div class="content">
       <div class="flex-row">
         <div class="col-lg-7 col-md-7 col-12 mobile-content">
-          <div class="heading hidden-sm-md">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
+          <div class="heading hidden-sm-md" id="about-me-step1">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
           <div class="autofill-link">
-            <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
-            <div class="sub-title">{{ 'WILL_WRITING.ABOUT_ME.SUB_TITLE' | translate}}</div>
-            <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/about-me.svg" /></div>
-            <div class="autofill-logo mobile-logo mb5 hidden-lg"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+            <div class="autofill-text hidden-sm-md" id="about-me-title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
+            <div class="sub-title" id="about-me-sub-title">{{ 'WILL_WRITING.ABOUT_ME.SUB_TITLE' | translate}}</div>
+            <div class="autofill-logo hidden-sm-md" id="about-me-img"><img class="img-fluid" src="assets/images/about-me.svg" /></div>
+            <div class="autofill-logo mobile-logo mb5 hidden-lg" id="about-me-mobile-img"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-12">
@@ -17,7 +17,7 @@
           <form [formGroup]="aboutMeForm" id="aboutMeForm" name="aboutMeForm">
             <div class="aboutMe">
               <div class="form-group">
-                <div class="flex-row title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
+                <div class="flex-row title" id="about-me-form-title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
                 <div class="flex-row mb10 mt20">
                   <div class="flex-col-5">
                     <label for="name" id="aboutMeFormLbl1">
@@ -90,7 +90,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="flex-row pb10">
+                <div class="flex-row pb30">
                   <div class="flex-col-5">
                     <label for="name" id="aboutMeFormLbl7">{{ 'WILL_WRITING.ABOUT_ME.FORM.WITH' | translate}}</label>
                   </div>

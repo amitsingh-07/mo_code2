@@ -11,26 +11,30 @@
     }
 }
 .aboutMe {
-    background-color: #fff;
+    background-color: #f4fafb;
     border-radius: 6px;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
-    padding: 20px;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
     margin-top: 70px;
     @include allmobiles {
-        margin-top: 25px;
+        margin-top: 19px;
+    }
+    .flex-row{
+        padding: 0 19px 25px; 
     }
     .title {
+        background: $white-color;
         font-family: $muli-bold;
         font-size: 20px;
         font-weight: bold;
         letter-spacing: -0.4px;
         color: #066360;
         margin-bottom: 19px;
-          
+        padding: 17px 19px; 
+        border-radius: 6px;
     }
     .sublbl {
         font-family: $muli-regular;
@@ -75,11 +79,18 @@
         display: block;
         justify-content: center;
         align-items: center;
+        margin-top: 17px;
     }
 }
 
 .myFamilyForm{
     @include allmobiles{
-        margin-bottom:100px;
+        padding: 19px 19px 100px;
+        background-color: #00a7a7;
     }
+}
+
+.datepicker-control {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
 }

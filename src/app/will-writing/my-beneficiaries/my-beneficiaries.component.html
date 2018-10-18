@@ -5,7 +5,7 @@
       <div class="col-lg-6 col-md-6 col-sm-12 header-container">
         <div class="mobile-header">
         <h2 id="intro-title" class ="hidden-sm-md">{{ 'My Beneficiaries' | translate}}</h2>
-        <h6 class="sub-title" id="sub-title">{{ 'Name the beneficiaries that you would like to inherit your estate.' | translate}}</h6>
+        <div class="sub-title" id="sub-title">{{ 'Name the beneficiaries that you would like to inherit your estate.' | translate}}</div>
         <div class="banner-image hidden-sm-md">
             <img src="assets/images/will-start.svg" id="intro-img"/>  
         </div>
@@ -14,30 +14,31 @@
       </div>
       <div class="col-lg-6 col-md-6  col-sm-12 beneficiaries-container">
         <div name="beneficiariesForm">
-          <div><span class="content-title">I would like my guardian to be…</span></div>
+          <div class="form-group-single-column  mb0 flex-col"><span class="content-title">I would like my beneficiaries to be</span></div>
             <div>
                   <div class="form-group-single-column  mb0 flex-col">
-                      <div class="checkbox-button two-label" *ngFor="let beneficiary of beneficiaryList ; let i = index">
-                        <input id="protectionNeed_{{i+1}}" [checked]="beneficiary.selected" (change)="validateForm(i)" name="protectionNeed" type="checkbox" class="field checkbox" tabindex="{{i+1}}">
-                        <label for="protectionNeed_{{i+1}}" id="prtNeedLbl{{i+1}}">
-                          <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
-                          <div class="input-label-normal">{{beneficiary.relationship | titlecase  }}</div>
-                        </label>
-                      </div>
-                    </div>    
-                  <div>
-                        <form id="addBeneficiaryForm" name="addBeneficiaryForm" [formGroup]="addBeneficiaryForm" id="addBeneficiaryFrm">
-                          <div *ngIf="isFormOpen" class="col-12 add-beneficiaries-container"> 
+                    <div class="edit-block checkbox-button two-label" *ngFor="let beneficiary of beneficiaryList ; let i = index" >
+                      <input id="beneficiary_{{i+1}}" name="beneficiary" [checked]="beneficiary.selected" (change)="validateForm(i)" type="checkbox" class="field checkbox">
+                      <label for="beneficiary_{{i+1}}" id="beneficry_{{i+1}}">
+                        <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
+                        <div class="input-label-normal">{{beneficiary.relationship | titlecase  }}</div>
+                      </label>
+                      <!-- <span><img src="assets/images/will-writing/edit-icon.svg"/></span> -->
+                    </div>
+                  </div>
+                      <div>
+                          <form id="addBeneficiaryForm" name="addBeneficiaryForm" [formGroup]="addBeneficiaryForm" id="addBeneficiaryFrm">
+                          <div *ngIf="isFormOpen" class="add-beneficiaries-container">          
                               <div  id="addGuardianForm" name="addGuardianForm">
                                 <div class="aboutMe">
                                 <div class="form-group">
-                                  <div class="flex-row title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
+                                  <div class="col-12 flex-row title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
                                   <div class="flex-row mb10">
                                     <div class="flex-col-5">
                                       <label for="name" id="addGuardianFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div></label>
                                     </div>
                                     <div class="flex-col-7">
-                                      <input type="text" [ngClass]="{'inline-error': submitted && addGud.name.invalid}" formControlName="name" [ngClass]="{'inline-error': submitted && addGud.name.invalid}" id="addGuardianFormInpt1" class="form-control" #name formControlName="name">
+                                      <input type="text" [ngClass]="{'inline-error': submitted && addGud.name.invalid}" id="addGuardianFormInpt1" class="form-control" #name formControlName="name">
                                     </div>
                                   </div>              
                                   <div class="flex-row mb10">
@@ -45,7 +46,7 @@
                                       <label for="name"  id="addGuardianFormLbl2"><div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div></label>
                                     </div>
                                     <div class="flex-col-7">
-                                      <input type="text" [ngClass]="{'inline-error': submitted && addGud.nricNumber.invalid}" formControlName="nricNumber" [ngClass]="{'inline-error': submitted && addGud.nricNumber.invalid}" id="addGuardianFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
+                                      <input type="text" [ngClass]="{'inline-error': submitted && addGud.nricNumber.invalid}" id="addGuardianFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
                                     </div>
                                   </div>              
                                   <div class="flex-row mb10">
@@ -72,7 +73,7 @@
                                   
                                   <div class="flex-row mb10 add-beneficiary">
                                       <div class="flex-col-5">
-                                          <button (click)="cancelForm(addBeneficiaryForm)" type="button" class="btn width100">cancel</button>
+                                          <button type="button" (click)="cancelForm(addBeneficiaryForm)" class="btn width100">cancel</button>
                                       </div>
                                       <div class="flex-col-5">
                                           <button type="button" (click) = "addBeneficiary(addBeneficiaryForm)" class="btn btn-primary width100">Add now</button>
@@ -84,17 +85,15 @@
                             </div>
                         </form>  
                       </div>
-                      <div (click)="isFormOpen= !isFormOpen" class="form-group-single-column  mb0 flex-col">
-                          <div class="checkbox-button two-label" >
-                            <img id ="add" src ="assets/images/will-writing/add.svg"/>
-                            <label for="add">
-                              <div class="input-label-black add-beneficiaries">Add Beneficiaries</div> 
-                            </label>
+                      <div *ngIf="isButtonEnabled" (click)="isFormOpen= !isFormOpen" class="form-group-single-column  mb0 flex-col">
+                          <div class="add-beneficiaries checkbox-button two-label mb0" >
+                            <span><img id ="add" src ="assets/images/will-writing/add.svg"/></span>
+                              <span>Add Beneficiaries</span> 
                           </div>
                         </div>
 
                   <div>
-                    <button type="button" [disabled]="" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+                    <button type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
                   </div>
               </div>
         </div>
