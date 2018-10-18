@@ -15,7 +15,9 @@ app-product-detail {
       width: 50% !important;
     }
   }
-
+  .btn-select {
+    height: 60px;
+  }
   .best-value-icon {
     display: block;
     position: absolute;
@@ -69,7 +71,7 @@ app-product-detail {
   }
 
   #panel-group {
-    margin-top: 20px;
+    margin-top: 5px;
 
     @include allmobiles {
       margin-bottom: 0 !important;
