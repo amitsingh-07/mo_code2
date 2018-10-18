@@ -1,9 +1,10 @@
-import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
@@ -28,7 +29,8 @@ export class ApiService {
     private modal: NgbModal,
     private myInfoService: MyInfoService,
     private guideMeService: GuideMeService,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient,
+    private router: Router) { }
 
   private handleError(error: HttpErrorResponse) {
     if (error) {
@@ -107,7 +109,7 @@ export class ApiService {
       const url = '../../../assets/articles/' + art_id + '.jsp';
       return this.http.getArticle(url)
         .pipe(
-          catchError((error: HttpErrorResponse) => this.handleError(error))
+          catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
         );
   }
 

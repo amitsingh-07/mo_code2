@@ -25,7 +25,10 @@
         height:100%;
         @include minMobilemaxPhablet{
             position: relative; 
-            height:300px;
+            height:200px;
+            margin-top:60px;
+            margin-right:20px;
+            right:20px;
             order:2;
         }
         .banner-bg--image{
@@ -71,7 +74,7 @@
                 font-size:3.7rem;
             }
             @include minMobilemaxPhablet{
-                font-size:3.5rem;
+                font-size:2.0rem;
             }
         }
         h3{
@@ -82,7 +85,7 @@
                 font-size:1.5rem;
             }
             @include minMobilemaxPhablet{
-                font-size:1.5rem;
+                font-size:1.2rem;
             }
         }
         

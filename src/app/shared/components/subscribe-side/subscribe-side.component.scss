@@ -4,18 +4,13 @@
 .sidepanel{
     position: relative;
     display:inline-block;
-    width:280px;
+    width:100%;
     height:auto;
     background-color:$white-color;
     border:1px solid $border-grey-color;
     padding:26px 0px;
-    @include tablet{
-        margin-top:20px;
-    }
-    @include minPhabletmaxTablet{
-        margin-top:20px;
-        width:100%;
-    }
+
+    
 
     .sidepanel__background{
         position: absolute;
@@ -40,7 +35,7 @@
         .teal{
             width:75%;
             height:100%;
-            background-color:$dark-teal-color;
+            background-color:$teal-color;
             left:0px;
             }
         }
@@ -89,6 +84,7 @@
                 line-height:1.1;
                 color:$black-color;
                 text-align: center;
+                margin-bottom:15px;
             }
             button{
                 width:100px;
@@ -106,7 +102,7 @@
         width: 100%;
         bottom:0px;
         height:6px;
-        background: $dark-teal-color;
+        background: $teal-color;
         .orange{
             width:25%;
             height:100%;

@@ -32,7 +32,9 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     this.route.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {// Redirected out
         if (!this.initRoute) {
-          this.triggerPopup();
+          if (val.url === '/home#diy') {
+            this.triggerPopup();
+          }
           this.initRoute = true;
         } else {
           this.modalRef.close();

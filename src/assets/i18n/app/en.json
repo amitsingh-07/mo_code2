@@ -146,7 +146,7 @@
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Login",
-    "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
+    "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
   },
   "FOOTER": {
     "TOP_SECTION": {
@@ -179,7 +179,7 @@
           "LINK": "enquiries@moneyowl.com.sg"
         },
         "CORPORATE": {
-          "LABEL": "For Corporate Financial Literacy Programme and Partnership",
+          "LABEL": "For Corporate Financial Literacy Programmes and Financial Wellness Partnerships",
           "LINK_LABEL": "partnership@moneyowl.com.sg",
           "LINK": "partnership@moneyowl.com.sg"
         }
