@@ -8,7 +8,7 @@ import { UserInfo } from './../../guide-me/get-started/get-started-form/user-inf
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
-import { ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
+import { ISetPassword, ISignUp, IVerifyRequestOTP, IEnquiryUpdate } from '../../sign-up/signup-types';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { MyInfoService } from './../Services/my-info.service';
@@ -304,6 +304,14 @@ export class ApiService {
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
         })
+      );
+  }
+
+  /** Post Login */
+  updateInsuranceEnquiry(payload: IEnquiryUpdate) {
+    return this.http.post(apiConstants.endpoint.updateProductEnquiry, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 

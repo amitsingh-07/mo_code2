@@ -31,15 +31,16 @@ export class AuthenticationService {
       password: userPassword ? userPassword : '',
       secretKey: this.getAppSecretKey()
     };
-    return this.http.post<IServerResponse>(`${environment.apiBaseUrl}/${authenticateUrl}`, authenticateBody)
+    const handleError = '?handleError=true';
+    return this.http.post<IServerResponse>(`${environment.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
-        if (response && response.objectList[0].securityToken) {
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
           return response.objectList[0].securityToken;
         }
-        return null;
+        return response;
       }));
   }
 
