@@ -51,10 +51,19 @@ export class JwtInterceptor implements HttpInterceptor {
                 const data = event.body;
                 if (data.responseMessage && data.responseMessage.responseCode < 6000) {
                     let showError = true;
-                    if (this.parseQuery['alert'] && this.parseQuery['alert'] === 'false') {
+                    let selfHandleError = false;
+                    const queryMap = this.parseQuery(event.url);
+                    if (queryMap['alert'] && queryMap['alert'] === 'false') {
                         showError = false;
+                    } else if (queryMap['handleError'] && queryMap['handleError'] === 'true') {
+                        selfHandleError = true;
                     }
-                    this.errorHandler.handleCustomError(data, showError);
+
+                    if (selfHandleError) {
+                        return event.body;
+                    } else {
+                        this.errorHandler.handleCustomError(data, showError);
+                    }
                 } else {
                     this.saveCache(request, event);
                     return data;
