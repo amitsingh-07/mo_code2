@@ -105,6 +105,17 @@ export class ApiService {
       );
   }
 
+  getRelatedArticle(in_tag_id: number) {
+    const payload = { tag_id: in_tag_id };
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.post(apiConstants.endpoint.article.getRelatedArticle, payload);
+    const url = '../../../assets/mock-data/currentCategoryList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getArticleContent(art_id) {
       const url = '../../../assets/articles/' + art_id + '.jsp';
       return this.http.getArticle(url)

@@ -93,12 +93,18 @@
         background-color: $white-color;
         margin-bottom:15px;
         &:first-child{
+            margin-left:unset;
             margin-right:15px;
             @include minMobilemaxPhablet{
                 margin-right:unset;
             }
+            &:last-child{
+                margin-left:auto;
+                margin-right:auto;
+            }
         }
         &:last-child{
+            margin-right:unset;
             margin-left:15px;
             @include minMobilemaxPhablet{
                 margin-left:unset;
@@ -107,6 +113,9 @@
         @include minMobilemaxPhablet{
             width:100%;
             max-width:unset;
+        }
+        .art-tag__container{
+            position: absolute;
         }
         .article-card--img{
             position: relative;
@@ -133,8 +142,9 @@
             border-top:1px solid #e1e1e1;
             .art-title{
                 font-family:$muli-semi-bold; 
-                font-size:22px;
+                font-size:21px;
                 color:$teal-color;
+                margin-bottom:10px;
                 line-height:1.1;
                 }
             .art-desc{
@@ -196,6 +206,8 @@
             display: block;
             padding: 0px;
             overflow:hidden;
+            background-size:cover;
+            background-position: center;
             @include allmobiles{
                 min-height:250px;
             }
@@ -215,7 +227,7 @@
             padding:15px 15px 40px 15px;
             .art-title{
                 font-family:$muli-semi-bold; 
-                font-size:22px;
+                font-size:20px;
                 color:$teal-color;
                 line-height:1.1;
                 }
@@ -269,6 +281,11 @@
             margin-right:5px;
             margin-bottom:5px;
             cursor: pointer;
+            &:hover{
+                text-decoration: none;
+                background-color:$teal-grey-color;
+                color:$white-color;
+                }
             i{
                 font-size:14px;
                 transform:translateY(2px);

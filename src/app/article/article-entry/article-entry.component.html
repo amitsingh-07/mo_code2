@@ -4,9 +4,9 @@
       <div class="sub-navigation--inner">
           <span routerLink="/">Home</span>
           <span class="separator"></span>
-          <span>Articles</span>
+          <span routerLink="/articles">Articles</span>
           <span class="separator"></span>
-          <span>{{category}}</span>
+          <span routerLink="/articles/category/{{category}}">{{category}}</span>
           <span class="separator"></span>
           <span>This Article</span>
           </div>
@@ -38,6 +38,46 @@
 
       </div>
         </div>
-      <app-subscribe-side></app-subscribe-side>
+    <div class="article-entry__side-panel">
+        <app-subscribe-side></app-subscribe-side>
+        <div class="related-side">
+          <p class="related-side--title">Related Articles:</p>
+          <div class="relate-side__card-container">
+            <div class="relate-side__card">
+              <div class="related-card__img">
+                <img src="../../../assets/images/temp/thumbnail.jpg"/>
+                </div>
+              <div class="related-card__desc">
+                <a routerLink="/articles/entry/12" class="related-card--title">Understanding MediShield Life & What should you do (Part 1: MediShield Life in a Nutshell)</a>
+                <a routerLink="/articles/entry/12">Read More <i class="material-icons">
+                    keyboard_arrow_right
+                    </i></a>
+                </div>
+              </div>
+            <div class="relate-side__card">
+              <div class="related-card__img">
+                <img src="../../../assets/images/temp/thumbnail.jpg"/>
+                </div>
+              <div class="related-card__desc">
+                <a routerLink="/articles/entry/12" class="related-card--title">Understanding MediShield Life & What should you do (Part 1: MediShield Life in a Nutshell)</a>
+                <a routerLink="/articles/entry/12">Read More <i class="material-icons">
+                    keyboard_arrow_right
+                    </i></a>
+                </div>
+              </div>
+            <div class="relate-side__card">
+              <div class="related-card__img">
+                <img src="../../../assets/images/temp/thumbnail.jpg"/>
+                </div>
+              <div class="related-card__desc">
+                <a routerLink="/articles/entry/12" class="related-card--title">Understanding MediShield Life & What should you do (Part 1: MediShield Life in a Nutshell)</a>
+                <a routerLink="/articles/entry/12">Read More <i class="material-icons">
+                    keyboard_arrow_right
+                    </i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
   </div>
 </div> 

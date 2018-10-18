@@ -5,6 +5,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 import { ArticleApiService } from './../article.api.service';
+import { ArticleService } from './../article.service';
 
 @Component({
   selector: 'app-article-entry',
@@ -17,10 +18,11 @@ export class ArticleEntryComponent implements OnInit {
   public art_content: any;
   public title: string;
   public category: string;
+  public tagId: number;
   private author: string;
 
   constructor(public navbarService: NavbarService, public footerService: FooterService, private route: ActivatedRoute,
-              public articleApiService: ArticleApiService) {}
+              public articleApiService: ArticleApiService, public articleService: ArticleService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -37,18 +39,13 @@ export class ArticleEntryComponent implements OnInit {
         this.getArticleContent(this.art_id);
       }
     });
-
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(true);
   }
 
   getArticleContent(art_id: number) {
     this.articleApiService.getArticleContent(art_id).subscribe((data) => {
-      console.log('contentChanged');
       this.art_content = data;
-      this.title = 'Understanding MediShield Life & What should you do (Part 1: MediShield Life in a Nutshell)';
-      this.category = 'Protection';
-      this.author = 'Shawn Lee';
     });
   }
 

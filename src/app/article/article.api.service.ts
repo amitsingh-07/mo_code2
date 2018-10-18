@@ -20,7 +20,6 @@ export class ArticleApiService {
       quantity = param;
     }
     const articleElementList =  this.apiService.getRecentArticles(quantity);
-
     return articleElementList;
   }
 
@@ -32,12 +31,17 @@ export class ArticleApiService {
     return this.apiService.getArticleContent(art_id);
   }
 
+  getRelatedArticle(tag_id: number) {
+    return this.apiService.getRelatedArticle(tag_id);
+  }
+
   getArticleCategory() {
     return this.apiService.getArticleCategory();
   }
 
   getArticleCategoryList(category_name: string) {
-    return this.apiService.getArticleCategoryList(category_name);
+    const category_name_edit = category_name.replace(/_/g, ' ');
+    return this.apiService.getArticleCategoryList(category_name_edit);
   }
 
   getArticleTagMap() {

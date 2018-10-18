@@ -220,6 +220,13 @@
                 letter-spacing:-0.4;
                 line-height:1.2;
                 margin-bottom:5px;
+                a{
+                    color:$teal-color;
+                    &:hover{
+                        text-decoration:none;
+                        color:$dark-teal-color;
+                    }
+                }
             }
             .article-description{
                 color:$dark-teal-color;

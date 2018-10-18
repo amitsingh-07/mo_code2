@@ -56,7 +56,6 @@
         align-items: center;
     }
 }
-
 .article-entry__content{
     position: relative;
     display:block;
@@ -169,11 +168,51 @@
                     color:$teal-grey-color;
                 }
             }
-            
         }
     }
     .page-box{
-        padding:40px 30px;
+        padding:0px 30px 40px 30px;
     }
 }
+.article-entry__side-panel{
+    position: relative;
+    display:flex;
+    flex-direction:column;
+    width:280px;
+    @include minPhabletmaxTablet{
+        margin-top:20px;
+        width:100%;
+        padding:0px 20px;
+    }
+    @include minMobilemaxPhablet{
+        margin-top:20px;
+        width:100%;
+        padding:0px 20px;
+    }
 
+    .related-side{
+        position: relative;
+        display: flex;
+        flex-direction:column;
+        margin-top:20px;
+        width:100%;
+        .related-side--title{
+            position: relative;
+            display:block;
+            font-family:$muli-bold;
+            color:$teal-color;
+            font-size:18px;
+            margin-bottom:10px;
+        }
+        .relate-side__card-container{
+            position: relative;
+            display:flex;
+            flex-direction:column;
+            @include minPhabletmaxTablet{
+                flex-direction:row;
+                justify-content:space-between;
+            }
+        }
+    }
+    
+}

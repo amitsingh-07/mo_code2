@@ -36,6 +36,7 @@
     a{
         color:$orange-color;
         font-family:$muli-bold;
+        line-height:1.2;
     }
     
     img{
@@ -100,6 +101,11 @@
                 text-align: center;
             }
         }
+        &.center{
+            td{
+                text-align:center;
+            }
+        }
     }
 
     td{ 
@@ -112,6 +118,9 @@
             text-align:left;
             vertical-align:middle;
         }
+        &.selected{
+            text-align:center;
+        }
     }
     
 
@@ -120,6 +129,11 @@
         img{
             width:60px;
             height:60px;
+            max-width: unset;
+        }
+    }
+    .img-width--clear{
+        img{
             max-width: unset;
         }
     }
@@ -214,7 +228,95 @@
         text-align:center !important;
     }
 
+    .text-secondary-color{
+        color:$dark-teal-color;
+    }
     
+}
+
+/** Side Panel Card **/
+
+.relate-side__card{
+    position: relative;
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:auto;
+    border:1px solid $border-grey-color;
+    overflow:hidden;
+    background-color:$white-color;
+    margin-bottom:15px;
+    
+    @include minPhabletmaxTablet{
+        width:280px;
+        margin-left:5px;
+        margin-right:5px;
+    
+        &:first-child{
+            margin-left:unset;
+        }
+        &:last-child{
+            margin-right:unset;
+        }
+    }
+    @include allmobiles{
+        flex-direction:row;
+    }
+
+    .related-card__img{
+        position: relative; 
+        width:100%;
+        height:auto;
+        border-bottom:1px solid $border-grey-color;
+        img{
+            display:block;
+            width:100%;
+        }
+        @include minMobilemaxPhablet{
+            flex-basis:40%;
+            border-bottom:unset;
+            border-right:1px solid $border-grey-color;
+        }
+    }
+
+    .related-card__desc{
+        position: relative;
+        display:block;
+        padding:10px;
+        @include minMobilemaxPhablet{
+            flex-basis:60%;
+        }
+        .related-card--title{
+            position: relative;
+            display:block;
+            font-family:$muli-bold;
+            font-size:15px;
+            color:$teal-color;
+            transition:0.3s;
+            cursor: pointer;
+            &:hover{
+                color:$dark-teal-color;
+                text-decoration:none;
+            }
+        }
+        a{
+            font-family:$muli-semi-bold;
+            font-size:14px;
+            color:$orange-color;
+            &:hover{
+                opacity:0.9;
+            }
+            i{
+                transform:translate(-7px,4.5px);
+                font-size:22px;
+            }
+        }
+        .related-card--summary{
+            font-family:$muli-regular;
+            font-size:12px;
+            color:$dark-teal-color;
+        }
+    }
 }
 
 

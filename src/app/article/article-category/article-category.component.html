@@ -4,21 +4,20 @@
       <div class="sub-navigation--inner">
         <span routerLink="/">Home</span>
         <span class="separator"></span>
-        <span>Articles</span>
+        <span routerLink="/articles">Articles</span>
         <span class="separator"></span>
-        <span>{{category}}</span>
+        <span routerLink="/articles/category">{{category}}</span>
         </div>
       </div> 
     </div>
   <div class="article-category__container">
     <div class="article-category__articles">
       <div class="article-category__element" *ngFor="let article of articleListCategory">
-          <div class="article-element__image" [ngStyle]="{'background-image': 'url(../../../assets/articles/images/'+article.id+'/thumbnail.jpg)'}">
-            
-          </div>
+          <div class="article-element__image" routerLink="/articles/entry/{{article.id}}" [ngStyle]="{'background-image': 'url(../../../assets/articles/images/'+article.id+'/thumbnail.jpg)'}">
+            </div>
           <div class="article-element__desc">
             <div class="article-title">
-                <a>{{article.art_title}}</a>
+                <a routerLink="/articles/entry/{{article.id}}">{{article.art_title}}</a>
               </div>
             <div class="article-description">
                 {{article.art_desc}}
@@ -28,7 +27,7 @@
               <span>{{article.art_date}}</span>
               </div>
             <div class="art-tag__container">
-              <div class="art-tag__element" *ngFor="let article_tag of article.art_tags">
+              <div class="art-tag__element" *ngFor="let article_tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(article_tag)}}">
                 <i class="material-icons">local_offer</i>{{article_tag}}
                 </div>
             </div>

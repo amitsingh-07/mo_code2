@@ -9,6 +9,7 @@ import { ArticleApiService } from './../article.api.service';
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 
 import { IArticleElement } from './../articleElement.interface';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-article-category',
@@ -48,11 +49,10 @@ export class ArticleCategoryComponent implements OnInit {
     if (this.category_id > 0) {
       this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
     } else {
-      this.category = 'All';
+      //Redirect away
     }
     this.articleApiService.getArticleCategoryList(this.category).subscribe((data) => {
       this.articleListCategory = this.articleService.getArticleElementList(data);
-      console.log(this.articleListCategory);
     });
   }
 }
