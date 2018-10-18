@@ -159,4 +159,35 @@ export class WillWritingFormError {
                 }
         }
    };
+   addBeneficiaryForm: object = {
+        formFieldErrors: {
+                errorTitle: 'Invalid Form',
+                name: {
+                        required : {
+                                errorTitle: 'Invalid Name',
+                                errorMessage: 'Please input the Name'
+                        },
+                        pattern : {
+                                errorTitle: 'Invalid Name',
+                                errorMessage: 'Beneficiary name field can only contain alphabets value of 2 - 40 characters in length'
+                        }
+                },
+                nricNumber: {
+                        required : {
+                                errorTitle: 'Please input NRIC',
+                                errorMessage: 'Please enter your beneficiary NRCI number'
+                        },
+                        pattern : {
+                                errorTitle: 'Invalid NRCI Number',
+                                errorMessage: 'Beneficiary NRIC field can only contain alphabets value of 2 - 40 characters in length'
+                        }
+                },
+                relationship: {
+                        required : {
+                                errorTitle: 'Invalid Relation',
+                                errorMessage: 'Please indicate Relationship to you'
+                        }
+                }
+        }
+   };
 }

@@ -124,6 +124,14 @@
             "BUTTON": "Add Executor & Trustee",
             "TOOLTIP_TITLE": "What does executor & trustee do?",
             "TOOLTIP_MESSAGE": "<p>After you have passed, your executor & trustee is in charge of carrying out the wishes of your will. Whilst the two roles hold different responsibilities, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes making funeral arrangements, settling outstanding bills or debts, managing your finances and distributing assets.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>"
+        },
+        "MY_BENEFICIARY": {
+            "TITLE": "My Beneficiaries",
+            "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
+            "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
+            "FORM_TITLE": "I would like my guardian to be",
+            "TOOLTIP_TITLE": "What does guardian mean?",
+            "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your child after you have passed, until they reach the age of 21.</p><p>Taking over your role as the parent, the guardian will have the ability to make decisions that affect your child, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your child’s guardian to seek their agreement.</p>"
         }
     }
 }
