@@ -42,7 +42,7 @@
     "PROCEED":"Proceed"
   },
   "ADD_EXISTING_COVERAGES" : {
-    "TITLE": "Add Existing Coverages",
+    "TITLE": "Add Existing Coverage",
     "LIFE_PROTECTION": "Life Protection",
     "CRITICAL_ILLNESS": "Critical Illness",
     "OCCUPATION_DISABILITY": "Occupational Disability",

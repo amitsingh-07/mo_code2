@@ -421,10 +421,14 @@ nouislider {
   margin: 0 auto;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none !important;
     margin: 0 !important;
+}
+
+input[type=number] {
+    -moz-appearance:textfield !important;
 }
 
 input::-ms-clear {
