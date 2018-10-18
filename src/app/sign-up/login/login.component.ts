@@ -152,7 +152,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           const captchaControl = this.loginForm.controls['loginUsername'];
           captchaControl.setErrors({invalidMatch: true});
           this.doLogin(this.loginForm);
-          if (data.responseMessage.attempt >= 3) {
+          if (data.objectList[0].attempt >= 3) {
             this.signUpService.isCaptchaShown();
             this.showCaptcha = true;
             captchaControl.setValidators([Validators.required]);
