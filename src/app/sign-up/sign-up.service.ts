@@ -12,6 +12,7 @@ const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
 const REDIRECT_URL_KEY = 'app_redirect_url';
 const IS_CAPTCHA_SHOWN = 'is_captcha';
+const CAPTCHA_SESSION_ID = 'captcha_session_id';
 
 @Injectable({
   providedIn: 'root'
@@ -267,9 +268,28 @@ export class SignUpService {
     return sessionStorage.getItem(REDIRECT_URL_KEY);
   }
 
-  isCaptchaShown() {
+  setCaptchaShown() {
     if (window.sessionStorage) {
       sessionStorage.setItem(IS_CAPTCHA_SHOWN, 'true');
     }
+  }
+
+  getCaptchaShown() {
+    return sessionStorage.getItem(IS_CAPTCHA_SHOWN);
+  }
+
+  setCaptchaSessionId(sessionId) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(CAPTCHA_SESSION_ID, sessionId);
+    }
+  }
+
+  getCaptchaSessionId() {
+    return sessionStorage.getItem(CAPTCHA_SESSION_ID);
+  }
+
+  removeCaptchaSessionId() {
+    sessionStorage.removeItem(CAPTCHA_SESSION_ID);
+    sessionStorage.removeItem(IS_CAPTCHA_SHOWN);
   }
 }
