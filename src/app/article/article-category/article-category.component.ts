@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from './../article.service';
+import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ArticleApiService } from './../article.api.service';
-
-import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
-
+import { ArticleService } from './../article.service';
 import { IArticleElement } from './../articleElement.interface';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-article-category',
@@ -20,7 +17,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class ArticleCategoryComponent implements OnInit {
   public category = 'Protection';
   public category_id: number;
-  private articleListCategory: IArticleElement[];
+  public articleListCategory: IArticleElement[];
   constructor(public navbarService: NavbarService, public footerService: FooterService,
               private articleService: ArticleService, private articleApiService: ArticleApiService,
               private config: NgbDropdownConfig, private route: ActivatedRoute) {
