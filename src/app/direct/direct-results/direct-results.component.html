@@ -6,9 +6,10 @@
       <div style="justify-content: center;">
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
           <img class="best-value-icon" *ngIf="j == 0" src="./assets/images/best_value.svg" />
-          <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType"
-            [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)" (view)="viewDetails($event)" [isDirect] = "true" [comparePlanSelected] = "selectedComparePlans"
-            [planSelected]="selectedPlans" (compare)="comparePlan($event)" ></app-plan-widget>
+          <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType"
+            [bestValue]="j == 0" [frequencyType]="premiumFrequencyType" [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)"
+            (view)="viewDetails($event)" [isDirect]="true" [comparePlanSelected]="selectedComparePlans" [planSelected]="selectedPlans"
+            (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
     </div>
@@ -16,35 +17,49 @@
   <div class="flex-col-4 hidden-sm-md" [hidden]="!isResultsLoaded || searchResult?.length === 0">
     <button ngbButtonLabel class="direct-form-btn--radio btn btn-small" (click)="toggleComparePlans()" style="float:left;"
       [ngClass]="{'compare' : isComparePlanEnabled}">{{ 'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button>
-    <label class="lbl">{{filteredResult.length}}{{ 'DIRECT_RESULTS.PLANS_FOUND' | translate}}</label>
+    <label class="lbl">{{filteredResult.length}}
+      <span [hidden]="filteredResult.length > 1">{{ 'DIRECT_RESULTS.PLAN_FOUND' | translate}}</span>
+      <span [hidden]="filteredResult.length <= 1">{{ 'DIRECT_RESULTS.PLANS_FOUND' | translate}}</span>
+    </label>
     <div style="clear: both; margin-bottom: 10px;"></div>
-    <app-settings-widget *ngIf="filters.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)" (showFilterTooltip)="showSettingsToolTip($event)"></app-settings-widget>
+    <app-settings-widget *ngIf="filters.length > 0" [filters]="filters" [sort]="sortList" (filterProducts)="filterProducts($event)"
+      (showFilterTooltip)="showSettingsToolTip($event)"></app-settings-widget>
     <div [hidden]="!isComparePlanEnabled" class="overlay"></div>
   </div>
-  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%.</div>
+  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on
+    individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not
+    guaranteed and are based on the higher projection rate of up to 4.75%.</div>
 </div>
 <div id="results-mobile" *ngIf="isMobileView" [hidden]="!isResultsLoaded || resultsEmptyMessage?.length > 0" class="hidden-lg">
 
-  <div class="compare-plan-header" *ngIf="isComparePlanEnabled">{{ 'DIRECT_RESULTS.COMPARE' | translate}}<button aria-label="Close" class="compare-plan-header--close"
-      id="modalBtn" type="button" (click)="toggleComparePlans()"><span aria-hidden="true"></span></button></div>
+  <div class="compare-plan-header" *ngIf="isComparePlanEnabled">{{ 'DIRECT_RESULTS.COMPARE' | translate}}<button
+      aria-label="Close" class="compare-plan-header--close" id="modalBtn" type="button" (click)="toggleComparePlans()"><span
+        aria-hidden="true"></span></button></div>
   <div class="results-mobile__compare-plan" [ngClass]="{'is-hidden' : isComparePlanEnabled}">
-    <div class="results-mobile__compare-plan--lbl"><label class="lbl">{{filteredResult.length}}{{ 'DIRECT_RESULTS.PLANS_FOUND' | translate}}</label></div>
+    <div class="results-mobile__compare-plan--lbl"><label class="lbl">{{filteredResult.length}}{{
+        'DIRECT_RESULTS.PLANS_FOUND' | translate}}</label></div>
     <div class="results-mobile__compare-plan--btn"><button ngbButtonLabel class="direct-form-btn--radio btn btn-small"
-        (click)="toggleComparePlans()" style="float:left;" [ngClass]="{'compare' : isComparePlanEnabled}">{{ 'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button></div>
+        (click)="toggleComparePlans()" style="float:left;" [ngClass]="{'compare' : isComparePlanEnabled}">{{
+        'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button></div>
   </div>
   <div class="flex-row" [ngClass]="{'mt60' : isComparePlanEnabled}" *ngFor="let category of searchResult; let i = index"
     style="padding: 10px">
     <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
       <img class="best-value-icon--mobile" *ngIf="j == 0" src="./assets/images/best_value.svg" />
-      <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="j == 0" [frequencyType] = "premiumFrequencyType" [comparePlan]="isComparePlanEnabled"
-        (select)="selectPlan($event)" [isDirect] = "true" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)" [comparePlanSelected] = "selectedComparePlans"></app-plan-widget>
+      <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="j == 0"
+        [frequencyType]="premiumFrequencyType" [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)"
+        [isDirect]="true" (view)="viewDetails($event)" [planSelected]="selectedPlans" (compare)="comparePlan($event)"
+        [comparePlanSelected]="selectedComparePlans"></app-plan-widget>
     </div>
   </div>
-  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%.</div>
+  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on
+    individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not
+    guaranteed and are based on the higher projection rate of up to 4.75%.</div>
 </div>
 <div class="text-center mt15">
-<div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{ 'SETTINGS.NO_RESULTS' | translate}}</div>
-<div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
+  <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{
+    'SETTINGS.NO_RESULTS' | translate}}</div>
+  <div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
 </div>
 <!-- Floating plan selection footer -->
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
@@ -60,10 +75,9 @@
 <div *ngIf="isComparePlanEnabled && (selectedComparePlans && selectedComparePlans.length > 1)" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">
     <span class="selected-count">{{selectedComparePlans.length}}</span>
-    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}<span class="hidden-sm-md">{{ 'COMMON.SUBLBL_MAX4' | translate}}</span></span>
+    <span class="lbl-selected">{{ 'COMMON.LBL_PLANS_SELECTED' | translate}}<span class="hidden-sm-md">{{
+        'COMMON.SUBLBL_MAX4' | translate}}</span></span>
     <span class="btn-proceed" (click)="compare()">{{ 'BUTTON.COMPARE' | translate}}</span>
   </div>
 </div>
 <!-- / Floating plan selection for compare plans footer -->
-
-

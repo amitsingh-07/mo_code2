@@ -1,0 +1,82 @@
+{
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	},
+	"objectList": [{
+			"enquiryId": 5189,
+			"productProtectionTypeList": [{
+					"protectionType": "Child's Education Fund",
+					"productList": [{
+							"id": "S016",
+							"productName": "TM Education (LP)",
+							"purposeId": 2,
+							"objectiveId": 6,
+							"typeId": 9,
+							"searchCount": 0,
+							"whyBuy": "I want a savings plan specially designed for child's tertiary education",
+							"payOut": "3 yearly payouts towards the last 3 policy years",
+							"underWritting": "Yes",
+							"rebate": "Eligible",
+							"cashValue": "Yes",
+							"cashPayoutFrequency": "Yearly payout in the last 3 years",
+							"coverageDuration": "Till age 20/21/22/23",
+							"premiumDuration": "5/10/15 years",
+							"features": "Option to buy a new Whole life or Endowment policy at maturity without medical underwriting.",
+							"productDescription": "This Endowment policy is designed for child education. It pays 3 Yearly Cash Benefits towards the last 3 policy years. The 3rd cash payout, being the Maturity Benefit, would include projected bonus (if any). You can select the policy to mature at child age 20 to 23. Upon maturity, the child can purchase a new Whole life or Endowment policy without further medical underwriting. This policy is available for ages 0 to 10. Premium can be paid in 5, 10 or 15 years. It offers death and TPD benefits, which are based on 100% of Sum Assured plus projected bonus (if any). You can also attach optional riders like premium waiver to enhance its benefits.",
+							"status": "Active",
+							"brochureLink": "NA",
+							"isAuthorised": true,
+							"insurer": {
+								"id": "TKM",
+								"insurerName": "Tokio Marine",
+								"logoName": "logo-tokiomarine.png",
+								"url": "https://www.tokiomarine.com",
+								"rating": "AA+"
+							},
+							"premium": {
+								"id": 11,
+								"productId": null,
+								"gender": "Female",
+								"minimumAge": 23,
+								"coverageName": "$200,000",
+								"durationName": "till age 65",
+								"premiumTerm": "25",
+								"savingsDuration": "",
+								"retirementPayoutAmount": "",
+								"retirementPayoutDuration": "",
+								"premiumAmount": "540",
+								"premiumAmountYearly": "0",
+								"premiumFrequency": "per year",
+								"ranking": 1,
+								"sumAssured": 500.0,
+								"payoutDuration": "0",
+								"numberOfADL": 1,
+								"hospitalPlanType": "Standard",
+								"payoutAge": 18,
+								"gaurenteedMonthlyIncome": 0.0,
+								"monthlyBenefit": 500.0,
+								"deferredPeriod": 0,
+								"escalatingBenefit": 0.0,
+								"intrestRateOfReturn": 2.4,
+								"smoker": false
+							},
+							"promotion": {
+								"id": 23,
+								"thumbnail": "tkm_maturityrewards.jpg",
+								"promoDiscount": "*NTUC Vouchers",
+								"promoTitle": "Receive Shopping Vouchers on New Policy Sign-Up",
+								"description": "Reward yourself to a shopping spree when you reinvest your maturity proceeds with TMLS!",
+								"link": "23.jsp",
+								"expired": "FALSE"
+							},
+							"rider": null,
+							"brochureLinkSize": "NA",
+							"authorised": true
+						}
+					]
+				}
+			]
+		}
+	]
+}

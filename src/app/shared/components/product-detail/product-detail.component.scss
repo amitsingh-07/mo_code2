@@ -36,6 +36,7 @@ app-product-detail {
   .modal .close {
     opacity: 1;
     position: absolute !important;
+
     @include allmobiles {
       right: 25px !important;
       top: 15px !important;
@@ -104,6 +105,19 @@ app-product-detail {
         border-top: 1px solid #c2d9ec;
         padding-top: 10px;
         padding-bottom: 10px;
+
+        .features {
+          display: flex;
+          justify-content: flex-start;
+          padding: 10px 0;
+          text-align: left;
+
+          img {
+            width: 15px;
+            height: 15px;
+            margin-right: 9px;
+          }
+        }
       }
     }
   }

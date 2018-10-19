@@ -4,12 +4,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
-import { ISetPassword, ISignUp, IVerifyRequestOTP, IEnquiryUpdate } from '../../sign-up/signup-types';
-import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
+import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { MyInfoService } from './../Services/my-info.service';
 import { apiConstants } from './api.constants';
@@ -117,11 +115,11 @@ export class ApiService {
   }
 
   getArticleContent(art_id) {
-      const url = '../../../assets/articles/' + art_id + '.jsp';
-      return this.http.getArticle(url)
-        .pipe(
-          catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
-        );
+    const url = '../../../assets/articles/' + art_id + '.jsp';
+    return this.http.getArticle(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
+      );
   }
 
   getArticleCategoryList(category_name) {
