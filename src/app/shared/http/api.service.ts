@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
-import { ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
+import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { apiConstants } from './api.constants';
 import { BaseService } from './base.service';
@@ -114,11 +113,11 @@ export class ApiService {
   }
 
   getArticleContent(art_id) {
-      const url = '../../../assets/articles/' + art_id + '.jsp';
-      return this.http.getArticle(url)
-        .pipe(
-          catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
-        );
+    const url = '../../../assets/articles/' + art_id + '.jsp';
+    return this.http.getArticle(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
+      );
   }
 
   getArticleCategoryList(category_name) {
@@ -301,6 +300,14 @@ export class ApiService {
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
         })
+      );
+  }
+
+  /** Post Login */
+  updateInsuranceEnquiry(payload: IEnquiryUpdate) {
+    return this.http.post(apiConstants.endpoint.updateProductEnquiry, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 

@@ -4,7 +4,10 @@
         "VERIFY": "Verify", 
         "LOGIN": "Log In",
         "CREATE_ACCOUNT": "Create Account",
-        "TRY_AGAIN": "Try Again"
+        "TRY_AGAIN": "Try Again",
+        "CAPTCHA": "Enter image text",
+        "CAPTCHA_TITLE": "Enter the characters shown in the image",
+        "TRY_ANOTHER_TEXT": "Try another text"
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",

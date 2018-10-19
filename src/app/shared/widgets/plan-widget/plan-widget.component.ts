@@ -103,7 +103,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       if (this.type === 'long-term care') {
         this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
+        this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
       }
       if (this.type === 'hospital plan') {
         this.canShowDiscount = false;
@@ -111,8 +111,8 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period:', description: '6 Months' });
-        this.highlights.push({ title: 'Escalating Benefit:', description: '3%' });
+        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod + ' Months' });
+        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit + '%' });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }

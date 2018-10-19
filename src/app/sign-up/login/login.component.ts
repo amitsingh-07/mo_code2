@@ -1,13 +1,15 @@
-import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../environments/environment';
+import { AppService } from './../../app.service';
+import { FooterService } from './../../shared/footer/footer.service';
 
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
+  INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
 } from '../../investment-account/investment-account-routes.constants';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -24,7 +26,7 @@ import { LoginFormError } from './login-form-error';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   private loginFormError: any = new LoginFormError();
   private pageTitle: string;
   private description: string;
@@ -34,10 +36,13 @@ export class LoginComponent implements OnInit {
   defaultCountryCode;
   countryCodeOptions;
   heighlightMobileNumber;
+  captchaSrc: any = '';
+  showCaptcha: boolean;
+  hideForgotPassword = false;
 
   constructor(
     // tslint:disable-next-line
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal,
     public authService: AuthenticationService,
     public navbarService: NavbarService,
@@ -65,6 +70,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    if (this.signUpService.getCaptchaShown()) {
+      this.setCaptchaValidator();
+    }
+  }
+
+  setCaptchaValidator() {
+    this.showCaptcha = true;
+    const captchaControl = this.loginForm.controls['captchaValue'];
+    captchaControl.setValidators([Validators.required]);
+    this.refreshCaptcha();
+  }
+
   /**
    * show / hide password field.
    * @param el - selected element.
@@ -84,7 +102,8 @@ export class LoginComponent implements OnInit {
     this.formValues = this.signUpService.getLoginInfo();
     this.loginForm = this.formBuilder.group({
       loginUsername: [this.formValues.loginUsername, [Validators.required, Validators.pattern(RegexConstants.EmailOrMobile)]],
-      loginPassword: [this.formValues.loginPassword, [Validators.required]]
+      loginPassword: [this.formValues.loginPassword, [Validators.required]],
+      captchaValue: ['']
     });
   }
 
@@ -100,6 +119,7 @@ export class LoginComponent implements OnInit {
    * login submit.
    * @param form - login form.
    */
+  // tslint:disable-next-line:cognitive-complexity
   doLogin(form: any) {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
@@ -109,19 +129,51 @@ export class LoginComponent implements OnInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword).subscribe((data) => {
-        this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-          this.signUpService.setUserProfileInfo(userInfo.objectList);
-          const redirect_url = this.signUpService.getRedirectUrl();
-          if (redirect_url) {
-            this.signUpService.clearRedirectUrl();
-            this.router.navigate([redirect_url]);
-          } else {
-            this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword, 
+        this.loginForm.value.captchaValue).subscribe((data) => {
+        if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+          try {
+            if (data.objectList[0].customerId) {
+              this.appService.setCustomerId(data.objectList[0].customerId);
+            }
+          } catch (e) {
+            console.log(e);
           }
-        });
+          this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+            this.signUpService.setUserProfileInfo(userInfo.objectList);
+            const redirect_url = this.signUpService.getRedirectUrl();
+            if (redirect_url) {
+              this.signUpService.clearRedirectUrl();
+              this.router.navigate([redirect_url]);
+            } else {
+              this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+            }
+          });
+          this.signUpService.removeCaptchaSessionId();
+        } else if (data.responseMessage.responseCode === 5016) {
+            this.loginForm.controls['captchaValue'].reset();
+            this.loginForm.controls['loginPassword'].reset();
+            this.openErrorModal(data.responseMessage.responseDescription);
+            this.refreshCaptcha();
+        } else if (data.responseMessage.responseCode === 5011) {
+          this.loginForm.controls['captchaValue'].reset();
+          this.loginForm.controls['loginPassword'].reset();
+          this.openErrorModal(data.responseMessage.responseDescription);
+          if (data.objectList[0].sessionId) {
+            this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
+          } else if (data.objectList[0].attempt >= 3) {
+            this.signUpService.setCaptchaShown();
+            this.setCaptchaValidator();
+          }
+        }
       });
     }
+  }
+
+  openErrorModal(error) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorMessage = error;
+    return false;
   }
 
   markAllFieldsDirty(form) {
@@ -147,5 +199,11 @@ export class LoginComponent implements OnInit {
 
   goBack() {
     this._location.back();
+  }
+
+  refreshCaptcha() {
+    const time = new Date().getMilliseconds();
+    // tslint:disable-next-line:max-line-length
+    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=` + this.authService.getSessionId() + '&time=' + time;
   }
 }

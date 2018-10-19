@@ -97,6 +97,12 @@ export class CreateAccountFormError {
                         // tslint:disable-next-line:max-line-length
                         errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
                 }
+        },
+        captcha: {
+                required : {
+                        errorTitle: 'Invalid captcha',
+                        errorMessage: 'Please enter valid captcha'
+                }
         }
     };
 }
