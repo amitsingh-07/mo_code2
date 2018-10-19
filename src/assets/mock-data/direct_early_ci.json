@@ -1,0 +1,82 @@
+{
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	},
+	"objectList": [{
+			"enquiryId": 5196,
+			"productProtectionTypeList": [{
+					"protectionType": "Critical Illness",
+					"productList": [{
+							"id": "P111",
+							"productName": "Early Stage CritiCare",
+							"purposeId": 1,
+							"objectiveId": 11,
+							"typeId": 1,
+							"searchCount": 0,
+							"whyBuy": "I am concerned that I may have to stop work temporarily due to a critical illness at early stage and hence income loss. I also want higher coverage during my working years.",
+							"payOut": "An lump sum payout upon all stages of critical illness, death, terminal illness or total and permanent disability (TPD).",
+							"underWritting": "Yes",
+							"rebate": "Eligible",
+							"cashValue": "No",
+							"cashPayoutFrequency": "",
+							"coverageDuration": "15/20/25 years, or till age 60,65,75",
+							"premiumDuration": "Throughout policy duration",
+							"features": "Covers 36 Critical Illnesses at various stages, ranging from less serious to terminal stage. ~$15,000 death benefit. ~10% of Sum Assured for special conditions.",
+							"productDescription": "This is a non-participative early payout critical illness coverage. It covers medical condition even in its early stage, such as early stage cancer.",
+							"status": "Active",
+							"brochureLink": "NA",
+							"isAuthorised": true,
+							"insurer": {
+								"id": "AXA",
+								"insurerName": "AXA Life",
+								"logoName": "logo-axa.png",
+								"url": "https://www.axa.com.sg",
+								"rating": "AA+"
+							},
+							"premium": {
+								"id": 12779,
+								"productId": null,
+								"gender": "Male",
+								"minimumAge": 19,
+								"coverageName": "",
+								"durationName": "till age 55",
+								"premiumTerm": "15",
+								"savingsDuration": "",
+								"retirementPayoutAmount": "",
+								"retirementPayoutDuration": "",
+								"premiumAmount": "45",
+								"premiumAmountYearly": "0",
+								"premiumFrequency": "per month",
+								"ranking": 1,
+								"sumAssured": 500000.0,
+								"payoutDuration": "0",
+								"numberOfADL": 0,
+								"hospitalPlanType": "Standard",
+								"payoutAge": 0,
+								"gaurenteedMonthlyIncome": 0.0,
+								"monthlyBenefit": 0.0,
+								"deferredPeriod": 0,
+								"escalatingBenefit": 0.0,
+								"smoker": false,
+								"integerrestRateOfReturn": null
+							},
+							"promotion": {
+								"id": 33,
+								"thumbnail": "axa_criticare.jpg",
+								"promoDiscount": "*PREMIUM DISCOUNT",
+								"promoTitle": "10% VS 20% Premium Discount for AXA Early Stage CritiCare Plans (Extended)",
+								"description": "10% VS 20% Premium Discount for AXA Early Stage CritiCare Plans (Extended)",
+								"link": "33.jsp",
+								"expired": "FALSE"
+							},
+							"rider": null,
+							"brochureLinkSize": "NA",
+							"authorised": true
+						}
+					]
+				}
+			]
+		}
+	]
+}

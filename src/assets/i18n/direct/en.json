@@ -147,6 +147,7 @@
       },
       "DIRECT_RESULTS": {
         "COMPARE_PLANS": "Compare Plans",
+        "PLAN_FOUND": " Plan Found",
         "PLANS_FOUND": " Plans Found",
         "COMPARE": "Compare"
       },

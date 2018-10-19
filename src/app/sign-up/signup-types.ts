@@ -4,6 +4,12 @@ export interface ISignUp {
     selectedProducts: IPlan[];
 }
 
+export interface IEnquiryUpdate {
+    customerId: string;
+    enquiryId: number;
+    selectedProducts: IPlan[];
+}
+
 export interface IPlan {
     typeId: number;
     productName: string;
