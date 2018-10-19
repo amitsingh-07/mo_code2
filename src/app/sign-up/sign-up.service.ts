@@ -11,6 +11,7 @@ const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
 const REDIRECT_URL_KEY = 'app_redirect_url';
+const IS_CAPTCHA_SHOWN = 'is_captcha';
 
 @Injectable({
   providedIn: 'root'
@@ -264,5 +265,11 @@ export class SignUpService {
 
   getRedirectUrl() {
     return sessionStorage.getItem(REDIRECT_URL_KEY);
+  }
+
+  isCaptchaShown() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(IS_CAPTCHA_SHOWN, 'true');
+    }
   }
 }
