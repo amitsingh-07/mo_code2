@@ -152,9 +152,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.signUpService.removeCaptchaSessionId();
         } else if (data.responseMessage.responseCode === 5016) {
             this.loginForm.controls['captchaValue'].reset();
+            this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
             this.refreshCaptcha();
         } else if (data.responseMessage.responseCode === 5011) {
+          this.loginForm.controls['captchaValue'].reset();
           this.loginForm.controls['loginPassword'].reset();
           this.openErrorModal(data.responseMessage.responseDescription);
           if (data.objectList[0].sessionId) {
