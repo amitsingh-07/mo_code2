@@ -171,21 +171,15 @@
     .sub-title{
         color: #333846 !important;
         @include allmobiles {
-            padding: 10px !important;
+            justify-content: center;
+            padding:10px !important;
         }
     }
-    h2{
-        color: #00a7a7;
+    h6 {
         @include allmobiles {
-            font-size: 20px;
-            font-weight: bold;
-            letter-spacing: -0.4px;
-            text-align: center;
-            color: #066360;
-        }
-    }
-    @include allmobiles {
-        flex-direction: column-reverse;
+            justify-content: center;
+            padding:0 40px !important;
+        } 
     }
 }
 
@@ -220,11 +214,17 @@ input[type='checkbox']+label {
 .mobile-header {
          background-color: #00a7a7;
          position: relative;
+         h6 {
+            @include allmobiles {
+                justify-content: center;
+                padding:0 40px !important;
+            } 
+        }
     @include allmobiles {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        margin-top: -12px;
+        margin-top: -10px;
         padding-bottom: 100px;
         color: #333846 !important;
         background-color: #fff;
@@ -300,12 +300,12 @@ input[type='checkbox']+label {
             font-family: $muli-bold;
         }
         .sub-title{
-            font-family: $muli-regular;
+            font-family: $muli-semi-bold;
         }
         color: #ffffff;
         display: flex;
         position: absolute;
-        top: 12%;
+        top: 9%;
         flex-direction: column;
         left: 0;
         right: 0;

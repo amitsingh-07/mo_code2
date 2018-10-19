@@ -8,6 +8,9 @@
         padding: 10px 0 !important;
         border-radius: 0;
     }
+    .main-container {
+        justify-content: space-between;
+    }
 }
 .addExeTrusteeForm {
     background-color: #fff;
@@ -45,12 +48,14 @@
     font-size: 18px;
     font-weight: 300;
     letter-spacing: -0.2px;
-    color: #00a7a7;
+    color: #fff;
 }
 .mobile-header-container {
-    background-color: #fff;
-    margin-top: -10px;
-    padding-top: 27px;
+    @include allmobiles {
+        background-color: #fff;
+        margin-top: -10px;
+        padding-top: 27px;
+    }
 }
 .autofill-link {
     @include allmobiles {
@@ -63,7 +68,7 @@
     font-size: 36px;
     font-weight: 600;
     letter-spacing: -0.4px;
-    color: #00a7a7;  
+    color: #fff;
 }
 
 .sub-title {
@@ -71,8 +76,12 @@
     font-weight: 600;
     line-height: 1.22;
     letter-spacing: -0.2px;
-    color: #333846;
-    width:280px;
+    color: #fff;
+    @include allmobiles{
+        color: #333846;
+        width:280px;
+    }
+
 }
 .mobile-logo{
     display: none;
@@ -84,10 +93,12 @@
 }
 
 .executer-trustee-container {
+    margin-top: 70px;
     @include allmobiles{
         margin-bottom: 20px;
         background-color: #00a7a7;
-        padding:15px;
+        padding: 15px;
+        margin-top: 10px;
     }
 
     .edit-block{

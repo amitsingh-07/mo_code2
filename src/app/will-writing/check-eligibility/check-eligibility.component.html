@@ -66,13 +66,13 @@
               </div>
               <div class="flex-row section">
                 <div class="flex-col-5">
-                  <label class="label with-help-icon" for="name" id="eligibilityLbl7">{{ 'Religion' | translate}}</label>
+                  <label class="label with-help-icon" for="name" id="eligibilityLbl7">{{ 'WILL_WRITING.ELIGIBILITY.RELIGION' | translate}}</label>
                 </div>
                 <div class="flex-col-7 direct-form-grp">
                   <div class="dropdown-control">
                     <div ngbDropdown id="religionDropDown">
                       <button type="button" class="btn btn-dropdown" id="religionDropDown" ngbDropdownToggle>
-                        <span class="duration" *ngIf="religion === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                        <span class="duration" *ngIf="!religion">{{'COMMON.LBL_SELECT' | translate}}</span>
                         <span class="duration" *ngIf="religion !== ''">{{religion}}</span>
                       </button>
                       <div ngbDropdownMenu aria-labelledby="religionDropDown">

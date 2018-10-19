@@ -93,6 +93,7 @@
             color: #ffffff;
         @include allmobiles {
             width: 270px;
+            color: #333846;
         }
     }
     h2{
@@ -163,7 +164,7 @@ input[type='checkbox']+label {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        margin-top: -12px;
+        margin-top: -10px;
         color: #333846 !important;
         background-color: #fff;
     }  
@@ -179,6 +180,7 @@ input[type='checkbox']+label {
         letter-spacing: -0.3px;
         color: #2d8289;
         margin-top: 0px;
+        font-family: $muli-semi-bold;
         @include allmobiles {
             margin-top: 19px !important;
         }
@@ -203,18 +205,18 @@ input[type='checkbox']+label {
             color: #2d8289;
             font-weight: normal;
         }
-        .btn {
-            padding: 8px !important;
-            font-family: $muli-regular;
-            color:#2d8289;
-            font-size: 16px;
-            font-weight: 600;
-            background-color: #f4fafb;
-        }
-        .btn-primary{
-            background-color: #00a7a7;
-            color: #fff !important;
-            font-family: $muli-regular !important;
+        .add-beneficiary{
+            .btn {
+                padding: 8px !important;
+                color:#00a7a7;
+                font-size: 16px;
+                font-weight: 600;
+                background-color: #f4fafb;
+            }
+            .btn-primary{
+                background-color: #00a7a7;
+                color: #fff !important;
+            }
         }
     }
 }
