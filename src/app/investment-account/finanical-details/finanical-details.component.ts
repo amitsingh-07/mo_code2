@@ -58,7 +58,8 @@ export class FinanicalDetailsComponent implements OnInit {
     this.FinancialFormData = this.portfolioService.getMyFinancials();
     this.formValues = this.investmentAccountService.getFinancialFormData();
     this.financialDetails = this.formBuilder.group({
-      annualHouseHoldIncomeRange: [this.formValues.annualHouseHoldIncomeRange, Validators.required],
+      annualHouseHoldIncomeRange: [{value: this.formValues.annualHouseHoldIncomeRange,
+        disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')}, Validators.required],
       numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
       monthlyIncome: [this.FinancialFormData.monthlyIncome, Validators.required],
       percentageOfSaving: [this.FinancialFormData.percentageOfSaving, Validators.required],

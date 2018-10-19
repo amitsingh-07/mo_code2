@@ -330,6 +330,18 @@ export class InvestmentAccountService {
         }
 
         // Annual Household Income
+        if (data.householdincome.low || data.householdincome.high) {
+            let lowAmount: any = '';
+            let highAmount: any = '';
+            if (data.householdincome.low) {
+                lowAmount = '$' + (Number(data.householdincome.low) * 12).toString + ' to ';
+            }
+            if (data.householdincome.high) {
+                highAmount = '$' + (Number(data.householdincome.high) * 12).toString;
+            }
+            this.investmentAccountFormData.annualHouseHoldIncomeRange = lowAmount + highAmount;
+            this.disableAttributes.push('annualHouseHoldIncomeRange');
+        }
 
         this.investmentAccountFormData.disableAttributes = this.disableAttributes;
         this.commit();
