@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FooterService } from './../../shared/footer/footer.service';
 
+
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
