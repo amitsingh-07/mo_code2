@@ -79,39 +79,45 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
 
   buildFormForNricNumber(): FormGroup {
     return this.formBuilder.group({
-      fullName: [{value: this.formValues.fullName, disabled: true},
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName')},
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName')},
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      nricNumber: [{value: this.formValues.nricNumber, disabled: this.investmentAccountService.isDisabled('nricNumber')},
-        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      dob: [{value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob')},
-        Validators.required],
-      gender: [{value: this.formValues.gender ? this.formValues.gender : 'male',
-      disabled: this.investmentAccountService.isDisabled('gender')},
+      fullName: [{ value: this.formValues.fullName, disabled: true },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      firstName: [{ value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName') },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      lastName: [{ value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName') },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      nricNumber: [{ value: this.formValues.nricNumber, disabled: this.investmentAccountService.isDisabled('nricNumber') },
+      [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
+      Validators.required],
+      gender: [{
+        value: this.formValues.gender ? this.formValues.gender : 'male',
+        disabled: this.investmentAccountService.isDisabled('gender')
+      },
       Validators.required]
-    }, {validator: this.validateName()});
+    }, { validator: this.validateName() });
   }
   buildFormForPassportDetails(): FormGroup {
     return this.formBuilder.group({
-      fullName: [{value: this.formValues.fullName, disabled: true},
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName')},
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName')},
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      passportNumber: [{value: this.formValues.passportNumber, disabled: this.investmentAccountService.isDisabled('passportNumber')},
+      fullName: [{ value: this.formValues.fullName, disabled: true },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      firstName: [{ value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName') },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      lastName: [{ value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName') },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      passportNumber: [{ value: this.formValues.passportNumber, disabled: this.investmentAccountService.isDisabled('passportNumber') },
       [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      passportExpiry: [{value: this.formValues.passportExpiry,
-        disabled: this.investmentAccountService.isDisabled('passportExpiry')}, Validators.required],
-      dob: [{value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob')},
-        Validators.required],
-      gender: [{value: this.formValues.gender ? this.formValues.gender : 'male',
-      disabled: this.investmentAccountService.isDisabled('gender')},
+      passportExpiry: [{
+        value: this.formValues.passportExpiry,
+        disabled: this.investmentAccountService.isDisabled('passportExpiry')
+      }, Validators.required],
+      dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
+      Validators.required],
+      gender: [{
+        value: this.formValues.gender ? this.formValues.gender : 'male',
+        disabled: this.investmentAccountService.isDisabled('gender')
+      },
       Validators.required]
-    }, {validator: this.validateName()});
+    }, { validator: this.validateName() });
   }
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
@@ -129,7 +135,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     this.formValues.firstName = this.formValues.firstName ? this.formValues.firstName : this.userProfileInfo.firstName;
     this.formValues.lastName = this.formValues.lastName ? this.formValues.lastName : this.userProfileInfo.lastName;
     this.formValues.fullName = this.formValues.fullName ? this.formValues.fullName :
-    this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
+      this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
   }
   toggleDate(openEle, closeEle) {
     openEle.toggle();
@@ -153,7 +159,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       const name = group.controls['firstName'].value + ' ' + group.controls['lastName'].value;
       const fullName = group.controls['fullName'].value;
       if (fullName !== name) {
-        return group.controls['firstName'].setErrors({nameMatch: true});
+        return group.controls['firstName'].setErrors({ nameMatch: true });
       } else {
         return group.controls['firstName'].setErrors(null);
       }

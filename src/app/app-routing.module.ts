@@ -1,4 +1,3 @@
-import { CallBackComponent } from './call-back/call-back.component';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
