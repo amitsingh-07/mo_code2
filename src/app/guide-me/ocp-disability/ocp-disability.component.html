@@ -16,66 +16,72 @@
             <div class="form-group-with-bg--header">
               <div class="flex-row align-items-top">
                 <div class="flex-col-7">
-                <div class="form-group-with-bg--header-label">
-                  <div>{{ 'OCP_DISABILITY.OCP_DISABILITY_FRM_TITLE' | translate}}</div>
-                  <div class="form-group-with-bg--header-sub-label">{{ 'OCP_DISABILITY.OCP_DISABILITY_HINT' | translate}}</div>
-                </div>
+                  <div class="form-group-with-bg--header-label">
+                    <div>{{ 'OCP_DISABILITY.OCP_DISABILITY_FRM_TITLE' | translate}}</div>
+                    <div class="form-group-with-bg--header-sub-label">{{ 'OCP_DISABILITY.OCP_DISABILITY_HINT' |
+                      translate}}</div>
+                  </div>
                 </div>
                 <div class="flex-col-5">
-                <div class="total">
-                  <div>{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0'}}</div>
-                  <div class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</div>
+                  <div class="total">
+                    <div>{{coverageAmount | currency : 'USD' : 'symbol' : '1.0-0'}}</div>
+                    <div class="fixed-tenure">{{ 'MY_INCOME.PER_MONTH' | translate}}</div>
+                  </div>
                 </div>
-                </div>
-              </div>  
+              </div>
             </div>
             <!--Form Content-->
             <div class="form-group-with-bg--content">
               <div class="flex-row">
                 <div class="flex-col-4">
-                <div class="form-group-with-bg--content-label" for="name">{{ 'OCP_DISABILITY.EMPLOYEE_FIELD' | translate}}</div>
+                  <div class="form-group-with-bg--content-label" for="name">{{ 'OCP_DISABILITY.EMPLOYEE_FIELD' |
+                    translate}}</div>
                 </div>
                 <div class="flex-col-8">
-                <div class="dropdown-control">
-                  <div ngbDropdown id="employeeDropDown">
-                    <button class="btn btn-dropdown" id="employeeTypeDropDown" ngbDropdownToggle>
-                      <span>{{defaultEmployee}}</span>
-                    </button>
-                    <div ngbDropdownMenu aria-labelledby="employeeTypeDropDown">
-                      <button class="dropdown-item" *ngFor="let employee of employeeList" (click)="selectEmployeeType(employee.status,true)">
-                        {{employee.status}}
+                  <div class="dropdown-control">
+                    <div ngbDropdown id="employeeDropDown">
+                      <button class="btn btn-dropdown" id="employeeTypeDropDown" ngbDropdownToggle>
+                        <span>{{defaultEmployee}}</span>
                       </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-              <div class="flex-row mb50">
-                <div class="form-group-with-bg--content-label mb10" for="name">
-                  {{ 'OCP_DISABILITY.OCP_DISABILITY_MULTI_PREFIX' | translate}}
-                  <span class="span--content-inline--underline">{{coveragePercent}}%</span>{{'OCP_DISABILITY.OCP_DISABILITY_MULTI_SUFFIX' | translate}}
-                </div>
-              </div>
-              <nouislider #ocpDisabilitySlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0" [max]='coverageMax'
-                [step]="1" [tooltips]="[ true ]"></nouislider>
-                <div class="dash"></div>
-                <div class="flex-row">
-                  <div class="flex-col-9">
-                  <div class="form-group-with-bg--content-label" for="name">{{ 'OCP_DISABILITY.RETIREMENT_AGE' | translate}}</div>
-                  </div>
-                  <div class="flex-col-3">
-                    <div class="dropdown-control">
-                      <div ngbDropdown id="RetirementAgeDropDown">
-                        <button class="btn btn-dropdown" id="retirementAgeDropDown" ngbDropdownToggle aria-expanded="false">
-                          <span>{{retirementAge}}</span>
+                      <div ngbDropdownMenu aria-labelledby="employeeTypeDropDown">
+                        <button class="dropdown-item" *ngFor="let employee of employeeList" (click)="selectEmployeeType(employee.status,true)">
+                          {{employee.status}}
                         </button>
-                        <div ngbDropdownMenu class="dropdown" aria-labelledby="retirementAgeDropDown">
-                          <button class="dropdown-item" *ngFor="let count of retirementAgeItems" (click)="selectRetirementAge(count)">{{count}}</button>
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="flex-row mb50">
+                <div class="form-group-with-bg--content-label mb10" for="name">
+                  {{ 'OCP_DISABILITY.OCP_DISABILITY_MULTI_PREFIX' | translate}}
+                  <span class="span--content-inline--underline">{{coveragePercent}}%</span>{{'OCP_DISABILITY.OCP_DISABILITY_MULTI_SUFFIX'
+                  | translate}}
+                </div>
+              </div>
+              <nouislider #ocpDisabilitySlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [min]="0"
+                [max]='coverageMax' [step]="1" [tooltips]="[ true ]"></nouislider>
+              <div class="dash"></div>
+              <div class="flex-row">
+                <div class="flex-col-9">
+                  <div class="form-group-with-bg--content-label with-help-icon" for="name">{{
+                    'OCP_DISABILITY.RETIREMENT_AGE' | translate}}
+                    <span class="help-icon" (click)="showCoverageAgeModal()"></span>
+                  </div>
+                </div>
+                <div class="flex-col-3">
+                  <div class="dropdown-control">
+                    <div ngbDropdown id="RetirementAgeDropDown">
+                      <button class="btn btn-dropdown" id="retirementAgeDropDown" ngbDropdownToggle aria-expanded="false">
+                        <span>{{retirementAge}}</span>
+                      </button>
+                      <div ngbDropdownMenu class="dropdown" aria-labelledby="retirementAgeDropDown">
+                        <button class="dropdown-item" *ngFor="let count of retirementAgeItems" (click)="selectRetirementAge(count)">{{count}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div>

@@ -158,4 +158,3 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     }
   }
 }
-
