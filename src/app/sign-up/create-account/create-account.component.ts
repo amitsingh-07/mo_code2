@@ -1,13 +1,13 @@
 import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { TermsComponent } from '../../shared/components/terms/terms.component';
-import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
+import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
@@ -23,7 +23,7 @@ import { ValidateRange } from './range.validator';
   styleUrls: ['./create-account.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CreateAccountComponent implements OnInit {
+export class CreateAccountComponent implements OnInit, AfterViewInit {
   private pageTitle: string;
   private description: string;
 
@@ -32,6 +32,7 @@ export class CreateAccountComponent implements OnInit {
   defaultCountryCode;
   countryCodeOptions;
   editNumber;
+  captchaSrc: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,7 +45,8 @@ export class CreateAccountComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
-    private selectedPlansService: SelectedPlansService
+    private selectedPlansService: SelectedPlansService,
+    private authService: AuthenticationService,
   ) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -62,6 +64,10 @@ export class CreateAccountComponent implements OnInit {
     this.getCountryCode();
   }
 
+  ngAfterViewInit() {
+    this.refreshCaptcha();
+  }
+
   /**
    * build account form.
    */
@@ -77,7 +83,8 @@ export class CreateAccountComponent implements OnInit {
       lastName: [this.formValues.lastName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       email: [this.formValues.email, [Validators.required, Validators.email]],
       termsOfConditions: [this.formValues.termsOfConditions],
-      marketingAcceptance: [this.formValues.marketingAcceptance]
+      marketingAcceptance: [this.formValues.marketingAcceptance],
+      captcha: ['', [Validators.required]]
     });
   }
 
@@ -137,6 +144,12 @@ export class CreateAccountComponent implements OnInit {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+      } else if (data.responseMessage.responseCode === 5016) {
+        const captchaControl = this.createAccountForm.controls['captcha'];
+        captchaControl.setErrors({notEquivalent: true});
+        captchaControl.reset();
+        this.refreshCaptcha();
+        this.save(this.createAccountForm);
       }
     });
   }
@@ -156,5 +169,10 @@ export class CreateAccountComponent implements OnInit {
         this.createAccount();
       }
     });
+  }
+
+  refreshCaptcha() {
+    const time = new Date().getMilliseconds();
+    this.captchaSrc = '/assets/images/captcha.png?sessionId=' + this.authService.getSessionId() + '&time=' + time;
   }
 }

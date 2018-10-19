@@ -1,3 +1,4 @@
+import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -35,6 +36,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
   helpModalTrigger: boolean;
   modalData;
   pageData;
+  coverageToolTip;
 
   private subscription: Subscription;
 
@@ -63,6 +65,7 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
       this.ciMultiplier = this.pageData.CI_MULTIPLIER;
       this.untilRetirementAge = this.pageData.UNTIL_RETIREMENTAGE;
       this.modalData = this.translate.instant('CI_ASSESSMENT.MODAL_DATA');
+      this.coverageToolTip = this.translate.instant('CI_ASSESSMENT.COVERAGE_TOOLTIP');
       this.setPageTitle(this.pageTitle, null, true);
     });
   }
@@ -129,6 +132,12 @@ export class CiAssessmentComponent implements IPageComponent, OnInit, AfterViewI
     ref.componentInstance.title = this.modalData.title;
     ref.componentInstance.img = assetImgPath + this.modalData.imageName;
     this.navbarService.showMobilePopUp('removeClicked');
+  }
+
+  showCoverageAgeModal() {
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    ref.componentInstance.tooltipTitle = this.coverageToolTip.TITLE;
+    ref.componentInstance.tooltipMessage = this.coverageToolTip.DESCRIPTION;
   }
 
   save(form: any) {

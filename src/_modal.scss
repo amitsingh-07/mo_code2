@@ -398,7 +398,7 @@ body.modal-open {
         overflow-x: hidden;
         flex-direction: column;
         justify-content: flex-start;
-        z-index:0;
+        z-index: 0;
       }
     }
   }
@@ -584,6 +584,14 @@ body.modal-open {
 
 .product-details-modal-dialog {
   max-height: 100% !important;
+
+  .modal-dialog {
+    min-width: 610px;
+
+    @include allmobiles {
+      min-width: 100vw !important;
+    }
+  }
 }
 
 .modal-body {

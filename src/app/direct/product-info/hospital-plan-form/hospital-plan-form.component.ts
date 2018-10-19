@@ -41,6 +41,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.formValues = this.directService.getHospitalPlanForm();
     this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider;
+    this.selectedPlan = this.formValues.selectedPlan;
     this.hospitalForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],

@@ -66,6 +66,10 @@ export class CreateAccountFormError {
                 pattern : {
                         errorTitle: 'Invalid Mobile No. or Email Address',
                         errorMessage: 'Please enter your mobile no. or email address'
+                },
+                invalidMatch : {
+                        errorTitle: 'Invalid Credentials',
+                        errorMessage: 'Please check your Mobile No. or Email Address or Password'
                 }
         },
         loginPassword: {
@@ -96,6 +100,16 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid password',
                         // tslint:disable-next-line:max-line-length
                         errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                }
+        },
+        captcha: {
+                required : {
+                        errorTitle: 'Invalid captcha',
+                        errorMessage: 'Please enter valid captcha'
+                },
+                notEquivalent : {
+                        errorTitle: 'Invalid captcha',
+                        errorMessage: 'Please enter the correct captcha in the box'
                 }
         }
     };
