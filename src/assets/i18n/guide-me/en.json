@@ -150,7 +150,7 @@
     "OCP_DISABILITY_HINT": "Based on the information below",
     "EMPLOYEE_FIELD": "I am a",
     "PROPERTY_LOAN_HINT": "(Remaining amount)",
-    "RETIREMENT_AGE": "Till the retirement age of",
+    "RETIREMENT_AGE": "I need to cover till the age of",
     "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
     "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
     "MODAL_TITLE": "Occupational Disability",
