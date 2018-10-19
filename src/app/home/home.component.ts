@@ -158,7 +158,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (this.homeNavBarFixed) {
       difference = homeNavbarHeight;
     }
-    let triggerPosition = window.pageYOffset + (window.outerHeight / 2) - difference; // To set the trigger point as center of the screen
+    let triggerPosition = window.pageYOffset + (window.outerHeight / 2) + difference; // To set the trigger point as center of the screen
     if (innerWidth < this.mobileThreshold) {
       triggerPosition = homeNavBarElement.bottom + window.pageYOffset - document.documentElement.clientTop;
     }

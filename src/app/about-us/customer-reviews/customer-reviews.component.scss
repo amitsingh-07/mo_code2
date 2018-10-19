@@ -63,7 +63,7 @@
             order:1;
             margin-bottom:-80px;
         }
-        h1{
+        .banner--title{
             font-family:$muli-bold;
             font-weight:bold;
             font-size:3.5rem;
@@ -77,7 +77,7 @@
                 font-size:2.0rem;
             }
         }
-        h3{
+        .banner--sub-title{
             font-family:$muli-semi-bold;
             color:$black-color;
             opacity:0.9;
