@@ -16,6 +16,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() errorDescription: any;
   @Input() isButtonEnabled: boolean;
   @Input() isError: boolean;
+  @Input() navToHome: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
 
@@ -30,6 +31,9 @@ export class ErrorModalComponent implements OnInit {
   }
   tryAgain() {
     this.retry.emit();
+    this.activeModal.close();
+  }
+  goToHome() {
     this.activeModal.close();
   }
 }

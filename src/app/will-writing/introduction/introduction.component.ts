@@ -18,6 +18,7 @@ export class IntroductionComponent implements OnInit {
   errorMsg: string;
   promoCodeError: string;
   promoCodeMsg: string;
+  faqLink: string;
   promoCode;
   pageTitle;
   isPromoCodeValid = false;
@@ -27,6 +28,7 @@ export class IntroductionComponent implements OnInit {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WILL_WRITING.INTRODUCTION.PAGE_TITLE');
+      this.faqLink = this.translate.instant('WILL_WRITING.INTRODUCTION.FAQ_LINK');
     });
    }
 
@@ -58,6 +60,10 @@ export class IntroductionComponent implements OnInit {
     this.verifyPromoCode(this.promoCodeForm.controls['promoCode'].value);
     this.willWritingService.setPromoCodeDetails(form.value);
     return true;
+  }
+
+  openFAQ() {
+    window.open(this.faqLink, '_blank');
   }
 
   goToNext(form) {
