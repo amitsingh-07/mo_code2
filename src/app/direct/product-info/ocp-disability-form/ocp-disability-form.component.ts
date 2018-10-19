@@ -50,19 +50,25 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
-      this.defaultEmployee = '';
       this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
       this.duration = '';
+      this.defaultEmployee = '';
     });
   }
 
   ngOnInit() {
     this.formValues = this.directService.getOcpDisabilityForm();
+    if (this.formValues.employmentType) {
+      this.defaultEmployee = this.formValues.employmentType;
+    }
+    if (this.formValues.duration) {
+      this.duration = this.formValues.duration;
+    }
     this.ocpDisabilityForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       smoker: [this.formValues.smoker],
-      employmentType: [this.formValues.employmentType, Validators.required],
+      employmentType: [this.defaultEmployee, Validators.required],
       monthlySalary: [this.formValues.monthlySalary, Validators.required],
       percentageCoverage: [this.formValues.percentageCoverage],
       duration: [this.formValues.duration, Validators.required]
@@ -148,7 +154,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       return false;
     }
     form.value.smoker = 'nonsmoker';
-    form.value.employmentType = this.selectEmployeeType;
+    form.value.employmentType = this.defaultEmployee;
     form.value.duration = this.duration;
     form.value.percentageCoverage = this.coveragePercent;
     this.directService.setOcpDisabilityForm(form.value);

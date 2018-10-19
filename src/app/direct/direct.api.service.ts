@@ -1,5 +1,3 @@
-import { IRetirementIncome } from './product-info/retirement-income-form/retirement-income.interface';
-import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -130,7 +128,7 @@ export class DirectApiService {
             percentageCoverage: ocp.percentageCoverage,
             coverageDuration: ocp.duration,
             coverageAmount: ocp.monthlySalary * (ocp.percentageCoverage / 100),
-            employmentStatusId: ocp.employmentType,
+            employmentStatusId: (ocp.employmentType === 'Salaried') ? 1 : 2,
         } as IOccupationalDisabilityData;
         return ocpData;
     }

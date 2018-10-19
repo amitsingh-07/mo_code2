@@ -1,0 +1,33 @@
+.step-indicator-container {
+    background-color: #fff;
+    padding: 10px 0px;
+    position: relative;
+    top: 60px;
+    margin-bottom: 15px;
+
+    .container-fluid {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .step-indicator-container {
+      top: 0px;
+    }
+  }
+  .form-group-with-bg--content-label{
+   font-size: 18px;
+    letter-spacing: -0.3px;
+   
+  }
+  .lable{
+    font-size: 18px;
+    letter-spacing: -0.3px;
+  }
+  .form-control .input-control {
+    text-align: left;
+  }
+  .form-control {
+    text-align: right;
+}

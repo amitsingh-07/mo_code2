@@ -8,12 +8,14 @@ import { ArticleRoutingModule } from './article-routing.module';
 import { ArticleComponent } from './article.component';
 import { ArticleService } from './article.service';
 
+import { SubscribeSideComponent } from './../shared/components/subscribe-side/subscribe-side.component';
+
 @NgModule({
   imports: [
     CommonModule,
     ArticleRoutingModule,
     NgbModule
   ],
-  declarations: [ArticleComponent, ArticleCategoryComponent, ArticleEntryComponent]
+  declarations: [ArticleComponent, ArticleCategoryComponent, ArticleEntryComponent, SubscribeSideComponent]
 })
 export class ArticleModule { }

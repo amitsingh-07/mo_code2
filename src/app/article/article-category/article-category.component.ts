@@ -1,12 +1,15 @@
-import { ArticleService } from './../article.service';
-import { catchError } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ArticleService } from './../article.service';
 
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { ArticleApiService } from './../article.api.service';
 
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+
+import { IArticleElement } from './../articleElement.interface';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-article-category',
@@ -16,24 +19,22 @@ import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ArticleCategoryComponent implements OnInit {
   public category = 'Protection';
-
+  public category_id: number;
+  private articleListCategory: IArticleElement[];
   constructor(public navbarService: NavbarService, public footerService: FooterService,
-              private articleService: ArticleService,
+              private articleService: ArticleService, private articleApiService: ArticleApiService,
               private config: NgbDropdownConfig, private route: ActivatedRoute) {
               }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      if (params['name']) {
-        this.category = params['name'];
-        console.log(this.category);
-        this.getCategoryArticles(this.category);
+      if (params['name'] !== undefined) {
+        this.getCategoryArticles(params['name']);
       }
     });
     this.route.queryParams.subscribe((params) => {
       if (params['category']) {
-        this.category = params['category'];
-        this.getCategoryArticles(this.category);
+        this.getCategoryArticles(params['category']);
       }
     });
 
@@ -44,7 +45,14 @@ export class ArticleCategoryComponent implements OnInit {
   }
 
   getCategoryArticles(category_name: string) {
-    const category_id =  this.articleService.getArticleId(category_name);
-    console.log(category_id);
+    this.category_id = +(this.articleService.getArticleId(category_name));
+    if (this.category_id > 0) {
+      this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
+    } else {
+      //Redirect away
+    }
+    this.articleApiService.getArticleCategoryList(this.category).subscribe((data) => {
+      this.articleListCategory = this.articleService.getArticleElementList(data);
+    });
   }
 }

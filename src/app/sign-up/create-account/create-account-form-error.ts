@@ -15,7 +15,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Mobile number field should be 8 to 10 characters length'
+                        errorMessage: 'Mobile number field should container 8 to 10 digits'
                 },
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
@@ -29,7 +29,7 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid First Name',
-                        errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
+                        errorMessage: 'Oops! Your first name should be 2 - 40 characters long'
                 }
         },
         lastName: {
@@ -39,13 +39,13 @@ export class CreateAccountFormError {
                 },
                 pattern : {
                         errorTitle: 'Invalid Last Name',
-                        errorMessage: 'Last name field can only contain alphabets value of 2 - 40 characters in length'
+                        errorMessage: 'Oops! Your last name should be 2 - 40 characters long'
                 }
         },
         email: {
                 required : {
                         errorTitle: 'Invalid E-mail',
-                        errorMessage: 'Please enter your Email address'
+                        errorMessage: 'Please enter your email address'
                 },
                 email : {
                         errorTitle: 'Invalid E-mail',
@@ -61,11 +61,11 @@ export class CreateAccountFormError {
         loginUsername: {
                 required : {
                         errorTitle: 'Mobile No. or Email Address required',
-                        errorMessage: 'Please enter your Mobile No. or Email Address'
+                        errorMessage: 'Please enter your mobile no. or email address'
                 },
                 pattern : {
                         errorTitle: 'Invalid Mobile No. or Email Address',
-                        errorMessage: 'Please enter your valid username'
+                        errorMessage: 'Please enter your mobile no. or email address'
                 }
         },
         loginPassword: {
@@ -73,27 +73,29 @@ export class CreateAccountFormError {
                         // tslint:disable-next-line:no-duplicate-string
                         errorTitle: 'Password required',
                         // tslint:disable-next-line:no-duplicate-string
-                        errorMessage: 'Please enter your Password'
+                        errorMessage: 'Please enter your password'
                 }
         },
         resetPassword1: {
                 required : {
                         errorTitle: 'Password required',
-                        errorMessage: 'Please enter your Password'
+                        errorMessage: 'Please enter your password'
                 },
                 pattern : {
                         errorTitle: 'Invalid password',
-                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number and 8-20 Alphanumeric Characters  '
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
                 }
         },
         confirmpassword: {
                 required : {
                         errorTitle: 'Password required',
-                        errorMessage: 'Please enter your Password'
+                        errorMessage: 'Please enter your password'
                 },
                 pattern : {
                         errorTitle: 'Invalid password',
-                        errorMessage: 'Password at least contain 1 Uppercase & 1 Lowercase & 1 Number 8-20 Alphanumeric Characters  '
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
                 }
         }
     };

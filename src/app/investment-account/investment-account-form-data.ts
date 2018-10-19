@@ -78,6 +78,17 @@ export class InvestmentAccountFormData {
     percentageOfSaving: string;
     totalAssets: string;
     totalLiabilities: string;
+    // addition declaration 2
+
+    source: string;
+    expectedNumberOfTransation: string;
+    expectedAmountPerTranction: string;
+    personalSavings: string;
+    otherSources: string;
+    inheritanceGift: string;
+    investmenteEarning: string;
+    investmentPeriod: string;
+    earningsGenerated: string;
 
     // Additional declaration PEP
     radioPep: any;
@@ -94,4 +105,4 @@ export class InvestmentAccountFormData {
     // MyInfo
     isMyInfoEnabled: boolean;
     disableAttributes: any;
-    }
+}

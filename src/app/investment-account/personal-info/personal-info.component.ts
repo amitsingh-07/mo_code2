@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +21,8 @@ import { InvestmentAccountService } from '../investment-account-service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }]
 })
 export class PersonalInfoComponent implements IPageComponent, OnInit {
+  @ViewChild('expiryInput') expiryInput;
+  @ViewChild('dobInput') dobInput;
   pageTitle: string;
   invPersonalInfoForm: FormGroup;
   formValues: any;
@@ -128,6 +130,10 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     this.formValues.lastName = this.formValues.lastName ? this.formValues.lastName : this.userProfileInfo.lastName;
     this.formValues.fullName = this.formValues.fullName ? this.formValues.fullName :
     this.userProfileInfo.firstName + ' ' + this.userProfileInfo.lastName;
+  }
+  toggleDate(openEle, closeEle) {
+    openEle.toggle();
+    closeEle.close();
   }
   goToNext(form) {
     if (!form.valid) {

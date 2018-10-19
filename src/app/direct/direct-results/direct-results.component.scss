@@ -103,13 +103,13 @@ app-direct-results {
     float:right; 
     margin-top: 7px;
     font-size: 16px;
-    font-famil: $muli-semi-bold;
+    font-family: $muli-semi-bold;
   }
 
   .plan-wrapper {
     border: none;
     //margin-bottom: 20px;
-    padding-bottom: 5px;
+    padding-bottom: 0;
     @include allmobiles {
       margin-bottom: 0;
     }
@@ -166,7 +166,7 @@ app-direct-results {
   text-align: center;
   color: $white-color;
   font-family: $muli-semi-bold;
-  border-bottom: 1px solid $white-color;
+  border-bottom: 1px solid #3eb9b8;
   font-size: 24px;
   line-height: 66px;
   button {
@@ -198,6 +198,16 @@ app-direct-results {
   }
 }
 .insurance-plan-widget__container {
-  height: auto;
+  min-height: 400px !important;
+  @include allmobiles {
+    min-height: 251px !important;
+  }
+}
+.disclaimer {
+  font-size: 16px;
+  font-family: $muli-regular;
+  margin: 0 32px;
+  text-align: center;
+  opacity: 0.6;
 }
 }

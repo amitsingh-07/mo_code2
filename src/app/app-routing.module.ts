@@ -2,12 +2,16 @@ import { CallBackComponent } from './call-back/call-back.component';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
+import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { HomeComponent } from './home/home.component';
+
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
-import { TermsAndConditionsComponent } from './shared/components/terms-and-conditions/terms-and-conditions.component';
+import { TermsOfUseComponent } from './shared/components/terms-of-use/terms-of-use.component';
+
+import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 
 const routes: Routes = [
@@ -16,6 +20,7 @@ const routes: Routes = [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: '4456test-myinfo', component: TestMyInfoComponent},
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
       { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
@@ -29,7 +34,7 @@ const routes: Routes = [
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
 
       // Legacy Routes
-      { path: 'terms-and-conditions', component: TermsAndConditionsComponent},
+      { path: 'terms-of-use', component: TermsOfUseComponent},
       { path: 'privacy-policy', component: PrivacyPolicyComponent},
       { path: 'disclosures', component: DisclosuresComponent},
       { path: 'fair-dealing', component: FairDealingComponent}

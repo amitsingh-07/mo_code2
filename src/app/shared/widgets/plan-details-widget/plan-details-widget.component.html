@@ -21,17 +21,17 @@
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
-          <div class="help-icon" style="visibility: hidden;"></div>
+          <div class="help-icon" style="display: none;"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRating">
           <div class="feature-head">{{data.insurer.rating}}</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RATING' | translate }}</div>
-          <div class="help-icon" style="visibility: hidden;" (click)="openRatingModal()"></div>
+          <div class="help-icon" style="display: none;" (click)="openRatingModal()"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowDiscount">
           <div class="feature-head">50%</div>
           <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_COMMISSION' | translate }}</div>
-          <div class="help-icon" style="visibility: hidden;" (click)="openCommissionModal()"></div>
+          <div class="help-icon" style="display: none;" (click)="openCommissionModal()"></div>
         </div>
       </div>
 
@@ -55,7 +55,7 @@
     </div>
   </div>
   <div class="row mt20" *ngIf = "isDirect"  [hidden]="isViewMode">
-      <div class="col-md-12 col-btn-bottom" [hidden]="!this.data.brochureLink">
+      <div class="col-btn-bottom width100" [hidden]="!this.data.brochureLink">
         <button type="button" (click)="brochureDownload()" class="btn width100 brochure">Download Brochure (2MB)</button>
       </div>
     </div>

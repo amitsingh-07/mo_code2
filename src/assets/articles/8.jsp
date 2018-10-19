@@ -119,7 +119,7 @@ Source: Ministry of Health (MOH)
 				</p></td>
 		</tr>
 		<tr>
-			<td valign="top" class="cell--clean text-xs-center" style="background-color: #fff !important;  font-weight:normal;">
+			<td valign="top" class="cell--clean" style="background-color: #fff !important;  font-weight:normal;">
 				<ul class="list-unstyled" >
 					<li>$70,000</li>
 					<li>$450 - $900</li>

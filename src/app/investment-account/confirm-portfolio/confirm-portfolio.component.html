@@ -55,9 +55,9 @@
         <div class="caption">
           <span class="title">
             {{ 'CONFIRM_PORTFOLIO.PROJECTED_RETURNS' | translate}}
-            <img src="../../../assets/images/help-icon.png" alt="" />
+            <img (click)="showPortfolioAssetModal()" src="../../../assets/images/help-icon.png" alt="" />
           </span>
-          <span class="whatsrisk">{{ 'CONFIRM_PORTFOLIO.WHATS_THE_RISK' | translate}}</span>
+          <div class="whatsrisk" (click)="goToWhatsTheRisk()">{{ 'CONFIRM_PORTFOLIO.WHATS_THE_RISK' | translate}}</div>
         </div>
         <div class="percentage" id="portfolio_projectedReturnsValue_lbl">{{portfolio.projectedReturns}}</div>
       </div>
@@ -80,12 +80,12 @@
       </div>
       <!-- / ALLOCATION -->
 
-      <div class="fees-promo">
+      <div class="fees-promo" (click)="showFeesModal()">
         <img src="../../../assets/images/investment-account/glassesowl.svg" alt="" />
         <div>{{ 'CONFIRM_PORTFOLIO.CHECK_FEES' | translate}}</div>
       </div>
 
-      <button type="button" (click)="showPortfolioAssetModal()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{ 'CONFIRM_PORTFOLIO.I_WANT_TO_START_INVEST' | translate}}</button>
 
     </div>

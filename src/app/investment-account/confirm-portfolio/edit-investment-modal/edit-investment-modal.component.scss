@@ -3,7 +3,7 @@
 
 .edit-investment-modal {
 
-    font-family: $muli;
+  font-family: $muli;
 
   .dropdown-control {
     position: relative;
@@ -13,7 +13,7 @@
     label {
       font-size: 18px;
       font-weight: 600;
-      padding-right:15px;
+      padding-right: 15px;
     }
   }
 
@@ -26,18 +26,22 @@
     .btn-dropdown {
       color: #00a7a7;
     }
+
     border-radius: 6px;
     position: relative;
     //width: 43vw;
-    
+
     position: relative;
     background: #FFF;
     cursor: pointer;
+
     .dropdown-toggle {
       padding: 0.90rem;
+
       //padding-right: 0;
       &:disabled {
         cursor: not-allowed;
+
         &:hover {
           background-color: transparent !important;
         }

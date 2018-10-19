@@ -4,11 +4,11 @@ import { FooterService } from './../../footer/footer.service';
 import { NavbarService } from './../../navbar/navbar.service';
 
 @Component({
-  selector: 'app-terms-and-conditions',
-  templateUrl: './terms-and-conditions.component.html',
-  styleUrls: ['./terms-and-conditions.component.scss']
+  selector: 'app-terms-of-use',
+  templateUrl: './terms-of-use.component.html',
+  styleUrls: ['./terms-of-use.component.scss']
 })
-export class TermsAndConditionsComponent implements OnInit {
+export class TermsOfUseComponent implements OnInit {
 
   constructor(public navbarService: NavbarService, public footerService: FooterService) { }
 

@@ -32,6 +32,14 @@
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
       "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+    },
+    "POSTALCODE_EMPTY_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter your postal code."
+    },
+    "POSTALCODE_NOT_FOUND_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter valid postal code."
     }
   },
   "EMPLOYMENT_DETAILS": {
@@ -52,7 +60,6 @@
     "EMPLOYERS_ADDRESS": "Employer's Address",
     "SAME_AS_MAILING_ADDRESS": "Same as Mailing Address",
     "CONTINUE": "Continue",
-
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
       "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
@@ -86,7 +93,6 @@
     "PERS_OF_INCOME_SAVED": "% Of Income Saved",
     "TOTAL_ASSETS": "Total Assets",
     "TOTAL_LOANS": "Total Loans"
-
   },
   "TAX_INFO": {
     "TITLE": "Tax Information",
@@ -154,6 +160,20 @@
     "NO_LBL": "No",
     "CONTINUE": "Continue"
   },
+  "UPLOAD_DOCUMENTS_LATER": {
+    "TITLE": "Upload Documents Later",
+    "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
+    "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
+
+  },
+  "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
+    "TITLE": "Additional Declarations",
+    "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
+    "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
+  },
+
   "CONFIRM_PORTFOLIO": {
     "TITLE": "Your Portfolio",
     "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
@@ -177,9 +197,17 @@
       "MONTHLY_INVESTMENT": "Monthly Investment"
     },
     "MODAL": {
-      "PORTFOLIO_ASSETS": {
-        "TITLE": "Portfolio Assets",
-        "MESSAGE": "These assets that we have selected for you are only available to MoneyOwl customers! The only other investors allowed to purchase these types of asset classes are big fund houses such as xxx"
+      "PROJECTED_RETURNS": {
+        "TITLE": "Projected Returns",
+        "MESSAGE": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
+      },
+      "FEES": {
+        "TITLE": "MoneyOwl Fees",
+        "TABLE_HEAD": "Annual Fees Breakdown",
+        "MONEYOWL_FEES": "MoneyOwl Fees",
+        "PLATFORM_FEES": "Platform Fees",
+        "FUND_EXPENSE_RATIO": "Fund Expense Ratio",
+        "TOTAL": "Total"
       }
     }
   },

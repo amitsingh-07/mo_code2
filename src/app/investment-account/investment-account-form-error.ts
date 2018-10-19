@@ -44,6 +44,12 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Address Line 1 should not contain special characters.'
             }
         },
+        address2: {
+            pattern: {
+                errorTitle: 'Invalid Address Line 2',
+                errorMessage: 'Address Line 2 should not contain special characters.'
+            }
+        },
         mailAddress1: {
             required: {
                 errorTitle: 'Invalid Address Line 1 in mailing address.',
@@ -52,6 +58,12 @@ export class InvestmentAccountFormError {
             pattern: {
                 errorTitle: 'Invalid mail Address Line 1',
                 errorMessage: 'Address Line 1 should not contain special characters in mailing address.'
+            }
+        },
+        mailAddress2: {
+            pattern: {
+                errorTitle: 'Invalid mail Address Line 2',
+                errorMessage: 'Address Line 2 should not contain special characters in mailing address.'
             }
         },
         unitNo: {
@@ -206,7 +218,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid passport  number',
-                errorMessage: 'passport number should not contain special characters.'
+                errorMessage: 'Passport number should not contain special characters.'
             }
         },
         passportExpiry: {
@@ -217,7 +229,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid passport expiry date',
-                errorMessage: 'passport expiry date should not contain alphabet.'
+                errorMessage: 'Passport expiry date should not contain alphabet.'
             }
         },
         dob: {
@@ -228,7 +240,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid date of birth',
-                errorMessage: 'passportExpiry date should not contain alphabet.'
+                errorMessage: 'Passport Expiry date should not contain alphabet.'
             }
         },
         sourceOfIncome: {
@@ -372,6 +384,55 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid  financial Total Liabilities',
                 errorMessage: 'Please enter Total Liabilities.'
+            }
+        },
+        expectedNumberOfTransation: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  expected Number Of Transation',
+                errorMessage: 'Please enter expected Number Of Transation.'
+            }
+        },
+        expectedAmountPerTranction: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  expected Amount Per Tranction',
+                errorMessage: 'Please enter expected Amount Per Tranction.'
+            }
+        },
+        sources: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  sources',
+                errorMessage: 'Please sources.'
+            }
+        },
+        personalSavings: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid personal Savings',
+                errorMessage: 'Please personal Savings.'
+            }
+        },
+        inheritanceGift: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  inheritance Gift',
+                errorMessage: 'Please inheritance Gift.'
+            }
+        },
+        investmentPeriod: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  investment Period',
+                errorMessage: 'Please investment Period.'
+            }
+        },
+        earningsGenerated: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid  earnings Generated',
+                errorMessage: 'Please earnings Generated.'
             }
         },
         pepoccupation: {

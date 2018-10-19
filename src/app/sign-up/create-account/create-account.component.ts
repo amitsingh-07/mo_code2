@@ -1,3 +1,4 @@
+import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -36,6 +37,7 @@ export class CreateAccountComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -55,6 +57,7 @@ export class CreateAccountComponent implements OnInit {
    */
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
     this.buildAccountInfoForm();
     this.getCountryCode();
   }
