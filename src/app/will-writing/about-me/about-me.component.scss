@@ -52,24 +52,15 @@
     input{
         color:#00a7a7;
     }
-    // input[type='radio']:checked+label {
-    //   color: #ffffff;
-    //   background: #00A7A7;
-    //   padding: 0px !important;
-    //   border-radius: 3px;
-    // }
-
-    // input[type='radio']+label {
-    //     background: #00A7A7 !important;
-    //     padding: 0px !important;
-    // }
     .direct-form-btn--radio{
         width: unset;
         min-width: unset;
         @include allmobiles{
             background: $white-color;
+            color: #00a7a7;
             &.active{
-                background: #00A7A7;
+                background: #00a7a7;
+                color: #fff;
             }
         }
         &.btn{ 
