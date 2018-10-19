@@ -9,7 +9,12 @@
         border-radius: 0;
     }
     .content {
-        padding-bottom:70px;
+        .main-container{
+            justify-content: space-between;
+            @include allmobiles {
+                padding-bottom:70px;
+            }
+        }
     }
 }
 
@@ -30,7 +35,7 @@
     font-size: 36px;
     font-weight: 600;
     letter-spacing: -0.4px;
-    color: #00a7a7;  
+    color: $white-color;  
 }
 
 .mobile-logo{
@@ -42,7 +47,7 @@
         margin-top: 17px;
     }
 }
-.mobile-header {
+.header-section {
     @include allmobiles{
         background-color: #ffffff;
         font-family: $muli-semi-bold;
@@ -84,7 +89,6 @@
         font-weight: 600;
         letter-spacing: -0.3px;
         color: #2d8289;
-        margin-top: 70px;
         @include allmobiles {
             margin-top: 19px;
         }
@@ -120,7 +124,6 @@
         justify-content: flex-end;
         margin-right: 20px;
         .btn{
-            @include allmobiles{
                 background-color: #f4fafb;
                 color: #00a7a7;
                 font-family: $muli-semi-bold;
@@ -128,14 +131,11 @@
                 font-weight: 600;
                 letter-spacing: -0.1px;
                 text-align: center;
-            }
         }
         .btn-primary{
-            @include allmobiles{
                 background-color: #00a7a7 !important;
                 color: #fff !important;
                 padding: 10px 10px;
-            }
         }
 
     }

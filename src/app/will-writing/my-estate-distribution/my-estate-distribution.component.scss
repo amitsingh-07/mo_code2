@@ -7,6 +7,9 @@
         padding: 10px 0 !important;
         border-radius: 0;
     }
+    .main-container {
+        justify-content: space-between;
+    }
 }
 .banner-image{
     @include allmobiles{
@@ -314,6 +317,7 @@ input[type='checkbox']+label {
       background-color: #fff;
       padding-top: 20px;
       padding-bottom: 20px;
+      border-radius: 6px;
       .input-label-black{
         font-family: $muli-semi-bold;
         font-size: 18px;
