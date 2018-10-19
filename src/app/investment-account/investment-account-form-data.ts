@@ -101,4 +101,8 @@ export class InvestmentAccountFormData {
     pepAddress1: string;
     pepAddress2: string;
     pepUnitNo: string;
+
+    // MyInfo
+    isMyInfoEnabled: boolean;
+    disableAttributes: any;
 }

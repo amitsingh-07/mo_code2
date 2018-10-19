@@ -141,6 +141,20 @@
       "TITLE": "Fair Dealing"
     }
   },
+  "MYINFO": {
+    "OPEN_MODAL_DATA": {
+      "TITLE": "Leave This Page",
+      "DESCRIPTION": "You will be redirected to Singpass MyInfo page to begin fetching your data."
+    },
+    "ERROR_MODAL_DATA": {
+      "TITLE": "Oops, Error!",
+      "DESCRIPTION": "We weren’t able to fetch your data from MyInfo."
+    },
+    "FETCH_MODAL_DATA": {
+      "TITLE": "Fetching Data...",
+      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+    }
+  },
   "RECOMMENDATIONS": {
     "TITLE": "Recommendations",
     "DESCRIPTION": "Personalise your insurance coverage by selecting the plans you are interested in.",

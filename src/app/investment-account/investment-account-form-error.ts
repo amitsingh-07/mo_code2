@@ -181,6 +181,10 @@ export class InvestmentAccountFormError {
             pattern: {
                 errorTitle: 'Invalid full name',
                 errorMessage: 'first Name should not contain alphabet.'
+            },
+            nameMatch: {
+                errorTitle: 'Invalid name',
+                errorMessage: 'First Name and Last Name are not matched with Full Name.'
             }
         },
 
