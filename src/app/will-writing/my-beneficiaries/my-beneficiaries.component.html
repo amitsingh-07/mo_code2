@@ -5,8 +5,8 @@
       <div class="col-lg-5 col-md-5 col-sm-12 header-container">
         <div class="mobile-header">
           <div class="step2 hidden-sm-md">{{ 'WILL_WRITING.COMMON.STEP_2' | translate}}</div>
-        <h2 id="intro-title" class ="hidden-sm-md">{{ 'My Beneficiaries' | translate}}</h2>
-        <div class="sub-title" id="sub-title">{{ 'Name the beneficiaries that you would like to inherit your estate.' | translate}}</div>
+        <h2 id="intro-title" class ="hidden-sm-md">{{ 'WILL_WRITING.MY_BENEFICIARY.TITLE' | translate}}</h2>
+        <div class="sub-title" id="sub-title">{{ 'WILL_WRITING.MY_BENEFICIARY.SUB_TITLE' | translate}}</div>
         <div class="banner-image hidden-sm-md">
             <img src="assets/images/will-writing/my-beneficiaries.svg" id="intro-img"/>  
         </div>
@@ -15,7 +15,7 @@
       </div>
       <div class="col-lg-5 col-md-5  col-sm-12 beneficiaries-container">
         <div name="beneficiariesForm">
-          <div class="form-group-single-column  mb0 flex-col"><span class="content-title">I would like my beneficiaries to be</span></div>
+          <div class="form-group-single-column  mb0 flex-col"><span class="content-title">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_TITLE' | translate}}</span></div>
             <div>
                   <div class="form-group-single-column  mb0 flex-col">
                     <div class="edit-block checkbox-button two-label" *ngFor="let beneficiary of beneficiaryList ; let i = index" >
@@ -74,10 +74,10 @@
                                   
                                   <div class="flex-row mb10 add-beneficiary">
                                       <div class="flex-col-5">
-                                          <button type="button" (click)="cancelForm(addBeneficiaryForm)" class="btn width100">cancel</button>
+                                          <button type="button" (click)="cancelForm(addBeneficiaryForm)" class="btn width100">{{ 'WILL_WRITING.COMMON.CANCEL' | translate}}</button>
                                       </div>
                                       <div class="flex-col-5">
-                                          <button type="button" (click) = "addBeneficiary(addBeneficiaryForm)" class="btn btn-primary width100">Add now</button>
+                                          <button type="button" (click) = "addBeneficiary(addBeneficiaryForm)" class="btn btn-primary width100">{{ 'WILL_WRITING.COMMON.ADD' | translate}}</button>
                                       </div> 
                                     </div>
                                 </div>
