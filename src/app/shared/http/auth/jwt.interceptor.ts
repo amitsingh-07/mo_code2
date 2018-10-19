@@ -42,6 +42,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (request.url.indexOf('getCaptcha') > -1) {
             request = request.clone({
                 headers: new HttpHeaders({
+                    'Content-Type': 'image/png',
                     'Authorization': `${this.auth.getToken()}`
                 })
             });

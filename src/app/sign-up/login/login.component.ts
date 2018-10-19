@@ -169,7 +169,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   openErrorModal(error) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorMessage = error.errorMessage;
+    ref.componentInstance.errorMessage = error;
     return false;
   }
 
