@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { DirectService } from './../../direct/direct.service';
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { WillWritingService } from './../will-writing.service';
 
 @Component({
@@ -13,17 +15,19 @@ import { WillWritingService } from './../will-writing.service';
 })
 export class CheckEligibilityComponent implements OnInit {
   private pageTitle: string;
-  private tooltip: string;
 
   formValues: any;
   eligibilityForm: FormGroup;
   religion = '';
   religionList;
+  errorModal;
+  tooltip;
   constructor(
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
     private router: Router,
     private directService: DirectService,
+    private modal: NgbModal,
     private translate: TranslateService
   ) {
     this.translate.use('en');
@@ -31,6 +35,7 @@ export class CheckEligibilityComponent implements OnInit {
       this.religionList = this.translate.instant('WILL_WRITING.ELIGIBILITY.RELIGION_LIST');
       this.pageTitle = this.translate.instant('WILL_WRITING.ELIGIBILITY.TITLE');
       this.tooltip = this.translate.instant('WILL_WRITING.ELIGIBILITY.TOOLTIP');
+      this.errorModal = this.translate.instant('WILL_WRITING.ELIGIBILITY.MUSLIM_ERROR');
     });
   }
 
@@ -43,7 +48,8 @@ export class CheckEligibilityComponent implements OnInit {
     });
     setTimeout(() => {
       if (this.formValues.religion !== undefined) {
-        this.selectReligion(this.formValues.religion);
+        const index = this.religionList.findIndex((status) => status.value === this.formValues.religion);
+        this.selectReligion(this.religionList[index]);
       }
     }, 100);
   }
@@ -66,15 +72,20 @@ export class CheckEligibilityComponent implements OnInit {
   }
 
   openToolTipModal() {
-    const title = 'Assets to be Distributed';
-    const message = this.tooltip;
+    const title = this.tooltip.TITLE;
+    const message = this.tooltip.MESSAGE;
     this.willWritingService.openToolTipModal(title, message);
   }
 
   openErrorModal() {
-    const title = 'Assets to be Distributed';
-    const message = '';
-    this.willWritingService.openErrorModal(title, message, false);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.errorModal.TITLE;
+      ref.componentInstance.errorMessage = this.errorModal.MESSAGE;
+      ref.componentInstance.navToHome = true;
+      ref.result.then(() => {
+        this.router.navigate(['home']);
+      }).catch((e) => {
+      });
   }
 
   goToNext(form) {

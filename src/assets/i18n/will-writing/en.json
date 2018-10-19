@@ -56,7 +56,8 @@
             "GET_NOW": "Get now!",
             "SENT_VIA_EMAIL": "Your promocode will be sent via email!",
             "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
-            "SENT_SUCCESS": "Your promo code has successfully been sent to your email."
+            "SENT_SUCCESS": "Your promo code has successfully been sent to your email.",
+            "FAQ_LINK": "www.moneyowl.com.sg"
         },
         "TELL_US_YOURSELF": {
             "TITLE": "Tell us yourself",
@@ -110,7 +111,14 @@
             "RELIGION_LIST": [{"text":"Christian", "value":"christian"}, { "text":"Buddhist", "value":"buddhist"}, { "text":"Muslim", "value":"muslim"}, { "text":"Hindu", "value":"hindu"}, { "text":"None", "value":"none"}, {"text":"Others", "value":"others"}],
             "ARE_YOU_SINGAPOREAN":"Are you a Singaporean?",
             "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?",
-            "TOOLTIP": "<p> Do note that only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nominations nor trusts)</li><li>- Property (Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
+            "TOOLTIP": {
+                "TITLE":"Assets to be Distributed",
+                "MESSAGE": "<p> Do note that only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nominations nor trusts)</li><li>- Property (Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
+            },
+            "MUSLIM_ERROR": {
+                "TITLE": "Error",
+                "MESSAGE": "As you are covered under the muslim intestate law, your will must adhere to Faraid guidelines. Do contact our partner legal services ______ "
+            }
         },
         "REVIEW_YOUR_DETAILS": {
             "TITLE":"Review Your Details",
