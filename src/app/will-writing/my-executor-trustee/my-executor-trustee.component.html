@@ -2,13 +2,13 @@
   <app-page-title [step]="step" [pageTitle]="pageTitle" [tooltip]="tooltip"></app-page-title>
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="flex-row">
-        <div class="col-lg-7 col-md-7 col-12 mobile-header-container">
+      <div class="flex-row main-container">
+        <div class="col-lg-6 col-md-6 col-12 mobile-header-container">
           <div class="heading hidden-sm-md">{{'WILL_WRITING.COMMON.STEP_3' | translate}}</div>
           <div class="autofill-link">
             <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
             <div class="sub-title mb20">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.SUB_TITLE' | translate}}</div>
-            <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/my-family.svg" /></div>
+            <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/will-writing/my-executor-trustee.svg" /></div>
             <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
           </div>
         </div>
@@ -96,7 +96,7 @@
             <div class="checkbox-button two-label">
               <img id="add" src="assets/images/will-writing/add.svg" />
               <label for="add">
-                <div class="input-label-black add-trustees" (click)="showHideForm()">Add Beneficiaries</div>
+                <div class="input-label-black add-trustees" (click)="showHideForm()">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
               </label>
             </div>
           </div>

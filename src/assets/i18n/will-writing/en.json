@@ -90,6 +90,7 @@
             "TITLE": "My Child's Guardian",
             "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
             "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
+            "ADD_GUARDIAN": "Add Guardian",
             "FORM_TITLE": "I would like my guardian to be",
             "TOOLTIP_TITLE": "What does guardian mean?",
             "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your child after you have passed, until they reach the age of 21.</p><p>Taking over your role as the parent, the guardian will have the ability to make decisions that affect your child, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your child’s guardian to seek their agreement.</p>"
@@ -107,6 +108,7 @@
             "SUB_TITLE": "Let’s check if our will writing tool is suitable for you.",
             "SUB_TITLE1":"Let’s check if our will writing",
             "SUB_TITLE2":"tool is suitable for you.",
+            "RELIGION": "Religion",
             "RELIGION_LIST": [{"text":"Christian", "value":"christian"}, { "text":"Buddhist", "value":"buddhist"}, { "text":"Muslim", "value":"muslim"}, { "text":"Hindu", "value":"hindu"}, { "text":"None", "value":"none"}, {"text":"Others", "value":"others"}],
             "ARE_YOU_SINGAPOREAN":"Are you a Singaporean?",
             "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?",
@@ -127,11 +129,18 @@
         },
         "MY_BENEFICIARY": {
             "TITLE": "My Beneficiaries",
-            "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
+            "SUB_TITLE": "Name the beneficiaries that you would like to inherit your estate.",
             "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
             "FORM_TITLE": "I would like my guardian to be",
             "TOOLTIP_TITLE": "What does guardian mean?",
             "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your child after you have passed, until they reach the age of 21.</p><p>Taking over your role as the parent, the guardian will have the ability to make decisions that affect your child, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your child’s guardian to seek their agreement.</p>"
+        },
+        "MY_ESTATE_DISTRIBUTION": {
+            "TITLE": "My Estate Distribution",
+            "SUB_TITLE": "Now that you have listed your beneficiaries, determine how much each person inherits.",
+            "DISTRIBUTE_YOUR_ESTATE": "Distribute your estate",
+            "ESTATE_DISTRIBUTION": "Estate Distribution",
+            "LEFT_TO_DISTRIBUTE": "Left to distribute"
         }
     }
 }
