@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   heighlightMobileNumber;
   captchaSrc: any = '';
   showCaptcha: boolean;
+  hideForgotPassword = false;
 
   constructor(
     // tslint:disable-next-line
@@ -200,6 +201,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   refreshCaptcha() {
     const time = new Date().getMilliseconds();
-    this.captchaSrc = '${environment.apiBaseUrl}/account-microservice/getCaptcha?code=' + this.authService.getSessionId() + '&time=' + time;
+    // tslint:disable-next-line:max-line-length
+    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=` + this.authService.getSessionId() + '&time=' + time;
   }
 }
