@@ -1,4 +1,4 @@
-<img src="images/22/working_lady.jpg" class="pull-right" style=" padding:10px" alt="financial responsibilities">
+<img src="assets/articles/images/22/working_lady.jpg" class="pull-right" style=" padding:10px" alt="financial responsibilities">
 <p>After many years of formal schooling  and being out of school, like all young working adults, I was eager to excel in  the career that I had embarked on. <br>
 <br>All of us would remember  the time when we received our first pay cheque from our first full-time job. It  was a sweet reward which we achieved all through our own effort. It  was a significant moment and many of us would have celebrated this occasion by  giving treats to our loved ones and friends.<br>
 <br>Not fully realising, I have  made the first step up to the next life-stage. And it is a time that I am going  have the power to manage the most money I have come into touch with than ever  before. </p><br>
@@ -23,9 +23,9 @@
 
 <h3 class="primary-color"><strong><em>Protecting our loved  ones and ourselves</em></strong></h3><br>
 <p>Insurance policies can be difficult  to understand and comparing between the different insurers is a very tedious  process. What if there is an insurance package which is comprehensively  researched, compared between insurers and put together for young working  adults? <br>
-<br><a href="../home/">MoneyOwl</a> Web Portal has launched  the <a href="../packages/young-working-adult">Young  Working Adults package</a> to cater to specific need. The  package provides for our insurance coverage for areas which are of highest  priorities. Backed by key people with almost 2 decades of experience, all  staff from MoneyOwl are salaried -based  and do not participate in sales-based compensation or incentives of any kind. This package is also customizable according to your needs so  do seek advice from the planners.<br>
+<br><a href="../home/">DIYInsurance</a> (Do-It-Your-way  Insurance), Singapore&rsquo;s First Life Insurance Comparison Web Portal has launched  the <a href="../packages/young-working-adult">Young  Working Adults package</a> to cater to specific need. The  package provides for our insurance coverage for areas which are of highest  priorities. Backed by key people with almost 2 decades of experience, all  staff from DIYInsurance are salaried -based  and do not participate in sales-based compensation or incentives of any kind. This package is also customizable according to your needs so  do seek advice from the planners.<br>
 <br>As we strive towards our goals, it is important that we are  aware of our financial responsibilities. It is essential that we understand how  we could transfer these <a href="https://www.investopedia.com/terms/f/financialrisk.asp" target="_blank">financial risks</a> away to protect our loved ones and  ourselves from the heavy financial impact of any unexpected event.</p>
 <br>
 <div class="text-xs-center"><a href="../selfcheck/">
-	<img src="../assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
+	<img src="assets/images/banners/selfcheck_go_540w.png" alt="diyinsurance selfcheck"></a>
 </div>

@@ -42,7 +42,7 @@
     "PROCEED":"Proceed"
   },
   "ADD_EXISTING_COVERAGES" : {
-    "TITLE": "Add Existing Coverages",
+    "TITLE": "Add Existing Coverage",
     "LIFE_PROTECTION": "Life Protection",
     "CRITICAL_ILLNESS": "Critical Illness",
     "OCCUPATION_DISABILITY": "Occupational Disability",
@@ -77,7 +77,9 @@
     "LBL_COMMISSION": "Commission Rebate"
   },
   "SETTINGS": {
+    "TITLE": "Settings",
     "SORT_BY": "Sort by",
+    "APPLY_FILTERS": "Apply Filters",
     "SORT" : [
       {"displayText": "Highest Ranking", "value": "premium.ranking" },
       {"displayText": "Insurer Name (A-Z)", "value": "+insurer.insurerName" },
@@ -113,16 +115,16 @@
     "TNC": {
       "SUB_NAV": {
         "PRIMARY": "Home",
-        "MAIN": "Terms and Conditions" 
+        "MAIN": "Terms of Use" 
       },
-      "TITLE": "Terms and Conditions"
+      "TITLE": "Terms of Use"
     },
     "PRIVACY_POLICY": {
       "SUB_NAV": {
         "PRIMARY": "Home",
-        "MAIN": "Privacy Policy"
+        "MAIN": "Terms and Conditions & Privacy Policy"
       },
-      "TITLE": "Privacy Policy"
+      "TITLE": "Terms and Conditions & Privacy Policy"
     },
     "DISCLOSURE": {
       "SUB_NAV": {
@@ -148,7 +150,7 @@
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Login",
-    "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
+    "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
   },
   "FOOTER": {
     "TOP_SECTION": {
@@ -181,7 +183,7 @@
           "LINK": "enquiries@moneyowl.com.sg"
         },
         "CORPORATE": {
-          "LABEL": "For Corporate Financial Literacy Programme and Partnership",
+          "LABEL": "For Corporate Financial Literacy Programmes and Financial Wellness Partnerships",
           "LINK_LABEL": "partnership@moneyowl.com.sg",
           "LINK": "partnership@moneyowl.com.sg"
         }
@@ -193,13 +195,13 @@
       }
     },
     "BOTTOM_SECTION": {
-      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Service Licence No: CMS100758-1.",
+      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Service Licence No: CMS100758.",
       "LEGAL": {
-        "TERMS_AND_CONDITIONS": {
-          "LABEL": "Terms and Conditions"
+        "TERMS_OF_USE": {
+          "LABEL": "Terms of Use"
         },
         "PRIVACY_POLICY": {
-          "LABEL": "Privacy Policy"
+          "LABEL": "Terms and Conditions & Privacy Policy"
         },
         "DISCLOSURE": {
           "LABEL": "Disclosure"

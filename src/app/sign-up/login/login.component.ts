@@ -1,3 +1,4 @@
+import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
     private modal: NgbModal,
     public authService: AuthenticationService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -56,9 +58,8 @@ export class LoginComponent implements OnInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarDirectGuided(true);
+    this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     this.authService.authenticate().subscribe((token) => {
     });

@@ -1,4 +1,4 @@
-<img src="images/23/thumbnail.jpg" class="pull-right" style=" padding:10px;"  alt="Answers to Singaporeans' top 5 questions on insurance">
+<img src="assets/articles/images/23/thumbnail.jpg" class="pull-right" style=" padding:10px;"  alt="Answers to Singaporeans' top 5 questions on insurance">
 <p>I feel a large sense  of injustice when I hear my peers paying large sums of money for their  insurance plans and yet, they do not have the essential insurance coverage they  need. It could be disastrous for them if they meet a crisis. </p>
 <p>Have you been  introduced to insurance by a family member, a friend or a stranger on the  streets? While we faintly know that having insurance is essential, it is  difficult to fully understand and get an independent opinion on insurance.</p>
 <p>I want to help as many  Singaporeans as possible plan for their insurance needs the right way and hope  that this article will point you in the right direction by providing  easy-to-understand answers on some of the questions which you may have about  insurance. </p>
@@ -133,5 +133,5 @@
  </p>
  <br>
 <div class="text-xs-center"><a href="../selfcheck/">
-	<img src="../assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
+	<img src="../assets/images/banners/selfcheck_go_540w.png" alt="diyinsurance selfcheck"></a>
 </div>

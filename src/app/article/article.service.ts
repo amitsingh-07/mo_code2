@@ -28,6 +28,7 @@ export class ArticleService {
     const thisArticleElement = {
               id: articleElement.artId,
               art_title: articleElement.title,
+              art_desc: articleElement.summary,
               art_author: articleElement.profile.author,
               art_date: articleElement.date,
               art_tags: articleTags
@@ -40,10 +41,23 @@ export class ArticleService {
     return art_map.tag_map[art_tag_id];
   }
 
+  getTagNameToLink(art_tag_name: string) {
+    return art_tag_name.replace(/ /g, '_').toLowerCase();
+  }
+
   getArticleId(art_tag_name: string) {
-    const art_map = this.articleApiService.getArticleTagMap();
-    const art_id = Object.keys(art_map.tag_map).find((key) => Object[key] === art_tag_name);
-    console.log(art_id);
-    return  art_id;
+    art_tag_name = art_tag_name.replace(/_/g, ' ').toLowerCase();
+    if (art_tag_name) {
+      const art_map = this.articleApiService.getArticleTagMap();
+      const art_key = Object.keys(art_map.tag_map);
+
+      for (let i = 0; i <= art_key.length - 1; i++) {
+        const iteration_tag_name = art_map.tag_map[art_key[i]].tag_name;
+        if (iteration_tag_name.toLowerCase() === art_tag_name) {
+          return art_key[i];
+        }
+      }
+    }
+    return -1;
   }
 }
