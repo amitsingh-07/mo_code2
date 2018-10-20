@@ -129,44 +129,44 @@ export class LoginComponent implements OnInit, AfterViewInit {
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
     } else {
-      this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword, 
+      this.signUpApiService.verifyLogin(this.loginForm.value.loginUsername, this.loginForm.value.loginPassword,
         this.loginForm.value.captchaValue).subscribe((data) => {
-        if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
-          try {
-            if (data.objectList[0].customerId) {
-              this.appService.setCustomerId(data.objectList[0].customerId);
+          if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+            try {
+              if (data.objectList[0].customerId) {
+                this.appService.setCustomerId(data.objectList[0].customerId);
+              }
+            } catch (e) {
+              console.log(e);
             }
-          } catch (e) {
-            console.log(e);
-          }
-          this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
-            this.signUpService.setUserProfileInfo(userInfo.objectList);
-            const redirect_url = this.signUpService.getRedirectUrl();
-            if (redirect_url) {
-              this.signUpService.clearRedirectUrl();
-              this.router.navigate([redirect_url]);
-            } else {
-              this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
-            }
-          });
-          this.signUpService.removeCaptchaSessionId();
-        } else if (data.responseMessage.responseCode === 5016) {
+            this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+              this.signUpService.setUserProfileInfo(userInfo.objectList);
+              const redirect_url = this.signUpService.getRedirectUrl();
+              if (redirect_url) {
+                this.signUpService.clearRedirectUrl();
+                this.router.navigate([redirect_url]);
+              } else {
+                this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+              }
+            });
+            this.signUpService.removeCaptchaSessionId();
+          } else if (data.responseMessage.responseCode === 5016) {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
             this.refreshCaptcha();
-        } else if (data.responseMessage.responseCode === 5011) {
-          this.loginForm.controls['captchaValue'].reset();
-          this.loginForm.controls['loginPassword'].reset();
-          this.openErrorModal(data.responseMessage.responseDescription);
-          if (data.objectList[0].sessionId) {
-            this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
-          } else if (data.objectList[0].attempt >= 3) {
-            this.signUpService.setCaptchaShown();
-            this.setCaptchaValidator();
+          } else {
+            this.loginForm.controls['captchaValue'].reset();
+            this.loginForm.controls['loginPassword'].reset();
+            this.openErrorModal(data.responseMessage.responseDescription);
+            if (data.objectList[0].sessionId) {
+              this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
+            } else if (data.objectList[0].attempt >= 3) {
+              this.signUpService.setCaptchaShown();
+              this.setCaptchaValidator();
+            }
           }
-        }
-      });
+        });
     }
   }
 
@@ -203,7 +203,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   refreshCaptcha() {
     const time = new Date().getMilliseconds();
-    // tslint:disable-next-line:max-line-length
-    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=` + this.authService.getSessionId() + '&time=' + time;
+    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=`
+      + this.authService.getSessionId() + '&time=' + time;
   }
 }
