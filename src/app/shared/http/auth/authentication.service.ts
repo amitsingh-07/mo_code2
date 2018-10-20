@@ -24,7 +24,7 @@ export class AuthenticationService {
   private getAppSecretKey() {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
-  authenticate(userEmail?: string, userPassword?: string) {
+  authenticate(userEmail?: string, userPassword?: string, captchaValue?: string, sessionId?: string) {
     const authenticateUrl = apiConstants.endpoint.authenticate;
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -32,6 +32,8 @@ export class AuthenticationService {
       password: userPassword ? userPassword : '',
       secretKey: this.getAppSecretKey()
     };
+    if (sessionId) { authenticateBody['sessionId'] = sessionId; }
+    if (captchaValue) { authenticateBody['captchaValue'] = captchaValue; }
     const handleError = '?handleError=true';
     return this.http.post<IServerResponse>(`${environment.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
@@ -39,7 +41,6 @@ export class AuthenticationService {
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
-          return response.objectList[0].securityToken;
         }
         return response;
       }),
