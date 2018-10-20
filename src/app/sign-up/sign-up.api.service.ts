@@ -191,7 +191,7 @@ export class SignUpApiService {
    */
   verifyLogin(userEmail, userPassword, captcha) {
     const sessionId = this.signUpService.getCaptchaSessionId();
-    return this.authService.authenticate(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
   }
 
   getUserProfileInfo() {
