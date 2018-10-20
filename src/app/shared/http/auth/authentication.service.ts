@@ -24,8 +24,8 @@ export class AuthenticationService {
   private getAppSecretKey() {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
-  authenticate(userEmail?: string, userPassword?: string, captchaValue?: string, sessionId?: string) {
-    const authenticateUrl = apiConstants.endpoint.authenticate;
+
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -35,6 +35,24 @@ export class AuthenticationService {
     if (sessionId) { authenticateBody['sessionId'] = sessionId; }
     if (captchaValue) { authenticateBody['captchaValue'] = captchaValue; }
     const handleError = '?handleError=true';
+    return this.doAuthenticate(authenticateBody, handleError);
+  }
+
+  authenticate() {
+    const authenticateBody = {
+      email: '',
+      mobile: '',
+      password: '',
+      secretKey: this.getAppSecretKey()
+    };
+    return this.doAuthenticate(authenticateBody);
+  }
+
+  private doAuthenticate(authenticateBody: any, handleError?: string) {
+    if (!handleError) {
+      handleError = '';
+    }
+    const authenticateUrl = apiConstants.endpoint.authenticate;
     return this.http.post<IServerResponse>(`${environment.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
@@ -43,24 +61,7 @@ export class AuthenticationService {
           this.saveAuthDetails(response.objectList[0]);
         }
         return response;
-      }),
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-            const url = '../../../../assets/mock-data/authenticate.json';
-            return this.http.get<IServerResponse>(url);
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        }));
+      }));
   }
 
   saveAuthDetails(auth: any) {
