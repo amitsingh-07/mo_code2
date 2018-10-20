@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../environments/environment';
 
 import { TermsComponent } from '../../shared/components/terms/terms.component';
 import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -32,7 +33,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   defaultCountryCode;
   countryCodeOptions;
   editNumber;
-  captchaSrc: any;
+  captchaSrc: any = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -139,17 +140,16 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
    * request one time password.
    */
   createAccount() {
-    this.signUpApiService.createAccount().subscribe((data: any) => {
+    this.signUpApiService.createAccount(this.createAccountForm.value.captcha).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       } else if (data.responseMessage.responseCode === 5016) {
-        const captchaControl = this.createAccountForm.controls['captcha'];
-        captchaControl.setErrors({notEquivalent: true});
-        captchaControl.reset();
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+        this.createAccountForm.controls['captcha'].reset();
         this.refreshCaptcha();
-        this.save(this.createAccountForm);
       }
     });
   }
@@ -173,6 +173,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   refreshCaptcha() {
     const time = new Date().getMilliseconds();
-    this.captchaSrc = '/assets/images/captcha.png?sessionId=' + this.authService.getSessionId() + '&time=' + time;
+    // tslint:disable-next-line:max-line-length
+    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=` + this.authService.getSessionId() + '&time=' + time;
   }
 }

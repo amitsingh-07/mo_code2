@@ -38,12 +38,22 @@ export class JwtInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler,
         cache: RequestCache): Observable<HttpEvent<any>> {
-        request = request.clone({
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': `${this.auth.getToken()}`
-            })
-        });
+
+        if (request.url.indexOf('getCaptcha') > -1) {
+            request = request.clone({
+                headers: new HttpHeaders({
+                    'Content-Type': 'image/png',
+                    'Authorization': `${this.auth.getToken()}`
+                })
+            });
+        } else {
+            request = request.clone({
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': `${this.auth.getToken()}`
+                })
+            });
+        }
 
         return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {

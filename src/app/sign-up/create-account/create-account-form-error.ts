@@ -66,10 +66,6 @@ export class CreateAccountFormError {
                 pattern : {
                         errorTitle: 'Invalid Mobile No. or Email Address',
                         errorMessage: 'Please enter your mobile no. or email address'
-                },
-                invalidMatch : {
-                        errorTitle: 'Invalid Credentials',
-                        errorMessage: 'Please check your Mobile No. or Email Address or Password'
                 }
         },
         loginPassword: {
@@ -106,10 +102,6 @@ export class CreateAccountFormError {
                 required : {
                         errorTitle: 'Invalid captcha',
                         errorMessage: 'Please enter valid captcha'
-                },
-                notEquivalent : {
-                        errorTitle: 'Invalid captcha',
-                        errorMessage: 'Please enter the correct captcha in the box'
                 }
         }
     };
