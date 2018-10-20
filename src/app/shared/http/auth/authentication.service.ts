@@ -41,7 +41,6 @@ export class AuthenticationService {
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
-          return response.objectList[0].securityToken;
         }
         return response;
       }),
