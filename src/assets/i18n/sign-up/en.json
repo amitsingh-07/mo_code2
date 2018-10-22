@@ -97,7 +97,7 @@
         "PROCEED_WITHOUT":"Proceed without SingPass"
     },
     "PRELOGIN": {
-        "TITLE":"Are you an existing MoneyOwl user.? ",
+        "TITLE":"Are you an existing MoneyOwl user?",
         "YES_LOGIN":"Yes, Log In Now",
         "CREATE_ACCOUNT":"No, Create Account"
     }
