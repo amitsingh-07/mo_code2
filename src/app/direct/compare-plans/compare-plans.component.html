@@ -16,7 +16,7 @@
         <div class="flex-row mt10 mb10">
           <div class="col-md-12 col-md-push-3">
             <h4 class="mb20">{{plan.productName}}</h4>
-            <h2 [hidden]="plan.premium.intrestRateOfReturn">
+            <h2 [hidden]="plan.premium.intrestRateOfReturn > 0">
               <span [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</span>
               <span [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</span>
               <br />
@@ -25,7 +25,7 @@
                 <span [hidden]="frequencyFilter !== 'yearly'">{{ 'SUFFIX.PER_YEAR' | translate}}</span>
               </span>
             </h2>
-            <h2 [hidden]="!plan.premium.intrestRateOfReturn">{{plan.premium.intrestRateOfReturn}}%
+            <h2 [hidden]="plan.premium.intrestRateOfReturn <= 0">{{plan.premium.intrestRateOfReturn}}%
               <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
               <br />
               <span class="text-small">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
