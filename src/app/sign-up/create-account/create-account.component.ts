@@ -1,12 +1,11 @@
-import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../environments/environment';
 
+import { environment } from '../../../environments/environment';
 import { TermsComponent } from '../../shared/components/terms/terms.component';
 import { APP_JWT_TOKEN_KEY, AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -14,6 +13,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { FooterService } from './../../shared/footer/footer.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 import { ValidateRange } from './range.validator';
@@ -143,7 +143,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
     this.signUpApiService.createAccount(this.createAccountForm.value.captcha).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-        sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
+        //sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       } else {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
