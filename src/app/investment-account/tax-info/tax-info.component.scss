@@ -37,14 +37,14 @@ letter-spacing: -0.3px;
 .dropdown-control .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
-    height: calc(70vh);
+    // height: calc(70vh);
     }
 .dropdown-item {
     white-space: normal;
     
 }
 .btn{
-    z-index: 1001;
+    
 }
 .fixed-btn--sm {
     color:#FFF;

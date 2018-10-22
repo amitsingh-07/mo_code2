@@ -21,7 +21,7 @@
 
               </button>
 
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectCountry(nationalityObj)"
                   id="selectNationality-country-option-{{i}}">
                   {{nationalityObj.country | titlecase}}
@@ -77,10 +77,10 @@
 
               </button>
 
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" *ngFor="let reasonListObj of noTinReasonlist; let i = index;" (click)="selectReason(reasonListObj)"
                   id="selectReason-country-option-{{i}}">
-                  {{reasonListObj.name | titlecase}}
+                  {{reasonListObj.name}}
                 </button>
               </div>
             </div>
