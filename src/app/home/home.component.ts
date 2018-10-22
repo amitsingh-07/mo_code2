@@ -178,7 +178,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const comprehensiveElement = this.ComprehensiveElement.nativeElement.getBoundingClientRect();
     const OffsetComprehensive = [comprehensiveElement.top + window.pageYOffset - document.documentElement.clientTop,
     comprehensiveElement.bottom + window.pageYOffset - document.documentElement.clientTop];
-    console.log(window.pageYOffset + difference);
 
     if (triggerPosition >= OffsetInsurance[0] && triggerPosition < OffsetInsurance[1]) {
       // within insurance
@@ -213,17 +212,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   goToSection(elementName) {
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
     const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
-    const navbar = this.navBarElement.nativeElement.getBoundingClientRect();
-    const navbarHeight = (navbar.bottom - navbar.top);
-    console.log(homeNavBarElement.bottom + window.pageYOffset - document.documentElement.clientTop);
-
+    let navbarHeight = 0;
+    if (innerWidth < this.mobileThreshold) {
+      navbarHeight = 45;
+    } else {
+      navbarHeight = 84;
+    }
     const selectedSection = elementName.getBoundingClientRect();
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
                              - homeNavbarHeight - navbarHeight + 10;
 
     if (innerWidth > this.mobileThreshold) {
       window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
-      setTimeout(function() { this.checkScrollHomeNav(); } , 500);
     } else {
       elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
