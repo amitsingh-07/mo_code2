@@ -141,7 +141,11 @@
             "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
             "FORM_TITLE": "I would like my guardian to be",
             "TOOLTIP_TITLE": "What does guardian mean?",
-            "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your child after you have passed, until they reach the age of 21.</p><p>Taking over your role as the parent, the guardian will have the ability to make decisions that affect your child, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your child’s guardian to seek their agreement.</p>"
+            "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your child after you have passed, until they reach the age of 21.</p><p>Taking over your role as the parent, the guardian will have the ability to make decisions that affect your child, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your child’s guardian to seek their agreement.</p>",
+            "ERROR_MODAL": {
+                "MAX_BENEFICIARY_TITLE": "Sorry! You can appoint a maximum of 7 beneficiaries",
+                "MIN_BENEFICIARY_TITLE": "Sorry! You should appoint atleast 1 beneficiary."
+            }
         },
         "MY_ESTATE_DISTRIBUTION": {
             "TITLE": "My Estate Distribution",

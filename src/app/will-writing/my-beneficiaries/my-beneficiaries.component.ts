@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
+import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { IBeneficiary, IMyFamily } from './../will-writing-types';
 import { WillWritingService } from './../will-writing.service';
 
@@ -25,6 +26,7 @@ export class MyBeneficiariesComponent implements OnInit {
   isFormOpen = false;
   beneficiaryList: IBeneficiary[] = [];
   isButtonEnabled = true;
+  errorModal;
 
   constructor(private translate: TranslateService, private formBuilder: FormBuilder,
               private navbarService: NavbarService, private willWritingService: WillWritingService,
@@ -34,6 +36,7 @@ export class MyBeneficiariesComponent implements OnInit {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_2');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_BENEFICIARY.TITLE');
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
+      this.errorModal = this.translate.instant('WILL_WRITING.MY_BENEFICIARY.ERROR_MODAL');
     });
    }
 
@@ -44,11 +47,13 @@ export class MyBeneficiariesComponent implements OnInit {
       if (this.willWritingService.getSpouseInfo().length > 0) {
         const spouse: any = Object.assign({}, this.willWritingService.getSpouseInfo()[0]);
         spouse.selected = true;
+        spouse.distPercentage = 0;
         this.beneficiaryList.push(spouse);
       }
       if (this.willWritingService.getChildrenInfo().length > 0) {
         const children: any = Object.assign({}, this.willWritingService.getChildrenInfo()[0]);
         children.selected = true;
+        children.distPercentage = 0;
         this.beneficiaryList.push(children);
       }
     }
@@ -75,6 +80,7 @@ export class MyBeneficiariesComponent implements OnInit {
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
     } else {
       form.value.selected = true;
+      form.value.distPercentage = 0;
       this.beneficiaryList.push(form.value);
       this.resetForm();
     }
@@ -107,7 +113,16 @@ export class MyBeneficiariesComponent implements OnInit {
 
   save() {
     const beneficiaryLength = this.getBeneficiaryLength();
-    if ( beneficiaryLength === 0 || beneficiaryLength > 7) {
+    if ( beneficiaryLength === WILL_WRITING_CONFIG.MIN_BENEFICIARY || beneficiaryLength > WILL_WRITING_CONFIG.MAX_BENEFICIARY) {
+      if ( beneficiaryLength > WILL_WRITING_CONFIG.MAX_BENEFICIARY) {
+        const title = this.errorModal.MAX_BENEFICIARY_TITLE;
+        const message = '';
+        this.willWritingService.openToolTipModal(title, message);
+      } else {
+        const title = this.errorModal.MIN_BENEFICIARY_TITLE;
+        const message = '';
+        this.willWritingService.openToolTipModal(title, message);
+      }
       return false;
     } else {
       this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
