@@ -51,7 +51,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
     if (this.willWritingService.getExecTrusteeInfo.length > 0 ) {
       this.execTrusteeList = this.willWritingService.getExecTrusteeInfo();
     } else if (this.hasSpouse) {
-      this.execTrusteeList.push(this.willWritingService.getSpouseInfo());
+      this.execTrusteeList.push(this.willWritingService.getSpouseInfo()[0]);
     }
     this.buildExecTrusteeForm();
   }

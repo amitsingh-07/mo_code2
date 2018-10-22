@@ -6,8 +6,11 @@ import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.com
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
-import { IAboutMe, IBeneficiary, IChild, IEligibility, 
-         IExecTrustee, IGuardian, IMyFamily, IPromoCode, ISpouse } from './will-writing-types';
+import {
+  IAboutMe, IBeneficiary, IChild, IEligibility,
+  IExecTrustee, IGuardian, IPromoCode, ISpouse
+} from './will-writing-types';
+import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 
@@ -87,7 +90,7 @@ export class WillWritingService {
     for (const field in forms) {
       let index = 1;
       for (const control of forms[field].controls) {
-        const formGroup = { formName: field + ' ' + index , errors: []};
+        const formGroup = { formName: field + ' ' + index, errors: [] };
         // tslint:disable-next-line:forin
         for (const name in control.controls) {
           if (control.controls[name].invalid) {
@@ -99,7 +102,7 @@ export class WillWritingService {
         if (formGroup.errors.length > 0) {
           errors.errorMessages.push(formGroup);
         }
-        index ++;
+        index++;
       }
     }
     return errors;
@@ -126,17 +129,6 @@ export class WillWritingService {
   }
 
   /**
-   * get about me details.
-   * @returns about me details.
-   */
-  getMyFamilyInfo(): IMyFamily {
-    return {
-      spouse: this.getSpouseInfo(),
-      children: this.getChildrenInfo()
-    };
-  }
-
-  /**
    * get spouse details.
    * @returns spouse details.
    */
@@ -152,16 +144,9 @@ export class WillWritingService {
    * @param data - spouse details.
    */
   setSpouseInfo(data: ISpouse) {
+    this.willWritingFormData.spouse = [];
     data.relationship = 'spouse';
     this.willWritingFormData.spouse.push(data);
-    this.commit();
-  }
-
-  /**
-   * clear children details.
-   */
-  clearSpouseInfo() {
-    delete this.willWritingFormData.spouse;
     this.commit();
   }
 
@@ -180,17 +165,12 @@ export class WillWritingService {
    * set children details.
    * @param data - children details.
    */
-  setChildrenInfo(data: IChild) {
-    data.relationship = 'child';
-    this.willWritingFormData.children.push(data);
-    this.commit();
-  }
-
-  /**
-   * clear children details.
-   */
-  clearChildrenInfo() {
+  setChildrenInfo(data: IChild[]) {
     this.willWritingFormData.children = [];
+    for (const children of data) {
+      children.relationship = 'child';
+      this.willWritingFormData.children.push(children);
+    }
     this.commit();
   }
 
@@ -198,9 +178,9 @@ export class WillWritingService {
    * get guardian details.
    * @returns guardian details.
    */
-  getGuardianInfo(): IGuardian {
+  getGuardianInfo(): IGuardian[] {
     if (!this.willWritingFormData.guardian) {
-      this.willWritingFormData.guardian = {} as IGuardian;
+      this.willWritingFormData.guardian = [] as IGuardian[];
     }
     return this.willWritingFormData.guardian;
   }
@@ -209,7 +189,7 @@ export class WillWritingService {
    * set guardian details.
    * @param data - guardian details.
    */
-  setGuardianInfo(data: IGuardian) {
+  setGuardianInfo(data: IGuardian[]) {
     this.willWritingFormData.guardian = data;
     this.commit();
   }
@@ -300,6 +280,23 @@ export class WillWritingService {
   setBeneficiaryInfo(data: IBeneficiary[]) {
     this.willWritingFormData.beneficiary = data;
     this.commit();
+  }
+
+checkChildrenAge(childrens: IChild[]): boolean {
+    for (const children of childrens) {
+      const dob = children.dob;
+      const today = new Date();
+      const birthDate = new Date(dob['year'], dob['month'], dob['day']);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      if (age < WILL_WRITING_CONFIG.CHILD_GUARDIAN_AGE) {
+        return true;
+      }
+    }
+    return false;
   }
 
   openToolTipModal(title: string, message: string) {
