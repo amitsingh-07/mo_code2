@@ -153,7 +153,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.enquiryId = data.objectList[0].enquiryId;
     this.searchResult = data.objectList[0].productProtectionTypeList;
     this.filteredResult = this.searchResult;
+
     for (const productLists of data.objectList[0].productProtectionTypeList) {
+      productLists.productList[0].bestValue = true;
       for (const productList of productLists.productList) {
 
         if (this.selectedCategory.id === PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY) {
