@@ -1,6 +1,22 @@
 @import '../../../variables';
 
 .employement-details {
+
+
+  .postal-code-control {
+    display: flex;
+
+    div.control {
+      display: flex;
+      flex: 3;
+    }
+
+    div.button {
+      display: flex;
+      flex: 2;
+    }
+  }
+
   .flex-row {
   align-items: center;
   }
@@ -93,12 +109,12 @@
 
       &:focus {
         background-color: #ff730c !important;
-        color:#fff !important;
+        color: #fff !important;
       }
 
       &:active {
         background-color: #ff730c !important;
-        color:#fff !important;
+        color: #fff !important;
       }
 
     }
