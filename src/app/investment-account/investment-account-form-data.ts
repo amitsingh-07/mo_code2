@@ -74,8 +74,8 @@ export class InvestmentAccountFormData {
     // financial details
     annualHouseHoldIncomeRange: string;
     numberOfHouseHoldMembers: number;
-    monthlyIncome: string;
-    percentageOfSaving: string;
-    totalAssets: string;
-    totalLiabilities: string;
+    financialMonthlyIncome: string;
+    financialPercentageOfSaving: string;
+    financialTotalAssets: string;
+    financialTotalLiabilities: string;
     }

@@ -316,7 +316,7 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid employement unit number',
-                errorMessage: 'Please enter  employement unit number'
+                errorMessage: 'Please enter unit number'
             }
         },
 
@@ -358,32 +358,32 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please enter number Of House Hold Members.'
             }
         },
-        monthlyIncome: {
+        financialMonthlyIncome: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid financial Monthly Income',
                 errorMessage: 'Please enter Monthly Income.'
             }
         },
-        percentageOfSaving: {
+        financialPercentageOfSaving: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid financial Percentage Of Saving',
                 errorMessage: 'Please enter Percentage Of Saving.'
             }
         },
-        totalAssets: {
+        financialTotalAssets: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid financial TotalAssets',
-                errorMessage: 'Please enter  TotalAssets.'
+                errorTitle: 'Invalid financial Total Assets',
+                errorMessage: 'Please enter  Total Assets.'
             }
         },
-        totalLiabilities: {
+        financialTotalLiabilities: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid  financial Total Liabilities',
-                errorMessage: 'Please enter Total Liabilities.'
+                errorTitle: 'Invalid  financial Total Loans',
+                errorMessage: 'Please enter Total Loans.'
             }
         }
 

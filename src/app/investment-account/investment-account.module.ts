@@ -33,9 +33,9 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule, InvestmentAccountRoutingModule, ReactiveFormsModule,
      NgbModule.forRoot(),
     NouisliderModule,
-    FormsModule,
     SharedModule,
-    TranslateModule.forRoot({
+    FormsModule,
+   TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,

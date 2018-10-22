@@ -239,20 +239,20 @@ export class InvestmentAccountService {
     setFinancialFormData(data) {
         this.investmentAccountFormData.annualHouseHoldIncomeRange = data.annualHouseHoldIncomeRange;
         this.investmentAccountFormData.numberOfHouseHoldMembers = data.numberOfHouseHoldMembers;
-        this.investmentAccountFormData.monthlyIncome = data.monthlyIncome;
-        this.investmentAccountFormData.percentageOfSaving = data.percentageOfSaving;
-        this.investmentAccountFormData.totalAssets = data.totalAssets;
-        this.investmentAccountFormData.totalLiabilities = data.totalLiabilities;
+        this.investmentAccountFormData.financialMonthlyIncome = data.financialMonthlyIncome;
+        this.investmentAccountFormData.financialPercentageOfSaving = data.financialPercentageOfSaving;
+        this.investmentAccountFormData.financialTotalAssets = data.financialTotalAssets;
+        this.investmentAccountFormData.financialTotalLiabilities = data.financialTotalLiabilities;
         this.commit();
     }
     getFinancialFormData() {
         return {
             annualHouseHoldIncomeRange: this.investmentAccountFormData.annualHouseHoldIncomeRange,
             numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers,
-            monthlyIncome: this.investmentAccountFormData.monthlyIncome,
-            percentageOfSaving: this.investmentAccountFormData.percentageOfSaving,
-            totalAssets: this.investmentAccountFormData.totalAssets,
-            totalLiabilities: this.investmentAccountFormData.totalLiabilities
+            financialMonthlyIncome: this.investmentAccountFormData.financialMonthlyIncome,
+            financialPercentageOfSaving: this.investmentAccountFormData.financialPercentageOfSaving,
+            financialTotalAssets: this.investmentAccountFormData.financialTotalAssets,
+            financialTotalLiabilities: this.investmentAccountFormData.financialTotalLiabilities
         };
     }
 }
