@@ -155,6 +155,18 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.filteredResult = this.searchResult;
     for (const productLists of data.objectList[0].productProtectionTypeList) {
       for (const productList of productLists.productList) {
+
+        if (this.selectedCategory.id === PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY) {
+          if (productList.premium) {
+            if (productList.premium.deferredPeriod !== null) {
+              productList.premium.deferredPeriod += ' Months';
+            }
+            if (productList.premium.escalatingBenefit !== null) {
+              productList.premium.escalatingBenefit += '%';
+            }
+          }
+        }
+
         if (productList.insurer && productList.insurer.insurerName) {
           this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
