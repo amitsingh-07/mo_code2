@@ -18,7 +18,7 @@ body{
       font-size: 16px;
       line-height: 1.25;
       letter-spacing: -0.2px;
-      font-family: Muli;
+      font-family: $muli;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
@@ -93,19 +93,17 @@ letter-spacing: -0.3px;
     display: block;
   }
   .country_text {
-    width: 100px;
-    height: 69px;
-    font-family: Muli;
+    font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
-    letter-spacing: -0.3px;
     color: #ffffff;
+    margin: 0px 10px 0px 0px;
   }
   .tin_question_text {
-    font-family: Muli;
+    font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
     font-style: normal;

@@ -7,8 +7,8 @@
   <div class="container-fluid">
     <form name="taxInfoForm" [formGroup]="taxInfoForm">
       <div class="flex-row">
-        <div class="flex-col-4" class="country_text">
-          <label for="name" id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
+        <div class="flex-col-4">
+          <label for="name" class="country_text" id="tax-info-label">{{ 'TAX_INFO.COUNTRY_TEXT' | translate}}</label>
         </div>
         <div class="flex-col-8">
 
@@ -24,7 +24,7 @@
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectCountry(nationalityObj)"
                   id="selectNationality-country-option-{{i}}">
-                  {{nationalityObj.nationality | titlecase}}
+                  {{nationalityObj.country | titlecase}}
                 </button>
               </div>
             </div>
@@ -43,7 +43,7 @@
       </div>
       <!-- Button part -->
       <div class="flex-row">
-        <div class="flex-col-12 mb10">
+        <div class="flex-col-12 mb20">
           <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
             <div class="flex-row">
               <div class="flex-col-6">
@@ -63,10 +63,10 @@
 
       <!-- Second Dropdown -->
       <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'no'">
-        <div class="flex-col-5">
+        <div class="flex-col-4">
           <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' | translate}}</label>
         </div>
-        <div class="flex-col-7">
+        <div class="flex-col-8">
 
           <div class="dropdown-control" >
             <div ngbDropdown>
@@ -91,10 +91,10 @@
      <!-- Tin text box -->
 <!-- Second Dropdown -->
 <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'yes'">
-  <div class="flex-col-5">
+  <div class="flex-col-4">
     <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' | translate}}</label>
   </div>
-  <div class="flex-col-7">
+  <div class="flex-col-8">
 
     <div class="dropdown-control"  formGroupName="tinNumberText">
       <input type="text" id="invPersInfoInpt1" class="form-control"  formControlName="tinNumber">
