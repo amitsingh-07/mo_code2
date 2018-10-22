@@ -108,11 +108,31 @@
             flex-direction: row;
             width:100%;
             max-width:1024px;
+            margin-bottom:30px;
+            @include minPhabletmaxTablet{
+                flex-direction:column;
+                width:calc(100% - 40px);
+            }
         }
         .contact-us__form-container{
             position: relative;
             display:block;
             flex-basis:calc(100% - 370px);
+            
+            textarea{
+                margin-top:10px;
+                height:200px;
+                resize:none;
+            }
+            p{
+                font-family:$muli-semi-bold;
+                color:$teal-color;
+                margin-top:5px;
+                margin-bottom:5px;
+            }
+            .error--msg{
+                color:$orange-color;
+            }
         }
         .contact-us__side-panel{
             position: relative;
@@ -120,15 +140,37 @@
             margin-left:20px;
             flex-basis:calc(350px);
             color:$teal-color;
+            @include minPhabletmaxTablet{
+                display:flex;
+                margin-top:50px;
+                margin-left:0px;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                flex-basis: unset;
+                .info-group{
+                    margin-right:20px;
+                    min-width:180px;
+                    max-width:300px;
+                    &:last-child{
+                        margin-right:0px;
+                    }
+                }
+            }
             
             h4{
+                font-family:$muli-bold;
+                margin-bottom:0px;
             }
             p{
                 color:$dark-teal-color;
                 margin-bottom:5px;
             }
-            a{
+            .where--link{
                 color:$orange-color;
+                margin-bottom:20px;
+                i{
+                    transform: translateY(5px);
+                }
             }
         }
         .contact-us__where-content{
@@ -136,6 +178,15 @@
             display: block;
             width: 100%;
             max-width:1024px;
+            padding: 20px 0px;
+            @include minPhabletmaxTablet{
+                width:calc(100% - 40px);
+            }
+            .where--title{
+                font-family: $muli-semi-bold;
+                color:$teal-color;
+                font-size:1.75rem;
+            }
         }
     }
 

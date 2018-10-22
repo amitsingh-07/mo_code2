@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { IContactUs } from './contact-us/contact-us.interface';
 import { ICustomerReview } from './customer-reviews/customer-reviews.interface';
 
 @Injectable({
@@ -27,5 +28,10 @@ export class AboutUsService {
       date: data.date
     };
     return thisReview;
+  }
+
+  getContactUs(): IContactUs {
+    const contactUs = {} as IContactUs;
+    return contactUs;
   }
 }
