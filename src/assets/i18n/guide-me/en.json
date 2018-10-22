@@ -171,6 +171,10 @@
       "title": "Occupational Disability",
       "description": "<h4>Occupational Disability</h4><p>This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.</p>",
       "imageName": "occupation-disability.svg"
+    },
+    "COVERAGE_TOOLTIP" : {
+      "TITLE": "Coverage Age",
+      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <b>Critical Illness</b>.</p>"
     }
   },
   "LTC_ASSESSMENT": {

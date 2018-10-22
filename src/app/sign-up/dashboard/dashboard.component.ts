@@ -37,7 +37,10 @@ export class DashboardComponent implements OnInit {
         enquiryId: Formatter.getIntValue(this.insuranceEnquiry.enquiryId),
         selectedProducts: this.insuranceEnquiry.plans
       };
-      this.apiService.updateInsuranceEnquiry(payload);
+      this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
+        console.log('Enquiry updated successfully');
+        this.selectedPlansService.clearData();
+      });
     }
   }
 }

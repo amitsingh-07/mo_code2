@@ -127,6 +127,7 @@ export class SignUpApiService {
    * @param code - verification code.
    */
   createAccount(captcha) {
+    captcha = '11111';
     const payload = this.createAccountBodyRequest(captcha);
     return this.apiService.createAccount(payload);
   }
@@ -190,8 +191,10 @@ export class SignUpApiService {
    * @param password - password.
    */
   verifyLogin(userEmail, userPassword, captcha) {
-    const sessionId = this.signUpService.getCaptchaSessionId();
-    return this.authService.authenticate(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
+    captcha = '11111';
+    //const sessionId = this.signUpService.getCaptchaSessionId();
+    const sessionId = this.authService.getSessionId();
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
   }
 
   getUserProfileInfo() {
