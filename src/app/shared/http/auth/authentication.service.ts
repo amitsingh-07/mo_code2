@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
@@ -23,23 +24,43 @@ export class AuthenticationService {
   private getAppSecretKey() {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
-  authenticate(userEmail?: string, userPassword?: string) {
-    const authenticateUrl = apiConstants.endpoint.authenticate;
+
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
       password: userPassword ? userPassword : '',
       secretKey: this.getAppSecretKey()
     };
-    return this.http.post<IServerResponse>(`${environment.apiBaseUrl}/${authenticateUrl}`, authenticateBody)
+    if (sessionId) { authenticateBody['sessionId'] = sessionId; }
+    if (captchaValue) { authenticateBody['captchaValue'] = captchaValue; }
+    const handleError = '?handleError=true';
+    return this.doAuthenticate(authenticateBody, handleError);
+  }
+
+  authenticate() {
+    const authenticateBody = {
+      email: '',
+      mobile: '',
+      password: '',
+      secretKey: this.getAppSecretKey()
+    };
+    return this.doAuthenticate(authenticateBody);
+  }
+
+  private doAuthenticate(authenticateBody: any, handleError?: string) {
+    if (!handleError) {
+      handleError = '';
+    }
+    const authenticateUrl = apiConstants.endpoint.authenticate;
+    return this.http.post<IServerResponse>(`${environment.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
-        if (response && response.objectList[0].securityToken) {
+        if (response && response.objectList[0] && response.objectList[0].securityToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.saveAuthDetails(response.objectList[0]);
-          return response.objectList[0].securityToken;
         }
-        return null;
+        return response;
       }));
   }
 

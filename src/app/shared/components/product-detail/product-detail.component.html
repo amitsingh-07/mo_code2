@@ -17,7 +17,15 @@
         </h5>
       </div>
       <div id="collapse1" class="panel-collapse pr20 pl20" [class.collapse]='!isExpanded(i)'>
-        <div class="panel-body">{{item.description}}</div>
+        <div [hidden]="item.title === 'Unique Features'" class="panel-body">{{item.description}}</div>
+        <div [hidden]="item.title !== 'Unique Features'" class="panel-body">
+            <div *ngFor="let feature of item.description.split('~')">
+                <div class="features" *ngIf="feature && feature != ''">
+                  <span><img src="../../../assets/images/Yes.png" /></span>
+                  <span>{{feature}}</span>
+                </div>
+              </div>
+        </div>
       </div>
     </div>
   </div>

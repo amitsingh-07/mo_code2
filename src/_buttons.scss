@@ -757,13 +757,12 @@ button:active:focus {
     height:100%;
     flex-grow:1;
     flex-basis:25%;
-    justify-content:flex-start;
+    justify-content:center;
     align-content:center;
     cursor: pointer;
     transition:0.3s;
     box-sizing: border-box;
     border-bottom:2px solid transparent;
-    padding-top:20px;
     z-index:2;
     &:hover{
       border-bottom:2px solid $orange-color;
@@ -775,7 +774,8 @@ button:active:focus {
       border-bottom:2px solid $orange-color !important;
     }
     @include minMobilemaxPhablet{
-      min-width:120px;
+      flex-basis:unset;
+      max-width:150px;
     }
     .navbar__btn--title{
         position: relative;

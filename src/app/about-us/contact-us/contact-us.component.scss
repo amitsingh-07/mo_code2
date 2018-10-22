@@ -3,21 +3,192 @@
 
 .contact-us__wrapper{
     position: relative;
-    display: block;
+    display:block;
+    background-color:$white-color;
     .banner{
         position: relative;
-        display: block;
-        width: 100%;
+        display:flex;
+        width:100%;
+        justify-content: center;
+        min-height:400px;
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+            justify-content:flex-start;
+            min-height:unset;
+        }
+    }
+    .banner-bg{
+        position: absolute;
+        display:block;
+        max-width:1024px;
+        width:100%;
+        height:100%;
+        @include minMobilemaxPhablet{
+            position: relative; 
+            height:200px;
+            margin-top:60px;
+            margin-right:20px;
+            right:20px;
+            order:2;
+        }
+        .banner-bg--image{
+            position: absolute;
+            display:block;
+            width:100%;
+            height:90%;
+            background-image:url('./../../../assets/images/about-us/reviews_seated_guy.svg');
+            background-repeat:no-repeat;
+            background-position:bottom right;
+            background-size:contain;
+            bottom:5%;
+            @include minPhabletmaxTablet{
+                height:calc(100% - 50px);
+            }
+            @include minMobilemaxPhablet{
+                
+            }
+        }
     }
     .banner-container{
         position: relative;
-        display: block;
-        width: 100%;
+        display: inline-block;
+        width:100%;
+        max-width:1024px;
+        padding:70px 0px 0px 0px;
+        @include minPhabletmaxTablet{
+            padding:70px 20px 0px 20px;
+        }
+        @include minMobilemaxPhablet{
+            padding:20px;
+            order:1;
+            margin-bottom:-80px;
+        }
+        .banner--title{
+            font-family:$muli-bold;
+            font-weight:bold;
+            font-size:3.5rem;
+            color:$teal-color;
+            margin-bottom:5px;
+            line-height:1;
+            @include minPhabletmaxTablet{
+                font-size:3.7rem;
+            }
+            @include minMobilemaxPhablet{
+                font-size:2.0rem;
+            }
+        }
+        .banner--subtitle{
+            font-family:$muli-semi-bold;
+            color:$black-color;
+            opacity:0.9;
+            font-size:1.5rem;
+            @include minPhabletmaxTablet{
+                font-size:1.5rem;
+            }
+            @include minMobilemaxPhablet{
+                font-size:1.2rem;
+            }
+        }
+        .banner--description{
+            max-width:450px;
+            color:$dark-teal-color;
+        }
     }
-}
+    
+    .contact-us__content{
+        position: relative;
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        justify-content: flex-start;
+        align-items: center;
+        .contact-us__inner-content{
+            position: relative;
+            display:flex;
+            flex-direction: row;
+            width:100%;
+            max-width:1024px;
+            margin-bottom:30px;
+            @include minPhabletmaxTablet{
+                flex-direction:column;
+                width:calc(100% - 40px);
+            }
+        }
+        .contact-us__form-container{
+            position: relative;
+            display:block;
+            flex-basis:calc(100% - 370px);
+            
+            textarea{
+                margin-top:10px;
+                height:200px;
+                resize:none;
+            }
+            p{
+                font-family:$muli-semi-bold;
+                color:$teal-color;
+                margin-top:5px;
+                margin-bottom:5px;
+            }
+            .error--msg{
+                color:$orange-color;
+            }
+        }
+        .contact-us__side-panel{
+            position: relative;
+            display:block;
+            margin-left:20px;
+            flex-basis:calc(350px);
+            color:$teal-color;
+            @include minPhabletmaxTablet{
+                display:flex;
+                margin-top:50px;
+                margin-left:0px;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                flex-basis: unset;
+                .info-group{
+                    margin-right:20px;
+                    min-width:180px;
+                    max-width:300px;
+                    &:last-child{
+                        margin-right:0px;
+                    }
+                }
+            }
+            
+            h4{
+                font-family:$muli-bold;
+                margin-bottom:0px;
+            }
+            p{
+                color:$dark-teal-color;
+                margin-bottom:5px;
+            }
+            .where--link{
+                color:$orange-color;
+                margin-bottom:20px;
+                i{
+                    transform: translateY(5px);
+                }
+            }
+        }
+        .contact-us__where-content{
+            position: relative;
+            display: block;
+            width: 100%;
+            max-width:1024px;
+            padding: 20px 0px;
+            @include minPhabletmaxTablet{
+                width:calc(100% - 40px);
+            }
+            .where--title{
+                font-family: $muli-semi-bold;
+                color:$teal-color;
+                font-size:1.75rem;
+            }
+        }
+    }
 
-.contact-us__content{
-    position: relative;
-    display: block;
     
 }

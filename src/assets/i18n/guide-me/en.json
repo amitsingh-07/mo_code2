@@ -134,13 +134,17 @@
     "ANNUAL_SALARY": "Annual Salary",
     "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
     "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
-    "UNTIL_RETIREMENT_AGE": "Till the retirement age of ",
+    "UNTIL_RETIREMENT_AGE": "I need to cover till the age of",
     "CI_MULTIPLIER": 4,
     "UNTIL_RETIREMENTAGE": 65,
     "MODAL_DATA": {
       "title": "Critical Illness",
       "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.</p>",
       "imageName": "ci-assessment.svg"
+    },
+    "COVERAGE_TOOLTIP" : {
+      "TITLE": "Coverage Age",
+      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <b>Critical Illness</b>.</p>"
     }
   },
   "OCP_DISABILITY": {
@@ -150,7 +154,7 @@
     "OCP_DISABILITY_HINT": "Based on the information below",
     "EMPLOYEE_FIELD": "I am a",
     "PROPERTY_LOAN_HINT": "(Remaining amount)",
-    "RETIREMENT_AGE": "Till the retirement age of",
+    "RETIREMENT_AGE": "I need to cover till the age of",
     "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
     "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
     "MODAL_TITLE": "Occupational Disability",
@@ -167,6 +171,10 @@
       "title": "Occupational Disability",
       "description": "<h4>Occupational Disability</h4><p>This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.</p>",
       "imageName": "occupation-disability.svg"
+    },
+    "COVERAGE_TOOLTIP" : {
+      "TITLE": "Coverage Age",
+      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <b>Critical Illness</b>.</p>"
     }
   },
   "LTC_ASSESSMENT": {

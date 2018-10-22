@@ -14,7 +14,12 @@
     "LBL_NO": "No",
     "LBL_CONTINUE": "Continue",
     "SUBLBL_MAX4":" (Max 4)",
-    "LBL_SELECT": "Select"
+    "LBL_SELECT": "Select",
+    "LBL_PREMIUM": "Premium",
+    "LBL_PERCENTAGE_PER_ANNUM": " p.a",
+    "LBL_PROJECTED_RETURN": "Projected Return",
+    "LBL_GUARANTEED_PAYOUT": "Guaranteed Payout",
+    "LBL_PROJECTED_PAYOUT": "Projected Payout"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",
