@@ -103,27 +103,27 @@ export class WillWritingFormError {
                 name: {
                         required : {
                                 errorTitle: 'Invalid Name',
-                                errorMessage: 'Please enter your guardian name'
+                                errorMessage: 'Please input Name'
                         },
                         pattern : {
                                 errorTitle: 'Invalid Name',
-                                errorMessage: 'Guardian name field can only contain alphabets value of 2 - 40 characters in length'
+                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
                         }
                 },
                 nricNumber: {
                         required : {
                                 errorTitle: 'Invalid NRCI Number',
-                                errorMessage: 'Please enter your guardian NRCI number'
+                                errorMessage: 'Please input NRIC'
                         },
                         pattern : {
                                 errorTitle: 'Invalid NRCI Number',
-                                errorMessage: 'Guardian NRIC field can only contain alphabets value of 2 - 40 characters in length'
+                                errorMessage: 'NRIC field can only contain alphabets value of 2 - 40 characters in length'
                         }
                 },
                 relationship: {
                         required : {
-                                errorTitle: 'Invalid NRCI Number',
-                                errorMessage: 'Please select guardian relationship to you'
+                                errorTitle: 'Invalid Relationship',
+                                errorMessage: 'Please indicate relationship to you'
                         }
                 }
         }

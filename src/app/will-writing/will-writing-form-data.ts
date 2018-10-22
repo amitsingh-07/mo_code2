@@ -1,4 +1,4 @@
-import { IAboutMe, IBeneficiary, IChild, IDistribution, IEligibility,
+import { IAboutMe, IBeneficiary, IChild, IEligibility,
         IExecTrustee, IGuardian, IPromoCode, ISpouse } from './will-writing-types';
 
 export class WillWritingFormData {
@@ -15,7 +15,7 @@ export class WillWritingFormData {
     children: IChild[];
 
     // guardian info
-    guardian: IGuardian;
+    guardian: IGuardian[];
 
     // promoCode info;
     promoCode: IPromoCode;
@@ -25,7 +25,4 @@ export class WillWritingFormData {
 
      // beneficiary info
      beneficiary: IBeneficiary[];
-
-     // beneficiary info
-     distribution: IDistribution[];
 }

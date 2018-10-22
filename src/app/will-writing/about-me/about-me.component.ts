@@ -82,10 +82,6 @@ export class AboutMeComponent implements OnInit {
       const error = this.willWritingService.getFormError(form, 'aboutMeForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
     } else {
-      if (form.value.maritalStatus === 'single' && this.willWritingService.getSpouseInfo()) {
-        this.willWritingService.clearSpouseInfo();
-        this.willWritingService.clearGuardianInfo();
-      }
       this.willWritingService.setAboutMeInfo(form.value);
       return true;
     }

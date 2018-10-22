@@ -15,7 +15,7 @@
         <div class="col-lg-5 col-md-5 col-12 myFamilyForm">
 
           <form [formGroup]="myFamilyForm" id="myFamilyForm" name="myFamilyForm">
-            <div *ngIf="showSpouseDeatils">
+            <div *ngIf="hasSpouse">
               <div class="aboutMe" formArrayName="spouse" *ngFor="let spouse of myFamilyForm.get('spouse').controls; let i = index;">
                 <div class="form-group" [formGroupName]="i">
                   <div class="flex-row title">{{ 'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</div>
@@ -40,7 +40,7 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="showChildDetails">
+            <div *ngIf="hasChild">
               <div class="aboutMe" formArrayName="childrens" *ngFor="let children of myFamilyForm.get('childrens').controls; let i = index;">
                 <div class="form-group" [formGroupName]="i">
                   <div class="flex-row title">{{ 'WILL_WRITING.MY_FAMILY.FORM.MY_CHILD' | translate}} {{i+1}}</div>

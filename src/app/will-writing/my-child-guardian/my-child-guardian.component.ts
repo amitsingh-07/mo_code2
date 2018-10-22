@@ -21,10 +21,12 @@ export class MyChildGuardianComponent implements OnInit {
   private tooltip = {};
 
   addGuardianForm: FormGroup;
-  formValues: IGuardian;
+  guardianList: IGuardian[] = [];
   relationship = '';
   relationshipList;
   submitted: boolean;
+
+  hasSpouse: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,37 +53,35 @@ export class MyChildGuardianComponent implements OnInit {
    * build about me form.
    */
   buildAddGuardianForm() {
-    this.formValues = this.willWritingService.getGuardianInfo();
-    this.addGuardianForm = this.formBuilder.group({
-      name: [this.formValues.name, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      nricNumber: [this.formValues.nricNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      relationship: [this.formValues.relationship, [Validators.required]]
-    });
-    setTimeout(() => {
-      if (this.formValues.relationship !== undefined) {
-        const index = this.relationshipList.findIndex((status) => status.value === this.formValues.relationship);
-        this.selectRelationship(this.relationshipList[index]);
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    if (this.willWritingService.getGuardianInfo().length > 0) {
+      this.guardianList = this.willWritingService.getGuardianInfo();
+    } else {
+      if (this.hasSpouse) {
+        const spouse: any = Object.assign({}, this.willWritingService.getSpouseInfo()[0]);
+        spouse.selected = true;
+        this.guardianList.push(spouse);
       }
-    }, 100);
+    }
   }
 
   /**
    * validate aboutMeForm.
    * @param form - user personal detail.
    */
-  save(form: any) {
+  save(form: any): boolean {
     this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'addGuardianForm');
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.title;
-      ref.componentInstance.errorMessageList = error.errorMessages;
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
       return false;
     } else {
-      this.willWritingService.setGuardianInfo(form.value);
+      form.value.selected = true;
+      this.guardianList.push(form.value);
+      this.willWritingService.setGuardianInfo(this.guardianList);
       return true;
     }
   }

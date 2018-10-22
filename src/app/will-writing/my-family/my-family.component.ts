@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IChild, IMyFamily, ISpouse } from '../will-writing-types';
+import { IChild, ISpouse } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
 
 @Component({
@@ -21,11 +21,9 @@ export class MyFamilyComponent implements OnInit {
   private step: string;
 
   myFamilyForm: FormGroup;
-  familyFormValues: IMyFamily;
-  childrenCount: number;
   childrenFormValues: IChild[];
-  showSpouseDeatils: boolean;
-  showChildDetails: boolean;
+  hasSpouse: boolean;
+  hasChild: boolean;
   submitted: boolean;
 
   constructor(
@@ -49,8 +47,9 @@ export class MyFamilyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showSpouseDeatils = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
-    this.showChildDetails = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
+    this.childrenFormValues = this.willWritingService.getChildrenInfo();
     this.buildMyFamilyForm();
   }
 
@@ -58,38 +57,38 @@ export class MyFamilyComponent implements OnInit {
    * build about me form.
    */
   buildMyFamilyForm() {
-    this.familyFormValues = this.willWritingService.getMyFamilyInfo();
-    this.childrenFormValues = this.familyFormValues.children;
-    this.childrenCount = this.willWritingService.getAboutMeInfo().noOfChildren;
     this.myFamilyForm = this.formBuilder.group({
       spouse: this.formBuilder.array([this.buildSpouseForm()]),
       childrens: this.formBuilder.array([this.buildChildrenForm(0)]),
     });
-    if (this.showChildDetails) {
-      for (let i = 1; i <= this.childrenCount - 1 ; i++) {
+    if (this.hasChild) {
+      const childrenCount: number = this.willWritingService.getAboutMeInfo().noOfChildren;
+      for (let i = 1; i <= childrenCount - 1; i++) {
         this.addChildrenForm(i);
       }
     }
   }
 
   buildSpouseForm(): FormGroup {
-    if (this.showSpouseDeatils) {
+    if (this.hasSpouse) {
+      const spouseFormValues: ISpouse = this.willWritingService.getSpouseInfo()[0];
       return this.formBuilder.group({
-        name: [this.familyFormValues.spouse.name, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-        nricNumber: [this.familyFormValues.spouse.nricNumber, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+        name: [spouseFormValues ? spouseFormValues.name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+        nricNumber: [spouseFormValues ? spouseFormValues.nricNumber : '',
+        [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       });
     }
     return this.formBuilder.group({});
   }
 
   buildChildrenForm(index: number): FormGroup {
-    if (this.showChildDetails) {
+    if (this.hasChild) {
       return this.formBuilder.group({
-          name: [this.childrenFormValues.length > index ?
-            this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          nricNumber: [this.childrenFormValues.length > index ?
-            this.childrenFormValues[index].nricNumber : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-          dob: [this.childrenFormValues.length > index ? this.childrenFormValues[index].dob : '', [Validators.required]]
+        name: [this.childrenFormValues.length > index ?
+          this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+        nricNumber: [this.childrenFormValues.length > index ?
+          this.childrenFormValues[index].nricNumber : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+        dob: [this.childrenFormValues.length > index ? this.childrenFormValues[index].dob : '', [Validators.required]]
       });
     }
     return this.formBuilder.group({});
@@ -112,35 +111,16 @@ export class MyFamilyComponent implements OnInit {
       });
       const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
+      return false;
     } else {
-      if (this.showSpouseDeatils) {
+      if (this.hasSpouse) {
         this.willWritingService.setSpouseInfo(form.value.spouse[0]);
       }
-      if (this.showChildDetails) {
-        this.willWritingService.clearChildrenInfo();
-        for (const children of form.value.childrens) {
-          this.willWritingService.setChildrenInfo(children);
-        }
+      if (this.hasChild) {
+        this.willWritingService.setChildrenInfo(form.value.childrens);
       }
       return true;
     }
-  }
-
-  checkChildrenAge(childrens: IChild[]): boolean {
-    for (const children of childrens) {
-      const dob = children.dob;
-      const today = new Date();
-      const birthDate = new Date(dob['year'], dob['month'], dob['day']);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-      }
-      if (age < 21) {
-        return true;
-      }
-    }
-    return false;
   }
 
   /**
@@ -149,16 +129,9 @@ export class MyFamilyComponent implements OnInit {
    */
   goToNext(form) {
     if (this.save(form)) {
-      if (!this.showSpouseDeatils && this.showChildDetails && this.checkChildrenAge(form.value.childrens)) {
-          this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN]);
+      if (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) {
+        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN]);
       } else {
-        if (this.showSpouseDeatils && this.showChildDetails && this.checkChildrenAge(form.value.childrens)) {
-          const spouse = Object.assign({}, form.value.spouse[0]);
-          spouse.relationship = 'parent';
-          this.willWritingService.setGuardianInfo(spouse);
-        } else {
-          this.willWritingService.clearGuardianInfo();
-        }
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
       }
     }
