@@ -148,7 +148,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
       } else {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
         ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
-        this.createAccountForm.controls['captcha'].reset();
         this.refreshCaptcha();
       }
     });
@@ -172,6 +171,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
   }
 
   refreshCaptcha() {
+    this.createAccountForm.controls['captcha'].reset();
     const time = new Date().getMilliseconds();
     // tslint:disable-next-line:max-line-length
     this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=` + this.authService.getSessionId() + '&time=' + time;
