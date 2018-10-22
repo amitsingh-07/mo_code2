@@ -10,9 +10,10 @@
             "STEP_4": "Step 4",
             "ADD_GUARDIAN": "Add Guardian",
             "MY_SPOUSE": "My Spouse",
-            "NAME": "Name (as in NRIC)",
+            "NAME": "Full Name",
+            "SUB_NAME": "(as per ID)",
             "RELATIONSHIP": "Relationship To You",
-            "NRIC": "NRIC Number",
+            "NRIC": "Identification Number",
             "ADD": "Add",
             "CANCEL": "Cancel",
             "RELATIONSHIP_LIST": [                    
@@ -67,10 +68,10 @@
             "TITLE": "About Me",
             "SUB_TITLE": "Help us verify your identity as the testator (maker) of the will.",
             "FORM": {
-                "NAME": "My name is",
-                "SUB_LBL": "(as in NRIC)",
-                "NRIC": "NRIC",
-                "NUMBER": " number is",
+                "NAME": "Full Name",
+                "SUB_LBL": "(as per ID)",
+                "NRIC": "Identification",
+                "NUMBER": "Number",
                 "I_AM_A": "I am a",
                 "AND": "and",
                 "WITH": "with",
@@ -113,6 +114,7 @@
             "RELIGION_LIST": [{"text":"Christian", "value":"christian"}, { "text":"Buddhist", "value":"buddhist"}, { "text":"Muslim", "value":"muslim"}, { "text":"Hindu", "value":"hindu"}, { "text":"None", "value":"none"}, {"text":"Others", "value":"others"}],
             "ARE_YOU_SINGAPOREAN":"Are you a Singaporean?",
             "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?",
+            "FIND_OUT_ASSETS_CAN_DISTRIBUTE": "Find out what assets can be distributed via your will.",
             "TOOLTIP": {
                 "TITLE":"Assets to be Distributed",
                 "MESSAGE": "<p> Do note that only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nominations nor trusts)</li><li>- Property (Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
