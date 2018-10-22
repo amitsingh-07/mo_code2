@@ -31,11 +31,13 @@
         }
     }
     h1{
+        font-family:$muli-bold;
         margin-top:50px;
         margin-bottom:25px;
         color:$teal-color;
         @include minMobilemaxPhablet{
             margin-top:25px;
+            font-size:1.9rem;
         }
     }   
 }
