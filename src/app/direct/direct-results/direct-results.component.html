@@ -2,14 +2,19 @@
 <div class="prod-info__backdrop show" [hidden]="!toggleBackdropVisibility"></div>
 <div id="results-web" [hidden]="!isResultsLoaded || resultsEmptyMessage?.length > 0" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
   <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
+    <div class="text-center">
+      <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{
+        'SETTINGS.NO_RESULTS' | translate}}</div>
+      <div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
+    </div>
     <div>
       <div style="justify-content: center;">
         <div class="plan-wrapper" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
           <img class="best-value-icon" *ngIf="plan.bestValue" src="./assets/images/best_value.svg" />
           <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType"
-            [bestValue]="plan.bestValue" [frequencyType]="premiumFrequencyType" [comparePlan]="isComparePlanEnabled" (select)="selectPlan($event)"
-            (view)="viewDetails($event)" [isDirect]="true" [comparePlanSelected]="selectedComparePlans" [planSelected]="selectedPlans"
-            (compare)="comparePlan($event)"></app-plan-widget>
+            [bestValue]="plan.bestValue" [frequencyType]="premiumFrequencyType" [comparePlan]="isComparePlanEnabled"
+            (select)="selectPlan($event)" (view)="viewDetails($event)" [isDirect]="true" [comparePlanSelected]="selectedComparePlans"
+            [planSelected]="selectedPlans" (compare)="comparePlan($event)"></app-plan-widget>
         </div>
       </div>
     </div>
@@ -43,7 +48,12 @@
         'DIRECT_RESULTS.COMPARE_PLANS' | translate}}</button></div>
   </div>
   <div class="flex-row" [ngClass]="{'mt60' : isComparePlanEnabled}" *ngFor="let category of searchResult; let i = index"
-    style="padding: 10px">
+    style="padding: 10px; justify-content: center;">
+    <div class="text-center mt15">
+      <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{
+        'SETTINGS.NO_RESULTS' | translate}}</div>
+      <div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
+    </div>
     <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
       <img class="best-value-icon--mobile" *ngIf="plan.bestValue" src="./assets/images/best_value.svg" />
       <app-plan-widget #planWidget [isViewMode]="isViewMode" [data]="plan" [type]="category.protectionType" [bestValue]="plan.bestValue"
@@ -56,11 +66,7 @@
     individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not
     guaranteed and are based on the higher projection rate of up to 4.75%.</div>
 </div>
-<div class="text-center mt15">
-  <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{
-    'SETTINGS.NO_RESULTS' | translate}}</div>
-  <div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
-</div>
+
 <!-- Floating plan selection footer -->
 <div *ngIf="selectedPlans && selectedPlans.length > 0" align="center" class="floating-footer-wrapper">
   <div class="floating-footer">

@@ -176,7 +176,7 @@ export class ProductInfoComponent implements OnInit {
 
   search(index) {
     this.directService.setProductCategory(this.selectedCategory);
-    this.directService.triggerSearch(index + '');
+    this.directService.triggerSearch(this.selectedCategory.id + '');
   }
 
   editProdInfo() {
@@ -213,7 +213,7 @@ export class ProductInfoComponent implements OnInit {
   selectProductCategory(data, index) {
     this.productCategorySelected = data.prodCatName;
     this.selectedCategory = data;
-    this.selectedCategoryId = index;
+    this.selectedCategoryId = data.id;
     this.setActiveProductCategory(index);
   }
 

@@ -49,7 +49,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       fullOrPartialRider: [this.formValues.fullOrPartialRider, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '3') {
+      if (data !== '' && data === '4') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
