@@ -298,12 +298,11 @@ h6 {
         align-items: center;
         min-height: 50px;
         border-bottom: 1px solid #e1e1e1;
-
         &:hover {
           a {
             color: $white-color;
             background-color: $teal-color;
-
+            
             &::after {
               background-image: url('./assets/images/nav-dropdown-icon--white.svg');
               top: 27px;

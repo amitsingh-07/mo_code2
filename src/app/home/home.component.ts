@@ -155,13 +155,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let difference = 0;
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
     const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
+    const navbarElement = this.navBarElement.nativeElement.getBoundingClientRect();
+    const navbarHeight = (navbarElement.bottom - navbarElement.top);
     if (this.homeNavBarFixed) {
-      difference = homeNavbarHeight;
+      difference = homeNavbarHeight + navbarHeight;
     }
-    let triggerPosition = window.pageYOffset + (window.outerHeight / 2) + difference; // To set the trigger point as center of the screen
-    if (innerWidth < this.mobileThreshold) {
+    let triggerPosition = window.pageYOffset - document.documentElement.clientTop + difference + ((window.outerHeight - difference) / 2);
+    // To set the trigger point as center of the screen
+    if (innerWidth > this.mobileThreshold) {
       triggerPosition = homeNavBarElement.bottom + window.pageYOffset - document.documentElement.clientTop;
     }
+
     const insuranceElement = this.InsuranceElement.nativeElement.getBoundingClientRect();
     const OffsetInsurance = [insuranceElement.top + window.pageYOffset - document.documentElement.clientTop,
     insuranceElement.bottom + window.pageYOffset - document.documentElement.clientTop];
@@ -174,6 +178,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const comprehensiveElement = this.ComprehensiveElement.nativeElement.getBoundingClientRect();
     const OffsetComprehensive = [comprehensiveElement.top + window.pageYOffset - document.documentElement.clientTop,
     comprehensiveElement.bottom + window.pageYOffset - document.documentElement.clientTop];
+    console.log(window.pageYOffset + difference);
+
     if (triggerPosition >= OffsetInsurance[0] && triggerPosition < OffsetInsurance[1]) {
       // within insurance
       this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
@@ -206,14 +212,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   goToSection(elementName) {
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
-    let difference = 50;
-    if (innerWidth < this.mobileThreshold) {
-      difference = 0;
-    }
-    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top) + difference;
+    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
+    const navbar = this.navBarElement.nativeElement.getBoundingClientRect();
+    const navbarHeight = (navbar.bottom - navbar.top);
+    console.log(homeNavBarElement.bottom + window.pageYOffset - document.documentElement.clientTop);
+
     const selectedSection = elementName.getBoundingClientRect();
-    const CurrentOffsetTop = selectedSection.top + window.pageYOffset - homeNavbarHeight;
-    elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
+                             - homeNavbarHeight - navbarHeight + 10;
+
+    if (innerWidth > this.mobileThreshold) {
+      window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+      setTimeout(function() { this.checkScrollHomeNav(); } , 500);
+    } else {
+      elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    }
   }
 
   subscribeMember() {

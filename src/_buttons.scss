@@ -769,6 +769,20 @@ button:active:focus {
       @include minMobilemaxPhablet{
         border-bottom:none;
       }
+      @include minPhabletmaxTablet{
+        border-bottom:none;
+      }
+      @include tablet{
+        border-bottom:none;
+      }
+    }
+    &.focus{
+      @include minPhabletmaxTablet{
+        border-bottom:none;
+      }
+      @include tablet{
+        border-bottom:none;
+      }
     }
     &.active{
       border-bottom:2px solid $orange-color !important;
