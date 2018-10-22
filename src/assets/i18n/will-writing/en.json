@@ -15,6 +15,7 @@
             "NRIC": "NRIC Number",
             "ADD": "Add",
             "CANCEL": "Cancel",
+            "MY": "My",
             "RELATIONSHIP_LIST": [                    
                 {"text":"Sibling", "value":"sibling"},
                 {"text":"Step-parent", "value":"step-parent"},

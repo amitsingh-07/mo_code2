@@ -24,7 +24,7 @@ export class MyBeneficiariesComponent implements OnInit {
   relationship = '';
   submitted = false;
   isFormOpen = false;
-  maxBeneficiary = WILL_WRITING_CONFIG.MAX_BENEFICIARIES;
+  maxBeneficiary = WILL_WRITING_CONFIG.MAX_BENEFICIARY;
 
   constructor(
     private translate: TranslateService,
@@ -109,7 +109,7 @@ export class MyBeneficiariesComponent implements OnInit {
   }
 
   save() {
-    if (this.getSelectedBeneLength() < 1) {
+    if (this.getSelectedBeneLength() <  WILL_WRITING_CONFIG.MIN_BENEFICIARY) {
       this.willWritingService.openToolTipModal(this.minErrorMsg, '');
       return false;
     } else {
