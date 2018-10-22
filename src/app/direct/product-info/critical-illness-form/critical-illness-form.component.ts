@@ -72,7 +72,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     }
 
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '1') {
+      if (data !== '' && data === '2') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
           this.directService.triggerSearch('');

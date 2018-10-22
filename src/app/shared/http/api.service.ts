@@ -154,19 +154,19 @@ export class ApiService {
   }
 
   sendContactUs(data) {
-      // tslint:disable-next-line:no-commented-code
-      /*
-      return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, data, true)
+    // tslint:disable-next-line:no-commented-code
+    /*
+    return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, data, true)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+    */
+    console.log(data);
+    const url = '../../../assets/mock-data/customerReview.json';
+    return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-      */
-     console.log(data);
-     const url = '../../../assets/mock-data/customerReview.json';
-     return this.http.getMock(url)
-       .pipe(
-         catchError((error: HttpErrorResponse) => this.handleError(error))
-       );
   }
 
   getMyInfoData(data) {
@@ -217,7 +217,7 @@ export class ApiService {
   }
 
   createAccount(payload: ISignUp) {
-    return this.http.post(apiConstants.endpoint.signUp, payload)
+    return this.http.post(apiConstants.endpoint.signUp + '?handleError=true', payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -437,7 +437,8 @@ export class ApiService {
     const payload = {
       profileId: '',
       birthDate: '00/00/0000',
-      journeyType: 'direct'
+      journeyType: 'direct',
+      noOfDependents: 0
     };
     return this.http.post(apiConstants.endpoint.getProtectionTypesList, payload)
       .pipe(

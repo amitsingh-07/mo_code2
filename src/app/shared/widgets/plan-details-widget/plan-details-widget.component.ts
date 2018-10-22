@@ -94,8 +94,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod + ' Months' });
-        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit + '%' });
+        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
+        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }

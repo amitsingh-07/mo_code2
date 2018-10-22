@@ -128,7 +128,7 @@
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
-    "DESCRIPTION": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.",
+    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <b class=\"text-bold\">Critical Illness</b> coverage till their intended retirement age.",
     "COVERAGE_AMT": "Coverage Amount",
     "COVERAGE_AMT_DESC": "Based on the information below",
     "ANNUAL_SALARY": "Annual Salary",
