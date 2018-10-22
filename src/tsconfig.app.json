@@ -9,5 +9,9 @@
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "files": [
+    "../src/app/app.module.ts",
+    "../node_modules/jqwidgets-framework/jqwidgets-ts/angular_jqxslider.ts"
+  ],
 }
