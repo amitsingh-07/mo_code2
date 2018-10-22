@@ -42,7 +42,7 @@ export class InvestmentAccountService {
     }
     /* Residential Address */
     getCountriesFormData() {
-        const countries = this.investmentAccountFormData.nationalitylist;
+        const countries = this.investmentAccountFormData.nationalityList;
         return countries;
     }
     isUserNationalitySingapore() {
@@ -112,6 +112,9 @@ export class InvestmentAccountService {
         return this.apiService.getAddressUsingPostalCode(data);
     }
 
+    getNationalityCountryList() {
+        return this.apiService.getNationalityCountryList();
+    }
     getNationalityList() {
         return this.apiService.getNationalityList();
     }
@@ -132,7 +135,7 @@ export class InvestmentAccountService {
     }
     getNationality() {
         return {
-            nationalitylist: this.investmentAccountFormData.nationalitylist,
+            nationalitylist: this.investmentAccountFormData.nationalityList,
             nationality: this.investmentAccountFormData.nationality,
             unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
             singaporeanResident: this.investmentAccountFormData.singaporeanResident
@@ -181,9 +184,11 @@ export class InvestmentAccountService {
         this.commit();
     }
 
-    setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {
-        this.investmentAccountFormData.nationalitylist = nationalitylist;
-        this.investmentAccountFormData.nationality = selectedNationality;
+    setNationality(nationalityList: any, countryList: any, nationality: any, unitedStatesResident: any, singaporeanResident: any) {
+        this.investmentAccountFormData.nationalityList = nationalityList;
+        this.investmentAccountFormData.countryList = countryList;
+        this.investmentAccountFormData.nationalityCode = nationality.nationalityCode;
+        this.investmentAccountFormData.nationality = nationality;
         this.investmentAccountFormData.unitedStatesResident = unitedStatesResident;
         this.investmentAccountFormData.singaporeanResident = singaporeanResident;
         this.commit();
@@ -459,6 +464,10 @@ export class InvestmentAccountService {
           }
         }
         return disable;
+    }
+
+    isSingPassDisabled() {
+        return this.investmentAccountFormData.isMyInfoEnabled;
     }
 
     getAdditionDeclaration() {

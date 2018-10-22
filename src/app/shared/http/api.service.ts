@@ -443,6 +443,13 @@ export class ApiService {
       );
   }
 
+  getNationalityCountryList() {
+    return this.http.get(apiConstants.endpoint.investmentAccount.nationalityCountrylist)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   getNationalityList() {
     const url = '../assets/mock-data/nationalityList.json';
     return this.http.get(apiConstants.endpoint.investmentAccount.nationalitylist)

@@ -28,9 +28,11 @@ export class InvestmentAccountFormData {
     mailState: string;
     mailZipCode: number;
 
-    // SELECTNATIONLITY
-    nationalitylist: any;
-    nationality: any;
+    // SELECT NATIONLITY
+    nationalityList: any;
+    countryList: any;
+    nationality: any; // Singaporean
+    nationalityCode: any; // SG
     unitedStatesResident: string;
     singaporeanResident: string;
 

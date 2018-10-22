@@ -21,7 +21,8 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class SelectNationalityComponent implements OnInit {
     selectNationalityForm: FormGroup;
-    nationalitylist: any;
+    nationalityList: any;
+    countryList: any;
     selectedNationality: any;
     nationality: any;
     formValues: any;
@@ -59,23 +60,30 @@ export class SelectNationalityComponent implements OnInit {
     ngOnInit() {
         this.navbarService.setNavbarMobileVisibility(true);
         this.navbarService.setNavbarMode(1);
-        this.getNationalityList();
+        this.getNationalityCountryList();
         this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-        this.nationalityObj = this.selectNationalityFormValues.nationality;
-        this.nationality = this.selectNationalityFormValues.nationality &&
-            this.selectNationalityFormValues.nationality.nationality ?
-            this.selectNationalityFormValues.nationality.nationality : 'Select Nationality';
+        this.selectedNationality = 'Select Nationality';
+        if (this.selectNationalityFormValues.nationalityCode) {
+            this.nationality = this.selectNationalityFormValues.nationality;
+            this.selectedNationality = this.getSelectedNationality(this.selectNationalityFormValues.nationalityCode);
+        }
         this.selectNationalityForm = new FormGroup({
             nationality: new FormControl(this.selectNationalityFormValues.nationality)
         });
         this.buildFormControls();
     }
 
+    getSelectedNationality(nationalityCode) {
+        const selectedNationality = this.selectNationalityFormValues.nationalityList.filter(
+            (nationality) => nationality.nationalityCode === nationalityCode);
+        return selectedNationality[0].name;
+    }
+
     buildFormControls() {
-        if (this.nationality === 'Select Nationality' || this.blocked) {
+        if (this.selectedNationality === 'Select Nationality' || this.blocked) {
             this.singaporeNationality = false;
             this.notSingaporeNationality = false;
-        } else if (['SINGAPOREAN', 'SG'].includes(this.nationality)) {
+        } else if (['SINGAPOREAN', 'SG'].includes(this.selectedNationality)) {
             this.singaporeNationality = true;
             this.notSingaporeNationality = false;
             this.selectNationalityForm = new FormGroup({
@@ -91,26 +99,36 @@ export class SelectNationalityComponent implements OnInit {
         }
     }
 
-    selectNationality(nationalityObj) {
-        this.nationalityObj = nationalityObj;
-        this.blocked = this.nationalityObj.blocked;
-        this.nationality = this.nationalityObj.nationality;
-        this.country = this.nationalityObj.country;
+    selectNationality(nationality) {
+        this.blocked = nationality.blocked;
+        this.selectedNationality = nationality.name;
+        this.nationality = nationality;
         this.buildFormControls();
     }
 
-    getNationalityList() {
+    getNationalityCountryList() {
         this.authService.authenticate().subscribe((token) => {
-            this.investmentAccountService.getNationalityList().subscribe((data) => {
-                this.nationalitylist = data.objectList;
-                console.log(this.nationalitylist);
+            this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
+                this.nationalityList = data.objectList;
+                this.countryList = this.getCountryList(data.objectList);
             });
         });
     }
+
+    getCountryList(data) {
+        const countryList = [];
+        data.forEach((nationality) => {
+            nationality.countries.forEach((country) => {
+                countryList.push(country);
+            });
+        });
+        return countryList;
+    }
+
     save(form) {
         const singaporeanResident = form.controls.singaporeanResident ? form.controls.singaporeanResident.value : '';
-        this.investmentAccountService.setNationality(this.nationalitylist, this.nationalityObj,
-            form.controls.unitedStatesResident.value, singaporeanResident);
+        this.investmentAccountService.setNationality(this.nationalityList, this.countryList,
+            this.nationality, form.controls.unitedStatesResident.value, singaporeanResident);
     }
 
     showErrorMessage(modalTitle: any, modalMessage: any) {
@@ -128,7 +146,7 @@ export class SelectNationalityComponent implements OnInit {
         if (this.blocked) {
             this.showErrorMessage(this.editModalData.modalTitle, this.editModalData.modalMessage);
         } else if (form.valid && form.controls.unitedStatesResident) {
-            if ((['SINGAPOREAN', 'SG'].includes(this.nationality) &&
+            if ((['SINGAPOREAN', 'SG'].includes(this.selectedNationality) &&
                 form.controls.unitedStatesResident.value === 'yes') ||
                 ((form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'yes')
                     || (form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'no'))) {
