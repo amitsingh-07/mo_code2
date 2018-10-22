@@ -9,10 +9,9 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 const routes: Routes = [
   { path: '', component: AboutUsComponent},
   { path: 'customer-reviews', component: CustomerReviewsComponent}
-
   /*
-    { path: 'subscribe', component: SubscribeComponent},
-    { path: 'contact-us', component: ContactUsComponent},
+  { path: 'subscribe', component: SubscribeComponent},
+  { path: 'contact-us', component: ContactUsComponent}
   */
 ];
 

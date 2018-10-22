@@ -153,6 +153,22 @@ export class ApiService {
       );
   }
 
+  sendContactUs(data) {
+      // tslint:disable-next-line:no-commented-code
+      /*
+      return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, data, true)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+      */
+     console.log(data);
+     const url = '../../../assets/mock-data/customerReview.json';
+     return this.http.getMock(url)
+       .pipe(
+         catchError((error: HttpErrorResponse) => this.handleError(error))
+       );
+  }
+
   getMyInfoData(data) {
     const url = '../assets/mock-data/myInfoValues.json';
     return this.http.post(apiConstants.endpoint.getMyInfoValues, data.code, true)
