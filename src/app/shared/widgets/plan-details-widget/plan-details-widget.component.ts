@@ -90,7 +90,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       }
       if (this.type === 'hospital plan') {
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: 'Covers co-insurance and deductible' });
+        this.highlights.push({ title: 'Rider:', description: this.data.rider.riderName });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;

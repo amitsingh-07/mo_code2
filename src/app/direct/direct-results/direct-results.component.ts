@@ -161,13 +161,13 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.insurer && productList.insurer.rating) {
           this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
         }
-        if (productList.premium && productList.premium.payoutAge) {
-          this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
+        if (productList.premium && productList.premium.incomePayoutDuration) {
+          this.payoutYears[Formatter.createObjectKey(productList.premium.incomePayoutDuration)] = productList.premium.incomePayoutDuration;
         }
-        if (productList.premium && productList.premium.deferredPeriod) {
+        if (productList.premium) {
           this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;
         }
-        if (productList.premium && productList.premium.escalatingBenefit) {
+        if (productList.premium) {
           this.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
             productList.premium.escalatingBenefit;
         }
@@ -178,10 +178,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.insurer && productList.insurer.insurerName) {
           this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
-        if (productList.insurer && productList.insurer.insurerName) {
-          this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-        }
         */
+        if (productList.insurer && productList.premium.claimCriteria) {
+          this.claimCriteria[Formatter.createObjectKey(productList.premium.claimCriteria)] = productList.premium.claimCriteria;
+        }
       }
     }
     this.insurers = Object.values(this.insurers).map((key) => {
@@ -321,7 +321,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     if (toolTip !== null && toolTip !== '') {
       if (toolTip.title === this.filterTypes.CLAIM_CRITERIA) {
         const ref1 = this.modal.open(MobileModalComponent, {
-          centered: true
+          centered: true,
+          windowClass: 'settings-tooltip-dialog'
         });
         ref1.componentInstance.mobileTitle = this.filterModalData.TITLE;
         ref1.componentInstance.description = this.filterModalData.DESCRIPTION;

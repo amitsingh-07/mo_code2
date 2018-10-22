@@ -78,6 +78,7 @@
     "LBL_PAYOUT": "Payout Details",
     "LBL_UNIQUE_FEATURES": "Unique Features",
     "LBL_RANKING": "Ranking By Price",
+    "LBL_RANKING_BY_VALUE": "Ranking By Value",
     "LBL_RATING": "Insurer's Rating",
     "LBL_COMMISSION": "Commission Rebate"
   },
