@@ -106,8 +106,9 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
       }
       if (this.type === 'hospital plan') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: 'Covers co-insurance and deductible' });
+        this.highlights.push({ title: 'Rider:', description: this.data.rider.riderName });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;

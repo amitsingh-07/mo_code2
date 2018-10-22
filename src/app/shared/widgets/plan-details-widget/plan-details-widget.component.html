@@ -45,14 +45,14 @@
               </h2>
             </div>
             <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.gaurenteedMonthlyIncome |
+              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalGuaranteedPayout |
                 currency}}
                 <br />
                 <span class="text-small">{{ 'COMMON.LBL_GUARANTEED_PAYOUT' | translate}}</span>
               </h2>
             </div>
             <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.gaurenteedMonthlyIncome |
+              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalProjectedPayout475 |
                 currency}}
                 <br />
                 <span class="text-small">{{ 'COMMON.LBL_PROJECTED_PAYOUT' | translate}}</span>
@@ -66,7 +66,8 @@
       <div class="insurance-plan-widget__container__rank__wrapper flex-row" style="display: flex; flex: 1">
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
-          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn > 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn <= 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING_BY_VALUE' | translate }}</div>
           <div class="help-icon" style="display: none;"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRating">
