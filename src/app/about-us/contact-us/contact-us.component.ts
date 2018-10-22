@@ -14,7 +14,7 @@ import { AboutUsService } from './../about-us.service';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
-  subject = 'Subject';
+  public subject = 'Subject';
 
   contactUsForm: FormGroup;
   contactUsFormValues: IContactUs;

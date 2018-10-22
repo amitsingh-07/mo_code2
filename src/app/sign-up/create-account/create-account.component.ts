@@ -145,7 +145,7 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         sessionStorage.setItem(APP_JWT_TOKEN_KEY, data.objectList[0].securityToken);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
-      } else if (data.responseMessage.responseCode === 5016) {
+      } else {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
         ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
         this.createAccountForm.controls['captcha'].reset();
