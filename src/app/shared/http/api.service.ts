@@ -437,7 +437,8 @@ export class ApiService {
     const payload = {
       profileId: '',
       birthDate: '00/00/0000',
-      journeyType: 'direct'
+      journeyType: 'direct',
+      noOfDependents: 0
     };
     return this.http.post(apiConstants.endpoint.getProtectionTypesList, payload)
       .pipe(

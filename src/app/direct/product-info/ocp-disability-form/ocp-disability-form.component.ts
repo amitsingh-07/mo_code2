@@ -75,7 +75,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     });
 
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '2') {
+      if (data !== '' && data === '3') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
