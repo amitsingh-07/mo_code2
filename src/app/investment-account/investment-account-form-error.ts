@@ -145,6 +145,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid TIN',
                 errorMessage: 'Please enter your TIN number.'
+            },
+            pattern: {
+                errorTitle: 'Invalid TIN',
+                errorMessage: 'TIN Number should not contain special characters.'
             }
         },
         taxCountry: {

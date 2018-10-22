@@ -12,11 +12,12 @@
         </div>
         <div class="flex-col-8">
 
-          <div class="dropdown-control">
+          <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoForm.controls.taxCountry)}">
             <div ngbDropdown>
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ country | titlecase }}</span>
+                <span *ngIf="taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.taxCountry.value | titlecase }}</span>
+                <span *ngIf="!taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">Select Country</span>
                 <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
               </button>
@@ -48,13 +49,12 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="tin_yes" value="yes" (click)="yesClick()"> {{ 'TAX_INFO.YES_lABEL' | translate}}
+                  <input ngbButton type="radio" id="tin_yes" value="yes" (change)="isTinNumberAvailChanged('yes')"> {{ 'TAX_INFO.YES_lABEL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
-
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="tin_no" value="no" (click)="noClick()">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
+                  <input ngbButton type="radio" id="tin_no" value="no" (change)="isTinNumberAvailChanged('no')">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
               </div>
             </div>
           </div>
@@ -67,12 +67,12 @@
           <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' | translate}}</label>
         </div>
         <div class="flex-col-8">
-
-          <div class="dropdown-control" >
+          <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoForm.controls.reasonDropdown.controls.noTinReason)}">
             <div ngbDropdown>
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span class="dependent-count" id="tax_Info_dropdown_country">{{ reason | titlecase }}</span>
+                <span *ngIf="taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.reasonDropdown.controls.noTinReason.value | titlecase }}</span>
+                <span *ngIf="!taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">Select</span>
                 <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
               </button>
@@ -95,9 +95,8 @@
     <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' | translate}}</label>
   </div>
   <div class="flex-col-8">
-
-    <div class="dropdown-control"  formGroupName="tinNumberText">
-      <input type="text" id="invPersInfoInpt1" class="form-control"  formControlName="tinNumber">
+    <div class="dropdown-control"  formGroupName="tinNumberText" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoForm.controls.tinNumberText.controls.tinNumber)}">
+      <input type="text" placeholder="E.g S9840139C" id="invPersInfoInpt1" class="form-control"  formControlName="tinNumber">
     </div>
   </div>
 </div>

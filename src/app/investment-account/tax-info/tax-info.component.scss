@@ -114,4 +114,18 @@ letter-spacing: -0.3px;
     margin-top: 12px;
     margin-bottom: 12px;
   }
+
+  input::placeholder {
+    color: #8d9aa8 !important;
+  }
+
+  .inline-error{
+    border-radius:6px;
+    .btn{
+      &.btn-secondary{
+        background-color:#ff872f !important;
+      }  
+    }    
+  }
+
 }

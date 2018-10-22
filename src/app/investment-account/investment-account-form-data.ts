@@ -35,9 +35,9 @@ export class InvestmentAccountFormData {
     singaporeanResident: string;
 
     // Tax Info
-    Taxcountry: any;
-    haveTin: any;
-    Tin: any;
+    taxCountry: any;
+    radioTin: any;
+    tinNumber: any;
     noTinReason: any;
 
     // EmployementDetails
