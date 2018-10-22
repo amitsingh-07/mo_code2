@@ -15,7 +15,7 @@ import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.comp
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit{
+export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewInit {
   title = 'Money Owl';
   modalRef: NgbModalRef;
   initRoute = false;
@@ -26,7 +26,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     this.translate.setDefaultLang('en');
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.route.events.subscribe((val) => {
@@ -37,7 +37,9 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
           }
           this.initRoute = true;
         } else {
-          this.modalRef.close();
+          if (this.modalRef) {
+            this.modalRef.close();
+          }
         }
       }
     });

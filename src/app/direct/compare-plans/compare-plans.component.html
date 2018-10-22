@@ -26,9 +26,9 @@
               </span>
             </h2>
             <h2 [hidden]="!plan.premium.intrestRateOfReturn">{{plan.premium.intrestRateOfReturn}}%
-              <span class="text-small">{{ 'COMPARE_PLANS.PERCENTAGE_PER_ANNUM' | translate}}</span>
+              <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
               <br />
-              <span class="text-small">{{ 'COMPARE_PLANS.PROJECTED_RETURN' | translate}}</span>
+              <span class="text-small">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
             </h2>
           </div>
         </div>
@@ -117,10 +117,10 @@
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'lb-round': i == 0, 'hidden-sm-md': i > 1, 'rb-round': i == plansData.length - 1}">
       <div class="plan-content feature-list">
-        <div *ngFor="let feature of plan.features.split('.')">
+        <div *ngFor="let feature of plan.features.split('~')">
           <div class="features" *ngIf="feature && feature != ''">
             <span><img src="../../../assets/images/Yes.png" /></span>
-            <span>{{feature}}</span>
+            <span class="text-left">{{feature}}</span>
           </div>
         </div>
       </div>

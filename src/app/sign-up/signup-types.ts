@@ -2,6 +2,14 @@ export interface ISignUp {
     customer: ICustomer;
     enquiryId: number;
     selectedProducts: IPlan[];
+    captcha: any;
+    sessionId: any;
+}
+
+export interface IEnquiryUpdate {
+    customerId: string;
+    enquiryId: number;
+    selectedProducts: IPlan[];
 }
 
 export interface IPlan {

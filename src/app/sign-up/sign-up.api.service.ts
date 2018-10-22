@@ -41,7 +41,7 @@ export class SignUpApiService {
   /**
    * form create user account request.
    */
-  createAccountBodyRequest(): ISignUp {
+  createAccountBodyRequest(captchaValue): ISignUp {
     const selectedPlan: IPlan[] = [];
     let userInfo: UserInfo;
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) {
@@ -70,7 +70,9 @@ export class SignUpApiService {
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
       enquiryId: selectedPlanData.enquiryId,
-      selectedProducts: selectedPlanData.plans
+      selectedProducts: selectedPlanData.plans,
+      sessionId: this.authService.getSessionId(),
+      captcha: captchaValue
     };
   }
 
@@ -124,8 +126,8 @@ export class SignUpApiService {
    * create user account.
    * @param code - verification code.
    */
-  createAccount() {
-    const payload = this.createAccountBodyRequest();
+  createAccount(captcha) {
+    const payload = this.createAccountBodyRequest(captcha);
     return this.apiService.createAccount(payload);
   }
 
@@ -187,8 +189,10 @@ export class SignUpApiService {
    * @param username - email / mobile no.
    * @param password - password.
    */
-  verifyLogin(userEmail, userPassword) {
-    return this.authService.authenticate(userEmail, this.cryptoService.encrypt(userPassword));
+  verifyLogin(userEmail, userPassword, captcha) {
+    //const sessionId = this.signUpService.getCaptchaSessionId();
+    const sessionId = this.authService.getSessionId();
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
   }
 
   getUserProfileInfo() {

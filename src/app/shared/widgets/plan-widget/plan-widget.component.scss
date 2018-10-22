@@ -23,7 +23,7 @@ app-plan-widget {
       right: 0;
       bottom: 0;
       left: 0;
-      border-radius: 10px;
+      border-radius: 8px;
     }
   }
 
@@ -92,7 +92,7 @@ app-plan-widget {
     }
 
     .insurer-logo {
-      height: 80px;
+      height: auto;
       text-align: center;
       margin-bottom: 10px;
       display: flex;
@@ -136,7 +136,7 @@ app-plan-widget {
         @include allmobiles {
           font-size: 16px;
           text-align: center;
-          justify-content: center;  
+          justify-content: center;
           height: 60px;
           padding: 0 5px;
           display: flex;
@@ -274,6 +274,60 @@ app-plan-widget {
       button {
         padding: 0.50rem;
         font-size: 18px;
+      }
+    }
+  }
+
+  .with-sub-sections {
+    margin-left: 0px;
+    padding-bottom: 10px;
+    h2 {
+      width: 100%;
+    }
+    .subtitle {
+      position: absolute;
+      padding-top: 5px;
+
+      @include allmobiles {
+        position: relative;
+        bottom: 0px;
+        margin-left: 0px;
+      }
+    }
+
+    
+    .plan-value-main {
+      padding-top: 5px;
+      width: 30%;
+      float: left;
+      margin-bottom: 0px;
+
+      @include allmobiles {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .plan-value-sub {
+      margin-left: 15px;
+      width: auto;
+      float: left;
+      padding: 10px;
+      border: solid 1px #c2d9ec;
+      border-radius: 6px;
+
+      h2 {
+        color: #00a7a7;
+        width: auto;
+        font-size: 22px;
+        font-family: $muli-light;
+        margin-bottom: 0px;
+
+        .text-small {
+          color: #2d8289;
+          font-size: 16px;
+          font-family: $muli-regular;
+        }
       }
     }
   }

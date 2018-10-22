@@ -18,6 +18,12 @@ export class LoginFormError {
                         // tslint:disable-next-line:no-duplicate-string
                         errorMessage: 'Please enter your Password'
                 }
+        },
+        captchaValue: {
+                required : {
+                        errorTitle: 'Invalid captcha',
+                        errorMessage: 'Please enter valid captcha'
+                }
         }
     };
 }

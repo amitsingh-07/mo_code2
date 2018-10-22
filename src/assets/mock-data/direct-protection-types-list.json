@@ -1,0 +1,35 @@
+{
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  },
+  "objectList": [{
+    "protectionTypeId": 1,
+    "protectionType": "Life Protection",
+    "protectionDesc": "To support your dependants"
+  }, {
+    "protectionTypeId": 2,
+    "protectionType": "Critical Illness",
+    "protectionDesc": "E.g. Cancer, Heart Attack, Stroke"
+  }, {
+    "protectionTypeId": 3,
+    "protectionType": "Occupational Disability",
+    "protectionDesc": "Affects your ability to work"
+  }, {
+    "protectionTypeId": 4,
+    "protectionType": "Hospital Plan",
+    "protectionDesc": "Ease high cost of hospital bills"
+  }, {
+    "protectionTypeId": 5,
+    "protectionType": "Long-Term Care",
+    "protectionDesc": "ElderShield Supplement"
+  }, {
+    "protectionTypeId": 6,
+    "protectionType": "Child's Education Fund",
+    "protectionDesc": "To provide for tuition fees, living expenses when child embarks on tertiary education."
+  }, {
+    "protectionTypeId": 7,
+    "protectionType": "Retirement Income Plan",
+    "protectionDesc": "Retirement Income Plan"
+  }]
+}
