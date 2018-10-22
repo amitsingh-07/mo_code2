@@ -10,8 +10,8 @@ app-compare-plans {
   }
   .info-icon {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 8px;
+    top: 8px;
     cursor: pointer;
   }
   .rt-round {
@@ -134,6 +134,7 @@ app-compare-plans {
         color: #5E5E5E !important;
         padding: 20px;
         justify-content: center;
+        text-align: center;
 
         &.feature-list {
           flex-direction: column;
@@ -149,6 +150,7 @@ app-compare-plans {
           display: flex;
           justify-content: flex-start;
           padding: 10px 0;
+          text-align: left;
 
           img {
             width: 15px;
@@ -295,7 +297,7 @@ app-compare-plans {
     text-align: center;
     color: $white-color;
     font-family: $muli-semi-bold;
-    border-bottom: 1px solid $white-color;
+    border-bottom: 1px solid #3eb9b8;
     font-size: 24px;
     line-height: 66px;
     left: 0;

@@ -235,8 +235,16 @@
   padding-bottom: 10px !important;
 }
 
+.pb60 {
+  padding-bottom: 60px !important;
+}
+
 .absolute-top {
   top: 0 !important
+}
+.plr20 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
 }
 
 //Base Styles for mobile only
@@ -411,4 +419,18 @@ nouislider {
 
 .margin-auto {
   margin: 0 auto;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+input[type=number] {
+    -moz-appearance:textfield !important;
+}
+
+input::-ms-clear {
+  display: none !important;
 }

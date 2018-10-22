@@ -10,7 +10,7 @@
         display:flex;
         width:100%;
         justify-content: center;
-        min-height:500px;
+        min-height:400px;
         @include minMobilemaxPhablet{
             flex-direction:column;
             justify-content:flex-start;
@@ -25,19 +25,22 @@
         height:100%;
         @include minMobilemaxPhablet{
             position: relative; 
-            height:300px;
+            height:200px;
+            margin-top:60px;
+            margin-right:20px;
+            right:20px;
             order:2;
         }
         .banner-bg--image{
             position: absolute;
             display:block;
             width:100%;
-            height:100%;
-            background-image:url('./../../../assets/images/about-us/customer_review.jpg');
+            height:90%;
+            background-image:url('./../../../assets/images/about-us/reviews_seated_guy.svg');
             background-repeat:no-repeat;
             background-position:bottom right;
             background-size:contain;
-            bottom:0px;
+            bottom:5%;
             @include minPhabletmaxTablet{
                 height:calc(100% - 50px);
             }
@@ -60,29 +63,30 @@
             order:1;
             margin-bottom:-80px;
         }
-        h1{
+        .banner--title{
             font-family:$muli-bold;
             font-weight:bold;
-            font-size:4rem;
+            font-size:3.5rem;
             color:$teal-color;
-            margin-bottom:unset;
+            margin-bottom:5px;
             line-height:1;
             @include minPhabletmaxTablet{
                 font-size:3.7rem;
             }
             @include minMobilemaxPhablet{
-                font-size:3.5rem;
+                font-size:2.0rem;
             }
         }
-        h3{
+        .banner--sub-title{
             font-family:$muli-semi-bold;
             color:$black-color;
             opacity:0.9;
+            font-size:1.5rem;
             @include minPhabletmaxTablet{
                 font-size:1.5rem;
             }
             @include minMobilemaxPhablet{
-                font-size:1.5rem;
+                font-size:1.2rem;
             }
         }
         
@@ -122,6 +126,7 @@
         padding:40px;
         margin-bottom:0.75rem;
         border-radius:6px;
+        border:unset;
         @include tablet{
             padding:20px;
         }
@@ -142,6 +147,17 @@
             .rating--text{
                 font-family:$muli-bold;
                 color:$teal-color;
+            }
+            @include min300max325{
+                flex-direction:column; 
+                .rating--text{
+                    align-items:center;
+                    text-align:center;
+                    line-height:1.0;
+                }
+                .rating--icon{
+                    line-height:1.0;
+                }
             }
         }
         .reviewer{

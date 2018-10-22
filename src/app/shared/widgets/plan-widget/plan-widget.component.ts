@@ -92,7 +92,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
-      this.premiumDuration = this.data.premiumDuration;
+      this.premiumDuration = this.data.premium.premiumTerm;
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
@@ -100,18 +100,20 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         { title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) }
       );
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
-      if (this.type === 'long term care') {
+      if (this.type === 'long-term care') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
+        this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
       }
       if (this.type === 'hospital plan') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: 'Covers co-insurance and deductible' });
+        this.highlights.push({ title: 'Rider:', description: this.data.rider.riderName });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period:', description: '6 Months' });
-        this.highlights.push({ title: 'Escalating Benefit:', description: '3%' });
+        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
+        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }

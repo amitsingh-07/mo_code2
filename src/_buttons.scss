@@ -71,6 +71,7 @@ button:active:focus {
     background-color: $app-backgrnd-color;
     border-color: $app-backgrnd-color;
     color: $white-color;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18) !important;
     &:hover {
       background-color: #00c5c4;
     }
@@ -459,6 +460,8 @@ button:active:focus {
     }
     @include allmobiles{
       min-height:60px;
+      position: fixed;
+      bottom: 0;
       }
     }
 }
@@ -510,7 +513,7 @@ button:active:focus {
       cursor: pointer;
       @include minMobilemaxPhablet{
         height:101%;
-        width:40px;
+        width:45px;
       }
       .min-prod-info__block-btn--edit{
         position: absolute;
@@ -682,7 +685,7 @@ button:active:focus {
         min-width:90px;
         max-width:90px;
         background-color:$teal-color;
-        border-color:$dark-teal-color;
+        border-color:rgba(0, 135, 134, 0.4);
         color:$light-teal-color;
         white-space:normal;
         height:52px;
@@ -754,22 +757,25 @@ button:active:focus {
     height:100%;
     flex-grow:1;
     flex-basis:25%;
-    justify-content:flex-start;
+    justify-content:center;
     align-content:center;
     cursor: pointer;
     transition:0.3s;
     box-sizing: border-box;
     border-bottom:2px solid transparent;
-    padding-top:20px;
     z-index:2;
     &:hover{
       border-bottom:2px solid $orange-color;
+      @include minMobilemaxPhablet{
+        border-bottom:none;
+      }
     }
     &.active{
-      border-bottom:2px solid $orange-color;
+      border-bottom:2px solid $orange-color !important;
     }
     @include minMobilemaxPhablet{
-      min-width:120px;
+      flex-basis:unset;
+      max-width:150px;
     }
     .navbar__btn--title{
         position: relative;

@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { Formatter } from '../../../shared/utils/formatter.util';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 
@@ -49,33 +50,32 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.employmentTypeList = this.translate.instant('OCCUPATIONAL_DISABILITY.EMPLOYMENT_TYPE_LIST');
-      this.defaultEmployee = '';
       this.durationValues = this.translate.instant('OCCUPATIONAL_DISABILITY.DURATION_VALUES');
       this.duration = '';
+      this.defaultEmployee = '';
     });
   }
 
   ngOnInit() {
     this.formValues = this.directService.getOcpDisabilityForm();
+    if (this.formValues.employmentType) {
+      this.defaultEmployee = this.formValues.employmentType;
+    }
+    if (this.formValues.duration) {
+      this.duration = this.formValues.duration;
+    }
     this.ocpDisabilityForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       smoker: [this.formValues.smoker],
-      employmentType: [this.formValues.employmentType, Validators.required],
+      employmentType: [this.defaultEmployee, Validators.required],
       monthlySalary: [this.formValues.monthlySalary, Validators.required],
       percentageCoverage: [this.formValues.percentageCoverage],
       duration: [this.formValues.duration, Validators.required]
     });
 
-    if (this.formValues.employmentType !== undefined) {
-      this.selectEmployeeType(this.formValues.employmentType, true);
-    }
-    if (this.formValues.duration !== undefined) {
-      this.selectDuration(this.formValues.duration);
-    }
-
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '2') {
+      if (data !== '' && data === '3') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
@@ -85,6 +85,13 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngAfterViewInit() {
+    if (this.formValues.employmentType !== undefined) {
+      this.selectEmployeeType(this.formValues.employmentType, true);
+    }
+    if (this.formValues.duration !== undefined) {
+      this.selectDuration(this.formValues.duration);
+    }
+
     this.ocpDisabilityFormSlider.writeValue(this.coveragePercent);
   }
 
@@ -111,6 +118,7 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
   }
 
   setSliderValues(value) {
+    this.coveragePercent = value;
     this.onSliderChange(value);
     this.ocpDisabilityFormSlider.writeValue(value);
     this.ocpDisabilityFormSlider.slider.updateOptions({ range: { min: 0, max: value } });
@@ -122,15 +130,16 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     if (!monthlySalaryValue) {
       monthlySalaryValue = 0;
     }
-    sum_string += '$' + monthlySalaryValue +  ' / mth, ';
+    sum_string += '$' + (monthlySalaryValue * this.coveragePercent / 100) + ' / mth, ';
     sum_string += this.duration;
     return sum_string;
   }
 
   save() {
     const form = this.ocpDisabilityForm;
-    if (form.controls.monthlySalary.value < 1) {
-      form.controls['monthlySalary'].setErrors({required: true});
+    if (form.controls.monthlySalary.value < 1
+      || isNaN(form.controls.monthlySalary.value)) {
+      form.controls['monthlySalary'].setErrors({ required: true });
     }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -144,7 +153,8 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-    form.value.employmentType = this.selectEmployeeType;
+    form.value.smoker = 'nonsmoker';
+    form.value.employmentType = this.defaultEmployee;
     form.value.duration = this.duration;
     form.value.percentageCoverage = this.coveragePercent;
     this.directService.setOcpDisabilityForm(form.value);

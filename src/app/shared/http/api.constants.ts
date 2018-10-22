@@ -10,6 +10,7 @@ export let apiConstants = {
         getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
+        updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'account/account-microservice/api/getMyInfoValues',
         signUp: 'account/account-microservice/api/signup',
         verifyOTP: 'account/account-microservice/api/verifyOTP',

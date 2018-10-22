@@ -4,7 +4,10 @@
         "VERIFY": "Verify", 
         "LOGIN": "Log In",
         "CREATE_ACCOUNT": "Create Account",
-        "TRY_AGAIN": "Try Again"
+        "TRY_AGAIN": "Try Again",
+        "CAPTCHA": "Enter image text",
+        "CAPTCHA_TITLE": "Enter the characters shown in the image",
+        "TRY_ANOTHER_TEXT": "Try another text"
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",
@@ -26,7 +29,9 @@
             "EDIT_NUMBER": "Edit Number",
             "DIDNT_RECIEVE": "Didn't Recieve it?",
             "REQUEST_NEW_CODE": "Request New Code",
-            "CODE_SENT": "Code sent!"
+            "CODE_SENT": "Code sent!",
+            "RETRY_IN": "Retry in",
+            "SECONDS_SUFFIX": "s"
         },
         "ERROR_MODAL": {
             "ERROR_TITLE": "Incorrect OTP Code",

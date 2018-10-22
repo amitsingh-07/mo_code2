@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { HospitalPlan } from './../../../guide-me/hospital-plan/hospital-plan';
+import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   hospitalForm: FormGroup;
   formValues: any;
-  selectedPlan;
+  selectedPlan: HospitalPlan;
   planType;
   doberror = false;
   constructor(
@@ -33,13 +34,14 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.planType = this.translate.instant('DIRECT_HOSPITAL_PLAN.HOSPITAL_PLANS');
-      this.selectedPlan = '';
+      this.selectedPlan = { hospitalClass: '' } as HospitalPlan;
     });
   }
 
   ngOnInit() {
     this.formValues = this.directService.getHospitalPlanForm();
     this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider;
+    this.selectedPlan = this.formValues.selectedPlan;
     this.hospitalForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
@@ -47,7 +49,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       fullOrPartialRider: [this.formValues.fullOrPartialRider, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '3') {
+      if (data !== '' && data === '4') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
@@ -60,13 +62,14 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     this.categorySub.unsubscribe();
   }
 
-  selectHospitalPlan(plan) {
-    this.selectedPlan = plan;
-    this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan);
+  selectHospitalPlan(plan, index) {
+    index += 1;
+    this.selectedPlan = { hospitalClass: plan, hospitalClassId: index } as HospitalPlan;
+    this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan.hospitalClass);
   }
   summarizeDetails() {
     let sum_string = '';
-    sum_string += this.hospitalForm.value.selectedPlan;
+    sum_string += this.hospitalForm.value.selectedPlan.hospitalClass;
     if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
       sum_string += ', Full / Partial Rider';
     }
@@ -86,8 +89,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-
-    form.value.selectedPlan = this.selectedPlan;
+    this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan);
     this.directService.setHospitalPlanForm(form.value);
     return true;
   }
