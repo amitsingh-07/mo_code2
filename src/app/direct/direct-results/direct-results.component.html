@@ -1,11 +1,11 @@
 <app-edit-product-info (editProdInfo)="editProdInfo()" [hidden]="isComparePlanEnabled && isMobileView"></app-edit-product-info>
 <div class="prod-info__backdrop show" [hidden]="!toggleBackdropVisibility"></div>
+<div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0" class="mt10 text-center">{{resultsEmptyMessage}}</div>
 <div id="results-web" [hidden]="!isResultsLoaded || resultsEmptyMessage?.length > 0" *ngIf="!isMobileView" class="flex-row grp-results hidden-sm-md">
   <div class="flex-col-8 pr20" *ngFor="let category of searchResult; let i = index">
     <div class="text-center">
       <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{
         'SETTINGS.NO_RESULTS' | translate}}</div>
-      <div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
     </div>
     <div>
       <div style="justify-content: center;">
@@ -52,7 +52,6 @@
     <div class="text-center mt15">
       <div [hidden]="!isResultsLoaded || (filteredResult?.length > 0 || resultsEmptyMessage?.length > 0)">{{
         'SETTINGS.NO_RESULTS' | translate}}</div>
-      <div [hidden]="!isResultsLoaded || resultsEmptyMessage?.length == 0">{{resultsEmptyMessage}}</div>
     </div>
     <div class="plan-wrapper flex-col-6" *ngFor="let plan of category.productList | planFilter:filterArgs : filteredCountSubject | orderBy:[sortProperty] as filteredResult; let j = index;">
       <img class="best-value-icon--mobile" *ngIf="plan.bestValue" src="./assets/images/best_value.svg" />

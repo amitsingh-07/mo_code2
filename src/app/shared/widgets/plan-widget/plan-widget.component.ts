@@ -108,7 +108,18 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       if (this.type === 'hospital plan') {
         this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: this.data.rider.riderName });
+        let riderDesc = '';
+        let riderName = this.data.rider.riderName;
+        if (riderName && riderName.toLowerCase() === 'full rider') {
+          riderName += ':';
+          riderDesc = 'Covers Co-Insurance and Deductible';
+        } else if (riderName && riderName.toLowerCase() === 'partial rider') {
+          riderName += ':';
+          riderDesc = 'Covers Co-Insurance';
+        } else {
+          riderName = 'No Rider';
+        }
+        this.highlights.push({ title: riderName, description: riderDesc });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
