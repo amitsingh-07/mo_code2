@@ -29,8 +29,6 @@ import {
     PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
 
-import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
-
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
@@ -84,8 +82,7 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationStep1Component,
     FeesModalComponent,
     AccountSetupCompletedComponent,
-    AdditionalDeclarationSubmitComponent,
-    PercentageInputDirective
+    AdditionalDeclarationSubmitComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
