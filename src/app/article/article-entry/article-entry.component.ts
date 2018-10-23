@@ -5,6 +5,7 @@ import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 import { ArticleApiService } from './../article.api.service';
+import { ArticleService } from './../article.service';
 
 @Component({
   selector: 'app-article-entry',
@@ -17,34 +18,35 @@ export class ArticleEntryComponent implements OnInit {
   public art_content: any;
   public title: string;
   public category: string;
+  public tagId: number;
   private author: string;
 
   constructor(public navbarService: NavbarService, public footerService: FooterService, private route: ActivatedRoute,
-              public articleApiService: ArticleApiService) {}
+              public articleApiService: ArticleApiService, public articleService: ArticleService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.art_id = params['id'];
         console.log(this.art_id);
+        this.getArticleContent(this.art_id);
       }
     });
     this.route.queryParams.subscribe((params) => {
       if (params['art_id']) {
         this.art_id = params['art_id'];
         console.log(this.art_id);
+        this.getArticleContent(this.art_id);
       }
     });
-
-    this.articleApiService.getArticleContent(this.art_id).subscribe((data) => {
-      this.art_content = data;
-      this.title = 'Understanding MediShield Life & What should you do (Part 1: MediShield Life in a Nutshell)';
-      this.category = 'Protection';
-      this.author = 'Shawn Lee';
-    });
-
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(true);
+  }
+
+  getArticleContent(art_id: number) {
+    this.articleApiService.getArticleContent(art_id).subscribe((data) => {
+      this.art_content = data;
+    });
   }
 
   getArticle(id: number) {

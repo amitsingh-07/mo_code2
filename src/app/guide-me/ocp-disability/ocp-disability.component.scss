@@ -21,4 +21,17 @@ app-ocp-disability {
     color: #2d8288;
     font-size: 16px;
   }
+
+  .with-help-icon {
+    width: 180px;
+    padding-right: 40px;
+    .help-icon {
+      margin-left: 0 !important;
+      display: none;
+      float: right;
+      position: absolute;
+      right: 0;
+      top: 15px;
+    }
+  }
 }

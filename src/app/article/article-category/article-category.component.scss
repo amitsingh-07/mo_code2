@@ -202,16 +202,9 @@
             display:inline-flex;
             flex-basis:40%;
             overflow:hidden;
-            img{
-                position: absolute;
-                display:block;
-                width:100%; 
-                height:auto; 
-                top:0px;
-                @include minMobilemaxPhablet{
-                    position: relative;
-                }
-            }
+            background-size:cover;
+            background-repeat: no-repeat;
+            min-height:200px;
         }
         .article-element__desc{
             position: relative;
@@ -225,8 +218,15 @@
                 font-family:$muli-bold;
                 font-size:22px;
                 letter-spacing:-0.4;
-                line-height:1.1;
+                line-height:1.2;
                 margin-bottom:5px;
+                a{
+                    color:$teal-color;
+                    &:hover{
+                        text-decoration:none;
+                        color:$dark-teal-color;
+                    }
+                }
             }
             .article-description{
                 color:$dark-teal-color;

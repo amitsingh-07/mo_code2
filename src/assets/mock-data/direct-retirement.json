@@ -1,0 +1,74 @@
+{
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	},
+	"objectList": [{
+			"enquiryId": 5187,
+			"productProtectionTypeList": [{
+					"protectionType": "Retirement Income Plan",
+					"productList": [{
+							"id": "R007",
+							"productName": "ManuWealth Secure",
+							"purposeId": 3,
+							"objectiveId": 9,
+							"typeId": 12,
+							"searchCount": 0,
+							"whyBuy": "I want a stream of income payout only for limited years and a bequest upon death.",
+							"payOut": "A stream of income payout with amount that are fixed and guaranteed and a lump sum benefit at Maturity or earlier upon a claim.",
+							"underWritting": "No",
+							"rebate": "Eligible",
+							"cashValue": "Yes",
+							"cashPayoutFrequency": "Yearly income starts after end of premium duration",
+							"coverageDuration": "13/15/20/25 years, subject to max expiry age of 80",
+							"premiumDuration": "2/5 years",
+							"features": "No medical underwriting.",
+							"productDescription": "This Endowment policy pays a stream of guaranteed Yearly Cash Benefit (5% of Sum Assured) starting from the end of the premium duration over the remaining period of the term. At maturity, a lump sum benefit including projected bonus (if any) is payable. Premium is payable for either 2 or 5 years. This policy is available for ages 0 to 67. As no medical underwriting is needed, the insurance benefits offered for death, TI and TPD are minimal, which are based on 101% of total premium paid plus projected bonus (if any). You can also attach optional riders like premium waiver to enhance its benefits (available for the 5-year premium plan).",
+							"status": "Active",
+							"brochureLink": "NA",
+							"isAuthorised": true,
+							"insurer": {
+								"id": "MNL",
+								"insurerName": "Manulife",
+								"logoName": "logo-manulife.png",
+								"url": "https://www.manulife.com.sg",
+								"rating": "AA+"
+							},
+							"premium": {
+								"id": 12807,
+								"productId": null,
+								"gender": "Male",
+								"minimumAge": 18,
+								"coverageName": "",
+								"durationName": "till age 55",
+								"premiumTerm": "5",
+								"savingsDuration": "",
+								"retirementPayoutAmount": "",
+								"retirementPayoutDuration": "Limited Years",
+								"premiumAmount": "481",
+								"premiumAmountYearly": "0",
+								"premiumFrequency": "per month",
+								"ranking": 1,
+								"sumAssured": 25000.0,
+								"payoutDuration": "0",
+								"numberOfADL": 0,
+								"hospitalPlanType": "Standard",
+								"payoutAge": 60,
+								"gaurenteedMonthlyIncome": 1000.0,
+								"monthlyBenefit": 0.0,
+								"deferredPeriod": 0,
+								"escalatingBenefit": 0.0,
+								"intrestRateOfReturn": 3.2,
+								"smoker": false
+							},
+							"promotion": null,
+							"rider": null,
+							"brochureLinkSize": "NA",
+							"authorised": true
+						}
+					]
+				}
+			]
+		}
+	]
+}

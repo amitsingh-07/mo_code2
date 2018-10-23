@@ -2,6 +2,7 @@
   "COMMON": {
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
+    "LBL_PLAN_SELECTED": "Plan Selected",
     "LBL_PLANS_SELECTED": "Plans Selected",
     "LBL_SEARCH_PLAN": "Search Plans",
     "LBL_UPDATE_PLAN": "Update Plan",
@@ -13,11 +14,17 @@
     "LBL_NO": "No",
     "LBL_CONTINUE": "Continue",
     "SUBLBL_MAX4":" (Max 4)",
-    "LBL_SELECT": "Select"
+    "LBL_SELECT": "Select",
+    "LBL_PREMIUM": "Premium",
+    "LBL_PERCENTAGE_PER_ANNUM": " p.a",
+    "LBL_PROJECTED_RETURN": "Projected Return",
+    "LBL_GUARANTEED_PAYOUT": "Guaranteed Payout",
+    "LBL_PROJECTED_PAYOUT": "Projected Payout"
   },
   "SUFFIX": {
     "PER_MONTH": "/ mth",
-    "PER_YEAR": "/ year"
+    "PER_YEAR": "/ year",
+    "SINGLE": "Single"
   },
   "LABEL": {
     "GENDER": "Gender",
@@ -40,7 +47,7 @@
     "PROCEED":"Proceed"
   },
   "ADD_EXISTING_COVERAGES" : {
-    "TITLE": "Add Existing Coverages",
+    "TITLE": "Add Existing Coverage",
     "LIFE_PROTECTION": "Life Protection",
     "CRITICAL_ILLNESS": "Critical Illness",
     "OCCUPATION_DISABILITY": "Occupational Disability",
@@ -57,7 +64,7 @@
   "BUTTON": {
     "PROCEED": "Proceed",
     "COMPARE": "Compare",
-    "UN_SELECT": "Plan Selected",
+    "UN_SELECT": "Selected",
     "DETAILS": "Details",
     "SELECT_PLAN": "Select Plan"
   },
@@ -71,11 +78,14 @@
     "LBL_PAYOUT": "Payout Details",
     "LBL_UNIQUE_FEATURES": "Unique Features",
     "LBL_RANKING": "Ranking By Price",
+    "LBL_RANKING_BY_VALUE": "Ranking By Value",
     "LBL_RATING": "Insurer's Rating",
     "LBL_COMMISSION": "Commission Rebate"
   },
   "SETTINGS": {
+    "TITLE": "Settings",
     "SORT_BY": "Sort by",
+    "APPLY_FILTERS": "Apply Filters",
     "SORT" : [
       {"displayText": "Highest Ranking", "value": "premium.ranking" },
       {"displayText": "Insurer Name (A-Z)", "value": "+insurer.insurerName" },
@@ -111,16 +121,16 @@
     "TNC": {
       "SUB_NAV": {
         "PRIMARY": "Home",
-        "MAIN": "Terms and Conditions" 
+        "MAIN": "Terms of Use" 
       },
-      "TITLE": "Terms and Conditions"
+      "TITLE": "Terms of Use"
     },
     "PRIVACY_POLICY": {
       "SUB_NAV": {
         "PRIMARY": "Home",
-        "MAIN": "Privacy Policy"
+        "MAIN": "Terms and Conditions & Privacy Policy"
       },
-      "TITLE": "Privacy Policy"
+      "TITLE": "Terms and Conditions & Privacy Policy"
     },
     "DISCLOSURE": {
       "SUB_NAV": {
@@ -146,7 +156,68 @@
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Login",
-    "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not guaranteed and are based on the higher projection rate of up to 4.75%."
+    "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
+  },
+  "FOOTER": {
+    "TOP_SECTION": {
+      "ABOUT_US": {
+          "TITLE": "About Us"
+      },
+      "LIVE_CHAT": {
+          "TITLE": "Live Chat"
+      }
+    },
+    "MIDDLE_SECTION": {
+      "ADDRESS": {
+        "LABEL": "23 Keong Saik Road Singapore 089130",
+        "LINK": "https://goo.gl/maps/T9YkbhYcAgm"
+      }, 
+      "CONTACT_US": {
+        "MAIN_ADVISORY": {
+          "LABEL": "Advisory Line",
+          "LINK_LABEL": "(65) 6329 9188",
+          "LINK": "6329 9188"
+        },
+        "MAIN_GENERAL": {
+          "LABEL": "General Line",
+          "LINK_LABEL": "(65) 6329 9189",
+          "LINK": "6329 9189"
+        },
+        "EMAIL": {
+          "LABEL": "Email",
+          "LINK_LABEL":"enquiries@moneyowl.com.sg",
+          "LINK": "enquiries@moneyowl.com.sg"
+        },
+        "CORPORATE": {
+          "LABEL": "For Corporate Financial Literacy Programmes and Financial Wellness Partnerships",
+          "LINK_LABEL": "partnership@moneyowl.com.sg",
+          "LINK": "partnership@moneyowl.com.sg"
+        }
+      },
+      "OPERATING_HOURS": {
+        "LABEL": "Operating Hours",
+        "CONTENT": "9am - 6pm, Mon - Fri",
+        "EXCEPTION": "excluding Public Holidays"
+      }
+    },
+    "BOTTOM_SECTION": {
+      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Service Licence No: CMS100758.",
+      "LEGAL": {
+        "TERMS_OF_USE": {
+          "LABEL": "Terms of Use"
+        },
+        "PRIVACY_POLICY": {
+          "LABEL": "Terms and Conditions & Privacy Policy"
+        },
+        "DISCLOSURE": {
+          "LABEL": "Disclosure"
+        },
+        "FAIR_DEALING": {
+          "LABEL": "Fair Dealing"
+        }
+      },
+      "ALL_RIGHTS_RESERVED": "© 2018 MoneyOwl Pte Ltd. All Rights Reserved."
+    }
   }
 }
 

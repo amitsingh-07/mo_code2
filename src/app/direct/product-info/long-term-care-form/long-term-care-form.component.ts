@@ -42,7 +42,7 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
       monthlyPayout: [this.formValues.monthlyPayout, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '4') {
+      if (data !== '' && data === '5') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }

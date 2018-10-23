@@ -1,6 +1,9 @@
 <div class="modal-header">
-  <div class="modal-title popup-header-icon">
+  <div class="modal-title popup-header-icon" *ngIf="imgType == 1">
     <img src="./assets/images/owl.svg" id="errorModelImage" />
+  </div>
+  <div class="modal-title popup-header-icon glass" *ngIf="imgType == 2">
+    <img src="./assets/images/investment-account/fees_owl.svg" id="errorModelImage" />
   </div>
 </div>
 <div class="modal-body white-bg">

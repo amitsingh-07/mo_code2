@@ -47,4 +47,6 @@ export class DirectFormData {
 
     // SRS Approved Plans Form
     srsApprovedPlans: ISrsApprovedPlans;
+
+    premiumFrequencyFilter: string;
 }

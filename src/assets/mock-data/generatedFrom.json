@@ -1,0 +1,22 @@
+{
+	"objectList": [{
+		
+
+			"id": 1,
+			"name": "Investing/Short term"
+		},
+{
+			"id": 1,
+			"name": "Short term"
+		},
+{
+			"id": 1,
+			"name": "Investing"
+		}
+],
+	
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	}
+}

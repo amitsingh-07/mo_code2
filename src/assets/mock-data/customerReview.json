@@ -1,18 +1,9 @@
 [
     {
-        "reviewId": 8,
-        "name": "Haw Chee Chuan",
-        "job": "Valuation Specialist",
-        "message": "I like DIYInsurance. It is fast and informative. Thank you Dennis.",
-        "rating": "5",
-        "date": "2015-09-15",
-        "lastUpdate": "2016-03-23T06:34:43.000+0000"
-    },
-    {
         "reviewId": 14,
         "name": "Chia Qize Felix",
         "job": "Client",
-        "message": "Platform is very user friendly. Anna and Dennis provides information and valuable advice promptly.",
+        "message": "Platform is very user friendly. Anna and Dennis provide information and valuable advice promptly.",
         "rating": "5",
         "date": "2015-08-24",
         "lastUpdate": "2016-03-23T06:25:06.000+0000"
@@ -34,15 +25,6 @@
         "rating": "5",
         "date": "2015-07-21",
         "lastUpdate": "2016-03-23T06:30:58.000+0000"
-    },
-    {
-        "reviewId": 31,
-        "name": "Norlinda",
-        "job": "Administration",
-        "message": "There was no pushing of products, Keep on going and expanding DIYInsurance. There is very useful information for insurance newbies.",
-        "rating": "4",
-        "date": "2015-10-07",
-        "lastUpdate": "2016-03-23T06:31:21.000+0000"
     },
     {
         "reviewId": 38,
@@ -84,7 +66,7 @@
         "reviewId": 47,
         "name": "Jin Yi Ming",
         "job": "Analyst",
-        "message": "Advisor was accomodating and approachable. ",
+        "message": "Advisor was accommodating and approachable. ",
         "rating": "5",
         "date": "2015-05-06",
         "lastUpdate": "2016-01-27T22:30:00.000+0000"
@@ -102,7 +84,7 @@
         "reviewId": 50,
         "name": "Alex Tan",
         "job": "Business Ops Manager",
-        "message": "Fair comparison, good & logical educational materials. Keep it up",
+        "message": "Fair comparison, good & logical educational materials. Keep it up.",
         "rating": "5",
         "date": "2015-05-21",
         "lastUpdate": "2016-01-27T22:30:00.000+0000"
@@ -142,15 +124,6 @@
         "rating": "5",
         "date": "2015-08-05",
         "lastUpdate": "2016-03-23T06:26:45.000+0000"
-    },
-    {
-        "reviewId": 57,
-        "name": "Winnie Lim",
-        "job": "Test Analyst System Specialist",
-        "message": "Anna is very helpful and she helped me to generate to get the best quote. DIYInsurance provides good service and competitive insurance premium. Well done DIYInsurance! Keep it up. \r\n",
-        "rating": "5",
-        "date": "2015-04-27",
-        "lastUpdate": "2016-03-23T06:30:37.000+0000"
     },
     {
         "reviewId": 88,
@@ -232,15 +205,6 @@
         "rating": "5",
         "date": "2015-09-28",
         "lastUpdate": "2016-03-23T06:31:55.000+0000"
-    },
-    {
-        "reviewId": 118,
-        "name": "Johnston Liew",
-        "job": "Plant Operator",
-        "message": "We find DIYInsurance better because we have done our own reading and homework. We had an idea of what we wanted but what makes it complete is the service and additional knowledge provided by the planner. It really helps.",
-        "rating": "4",
-        "date": "2015-09-25",
-        "lastUpdate": "2016-03-23T06:36:15.000+0000"
     },
     {
         "reviewId": 119,

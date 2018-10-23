@@ -14,15 +14,15 @@
 
 
 <div class="table-responsive">
-	<table class="table table-hover table-condensed table-bordered">
+	<table class="table table-condensed table-bordered">
 		<tr>
-			<td valign="top" class="cell-turquoise"><p>
+			<td valign="top" class="border--clean"><p>
 					<strong>&nbsp;</strong>
 				</p></td>
-			<td class="cell-turquoise"><p align="center">
+			<td class="border--clean"><p align="center">
 					<strong>MediShield</strong>
 				</p></td>
-			<td class="cell-turquoise"><p align="center">
+			<td class="border--clean"><p align="center">
 					<strong>MediShield Life</strong>
 				</p></td>
 		</tr>
@@ -37,7 +37,7 @@
 				</p></td>
 		</tr>
 		<tr>
-			<td valign="top" class="" style="background-color: #fff !important; font-weight:normal;"><ul>
+			<td valign="top" class="cell--clean" style="background-color: #fff !important; font-weight:normal;"><ul>
 					<li>Only good health is accepted. Seriously ill persons are	not insurable.</li>
 					<li>Pre-existing conditions are excluded</li>
 					<li>Can opt out</li>
@@ -54,12 +54,12 @@
 			<td align="top" class="cell-lightgreen"><p align="center">
 					<strong>For those who are not too old and</strong><br> <strong>have not claimed up to the lifetime limit</strong>
 				</p></td>
-			<td valign="top" class="cell-lightgreen2"><p align="center">
+			<td class="cell--vmiddle"><p align="center">
 					<strong>For Life</strong>
 				</p></td>
 		</tr>
 		<tr>
-			<td valign="top" style="background-color: #fff !important; font-weight:normal;"><p>
+			<td class="cell--clean" valign="top" style="background-color: #fff !important; font-weight:normal;"><p>
 					Age limit: 92<br> Lifetime claim limit: $300,000
 				</p></td>
 			<td valign="top" class="cell-lightgreen2"><p>
@@ -78,15 +78,15 @@ Source: Ministry of Health (MOH)
 	<strong>Compare Key Benefits</strong>
 </h3>
 <div class="table-responsive">
-	<table class="table table-hover table-condensed table-bordered">
+	<table class="table table-condensed table-bordered">
 		<tr>
 			<td valign="top" class="cell-turquoise"><p>
 					<strong>&nbsp;</strong>
 				</p></td>
-			<td class="cell-turquoise"><p align="center">
+			<td class="border--clean"><p align="center">
 					<strong>MediShield</strong>
 				</p></td>
-			<td class="cell-turquoise"><p align="center">
+			<td class="border--clean"><p align="center">
 					<strong>MediShield Life</strong>
 				</p></td>
 		</tr>
@@ -119,7 +119,7 @@ Source: Ministry of Health (MOH)
 				</p></td>
 		</tr>
 		<tr>
-			<td valign="top" class="cell-lightgreen text-xs-center" style="background-color: #fff !important;  font-weight:normal;">
+			<td valign="top" class="cell--clean" style="background-color: #fff !important;  font-weight:normal;">
 				<ul class="list-unstyled" >
 					<li>$70,000</li>
 					<li>$450 - $900</li>
@@ -128,7 +128,7 @@ Source: Ministry of Health (MOH)
 					<li>$270 per 7-day cycle</li>
 					<li>$1,240 per 21/28-day cycle</li>
 				</ul></td>
-			<td valign="top" class="cell-lightgreen2">
+			<td valign="top" class="cell--clean">
 				<ul class="list-unstyled" style="text-align: center;">
 					<li>$100,000 (40% higher)</li>
 					<li>up to 55% higher</li>

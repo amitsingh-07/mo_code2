@@ -29,7 +29,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
 
   coverageAmtValuesTemp: number[] = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
-  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70', 'Till Age 99'];
+  durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70'];
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -72,7 +72,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     }
 
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '0') {
+      if (data !== '' && data === '1') {
         if (this.save()) {
           console.log('triggered');
           this.directService.setMinProdInfo(this.summarizeDetails());

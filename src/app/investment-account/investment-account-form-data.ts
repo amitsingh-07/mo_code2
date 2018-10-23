@@ -57,7 +57,7 @@ export class InvestmentAccountFormData {
     empCity: string;
     empState: string;
     empZipCode: number;
-    
+
     // Upload documents
     nricFrontImage: File;
     nricBackImage: File;
@@ -78,4 +78,26 @@ export class InvestmentAccountFormData {
     financialPercentageOfSaving: string;
     financialTotalAssets: string;
     financialTotalLiabilities: string;
-    }
+
+    source: string;
+    expectedNumberOfTransation: string;
+    expectedAmountPerTranction: string;
+    personalSavings: string;
+    otherSources: string;
+    inheritanceGift: string;
+    investmenteEarning: string;
+    investmentPeriod: string;
+    earningsGenerated: string;
+
+    // Additional declaration PEP
+    radioPep: any;
+    fName: string;
+    lName: string;
+    cName: string;
+    pepoccupation: string;
+    pepCountry: string;
+    pepPostalCode: number;
+    pepAddress1: string;
+    pepAddress2: string;
+    pepUnitNo: string;
+}

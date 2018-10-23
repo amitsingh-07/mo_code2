@@ -14,7 +14,6 @@ export class FooterService {
   constructor() {}
 
   setFooterVisibility(isVisible: boolean) {
-    console.log(isVisible);
     this.footerVisibility.next(isVisible);
     }
 }

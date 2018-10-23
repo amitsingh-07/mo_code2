@@ -12,4 +12,8 @@ export class AboutUsApiService {
   getCustomerReviews() {
     return this.apiService.getCustomerReviewList();
   }
+
+  setContactUs(data) {
+    return this.apiService.sendContactUs(data);
+  }
 }

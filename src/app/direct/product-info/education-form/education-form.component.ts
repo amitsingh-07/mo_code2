@@ -23,7 +23,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
   isSelfFormEnabled = true;
   selectedunivercityEntryAge = '';
   monthlyContribution = Array(9).fill(100).map((x, i) => x += i * 50);
-  univercityEntryAge = Array(4).fill(18).map((x, i) => x += i);
+  univercityEntryAge = Array(5).fill(18).map((x, i) => x += i);
   doberror = false;
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -50,7 +50,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
        this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '5') {
+      if (data !== '' && data === '6') {
          if (this.save()) {
             this.directService.setMinProdInfo(this.summarizeDetails());
          }

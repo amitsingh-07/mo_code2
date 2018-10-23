@@ -153,21 +153,35 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.enquiryId = data.objectList[0].enquiryId;
     this.searchResult = data.objectList[0].productProtectionTypeList;
     this.filteredResult = this.searchResult;
+
     for (const productLists of data.objectList[0].productProtectionTypeList) {
+      productLists.productList[0].bestValue = true;
       for (const productList of productLists.productList) {
+
+        if (this.selectedCategory.id === PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY) {
+          if (productList.premium) {
+            if (productList.premium.deferredPeriod !== null) {
+              productList.premium.deferredPeriod += ' Months';
+            }
+            if (productList.premium.escalatingBenefit !== null) {
+              productList.premium.escalatingBenefit += '%';
+            }
+          }
+        }
+
         if (productList.insurer && productList.insurer.insurerName) {
           this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
         if (productList.insurer && productList.insurer.rating) {
           this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
         }
-        if (productList.premium && productList.premium.payoutAge) {
-          this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
+        if (productList.premium && productList.premium.incomePayoutDuration) {
+          this.payoutYears[Formatter.createObjectKey(productList.premium.incomePayoutDuration)] = productList.premium.incomePayoutDuration;
         }
-        if (productList.premium && productList.premium.deferredPeriod) {
+        if (productList.premium) {
           this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;
         }
-        if (productList.premium && productList.premium.escalatingBenefit) {
+        if (productList.premium) {
           this.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
             productList.premium.escalatingBenefit;
         }
@@ -178,10 +192,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.insurer && productList.insurer.insurerName) {
           this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
-        if (productList.insurer && productList.insurer.insurerName) {
-          this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
-        }
         */
+        if (productList.insurer && productList.premium.claimCriteria) {
+          this.claimCriteria[Formatter.createObjectKey(productList.premium.claimCriteria)] = productList.premium.claimCriteria;
+        }
       }
     }
     this.insurers = Object.values(this.insurers).map((key) => {
@@ -273,6 +287,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         this.filters.push(fullPartialRider);
         break;
       case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
+        delete this.filters[0];
         this.filters.push(payoutYears);
         this.filters.push(claimCriteria);
         break;
@@ -320,7 +335,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     if (toolTip !== null && toolTip !== '') {
       if (toolTip.title === this.filterTypes.CLAIM_CRITERIA) {
         const ref1 = this.modal.open(MobileModalComponent, {
-          centered: true
+          centered: true,
+          windowClass: 'settings-tooltip-dialog'
         });
         ref1.componentInstance.mobileTitle = this.filterModalData.TITLE;
         ref1.componentInstance.description = this.filterModalData.DESCRIPTION;
@@ -395,6 +411,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   filterProducts(data: any) {
     this.selectedFilterList = data.filters;
+    if (this.selectedFilterList['premiumFrequency']) {
+      const frequency: string[] = Array.from(this.selectedFilterList['premiumFrequency']);
+      this.directService.setPremiumFrequencyFilter(frequency[0]);
+    }
     this.filterArgs = data.filters;
     if (this.filterArgs.premiumFrequency && this.filterArgs.premiumFrequency.size > 0) {
       this.premiumFrequencyType = Array.from(this.filterArgs.premiumFrequency)[0];
