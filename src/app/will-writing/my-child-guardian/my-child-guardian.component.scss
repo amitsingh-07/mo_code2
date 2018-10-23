@@ -141,7 +141,13 @@
     }
 
 }
-
+.sub-name {
+        font-family: $muli-regular;
+        font-size: 14px;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        font-weight: 100;
+}
 .add-guardian{
     padding: 10px 15px;
 }

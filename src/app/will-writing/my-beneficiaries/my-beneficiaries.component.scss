@@ -237,3 +237,10 @@ input[type='checkbox']+label {
       justify-content: flex-end;
   }
 
+  .sub-name {
+    font-family: $muli-regular;
+    font-size: 14px;
+    letter-spacing: -0.3px;
+    color: #2d8289;
+    font-weight: 100;
+}
