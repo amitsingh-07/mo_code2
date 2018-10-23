@@ -60,7 +60,7 @@ export class PlanFilterPipe implements PipeTransform {
                 const isPayoutYears = typeof (this.filterData.payoutYears) === 'undefined'
                     || this.filterData.payoutYears.size === 0;
                 const payoutYears = isPayoutYears ? true
-                    : this.filterData.payoutYears.has(plan.premium.payoutAge);
+                    : this.filterData.payoutYears.has(plan.premium.payoutDuration);
 
                 const isClaimFeature = typeof (this.filterData.claimFeature) === 'undefined'
                     || this.filterData.claimFeature.size === 0;
