@@ -220,5 +220,14 @@
   "ACKNOWLEDGEMENT": {
     "TITLE": "Acknowledgement",
     "AGREE": "I Agree"
+  },
+  "ACCOUNT_SETUP_COMPLETE": {
+    "TITLE": "Investment Account Setup Complete!",
+    "FUND": "Fund My Portfolio"
+  },
+  "ADDITIONAL_DECLARATION_SUBMIT": {
+    "TITLE": "Additional Declarations Submitted",
+    "DESC": "We will get back to you on your application in 1 - 2 working days.",
+    "BACK" : "Back To Dashboard"
   }
 }
