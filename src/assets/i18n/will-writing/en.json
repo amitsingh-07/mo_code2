@@ -45,7 +45,7 @@
             "PAGE_TITLE": "Introduction",
             "TITLE": "Before You Proceed...",
             "SUB_TITLE": "we went you to know what your getting involved in.",
-            "WHY_WILL": "Why write a will with us?",
+            "WHY_WILL": "Here's everything you need to know",
             "WHY_WILL_CONTENT_1": "Will writing can be easy and straightforward. You don’t need a lawyer!",
             "WHY_WILL_CONTENT_2": "Having a will ensures that your estate is distributed according to your wishes and avoids any potential disputes.",
             "WHY_WILL_CONTENT_3": "MoneyOwl’s step-by-step will writing process is simple, easy and safe. With unlimited edits, you can edit your will whenever you need.",
@@ -53,7 +53,7 @@
             "WHY_WILL_CONTENT_4A": "- 21 years old and above",
             "WHY_WILL_CONTENT_4B": "- Of sound mind",
             "FAQ_LINK_TITLE": "Find out more in FAQ",
-            "OFFER_PERIOD": "Free for limited time period!",
+            "OFFER_PERIOD": "FREE for a limited time only!",
             "NO_PROMOCODE": "No Promocode? ",
             "GET_NOW": "Get one now!",
             "SENT_VIA_EMAIL": "Your promocode will be sent via email!",
@@ -67,7 +67,7 @@
         },
         "ABOUT_ME": {
             "TITLE": "About Me",
-            "SUB_TITLE": "Help us verify your identity as the testator (maker) of the will.",
+            "SUB_TITLE": "(as per identification document, NRIC/Fin/Passport)",
             "FORM": {
                 "NAME": "Full Name",
                 "SUB_LBL": "(as per ID)",
@@ -94,7 +94,7 @@
             "SUB_TITLE": "As your child is below 21 years old, he/she would need a guardian to care for and protect their interests.",
             "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
             "ADD_GUARDIAN": "Add Guardian",
-            "FORM_TITLE": "I would like my guardian to be",
+            "FORM_TITLE": "My children’s guardian is",
             "TOOLTIP_TITLE": "What does guardian mean?",
             "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your child after you have passed, until they reach the age of 21.</p><p>Taking over your role as the parent, the guardian will have the ability to make decisions that affect your child, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your child’s guardian to seek their agreement.</p>"
         },

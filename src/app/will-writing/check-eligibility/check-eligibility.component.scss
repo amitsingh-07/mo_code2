@@ -40,10 +40,12 @@
 }
 
 .eligibilityForm {
+    margin-top: 130px;
     @include allmobiles {
         background-color: #f7f7f7;
         padding-top: 40px;
         padding-bottom: 40px;
+        margin-top:0;
     }
 }
 .instructions {
@@ -97,6 +99,17 @@
     }
     @include allmobiles {
         flex-direction: column-reverse;
+    }
+    .tooltip-content{
+        border: 1px solid #00a7a7;
+        border-radius: 4px;
+        padding: 13px 29px;
+        margin-top: 22px;
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        color: #2c8289;
     }
 }
 

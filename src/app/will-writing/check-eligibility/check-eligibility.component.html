@@ -10,9 +10,14 @@
               <span>{{ 'WILL_WRITING.ELIGIBILITY.SUB_TITLE2' | translate}}</span>
             </div>
             <div class="hidden-sm-md" id="check-eligibility-sub-title">{{ 'WILL_WRITING.ELIGIBILITY.SUB_TITLE' | translate}}</div>
+            
         </div>
         <div class="banner-image hidden-sm-md" id="check-eligibility-img">
           <img src="assets/images/eligibility.jpg" />
+        </div>
+        <div class="hidden-sm-md">
+            <div class="flex-col-12 tooltip-content">{{ 'WILL_WRITING.ELIGIBILITY.FIND_OUT_ASSETS_CAN_DISTRIBUTE' | translate}}
+            <span class="help-icon" (click)="openToolTipModal()"></span></div>
         </div>
         <div class="mobile-logo mb5 hidden-lg" id="check-eligibility-mobile-img"><img src="assets/images/will-writing/owl-mobile.svg" /></div>
       </div>
@@ -85,7 +90,7 @@
                 </div>
               </div>
               <div class="flex-row">
-                <div class="flex-col-12 tooltip-content">{{ 'WILL_WRITING.ELIGIBILITY.FIND_OUT_ASSETS_CAN_DISTRIBUTE' | translate}}
+                <div class="flex-col-12 hidden-lg tooltip-content">{{ 'WILL_WRITING.ELIGIBILITY.FIND_OUT_ASSETS_CAN_DISTRIBUTE' | translate}}
                 <span class="help-icon" (click)="openToolTipModal()"></span></div>
               </div>
               <div>
