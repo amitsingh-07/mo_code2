@@ -304,7 +304,7 @@ h6 {
             background-color: $teal-color;
             
             &::after {
-              background-image: url('./assets/images/nav-dropdown-icon--white.svg');
+              background-image: url('/assets/images/nav-dropdown-icon--white.svg');
               top: 27px;
             }
           }
@@ -468,7 +468,7 @@ h6 {
       padding: 15px 20px 15px 0px;
 
       &::after {
-        background-image: url('./assets/images/nav-dropdown-icon.svg');
+        background-image: url('/assets/images/nav-dropdown-icon.svg');
         background-size: 12px 8px;
         background-repeat: no-repeat;
         width: 15px;
@@ -484,7 +484,7 @@ h6 {
           right: 15px;
 
           &:hover {
-            background-image: url('./assets/images/nav-dropdown-icon--white.svg');
+            background-image: url('/assets/images/nav-dropdown-icon--white.svg');
           }
         }
       }
@@ -638,7 +638,7 @@ h6 {
   right: 0px;
 
   .navbar__menu-icon {
-    background-image: url("./assets/images/menu-icon.svg");
+    background-image: url("/assets/images/menu-icon.svg");
     display: block;
     width: 24px;
     height: 24px;
@@ -678,19 +678,19 @@ h6 {
 }
 
 .navbar__logo--primary {
-  background-image: url("./assets/images/logo--primary.svg");
+  background-image: url("/assets/images/logo--primary.svg");
   width: 147px;
   height: 35px;
 }
 
 .navbar__logo--secondary {
-  background-image: url("./assets/images/logo--secondary.png");
+  background-image: url("/assets/images/logo--secondary.png");
   width: 130px;
   margin-top: 20px;
 }
 
 .navbar__logo--tertiary {
-  background-image: url("./assets/images/logo--secondary.svg");
+  background-image: url("/assets/images/logo--secondary.svg");
   width: 72px;
   height: 15px;
   margin-top: 18px;
@@ -707,19 +707,19 @@ h6 {
 }
 
 .navbar__back-btn--web {
-  background-image: url("./assets/images/back-web.svg");
+  background-image: url("/assets/images/back-web.svg");
   width: 46px;
   height: 38px;
   margin-right: 5px;
   cursor: pointer;
 
   &:hover {
-    background-image: url("./assets/images/back-web-hover.svg");
+    background-image: url("/assets/images/back-web-hover.svg");
   }
 }
 
 .navbar__back-btn--mobile {
-  background-image: url("./assets/images/back-mobile-btn.svg");
+  background-image: url("/assets/images/back-mobile-btn.svg");
   width: 25px;
   height: 25px;
   position: relative;
@@ -758,7 +758,7 @@ h6 {
 .navbar__helpIcon--mobile {
   position: absolute;
   display: inline-block;
-  background-image: url("./assets/images/baseline-help-24-px.png");
+  background-image: url("/assets/images/baseline-help-24-px.png");
   width: 20px;
   height: 20px;
   top: 22px;
@@ -768,14 +768,14 @@ h6 {
 }
 
 .navbar__helpIcon--mobile-settings {
-  background-image: url("./assets/images/settings-icon.png");
+  background-image: url("/assets/images/settings-icon.png");
   background-repeat: no-repeat;
 }
 
 .navbar__closeIcon {
   position: absolute;
   display: inline-block;
-  background: url("./assets/images/prodInfoSelectClose.svg") !important;
+  background: url("/assets/images/prodInfoSelectClose.svg") !important;
   width: 20px;
   height: 20px;
   top: 22px;
@@ -784,7 +784,7 @@ h6 {
   background-repeat: no-repeat;
 
   @include allmobiles {
-    background: url("./assets/images/close-button-dark.svg") !important;
+    background: url("/assets/images/close-button-dark.svg") !important;
     width: 18px;
     height: 18px;
   }
@@ -809,23 +809,13 @@ h6 {
 }
 
 .sub-navigation {
-  position: absolute;
+  position: relative;
   display: flex;
   width: 100%;
-  height: 20px;
   justify-content: center;
   top: 0px;
   left: 0px;
   z-index: 2;
-
-  @include minPhabletmaxTablet {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  @include minMobilemaxPhablet {
-    display: none;
-  }
 
   .sub-navigation--inner {
     position: relative;
@@ -833,16 +823,31 @@ h6 {
     width: 100%;
     max-width: 1024px;
     padding-top: 20px;
-
+    @include minMobilemaxPhablet{
+      padding-top:10px;
+    }
+    i{
+      transform:translateY(3px);
+      color:$black-color;
+      font-size:16px;
+      margin:0px 10px;  
+      @include minMobilemaxPhablet{
+        margin:0px 5px;
+      }    
+    }
     span {
+      font-family:$muli-regular;
       font-size: 14px;
       color: $teal-color;
       cursor: pointer;
-
+      letter-spacing:-0.1px;
+      @include minMobilemaxPhablet{
+        font-size:12px;
+      }
       &:hover {
         text-decoration: underline;
       }
-
+      
       &.separator {
         display: inline-block;
         font-size: 10px;
@@ -1005,19 +1010,19 @@ h6 {
       margin-right: 10px;
 
       &.chat-icon {
-        background-image: url("./assets/images/chat-icon.svg");
+        background-image: url("/assets/images/chat-icon.svg");
         width: 16px;
         height: 16px;
       }
 
       &.contact-icon {
-        background-image: url("./assets/images/contact-icon.svg");
+        background-image: url("/assets/images/contact-icon.svg");
         width: 16px;
         height: 16px;
       }
 
       &.direction-icon {
-        background-image: url("./assets/images/direction-icon.svg");
+        background-image: url("/assets/images/direction-icon.svg");
         width: 16px;
         height: 16px;
       }
@@ -1151,13 +1156,13 @@ h6 {
         margin-right: 10px;
 
         &.facebook-icon {
-          background-image: url('./assets/images/facebook-icon.svg');
+          background-image: url('/assets/images/facebook-icon.svg');
           width: 16px;
           height: 16px;
         }
 
         &.youtube-icon {
-          background-image: url('./assets/images/youtube-icon.svg');
+          background-image: url('/assets/images/youtube-icon.svg');
           width: 22px;
           height: 16px;
         }
@@ -1207,7 +1212,7 @@ h6 {
   right: 25px !important;
   top: 15px !important;
   text-shadow: none !important;
-  background: url("./assets/images/close-button-dark.svg") !important;
+  background: url("/assets/images/close-button-dark.svg") !important;
   width: 18px;
   height: 18px;
   background-repeat: no-repeat !important;
