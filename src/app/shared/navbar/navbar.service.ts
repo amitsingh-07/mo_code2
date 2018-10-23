@@ -7,12 +7,14 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class NavbarService {
   private navbar = new Subject(); // The navbar itself
+  private getNavEvent = new BehaviorSubject(true);
   private navbarMode = new BehaviorSubject(1);
   private navbarVisibility = new BehaviorSubject(true);
   private navbarMobileVisibility = new BehaviorSubject(true);
   private navbarShadowVisibility = new BehaviorSubject(true);
 
   existingNavbar = this.navbar.asObservable();
+  getNavbarEvent = this.getNavEvent.asObservable();
   currentNavbarMode = this.navbarMode.asObservable();
   currentNavbarVisibility = this.navbarVisibility.asObservable();
   currentNavbarMobileVisibility = this.navbarMobileVisibility.asObservable();
@@ -38,9 +40,13 @@ export class NavbarService {
   constructor() {}
 
   /* Navbar Generic Element Details*/
-  getNavbarDetails(navbar: ElementRef) {
+  setNavbarDetails(navbar: ElementRef) {
     this.navbar.next(navbar);
     }
+
+  getNavbarDetails() {
+    this.getNavEvent.next(true);
+  }
   /* Visibility Functions */
   setNavbarDirectGuided(secondaryVisible: boolean) {
     this.setNavbarVisibility(true);
