@@ -18,23 +18,20 @@ import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
-  selector: 'app-upload-documents',
-  templateUrl: './upload-documents.component.html',
-  styleUrls: ['./upload-documents.component.scss']
+  selector: 'app-upload-document-bo',
+  templateUrl: './upload-document-bo.component.html',
+  styleUrls: ['./upload-document-bo.component.scss']
 })
-export class UploadDocumentsComponent implements OnInit {
-
+export class UploadDocumentBOComponent implements OnInit {
   uploadForm: FormGroup;
   pageTitle: string;
-  formValues;
-  countries;
-  isUserNationalitySingapore;
-  defaultThumb;
-  showLoader;
-  loaderTitle;
-  loaderDesc;
   formData: FormData = new FormData();
   commonMethod: InvestmentAccountCommon = new InvestmentAccountCommon();
+  defaultThumb;
+  showLoader;
+  formValues;
+  loaderTitle;
+  loaderDesc;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -59,47 +56,11 @@ export class UploadDocumentsComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
+    this.uploadForm = new FormGroup({
+      passportImage: new FormControl (this.formValues.passportImageBO, Validators.required),
+      });
   }
-
-  buildFormForSingapore(): FormGroup {
-    return this.formBuilder.group({
-      nricFrontImage: [this.formValues.nricFrontImage, Validators.required],
-      nricBackImage: [this.formValues.nricBackImage, Validators.required],
-      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
-    });
-  }
-
-  buildFormForOtherCountry(): FormGroup {
-    return this.formBuilder.group({
-      passportImage: [this.formValues.passportImage, Validators.required],
-      resAddressProof: [this.formValues.resAddressProof, Validators.required],
-      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
-    });
-  }
-
-  getInlineErrorStatus(control) {
-    return (!control.pristine && !control.valid);
-  }
-
-  setNestedDropDownValue(key, value, nestedKey) {
-    this.uploadForm.controls[nestedKey]['controls'][key].setValue(value);
-  }
-
-  markAllFieldsDirty(form) {
-    Object.keys(form.controls).forEach((key) => {
-      if (form.get(key).controls) {
-        Object.keys(form.get(key).controls).forEach((nestedKey) => {
-          form.get(key).controls[nestedKey].markAsDirty();
-        });
-      } else {
-        form.get(key).markAsDirty();
-      }
-    });
-  }
-
   openFileDialog(elem) {
     if (!elem.files.length) {
       elem.click();
@@ -125,16 +86,10 @@ export class UploadDocumentsComponent implements OnInit {
 
   uploadDocument() {
     this.showUploadLoader();
-    this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
+    this.investmentAccountService.uploadDocumentBO(this.formData).subscribe((data) => {
       if (data) {
         this.hideUploadLoader();
-        const boStatus = this.investmentAccountService.getBOStatus();
-    // tslint:disable-next-line:triple-equals
-        if ( boStatus == 'yes') {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
-    } else {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-    }
       }
     });
   }
@@ -152,26 +107,18 @@ export class UploadDocumentsComponent implements OnInit {
   clearFileSelection(control, event, thumbElem?) {
     this.commonMethod.clearFileSelection(control, event, thumbElem);
   }
-
-  showProofOfMailingDetails() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.TITLE');
-    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.MESSAGE');
-    ref.componentInstance.errorTitle = errorTitle;
-    ref.componentInstance.errorDescription = errorDesc;
+  showUploadLoader() {
+    this.showLoader = true;
+    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
+    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
   }
 
-  // tslint:disable-next-line:no-identical-functions
-  showProofOfResDetails() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.TITLE');
-    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.MESSAGE');
-    ref.componentInstance.errorTitle = errorTitle;
-    ref.componentInstance.errorDescription = errorDesc;
+  hideUploadLoader() {
+    this.showLoader = false;
   }
-
   goToNext(form) {
     if (!form.valid) {
+      // Add an error message saying that need to uplopad passport
       const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.TITLE');
       const errorMessage = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.MESSAGE');
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
@@ -188,16 +135,6 @@ export class UploadDocumentsComponent implements OnInit {
 
   proceed(form) {
     this.uploadDocument();
-  }
-
-  showUploadLoader() {
-    this.showLoader = true;
-    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
-    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
-  }
-
-  hideUploadLoader() {
-    this.showLoader = false;
   }
 
 }
