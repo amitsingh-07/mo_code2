@@ -35,9 +35,9 @@ export class InvestmentAccountFormData {
     singaporeanResident: string;
 
     // Tax Info
-    Taxcountry: any;
-    haveTin: any;
-    Tin: any;
+    taxCountry: any;
+    radioTin: any;
+    tinNumber: any;
     noTinReason: any;
 
     // EmployementDetails
@@ -74,11 +74,10 @@ export class InvestmentAccountFormData {
     // financial details
     annualHouseHoldIncomeRange: string;
     numberOfHouseHoldMembers: number;
-    monthlyIncome: string;
-    percentageOfSaving: string;
-    totalAssets: string;
-    totalLiabilities: string;
-    // addition declaration 2
+    financialMonthlyIncome: string;
+    financialPercentageOfSaving: string;
+    financialTotalAssets: string;
+    financialTotalLiabilities: string;
 
     source: string;
     expectedNumberOfTransation: string;

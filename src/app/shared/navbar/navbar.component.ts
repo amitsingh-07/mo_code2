@@ -1,5 +1,14 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
@@ -31,16 +40,19 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isNavbarCollapsed = true;
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
-
   constructor(private navbarService: NavbarService, private _location: Location,
               private config: NgbDropdownConfig, private renderer: Renderer2,
               private cdr: ChangeDetectorRef, private router: Router) {
                 config.autoClose = true;
+                this.navbarService.getNavbarEvent.subscribe((data) => {
+                  this.navbarService.setNavbarDetails(this.NavBar);
+                });
               }
+
   @HostListener('window:scroll', ['$event'])
   @HostListener('window:resize', [])
     checkScroll() { // Emiting Navbar Details to Navbar Service
-      this.navbarService.getNavbarDetails(this.NavBar);
+      this.navbarService.setNavbarDetails(this.NavBar);
       this.innerWidth = window.innerWidth;
     }
 

@@ -113,6 +113,16 @@
                 flex-direction:column;
                 width:calc(100% - 40px);
             }
+            @include minMobilemaxPhablet{
+                flex-direction:column;
+                width:calc(100% - 40px);
+                margin-bottom:0px;
+            }
+            @include min300max325{
+                flex-direction:column;
+                width:calc(100% - 40px);
+                margin-bottom:0px;
+            }
         }
         .contact-us__form-container{
             position: relative;
@@ -156,6 +166,9 @@
                     }
                 }
             }
+            @include minMobilemaxPhablet{
+                margin:20px 0px 00px 0px;
+            }
             
             h4{
                 font-family:$muli-bold;
@@ -182,11 +195,24 @@
             @include minPhabletmaxTablet{
                 width:calc(100% - 40px);
             }
+            @include minMobilemaxPhablet{
+                width:calc(100% - 40px);
+                iframe{
+                    height:200px;
+                }
+            }
+            @include min300max325{
+                width:calc(100% - 40px);
+                iframe{
+                    height:200px;
+                }
+            }
             .where--title{
                 font-family: $muli-semi-bold;
                 color:$teal-color;
                 font-size:1.75rem;
             }
+            
         }
     }
 
