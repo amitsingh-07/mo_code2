@@ -57,7 +57,7 @@ export class DirectService {
 
   clearData() {
     if (window.sessionStorage) {
-      sessionStorage.clear();
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
     }
   }
 
