@@ -6,6 +6,10 @@ input::-ms-reveal {
   display: none;
 }
 
+.container-fluid.full-height{
+  min-height:100vh;
+}
+
 /* 
 input::-webkit-textfield-decoration-container {
   display: none; 
