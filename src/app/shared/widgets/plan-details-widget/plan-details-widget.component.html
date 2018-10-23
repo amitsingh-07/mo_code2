@@ -3,7 +3,8 @@
     <div class="row mt10 mb10">
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
-        <div [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
+        <span class="grey subtitle--rider-name" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</span>
+        <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
           <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
             <span [hidden]="data.premium.premiumFrequency == 'single'" class="text-small">{{ 'SUFFIX.PER_MONTH' |
               translate }}</span>

@@ -103,12 +103,28 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       if (this.type === 'long-term care') {
         this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        if (this.isDirect) {
+          this.highlights.push({ title: 'Payout years:', description: this.data.premium.payoutDuration });
+          this.highlights.push({ title: 'Claim Criteria:', description: this.data.premium.claimCriteria });
+        } else {
+          this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        }
       }
       if (this.type === 'hospital plan') {
         this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: this.data.rider.riderName });
+        let riderDesc = '';
+        let riderName = this.data.rider.riderName;
+        if (riderName && riderName.toLowerCase() === 'full rider') {
+          riderName += ':';
+          riderDesc = 'Covers Co-Insurance and Deductible';
+        } else if (riderName && riderName.toLowerCase() === 'partial rider') {
+          riderName += ':';
+          riderDesc = 'Covers Co-Insurance';
+        } else {
+          riderName = 'No Rider';
+        }
+        this.highlights.push({ title: riderName, description: riderDesc });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;

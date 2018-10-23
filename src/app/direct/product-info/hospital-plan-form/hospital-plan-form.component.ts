@@ -20,7 +20,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   modalRef: NgbModalRef;
   hospitalForm: FormGroup;
   formValues: any;
-  selectedPlan: HospitalPlan;
+  selectedHospitalPlan: HospitalPlan;
   planType;
   doberror = false;
   constructor(
@@ -34,18 +34,21 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.planType = this.translate.instant('DIRECT_HOSPITAL_PLAN.HOSPITAL_PLANS');
-      this.selectedPlan = { hospitalClass: '' } as HospitalPlan;
     });
   }
 
   ngOnInit() {
     this.formValues = this.directService.getHospitalPlanForm();
     this.formValues.fullOrPartialRider = this.formValues.fullOrPartialRider;
-    this.selectedPlan = this.formValues.selectedPlan;
+    this.selectedHospitalPlan = this.formValues.selectedPlan;
+    if (!this.selectedHospitalPlan) {
+      this.selectedHospitalPlan = { hospitalClass: '' } as HospitalPlan;
+    }
+    const selectedPlanName = this.selectedHospitalPlan.hospitalClass;
     this.hospitalForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
-      selectedPlan: [this.formValues.selectedPlan, Validators.required],
+      selectedPlan: [selectedPlanName, Validators.required],
       fullOrPartialRider: [this.formValues.fullOrPartialRider, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
@@ -64,8 +67,8 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
 
   selectHospitalPlan(plan, index) {
     index += 1;
-    this.selectedPlan = { hospitalClass: plan, hospitalClassId: index } as HospitalPlan;
-    this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan.hospitalClass);
+    this.selectedHospitalPlan = { hospitalClass: plan, hospitalClassId: index } as HospitalPlan;
+    this.hospitalForm.controls.selectedPlan.setValue(this.selectedHospitalPlan.hospitalClass);
   }
   summarizeDetails() {
     let sum_string = '';
@@ -89,7 +92,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
       ref.componentInstance.errorMessage = this.directService.currentFormError(form)['errorMessage'];
       return false;
     }
-    this.hospitalForm.controls.selectedPlan.setValue(this.selectedPlan);
+    this.hospitalForm.controls.selectedPlan.setValue(this.selectedHospitalPlan);
     this.directService.setHospitalPlanForm(form.value);
     return true;
   }
