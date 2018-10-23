@@ -129,7 +129,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     form.value.coverageAmt = this.coverage_amt;
     form.value.duration = this.duration;
     const values = form.value;
-    values.premiumWaiver = values.premiumWaiver === 'yes' ? true : false;
+    values.premiumWaiver = (values.premiumWaiver === true || values.premiumWaiver === 'yes') ? true : false;
     this.directService.setLifeProtectionForm(values);
     return true;
   }
