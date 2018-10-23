@@ -20,6 +20,7 @@ import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio
 import {
     EditInvestmentModalComponent
 } from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
+
 import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
@@ -27,6 +28,7 @@ import { InvestmentAccountRoutingModule } from './investment-account-routing.mod
 import {
     PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
+
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
