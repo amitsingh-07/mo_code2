@@ -23,6 +23,7 @@ export interface IGuardian {
     name: string;
     relationship: string;
     uin: string;
+    type: string;
 }
 
 export interface IEligibility {

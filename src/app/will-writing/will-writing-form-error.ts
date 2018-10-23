@@ -103,7 +103,7 @@ export class WillWritingFormError {
                 name: {
                         required : {
                                 errorTitle: 'Invalid Name',
-                                errorMessage: 'Please input Name'
+                                errorMessage: 'Please input the Name'
                         },
                         pattern : {
                                 errorTitle: 'Invalid Name',
@@ -112,12 +112,12 @@ export class WillWritingFormError {
                 },
                 uin: {
                         required : {
-                                errorTitle: 'Invalid NRCI Number',
-                                errorMessage: 'Please input NRIC'
+                                errorTitle: 'Invalid Identification Number',
+                                errorMessage: 'Please input Identification Number'
                         },
                         pattern : {
-                                errorTitle: 'Invalid NRCI Number',
-                                errorMessage: 'NRIC field can only contain alphabets value of 2 - 40 characters in length'
+                                errorTitle: 'Invalid Identification Number',
+                                errorMessage: 'Identification Number field can contains only alphabets value'
                         }
                 },
                 relationship: {
