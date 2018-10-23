@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Input,
   OnInit,
   Renderer2,
   ViewChild,
@@ -27,6 +28,7 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
   providers: [NgbCarouselConfig],
   encapsulation: ViewEncapsulation.None
 })
+
 export class HomeComponent implements OnInit, AfterViewInit {
   pageTitle: string;
   trustedSubTitle: any;
@@ -34,6 +36,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public homeNavBarHide = false;
   public homeNavBarFixed = false;
   public mobileThreshold = 567;
+  public initLoad = true;
   public navBarElement: ElementRef;
   modalRef: NgbModalRef;
 
@@ -51,6 +54,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
+      if (this.initLoad) {
+        route.fragment.subscribe((fragment) => {
+          if (fragment) {
+            this.goToRoute(fragment);
+          }
+        });
+        this.initLoad = false;
+      }
     });
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -89,35 +100,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.navbarService.getNavbarDetails();
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     this.subscribeForm = new FormGroup({
       email: new FormControl(this.formValues.email),
-    });
-    this.route.fragment.subscribe((fragment: string) => {
-      if (fragment === 'insurance') {
-        this.goToSection(this.InsuranceElement.nativeElement);
-      } else
-        if (fragment === 'will') {
-          this.goToSection(this.WillElement.nativeElement);
-        } else
-          if (fragment === 'invest') {
-            this.goToSection(this.InvestElement.nativeElement);
-          } else
-            if (fragment === 'comprehensive') {
-              this.goToSection(this.ComprehensiveElement.nativeElement);
-            }
     });
     this.authService.clearSession();
     this.appService.startAppSession();
   }
 
   ngAfterViewInit() {
-
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
+  }
+
+  goToRoute(fragment) {
+    if (fragment === 'insurance') {
+      this.goToSection(this.InsuranceElement.nativeElement);
+    } else
+      if (fragment === 'will') {
+        this.goToSection(this.WillElement.nativeElement);
+      } else
+        if (fragment === 'invest') {
+          this.goToSection(this.InvestElement.nativeElement);
+        } else
+          if (fragment === 'comprehensive') {
+            this.goToSection(this.ComprehensiveElement.nativeElement);
+          }
   }
 
   checkScrollStickyHomeNav() {
@@ -155,13 +167,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let difference = 0;
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
     const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
+    const navbarElement = this.navBarElement.nativeElement.getBoundingClientRect();
+    const navbarHeight = (navbarElement.bottom - navbarElement.top);
     if (this.homeNavBarFixed) {
-      difference = homeNavbarHeight;
+      difference = homeNavbarHeight + navbarHeight;
     }
-    let triggerPosition = window.pageYOffset + (window.outerHeight / 2) + difference; // To set the trigger point as center of the screen
-    if (innerWidth < this.mobileThreshold) {
+    let triggerPosition = window.pageYOffset - document.documentElement.clientTop + difference + ((window.outerHeight - difference) / 2);
+    // To set the trigger point as center of the screen
+    if (innerWidth > this.mobileThreshold) {
       triggerPosition = homeNavBarElement.bottom + window.pageYOffset - document.documentElement.clientTop;
     }
+
     const insuranceElement = this.InsuranceElement.nativeElement.getBoundingClientRect();
     const OffsetInsurance = [insuranceElement.top + window.pageYOffset - document.documentElement.clientTop,
     insuranceElement.bottom + window.pageYOffset - document.documentElement.clientTop];
@@ -174,6 +190,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const comprehensiveElement = this.ComprehensiveElement.nativeElement.getBoundingClientRect();
     const OffsetComprehensive = [comprehensiveElement.top + window.pageYOffset - document.documentElement.clientTop,
     comprehensiveElement.bottom + window.pageYOffset - document.documentElement.clientTop];
+
     if (triggerPosition >= OffsetInsurance[0] && triggerPosition < OffsetInsurance[1]) {
       // within insurance
       this.render.removeClass(this.HomeNavInsurance.nativeElement, 'active');
@@ -206,14 +223,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   goToSection(elementName) {
     const homeNavBarElement = this.HomeNavBar.nativeElement.getBoundingClientRect();
-    let difference = 50;
-    if (innerWidth < this.mobileThreshold) {
-      difference = 0;
-    }
-    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top) + difference;
+    const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
+    const navbarElement = this.navBarElement.nativeElement.getBoundingClientRect();
+    const navbarHeight = (navbarElement.bottom - navbarElement.top);
+
     const selectedSection = elementName.getBoundingClientRect();
-    const CurrentOffsetTop = selectedSection.top + window.pageYOffset - homeNavbarHeight;
-    elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
+                             - homeNavbarHeight - navbarHeight + 10;
+
+    if (innerWidth > this.mobileThreshold) {
+      window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+    } else {
+      elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    }
   }
 
   subscribeMember() {

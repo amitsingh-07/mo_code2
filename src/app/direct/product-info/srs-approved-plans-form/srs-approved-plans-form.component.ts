@@ -58,7 +58,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
       this.selectPayoutStartAge(this.formValues.payoutStartAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '7') {
+      if (data !== '' && data === '8') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
