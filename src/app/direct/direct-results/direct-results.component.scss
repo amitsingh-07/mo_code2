@@ -130,7 +130,7 @@ app-direct-results {
       }
 
       .insurer-logo img {
-        width: 50%;
+        max-width: 50%;
       }
 
       .grey {
@@ -197,11 +197,14 @@ app-direct-results {
     z-index: 999;
   }
 }
-.insurance-plan-widget__container {
-  min-height: 400px !important;
-  @include allmobiles {
-    min-height: 251px !important;
-  }
+// .insurance-plan-widget__container {
+//   //min-height: 400px !important;
+//   @include allmobiles {
+//     min-height: 251px !important;
+//   }
+// }
+.insurance-plan-widget .insurance-plan-widget__container {
+  min-height: auto;
 }
 .disclaimer {
   font-size: 16px;
