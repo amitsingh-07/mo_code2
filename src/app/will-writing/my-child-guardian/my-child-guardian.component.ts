@@ -27,6 +27,7 @@ export class MyChildGuardianComponent implements OnInit {
   submitted: boolean;
 
   hasSpouse: boolean;
+  maxGuardian: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,6 +47,17 @@ export class MyChildGuardianComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    if (this.willWritingService.getGuardianInfo().length > 0) {
+      this.guardianList = this.willWritingService.getGuardianInfo();
+    } else {
+      if (this.hasSpouse) {
+        const spouse: any = Object.assign({}, this.willWritingService.getSpouseInfo()[0]);
+        spouse.type = 'primary';
+        this.guardianList.push(spouse);
+      }
+    }
+    this.maxGuardian = this.hasSpouse ? 2 : 1;
     this.buildAddGuardianForm();
   }
 
@@ -53,16 +65,11 @@ export class MyChildGuardianComponent implements OnInit {
    * build about me form.
    */
   buildAddGuardianForm() {
-    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
-    if (this.willWritingService.getGuardianInfo().length > 0) {
-      this.guardianList = this.willWritingService.getGuardianInfo();
-    } else {
-      if (this.hasSpouse) {
-        const spouse: any = Object.assign({}, this.willWritingService.getSpouseInfo()[0]);
-        spouse.selected = true;
-        this.guardianList.push(spouse);
-      }
-    }
+    this.addGuardianForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      relationship: ['', [Validators.required]]
+    });
   }
 
   /**
@@ -79,8 +86,8 @@ export class MyChildGuardianComponent implements OnInit {
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
       return false;
     } else {
-      form.value.selected = true;
       this.guardianList.push(form.value);
+      form.value.type = this.hasSpouse ? 'secondary' : 'primary';
       this.willWritingService.setGuardianInfo(this.guardianList);
       return true;
     }
@@ -98,12 +105,18 @@ export class MyChildGuardianComponent implements OnInit {
     this.addGuardianForm.controls['relationship'].setValue(relationship.value);
   }
 
+  editGuardian(relation: string) {
+    if (relation === 'spouse') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+    }
+  }
+
   /**
    * redirect to next page.
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if (this.save(form)) {
+    if (this.guardianList.length === this.maxGuardian || this.save(form)) {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
     }
   }

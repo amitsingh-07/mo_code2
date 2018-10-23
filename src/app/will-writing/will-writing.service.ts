@@ -88,9 +88,8 @@ export class WillWritingService {
 
     // tslint:disable-next-line:forin
     for (const field in forms) {
-      let index = 1;
       for (const control of forms[field].controls) {
-        const formGroup = { formName: field + ' ' + index, errors: [] };
+        const formGroup = { formName: field, errors: [] };
         // tslint:disable-next-line:forin
         for (const name in control.controls) {
           if (control.controls[name].invalid) {
@@ -102,7 +101,6 @@ export class WillWritingService {
         if (formGroup.errors.length > 0) {
           errors.errorMessages.push(formGroup);
         }
-        index++;
       }
     }
     return errors;
