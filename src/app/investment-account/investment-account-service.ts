@@ -42,12 +42,17 @@ export class InvestmentAccountService {
     }
     /* Residential Address */
     getCountriesFormData() {
-        const countries = this.investmentAccountFormData.nationalityList;
+        const countries = this.investmentAccountFormData.countryList;
         return countries;
     }
-    isUserNationalitySingapore() {
-        const selectedCountry = this.investmentAccountFormData.nationality.country.toUpperCase();
-        return selectedCountry === 'SINGAPORE';
+    isSingaporeResident() {
+        const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
+        return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
+    }
+    getCountryFromNationalityCode(nationalityCode) {
+        const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
+            (nationality) => nationality.nationalityCode === nationalityCode);
+        return selectedNationality[0].countries[0].name;
     }
     setDefaultValueForFormData() {
         this.investmentAccountFormData.isMailingAddressSame = INVESTMENT_ACCOUNT_CONFIG.residential_info.isMailingAddressSame;
@@ -133,14 +138,14 @@ export class InvestmentAccountService {
     getInvestmentPeriod() {
         return this.apiService.getInvestmentPeriod();
     }
-    getNationality() {
-        return {
-            nationalitylist: this.investmentAccountFormData.nationalityList,
-            nationality: this.investmentAccountFormData.nationality,
-            unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
-            singaporeanResident: this.investmentAccountFormData.singaporeanResident
-        };
-    }
+    // getNationality() {
+    //     return {
+    //         nationalitylist: this.investmentAccountFormData.nationalityList,
+    //         nationality: this.investmentAccountFormData.nationality,
+    //         unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
+    //         singaporeanResident: this.investmentAccountFormData.singaporeanResident
+    //     };
+    // }
 
     getTaxInfo() {
         return {
@@ -316,26 +321,26 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.isMyInfoEnabled = true;
         this.investmentAccountFormData.fullName = data.name.value;
         if (data.nationality.value) {
-            this.investmentAccountFormData.nationality = data.nationality.value;
+            this.investmentAccountFormData.nationalityCode = data.nationality.value;
             this.disableAttributes.push('nationality');
         }
         this.setMyInfoPersonal(data);
         this.setMyInfoResidentialAddress(data);
 
         // Employer name
-        if (data.employment.value) {
+        if (data.employment && data.employment.value) {
             this.investmentAccountFormData.companyName = data.employment.value;
             this.disableAttributes.push('companyName');
         }
 
         // Occupation
-        if (data.occupation.desc) {
+        if (data.occupation && data.occupation.desc) {
             this.investmentAccountFormData.occupation = data.occupation.desc;
             this.disableAttributes.push('occupation');
         }
 
         // Annual Household Income
-        if (data.householdincome.low || data.householdincome.high) {
+        if (data.householdincome) {
             let lowAmount: any = '';
             let highAmount: any = '';
             if (data.householdincome.low) {
@@ -385,40 +390,48 @@ export class InvestmentAccountService {
     // MyInfo - Residential Address
     setMyInfoResidentialAddress(data) {
         // Register address
-        if (data.regadd.country) {
-            this.investmentAccountFormData.country = data.regadd.country;
-            this.disableAttributes.push('country');
+        if (data.regadd) {
+            if (data.regadd.country) {
+                this.investmentAccountFormData.country = data.regadd.country;
+                this.disableAttributes.push('country');
+            }
+            let regUnitNumber = '';
+            if (data.regadd.floor) {
+                regUnitNumber = regUnitNumber + data.regadd.floor + ' - ';
+            }
+            if (data.regadd.unit) {
+                regUnitNumber = regUnitNumber + data.regadd.unit;
+            }
+            if (regUnitNumber) {
+                this.investmentAccountFormData.unitNo = '# ' + regUnitNumber;
+                this.disableAttributes.push('unitNo');
+            }
+            if (data.regadd.block) {
+                this.investmentAccountFormData.address1 = 'Block ' + data.regadd.block;
+                this.disableAttributes.push('address1');
+            }
+            if (data.regadd.street) {
+                this.investmentAccountFormData.address2 = data.regadd.street;
+                this.disableAttributes.push('address2');
+            }
+            if (data.regadd.postal) {
+                this.investmentAccountFormData.zipCode = data.regadd.postal;
+                this.disableAttributes.push('zipCode');
+            }
         }
-        let regUnitNumber = '# ';
-        if (data.regadd.floor) {
-            regUnitNumber = regUnitNumber + data.regadd.floor + ' - ';
-        }
-        if (data.regadd.unit) {
-            regUnitNumber = regUnitNumber + data.regadd.unit;
-        }
-        if (regUnitNumber) {
-            this.investmentAccountFormData.unitNo = regUnitNumber;
-            this.disableAttributes.push('unitNo');
-        }
-        if (data.regadd.block) {
-            this.investmentAccountFormData.address1 = 'Block ' + data.regadd.block;
-            this.disableAttributes.push('address1');
-        }
-        if (data.regadd.street) {
-            this.investmentAccountFormData.address2 = data.regadd.street;
-            this.disableAttributes.push('address2');
-        }
-        if (data.regadd.postal) {
-            this.investmentAccountFormData.zipCode = data.regadd.postal;
-            this.disableAttributes.push('zipCode');
-        }
-
         // Email address
+        if (data.mailadd) {
+            this.setMyInfoEmailAddress(data);
+        }
+    }
+
+    // MyInfo - Email Address
+    setMyInfoEmailAddress(data) {
         if (data.mailadd.country) {
             this.investmentAccountFormData.mailCountry = data.mailadd.country;
             this.disableAttributes.push('mailCountry');
         }
-        let mailUnitNumber = '# ';
+        let mailUnitNumber = '';
         if (data.mailadd.floor) {
             mailUnitNumber = mailUnitNumber + data.mailadd.floor + ' - ';
         }
@@ -426,7 +439,7 @@ export class InvestmentAccountService {
             mailUnitNumber = mailUnitNumber + data.mailadd.unit;
         }
         if (mailUnitNumber) {
-            this.investmentAccountFormData.mailUnitNo = mailUnitNumber;
+            this.investmentAccountFormData.mailUnitNo = '# ' + mailUnitNumber;
             this.disableAttributes.push('mailUnitNo');
         }
         if (data.mailadd.block) {

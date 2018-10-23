@@ -59,7 +59,7 @@ export class EmploymentDetailsComponent implements OnInit {
     this.getOccupationList();
     this.getIndustryList();
     this.getEmployeList();
-    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
+    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
     const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : 'Employed';
@@ -163,7 +163,7 @@ export class EmploymentDetailsComponent implements OnInit {
     if (!this.employementDetailsForm.controls.isEmployeAddresSame.value) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
-          empCountry: [this.formValues.nationality.country, Validators.required],
+          empCountry: [this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
           empPostalCode: [this.formValues.empPostalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empAddress2: [this.formValues.empAddress2],
@@ -171,7 +171,8 @@ export class EmploymentDetailsComponent implements OnInit {
         }));
       } else { // Other Countries
         this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
-          empCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
+          empCountry: [this.formValues.empCountry ? this.formValues.empCountry :
+            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empAddress2: [this.formValues.empAddress2],
           empCity: [this.formValues.empCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],

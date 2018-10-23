@@ -137,8 +137,8 @@
                             ngbDropdownToggle>{{employementDetailsForm.controls.employeaddress.controls.empCountry.value}}
                           </button>
                           <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                            <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('empCountry', option.country,'employeaddress')"
-                              id="employment_details-country-option-{{i}}">{{option.country}}</button>
+                            <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('empCountry', country.name,'employeaddress')"
+                              id="employment_details-country-option-{{i}}">{{country.name}}</button>
                           </div>
                         </div>
                       </div>

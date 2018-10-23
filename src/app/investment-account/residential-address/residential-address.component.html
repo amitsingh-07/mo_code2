@@ -28,8 +28,8 @@
                         ngbDropdownToggle>{{addressForm.controls.country.value | titlecase}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('country',option.country, i)"
-                          id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
+                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('country',country.name, i)"
+                          id="residentialAddress-country-option-{{i}}">{{country.name}}</button>
                       </div>
                     </div>
                   </div>

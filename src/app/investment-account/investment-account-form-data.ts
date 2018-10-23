@@ -31,8 +31,8 @@ export class InvestmentAccountFormData {
     // SELECT NATIONLITY
     nationalityList: any;
     countryList: any;
-    nationality: any; // Singaporean
-    nationalityCode: any; // SG
+    nationality: any;
+    nationalityCode: any;
     unitedStatesResident: string;
     singaporeanResident: string;
 

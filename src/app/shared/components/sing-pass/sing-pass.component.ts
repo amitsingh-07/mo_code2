@@ -32,20 +32,17 @@ export class SingPassComponent implements OnInit {
   }
 
   openModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.modelTitle;
-    ref.componentInstance.errorMessage = this.modelMessge;
-    ref.componentInstance.isButtonEnabled = true;
-    ref.result.then(() => {
-      this.investmentAccountService.callBackInvestmentAccount = true;
-      this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-      //this.myInfoService.goToMyInfo();
-      this.router.navigate(['myinfo']);
-    }).catch((e) => {
-    });
-  }
-
-  disableSingPass() {
-    return this.investmentAccountService.isSingPassDisabled();
+    if (!this.investmentAccountService.isSingPassDisabled()) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.modelTitle;
+      ref.componentInstance.errorMessage = this.modelMessge;
+      ref.componentInstance.isButtonEnabled = true;
+      ref.result.then(() => {
+        this.investmentAccountService.callBackInvestmentAccount = true;
+        this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
+        this.router.navigate(['myinfo']);
+      }).catch((e) => {
+      });
+    }
   }
 }
