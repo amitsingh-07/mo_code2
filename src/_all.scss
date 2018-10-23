@@ -809,23 +809,13 @@ h6 {
 }
 
 .sub-navigation {
-  position: absolute;
+  position: relative;
   display: flex;
   width: 100%;
-  height: 20px;
   justify-content: center;
   top: 0px;
   left: 0px;
   z-index: 2;
-
-  @include minPhabletmaxTablet {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  @include minMobilemaxPhablet {
-    display: none;
-  }
 
   .sub-navigation--inner {
     position: relative;
@@ -833,16 +823,31 @@ h6 {
     width: 100%;
     max-width: 1024px;
     padding-top: 20px;
-
+    @include minMobilemaxPhablet{
+      padding-top:10px;
+    }
+    i{
+      transform:translateY(3px);
+      color:$black-color;
+      font-size:16px;
+      margin:0px 10px;  
+      @include minMobilemaxPhablet{
+        margin:0px 5px;
+      }    
+    }
     span {
+      font-family:$muli-regular;
       font-size: 14px;
       color: $teal-color;
       cursor: pointer;
-
+      letter-spacing:-0.1px;
+      @include minMobilemaxPhablet{
+        font-size:12px;
+      }
       &:hover {
         text-decoration: underline;
       }
-
+      
       &.separator {
         display: inline-block;
         font-size: 10px;
