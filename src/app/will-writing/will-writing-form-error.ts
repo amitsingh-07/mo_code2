@@ -12,7 +12,7 @@ export class WillWritingFormError {
                                 errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
                         }
                 },
-                nricNumber: {
+                uin: {
                         required : {
                                 errorTitle: 'Invalid NRCI Number',
                                 errorMessage: 'Please enter your NRCI number'
@@ -56,7 +56,7 @@ export class WillWritingFormError {
                                         errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
                                 }
                         },
-                        nricNumber: {
+                        uin: {
                                 required : {
                                         errorTitle: 'Invalid NRCI Number',
                                         errorMessage: 'Please enter your spouse NRCI number'
@@ -78,7 +78,7 @@ export class WillWritingFormError {
                                         errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
                                 }
                         },
-                        nricNumber: {
+                        uin: {
                                 required : {
                                         errorTitle: 'Invalid NRCI Number',
                                         errorMessage: 'Please enter your child NRCI number'
@@ -110,7 +110,7 @@ export class WillWritingFormError {
                                 errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
                         }
                 },
-                nricNumber: {
+                uin: {
                         required : {
                                 errorTitle: 'Invalid NRCI Number',
                                 errorMessage: 'Please input NRIC'
@@ -141,7 +141,7 @@ export class WillWritingFormError {
                                 errorMessage: 'Guardian name field can only contain alphabets value of 2 - 40 characters in length'
                         }
                 },
-                nricNumber: {
+                uin: {
                         required : {
                                 errorTitle: 'Invalid NRCI Number',
                                 errorMessage: 'Please enter your executor & trustee NRCI number'
@@ -172,7 +172,7 @@ export class WillWritingFormError {
                                 errorMessage: 'Beneficiary name field can only contain alphabets value of 2 - 40 characters in length'
                         }
                 },
-                nricNumber: {
+                uin: {
                         required : {
                                 errorTitle: 'Please input NRIC',
                                 errorMessage: 'Please enter your beneficiary NRCI number'

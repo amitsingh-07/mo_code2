@@ -53,7 +53,7 @@ export class AboutMeComponent implements OnInit {
     this.formValues = this.willWritingService.getAboutMeInfo();
     this.aboutMeForm = this.formBuilder.group({
       name: [this.formValues.name, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      nricNumber: [this.formValues.nricNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      uin: [this.formValues.uin, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       gender: [this.formValues.gender, [Validators.required]],
       maritalStatus: [this.formValues.maritalStatus, [Validators.required]],
       noOfChildren: [this.formValues.noOfChildren, [Validators.required]]

@@ -80,6 +80,13 @@
     .title {
         letter-spacing: -0.4px;  
     }
+    .get-started {
+        font-family: $muli-light;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: -0.2px;
+        color: #00a7a7;
+    }
     .sub-title{
         font-family: $muli-semi-bold;
         font-size: 18px;
@@ -118,7 +125,7 @@
             margin-right: 41px;
         }
         .help-icon {
-            bottom: 67px;
+            bottom: 42px;
             right: 22px;
         }
     }
