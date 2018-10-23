@@ -111,6 +111,7 @@
             "SUB_TITLE": "Let’s check if our will writing tool is suitable for you.",
             "SUB_TITLE1":"Let’s check if our will writing",
             "SUB_TITLE2":"tool is suitable for you.",
+            "GET_STARTED": "Get Started",
             "RELIGION": "Religion",
             "RELIGION_LIST": [{"text":"Christian", "value":"christian"}, { "text":"Buddhist", "value":"buddhist"}, { "text":"Muslim", "value":"muslim"}, { "text":"Hindu", "value":"hindu"}, { "text":"None", "value":"none"}, {"text":"Others", "value":"others"}],
             "ARE_YOU_SINGAPOREAN":"Are you a Singaporean?",
