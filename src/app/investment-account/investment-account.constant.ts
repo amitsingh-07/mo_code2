@@ -1,4 +1,5 @@
 export let INVESTMENT_ACCOUNT_CONFIG = {
+    SINGAPORE_NATIONALITY_CODE: 'SG',
     personal_info: {},
     residential_info: {
         isMailingAddressSame: true

@@ -28,7 +28,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   formValues: any;
   passportMinDate: any;
   passportMaxDate: any;
-  selectedNationalityFormValues: any;
   unitedStatesResident: string;
   showPassport = false;
   showNric = true;
@@ -61,12 +60,10 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.selectedNationalityFormValues = this.investmentAccountService.getNationality();
     // get profile
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.populateFullName();
-    if (this.selectedNationalityFormValues.nationality.nationality === 'SINGAPOREAN' ||
-      this.selectedNationalityFormValues.singaporeanResident === 'yes') {
+    if (this.investmentAccountService.isSingaporeResident() ||  this.formValues.singaporeanResident === 'yes') {
       this.invPersonalInfoForm = this.buildFormForNricNumber();
       this.showPassport = false;
       this.showNric = true;

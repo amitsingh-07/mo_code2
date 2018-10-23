@@ -10,14 +10,7 @@
     <div class="content">
       <div class="row">
         <div class="col-12">
-          <div class="autofill-link">
-            
-                <div class="autofill-text">Autofill Forms Via</div>
-    
-              
-                <div class="autofill-logo"><img class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" /></div>
-              
-          </div>
+          <app-sing-pass></app-sing-pass>
         </div>
         <div class="col-lg-12 col-md-12">
           <form id="residentialAddress_address_form" name="addressForm" [formGroup]="addressForm">
@@ -35,8 +28,8 @@
                         ngbDropdownToggle>{{addressForm.controls.country.value | titlecase}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('country',option.country, i)"
-                          id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
+                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('country',country.name, i)"
+                          id="residentialAddress-country-option-{{i}}">{{country.name}}</button>
                       </div>
                     </div>
                   </div>

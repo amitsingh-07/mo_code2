@@ -182,7 +182,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            //return this.httpClient.get<IServerResponse>(url);
+            return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
@@ -438,6 +438,13 @@ export class ApiService {
       journeyType: 'direct'
     };
     return this.http.post(apiConstants.endpoint.getProtectionTypesList, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getNationalityCountryList() {
+    return this.http.get(apiConstants.endpoint.investmentAccount.nationalityCountrylist)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
