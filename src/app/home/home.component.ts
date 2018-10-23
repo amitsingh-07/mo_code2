@@ -39,11 +39,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public initLoad = true;
   public navBarElement: ElementRef;
   modalRef: NgbModalRef;
-  
+
   subscribeForm: FormGroup;
   formValues: SubscribeMember;
-
-  cacheId: any;
 
   constructor(
     public navbarService: NavbarService, public footerService: FooterService, carouselConfig: NgbCarouselConfig,
@@ -102,7 +100,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.cacheId = new Date().getTime();
     this.navbarService.getNavbarDetails();
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
