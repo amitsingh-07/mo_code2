@@ -66,6 +66,7 @@ export class InvestmentAccountFormData {
     mailAdressProof: File;
     passportImage: File;
     resAddressProof: File;
+    passportImageBO: File;
 
     // Personal Declaration
     sourceOfIncome: any;

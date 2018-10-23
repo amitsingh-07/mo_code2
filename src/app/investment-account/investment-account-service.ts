@@ -173,6 +173,10 @@ export class InvestmentAccountService {
         const pepVal = this.investmentAccountFormData.pep;
         return pepVal;
     }
+    getBOStatus() {
+        const boVal = this.investmentAccountFormData.beneficial;
+        return boVal;
+    }
     getPersonalDeclaration() {
         return {
             sourceOfIncome: this.investmentAccountFormData.sourceOfIncome,
@@ -296,6 +300,9 @@ export class InvestmentAccountService {
     // Upload Document
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
+    }
+    uploadDocumentBO(formData) {
+        return this.apiService.uploadDocumentBO(formData);
     }
     setFinancialFormData(data) {
         this.investmentAccountFormData.annualHouseHoldIncomeRange = data.annualHouseHoldIncomeRange;

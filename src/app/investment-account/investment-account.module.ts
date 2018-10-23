@@ -36,6 +36,7 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 import { UploadDocumentsLaterComponent } from './upload-documents-later/upload-documents-later.component';
 
 import { AdditionalDeclarationScreen2Component } from './additional-declaration-screen2/additional-declaration-screen2.component';
+import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -80,7 +81,8 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationStep1Component,
     FeesModalComponent,
     AccountSetupCompletedComponent,
-    AdditionalDeclarationSubmitComponent
+    AdditionalDeclarationSubmitComponent,
+    UploadDocumentBOComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
