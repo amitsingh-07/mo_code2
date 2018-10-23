@@ -63,7 +63,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
     this.addExeTrusteeForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       relationship: ['', [Validators.required]],
-      nricNumber: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
     });
   }
 

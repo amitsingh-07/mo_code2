@@ -64,7 +64,7 @@ export class MyBeneficiariesComponent implements OnInit {
   buildBeneficiaryForm() {
     this.addBeneficiaryForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      nricNumber: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       relationship: ['', [Validators.required]]
     });
   }
