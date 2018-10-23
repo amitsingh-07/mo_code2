@@ -111,6 +111,7 @@
         font-size: 14px;
         text-align: center;
         color: #00c5c4;
+        cursor: pointer;
     }
     .offer-code{
         font-family: $muli-semi-bold;
@@ -152,12 +153,14 @@
         }
         div{
             &:last-child{
+                font-weight: 100;
                 font-family: $muli-regular;
                 color: #2d8289;
                 font-size: 16px;
                 span{
                     font-family: $muli-bold;
                     font-weight: bold;
+                    cursor: pointer;
                 }
             }
         }

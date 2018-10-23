@@ -94,3 +94,14 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
 }
+
+.date-picker {
+    .form-control {
+        padding-right: 0;
+    }
+    .input-group-append{
+        .btn-primary{
+            box-shadow: none !important;
+        }
+    } 
+}

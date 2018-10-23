@@ -271,6 +271,7 @@ input[type='checkbox']+label {
       justify-content: flex-end;
   }
   .estate-distribution {
+      padding: 0;
       @include allmobiles {   
         z-index: 9999;
         margin-top: -80px;
@@ -338,6 +339,14 @@ input[type='checkbox']+label {
         letter-spacing: -0.4px;
         color: #066360;
         padding-left: 10px;
+      }
+      .form-control{
+          .input-control{
+              text-align: left;
+          }
+          i{
+              right: 10px;
+          }
       }
   }
   .estateDistributionForm {
