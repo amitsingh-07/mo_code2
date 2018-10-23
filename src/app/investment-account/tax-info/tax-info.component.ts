@@ -22,7 +22,7 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class TaxInfoComponent implements OnInit {
   taxInfoForm: FormGroup;
-  nationalitylist: any;
+  countries: any;
   noTinReasonlist: any;
   taxInfoFormValues: any;
   nationalityObj: any;
@@ -54,19 +54,14 @@ export class TaxInfoComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.getNationalityList();
     this.getReasonList();
-    this.taxInfoFormValues = this.investmentAccountService.getTaxInfo();
+    this.taxInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.countries = this.investmentAccountService.getCountriesFormData();
     this.taxInfoForm = new FormGroup({
       radioTin: new FormControl(this.taxInfoFormValues.radioTin, Validators.required),
       taxCountry: new FormControl(this.taxInfoFormValues.taxCountry, Validators.required),
     });
     this.isTinNumberAvailChanged(this.taxInfoForm.controls.radioTin.value);
-  }
-  getNationalityList() {
-    this.investmentAccountService.getNationalityList().subscribe((data) => {
-      this.nationalitylist = data.objectList;
-    });
   }
 
   getReasonList() {
@@ -75,14 +70,14 @@ export class TaxInfoComponent implements OnInit {
     });
   }
 
-  selectCountry(nationalityObj) {
-    this.taxInfoForm.controls.taxCountry.setValue(nationalityObj.country);
+  selectCountry(country) {
+    this.taxInfoForm.controls.taxCountry.setValue(country.name);
   }
 
   selectReason(reasonObj) {
     this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue(reasonObj.name);
   }
-  
+
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
@@ -121,7 +116,6 @@ export class TaxInfoComponent implements OnInit {
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
   }
-
 
   goToNext(form) {
     if (!form.valid) {
