@@ -113,16 +113,25 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       if (this.type === 'hospital plan') {
         this.frequencyType = 'yearly';
         this.canShowDiscount = false;
+
+        let riderName = '';
         let riderDesc = '';
-        let riderName = this.data.rider.riderName;
-        if (riderName && riderName.toLowerCase() === 'full rider') {
-          riderName += ':';
-          riderDesc = 'Covers Co-Insurance and Deductible';
-        } else if (riderName && riderName.toLowerCase() === 'partial rider') {
-          riderName += ':';
-          riderDesc = 'Covers Co-Insurance';
+
+        if (this.data.rider) {
+          riderName = this.data.rider.riderName;
+          if (riderName && riderName.toLowerCase() === 'full rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance and Deductible';
+          } else if (riderName && riderName.toLowerCase() === 'partial rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance';
+          } else {
+            riderName = 'Rider:';
+            riderDesc = 'No Rider';
+          }
         } else {
-          riderName = 'No Rider';
+          riderName = 'Rider:';
+          riderDesc = 'No Rider';
         }
         this.highlights.push({ title: riderName, description: riderDesc });
       }
@@ -130,6 +139,16 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.canShowRanking = true;
         this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
         this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
+      }
+      if (this.type.indexOf('education fund') > -1) {
+        this.highlights.push({
+          title: 'Monthly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmount, 'USD', 'symbol', '1.0-0')
+        });
+        this.highlights.push({
+          title: 'Yearly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmountYearly, 'USD', 'symbol', '1.0-0')
+        });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }

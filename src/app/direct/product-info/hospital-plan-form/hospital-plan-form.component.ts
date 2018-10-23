@@ -73,7 +73,7 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
   summarizeDetails() {
     let sum_string = '';
     sum_string += this.hospitalForm.value.selectedPlan.hospitalClass;
-    if (this.hospitalForm.value.fullOrPartialRider === 'yes') {
+    if (this.hospitalForm.value.fullOrPartialRider === 'yes' || this.hospitalForm.value.fullOrPartialRider === 'true') {
       sum_string += ', Full / Partial Rider';
     }
     return sum_string;
