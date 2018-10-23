@@ -5,12 +5,22 @@
     position: relative;
     display:block;
     background-color:$white-color;
+    .sub-navigation{
+        padding:0px 20px;
+        @include minPhabletmaxTablet{
+            padding:0px 20px;
+        }
+        @include minMobilemaxPhablet{
+            padding:0px 20px;
+        }
+    }
     .banner{
         position: relative;
         display:flex;
         width:100%;
         justify-content: center;
         min-height:400px;
+        padding:0px 20px;
         @include minMobilemaxPhablet{
             flex-direction:column;
             justify-content:flex-start;
@@ -36,7 +46,7 @@
             display:block;
             width:100%;
             height:90%;
-            background-image:url('./../../../assets/images/about-us/reviews_seated_guy.svg');
+            background-image:url('/assets/images/about-us/reviews_seated_guy.svg');
             background-repeat:no-repeat;
             background-position:bottom right;
             background-size:contain;
@@ -55,11 +65,9 @@
         width:100%;
         max-width:1024px;
         padding:70px 0px 0px 0px;
-        @include minPhabletmaxTablet{
-            padding:70px 20px 0px 20px;
-        }
+        
         @include minMobilemaxPhablet{
-            padding:20px;
+            padding:20px 0px;
             order:1;
             margin-bottom:-80px;
         }
