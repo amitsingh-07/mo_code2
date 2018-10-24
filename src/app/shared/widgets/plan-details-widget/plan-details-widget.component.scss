@@ -81,7 +81,7 @@ app-plan-details-widget {
       margin-bottom: 10px;
       align-items: center;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       img {
         width: 50%;
       }
@@ -274,6 +274,11 @@ app-plan-details-widget {
           font-family: $muli-regular;
         }
       }
+    }
+  }
+  .grey subtitle--rider-name {
+    @include allmobiles {
+      text-align: center;
     }
   }
 }
