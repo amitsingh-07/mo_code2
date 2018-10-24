@@ -65,7 +65,7 @@ export class PlanFilterPipe implements PipeTransform {
                 const isClaimFeature = typeof (this.filterData.claimFeature) === 'undefined'
                     || this.filterData.claimFeature.size === 0;
                 const claimFeature = isClaimFeature ? true
-                    : this.filterData.claimFeature.has(plan.insurer.rating);
+                    : this.filterData.claimFeature.has(plan.premium.claimFeature);
 
                 const isClaimCriteria = typeof (this.filterData.claimCriteria) === 'undefined'
                     || this.filterData.claimCriteria.size === 0;
