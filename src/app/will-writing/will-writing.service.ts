@@ -20,6 +20,7 @@ const SESSION_STORAGE_KEY = 'app_will_writing_session';
 export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
+  isBeneficiaryAdded = false;
   constructor(
     private http: HttpClient,
     private modal: NgbModal

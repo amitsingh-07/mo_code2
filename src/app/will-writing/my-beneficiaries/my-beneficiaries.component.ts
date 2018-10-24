@@ -114,6 +114,7 @@ export class MyBeneficiariesComponent implements OnInit {
       return false;
     } else {
       this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
+      this.willWritingService.isBeneficiaryAdded = true;
       return true;
     }
   }

@@ -1,4 +1,4 @@
-<app-page-title [pageTitle]="Beneficiaries"></app-page-title>
+<app-page-title [step]="step" [pageTitle]="pageTitle"></app-page-title>
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="flex-row main-container">
@@ -18,68 +18,36 @@
               <div class="distribution-img"><img src="assets/images/will-writing/estate-distribution-bg.png"/></div>
               <div class="distribution-content">
                 <span class="title">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.DISTRIBUTE_YOUR_ESTATE' | translate}}</span>
-                <span class="percentage">60%</span>
+                <span class="percentage">{{this.remainingPercentage}}%</span>
                 <span class="sub-title">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.LEFT_TO_DISTRIBUTE' | translate}}</span>
               </div>
             </div>
         <div class="estateDistributionForm">
             <div>
-              <div class="estate-distribution-form">
+              <div *ngIf="true" class="estate-distribution-form">
                 <div class="form-title mb10">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.ESTATE_DISTRIBUTION' | translate}}</div>
-                  <div class="form-group-single-column mb15">
+                  <div *ngFor="let currentDist of estateDistList; let i = index" class="form-group-single-column mb15">
                       <div class="col-6">
-                        <label for="beneficiary1" id="">
-                          <div class="input-label-black">heading</div>
-                          <div class="input-label-normal">sub heading</div>
+                        <label for="beneficiary_{{i+1}}" id="beneficiary_{{i+1}}">
+                          <div class="input-label-black">{{currentDist.name | titlecase}}</div>
+                          <div class="input-label-normal">{{currentDist.relationship | titlecase}}</div>
                         </label>
                       </div>
                       <div class="col-6">
                           <div class="form-control">   
-                          <input id="beneficiary1" name="beneficiary1"  type="number" class="input-control"
-                            value="one" >
+                          <input  #percent id="beneficiary_{{i+1}}" (change)="updateDistPercentage(i, $event)" name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
+                            value="{{currentDist.distPercentage}}" >
                           <i>%</i>
                         </div>
                       </div>
                     </div>
-
-                    <div class="form-group-single-column mb15">
-                        <div class="col-6">
-                          <label for="beneficiary1" id="">
-                            <div class="input-label-black">heading</div>
-                            <div class="input-label-normal">sub heading</div>
-                          </label>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-control">   
-                            <input id="beneficiary1" name="beneficiary1"  type="number" class="input-control"
-                              value="one" >
-                            <i>%</i>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group-single-column mb15">
-                          <div class="col-6">
-                            <label for="beneficiary1" id="">
-                              <div class="input-label-black">heading</div>
-                              <div class="input-label-normal">sub heading</div>
-                            </label>
-                          </div>
-                          <div class="col-6">
-                              <div class="form-control">   
-                              <input id="beneficiary1" name="beneficiary1"  type="number" class="input-control"
-                                value="one" >
-                              <i>%</i>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                  <div>
-                    <button type="button" [disabled]="false" (click)="goToNext(protectionNeedsForm)" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
-                  </div>
+                  
               </div>
+
         </div>
+      </div>
+      <div>
+        <button type="button" [disabled]="" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
       </div>
     </div>
   </div>
