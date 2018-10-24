@@ -36,7 +36,7 @@
 
 .signup-wrapper__header-icon {
   @include allmobiles {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -51,11 +51,14 @@
 
   .signup-wrapper__description {
     margin-bottom: 10px;
+    @include allmobiles {
+      margin-bottom: 0 !important;
+    }
   }
 
-  p {
-    margin-bottom: -10px;
-  }
+  // p {
+  //   margin-bottom: -10px;
+  // }
 }
 
 /*Modal styles*/
@@ -105,12 +108,12 @@
       height: 185px;
     }
 
-    @include allmobiles {
-      img {
-        width: 150px;
-        height: 150px;
-      }
-    }
+    // @include allmobiles {
+    //   img {
+    //     width: 150px;
+    //     height: 150px;
+    //   }
+    // }
   }
 
   .custom-modal--title {
@@ -143,6 +146,9 @@
     .btn__footer--fixed {
       width: 100%;
     }
+  }
+  .btn-primary {
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21) !important;
   }
 }
 
