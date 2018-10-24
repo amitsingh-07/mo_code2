@@ -191,10 +191,11 @@ app-compare-plans {
 
     @include allmobiles {
       min-height: 251px;
+      padding: 0 !important;
     }
 
     h4 {
-      height: 26px;
+      //height: 26px;
       font-size: 16px;
       color: $form-block-title-color;
       font-family: $muli-semi-bold;
@@ -202,7 +203,7 @@ app-compare-plans {
       @include allmobiles {
         font-size: 16px;
         text-align: center;
-        min-height: 38px;
+        //min-height: 38px;
       }
     }
 
@@ -241,7 +242,7 @@ app-compare-plans {
       img {
         max-width: 35% !important;
         @include allmobiles {
-          max-width: 50% !important;
+          max-width: 70% !important;
         }
       }
     }
