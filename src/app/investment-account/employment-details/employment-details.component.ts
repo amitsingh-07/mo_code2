@@ -77,7 +77,6 @@ export class EmploymentDetailsComponent implements OnInit {
     this.authService.authenticate().subscribe((token) => {
       this.investmentAccountService.getIndustryList().subscribe((data) => {
         this.industryList = data.objectList;
-        console.log(this.industryList);
       });
     });
 
@@ -86,7 +85,6 @@ export class EmploymentDetailsComponent implements OnInit {
     this.authService.authenticate().subscribe((token) => {
       this.investmentAccountService.getOccupationList().subscribe((data) => {
         this.occupationList = data.objectList;
-        console.log(this.occupationList);
       });
     });
 
@@ -94,7 +92,6 @@ export class EmploymentDetailsComponent implements OnInit {
   getEmployeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
         this.employementStatusList = data.objectList.employmentStatus;
-        console.log(this.employementStatusList);
         const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0].name;
         if (employStatus === 'Unemployed') {
           this.employementDetailsForm = this.buildFormUnemployement(employStatus);
@@ -120,14 +117,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
   setIndustryValue(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
-
-    console.log(this.industry);
-
   }
   setOccupationValue(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
-
-    console.log(this.occupation);
   }
 
   setDropDownValue(key, value, nestedKey) {

@@ -64,6 +64,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
   payoutYears: any = { All: 'All' };
+  payoutPeriod: any = { All: 'All' };
   claimFeature: any = { All: 'All' };
   deferredPeriod: any = { All: 'All' };
   escalatingBenefit: any = { All: 'All' };
@@ -178,6 +179,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.premium && productList.premium.payoutDuration) {
           this.payoutYears[Formatter.createObjectKey(productList.premium.payoutDuration)] = productList.premium.payoutDuration;
         }
+        if (productList.premium && productList.premium.retirementPayPeriodDisplay) {
+          this.payoutPeriod[Formatter.createObjectKey(productList.premium.retirementPayPeriodDisplay)]
+            = productList.premium.retirementPayPeriodDisplay;
+        }
         if (productList.premium) {
           this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;
         }
@@ -203,6 +208,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       return { value: key, checked: key === 'All' ? true : false };
     });
     this.payoutYears = Object.values(this.payoutYears).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.payoutPeriod = Object.values(this.payoutPeriod).map((key) => {
       return { value: key, checked: key === 'All' ? true : false };
     });
     this.claimFeature = Object.values(this.claimFeature).map((key) => {
@@ -260,6 +268,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       title: this.filterTypes.PAYOUT_YEARS, name: 'payoutYears',
       filterTypes: this.payoutYears, allBtn: true
     };
+    const payoutPeriod = {
+      title: this.filterTypes.PAYOUT_YEARS, name: 'payoutPeriod',
+      filterTypes: this.payoutYears, allBtn: true
+    };
     const claimCriteria = {
       title: this.filterTypes.CLAIM_CRITERIA, toolTip:
         { title: this.filterTypes.CLAIM_CRITERIA, message: this.toolTips.CLAIM_CRITERIA },
@@ -293,7 +305,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         delete this.filters[0];
         break;
       case PRODUCT_CATEGORY_INDEX.RETIREMENT_INCOME:
-        this.filters.push(payoutYears);
+        this.filters.push(payoutPeriod);
         break;
       case PRODUCT_CATEGORY_INDEX.SRS_PLANS:
         delete this.filters[0];

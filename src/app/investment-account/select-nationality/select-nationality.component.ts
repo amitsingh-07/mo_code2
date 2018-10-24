@@ -103,7 +103,6 @@ export class SelectNationalityComponent implements OnInit {
         this.authService.authenticate().subscribe((token) => {
             this.investmentAccountService.getNationalityList().subscribe((data) => {
                 this.nationalitylist = data.objectList;
-                console.log(this.nationalitylist);
             });
         });
     }
