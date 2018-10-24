@@ -7,7 +7,7 @@
         <div class="loader" *ngIf="!mobileNumberVerified"></div>
         <img *ngIf="!mobileNumberVerified" src="../../../assets/images/owl-icon-dark.svg" id="custModalImg1"/>
       </div>
-      <img *ngIf="mobileNumberVerified" src="../../../assets/images/account-created-icon.svg" id="custModalImg1" />
+      <img *ngIf="mobileNumberVerified" src="../../../assets/images/owl_tick.svg" id="custModalImg1" />
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{mobileNumberVerifiedMessage}}</p>
         <p class="custom-modal--desc" id="custModalDesc">{{mobileNumber.code}} {{mobileNumber.number}}</p>
