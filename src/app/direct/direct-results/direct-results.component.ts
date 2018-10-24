@@ -175,8 +175,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.insurer && productList.insurer.rating) {
           this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
         }
-        if (productList.premium && productList.premium.incomePayoutDuration) {
-          this.payoutYears[Formatter.createObjectKey(productList.premium.incomePayoutDuration)] = productList.premium.incomePayoutDuration;
+        if (productList.premium && productList.premium.payoutDuration) {
+          this.payoutYears[Formatter.createObjectKey(productList.premium.payoutDuration)] = productList.premium.payoutDuration;
         }
         if (productList.premium) {
           this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;

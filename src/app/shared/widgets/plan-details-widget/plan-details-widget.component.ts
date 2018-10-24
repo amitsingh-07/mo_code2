@@ -86,21 +86,34 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
       if (this.type === 'long-term care') {
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        if (this.isDirect) {
+          this.highlights.push({ title: 'Payout years:', description: this.data.premium.payoutDuration });
+          this.highlights.push({ title: 'Claim Criteria:', description: this.data.premium.claimCriteria });
+        } else {
+          this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        }
       }
       if (this.type === 'hospital plan') {
         this.frequencyType = 'yearly';
         this.canShowDiscount = false;
+        let riderName = '';
         let riderDesc = '';
-        let riderName = this.data.rider.riderName;
-        if (riderName && riderName.toLowerCase() === 'full rider') {
-          riderName += ':';
-          riderDesc = 'Covers Co-Insurance and Deductible';
-        } else if (riderName && riderName.toLowerCase() === 'partial rider') {
-          riderName += ':';
-          riderDesc = 'Covers Co-Insurance';
+
+        if (this.data.rider) {
+          riderName = this.data.rider.riderName;
+          if (riderName && riderName.toLowerCase() === 'full rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance and Deductible';
+          } else if (riderName && riderName.toLowerCase() === 'partial rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance';
+          } else {
+            riderName = 'Rider:';
+            riderDesc = 'No Rider';
+          }
         } else {
-          riderName = 'No Rider';
+          riderName = 'Rider:';
+          riderDesc = 'No Rider';
         }
         this.highlights.push({ title: riderName, description: riderDesc });
       }
@@ -108,6 +121,16 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
         this.canShowRanking = true;
         this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
         this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
+      }
+      if (this.type.indexOf('education fund') > -1) {
+        this.highlights.push({
+          title: 'Monthly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmount, 'USD', 'symbol', '1.0-0')
+        });
+        this.highlights.push({
+          title: 'Yearly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmountYearly, 'USD', 'symbol', '1.0-0')
+        });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }

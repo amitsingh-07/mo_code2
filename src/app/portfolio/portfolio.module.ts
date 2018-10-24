@@ -8,9 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
-import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 import { SharedModule } from '../shared/shared.module';
 import { FundDetailsComponent } from './fund-details/fund-details.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
@@ -59,7 +57,6 @@ export function createTranslateLoader(http: HttpClient) {
     IntroScreenComponent,
     PortfolioRecommendationComponent,
     CurrencyInputPortfolioDirective,
-    PercentageInputDirective,
     WhatsTheRiskComponent,
     FundDetailsComponent,
     ],
