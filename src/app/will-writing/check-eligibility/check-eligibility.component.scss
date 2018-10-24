@@ -100,7 +100,7 @@
             padding: 0 30px;
         }
         .web {
-            width: 120%;
+            width: 418px;
         }
     }
     h2{
@@ -152,6 +152,9 @@
 }
 .direct-form-btn--radio {
     background-color: #fff !important;
+    @include allmobiles {
+        color:  #00a7a7 !important;
+    }
 }
 .direct-form-btn--radio.active {
     background-color: #00a7a7 !important;
