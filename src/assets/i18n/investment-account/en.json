@@ -165,15 +165,20 @@
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
     "BACK_TO_DASHBOARD": "Back To Dashboard"
-
   },
   "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
     "TITLE": "Additional Declarations",
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
-    "BACK_TO_DASHBOARD": "Back To Dashboard"
+    "BACK_TO_DASHBOARD": "Back To Dashboard",
+    "EXPECTED_NUMBER_OF_TRANSATIONS": "Expected Number Of Transactions",
+    "EXPECTED_AMOUNT_PER_TRANSATION": "Expected Amount Per Transaction",
+    "SOURCE_OF_INVESTMENT_FUND": "Source Of Investment Funds",
+    "PERSONAL_SAVINGS": "Please indicate the employer that contributed most to your savings:",
+    "INVESTMENT_PERIOD": "Investment Period",
+    "EARNINGS_GENERATED_FORM": "Earnings Generated From",
+    "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
-
   "CONFIRM_PORTFOLIO": {
     "TITLE": "Your Portfolio",
     "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
@@ -228,6 +233,6 @@
   "ADDITIONAL_DECLARATION_SUBMIT": {
     "TITLE": "Additional Declarations Submitted",
     "DESC": "We will get back to you on your application in 1 - 2 working days.",
-    "BACK" : "Back To Dashboard"
+    "BACK": "Back To Dashboard"
   }
 }
