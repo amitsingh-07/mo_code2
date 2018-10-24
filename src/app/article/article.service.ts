@@ -50,14 +50,17 @@ export class ArticleService {
     if (art_tag_name) {
       const art_map = this.articleApiService.getArticleTagMap();
       const art_key = Object.keys(art_map.tag_map);
-
-      for (let i = 0; i <= art_key.length - 1; i++) {
-        const iteration_tag_name = art_map.tag_map[art_key[i]].tag_name;
-        if (iteration_tag_name.toLowerCase() === art_tag_name) {
-          return art_key[i];
+      if (art_tag_name === 'all') {
+        return -1;
+      } else {
+        for (let i = 0; i <= art_key.length - 1; i++) {
+          const iteration_tag_name = art_map.tag_map[art_key[i]].tag_name;
+          if (iteration_tag_name.toLowerCase() === art_tag_name) {
+            return art_key[i];
+          }
         }
       }
     }
-    return -1;
+    return -2;
   }
 }

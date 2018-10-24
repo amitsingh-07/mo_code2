@@ -84,6 +84,11 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
       this.highlights.push({ title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) });
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
+      if (this.type.indexOf('critical') > -1) {
+        if (this.isDirect && this.data.premium.claimFeature) {
+          this.highlights.push({ title: 'Claim Feature:', description: this.data.premium.claimFeature });
+        }
+      }
       if (this.type === 'long-term care') {
         this.canShowDiscount = false;
         if (this.isDirect) {
@@ -121,6 +126,10 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
         this.canShowRanking = true;
         this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
         this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
+      }
+      if (this.type.indexOf('retirement') > -1) {
+        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.payoutPeriod });
+        this.highlights.push({ title: 'Payout Feature:', description: this.data.premium.payoutFeature });
       }
       if (this.type.indexOf('education fund') > -1) {
         this.highlights.push({

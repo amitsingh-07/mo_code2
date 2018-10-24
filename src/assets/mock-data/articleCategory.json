@@ -1,20 +1,42 @@
-{
-    "responseMessage": {
-      "responseCode": 6000,
-      "responseDescription": "Successful response"
-    },
-    "objectList": [{
-      "articleCategory": ["Child Education Endowment",
-                          "Critical Illness Insurance", 
-                          "General",
-                          "MediShieldLife",
-                          "Protection",
-                          "Retirement Income",
-                          "Retirement Income Plans",
-                          "Savings",
-                          "Term Life Insurance",
-                          "Video",
-                          "Whole Life Insurance",
-                          "All"]
-    }]
-}
+[
+  {
+      "tagId": 14,
+      "articleCount": 3
+  },
+  {
+      "tagId": 4,
+      "articleCount": 4
+  },
+  {
+      "tagId": 7,
+      "articleCount": 5
+  },
+  {
+      "tagId": 7,
+      "articleCount": 6
+  },
+  {
+      "tagId": 10,
+      "articleCount": 7
+  },
+  {
+      "tagId": 9,
+      "articleCount": 8
+  },
+  {
+      "tagId": 7,
+      "articleCount": 9
+  },
+  {
+      "tagId": 1,
+      "articleCount": 10
+  },
+  {
+      "tagId": 3,
+      "articleCount": 11
+  },
+  {
+      "tagId": 4,
+      "articleCount": 12
+  }
+]

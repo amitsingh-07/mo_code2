@@ -144,7 +144,7 @@
     },
     "COVERAGE_TOOLTIP" : {
       "TITLE": "Coverage Age",
-      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <b>Critical Illness</b>.</p>"
+      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <span class=\"modal-text-secondary\">Critical Illness</span>.</p>"
     }
   },
   "OCP_DISABILITY": {
@@ -174,7 +174,7 @@
     },
     "COVERAGE_TOOLTIP" : {
       "TITLE": "Coverage Age",
-      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <b>Critical Illness</b>.</p>"
+      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of an <span class=\"modal-text-secondary\">Occupational Disability</span>.</p>"
     }
   },
   "LTC_ASSESSMENT": {

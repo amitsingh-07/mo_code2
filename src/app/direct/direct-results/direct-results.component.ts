@@ -188,11 +188,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         if (productList.rider && productList.rider.riderName) {
           this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
         }
-        /*
-        if (productList.insurer && productList.insurer.insurerName) {
-          this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+        if (productList.insurer && productList.premium.claimFeature) {
+          this.claimFeature[Formatter.createObjectKey(productList.premium.claimFeature)] = productList.premium.claimFeature;
         }
-        */
         if (productList.insurer && productList.premium.claimCriteria) {
           this.claimCriteria[Formatter.createObjectKey(productList.premium.claimCriteria)] = productList.premium.claimCriteria;
         }
