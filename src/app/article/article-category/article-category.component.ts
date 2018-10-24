@@ -47,11 +47,9 @@ export class ArticleCategoryComponent implements OnInit {
       this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
     } else {
       if (this.category_id === -1) {
-        console.log('all category found');
         this.category = 'All';
       } else {
         // Redirect away
-        console.log('no category found');
         this.router.navigate(['/articles/category/all']);
       }
     }

@@ -80,7 +80,6 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   }
 
   showProductInfo() {
-    console.log('Show Product Info');
   }
 
   formSubmitCallback() {
@@ -92,7 +91,6 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   backPressed() {
     this.navbarService.unsubscribeBackPress();
     this.showingResults = false;
-    console.log('backPressed');
     this.setPageTitle(this.pageTitle, null, false);
     this.removeComponent(DirectResultsComponent);
   }

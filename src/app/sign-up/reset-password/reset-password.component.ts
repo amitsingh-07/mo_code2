@@ -57,9 +57,7 @@ tocken;
     this.navbarService.setNavbarMode(1);
     this.queryParams = this.route.snapshot.queryParams;
     this.buildResetPasswordForm();
-    console.log('the tocken is ' + this.queryParams.key);
     this.tocken = encodeURIComponent(this.queryParams.key);
-    console.log('the tocken now is is ' + this.tocken);
     this.authService.authenticate().subscribe((token) => {
     });
   }
@@ -87,14 +85,12 @@ tocken;
       return false;
     } else {
       this.signUpService.setResetPasswordInfo(form.value.confirmpassword, this.tocken).subscribe((data) => {
-        console.log('Error code is ' + data.responseMessage.responseCode);
         // tslint:disable-next-line:triple-equals
         if ( data.responseMessage.responseCode == 6000) {
           // tslint:disable-next-line:max-line-length
         this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!'}, fragment: 'loading'});
         }
       });
-      console.log(form.value);
     }
   }
 }

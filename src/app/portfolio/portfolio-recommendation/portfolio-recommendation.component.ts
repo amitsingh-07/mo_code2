@@ -64,7 +64,6 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
-    console.log(this.selectedRiskProfile.riskProfileName);
   }
 
   setPageTitle(title: string) {

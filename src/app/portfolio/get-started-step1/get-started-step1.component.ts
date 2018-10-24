@@ -42,7 +42,6 @@ export class GetStartedStep1Component implements OnInit {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
     this.authService.authenticate().subscribe((token) => {
-     console.log(token);
     });
   }
 

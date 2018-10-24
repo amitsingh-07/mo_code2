@@ -100,7 +100,6 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   getSourceList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
-      console.log(this.sourceOfIncomeList);
     });
 
   }
@@ -108,14 +107,11 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   getGeneratedFrom() {
     this.investmentAccountService.getGeneratedFrom().subscribe((data) => {
       this.generatedList = data.objectList;
-      console.log(this.generatedList + 'generated list form');
     });
   }
   getInvestmentPeriod() {
     this.investmentAccountService.getInvestmentPeriod().subscribe((data) => {
       this.investmentPeriodList = data.objectList;
-      console.log(this.investmentPeriodList + 'generated investmentform');
-
     });
 
   }
