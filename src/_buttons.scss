@@ -640,7 +640,7 @@ button:active:focus {
       display: block;
       font-family: $muli-semi-bold;
       font-size: 22px;
-      line-height: 1.0;
+      //line-height: 1.0;
       letter-spacing: -0.4px;
       color: $dark-teal-color;
       max-width: 60%;
@@ -658,7 +658,7 @@ button:active:focus {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 98%;
+        max-width: 98%;
       }
     }
   }
