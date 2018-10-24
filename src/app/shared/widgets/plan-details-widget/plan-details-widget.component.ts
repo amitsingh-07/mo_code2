@@ -136,7 +136,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
         if (this.data.premium.retirementPayoutDuration
           && this.data.premium.retirementPayoutDuration.toLowerCase() === 'limited years') {
           this.highlights.push({
-            title: 'Maturity Benefit:',
+            title: 'Total Projected Payout:',
             description: this.currency.transform(this.data.premium.totalProjectedPayout475, 'USD', 'symbol', '1.0-0')
           });
         }
