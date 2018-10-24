@@ -59,9 +59,9 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(true);
     this.footerService.setFooterVisibility(false);
     this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarDirectGuided(false);
     this.buildForgotPasswordForm();
   }
 

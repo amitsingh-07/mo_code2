@@ -1,3 +1,4 @@
+import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -32,6 +33,7 @@ tocken;
     private modal: NgbModal,
     public authService: AuthenticationService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -52,9 +54,8 @@ tocken;
     });
   }
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
     this.buildResetPasswordForm();
     console.log('the tocken is ' + this.queryParams.key);
