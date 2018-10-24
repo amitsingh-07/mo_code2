@@ -128,8 +128,8 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
         this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
       }
       if (this.type.indexOf('retirement') > -1) {
-        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.payoutPeriod });
-        this.highlights.push({ title: 'Payout Feature:', description: this.data.premium.payoutFeature });
+        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay });
+        this.highlights.push({ title: 'Payout Feature:', description: this.data.premium.retirementPayFeatureDisplay });
       }
       if (this.type.indexOf('education fund') > -1) {
         this.highlights.push({
