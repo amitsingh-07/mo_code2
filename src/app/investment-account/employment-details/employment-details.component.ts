@@ -18,7 +18,7 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class EmploymentDetailsComponent implements OnInit {
   pageTitle: string;
-  employementStatusList: any ;
+  employementStatusList: any;
   employementDetailsForm: FormGroup;
   formValues: any;
   countries;
@@ -42,7 +42,7 @@ export class EmploymentDetailsComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
-    private modal: NgbModal ) {
+    private modal: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('EMPLOYMENT_DETAILS.TITLE');
@@ -53,7 +53,7 @@ export class EmploymentDetailsComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
- ngOnInit() {
+  ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getOccupationList();
@@ -64,46 +64,31 @@ export class EmploymentDetailsComponent implements OnInit {
     this.countries = this.investmentAccountService.getCountriesFormData();
     const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : 'Employed';
     if (employStatus === 'Unemployed') {
-          this.employementDetailsForm = this.buildFormUnemployement(employStatus);
-          this.showEmploymentControls = false;
-        } else {
-          this.employementDetailsForm = this.buildFormEmployement(employStatus);
-          this.showEmploymentControls = true;
-        }
+      this.employementDetailsForm = this.buildFormUnemployement(employStatus);
+      this.showEmploymentControls = false;
+    } else {
+      this.employementDetailsForm = this.buildFormEmployement(employStatus);
+      this.showEmploymentControls = true;
+    }
     this.addOrRemoveMailingAddress();
   }
 
   getIndustryList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.investmentAccountService.getIndustryList().subscribe((data) => {
-        this.industryList = data.objectList;
-        console.log(this.industryList);
-      });
+    this.investmentAccountService.getIndustryList().subscribe((data) => {
+      this.industryList = data.objectList;
+      console.log(this.industryList);
     });
-
   }
   getOccupationList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.investmentAccountService.getOccupationList().subscribe((data) => {
-        this.occupationList = data.objectList;
-        console.log(this.occupationList);
-      });
+    this.investmentAccountService.getOccupationList().subscribe((data) => {
+      this.occupationList = data.objectList;
+      console.log(this.occupationList);
     });
-
   }
   getEmployeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
-        this.employementStatusList = data.objectList.employmentStatus;
-        console.log(this.employementStatusList);
-        const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0].name;
-        if (employStatus === 'Unemployed') {
-          this.employementDetailsForm = this.buildFormUnemployement(employStatus);
-          this.showEmploymentControls = false;
-        } else {
-          this.employementDetailsForm = this.buildFormEmployement(employStatus);
-          this.showEmploymentControls = true;
-        }
-        this.addOrRemoveMailingAddress();
+      this.employementStatusList = data.objectList.employmentStatus;
+      console.log(this.employementStatusList);
     });
   }
   setEmployementStatus(key, value) {
@@ -132,10 +117,10 @@ export class EmploymentDetailsComponent implements OnInit {
 
   setDropDownValue(key, value, nestedKey) {
     this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
-}
-getInlineErrorStatus(control) {
-  return (!control.pristine && !control.valid);
-}
+  }
+  getInlineErrorStatus(control) {
+    return (!control.pristine && !control.valid);
+  }
   buildFormEmployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
       employmentStatus: [empStatus, Validators.required],
@@ -173,38 +158,38 @@ getInlineErrorStatus(control) {
         }));
       }
     } else {
-      this.employementDetailsForm.removeControl('employeaddress'); 
+      this.employementDetailsForm.removeControl('employeaddress');
     }
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
     if (postalCode) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
-      (response: any) => {
-        if (response) {
-          if (response.Status.code === 200) {
-            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-            const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-            address1Control.setValue(address1);
-            address2Control.setValue(address2);
-          } else {
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
-            address1Control.setValue('');
-            address2Control.setValue('');
+      this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
+        (response: any) => {
+          if (response) {
+            if (response.Status.code === 200) {
+              const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+              const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+              address1Control.setValue(address1);
+              address2Control.setValue(address2);
+            } else {
+              const ref = this.modal.open(ErrorModalComponent, { centered: true });
+              ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
+              ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
+              address1Control.setValue('');
+              address2Control.setValue('');
+            }
           }
-        }
-      },
-      (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-      });
+        },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.ERROR.POSTAL_CODE_TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.ERROR.POSTAL_CODE_DESC');
+        });
     } else {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE');
+      ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_EMPTY_ERROR.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_EMPTY_ERROR.MESSAGE');
     }
   }
 
@@ -220,7 +205,7 @@ getInlineErrorStatus(control) {
     });
   }
   goToNext(form) {
-  if (!form.valid) {
+    if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
