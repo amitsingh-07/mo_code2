@@ -381,14 +381,11 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.dob = this.dateFormat(data.dob.value);
             this.disableAttributes.push('dob');
         }
-        let sex = '';
         if (data.sex.value === 'M') {
-            sex = 'male';
+            this.investmentAccountFormData.gender = 'male';
+            this.disableAttributes.push('gender');
         } else if (data.sex.value === 'F') {
-            sex = 'female';
-        }
-        if (sex) {
-            this.investmentAccountFormData.gender = sex;
+            this.investmentAccountFormData.gender = 'female';
             this.disableAttributes.push('gender');
         }
     }
