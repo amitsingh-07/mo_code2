@@ -1,6 +1,6 @@
 export interface IAboutMe {
     name: string;
-    nricNumber: string;
+    uin: string;
     gender: string;
     maritalStatus: string;
     noOfChildren: number;
@@ -9,20 +9,21 @@ export interface IAboutMe {
 export interface ISpouse {
     name: string;
     relationship: string;
-    nricNumber: string;
+    uin: string;
 }
 
 export interface IChild {
     name: string;
     relationship: string;
-    nricNumber: string;
+    uin: string;
     dob: string;
 }
 
 export interface IGuardian {
     name: string;
     relationship: string;
-    nricNumber: string;
+    uin: string;
+    type: string;
 }
 
 export interface IEligibility {
@@ -34,7 +35,7 @@ export interface IEligibility {
 export interface IExecTrustee {
     name: string;
     relationship: string;
-    nricNumber: string;
+    uin: string;
 }
 
 export interface IPromoCode {
@@ -44,6 +45,6 @@ export interface IPromoCode {
 export interface IBeneficiary {
     name: string;
     relationship: string;
-    nricNumber: string;
+    uin: string;
     selected: boolean;
 }

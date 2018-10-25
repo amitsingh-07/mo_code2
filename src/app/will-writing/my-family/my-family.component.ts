@@ -74,7 +74,7 @@ export class MyFamilyComponent implements OnInit {
       const spouseFormValues: ISpouse = this.willWritingService.getSpouseInfo()[0];
       return this.formBuilder.group({
         name: [spouseFormValues ? spouseFormValues.name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-        nricNumber: [spouseFormValues ? spouseFormValues.nricNumber : '',
+        uin: [spouseFormValues ? spouseFormValues.uin : '',
         [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
       });
     }
@@ -86,8 +86,8 @@ export class MyFamilyComponent implements OnInit {
       return this.formBuilder.group({
         name: [this.childrenFormValues.length > index ?
           this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-        nricNumber: [this.childrenFormValues.length > index ?
-          this.childrenFormValues[index].nricNumber : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+        uin: [this.childrenFormValues.length > index ?
+          this.childrenFormValues[index].uin : '', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
         dob: [this.childrenFormValues.length > index ? this.childrenFormValues[index].dob : '', [Validators.required]]
       });
     }

@@ -26,7 +26,7 @@
                   <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
                   <div class="input-label-normal">{{beneficiary.relationship | titlecase }}</div>
                 </label>
-                <!-- <span><img src="assets/images/will-writing/edit-icon.svg"/></span> -->
+                <!-- <span class="edit-icon"><img src="assets/images/will-writing/edit-icon.svg"/></span> -->
               </div>
             </div>
             <div>
@@ -39,7 +39,7 @@
                         <div class="flex-row mb10">
                           <div class="flex-col-5">
                             <label for="name" id="addGuardianFormLbl1">
-                              <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div>
+                              <div><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div><div class="sub-name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></div>
                             </label>
                           </div>
                           <div class="flex-col-7">
@@ -54,8 +54,8 @@
                             </label>
                           </div>
                           <div class="flex-col-7">
-                            <input type="text" [ngClass]="{'inline-error': submitted && addBen.nricNumber.invalid}" id="addGuardianFormInpt2"
-                              class="form-control" #nricNumber formControlName="nricNumber">
+                            <input type="text" [ngClass]="{'inline-error': submitted && addBen.uin.invalid}" id="addGuardianFormInpt2"
+                              class="form-control" #uin formControlName="uin">
                           </div>
                         </div>
                         <div class="flex-row mb10">

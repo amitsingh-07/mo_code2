@@ -23,7 +23,7 @@
                       <div class="input-label-black">heading</div>
                       <div class="input-label-normal">sub heading</div>
                     </label>
-                    <span><img src="assets/images/will-writing/edit-icon.svg"/></span>
+                    <span class="edit-icon"><img src="assets/images/will-writing/edit-icon.svg"/></span>
                   </div>
           </div>
           </div>
@@ -72,8 +72,8 @@
                         </label>
                       </div>
                       <div class="flex-col-7">
-                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.nricNumber.invalid && execTrustee.nricNumber}"
-                          id="myFamilyFormInpt2" class="form-control" #nricNumber formControlName="nricNumber">
+                        <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.uin.invalid && execTrustee.uin}"
+                          id="myFamilyFormInpt2" class="form-control" #uin formControlName="uin">
                       </div>
                     </div>
                     <div class="flex-row trustee-form-btn">
