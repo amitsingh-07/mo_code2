@@ -116,11 +116,7 @@ export class MyEstateDistributionComponent implements OnInit {
     if (arrLength > 0 && this.remainingPercentage === 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
       return false;
-    } else if (arrLength < 1 && this.remainingPercentage !== 0) {
-      this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
-      return false;
-    // tslint:disable-next-line:no-duplicated-branches
-    } else if (arrLength > 0 && this.remainingPercentage !== 0) {
+    } else if (arrLength < 1 && this.remainingPercentage !== 0 || arrLength > 0 && this.remainingPercentage !== 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
       return false;
     }
