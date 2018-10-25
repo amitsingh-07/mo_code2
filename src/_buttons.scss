@@ -435,7 +435,12 @@ button:active:focus {
     line-height: 1.2;
     letter-spacing: -0.3px;
   }
-
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .result__block--title {
+      width: 80%;
+      height: 45px;
+    }
+  }
   .result__block--data {
     color: $teal-color;
     font-family: $muli-bold;
@@ -449,7 +454,11 @@ button:active:focus {
       @include fontSize(21px);
     }
   }
-
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .result__block--data {
+      width:60%;
+    }
+  }
   .result__block--postfix {
     color: $dark-teal-color;
     line-height: 1.0;
@@ -640,11 +649,11 @@ button:active:focus {
       display: block;
       font-family: $muli-semi-bold;
       font-size: 22px;
-      line-height: 1.0;
+      //line-height: 1.0;
       letter-spacing: -0.4px;
       color: $dark-teal-color;
       max-width: 60%;
-      word-wrap: normal;
+      //word-wrap: normal;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
