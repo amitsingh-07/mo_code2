@@ -22,6 +22,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
 import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { WillWritingRoutingModule } from './will-writing-routing.module';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -61,7 +62,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyBeneficiariesComponent,
     ReviewYourDetailsComponent,
     MyExecutorTrusteeComponent,
-    MyEstateDistributionComponent
+    MyEstateDistributionComponent,
+    ConfirmationComponent
   ]
 })
 export class WillWritingModule { }

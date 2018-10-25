@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
 import { FaqComponent } from './faq/faq.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: WILL_WRITING_ROUTES.MY_BENEFICIARIES, component: MyBeneficiariesComponent},
   { path: WILL_WRITING_ROUTES.REVIEW_YOUR_DETAILS, component: ReviewYourDetailsComponent},
   { path: WILL_WRITING_ROUTES.MY_EXECUTOR_TRUSTEE, component: MyExecutorTrusteeComponent},
-  { path: WILL_WRITING_ROUTES.MY_ESTATE_DISTRIBUTION, component: MyEstateDistributionComponent}
+  { path: WILL_WRITING_ROUTES.MY_ESTATE_DISTRIBUTION, component: MyEstateDistributionComponent},
+  { path: WILL_WRITING_ROUTES.CONFIRMATION, component: ConfirmationComponent}
 ];
 
 @NgModule({
