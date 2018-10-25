@@ -61,6 +61,8 @@ export class MyChildGuardianComponent implements OnInit {
     this.buildAddGuardianForm();
   }
 
+  get addGud() { return this.addGuardianForm.controls; }
+
   /**
    * build about me form.
    */
@@ -70,6 +72,22 @@ export class MyChildGuardianComponent implements OnInit {
       uin: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       relationship: ['', [Validators.required]]
     });
+  }
+
+  /**
+   * set marital status.
+   * @param index - marital Status List index.
+   */
+  selectRelationship(relationship) {
+    relationship = relationship ? relationship : { text: '', value: '' };
+    this.relationship = relationship.text;
+    this.addGuardianForm.controls['relationship'].setValue(relationship.value);
+  }
+
+  editGuardian(relation: string) {
+    if (relation === 'spouse') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+    }
   }
 
   /**
@@ -90,24 +108,6 @@ export class MyChildGuardianComponent implements OnInit {
       form.value.type = this.hasSpouse ? 'secondary' : 'primary';
       this.willWritingService.setGuardianInfo(this.guardianList);
       return true;
-    }
-  }
-
-  get addGud() { return this.addGuardianForm.controls; }
-
-  /**
-   * set marital status.
-   * @param index - marital Status List index.
-   */
-  selectRelationship(relationship) {
-    relationship = relationship ? relationship : {text: '', value: ''};
-    this.relationship = relationship.text;
-    this.addGuardianForm.controls['relationship'].setValue(relationship.value);
-  }
-
-  editGuardian(relation: string) {
-    if (relation === 'spouse') {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
     }
   }
 
