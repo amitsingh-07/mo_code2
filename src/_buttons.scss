@@ -667,7 +667,7 @@ button:active:focus {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 98%;
+        max-width: 98%;
       }
     }
   }
