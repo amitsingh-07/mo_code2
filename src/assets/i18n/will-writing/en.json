@@ -16,6 +16,9 @@
       "ADD": "Add",
       "CANCEL": "Cancel",
       "MY": "My",
+      "GENDER": "Gender",
+      "MARITAL_STATUS": "Marital Status",
+      "NUMBER_OF_CHILDREN": "Number of Children",
       "RELATIONSHIP_LIST": [{
           "text": "Sibling",
           "value": "sibling"
@@ -241,6 +244,10 @@
       "DISTRIBUTE_YOUR_ESTATE": "Distribute your estate",
       "ESTATE_DISTRIBUTION": "Estate Distribution",
       "LEFT_TO_DISTRIBUTE": "Left to distribute"
+    },
+    "CONFIRMATION": {
+      "TITLE": "Confirmation",
+      "SUB_TITLE": "You are almost there! Please check to make sure all details are accurate!"
     }
   }
 }
