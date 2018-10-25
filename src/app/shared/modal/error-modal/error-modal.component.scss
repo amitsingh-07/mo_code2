@@ -1,3 +1,6 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
 .label {
     color: #2d8289;
     font-size: 17px;
@@ -10,7 +13,8 @@
     .btn{
         background-color: #fff;
         color: #00a7a7;
-        font-family: Muli;
+        font-family: $muli-regular;
+        font-weight: 100;
         font-size: 22px;
         letter-spacing: -0.2px;
     }
