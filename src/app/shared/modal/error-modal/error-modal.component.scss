@@ -3,3 +3,19 @@
     font-size: 17px;
     font-family: "Muli Semi Bold", sans-serif;
 }
+
+.yes_r_no {
+    display: flex;
+    justify-content: space-between;
+    .btn{
+        background-color: #fff;
+        color: #00a7a7;
+        font-family: Muli;
+        font-size: 22px;
+        letter-spacing: -0.2px;
+    }
+    .btn-primary {
+        background-color: #00a7a7;
+        color: #fff;
+    }
+}
