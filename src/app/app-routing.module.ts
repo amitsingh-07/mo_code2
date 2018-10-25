@@ -28,10 +28,10 @@ const routes: Routes = [
       /*
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
-
+      */
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
-      */
+
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent},
       { path: 'privacy-policy', component: PrivacyPolicyComponent},
