@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { SharedModule } from './../shared/shared.module';
 
 import { AboutMeComponent } from './about-me/about-me.component';
 import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
@@ -37,6 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     WillWritingRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
     NgbModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

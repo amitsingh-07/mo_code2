@@ -23,6 +23,7 @@ export class MyEstateDistributionComponent implements OnInit {
   firstReset = false;
   currentDist;
   errorMsg;
+  filteredList;
   constructor(private translate: TranslateService,
               private willWritingService: WillWritingService,
               private router: Router) {
@@ -34,30 +35,34 @@ export class MyEstateDistributionComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:cognitive-complexity
   ngOnInit() {
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
       this.estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
       if (this.willWritingService.isBeneficiaryAdded) {
       this.divider = (this.remainingPercentage / this.estateDistList.length);
-      for (const percent of this.estateDistList) {
-        percent.distPercentage = Math.floor(this.divider);
-        if (this.estateDistList.indexOf(percent) === this.estateDistList.length - 1) {
-          if (this.estateDistList.length === 3) {
-            percent.distPercentage += 1;
-          } else if (this.estateDistList.length === 6) {
-            percent.distPercentage += 4;
-          } else if (this.estateDistList.length === 7) {
-            percent.distPercentage += 2;
-          } else {
-            return false;
-          }
-        }
-      }
+      this.dividePercentage();
       }
     }
     this.calculateRemPercentage();
+  }
+
+  dividePercentage() {
+    for (const percent of this.estateDistList) {
+      percent.distPercentage = Math.floor(this.divider);
+      if (this.estateDistList.indexOf(percent) === this.estateDistList.length - 1) {
+        if (this.estateDistList.length === 3) {
+          return percent.distPercentage += 1;
+        } else if (this.estateDistList.length === 6) {
+          return percent.distPercentage += 4;
+        } else if (this.estateDistList.length === 7) {
+          return percent.distPercentage += 2;
+        } else {
+          return false;
+        }
+      }
+    }
+
   }
 
   calculateRemPercentage() {
@@ -67,23 +72,11 @@ export class MyEstateDistributionComponent implements OnInit {
     return this.remainingPercentage;
   }
 
-  // tslint:disable-next-line:cognitive-complexity
   updateDistPercentage(index: number, event) {
-    const filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
+    this.filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
     for (const percent of this.estateDistList) {
       this.estateDistList[index].distPercentage = Math.floor(event.target.value);
-      if (!this.firstReset) {
-        if (filteredList < 1) {
-          for (const percentage of this.estateDistList) {
-            if (this.estateDistList.indexOf(percentage) === index) {
-              this.estateDistList[index].distPercentage = Math.floor(event.target.value);
-              this.firstReset = true;
-            } else {
-              percentage.distPercentage = 0;
-            }
-          }
-        }
-      }
+      this.distributePercentage(index, event);
       this.distPercentageSum += percent.distPercentage;
     }
     if (this.distPercentageSum > 100) {
@@ -101,6 +94,21 @@ export class MyEstateDistributionComponent implements OnInit {
     }
     this.distPercentageSum = 0;
 
+  }
+
+  distributePercentage(index: number, event) {
+    if (!this.firstReset) {
+      if (this.filteredList < 1) {
+        for (const percentage of this.estateDistList) {
+          if (this.estateDistList.indexOf(percentage) === index) {
+            this.estateDistList[index].distPercentage = Math.floor(event.target.value);
+            this.firstReset = true;
+          } else {
+            percentage.distPercentage = 0;
+          }
+        }
+      }
+    }
   }
 
   save() {
