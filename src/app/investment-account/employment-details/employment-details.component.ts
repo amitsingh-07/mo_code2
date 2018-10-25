@@ -146,10 +146,10 @@ export class EmploymentDetailsComponent implements OnInit {
       },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       occupation: [{
-        value: this.formValues.occupation ? this.formValues.occupation : 'Select Occupation',
+        value: this.formValues.occupation,
         disabled: this.investmentAccountService.isDisabled('occupation')
       }, Validators.required],
-      industry: [this.formValues.industry ? this.formValues.industry : 'Select Industry', Validators.required],
+      industry: [this.formValues.industry, Validators.required],
       contactNumber: [this.formValues.contactNumber, [Validators.required, Validators.pattern(RegexConstants.ContactNumber)]],
       isEmployeAddresSame: [this.formValues.isEmployeAddresSame]
     });

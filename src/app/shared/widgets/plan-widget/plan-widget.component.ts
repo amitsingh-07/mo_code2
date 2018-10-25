@@ -103,16 +103,33 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       if (this.type === 'long-term care') {
         this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        if (this.isDirect) {
+          this.highlights.push({ title: 'Payout years:', description: this.data.premium.payoutDuration });
+          this.highlights.push({ title: 'Claim Criteria:', description: this.data.premium.claimCriteria });
+        } else {
+          this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        }
       }
       if (this.type === 'hospital plan') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: 'Covers co-insurance and deductible' });
+        let riderDesc = '';
+        let riderName = this.data.rider.riderName;
+        if (riderName && riderName.toLowerCase() === 'full rider') {
+          riderName += ':';
+          riderDesc = 'Covers Co-Insurance and Deductible';
+        } else if (riderName && riderName.toLowerCase() === 'partial rider') {
+          riderName += ':';
+          riderDesc = 'Covers Co-Insurance';
+        } else {
+          riderName = 'No Rider';
+        }
+        this.highlights.push({ title: riderName, description: riderDesc });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod + ' Months' });
-        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit + '%' });
+        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
+        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }

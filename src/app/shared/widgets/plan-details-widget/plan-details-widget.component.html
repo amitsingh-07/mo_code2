@@ -3,7 +3,8 @@
     <div class="row mt10 mb10">
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
-        <div [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
+        <span class="grey subtitle--rider-name" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</span>
+        <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
           <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
             <span [hidden]="data.premium.premiumFrequency == 'single'" class="text-small">{{ 'SUFFIX.PER_MONTH' |
               translate }}</span>
@@ -45,14 +46,14 @@
               </h2>
             </div>
             <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.gaurenteedMonthlyIncome |
+              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalGuaranteedPayout |
                 currency}}
                 <br />
                 <span class="text-small">{{ 'COMMON.LBL_GUARANTEED_PAYOUT' | translate}}</span>
               </h2>
             </div>
             <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
-              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.gaurenteedMonthlyIncome |
+              <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalProjectedPayout475 |
                 currency}}
                 <br />
                 <span class="text-small">{{ 'COMMON.LBL_PROJECTED_PAYOUT' | translate}}</span>
@@ -66,7 +67,8 @@
       <div class="insurance-plan-widget__container__rank__wrapper flex-row" style="display: flex; flex: 1">
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
-          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn > 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn <= 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING_BY_VALUE' | translate }}</div>
           <div class="help-icon" style="display: none;"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box flex-col-4" *ngIf="canShowRating">
@@ -94,7 +96,7 @@
       <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate
         }}</button>
     </div>
-    <div class="flex-1 widget-btn-select">
+    <div class="flex-1 widget-btn-select mb20">
       <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
         <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
         <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>

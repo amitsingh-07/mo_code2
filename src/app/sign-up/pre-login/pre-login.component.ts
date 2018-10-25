@@ -11,9 +11,8 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SignUpApiService } from '../sign-up.api.service';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { SignUpService } from '../sign-up.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 
 @Component({
   selector: 'app-pre-login',
@@ -28,7 +27,6 @@ export class PreLoginComponent implements OnInit {
     public authService: AuthenticationService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
-    private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
@@ -47,12 +45,12 @@ export class PreLoginComponent implements OnInit {
     this._location.back();
   }
   navigateCreateAccount() {
-    this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.POSTLOGIN);
+    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
   }
 
   navigateLogin() {
-    this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.POSTLOGIN);
+    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 

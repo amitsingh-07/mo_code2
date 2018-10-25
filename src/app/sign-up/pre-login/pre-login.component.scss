@@ -17,6 +17,7 @@
   letter-spacing: -0.2px;
   text-align: center;
   color: #00a7a7;
+  border-width:0px; 
   }
   .no-login-but{
     font-family: Muli;
@@ -51,4 +52,13 @@
     width: 188px;
    
     }
+}
+.back-btn {
+  background-image: url("../../../assets/images/back-web.svg");
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    position: absolute;
+    top: 5%;
+    left: 20px;
 }

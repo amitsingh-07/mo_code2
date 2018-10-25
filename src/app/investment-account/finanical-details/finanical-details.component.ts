@@ -1,3 +1,4 @@
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -61,10 +62,19 @@ export class FinanicalDetailsComponent implements OnInit {
       annualHouseHoldIncomeRange: [{value: this.formValues.annualHouseHoldIncomeRange,
         disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')}, Validators.required],
       numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
-      monthlyIncome: [this.FinancialFormData.monthlyIncome, Validators.required],
-      percentageOfSaving: [this.FinancialFormData.percentageOfSaving, Validators.required],
-      totalAssets: [this.FinancialFormData.totalAssets, Validators.required],
-      totalLiabilities: [this.FinancialFormData.totalLiabilities, Validators.required]
+      financialMonthlyIncome: [this.formValues.financialMonthlyIncome ?
+        this.formValues.financialMonthlyIncome : this.FinancialFormData.monthlyIncome,
+        Validators.required],
+      financialPercentageOfSaving: [this.formValues.financialPercentageOfSaving
+        ? this.formValues.financialPercentageOfSaving : this.FinancialFormData.percentageOfSaving,
+      Validators.required],
+      financialTotalAssets: [this.formValues.financialTotalAssets
+        ? this.formValues.financialTotalAssets : this.FinancialFormData.totalAssets,
+      Validators.required],
+      financialTotalLiabilities: [this.formValues.financialTotalLiabilities
+        ? this.formValues.financialTotalLiabilities :
+        this.FinancialFormData.totalLiabilities,
+      Validators.required]
     });
   }
   setPageTitle(title: string) {

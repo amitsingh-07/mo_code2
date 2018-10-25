@@ -8,7 +8,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -22,7 +22,7 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class TaxInfoComponent implements OnInit {
   taxInfoForm: FormGroup;
-  nationalitylist: any;
+  countries: any;
   noTinReasonlist: any;
   taxInfoFormValues: any;
   nationalityObj: any;
@@ -54,85 +54,82 @@ export class TaxInfoComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.country = 'Select Country' ;
-    this.reason = 'Select' ;
-    this.getNationalityList();
     this.getReasonList();
-    this.taxInfoFormValues = this.investmentAccountService.getTaxInfo();
+    this.taxInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.countries = this.investmentAccountService.getCountriesFormData();
     this.taxInfoForm = new FormGroup({
-      radioTin: new FormControl (this.taxInfoFormValues.haveTin, Validators.required),
-      taxCountry: new FormControl (this.taxInfoFormValues.country, Validators.required),
-      });
-  }
-  getNationalityList() {
-    this.investmentAccountService.getNationalityList().subscribe((data) => {
-        this.nationalitylist = data.objectList;
-        console.log(this.nationalitylist);
+      radioTin: new FormControl(this.taxInfoFormValues.radioTin, Validators.required),
+      taxCountry: new FormControl(this.taxInfoFormValues.taxCountry, Validators.required),
     });
+    this.isTinNumberAvailChanged(this.taxInfoForm.controls.radioTin.value);
   }
+
   getReasonList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
-        this.noTinReasonlist = data.objectList.noTinReason;
-        console.log('Got Something' + this.noTinReasonlist);
+      this.noTinReasonlist = data.objectList.noTinReason;
     });
   }
 
-selectCountry(nationalityObj) {
-  this.nationalityObj = nationalityObj;
-  this.nationality = this.nationalityObj.nationality;
-  this.country = this.nationalityObj.country;
-  this.taxInfoForm.controls['taxCountry'].setValue(this.country);
-}
-selectReason(reasonObj) {
-  this.reason = reasonObj.name;
-  this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue( this.reason);
-}
-goToNext(form) {
-  if (!form.valid) {
-    this.markAllFieldsDirty(form);
-    const error = this.investmentAccountService.getFormErrorList(form);
-    console.log(error);
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = error.title;
-    ref.componentInstance.errorMessageList = error.errorMessages;
-    return false;
-  } else {
-    this.investmentAccountService.setTaxInfoFormData(form.value);
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_DECLARATION]);
+  selectCountry(country) {
+    this.taxInfoForm.controls.taxCountry.setValue(country.name);
   }
-}
-markAllFieldsDirty(form) {
-  Object.keys(form.controls).forEach((key) => {
-    if (form.get(key).controls) {
-      Object.keys(form.get(key).controls).forEach((nestedKey) => {
-        form.get(key).controls[nestedKey].markAsDirty();
-      });
+
+  selectReason(reasonObj) {
+    this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue(reasonObj.name);
+  }
+
+  markAllFieldsDirty(form) {
+    Object.keys(form.controls).forEach((key) => {
+      if (form.get(key).controls) {
+        Object.keys(form.get(key).controls).forEach((nestedKey) => {
+          form.get(key).controls[nestedKey].markAsDirty();
+        });
+      } else {
+        form.get(key).markAsDirty();
+      }
+    });
+  }
+  showHelpModal() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translator.TAX_MODEL_TITLE;
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorDescription = this.translator.TAX_MODEL_DESC;
+    return false;
+  }
+
+  isTinNumberAvailChanged(flag) {
+    if (flag === 'yes') {
+      this.taxInfoForm.addControl('tinNumberText', this.formBuilder.group({
+        tinNumber: new FormControl(this.taxInfoFormValues.tinNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)])
+      }));
+      this.taxInfoForm.removeControl('reasonDropdown');
     } else {
-      form.get(key).markAsDirty();
+      this.taxInfoForm.addControl('reasonDropdown', this.formBuilder.group({
+        noTinReason: new FormControl(this.taxInfoFormValues.noTinReason, Validators.required)
+      }));
+      this.taxInfoForm.removeControl('tinNumberText');
     }
-  });
-}
-showHelpModal() {
-  const ref = this.modal.open(ErrorModalComponent, { centered: true });
-  ref.componentInstance.errorTitle = this.translator.TAX_MODEL_TITLE;
-  // tslint:disable-next-line:max-line-length
-  ref.componentInstance.errorDescription =  this.translator.TAX_MODEL_DESC;
-  return false;
-}
-yesClick() {
-  this.taxInfoForm.addControl('tinNumberText', this.formBuilder.group({
-    tinNumber : new FormControl (this.taxInfoFormValues.Tin, Validators.required)
-  }));
-  this.taxInfoForm.removeControl('reasonDropdown');
-}
-noClick() {
-  this.taxInfoForm.addControl('reasonDropdown', this.formBuilder.group({
-    noTinReason : new FormControl (this.taxInfoFormValues.noTinReason, Validators.required)
-  }));
-  this.taxInfoForm.removeControl('tinNumberText');
-}
-setDropDownValue(key, value) {
-  this.taxInfoForm.controls[key].setValue(value);
-}
+  }
+  setDropDownValue(key, value) {
+    this.taxInfoForm.controls[key].setValue(value);
+  }
+  getInlineErrorStatus(control) {
+    return (!control.pristine && !control.valid);
+  }
+
+  goToNext(form) {
+    if (!form.valid) {
+      this.markAllFieldsDirty(form);
+      const error = this.investmentAccountService.getFormErrorList(form);
+      console.log(error);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
+    } else {
+      this.investmentAccountService.setTaxInfoFormData(form.value);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_DECLARATION]);
+    }
+  }
 
 }

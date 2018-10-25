@@ -67,7 +67,7 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
       this.selectPayoutFeature(this.formValues.payoutFeature);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '6') {
+      if (data !== '' && data === '7') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
