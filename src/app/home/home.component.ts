@@ -234,13 +234,13 @@ export class HomeComponent implements OnInit, AfterViewInit{
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
                              - homeNavbarHeight - navbarHeight + 10;
 
-    const DeviceHeight = document.documentElement.clientHeight;
-    console.log(DeviceHeight);
-
-    const SelectionYOffsetFromInit = selectedSection.top; // selectionSection.top is the deviation of the object from the initial point
-
     if (innerWidth > this.mobileThreshold) {
-      window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+      const isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
+      if (!isIEOrEdge) {
+        window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+      } else {
+        elementName.scrollIntoView(true);
+      }
     } else {
       elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
