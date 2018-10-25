@@ -39,6 +39,7 @@ export class MyEstateDistributionComponent implements OnInit {
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
       this.estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
+      this.filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
       if (this.willWritingService.isBeneficiaryAdded) {
       this.divider = (this.remainingPercentage / this.estateDistList.length);
       this.dividePercentage();
@@ -73,7 +74,6 @@ export class MyEstateDistributionComponent implements OnInit {
   }
 
   updateDistPercentage(index: number, event) {
-    this.filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
     for (const percent of this.estateDistList) {
       this.estateDistList[index].distPercentage = Math.floor(event.target.value);
       this.distributePercentage(index, event);

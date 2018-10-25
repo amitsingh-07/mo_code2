@@ -10,6 +10,7 @@ import { SharedModule } from './../shared/shared.module';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
 import { FaqComponent } from './faq/faq.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
@@ -63,7 +64,8 @@ export function createTranslateLoader(http: HttpClient) {
     MyBeneficiariesComponent,
     ReviewYourDetailsComponent,
     MyExecutorTrusteeComponent,
-    MyEstateDistributionComponent
+    MyEstateDistributionComponent,
+    ConfirmationComponent
   ]
 })
 export class WillWritingModule { }
