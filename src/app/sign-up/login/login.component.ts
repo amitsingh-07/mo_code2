@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(true);
+    this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     this.authService.authenticate().subscribe((token) => {
