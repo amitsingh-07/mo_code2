@@ -14,6 +14,7 @@ export class InvestmentAccountFormData {
     postalCode: number;
     address1: string;
     address2: string;
+    floor: string;
     unitNo: string;
     city: string;
     state: string;
@@ -23,6 +24,7 @@ export class InvestmentAccountFormData {
     mailPostalCode: number;
     mailAddress1: string;
     mailAddress2: string;
+    mailFloor: string;
     mailUnitNo: string;
     mailCity: string;
     mailState: string;

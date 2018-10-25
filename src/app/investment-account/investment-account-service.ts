@@ -47,12 +47,17 @@ export class InvestmentAccountService {
     }
     isSingaporeResident() {
         const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
-        return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
+        return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE ||
+            this.investmentAccountFormData.singaporeanResident === 'yes');
     }
     getCountryFromNationalityCode(nationalityCode) {
+        let country = 'Singapore';
         const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
             (nationality) => nationality.nationalityCode === nationalityCode);
-        return selectedNationality[0].countries[0].name;
+        if (selectedNationality[0] && selectedNationality[0].countries[0]) {
+            country = selectedNationality[0].countries[0].name;
+        }
+        return country;
     }
     setDefaultValueForFormData() {
         this.investmentAccountFormData.isMailingAddressSame = INVESTMENT_ACCOUNT_CONFIG.residential_info.isMailingAddressSame;
@@ -63,6 +68,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.postalCode = data.postalCode;
         this.investmentAccountFormData.address1 = data.address1;
         this.investmentAccountFormData.address2 = data.address2;
+        this.investmentAccountFormData.floor = data.floor;
         this.investmentAccountFormData.unitNo = data.unitNo;
         this.investmentAccountFormData.city = data.city;
         this.investmentAccountFormData.state = data.state;
@@ -73,6 +79,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailPostalCode = data.mailingAddress.mailPostalCode;
             this.investmentAccountFormData.mailAddress1 = data.mailingAddress.mailAddress1;
             this.investmentAccountFormData.mailAddress2 = data.mailingAddress.mailAddress2;
+            this.investmentAccountFormData.mailFloor = data.mailingAddress.mailFloor;
             this.investmentAccountFormData.mailUnitNo = data.mailingAddress.mailUnitNo;
             this.investmentAccountFormData.mailCity = data.mailingAddress.mailCity;
             this.investmentAccountFormData.mailState = data.mailingAddress.mailState;
@@ -402,15 +409,12 @@ export class InvestmentAccountService {
                 this.investmentAccountFormData.country = data.regadd.country;
                 this.disableAttributes.push('country');
             }
-            let regUnitNumber = '';
             if (data.regadd.floor) {
-                regUnitNumber = regUnitNumber + data.regadd.floor + ' - ';
+                this.investmentAccountFormData.floor = data.regadd.floor;
+                this.disableAttributes.push('floor');
             }
             if (data.regadd.unit) {
-                regUnitNumber = regUnitNumber + data.regadd.unit;
-            }
-            if (regUnitNumber) {
-                this.investmentAccountFormData.unitNo = '# ' + regUnitNumber;
+                this.investmentAccountFormData.unitNo = data.regadd.unit;
                 this.disableAttributes.push('unitNo');
             }
             if (data.regadd.block) {
@@ -438,15 +442,12 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailCountry = data.mailadd.country;
             this.disableAttributes.push('mailCountry');
         }
-        let mailUnitNumber = '';
         if (data.mailadd.floor) {
-            mailUnitNumber = mailUnitNumber + data.mailadd.floor + ' - ';
+            this.investmentAccountFormData.mailFloor = data.mailadd.floor;
+            this.disableAttributes.push('mailFloor');
         }
         if (data.mailadd.unit) {
-            mailUnitNumber = mailUnitNumber + data.mailadd.unit;
-        }
-        if (mailUnitNumber) {
-            this.investmentAccountFormData.mailUnitNo = '# ' + mailUnitNumber;
+            this.investmentAccountFormData.mailUnitNo = data.mailadd.unit;
             this.disableAttributes.push('mailUnitNo');
         }
         if (data.mailadd.block) {
