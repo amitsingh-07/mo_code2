@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
@@ -22,6 +23,7 @@ export class PasswordComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               public navbarService: NavbarService,
+              public footerService: FooterService,
               private modal: NgbModal,
               private selectedPlansService: SelectedPlansService,
               private signUpApiService: SignUpApiService,
@@ -42,6 +44,7 @@ export class PasswordComponent implements OnInit {
   ngOnInit() {
     this.buildPasswordForm();
     this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
   }
 
   /**
