@@ -220,7 +220,6 @@ export class PortfolioService {
     const objectKeys = Object.keys(options);
     const params = new URLSearchParams();
     Object.keys(objectKeys).map((e) => {
-      console.log('key= ${e} value = ${objectKeys[e]}');
       params.set(objectKeys[e], options[objectKeys[e]]);
     });
     return '?' + params.toString();

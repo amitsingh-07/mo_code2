@@ -3,7 +3,7 @@
     <div class="row mt10 mb10">
       <div style="width: 65%; padding-left: 15px;">
         <h4>{{productName}}</h4>
-        <span class="grey subtitle--rider-name" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</span>
+        <div class="grey subtitle--rider-name" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</div>
         <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
           <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
             <span [hidden]="data.premium.premiumFrequency == 'single'" class="text-small">{{ 'SUFFIX.PER_MONTH' |
@@ -17,7 +17,7 @@
           </h2>
         </div>
       </div>
-      <div class="insurer-logo" style="width: 35%">
+      <div class="insurer-logo" style="width: 30%">
         <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
       </div>
       <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0">
@@ -96,7 +96,7 @@
       <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate
         }}</button>
     </div>
-    <div class="flex-1 widget-btn-select">
+    <div class="flex-1 widget-btn-select mb20">
       <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
         <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
         <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>

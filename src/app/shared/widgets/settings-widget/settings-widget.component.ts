@@ -37,8 +37,6 @@ export class SettingsWidgetComponent implements OnInit {
     });
   }
   ngOnInit() {
-    console.log('selectedfilterlist');
-    console.log(this.selectedFilterList);
     if (this.selectedFilterList && this.selectedFilterList.premiumFrequency) {
       this.filterArgs = this.selectedFilterList;
       if (!this.selectedFilterList['premiumFrequency']) {
@@ -122,7 +120,6 @@ export class SettingsWidgetComponent implements OnInit {
   }
 
   applyFilters() {
-    console.log({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
     this.filterProducts.emit({ filters: this.filterArgs, sortProperty: this.defaultSort.value });
   }
 

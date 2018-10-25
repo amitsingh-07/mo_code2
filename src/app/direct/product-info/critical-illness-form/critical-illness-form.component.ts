@@ -101,7 +101,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     let sum_string = '';
     sum_string += this.translate.instant('CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
     sum_string += this.duration;
-    if (this.criticalIllnessForm.value.earlyCI === 'yes') {
+    if (this.criticalIllnessForm.value.earlyCI === true || this.criticalIllnessForm.value.earlyCI === 'yes') {
       sum_string += ', Early CI';
     }
     return sum_string;

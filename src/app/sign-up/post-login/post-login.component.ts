@@ -14,6 +14,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-post-login',
   templateUrl: './post-login.component.html',
@@ -27,6 +28,7 @@ export class PostLoginComponent implements OnInit {
     public authService: AuthenticationService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -39,8 +41,8 @@ export class PostLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
   }
   goBack() {
     this._location.back();

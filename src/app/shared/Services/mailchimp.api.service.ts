@@ -19,7 +19,6 @@ export class MailchimpApiService {
     this.subscribeFormData.email = data.email;
     this.subscribeFormData.firstName = data.firstName;
     this.subscribeFormData.lastName = data.lastName;
-    console.log(this.subscribeFormData);
 
     if (!redirect) {
       this.registerUser();
@@ -42,7 +41,6 @@ export class MailchimpApiService {
 
     const mailChimpUrl = mailChimpEndpoint + params.toString();
 
-    console.log(mailChimpUrl);
   }
 
 }

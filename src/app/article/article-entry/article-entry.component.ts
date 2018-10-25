@@ -28,14 +28,12 @@ export class ArticleEntryComponent implements OnInit {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.art_id = params['id'];
-        console.log(this.art_id);
         this.getArticleContent(this.art_id);
       }
     });
     this.route.queryParams.subscribe((params) => {
       if (params['art_id']) {
         this.art_id = params['art_id'];
-        console.log(this.art_id);
         this.getArticleContent(this.art_id);
       }
     });

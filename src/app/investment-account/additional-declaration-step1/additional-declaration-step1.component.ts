@@ -78,7 +78,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.authService.authenticate().subscribe((token) => {
       this.investmentAccountService.getOccupationList().subscribe((data) => {
         this.occupationList = data.objectList;
-        console.log(this.occupationList);
       });
     });
 

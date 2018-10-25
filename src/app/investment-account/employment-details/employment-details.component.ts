@@ -76,19 +76,16 @@ export class EmploymentDetailsComponent implements OnInit {
   getIndustryList() {
     this.investmentAccountService.getIndustryList().subscribe((data) => {
       this.industryList = data.objectList;
-      console.log(this.industryList);
     });
   }
   getOccupationList() {
     this.investmentAccountService.getOccupationList().subscribe((data) => {
       this.occupationList = data.objectList;
-      console.log(this.occupationList);
     });
   }
   getEmployeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.employementStatusList = data.objectList.employmentStatus;
-      console.log(this.employementStatusList);
     });
   }
   setEmployementStatus(key, value) {
@@ -105,14 +102,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
   setIndustryValue(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
-
-    console.log(this.industry);
-
   }
   setOccupationValue(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
-
-    console.log(this.occupation);
   }
 
   setDropDownValue(key, value, nestedKey) {

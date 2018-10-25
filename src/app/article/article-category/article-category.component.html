@@ -3,12 +3,13 @@
     <div class="sub-navigation">
       <div class="sub-navigation--inner">
         <span routerLink="/">Home</span>
-        <span class="separator"></span>
+        <i class="material-icons">keyboard_arrow_right</i>
         <span routerLink="/articles">Articles</span>
-        <span class="separator"></span>
+        <i class="material-icons">keyboard_arrow_right</i>
         <span routerLink="/articles/category">{{category}}</span>
         </div>
-      </div> 
+      </div>
+    <h1 class="article-category__title">{{category}}</h1>   
     </div>
   <div class="article-category__container">
     <div class="article-category__articles">
@@ -35,7 +36,7 @@
         </div>
       </div>
     <div class="article-category__list">
-      <div class="article-category__title">
+      <div class="article-category__label">
         <i class="material-icons">local_offer</i>
         <span>Category</span>
         </div>
