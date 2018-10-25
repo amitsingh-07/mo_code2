@@ -7,6 +7,16 @@
       "SAVE_AND_CONTINUE": "Save and Continue"
     }
   },
+  "POSTLOGIN": {
+    "TITLE": "You are ready to set up your investment account!",
+    "PROCEED": "Proceed with",
+    "PROCEED_WITHOUT": "Proceed without SingPass"
+  },
+  "PRELOGIN": {
+    "TITLE": "Are you an existing MoneyOwl user?",
+    "YES_LOGIN": "Yes, Log In Now",
+    "CREATE_ACCOUNT": "No, Create Account"
+  },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
