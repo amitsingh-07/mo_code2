@@ -83,7 +83,6 @@ export class ForgotPasswordComponent implements OnInit {
     return false;
   } else {
     this.signUpService.setForgotPasswordInfo(form.value.email).subscribe((data) => {
-      console.log('incomingData' + data.responseMessage.responseCode);
       // tslint:disable-next-line:triple-equals
       if ( data.responseMessage.responseCode == 6004) {
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });

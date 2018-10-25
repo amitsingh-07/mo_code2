@@ -74,7 +74,6 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '1') {
         if (this.save()) {
-          console.log('triggered');
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
       }
