@@ -1,9 +1,11 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
   Input,
+  OnChanges,
   OnInit,
   Renderer2,
   ViewChild,
@@ -29,7 +31,7 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
   encapsulation: ViewEncapsulation.None
 })
 
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit{
   pageTitle: string;
   trustedSubTitle: any;
   trustedReasons: any;
@@ -46,7 +48,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     public navbarService: NavbarService, public footerService: FooterService, carouselConfig: NgbCarouselConfig,
     public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
-    public readonly translate: TranslateService, private modal: NgbModal, private router: Router,
+    public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
     private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService) {
     carouselConfig.showNavigationArrows = true;
     carouselConfig.showNavigationIndicators = true;
@@ -100,7 +102,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.navbarService.getNavbarDetails();
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     this.subscribeForm = new FormGroup({
@@ -111,6 +112,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.navbarService.getNavbarDetails();
+    this.cdr.detectChanges();
   }
 
   setPageTitle(title: string) {
@@ -121,15 +124,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (fragment === 'insurance') {
       this.goToSection(this.InsuranceElement.nativeElement);
     } else
-      if (fragment === 'will') {
-        this.goToSection(this.WillElement.nativeElement);
-      } else
-        if (fragment === 'invest') {
-          this.goToSection(this.InvestElement.nativeElement);
-        } else
-          if (fragment === 'comprehensive') {
-            this.goToSection(this.ComprehensiveElement.nativeElement);
-          }
+    if (fragment === 'will') {
+      this.goToSection(this.WillElement.nativeElement);
+    } else
+    if (fragment === 'invest') {
+      this.goToSection(this.InvestElement.nativeElement);
+    } else
+    if (fragment === 'comprehensive') {
+      this.goToSection(this.ComprehensiveElement.nativeElement);
+    }
   }
 
   checkScrollStickyHomeNav() {
@@ -226,17 +229,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
     const navbarElement = this.navBarElement.nativeElement.getBoundingClientRect();
     const navbarHeight = (navbarElement.bottom - navbarElement.top);
-
     const selectedSection = elementName.getBoundingClientRect();
+
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
                              - homeNavbarHeight - navbarHeight + 10;
+
+    const DeviceHeight = document.documentElement.clientHeight;
+    console.log(DeviceHeight);
+
+    const SelectionYOffsetFromInit = selectedSection.top; // selectionSection.top is the deviation of the object from the initial point
 
     if (innerWidth > this.mobileThreshold) {
       window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
     } else {
-      setTimeout( () => {
-        elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
-      }, 0);
+      elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
   }
 
