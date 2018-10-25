@@ -7,9 +7,8 @@
       <div>
         <img src="../../../assets/images/investment-account/investment_Account_Created.svg" id="acc_custModalImg2" />
       </div>
-      <p class="custom-modal--title mt20" id="acc_custModalTitle">Investment Account
-        Setup Complete!</p>
-      <button (click)="redirectToFund()" id="acc_button" type="button" class="btn btn__footer--fixed btn-primary width100">Fund My Portfolio</button>
+      <p class="custom-modal--title mt20" id="acc_custModalTitle">{{ 'ACCOUNT_SETUP_COMPLETE.TITLE' | translate}}</p>
+      <button (click)="redirectToFund()" id="acc_button" type="button" class="btn btn__footer--fixed btn-primary width100">{{ 'ACCOUNT_SETUP_COMPLETE.FUND' | translate}}</button>
     </div>    
   </div>
 </div>

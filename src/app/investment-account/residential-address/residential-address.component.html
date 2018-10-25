@@ -10,14 +10,7 @@
     <div class="content">
       <div class="row">
         <div class="col-12">
-          <div class="autofill-link">
-            
-                <div class="autofill-text">Autofill Forms Via</div>
-    
-              
-                <div class="autofill-logo"><img class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" /></div>
-              
-          </div>
+          <app-sing-pass></app-sing-pass>
         </div>
         <div class="col-lg-12 col-md-12">
           <form id="residentialAddress_address_form" name="addressForm" [formGroup]="addressForm">
@@ -35,8 +28,8 @@
                         ngbDropdownToggle>{{addressForm.controls.country.value | titlecase}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue('country',option.country, i)"
-                          id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
+                        <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('country',country.name, i)"
+                          id="residentialAddress-country-option-{{i}}">{{country.name | titlecase}}</button>
                       </div>
                     </div>
                   </div>
@@ -98,6 +91,21 @@
                 </div>
               </div>
             </div>
+
+            <!-- Floor -->
+            <div class="form-group" *ngIf="isUserNationalitySingapore">
+              <div class="flex-row">
+                <div class="flex-col-5">
+                  <label for="residentialAddress-floor-txt" id="residentialAddress-floor-lbl">{{'RESIDENTIAL_ADDRESS.FLOOR'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-7">
+                  <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.floor)}">
+                    <input type="text" class="input-control grey" formControlName="floor" id="residentialAddress-floor-txt" />
+                  </div>
+                </div>
+              </div>
+            </div>            
 
             <!-- UNIT NO -->
             <div class="form-group" *ngIf="isUserNationalitySingapore">
@@ -186,11 +194,11 @@
                     <div class="dropdown-control">
                       <div ngbDropdown>
                         <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
-                          ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value}}
+                          ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value | titlecase}}
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',option.country, 'mailingAddress')"
-                            id="residentialAddress-country-option-{{i}}">{{option.country}}</button>
+                          <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setNestedDropDownValue('mailCountry',country.name, 'mailingAddress')"
+                            id="residentialAddress-country-option-{{i}}">{{country.name | titlecase}}</button>
                         </div>
                       </div>
                     </div>
@@ -250,6 +258,21 @@
                     <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailAddress2)}">
                       <input type="text" class="input-control grey" formControlName="mailAddress2"
                         id="residentialAddress-mailaddress2-txt" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floor -->
+              <div class="form-group" *ngIf="isUserNationalitySingapore">
+                <div class="flex-row">
+                  <div class="flex-col-5">
+                    <label for="residentialAddress-mailfloor-txt" id="residentialAddress-mailfloor-lbl">{{'RESIDENTIAL_ADDRESS.FLOOR'
+                      | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.mailingAddress.controls.mailFloor)}">
+                      <input type="text" class="input-control grey" formControlName="mailFloor" id="residentialAddress-mailfloor-txt" />
                     </div>
                   </div>
                 </div>

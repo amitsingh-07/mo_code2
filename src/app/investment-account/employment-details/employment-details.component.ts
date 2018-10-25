@@ -10,6 +10,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-employment-details',
@@ -59,7 +60,7 @@ export class EmploymentDetailsComponent implements OnInit {
     this.getOccupationList();
     this.getIndustryList();
     this.getEmployeList();
-    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
+    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
     const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : 'Employed';
@@ -116,8 +117,15 @@ export class EmploymentDetailsComponent implements OnInit {
   buildFormEmployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
       employmentStatus: [empStatus, Validators.required],
-      companyName: [this.formValues.companyName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      occupation: [this.formValues.occupation, Validators.required],
+      companyName: [{
+        value: this.formValues.companyName,
+        disabled: this.investmentAccountService.isDisabled('companyName')
+      },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      occupation: [{
+        value: this.formValues.occupation,
+        disabled: this.investmentAccountService.isDisabled('occupation')
+      }, Validators.required],
       industry: [this.formValues.industry, Validators.required],
       contactNumber: [this.formValues.contactNumber, [Validators.required, Validators.pattern(RegexConstants.ContactNumber)]],
       isEmployeAddresSame: [this.formValues.isEmployeAddresSame]
@@ -133,7 +141,8 @@ export class EmploymentDetailsComponent implements OnInit {
     if (!this.employementDetailsForm.controls.isEmployeAddresSame.value) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
-          empCountry: [this.formValues.nationality.country, Validators.required],
+          empCountry: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+            Validators.required],
           empPostalCode: [this.formValues.empPostalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empAddress2: [this.formValues.empAddress2],
@@ -141,7 +150,8 @@ export class EmploymentDetailsComponent implements OnInit {
         }));
       } else { // Other Countries
         this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
-          empCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
+          empCountry: [this.formValues.empCountry ? this.formValues.empCountry :
+            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empAddress2: [this.formValues.empAddress2],
           empCity: [this.formValues.empCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],

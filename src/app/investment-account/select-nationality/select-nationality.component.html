@@ -23,14 +23,14 @@
           <div class="flex-col-7">
             <div class="dropdown-control">
               <div ngbDropdown>
-                <button class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
-                  <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">{{nationality | titlecase}}</span>
+                <button [disabled]="isDisabled()" class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
+                  <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">{{selectedNationality | titlecase}}</span>
                 </button>
 
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectNationality(nationalityObj)"
+                  <button class="dropdown-item" *ngFor="let nationality of nationalityList; let i = index;" (click)="selectNationality(nationality)"
                     id="selectNationality-country-option-{{i}}">
-                    {{nationalityObj.nationality | titlecase}}
+                    {{nationality.name | titlecase}}
                   </button>
                 </div>
               </div>

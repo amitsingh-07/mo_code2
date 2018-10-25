@@ -23,9 +23,9 @@
               </button>
 
               <div class="dropdown dropdown-lg" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectCountry(nationalityObj)"
+                <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="selectCountry(country)"
                   id="selectNationality-country-option-{{i}}">
-                  {{nationalityObj.country | titlecase}}
+                  {{country.name | titlecase}}
                 </button>
               </div>
             </div>

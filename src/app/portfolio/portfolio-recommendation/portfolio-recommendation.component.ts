@@ -1,5 +1,7 @@
 import 'rxjs/add/observable/timer';
 
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
 import {
@@ -9,6 +11,9 @@ import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -17,7 +22,6 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
 
@@ -131,6 +135,6 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
   goToNext() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.PRELOGIN]);
+    this.router.navigate([ SIGN_UP_ROUTE_PATHS.PRELOGIN]);
   }
 }

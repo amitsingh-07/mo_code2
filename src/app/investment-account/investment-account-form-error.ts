@@ -66,6 +66,18 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Address Line 2 should not contain special characters in mailing address.'
             }
         },
+        floor: {
+            required: {
+                errorTitle: 'Invalid Floor',
+                errorMessage: 'Please enter your floor.'
+            }
+        },
+        mailFloor: {
+            required: {
+                errorTitle: 'Invalid Floor',
+                errorMessage: 'Please enter your floor in mailing address.'
+            }
+        },
         unitNo: {
             required: {
                 errorTitle: 'Invalid Unit No.',
@@ -185,6 +197,10 @@ export class InvestmentAccountFormError {
             pattern: {
                 errorTitle: 'Invalid full name',
                 errorMessage: 'first Name should not contain alphabet.'
+            },
+            nameMatch: {
+                errorTitle: 'Invalid name',
+                errorMessage: 'First Name and Last Name are not matched with Full Name.'
             }
         },
 
