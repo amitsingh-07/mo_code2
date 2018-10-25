@@ -169,5 +169,8 @@
             margin-left: 21px;
             margin-right:21px;
         }
+        @include tablet {
+            display: flex;
+        }
       }
 }
