@@ -13,6 +13,7 @@ import { AccountCreatedComponent } from './account-created/account-created.compo
 import { AuthGuardService } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
     ForgotPasswordResultComponent
@@ -66,7 +67,8 @@ export function createTranslateLoader(http: HttpClient) {
     PostLoginComponent,
     PreLoginComponent,
     InputFocusDirective,
-    SecurePipe
+    SecurePipe,
+    EditProfileComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

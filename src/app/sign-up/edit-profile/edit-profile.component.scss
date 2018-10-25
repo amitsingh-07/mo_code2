@@ -1,0 +1,71 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+
+.grass_bg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .white-bg
+  {
+      background: white;
+  }
+  .user-profile-bg{
+      background:white;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      padding: 10px;
+      margin: 25px;
+
+  }
+  .heading
+  {
+    object-fit: contain;
+    font-family: $muli-bold;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.36;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #066360;
+  }
+  .content-text{
+    object-fit: contain;
+    opacity: 0.95;
+    font-family: $muli-light;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.71;
+    letter-spacing: -0.3px;
+    color: #066360;
+  }
+  .nric-text{
+    object-fit: contain;
+    opacity: 0.95;
+    font-family: $muli-light;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.71;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #066360;
+  }
+  .grid-content-text{
+    object-fit: contain;
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    color: #2d8289;
+  }
