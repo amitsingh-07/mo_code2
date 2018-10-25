@@ -121,7 +121,6 @@ export class TaxInfoComponent implements OnInit {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
-      console.log(error);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;

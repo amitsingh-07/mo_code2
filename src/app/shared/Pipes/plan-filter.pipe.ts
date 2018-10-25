@@ -9,6 +9,7 @@ export interface IFilterData {
     escalatingBenefit: Set<string>;
     fullPartialRider: Set<string>;
     payoutYears: Set<string>;
+    payoutPeriod: Set<string>;
     claimCriteria: Set<string>;
 }
 
@@ -62,10 +63,15 @@ export class PlanFilterPipe implements PipeTransform {
                 const payoutYears = isPayoutYears ? true
                     : this.filterData.payoutYears.has(plan.premium.payoutDuration);
 
+                const isPayoutPeriod = typeof (this.filterData.payoutPeriod) === 'undefined'
+                    || this.filterData.payoutPeriod.size === 0;
+                const payoutPeriod = isPayoutPeriod ? true
+                    : this.filterData.payoutPeriod.has(plan.premium.retirementPayPeriodDisplay);
+
                 const isClaimFeature = typeof (this.filterData.claimFeature) === 'undefined'
                     || this.filterData.claimFeature.size === 0;
                 const claimFeature = isClaimFeature ? true
-                    : this.filterData.claimFeature.has(plan.insurer.rating);
+                    : this.filterData.claimFeature.has(plan.premium.claimFeature);
 
                 const isClaimCriteria = typeof (this.filterData.claimCriteria) === 'undefined'
                     || this.filterData.claimCriteria.size === 0;
@@ -73,7 +79,7 @@ export class PlanFilterPipe implements PipeTransform {
                     : this.filterData.claimCriteria.has(plan.premium.claimCriteria);
 
                 return insurerName && financialRating && premiumFrequency && claimFeature &&
-                    deferredPeriod && escalatingBenefit && fullPartialRider && payoutYears && claimCriteria;
+                    deferredPeriod && escalatingBenefit && fullPartialRider && payoutYears && claimCriteria && payoutPeriod;
             });
         } else {
             this.filteredList = plans;

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FooterService } from './../shared/footer/footer.service';
-import { NavbarService } from './../shared/navbar/navbar.service';
-import { ArticleApiService } from './article.api.service';
-import { ArticleService } from './article.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { ArticleApiService } from '../article.api.service';
+import { ArticleService } from '../article.service';
 
-import { IArticleElement } from './articleElement.interface';
+import { IArticleElement } from '../articleElement.interface';
 
 @Component({
   selector: 'app-article',
@@ -22,11 +22,9 @@ export class ArticleComponent implements OnInit {
   ngOnInit() {
     this.articleApiService.getGetStartedArticle().subscribe((data) => {
       this.getStartedArticleList = this.articleService.getArticleElementList(data);
-      console.log(this.getStartedArticleList);
     });
     this.articleApiService.getRecentArticle(8).subscribe((data) => {
       this.recentArticleList = this.articleService.getArticleElementList(data);
-      console.log(this.recentArticleList);
     });
     this.footerService.setFooterVisibility(true);
   }

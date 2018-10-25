@@ -94,7 +94,6 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       });
     }
     const error = this.portfolioService.doFinancialValidations(form);
-    console.log('error' + error);
     if (error) {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });

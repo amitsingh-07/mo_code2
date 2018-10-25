@@ -83,7 +83,6 @@ export class FinanicalDetailsComponent implements OnInit {
   getIncomeRangeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
-      console.log(this.annualHouseHoldIncomeRanges);
     });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
