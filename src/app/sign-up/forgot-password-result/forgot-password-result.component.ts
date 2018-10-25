@@ -10,6 +10,7 @@ import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-forgot-password-result',
@@ -22,13 +23,17 @@ export class ForgotPasswordResultComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
-    public navbarService: NavbarService) {
+    public navbarService: NavbarService,
+    public footerService: FooterService
+    ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
   }
   redirectToLogin() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);

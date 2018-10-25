@@ -234,7 +234,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (innerWidth > this.mobileThreshold) {
       window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
     } else {
-      elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+      setTimeout( () => {
+        elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+      }, 0);
     }
   }
 

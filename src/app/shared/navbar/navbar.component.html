@@ -37,6 +37,9 @@
         
         <div *ngIf="(navbarMode == 1 || navbarMode == 3)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
+                <li class="nav-item" [routerLink]="['/']">
+                    <a class="nav-link">Home</a>
+                    </li>
                 <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
                     <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
                     <div class="dropdown-menu right perma" ngbDropdownMenu aria-labelledby="id01">
