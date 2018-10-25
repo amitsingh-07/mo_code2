@@ -28,8 +28,8 @@ export class FinanicalDetailsComponent implements OnInit {
   pageTitle: string;
   financialDetails: FormGroup;
   FinancialFormData;
-  selectRangeValue = 'select Range';
-  selectNumber = 'Select Number';
+  selectRangeValue;
+  selectNumber;
   formValues;
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
