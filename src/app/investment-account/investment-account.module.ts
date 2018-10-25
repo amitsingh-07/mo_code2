@@ -38,7 +38,6 @@ import {
 } from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { PostLoginComponent } from './post-login/post-login.component';
-import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
@@ -75,7 +74,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   declarations: [
     PostLoginComponent,
-    PreLoginComponent,
     PersonalInfoComponent,
     ResidentialAddressComponent,
     SelectNationalityComponent,

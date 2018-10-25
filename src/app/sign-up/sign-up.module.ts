@@ -20,6 +20,7 @@ import {
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
+import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
@@ -61,6 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     ResetPasswordComponent,
     SuccessMessageComponent,
     DashboardComponent,
+    PreLoginComponent,
     InputFocusDirective,
     SecurePipe
   ],

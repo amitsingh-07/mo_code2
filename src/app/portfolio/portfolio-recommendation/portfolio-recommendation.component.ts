@@ -1,5 +1,7 @@
 import 'rxjs/add/observable/timer';
 
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
 import {
@@ -134,7 +136,6 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
   goToNext() {
-    console.log(INVESTMENT_ACCOUNT_ROUTE_PATHS.PRELOGIN);
-    this.router.navigate([ INVESTMENT_ACCOUNT_ROUTE_PATHS.PRELOGIN]);
+    this.router.navigate([ SIGN_UP_ROUTE_PATHS.PRELOGIN]);
   }
 }

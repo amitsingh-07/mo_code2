@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
-import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-password-result.component';
+import {
+    ForgotPasswordResultComponent
+} from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
+import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
@@ -20,6 +24,10 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.ROOT,
     pathMatch: 'full',
     redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT
+  },
+  {
+    path: SIGN_UP_ROUTES.PRELOGIN,
+    component: PreLoginComponent
   },
   {
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT,

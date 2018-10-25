@@ -27,7 +27,6 @@ import {
 } from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { PostLoginComponent } from './post-login/post-login.component';
-import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
@@ -40,13 +39,9 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
-    redirectTo: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
+    redirectTo: INVESTMENT_ACCOUNT_ROUTES.POSTLOGIN,
     pathMatch: 'full',
     canActivate: [AuthGuard]
-  },
-  {
-    path: INVESTMENT_ACCOUNT_ROUTES.PRELOGIN,
-    component: PreLoginComponent
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.POSTLOGIN,

@@ -50,7 +50,7 @@ export class PreLoginComponent implements OnInit {
   }
 
   navigateLogin() {
-    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
+    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 

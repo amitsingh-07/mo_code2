@@ -95,5 +95,10 @@
         "EMAIL_NOT_FOUND_DESC":"The email you’ve entered doesn’t seem to exist in our database. Please try again."
 
 
+    },
+    "PRELOGIN": {
+      "TITLE": "Are you an existing MoneyOwl user?",
+      "YES_LOGIN": "Yes, Log In Now",
+      "CREATE_ACCOUNT": "No, Create Account"
     }
 }
