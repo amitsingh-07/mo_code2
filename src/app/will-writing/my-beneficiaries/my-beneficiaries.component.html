@@ -15,8 +15,9 @@
       </div>
       <div class="col-lg-5 col-md-5  col-sm-12 beneficiaries-container">
         <div name="beneficiariesForm">
-          <div class="form-group-single-column  mb0 flex-col"><span class="content-title">{{
-              'WILL_WRITING.MY_BENEFICIARY.FORM_TITLE' | translate}}</span></div>
+          <div class="form-group-single-column  mb0 flex-col">
+            <span class="content-title">{{'WILL_WRITING.MY_BENEFICIARY.FORM_TITLE' | translate}}</span>
+          </div>
           <div>
             <div class="form-group-single-column  mb0 flex-col">
               <div class="edit-block checkbox-button two-label" *ngFor="let beneficiary of beneficiaryList ; let i = index">
@@ -26,7 +27,7 @@
                   <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
                   <div class="input-label-normal">{{beneficiary.relationship | titlecase }}</div>
                 </label>
-                <!-- <span class="edit-icon"><img src="assets/images/will-writing/edit-icon.svg"/></span> -->
+                <span (click)="editBeneficiary(beneficiary.relationship,i)" class="edit-icon"><img src="assets/images/will-writing/edit-icon.svg" /></span>
               </div>
             </div>
             <div>
@@ -35,11 +36,17 @@
                   <div id="addGuardianForm" name="addGuardianForm">
                     <div class="aboutMe">
                       <div class="form-group">
-                        <div class="col-12 flex-row title">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}</div>
+                        <div class="col-12 flex-row title">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}
+                          <span *ngIf="isEdit" (click)="resetForm()" class="title">{{'WILL_WRITING.COMMON.CANCEL'
+                            | translate}}</span>
+                        </div>
                         <div class="flex-row mb10">
                           <div class="flex-col-5">
                             <label for="name" id="addGuardianFormLbl1">
-                              <div><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div><div class="sub-name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></div>
+                              <div>
+                                <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div>
+                                <div class="sub-name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div>
+                              </div>
                             </label>
                           </div>
                           <div class="flex-col-7">
@@ -72,7 +79,7 @@
                                   <span *ngIf="relationship !== ''">{{relationship}}</span>
                                 </button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownRelationship">
-                                  <button class="dropdown-item" (click)="selectrelationship('')">{{'COMMON.LBL_SELECT'
+                                  <button class="dropdown-item" (click)="selectrelationship()">{{'COMMON.LBL_SELECT'
                                     | translate}}</button>
                                   <button type="button" class="dropdown-item" *ngFor="let relationship of relationshipList; let i=index"
                                     (click)="selectRelationship(relationship)">
@@ -83,7 +90,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="flex-row mb10 add-beneficiary">
+                        <div class="flex-row mb10 add-beneficiary" *ngIf="!isEdit">
                           <div class="flex-col-5">
                             <button type="button" (click)="resetForm()" class="btn width100">{{
                               'WILL_WRITING.COMMON.CANCEL' | translate}}</button>
@@ -106,8 +113,12 @@
               </div>
             </div>
             <div>
-              <button type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{
-                'LABEL.CONTINUE' | translate}}</button>
+              <button *ngIf="!isEdit" type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100"
+                id="prtNeedBtn1">
+                {{'LABEL.CONTINUE' | translate}} </button>
+              <button *ngIf="isEdit" type="button" (click)="addBeneficiary(addBeneficiaryForm)" class="btn btn-primary btn__footer--fixed width100"
+                id="prtNeedBtn1">
+                {{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}} </button>
             </div>
           </div>
         </div>

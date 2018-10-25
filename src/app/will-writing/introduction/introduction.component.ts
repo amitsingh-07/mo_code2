@@ -35,7 +35,7 @@ export class IntroductionComponent implements OnInit {
   ngOnInit() {
 
     this.promoCodeForm = this.formBuilder.group({
-      promoCode: ['',  [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]]
+      promoCode: ['',  [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
   }
 

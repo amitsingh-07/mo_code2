@@ -19,6 +19,7 @@
       "GENDER": "Gender",
       "MARITAL_STATUS": "Marital Status",
       "NUMBER_OF_CHILDREN": "Number of Children",
+      "APPLY_CHANGES": "Apply Changes",
       "RELATIONSHIP_LIST": [{
           "text": "Sibling",
           "value": "sibling"
