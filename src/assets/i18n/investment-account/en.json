@@ -25,6 +25,7 @@
     "POSTAL_CODE": "Postal Code",
     "ADDRESS_1": "Address Line 1",
     "ADDRESS_2": "Address Line 2",
+    "FLOOR": "Floor",
     "UNIT_NO": "Unit No.",
     "CITY": "City",
     "STATE": "State / Province / Region",
