@@ -197,6 +197,7 @@ input[type='checkbox']+label {
             margin-bottom: 19px;
             padding: 17px 19px; 
             border-radius: 6px;
+            justify-content: space-between;
         }
         .sublbl {
             font-family: $muli-regular;
@@ -246,5 +247,15 @@ input[type='checkbox']+label {
 }
 
 .edit-icon {
+    cursor: pointer;
+}
+
+.title-cancel {
+    font-family: $muli-regular;
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: -0.3px;
+    text-align: right;
+    color: #00a7a7;
     cursor: pointer;
 }
