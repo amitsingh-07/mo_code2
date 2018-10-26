@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +16,7 @@ import { DirectService } from './../../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class HospitalPlanFormComponent implements OnInit, OnDestroy {
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
   categorySub: any;
   modalRef: NgbModalRef;
   hospitalForm: FormGroup;
@@ -54,9 +55,9 @@ export class HospitalPlanFormComponent implements OnInit, OnDestroy {
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '4') {
         if (this.save()) {
+          this.formSubmitted.emit(this.summarizeDetails());
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
-        this.directService.triggerSearch('');
       }
     });
   }

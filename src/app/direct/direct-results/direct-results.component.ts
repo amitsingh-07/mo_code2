@@ -270,7 +270,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     };
     const payoutPeriod = {
       title: this.filterTypes.PAYOUT_YEARS, name: 'payoutPeriod',
-      filterTypes: this.payoutYears, allBtn: true
+      filterTypes: this.payoutPeriod, allBtn: true
     };
     const claimCriteria = {
       title: this.filterTypes.CLAIM_CRITERIA, toolTip:

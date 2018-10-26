@@ -47,6 +47,7 @@ export class DirectService {
   currentIndexValue: number;
 
   constructor(private currencyPipe: CurrencyPipe, private googleAnalyticsService: GoogleAnalyticsService) {
+    this.getDirectFormData();
   }
 
   commit() {
@@ -91,6 +92,7 @@ export class DirectService {
   /* Search Button Trigger */
   triggerSearch(event) {
     this.searchBtn.next(event);
+    this.searchBtn.next('');
   }
   /* Search Button Success */
   gaDirectSuccess(category: string) {
@@ -123,7 +125,16 @@ export class DirectService {
 
   /* Handling Minified Product Info */
   setMinProdInfo(prodString: string) {
-    this.prodSearchInfo.next(prodString);
+    //this.prodSearchInfo.next(prodString);
+    this.directFormData.minProdInfo = prodString;
+    this.commit();
+  }
+
+  getMinProdInfo() {
+    if (!this.directFormData.minProdInfo) {
+      this.directFormData.minProdInfo = '';
+    }
+    return this.directFormData.minProdInfo;
   }
 
   /* Custom Currency */

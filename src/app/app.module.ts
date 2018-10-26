@@ -139,7 +139,8 @@ export function tokenGetterFn() {
       useClass: JwtInterceptor,
       multi: true,
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
-    }, Formatter, CurrencyPipe],
+    }, Formatter, CurrencyPipe,
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,

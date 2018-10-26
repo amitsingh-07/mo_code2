@@ -1,8 +1,9 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
@@ -15,6 +16,7 @@ import { DirectService } from './../../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
   categorySub: any;
   modalRef: NgbModalRef;
   srsApprovedPlansForm: FormGroup;
@@ -37,7 +39,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.payoutTypeList = this.translate.instant('SRS_SELECTED_PLANS.SINGLE_PREMIUM_LIST');
       this.payoutType = '';
-      });
+    });
   }
 
   ngOnInit() {
@@ -60,9 +62,9 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '8') {
         if (this.save()) {
+          this.formSubmitted.emit(this.summarizeDetails());
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
-        this.directService.triggerSearch('');
       }
     });
   }
@@ -76,14 +78,14 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
     return Math.abs(age_dt.getUTCFullYear() - 1970);
   }
   getAge() {
-    const year  = this.srsApprovedPlansForm.controls.dob.value.year;
-    const month  = this.srsApprovedPlansForm.controls.dob.value.month;
-    const day  = this.srsApprovedPlansForm.controls.dob.value.day;
+    const year = this.srsApprovedPlansForm.controls.dob.value.year;
+    const month = this.srsApprovedPlansForm.controls.dob.value.month;
+    const day = this.srsApprovedPlansForm.controls.dob.value.day;
     this.age = this.calculate_age(new Date(year, month, day));
   }
   selectPayoutStartAge(payoutStartAge) {
-      this.payoutStartAge = payoutStartAge;
-      this.srsApprovedPlansForm.controls.payoutStartAge.setValue(this.payoutStartAge);
+    this.payoutStartAge = payoutStartAge;
+    this.srsApprovedPlansForm.controls.payoutStartAge.setValue(this.payoutStartAge);
   }
   dobErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -107,7 +109,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   save() {
     const form = this.srsApprovedPlansForm;
     if (form.controls.singlePremium.value < 1 || isNaN(form.controls.singlePremium.value)) {
-      form.controls['singlePremium'].setErrors({required: true});
+      form.controls['singlePremium'].setErrors({ required: true });
     }
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
