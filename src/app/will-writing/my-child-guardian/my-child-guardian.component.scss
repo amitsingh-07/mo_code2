@@ -184,3 +184,14 @@
     font-weight: 100;
     color: #2d8289;
   }
+
+  .title-cancel {
+    font-family: $muli-regular;
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: -0.3px;
+    text-align: right;
+    color: #00a7a7;
+    cursor: pointer;
+    padding-top: 5px;
+}

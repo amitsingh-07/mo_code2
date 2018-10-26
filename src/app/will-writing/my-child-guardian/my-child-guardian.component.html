@@ -35,10 +35,10 @@
                     <span *ngIf="hasSpouse" class="mr5">
                       {{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.ALTERNATIVE' | translate}}
                     </span>
-                    {{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}
-                    <span *ngIf="isEdit" (click)="resetForm()" class="title">
+                    <div class="col-8">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}</div>
+                    <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">
                         {{'WILL_WRITING.COMMON.CANCEL' | translate}}
-                    </span>
+                    </div>
                   </div>
                   <div *ngIf="hasSpouse" class="flex-row mb10 alternative-sub-title">
                     {{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.ALTERNATIVE_SUB_TITLE' | translate}}
