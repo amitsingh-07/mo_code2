@@ -1,0 +1,131 @@
+<div class="container-fluid">
+    <div class="content">
+  
+      <form id="myFinancialsForm" name="myFinancialsForm" >
+        <!-- FIRST SECTION -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="form-group-with-bg">
+              <!--Form Header-->
+              <div class="form-group-with-bg--header">
+                <div class="flex-row">
+                  <div class="flex-col-12">
+                    <div class="form-group-with-bg--header-label" id="myFinancialLbl">1. Select Portfolio
+  
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+              <!--Form Content-->
+              <div class="form-group-with-bg--content">
+                <div class="flex-row">
+                
+                  <div class="flex-col-12">
+                    
+                     
+                        <div class="flex-col-12">
+                            <div class="dropdown-control" >
+                              <div ngbDropdown>
+                                <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                                  ngbDropdownToggle>Select Portfolio
+                                </button>
+                                <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                                  <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('country',country.name, i)"
+                                    id="residentialAddress-country-option-{{i}}">{{country.name}}</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                   
+                  </div>
+                </div>
+                
+  
+                
+  
+               
+  
+  
+                
+                <!-- buttons -->
+               
+                <!-- ending button -->
+  
+  
+              </div>
+  
+            </div>
+          </div>
+        </div>
+  
+        <!-- SECOND SECTION -->
+        <div class="row second-section">
+          <div class="col-lg-12 col-md-12">
+  
+            <div class="form-group-with-bg">
+              <!--Form Header-->
+              <div class="form-group-with-bg--header">
+                <div class="flex-row">
+                  <div class="flex-col-12">
+                    <div class="form-group-with-bg--header-label" id="MyFinacialInvestmentLbl">2. Enter Investment Amount
+  
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+              <!--Form Content-->
+              <div class="form-group-with-bg--content">
+               
+                <div class="flex-row">
+            
+                    <div class="flex-col-12">
+                      <div class="btn-group--toggle" ngbRadioGroup name="radioGender">
+                        <div class="flex-row mb0">
+                          <div class="flex-col-6">
+                            <div  ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr17" id="invPersInfoLbl2">
+                              <input ngbButton type="radio" value="male" id="invPersInfoInpt8"> 
+                              <div class="one-time">One time Investment</div>
+                              <div class="">Min $15</div>
+                            </div>
+                          </div>
+                          <div class="flex-col-6">
+                            <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="invPersInfoLbl3">
+                              <input ngbButton type="radio" value="female" id="invPersInfoInpt9"> Monthly
+                              
+                              
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="flex-row">
+                   
+                    <div class="flex-col-12">
+                      <div class="form-control">
+                        <i id="myFinancialDollerSymbThree">$</i>
+                        <div name="totalLiabilities" >
+                          <input class="input-control" type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio maxLength="7" #totalLiabilities 
+                            value="0">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="balance-amount">Cash Account Balance: $120,000 </p>
+
+              </div>
+            
+            </div>
+            <button type="button"  (click)="goToNext()"
+              class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
+  
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
