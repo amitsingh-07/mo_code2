@@ -35,12 +35,12 @@
                     <div class="flex-row mb0" style="justify-content: space-between;">
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl2">
-                          <input ngbButton type="radio" value="yes" id="eligibilityInpt1"> {{ 'COMMON.LBL_YES' | translate}}
+                          <input ngbButton type="radio" (click) = "changeState($event)" value="yes" id="eligibilityInpt1"> {{ 'COMMON.LBL_YES' | translate}}
                         </label>
                       </div>
                       <div>
-                        <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : true}" id="eligibilityLbl3">
-                          <input ngbButton type="radio" value="no" id="eligibilityInpt2"> {{ 'COMMON.LBL_NO' | translate}}
+                        <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : isSingaporean}" id="eligibilityLbl3">
+                          <input ngbButton type="radio" (click) = "changeState($event)" value="no" id="eligibilityInpt2"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
                       </div>
                     </div>
@@ -57,12 +57,12 @@
                     <div class="flex-row mb0" style="justify-content: space-between;">
                       <div>
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl5">
-                          <input ngbButton type="radio" value="yes" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
+                          <input ngbButton type="radio" value="yes" (click) = "changeAssets($event)" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
                         </label>
                       </div>
                       <div>
-                        <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : true}" id="eligibilityLbl6">
-                          <input ngbButton type="radio" value="no" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
+                        <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : isAssets}" id="eligibilityLbl6">
+                          <input ngbButton type="radio" value="no" (click) = "changeAssets($event)" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
                       </div>
                     </div>
@@ -89,7 +89,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 flex pl0 pr0 mt15">
+                <div *ngIf="isSingaporean || isAssets" class="col-12 flex pl0 pr0 mt15">
                     <div class="inline-warning col-1"></div>
                     <div class="warning-message col-11">{{ 'WILL_WRITING.ELIGIBILITY.INLINE_ERROR' | translate}}</div>
                 </div>
