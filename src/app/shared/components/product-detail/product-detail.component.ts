@@ -62,12 +62,16 @@ export class ProductDetailComponent implements OnInit {
       {
         title: this.lblPayout,
         description: this.plan.payOut
-      },
-      {
-        title: this.lblFeatures,
-        description: this.plan.features
       }
     ];
+
+    if (this.plan.features && this.plan.features.length > 0) {
+      this.items.push(
+        {
+          title: this.lblFeatures,
+          description: this.plan.features
+        });
+    }
 
   }
 

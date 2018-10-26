@@ -75,36 +75,18 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   getIndustryList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.investmentAccountService.getIndustryList().subscribe((data) => {
-        this.industryList = data.objectList;
-        console.log(this.industryList);
-      });
+    this.investmentAccountService.getIndustryList().subscribe((data) => {
+      this.industryList = data.objectList;
     });
-
   }
   getOccupationList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.investmentAccountService.getOccupationList().subscribe((data) => {
-        this.occupationList = data.objectList;
-        console.log(this.occupationList);
-      });
+    this.investmentAccountService.getOccupationList().subscribe((data) => {
+      this.occupationList = data.objectList;
     });
-
   }
   getEmployeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.employementStatusList = data.objectList.employmentStatus;
-      console.log(this.employementStatusList);
-      const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0].name;
-      if (employStatus === 'Unemployed') {
-        this.employementDetailsForm = this.buildFormUnemployement(employStatus);
-        this.showEmploymentControls = false;
-      } else {
-        this.employementDetailsForm = this.buildFormEmployement(employStatus);
-        this.showEmploymentControls = true;
-      }
-      this.addOrRemoveMailingAddress();
     });
   }
   setEmployementStatus(key, value) {
@@ -121,14 +103,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
   setIndustryValue(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
-
-    console.log(this.industry);
-
   }
   setOccupationValue(key, value) {
     this.employementDetailsForm.controls[key].setValue(value);
-
-    console.log(this.occupation);
   }
 
   setDropDownValue(key, value, nestedKey) {
@@ -199,8 +176,8 @@ export class EmploymentDetailsComponent implements OnInit {
               address2Control.setValue(address2);
             } else {
               const ref = this.modal.open(ErrorModalComponent, { centered: true });
-              ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
-              ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
+              ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
+              ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
               address1Control.setValue('');
               address2Control.setValue('');
             }
@@ -208,13 +185,13 @@ export class EmploymentDetailsComponent implements OnInit {
         },
         (err) => {
           const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-          ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+          ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.ERROR.POSTAL_CODE_TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.ERROR.POSTAL_CODE_DESC');
         });
     } else {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE');
+      ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_EMPTY_ERROR.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_EMPTY_ERROR.MESSAGE');
     }
   }
 

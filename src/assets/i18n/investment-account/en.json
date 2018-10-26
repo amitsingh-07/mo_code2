@@ -68,7 +68,15 @@
     "CONTINUE": "Continue",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
-      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+      "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+    },
+    "POSTALCODE_EMPTY_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter your postal code."
+    },
+    "POSTALCODE_NOT_FOUND_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter valid postal code."
     }
   },
   "SELECT_NATIONALITY": {
