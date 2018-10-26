@@ -23,7 +23,7 @@ export interface IGuardian {
     name: string;
     relationship: string;
     uin: string;
-    type: string;
+    isAlt: boolean;
 }
 
 export interface IEligibility {

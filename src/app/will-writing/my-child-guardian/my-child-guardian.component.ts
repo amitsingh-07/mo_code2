@@ -19,6 +19,8 @@ export class MyChildGuardianComponent implements OnInit {
   private pageTitle: string;
   private step: string;
   private tooltip = {};
+  private isEdit: boolean;
+  private selectedIndex: number;
 
   addGuardianForm: FormGroup;
   guardianList: IGuardian[] = [];
@@ -53,7 +55,7 @@ export class MyChildGuardianComponent implements OnInit {
     } else {
       if (this.hasSpouse) {
         const spouse: any = Object.assign({}, this.willWritingService.getSpouseInfo()[0]);
-        spouse.type = 'primary';
+        spouse.isAlt = false;
         this.guardianList.push(spouse);
       }
     }
@@ -84,9 +86,17 @@ export class MyChildGuardianComponent implements OnInit {
     this.addGuardianForm.controls['relationship'].setValue(relationship.value);
   }
 
-  editGuardian(relation: string) {
+  editGuardian(relation: string, index: number) {
     if (relation === 'spouse') {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+    } else {
+      this.selectedIndex = index;
+      this.isEdit = true;
+      const guardian = this.guardianList[index];
+      this.addGuardianForm.controls['name'].setValue(guardian.name);
+      this.addGuardianForm.controls['uin'].setValue(guardian.uin);
+      const beneRelationship = this.relationshipList.filter((relationship) => relationship.value === guardian.relationship);
+      this.selectRelationship(beneRelationship[0]);
     }
   }
 
@@ -104,11 +114,30 @@ export class MyChildGuardianComponent implements OnInit {
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
       return false;
     } else {
-      this.guardianList.push(form.value);
-      form.value.type = this.hasSpouse ? 'secondary' : 'primary';
+      if (!this.isEdit) {
+        form.value.isAlt = this.hasSpouse ? true : false;
+        this.guardianList.push(form.value);
+      } else {
+        this.guardianList[this.selectedIndex].name = form.value.name;
+        this.guardianList[this.selectedIndex].relationship = form.value.relationship;
+        this.guardianList[this.selectedIndex].uin = form.value.uin;
+      }
       this.willWritingService.setGuardianInfo(this.guardianList);
       return true;
     }
+  }
+
+  resetForm() {
+    this.addGuardianForm.reset();
+    this.submitted = false;
+    this.relationship = '';
+    this.isEdit = false;
+  }
+
+  openToolTipModal() {
+    const title = this.tooltip['title'];
+    const message = this.tooltip['message'];
+    this.willWritingService.openToolTipModal(title, message);
   }
 
   /**
@@ -116,7 +145,7 @@ export class MyChildGuardianComponent implements OnInit {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if (this.guardianList.length === this.maxGuardian || this.save(form)) {
+    if ((this.isEdit && this.save(form)) || this.guardianList.length === this.maxGuardian) {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
     }
   }
