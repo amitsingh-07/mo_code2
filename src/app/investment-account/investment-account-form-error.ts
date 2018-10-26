@@ -180,83 +180,75 @@ export class InvestmentAccountFormError {
         fullName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid full name',
+                errorTitle: 'Invalid Full Name',
                 errorMessage: 'Please enter full name.'
             },
             pattern: {
-                errorTitle: 'Invalid full name',
-                errorMessage: 'full name should not contain alphabet.'
+                errorTitle: 'Invalid Full Name',
+                errorMessage: 'Full Name should not contain alphabet.'
             }
         },
         firstName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid full name',
-                errorMessage: 'Please enter  first Name.'
+                errorTitle: 'Invalid First Name',
+                errorMessage: 'Please enter  First Name.'
             },
             pattern: {
-                errorTitle: 'Invalid full name',
-                errorMessage: 'first Name should not contain alphabet.'
+                errorTitle: 'Invalid First Name',
+                errorMessage: 'First Name should not contain alphabet.'
             },
             nameMatch: {
                 errorTitle: 'Invalid name',
-                errorMessage: 'First Name and Last Name are not matched with Full Name.'
+                errorMessage: 'First Name and Last Name are not matched with First Name.'
             }
         },
 
         lastName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid full name',
-                errorMessage: 'Please enter last Name.'
+                errorTitle: 'Invalid Last Name',
+                errorMessage: 'Please enter Last Name.'
             },
             pattern: {
-                errorTitle: 'Invalid full name',
-                errorMessage: 'last Name should not contain alphabet.'
+                errorTitle: 'Invalid Last Name',
+                errorMessage: 'Last Name should not contain alphabet.'
             }
         },
         nricNumber: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid NRIC number',
-                errorMessage: 'Please enter NRIC number.'
+                errorTitle: 'Invalid NRIC Number',
+                errorMessage: 'Please enter NRIC Number.'
             },
             pattern: {
-                errorTitle: 'Invalid NRIC number',
-                errorMessage: 'NRIC number should not contain special characters.'
+                errorTitle: 'Invalid NRIC Number',
+                errorMessage: 'NRIC Number should not contain special characters.'
             }
         },
         passportNumber: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid passport  number',
-                errorMessage: 'Please enter passport  number.'
+                errorTitle: 'Invalid Passport Number',
+                errorMessage: 'Please enter Passport Number.'
             },
             pattern: {
-                errorTitle: 'Invalid passport  number',
-                errorMessage: 'Passport number should not contain special characters.'
+                errorTitle: 'Invalid Passport Number',
+                errorMessage: 'Passport Number should not contain special characters.'
             }
         },
         passportExpiry: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid passport expiry date',
-                errorMessage: 'Please enter passport expiry date.'
-            },
-            pattern: {
-                errorTitle: 'Invalid passport expiry date',
-                errorMessage: 'Passport expiry date should not contain alphabet.'
+                errorTitle: 'Invalid Passport Expiry',
+                errorMessage: 'Please enter Passport Expiry.'
             }
         },
         dob: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid date of birth',
-                errorMessage: 'Please enter Date of birth date.'
-            },
-            pattern: {
-                errorTitle: 'Invalid date of birth',
-                errorMessage: 'Passport Expiry date should not contain alphabet.'
+                errorTitle: 'Invalid Date Of Birth',
+                errorMessage: 'Please enter Date Of Birth.'
             }
         },
         sourceOfIncome: {
@@ -269,36 +261,36 @@ export class InvestmentAccountFormError {
         companyName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid company name',
-                errorMessage: 'Please enter company Name.'
+                errorTitle: 'Invalid Company Name',
+                errorMessage: 'Please enter Company Name.'
             },
             pattern: {
-                errorTitle: 'Invalid company name',
-                errorMessage: 'company name should contain alphabet.'
+                errorTitle: 'Invalid Company Name',
+                errorMessage: 'Company Name should contain only alphabets.'
             }
         },
         occupation: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid occupation',
-                errorMessage: 'Please select your occupation.'
+                errorTitle: 'Invalid Occupation',
+                errorMessage: 'Please select your Occupation.'
             }
         },
         industry: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid industry name',
-                errorMessage: 'Please select your industry'
+                errorTitle: 'Invalid Industry',
+                errorMessage: 'Please select your Industry'
             }
         },
         contactNumber: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid contact number',
-                errorMessage: 'Please enter contact number.'
+                errorTitle: 'Invalid Contact Number',
+                errorMessage: 'Please enter Contact Number.'
             },
             pattern: {
-                errorTitle: 'Invalid  contact number',
+                errorTitle: 'Invalid  Contact Number',
                 errorMessage: ' Please enter valid Contact Number.'
             }
         },
@@ -331,8 +323,8 @@ export class InvestmentAccountFormError {
         empUnitNo: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid employement unit number',
-                errorMessage: 'Please enter unit number'
+                errorTitle: 'Invalid Unit No.',
+                errorMessage: 'Please enter Unit No.'
             }
         },
 
@@ -362,43 +354,43 @@ export class InvestmentAccountFormError {
         annualHouseHoldIncomeRange: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid annual HouseHoldIncome',
-                errorMessage: 'Please enter annual HouseHoldIncome.'
+                errorTitle: 'Invalid Annual Household Income',
+                errorMessage: 'Please select Annual Household Income.'
             }
         },
         numberOfHouseHoldMembers: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
 
-                errorTitle: 'Invalid number Of House Hold Members',
-                errorMessage: 'Please enter number Of House Hold Members.'
+                errorTitle: 'Invalid No. Of Household Members',
+                errorMessage: 'Please select No. Of Household Members.'
             }
         },
         financialMonthlyIncome: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid financial Monthly Income',
+                errorTitle: 'Invalid Monthly Income',
                 errorMessage: 'Please enter Monthly Income.'
             }
         },
         financialPercentageOfSaving: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid financial Percentage Of Saving',
-                errorMessage: 'Please enter Percentage Of Saving.'
+                errorTitle: 'Invalid % Of Income Saved',
+                errorMessage: 'Please enter % Of Income Saved.'
             }
         },
         financialTotalAssets: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid financial Total Assets',
+                errorTitle: 'Invalid Total Assets',
                 errorMessage: 'Please enter  Total Assets.'
             }
         },
         financialTotalLiabilities: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid  financial Total Loans',
+                errorTitle: 'Invalid  Total Loans',
                 errorMessage: 'Please enter Total Loans.'
             }
         },
