@@ -142,6 +142,8 @@
 .inline-error{
     border-radius: 6px !important;
     border: solid 2px #ff872f !important;
+    background-color: #fff3e9 !important;
+    color: #e57300 !important;
     .duration{
         color: #e57300 !important;
     }
@@ -167,6 +169,10 @@
 .direct-form-btn--radio.active {
     background-color: #00a7a7 !important;
     color: #ffffff !important;
+    &.no {
+        background-color: #fff3e9 !important;
+        color: #e57300 !important;
+    }
 }
 .section {
     margin-bottom: 56px;

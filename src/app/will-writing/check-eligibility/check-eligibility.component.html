@@ -39,7 +39,7 @@
                         </label>
                       </div>
                       <div>
-                        <label ngbButtonLabel class="direct-form-btn--radio btn" [ngClass] = "{'inline-error' : isSingaporean}" id="eligibilityLbl3">
+                        <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : isSingaporean}" id="eligibilityLbl3">
                           <input ngbButton type="radio" (click) = "changeState($event)" value="no" id="eligibilityInpt2"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
                       </div>
@@ -61,7 +61,7 @@
                         </label>
                       </div>
                       <div>
-                        <label ngbButtonLabel class="direct-form-btn--radio btn" [ngClass] = "{'inline-error' : isAssets}" id="eligibilityLbl6">
+                        <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : isAssets}" id="eligibilityLbl6">
                           <input ngbButton type="radio" value="no" (click) = "changeAssets($event)" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
                       </div>

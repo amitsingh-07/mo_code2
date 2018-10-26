@@ -36,9 +36,9 @@
                   <div id="addGuardianForm" name="addGuardianForm">
                     <div class="aboutMe">
                       <div class="form-group">
-                        <div class="col-12 flex-row title">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}
-                          <span *ngIf="isEdit" (click)="resetForm()" class="title">{{'WILL_WRITING.COMMON.CANCEL'
-                            | translate}}</span>
+                        <div class="col-12 flex-row title"><div class="col-8">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}</div>
+                          <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">{{'WILL_WRITING.COMMON.CANCEL'
+                            | translate}}</div>
                         </div>
                         <div class="flex-row mb10">
                           <div class="flex-col-5">
