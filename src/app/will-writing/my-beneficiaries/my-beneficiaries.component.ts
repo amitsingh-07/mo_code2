@@ -83,7 +83,7 @@ export class MyBeneficiariesComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getFormError(form, 'addBeneficiaryForm');
+      const error = this.willWritingService.getFormError(form, 'guardBeneForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
     } else {
       if (!this.isEdit) {
