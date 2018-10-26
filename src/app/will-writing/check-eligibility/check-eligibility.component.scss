@@ -19,6 +19,13 @@
         bottom: 13px;
     }
 }
+
+.inline-warning {
+    background-image: url("../../../assets/images/will-writing/inline-error.svg");
+    height: 24px;
+    width: 24px;
+    background-repeat: no-repeat;
+}
 .container-fluid {
     background-color: #fff;
     padding: 50px 60px 65px;
@@ -121,11 +128,12 @@
         border-radius: 4px;
         padding: 13px 29px;
         margin-top: 22px;
+        position: relative;
         div{
             margin-right: 41px;
         }
         .help-icon {
-            bottom: 42px;
+            bottom: 30px;
             right: 22px;
         }
     }
@@ -188,4 +196,13 @@
         right: unset;
         margin-left: 10px;
     }
+}
+
+.warning-message {
+  font-family: $muli-regular;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.31;
+  letter-spacing: -0.2px;
+  color: #2d8289;
 }
