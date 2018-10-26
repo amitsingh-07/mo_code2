@@ -110,7 +110,7 @@ export class MyChildGuardianComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getFormError(form, 'addGuardianForm');
+      const error = this.willWritingService.getFormError(form, 'guardBeneForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
       return false;
     } else {

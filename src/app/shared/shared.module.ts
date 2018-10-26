@@ -22,6 +22,7 @@ import { FairDealingComponent } from './components/fair-dealing/fair-dealing.com
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
 import { TermsComponent } from './components/terms/terms.component';
+import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -51,7 +52,8 @@ export function createTranslateLoader(http: HttpClient) {
     PrivacyPolicyComponent,
     FairDealingComponent,
     DisclosuresComponent,
-    TermsComponent]
+    TermsComponent,
+    WillDisclaimerComponent]
 })
 export class SharedModule { }
 

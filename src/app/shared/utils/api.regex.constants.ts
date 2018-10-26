@@ -16,5 +16,5 @@ export const RegexConstants = {
     SixDigitPromo: /^[a-zA-Z0-9]{6}$/,
     OnlyAlphaWithoutLimit: /^[a-zA-Z\s]*$/,
     NameWithSymbol: /^[a-zA-Z@-\s]{2,40}$/,
-    UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\s\d]{9}$/
+    UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{9}$/
 };

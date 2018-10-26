@@ -5,7 +5,7 @@ export class WillWritingFormError {
                         name: {
                                 required: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Please enter your name'
+                                        errorMessage: 'Please input the Name'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
@@ -14,12 +14,13 @@ export class WillWritingFormError {
                         },
                         uin: {
                                 required: {
-                                        errorTitle: 'Invalid NRCI Number',
-                                        errorMessage: 'Please enter your NRCI number'
+                                        errorTitle: 'Invalid Identification Number',
+                                        errorMessage: 'Please input Identification Number'
                                 },
                                 pattern: {
-                                        errorTitle: 'Invalid NRCI Number',
-                                        errorMessage: 'NRIC field can only contain alphabets value of 2 - 40 characters in length'
+                                        errorTitle: 'Invalid Identification Number',
+                                        errorMessage:
+                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
                                 }
                         },
                         gender: {
@@ -49,43 +50,45 @@ export class WillWritingFormError {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please enter your spouse name'
+                                                errorMessage: 'Please input the Name'
                                         },
                                         pattern: {
-                                                errorTitle: 'Invalid First Name',
-                                                errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorTitle: 'Invalid Name',
+                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
                                         }
                                 },
                                 uin: {
                                         required: {
-                                                errorTitle: 'Invalid NRCI Number',
-                                                errorMessage: 'Please enter your spouse NRCI number'
+                                                errorTitle: 'Invalid Identification Number',
+                                                errorMessage: 'Please input Identification Number'
                                         },
                                         pattern: {
-                                                errorTitle: 'Invalid NRCI Number',
-                                                errorMessage: 'NRIC field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorTitle: 'Invalid Identification Number',
+                                                errorMessage:
+                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
                                         }
-                                },
+                                }
                         },
                         childrens: {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please enter your childe name'
+                                                errorMessage: 'Please input the Name'
                                         },
                                         pattern: {
-                                                errorTitle: 'Invalid First Name',
-                                                errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorTitle: 'Invalid Name',
+                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
                                         }
                                 },
                                 uin: {
                                         required: {
-                                                errorTitle: 'Invalid NRCI Number',
-                                                errorMessage: 'Please enter your child NRCI number'
+                                                errorTitle: 'Invalid Identification Number',
+                                                errorMessage: 'Please input Identification Number'
                                         },
                                         pattern: {
-                                                errorTitle: 'Invalid First Name',
-                                                errorMessage: 'First name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorTitle: 'Invalid Identification Number',
+                                                errorMessage:
+                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
                                         }
                                 },
                                 dob: {
@@ -97,7 +100,7 @@ export class WillWritingFormError {
                         }
                 }
         };
-        addGuardianForm: object = {
+        guardBeneForm: object = {
                 formFieldErrors: {
                         errorTitle: 'Invalid Form',
                         name: {
@@ -117,7 +120,8 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Identification Number',
-                                        errorMessage: 'Identification Number field can contains only alphabets value'
+                                        errorMessage:
+                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
                                 }
                         },
                         relationship: {
@@ -149,7 +153,8 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
-                                                errorMessage: 'Identification Number field can contains only alphabets value'
+                                                errorMessage:
+                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
                                         }
                                 },
                                 relationship: {
@@ -157,37 +162,6 @@ export class WillWritingFormError {
                                                 errorTitle: 'Invalid Relationship',
                                                 errorMessage: 'Please indicate relationship to you'
                                         }
-                                }
-                        }
-                }
-        };
-        addBeneficiaryForm: object = {
-                formFieldErrors: {
-                        errorTitle: 'Invalid Form',
-                        name: {
-                                required: {
-                                        errorTitle: 'Invalid Name',
-                                        errorMessage: 'Please input the Name'
-                                },
-                                pattern: {
-                                        errorTitle: 'Invalid Name',
-                                        errorMessage: 'Beneficiary name field can only contain alphabets value of 2 - 40 characters in length'
-                                }
-                        },
-                        uin: {
-                                required: {
-                                        errorTitle: 'Please input NRIC',
-                                        errorMessage: 'Please enter your beneficiary NRCI number'
-                                },
-                                pattern: {
-                                        errorTitle: 'Invalid NRCI Number',
-                                        errorMessage: 'Beneficiary NRIC field can only contain alphabets value of 2 - 40 characters in length'
-                                }
-                        },
-                        relationship: {
-                                required: {
-                                        errorTitle: 'Invalid Relation',
-                                        errorMessage: 'Please indicate Relationship to you'
                                 }
                         }
                 }
