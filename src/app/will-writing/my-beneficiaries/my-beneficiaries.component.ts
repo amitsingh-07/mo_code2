@@ -17,6 +17,8 @@ export class MyBeneficiariesComponent implements OnInit {
   private pageTitle: string;
   private step: string;
   private minErrorMsg: string;
+  private isEdit: boolean;
+  private selectedIndex: number;
 
   addBeneficiaryForm: FormGroup;
   beneficiaryList: IBeneficiary[] = [];
@@ -64,7 +66,7 @@ export class MyBeneficiariesComponent implements OnInit {
   buildBeneficiaryForm() {
     this.addBeneficiaryForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      uin: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       relationship: ['', [Validators.required]]
     });
   }
@@ -84,10 +86,17 @@ export class MyBeneficiariesComponent implements OnInit {
       const error = this.willWritingService.getFormError(form, 'addBeneficiaryForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
     } else {
-      form.value.selected = true;
-      form.value.distPercentage = 0;
-      this.beneficiaryList.push(form.value);
-      this.resetForm();
+      if (!this.isEdit) {
+        form.value.selected = true;
+        form.value.distPercentage = 0;
+        this.beneficiaryList.push(form.value);
+        this.resetForm();
+      } else {
+        this.beneficiaryList[this.selectedIndex].name = form.value.name;
+        this.beneficiaryList[this.selectedIndex].relationship = form.value.relationship;
+        this.beneficiaryList[this.selectedIndex].uin = form.value.uin;
+        this.goToNext();
+      }
     }
   }
 
@@ -98,10 +107,26 @@ export class MyBeneficiariesComponent implements OnInit {
     this.submitted = false;
     this.relationship = '';
     this.isFormOpen = false;
+    this.isEdit = false;
   }
 
   validateForm(index: number) {
     this.beneficiaryList[index].selected = !this.beneficiaryList[index].selected;
+  }
+
+  editBeneficiary(relation: string, index: number) {
+    if (relation === 'spouse' || relation === 'child') {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+    } else {
+      this.selectedIndex = index;
+      this.isEdit = true;
+      this.isFormOpen = true;
+      const beneficiary = this.beneficiaryList[index];
+      this.addBeneficiaryForm.controls['name'].setValue(beneficiary.name);
+      this.addBeneficiaryForm.controls['uin'].setValue(beneficiary.uin);
+      const beneRelationship = this.relationshipList.filter((relationship) => relationship.value === beneficiary.relationship);
+      this.selectRelationship(beneRelationship[0]);
+    }
   }
 
   getSelectedBeneLength(): number {
@@ -109,11 +134,12 @@ export class MyBeneficiariesComponent implements OnInit {
   }
 
   save() {
-    if (this.getSelectedBeneLength() <  WILL_WRITING_CONFIG.MIN_BENEFICIARY) {
+    if (this.getSelectedBeneLength() < WILL_WRITING_CONFIG.MIN_BENEFICIARY) {
       this.willWritingService.openToolTipModal(this.minErrorMsg, '');
       return false;
     } else {
       this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
+      this.willWritingService.isBeneficiaryAdded = true;
       return true;
     }
   }

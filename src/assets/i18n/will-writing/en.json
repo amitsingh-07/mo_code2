@@ -19,6 +19,7 @@
       "GENDER": "Gender",
       "MARITAL_STATUS": "Marital Status",
       "NUMBER_OF_CHILDREN": "Number of Children",
+      "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "Your changes will not be saved. Are you sure to exit this page?",
       "RELATIONSHIP_LIST": [{
           "text": "Sibling",
@@ -242,11 +243,16 @@
       "MIN_BENEFICIARY": "Please select at least 1 beneficiary for your estate distribution to proceed"
     },
     "MY_ESTATE_DISTRIBUTION": {
-      "TITLE": "My Estate Distribution",
-      "SUB_TITLE": "Now that you have listed your beneficiaries, determine how much each person inherits.",
-      "DISTRIBUTE_YOUR_ESTATE": "Distribute your estate",
-      "ESTATE_DISTRIBUTION": "Estate Distribution",
-      "LEFT_TO_DISTRIBUTE": "Left to distribute"
+        "TITLE": "My Estate Distribution",
+        "SUB_TITLE": "Now that you have listed your beneficiaries, determine how much each person inherits.",
+        "DISTRIBUTE_YOUR_ESTATE": "Distribute your estate",
+        "ESTATE_DISTRIBUTION": "Estate Distribution",
+        "LEFT_TO_DISTRIBUTE": "Left to distribute",
+        "ERROR_MODAL": {
+            "MAX_PERCENTAGE": "You have reached the maximum percentage of your estate distribution. Please adjust your total distribution in order to proceed to the next page.",
+            "ADJUST_PERCENTAGE": "Please adjust your total distribution to fill 100%",
+            "EXCEED_PERCENTAGE": "You have exceeded the maximum percentage of your estate distribution."
+        }
     },
     "CONFIRMATION": {
       "TITLE": "Confirmation",
@@ -254,3 +260,4 @@
     }
   }
 }
+
