@@ -72,7 +72,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     }
 
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '1') {
+      if (data !== '' && data === '2') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
           this.directService.triggerSearch('');
@@ -101,7 +101,7 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     let sum_string = '';
     sum_string += this.translate.instant('CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
     sum_string += this.duration;
-    if (this.criticalIllnessForm.value.earlyCI === 'yes') {
+    if (this.criticalIllnessForm.value.earlyCI === true || this.criticalIllnessForm.value.earlyCI === 'yes') {
       sum_string += ', Early CI';
     }
     return sum_string;

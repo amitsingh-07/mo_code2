@@ -94,22 +94,19 @@ app-plan-widget {
     .insurer-logo {
       height: auto;
       text-align: center;
-      margin-bottom: 10px;
+      //margin-bottom: 10px;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: flex-end;
 
       @include allmobiles {
         align-items: center;
         justify-content: center;
-
+        height: 60px;
         img {
-          width: 50% !important;
+          max-width: 75% !important;
+          max-height: 100%;
         }
-      }
-
-      img {
-        width: 65%;
       }
     }
 
@@ -121,10 +118,10 @@ app-plan-widget {
 
     .insurance-plan-widget__container {
       padding-top: 15px;
-      min-height: 440px;
+      //min-height: 440px;
 
       @include allmobiles {
-        min-height: 251px;
+        //min-height: 251px;
       }
 
       h4 {
@@ -138,9 +135,17 @@ app-plan-widget {
           text-align: center;
           justify-content: center;
           height: 60px;
-          padding: 0 5px;
-          display: flex;
+          padding: 0 10px;
+          display: block !important;
           align-items: center;
+          margin: 15px 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; /* number of lines to show */
+          line-height: 20px;        /* fallback */
+          max-height: 40px; 
         }
       }
 
@@ -158,8 +163,9 @@ app-plan-widget {
         @include allmobiles {
           text-align: center;
           margin-top: 5px;
-          margin-bottom: 5px;
+          margin-bottom: 15px;
           font-size: 24px;
+          line-height: 20px;
         }
 
         .text-small {
@@ -329,6 +335,11 @@ app-plan-widget {
           font-family: $muli-regular;
         }
       }
+    }
+  }
+  .grey subtitle--rider-name {
+    @include allmobiles {
+      text-align: center;
     }
   }
 }

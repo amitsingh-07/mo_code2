@@ -274,11 +274,31 @@ body{
                     display:block;
                     top:47px;
                     left:0px;
+                    border-radius:50%;
                 }
                 .robo{
                     position: absolute;
                     display: block;
                     right:0px;
+                }
+                .value-prop{
+                    position: absolute;
+                    display:flex;
+                    justify-content:flex-end;
+                    align-items:flex-end;
+                    bottom:0px;
+                    left:0px;
+                    img{
+                        height:80px;
+                    }
+                    p{
+                        font-family:$muli-bold;
+                        color:$dark-orange-color;
+                        line-height:1.2;
+                        max-width:150px;
+                        margin-bottom:0px;
+                        letter-spacing:-0.2px;
+                    }
                 }
                 @include tablet{
                     margin-left:0px;
@@ -288,7 +308,7 @@ body{
                     align-self:center;
                     margin-left:unset;
                     margin-top:50px;
-                    margin-bottom:11px;
+                    margin-bottom:31px;
                     width:300px;
                     height:275px;
                     .human{
@@ -296,6 +316,19 @@ body{
                     }
                     .robo{
                         height:100%;
+                    }
+                    .value-prop{
+                        position: absolute;
+                        display:flex;
+                        bottom:-30px;
+                        width:100%;
+                        justify-content: center;
+                        img{
+                            height:50px;
+                        }
+                        p{
+                            max-width: unset;
+                        }
                     }
                 }
             }
@@ -312,6 +345,7 @@ body{
                     display:block;
                     bottom:18px;
                     left:0px;
+                    border-radius:50%;
                 }
                 .robo{
                     position: absolute;
@@ -352,6 +386,7 @@ body{
                     display:block;
                     top:26px;
                     right:0px;
+                    border-radius:50%;
                 }
                 .robo{
                     position: absolute;
@@ -390,6 +425,7 @@ body{
                     right:0px;
                     top:32px;
                     z-index:2;
+                    border-radius:50%;
                 }
                 .robo{
                     position: absolute; 
@@ -421,7 +457,7 @@ body{
         .home__section--text-container{
             position: relative;
             margin-left:auto;
-            max-width:400px;
+            max-width:420px;
             &.primary{
                 margin-right:120px;
                 @include tablet{
@@ -459,6 +495,11 @@ body{
                 @include minMobilemaxPhablet{
                     margin-left:auto;
                     order:2;
+                    .home__section--title{
+                        margin-left:-10px;
+                        margin-right:-10px;
+                        max-width: unset;
+                    }
                 }
             }
             @include minMobilemaxPhablet{
@@ -483,6 +524,9 @@ body{
                 @include minMobilemaxPhablet{
                     font-size:28px;
                     line-height:36px;
+                    margin-left:auto;
+                    margin-right:auto;
+                    max-width:325px;
                 }
             }
             .home__section--sub-title{
@@ -493,12 +537,18 @@ body{
                 @include minPhabletmaxTablet{
                     font-size:16px;
                 }
+                @include minMobilemaxPhablet{
+                    font-size:16px;
+                    margin-top:-5px;
+                    margin-bottom:20px;
+                }
             }
             .home__section--desc{
                 font-family:$muli-regular;
                 font-size:16px;
                 color:#000;
                 opacity:0.9;
+                max-width:400px;
                 @include minMobilemaxPhablet{
                     text-align:center;
                     line-height:1.4;

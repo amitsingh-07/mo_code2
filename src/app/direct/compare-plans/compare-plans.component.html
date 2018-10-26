@@ -7,7 +7,7 @@
   </div>
   <div class="flex-row compare-modal">
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget" [ngClass]="{'rt-round': i == plansData.length - 1, 'hidden-sm-md': i > 1}">
-      <img class="best-value-icon" *ngIf="plan.bestValue" src="./assets/images/best-value-icon.png" />
+      <img class="best-value-icon" *ngIf="plan.bestValue" src="./assets/images/best_value.svg" />
       <div class="bg-white flex insurance-plan-widget__container flex__box--vert">
         <img class="info-icon" (click)="viewDetails(plan)" src="./assets/images/tooltip-info.svg" />
         <div class="mt20 insurer-logo">
@@ -16,7 +16,7 @@
         <div class="flex-row mt10 mb10">
           <div class="col-md-12 col-md-push-3">
             <h4 class="mb20">{{plan.productName}}</h4>
-            <h2 [hidden]="plan.premium.intrestRateOfReturn">
+            <h2 [hidden]="plan.premium.intrestRateOfReturn > 0">
               <span [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</span>
               <span [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</span>
               <br />
@@ -25,7 +25,7 @@
                 <span [hidden]="frequencyFilter !== 'yearly'">{{ 'SUFFIX.PER_YEAR' | translate}}</span>
               </span>
             </h2>
-            <h2 [hidden]="!plan.premium.intrestRateOfReturn">{{plan.premium.intrestRateOfReturn}}%
+            <h2 [hidden]="plan.premium.intrestRateOfReturn <= 0">{{plan.premium.intrestRateOfReturn}}%
               <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
               <br />
               <span class="text-small">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>

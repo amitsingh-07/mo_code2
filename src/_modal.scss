@@ -115,6 +115,7 @@ body.modal-open {
   letter-spacing: -0.2px;
   color: #009999;
   margin-bottom: 15px;
+  margin-right: 10px;
   //padding: 0 15px 0 0;
 }
 
@@ -582,6 +583,12 @@ body.modal-open {
   z-index: 1040 !important;
 }
 
+.settings-tooltip-dialog {
+  .modal-dialog {
+    max-width: 375px;
+  }
+}
+
 .product-details-modal-dialog {
   max-height: 100% !important;
 
@@ -686,7 +693,6 @@ body.modal-open {
     }
   }
 }
-
 .otp-error-modal {
   @include allmobiles {
     .modal-body {

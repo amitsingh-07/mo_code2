@@ -157,7 +157,6 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
         eduFormSaved: false
       });
     } else {
-      console.log(this.dependentFormCount);
       const thisDependent = this.lifeProtectionFormValues.dependents[this.dependentFormCount - 1];
       formGroup = this.formBuilder.group({
         gender: thisDependent && thisDependent.gender ? thisDependent.gender : this.genderOptions[0],

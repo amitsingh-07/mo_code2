@@ -41,7 +41,6 @@ export class ContactUsComponent implements OnInit {
   }
 
   save(form: any) {
-    console.log(form);
     Object.keys(form.controls).forEach((key) => {
       form.get(key).markAsDirty();
     });
@@ -49,7 +48,6 @@ export class ContactUsComponent implements OnInit {
 
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
       if (data) {
-        console.log('success');
       }
     });
   }

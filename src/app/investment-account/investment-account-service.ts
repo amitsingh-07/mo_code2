@@ -88,10 +88,14 @@ export class InvestmentAccountService {
         this.commit();
     }
     setTaxInfoFormData(data) {
-        this.investmentAccountFormData.Taxcountry = data.taxCountry;
-        this.investmentAccountFormData.haveTin = data.radioTin;
-        this.investmentAccountFormData.Tin = data.tinNumber;
-        this.investmentAccountFormData.noTinReason = data.reasonDropdown['noTinReason'];
+        this.investmentAccountFormData.taxCountry = data.taxCountry;
+        this.investmentAccountFormData.radioTin = data.radioTin;
+        if (data.tinNumberText) {
+            this.investmentAccountFormData.tinNumber = data.tinNumberText.tinNumber;
+        }
+        if (data.reasonDropdown) {
+            this.investmentAccountFormData.noTinReason = data.reasonDropdown.noTinReason;
+        }
         this.commit();
     }
     // tslint:disable-next-line
@@ -156,9 +160,9 @@ export class InvestmentAccountService {
 
     getTaxInfo() {
         return {
-            Tin: this.investmentAccountFormData.Tin,
-            country: this.investmentAccountFormData.Taxcountry,
-            haveTin: this.investmentAccountFormData.haveTin,
+            tinNumber: this.investmentAccountFormData.tinNumber,
+            taxCountry: this.investmentAccountFormData.taxCountry,
+            radioTin: this.investmentAccountFormData.radioTin,
             noTinReason: this.investmentAccountFormData.noTinReason
         };
     }
@@ -314,20 +318,20 @@ export class InvestmentAccountService {
     setFinancialFormData(data) {
         this.investmentAccountFormData.annualHouseHoldIncomeRange = data.annualHouseHoldIncomeRange;
         this.investmentAccountFormData.numberOfHouseHoldMembers = data.numberOfHouseHoldMembers;
-        this.investmentAccountFormData.monthlyIncome = data.monthlyIncome;
-        this.investmentAccountFormData.percentageOfSaving = data.percentageOfSaving;
-        this.investmentAccountFormData.totalAssets = data.totalAssets;
-        this.investmentAccountFormData.totalLiabilities = data.totalLiabilities;
+        this.investmentAccountFormData.financialMonthlyIncome = data.financialMonthlyIncome;
+        this.investmentAccountFormData.financialPercentageOfSaving = data.financialPercentageOfSaving;
+        this.investmentAccountFormData.financialTotalAssets = data.financialTotalAssets;
+        this.investmentAccountFormData.financialTotalLiabilities = data.financialTotalLiabilities;
         this.commit();
     }
     getFinancialFormData() {
         return {
             annualHouseHoldIncomeRange: this.investmentAccountFormData.annualHouseHoldIncomeRange,
             numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers,
-            monthlyIncome: this.investmentAccountFormData.monthlyIncome,
-            percentageOfSaving: this.investmentAccountFormData.percentageOfSaving,
-            totalAssets: this.investmentAccountFormData.totalAssets,
-            totalLiabilities: this.investmentAccountFormData.totalLiabilities
+            financialMonthlyIncome: this.investmentAccountFormData.financialMonthlyIncome,
+            financialPercentageOfSaving: this.investmentAccountFormData.financialPercentageOfSaving,
+            financialTotalAssets: this.investmentAccountFormData.financialTotalAssets,
+            financialTotalLiabilities: this.investmentAccountFormData.financialTotalLiabilities
         };
     }
 

@@ -11,7 +11,7 @@ export let apiConstants = {
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
-        getMyInfoValues: 'account/account-microservice/api/getMyInfoValues',
+        getMyInfoValues: 'myinfo-microservice/api/getMyInfo',
         signUp: 'account/account-microservice/api/signup',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',

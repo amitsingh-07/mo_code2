@@ -5,6 +5,7 @@
     position: relative;
     display:block;
     background-color:$white-color;
+    padding:0px 20px;
     .banner{
         position: relative;
         display:flex;
@@ -15,6 +16,13 @@
             flex-direction:column;
             justify-content:flex-start;
             min-height:unset;
+            margin-bottom:20px;
+        }
+        @include min300max325{
+            flex-direction:column;
+            justify-content:flex-start;
+            min-height:unset;
+            margin-bottom:20px;
         }
     }
     .banner-bg{
@@ -26,9 +34,6 @@
         @include minMobilemaxPhablet{
             position: relative; 
             height:200px;
-            margin-top:60px;
-            margin-right:20px;
-            right:20px;
             order:2;
         }
         .banner-bg--image{
@@ -36,16 +41,22 @@
             display:block;
             width:100%;
             height:90%;
-            background-image:url('./../../../assets/images/about-us/reviews_seated_guy.svg');
+            background-image:url('/assets/images/about-us/contact-us-header.svg');
             background-repeat:no-repeat;
             background-position:bottom right;
             background-size:contain;
-            bottom:5%;
             @include minPhabletmaxTablet{
-                height:calc(100% - 50px);
+                height:80%;
+                top:50%;
+                transform:translateY(-50%);
             }
             @include minMobilemaxPhablet{
-                
+                position: relative;
+                display:block;
+                height:100%;
+                top:0px;
+                transform:unset;
+                margin-bottom:20px;
             }
         }
     }
@@ -54,22 +65,19 @@
         display: inline-block;
         width:100%;
         max-width:1024px;
-        padding:70px 0px 0px 0px;
-        @include minPhabletmaxTablet{
-            padding:70px 20px 0px 20px;
-        }
+        padding:20px 0px 0px 0px;
         @include minMobilemaxPhablet{
-            padding:20px;
             order:1;
-            margin-bottom:-80px;
+            margin-bottom:0px;
         }
         .banner--title{
             font-family:$muli-bold;
             font-weight:bold;
-            font-size:3.5rem;
+            font-size:48px;
             color:$teal-color;
             margin-bottom:5px;
             line-height:1;
+            letter-spacing:-0.5px;
             @include minPhabletmaxTablet{
                 font-size:3.7rem;
             }
@@ -91,7 +99,14 @@
         }
         .banner--description{
             max-width:450px;
-            color:$dark-teal-color;
+            margin-top:40px;
+            color:$dark-grey-color;
+            font-family:$muli-regular;
+            font-size:18px;
+            letter-spacing:-0.2px;
+            @include minPhabletmaxTablet{
+                margin-top:15px;
+            }
         }
     }
     
@@ -109,26 +124,39 @@
             width:100%;
             max-width:1024px;
             margin-bottom:30px;
+            justify-content:space-between;
             @include minPhabletmaxTablet{
                 flex-direction:column;
-                width:calc(100% - 40px);
+
+            }
+            @include minMobilemaxPhablet{
+                flex-direction:column;
+                margin-bottom:0px;
+            }
+            @include min300max325{
+                flex-direction:column;
+                margin-bottom:0px;
             }
         }
         .contact-us__form-container{
             position: relative;
             display:block;
-            flex-basis:calc(100% - 370px);
-            
+            flex-basis:calc(100% - 390px);
+            .dropdown-toggle {
+                color:$dark-grey-color;
+            }
             textarea{
                 margin-top:10px;
                 height:200px;
                 resize:none;
+                color:$dark-grey-color;
             }
             p{
                 font-family:$muli-semi-bold;
-                color:$teal-color;
+                color:$dark-grey-color;
                 margin-top:5px;
                 margin-bottom:5px;
+                letter-spacing:-0.1px;
             }
             .error--msg{
                 color:$orange-color;
@@ -140,6 +168,9 @@
             margin-left:20px;
             flex-basis:calc(350px);
             color:$teal-color;
+            .info-group{
+                
+            }
             @include minPhabletmaxTablet{
                 display:flex;
                 margin-top:50px;
@@ -150,43 +181,33 @@
                 .info-group{
                     margin-right:20px;
                     min-width:180px;
-                    max-width:300px;
                     &:last-child{
                         margin-right:0px;
                     }
                 }
             }
+            @include minMobilemaxPhablet{
+                flex-direction:column;
+                margin:20px 0px 00px 0px;
+            }
             
             h4{
                 font-family:$muli-bold;
                 margin-bottom:0px;
+                font-size:18px;
             }
-            p{
-                color:$dark-teal-color;
-                margin-bottom:5px;
+            p{ 
+                font-family:$muli-regular;
+                color:$dark-grey-color;
+                margin-bottom:20px;
+                line-height:1.5;
             }
-            .where--link{
+            a{  
+                display:block;
+                font-family:$muli-regular;
                 color:$orange-color;
                 margin-bottom:20px;
-                i{
-                    transform: translateY(5px);
-                }
-            }
-        }
-        .contact-us__where-content{
-            position: relative;
-            display: block;
-            width: 100%;
-            max-width:1024px;
-            padding: 20px 0px;
-            @include minPhabletmaxTablet{
-                width:calc(100% - 40px);
-            }
-            .where--title{
-                font-family: $muli-semi-bold;
-                color:$teal-color;
-                font-size:1.75rem;
-            }
+            }        
         }
     }
 

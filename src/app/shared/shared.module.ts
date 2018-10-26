@@ -10,6 +10,7 @@ import {
     BreakdownAccordionComponent
 } from '../shared/components/breakdown-accordion/breakdown-accordion.component';
 import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
+import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
 import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -53,7 +54,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     })],
-  exports: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, SingPassComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
@@ -66,7 +67,7 @@ export function createTranslateLoader(http: HttpClient) {
     TermsOfUseComponent,
     BreakdownBarComponent,
     SingPassComponent,
-    BreakdownAccordionComponent]
+    BreakdownAccordionComponent,
+    PercentageInputDirective]
 })
 export class SharedModule { }
-

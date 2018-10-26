@@ -50,7 +50,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
        this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '5') {
+      if (data !== '' && data === '6') {
          if (this.save()) {
             this.directService.setMinProdInfo(this.summarizeDetails());
          }

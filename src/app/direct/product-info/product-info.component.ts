@@ -1,9 +1,11 @@
+import { Location } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
   HostListener,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   ViewEncapsulation
@@ -11,9 +13,11 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 import { ProtectionNeeds } from '../../guide-me/protection-needs/protection-needs';
 import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
@@ -27,10 +31,11 @@ import { DirectService } from './../direct.service';
   styleUrls: ['./product-info.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProductInfoComponent implements OnInit {
+export class ProductInfoComponent implements OnInit, OnDestroy {
 
   @Input() isEditMode: boolean;
   @Output() formSubmitCallback: EventEmitter<any> = new EventEmitter();
+  @Output() backPressed: EventEmitter<any> = new EventEmitter();
 
   modalRef: NgbModalRef;
   initLoad = true;
@@ -48,6 +53,9 @@ export class ProductInfoComponent implements OnInit {
   productCategorySelected: string;
   productCategorySelectedLogo: string;
   productCategorySelectedIndex = 0;
+
+  private subscription: Subscription;
+  pageTitle: string;
 
   selectedCategoryId = 0;
   routerOptions = [
@@ -83,9 +91,11 @@ export class ProductInfoComponent implements OnInit {
     private modal: NgbModal, private translate: TranslateService, private route: ActivatedRoute,
     private directApiService: DirectApiService, private googleAnalyticsService: GoogleAnalyticsService,
     private cdRef: ChangeDetectorRef, private configService: ConfigService,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService, public navbarService: NavbarService,
+    private _location: Location) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('RESULTS.TITLE');
       if (this.innerWidth < this.mobileThreshold) {
         this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
       } else {
@@ -135,6 +145,24 @@ export class ProductInfoComponent implements OnInit {
     // measuring width and height
     this.innerWidth = window.innerWidth;
 
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (event === this.pageTitle) {
+          //if (this.innerWidth < this.mobileThreshold) {
+
+          this.minProdSearch = '';
+          this.initLoad = true;
+          this.toggleVisibility = true;
+          this.toggleBackdropVisibility = false;
+          this.directService.setModalFreeze(false);
+          this.backPressed.emit('backPressed');
+          //}
+        } else {
+          this._location.back();
+        }
+      }
+    });
+
     this.directService.prodSearchInfoData.subscribe((data) => {
       if (data !== '') {
         this.minProdSearch = data;
@@ -154,6 +182,11 @@ export class ProductInfoComponent implements OnInit {
     this.initDisplaySetup();
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+  }
+
   // Initial Display setup
   initDisplaySetup() {
     if (this.innerWidth < this.mobileThreshold && this.initLoad) {
@@ -165,18 +198,24 @@ export class ProductInfoComponent implements OnInit {
   initCategorySetup() {
     this.selectedCategory = this.directService.getProductCategory();
     let categoryIndex = this.selectedCategory.id;
+    /*
     if (this.selectedCategory && categoryIndex) {
       categoryIndex = categoryIndex - 1;
-    } else {
-      categoryIndex = 0;
+      this.selectProductCategory(this.productCategoryList[categoryIndex], categoryIndex);
+      this.openProductCategory(categoryIndex);
+    } else if (this.innerWidth >= this.mobileThreshold) {
+      this.openProductCategory(0);
     }
+    */
 
-    this.selectProductCategory(this.productCategoryList[categoryIndex], categoryIndex);
+    if (this.innerWidth >= this.mobileThreshold) {
+      this.openProductCategory(0);
+    }
   }
 
   search(index) {
     this.directService.setProductCategory(this.selectedCategory);
-    this.directService.triggerSearch(index + '');
+    this.directService.triggerSearch(this.selectedCategory.id + '');
   }
 
   editProdInfo() {
@@ -213,7 +252,7 @@ export class ProductInfoComponent implements OnInit {
   selectProductCategory(data, index) {
     this.productCategorySelected = data.prodCatName;
     this.selectedCategory = data;
-    this.selectedCategoryId = index;
+    this.selectedCategoryId = data.id;
     this.setActiveProductCategory(index);
   }
 

@@ -78,6 +78,7 @@
     "LBL_PAYOUT": "Payout Details",
     "LBL_UNIQUE_FEATURES": "Unique Features",
     "LBL_RANKING": "Ranking By Price",
+    "LBL_RANKING_BY_VALUE": "Ranking By Value",
     "LBL_RATING": "Insurer's Rating",
     "LBL_COMMISSION": "Commission Rebate"
   },
@@ -168,7 +169,7 @@
     "PLANS_SELECTED": "Plans Selected",
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
-    "LOGIN": "Login",
+    "LOGIN": "Log In",
     "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
   },
   "FOOTER": {
