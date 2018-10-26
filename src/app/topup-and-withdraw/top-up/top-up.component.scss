@@ -9,6 +9,7 @@
     height: 50px;
     padding: 45px;
     height: 50px;
+    margin-right: 10px ;
 }
 
 .fixed-btn--sm.active {
@@ -38,19 +39,44 @@
     padding-bottom: 10px;
     font-size: 18px;
 }
-.one-time{
-font-family: Muli;
+
+.input-label-white{
+  
+  font-family: Muli;
   font-size: 16px;
-letter-spacing: -0.3px;
+ 
+  letter-spacing: -0.3px;
   text-align: center;
   
 }
-.min-balance{
-   font-size: 12px;
-    
-letter-spacing: -0.1px;
-    text-align: center;
-    color: #5e5e5e;
-}
-
+ .input-label-normal{
+ 
+  font-family: Muli;
+  font-size: 12px;
   
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #5e5e5e;
+  padding-left: 12px;
+  margin-top: 5px;
+ }
+ .btn{
+   white-space: normal;
+ }
+
+
+
+ .special-radio-button{
+ 
+  height: 109px;
+ }
+
+ @media (max-width: 567px) and (min-width: 320px){
+
+  .special-radio-button {
+
+    
+    height: 111px !important;
+    
+ }
+}

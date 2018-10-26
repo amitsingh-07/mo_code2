@@ -9,6 +9,7 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
+import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 @Component({
   selector: 'app-top-up',
@@ -18,6 +19,7 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.con
 export class TopUpComponent implements OnInit {
   pageTitle: string;
   name = 'saidevi';
+  investmentTypeList: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -25,7 +27,8 @@ export class TopUpComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
-    private modal: NgbModal) {
+    private modal: NgbModal,
+    public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('TOPUP.TITLE');
@@ -38,8 +41,18 @@ export class TopUpComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
-   }
+    this.getTopupInvestmentList();
+  }
+  getTopupInvestmentList() {
+    this.authService.authenticate().subscribe((token) => {
+      this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
+        this.investmentTypeList = data.objectList;
+        console.log(this.investmentTypeList + 'dgasgdjagsdjagsjdgagsdj');
+      });
+    });
+
+  }
 
 }

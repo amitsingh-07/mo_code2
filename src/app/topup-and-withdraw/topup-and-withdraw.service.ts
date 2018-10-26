@@ -9,5 +9,12 @@ const SESSION_STORAGE_KEY = 'app_inv_account_session';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TopupAndWithDrawService {
- }
+  constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
+    this.getTopupInvestmentList();
+  }
+  getTopupInvestmentList() {
+    return this.apiService.getTopupInvestmentList();
+  }
+}
