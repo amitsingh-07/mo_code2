@@ -36,6 +36,7 @@ export interface IExecTrustee {
     name: string;
     relationship: string;
     uin: string;
+    isAlt: boolean;
 }
 
 export interface IPromoCode {

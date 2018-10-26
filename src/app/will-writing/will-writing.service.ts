@@ -247,8 +247,8 @@ export class WillWritingService {
    * set guardian details.
    * @param data - guardian details.
    */
-  setExecTrusteeInfo(data: IExecTrustee) {
-    this.willWritingFormData.execTrustee.push(data);
+  setExecTrusteeInfo(data: IExecTrustee[]) {
+    this.willWritingFormData.execTrustee = data;
     this.commit();
   }
 
@@ -281,7 +281,12 @@ export class WillWritingService {
     this.commit();
   }
 
-checkChildrenAge(childrens: IChild[]): boolean {
+  checkBeneficiaryAge() {
+    const beneficiaries = this.getBeneficiaryInfo().filter((beneficiary) => beneficiary.relationship === 'child');
+    return this.checkChildrenAge(beneficiaries);
+  }
+
+  checkChildrenAge(childrens): boolean {
     for (const children of childrens) {
       const dob = children.dob;
       const today = new Date();
