@@ -219,7 +219,7 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid NRIC Number',
-                errorMessage: 'Please enter NRIC number.'
+                errorMessage: 'Please enter NRIC Number.'
             },
             pattern: {
                 errorTitle: 'Invalid NRIC Number',
