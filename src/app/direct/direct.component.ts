@@ -69,7 +69,8 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   }
 
   ngOnInit() {
-    if (this.planService.getSelectedPlan().enquiryId) {
+    const selectedPlans = this.planService.getSelectedPlan();
+    if (selectedPlans && selectedPlans.enquiryId) {
       if (this.isMobileView) {
         this.directService.setModalFreeze(true);
       }
