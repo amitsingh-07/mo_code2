@@ -19,7 +19,7 @@ export class AppointYourExecutorTrusteeComponent implements OnInit {
   }
 
   goToNext() {
-    this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_BENEFICIARIES]);
+    this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_EXECUTOR_TRUSTEE]);
   }
   goBack() {
     this._location.back();

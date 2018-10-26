@@ -95,9 +95,9 @@ export class MyExecutorTrusteeComponent implements OnInit {
 
   buildExecTrusteeForm(): FormGroup {
     return this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      name: ['', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
-      uin: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
       isAlt: []
     });
   }

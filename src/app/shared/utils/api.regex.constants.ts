@@ -14,5 +14,7 @@ export const RegexConstants = {
     AlphanumericWithSpaces: /^[a-zA-Z0-9\s]*$/,
     SixDigitNumber: /^[0-9]{6}$/,
     SixDigitPromo: /^[a-zA-Z0-9]{6}$/,
-    OnlyAlphaWithoutLimit: /^[a-zA-Z\s]*$/
+    OnlyAlphaWithoutLimit: /^[a-zA-Z\s]*$/,
+    NameWithSymbol: /^[a-zA-Z@-\s]{2,40}$/,
+    UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\s\d]{9}$/
 };
