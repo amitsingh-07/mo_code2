@@ -149,6 +149,12 @@ export class MyExecutorTrusteeComponent implements OnInit {
     }
   }
 
+  openToolTipModal() {
+    const title = this.tooltip['title'];
+    const message = this.tooltip['message'];
+    this.willWritingService.openToolTipModal(title, message);
+  }
+
   /**
    * redirect to next page.
    * @param form - aboutMeForm.
