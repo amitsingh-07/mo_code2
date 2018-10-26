@@ -73,12 +73,14 @@ export class PortfolioRecommendationComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.helpDate.modalTitle;
     ref.componentInstance.errorMessage = this.helpDate.modalMessage;
     return false;
   }
+
   showEditModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
@@ -88,19 +90,22 @@ export class PortfolioRecommendationComponent implements OnInit {
       this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
     });
   }
+
   showWhatTheRisk() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
-
   }
+
   showWhatFubdDetails() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
   }
+
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
     this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
     });
   }
+
   constructgetAllocationParams() {
     const formData = this.portfolioService.getRiskProfile();
     const enqId = this.authService.getEnquiryId();
@@ -127,13 +132,11 @@ export class PortfolioRecommendationComponent implements OnInit {
     }
   }
 
-  modelButtonClick() {
-    alert('functinality');
-  }
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
+
   goToNext() {
     this.router.navigate([ SIGN_UP_ROUTE_PATHS.PRELOGIN]);
   }
