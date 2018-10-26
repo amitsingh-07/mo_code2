@@ -216,8 +216,8 @@
         "MESSAGE": "<p> Do note that only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nominations nor trusts)</li><li>- Property (Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
       },
       "MUSLIM_ERROR": {
-        "TITLE": "Sorry, you require a complex will!",
-        "MESSAGE": "As you are covered under the Syariah law, your will must adhere to faraid principles. Our partner legal services can help you for a small fee ______  "
+        "TITLE": "Sorry, we are unable to assist you.",
+        "MESSAGE": "As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer."
       }
     },
     "REVIEW_YOUR_DETAILS": {

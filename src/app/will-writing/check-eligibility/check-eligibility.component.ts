@@ -15,6 +15,9 @@ import { WillWritingService } from './../will-writing.service';
 })
 export class CheckEligibilityComponent implements OnInit {
   private pageTitle: string;
+  private  = false;
+  private isSingaporean = false;
+  private isAssets = false;
 
   formValues: any;
   eligibilityForm: FormGroup;
@@ -51,6 +54,12 @@ export class CheckEligibilityComponent implements OnInit {
         const index = this.religionList.findIndex((status) => status.value === this.formValues.religion);
         this.selectReligion(this.religionList[index]);
       }
+      if (this.formValues.assets === 'no') {
+        this.isAssets = true;
+      }
+      if (this.formValues.assets === 'no') {
+        this.isSingaporean = true;
+      }
     }, 100);
   }
 
@@ -58,6 +67,22 @@ export class CheckEligibilityComponent implements OnInit {
     religion = religion ? religion : {text: '', value: ''};
     this.religion = religion.text;
     this.eligibilityForm.controls['religion'].setValue(religion.value);
+  }
+
+  changeState(event) {
+    if (event && event['target'].value === 'no') {
+      this.isSingaporean = true;
+    } else {
+      this.isSingaporean = false;
+    }
+  }
+
+  changeAssets(event) {
+    if (event && event['target'].value === 'no') {
+      this.isAssets = true;
+    } else {
+      this.isAssets = false;
+    }
   }
 
   save(form: any) {
