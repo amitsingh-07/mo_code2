@@ -70,8 +70,8 @@ export class MyChildGuardianComponent implements OnInit {
    */
   buildAddGuardianForm() {
     this.addGuardianForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
-      uin: ['', [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      name: ['', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
       relationship: ['', [Validators.required]]
     });
   }
@@ -145,7 +145,7 @@ export class MyChildGuardianComponent implements OnInit {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if ((this.isEdit && this.save(form)) || this.guardianList.length === this.maxGuardian) {
+    if ((this.isEdit && this.save(form)) || (!this.isEdit && (this.guardianList.length === this.maxGuardian || this.save(form)))) {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
     }
   }
