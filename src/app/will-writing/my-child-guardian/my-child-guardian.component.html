@@ -26,7 +26,7 @@
                     <div class="input-label-black">{{guardian.name | titlecase }}</div>
                     <div class="input-label-normal">{{guardian.relationship | titlecase }}</div>
                   </label>
-                  <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-icon.svg" /></span>
+                  <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
                 </div>
               </div>
               <div class="form-group" *ngIf="guardianList.length < maxGuardian || isEdit">
