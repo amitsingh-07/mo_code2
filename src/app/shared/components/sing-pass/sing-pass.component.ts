@@ -43,7 +43,8 @@ export class SingPassComponent implements OnInit {
       ref.result.then(() => {
         this.investmentAccountService.callBackInvestmentAccount = true;
         this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-        this.router.navigate(['myinfo']);
+        this.myInfoService.goToMyInfo();
+        //this.router.navigate(['myinfo']);
       }).catch((e) => {
       });
     }

@@ -336,7 +336,6 @@ export class InvestmentAccountService {
     }
 
     setFormData(data) {
-        this.investmentAccountFormData.isMyInfoEnabled = true;
         this.investmentAccountFormData.fullName = data.name.value;
         if (data.nationality.value) {
             this.investmentAccountFormData.nationalityCode = data.nationality.value;
@@ -371,6 +370,7 @@ export class InvestmentAccountService {
             }
         }
         this.investmentAccountFormData.disableAttributes = this.disableAttributes;
+        this.investmentAccountFormData.isMyInfoEnabled = true;
         this.commit();
     }
 
