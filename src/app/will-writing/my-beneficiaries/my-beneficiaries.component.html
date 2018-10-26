@@ -27,7 +27,7 @@
                   <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
                   <div class="input-label-normal">{{beneficiary.relationship | titlecase }}</div>
                 </label>
-                <span (click)="editBeneficiary(beneficiary.relationship,i)" class="edit-icon"><img src="assets/images/will-writing/edit-icon.svg" /></span>
+                <span (click)="editBeneficiary(beneficiary.relationship,i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
               </div>
             </div>
             <div>
@@ -108,7 +108,7 @@
             </div>
             <div *ngIf="beneficiaryList.length < maxBeneficiary && !isFormOpen" (click)="isFormOpen= !isFormOpen" class="form-group-single-column  mb0 flex-col">
               <div class="add-beneficiaries checkbox-button two-label mb0">
-                <span><img id="add" src="assets/images/will-writing/add.svg" /></span>
+                <span class="add-icon"><img id="add" src="assets/images/will-writing/add.svg" /></span>
                 <span>Add Beneficiaries</span>
               </div>
             </div>

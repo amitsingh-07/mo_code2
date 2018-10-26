@@ -146,7 +146,7 @@ input[type='checkbox']+label {
   }
   
   .form-group-single-column .checkbox-button.two-label {
-    padding: 10px;
+    padding: 13px 18px;
   }
   .mobile-logo{
     display: none;
@@ -257,5 +257,8 @@ input[type='checkbox']+label {
     letter-spacing: -0.3px;
     text-align: right;
     color: #00a7a7;
+    cursor: pointer;
+}
+.add-icon {
     cursor: pointer;
 }
