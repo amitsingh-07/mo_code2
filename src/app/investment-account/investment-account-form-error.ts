@@ -266,7 +266,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Company Name',
-                errorMessage: 'Company Name should contain only alphabets.'
+                errorMessage: 'Company Name should not contain numbers and special characters.'
             }
         },
         occupation: {
@@ -310,6 +310,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Address Line 1',
                 errorMessage: 'Please enter Address Line 1.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Address Line 1',
+                errorMessage: 'Address Line 1 should not contain special characters.'
             }
         },
         empAddress2: {
@@ -317,6 +321,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Address Line 2',
                 errorMessage: 'Please enter Address Line 2.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Address Line 2',
+                errorMessage: 'Address Line 2 should not contain special characters.'
             }
         },
 
@@ -333,6 +341,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid City',
                 errorMessage: 'Please enter City.'
+            },
+            pattern: {
+                errorTitle: 'Invalid city',
+                errorMessage: 'City should not contain numbers and special characters.'
             }
         },
 
@@ -341,6 +353,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid State/Province/Region',
                 errorMessage: 'Please enter State/Province/Region.'
+            },
+            pattern: {
+                errorTitle: 'Invalid state',
+                errorMessage: 'State/Province/Region should not contain numbers and special characters.'
             }
         },
 
@@ -349,6 +365,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Zip Code',
                 errorMessage: 'Please enter Zip Code.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Zip Code',
+                errorMessage: 'Zip Code should not contain special characters.'
             }
         },
         annualHouseHoldIncomeRange: {

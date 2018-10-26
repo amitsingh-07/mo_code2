@@ -34,7 +34,7 @@ export class UploadDocumentsComponent implements OnInit {
   loaderTitle;
   loaderDesc;
   formData: FormData = new FormData();
-  commonMethod: InvestmentAccountCommon = new InvestmentAccountCommon();
+  investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -107,19 +107,26 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {
-    const response = this.commonMethod.fileSelected(this.formData , control, controlname, fileElem, thumbElem);
-    if ( !response) {
+    const response = this.investmentAccountCommon.fileSelected(this.formData , control, controlname, fileElem, thumbElem);
+    if (!response.validFileSize) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE');
       const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE');
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
+    } else if (!response.validFileType) {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE');
+        const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE');
+        ref.componentInstance.errorTitle = errorTitle;
+        ref.componentInstance.errorDescription = errorDesc;
+        control.setValue('');
     }
   }
 
   getPayloadKey(controlname) {
-    const payloadKey = this.commonMethod.getPayloadKey(controlname);
+    const payloadKey = this.investmentAccountCommon.getPayloadKey(controlname);
     return payloadKey;
   }
 
@@ -141,16 +148,16 @@ export class UploadDocumentsComponent implements OnInit {
 
   setThumbnail(thumbElem, file) {
     // Set Thumbnail
-    this.commonMethod.setThumbnail(thumbElem, file);
+    this.investmentAccountCommon.setThumbnail(thumbElem, file);
   }
 
   getFileName(fileElem) {
-    const fileName = this.commonMethod.getFileName(fileElem);
+    const fileName = this.investmentAccountCommon.getFileName(fileElem);
     return fileName;
   }
 
   clearFileSelection(control, event, thumbElem?) {
-    this.commonMethod.clearFileSelection(control, event, thumbElem);
+    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
   }
 
   showProofOfMailingDetails() {
