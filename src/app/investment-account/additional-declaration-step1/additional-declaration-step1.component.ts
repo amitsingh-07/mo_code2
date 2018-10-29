@@ -65,7 +65,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       pepoccupation: new FormControl (this.addInfoFormValues.pepoccupation, Validators.required),
       pepCountry: new FormControl (
         this.investmentAccountService.getCountryFromNationalityCode(
-          'IT'), Validators.required),
+          INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE), Validators.required),
       pepPostalCode: new FormControl (this.addInfoFormValues.pepPostalCode, Validators.required),
       pepAddress1: new FormControl (this.addInfoFormValues.pepAddress1, Validators.required),
       pepAddress2: new FormControl (this.addInfoFormValues.pepAddress2, Validators.required),
