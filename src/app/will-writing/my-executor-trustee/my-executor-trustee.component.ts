@@ -15,11 +15,11 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-executor-trustee.component.scss']
 })
 export class MyExecutorTrusteeComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
-  private tooltip = {};
+  pageTitle: string;
+  step: string;
+  tooltip = {};
   private formTitleMsg = {};
-  private isEdit: boolean;
+  isEdit: boolean;
   private selectedIndex: number;
 
   addExeTrusteeForm: FormGroup;

@@ -17,8 +17,8 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-family.component.scss']
 })
 export class MyFamilyComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
+  pageTitle: string;
+  step: string;
 
   myFamilyForm: FormGroup;
   childrenFormValues: IChild[];
