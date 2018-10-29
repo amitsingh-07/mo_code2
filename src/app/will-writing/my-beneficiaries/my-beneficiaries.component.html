@@ -56,17 +56,6 @@
                         </div>
                         <div class="flex-row mb10">
                           <div class="flex-col-5">
-                            <label for="name" id="addGuardianFormLbl2">
-                              <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
-                            </label>
-                          </div>
-                          <div class="flex-col-7">
-                            <input type="text" [ngClass]="{'inline-error': submitted && addBen.uin.invalid}" id="addGuardianFormInpt2"
-                              class="form-control" #uin formControlName="uin">
-                          </div>
-                        </div>
-                        <div class="flex-row mb10">
-                          <div class="flex-col-5">
                             <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' |
                               translate}}</label>
                           </div>
@@ -90,6 +79,17 @@
                             </div>
                           </div>
                         </div>
+                        <div class="flex-row mb10">
+                            <div class="flex-col-5">
+                              <label for="name" id="addGuardianFormLbl2">
+                                <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
+                              </label>
+                            </div>
+                            <div class="flex-col-7">
+                              <input type="text" [ngClass]="{'inline-error': submitted && addBen.uin.invalid}" id="addGuardianFormInpt2"
+                                class="form-control" #uin formControlName="uin">
+                            </div>
+                          </div>
                         <div class="flex-row mb10 add-beneficiary" *ngIf="!isEdit">
                           <div class="flex-col-5">
                             <button type="button" (click)="resetForm()" class="btn width100">{{

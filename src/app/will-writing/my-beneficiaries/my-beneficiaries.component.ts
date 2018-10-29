@@ -68,8 +68,8 @@ export class MyBeneficiariesComponent implements OnInit {
   buildBeneficiaryForm() {
     this.addBeneficiaryForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
-      uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
-      relationship: ['', [Validators.required]]
+      relationship: ['', [Validators.required]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]]
     });
   }
 
@@ -120,14 +120,14 @@ export class MyBeneficiariesComponent implements OnInit {
     if (relation === 'spouse' || relation === 'child') {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
     } else {
-      this.selectedIndex = index;
+      /*this.selectedIndex = index;
       this.isEdit = true;
       this.isFormOpen = true;
       const beneficiary = this.beneficiaryList[index];
       this.addBeneficiaryForm.controls['name'].setValue(beneficiary.name);
       this.addBeneficiaryForm.controls['uin'].setValue(beneficiary.uin);
       const beneRelationship = this.relationshipList.filter((relationship) => relationship.value === beneficiary.relationship);
-      this.selectRelationship(beneRelationship[0]);
+      this.selectRelationship(beneRelationship[0]);*/
     }
   }
 
