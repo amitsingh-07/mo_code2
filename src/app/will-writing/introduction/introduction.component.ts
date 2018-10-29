@@ -72,7 +72,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   openTermsOfConditions() {
-    const ref = this.modal.open(WillDisclaimerComponent, { centered: true, windowClass: 'full-height' });
+    const ref = this.modal.open(WillDisclaimerComponent, { centered: true, windowClass: 'full-height-will' });
     ref.result.then((data) => {
       if (data === 'proceed') {
         this.verifyPromoCode();
