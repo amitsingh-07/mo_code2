@@ -16,6 +16,7 @@ export class PageTitleComponent implements OnInit {
   @Input() pageTitle: any;
   @Input() step: any;
   @Input() tooltip: any;
+  @Input() unsaved: boolean;
 
   unsavedMsg: string;
 
@@ -34,14 +35,18 @@ export class PageTitleComponent implements OnInit {
   }
 
   goBack() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.unsavedMsg;
-    ref.componentInstance.unSaved = true;
-    ref.result.then((data) => {
-      if (data === 'yes') {
-        this._location.back();
-      }
-    });
+    if (this.unsaved) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.unsavedMsg;
+      ref.componentInstance.unSaved = true;
+      ref.result.then((data) => {
+        if (data === 'yes') {
+          this._location.back();
+        }
+      });
+    } else {
+      this._location.back();
+    }
     return false;
   }
 
