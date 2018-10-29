@@ -37,6 +37,7 @@ export let apiConstants = {
             getAllocationDetails: PORTFOLIO_API_BASE_URL + 'portfolio/recommend'
         },
         investmentAccount: {
+            nationalityCountrylist: 'invest/investment-microservice/groupedCountryList',
             nationalitylist: 'invest/investment-microservice/countrylist',
             getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
             lndustrylist: 'invest/investment-microservice/industrylist',

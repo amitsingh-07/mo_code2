@@ -88,7 +88,7 @@
   } ,
   "FUND_DETAILS":{
     "TITLE": "Fund Details",
-    "DOWNLOAD_FACTSHEET":"Download Factsheet (2MB)",
+    "DOWNLOAD_FACTSHEET":"Download Factsheet",
     "DOWNLOAD_HIGHLIGHT_FACTSHEET":"Download Highlight Sheet"
   
   },

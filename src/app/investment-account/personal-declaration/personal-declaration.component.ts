@@ -55,7 +55,7 @@ this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
   }
   ngOnInit() {
     this.navbarService.setNavbarMode(2);
-    this.source = 'Select' ;
+    this.source = 'Select Source' ;
     this.getSourceList();
     this.personalDeclarationFormValues = this.investmentAccountService.getPersonalDeclaration();
     this.personalDeclarationForm = new FormGroup({

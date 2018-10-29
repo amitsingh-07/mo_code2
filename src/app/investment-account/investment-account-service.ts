@@ -14,6 +14,10 @@ const SESSION_STORAGE_KEY = 'app_inv_account_session';
     providedIn: 'root'
 })
 export class InvestmentAccountService {
+    callBackInvestmentAccount = false;
+    disableAttributes = ['fullName'];
+    myInfoAttributes = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
+    'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
 
     private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
     private investmentAccountFormError: any = new InvestmentAccountFormError();
@@ -38,12 +42,22 @@ export class InvestmentAccountService {
     }
     /* Residential Address */
     getCountriesFormData() {
-        const countries = this.investmentAccountFormData.nationalitylist;
+        const countries = this.investmentAccountFormData.countryList;
         return countries;
     }
-    isUserNationalitySingapore() {
-        const selectedCountry = this.investmentAccountFormData.nationality.country.toUpperCase();
-        return selectedCountry === 'SINGAPORE';
+    isSingaporeResident() {
+        const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
+        return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE ||
+            this.investmentAccountFormData.singaporeanResident === 'yes');
+    }
+    getCountryFromNationalityCode(nationalityCode) {
+        let country = 'Singapore';
+        const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
+            (nationality) => nationality.nationalityCode === nationalityCode);
+        if (selectedNationality[0] && selectedNationality[0].countries[0]) {
+            country = selectedNationality[0].countries[0].name;
+        }
+        return country;
     }
     setDefaultValueForFormData() {
         this.investmentAccountFormData.isMailingAddressSame = INVESTMENT_ACCOUNT_CONFIG.residential_info.isMailingAddressSame;
@@ -54,6 +68,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.postalCode = data.postalCode;
         this.investmentAccountFormData.address1 = data.address1;
         this.investmentAccountFormData.address2 = data.address2;
+        this.investmentAccountFormData.floor = data.floor;
         this.investmentAccountFormData.unitNo = data.unitNo;
         this.investmentAccountFormData.city = data.city;
         this.investmentAccountFormData.state = data.state;
@@ -64,6 +79,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailPostalCode = data.mailingAddress.mailPostalCode;
             this.investmentAccountFormData.mailAddress1 = data.mailingAddress.mailAddress1;
             this.investmentAccountFormData.mailAddress2 = data.mailingAddress.mailAddress2;
+            this.investmentAccountFormData.mailFloor = data.mailingAddress.mailFloor;
             this.investmentAccountFormData.mailUnitNo = data.mailingAddress.mailUnitNo;
             this.investmentAccountFormData.mailCity = data.mailingAddress.mailCity;
             this.investmentAccountFormData.mailState = data.mailingAddress.mailState;
@@ -112,6 +128,9 @@ export class InvestmentAccountService {
         return this.apiService.getAddressUsingPostalCode(data);
     }
 
+    getNationalityCountryList() {
+        return this.apiService.getNationalityCountryList();
+    }
     getNationalityList() {
         return this.apiService.getNationalityList();
     }
@@ -130,14 +149,14 @@ export class InvestmentAccountService {
     getInvestmentPeriod() {
         return this.apiService.getInvestmentPeriod();
     }
-    getNationality() {
-        return {
-            nationalitylist: this.investmentAccountFormData.nationalitylist,
-            nationality: this.investmentAccountFormData.nationality,
-            unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
-            singaporeanResident: this.investmentAccountFormData.singaporeanResident
-        };
-    }
+    // getNationality() {
+    //     return {
+    //         nationalitylist: this.investmentAccountFormData.nationalityList,
+    //         nationality: this.investmentAccountFormData.nationality,
+    //         unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
+    //         singaporeanResident: this.investmentAccountFormData.singaporeanResident
+    //     };
+    // }
 
     getTaxInfo() {
         return {
@@ -165,6 +184,10 @@ export class InvestmentAccountService {
         const pepVal = this.investmentAccountFormData.pep;
         return pepVal;
     }
+    getBOStatus() {
+        const boVal = this.investmentAccountFormData.beneficial;
+        return boVal;
+    }
     getPersonalDeclaration() {
         return {
             sourceOfIncome: this.investmentAccountFormData.sourceOfIncome,
@@ -181,22 +204,40 @@ export class InvestmentAccountService {
         this.commit();
     }
 
-    setNationality(nationalitylist: any, selectedNationality: any, unitedStatesResident: any, singaporeanResident: any) {
-        this.investmentAccountFormData.nationalitylist = nationalitylist;
-        this.investmentAccountFormData.nationality = selectedNationality;
+    setNationality(nationalityList: any, countryList: any, nationality: any, unitedStatesResident: any, singaporeanResident: any) {
+        this.investmentAccountFormData.nationalityList = nationalityList;
+        this.investmentAccountFormData.countryList = countryList;
+        this.investmentAccountFormData.nationalityCode = nationality.nationalityCode;
+        this.investmentAccountFormData.nationality = nationality;
         this.investmentAccountFormData.unitedStatesResident = unitedStatesResident;
         this.investmentAccountFormData.singaporeanResident = singaporeanResident;
         this.commit();
     }
     setPersonalInfo(data: PersonalInfo) {
-        this.investmentAccountFormData.fullName = data.fullName;
-        this.investmentAccountFormData.firstName = data.firstName;
-        this.investmentAccountFormData.lastName = data.lastName;
-        this.investmentAccountFormData.nricNumber = data.nricNumber;
-        this.investmentAccountFormData.passportNumber = data.passportNumber;
-        this.investmentAccountFormData.passportExpiry = data.passportExpiry;
-        this.investmentAccountFormData.dob = data.dob;
-        this.investmentAccountFormData.gender = data.gender;
+        if (data.fullName) {
+            this.investmentAccountFormData.fullName = data.fullName;
+        }
+        if (data.firstName) {
+            this.investmentAccountFormData.firstName = data.firstName;
+        }
+        if (data.lastName) {
+            this.investmentAccountFormData.lastName = data.lastName;
+        }
+        if (data.nricNumber) {
+            this.investmentAccountFormData.nricNumber = data.nricNumber;
+        }
+        if (data.passportNumber) {
+            this.investmentAccountFormData.passportNumber = data.passportNumber;
+        }
+        if (data.passportExpiry) {
+            this.investmentAccountFormData.passportExpiry = data.passportExpiry;
+        }
+        if (data.dob) {
+            this.investmentAccountFormData.dob = data.dob;
+        }
+        if (data.gender) {
+            this.investmentAccountFormData.gender = data.gender;
+        }
         this.commit();
     }
     getPersonalInfo() {
@@ -247,12 +288,9 @@ export class InvestmentAccountService {
                 this.investmentAccountFormData.empCity = data.employeaddress.empCity;
                 this.investmentAccountFormData.empState = data.employeaddress.empState;
                 this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
-
             }
-
         } else {
             this.investmentAccountFormData.employmentStatus = data.employmentStatus;
-
         }
         this.commit();
     }
@@ -274,6 +312,9 @@ export class InvestmentAccountService {
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
     }
+    uploadDocumentBO(formData) {
+        return this.apiService.uploadDocumentBO(formData);
+    }
     setFinancialFormData(data) {
         this.investmentAccountFormData.annualHouseHoldIncomeRange = data.annualHouseHoldIncomeRange;
         this.investmentAccountFormData.numberOfHouseHoldMembers = data.numberOfHouseHoldMembers;
@@ -293,6 +334,163 @@ export class InvestmentAccountService {
             financialTotalLiabilities: this.investmentAccountFormData.financialTotalLiabilities
         };
     }
+
+    setFormData(data) {
+        this.investmentAccountFormData.fullName = data.name.value;
+        if (data.nationality.value) {
+            this.investmentAccountFormData.nationalityCode = data.nationality.value;
+            this.disableAttributes.push('nationality');
+        }
+        this.setMyInfoPersonal(data);
+        this.setMyInfoResidentialAddress(data);
+
+        // Employer name
+        if (data.employment && data.employment.value) {
+            this.investmentAccountFormData.companyName = data.employment.value;
+            this.disableAttributes.push('companyName');
+        }
+
+        // Occupation
+        if (data.occupation && data.occupation.desc) {
+            this.investmentAccountFormData.occupation = data.occupation.desc;
+            this.disableAttributes.push('occupation');
+        }
+
+        // Monthly Household Income
+        if (data.householdincome) {
+            let highAmount: any = '';
+            if (data.householdincome.low && data.householdincome.high) {
+                if (data.householdincome.high === 'above') {
+                    highAmount = ' and ' + data.householdincome.high;
+                } else {
+                    highAmount = ' to $' + data.householdincome.high;
+                }
+                this.investmentAccountFormData.annualHouseHoldIncomeRange = '$' + data.householdincome.low + highAmount;
+                this.disableAttributes.push('annualHouseHoldIncomeRange');
+            }
+        }
+        this.investmentAccountFormData.disableAttributes = this.disableAttributes;
+        this.investmentAccountFormData.isMyInfoEnabled = true;
+        this.commit();
+    }
+
+    // MyInfo - Personal data
+    setMyInfoPersonal(data) {
+        if (data.uinfin) {
+            this.investmentAccountFormData.nricNumber = data.uinfin;
+            this.disableAttributes.push('nricNumber');
+        }
+        if (data.passportnumber && data.passportnumber.value) {
+            this.investmentAccountFormData.passportNumber = data.passportnumber.value;
+            this.disableAttributes.push('passportNumber');
+        }
+        if (data.passportexpirydate && data.passportexpirydate.value) {
+            this.investmentAccountFormData.passportExpiry = this.dateFormat(data.passportexpirydate.value);
+            this.disableAttributes.push('passportExpiry');
+        }
+        if (data.dob.value) {
+            this.investmentAccountFormData.dob = this.dateFormat(data.dob.value);
+            this.disableAttributes.push('dob');
+        }
+        if (data.sex.value === 'M') {
+            this.investmentAccountFormData.gender = 'male';
+            this.disableAttributes.push('gender');
+        } else if (data.sex.value === 'F') {
+            this.investmentAccountFormData.gender = 'female';
+            this.disableAttributes.push('gender');
+        }
+    }
+
+    // MyInfo - Residential Address
+    setMyInfoResidentialAddress(data) {
+        // Register address
+        if (data.regadd) {
+            if (data.regadd.country) {
+                this.investmentAccountFormData.country = data.regadd.country;
+                this.disableAttributes.push('country');
+            }
+            if (data.regadd.floor) {
+                this.investmentAccountFormData.floor = data.regadd.floor;
+                this.disableAttributes.push('floor');
+            }
+            if (data.regadd.unit) {
+                this.investmentAccountFormData.unitNo = data.regadd.unit;
+                this.disableAttributes.push('unitNo');
+            }
+            if (data.regadd.block) {
+                this.investmentAccountFormData.address1 = 'Block ' + data.regadd.block;
+                this.disableAttributes.push('address1');
+            }
+            if (data.regadd.street) {
+                this.investmentAccountFormData.address2 = data.regadd.street;
+                this.disableAttributes.push('address2');
+            }
+            if (data.regadd.postal) {
+                this.investmentAccountFormData.zipCode = data.regadd.postal;
+                this.disableAttributes.push('zipCode');
+            }
+        }
+        // Email address
+        if (data.mailadd) {
+            this.setMyInfoEmailAddress(data);
+        }
+    }
+
+    // MyInfo - Email Address
+    setMyInfoEmailAddress(data) {
+        if (data.mailadd.country) {
+            this.investmentAccountFormData.mailCountry = data.mailadd.country;
+            this.disableAttributes.push('mailCountry');
+        }
+        if (data.mailadd.floor) {
+            this.investmentAccountFormData.mailFloor = data.mailadd.floor;
+            this.disableAttributes.push('mailFloor');
+        }
+        if (data.mailadd.unit) {
+            this.investmentAccountFormData.mailUnitNo = data.mailadd.unit;
+            this.disableAttributes.push('mailUnitNo');
+        }
+        if (data.mailadd.block) {
+            this.investmentAccountFormData.mailAddress1 = 'Block ' + data.mailadd.block;
+            this.disableAttributes.push('mailAddress1');
+        }
+        if (data.mailadd.street) {
+            this.investmentAccountFormData.mailAddress2 = data.mailadd.street;
+            this.disableAttributes.push('mailAddress2');
+        }
+        if (data.mailadd.postal) {
+            this.investmentAccountFormData.mailZipCode = data.mailadd.postal;
+            this.disableAttributes.push('mailZipCode');
+        }
+    }
+
+    dateFormat(date: string) {
+        const dateArr: any = date.split('-');
+        return {year: Number(dateArr[0]), month: Number(dateArr[1]), day: Number(dateArr[2])};
+    }
+
+    isDisabled(fieldName): boolean {
+        let disable: boolean;
+        if (this.investmentAccountFormData.isMyInfoEnabled) {
+          if (this.investmentAccountFormData.disableAttributes.includes(fieldName)) {
+            disable = true;
+          } else {
+            disable = false;
+          }
+        } else {
+          if (['firstName', 'lastName'].includes(fieldName)) {
+            disable = true;
+          } else {
+            disable = false;
+          }
+        }
+        return disable;
+    }
+
+    isSingPassDisabled() {
+        return this.investmentAccountFormData.isMyInfoEnabled;
+    }
+
     getAdditionDeclaration() {
         return {
             source: this.investmentAccountFormData.source,

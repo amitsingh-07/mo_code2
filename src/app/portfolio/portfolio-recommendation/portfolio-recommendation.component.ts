@@ -1,5 +1,7 @@
 import 'rxjs/add/observable/timer';
 
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
 import {
@@ -9,6 +11,9 @@ import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -17,7 +22,6 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
 
@@ -69,12 +73,14 @@ export class PortfolioRecommendationComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.helpDate.modalTitle;
     ref.componentInstance.errorMessage = this.helpDate.modalMessage;
     return false;
   }
+
   showEditModal() {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
@@ -84,19 +90,22 @@ export class PortfolioRecommendationComponent implements OnInit {
       this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
     });
   }
+
   showWhatTheRisk() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
-
   }
+
   showWhatFubdDetails() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
   }
+
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
     this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
     });
   }
+
   constructgetAllocationParams() {
     const formData = this.portfolioService.getRiskProfile();
     const enqId = this.authService.getEnquiryId();
@@ -123,14 +132,12 @@ export class PortfolioRecommendationComponent implements OnInit {
     }
   }
 
-  modelButtonClick() {
-    alert('functinality');
-  }
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
+
   goToNext() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.PRELOGIN]);
+    this.router.navigate([ SIGN_UP_ROUTE_PATHS.PRELOGIN]);
   }
 }

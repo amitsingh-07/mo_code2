@@ -14,6 +14,7 @@ export class InvestmentAccountFormData {
     postalCode: number;
     address1: string;
     address2: string;
+    floor: string;
     unitNo: string;
     city: string;
     state: string;
@@ -23,14 +24,17 @@ export class InvestmentAccountFormData {
     mailPostalCode: number;
     mailAddress1: string;
     mailAddress2: string;
+    mailFloor: string;
     mailUnitNo: string;
     mailCity: string;
     mailState: string;
     mailZipCode: number;
 
-    // SELECTNATIONLITY
-    nationalitylist: any;
+    // SELECT NATIONLITY
+    nationalityList: any;
+    countryList: any;
     nationality: any;
+    nationalityCode: any;
     unitedStatesResident: string;
     singaporeanResident: string;
 
@@ -64,6 +68,7 @@ export class InvestmentAccountFormData {
     mailAdressProof: File;
     passportImage: File;
     resAddressProof: File;
+    passportImageBO: File;
 
     // Personal Declaration
     sourceOfIncome: any;
@@ -100,4 +105,8 @@ export class InvestmentAccountFormData {
     pepAddress1: string;
     pepAddress2: string;
     pepUnitNo: string;
+
+    // MyInfo
+    isMyInfoEnabled: boolean;
+    disableAttributes: any;
 }

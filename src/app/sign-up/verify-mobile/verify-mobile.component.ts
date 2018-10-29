@@ -1,3 +1,4 @@
+import { FooterService } from './../../shared/footer/footer.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -36,6 +37,7 @@ export class VerifyMobileComponent implements OnInit {
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     private modal: NgbModal,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private router: Router,
@@ -57,6 +59,7 @@ export class VerifyMobileComponent implements OnInit {
     this.mobileNumberVerified = false;
     this.mobileNumber = this.signUpService.getMobileNumber();
     this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
     this.startRetryCounter();
   }

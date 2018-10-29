@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-7 col-md-6">
         <div class="signup-wrapper">
-          <h2 class="prelogin-wrapper__title order1 sm-order2 ml10 mb20" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
+          <h2 class="prelogin-wrapper__title order1 sm-order2 ml10 mb25" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
           <!--
           <div class="signup-wrapper__description order2">
               <p>{{ 'LOGIN.DESCRIPTION' | translate}}</p>
@@ -15,13 +15,10 @@
       </div>
       <div class="col-lg-5 col-md-6">
         <!-- <form id="loginForm" name="loginForm" [formGroup]="loginForm"> -->
-          <div class="flex-row mb15">
+          <div class="flex-row">
             <div class="flex-col-12 stretch">
               <div class="col-12 pl0 pr0">
-              <div class="autofill-link">
-                <div class="autofill-text">{{ 'POSTLOGIN.PROCEED' | translate}} </div>
-                <div class="autofill-logo"><img id="post_login_singpass_img" class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" /></div>
-              </div>
+                  <app-sing-pass [label]="singPassLinkTitle" [position]="'postlogin'"></app-sing-pass>
              </div>
             </div>
           </div>

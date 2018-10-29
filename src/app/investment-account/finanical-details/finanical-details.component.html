@@ -10,16 +10,7 @@
     <div class="content">
       <div class="row">
         <div class="col-12">
-          <div class="autofill-link">
-
-            <div class="autofill-text">Autofill Forms Via</div>
-
-
-            <div class="autofill-logo">
-              <img class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" />
-            </div>
-
-          </div>
+          <app-sing-pass></app-sing-pass>
         </div>
         <div class="col-lg-12 col-md-12">
           <form id="financial_details_address_form" name="financialDtetailsForm" [formGroup]="financialDetails">
@@ -32,7 +23,7 @@
                   <label for="residentialAddress-mailcountry-drpdown" id="financial_details-mailcountry-lbl">{{'FINANCIAL_DETAILS.ANNUAL_HOUSEHOLD_INCOME' | translate}} 
                   </label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('annualHouseHoldIncomeRange').valid && !financialDetails.get('annualHouseHoldIncomeRange').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button ngbDropdownToggle class="btn btn-dropdown without-border grey" id="financial_details-annual_house_hold_drpdown"> 
@@ -56,7 +47,7 @@
                   <label for="employement_details_status" id="financial_details_number_of_house_members-lbl">{{'FINANCIAL_DETAILS.NUMBER_OF_HOUSE_HOLDERS' | translate}}  
                   </label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('numberOfHouseHoldMembers').valid && !financialDetails.get('numberOfHouseHoldMembers').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
@@ -79,7 +70,7 @@
                     <div class="form-group-with-bg--content-label" for="name" id="financial_details_monthly_income_lbl">{{'FINANCIAL_DETAILS.ANNUAL_INCOME' | translate}} 
                     </div>
                   </div>
-                  <div class="flex-col-7 form-group">
+                  <div class="flex-col-7 form-group" [ngClass]="{'inline-error': !financialDetails.get('financialMonthlyIncome').valid && !financialDetails.get('financialMonthlyIncome').pristine}">
                     <div class="form-control" >
                       <i id="myFinancialDollarSybmOne">$</i>
                       <div name="monthlyIncome">
@@ -98,7 +89,7 @@
                     <div class="form-group-with-bg--content-label" for="name" id="financial_details_saved_income_lbl">{{'FINANCIAL_DETAILS.PERS_OF_INCOME_SAVED' | translate}}</div>
                   </div>
                   <div class="flex-col-7">
-                    <div class="form-control form-control-right" >
+                    <div class="form-control form-control-right" [ngClass]="{'inline-error': !financialDetails.get('financialPercentageOfSaving').valid && !financialDetails.get('financialPercentageOfSaving').pristine}">
 
                       <div name="financialPercentageOfSaving" >
                         <input class="input-control" id="financial_details_saved_income_Input" type="text" appPercentageInput maxLength="3" #percentageOfSaving
@@ -117,7 +108,7 @@
 
                     </div>
                   </div>
-                  <div class="flex-col-7">
+                  <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('financialTotalAssets').valid && !financialDetails.get('financialTotalAssets').pristine}">
                     <div class="form-control">
                       <i id="myFinancialDollerSymbTwo">$</i>
                       <div name="totalAssets" >
@@ -137,7 +128,7 @@
 
                     </div>
                   </div>
-                  <div class="flex-col-7">
+                  <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('financialTotalLiabilities').valid && !financialDetails.get('financialTotalLiabilities').pristine}">
                     <div class="form-control" >
                       <i id="myFinancialDollerSymbThree">$</i>
                       <div name="totalLiabilities" >

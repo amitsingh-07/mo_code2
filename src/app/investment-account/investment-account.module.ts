@@ -13,14 +13,22 @@ import {
     AccountSetupCompletedComponent
 } from './account-setup-completed/account-setup-completed.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
-import { AdditionalDeclarationInfoComponent } from './additional-declaration-info/additional-declaration-info.component';
-import { AdditionalDeclarationStep1Component } from './additional-declaration-step1/additional-declaration-step1.component';
-import { AdditionalDeclarationSubmitComponent } from './additional-declaration-submit/additional-declaration-submit.component';
+import {
+    AdditionalDeclarationInfoComponent
+} from './additional-declaration-info/additional-declaration-info.component';
+import {
+    AdditionalDeclarationScreen2Component
+} from './additional-declaration-screen2/additional-declaration-screen2.component';
+import {
+    AdditionalDeclarationStep1Component
+} from './additional-declaration-step1/additional-declaration-step1.component';
+import {
+    AdditionalDeclarationSubmitComponent
+} from './additional-declaration-submit/additional-declaration-submit.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import {
     EditInvestmentModalComponent
 } from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
-
 import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
@@ -28,16 +36,16 @@ import { InvestmentAccountRoutingModule } from './investment-account-routing.mod
 import {
     PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
-
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PostLoginComponent } from './post-login/post-login.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
+import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
+import {
+    UploadDocumentsLaterComponent
+} from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-
-import { UploadDocumentsLaterComponent } from './upload-documents-later/upload-documents-later.component';
-
-import { AdditionalDeclarationScreen2Component } from './additional-declaration-screen2/additional-declaration-screen2.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -65,6 +73,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule
   ],
   declarations: [
+    PostLoginComponent,
     PersonalInfoComponent,
     ResidentialAddressComponent,
     SelectNationalityComponent,
@@ -82,7 +91,8 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationStep1Component,
     FeesModalComponent,
     AccountSetupCompletedComponent,
-    AdditionalDeclarationSubmitComponent
+    AdditionalDeclarationSubmitComponent,
+    UploadDocumentBOComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
