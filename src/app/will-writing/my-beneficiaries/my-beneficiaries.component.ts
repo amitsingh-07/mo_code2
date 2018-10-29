@@ -54,10 +54,12 @@ export class MyBeneficiariesComponent implements OnInit {
         this.beneficiaryList.push(spouse);
       }
       if (this.willWritingService.getChildrenInfo().length > 0) {
-        const children: any = Object.assign({}, this.willWritingService.getChildrenInfo()[0]);
-        children.selected = true;
-        children.distPercentage = 0;
-        this.beneficiaryList.push(children);
+        const childrens: any = this.willWritingService.getChildrenInfo();
+        for (const children of childrens) {
+          children.selected = true;
+          children.distPercentage = 0;
+          this.beneficiaryList.push(children);
+        }
       }
     }
     this.buildBeneficiaryForm();

@@ -1,12 +1,13 @@
 <div class="personal-info">
-  <app-page-title [step]="step" [pageTitle]="pageTitle" [tooltip]="tooltip"></app-page-title>
+  <app-page-title [step]="step" [pageTitle]="pageTitle" [tooltip]="tooltip" [unsaved]="addExeTrusteeForm.dirty"></app-page-title>
   <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="flex-row main-container">
         <div class="col-lg-6 col-md-6 col-12 mobile-header-container">
           <div class="heading hidden-sm-md">{{'WILL_WRITING.COMMON.STEP_3' | translate}}</div>
           <div class="autofill-link">
-            <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}} <span class="help-icon" (click)="openToolTipModal()"></span></div>
+            <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}} <span
+                class="help-icon" (click)="openToolTipModal()"></span></div>
             <div class="sub-title mb20">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.SUB_TITLE' | translate}}</div>
             <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/will-writing/my-executor-trustee.svg" /></div>
             <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
@@ -15,22 +16,28 @@
         <div class="col-lg-5 col-md-5 col-12 executer-trustee-container">
           <div class="col-12 mb10">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.FORM_TITLE' | translate}}</div>
           <div class="form-group-single-column flex-col">
-            <div class="form-group-single-column  mb0 flex-col" *ngFor="let execTrustee of execTrusteeList">
+            <div class="form-group-single-column  mb0 flex-col" *ngFor="let execTrustee of execTrusteeList ; let i = index">
               <div class="edit-block checkbox-button two-label">
                 <label id="executor_{{i+1}}">
                   <div class="input-label-black">{{execTrustee.name | titlecase }}</div>
                   <div class="input-label-normal">{{execTrustee.relationship | titlecase }}</div>
                 </label>
-                <span (click)="editExecTrustee(execTrustee.relationship)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
+                <span (click)="editExecTrustee(execTrustee.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
               </div>
             </div>
           </div>
-          <div class="add-exeTrustee-form" *ngIf="execTrusteeList.length < maxExecTrustee">
+          <div class="add-exeTrustee-form" *ngIf="execTrusteeList.length < maxExecTrustee || isEdit">
             <form [formGroup]="addExeTrusteeForm" id="addExeTrusteeForm" name="addExeTrusteeForm">
               <div class="addExeTrusteeForm" formArrayName="executorTrustee" *ngFor="let execTrustee of addExeTrusteeForm.get('executorTrustee').controls; let i = index;">
                 <div class="form-group" [formGroupName]="i">
                   <div class="flex-row title">
                     {{formTitle[i]?.title}}
+                    <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">
+                      {{'WILL_WRITING.COMMON.CANCEL' | translate}}
+                    </div>
+                  </div>                  
+                  <div *ngIf="formTitle[i].isAlt" class="flex-row mb10 alternative-sub-title">
+                    {{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE_SUB_TITLE' | translate}}
                   </div>
                   <div class="flex-row mb10">
                     <div class="flex-col-5">

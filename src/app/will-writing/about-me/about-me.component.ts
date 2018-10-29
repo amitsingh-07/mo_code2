@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
@@ -29,7 +28,6 @@ export class AboutMeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private modal: NgbModal,
     private router: Router,
     private translate: TranslateService,
     private willWritingService: WillWritingService

@@ -19,6 +19,8 @@ export class MyExecutorTrusteeComponent implements OnInit {
   private step: string;
   private tooltip = {};
   private formTitleMsg = {};
+  private isEdit: boolean;
+  private selectedIndex: number;
 
   addExeTrusteeForm: FormGroup;
   execTrusteeList: IExecTrustee[] = [];
@@ -29,7 +31,6 @@ export class MyExecutorTrusteeComponent implements OnInit {
 
   hasSpouse: boolean;
   hasChild: boolean;
-  hasGuardian: boolean;
   maxExecTrustee = WILL_WRITING_CONFIG.MAX_EXECUTOR_TRUSTEE;
 
   constructor(
@@ -53,7 +54,6 @@ export class MyExecutorTrusteeComponent implements OnInit {
   ngOnInit() {
     this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
-    this.hasGuardian = this.willWritingService.getGuardianInfo().length > 0;
     if (this.willWritingService.getExecTrusteeInfo().length > 0) {
       this.execTrusteeList = this.willWritingService.getExecTrusteeInfo();
     } else if (this.hasSpouse) {
@@ -61,9 +61,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
       spouse.isAlt = false;
       this.execTrusteeList.push(spouse);
     }
-    if (this.execTrusteeList.length < this.maxExecTrustee) {
-      this.buildMainForm();
-    }
+    this.buildMainForm();
   }
 
   get execTrustee() { return this.addExeTrusteeForm.controls; }
@@ -75,20 +73,20 @@ export class MyExecutorTrusteeComponent implements OnInit {
     this.addExeTrusteeForm = this.formBuilder.group({
       executorTrustee: this.formBuilder.array([this.buildExecTrusteeForm()]),
     });
-    if (!this.hasSpouse) {
+    if (!this.hasSpouse && this.execTrusteeList.length !== this.maxExecTrustee) {
       for (let i = 1; i < 2; i++) {
         this.addExecTrusteeForm();
       }
-    }
-    if (this.hasChild && this.willWritingService.checkBeneficiaryAge()) {
-      this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
-      if (!this.hasSpouse) {
+      if (this.hasChild && this.willWritingService.checkBeneficiaryAge()) {
         this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
-      }
-    } else {
-      this.formTitle.push({ isAlt: true, title: this.formTitleMsg['alt'], relationship: '' });
-      if (!this.hasSpouse && !this.hasChild) {
-        this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
+        if (!this.hasSpouse) {
+          this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
+        }
+      } else {
+        this.formTitle.push({ isAlt: true, title: this.formTitleMsg['alt'], relationship: '' });
+        if (!this.hasSpouse && !this.hasChild) {
+          this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
+        }
       }
     }
   }
@@ -118,10 +116,29 @@ export class MyExecutorTrusteeComponent implements OnInit {
     relation['controls'][index].controls['relationship'].setValue(relationship.value);
   }
 
-  editExecTrustee(relation: string) {
+  editExecTrustee(relation: string, index: number) {
     if (relation === 'spouse') {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+    } else {
+      this.selectedIndex = index;
+      this.isEdit = true;
+      const execTrustee = this.execTrusteeList[index];
+      this.formTitle[0] = {
+        isAlt: execTrustee.isAlt,
+        title: execTrustee.isAlt ? this.formTitleMsg['alt'] : this.formTitleMsg['main'],
+        relationship: ''
+      };
+      const execTrusteeForm = this.addExeTrusteeForm.get('executorTrustee')['controls'][0];
+      execTrusteeForm.controls['name'].setValue(execTrustee.name);
+      execTrusteeForm.controls['uin'].setValue(execTrustee.uin);
+      const ExecRelationship = this.relationshipList.filter((relationship) => relationship.value === execTrustee.relationship);
+      this.selectRelationship(ExecRelationship[0], 0);
     }
+  }
+
+  resetForm() {
+    this.addExeTrusteeForm.reset();
+    this.isEdit = false;
   }
 
   /**
@@ -138,11 +155,17 @@ export class MyExecutorTrusteeComponent implements OnInit {
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
       return false;
     } else {
-      let i = 0;
-      for (const execTrustee of form.value.executorTrustee) {
-        execTrustee.isAlt = this.formTitle[i].isAlt;
-        this.execTrusteeList.push(execTrustee);
-        i++;
+      if (!this.isEdit) {
+        let i = 0;
+        for (const execTrustee of form.value.executorTrustee) {
+          execTrustee.isAlt = this.formTitle[i].isAlt;
+          this.execTrusteeList.push(execTrustee);
+          i++;
+        }
+      } else {
+        this.execTrusteeList[this.selectedIndex].name = form.value.executorTrustee[0].name;
+        this.execTrusteeList[this.selectedIndex].relationship = form.value.executorTrustee[0].relationship;
+        this.execTrusteeList[this.selectedIndex].uin = form.value.executorTrustee[0].uin;
       }
       this.willWritingService.setExecTrusteeInfo(this.execTrusteeList);
       return true;
@@ -160,7 +183,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if (this.execTrusteeList.length === this.maxExecTrustee || this.save(form)) {
+    if ((this.isEdit && this.save(form)) || (!this.isEdit && (this.execTrusteeList.length === this.maxExecTrustee || this.save(form)))) {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.REVIEW_YOUR_DETAILS]);
     }
   }
