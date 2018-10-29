@@ -71,7 +71,7 @@ export class TaxInfoComponent implements OnInit {
   }
 
   selectCountry(country) {
-    this.taxInfoForm.controls.taxCountry.setValue(country.name);
+    this.taxInfoForm.controls.taxCountry.setValue(country);
   }
 
   selectReason(reasonObj) {

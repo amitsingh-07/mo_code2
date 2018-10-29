@@ -16,7 +16,7 @@
             <div ngbDropdown>
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span *ngIf="taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.taxCountry.value | titlecase }}</span>
+                <span *ngIf="taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.taxCountry.value.name | titlecase }}</span>
                 <span *ngIf="!taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">Select Country</span>
                 <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 

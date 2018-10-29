@@ -113,10 +113,10 @@
             <div class="flex-col-7">
               <div class="dropdown-control">
                 <div ngbDropdown>
-                  <button class="btn btn-dropdown without-border grey" id="pep_Info_residentialAddress-country-drpdown" ngbDropdownToggle>{{selectedCountry}}
+                  <button disabled class="btn btn-dropdown without-border grey" id="pep_Info_residentialAddress-country-drpdown" ngbDropdownToggle>{{addInfoForm.controls.pepCountry.value.name}}
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                    <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue(option)" id="pep_Info_residentialAddress-country-option-{{i}}">{{option}}</button>
+                    <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue(country)" id="pep_Info_residentialAddress-country-option-{{i}}">{{option}}</button>
                   </div>
                 </div>
               </div>

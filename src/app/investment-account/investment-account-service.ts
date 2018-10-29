@@ -51,11 +51,11 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.singaporeanResident);
     }
     getCountryFromNationalityCode(nationalityCode) {
-        let country = 'Singapore';
+        let country;
         const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
             (nationality) => nationality.nationalityCode === nationalityCode);
         if (selectedNationality[0] && selectedNationality[0].countries[0]) {
-            country = selectedNationality[0].countries[0].name;
+            country = selectedNationality[0].countries[0];
         }
         return country;
     }
