@@ -36,8 +36,14 @@ app-terms {
     background-color: #ffffff;
   }
 
+  .white-bg {
+    @include allmobiles {
+      margin-bottom: 140px !important;
+    }
+  }
   .modal-body {
     padding: 15px 0 !important;
+    text-overflow: auto;
 
     .close {
       @include allmobiles {
@@ -116,4 +122,31 @@ app-terms {
     }
   }
 
+}
+
+.modal-body-title {
+  font-size: 24px;
+}
+
+.section-container {
+  overflow: auto !important;
+  margin-top: 30px;
+  @include allmobiles{
+    margin: 0;
+  } 
+}
+
+.btn-primary {
+  width: 190px;
+  @include allmobiles {
+    width: 100%;
+  }
+}
+
+.modal-open .modal {
+  overflow: hidden;
+}
+
+.modal-dialog.modal-dialog-centered{
+  max-width: 790px !important;
 }
