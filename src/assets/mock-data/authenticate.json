@@ -1,0 +1,10 @@
+{
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  },
+  "objectList": [{
+    "securityToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJub3JtYWxfdXNlciIsInJvbGVzIjoiUk9MRV9VU0VSLCIsImlhdCI6MTUzOTg2OTEzMCwiaXNzIjoiQXV0aG9yaXphdGlvbiIsImV4cCI6MTUzOTg3MjczMH0.JPoNS7Bbol8mCxdcmuUfJUKXe6UcWaCAHXMiTjQfaeI",
+    "sessionId": "/hNOveVcIsyrkjHqVSaj6NuPWSFbHpLbIvWvL4FRYyI=\r\n"
+  }]
+}

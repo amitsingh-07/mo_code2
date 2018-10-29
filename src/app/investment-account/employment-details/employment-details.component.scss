@@ -1,16 +1,37 @@
 @import '../../../variables';
 
 .employement-details {
+
+
+  .postal-code-control {
+    display: flex;
+
+    div.control {
+      display: flex;
+      flex: 3;
+    }
+
+    div.button {
+      display: flex;
+      flex: 2;
+    }
+  }
+
   .flex-row {
   align-items: center;
   }
-  .dropdown-control .dropdown-menu.show {
+  .employe-dropdown-control .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
     height: calc(70vh);
-    }
+      }
+    
 .dropdown-item {
     white-space: normal;
+   
+}
+.dropdown-control .btn-dropdown {
+  padding-right: 27px;
 }
 
 
@@ -88,12 +109,12 @@
 
       &:focus {
         background-color: #ff730c !important;
-        color:#fff !important;
+        color: #fff !important;
       }
 
       &:active {
         background-color: #ff730c !important;
-        color:#fff !important;
+        color: #fff !important;
       }
 
     }

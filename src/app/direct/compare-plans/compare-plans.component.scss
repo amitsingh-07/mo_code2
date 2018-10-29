@@ -10,8 +10,8 @@ app-compare-plans {
   }
   .info-icon {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 8px;
+    top: 8px;
     cursor: pointer;
   }
   .rt-round {
@@ -51,6 +51,9 @@ app-compare-plans {
 
       @include allmobiles{
         width: 300px;
+      }
+      @include iPadLandscape {
+        width: auto;
       }
     }
 
@@ -134,6 +137,7 @@ app-compare-plans {
         color: #5E5E5E !important;
         padding: 20px;
         justify-content: center;
+        text-align: center;
 
         &.feature-list {
           flex-direction: column;
@@ -149,6 +153,7 @@ app-compare-plans {
           display: flex;
           justify-content: flex-start;
           padding: 10px 0;
+          text-align: left;
 
           img {
             width: 15px;
@@ -189,10 +194,11 @@ app-compare-plans {
 
     @include allmobiles {
       min-height: 251px;
+      padding: 0 !important;
     }
 
     h4 {
-      height: 26px;
+      //height: 26px;
       font-size: 16px;
       color: $form-block-title-color;
       font-family: $muli-semi-bold;
@@ -200,7 +206,14 @@ app-compare-plans {
       @include allmobiles {
         font-size: 16px;
         text-align: center;
-        min-height: 38px;
+        overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; /* number of lines to show */
+          line-height: 20px;        /* fallback */
+          max-height: 40px; 
+        //min-height: 38px;
       }
     }
 
@@ -237,9 +250,11 @@ app-compare-plans {
       align-items: center;
       justify-content: center;
       img {
-        max-width: 35% !important;
+        max-width: 65% !important;
+        max-height: 65%;
         @include allmobiles {
-          max-width: 50% !important;
+          max-width: 70% !important;
+          max-height: 70% !important;
         }
       }
     }
@@ -295,7 +310,7 @@ app-compare-plans {
     text-align: center;
     color: $white-color;
     font-family: $muli-semi-bold;
-    border-bottom: 1px solid $white-color;
+    border-bottom: 1px solid #3eb9b8;
     font-size: 24px;
     line-height: 66px;
     left: 0;

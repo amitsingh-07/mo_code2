@@ -10,7 +10,8 @@ export let apiConstants = {
         getHospitalPlanList: 'insurance/insurance-needs-microservice/api/getHospitalClassList',
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
-        getMyInfoValues: 'account/account-microservice/api/getMyInfoValues',
+        updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
+        getMyInfoValues: 'myinfo-microservice/api/getMyInfo',
         signUp: 'account/account-microservice/api/signup',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
@@ -36,6 +37,7 @@ export let apiConstants = {
             getAllocationDetails: PORTFOLIO_API_BASE_URL + 'portfolio/recommend'
         },
         investmentAccount: {
+            nationalityCountrylist: 'invest/investment-microservice/groupedCountryList',
             nationalitylist: 'invest/investment-microservice/countrylist',
             getAddressByPincode: 'https://gothere.sg/maps/geo?output=json&client=&sensor=false',
             lndustrylist: 'invest/investment-microservice/industrylist',

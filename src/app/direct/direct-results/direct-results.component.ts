@@ -64,6 +64,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   insurers: any = { All: 'All' };
   insurersFinancialRating: any = { All: 'All' };
   payoutYears: any = { All: 'All' };
+  payoutPeriod: any = { All: 'All' };
   claimFeature: any = { All: 'All' };
   deferredPeriod: any = { All: 'All' };
   escalatingBenefit: any = { All: 'All' };
@@ -153,35 +154,51 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.enquiryId = data.objectList[0].enquiryId;
     this.searchResult = data.objectList[0].productProtectionTypeList;
     this.filteredResult = this.searchResult;
+
     for (const productLists of data.objectList[0].productProtectionTypeList) {
+      productLists.productList[0].bestValue = true;
       for (const productList of productLists.productList) {
+
+        if (this.selectedCategory.id === PRODUCT_CATEGORY_INDEX.OCCUPATIONAL_DISABILITY) {
+          if (productList.premium) {
+            if (productList.premium.deferredPeriod !== null) {
+              productList.premium.deferredPeriod += ' Months';
+            }
+            if (productList.premium.escalatingBenefit !== null) {
+              productList.premium.escalatingBenefit += '%';
+            }
+          }
+        }
+
         if (productList.insurer && productList.insurer.insurerName) {
           this.insurers[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
         }
         if (productList.insurer && productList.insurer.rating) {
           this.insurersFinancialRating[Formatter.createObjectKey(productList.insurer.rating)] = productList.insurer.rating;
         }
-        if (productList.premium && productList.premium.payoutAge) {
-          this.payoutYears[Formatter.createObjectKey(productList.premium.payoutAge)] = productList.premium.payoutAge;
+        if (productList.premium && productList.premium.payoutDuration) {
+          this.payoutYears[Formatter.createObjectKey(productList.premium.payoutDuration)] = productList.premium.payoutDuration;
         }
-        if (productList.premium && productList.premium.deferredPeriod) {
+        if (productList.premium && productList.premium.retirementPayPeriodDisplay) {
+          this.payoutPeriod[Formatter.createObjectKey(productList.premium.retirementPayPeriodDisplay)]
+            = productList.premium.retirementPayPeriodDisplay;
+        }
+        if (productList.premium) {
           this.deferredPeriod[Formatter.createObjectKey(productList.premium.deferredPeriod)] = productList.premium.deferredPeriod;
         }
-        if (productList.premium && productList.premium.escalatingBenefit) {
+        if (productList.premium) {
           this.escalatingBenefit[Formatter.createObjectKey(productList.premium.escalatingBenefit)] =
             productList.premium.escalatingBenefit;
         }
         if (productList.rider && productList.rider.riderName) {
           this.fullPartialRider[Formatter.createObjectKey(productList.rider.riderName)] = productList.rider.riderName;
         }
-        /*
-        if (productList.insurer && productList.insurer.insurerName) {
-          this.claimFeature[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+        if (productList.insurer && productList.premium.claimFeature) {
+          this.claimFeature[Formatter.createObjectKey(productList.premium.claimFeature)] = productList.premium.claimFeature;
         }
-        if (productList.insurer && productList.insurer.insurerName) {
-          this.claimCriteria[Formatter.createObjectKey(productList.insurer.insurerName)] = productList.insurer.insurerName;
+        if (productList.insurer && productList.premium.claimCriteria) {
+          this.claimCriteria[Formatter.createObjectKey(productList.premium.claimCriteria)] = productList.premium.claimCriteria;
         }
-        */
       }
     }
     this.insurers = Object.values(this.insurers).map((key) => {
@@ -191,6 +208,9 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       return { value: key, checked: key === 'All' ? true : false };
     });
     this.payoutYears = Object.values(this.payoutYears).map((key) => {
+      return { value: key, checked: key === 'All' ? true : false };
+    });
+    this.payoutPeriod = Object.values(this.payoutPeriod).map((key) => {
       return { value: key, checked: key === 'All' ? true : false };
     });
     this.claimFeature = Object.values(this.claimFeature).map((key) => {
@@ -248,6 +268,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       title: this.filterTypes.PAYOUT_YEARS, name: 'payoutYears',
       filterTypes: this.payoutYears, allBtn: true
     };
+    const payoutPeriod = {
+      title: this.filterTypes.PAYOUT_YEARS, name: 'payoutPeriod',
+      filterTypes: this.payoutYears, allBtn: true
+    };
     const claimCriteria = {
       title: this.filterTypes.CLAIM_CRITERIA, toolTip:
         { title: this.filterTypes.CLAIM_CRITERIA, message: this.toolTips.CLAIM_CRITERIA },
@@ -273,6 +297,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         this.filters.push(fullPartialRider);
         break;
       case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
+        delete this.filters[0];
         this.filters.push(payoutYears);
         this.filters.push(claimCriteria);
         break;
@@ -280,7 +305,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
         delete this.filters[0];
         break;
       case PRODUCT_CATEGORY_INDEX.RETIREMENT_INCOME:
-        this.filters.push(payoutYears);
+        this.filters.push(payoutPeriod);
         break;
       case PRODUCT_CATEGORY_INDEX.SRS_PLANS:
         delete this.filters[0];
@@ -320,7 +345,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     if (toolTip !== null && toolTip !== '') {
       if (toolTip.title === this.filterTypes.CLAIM_CRITERIA) {
         const ref1 = this.modal.open(MobileModalComponent, {
-          centered: true
+          centered: true,
+          windowClass: 'settings-tooltip-dialog'
         });
         ref1.componentInstance.mobileTitle = this.filterModalData.TITLE;
         ref1.componentInstance.description = this.filterModalData.DESCRIPTION;
@@ -395,6 +421,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   filterProducts(data: any) {
     this.selectedFilterList = data.filters;
+    if (this.selectedFilterList['premiumFrequency']) {
+      const frequency: string[] = Array.from(this.selectedFilterList['premiumFrequency']);
+      this.directService.setPremiumFrequencyFilter(frequency[0]);
+    }
     this.filterArgs = data.filters;
     if (this.filterArgs.premiumFrequency && this.filterArgs.premiumFrequency.size > 0) {
       this.premiumFrequencyType = Array.from(this.filterArgs.premiumFrequency)[0];

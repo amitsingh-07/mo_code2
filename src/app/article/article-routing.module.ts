@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ArticleCategoryComponent } from './article-category/article-category.component';
 import { ArticleEntryComponent } from './article-entry/article-entry.component';
-import { ArticleComponent } from './article.component';
+import { ArticleComponent } from './article/article.component';
 
 const routes: Routes = [
   { path: '', component: ArticleComponent},
@@ -12,7 +12,7 @@ const routes: Routes = [
 
   /* Legacy Routes */
   { path: 'learn-about-insurance', redirectTo: '', pathMatch: 'full'},
-  { path: 'learn-articles?category=:name', redirectTo: 'category/:name', pathMatch: 'full'},
+  { path: 'learn-articles', component: ArticleCategoryComponent},
   { path: 'html', component: ArticleEntryComponent}
   // There is learn/learn-articles?category=All so use Activated Routes to get search params properly
 ];

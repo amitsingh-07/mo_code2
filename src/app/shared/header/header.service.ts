@@ -62,7 +62,6 @@ export class HeaderService {
 
     setHeaderOverallVisibility(isVisible: boolean) {
         this.headerOverallVisibility.next(isVisible);
-        console.log('Header Overall Visibility' + isVisible);
     }
 
     setHeaderDropshadowVisibility(isVisible: boolean) {

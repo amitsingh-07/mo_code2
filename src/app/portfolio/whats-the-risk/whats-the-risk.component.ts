@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 
@@ -17,17 +18,22 @@ export class WhatsTheRiskComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private router: Router,
+    public navbarService: NavbarService,
     public headerService: HeaderService, private portfolioService: PortfolioService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WHATS_THE_RISK.TITLE');
-      this.setPageTitle(this.pageTitle, null, false);
+      this.setPageTitle(this.pageTitle);
     });
   }
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean) {
-    this.headerService.setPageTitle(title, null, helpIcon);
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
   }
 
 }

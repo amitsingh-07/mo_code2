@@ -130,13 +130,13 @@ app-recommendations {
 
   .carousel-content {
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 20px;
     color: #333;
-    min-height: 550px;
+    //min-height: 550px;
     @include allmobiles {
       padding: 0px;
-      min-height: 300px;
+      //min-height: 290px;
     }
   }
 
@@ -247,7 +247,7 @@ app-recommendations {
         padding-left: 20px;
         padding-top: 8px;
         padding-bottom: 8px;
-        font-size: 18px;
+        font-size: 16px;
         //padding-left: 145px !important;
         //padding-right: 125px !important;
         //background: #2d8289;
@@ -266,18 +266,21 @@ app-recommendations {
       }
   }
 
-  .coverage-type,
-  .coverage-amount,
-  .coverage-premium-from {
-    font-family: $muli-semi-bold;
+  .coverage-type
+ {
+    font-family: $muli-bold;
     margin-right: 50px;
-    font-size: 20px;
+    font-size: 22px;
 
     @include allmobiles {
       margin-right: 0px;
     }
   }
-
+  .coverage-amount,.coverage-premium-from {
+    font-family: $muli-bold;
+    font-size: 18px;
+    margin-right: 50px;
+  }
   .coverage-premium-from {
     margin-right: 0 !important;
   }
@@ -288,6 +291,12 @@ app-recommendations {
     margin: 0 32px;
     text-align: center;
     opacity: 0.6;
+  }
+}
+.insurance-plan-widget .insurer-logo {
+  img {
+    max-width: 65%;
+    max-height: 100%;
   }
 }
 }

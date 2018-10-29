@@ -1,0 +1,22 @@
+{
+    "objectList": [{
+       
+            
+                "id": 1,
+                "name": "1-10 Years"
+            },
+            {
+                "id": 2,
+                "name": "10-20 Years"
+            },
+            {
+                "id": 3,
+                "name": "20-30 Years"
+            }
+        ],
+   
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    }
+}

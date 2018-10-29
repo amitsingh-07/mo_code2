@@ -1,10 +1,10 @@
 <div class="customer-review__wrapper">
   <div class="sub-navigation">
-    <div class="sub-navigation--inner">
+    <div class="sub-navigation--inner pdlr">
       <span routerLink="/">Home</span>
-      <span class="separator"></span>
-      <span routerLink="/about-us">About-Us</span>
-      <span class="separator"></span>
+      <i class="material-icons">keyboard_arrow_right</i>
+      <span routerLink="/about-us">About Us</span>
+      <i class="material-icons">keyboard_arrow_right</i>
       <span>Customer Reviews</span>
       </div>
   </div>
@@ -14,12 +14,12 @@
     </div>
     <div class="banner-container">
       <div class="">
-        <h1>Customer Reviews</h1>
-        <h3>Hear what our clients say about us</h3>
+        <h1 class="banner--title">Customer Reviews</h1>
+        <h3 class="banner--sub-title">Hear what our clients say about us</h3>
         </div>
     </div> 
     </div>
-    <div class="customer-reviews__content">
+  <div class="customer-reviews__content">
       <div class="customer-reviews__inner-content">
         <div class="customer-review card card-block" *ngFor="let customerReview of customerReviewList">
           <h6 class="review">
@@ -37,5 +37,5 @@
           </div>
         </div>
         
-      </div>
+    </div>
   </div>

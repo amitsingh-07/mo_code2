@@ -1,3 +1,4 @@
+import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -31,6 +33,7 @@ tocken;
     private modal: NgbModal,
     public authService: AuthenticationService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -45,20 +48,17 @@ tocken;
     this.formValues = this.signUpService.getResetPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      resetPassword1 : [this.formValues.resetPassword1, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,20}$/)]],
+      resetPassword1 : [this.formValues.resetPassword1, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]],
       // tslint:disable-next-line:max-line-length
-      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!$%@#£€*?&]{8,20}$/)]]
+      confirmpassword: [this.formValues.confirmpassword, [Validators.required, Validators.pattern(RegexConstants.Password.Full)]]
     });
   }
   ngOnInit() {
-    this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
     this.buildResetPasswordForm();
-    console.log('the tocken is ' + this.queryParams.key);
     this.tocken = encodeURIComponent(this.queryParams.key);
-    console.log('the tocken now is is ' + this.tocken);
     this.authService.authenticate().subscribe((token) => {
     });
   }
@@ -86,14 +86,12 @@ tocken;
       return false;
     } else {
       this.signUpService.setResetPasswordInfo(form.value.confirmpassword, this.tocken).subscribe((data) => {
-        console.log('Error code is ' + data.responseMessage.responseCode);
         // tslint:disable-next-line:triple-equals
         if ( data.responseMessage.responseCode == 6000) {
           // tslint:disable-next-line:max-line-length
         this.router.navigate([SIGN_UP_ROUTE_PATHS.SUCCESS_MESSAGE], {queryParams: {buttonTitle: 'Login Now', redir: SIGN_UP_ROUTE_PATHS.LOGIN, Message: 'Password Successfully Reset!'}, fragment: 'loading'});
         }
       });
-      console.log(form.value);
     }
   }
 }

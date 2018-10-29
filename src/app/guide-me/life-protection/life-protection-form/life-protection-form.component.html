@@ -97,7 +97,7 @@
                 <div class="form-control form-control-right" [ngClass]="{disabled : isFormControlDisabled}">
                   <i class="fixed-currency">$</i>
                   <input [attr.disabled]="isFormControlDisabled" type="text" class="input-control"
-                    appCurrencyInput maxLength="4" #supportAmount formControlName="supportAmount" value="0">
+                    appCurrencyInput maxLength="5" #supportAmount formControlName="supportAmount" value="0">
                   <i class="right">{{ 'MY_INCOME.PER_MONTH' | translate}}</i>
                 </div>
               </div>

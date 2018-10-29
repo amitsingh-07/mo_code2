@@ -8,17 +8,65 @@
     <div class="row">
       <div class="col-md-8 col-md-push-3">
         <h4>{{productName}}</h4>
-        <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
-          <br class="hidden-lg"/>
-          <span class="text-small">{{ 'SUFFIX.PER_MONTH' | translate }}</span>
-        </h2>
-        <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
-          <br class="hidden-lg"/>
-          <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
-        </h2>
+        <div class="grey subtitle--rider-name" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</div>
+        <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
+          <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
+            <br class="hidden-lg" />
+            <span [hidden]="data.premium.premiumFrequency == 'single'" class="text-small">{{ 'SUFFIX.PER_MONTH' |
+              translate }}</span>
+            <span [hidden]="data.premium.premiumFrequency != 'single'" class="text-small">{{ 'SUFFIX.SINGLE' |
+              translate
+              }}</span>
+          </h2>
+          <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
+            <br class="hidden-lg" />
+            <span class="text-small">{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+          </h2>
+        </div>
       </div>
       <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
         <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
+      </div>
+      <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0">
+        <h2>
+          <div class="plan-value-main">{{data.premium.intrestRateOfReturn}}%
+            <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
+            <br />
+            <span class="text-small subtitle">{{ 'COMMON.LBL_PROJECTED_RETURN' | translate}}</span>
+          </div>
+          <div [hidden]="type !== 'retirement income plan'" class="plan-value-sub hidden-sm-md">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
+              <br class="hidden-lg" />
+              <span [hidden]="data.premium.premiumFrequency == 'single'">{{ 'SUFFIX.PER_MONTH' |
+                translate }}</span>
+              <span [hidden]="data.premium.premiumFrequency != 'single'">{{ 'SUFFIX.SINGLE' |
+                translate
+                }}</span>
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+            </h2>
+            <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
+              <br class="hidden-lg" />
+              <span>{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+            </h2>
+          </div>
+          <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalGuaranteedPayout |
+              currency}}
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_GUARANTEED_PAYOUT' | translate}}</span>
+            </h2>
+          </div>
+          <div [hidden]="type.indexOf('education fund') < 0" class=" plan-value-sub hidden-sm-md">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{data.premium.totalProjectedPayout475 |
+              currency}}
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_PROJECTED_PAYOUT' | translate}}</span>
+            </h2>
+          </div>
+        </h2>
       </div>
     </div>
     <div *ngIf="promoDiscount" class="insurance-plan-widget__container__discount__block hidden-sm-md">{{promoDiscount}}</div>
@@ -26,7 +74,8 @@
       <div class="insurance-plan-widget__container__rank__wrapper">
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRanking">
           <div class="feature-head">#{{data.premium.ranking}}</div>
-          <div class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn > 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING' | translate }}</div>
+          <div [hidden]="data.premium.intrestRateOfReturn <= 0" class="feature-caption">{{ 'PRODUCT_DETAILS.LBL_RANKING_BY_VALUE' | translate }}</div>
           <div class="help-icon" style="visibility: hidden;"></div>
         </div>
         <div class="insurance-plan-widget__container__rank-box" *ngIf="canShowRating">
@@ -49,19 +98,19 @@
     </div>
   </div>
   <div class="flex row-btn-bottom">
-      <div class="flex-1 hidden-sm-md widget-btn-view mr10" *ngIf = "!isComparePlanEnabled">
-        <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate }}</button>
-      </div>
-      <div class="flex-1 widget-btn-select" *ngIf = "!isComparePlanEnabled">
-        <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
-            <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
-            <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
-        </button>
-      </div>
-      <div class="col-md-12 col-btn-bottom" *ngIf = "isComparePlanEnabled">
-        <button type="button" (click)="comparePlans()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{ 'BUTTON.COMPARE' | translate }}</button>
-      </div>
+    <div class="flex-1 hidden-sm-md widget-btn-view mr10" *ngIf="!isComparePlanEnabled">
+      <button type="button" (click)="viewDetails()" class="btn btn-secondary width100">{{ 'BUTTON.DETAILS' | translate
+        }}</button>
     </div>
+    <div class="flex-1 widget-btn-select" *ngIf="!isComparePlanEnabled">
+      <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
+        <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
+        <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
+      </button>
+    </div>
+    <div class="col-btn-bottom width100" *ngIf="isComparePlanEnabled">
+      <button type="button" (click)="comparePlans()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{
+        'BUTTON.COMPARE' | translate }}</button>
+    </div>
+  </div>
 </div>
-
-

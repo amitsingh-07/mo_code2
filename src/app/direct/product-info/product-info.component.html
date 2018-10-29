@@ -28,15 +28,15 @@
           </div> 
         </div>
     </div>
-    <div>
-      <app-life-protection-form [hidden]="selectedCategoryId != 0"></app-life-protection-form>
-      <app-critical-illness-form [hidden]="selectedCategoryId != 1"></app-critical-illness-form>
-      <app-ocp-disability-form [hidden]="selectedCategoryId != 2"></app-ocp-disability-form>
-      <app-hospital-plan-form [hidden]="selectedCategoryId != 3"></app-hospital-plan-form>
-      <app-long-term-care-form [hidden]="selectedCategoryId != 4"></app-long-term-care-form>
-      <app-education-form [hidden]="selectedCategoryId != 5"></app-education-form>
-      <app-retirement-income-form [hidden]="selectedCategoryId != 6"></app-retirement-income-form>
-      <app-srs-approved-plans-form [hidden]="selectedCategoryId != 7"></app-srs-approved-plans-form>
+    <div class="product-info-form-wrapper">
+      <app-life-protection-form [hidden]="selectedCategoryId != 1"></app-life-protection-form>
+      <app-critical-illness-form [hidden]="selectedCategoryId != 2"></app-critical-illness-form>
+      <app-ocp-disability-form [hidden]="selectedCategoryId != 3"></app-ocp-disability-form>
+      <app-hospital-plan-form [hidden]="selectedCategoryId != 4"></app-hospital-plan-form>
+      <app-long-term-care-form [hidden]="selectedCategoryId != 5"></app-long-term-care-form>
+      <app-education-form [hidden]="selectedCategoryId != 6"></app-education-form>
+      <app-retirement-income-form [hidden]="selectedCategoryId != 7"></app-retirement-income-form>
+      <app-srs-approved-plans-form [hidden]="selectedCategoryId != 8"></app-srs-approved-plans-form>
     </div>
   </div> 
   <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search(selectedCategoryId)">

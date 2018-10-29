@@ -5,8 +5,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleCategoryComponent } from './article-category/article-category.component';
 import { ArticleEntryComponent } from './article-entry/article-entry.component';
 import { ArticleRoutingModule } from './article-routing.module';
-import { ArticleComponent } from './article.component';
+import { ArticleComponent } from './article/article.component';
 import { ArticleService } from './article.service';
+
+import { SubscribeSideComponent } from './../shared/components/subscribe-side/subscribe-side.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,6 @@ import { ArticleService } from './article.service';
     ArticleRoutingModule,
     NgbModule
   ],
-  declarations: [ArticleComponent, ArticleCategoryComponent, ArticleEntryComponent]
+  declarations: [ArticleComponent, ArticleCategoryComponent, ArticleEntryComponent, SubscribeSideComponent]
 })
 export class ArticleModule { }

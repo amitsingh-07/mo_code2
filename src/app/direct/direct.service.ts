@@ -57,7 +57,7 @@ export class DirectService {
 
   clearData() {
     if (window.sessionStorage) {
-      sessionStorage.clear();
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
     }
   }
 
@@ -247,11 +247,6 @@ export class DirectService {
   }
 
   setOcpDisabilityForm(data: IOcpDisability) {
-    if (data.smoker) {
-      data.smoker = 'smoker';
-    } else {
-      data.smoker = 'non-smoker';
-    }
     this.directFormData.ocpDisability = data;
     this.gaDirectSuccess('occupational-disability');
     const userInfo = this.getUserInfo();
@@ -272,6 +267,8 @@ export class DirectService {
   }
 
   setHospitalPlanForm(data: IHospital) {
+    this.directFormData.hospital = data;
+
     this.directFormData.hospital = data;
     this.gaDirectSuccess('hospital-plan');
     const userInfo = this.getUserInfo();
@@ -321,5 +318,17 @@ export class DirectService {
       this.directFormData.srsApprovedPlans = {} as ISrsApprovedPlans;
     }
     return this.directFormData.srsApprovedPlans;
+  }
+
+  setPremiumFrequencyFilter(data: string) {
+    this.directFormData.premiumFrequencyFilter = data;
+    this.commit();
+  }
+
+  getPremiumFrequencyFilter() {
+    if (!this.directFormData.premiumFrequencyFilter) {
+      this.directFormData.premiumFrequencyFilter = 'monthly';
+    }
+    return this.directFormData.premiumFrequencyFilter;
   }
 }

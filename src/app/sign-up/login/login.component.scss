@@ -6,6 +6,10 @@ input::-ms-reveal {
   display: none;
 }
 
+.container-fluid.full-height{
+  min-height: 85vh;
+}
+
 /* 
 input::-webkit-textfield-decoration-container {
   display: none; 
@@ -25,10 +29,12 @@ input::-webkit-credentials-auto-fill-button {
   .show-password{
     background: url("../../../assets/images/show-password.svg") !important;
     background-repeat:no-repeat !important;
+    background-color:transparent !important;
   }
   .hide-password {
     background-image: url("../../../assets/images/hide-password.svg") !important;
     background-repeat:no-repeat !important;
+    background-color:transparent !important;
   }
 }
 
@@ -69,4 +75,18 @@ input::-webkit-credentials-auto-fill-button {
   .mobile-only {
     display: none;
   }
+}
+
+.form-group-captcha-wrapper {
+  display: flex;
+  align-items: center;
+  height: 60%;
+}
+
+.link-white {
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  float: right;
+  margin-top: 10px;
 }

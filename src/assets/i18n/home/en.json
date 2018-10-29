@@ -5,33 +5,34 @@
     },
     "BANNER": {
         "TITLE": "Making Wise Decisions Easy",
-        "DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver financial advice that integrates national schemes.",
+        "DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
         "FIND_OUT_MORE": "Find Out More"
     },
     "INSURANCE": {
-        "LABEL": "Insurance",
+        "LABEL": "Insure",
         "TITLE": "Get Insurance You Really Need",
         "DESCRIPTION": "Analyse your insurance coverage and compare insurance easily. Receive claims support and enjoy up to 50% rebate in agent’s commissions!",
-        "LINK1": "Assess My Needs",
-        "LINK2": "Or I Know What I Need!" 
+        "LINK1": "Find Out What I need",
+        "LINK2": "Or I Know What I Need!",
+        "TRUST_US": "355,000 users have trusted us" 
     },
     "WILL": {
-        "LABEL": "Will Writing",
+        "LABEL": "Wills",
         "TITLE": "Will Writing Online, Anytime and Anywhere!",
         "DESCRIPTION": "Protect and provide for your loved ones even after you pass on. Write a legally binding, simple will in just 10 minutes!",
         "LINK1": "Start Writing"
     },
     "INVESTMENT": {
-        "LABEL": "Investments",
+        "LABEL": "Invest",
         "TITLE": "Invest With Confidence",
         "DESCRIPTION": "Feel confident about investing even as a beginner! Get access to low-cost and best-in-class globally diversified investments at your fingertips!",
         "LINK1": ""
     },
     "COMPREHENSIVE": {
         "LABEL": "Comprehensive",
-        "SUB_LABEL": "(Integrating National Schemes)",
+        "SUB_LABEL": "(integrating national schemes)",
         "TITLE": "Comprehensive Financial Planning",
-        "SUB_TITLE": "(Integrating National Schemes)",
+        "SUB_TITLE": "(integrating national schemes)",
         "DESCRIPTION": "Are you financially healthy? Get a holistic financial assessment and trusted financial advice integrated with CPF and other national schemes to reach your goals!",
         "LINK": ""
     },
@@ -62,7 +63,7 @@
             }]
     },
     "REVIEWS": {
-        "TITLE": "Our Customers' Review",
+        "TITLE": "Our Customers' Reviews",
         "REVIEW1": {
             "MESSAGE": "\"Very good service. Prompt and helpful.\"",
             "RATING": 5,

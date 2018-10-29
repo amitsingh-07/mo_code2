@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ComponentFactoryResolver,
   OnInit,
@@ -28,7 +29,7 @@ const mobileThreshold = 567;
   encapsulation: ViewEncapsulation.None
 })
 
-export class DirectComponent implements OnInit, IPageComponent {
+export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   @ViewChild('directResults', { read: ViewContainerRef }) container: ViewContainerRef;
   components = [];
 
@@ -54,8 +55,11 @@ export class DirectComponent implements OnInit, IPageComponent {
   }
 
   ngOnInit() {
+    this.directService.setMinProdInfo('');
+    this.navbarService.unsubscribeBackPress();
     this.navbarService.setNavbarDirectGuided(true);
     this.footerService.setFooterVisibility(false);
+    this.removeComponent(DirectResultsComponent);
     if (window.innerWidth < mobileThreshold) {
       this.isMobileView = true;
     } else {
@@ -63,8 +67,12 @@ export class DirectComponent implements OnInit, IPageComponent {
     }
   }
 
+  ngAfterViewInit() {
+
+  }
+
   setPageTitle(title: string, subTitle?: string, helpIcon?) {
-    this.navbarService.setPageTitle(title, null, helpIcon);
+    this.navbarService.setPageTitle(title, subTitle, helpIcon);
   }
 
   setProdInfoBtnVisibility(isVisible: boolean) {
@@ -72,13 +80,19 @@ export class DirectComponent implements OnInit, IPageComponent {
   }
 
   showProductInfo() {
-    console.log('Show Product Info');
   }
 
   formSubmitCallback() {
     this.showingResults = true;
     this.removeComponent(DirectResultsComponent);
     this.addComponent(DirectResultsComponent);
+  }
+
+  backPressed() {
+    this.navbarService.unsubscribeBackPress();
+    this.showingResults = false;
+    this.setPageTitle(this.pageTitle, null, false);
+    this.removeComponent(DirectResultsComponent);
   }
 
   addComponent(componentClass: Type<any>) {

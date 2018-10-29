@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { InvestmentAccountService } from '../investment-account/investment-account-service';
+import { MyInfoService } from '../shared/Services/my-info.service';
 
-import { appConstants } from './../app.constants';
-import { GuideMeService } from './../guide-me/guide-me.service';
+import { appConstants } from '../app.constants';
+import { GuideMeService } from '../guide-me/guide-me.service';
 
 @Component({
   selector: 'app-call-back',
@@ -15,22 +17,37 @@ export class CallBackComponent implements OnInit {
   data: any;
   constructor(
     private router: Router, private route: ActivatedRoute, private modal: NgbModal,
+    private myInfoService: MyInfoService,
+    private investmentAccountService: InvestmentAccountService,
     private guideMeService: GuideMeService) { }
 
   ngOnInit() {
     if (window.sessionStorage.currentUrl && this.route.queryParams['value'] && this.route.queryParams['value']['code']) {
-      if (this.guideMeService.myInfoValue) {
-        this.guideMeService.isMyInfoEnabled = false;
+      if (this.myInfoService.myInfoValue) {
+        this.myInfoService.isMyInfoEnabled = false;
       } else {
-        this.guideMeService.openFetchPopup();
-        this.guideMeService.isMyInfoEnabled = true;
+        this.myInfoService.openFetchPopup();
+        this.myInfoService.isMyInfoEnabled = true;
         this.data = this.route.queryParams['value'];
-        this.guideMeService.setMyInfoValue(this.data);
-        this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+        this.myInfoService.setMyInfoValue(this.data);
+
+        // Investment account
+        if (this.investmentAccountService.callBackInvestmentAccount) {
+          this.myInfoService.getMyInfoData().subscribe((data) => {
+            this.investmentAccountService.setFormData(data['person']);
+            this.myInfoService.isMyInfoEnabled = false;
+            this.myInfoService.closeMyInfoPopup(false);
+            this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+          }, (error) => {
+            this.myInfoService.closeMyInfoPopup(true);
+            this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+          });
+        } else {
+          this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+        }
       }
     } else {
       this.router.navigate(['home']);
     }
-
   }
 }

@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from './footer.service';
 
@@ -9,7 +10,9 @@ import { FooterService } from './footer.service';
 })
 export class FooterComponent implements OnInit, AfterViewInit {
   showFooter = false;
-  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef) {}
+  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef, public readonly translate: TranslateService) {
+                this.translate.use('en');
+  }
 
   ngOnInit() {
   }

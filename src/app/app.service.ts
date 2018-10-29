@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 export const SESSION_STORAGE_KEY = 'app_journey_type';
 export const SESSION_KEY = 'app_session';
+const SESSION_CUSTOMER = 'app_customer_id';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
   journeyType: string;
+  enquiryId: any;
   activeSession: string;
+  customer = {
+    id: ''
+  };
+
   constructor() { }
 
   commit(key, data) {
@@ -31,8 +37,8 @@ export class AppService {
   }
 
   getJourneyType() {
-    if (window.sessionStorage && sessionStorage.getItem(SESSION_KEY)) {
-      this.journeyType = JSON.parse(sessionStorage.getItem(SESSION_KEY));
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
+      this.journeyType = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
     return this.journeyType;
   }
@@ -53,4 +59,25 @@ export class AppService {
     return true;
   }
 
+  getCustomer() {
+    if (window.sessionStorage && sessionStorage.getItem(SESSION_CUSTOMER)) {
+      this.customer = JSON.parse(sessionStorage.getItem(SESSION_CUSTOMER));
+    }
+    return this.customer;
+  }
+
+  setCustomer(customer) {
+    this.customer = customer;
+    this.commit(SESSION_CUSTOMER, this.customer);
+  }
+
+  setCustomerId(customerId: string) {
+    const customer = this.getCustomer();
+    customer.id = customerId;
+    this.commit(SESSION_CUSTOMER, this.customer);
+  }
+
+  getCustomerId() {
+    return this.getCustomer().id;
+  }
 }

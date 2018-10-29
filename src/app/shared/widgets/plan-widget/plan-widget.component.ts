@@ -80,6 +80,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     this.isComparePlanEnabled = this.comparePlan;
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   ngOnInit() {
     if (this.data) {
       this.icon = this.data.icon;
@@ -92,26 +93,81 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
-      this.premiumDuration = this.data.premiumDuration;
+      this.premiumDuration = this.data.premium.premiumTerm;
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
-      this.highlights.push(
-        { title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) }
-      );
+      if (this.type.indexOf('retirement') < 0) {
+        this.highlights.push(
+          { title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) }
+        );
+      }
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
-      if (this.type === 'long term care') {
+      if (this.type.indexOf('critical') > -1) {
+        if (this.isDirect && this.data.premium.claimFeature) {
+          this.highlights.push({ title: 'Claim Feature:', description: this.data.premium.claimFeature });
+        }
+      }
+      if (this.type === 'long-term care') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
+        if (this.isDirect) {
+          this.highlights.push({ title: 'Payout years:', description: this.data.premium.payoutDuration });
+          this.highlights.push({ title: 'Claim Criteria:', description: this.data.premium.claimCriteria });
+        } else {
+          this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        }
       }
       if (this.type === 'hospital plan') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: 'Covers co-insurance and deductible' });
+
+        let riderName = '';
+        let riderDesc = '';
+
+        if (this.data.rider) {
+          riderName = this.data.rider.riderName;
+          if (riderName && riderName.toLowerCase() === 'full rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance and Deductible';
+          } else if (riderName && riderName.toLowerCase() === 'partial rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance';
+          } else {
+            riderName = 'Rider:';
+            riderDesc = 'No Rider';
+          }
+        } else {
+          riderName = 'Rider:';
+          riderDesc = 'No Rider';
+        }
+        this.highlights.push({ title: riderName, description: riderDesc });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period:', description: '6 Months' });
-        this.highlights.push({ title: 'Escalating Benefit:', description: '3%' });
+        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
+        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
+      }
+      if (this.type.indexOf('retirement') > -1) {
+        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay });
+        if (this.data.premium.retirementPayoutDuration
+          && this.data.premium.retirementPayoutDuration.toLowerCase() === 'limited years') {
+          this.highlights.push({
+            title: 'Total Projected Payout:',
+            description: this.currency.transform(this.data.premium.totalProjectedPayout475, 'USD', 'symbol', '1.0-0')
+          });
+        }
+        this.highlights.push({ title: 'Payout Feature:', description: this.data.premium.retirementPayFeatureDisplay });
+      }
+      if (this.type.indexOf('education fund') > -1) {
+        this.highlights.push({
+          title: 'Monthly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmount, 'USD', 'symbol', '1.0-0')
+        });
+        this.highlights.push({
+          title: 'Yearly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmountYearly, 'USD', 'symbol', '1.0-0')
+        });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }

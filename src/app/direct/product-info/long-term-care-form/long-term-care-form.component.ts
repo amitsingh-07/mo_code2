@@ -13,7 +13,7 @@ import { DirectService } from '../../direct.service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   encapsulation: ViewEncapsulation.None
 })
-export class LongTermCareFormComponent implements OnInit , OnDestroy {
+export class LongTermCareFormComponent implements OnInit, OnDestroy {
   categorySub: any;
   formValues: any;
   longTermCareForm: FormGroup;
@@ -25,24 +25,27 @@ export class LongTermCareFormComponent implements OnInit , OnDestroy {
     private parserFormatter: NgbDateParserFormatter,
     private translate: TranslateService,
     private formBuilder: FormBuilder,
-    private config: NgbDatepickerConfig ) {
+    private config: NgbDatepickerConfig) {
     this.translate.use('en');
     const today: Date = new Date();
     config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
     config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
-     }
+  }
 
   ngOnInit() {
     this.formValues = this.directService.getLongTermCareForm();
     this.formValues.gender = this.formValues.gender;
+    if (this.formValues.monthlyPayout) {
+      this.selectedMonthlyPayout = this.formValues.monthlyPayout;
+    }
     this.longTermCareForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
       monthlyPayout: [this.formValues.monthlyPayout, Validators.required]
     });
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '4') {
+      if (data !== '' && data === '5') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }

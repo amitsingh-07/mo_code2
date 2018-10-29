@@ -14,6 +14,7 @@ export class InvestmentAccountFormData {
     postalCode: number;
     address1: string;
     address2: string;
+    floor: string;
     unitNo: string;
     city: string;
     state: string;
@@ -23,21 +24,24 @@ export class InvestmentAccountFormData {
     mailPostalCode: number;
     mailAddress1: string;
     mailAddress2: string;
+    mailFloor: string;
     mailUnitNo: string;
     mailCity: string;
     mailState: string;
     mailZipCode: number;
 
-    // SELECTNATIONLITY
-    nationalitylist: any;
+    // SELECT NATIONLITY
+    nationalityList: any;
+    countryList: any;
     nationality: any;
+    nationalityCode: any;
     unitedStatesResident: string;
     singaporeanResident: string;
 
     // Tax Info
-    Taxcountry: any;
-    haveTin: any;
-    Tin: any;
+    taxCountry: any;
+    radioTin: any;
+    tinNumber: any;
     noTinReason: any;
 
     // EmployementDetails
@@ -57,13 +61,14 @@ export class InvestmentAccountFormData {
     empCity: string;
     empState: string;
     empZipCode: number;
-    
+
     // Upload documents
     nricFrontImage: File;
     nricBackImage: File;
     mailAdressProof: File;
     passportImage: File;
     resAddressProof: File;
+    passportImageBO: File;
 
     // Personal Declaration
     sourceOfIncome: any;
@@ -74,8 +79,34 @@ export class InvestmentAccountFormData {
     // financial details
     annualHouseHoldIncomeRange: string;
     numberOfHouseHoldMembers: number;
-    monthlyIncome: string;
-    percentageOfSaving: string;
-    totalAssets: string;
-    totalLiabilities: string;
-    }
+    financialMonthlyIncome: string;
+    financialPercentageOfSaving: string;
+    financialTotalAssets: string;
+    financialTotalLiabilities: string;
+
+    source: string;
+    expectedNumberOfTransation: string;
+    expectedAmountPerTranction: string;
+    personalSavings: string;
+    otherSources: string;
+    inheritanceGift: string;
+    investmenteEarning: string;
+    investmentPeriod: string;
+    earningsGenerated: string;
+
+    // Additional declaration PEP
+    radioPep: any;
+    fName: string;
+    lName: string;
+    cName: string;
+    pepoccupation: string;
+    pepCountry: string;
+    pepPostalCode: number;
+    pepAddress1: string;
+    pepAddress2: string;
+    pepUnitNo: string;
+
+    // MyInfo
+    isMyInfoEnabled: boolean;
+    disableAttributes: any;
+}
