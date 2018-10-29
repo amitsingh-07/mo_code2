@@ -48,14 +48,23 @@ export class InvestmentAccountService {
     isSingaporeResident() {
         const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
         return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE ||
-            this.investmentAccountFormData.singaporeanResident === 'yes');
+            this.investmentAccountFormData.singaporeanResident);
     }
     getCountryFromNationalityCode(nationalityCode) {
-        let country = 'Singapore';
+        let country;
         const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
             (nationality) => nationality.nationalityCode === nationalityCode);
         if (selectedNationality[0] && selectedNationality[0].countries[0]) {
-            country = selectedNationality[0].countries[0].name;
+            country = selectedNationality[0].countries[0];
+        }
+        return country;
+    }
+    getCountryFromCountryCode(countryCode) {
+        let country = '';
+        const selectedCountry = this.investmentAccountFormData.countryList.filter(
+            (countries) => countries.countryCode === countryCode);
+        if (selectedCountry[0]) {
+            country = selectedCountry[0];
         }
         return country;
     }
@@ -406,7 +415,7 @@ export class InvestmentAccountService {
         // Register address
         if (data.regadd) {
             if (data.regadd.country) {
-                this.investmentAccountFormData.country = data.regadd.country;
+                this.investmentAccountFormData.countryCode = data.regadd.country;
                 this.disableAttributes.push('country');
             }
             if (data.regadd.floor) {
@@ -439,7 +448,7 @@ export class InvestmentAccountService {
     // MyInfo - Email Address
     setMyInfoEmailAddress(data) {
         if (data.mailadd.country) {
-            this.investmentAccountFormData.mailCountry = data.mailadd.country;
+            this.investmentAccountFormData.mailCountryCode = data.mailadd.country;
             this.disableAttributes.push('mailCountry');
         }
         if (data.mailadd.floor) {

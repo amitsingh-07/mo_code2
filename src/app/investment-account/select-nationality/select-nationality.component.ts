@@ -147,9 +147,9 @@ export class SelectNationalityComponent implements OnInit {
             this.showErrorMessage(this.editModalData.modalTitle, this.editModalData.modalMessage);
         } else if (form.valid && form.controls.unitedStatesResident) {
             if ((['SINGAPOREAN', 'SG'].includes(this.selectedNationality) &&
-                form.controls.unitedStatesResident.value === 'yes') ||
-                ((form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'yes')
-                    || (form.controls.unitedStatesResident.value === 'yes' && form.controls.singaporeanResident.value === 'no'))) {
+                form.controls.unitedStatesResident.value === true) ||
+                ((form.controls.unitedStatesResident.value === true && form.controls.singaporeanResident.value === true)
+                    || (form.controls.unitedStatesResident.value === true && form.controls.singaporeanResident.value === false))) {
                 this.showErrorMessage(this.editModalData1.modalTitle1, this.editModalData1.modalMessage1);
             } else {
                 this.save(form);
