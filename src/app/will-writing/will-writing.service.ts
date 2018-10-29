@@ -282,7 +282,8 @@ export class WillWritingService {
   }
 
   checkBeneficiaryAge() {
-    const beneficiaries = this.getBeneficiaryInfo().filter((beneficiary) => beneficiary.relationship === 'child');
+    const beneficiaries = this.getBeneficiaryInfo().filter((beneficiary) =>
+      beneficiary.relationship === 'child' && beneficiary.selected === true);
     return this.checkChildrenAge(beneficiaries);
   }
 
