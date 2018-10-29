@@ -28,6 +28,7 @@ import {
 } from './modal/recommendations-modal/recommendations-modal.component';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
+import { StringToLinkFormatPipe } from './Pipes/string-to-link.pipe';
 import {
     PlanDetailsWidgetComponent
 } from './widgets/plan-details-widget/plan-details-widget.component';

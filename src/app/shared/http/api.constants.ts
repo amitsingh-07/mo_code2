@@ -1,4 +1,6 @@
 const PORTFOLIO_API_BASE_URL = 'invest/investment-microservice/';
+const ARTICLE_API_BASE_URL = 'insuranceproduct-microservice';
+const ABOUT_US_API_BASE_URL = 'insuranceproduct-microservice';
 
 export let apiConstants = {
     endpoint: {
@@ -21,14 +23,16 @@ export let apiConstants = {
         forgotPassword: 'account/account-microservice/api/forgotPassword',
         userProfileInfo: 'account/account-microservice/api/getProfileSummary',
         article: {
-            getRecentArticles: 'article/article-microservice/api/getRecentArticles',
-            getArticleCategoryList: 'article/article-microservice/api/getArticleCategoryList',
-            getArticleCategory: 'article/article-micorservice/api/getArticleCategory',
-            getArticle: 'article/article-microservice/api/getArticle'
+            getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
+            getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
+            getArticleCategoryList: ARTICLE_API_BASE_URL + '/api/article/getArticlesByTagId',
+            getArticleCategoryAllList: ARTICLE_API_BASE_URL + '/api/article/getAllArticles',
+            getArticle: ARTICLE_API_BASE_URL + '/api/article/getArticleById',
+            getRelatedArticle: ARTICLE_API_BASE_URL + '/api/article/getTop3ArticlesByTagId'
         },
         aboutus: {
-            getCustomerReviews: 'aboutus/aboutus-microservice/api/getCustomerReviews',
-            sendContactUs: 'aboutus/aboutus-microservice/api/sendContactUs'
+            getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/getCustomerReviews',
+            sendContactUs: ABOUT_US_API_BASE_URL + '/api/sendContactUs'
         },
         portfolio: {
             setInvestmentObjective: PORTFOLIO_API_BASE_URL + 'api/CustomerInvestmentObjective',

@@ -20,6 +20,7 @@ import { AppService } from './app.service';
 import { ArticleService } from './article/article.service';
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
+import { FAQComponent } from './faq/faq.component';
 import { HelpModalComponent } from './guide-me/help-modal/help-modal.component';
 import {
   ExistingCoverageModalComponent
@@ -67,7 +68,8 @@ export function createTranslateLoader(http: HttpClient) {
     http,
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/home/', suffix: '.json' }
+      { prefix: './assets/i18n/home/', suffix: '.json' },
+      { prefix: './assets/i18n/faq/', suffix: '.json'}
     ]);
 }
 
@@ -98,7 +100,8 @@ export function tokenGetterFn() {
     CallBackComponent,
     HomeComponent,
     UrlRedirectComponent,
-    TestMyInfoComponent
+    TestMyInfoComponent,
+    FAQComponent
   ],
   imports: [
     BrowserModule,

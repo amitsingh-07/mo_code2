@@ -7,6 +7,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { ArticleApiService } from './../article.api.service';
 import { ArticleService } from './../article.service';
 import { IArticleElement } from './../articleElement.interface';
+import { IArticleCategory } from './articleCategory.interface';
 
 @Component({
   selector: 'app-article-category',
@@ -17,6 +18,7 @@ import { IArticleElement } from './../articleElement.interface';
 export class ArticleCategoryComponent implements OnInit {
   public category = 'Protection';
   public category_id: number;
+  public categoryList: IArticleCategory[];
   public articleListCategory: IArticleElement[];
   constructor(public navbarService: NavbarService, public footerService: FooterService,
               private articleService: ArticleService, private articleApiService: ArticleApiService,
@@ -34,6 +36,11 @@ export class ArticleCategoryComponent implements OnInit {
         this.getCategoryArticles(params['category']);
       }
     });
+    this.articleApiService.getArticleCategory().subscribe((catList) => {
+      if (catList) {
+        this.categoryList = this.articleService.getCategoryElementList(catList);
+      }
+    });
 
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
@@ -45,15 +52,20 @@ export class ArticleCategoryComponent implements OnInit {
     this.category_id = +(this.articleService.getArticleId(category_name));
     if (this.category_id > -1) {
       this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
+      this.requestArticleData();
     } else {
       if (this.category_id === -1) {
         this.category = 'All';
+        this.requestArticleData();
       } else {
         // Redirect away
         this.router.navigate(['/articles/category/all']);
       }
     }
-    this.articleApiService.getArticleCategoryList(this.category).subscribe((data) => {
+  }
+
+  requestArticleData() {
+    this.articleApiService.getArticleCategoryList(this.category_id).subscribe((data) => {
       this.articleListCategory = this.articleService.getArticleElementList(data);
     });
   }

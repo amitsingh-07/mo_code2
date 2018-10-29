@@ -26,7 +26,7 @@ export class ArticleApiService {
   }
 
   getArticle(art_id: number) {
-    return this.apiService.getArticle(art_id);
+    return this.apiService.getArticleData(art_id);
   }
 
   getArticleContent(art_id: number) {
@@ -41,9 +41,8 @@ export class ArticleApiService {
     return this.apiService.getArticleCategory();
   }
 
-  getArticleCategoryList(category_name: string) {
-    const category_name_edit = category_name.replace(/_/g, ' ');
-    return this.apiService.getArticleCategoryList(category_name_edit);
+  getArticleCategoryList(category_id: number) {
+    return this.apiService.getArticleCategoryList(category_id);
   }
 
   getArticleTagMap() {

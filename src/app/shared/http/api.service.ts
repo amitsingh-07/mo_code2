@@ -83,32 +83,15 @@ export class ApiService {
     if (quantity) {
       payload.number = quantity;
     }
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getRecentArticles, payload)
-    const url = '../../../assets/mock-data/recentArticles.json';
-    return this.http.getMock(url)
+    return this.http.post(apiConstants.endpoint.article.getRecentArticles, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
-  getArticle(art_id) {
+  getArticleData(art_id) {
     const payload = { article_id: art_id };
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getArticle, payload)
-    const url = '../../../assets/mock-data/currentArticle.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
-  getRelatedArticle(in_tag_id: number) {
-    const payload = { tag_id: in_tag_id };
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getRelatedArticle, payload);
-    const url = '../../../assets/mock-data/currentCategoryList.json';
-    return this.http.getMock(url)
+    return this.http.post(apiConstants.endpoint.article.getArticle + '/' + art_id, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -122,12 +105,9 @@ export class ApiService {
       );
   }
 
-  getArticleCategoryList(category_name) {
-    const payload = { category: category_name };
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getArticleCategoryList, payload)
-    const url = '../../../assets/mock-data/articleCategoryList.json';
-    return this.http.getMock(url)
+  getRelatedArticle(in_tag_id: number) {
+    const payload = { tag_id: in_tag_id };
+    return this.http.post(apiConstants.endpoint.article.getRelatedArticle + '/' + in_tag_id, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -135,13 +115,33 @@ export class ApiService {
 
   getArticleCategory() {
     // tslint:disable-next-line:no-commented-code
-    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
+    /*
     const url = '../../../assets/mock-data/articleCategory.json';
     return this.http.getMock(url)
+    */
+    const payload = null;
+    return this.http.post(apiConstants.endpoint.article.getArticleCategory, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getArticleCategoryList(category_id) {
+    const urlAddOn = category_id;
+    const payload = null;
+    if (urlAddOn === -1) {
+      return this.http.post(apiConstants.endpoint.article.getArticleCategoryAllList, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+    } else {
+      return this.http.post(apiConstants.endpoint.article.getArticleCategoryList + '/' + urlAddOn, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+    }
+  }
+
   // ---------------------------- ABOUT US MODULE ----------------------------
   getCustomerReviewList() {
     // tslint:disable-next-line:no-commented-code

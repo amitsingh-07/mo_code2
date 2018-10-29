@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { IArticleCategory } from './article-category/articleCategory.interface';
+import { IArticleEntry } from './article-entry/articleEntry.interface';
 import { ArticleApiService } from './article.api.service';
 import { IArticleElement } from './articleElement.interface';
 
@@ -9,6 +11,52 @@ import { IArticleElement } from './articleElement.interface';
 export class ArticleService {
 
   constructor(public articleApiService: ArticleApiService) {}
+  getArticleEntry(data): IArticleEntry {
+    const articleTags = [];
+    data.articleTagMap.forEach((element) => {
+      const tag_name = this.getArticleTagName(element.tagId).tag_name;
+      articleTags.push(tag_name);
+    });
+
+    const thisArticleEntry = {
+      artId: data.artId,
+      title: data.title,
+      date: data.date,
+      author: data.profile.author,
+      tag: articleTags,
+      art_pri_tag: data.tagId
+    } as IArticleEntry;
+
+    return thisArticleEntry;
+  }
+  getCategoryElementList(data): IArticleCategory[] {
+    console.log(data);
+    let sum = 0;
+    const articleCategoryElementArray = [];
+    data.forEach((category) => {
+      const articleCategory = this.createArticleCategoryElement(category);
+      sum += articleCategory.count;
+      articleCategoryElementArray.push(articleCategory);
+      });
+
+    // Creating the first entry
+    const allCategory = {
+      name: 'All',
+      count: sum,
+    } as IArticleCategory;
+    articleCategoryElementArray.unshift(allCategory);
+
+    return articleCategoryElementArray;
+    }
+
+  createArticleCategoryElement(category): IArticleCategory {
+    const in_name = this.getArticleTagName(category.tagId);
+    const thisArticleCategoryElement = {
+      name: in_name.tag_name,
+      count: category.articleCount
+    };
+    return thisArticleCategoryElement;
+    }
 
   getArticleElementList(data): IArticleElement[] {
     const articleElementArray = [];
@@ -16,13 +64,13 @@ export class ArticleService {
       articleElementArray.push(this.createArticleElement(articleElement));
     });
     return articleElementArray;
-  }
+    }
 
   createArticleElement(articleElement): IArticleElement {
     const articleTags = [];
     articleElement.articleTagMap.forEach((element) => {
-      const tag_name = this.getArticleTagName(element.tagId);
-      articleTags.push(tag_name.tag_name);
+      const tag_name = this.getArticleTagName(element.tagId).tag_name;
+      articleTags.push(tag_name);
     });
 
     const thisArticleElement = {
@@ -31,7 +79,8 @@ export class ArticleService {
               art_desc: articleElement.summary,
               art_author: articleElement.profile.author,
               art_date: articleElement.date,
-              art_tags: articleTags
+              art_tags: articleTags,
+              art_pri_tag: articleElement.tagId
             } as IArticleElement;
     return thisArticleElement;
     }
@@ -39,11 +88,11 @@ export class ArticleService {
   getArticleTagName(art_tag_id: number) {
     const art_map = this.articleApiService.getArticleTagMap();
     return art_map.tag_map[art_tag_id];
-  }
+    }
 
   getTagNameToLink(art_tag_name: string) {
     return art_tag_name.replace(/ /g, '_').toLowerCase();
-  }
+    }
 
   getArticleId(art_tag_name: string) {
     art_tag_name = art_tag_name.replace(/_/g, ' ').toLowerCase();

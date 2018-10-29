@@ -10,7 +10,6 @@ import { AboutUsRoutingModule } from './about-us-routing.module';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
-import { FAQComponent } from './faq/faq.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -35,6 +34,6 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  declarations: [CustomerReviewsComponent, SubscribeComponent, ContactUsComponent, AboutUsComponent, FAQComponent]
+  declarations: [CustomerReviewsComponent, SubscribeComponent, ContactUsComponent, AboutUsComponent]
 })
 export class AboutUsModule { }
