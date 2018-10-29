@@ -48,7 +48,7 @@ export class InvestmentAccountService {
     isSingaporeResident() {
         const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
         return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE ||
-            this.investmentAccountFormData.singaporeanResident === 'yes');
+            this.investmentAccountFormData.singaporeanResident);
     }
     getCountryFromNationalityCode(nationalityCode) {
         let country = 'Singapore';

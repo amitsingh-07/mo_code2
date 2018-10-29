@@ -23,13 +23,13 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_Info_tin_yes" value="yes"> Yes
+                  <input ngbButton type="radio" id="pep_Info_tin_yes" [value]=true> Yes
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_Info_tin_no" disabled value="no">No</label>
+                  <input ngbButton type="radio" id="pep_Info_tin_no" disabled [value]=false>No</label>
               </div>
             </div>
           </div>

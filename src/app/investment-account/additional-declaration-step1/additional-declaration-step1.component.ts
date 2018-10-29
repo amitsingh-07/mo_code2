@@ -71,7 +71,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       });
     this.selectedOccupation = this.translate.instant('ADDITIONAL_DECLARATION.SELECT_OCCUPATION');
     this.selectedCountry = 'Singapore';
-    this.addInfoForm.controls.radioPep.setValue('yes');
+    this.addInfoForm.controls.radioPep.setValue(true);
     this.addInfoForm.controls.pepCountry.setValue('Singapore');
   }
   getOccupationList() {
