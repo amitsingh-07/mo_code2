@@ -104,11 +104,13 @@ export class SignUpApiService {
   setPasswordBodyRequest(pwd: string): ISetPassword {
     const custRef = this.signUpService.getCustomerRef();
     const resCode = this.signUpService.getResetCode();
+    const selectedPlanData = this.selectedPlansService.getSelectedPlan();
     return {
       customerRef: custRef,
       password: this.cryptoService.encrypt(pwd),
       callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
       resetType: 'New',
+      selectedProducts: selectedPlanData.plans,
       resetCode: resCode
     };
   }
