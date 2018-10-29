@@ -59,6 +59,15 @@ export class InvestmentAccountService {
         }
         return country;
     }
+    getCountryFromCountryCode(countryCode) {
+        let country = '';
+        const selectedCountry = this.investmentAccountFormData.countryList.filter(
+            (countries) => countries.countryCode === countryCode);
+        if (selectedCountry[0]) {
+            country = selectedCountry[0];
+        }
+        return country;
+    }
     setDefaultValueForFormData() {
         this.investmentAccountFormData.isMailingAddressSame = INVESTMENT_ACCOUNT_CONFIG.residential_info.isMailingAddressSame;
         this.investmentAccountFormData.isEmployeAddresSame = INVESTMENT_ACCOUNT_CONFIG.employmentDetails.isEmployeAddresSame;
@@ -406,7 +415,7 @@ export class InvestmentAccountService {
         // Register address
         if (data.regadd) {
             if (data.regadd.country) {
-                this.investmentAccountFormData.country = data.regadd.country;
+                this.investmentAccountFormData.countryCode = data.regadd.country;
                 this.disableAttributes.push('country');
             }
             if (data.regadd.floor) {
@@ -439,7 +448,7 @@ export class InvestmentAccountService {
     // MyInfo - Email Address
     setMyInfoEmailAddress(data) {
         if (data.mailadd.country) {
-            this.investmentAccountFormData.mailCountry = data.mailadd.country;
+            this.investmentAccountFormData.mailCountryCode = data.mailadd.country;
             this.disableAttributes.push('mailCountry');
         }
         if (data.mailadd.floor) {
