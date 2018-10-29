@@ -6,6 +6,9 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+  document.write('<script type="text/javascript">ga("create", "' + environment.gaPropertyId + '", "auto");</script>');
+} else {
+  document.write('<script type="text/javascript">ga("create", "' + environment.gaPropertyId + '", "auto");</script>');
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)

@@ -295,6 +295,12 @@ body{
                     img{
                         height:80px;
                     }
+                    br{
+                        @include minMobilemaxPhablet{
+                            display:none;
+                        }
+                    }
+                    
                     p{
                         font-family:$muli-bold;
                         color:$dark-orange-color;
