@@ -110,7 +110,7 @@
   "PROD_INFO_TOOLTIP": {
     "COMMISSION": {
           "TITLE": "Commission Rebate",
-          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
+          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the agent commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
       },
     "RATING": {
           "TITLE": "Insurer’s Rating",
