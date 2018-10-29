@@ -1,0 +1,52 @@
+@import './variables';
+@import './mixins';
+
+.about-us__header{
+    position: relative;
+    display:flex;
+    width:100%;
+    justify-content: center;
+    background-color:$lighter-aqua-color;
+    overflow:hidden;
+    padding:0px 20px;
+    .about-us__header--bg{
+        position: absolute;
+        display:block;
+        background-image:url('/assets/images/small-cloud-repeatable.svg');
+        z-index:1;  
+        width:100%;
+        height: 106px;
+        background-color:$white-color;
+        @include minMobilemaxPhablet{
+            height:0px;
+        }
+    }
+    .about-us__header--inner{
+        position: relative;
+        display: block;
+        width:100%;
+        max-width:1024px;
+        z-index:2;
+        .header--title{
+            position: relative;
+            display:block;
+            color:$teal-color;
+            margin-bottom:18px;
+            font-family:$muli-bold;
+            h1{
+                font-size:36px;
+            }
+            @include minMobilemaxPhablet{
+                padding:15px 20px;
+                margin:0px;
+                h1{
+                    font-size:1.9rem;
+                }
+            }
+        }
+        .sub-navigation{
+            padding:0px;
+        }
+    }
+    
+}
