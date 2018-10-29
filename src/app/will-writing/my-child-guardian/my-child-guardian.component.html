@@ -35,7 +35,7 @@
                     <span *ngIf="hasSpouse" class="mr5">
                       {{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.ALTERNATIVE' | translate}}
                     </span>
-                    <div class="col-8">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}</div>
+                    <div *ngIf="!hasSpouse" class="col-8">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}</div>
                     <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">
                       {{'WILL_WRITING.COMMON.CANCEL' | translate}}
                     </div>
@@ -50,7 +50,6 @@
                     <div class="col-5 pl0">
                       <label for="name" id="addGuardianFormLbl1">
                         <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div>
-                        <div class="sub-name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div>
                       </label>
                     </div>
                     <div class="col-7 pr0">

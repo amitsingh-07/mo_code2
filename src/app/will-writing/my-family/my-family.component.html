@@ -21,7 +21,7 @@
                   <div class="flex-row title">{{ 'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</div>
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="name" id="myFamilyFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div><div>{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></label>
+                      <label for="name" id="myFamilyFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div></label>
                     </div>
                     <div class="flex-col-7">
                       <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
@@ -46,7 +46,7 @@
                   <div class="flex-row title">{{ 'WILL_WRITING.MY_FAMILY.FORM.MY_CHILD' | translate}} {{i+1}}</div>
                   <div class="flex-row">
                     <div class="flex-col-5">
-                      <label for="name" id="myFamilyFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div><div>{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></label>
+                      <label for="name" id="myFamilyFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div></label>
                     </div>
                     <div class="flex-col-7">
                       <input type="text" [ngClass]="{'inline-error': submitted && children.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
