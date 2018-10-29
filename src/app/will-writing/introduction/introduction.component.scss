@@ -98,6 +98,9 @@
     border-top-right-radius: 6px;
     padding: 15px 0;
     text-align: center;
+    @include allmobiles {
+        font-size: 18px;
+    }
   }
 .promocode {
     margin-top: 70px;
