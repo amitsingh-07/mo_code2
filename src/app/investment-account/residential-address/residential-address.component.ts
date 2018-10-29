@@ -50,6 +50,14 @@ export class ResidentialAddressComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    if (this.formValues.isMyInfoEnabled) {
+      if (this.formValues.countryCode) {
+        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
+      }
+      if (this.formValues.mailCountryCode) {
+        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
+      }
+    }
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
