@@ -63,7 +63,7 @@
                             <span *ngIf="formTitle[i]?.relationship !== ''">{{formTitle[i]?.relationship}}</span>
                           </button>
                           <div ngbDropdownMenu aria-labelledby="dropdownRelationship">
-                            <button class="dropdown-item" (click)="selectrelationship('')">{{'COMMON.LBL_SELECT' |
+                            <button class="dropdown-item" (click)="selectRelationship('')">{{'COMMON.LBL_SELECT' |
                               translate}}</button>
                             <button type="button" class="dropdown-item" *ngFor="let relationship of relationshipList;"
                               (click)="selectRelationship(relationship, i)">
@@ -92,7 +92,9 @@
           <div>
             <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="myFamilyFormBtn1">
-              {{'LABEL.CONTINUE' | translate}}</button>
+              <span *ngIf="!isEdit">{{'LABEL.CONTINUE' | translate}}</span>
+              <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
+            </button>
           </div>
         </div>
       </div>

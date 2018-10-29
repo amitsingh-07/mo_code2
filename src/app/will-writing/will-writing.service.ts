@@ -225,7 +225,7 @@ export class WillWritingService {
    * get PromoCode details.
    * @returns PromoCode details.
    */
-  getPromoCodeDetails(): IPromoCode {
+  getPromoCode(): IPromoCode {
     if (!this.willWritingFormData.promoCode) {
       this.willWritingFormData.promoCode = {} as IPromoCode;
     }
@@ -256,7 +256,7 @@ export class WillWritingService {
    * set PromoCode details.
    * @param data - PromoCode details.
    */
-  setPromoCodeDetails(data: IPromoCode) {
+  setPromoCode(data: IPromoCode) {
     this.willWritingFormData.promoCode = data;
     this.commit();
   }

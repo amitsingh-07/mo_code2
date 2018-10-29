@@ -74,7 +74,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
       executorTrustee: this.formBuilder.array([this.buildExecTrusteeForm()]),
     });
     if (!this.hasSpouse && this.execTrusteeList.length !== this.maxExecTrustee) {
-      for (let i = 1; i < 2; i++) {
+      for (let i = 1; i < this.maxExecTrustee; i++) {
         this.addExecTrusteeForm();
       }
       if (this.hasChild && this.willWritingService.checkBeneficiaryAge()) {
