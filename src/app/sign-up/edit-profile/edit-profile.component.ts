@@ -47,8 +47,11 @@ export class EditProfileComponent implements OnInit {
     }
   }
   showHide() {
-    const style = this.anim.nativeElement.styles.display ;
-    this.anim.nativeElement.innerHTML = 'display: none';
+    if ( this.anim.nativeElement.style.display === '' || this.anim.nativeElement.style.display === 'block') {
+      this.anim.nativeElement.style.display = 'none';
+    } else {
+      this.anim.nativeElement.style.display = 'block';
+    }
   }
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
