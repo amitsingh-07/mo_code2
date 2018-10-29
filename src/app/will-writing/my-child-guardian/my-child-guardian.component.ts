@@ -16,10 +16,10 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-child-guardian.component.scss']
 })
 export class MyChildGuardianComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
-  private tooltip = {};
-  private isEdit: boolean;
+  pageTitle: string;
+  step: string;
+  tooltip = {};
+  isEdit: boolean;
   private selectedIndex: number;
 
   addGuardianForm: FormGroup;

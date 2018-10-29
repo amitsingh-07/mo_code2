@@ -16,7 +16,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent implements OnInit {
-  private pageTitle: string;
+  pageTitle: string;
 
   promoCodeForm: FormGroup;
   faqLink: string;

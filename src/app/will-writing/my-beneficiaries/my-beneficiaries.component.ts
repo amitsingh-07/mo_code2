@@ -14,10 +14,10 @@ import { WillWritingService } from './../will-writing.service';
   styleUrls: ['./my-beneficiaries.component.scss']
 })
 export class MyBeneficiariesComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
+  pageTitle: string;
+  step: string;
   private minErrorMsg: string;
-  private isEdit: boolean;
+  isEdit: boolean;
   private selectedIndex: number;
 
   addBeneficiaryForm: FormGroup;

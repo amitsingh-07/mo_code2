@@ -15,8 +15,8 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
+  pageTitle: string;
+  step: string;
 
   aboutMeForm: FormGroup;
   formValues: IAboutMe;
