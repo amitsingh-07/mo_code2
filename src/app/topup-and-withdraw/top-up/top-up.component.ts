@@ -20,6 +20,9 @@ export class TopUpComponent implements OnInit {
   pageTitle: string;
   name = 'saidevi';
   investmentTypeList: any;
+  investmentype;
+  OnetimeInvestmentAmount = true;
+  monthlyInvestmentAmount = false;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -53,6 +56,17 @@ export class TopUpComponent implements OnInit {
       });
     });
 
+  }
+  validateForm(selectedInvestment) {
+    this.investmentype = selectedInvestment.investmentType;
+    console.log(this.investmentype + 'investment type');
+    if (this.investmentype === 'Monthly Investment') {
+      this.OnetimeInvestmentAmount = false;
+      this.monthlyInvestmentAmount = true;
+    } else {
+      this.OnetimeInvestmentAmount = true;
+      this.monthlyInvestmentAmount = false;
+    }
   }
 
 }
