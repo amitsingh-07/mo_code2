@@ -23,6 +23,14 @@
 }
 .overlap-grass{
   margin-top: -100px;
+  .seperator{
+    border-right: 0.5px solid #2d8289;
+    padding: 0 7px;
+    height: 34px;
+    width: 8px;
+    position: absolute;
+    bottom: 43px;
+  }
 }
   .edit-profile-section-bg{
       background:white;
@@ -46,6 +54,7 @@
     letter-spacing: -0.2px;
     text-align: center;
     color: #066360;
+    margin-top: 9px;
   }
   .content-text{
     object-fit: contain;
@@ -71,6 +80,7 @@
     letter-spacing: -0.3px;
     text-align: center;
     color: #066360;
+    padding-bottom: 14px;
   }
   .grid-content-text{
     object-fit: contain;
@@ -93,7 +103,9 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #313644;
+    margin-bottom: 10px;
     margin-left: 10px
+   
   }
   .dropdown-img {
     width: 16px;
@@ -111,10 +123,12 @@
     letter-spacing: -0.2px;
     color: #5e5e5e;
   }
-  // form-group-floating-label{
-  //   border: 2px;
-  //   border-radius: 4px;
-  // }
+  form-group-floating-label{
+    border: 2px solid #add9d8
+  }
+  .set-border{
+    border: 2px solid #add9d8
+  }
   // form-control{
   //   border: 2px;
   //   border-radius: 4px;
@@ -161,6 +175,24 @@
   }
   .section-margin{
    margin: 10px;
+  }
+  .mailing-address{
+    height: 66px;
+    border-radius: 6px;
+    background-color: #00c5c4;
+    margin: 20px 5px 10px;
+    .flex-col{
+      justify-content: center;
+      font-weight: normal;
+      line-height: normal;
+      letter-spacing: -0.3px;
+      font-size: 16px;
+      div:first-child{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
   }
   .edit-button {
     width: 100%;
@@ -252,3 +284,4 @@
     top:5px;
     right: 20px;
   }
+  

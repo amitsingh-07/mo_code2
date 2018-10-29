@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef , OnInit , ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,6 +17,7 @@ import { SignUpService } from '../sign-up.service';
 export class EditProfileComponent implements OnInit {
   resetPasswordForm: FormGroup;
   formValues: any;
+  @ViewChild('showHidePassword') anim: ElementRef;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -44,6 +45,10 @@ export class EditProfileComponent implements OnInit {
     } else {
       el.type = 'password';
     }
+  }
+  showHide() {
+    const style = this.anim.nativeElement.styles.display ;
+    this.anim.nativeElement.innerHTML = 'display: none';
   }
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
