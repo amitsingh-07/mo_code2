@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IExecTrustee, ISpouse } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -15,6 +16,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-executor-trustee.component.scss']
 })
 export class MyExecutorTrusteeComponent implements OnInit {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
   tooltip = {};
@@ -118,7 +120,11 @@ export class MyExecutorTrusteeComponent implements OnInit {
 
   editExecTrustee(relation: string, index: number) {
     if (relation === 'spouse') {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      if (this.addExeTrusteeForm.dirty) {
+        this.pageTitleComponent.goBack();
+      } else {
+        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      }
     } else {
       /*this.selectedIndex = index;
       this.isEdit = true;
@@ -134,7 +140,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
       const ExecRelationship = this.relationshipList.filter((relationship) => relationship.value === execTrustee.relationship);
       this.selectRelationship(ExecRelationship[0], 0);*/
     }
-  } 
+  }
 
   /**
    * validate aboutMeForm.

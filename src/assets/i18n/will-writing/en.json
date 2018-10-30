@@ -150,6 +150,12 @@
         }, {
           "text": "Married",
           "value": "married"
+        }, {
+          "text": "Divorced",
+          "value": "divorced"
+        }, {
+          "text": "Widowed",
+          "value": "widowed"
         }]
       }
     },
