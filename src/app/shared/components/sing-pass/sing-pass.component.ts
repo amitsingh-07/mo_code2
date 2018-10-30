@@ -25,8 +25,8 @@ export class SingPassComponent implements OnInit {
             ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.modelTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
-      this.modelMessge = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
+      this.modelTitle = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE');
+      this.modelMessge = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
     });
   }
 
@@ -38,7 +38,8 @@ export class SingPassComponent implements OnInit {
     if (!this.investmentAccountService.isSingPassDisabled()) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.modelTitle;
-      ref.componentInstance.errorMessage = this.modelMessge;
+      //ref.componentInstance.errorMessage = this.modelMessge;
+      ref.componentInstance.errorDescription = this.modelMessge;
       ref.componentInstance.isButtonEnabled = true;
       ref.result.then(() => {
         this.investmentAccountService.callBackInvestmentAccount = true;
