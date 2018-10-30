@@ -2,8 +2,8 @@
   <app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]="myFamilyForm.dirty"></app-page-title>
   <div class="container-fluid max-width--1024">
     <div class="content">
-      <div class="flex-row">
-        <div class="col-lg-7 col-md-7 col-12">
+      <div class="flex-row my-form-container">
+        <div class="col-lg-6 col-md-6 col-12 header-container">
           <div class="heading hidden-sm-md" id="myFamily-step1">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
           <div class="autofill-link">
             <div class="autofill-text hidden-sm-md" id="myFamily-title">{{ 'WILL_WRITING.MY_FAMILY.TITLE' | translate}}</div>
@@ -14,7 +14,7 @@
         </div>
         <div class="col-lg-5 col-md-5 col-12 myFamilyForm">
 
-          <form [formGroup]="myFamilyForm" id="myFamilyForm" name="myFamilyForm">
+          <form [formGroup]="myFamilyForm" id="myFamilyForm" name="myFamilyForm" class="myFamily">
             <div *ngIf="hasSpouse">
               <div class="aboutMe" formArrayName="spouse" *ngFor="let spouse of myFamilyForm.get('spouse').controls; let i = index;">
                 <div class="form-group" [formGroupName]="i">
