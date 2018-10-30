@@ -2,16 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuardService as AuthGuard } from '../sign-up/auth-guard.service';
+import {
+    AccountSetupCompletedComponent
+} from './account-setup-completed/account-setup-completed.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import {
     AdditionalDeclarationInfoComponent
 } from './additional-declaration-info/additional-declaration-info.component';
 import {
+    AdditionalDeclarationScreen2Component
+} from './additional-declaration-screen2/additional-declaration-screen2.component';
+import {
     AdditionalDeclarationStep1Component
 } from './additional-declaration-step1/additional-declaration-step1.component';
+import {
+    AdditionalDeclarationSubmitComponent
+} from './additional-declaration-submit/additional-declaration-submit.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
+import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import {
     PersonalDeclarationComponent
@@ -19,16 +29,13 @@ import {
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
-
-import { AccountSetupCompletedComponent } from './account-setup-completed/account-setup-completed.component';
-import { AdditionalDeclarationSubmitComponent } from './additional-declaration-submit/additional-declaration-submit.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
+import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
+import {
+    UploadDocumentsLaterComponent
+} from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
-import { UploadDocumentsLaterComponent } from './upload-documents-later/upload-documents-later.component';
-
-import { AdditionalDeclarationScreen2Component } from './additional-declaration-screen2/additional-declaration-screen2.component';
-import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
 const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
@@ -112,6 +119,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_BO,
     component: UploadDocumentBOComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.FUND_YOUR_ACCOUNT,
+    component: FundYourAccountComponent,
     canActivate: [AuthGuard]
   }
 ];
