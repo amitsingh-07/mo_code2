@@ -141,18 +141,21 @@
             }
         }
         input{
-            font-family: $muli-light;
-            font-weight: 300;
-            font-style: italic;
+            border-radius: 27.5px;
+            font-family: $muli-bold;
+            font-size: 16px;
+            font-weight: bold;
             letter-spacing: -0.2px;
             text-align: center;
-            color: #a4a4a4;
-            border-radius: 27.5px;
+            color: #2d8289;
             border: solid 1px #c2d9ec;
-            font-size: 16px;  
-        }
+          }
         input::placeholder{
-            color: #a4a4a4;
+            font-family: $muli-light;
+            font-size: 16px;
+            font-weight: 300;
+            font-style: italic;
+            color: #a4a4a4 !important;
         }
         div{
             &:last-child{
