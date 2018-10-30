@@ -2,11 +2,10 @@
 @import '../../../mixins';
 
 .container-fluid {
-    background-color: #fff;
     padding: 50px 60px 65px;
     font-family: $muli-semi-bold;
     @include allmobiles{
-        padding: 10px 0 !important;
+        padding: 0 !important;
         border-radius: 0;
     }
 }
@@ -18,9 +17,12 @@
     font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
-    margin-top: 70px;
+    margin-top: 15px;
     @include allmobiles {
         margin-top: 19px;
+    }
+    input{
+        color:#00a7a7;
     }
     .flex-row{
         padding: 0 19px 25px; 
@@ -50,20 +52,21 @@
     font-size: 18px;
     font-weight: 300;
     letter-spacing: -0.2px;
-    color: #00a7a7;
+    color: #fff;
 }
 .autofill-link {
     @include allmobiles {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
+        background-color: #fff;
     }
 }
 .autofill-text{
     font-size: 36px;
     font-weight: 600;
     letter-spacing: -0.4px;
-    color: #00a7a7;  
+    color: #fff;  
 }
 
 .sub-title {
@@ -71,7 +74,12 @@
     font-weight: 600;
     line-height: 1.22;
     letter-spacing: -0.2px;
-    color: #333846;
+    color: #fff;
+    @include allmobiles {
+        width: 300px;
+        text-align: center;
+        color: #333846;
+    }
 }
 .mobile-logo{
     display: none;
@@ -90,6 +98,13 @@
     }
 }
 
+.myFamily {
+    margin-top: 60px;
+    @include allmobiles {
+        margin-top: 10px;
+    }
+}
+
 .datepicker-control {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
@@ -104,4 +119,14 @@
             box-shadow: none !important;
         }
     } 
+}
+
+.my-form-container {
+    justify-content: space-between;
+}
+
+.header-container {
+    @include allmobiles{
+        padding: 0;
+    }
 }
