@@ -251,6 +251,31 @@
   "ADDITIONAL_DECLARATION_SUBMIT": {
     "TITLE": "Additional Declarations Submitted",
     "DESC": "We will get back to you on your application in 1 - 2 working days.",
-    "BACK": "Back To Dashboard"
+    "BACK" : "Back To Dashboard"
+  },
+  "FUND_YOUR_ACCOUNT": {
+    "TITLE": "Fund Your Account",
+    "OK_GOT_IT": "Okay, Got It!",
+    "YOUR_INVESTMENT": "Your Investment",
+    "ONE_TIME": "one-time",
+    "MONTH": "mth",
+    "YOUR_PORTFOLIO": "Your Portfolio",
+    "VIA_BANK": "Via Bank Transfer",
+    "VIA_PAYNOW": "Via PayNow",
+    "LOGIN_TO_NETBANKING_PAYNOW": "Log in to PayNow via internet banking or mobile banking app to make the fund transfer.",
+    "LOGIN_TO_NETBANKING_BANK": "Log in to your internet banking or mobile banking app to make the fund transfer.",
+    "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
+    "AMOUNT_TO_TRANSFER": "Amount to Transfer",
+    "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+    "ENTITY_NAME": "Entity Name",
+    "REFERENCE_CODE": "Reference Code",
+    "ADD_REFERENCE_CODE_INFO": "To credit the funds to your account, please indicate this reference code in your fund transfer.",
+    "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
+    "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
+    "VIEW_TRANSFER_INST": "View Transfer Instructions",
+    "PROCESS_TIME_INFO": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "RECIPENTS_NAME": "Recipent's Name",
+    "BANK_NAME": "Bank Name",
+    "BANK_ACC_NO": "Bank Account No."
   }
 }

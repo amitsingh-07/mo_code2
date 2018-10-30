@@ -11,6 +11,10 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
+import {
+  ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
+
 @Component({
   selector: 'app-top-up',
   templateUrl: './top-up.component.html',
@@ -20,9 +24,13 @@ export class TopUpComponent implements OnInit {
   pageTitle: string;
   name = 'saidevi';
   investmentTypeList: any;
-  investmentype;
-  OnetimeInvestmentAmount = true;
-  monthlyInvestmentAmount = false;
+ showOnetimeInvestmentAmount = true;
+  showmonthlyInvestmentAmount = false;
+  formValues;
+  topForm: FormGroup;
+  balanceAmount = '$120,000';
+  translator: any;
+  investmentype ;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -46,27 +54,67 @@ export class TopUpComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
-    this.getTopupInvestmentList();
+    this.formValues = this.topupAndWithDrawService.getTopUpFormData();
+    this.topForm = this.investmentype === 'Monthly Investment' ?
+    this.buildFormMonthlyInvestment()
+    : this.buildFormOneTimeInvestment();
   }
-  getTopupInvestmentList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
-        this.investmentTypeList = data.objectList;
-        console.log(this.investmentTypeList + 'dgasgdjagsdjagsjdgagsdj');
-      });
-    });
 
+  buildFormOneTimeInvestment(): FormGroup {
+    return this.formBuilder.group({
+      oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
+      investment: [this.formValues.investment, Validators.required]
+    });
+    this.topForm.removeControl('MonthlyInvestmentAmount');
   }
-  validateForm(selectedInvestment) {
-    this.investmentype = selectedInvestment.investmentType;
-    console.log(this.investmentype + 'investment type');
+
+  buildFormMonthlyInvestment(): FormGroup {
+    return this.formBuilder.group({
+      MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required],
+      investment: [this.formValues.investment, Validators.required]
+    });
+    this.topForm.removeControl('oneTimeInvestmentAmount');
+  }
+  setInvestmentType(investmentype) {
+    this.investmentype = investmentype;
+    console.log(this.investmentype);
     if (this.investmentype === 'Monthly Investment') {
-      this.OnetimeInvestmentAmount = false;
-      this.monthlyInvestmentAmount = true;
+      this.buildFormMonthlyInvestment();
+      this.showOnetimeInvestmentAmount = false;
+      this.showmonthlyInvestmentAmount = true;
     } else {
-      this.OnetimeInvestmentAmount = true;
-      this.monthlyInvestmentAmount = false;
+      this.buildFormOneTimeInvestment();
+      this.showOnetimeInvestmentAmount = true;
+      this.showmonthlyInvestmentAmount = false;
     }
   }
+  goToNext(form) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+    }
+    const error = this.topupAndWithDrawService.doFinancialValidations(form);
+    console.log('error' + error);
+    if (error) {
+      // tslint:disable-next-line:no-commented-code
+      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.errorTitle;
+      ref.componentInstance.errorMessage = error.errorMessage;
+      // tslint:disable-next-line:triple-equals
 
+    } else {
+      this.saveAndProceed(form);
+    }
+  }
+  saveAndProceed(form: any) {
+    this.router.navigate(['home']);
+    //this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP2]);
+    // CALL API
+    // this.portfolioService.savePersonalInfo().subscribe((data) => {
+    // if (data) {
+    //  this.authService.saveEnquiryId(data.objectList.enquiryId);
+    //  }
+    //});
+  }
 }

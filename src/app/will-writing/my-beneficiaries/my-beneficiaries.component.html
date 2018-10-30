@@ -1,0 +1,128 @@
+<app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]="addBeneficiaryForm.dirty"></app-page-title>
+<div class="container-fluid max-width--1024">
+  <div class="content">
+    <div class="flex-row my-beneficiaries-container">
+      <div class="col-lg-5 col-md-5 col-sm-12 header-container">
+        <div class="mobile-header">
+          <div class="step2 hidden-sm-md">{{ 'WILL_WRITING.COMMON.STEP_2' | translate}}</div>
+          <h2 id="intro-title" class="hidden-sm-md">{{ 'WILL_WRITING.MY_BENEFICIARY.TITLE' | translate}}</h2>
+          <div class="sub-title" id="sub-title">{{ 'WILL_WRITING.MY_BENEFICIARY.SUB_TITLE' | translate}}</div>
+          <div class="banner-image hidden-sm-md">
+            <img src="assets/images/will-writing/my-beneficiaries.svg" id="intro-img" />
+          </div>
+          <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-5  col-sm-12 beneficiaries-container">
+        <div name="beneficiariesForm">
+          <div class="form-group-single-column  mb0 flex-col">
+            <span class="content-title">{{'WILL_WRITING.MY_BENEFICIARY.FORM_TITLE' | translate}}</span>
+          </div>
+          <div>
+            <div class="form-group-single-column  mb0 flex-col">
+              <div class="edit-block checkbox-button two-label" *ngFor="let beneficiary of beneficiaryList ; let i = index">
+                <input id="beneficiary_{{i+1}}" name="beneficiary" [checked]="beneficiary.selected" (change)="validateForm(i)"
+                  type="checkbox" class="field checkbox">
+                <label for="beneficiary_{{i+1}}" id="beneficry_{{i+1}}">
+                  <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
+                  <div class="input-label-normal">{{beneficiary.relationship | titlecase }}</div>
+                </label>
+                <span (click)="editBeneficiary(beneficiary.relationship,i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
+              </div>
+            </div>
+            <div>
+              <form id="addBeneficiaryForm" name="addBeneficiaryForm" [formGroup]="addBeneficiaryForm" id="addBeneficiaryFrm">
+                <div *ngIf="isFormOpen" class="add-beneficiaries-container">
+                  <div id="addGuardianForm" name="addGuardianForm">
+                    <div class="aboutMe">
+                      <div class="form-group">
+                        <div class="col-12 flex-row title"><div class="col-8 pl0">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}</div>
+                          <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">{{'WILL_WRITING.COMMON.CANCEL'
+                            | translate}}</div>
+                        </div>
+                        <div class="flex-row mb10">
+                          <div class="flex-col-5">
+                            <label for="name" id="addGuardianFormLbl1">
+                              <div>
+                                <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div>
+                                <div class="sub-name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div>
+                              </div>
+                            </label>
+                          </div>
+                          <div class="flex-col-7">
+                            <input type="text" [ngClass]="{'inline-error': submitted && addBen.name.invalid}" id="addGuardianFormInpt1"
+                              class="form-control" #name formControlName="name">
+                          </div>
+                        </div>
+                        <div class="flex-row mb10">
+                          <div class="flex-col-5">
+                            <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' |
+                              translate}}</label>
+                          </div>
+                          <div class="flex-col-7">
+                            <div class="dropdown-control" [ngClass]="{'inline-error': submitted && addBen.relationship.invalid}">
+                              <div ngbDropdown id="relationshipDropDown">
+                                <button type="button" class="btn btn-dropdown" id="dropdownRelationship"
+                                  ngbDropdownToggle>
+                                  <span *ngIf="relationship === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                                  <span *ngIf="relationship !== ''">{{relationship}}</span>
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownRelationship">
+                                  <button class="dropdown-item" (click)="selectRelationship()">{{'COMMON.LBL_SELECT'
+                                    | translate}}</button>
+                                  <button type="button" class="dropdown-item" *ngFor="let relationship of relationshipList; let i=index"
+                                    (click)="selectRelationship(relationship)">
+                                    {{relationship.text}}
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex-row mb10">
+                            <div class="flex-col-5">
+                              <label for="name" id="addGuardianFormLbl2">
+                                <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
+                              </label>
+                            </div>
+                            <div class="flex-col-7">
+                              <input type="text" [ngClass]="{'inline-error': submitted && addBen.uin.invalid}" id="addGuardianFormInpt2"
+                                class="form-control" #uin formControlName="uin">
+                            </div>
+                          </div>
+                        <div class="flex-row mb10 add-beneficiary" *ngIf="!isEdit">
+                          <div class="flex-col-5">
+                            <button type="button" (click)="resetForm()" class="btn width100">{{
+                              'WILL_WRITING.COMMON.CANCEL' | translate}}</button>
+                          </div>
+                          <div class="flex-col-5">
+                            <button type="button" (click)="addBeneficiary(addBeneficiaryForm)" class="btn btn-primary width100">{{
+                              'WILL_WRITING.COMMON.ADD' | translate}}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div *ngIf="beneficiaryList.length < maxBeneficiary && !isFormOpen" (click)="isFormOpen= !isFormOpen" class="form-group-single-column  mb0 flex-col">
+              <div class="add-beneficiaries checkbox-button two-label mb0">
+                <span class="add-icon"><img id="add" src="assets/images/will-writing/add.svg" /></span>
+                <span>Add Beneficiaries</span>
+              </div>
+            </div>
+            <div>
+              <button *ngIf="!isEdit" type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100"
+                id="prtNeedBtn1">
+                {{'LABEL.CONTINUE' | translate}} </button>
+              <button *ngIf="isEdit" type="button" (click)="addBeneficiary(addBeneficiaryForm)" class="btn btn-primary btn__footer--fixed width100"
+                id="prtNeedBtn1">
+                {{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}} </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

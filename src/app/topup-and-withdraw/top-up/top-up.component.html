@@ -1,6 +1,7 @@
 <div class="container-fluid">
+    
   <div class="content">
-    <form id="myFinancialsForm" name="myFinancialsForm">
+    <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
       <div class="row">
         <div class="col-lg-12 col-md-12">
           <div class="form-group-with-bg">
@@ -25,7 +26,7 @@
                           ngbDropdownToggle>Select Portfolio
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                          <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('country',country.name, i)"
+                          <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('portfolio',country.name, i)"
                             id="residentialAddress-country-option-{{i}}">{{country.name}}</button>
                         </div>
                       </div>
@@ -58,15 +59,16 @@
             </div>
 
             <div class="form-group-with-bg--content">
+              
 
-              <!-- <div class="flex-row">
+              <div class="flex-row">
 
                 <div class="flex-col-12">
-                  <div class="btn-group-toggle" ngbRadioGroup name="radioGender">
+                  <div class="btn-group-toggle" ngbRadioGroup name="radioGender"  formControlName="investment">
                     <div class="flex-row mb0">
                       <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10" id="invPersInfoLbl2">
-                          <input ngbButton type="radio" value="male" id="invPersInfoInpt8">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10 " id="invPersInfoLbl2">
+                          <input ngbButton type="radio" value="One-time Investment" (change)="setInvestmentType('One-time Investment')">
                           <div class="row">
                             <div class="input-label-white">One-time Investment</div>
                             <div class="input-label-normal">Min. $100</div>
@@ -74,11 +76,11 @@
                         </label>
                       </div>
                       <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm  ml10" id="invPersInfoLbl3">
-                          <input ngbButton type="radio" value="female" id="invPersInfoInpt9">
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm " >
+                          <input ngbButton type="radio" value="Monthly Investment" (change)="setInvestmentType('Monthly Investment')">
                           <div class="row">
                             <div class="input-label-white">Monthly Investment</div>
-                            <div class="input-label-normal">Min. $50</div>
+                            <div class="input-label-normal ">Min. $50</div>
                           </div>
 
 
@@ -87,32 +89,33 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
-              <div class="special-radio-button hidden" *ngFor="let investment of investmentTypeList; let i = index">
+                </div>
+              
+              <!-- <div class="special-radio-button hidden" *ngFor="let investment of investmentTypeList; let i = index">
                 <input id="investment_{{i+1}}" (change)="validateForm(investment)" name="investmentType" type="radio" class="field radio"
                   tabindex="{{i+1}}" />
                 <label for="investment_{{i+1}}">
                   <div class="input-label-white">{{investment.investmentType}}</div>
                   <div class="input-label-normal">{{investment.investmentDescription}}</div>
                 </label>
-              </div>
+              </div> -->
 
 
-              <div class="flex-row" *ngIf="OnetimeInvestmentAmount">
+              <div class="flex-row" *ngIf="showOnetimeInvestmentAmount">
 
                 <div class="flex-col-12">
                   <div class="form-control">
                     <i id="myFinancialDollerSymbThree">$</i>
                     <div name="totalLiabilities">
                       <input class="input-control" type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio maxLength="7" #totalLiabilities
-                        value="0">
+                        value="0" formControlName="oneTimeInvestmentAmount">
                     </div>
                   </div>
                 </div>
               </div>
 
 
-              <div class="flex-row mb10" *ngIf="monthlyInvestmentAmount">
+              <div class="flex-row mb10" *ngIf="showmonthlyInvestmentAmount">
 
                 <div class="flex-col-12">
 
@@ -120,19 +123,19 @@
                     <i id="myFinancialDollerSymbThree">$</i>
 
                     <input type="text" id="additional_declaration_Expected_number_of_transaction_lab_input" class="input-control" appCurrencyInput
-                      maxLength="2" #otherIncome value="0">
+                      maxLength="7 " #otherIncome value="0" formControlName="MonthlyInvestmentAmount" >
                     <i class="right year">/ mth</i>
                   </div>
                 </div>
               </div>
 
 
-              <p class="balance-amount">Cash Account Balance: $120,000</p>
+              <p class="balance-amount">Cash Account Balance: {{balanceAmount}}</p>
 
             </div>
 
           </div>
-          <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
+          <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
 
         </div>
       </div>

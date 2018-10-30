@@ -43,6 +43,8 @@ export let apiConstants = {
             lndustrylist: 'invest/investment-microservice/industrylist',
             occupationlist: 'invest/investment-microservice/occupationlist',
             allDropdownlist: 'invest/investment-microservice/optionListCollection',
-}
+        },
+        getPromoCode: '',
+        verifyPromoCode: ''
     }
 };

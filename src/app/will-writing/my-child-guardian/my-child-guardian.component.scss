@@ -1,0 +1,196 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    padding: 50px 60px 65px;
+    font-family: $muli-semi-bold;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+    .content {
+        .main-container{
+            justify-content: space-between;
+            @include allmobiles {
+                padding-bottom:70px;
+            }
+        }
+    }
+}
+
+.help-icon {
+    background-image: url("../../../assets/images/will-writing/help-icon.svg");
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 14px;
+    bottom: 17px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+.autofill-link {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .sub-title{
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.22;
+        letter-spacing: -0.2px;
+        margin-top: 15px;
+        @include allmobiles{
+            width: 290px;
+            margin-top: 0;
+        }
+    }
+}
+
+.autofill-text{
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: $white-color;
+    position: relative; 
+}
+
+.mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin-top: 17px;
+    }
+}
+.header-section {
+    @include allmobiles{
+        background-color: #ffffff;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: #333846;
+        padding: 12px 15px;
+        margin-top:-10px;
+    }
+}
+.form-title{
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    padding: 26px 0 19px;
+}
+
+.form-group-single-column{
+    .edit-block{
+        @extend .flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 28px;
+        span{
+            margin-bottom: 8px;
+        }
+    }
+}
+
+.myChildGuardian {
+        background-color: #f4fafb;
+        border-radius: 6px;
+        box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        @include allmobiles {
+            margin-top: 19px;
+        }
+        .flex-row{
+            padding: 0 19px 25px; 
+            .form-control{
+                font-family: $muli-regular;
+                color: #00a7a7;
+            }
+        }
+        .title {
+            background: $white-color;
+            font-family: $muli-bold;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: -0.4px;
+            color: #066360;
+            margin-bottom: 19px;
+            padding: 17px 19px; 
+            border-radius: 6px;
+        }
+        .sublbl {
+            font-family: $muli-regular;
+            font-size: 16px;
+            letter-spacing: -0.3px;
+            color: #2d8289;
+            font-weight: normal;
+        }
+    .addGuardian{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+        .btn{
+                background-color: #f4fafb;
+                color: #00a7a7;
+                font-family: $muli-semi-bold;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: -0.1px;
+                text-align: center;
+        }
+        .btn-primary{
+                background-color: #00a7a7 !important;
+                color: #fff !important;
+                padding: 10px 10px;
+        }
+
+    }
+
+}
+.sub-name {
+        font-family: $muli-regular;
+        font-size: 14px;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        font-weight: 100;
+}
+.add-guardian{
+    padding: 10px 15px;
+}
+.msg-img {
+    img{
+        width:100%;
+    }
+}
+.edit-icon {
+    cursor: pointer;
+}
+
+.alternative-sub-title {
+    font-family: $muli-regular;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    font-weight: 100;
+    color: #2d8289;
+  }
+
+  .title-cancel {
+    font-family: $muli-regular;
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: -0.3px;
+    text-align: right;
+    color: #00a7a7;
+    cursor: pointer;
+    padding-top: 5px;
+}
