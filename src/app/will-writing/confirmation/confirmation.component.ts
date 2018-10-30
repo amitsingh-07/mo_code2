@@ -15,6 +15,7 @@ export class ConfirmationComponent implements OnInit {
   step: string;
 
   willWritingFormData: WillWritingFormData = new WillWritingFormData();
+  willWritingRoutePaths = WILL_WRITING_ROUTE_PATHS;
 
   constructor(private translate: TranslateService, private willWritingService: WillWritingService, private router: Router) {
     this.translate.use('en');
@@ -28,22 +29,8 @@ export class ConfirmationComponent implements OnInit {
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
   }
 
-  edit(section) {
-    switch (section) {
-      case 'about-me':
-        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION]);
-        break;
-      /*case 'my-family':
-        break;
-      case 'guardian':
-        break;
-      case 'beneficiary':
-        break;
-      case 'estate-distribution':
-        break;
-      case 'executor-trustee':
-        break;*/
-    }
+  edit(url) {
+    this.router.navigate([url]);
   }
 
 }

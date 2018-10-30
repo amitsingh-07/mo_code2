@@ -57,6 +57,18 @@ export class WillWritingService {
     }
   }
 
+  clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged) {
+    if (isMaritalStatusChanged) {
+      this.willWritingFormData.spouse = [];
+    }
+    if (isNoOfChildrenChanged) {
+      this.willWritingFormData.children = [];
+    }
+    this.willWritingFormData.guardian = [];
+    this.willWritingFormData.beneficiary = [];
+    this.willWritingFormData.execTrustee = [];
+  }
+
   /**
    * get form errors.
    * @param form - form details.
@@ -123,6 +135,13 @@ export class WillWritingService {
    * @param data - about me details.
    */
   setAboutMeInfo(data: IAboutMe) {
+    if (this.getAboutMeInfo()) {
+      const isMaritalStatusChanged = this.getAboutMeInfo().maritalStatus !== data.maritalStatus;
+      const isNoOfChildrenChanged = this.getAboutMeInfo().noOfChildren !== data.noOfChildren;
+      if (isMaritalStatusChanged || isNoOfChildrenChanged) {
+        this.clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged);
+      }
+    }
     this.willWritingFormData.aboutMe = data;
     this.commit();
   }
