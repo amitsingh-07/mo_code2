@@ -55,7 +55,7 @@ export class MyInfoService {
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
       ref.componentInstance.isError = true;
       ref.result.then(() => {
         this.goToMyInfo();

@@ -157,6 +157,10 @@
       "FILE_SIZE_EXCEEDED": {
         "TITLE": "Error !",
         "MESSAGE": "File of size more than 2 MB is not allowed."
+      },
+      "FILE_TYPE_MISMATCH": {
+        "TITLE": "Error !",
+        "MESSAGE": "The selected file type is not allowed."
       }
     }
   },
@@ -169,7 +173,7 @@
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
     "QUESTION1": "Are you a Director, Officer, Trading Representative or employee of a SGX Trading Member other than iFAST Financial Pvt Ltd?",
     "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
-    "QUESTION3": "Are you the beneficial owner of this account?",
+    "QUESTION3": "Do you have any beneficial owner?",
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"

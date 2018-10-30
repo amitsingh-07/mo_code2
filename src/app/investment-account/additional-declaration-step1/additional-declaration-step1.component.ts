@@ -15,6 +15,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-additional-declaration-step1',
@@ -28,7 +29,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   addInfoForm: FormGroup;
   addInfoFormValues: any;
   selectedOccupation: string;
-  selectedCountry: string;
   countries: any;
   constructor(
     public headerService: HeaderService,
@@ -55,7 +55,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getOccupationList();
-    this.countries = ['Singapore'];
+    this.countries = this.investmentAccountService.getCountriesFormData();
     this.addInfoFormValues = this.investmentAccountService.getPepInfo();
     this.addInfoForm = new FormGroup({
       radioPep: new FormControl (this.addInfoFormValues.radioPep, Validators.required),
@@ -63,16 +63,16 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       lName: new FormControl (this.addInfoFormValues.lName, Validators.required),
       cName: new FormControl (this.addInfoFormValues.cName, Validators.required),
       pepoccupation: new FormControl (this.addInfoFormValues.pepoccupation, Validators.required),
-      pepCountry: new FormControl (this.addInfoFormValues.pepCountry, Validators.required),
+      pepCountry: new FormControl (
+        this.investmentAccountService.getCountryFromNationalityCode(
+          INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE), Validators.required),
       pepPostalCode: new FormControl (this.addInfoFormValues.pepPostalCode, Validators.required),
       pepAddress1: new FormControl (this.addInfoFormValues.pepAddress1, Validators.required),
       pepAddress2: new FormControl (this.addInfoFormValues.pepAddress2, Validators.required),
       pepUnitNo: new FormControl (this.addInfoFormValues.pepUnitNo, Validators.required),
       });
     this.selectedOccupation = this.translate.instant('ADDITIONAL_DECLARATION.SELECT_OCCUPATION');
-    this.selectedCountry = 'Singapore';
-    this.addInfoForm.controls.radioPep.setValue('yes');
-    this.addInfoForm.controls.pepCountry.setValue('Singapore');
+    this.addInfoForm.controls.radioPep.setValue(true);
   }
   getOccupationList() {
     this.authService.authenticate().subscribe((token) => {
@@ -88,7 +88,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   }
 
   setDropDownValue(value) {
-    this.selectedCountry = value;
     this.addInfoForm.controls.pepCountry.setValue(value);
 }
   showHelpModalPep() {

@@ -145,7 +145,7 @@ export class EmploymentDetailsComponent implements OnInit {
             Validators.required],
           empPostalCode: [this.formValues.empPostalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          empAddress2: [this.formValues.empAddress2],
+          empAddress2: [this.formValues.empAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empUnitNo: [this.formValues.empUnitNo, Validators.required]
         }));
       } else { // Other Countries
@@ -153,7 +153,7 @@ export class EmploymentDetailsComponent implements OnInit {
           empCountry: [this.formValues.empCountry ? this.formValues.empCountry :
             this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          empAddress2: [this.formValues.empAddress2],
+          empAddress2: [this.formValues.empAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empCity: [this.formValues.empCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
           empState: [this.formValues.empState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
           empZipCode: [this.formValues.empZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],

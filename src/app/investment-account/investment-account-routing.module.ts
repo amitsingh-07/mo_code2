@@ -45,7 +45,8 @@ const routes: Routes = [
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.POSTLOGIN,
-    component: PostLoginComponent
+    component: PostLoginComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
