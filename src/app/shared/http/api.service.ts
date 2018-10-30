@@ -159,7 +159,6 @@ export class ApiService {
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
     */
-    console.log(data);
     const url = '../../../assets/mock-data/customerReview.json';
     return this.http.getMock(url)
       .pipe(
@@ -333,8 +332,6 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setPersonalInfo.json';
-    console.log('Data Posted: ');
-    console.log(data);
     return this.http.post(apiConstants.endpoint.portfolio.setInvestmentObjective, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -408,8 +405,7 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setRiskAssessment.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.portfolio.updateRiskAssessment, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -587,8 +583,7 @@ export class ApiService {
     //const url = 'https://bfa-dev.ntucbfa.cloud/account/account-microservice/api/forgotPassword';
     // tslint:disable-next-line:no-commented-code
     const url = '../assets/mock-data/forgotPassword.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.forgotPassword, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -614,8 +609,7 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/forgotPassword.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.resetPassword, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -700,8 +694,7 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setRiskAssessment.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.portfolio.updateRiskAssessment, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions

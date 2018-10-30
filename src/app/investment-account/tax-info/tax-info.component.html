@@ -16,7 +16,7 @@
             <div ngbDropdown>
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span *ngIf="taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.taxCountry.value | titlecase }}</span>
+                <span *ngIf="taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.taxCountry.value.name | titlecase }}</span>
                 <span *ngIf="!taxInfoForm.controls.taxCountry.value" class="dependent-count dropdown_text" id="tax_Info_dropdown_country">Select Country</span>
                 <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
@@ -49,12 +49,12 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="tin_yes" value="yes" (change)="isTinNumberAvailChanged('yes')"> {{ 'TAX_INFO.YES_lABEL' | translate}}
+                  <input ngbButton type="radio" id="tin_yes" [value]=true (change)="isTinNumberAvailChanged(true)"> {{ 'TAX_INFO.YES_lABEL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="tin_no" value="no" (change)="isTinNumberAvailChanged('no')">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
+                  <input ngbButton type="radio" id="tin_no" [value]=false (change)="isTinNumberAvailChanged(false)">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@
       </div>
 
       <!-- Second Dropdown -->
-      <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'no'">
+      <div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === false">
         <div class="flex-col-4">
           <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' | translate}}</label>
         </div>
@@ -71,7 +71,7 @@
             <div ngbDropdown>
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span *ngIf="taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.reasonDropdown.controls.noTinReason.value | titlecase }}</span>
+                <span *ngIf="taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.reasonDropdown.controls.noTinReason.value.name | titlecase }}</span>
                 <span *ngIf="!taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">Select</span>
                 <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
@@ -90,7 +90,7 @@
 
      <!-- Tin text box -->
 <!-- Second Dropdown -->
-<div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === 'yes'">
+<div class="flex-row" *ngIf="taxInfoForm.controls.radioTin.value === true">
   <div class="flex-col-4">
     <label class="tin_question_text" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' | translate}}</label>
   </div>

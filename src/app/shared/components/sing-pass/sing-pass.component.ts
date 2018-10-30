@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +12,8 @@ import { MyInfoService } from '../../Services/my-info.service';
   styleUrls: ['./sing-pass.component.scss']
 })
 export class SingPassComponent implements OnInit {
+  @Input('label') label;
+  @Input('position') position;
   modelTitle: string;
   modelMessge: string;
 
@@ -29,6 +31,7 @@ export class SingPassComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.position);
   }
 
   openModal() {
@@ -40,7 +43,8 @@ export class SingPassComponent implements OnInit {
       ref.result.then(() => {
         this.investmentAccountService.callBackInvestmentAccount = true;
         this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-        this.router.navigate(['myinfo']);
+        this.myInfoService.goToMyInfo();
+        //this.router.navigate(['myinfo']);
       }).catch((e) => {
       });
     }

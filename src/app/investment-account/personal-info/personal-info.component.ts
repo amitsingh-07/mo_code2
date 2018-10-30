@@ -63,7 +63,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     // get profile
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.populateFullName();
-    if (this.investmentAccountService.isSingaporeResident() ||  this.formValues.singaporeanResident === 'yes') {
+    if (this.investmentAccountService.isSingaporeResident()) {
       this.invPersonalInfoForm = this.buildFormForNricNumber();
       this.showPassport = false;
       this.showNric = true;

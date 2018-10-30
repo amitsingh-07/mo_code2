@@ -1,3 +1,4 @@
+
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +12,7 @@ import { ValidateRange } from '../create-account/range.validator';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { FooterService } from './../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-success-message',
@@ -29,6 +31,7 @@ queryParams;
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
@@ -41,6 +44,8 @@ queryParams;
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
     this.queryParams = this.route.snapshot.queryParams;
   }
   redirectToLogin() {
