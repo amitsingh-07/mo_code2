@@ -1,3 +1,4 @@
+import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -36,6 +37,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
   coverageMax = 75;
   coverageAmount = 0;
   monthlyIncome: IMyIncome;
+  coverageToolTip;
 
   ciSliderConfig: any = {
     behaviour: 'snap',
@@ -64,6 +66,7 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
       this.modalData = this.translate.instant('OCP_DISABILITY.MODAL_DATA');
       this.pageData = this.translate.instant('OCP_DISABILITY');
       this.employeeList = this.translate.instant('OCP_DISABILITY.EMPLOYEE_TYPE');
+      this.coverageToolTip = this.translate.instant('OCP_DISABILITY.COVERAGE_TOOLTIP');
       this.defaultEmployee = this.employeeList[0].status;
       this.setPageTitle(this.pageTitle, null, true);
     });
@@ -144,6 +147,12 @@ export class OcpDisabilityComponent implements OnInit, AfterViewInit, OnDestroy 
     ref.componentInstance.title = this.modalData.title;
     ref.componentInstance.img = assetImgPath + this.modalData.imageName;
     this.navbarService.showMobilePopUp('removeClicked');
+  }
+
+  showCoverageAgeModal() {
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    ref.componentInstance.tooltipTitle = this.coverageToolTip.TITLE;
+    ref.componentInstance.tooltipMessage = this.coverageToolTip.DESCRIPTION;
   }
 
   save(form: any) {

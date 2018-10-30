@@ -11,8 +11,10 @@ import {
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { TranslateService } from '../../../../../node_modules/@ngx-translate/core';
+import { RecommendationsModalComponent } from './../../modal/recommendations-modal/recommendations-modal.component';
 
 @Component({
   selector: 'app-plan-details-widget',
@@ -51,7 +53,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
   perYear = '';
 
   constructor(
-    private currency: CurrencyPipe, private translate: TranslateService,
+    private currency: CurrencyPipe, private translate: TranslateService, public modal: NgbModal,
     private elRef: ElementRef, private renderer: Renderer2, private titleCasePipe: TitleCasePipe) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((data) => {
@@ -74,26 +76,81 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
       }
       this.productName = this.data.productName;
       this.coverageDuration = this.data.premium.durationName;
-      this.premiumDuration = this.data.premiumDuration;
+      this.premiumDuration = this.data.premium.premiumTerm;
       this.premiumAmountYearly = this.data.premium.premiumAmountYearly;
 
       this.temp = this.data;
       this.type = this.type.toLowerCase();
 
-      this.highlights.push({ title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) });
+      if (this.type.indexOf('retirement') < 0) {
+        this.highlights.push(
+          { title: 'Coverage Duration:', description: this.titleCasePipe.transform(this.coverageDuration) }
+        );
+      }
       this.highlights.push({ title: 'Premium Duration:', description: this.premiumDuration });
-      if (this.type === 'long term care') {
+      if (this.type.indexOf('critical') > -1) {
+        if (this.isDirect && this.data.premium.claimFeature) {
+          this.highlights.push({ title: 'Claim Feature:', description: this.data.premium.claimFeature });
+        }
+      }
+      if (this.type === 'long-term care') {
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'No. of ADLs:', description: '3 out of 6' });
+        if (this.isDirect) {
+          this.highlights.push({ title: 'Payout years:', description: this.data.premium.payoutDuration });
+          this.highlights.push({ title: 'Claim Criteria:', description: this.data.premium.claimCriteria });
+        } else {
+          this.highlights.push({ title: 'No. of ADLs:', description: this.data.premium.numberOfADL });
+        }
       }
       if (this.type === 'hospital plan') {
+        this.frequencyType = 'yearly';
         this.canShowDiscount = false;
-        this.highlights.push({ title: 'Rider:', description: 'Covers co-insurance and deductible' });
+        let riderName = '';
+        let riderDesc = '';
+
+        if (this.data.rider) {
+          riderName = this.data.rider.riderName;
+          if (riderName && riderName.toLowerCase() === 'full rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance and Deductible';
+          } else if (riderName && riderName.toLowerCase() === 'partial rider') {
+            riderName += ':';
+            riderDesc = 'Covers Co-Insurance';
+          } else {
+            riderName = 'Rider:';
+            riderDesc = 'No Rider';
+          }
+        } else {
+          riderName = 'Rider:';
+          riderDesc = 'No Rider';
+        }
+        this.highlights.push({ title: riderName, description: riderDesc });
       }
       if (this.type === 'occupational disability') {
         this.canShowRanking = true;
-        this.highlights.push({ title: 'Deferred Period:', description: '6 Months' });
-        this.highlights.push({ title: 'Escalating Benefit:', description: '3%' });
+        this.highlights.push({ title: 'Deferred Period:', description: this.data.premium.deferredPeriod });
+        this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
+      }
+      if (this.type.indexOf('retirement') > -1) {
+        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay });
+        if (this.data.premium.retirementPayoutDuration
+          && this.data.premium.retirementPayoutDuration.toLowerCase() === 'limited years') {
+          this.highlights.push({
+            title: 'Total Projected Payout:',
+            description: this.currency.transform(this.data.premium.totalProjectedPayout475, 'USD', 'symbol', '1.0-0')
+          });
+        }
+        this.highlights.push({ title: 'Payout Feature:', description: this.data.premium.retirementPayFeatureDisplay });
+      }
+      if (this.type.indexOf('education fund') > -1) {
+        this.highlights.push({
+          title: 'Monthly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmount, 'USD', 'symbol', '1.0-0')
+        });
+        this.highlights.push({
+          title: 'Yearly Premium:',
+          description: this.currency.transform(this.data.premium.premiumAmountYearly, 'USD', 'symbol', '1.0-0')
+        });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
     }
@@ -119,7 +176,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
 
   viewDetails() {
     this.isSelected = !this.isSelected;
-    this.view.emit({plan: this.temp, selected: this.isSelected});
+    this.view.emit({ plan: this.temp, selected: this.isSelected });
   }
   brochureDownload() {
     this.Brochure(this.temp.brochureLink, 'brochure.pdf');
@@ -141,4 +198,15 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
 
+  openCommissionModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.COMMISSION.MESSAGE');
+    return false;
+  }
+  openRatingModal() {
+    const ref = this.modal.open(RecommendationsModalComponent, { centered: true });
+    ref.componentInstance.title = this.translate.instant('PROD_INFO_TOOLTIP.RATING.TITLE');
+    ref.componentInstance.message = this.translate.instant('PROD_INFO_TOOLTIP.RATING.MESSAGE');
+  }
 }

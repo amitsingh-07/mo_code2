@@ -12,6 +12,14 @@
     }
   }
 
+  .inline-error{
+    .btn{
+      &.btn-secondary{
+        background-color:#ff872f !important;
+      }  
+    }    
+  }
+
 
   label {
     font-size: 18px;

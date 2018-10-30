@@ -1,11 +1,13 @@
-import { IAboutMe, IBeneficiary, IChild, IEligibility,
-        IExecTrustee, IGuardian, IPromoCode, ISpouse } from './will-writing-types';
+import {
+    IAboutMe, IBeneficiary, IChild, IEligibility,
+    IExecTrustee, IGuardian, IPromoCode, ISpouse
+} from './will-writing-types';
 
 export class WillWritingFormData {
 
     // eligibility info
     eligibility: IEligibility;
-        // about me info
+    // about me info
     aboutMe: IAboutMe;
 
     // spouse info
@@ -20,9 +22,9 @@ export class WillWritingFormData {
     // promoCode info;
     promoCode: IPromoCode;
 
-     // Executor and Trustee
-     execTrustee: IExecTrustee[];
+    // Executor and Trustee
+    execTrustee: IExecTrustee[];
 
-     // beneficiary info
-     beneficiary: IBeneficiary[];
+    // beneficiary info
+    beneficiary: IBeneficiary[];
 }

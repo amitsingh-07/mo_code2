@@ -16,9 +16,7 @@
   color: #00a7a7;
 }
 
-.risk-assessment {
-  padding-top: 90px;
-}
+
 
 @media (min-width: 768px) {
   .question-info {
@@ -31,13 +29,15 @@
 
 @media (max-width: 767px) {
   .risk-assessment {
-    padding-top: 90px;
+    padding-top: 75px;
   }
 }
 
 .question-title {
-  margin-bottom: 10px;
+  font-family: $muli;
+  margin-bottom: 20px;
   font-size: 18px;
+  line-height:1.3;
 }
 
 .option-title{

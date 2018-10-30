@@ -46,6 +46,7 @@
     "WHAT_YOU_OWN": "What You Own",
     "CASH": "Cash",
     "CPF": "CPF",
+    "CPF_ALL_ACCOUNTS": "(All Accounts)",
     "HOME_PROPERTY": "Home Property",
     "HOME_PROPERTY_HINT": "(Market Value)",
     "INVESTMENT_PROP": "Investment Properties",
@@ -115,11 +116,11 @@
     "MODAL_DATA": {
       "title": "Life Protection",
       "description": "<h4>Life Protection</h4><p>If you have dependants to support, this coverage is important as it helps cover their living expenses when you are no longer around. This coverage could also fund your child’s university education.</p>",
-      "imageName": "lifeProtection_modal.png"
+      "imageName": "life-protection-mobile.svg"
     },
     "DROP_DOWN_OPTIONS": {
       "GENDER": ["Male", "Female"],
-      "RELATIONSHIP": ["Children", "Parent", "Spouse", "Siblings"],
+      "RELATIONSHIP": ["Child", "Parent", "Spouse", "Siblings"],
       "EDU_SUPPORT_COURSE": ["Medicine", "Non-Medicine"],
       "EDU_SUPPORT_COUNTRY": ["Singapore", "USA", "United Kingdom", "Australia"],
       "EDU_SUPPORT_NATIONALITY": ["Singaporean", "Singapore PR", "Foreigner"]
@@ -127,19 +128,23 @@
   },
   "CI_ASSESSMENT": {
     "TITLE": "Critical Illness",
-    "DESCRIPTION": "After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.",
+    "DESCRIPTION": "This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <b class=\"text-bold\">Critical Illness</b> coverage till their intended retirement age.",
     "COVERAGE_AMT": "Coverage Amount",
     "COVERAGE_AMT_DESC": "Based on the information below",
     "ANNUAL_SALARY": "Annual Salary",
     "CI_COVERAGE_MULTI_PREFIX": "I need to cover ",
     "CI_COVERAGE_MULTI_SUFFIX": "time(s) of my annual salary",
-    "UNTIL_RETIREMENT_AGE": "Till the retirement age of ",
+    "UNTIL_RETIREMENT_AGE": "I need to cover till the age of",
     "CI_MULTIPLIER": 4,
     "UNTIL_RETIREMENTAGE": 65,
     "MODAL_DATA": {
       "title": "Critical Illness",
       "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.</p>",
-      "imageName": "ci-assessment.png"
+      "imageName": "ci-assessment.svg"
+    },
+    "COVERAGE_TOOLTIP" : {
+      "TITLE": "Coverage Age",
+      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of a <span class=\"modal-text-secondary\">Critical Illness</span>.</p>"
     }
   },
   "OCP_DISABILITY": {
@@ -149,7 +154,7 @@
     "OCP_DISABILITY_HINT": "Based on the information below",
     "EMPLOYEE_FIELD": "I am a",
     "PROPERTY_LOAN_HINT": "(Remaining amount)",
-    "RETIREMENT_AGE": "Till the retirement age of",
+    "RETIREMENT_AGE": "I need to cover till the age of",
     "OCP_DISABILITY_MULTI_PREFIX": "I need to cover ",
     "OCP_DISABILITY_MULTI_SUFFIX": " of my monthly salary",
     "MODAL_TITLE": "Occupational Disability",
@@ -165,7 +170,11 @@
     "MODAL_DATA": {
       "title": "Occupational Disability",
       "description": "<h4>Occupational Disability</h4><p>This coverage provides monthly payouts to replace a portion of your salary in the event of <b>Occupational Disability</b>. A person usually requires coverage until their retirement age.</p>",
-      "imageName": "occupationdisability_modal.png"
+      "imageName": "occupation-disability.svg"
+    },
+    "COVERAGE_TOOLTIP" : {
+      "TITLE": "Coverage Age",
+      "DESCRIPTION": "<p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout in the event of an <span class=\"modal-text-secondary\">Occupational Disability</span>.</p>"
     }
   },
   "LTC_ASSESSMENT": {
@@ -206,9 +215,9 @@
     "COVERAGE_YOU_NEED": "Coverage You Need",
     "ADD_COVERAGE": {
       "LBL": "Add Existing Coverage?",
-      "SUB_LBL": "Tap to add coverages",
+      "SUB_LBL": "Tap to add coverage",
       "EXISTING_LBL": "Existing Coverage Added",
-      "EXISTING_SUB_LBL": "Tap to edit coverages"
+      "EXISTING_SUB_LBL": "Tap to edit coverage"
     },
     "PROCEED": {
       "LBL": "Continue To Recommendations"

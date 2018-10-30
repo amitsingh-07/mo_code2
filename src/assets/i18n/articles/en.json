@@ -1,0 +1,13 @@
+{
+    "ARTICLE_MAIN": {
+        "TITLE": "Gain Insights on the financial world",
+        "GETTING_STARTED": {
+            "TITLE": "Getting Started",
+            "SUB_TITLE": "New to personal finance? Take a look at these articles first"
+        },
+        "LATEST_ARTICLE": {
+            "TITLE": "Latest Articles",
+            "SUB_TITLE": "Stay updated for the latest updates"
+        }
+    }
+}

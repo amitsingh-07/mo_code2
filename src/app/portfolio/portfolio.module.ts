@@ -1,17 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-
-import {  TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
-import { NouisliderModule } from 'ng2-nouislider';
-
 import { CommonModule, CurrencyPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
-import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
 import { SharedModule } from '../shared/shared.module';
 import { FundDetailsComponent } from './fund-details/fund-details.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
@@ -19,12 +16,6 @@ import { GetStartedStep2Component } from './get-started-step2/get-started-step2.
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { MyFinancialsComponent } from './my-financials/my-financials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import {
-    BreakdownAccordionComponent
-} from './portfolio-recommendation/breakdown-accordion/breakdown-accordion.component';
-import {
-    BreakdownBarComponent
-} from './portfolio-recommendation/breakdown-bar/breakdown-bar.component';
 import {
     PortfolioRecommendationComponent
 } from './portfolio-recommendation/portfolio-recommendation.component';
@@ -53,7 +44,8 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    SharedModule
   ],
   declarations: [
     GetStartedStep1Component,
@@ -65,11 +57,8 @@ export function createTranslateLoader(http: HttpClient) {
     IntroScreenComponent,
     PortfolioRecommendationComponent,
     CurrencyInputPortfolioDirective,
-    PercentageInputDirective,
     WhatsTheRiskComponent,
     FundDetailsComponent,
-    BreakdownBarComponent,
-    BreakdownAccordionComponent
     ],
   providers: [CurrencyPipe]
 })

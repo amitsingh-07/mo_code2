@@ -1,0 +1,78 @@
+{
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  },
+  "objectList": [{
+    "enquiryId": 6537,
+    "productProtectionTypeList": [{
+      "protectionType": "Occupational Disability",
+      "productList": [{
+        "id": "P045",
+        "productName": "IdealIncome",
+        "purposeId": 0,
+        "objectiveId": 0,
+        "typeId": 0,
+        "searchCount": 0,
+        "whyBuy": "I am concerned with a loss of income if I lose my ability to work in my own occupation or similar occupation as a result of illness or sickness.",
+        "payOut": "A monthly income benefit if unable to work in my own or suitable occupation",
+        "underWritting": "Yes",
+        "rebate": "Eligible",
+        "cashValue": "No",
+        "cashPayoutFrequency": "NA",
+        "coverageDuration": "Till age 55/60/65",
+        "premiumDuration": "Throughout policy duration.",
+        "features": "<p>Partial Disability Income Benefit.</p><p>Rehabilitation Benefit.</p><p>Optional Escalation Benefit.</p>",
+        "productDescription": "This is a unique Disability Income Insurance that pays an monthly income benefit should you be unable to work in your own occupation or any occupation suited by virtue of training, education or experience as a result of sickness or disability. Unlike other disability benefit, this policy insure your income earning ability. A Partial Disability income benefit will be payable if you are able to return to work at a lower capacity after such disability. There is reimbursement of up to 3 times the monthly total or partial disability benefit for rehabilitation purpose. You can choose optional benefit to escalate the monthly income payout by 3% pa, to keep up with inflation. Policy premium is dependent on your type of occupation; more specialised or riskier occupation would require a higher premium. ",
+        "status": "Active",
+        "brochureLink": "NA",
+        "isAuthorised": false,
+        "insurer": {
+          "id": "AVV",
+          "insurerName": "Aviva",
+          "logoName": "logo-aviva.png",
+          "url": "https://www.aviva.com.sg",
+          "rating": "AA+"
+        },
+        "premium": {
+          "id": 95554,
+          "productId": "P045",
+          "gender": "Female",
+          "minimumAge": 22,
+          "coverageName": "Term",
+          "durationName": "till age 55",
+          "premiumTerm": "Throughout policy term",
+          "savingsDuration": "0",
+          "retirementPayoutAmount": "0",
+          "retirementPayoutDuration": "0",
+          "premiumAmount": 107.0,
+          "premiumAmountYearly": 1251.0,
+          "premiumFrequency": "Monthly",
+          "intrestRateOfReturn": "0.00",
+          "ranking": 1,
+          "sumAssured": 6750.0,
+          "incomePayoutDuration": null,
+          "payoutDuration": null,
+          "claimCriteria": null,
+          "numberOfADL": null,
+          "hospitalPlanType": null,
+          "payoutAge": null,
+          "gaurenteedMonthlyIncome": null,
+          "monthlyBenefit": null,
+          "rankingGroupId": 14,
+          "deferredPeriod": 3,
+          "escalatingBenefit": 0.0,
+          "totalGuaranteedPayout": null,
+          "totalProjectedPayout475": null,
+          "totalProjectedPayout325": null,
+          "intrestRateOfReturn325": null,
+          "smoker": false
+        },
+        "promotion": null,
+        "rider": null,
+        "brochureLinkSize": "NA",
+        "authorised": false
+      }]
+    }]
+  }]
+}

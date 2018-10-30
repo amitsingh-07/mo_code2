@@ -14,10 +14,9 @@ import { WillWritingService } from './../will-writing.service';
   styleUrls: ['./check-eligibility.component.scss']
 })
 export class CheckEligibilityComponent implements OnInit {
-  private pageTitle: string;
-  private  = false;
-  private isSingaporean = false;
-  private isAssets = false;
+  pageTitle: string;
+  isSingaporean = false;
+  isAssets = false;
 
   formValues: any;
   eligibilityForm: FormGroup;

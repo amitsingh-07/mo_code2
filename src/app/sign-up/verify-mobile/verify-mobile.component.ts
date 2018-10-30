@@ -1,3 +1,4 @@
+import { FooterService } from './../../shared/footer/footer.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -28,11 +29,15 @@ export class VerifyMobileComponent implements OnInit {
   mobileNumberVerified: boolean;
   progressModal: boolean;
   newCodeRequested: boolean;
+  isRetryEnabled: boolean;
+  retryDuration = 30; // in seconds
+  retrySecondsLeft;
 
   constructor(
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
     private modal: NgbModal,
+    public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private router: Router,
@@ -54,7 +59,9 @@ export class VerifyMobileComponent implements OnInit {
     this.mobileNumberVerified = false;
     this.mobileNumber = this.signUpService.getMobileNumber();
     this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
+    this.startRetryCounter();
   }
 
   /**
@@ -118,6 +125,7 @@ export class VerifyMobileComponent implements OnInit {
       this.verifyMobileForm.reset();
       this.progressModal = false;
       this.showCodeSentText = true;
+      this.startRetryCounter();
     });
   }
 
@@ -164,9 +172,26 @@ export class VerifyMobileComponent implements OnInit {
       errorTitle: title,
       errorMessage: message
     };
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'otp-error-modal' });
     ref.componentInstance.errorTitle = error.errorTitle;
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.showErrorButton = showErrorButton;
   }
+
+  /**
+   * Run Animated counter for 30s.
+   */
+  startRetryCounter() {
+    this.isRetryEnabled = false;
+    this.retrySecondsLeft = this.retryDuration;
+    const self = this;
+    const downloadTimer = setInterval(() => {
+      --self.retrySecondsLeft;
+      if (self.retrySecondsLeft <= 0) {
+        clearInterval(downloadTimer);
+        this.isRetryEnabled = true;
+      }
+    }, 1000);
+  }
+
 }

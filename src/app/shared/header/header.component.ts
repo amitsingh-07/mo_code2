@@ -40,7 +40,6 @@ export class HeaderComponent implements IPageComponent, OnInit, AfterViewInit {
     this.headerService.currentHeaderVisibility.subscribe((showHeader) => this.showHeader = showHeader);
     this.headerService.currentHeaderDropshadow.subscribe((showHeaderDropshadow) => {
       this.showHeaderDropshadow = showHeaderDropshadow;
-      console.log(this.showHeaderDropshadow);
     });
   }
 

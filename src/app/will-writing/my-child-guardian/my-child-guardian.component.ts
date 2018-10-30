@@ -16,10 +16,10 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-child-guardian.component.scss']
 })
 export class MyChildGuardianComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
-  private tooltip = {};
-  private isEdit: boolean;
+  pageTitle: string;
+  step: string;
+  tooltip = {};
+  isEdit: boolean;
   private selectedIndex: number;
 
   addGuardianForm: FormGroup;
@@ -71,8 +71,8 @@ export class MyChildGuardianComponent implements OnInit {
   buildAddGuardianForm() {
     this.addGuardianForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
-      uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
-      relationship: ['', [Validators.required]]
+      relationship: ['', [Validators.required]],
+      uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]]
     });
   }
 

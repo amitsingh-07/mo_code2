@@ -1,0 +1,36 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+
+.app-acknowledgement{
+    background-color:white;
+        background: white;
+    .step-indicator-container {
+        background-color: #fff;
+        padding: 10px 0px;
+        position: relative;
+        top: 60px;
+        margin-bottom: 15px;
+    
+        .container-fluid {
+          padding-top: 0px;
+          padding-bottom: 0px;
+        }
+      }
+    
+      @media (min-width: 768px) {
+        .step-indicator-container {
+          top: 0px;
+        }
+      }
+    .acknowledgement_text{
+            font-family: Muli;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.31;
+            letter-spacing: -0.2px;
+            color: #848484;
+          
+    }
+}

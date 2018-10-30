@@ -23,14 +23,14 @@
           <div class="flex-col-7">
             <div class="dropdown-control">
               <div ngbDropdown>
-                <button class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
-                  <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">{{nationality}}</span>
+                <button [disabled]="isDisabled()" class="btn btn-dropdown" ngbDropdownToggle aria-expanded="false" style="font-size: 15px;">
+                  <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">{{selectedNationality | titlecase}}</span>
                 </button>
 
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item" *ngFor="let nationalityObj of nationalitylist; let i = index;" (click)="selectNationality(nationalityObj)"
+                  <button class="dropdown-item" *ngFor="let nationality of nationalityList; let i = index;" (click)="selectNationality(nationality)"
                     id="selectNationality-country-option-{{i}}">
-                    {{nationalityObj.nationality | titlecase}}
+                    {{nationality.name | titlecase}}
                   </button>
                 </div>
               </div>
@@ -53,13 +53,13 @@
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_yes" value="yes">{{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
+                      <input ngbButton type="radio" id="select_nationlity_yes" [value]="true">{{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-6">
 
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_no" value="no">{{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
+                      <input ngbButton type="radio" id="select_nationlity_no" [value]="false">{{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
                   </div>
                 </div>
               </div>
@@ -81,12 +81,12 @@
                 <div class="flex-row">
                   <div class="flex-col-6 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_yes1" value="yes"> {{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
+                      <input ngbButton type="radio" id="select_nationlity_yes1" [value]="true"> {{ 'SELECT_NATIONALITY.YES_lABEL' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-6 ">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="select_nationlity_no1" value="no"> {{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
+                      <input ngbButton type="radio" id="select_nationlity_no1" [value]="false"> {{ 'SELECT_NATIONALITY.NO_LABEL' | translate}}</label>
                   </div>
                 </div>
               </div>

@@ -15,11 +15,11 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-executor-trustee.component.scss']
 })
 export class MyExecutorTrusteeComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
-  private tooltip = {};
+  pageTitle: string;
+  step: string;
+  tooltip = {};
   private formTitleMsg = {};
-  private isEdit: boolean;
+  isEdit: boolean;
   private selectedIndex: number;
 
   addExeTrusteeForm: FormGroup;
@@ -74,7 +74,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
       executorTrustee: this.formBuilder.array([this.buildExecTrusteeForm()]),
     });
     if (!this.hasSpouse && this.execTrusteeList.length !== this.maxExecTrustee) {
-      for (let i = 1; i < 2; i++) {
+      for (let i = 1; i < this.maxExecTrustee; i++) {
         this.addExecTrusteeForm();
       }
       if (this.hasChild && this.willWritingService.checkBeneficiaryAge()) {
@@ -120,7 +120,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
     if (relation === 'spouse') {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
     } else {
-      this.selectedIndex = index;
+      /*this.selectedIndex = index;
       this.isEdit = true;
       const execTrustee = this.execTrusteeList[index];
       this.formTitle[0] = {
@@ -132,14 +132,9 @@ export class MyExecutorTrusteeComponent implements OnInit {
       execTrusteeForm.controls['name'].setValue(execTrustee.name);
       execTrusteeForm.controls['uin'].setValue(execTrustee.uin);
       const ExecRelationship = this.relationshipList.filter((relationship) => relationship.value === execTrustee.relationship);
-      this.selectRelationship(ExecRelationship[0], 0);
+      this.selectRelationship(ExecRelationship[0], 0);*/
     }
-  }
-
-  resetForm() {
-    this.addExeTrusteeForm.reset();
-    this.isEdit = false;
-  }
+  } 
 
   /**
    * validate aboutMeForm.

@@ -10,8 +10,8 @@ import { WillWritingService } from './../will-writing.service';
   styleUrls: ['./my-estate-distribution.component.scss']
 })
 export class MyEstateDistributionComponent implements OnInit {
-  private pageTitle: string;
-  private step: string;
+  pageTitle: string;
+  step: string;
 
   estateDistList: any[] = [];
   beneficiaryList: any[] = [];

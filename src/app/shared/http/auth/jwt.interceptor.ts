@@ -38,12 +38,22 @@ export class JwtInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler,
         cache: RequestCache): Observable<HttpEvent<any>> {
-        request = request.clone({
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': `${this.auth.getToken()}`
-            })
-        });
+
+        if (request.url.indexOf('getCaptcha') > -1) {
+            request = request.clone({
+                headers: new HttpHeaders({
+                    'Content-Type': 'image/png',
+                    'Authorization': `${this.auth.getToken()}`
+                })
+            });
+        } else {
+            request = request.clone({
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': `${this.auth.getToken()}`
+                })
+            });
+        }
 
         return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
@@ -51,10 +61,19 @@ export class JwtInterceptor implements HttpInterceptor {
                 const data = event.body;
                 if (data.responseMessage && data.responseMessage.responseCode < 6000) {
                     let showError = true;
-                    if (this.parseQuery['alert'] && this.parseQuery['alert'] === 'false') {
+                    let selfHandleError = false;
+                    const queryMap = this.parseQuery(event.url);
+                    if (queryMap['alert'] && queryMap['alert'] === 'false') {
                         showError = false;
+                    } else if (queryMap['handleError'] && queryMap['handleError'] === 'true') {
+                        selfHandleError = true;
                     }
-                    this.errorHandler.handleCustomError(data, showError);
+
+                    if (selfHandleError) {
+                        return event.body;
+                    } else {
+                        this.errorHandler.handleCustomError(data, showError);
+                    }
                 } else {
                     this.saveCache(request, event);
                     return data;
@@ -63,7 +82,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401 || err.status === 403) {
-                    this.auth.logout();
+                    this.auth.clearSession();
                     this.errorHandler.handleAuthError(err);
                 } else {
                     this.errorHandler.handleError(err);

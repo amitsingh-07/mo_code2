@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
+import { CryptoService } from '../shared/utils/crypto';
 import { CreateAccountFormError } from './create-account/create-account-form-error';
 import { SignUpFormData } from './sign-up-form-data';
-import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
+
 const SIGNUP_SESSION_STORAGE_KEY = 'app_signup_session_storage_key';
 const CUSTOMER_REF_SESSION_STORAGE_KEY = 'app_customer_ref_session_storage_key';
 const RESET_CODE_SESSION_STORAGE_KEY = 'app_reset_code_session_storage_key';
 const REDIRECT_URL_KEY = 'app_redirect_url';
-import { CryptoService } from '../shared/utils/crypto';
+const IS_CAPTCHA_SHOWN = 'is_captcha';
+const CAPTCHA_SESSION_ID = 'captcha_session_id';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +27,7 @@ export class SignUpService {
     private apiService: ApiService,
     public authService: AuthenticationService,
     public cryptoService: CryptoService) {
-      this.getAccountInfo();
+    this.getAccountInfo();
   }
 
   /**
@@ -33,6 +36,15 @@ export class SignUpService {
   commit() {
     if (window.sessionStorage) {
       sessionStorage.setItem(SIGNUP_SESSION_STORAGE_KEY, JSON.stringify(this.signUpFormData));
+    }
+  }
+
+  /**
+   * save data for the given KEY in session storage.
+   */
+  save(key: string, value: any) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(key, JSON.stringify(value));
     }
   }
 
@@ -254,5 +266,30 @@ export class SignUpService {
 
   getRedirectUrl() {
     return sessionStorage.getItem(REDIRECT_URL_KEY);
+  }
+
+  setCaptchaShown() {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(IS_CAPTCHA_SHOWN, 'true');
+    }
+  }
+
+  getCaptchaShown() {
+    return sessionStorage.getItem(IS_CAPTCHA_SHOWN);
+  }
+
+  setCaptchaSessionId(sessionId) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(CAPTCHA_SESSION_ID, sessionId);
+    }
+  }
+
+  getCaptchaSessionId() {
+    return sessionStorage.getItem(CAPTCHA_SESSION_ID);
+  }
+
+  removeCaptchaSessionId() {
+    sessionStorage.removeItem(CAPTCHA_SESSION_ID);
+    sessionStorage.removeItem(IS_CAPTCHA_SHOWN);
   }
 }

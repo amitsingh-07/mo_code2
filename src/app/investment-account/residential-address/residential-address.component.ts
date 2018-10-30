@@ -12,6 +12,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-residential-address',
@@ -47,8 +48,16 @@ export class ResidentialAddressComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
+    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    if (this.formValues.isMyInfoEnabled) {
+      if (this.formValues.countryCode) {
+        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
+      }
+      if (this.formValues.mailCountryCode) {
+        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
+      }
+    }
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
@@ -56,10 +65,12 @@ export class ResidentialAddressComponent implements OnInit {
 
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
-      country: [this.formValues.nationality.country, Validators.required],
+      country: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+        Validators.required],
       postalCode: [this.formValues.postalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [this.formValues.address2],
+      address2: [this.formValues.address2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      floor: [this.formValues.floor],
       unitNo: [this.formValues.unitNo, Validators.required],
       isMailingAddressSame: [this.formValues.isMailingAddressSame]
     });
@@ -67,9 +78,10 @@ export class ResidentialAddressComponent implements OnInit {
 
   buildFormForOtherCountry(): FormGroup {
     return this.formBuilder.group({
-      country: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
+      country: [this.formValues.country ? this.formValues.country :
+        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [this.formValues.address2],
+      address2: [this.formValues.address2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       zipCode: [this.formValues.zipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
@@ -81,17 +93,20 @@ export class ResidentialAddressComponent implements OnInit {
     if (this.addressForm.controls.isMailingAddressSame.value !== true) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.formValues.nationality.country, Validators.required],
+          mailCountry: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+            Validators.required],
           mailPostalCode: [this.formValues.mailPostalCode, Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [this.formValues.mailAddress2],
+          mailAddress2: [this.formValues.mailAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          mailFloor: [this.formValues.mailFloor],
           mailUnitNo: [this.formValues.mailUnitNo, Validators.required]
         }));
       } else { // Other Countries
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
+          mailCountry: [this.formValues.mailCountry ? this.formValues.mailCountry :
+            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [this.formValues.mailAddress2],
+          mailAddress2: [this.formValues.mailAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
           mailState: [this.formValues.mailState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
           mailZipCode: [this.formValues.mailZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
@@ -126,6 +141,7 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
+    if (postalCode) {
     this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
       (response: any) => {
         if (response) {
@@ -136,8 +152,8 @@ export class ResidentialAddressComponent implements OnInit {
             address2Control.setValue(address2);
           } else {
             const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
+            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
             address1Control.setValue('');
             address2Control.setValue('');
           }
@@ -148,6 +164,11 @@ export class ResidentialAddressComponent implements OnInit {
         ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
         ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
       });
+    } else {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE');
+    }
   }
 
   goToNext(form) {

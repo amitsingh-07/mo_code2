@@ -10,16 +10,7 @@
     <div class="content">
       <div class="row">
         <div class="col-12">
-          <div class="autofill-link">
-
-            <div class="autofill-text">Autofill Forms Via</div>
-
-
-            <div class="autofill-logo">
-              <img class="img-fluid" src="../../../assets/images/investment-account/sing-pass-logo.png" />
-            </div>
-
-          </div>
+          <app-sing-pass></app-sing-pass>
         </div>
         <div class="col-lg-12 col-md-12">
           <form id="financial_details_address_form" name="financialDtetailsForm" [formGroup]="financialDetails">
@@ -29,13 +20,14 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="residentialAddress-mailcountry-drpdown" id="residentialAddress-mailcountry-lbl">{{'FINANCIAL_DETAILS.ANNUAL_HOUSEHOLD_INCOME' | translate}} 
+                  <label for="residentialAddress-mailcountry-drpdown" id="financial_details-mailcountry-lbl">{{'FINANCIAL_DETAILS.ANNUAL_HOUSEHOLD_INCOME' | translate}} 
                   </label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('annualHouseHoldIncomeRange').valid && !financialDetails.get('annualHouseHoldIncomeRange').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button ngbDropdownToggle class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"> {{financialDetails.controls.annualHouseHoldIncomeRange.value}}
+                      <button ngbDropdownToggle class="btn btn-dropdown without-border grey" id="financial_details-annual_house_hold_drpdown"> 
+                        {{financialDetails.controls.annualHouseHoldIncomeRange.value ? financialDetails.controls.annualHouseHoldIncomeRange.value :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let annualHouseHoldIncome of annualHouseHoldIncomeRanges; let i = index;" (click)="setAnnualHouseHoldIncomeRange(annualHouseHoldIncome)"
@@ -52,14 +44,14 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="employement_details_status-lbl">{{'FINANCIAL_DETAILS.NUMBER_OF_HOUSE_HOLDERS' | translate}}  
+                  <label for="employement_details_status" id="financial_details_number_of_house_members-lbl">{{'FINANCIAL_DETAILS.NUMBER_OF_HOUSE_HOLDERS' | translate}}  
                   </label>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('numberOfHouseHoldMembers').valid && !financialDetails.get('numberOfHouseHoldMembers').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
-                        {{financialDetails.controls.numberOfHouseHoldMembers.value}}
+                      <button class="btn btn-dropdown without-border grey" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
+                        {{financialDetails.controls.numberOfHouseHoldMembers.value ? financialDetails.controls.numberOfHouseHoldMembers.value :'Select Number'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let numberOfHouseHoldMembers of numberOfHouseHoldMembersList; let i = index;" (click)="setnumberOfHouseHoldMembers(numberOfHouseHoldMembers)"
@@ -75,15 +67,15 @@
               <div class="form-group-with-bg--content">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialMonthlyIncomeLbl">{{'FINANCIAL_DETAILS.ANNUAL_INCOME' | translate}} 
+                    <div class="form-group-with-bg--content-label" for="name" id="financial_details_monthly_income_lbl">{{'FINANCIAL_DETAILS.ANNUAL_INCOME' | translate}} 
                     </div>
                   </div>
-                  <div class="flex-col-7 form-group">
-                    <div class="form-control">
+                  <div class="flex-col-7 form-group" [ngClass]="{'inline-error': !financialDetails.get('financialMonthlyIncome').valid && !financialDetails.get('financialMonthlyIncome').pristine}">
+                    <div class="form-control" >
                       <i id="myFinancialDollarSybmOne">$</i>
                       <div name="monthlyIncome">
-                        <input class="input-control" type="text" id="myFinancialMonthlyIncomeInput" appCurrencyInputPortfolio maxLength="7" #monthlyIncome
-                          formControlName="monthlyIncome">
+                        <input class="input-control" type="text" id="financial_details_monthly_income_Input" appCurrencyInput maxLength="7" #monthlyIncome
+                          formControlName="financialMonthlyIncome">
                       </div>
                     </div>
                   </div>
@@ -94,14 +86,14 @@
               <div class="form-group">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialSavedIncomeLbl">{{'FINANCIAL_DETAILS.PERS_OF_INCOME_SAVED' | translate}}</div>
+                    <div class="form-group-with-bg--content-label" for="name" id="financial_details_saved_income_lbl">{{'FINANCIAL_DETAILS.PERS_OF_INCOME_SAVED' | translate}}</div>
                   </div>
                   <div class="flex-col-7">
-                    <div class="form-control form-control-right">
+                    <div class="form-control form-control-right" [ngClass]="{'inline-error': !financialDetails.get('financialPercentageOfSaving').valid && !financialDetails.get('financialPercentageOfSaving').pristine}">
 
-                      <div name="percentageOfSaving">
-                        <input class="input-control" id="myFinancialSavedIncomeInput" type="text" appPercentageInput maxLength="3" #percentageOfSaving
-                          formControlName="percentageOfSaving">
+                      <div name="financialPercentageOfSaving" >
+                        <input class="input-control" id="financial_details_saved_income_Input" type="text" appPercentageInput maxLength="3" #percentageOfSaving
+                          formControlName="financialPercentageOfSaving">
                         <i id="myFinancialPersentage" class="right">%</i>
                       </div>
                     </div>
@@ -112,16 +104,16 @@
               <div class="form-group">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">{{'FINANCIAL_DETAILS.TOTAL_ASSETS' | translate}}
+                    <div class="form-group-with-bg--content-label" for="name" id="financial_details_total_asset_lbl">{{'FINANCIAL_DETAILS.TOTAL_ASSETS' | translate}}
 
                     </div>
                   </div>
-                  <div class="flex-col-7">
+                  <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('financialTotalAssets').valid && !financialDetails.get('financialTotalAssets').pristine}">
                     <div class="form-control">
                       <i id="myFinancialDollerSymbTwo">$</i>
-                      <div name="totalAssets">
-                        <input class="input-control" type="text" id="myFinancialTotalAssetInput" appCurrencyInputPortfolio maxLength="7" #totalAssets
-                          formControlName="totalAssets">
+                      <div name="totalAssets" >
+                        <input class="input-control" type="text" id="financial_details_total_asset_Input" appCurrencyInput maxLength="7" #totalAssets
+                          formControlName="financialTotalAssets">
                       </div>
                     </div>
                   </div>
@@ -132,15 +124,15 @@
               <div class="form-group">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialLoansLbl">{{'FINANCIAL_DETAILS.TOTAL_LOANS' | translate}}
+                    <div class="form-group-with-bg--content-label" for="name" id="financial_details_loans_Lbl">{{'FINANCIAL_DETAILS.TOTAL_LOANS' | translate}}
 
                     </div>
                   </div>
-                  <div class="flex-col-7">
-                    <div class="form-control">
+                  <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('financialTotalLiabilities').valid && !financialDetails.get('financialTotalLiabilities').pristine}">
+                    <div class="form-control" >
                       <i id="myFinancialDollerSymbThree">$</i>
-                      <div name="totalLiabilities">
-                        <input class="input-control" formControlName="totalLiabilities" type="text" id="myFinancialLoansInput" appCurrencyInputPortfolio
+                      <div name="totalLiabilities" >
+                        <input   class="input-control" formControlName="financialTotalLiabilities" type="text" id="financial_details_loans_Input" appCurrencyInput
                           maxLength="7" #totalLiabilities>
                       </div>
                     </div>
@@ -149,7 +141,7 @@
               </div>
             </div>
 
-            <button type="button" id="personalInforNextBtn" (click)="goToNext(financialDetails)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+            <button type="button" id="finacial_details_btn" (click)="goToNext(financialDetails)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
           </form>
         </div>

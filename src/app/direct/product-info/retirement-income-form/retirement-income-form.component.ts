@@ -19,9 +19,9 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
   formValues: any;
   payoutFeature;
   payoutDuration;
-  retirementIncomeList = Array(16).fill(500).map((x, i) => x += i * 100);
+  retirementIncomeList = Array(11).fill(500).map((x, i) => x += i * 100);
   selectedRetirementIncome = '';
-  payoutAgeList = Array(16).fill(55).map((x, i) => x += i * 1);
+  payoutAgeList = [50, 55, 60, 65];
   selectedPayoutAge = '';
   payoutDurationList;
   payoutFeatureList;
@@ -67,7 +67,7 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
       this.selectPayoutFeature(this.formValues.payoutFeature);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
-      if (data !== '' && data === '6') {
+      if (data !== '' && data === '7') {
         if (this.save()) {
           this.directService.setMinProdInfo(this.summarizeDetails());
         }

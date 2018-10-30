@@ -1,7 +1,7 @@
 <div class="form-group settings-block">
   <div class="flex-row mb0 settings-header">
     <div class="title flex-col-12">
-      Settings <div> <button aria-label="Close" class="close" id="modalBtn" type="button" (click)="close()"><span
+      {{ 'SETTINGS.TITLE' | translate}} <div> <button aria-label="Close" class="close" id="modalBtn" type="button" (click)="close()"><span
             aria-hidden="true"></span></button></div>
     </div>
   </div>
@@ -43,6 +43,6 @@
     </div>
   </div>
   <div class="settings-filter-btn-wrapper">
-    <button class="hidden-lg btn btn-primary btn__footer--fixed width100" (click)="applyFilters()">Apply Filters</button>
+    <button class="hidden-lg btn btn-primary btn__footer--fixed" style="position: relative;" (click)="applyFilters()">{{ 'SETTINGS.APPLY_FILTERS' | translate}}</button>
   </div>
 </div>

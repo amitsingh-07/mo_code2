@@ -157,7 +157,6 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
         eduFormSaved: false
       });
     } else {
-      console.log(this.dependentFormCount);
       const thisDependent = this.lifeProtectionFormValues.dependents[this.dependentFormCount - 1];
       formGroup = this.formBuilder.group({
         gender: thisDependent && thisDependent.gender ? thisDependent.gender : this.genderOptions[0],
@@ -207,6 +206,9 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
   save(form: any) {
     const formValues = [];
     form.controls.dependents.controls.forEach((formData) => {
+      if (!formData.value['supportAmount'] || isNaN(formData.value['supportAmount'])) {
+        formData.value['supportAmount'] = 0;
+      }
       formValues.push(formData.value);
     });
     this.guideMeService.setLifeProtection({ dependents: formValues });

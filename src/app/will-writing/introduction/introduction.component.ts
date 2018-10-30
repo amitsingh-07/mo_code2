@@ -16,7 +16,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent implements OnInit {
-  private pageTitle: string;
+  pageTitle: string;
 
   promoCodeForm: FormGroup;
   faqLink: string;
@@ -44,6 +44,7 @@ export class IntroductionComponent implements OnInit {
 
   verifyPromoCode() {
     const promoCode = this.promoCodeForm.controls['promoCode'].value;
+    this.willWritingService.setPromoCode(promoCode);
     this.router.navigate([WILL_WRITING_ROUTE_PATHS.CHECK_ELIGIBILITY]);
     // tslint:disable-next-line:no-commented-code
     // this.willWritingApiService.verifyPromoCode(code).subscribe((data) => {
@@ -62,7 +63,6 @@ export class IntroductionComponent implements OnInit {
     if (!form.valid) {
       return false;
     } else {
-      this.willWritingService.setPromoCodeDetails(form.value);
       this.openTermsOfConditions();
     }
   }
