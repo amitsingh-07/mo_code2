@@ -79,4 +79,8 @@ export class IntroductionComponent implements OnInit {
       }
     });
   }
+
+  getOneNow() {
+    this.router.navigate(['home']);
+  }
 }
