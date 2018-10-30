@@ -32,6 +32,7 @@ import {
 import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
+import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
 import {
     PersonalDeclarationComponent
@@ -92,7 +93,8 @@ export function createTranslateLoader(http: HttpClient) {
     FeesModalComponent,
     AccountSetupCompletedComponent,
     AdditionalDeclarationSubmitComponent,
-    UploadDocumentBOComponent
+    UploadDocumentBOComponent,
+    FundYourAccountComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

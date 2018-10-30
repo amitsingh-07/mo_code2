@@ -11,10 +11,13 @@ export class ErrorModalComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorMessage: any;
   @Input() errorMessageList: string[];
+  @Input() multipleFormErrors: string[];
   @Input() showErrorButton: boolean;
   @Input() errorDescription: any;
   @Input() isButtonEnabled: boolean;
   @Input() isError: boolean;
+  @Input() navToHome: boolean;
+  @Input() unSaved: boolean;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
 
@@ -29,6 +32,9 @@ export class ErrorModalComponent implements OnInit {
   }
   tryAgain() {
     this.retry.emit();
+    this.activeModal.close();
+  }
+  goToHome() {
     this.activeModal.close();
   }
 }
