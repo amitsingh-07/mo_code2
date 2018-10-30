@@ -1336,6 +1336,9 @@ a.link-white {
 
 .subtitle--rider-name {
   font-family: $muli-semi-bold;
+  @include allmobiles {
+    text-align: center;
+  }
 }
 
 .grey {

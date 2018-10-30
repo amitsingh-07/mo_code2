@@ -16,28 +16,30 @@
 
             <div class="flex-row mb10">
               <div class="flex-col-5">
-                <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_number_of_transaction_lab" for="name">Expected Number Of Transactions</div>
+                <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_number_of_transaction_lab" for="name">
+                  {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EXPECTED_NUMBER_OF_TRANSATIONS' | translate}}</div>
               </div>
               <div class="flex-col-7">
 
                 <div class="form-control form-control-right">
 
                   <input type="text"    id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="expectedNumberOfTransation" class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
-                  <i class="right">/year</i>
+                  <i class="right year">/year</i>
                 </div>
               </div>
             </div>
 
             <div class="flex-row mb10">
               <div class="flex-col-5">
-                <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_amount_of_transaction_lab"  for="name">Expected Amount Per Transaction</div>
+                <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_amount_of_transaction_lab"  for="name"> 
+                  {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EXPECTED_AMOUNT_PER_TRANSATION' | translate}}</div>
               </div>
               <div class="flex-col-7">
 
                 <div class="form-control form-control-right">
-
+                    <i class="right">$</i>
                   <input type="text"  formControlName="expectedAmountPerTranction"   id="additional_declaration_Expected_amount_of_transaction_input"  class="input-control" appCurrencyInput maxLength="6" #otherIncome value="0">
-                  <i class="right">$</i>
+                  
                 </div>
               </div>
             </div>
@@ -46,7 +48,8 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="additional_declaration_sourse-lbl"> Source Of Investment Funds
+                  <label class="label-font" for="employement_details_status" id="additional_declaration_sourse-lbl"> 
+                    {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.SOURCE_OF_INVESTMENT_FUND' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-7">
@@ -75,7 +78,7 @@
             <div class="form-group" *ngIf="additionDeclarationtwo.controls.source.value == 'Saving'">
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
-                  <div class="form-group-with-bg--content-label" for="name"     id="additional_declaration_personalSaving_lab">Please indicate the employer that contributed most to your savings:
+                  <div class="form-group-with-bg--content-label" for="name"     id="additional_declaration_personalSaving_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS' | translate}}
 
                   </div>
                 </div>
@@ -96,7 +99,7 @@
             <div class="form-group"  *ngIf="additionDeclarationtwo.controls.source.value == 'Gift/Inheritanc'" >
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
-                  <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_Gift_inheritanc_lab">Please indicate from whom you inherited the wealth and the reason for receiving the wealth:
+                  <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT' | translate}}
 
                   </div>
                 </div>
@@ -116,7 +119,7 @@
             <div class="form-group" >
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="additional_declaration_investment_period_lab"> Investment Period  
+                  <label class="label-font" for="employement_details_status" id="additional_declaration_investment_period_lab"> {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INVESTMENT_PERIOD' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-7">
@@ -139,7 +142,7 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="additional_declaration_earnings_generated_lab-lbl"> Earnings Generated From 
+                  <label  class="label-font" for="employement_details_status" id="additional_declaration_earnings_generated_lab-lbl"> {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.EARNINGS_GENERATED_FORM' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-7">

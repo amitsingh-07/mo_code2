@@ -47,12 +47,26 @@ export class InvestmentAccountService {
     }
     isSingaporeResident() {
         const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
-        return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
+        return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE ||
+            this.investmentAccountFormData.singaporeanResident);
     }
     getCountryFromNationalityCode(nationalityCode) {
+        let country;
         const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
             (nationality) => nationality.nationalityCode === nationalityCode);
-        return selectedNationality[0].countries[0].name;
+        if (selectedNationality[0] && selectedNationality[0].countries[0]) {
+            country = selectedNationality[0].countries[0];
+        }
+        return country;
+    }
+    getCountryFromCountryCode(countryCode) {
+        let country = '';
+        const selectedCountry = this.investmentAccountFormData.countryList.filter(
+            (countries) => countries.countryCode === countryCode);
+        if (selectedCountry[0]) {
+            country = selectedCountry[0];
+        }
+        return country;
     }
     setDefaultValueForFormData() {
         this.investmentAccountFormData.isMailingAddressSame = INVESTMENT_ACCOUNT_CONFIG.residential_info.isMailingAddressSame;
@@ -63,6 +77,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.postalCode = data.postalCode;
         this.investmentAccountFormData.address1 = data.address1;
         this.investmentAccountFormData.address2 = data.address2;
+        this.investmentAccountFormData.floor = data.floor;
         this.investmentAccountFormData.unitNo = data.unitNo;
         this.investmentAccountFormData.city = data.city;
         this.investmentAccountFormData.state = data.state;
@@ -73,6 +88,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.mailPostalCode = data.mailingAddress.mailPostalCode;
             this.investmentAccountFormData.mailAddress1 = data.mailingAddress.mailAddress1;
             this.investmentAccountFormData.mailAddress2 = data.mailingAddress.mailAddress2;
+            this.investmentAccountFormData.mailFloor = data.mailingAddress.mailFloor;
             this.investmentAccountFormData.mailUnitNo = data.mailingAddress.mailUnitNo;
             this.investmentAccountFormData.mailCity = data.mailingAddress.mailCity;
             this.investmentAccountFormData.mailState = data.mailingAddress.mailState;
@@ -329,7 +345,6 @@ export class InvestmentAccountService {
     }
 
     setFormData(data) {
-        this.investmentAccountFormData.isMyInfoEnabled = true;
         this.investmentAccountFormData.fullName = data.name.value;
         if (data.nationality.value) {
             this.investmentAccountFormData.nationalityCode = data.nationality.value;
@@ -350,21 +365,21 @@ export class InvestmentAccountService {
             this.disableAttributes.push('occupation');
         }
 
-        // Annual Household Income
+        // Monthly Household Income
         if (data.householdincome) {
-            let lowAmount: any = '';
             let highAmount: any = '';
-            if (data.householdincome.low) {
-                lowAmount = '$' + (Number(data.householdincome.low) * 12).toString + ' to ';
+            if (data.householdincome.low && data.householdincome.high) {
+                if (data.householdincome.high === 'above') {
+                    highAmount = ' and ' + data.householdincome.high;
+                } else {
+                    highAmount = ' to $' + data.householdincome.high;
+                }
+                this.investmentAccountFormData.annualHouseHoldIncomeRange = '$' + data.householdincome.low + highAmount;
+                this.disableAttributes.push('annualHouseHoldIncomeRange');
             }
-            if (data.householdincome.high) {
-                highAmount = '$' + (Number(data.householdincome.high) * 12).toString;
-            }
-            this.investmentAccountFormData.annualHouseHoldIncomeRange = lowAmount + highAmount;
-            this.disableAttributes.push('annualHouseHoldIncomeRange');
         }
-
         this.investmentAccountFormData.disableAttributes = this.disableAttributes;
+        this.investmentAccountFormData.isMyInfoEnabled = true;
         this.commit();
     }
 
@@ -386,14 +401,11 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.dob = this.dateFormat(data.dob.value);
             this.disableAttributes.push('dob');
         }
-        let sex = '';
         if (data.sex.value === 'M') {
-            sex = 'male';
+            this.investmentAccountFormData.gender = 'male';
+            this.disableAttributes.push('gender');
         } else if (data.sex.value === 'F') {
-            sex = 'female';
-        }
-        if (sex) {
-            this.investmentAccountFormData.gender = sex;
+            this.investmentAccountFormData.gender = 'female';
             this.disableAttributes.push('gender');
         }
     }
@@ -403,18 +415,15 @@ export class InvestmentAccountService {
         // Register address
         if (data.regadd) {
             if (data.regadd.country) {
-                this.investmentAccountFormData.country = data.regadd.country;
+                this.investmentAccountFormData.countryCode = data.regadd.country;
                 this.disableAttributes.push('country');
             }
-            let regUnitNumber = '';
             if (data.regadd.floor) {
-                regUnitNumber = regUnitNumber + data.regadd.floor + ' - ';
+                this.investmentAccountFormData.floor = data.regadd.floor;
+                this.disableAttributes.push('floor');
             }
             if (data.regadd.unit) {
-                regUnitNumber = regUnitNumber + data.regadd.unit;
-            }
-            if (regUnitNumber) {
-                this.investmentAccountFormData.unitNo = '# ' + regUnitNumber;
+                this.investmentAccountFormData.unitNo = data.regadd.unit;
                 this.disableAttributes.push('unitNo');
             }
             if (data.regadd.block) {
@@ -439,18 +448,15 @@ export class InvestmentAccountService {
     // MyInfo - Email Address
     setMyInfoEmailAddress(data) {
         if (data.mailadd.country) {
-            this.investmentAccountFormData.mailCountry = data.mailadd.country;
+            this.investmentAccountFormData.mailCountryCode = data.mailadd.country;
             this.disableAttributes.push('mailCountry');
         }
-        let mailUnitNumber = '';
         if (data.mailadd.floor) {
-            mailUnitNumber = mailUnitNumber + data.mailadd.floor + ' - ';
+            this.investmentAccountFormData.mailFloor = data.mailadd.floor;
+            this.disableAttributes.push('mailFloor');
         }
         if (data.mailadd.unit) {
-            mailUnitNumber = mailUnitNumber + data.mailadd.unit;
-        }
-        if (mailUnitNumber) {
-            this.investmentAccountFormData.mailUnitNo = '# ' + mailUnitNumber;
+            this.investmentAccountFormData.mailUnitNo = data.mailadd.unit;
             this.disableAttributes.push('mailUnitNo');
         }
         if (data.mailadd.block) {

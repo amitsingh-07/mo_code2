@@ -11,18 +11,22 @@ export class InvestmentAccountFormData {
 
     // Residential Address
     country: string;
+    countryCode: string;
     postalCode: number;
     address1: string;
     address2: string;
+    floor: string;
     unitNo: string;
     city: string;
     state: string;
     zipCode: number;
     isMailingAddressSame: boolean;
     mailCountry: string;
+    mailCountryCode: string;
     mailPostalCode: number;
     mailAddress1: string;
     mailAddress2: string;
+    mailFloor: string;
     mailUnitNo: string;
     mailCity: string;
     mailState: string;

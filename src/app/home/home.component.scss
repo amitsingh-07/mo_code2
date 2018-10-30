@@ -457,7 +457,7 @@ body{
         .home__section--text-container{
             position: relative;
             margin-left:auto;
-            max-width:400px;
+            max-width:420px;
             &.primary{
                 margin-right:120px;
                 @include tablet{
@@ -495,6 +495,11 @@ body{
                 @include minMobilemaxPhablet{
                     margin-left:auto;
                     order:2;
+                    .home__section--title{
+                        margin-left:-10px;
+                        margin-right:-10px;
+                        max-width: unset;
+                    }
                 }
             }
             @include minMobilemaxPhablet{
@@ -532,12 +537,18 @@ body{
                 @include minPhabletmaxTablet{
                     font-size:16px;
                 }
+                @include minMobilemaxPhablet{
+                    font-size:16px;
+                    margin-top:-5px;
+                    margin-bottom:20px;
+                }
             }
             .home__section--desc{
                 font-family:$muli-regular;
                 font-size:16px;
                 color:#000;
                 opacity:0.9;
+                max-width:400px;
                 @include minMobilemaxPhablet{
                     text-align:center;
                     line-height:1.4;

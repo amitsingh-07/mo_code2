@@ -1,19 +1,18 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { FooterService } from './../../shared/footer/footer.service';
 
 import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { RegexConstants } from '../../shared/utils/api.regex.constants';
-import { SignUpApiService } from '../sign-up.api.service';
-import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
-import { SignUpService } from '../sign-up.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { SignUpService } from '../../sign-up/sign-up.service';
 
 @Component({
   selector: 'app-pre-login',
@@ -28,7 +27,7 @@ export class PreLoginComponent implements OnInit {
     public authService: AuthenticationService,
     public headerService: HeaderService,
     public navbarService: NavbarService,
-    private signUpApiService: SignUpApiService,
+    public footerService: FooterService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
@@ -40,19 +39,19 @@ export class PreLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
   }
   goBack() {
     this._location.back();
   }
   navigateCreateAccount() {
-    this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.POSTLOGIN);
+    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
   }
 
   navigateLogin() {
-    this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.POSTLOGIN);
+    this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 

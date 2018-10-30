@@ -115,6 +115,7 @@ body.modal-open {
   letter-spacing: -0.2px;
   color: #009999;
   margin-bottom: 15px;
+  margin-right: 10px;
   //padding: 0 15px 0 0;
 }
 
@@ -631,7 +632,36 @@ body.modal-open {
       max-height: 100vh !important;
     }
   }
+  
+  /* Important part */
+  .modal-dialog {
+    overflow-y: initial !important;
+    max-width: 80vw !important;
+    @include allmobiles {
+      max-width: 100vw !important;
+    }
+  }
 
+  .modal-body {
+    height: 90vh;
+    overflow-y: auto;
+    @include allmobiles {
+      height: 100vh;
+    }
+  }
+}
+
+.full-height-will {
+  &.modal {
+    display: block !important;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden !important;
+    @include allmobiles {
+      max-height: 90vh !important;
+    }
+  }
+  
   /* Important part */
   .modal-dialog {
     overflow-y: initial !important;
@@ -648,6 +678,7 @@ body.modal-open {
 
     @include allmobiles {
       height: 100vh;
+      padding-bottom: 220px !important;
     }
   }
 }
@@ -692,7 +723,6 @@ body.modal-open {
     }
   }
 }
-
 .otp-error-modal {
   @include allmobiles {
     .modal-body {

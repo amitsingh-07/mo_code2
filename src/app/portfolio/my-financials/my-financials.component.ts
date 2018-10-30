@@ -31,7 +31,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   myFinancialsForm: FormGroup;
   myFinancialsFormValues: IMyFinancials;
   modalData: any;
-  heplDate: any;
+  helpData: any;
   pageTitle: string;
   form: any;
   translator: any;
@@ -49,7 +49,7 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       self.pageTitle = this.translate.instant('MY_FINANCIALS.TITLE');
       self.modalData = this.translate.instant('MY_FINANCIALS.modalData');
-      self.heplDate = this.translate.instant('MY_FINANCIALS.heplDate');
+      self.helpData = this.translate.instant('MY_FINANCIALS.helpData');
       self.translator = this.translate.instant('MY_FINANCIALS');
       this.setPageTitle(self.pageTitle);
     });
@@ -82,8 +82,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
   showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.heplDate.modalTitle;
-    ref.componentInstance.errorDescription = this.heplDate.modalDesc;
+    ref.componentInstance.errorTitle = this.helpData.modalTitle;
+    ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
   }
 
@@ -94,7 +94,6 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       });
     }
     const error = this.portfolioService.doFinancialValidations(form);
-    console.log('error' + error);
     if (error) {
       // tslint:disable-next-line:no-commented-code
       const ref = this.modal.open(ModelWithButtonComponent, { centered: true });

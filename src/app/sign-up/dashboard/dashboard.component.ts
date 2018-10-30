@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit {
         selectedProducts: this.insuranceEnquiry.plans
       };
       this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
-        console.log('Enquiry updated successfully');
         this.selectedPlansService.clearData();
       });
     }

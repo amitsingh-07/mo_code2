@@ -71,7 +71,7 @@ export class TaxInfoComponent implements OnInit {
   }
 
   selectCountry(country) {
-    this.taxInfoForm.controls.taxCountry.setValue(country.name);
+    this.taxInfoForm.controls.taxCountry.setValue(country);
   }
 
   selectReason(reasonObj) {
@@ -98,7 +98,7 @@ export class TaxInfoComponent implements OnInit {
   }
 
   isTinNumberAvailChanged(flag) {
-    if (flag === 'yes') {
+    if (flag) {
       this.taxInfoForm.addControl('tinNumberText', this.formBuilder.group({
         tinNumber: new FormControl(this.taxInfoFormValues.tinNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)])
       }));
@@ -121,7 +121,6 @@ export class TaxInfoComponent implements OnInit {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
-      console.log(error);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;

@@ -27,6 +27,7 @@ import {
     PersonalDeclarationComponent
 } from './personal-declaration/personal-declaration.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PostLoginComponent } from './post-login/post-login.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
@@ -39,8 +40,13 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.ROOT,
-    redirectTo: INVESTMENT_ACCOUNT_ROUTES.SELECT_NATIONALITY,
+    redirectTo: INVESTMENT_ACCOUNT_ROUTES.POSTLOGIN,
     pathMatch: 'full',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.POSTLOGIN,
+    component: PostLoginComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -83,36 +89,43 @@ const routes: Routes = [
     component: UploadDocumentsLaterComponent,
     canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.PERSONAL_DECLARATION,
     component: PersonalDeclarationComponent,
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONAL_DECLARATION_SCREEN_2,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONAL_DECLARATION_SCREEN_2,
     component: AdditionalDeclarationScreen2Component,
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: INVESTMENT_ACCOUNT_ROUTES.CONFIRM_PORTFOLIO,
     component: ConfirmPortfolioComponent,
     canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.ACKNOWLEDGEMENT,
     component: AcknowledgementComponent,
     canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION,
     component: AdditionalDeclarationInfoComponent,
     canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_STEP1,
     component: AdditionalDeclarationStep1Component,
     canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.SETUP_COMPLETED,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.SETUP_COMPLETED,
     component: AccountSetupCompletedComponent,
     canActivate: [AuthGuard]
   },
-  { path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_SUBMIT,
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_SUBMIT,
     component: AdditionalDeclarationSubmitComponent,
     canActivate: [AuthGuard]
   },

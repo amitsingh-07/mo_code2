@@ -7,6 +7,11 @@
       "SAVE_AND_CONTINUE": "Save and Continue"
     }
   },
+  "POSTLOGIN": {
+    "TITLE": "You are ready to set up your investment account!",
+    "PROCEED": "Proceed with",
+    "PROCEED_WITHOUT": "Proceed without SingPass"
+  },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
@@ -25,6 +30,7 @@
     "POSTAL_CODE": "Postal Code",
     "ADDRESS_1": "Address Line 1",
     "ADDRESS_2": "Address Line 2",
+    "FLOOR": "Floor",
     "UNIT_NO": "Unit No.",
     "CITY": "City",
     "STATE": "State / Province / Region",
@@ -62,7 +68,15 @@
     "CONTINUE": "Continue",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
-      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+      "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+    },
+    "POSTALCODE_EMPTY_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter your postal code."
+    },
+    "POSTALCODE_NOT_FOUND_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter valid postal code."
     }
   },
   "SELECT_NATIONALITY": {
@@ -143,6 +157,10 @@
       "FILE_SIZE_EXCEEDED": {
         "TITLE": "Error !",
         "MESSAGE": "File of size more than 2 MB is not allowed."
+      },
+      "FILE_TYPE_MISMATCH": {
+        "TITLE": "Error !",
+        "MESSAGE": "The selected file type is not allowed."
       }
     }
   },
@@ -153,9 +171,9 @@
     "PEP_DESC": "Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.",
     "BENEFICIAL": "Beneficial Owner",
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
-    "QUESTION1": "Are you a director, officer, trading representative or employee of SGX trading, excluding iFAST?",
+    "QUESTION1": "Are you a Director, Officer, Trading Representative or employee of a SGX Trading Member other than iFAST Financial Pvt Ltd?",
     "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
-    "QUESTION3": "Are you the beneficial owner of this account?",
+    "QUESTION3": "Do you have any beneficial owner?",
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
@@ -165,15 +183,20 @@
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
     "BACK_TO_DASHBOARD": "Back To Dashboard"
-
   },
   "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
     "TITLE": "Additional Declarations",
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
-    "BACK_TO_DASHBOARD": "Back To Dashboard"
+    "BACK_TO_DASHBOARD": "Back To Dashboard",
+    "EXPECTED_NUMBER_OF_TRANSATIONS": "Expected Number Of Transactions",
+    "EXPECTED_AMOUNT_PER_TRANSATION": "Expected Amount Per Transaction",
+    "SOURCE_OF_INVESTMENT_FUND": "Source Of Investment Funds",
+    "PERSONAL_SAVINGS": "Please indicate the employer that contributed most to your savings:",
+    "INVESTMENT_PERIOD": "Investment Period",
+    "EARNINGS_GENERATED_FORM": "Earnings Generated From",
+    "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
-
   "CONFIRM_PORTFOLIO": {
     "TITLE": "Your Portfolio",
     "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
