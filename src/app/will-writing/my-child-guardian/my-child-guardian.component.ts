@@ -17,7 +17,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-child-guardian.component.scss']
 })
 export class MyChildGuardianComponent implements OnInit {
-  @ViewChild(PageTitleComponent) PageTitleComponent: PageTitleComponent;
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
   tooltip = {};
@@ -91,7 +91,7 @@ export class MyChildGuardianComponent implements OnInit {
   editGuardian(relation: string, index: number) {
     if (relation === 'spouse') {
       if (this.addGuardianForm.dirty) {
-        this.PageTitleComponent.goBack();
+        this.pageTitleComponent.goBack();
       } else {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
       }
