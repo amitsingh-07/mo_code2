@@ -75,10 +75,12 @@
     line-height: 1.22;
     letter-spacing: -0.2px;
     color: #fff;
+    padding-bottom: 22px;
     @include allmobiles {
         width: 300px;
         text-align: center;
         color: #333846;
+        padding-bottom: 1px;
     }
 }
 .mobile-logo{
