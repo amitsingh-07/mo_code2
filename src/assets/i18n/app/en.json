@@ -147,10 +147,10 @@
       "TITLE": "Fair Dealing"
     }
   },
-  "MYINFO": {
+  "INVESTMENT_ACCOUNT_MYINFO": {
     "OPEN_MODAL_DATA": {
       "TITLE": "Leave This Page",
-      "DESCRIPTION": "You will be redirected to Singpass MyInfo page to begin fetching your data."
+      "DESCRIPTION": "By signing in to SingPass, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>You will be redirected to SingPass MyInfo page. Would you like to proceed?"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",

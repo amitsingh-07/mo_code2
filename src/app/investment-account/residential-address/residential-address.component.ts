@@ -70,7 +70,7 @@ export class ResidentialAddressComponent implements OnInit {
       postalCode: [this.formValues.postalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [this.formValues.address2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      floor: [this.formValues.floor],
+      floor: [this.formValues.floor, Validators.required],
       unitNo: [this.formValues.unitNo, Validators.required],
       isMailingAddressSame: [this.formValues.isMailingAddressSame]
     });
@@ -98,7 +98,7 @@ export class ResidentialAddressComponent implements OnInit {
           mailPostalCode: [this.formValues.mailPostalCode, Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           mailAddress2: [this.formValues.mailAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailFloor: [this.formValues.mailFloor],
+          mailFloor: [this.formValues.mailFloor, Validators.required],
           mailUnitNo: [this.formValues.mailUnitNo, Validators.required]
         }));
       } else { // Other Countries
