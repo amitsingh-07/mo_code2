@@ -22,6 +22,10 @@
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "Your changes will not be saved. Are you sure to exit this page?",
       "RELATIONSHIP_LIST": [{
+          "text": "Parent",
+          "value": "parent"
+        },
+        {
           "text": "Sibling",
           "value": "sibling"
         },
