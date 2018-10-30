@@ -33,7 +33,7 @@
           <div>
             <input type="text" formControlName="promoCode" placeholder="Enter your promocode"  id="intro-promo-text-field"/>
           </div>
-          <div  id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
+          <div  id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now" (click) = "getOneNow()">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
         </div>
 
         <!-- <div class="no-promo">

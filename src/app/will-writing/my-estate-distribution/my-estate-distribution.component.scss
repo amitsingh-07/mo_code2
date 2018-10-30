@@ -170,9 +170,14 @@
     flex-direction: column;
     .sub-title{
         color: #333846 !important;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
         @include allmobiles {
             justify-content: center;
             padding:10px !important;
+            text-align: center;
         }
     }
     h6 {
@@ -217,7 +222,8 @@ input[type='checkbox']+label {
          h6 {
             @include allmobiles {
                 justify-content: center;
-                padding:0 40px !important;
+                width: 300px;
+                text-align: center;
             } 
         }
     @include allmobiles {
@@ -273,7 +279,7 @@ input[type='checkbox']+label {
   .estate-distribution {
       padding: 0;
       @include allmobiles {   
-        z-index: 9999;
+        z-index: 999;
         margin-top: -80px;
       }
       .distribution-img{
@@ -339,6 +345,7 @@ input[type='checkbox']+label {
         letter-spacing: -0.4px;
         color: #066360;
         padding-left: 10px;
+        padding-bottom: 20px;
       }
       .form-control{
           .input-control{
@@ -350,7 +357,7 @@ input[type='checkbox']+label {
       }
   }
   .estateDistributionForm {
-      padding-bottom: 40px;
+      padding-bottom: 60px;
   }
 
   input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
