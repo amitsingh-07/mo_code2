@@ -435,6 +435,7 @@ export class InvestmentAccountService {
                 this.disableAttributes.push('address2');
             }
             if (data.regadd.postal) {
+                this.investmentAccountFormData.postalCode = data.regadd.postal;
                 this.investmentAccountFormData.zipCode = data.regadd.postal;
                 this.disableAttributes.push('zipCode');
             }
@@ -468,6 +469,7 @@ export class InvestmentAccountService {
             this.disableAttributes.push('mailAddress2');
         }
         if (data.mailadd.postal) {
+            this.investmentAccountFormData.mailPostalCode = data.mailadd.postal;
             this.investmentAccountFormData.mailZipCode = data.mailadd.postal;
             this.disableAttributes.push('mailZipCode');
         }

@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { InvestmentAccountService } from '../../../investment-account/investment-account-service';
-import { ErrorModalComponent } from '../../modal/error-modal/error-modal.component';
-import { MyInfoService } from '../../Services/my-info.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { MyInfoService } from '../../shared/Services/my-info.service';
+import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
   selector: 'app-sing-pass',
@@ -16,6 +16,8 @@ export class SingPassComponent implements OnInit {
   @Input('position') position;
   modelTitle: string;
   modelMessge: string;
+  showConfirmation: boolean;
+  investmentData: any;
 
   constructor(private modal: NgbModal,
               private router: Router,
@@ -31,23 +33,29 @@ export class SingPassComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.position);
+    this.showConfirmation = false;
+    this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
   }
 
   openModal() {
-    if (!this.investmentAccountService.isSingPassDisabled()) {
+    if (this.investmentData.nationality) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.modelTitle;
-      //ref.componentInstance.errorMessage = this.modelMessge;
       ref.componentInstance.errorDescription = this.modelMessge;
       ref.componentInstance.isButtonEnabled = true;
       ref.result.then(() => {
-        this.investmentAccountService.callBackInvestmentAccount = true;
-        this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-        this.myInfoService.goToMyInfo();
-        //this.router.navigate(['myinfo']);
+        this.showConfirmation = true;
       }).catch((e) => {
       });
+    } else {
+      this.showConfirmation = true;
     }
+  }
+
+  getMyInfo() {
+    this.showConfirmation = false;
+    this.investmentAccountService.callBackInvestmentAccount = true;
+    this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
+    this.myInfoService.goToMyInfo();
   }
 }
