@@ -48,8 +48,6 @@ export class MyExecutorTrusteeComponent implements OnInit {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_MESSAGE');
-      this.formTitleMsg['main'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE');
-      this.formTitleMsg['alt'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE');
     });
   }
 
@@ -79,15 +77,17 @@ export class MyExecutorTrusteeComponent implements OnInit {
       for (let i = 1; i < this.maxExecTrustee; i++) {
         this.addExecTrusteeForm();
       }
+    }
+    if (this.execTrusteeList.length !== this.maxExecTrustee) {
       if (this.hasChild && this.willWritingService.checkBeneficiaryAge()) {
-        this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
+        this.formTitle.push({ isAlt: false, relationship: '' });
         if (!this.hasSpouse) {
-          this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
+          this.formTitle.push({ isAlt: false, relationship: '' });
         }
       } else {
-        this.formTitle.push({ isAlt: true, title: this.formTitleMsg['alt'], relationship: '' });
+        this.formTitle.push({ isAlt: true, relationship: '' });
         if (!this.hasSpouse && !this.hasChild) {
-          this.formTitle.push({ isAlt: false, title: this.formTitleMsg['main'], relationship: '' });
+          this.formTitle.push({ isAlt: false, relationship: '' });
         }
       }
     }
@@ -126,7 +126,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
       }
     } else {
-      /*this.selectedIndex = index;
+      this.selectedIndex = index;
       this.isEdit = true;
       const execTrustee = this.execTrusteeList[index];
       this.formTitle[0] = {
@@ -138,7 +138,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
       execTrusteeForm.controls['name'].setValue(execTrustee.name);
       execTrusteeForm.controls['uin'].setValue(execTrustee.uin);
       const ExecRelationship = this.relationshipList.filter((relationship) => relationship.value === execTrustee.relationship);
-      this.selectRelationship(ExecRelationship[0], 0);*/
+      this.selectRelationship(ExecRelationship[0], 0);
     }
   }
 
