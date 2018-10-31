@@ -203,7 +203,8 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (pepData == true) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+      this.investmentAccountService.createInvestmentAccount();
+      //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
     }
 
   }

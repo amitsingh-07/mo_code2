@@ -59,7 +59,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.additionDeclarationtwo = this.formBuilder.group({
       expectedNumberOfTransation: [this.formValues.expectedNumberOfTransation, Validators.required],
-      expectedAmountPerTranction: [this.formValues.esexpectedAmountPerTranction, Validators.required],
+      expectedAmountPerTranction: [this.formValues.expectedAmountPerTranction, Validators.required],
       source: [this.formValues.source, Validators.required],
 
     });
@@ -149,7 +149,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setAdditionDeclaration(form.value);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+      this.investmentAccountService.createInvestmentAccount();
+      //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
     }
   }
 
