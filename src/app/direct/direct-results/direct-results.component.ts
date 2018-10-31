@@ -368,10 +368,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
 
   selectPlan(data) {
     try {
-      const deferredPeriod = data.premium.deferredPeriod.replace(' Months', '');
-      const escalatingBenefit = data.premium.escalatingBenefit.replace('%', '');
-      data.premium.deferredPeriod = deferredPeriod;
-      data.premium.escalatingBenefit = escalatingBenefit;
+      const deferredPeriod = data.plan.premium.deferredPeriod.replace(' Months', '');
+      const escalatingBenefit = data.plan.premium.escalatingBenefit.replace('%', '');
+      data.plan.premium.deferredPeriod = deferredPeriod;
+      data.plan.premium.escalatingBenefit = escalatingBenefit;
     } catch (e) {
       // supress error
     }
