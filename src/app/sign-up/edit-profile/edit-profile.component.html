@@ -9,42 +9,79 @@
 
   <!-- First Section with profile pic  -->
   <div class="overlap-grass">
-  <div class="user-profile-bg">
-      
-          
-              <div  class="circle"> KG </div>
-            
-            
-                <img id="edit_profile_edit_img"  class="user-edit-img" src="assets/images/editProfileIcon.svg" />
-              
-              
-    <div class="heading">Kelvin Goh</div>
-    <div class="nric-text">NRIC Number: S 91238467A</div>
-    <div class="flex-row pb10 mb20">
-      <div class="flex-col-2">
-        <div class="content-text">Gender</div>
-        <div class="grid-content-text">Male</div>
-      </div>
-      <div class="flex-col-1">
-        <div class="seperator"></div>
-      </div>
-      <div class="flex-col-4">
-        <div class="content-text">Nationality</div>
-        <div class="grid-content-text">Singaporean</div>
-      </div>
-      <div class="flex-col-1">
-        <div class="seperator"></div>
-      </div>
-      <div class="flex-col-4">
-        <div class="content-text">Date of Birth</div>
-        <div class="grid-content-text">25/09/1978</div>
+    <div class="user-profile-bg">
+
+
+      <div class="circle"> KG </div>
+
+
+      <img id="edit_profile_edit_img" class="user-edit-img" src="assets/images/editProfileIcon.svg" />
+
+
+      <div class="heading">Kelvin Goh</div>
+      <div class="nric-text">NRIC Number: S 91238467A</div>
+      <div class="flex-row pb10 mb20">
+        <div class="flex-col-2">
+          <div class="content-text">Gender</div>
+          <div class="grid-content-text">Male</div>
+        </div>
+        <div class="flex-col-1">
+          <div class="seperator"></div>
+        </div>
+        <div class="flex-col-4">
+          <div class="content-text">Nationality</div>
+          <div class="grid-content-text">Singaporean</div>
+        </div>
+        <div class="flex-col-1">
+          <div class="seperator"></div>
+        </div>
+        <div class="flex-col-4">
+          <div class="content-text">Date of Birth</div>
+          <div class="grid-content-text">25/09/1978</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- Update user id section -->
 
+  <div class="edit-profile-section-bg" >
+    <div class="flex-row">
+      <div class="flex-col-11">
+        <div class="form-group-heading">
+          Update User ID
+        </div>
+      </div>
+      <div class="flex-col-1">
+        <div class="dropdown-img">
+          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser)/>
+        </div>
+      </div>
+    </div>
+    <div #showHideUser>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Mobile Number
+        </div>
+        <div class="update-contact-value">
+          9940628783
+        </div>
+      </div>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Email Address
+        </div>
+        <div class="update-contact-value">
+          Kelvingoh@gmail.com
+        </div>
+      </div>
+      <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
+        Edit
+      </button>
+    </div>
+    
+  </div>
   <!-- Change Password Section  -->
-  <div class="edit-profile-section-bg" (click)=showHide()>
+  <div class="edit-profile-section-bg" >
     <div class="flex-row">
       <div class="flex-col-11">
         <div class="form-group-heading">
@@ -53,61 +90,29 @@
       </div>
       <div class="flex-col-1">
         <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
+          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword)/>
         </div>
       </div>
     </div>
-<div class="dots" #showHidePassword>
-    <form id="resetPasswordForm" name="resetPasswordForm" [formGroup]="resetPasswordForm">
-      <!-- Old password  -->
-      <div class="flex-row mb15">
-        <div class="flex-col-12 stretch" [formGroup]="resetPasswordForm">
-          <div class="form-group-floating-label set-border">
-            <input type="password" appInputFocus id="oldPassword" class="form-control" #oldPassword formControlName="oldPassword"
-              required>
-            <label class="form-control-placeholder password-placeholder" id="oldPasswordPlaceHolder">Old Password</label>
-            <span id="edit_showpassword_button" [ngClass]="(oldPassword.type === 'text') ? 'show-password' : 'hide-password'"
-              (click)="showHidePassword(oldPassword)"></span>
-          </div>
+    <div class="dots" #showHidePassword>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Password
+        </div>
+        <div class="update-contact-value">
+          ******
         </div>
       </div>
-
-      <!-- New password  -->
-
-      <div class="flex-row mb15">
-        <div class="flex-col-12 stretch" [formGroup]="resetPasswordForm">
-          <div class="form-group-floating-label set-border">
-            <input type="password" appInputFocus id="editnewPassword" class="form-control" #newPassword formControlName="newPassword"
-              required>
-            <label class="form-control-placeholder password-placeholder" id="newPasswordPlaceHolder">New Password</label>
-            <span id="edit_showpassword_button2" [ngClass]="(newPassword.type === 'text') ? 'show-password' : 'hide-password'"
-              (click)="showHidePassword(newPassword)"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Confirm Password  -->
-      <div class="flex-row mb15">
-        <div class="flex-col-12 stretch" [formGroup]="resetPasswordForm">
-          <div class="form-group-floating-label set-border">
-            <input type="password" appInputFocus id="editconfirmPassword" class="form-control" #confirmPassword
-              formControlName="confirmPassword" required>
-            <label class="form-control-placeholder password-placeholder" id="confirmPasswordPlaceHolder">confirm
-              Password</label>
-            <span id="edit_showpassword_button3" [ngClass]="(confirmPassword.type === 'text') ? 'show-password' : 'hide-password'"
-              (click)="showHidePassword(confirmPassword)"></span>
-          </div>
-        </div>
-      </div>
-      <button type="button" class="confirm-button" (click)="resetPassword()" id="confirmButton">
-        Confirm
+      <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
+        Edit
       </button>
-    </form>
+    </div>
+    
   </div>
-  </div>
+
   <!-- Update contact section  -->
 
-  <div class="edit-profile-section-bg">
+  <div class="edit-profile-section-bg" >
     <div class="flex-row">
       <div class="flex-col-11">
         <div class="form-group-heading">
@@ -116,26 +121,11 @@
       </div>
       <div class="flex-col-1">
         <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
+          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideContact)/>
         </div>
       </div>
     </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Mobile Number
-      </div>
-      <div class="update-contact-value">
-        ****4089
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Email
-      </div>
-      <div class="update-contact-value">
-        Kelvingoh@gmail.com
-      </div>
-    </div>
+    <div class="dots" #showHideContact>
     <div class="section-margin">
       <div class="update-contact-title">
         Country
@@ -169,7 +159,7 @@
       </div>
     </div>
     <div class="mailing-address flex">
-      <div></div>
+      <div><img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" /></div>
       <div class="flex-col">
         <div>Mailing Address</div>
         <div>Same as Residential Address</div>
@@ -179,10 +169,11 @@
       Edit
     </button>
   </div>
+  </div>
 
   <!-- Update Employee Details  -->
 
-  <div class="edit-profile-section-bg">
+  <div class="edit-profile-section-bg" >
     <div class="flex-row">
       <div class="flex-col-11">
         <div class="form-group-heading">
@@ -191,11 +182,11 @@
       </div>
       <div class="flex-col-1">
         <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
+          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp)/>
         </div>
       </div>
     </div>
-
+    <div class="dots" #showHideEmp>
     <div class="section-margin">
       <div class="update-contact-title">
         Employer Status
@@ -269,7 +260,7 @@
       </div>
     </div>
     <div class="mailing-address flex">
-      <div></div>
+      <div><img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" /></div>
       <div class="flex-col">
         <div>Employer&apos;s Address</div>
         <div>Same as Residential Address</div>
@@ -278,10 +269,11 @@
     <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
       Edit
     </button>
+    </div>
   </div>
 
   <!-- Update bank details  -->
-  <div class="edit-profile-section-bg">
+  <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
     <div class="flex-row">
       <div class="flex-col-11">
         <div class="bank-details-heading">
@@ -295,25 +287,27 @@
       </div>
     </div>
 
+    <div class="dots" #showHideBank>
     <div class="flex-row">
-      
-        <div class="flex-col-4">
 
-          <div class="bank-account">
-            Bank Account
-          </div>
+      <div class="flex-col-4">
+
+        <div class="bank-account">
+          Bank Account
         </div>
-        <div class="flex-col-8">
-          <div class="bank-account-num">
-            **** **** **** 9873
-          </div>
+      </div>
+      <div class="flex-col-8">
+        <div class="bank-account-num">
+          **** **** **** 9873
         </div>
-        <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
-            Edit
-          </button>
-<div class="banking-details-text">
-    This banking details will only impact on investment products.
-</div>
+      </div>
+      <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
+        Edit
+      </button>
+      <div class="banking-details-text">
+        This banking details will only impact on investment products.
+      </div>
+    </div>
     </div>
 
   </div>

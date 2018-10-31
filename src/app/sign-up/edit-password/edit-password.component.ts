@@ -9,12 +9,14 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  selector: 'app-edit-password',
+  templateUrl: './edit-password.component.html',
+  styleUrls: ['./edit-password.component.scss']
 })
-export class EditProfileComponent implements OnInit {
+export class EditPasswordComponent implements OnInit {
+
   resetPasswordForm: FormGroup;
   formValues: any;
   constructor(
@@ -38,27 +40,6 @@ export class EditProfileComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.buildForgotPasswordForm();
   }
-  showHidePassword(el) {
-    if (el.type === 'password') {
-      el.type = 'text';
-    } else {
-      el.type = 'password';
-    }
-  }
-  // showHide() {
-  //   if ( this.anim.nativeElement.style.display === '' || this.anim.nativeElement.style.display === 'block') {
-  //     this.anim.nativeElement.style.display = 'none';
-  //   } else {
-  //     this.anim.nativeElement.style.display = 'block';
-  //   }
-  // }
-  showHide(el) {
-    if ( el.style.display === '' || el.style.display === 'block') {
-      el.style.display = 'none';
-    } else {
-      el.style.display = 'block';
-    }
-  }
   buildForgotPasswordForm() {
     this.formValues = this.signUpService.getForgotPasswordInfo();
     this.resetPasswordForm = this.formBuilder.group({
@@ -66,5 +47,12 @@ export class EditProfileComponent implements OnInit {
       newPassword: [this.formValues.oldPassword, [Validators.required,  Validators.pattern(RegexConstants.Password.Full)]],
       confirmPassword: [this.formValues.oldPassword, [Validators.required,  Validators.pattern(RegexConstants.Password.Full)]]
     });
+  }
+  showHidePassword(el) {
+    if (el.type === 'password') {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
   }
 }
