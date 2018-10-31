@@ -4,6 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import {
   BreakdownAccordionComponent
 } from '../../shared/components/breakdown-accordion/breakdown-accordion.component';
@@ -25,7 +26,6 @@ import {
   EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -194,7 +194,18 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   goToWhatsTheRisk() {
-    this.router.navigate([ PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
+  }
+
+  goToNext() {
+    const pepData = this.investmentAccountService.getPepData();
+    // tslint:disable-next-line:triple-equals
+    if (pepData == true) {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+    } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+    }
+
   }
 
 }

@@ -150,7 +150,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setAdditionDeclaration(form.value);
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
     }
   }
 
