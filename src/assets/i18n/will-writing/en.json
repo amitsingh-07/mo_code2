@@ -122,6 +122,8 @@
       "WHY_WILL_CONTENT_4": "To write a will, you should be…",
       "WHY_WILL_CONTENT_4A": "- 21 years old and above",
       "WHY_WILL_CONTENT_4B": "- Of sound mind",
+      "WHY_WILL_CONTENT_5": "Unfortunately we are unable to assist muslims in writing their will as the advice of a Syariah-trained lawyer is required.",
+      "WHY_WILL_CONTENT_6": "Are you ready to write your will?",
       "FAQ_LINK_TITLE": "Find out more in FAQs",
       "OFFER_PERIOD": "FREE for a limited time only!",
       "NO_PROMOCODE": "No Promocode? ",
@@ -129,7 +131,8 @@
       "SENT_VIA_EMAIL": "Your promocode will be sent via email!",
       "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
       "SENT_SUCCESS": "Your promo code has successfully been sent to your email.",
-      "FAQ_LINK": "http://moneyowl.com.sg/"
+      "FAQ_LINK": "http://www.moneyowl.com.sg/faqs",
+      "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg"
     },
     "TELL_US_YOURSELF": {
       "TITLE": "Tell us About yourself",
