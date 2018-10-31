@@ -56,11 +56,11 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                        {{additionDeclarationtwo.controls.source.value ?additionDeclarationtwo.controls.source.value :'Select Sourse'}}
+                        {{additionDeclarationtwo.controls.source.value ? additionDeclarationtwo.controls.source.value.name :'Select Source'}}
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj.name)"
+                        <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj)"
                           id="additional_declaration_sourse-drpdown-option-{{i}}">{{sourceObj.name | titlecase}}</button>
                       </div>
                     </div>
@@ -75,10 +75,10 @@
             <!-- two type -->
           
           
-            <div class="form-group" *ngIf="additionDeclarationtwo.controls.source.value == 'Saving'">
+            <div class="form-group" *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Saving'">
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
-                  <div class="form-group-with-bg--content-label" for="name"     id="additional_declaration_personalSaving_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS' | translate}}
+                  <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_personalSaving_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.PERSONAL_SAVINGS' | translate}}
 
                   </div>
                 </div>
@@ -96,7 +96,7 @@
 
             <!-- three type -->
             
-            <div class="form-group"  *ngIf="additionDeclarationtwo.controls.source.value == 'Gift/Inheritanc'" >
+            <div class="form-group"  *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Gift/Inheritanc'" >
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
                   <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT' | translate}}
@@ -115,7 +115,7 @@
             </div>
             <!--  four type -->
          
-            <div  *ngIf="additionDeclarationtwo.controls.source.value == 'Investment Earnings'"  formGroupName="investmentEarnings">
+            <div  *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Investment Earnings'"  formGroupName="investmentEarnings">
             <div class="form-group" >
               <div class="flex-row">
                 <div class="flex-col-5">
@@ -126,11 +126,12 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="additional_declaration_investment_period_lab-drpdown" ngbDropdownToggle>
-                         {{additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value }}  
+                          <span *ngIf="!additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value">Select Investment  </span>
+                         <span *ngIf="additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value">{{additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value.name }}  </span>
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let investmentPeriod of investmentPeriodList; let i = index;" (click)="selectInvestmentPeriod('investmentPeriod', investmentPeriod.name,'investmentEarnings')"
+                        <button class="dropdown-item" *ngFor="let investmentPeriod of investmentPeriodList; let i = index;" (click)="selectInvestmentPeriod('investmentPeriod', investmentPeriod,'investmentEarnings')"
                           id="additional_declaration_investment_period_lab-{{i}}">{{investmentPeriod.name | titlecase}}</button>
                       </div>
                     </div>
@@ -149,11 +150,12 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="additional_declaration_earnings_generated_lab-drpdown" ngbDropdownToggle>
-                         {{additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value }} 
+                         <span *ngIf="!additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value">Select Earnings</span>
+                         <span *ngIf="additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value">{{additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value.name }} </span>
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;" (click)="selectEarningsGenerated('earningsGenerated', generated.name, 'investmentEarnings')"
+                        <button class="dropdown-item" *ngFor="let generated of generatedList; let i = index;" (click)="selectEarningsGenerated('earningsGenerated', generated, 'investmentEarnings')"
                           id="additional_declaration_earnings_generated_lab-drpdown-option-{{i}}">{{generated.name | titlecase}}</button>
                       </div>
                     </div>

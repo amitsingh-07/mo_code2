@@ -519,13 +519,13 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.expectedNumberOfTransation = data.expectedNumberOfTransation;
         this.investmentAccountFormData.expectedAmountPerTranction = data.expectedAmountPerTranction;
         this.investmentAccountFormData.source = data.source;
-        if (data.source === 'Saving') {
+        if (data.personalSavingForm) {
             this.investmentAccountFormData.personalSavings = data.personalSavingForm.personalSavings;
         }
-        if (data.source === 'Gift/Inheritanc') {
+        if (data.inheritanceGiftFrom) {
             this.investmentAccountFormData.inheritanceGift = data.inheritanceGiftFrom.inheritanceGift;
         }
-        if (data.source === 'Investment Earnings') {
+        if (data.investmentEarnings) {
         this.investmentAccountFormData.investmentPeriod = data.investmentEarnings.investmentPeriod;
         this.investmentAccountFormData.earningsGenerated = data.investmentEarnings.earningsGenerated;
         }

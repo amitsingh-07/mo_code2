@@ -67,14 +67,14 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
   }
 
   addAndRemoveSourseFields() {
-    if (this.additionDeclarationtwo.controls.source.value === 'Saving') {
+    if (this.additionDeclarationtwo.controls.source.value && this.additionDeclarationtwo.controls.source.value.name === 'Saving') {
       this.additionDeclarationtwo.addControl('personalSavingForm', this.formBuilder.group({
         personalSavings: [this.formValues.personalSavings, Validators.required]
       }));
       this.additionDeclarationtwo.removeControl('investmentEarning');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
-    if (this.additionDeclarationtwo.controls.source.value === 'Gift/Inheritanc') {
+    if (this.additionDeclarationtwo.controls.source.value && this.additionDeclarationtwo.controls.source.value.name === 'Gift/Inheritanc') {
       this.additionDeclarationtwo.addControl('inheritanceGiftFrom', this.formBuilder.group({
         inheritanceGift: [this.formValues.inheritanceGift, Validators.required]
       }));
@@ -83,12 +83,11 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.removeControl('investmentEarnings');
 
     }
-    if (this.additionDeclarationtwo.controls.source.value === 'Investment Earnings') {
+    if (this.additionDeclarationtwo.controls.source.value &&
+      this.additionDeclarationtwo.controls.source.value.name === 'Investment Earnings') {
       this.additionDeclarationtwo.addControl('investmentEarnings', this.formBuilder.group({
-        investmentPeriod: [this.formValues.investmentPeriod ?
-          this.formValues.investmentPeriod : 'Select Investment', Validators.required],
-        earningsGenerated: [this.formValues.earningsGenerated ?
-          this.formValues.earningsGenerated : 'Select Earnings', Validators.required],
+        investmentPeriod: [this.formValues.investmentPeriod, Validators.required],
+        earningsGenerated: [this.formValues.earningsGenerated, Validators.required],
 
       }));
 
