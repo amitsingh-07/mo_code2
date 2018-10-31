@@ -47,7 +47,7 @@
         text-align: center;
         margin: 0 auto;
         @include allmobiles {
-            margin-top: 30px;
+            margin-top: 10px;
             text-align: center;
         }
         @include tablet {
@@ -61,6 +61,10 @@
         letter-spacing: -0.4px;
         text-align: center;
         color: #ffffff;
+        margin-top: 30px;
+        @include allmobiles {
+            margin-top: 0 !important;
+        }
     }
     .intro-block__content__title {
         font-family: $muli-semi-bold;
@@ -69,6 +73,7 @@
         letter-spacing: -0.3px;
         text-align: center;
         color: #ffffff;
+        line-height: normal;
     }
     .intro-block__content__sub-title {
         font-family: $muli-regular;
