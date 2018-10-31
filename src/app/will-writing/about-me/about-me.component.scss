@@ -52,20 +52,22 @@
     input{
         color:#00a7a7;
     }
-    .direct-form-btn--radio{
-        width: unset;
-        min-width: unset;
-        @include allmobiles{
-            background: $white-color;
-            color: #00a7a7;
-            &.active{
-                background: #00a7a7;
-                color: #fff;
-            }
-        }
-        &.btn{ 
+    .direct-form-grp {
+        .direct-form-btn--radio{
+            width: unset;
+            min-width: unset;
             @include allmobiles{
-                margin: 0 !important;
+                background: $white-color;
+                color: #00a7a7;
+                &.active{
+                    background: #00a7a7;
+                    color: #fff;
+                }
+            }
+            &.btn{ 
+                @include allmobiles{
+                    margin: 0 !important;
+                }
             }
         }
     }
