@@ -12,7 +12,7 @@ export const WILL_WRITING_ROUTES = {
   MY_CHILD_GUARDIAN: 'guardian',
   DISTRIBUTE_YOUR_ESTATE: 'distribute-your-estate',
   APPOINT_EXECUTOR_TRUSTEE: 'appoint-executor-trustee',
-  MY_BENEFICIARIES: 'benefeciary',
+  MY_BENEFICIARIES: 'beneficiary',
   REVIEW_YOUR_DETAILS: 'review-your-details',
   MY_EXECUTOR_TRUSTEE: 'executor-trustee',
   MY_ESTATE_DISTRIBUTION: 'estate-distribution',
