@@ -194,12 +194,16 @@ export class GuideMeCalculateService {
       ocpData.coverageAmount = 0;
     }
 
+    let empStatusId = 0;
+    if (ocpData.selectedEmployee) {
+      empStatusId = (ocpData.selectedEmployee.indexOf('Salaried') >= 0) ? 1 : 2;
+    }
     const ocpRequestData: IOccupationalDisabilityData = {
       percentageCoverage: ocpData.percentageCoverage,
       coverageDuration: ocpData.coverageDuration,
       coverageAmount: ocpData.coverageAmount,
-      employmentStatusId: (ocpData.selectedEmployee.indexOf('Salaried') >= 0) ? 1 : 2,
-  } as IOccupationalDisabilityData;
+      employmentStatusId: empStatusId,
+    } as IOccupationalDisabilityData;
     return ocpRequestData;
   }
 
