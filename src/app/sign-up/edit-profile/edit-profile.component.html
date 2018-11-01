@@ -12,32 +12,32 @@
     <div class="user-profile-bg">
 
 
-      <div class="circle"> KG </div>
+      <div class="circle"> {{this.compinedName}} </div>
 
 
       <img id="edit_profile_edit_img" class="user-edit-img" src="assets/images/editProfileIcon.svg" />
 
 
-      <div class="heading">Kelvin Goh</div>
-      <div class="nric-text">NRIC Number: S 91238467A</div>
+      <div class="heading">{{ this.fullName }}</div>
+      <div class="nric-text">{{this.compinednricNum}}</div>
       <div class="flex-row pb10 mb20">
         <div class="flex-col-2">
           <div class="content-text">Gender</div>
-          <div class="grid-content-text">Male</div>
+          <div class="grid-content-text">{{this.personalData.gender}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
         </div>
         <div class="flex-col-4">
           <div class="content-text">Nationality</div>
-          <div class="grid-content-text">Singaporean</div>
+          <div class="grid-content-text">{{this.personalData.nationality}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
         </div>
         <div class="flex-col-4">
           <div class="content-text">Date of Birth</div>
-          <div class="grid-content-text">25/09/1978</div>
+          <div class="grid-content-text">{{this.personalData.dateOfBirth}}</div>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
           Mobile Number
         </div>
         <div class="update-contact-value">
-          9940628783
+          {{this.personalData.mobileNumber}}
         </div>
       </div>
       <div class="section-margin">

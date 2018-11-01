@@ -17,6 +17,10 @@ import { SignUpService } from '../sign-up.service';
 export class EditProfileComponent implements OnInit {
   resetPasswordForm: FormGroup;
   formValues: any;
+  personalData: any;
+  fullName: string;
+  compinedName: string;
+  compinednricNum: string;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -37,6 +41,7 @@ export class EditProfileComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.buildForgotPasswordForm();
+    this.getEditProfileData();
   }
   showHidePassword(el) {
     if (el.type === 'password') {
@@ -66,5 +71,27 @@ export class EditProfileComponent implements OnInit {
       newPassword: [this.formValues.oldPassword, [Validators.required,  Validators.pattern(RegexConstants.Password.Full)]],
       confirmPassword: [this.formValues.oldPassword, [Validators.required,  Validators.pattern(RegexConstants.Password.Full)]]
     });
+  }
+  getEditProfileData() {
+    this.signUpService.getEditProfileInfo().subscribe((data) => {
+      // tslint:disable-next-line:triple-equals
+      console.log(data);
+      this.personalData = data.objectList[0].personalInformation;
+      console.log(this.personalData);
+      this.setFullName(this.personalData.firstName , this.personalData.lastName);
+      this.setTwoLetterProfileName(this.personalData.firstName , this.personalData.lastName);
+      this.setNric(this.personalData.nricNumber);
+    });
+  }
+  setFullName(firstName, LastName) {
+this.fullName = firstName + ' ' + LastName ;
+  }
+  setTwoLetterProfileName(firstName, LastName) {
+    const first = firstName.charAt(0);
+    const second = LastName.charAt(0);
+    this.compinedName = first.toUpperCase() + second.toUpperCase() ;
+  }
+  setNric(nric) {
+this.compinednricNum = 'NRIC Number:' + nric;
   }
 }

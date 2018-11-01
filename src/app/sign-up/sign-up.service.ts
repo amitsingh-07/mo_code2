@@ -292,4 +292,9 @@ export class SignUpService {
     sessionStorage.removeItem(CAPTCHA_SESSION_ID);
     sessionStorage.removeItem(IS_CAPTCHA_SHOWN);
   }
+
+  getEditProfileInfo() {
+    // API Call here
+    return this.apiService.getEditProfileList();
+  }
 }
