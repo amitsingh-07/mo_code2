@@ -16,6 +16,7 @@ export class ConfirmationComponent implements OnInit {
 
   willWritingFormData: WillWritingFormData = new WillWritingFormData();
   willWritingRoutePaths = WILL_WRITING_ROUTE_PATHS;
+  willEstateDistribution = { spouse: [], children: [], others: [] };
 
   constructor(private translate: TranslateService, private willWritingService: WillWritingService, private router: Router) {
     this.translate.use('en');
@@ -27,6 +28,16 @@ export class ConfirmationComponent implements OnInit {
 
   ngOnInit() {
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
+    const estateDistribution = this.willWritingFormData.beneficiary.filter((beneficiary) => beneficiary.selected === true);
+    for (const beneficiary of estateDistribution) {
+      if (beneficiary.relationship === 'spouse') {
+        this.willEstateDistribution.spouse.push(beneficiary);
+      } else if (beneficiary.relationship === 'child') {
+        this.willEstateDistribution.children.push(beneficiary);
+      } else {
+        this.willEstateDistribution.others.push(beneficiary);
+      }
+    }
   }
 
   edit(url) {

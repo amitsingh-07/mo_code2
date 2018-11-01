@@ -1,486 +1,300 @@
 <div class="personal-info">
-  <!--<app-page-title [step]="step" [pageTitle]="pageTitle"></app-page-title>-->
-  <div class="container-fluid max-width--1024">
-    <div class="content">
-      <div class="flex-row">
-        <div class="col-lg-12 col-md-12 mobile-header--container">
-          <div class="col-lg-6 col-md-6 col-12">
-            <div class="heading hidden-sm-md" id="myFamily-step1">{{'WILL_WRITING.COMMON.STEP_4' | translate}}</div>
-            <div class="autofill-link">
-              <div class="autofill-text hidden-sm-md" id="myFamily-title">{{ 'WILL_WRITING.CONFIRMATION.TITLE' |
-                translate}}</div>
-              <div class="sub-title mb20" id="myFamily-sub-title">{{ 'WILL_WRITING.CONFIRMATION.SUB_TITLE' |
-                translate}}</div>
-              <div class="heading hidden-lg">{{ 'Almost there!'}}</div>
-              <div class="autofill-logo mobile-logo hidden-lg mb5" id="myFamily-mobile-img"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+    <app-page-title [step]="step" [pageTitle]="pageTitle"></app-page-title>
+    <div class="container-fluid max-width--1024">
+      <div class="content">
+        <div class="flex-row">
+          <div class="col-lg-12 col-md-12 mobile-header--container">
+            <div class="col-lg-6 col-md-6 col-12">
+              <div class="heading hidden-sm-md" id="myFamily-step1">{{'WILL_WRITING.COMMON.STEP_4' | translate}}</div>
+              <div class="autofill-link">
+                <div class="autofill-text hidden-sm-md" id="myFamily-title">{{ 'WILL_WRITING.CONFIRMATION.TITLE' |
+                  translate}}</div>
+                <div class="sub-title mb20" id="myFamily-sub-title">{{ 'WILL_WRITING.CONFIRMATION.SUB_TITLE' |
+                  translate}}</div>
+                <div class="heading hidden-lg">{{ 'Almost there!'}}</div>
+                <div class="autofill-logo mobile-logo hidden-lg mb5" id="myFamily-mobile-img"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- About Me -->
-        <div class="flex-row col-lg-12 col-md-12 col-12 mb20">
-          <div class="col-lg-6 col-md-6 col-12">
+  
+          <!-- About Me -->
+          <div class="flex-row col-lg-12 col-md-12 col-12 mb20">
+            <div class="col-lg-6 col-md-6 col-12">
+              <div class="section-container">
+                <div class="header col-lg-12 col-md-12 col-12">
+                  <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
+                  <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="edit-dark"></div>
+                    <div (click)="edit(willWritingRoutePaths.ABOUT_ME)" class="edit">Edit</div>
+                  </div>
+                </div>
+                <div class="section-body">
+                  <div class="col-12">
+                    <div class="record">
+                      <div class="label-header col-6">
+                        {{'WILL_WRITING.COMMON.NAME' | translate}}
+                      </div>
+                      <div class="label-value col-6">{{willWritingFormData.aboutMe.name | titlecase}}</div>
+                    </div>
+                    <div class="record">
+                      <div class="label-header col-6">
+                        {{'WILL_WRITING.COMMON.NRIC' | translate}}
+                      </div>
+                      <div class="label-value col-6">{{willWritingFormData.aboutMe.uin}}</div>
+                    </div>
+                    <div class="record">
+                      <div class="label-header col-6">
+                        {{'WILL_WRITING.COMMON.GENDER' | translate}}
+                      </div>
+                      <div class="label-value col-6">{{willWritingFormData.aboutMe.gender | titlecase}}</div>
+                    </div>
+                    <div class="record">
+                      <div class="label-header col-6">
+                        {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
+                      </div>
+                      <div class="label-value col-6">{{willWritingFormData.aboutMe.maritalStatus | titlecase}}</div>
+                    </div>
+                    <div class="record">
+                      <div class="label-header col-6">
+                        {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
+                      </div>
+                      <div class="label-value col-6">{{willWritingFormData.aboutMe.noOfChildren}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+              <div class="autofill-logo hidden-sm-md" id="myFamily-img"><img class="img-fluid" src="assets/images/will-writing/confirmation.svg" /></div>
+            </div>
+          </div>
+  
+          <!-- My Family -->
+          <div class="col-lg-12 col-md-12 col-12 mb20">
             <div class="section-container">
               <div class="header col-lg-12 col-md-12 col-12">
-                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_FAMILY.TITLE' | translate}}</div>
+                <div class="col-lg-3 col-md-3 col-3">
                   <div class="edit-dark"></div>
-                  <div (click)="edit(willWritingRoutePaths.ABOUT_ME)" class="edit">Edit</div>
+                  <div (click)="edit(willWritingRoutePaths.MY_FAMILY)" class="edit">Edit</div>
                 </div>
               </div>
               <div class="section-body">
-                <div class="col-12">
+                <!-- Loop Start-->
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="willWritingFormData.spouse.length > 0">
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    {{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}
+                  </div>
                   <div class="record">
                     <div class="label-header col-6">
                       {{'WILL_WRITING.COMMON.NAME' | translate}}
                     </div>
-                    <div class="label-value col-6">{{'value'}}</div>
+                    <div class="label-value col-md-6 col-sm-6">{{willWritingFormData.spouse[0].name | titlecase}}</div>
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
                       {{'WILL_WRITING.COMMON.NRIC' | translate}}
                     </div>
-                    <div class="label-value col-6">{{'value'}}</div>
+                    <div class="label-value col-md-6 col-sm-6">{{willWritingFormData.spouse[0].uin}}</div>
+                  </div>
+                </div>
+                <!-- Loop End-->
+  
+                <!--Removable code-->
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let children of willWritingFormData.children; let i = index">
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    {{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{i+1}}
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
-                      {{'WILL_WRITING.COMMON.GENDER' | translate}}
+                      {{'WILL_WRITING.COMMON.NAME' | translate}}
                     </div>
-                    <div class="label-value col-6">{{'value'}}</div>
+                    <div class="label-value col-md-6 col-sm-6">{{children.name | titlecase}}</div>
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
-                      {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
+                      {{'WILL_WRITING.COMMON.NRIC' | translate}}
                     </div>
-                    <div class="label-value col-6">{{'value'}}</div>
+                    <div class="label-value col-md-6 col-sm-6">{{children.uin}}</div>
+                  </div>
+                </div>
+  
+                <!-- Removable code End-->
+              </div>
+            </div>
+          </div>
+  
+          <!-- My Children's Guardian -->
+          <div class="col-lg-12 col-md-12 col-12 mb20" *ngIf="willWritingFormData.guardian.length > 0">
+            <div class="section-container">
+              <div class="header col-lg-12 col-md-12 col-12">
+                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
+                <div class="col-lg-3 col-md-3 col-3">
+                  <div class="edit-dark"></div>
+                  <div (click)="edit(willWritingRoutePaths.MY_CHILD_GUARDIAN)" class="edit">Edit</div>
+                </div>
+              </div>
+              <div class="section-body">
+                <!-- Loop Start -->
+  
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let guardian of willWritingFormData.guardian">
+                  <div class="section-row-header col-12 mb10">
+                    <span *ngIf="guardian.isAlt">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.ALTERNATIVE' | translate}}</span>
+                    <span *ngIf="!guardian.isAlt">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.MAIN_GUARDIAN' | translate}}</span>
+                  </div>
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    {{'WILL_WRITING.COMMON.MY' | translate}} {{guardian.relationship | titlecase}}
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
-                      {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
+                      {{'WILL_WRITING.COMMON.NAME' | translate}}
                     </div>
-                    <div class="label-value col-6">{{'value'}}</div>
+                    <div class="label-value col-md-6 col-sm-6">{{guardian.name | titlecase}}</div>
+                  </div>
+                  <div class="record">
+                    <div class="label-header col-6">
+                      {{'WILL_WRITING.COMMON.NRIC' | translate}}
+                    </div>
+                    <div class="label-value col-md-6 col-sm-6">{{guardian.uin}}</div>
                   </div>
                 </div>
+                <!-- Loop End-->
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-12">
-            <div class="autofill-logo hidden-sm-md" id="myFamily-img"><img class="img-fluid" src="assets/images/will-writing/confirmation.svg" /></div>
-          </div>
-        </div>
-
-        <!-- My Family -->
-        <div class="col-lg-12 col-md-12 col-12 mb20">
-          <div class="section-container">
-            <div class="header col-lg-12 col-md-12 col-12">
-              <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_FAMILY.TITLE' | translate}}</div>
-              <div class="col-lg-3 col-md-3 col-3">
-                <div class="edit-dark"></div>
-                <div (click)="edit(willWritingRoutePaths.MY_FAMILY)" class="edit">Edit</div>
-              </div>
-            </div>
-            <div class="section-body">
-              <!-- Loop Start-->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NAME' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NRIC' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.GENDER' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
+  
+          <!-- My Beneficiary-->
+          <div class="col-lg-12 col-md-12 col-12 mb20">
+            <div class="section-container">
+              <div class="header col-lg-12 col-md-12 col-12">
+                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_BENEFICIARY.TITLE' | translate}}</div>
+                <div class="col-lg-3 col-md-3 col-3">
+                  <div class="edit-dark"></div>
+                  <div (click)="edit(willWritingRoutePaths.MY_BENEFICIARIES)" class="edit">Edit</div>
                 </div>
               </div>
-              <!-- Loop End-->
-              
-              <!--Removable code-->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
+              <div class="section-body">
+                <!-- Loop Start-->
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let beneficiary of willWritingFormData.beneficiary">
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    <span *ngIf="beneficiary.relationship === 'spouse'">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
+                    <span *ngIf="beneficiary.relationship === 'child'">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}}</span>
+                    <span *ngIf="beneficiary.relationship !== 'spouse' && beneficiary.relationship !== 'child'">{{'WILL_WRITING.COMMON.OTHERS'
+                      | translate}}</span>
                   </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
+                  <div class="record">
+                    <div class="label-header col-6">
+                      {{'WILL_WRITING.COMMON.NAME' | translate}}
+                    </div>
+                    <div class="label-value col-md-6 col-sm-6">{{beneficiary.name | titlecase}}</div>
                   </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
+                  <div class="record">
+                    <div class="label-header col-6">
+                      {{'WILL_WRITING.COMMON.NRIC' | translate}}
+                    </div>
+                    <div class="label-value col-md-6 col-sm-6">{{beneficiary.uin | titlecase}}</div>
+                  </div>
                 </div>
+                <!-- Loop End-->
               </div>
-              
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-              </div> 
-            <!-- Removable code End-->
             </div>
           </div>
-        </div>
-
-        <!-- My Children's Guardian -->
-        <div class="col-lg-12 col-md-12 col-12 mb20">
-          <div class="section-container">
-            <div class="header col-lg-12 col-md-12 col-12">
-              <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
-              <div class="col-lg-3 col-md-3 col-3">
-                <div class="edit-dark"></div>
-                <div (click)="edit(willWritingRoutePaths.MY_CHILD_GUARDIAN)" class="edit">Edit</div>
+  
+          <!-- My Estate Distribution -->
+          <div class="col-lg-12 col-md-12 col-12 mb20">
+            <div class="section-container">
+              <div class="header col-lg-12 col-md-12 col-12">
+                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE' | translate}}</div>
+                <div class="col-lg-3 col-md-3 col-3">
+                  <div class="edit-dark"></div>
+                  <div (click)="edit(willWritingRoutePaths.MY_ESTATE_DISTRIBUTION)" class="edit">Edit</div>
+                </div>
+              </div>
+              <div class="section-body">
+                <!-- Loop Start-->
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="willEstateDistribution.spouse.length > 0">
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    {{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}
+                  </div>
+                  <div class="record">
+                    <div class="label-header col-6">
+                      {{willEstateDistribution.spouse[0].name | titlecase}}
+                    </div>
+                    <div class="label-value col-md-6 col-sm-6">{{willEstateDistribution.spouse[0].distPercentage}}</div>
+                  </div>
+                </div>
+                <!-- Loop End-->
+  
+                <!-- Removable code -->
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="willEstateDistribution.children.length > 0">
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    {{'WILL_WRITING.COMMON.MY_CHILDREN' | translate}}
+                  </div>
+                  <div class="record" *ngFor="let children of willEstateDistribution.children">
+                    <div class="label-header col-6">
+                      {{children.name | titlecase}}
+                    </div>
+                    <div class="label-value col-md-6 col-sm-6">{{children.distPercentage}}</div>
+                  </div>
+                </div>
+  
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="willEstateDistribution.others.length > 0">
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    {{'WILL_WRITING.COMMON.OTHERS' | translate}}
+                  </div>
+                  <div class="record" *ngFor="let others of willEstateDistribution.others">
+                    <div class="label-header col-6">
+                      {{others.name | titlecase}}
+                    </div>
+                    <div class="label-value col-6">{{others.distPercentage | titlecase}}</div>
+                  </div>
+                </div>
+                <!-- Removable code End-->
               </div>
             </div>
-            <div class="section-body">
-              <!-- Loop Start -->
-              
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                  <div class="section-row-header col-12 mb10">{{ 'Main Guardian' | translate}}</div>
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NAME' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NRIC' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.GENDER' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
+          </div>
+  
+          <!-- My Executor & Trustee -->
+          <div class="col-lg-12 col-md-12 col-12 mb20">
+            <div class="section-container">
+              <div class="header col-lg-12 col-md-12 col-12">
+                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
+                <div class="col-lg-3 col-md-3 col-3">
+                  <div class="edit-dark"></div>
+                  <div (click)="edit(willWritingRoutePaths.MY_EXECUTOR_TRUSTEE)" class="edit">Edit</div>
                 </div>
               </div>
-              <!-- Loop End-->
-
-              <!-- Removable code-->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
+              <div class="section-body">
+                <!-- Loop Start-->
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let execTrustee of willWritingFormData.execTrustee">
+                  <div class="section-row-header col-lg-12 col-md-12 col-sm-12 mb10">
+                    <span *ngIf="execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE' | translate}}</span>
+                    <span *ngIf="!execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}</span>
                   </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
+                  <div class="record">
+                    <div class="label-header col-6">
+                      {{'WILL_WRITING.COMMON.NAME' | translate}}
+                    </div>
+                    <div class="label-value col-md-6 col-sm-6">{{execTrustee.name | titlecase}}</div>
                   </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
+                  <div class="record">
+                    <div class="label-header col-6">
+                      {{'WILL_WRITING.COMMON.NRIC' | translate}}
+                    </div>
+                    <div class="label-value col-md-6 col-sm-6">{{execTrustee.uin | titlecase}}</div>
+                  </div>
                 </div>
+                <!-- Loop End-->
+                <!-- Removable code End-->
               </div>
-              
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-              </div>
-              <!-- Removable code End-->
             </div>
           </div>
         </div>
-
-        <!-- My Beneficiary-->
-        <div class="col-lg-12 col-md-12 col-12 mb20">
-          <div class="section-container">
-            <div class="header col-lg-12 col-md-12 col-12">
-              <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_BENEFICIARY.TITLE' | translate}}</div>
-              <div class="col-lg-3 col-md-3 col-3">
-                <div class="edit-dark"></div>
-                <div (click)="edit(willWritingRoutePaths.MY_BENEFICIARIES)" class="edit">Edit</div>
-              </div>
-            </div>
-            <div class="section-body">
-              <!-- Loop Start-->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NAME' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NRIC' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.GENDER' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-              </div>
-              <!-- Loop End-->
-              <!-- Removable code -->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-              </div>
-              
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-              </div>
-              <!-- Removable code End-->
-            </div>
+        <div class="stamp-block">
+            <div class="col-lg-5 col-sm-12 col-md-5"><button type="button" class="btn btn__footer--fixed width100 btn-primary" (click)="goToNext()">{{ 'LABEL.CONTINUE' | translate}}</button></div>
+            <img src="assets/images/will-writing/owl-stamp.svg"/>
           </div>
-        </div>
-
-        <!-- My Estate Distribution -->
-        <div class="col-lg-12 col-md-12 col-12 mb20">
-          <div class="section-container">
-            <div class="header col-lg-12 col-md-12 col-12">
-              <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE' | translate}}</div>
-              <div class="col-lg-3 col-md-3 col-3">
-                <div class="edit-dark"></div>
-                <div (click)="edit(willWritingRoutePaths.MY_ESTATE_DISTRIBUTION)" class="edit">Edit</div>
-              </div>
-            </div>
-            <div class="section-body">
-              <!-- Loop Start-->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NAME' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NRIC' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.GENDER' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-              </div>
-              <!-- Loop End-->
-              
-              <!-- Removable code -->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-              </div>
-              
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-              </div>
-              <!-- Removable code End-->
-            </div>
-          </div>
-        </div>
-
-        <!-- My Executor & Trustee -->
-        <div class="col-lg-12 col-md-12 col-12 mb20">
-          <div class="section-container">
-            <div class="header col-lg-12 col-md-12 col-12">
-              <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
-              <div class="col-lg-3 col-md-3 col-3">
-                <div class="edit-dark"></div>
-                <div (click)="edit(willWritingRoutePaths.MY_EXECUTOR_TRUSTEE)" class="edit">Edit</div>
-              </div>
-            </div>
-            <div class="section-body">
-              <!-- Loop Start-->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NAME' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NRIC' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.GENDER' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-              </div>
-              <!-- Loop End-->
-              
-              <!-- Removable code -->
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-md-6 col-sm-6">{{'value'}}</div>
-                </div>
-              </div>
-              
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                  {{'WILL_WRITING.COMMON.NAME' | translate}}
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.MARITAL_STATUS' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-                <div class="record">
-                  <div class="label-header col-6">
-                    {{'WILL_WRITING.COMMON.NUMBER_OF_CHILDREN' | translate}}
-                  </div>
-                  <div class="label-value col-6">{{'value'}}</div>
-                </div>
-              </div>
-              <!-- Removable code End-->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="stamp-block">
-        <div class="col-lg-5 col-sm-12 col-md-5"><button type="button" class="btn btn__footer--fixed width100 btn-primary" (click)="goToNext()">{{ 'LABEL.CONTINUE' | translate}}</button></div>
-        <img src="assets/images/will-writing/owl-stamp.svg"/>
       </div>
     </div>
   </div>
-</div>
+  
