@@ -286,12 +286,11 @@ input[type='checkbox']+label {
         position: relative;
         left: 0;
         right: 0;
+        @include allmobiles{
+            margin: 0 15px;
+        }
         img{
             width:100%;
-            @include allmobiles{
-                width: 100%;
-            }
-            
         }
       }
       .distribution-content{
@@ -305,6 +304,9 @@ input[type='checkbox']+label {
         .percentage{
             font-size: 48px !important;
             font-family: $muli-bold;
+            @include iphone5{
+                line-height: 1.22;
+            }
         }
         .sub-title{
             font-family: $muli-semi-bold;
