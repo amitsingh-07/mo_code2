@@ -55,7 +55,7 @@ app-terms {
 
   .t-c-content {
     max-height: 90vh;
-    font-size: 13px;
+    font-size: 13px !important;
     line-height: 1.62;
     letter-spacing: -0.1px;
     @extend .flex;
@@ -124,6 +124,10 @@ app-terms {
 
 }
 
+.modal-body-message {
+  font-size: 13px;
+  line-height: 1.62;
+  }
 .modal-body-title {
   font-size: 24px;
   margin: 10px auto;
@@ -132,6 +136,7 @@ app-terms {
 .section-container {
   overflow: auto !important;
   margin-top: 30px;
+  padding: 10px;
   @include allmobiles{
     margin: 0;
   } 

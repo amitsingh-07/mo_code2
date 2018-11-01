@@ -19,7 +19,7 @@ export class ReviewYourDetailsComponent implements OnInit {
   }
 
   goToNext() {
-    this.router.navigate([WILL_WRITING_ROUTE_PATHS]);
+    this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
   }
 
   goBack() {

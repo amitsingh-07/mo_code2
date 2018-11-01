@@ -2,7 +2,7 @@
 
   <div class="step-indicator-container">
     <div class="container-fluid">
-      <app-step-indicator [count]="7" [activeStepIndex]="3"></app-step-indicator>
+      <app-step-indicator [count]="9" [activeStepIndex]="3"></app-step-indicator>
     </div>
   </div>
 
@@ -27,7 +27,7 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button ngbDropdownToggle class="btn btn-dropdown without-border grey" id="financial_details-annual_house_hold_drpdown"> 
-                        {{financialDetails.controls.annualHouseHoldIncomeRange.value ? financialDetails.controls.annualHouseHoldIncomeRange.value :'Select Range'}}
+                        {{financialDetails.controls.annualHouseHoldIncomeRange.value ? financialDetails.controls.annualHouseHoldIncomeRange.value.name :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let annualHouseHoldIncome of annualHouseHoldIncomeRanges; let i = index;" (click)="setAnnualHouseHoldIncomeRange(annualHouseHoldIncome)"

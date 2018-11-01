@@ -37,8 +37,8 @@ export class InvestmentAccountFormData {
     countryList: any;
     nationality: any;
     nationalityCode: any;
-    unitedStatesResident: string;
-    singaporeanResident: string;
+    unitedStatesResident: boolean;
+    singaporeanResident: boolean;
 
     // Tax Info
     taxCountry: any;

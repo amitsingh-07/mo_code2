@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { IBeneficiary } from './../will-writing-types';
@@ -14,6 +16,7 @@ import { WillWritingService } from './../will-writing.service';
   styleUrls: ['./my-beneficiaries.component.scss']
 })
 export class MyBeneficiariesComponent implements OnInit {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
   private minErrorMsg: string;
@@ -118,16 +121,20 @@ export class MyBeneficiariesComponent implements OnInit {
 
   editBeneficiary(relation: string, index: number) {
     if (relation === 'spouse' || relation === 'child') {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      if (this.addBeneficiaryForm.dirty) {
+        this.pageTitleComponent.goBack();
+      } else {
+        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      }
     } else {
-      /*this.selectedIndex = index;
+      this.selectedIndex = index;
       this.isEdit = true;
       this.isFormOpen = true;
       const beneficiary = this.beneficiaryList[index];
       this.addBeneficiaryForm.controls['name'].setValue(beneficiary.name);
       this.addBeneficiaryForm.controls['uin'].setValue(beneficiary.uin);
       const beneRelationship = this.relationshipList.filter((relationship) => relationship.value === beneficiary.relationship);
-      this.selectRelationship(beneRelationship[0]);*/
+      this.selectRelationship(beneRelationship[0]);
     }
   }
 

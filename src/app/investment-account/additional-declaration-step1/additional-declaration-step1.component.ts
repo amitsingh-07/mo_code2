@@ -28,7 +28,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   translator: any;
   addInfoForm: FormGroup;
   addInfoFormValues: any;
-  selectedOccupation: string;
   countries: any;
   constructor(
     public headerService: HeaderService,
@@ -71,7 +70,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       pepAddress2: new FormControl (this.addInfoFormValues.pepAddress2, Validators.required),
       pepUnitNo: new FormControl (this.addInfoFormValues.pepUnitNo, Validators.required),
       });
-    this.selectedOccupation = this.translate.instant('ADDITIONAL_DECLARATION.SELECT_OCCUPATION');
     this.addInfoForm.controls.radioPep.setValue(true);
   }
   getOccupationList() {
@@ -83,7 +81,6 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   }
   setOccupationValue(value) {
-  this.selectedOccupation = value;
   this.addInfoForm.controls.pepoccupation.setValue(value);
   }
 
