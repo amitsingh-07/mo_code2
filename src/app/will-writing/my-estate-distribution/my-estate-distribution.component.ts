@@ -39,32 +39,32 @@ export class MyEstateDistributionComponent implements OnInit {
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
       this.estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
-      this.filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
-      if (this.willWritingService.isBeneficiaryAdded) {
-      this.divider = (this.remainingPercentage / this.estateDistList.length);
-      this.dividePercentage();
-      }
+      //this.filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
+      // if (this.willWritingService.isBeneficiaryAdded) {
+      // this.divider = (this.remainingPercentage / this.estateDistList.length);
+      // this.dividePercentage();
+      // }
     }
     this.calculateRemPercentage();
   }
 
-  dividePercentage() {
-    for (const percent of this.estateDistList) {
-      percent.distPercentage = Math.floor(this.divider);
-      if (this.estateDistList.indexOf(percent) === this.estateDistList.length - 1) {
-        if (this.estateDistList.length === 3) {
-          return percent.distPercentage += 1;
-        } else if (this.estateDistList.length === 6) {
-          return percent.distPercentage += 4;
-        } else if (this.estateDistList.length === 7) {
-          return percent.distPercentage += 2;
-        } else {
-          return false;
-        }
-      }
-    }
+  // dividePercentage() {
+  //   for (const percent of this.estateDistList) {
+  //     percent.distPercentage = Math.floor(this.divider);
+  //     if (this.estateDistList.indexOf(percent) === this.estateDistList.length - 1) {
+  //       if (this.estateDistList.length === 3) {
+  //         return percent.distPercentage += 1;
+  //       } else if (this.estateDistList.length === 6) {
+  //         return percent.distPercentage += 4;
+  //       } else if (this.estateDistList.length === 7) {
+  //         return percent.distPercentage += 2;
+  //       } else {
+  //         return false;
+  //       }
+  //     }
+  //   }
 
-  }
+  // }
 
   calculateRemPercentage() {
     for (const percent of this.estateDistList) {
@@ -105,6 +105,7 @@ export class MyEstateDistributionComponent implements OnInit {
             this.firstReset = true;
           } else {
             percentage.distPercentage = 0;
+            this.firstReset = true;
           }
         }
       }
@@ -125,7 +126,7 @@ export class MyEstateDistributionComponent implements OnInit {
       this.estateDistList.push(currentObject);
     }
     this.willWritingService.setBeneficiaryInfo(this.estateDistList);
-    this.willWritingService.isBeneficiaryAdded = false;
+    //this.willWritingService.isBeneficiaryAdded = false;
     return true;
   }
 
