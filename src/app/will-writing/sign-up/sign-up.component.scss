@@ -1,0 +1,81 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+
+
+.yes-login-but{
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
+    width: 100%;
+    height: 57px;
+    font-family: $muli-bold;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #00a7a7;
+    border-width:0px; 
+    @include allmobiles {
+
+    }
+  }
+  .no-login-but{
+    font-family: $muli-bold;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    height: 57px;
+    border-radius: 6px;
+    border: solid 1px #ffffff;
+    background-color: #00a7a7;
+  }
+  .prelogin-wrapper__title
+  {
+    font-family: $muli-semi-bold;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .signup-wrapper__header-icon  {
+    @include allmobiles {
+    width: 188px;
+   
+    }
+}
+.back-btn {
+  background-image: url("../../../assets/images/back-web.svg");
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    position: absolute;
+    top: 5%;
+    left: 20px;
+    background-repeat: no-repeat;
+}
+
+.content {
+    @include allmobiles {
+        margin-top: -40px;
+    margin-bottom: 0px !important;
+    }
+}
+.sign-up-container {
+    justify-content: center;
+    padding-top: 72px;
+    @include allmobiles {
+        padding-top: 0px;
+    }
+    .col-lg-5{
+        max-width: 370px;
+    }
+}
+.img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
