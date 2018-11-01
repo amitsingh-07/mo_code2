@@ -74,48 +74,21 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
+    this.getPortfolioDetails();
+  }
 
-    this.portfolio = {
-      "projectedValue": 112.0,
-      "portfolioId": "PORTFOLIO00057",
-      "tenure": "50",
-      "projectedReturns": "+5.50%",
-      "breakDown": [{
-        "id": "SECTOR00012",
-        "name": "Emerging Markets Equity",
-        "type": "Equities",
-        "riskRating": 9.0,
-        "totalPercentage": 60,
-        "funds": [{
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "percentage": 60,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        }]
-      }, {
-        "id": "SECTOR00013",
-        "name": "Global Bonds",
-        "type": "Bonds",
-        "riskRating": 9.0,
-        "totalPercentage": 40,
-        "funds": [{
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "percentage": 20,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        }, {
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "percentage": 20,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        }]
-      }]
+  getPortfolioDetails() {
+    const params = this.constructgetPortfolioParams();
+    this.investmentAccountService.getPortfolioAllocationDetails(params).subscribe((data) => {
+      this.portfolio = data.objectList;
+    });
+  }
+
+  constructgetPortfolioParams() {
+    /* TODO: this will be removed */
+    return {
+      riskProfileId: 4,
+      enquiryId: 5931
     };
   }
 

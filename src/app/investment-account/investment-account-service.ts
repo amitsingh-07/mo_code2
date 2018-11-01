@@ -536,6 +536,11 @@ export class InvestmentAccountService {
         this.commit();
     }
 
+    getPortfolioAllocationDetails(params) {
+        const urlParams = this.constructQueryParams(params);
+        return this.apiService.getPortfolioAllocationDetails(urlParams);
+    }
+
     createInvestmentAccount() {
         const payload = this.constructInvestmentAccountRequest();
         return this.apiService.createInvestmentAccount(payload);
@@ -558,7 +563,7 @@ export class InvestmentAccountService {
     }
 
     getPersonalInfoReqData(data): IPersonalInfo {
-        return {
+        return  {
             nationalityCode: data.nationalityCode,
             fullName: data.fullName,
             firstName: data.firstName,
@@ -652,7 +657,7 @@ export class InvestmentAccountService {
             pepDeclaration: {
                 firstName: data.fName,
                 lastName: data.lName,
-                companyName: (data.pepCountry) ? data.pepCountry.id : '',
+                companyName: data.cName,
                 occupationId: (data.pepoccupation) ? data.pepoccupation.id : '',
                 pepAddress: {
                     countryId: (data.pepCountry) ? data.pepCountry.id : '',
@@ -677,7 +682,7 @@ export class InvestmentAccountService {
     convertDate(dateObject) {
         let convertedDate = '';
         if (dateObject) {
-            convertedDate = dateObject.day + '-' + dateObject.month + '-' + dateObject.day;
+            convertedDate = dateObject.day + '-' + dateObject.month + '-' + dateObject.year;
         }
         return convertedDate;
     }
@@ -690,5 +695,14 @@ export class InvestmentAccountService {
             additionalDesc = data.personalSavingForm.personalSavings;
         }
         return additionalDesc;
+    }
+
+    constructQueryParams(options) {
+        const objectKeys = Object.keys(options);
+        const params = new URLSearchParams();
+        Object.keys(objectKeys).map((e) => {
+            params.set(objectKeys[e], options[objectKeys[e]]);
+        });
+        return '?' + params.toString();
     }
 }
