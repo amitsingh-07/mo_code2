@@ -117,6 +117,9 @@ export class MyBeneficiariesComponent implements OnInit {
 
   validateForm(index: number) {
     this.beneficiaryList[index].selected = !this.beneficiaryList[index].selected;
+    if (this.beneficiaryList[index].selected === false) {
+    this.beneficiaryList[index].distPercentage = 0;
+    }
   }
 
   editBeneficiary(relation: string, index: number) {
@@ -148,7 +151,6 @@ export class MyBeneficiariesComponent implements OnInit {
       return false;
     } else {
       this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
-      this.willWritingService.isBeneficiaryAdded = true;
       return true;
     }
   }
