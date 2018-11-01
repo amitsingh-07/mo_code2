@@ -5,6 +5,8 @@ import { AccountCreatedComponent } from './account-created/account-created.compo
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
     ForgotPasswordResultComponent
@@ -64,6 +66,18 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.DASHBOARD,
     component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.PRELOGIN,
+    component: PreLoginComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.EDIT_PROFILE,
+    component: EditProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.EDIT_PASSWORD,
+    component: EditPasswordComponent,
     canActivate: [AuthGuard]
   }
 ];
