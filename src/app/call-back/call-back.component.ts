@@ -32,7 +32,7 @@ export class CallBackComponent implements OnInit {
         this.myInfoService.setMyInfoValue(this.data);
 
         // Investment account
-        if (this.investmentAccountService.callBackInvestmentAccount) {
+        if (this.investmentAccountService.getCallBackInvestmentAccount()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             this.investmentAccountService.setFormData(data['person']);
             this.myInfoService.isMyInfoEnabled = false;

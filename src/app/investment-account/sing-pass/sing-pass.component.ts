@@ -17,6 +17,7 @@ export class SingPassComponent implements OnInit {
   modelTitle: string;
   modelMessge: string;
   showConfirmation: boolean;
+  showSingPass: boolean;
   investmentData: any;
 
   constructor(private modal: NgbModal,
@@ -35,6 +36,7 @@ export class SingPassComponent implements OnInit {
   ngOnInit() {
     this.showConfirmation = false;
     this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
+    this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
   }
 
   openModal() {
@@ -54,7 +56,7 @@ export class SingPassComponent implements OnInit {
 
   getMyInfo() {
     this.showConfirmation = false;
-    this.investmentAccountService.callBackInvestmentAccount = true;
+    this.investmentAccountService.setCallBackInvestmentAccount();
     this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
     this.myInfoService.goToMyInfo();
   }

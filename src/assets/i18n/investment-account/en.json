@@ -101,9 +101,9 @@
   },
   "FINANCIAL_DETAILS": {
     "TITLE": "Financial Details",
-    "ANNUAL_HOUSEHOLD_INCOME": "Annual Household Income",
+    "ANNUAL_HOUSEHOLD_INCOME": "Monthly Household Income",
     "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
-    "ANNUAL_INCOME": "Annual Income",
+    "ANNUAL_INCOME": "Monthly Income",
     "PERS_OF_INCOME_SAVED": "% Of Income Saved",
     "TOTAL_ASSETS": "Total Assets",
     "TOTAL_LOANS": "Total Loans"
@@ -293,7 +293,7 @@
     },
     "SING_PASS_CONFIRM": {
       "TITLE": "The following details have been autofilled into the form.",
-      "DESCRIPTION": "Nationality\nPersonal Details\nResidential Details\nEmployment Details\nFinancial Details",
+      "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
     }
   }

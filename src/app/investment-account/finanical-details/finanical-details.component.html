@@ -26,7 +26,7 @@
                 <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('annualHouseHoldIncomeRange').valid && !financialDetails.get('annualHouseHoldIncomeRange').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button ngbDropdownToggle class="btn btn-dropdown without-border grey" id="financial_details-annual_house_hold_drpdown"> 
+                      <button [disabled]="isDisabled()" ngbDropdownToggle class="btn btn-dropdown without-border grey" id="financial_details-annual_house_hold_drpdown"> 
                         {{financialDetails.controls.annualHouseHoldIncomeRange.value ? financialDetails.controls.annualHouseHoldIncomeRange.value.name :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">

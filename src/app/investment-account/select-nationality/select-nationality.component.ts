@@ -110,6 +110,7 @@ export class SelectNationalityComponent implements OnInit {
                 this.countryList = this.getCountryList(data.objectList);
                 if (this.selectNationalityFormValues.nationalityCode) {
                     this.selectedNationality = this.getSelectedNationality(this.selectNationalityFormValues.nationalityCode);
+                    this.buildFormControls();
                 }
             });
         });

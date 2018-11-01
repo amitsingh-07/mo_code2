@@ -219,4 +219,8 @@ export class EmploymentDetailsComponent implements OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
     }
   }
+
+  isDisabled() {
+    return this.investmentAccountService.isDisabled('occupation');
+  }
 }

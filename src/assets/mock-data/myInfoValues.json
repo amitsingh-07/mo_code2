@@ -1,93 +1,105 @@
 {
-	"responseCode": 6000,
-	"responseMessage": "Successful response",
-	"person": {
-		"nationality": {
-			"lastupdated": "2016-03-11",
-			"source": "1",
-			"classification": "C",
-			"value": "SG"
-		},
-
-		"name": {
-			"lastupdated": "2015-06-01",
-			"source": "1",
-			"classification": "C",
-			"value": "TAN XIAO HUI"
-		},
-		"passportnumber": {
-			"lastupdated": "2017-08-25",
-			"source": "1",
-			"classification": "C",
-			"value": "E35463874W"
-		},
-		"passportexpirydate": {
-			"lastupdated": "2017-08-25",
-			"source": "1",
-			"classification": "C",
-			"value": "2020-01-01"
-		},
-		"dob": {
-			"lastupdated": "2016-03-11",
-			"source": "1",
-			"classification": "C",
-			"value": "1958-05-17"
-		},
-		"sex": {
-			"lastupdated": "2016-03-11",
-			"source": "1",
-			"classification": "C",
-			"value": "F"
-		},
-
-		"regadd": {
-			"country": "SG",
-			"unit": "128",
-			"street": "BEDOK NORTH AVENUE 1",
-			"lastupdated": "2016-03-11",
-			"block": "548",
-			"source": "1",
-			"postal": "460548",
-			"classification": "C",
-			"floor": "09",
-			"building": ""
-		},
-
-		"mailadd": {
-			"country": "SG",
-			"unit": "128",
-			"street": "BEDOK NORTH AVENUE 1",
-			"lastupdated": "2016-03-11",
-			"block": "548",
-			"source": "2",
-			"postal": "460548",
-			"classification": "C",
-			"floor": "09",
-			"building": ""
-		},
-
-		"employment": {
-			"lastupdated": "2017-10-11",
-			"source": "2",
-			"classification": "C",
-			"value": "ALPHA"
-		},
-		"occupation": {
-			"lastupdated": "2017-10-11",
-			"source": "2",
-			"classification": "C",
-			"value": "53201",
-			"desc": "HEALTHCARE ASSISTANT"
-		},
-
-		"householdincome": {
-			"high": "5999",
-			"low": "5000",
-			"lastupdated": "2017-10-24",
-			"source": "2",
-			"classification": "C"
-		},
-		"uinfin": "S9812381D"
-	}
-
+  "responseCode": 6000,
+  "responseMessage": "Successful response",
+  "person": {
+    "nationality": {
+      "lastupdated": "2016-03-11",
+      "source": "1",
+      "classification": "C",
+      "value": "SG"
+    },
+    "name": {
+      "lastupdated": "2015-06-01",
+      "source": "1",
+      "classification": "C",
+      "value": "TAN XIAO HUI"
+    },
+    "passportnumber": {
+      "lastupdated": "2017-08-25",
+      "source": "1",
+      "classification": "C",
+      "value": "E35463874W"
+    },
+    "passportexpirydate": {
+      "lastupdated": "2017-08-25",
+      "source": "1",
+      "classification": "C",
+      "value": "2020-01-01"
+    },
+    "dob": {
+      "lastupdated": "2016-03-11",
+      "source": "1",
+      "classification": "C",
+      "value": "1958-05-17"
+    },
+    "sex": {
+      "lastupdated": "2016-03-11",
+      "source": "1",
+      "classification": "C",
+      "value": "F"
+    },
+    "regadd": {
+      "country": {
+        "id": 225,
+        "countryCode": "SG",
+        "name": "SINGAPORE",
+        "phoneCode": "+65"
+      },
+      "unit": "128",
+      "street": "BEDOK NORTH AVENUE 1",
+      "lastupdated": "2016-03-11",
+      "block": "548",
+      "source": "1",
+      "postal": "460548",
+      "classification": "C",
+      "floor": "09",
+      "building": ""
+    },
+    "mailadd": {
+      "country": {
+        "id": 225,
+        "countryCode": "SG",
+        "name": "SINGAPORE",
+        "phoneCode": "+65"
+      },
+      "unit": "128",
+      "street": "BEDOK NORTH AVENUE 1",
+      "lastupdated": "2016-03-11",
+      "block": "548",
+      "source": "2",
+      "postal": "460548",
+      "classification": "C",
+      "floor": "09",
+      "building": ""
+    },
+    "employment": {
+      "lastupdated": "2017-10-11",
+      "source": "2",
+      "classification": "C",
+      "value": "ALPHA"
+    },
+    "occupation": {
+      "lastupdated": "2017-10-11",
+      "source": "2",
+      "classification": "C",
+      "value": {
+        "id": 260,
+        "occupation": "ACCOUNTANT (EXCLUDING TAX ACCOUNTANT)",
+        "ssocId": "24111"
+      },
+      "desc": "HEALTHCARE ASSISTANT"
+    },
+    "householdincome": {
+      "value": {
+        "id": 5,
+        "name": "$5,000 to $5,999"
+      },
+      "high": "5999",
+      "low": "5000",
+      "lastupdated": "2017-10-24",
+      "source": "2",
+      "classification": "C"
+    },
+    "uinfin": "S9812381D"
+  }
 }
