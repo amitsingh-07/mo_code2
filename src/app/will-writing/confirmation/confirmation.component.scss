@@ -9,6 +9,7 @@
         padding: 10px 0 !important;
         border-radius: 0;
     }
+
 }
 .col-lg-4.col-md-4.col-sm-12.flex-row{
     position: relative;
@@ -26,6 +27,7 @@
         border: 0px !important;
     }
 }
+
 
 .mobile-header--container {
     @include allmobiles{
@@ -140,15 +142,37 @@
         }
       }
       .section-body {
-        display: flex;
-        padding-top: 22px;
-        padding-bottom:27px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        @include allmobiles {
-            flex-direction: column;
+            display: flex;
+            padding-top: 22px;
+            padding-bottom:27px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            @include allmobiles {
+                flex-direction: column;
+            }
+            .col-lg-6{
+                &.col-md-6{
+                    &.col-sm-12{
+                        &:nth-child(2n-1) {
+                            border-right: 0.5px solid #009999;
+                            @include allmobiles{
+                                border-right: none;
+                            }
+                        }
+                        &:nth-child(2n-2) {
+                            padding-left: 20px; 
+                        }
+                    }
+                }
+                &:last-child{
+                    .record{
+                        @include allmobiles{
+                            border: none;
+                        }
+                    }
+                }
+            }
         }
-      }
       .edit-dark {
           background-image: url("../../../assets/images/will-writing/edit-dark.svg");
           justify-content: right;
@@ -164,10 +188,14 @@
         cursor: pointer;
       }
       .record {
-          @include allmobiles {
-              display: flex;
-          }
+          display: flex;
           margin-bottom: 8px;
+          &:last-child{
+              @include allmobiles{
+                  padding-bottom: 5px;
+                  border-bottom: 0.5px solid #bbbbbb;
+              }
+          }
       }
       .section-header{
         font-family: $muli-semi-bold;
@@ -198,4 +226,36 @@
             border: solid 2px #000000;
         }
       }
+}
+
+.section-row-header {
+    font-family: $muli-bold;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    color: #868686;
+    border-bottom: solid 0.5px #bbbbbb;
+    width: 80%;
+    padding: 0;
+    padding-bottom: 10px;
+    margin: 0 15px;
+    @include allmobiles {
+        width: 100%;
+        padding: inherit;
+        margin: 0;
+        padding-bottom: 10px;
+    }
+}
+.stamp-block{
+    display: flex;
+    justify-content: flex-end;
+    .stamp-circle{
+        position: absolute;
+        margin-right: 40px;
+        right: 12%;
+        padding: 19px;
+        border-radius: 50%;
+        border: 1px solid #a4e7e7;
+        width: 210px;
+        height: 210px;
+    }
 }

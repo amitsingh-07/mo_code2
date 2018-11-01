@@ -20,7 +20,6 @@ const SESSION_STORAGE_KEY = 'app_will_writing_session';
 export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
-  isBeneficiaryAdded = false;
   constructor(
     private http: HttpClient,
     private modal: NgbModal
@@ -67,6 +66,46 @@ export class WillWritingService {
     this.willWritingFormData.guardian = [];
     this.willWritingFormData.beneficiary = [];
     this.willWritingFormData.execTrustee = [];
+  }
+
+  updateSpouseInfo(data) {
+    // update spouse in guardian
+    if (this.getGuardianInfo().length > 0) {
+      const spouseGuardian = this.getGuardianInfo();
+      spouseGuardian[0].name = data.name;
+      spouseGuardian[0].uin = data.uin;
+      this.setGuardianInfo(spouseGuardian);
+    }
+
+    // update spouse in beneficiary
+    if (this.getBeneficiaryInfo().length > 0) {
+      const spouseBeneficiary = this.getBeneficiaryInfo();
+      spouseBeneficiary[0].name = data.name;
+      spouseBeneficiary[0].uin = data.uin;
+      this.setBeneficiaryInfo(spouseBeneficiary);
+    }
+
+    // update spouse in executor and trustee
+    if (this.getExecTrusteeInfo().length > 0) {
+      const spouseExecTrustee = this.getExecTrusteeInfo();
+      spouseExecTrustee[0].name = data.name;
+      spouseExecTrustee[0].uin = data.uin;
+      this.setExecTrusteeInfo(spouseExecTrustee);
+    }
+  }
+
+  updateChildrenInfo(data) {
+    const childrenBeneficiary = this.getBeneficiaryInfo();
+    const childrenList = this.getChildrenInfo();
+    let i = this.getSpouseInfo().length > 0 ? 1 : 0;
+    for (const children of data) {
+      if (children.name !== childrenList[0].name || children.uin !== childrenList[0].uin) {
+        childrenBeneficiary[i].name = children.name;
+        childrenBeneficiary[i].uin = children.uin;
+      }
+      i++;
+    }
+    this.setBeneficiaryInfo(childrenBeneficiary);
   }
 
   /**
@@ -135,7 +174,7 @@ export class WillWritingService {
    * @param data - about me details.
    */
   setAboutMeInfo(data: IAboutMe) {
-    if (this.getAboutMeInfo()) {
+    if (Object.keys(this.getAboutMeInfo()).length !== 0) {
       const isMaritalStatusChanged = this.getAboutMeInfo().maritalStatus !== data.maritalStatus;
       const isNoOfChildrenChanged = this.getAboutMeInfo().noOfChildren !== data.noOfChildren;
       if (isMaritalStatusChanged || isNoOfChildrenChanged) {
@@ -162,6 +201,9 @@ export class WillWritingService {
    * @param data - spouse details.
    */
   setSpouseInfo(data: ISpouse) {
+    if (this.getSpouseInfo().length > 0 && (this.getSpouseInfo()[0].name !== data.name || this.getSpouseInfo()[0].uin !== data.uin)) {
+      this.updateSpouseInfo(data);
+    }
     this.willWritingFormData.spouse = [];
     data.relationship = 'spouse';
     this.willWritingFormData.spouse.push(data);
@@ -184,6 +226,14 @@ export class WillWritingService {
    * @param data - children details.
    */
   setChildrenInfo(data: IChild[]) {
+    if (this.getChildrenInfo().length > 0) {
+      if (this.getBeneficiaryInfo().length > 0) {
+        this.updateChildrenInfo(data);
+      }
+      if (this.getGuardianInfo().length > 0 && !this.checkChildrenAge(data)) {
+        this.willWritingFormData.guardian = [];
+      }
+    }
     this.willWritingFormData.children = [];
     for (const children of data) {
       children.relationship = 'child';

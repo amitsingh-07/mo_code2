@@ -113,10 +113,10 @@ export class MyFamilyComponent implements OnInit {
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
       return false;
     } else {
-      if (this.hasSpouse) {
+      if (this.hasSpouse && this.myFamilyForm.get('spouse').dirty) {
         this.willWritingService.setSpouseInfo(form.value.spouse[0]);
       }
-      if (this.hasChild) {
+      if (this.hasChild && this.myFamilyForm.get('childrens').dirty) {
         this.willWritingService.setChildrenInfo(form.value.childrens);
       }
       return true;

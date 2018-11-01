@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="back-btn hidden-lg" (click)="goBack()"></div>
+    <div class="content">
+      <div class="flex-row sign-up-container">
+        <div class="col-lg-5 col-md-5 col-sm-12 pl0 pr0">
+        <div class="col-12 pl0 pr0">
+            <div class="img"><img id="prelogin_icon" class="signup-wrapper__header-icon order3 sm-order1 mb20" src="assets/images/post-login-icon.svg" /></div>
+            <h2 class="prelogin-wrapper__title order1 sm-order2 ml10 mb20" id="pre_login_welcometxt_lbl">{{ 'WILL_WRITING.SIGN_UP.DESCRIPTION' | translate}} </h2>
+        </div>
+        <div class="col-lg-12 pl0 pr0">
+            <div class="flex-row mb15">
+              <div class="flex-col-12 stretch">
+                 <button class="yes-login-but" id="yes_btn" (click)="navigateLogin()">{{ 'WILL_WRITING.SIGN_UP.LOGIN_NOW' | translate}}</button>
+              </div>
+            </div>
+            <div class="flex-row mb20">
+              <div class="flex-col-12 stretch">
+                  <button class="no-login-but" id="no_btn" (click)="navigateCreateAccount()">{{ 'WILL_WRITING.SIGN_UP.CREATE_ACCOUNT' | translate}}</button>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  
