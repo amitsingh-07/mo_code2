@@ -1,0 +1,215 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.label{
+    color:#2d8289;
+}
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;
+    .help-icon {
+        background-image: url("../../../assets/images/help-icon.png");
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 13px;
+    }
+}
+
+.inline-warning {
+    background-image: url("../../../assets/images/will-writing/inline-error.svg");
+    height: 24px;
+    width: 24px;
+    background-repeat: no-repeat;
+}
+.container-fluid {
+    background-color: #fff;
+    padding: 50px 60px 65px;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+    .main-container {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.banner-image{
+    @include allmobiles{
+        width: 178px;
+        height: 153px;
+        object-fit: contain;
+        margin: auto;
+        img{
+            padding-top: 0;
+        }
+    }
+}
+
+.eligibilityForm {
+    margin-top: 130px;
+    @include allmobiles {
+        background-color: #f7f7f7;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        margin-top:0;
+    }
+}
+.instructions {
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);   
+    @include allmobiles{
+        margin: 0 16px !important;
+    }
+}
+.instruction-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing: -0.3px;
+    color: #626362;
+    padding: 30px 25px;
+    div{
+        margin-bottom: 15px;
+        span{
+            display: flex;
+        }
+    }
+}
+.header-container{
+    display: flex;
+    flex-direction: column;
+    .title {
+        letter-spacing: -0.4px;  
+    }
+    .get-started {
+        font-family: $muli-light;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: -0.2px;
+        color: #00a7a7;
+    }
+    .sub-title{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.22;
+        letter-spacing: -0.2px;
+        color: #333846;
+        @include allmobiles {
+            margin-bottom: 20px;        
+            text-align: center;
+            padding: 0 30px;
+        }
+        .web {
+            width: 418px;
+        }
+    }
+    h2{
+        color: #00a7a7;
+        @include allmobiles {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: -0.4px;
+            text-align: center;
+            color: #066360;
+        }
+    }
+    @include allmobiles {
+        flex-direction: column-reverse;
+    }
+    .tooltip-content{
+        border: 1px solid #00a7a7;
+        border-radius: 4px;
+        padding: 13px 29px;
+        margin-top: 22px;
+        position: relative;
+        div{
+            margin-right: 41px;
+        }
+        .help-icon {
+            bottom: 30px;
+            right: 22px;
+        }
+    }
+}
+
+.inline-error{
+    border-radius: 6px !important;
+    border: solid 2px #ff872f !important;
+    background-color: #fff3e9 !important;
+    color: #e57300 !important;
+    .duration{
+        color: #e57300 !important;
+    }
+    .btn-dropdown{
+        border-radius: none;
+    }
+}
+.mobile-logo{
+    @include allmobiles {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+.direct-form-btn--radio {
+    background-color: #fff !important;
+    @include allmobiles {
+        color:  #00a7a7 !important;
+    }
+}
+.direct-form-btn--radio.active {
+    background-color: #00a7a7 !important;
+    color: #ffffff !important;
+    &.no {
+        background-color: #fff3e9 !important;
+        color: #e57300 !important;
+    }
+}
+.section {
+    margin-bottom: 56px;
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #2d8289;
+    margin-bottom: 29px;
+}
+.dropdown-control{
+     .dropdown-menu{
+        &.show{
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.tooltip-content{
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #2d8289;
+    padding-bottom: 33px;
+    .help-icon{
+        bottom: unset;
+        right: unset;
+        margin-left: 10px;
+    }
+}
+
+.warning-message {
+  font-family: $muli-regular;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.31;
+  letter-spacing: -0.2px;
+  color: #2d8289;
+}

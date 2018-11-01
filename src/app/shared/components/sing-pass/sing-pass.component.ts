@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +12,8 @@ import { MyInfoService } from '../../Services/my-info.service';
   styleUrls: ['./sing-pass.component.scss']
 })
 export class SingPassComponent implements OnInit {
+  @Input('label') label;
+  @Input('position') position;
   modelTitle: string;
   modelMessge: string;
 
@@ -23,24 +25,27 @@ export class SingPassComponent implements OnInit {
             ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.modelTitle = this.translate.instant('MYINFO.OPEN_MODAL_DATA.TITLE');
-      this.modelMessge = this.translate.instant('MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
+      this.modelTitle = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE');
+      this.modelMessge = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
     });
   }
 
   ngOnInit() {
+    console.log(this.position);
   }
 
   openModal() {
     if (!this.investmentAccountService.isSingPassDisabled()) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.modelTitle;
-      ref.componentInstance.errorMessage = this.modelMessge;
+      //ref.componentInstance.errorMessage = this.modelMessge;
+      ref.componentInstance.errorDescription = this.modelMessge;
       ref.componentInstance.isButtonEnabled = true;
       ref.result.then(() => {
         this.investmentAccountService.callBackInvestmentAccount = true;
         this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-        this.router.navigate(['myinfo']);
+        this.myInfoService.goToMyInfo();
+        //this.router.navigate(['myinfo']);
       }).catch((e) => {
       });
     }

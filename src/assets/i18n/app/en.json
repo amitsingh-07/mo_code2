@@ -147,10 +147,10 @@
       "TITLE": "Fair Dealing"
     }
   },
-  "MYINFO": {
+  "INVESTMENT_ACCOUNT_MYINFO": {
     "OPEN_MODAL_DATA": {
       "TITLE": "Leave This Page",
-      "DESCRIPTION": "You will be redirected to Singpass MyInfo page to begin fetching your data."
+      "DESCRIPTION": "By signing in to SingPass, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>You will be redirected to SingPass MyInfo page. Would you like to proceed?"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
@@ -169,7 +169,7 @@
     "PLANS_SELECTED": "Plans Selected",
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
-    "LOGIN": "Login",
+    "LOGIN": "Log In",
     "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
   },
   "FOOTER": {

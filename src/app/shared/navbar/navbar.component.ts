@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarService } from './navbar.service';
 
@@ -34,27 +34,30 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   closeIcon = false;
   settingsIcon = false;
   currentUrl: string;
+  backListener = '';
+  isBackPressSubscribed = false;
 
   innerWidth: any;
   mobileThreshold = 567;
   isNavbarCollapsed = true;
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
-  constructor(private navbarService: NavbarService, private _location: Location,
-              private config: NgbDropdownConfig, private renderer: Renderer2,
-              private cdr: ChangeDetectorRef, private router: Router) {
-                config.autoClose = true;
-                this.navbarService.getNavbarEvent.subscribe((data) => {
-                  this.navbarService.setNavbarDetails(this.NavBar);
-                });
-              }
+  constructor(
+    private navbarService: NavbarService, private _location: Location,
+    private config: NgbDropdownConfig, private renderer: Renderer2,
+    private cdr: ChangeDetectorRef, private router: Router) {
+    config.autoClose = true;
+    this.navbarService.getNavbarEvent.subscribe((data) => {
+      this.navbarService.setNavbarDetails(this.NavBar);
+    });
+  }
 
   @HostListener('window:scroll', ['$event'])
   @HostListener('window:resize', [])
-    checkScroll() { // Emiting Navbar Details to Navbar Service
-      this.navbarService.setNavbarDetails(this.NavBar);
-      this.innerWidth = window.innerWidth;
-    }
+  checkScroll() { // Emiting Navbar Details to Navbar Service
+    this.navbarService.setNavbarDetails(this.NavBar);
+    this.innerWidth = window.innerWidth;
+  }
 
   ngOnInit() {
     this.hideMenu();
@@ -64,6 +67,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
+    this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
+      this.isBackPressSubscribed = subscribed;
+    });
+
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url !== this.currentUrl) {
@@ -77,11 +84,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.navbarService.currentNavbarMobileVisibility.subscribe((showMobileNavbar) => {
       this.showMobileNavbar = showMobileNavbar;
-      // console.log('Current Mobile Navbar Mode:' + showMobileNavbar);
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
-      // console.log('Current NavbarMode: ' + this.navbarMode);
       this.cdr.detectChanges();
     });
     this.navbarService.currentNavbarShadowVisibility.subscribe((showNavShadow) => {
@@ -99,7 +104,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   goBack() {
-    this._location.back();
+    if (this.isBackPressSubscribed) {
+      this.navbarService.backPressed(this.pageTitle);
+    } else {
+      this._location.back();
+    }
   }
 
   openDropdown(dropdown) {

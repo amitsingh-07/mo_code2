@@ -12,6 +12,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-residential-address',
@@ -49,6 +50,14 @@ export class ResidentialAddressComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    if (this.formValues.isMyInfoEnabled) {
+      if (this.formValues.countryCode) {
+        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
+      }
+      if (this.formValues.mailCountryCode) {
+        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
+      }
+    }
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
@@ -56,10 +65,12 @@ export class ResidentialAddressComponent implements OnInit {
 
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
-      country: [this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
+      country: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+        Validators.required],
       postalCode: [this.formValues.postalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
       address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [this.formValues.address2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      floor: [this.formValues.floor, Validators.required],
       unitNo: [this.formValues.unitNo, Validators.required],
       isMailingAddressSame: [this.formValues.isMailingAddressSame]
     });
@@ -82,10 +93,12 @@ export class ResidentialAddressComponent implements OnInit {
     if (this.addressForm.controls.isMailingAddressSame.value !== true) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
+          mailCountry: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+            Validators.required],
           mailPostalCode: [this.formValues.mailPostalCode, Validators.required],
           mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           mailAddress2: [this.formValues.mailAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          mailFloor: [this.formValues.mailFloor, Validators.required],
           mailUnitNo: [this.formValues.mailUnitNo, Validators.required]
         }));
       } else { // Other Countries

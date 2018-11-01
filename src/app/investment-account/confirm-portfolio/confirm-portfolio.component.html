@@ -1,7 +1,7 @@
 <div class="confirm-portfolio">
   <div class="step-indicator-container">
     <div class="container-fluid">
-      <app-step-indicator [count]="7" [activeStepIndex]="5"></app-step-indicator>
+      <app-step-indicator [count]="9" [activeStepIndex]="8"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid">
@@ -85,7 +85,7 @@
         <div>{{ 'CONFIRM_PORTFOLIO.CHECK_FEES' | translate}}</div>
       </div>
 
-      <button type="button" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{ 'CONFIRM_PORTFOLIO.I_WANT_TO_START_INVEST' | translate}}</button>
 
     </div>

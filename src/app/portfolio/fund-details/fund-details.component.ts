@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 
@@ -17,9 +18,11 @@ export class FundDetailsComponent implements OnInit {
   name: string;
   pageTitle: string;
   fund;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
+    public navbarService: NavbarService,
     private portfolioService: PortfolioService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -33,6 +36,19 @@ export class FundDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
     this.fund = this.portfolioService.getSelectedFund();
+    this.reConstructFactSheetLinks();
   }
+
+  reConstructFactSheetLinks() {
+    let factSheetLink;
+    let highlightSheetLink;
+    factSheetLink = this.fund.factSheetLink.split('|')[0];
+    highlightSheetLink = this.fund.factSheetLink.split('|')[1];
+    this.fund.factSheetLink = factSheetLink;
+    this.fund.highlightSheetLink = highlightSheetLink;
+  }
+
 }

@@ -1,0 +1,126 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    padding: 50px 60px 65px;
+    font-family: $muli-semi-bold;
+    @include allmobiles{
+        padding: 0 !important;
+        border-radius: 0;
+    }
+    .mobile-content{
+        @include allmobiles{
+            background: $white-color; 
+            padding: 10px 15px;
+        }
+    }
+}
+
+.aboutMe {
+    background-color: #f4fafb;
+    border-radius: 6px;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #2d8289;
+    margin-top: 70px;
+    @include allmobiles {
+        margin-top: 25px;
+        margin-bottom: 100px;
+    }
+    .flex-row{
+        padding: 0 20px;
+        &.title{
+            font-family: $muli-bold;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: -0.4px;
+            color: #066360;
+            border-radius: 6px;
+            background: $white-color;
+            padding: 17px 20px;
+        }
+    }
+    .sublbl{
+        font-family: $muli-regular;
+        font-size: 16px;
+        letter-spacing: -0.3px;
+        color: #2d8289;
+        font-weight: normal;
+    }
+    input{
+        color:#00a7a7;
+    }
+    .direct-form-btn--radio{
+        width: unset;
+        min-width: unset;
+        @include allmobiles{
+            background: $white-color;
+            color: #00a7a7;
+            &.active{
+                background: #00a7a7;
+                color: #fff;
+            }
+        }
+        &.btn{ 
+            @include allmobiles{
+                margin: 0 !important;
+            }
+        }
+    }
+}
+.heading {
+    font-family: $muli-light;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+}
+.autofill-link {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+.autofill-text{
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: #ffffff;  
+}
+
+.sub-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    padding-right: 65px;
+    padding-bottom: 26px;
+    @include allmobiles{
+        color: #333846;
+        text-align: center;
+        width: 300px;
+        padding:0;
+    }
+}
+.mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.dropdown-control{
+    .dropdown-menu{
+        max-height: 200px;
+        overflow: auto;
+       &.show{
+           margin-bottom: 20px;
+       }
+   }
+}

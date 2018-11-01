@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
@@ -159,7 +160,6 @@ export class ApiService {
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
     */
-    console.log(data);
     const url = '../../../assets/mock-data/customerReview.json';
     return this.http.getMock(url)
       .pipe(
@@ -333,8 +333,6 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setPersonalInfo.json';
-    console.log('Data Posted: ');
-    console.log(data);
     return this.http.post(apiConstants.endpoint.portfolio.setInvestmentObjective, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -408,8 +406,7 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setRiskAssessment.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.portfolio.updateRiskAssessment, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -587,8 +584,7 @@ export class ApiService {
     //const url = 'https://bfa-dev.ntucbfa.cloud/account/account-microservice/api/forgotPassword';
     // tslint:disable-next-line:no-commented-code
     const url = '../assets/mock-data/forgotPassword.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.forgotPassword, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -614,8 +610,7 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/forgotPassword.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.resetPassword, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -700,8 +695,7 @@ export class ApiService {
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/setRiskAssessment.json';
-    console.log('Data Posted: ');
-    console.log(data);
+
     return this.http.post(apiConstants.endpoint.portfolio.updateRiskAssessment, data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
@@ -747,6 +741,62 @@ export class ApiService {
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
         })
+      );
+  }
+
+  createInvestmentAccount(data) {
+    // tslint:disable-next-line
+    // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
+    const url = '../assets/mock-data/createInvestmentAccount.json';
+
+    return this.http.post(apiConstants.endpoint.investmentAccount.createInvestmentAccount, data)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+            return this.httpClient.get<IServerResponse>(url);
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
+  // Verify PromoCode
+  verifyPromoCode(promocode: string ) {
+    return this.http.post(apiConstants.endpoint.verifyPromoCode, promocode)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
+  // Get PromoCode
+  getPromoCode() {
+    return this.http.get(apiConstants.endpoint.getPromoCode)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 }

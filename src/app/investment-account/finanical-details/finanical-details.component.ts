@@ -28,8 +28,6 @@ export class FinanicalDetailsComponent implements OnInit {
   pageTitle: string;
   financialDetails: FormGroup;
   FinancialFormData;
-  selectRangeValue = 'select Range';
-  selectNumber = 'Select Number';
   formValues;
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
@@ -83,17 +81,13 @@ export class FinanicalDetailsComponent implements OnInit {
   getIncomeRangeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
-      console.log(this.annualHouseHoldIncomeRanges);
     });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
-    this.selectRangeValue = annualHouseHoldIncome.name;
-    this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(this.selectRangeValue);
-
+    this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(annualHouseHoldIncome);
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
-    this.selectNumber = HouseHoldMembers;
-    this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(this.selectNumber);
+    this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(HouseHoldMembers);
   }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);

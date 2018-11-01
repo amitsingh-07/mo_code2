@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -7,11 +8,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
-import { ForgotPasswordResultComponent } from './forgot-password-result/forgot-password-result.component';
+import {
+    ForgotPasswordResultComponent
+} from './forgot-password-result/forgot-password-result.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
-import { PostLoginComponent } from './post-login/post-login.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
@@ -24,6 +26,10 @@ const routes: Routes = [
     path: SIGN_UP_ROUTES.ROOT,
     pathMatch: 'full',
     redirectTo: SIGN_UP_ROUTES.CREATE_ACCOUNT
+  },
+  {
+    path: SIGN_UP_ROUTES.PRELOGIN,
+    component: PreLoginComponent
   },
   {
     path: SIGN_UP_ROUTES.CREATE_ACCOUNT,
@@ -60,10 +66,6 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.DASHBOARD,
     component: DashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: SIGN_UP_ROUTES.POSTLOGIN,
-    component: PostLoginComponent,
     canActivate: [AuthGuard]
   },
   { path: SIGN_UP_ROUTES.PRELOGIN,

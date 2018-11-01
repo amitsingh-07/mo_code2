@@ -74,7 +74,6 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '1') {
         if (this.save()) {
-          console.log('triggered');
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
       }
@@ -106,7 +105,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     let sum_string = '';
     sum_string += this.translate.instant('DIRECT_LIFE_PROTECTION.COVERAGE_AMT.DOLLAR') + this.coverage_amt + ', ';
     sum_string += this.duration;
-    if (this.lifeProtectionForm.value.premiumWaiver === 'yes') {
+    if (this.lifeProtectionForm.value.premiumWaiver === true || this.lifeProtectionForm.value.premiumWaiver === 'yes') {
       sum_string += ', Premium Waiver Rider';
     }
     return sum_string;

@@ -1,0 +1,35 @@
+<div class="intro-block">
+    <div class="container-fluid max-width--1024">
+  
+      <div class="intro-block__tab-container">
+        <div class="intro-block__tab active-prev" [class.active]="false" id="willtab1"></div>
+        <div class="intro-block__tab active-prev" [class.active]="false"  id="willtab2"></div>
+        <div class="intro-block__tab active-prev" [class.active]="false" id="willtab3"></div>
+        <div class="intro-block__tab" [class.active]="true"  id="willtab4"></div>
+      </div>
+      <div class="flex-row">
+          <div class="back-btn hidden-lg col-12" id="appoint-your-executor-back" (click)="goBack()"></div>
+        </div>
+  
+      <div class="intro-block__content">
+        <div class="row text-center">
+          <div class="col-12">
+  
+            <div class="banner-image">
+              <img src="assets/images/will-writing/review-your-details.svg" id="appoint-your-executor-img" />
+            </div>
+          </div>
+  
+          <div class="col-lg-5 col-md-7 col-sm-12 intro-block__content__desc">
+            <p class="intro-block__content__heading" id="appoint-your-executor-heading">{{ 'WILL_WRITING.COMMON.STEP_4' | translate}}</p>
+            <p class="intro-block__content__title mb10" id="appoint-your-executor-title">{{ 'WILL_WRITING.REVIEW_YOUR_DETAILS.TITLE' | translate}}</p>
+            <p class="intro-block__content__sub-title mb40" id="appoint-your-executor-sub-title">{{ 'WILL_WRITING.REVIEW_YOUR_DETAILS.SUB_TITLE' | translate}}</p>
+            <button type="button" (click)="goToNext()" class="btn btn__footer--fixed width100" id="appoint-your-executor-continue">{{ 'LABEL.PROCEED' | translate}}</button>
+          </div>
+          
+        </div>
+      </div>
+  
+  
+    </div>
+  </div>

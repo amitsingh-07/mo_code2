@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content:center;
     align-items:center;
-    padding:20px;
+    padding:0px 20px 20px 20px;
     background-color:#e8f2f3;
 }
 
@@ -15,8 +15,11 @@
     position: relative;
     display:block;
     width:100%;
-    max-width:1024px;
-    padding-left:20px; 
+    max-width:1024px; 
+    .article-category__title{
+        color:$teal-color;
+        font-family:$muli-bold;
+    }
 }
 
 .article-category__container{
@@ -26,7 +29,7 @@
     max-width:1024px;
     flex-direction:row;
     justify-content:space-between;
-    margin-top:60px;
+    margin-top:30px;
     @include minPhabletmaxTablet{
         flex-direction:column;
     }
@@ -60,7 +63,7 @@
         margin-bottom:20px;
         overflow:unset;
     }
-    .article-category__title{
+    .article-category__label{
         position: relative;
         display: block;
         width:100%;

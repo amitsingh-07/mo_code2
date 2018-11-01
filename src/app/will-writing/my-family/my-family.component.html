@@ -1,0 +1,98 @@
+<div class="personal-info">
+  <app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]="myFamilyForm.dirty"></app-page-title>
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <div class="flex-row my-form-container">
+        <div class="col-lg-6 col-md-6 col-12 header-container">
+          <div class="heading hidden-sm-md" id="myFamily-step1">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
+          <div class="autofill-link">
+            <div class="autofill-text hidden-sm-md" id="myFamily-title">{{ 'WILL_WRITING.MY_FAMILY.TITLE' | translate}}</div>
+            <div class="sub-title mb20" id="myFamily-sub-title">{{ 'WILL_WRITING.MY_FAMILY.SUB_TITLE' | translate}}</div>
+            <div class="autofill-logo hidden-sm-md" id="myFamily-img"><img class="img-fluid" src="assets/images/my-family.svg" /></div>
+            <div class="autofill-logo mobile-logo hidden-lg mb10" id="myFamily-mobile-img"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-12 myFamilyForm">
+
+          <form [formGroup]="myFamilyForm" id="myFamilyForm" name="myFamilyForm" class="myFamily">
+            <div *ngIf="hasSpouse">
+              <div class="aboutMe" formArrayName="spouse" *ngFor="let spouse of myFamilyForm.get('spouse').controls; let i = index;">
+                <div class="form-group" [formGroupName]="i">
+                  <div class="flex-row title">{{ 'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</div>
+                  <div class="flex-row">
+                    <div class="flex-col-5">
+                      <label for="name" id="myFamilyFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div></label>
+                    </div>
+                    <div class="flex-col-7">
+                      <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
+                    </div>
+                  </div>
+                  <div class="flex-row">
+                    <div class="flex-col-5">
+                      <label for="name" id="myFamilyFormLbl2">
+                        <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
+                      </label>
+                    </div>
+                    <div class="flex-col-7">
+                      <input type="text" [ngClass]="{'inline-error': submitted && spouse.controls.uin.invalid}" id="myFamilyFormInpt2" class="form-control" #uin formControlName="uin">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hasChild">
+              <div class="aboutMe" formArrayName="childrens" *ngFor="let children of myFamilyForm.get('childrens').controls; let i = index;">
+                <div class="form-group" [formGroupName]="i">
+                  <div class="flex-row title">{{ 'WILL_WRITING.MY_FAMILY.FORM.MY_CHILD' | translate}} {{i+1}}</div>
+                  <div class="flex-row">
+                    <div class="flex-col-5">
+                      <label for="name" id="myFamilyFormLbl1"><div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div></label>
+                    </div>
+                    <div class="flex-col-7">
+                      <input type="text" [ngClass]="{'inline-error': submitted && children.controls.name.invalid}" id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
+                    </div>
+                  </div>
+                  <div class="flex-row">
+                    <div class="flex-col-5">
+                      <label for="name" id="myFamilyFormLbl2">
+                        <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
+                      </label>
+                    </div>
+                    <div class="flex-col-7">
+                      <input type="text" [ngClass]="{'inline-error': submitted && children.controls.uin.invalid}" id="myFamilyFormInpt2" class="form-control" #uin formControlName="uin">
+                    </div>
+                  </div>
+                  <div class="flex-row">
+                    <div class="flex-col-5">
+                      <label for="name" id="myFamilyFormLbl7">{{ 'WILL_WRITING.MY_FAMILY.FORM.DOB' | translate}}</label>
+                    </div>
+                    <div class="flex-col-7">
+                      <div class="datepicker-control">
+                        <div class="input-group date-picker mb0" [ngClass]="{'inline-error': submitted && children.controls.dob.invalid}">
+                          <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                          <div class="input-group-append">
+                            <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                              <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="!submitted || children.controls.dob.valid || children.controls.dob.pristine" src="./assets/images/calendar-normal.svg"
+                              />
+                              <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="submitted && children.controls.dob.invalid && !children.controls.dob.pristine" src="./assets/images/calendar-error.svg"
+                              />
+                            </button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="button" (click)="goToNext(myFamilyForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                id="myFamilyFormBtn1">
+                {{'LABEL.CONTINUE' | translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

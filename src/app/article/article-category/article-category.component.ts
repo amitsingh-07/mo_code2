@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { FooterService } from './../../shared/footer/footer.service';
@@ -20,7 +20,7 @@ export class ArticleCategoryComponent implements OnInit {
   public articleListCategory: IArticleElement[];
   constructor(public navbarService: NavbarService, public footerService: FooterService,
               private articleService: ArticleService, private articleApiService: ArticleApiService,
-              private config: NgbDropdownConfig, private route: ActivatedRoute) {
+              private config: NgbDropdownConfig, private route: ActivatedRoute, private router: Router) {
               }
 
   ngOnInit() {
@@ -43,10 +43,15 @@ export class ArticleCategoryComponent implements OnInit {
 
   getCategoryArticles(category_name: string) {
     this.category_id = +(this.articleService.getArticleId(category_name));
-    if (this.category_id > 0) {
+    if (this.category_id > -1) {
       this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
     } else {
-      //Redirect away
+      if (this.category_id === -1) {
+        this.category = 'All';
+      } else {
+        // Redirect away
+        this.router.navigate(['/articles/category/all']);
+      }
     }
     this.articleApiService.getArticleCategoryList(this.category).subscribe((data) => {
       this.articleListCategory = this.articleService.getArticleElementList(data);
