@@ -1,18 +1,22 @@
 <div class="intro-block">
     <div class="container-fluid max-width--1024">
       <div class="flex-row">
-          <div class="back-btn col-12 hidden-lg" id="appoint-your-executor-back" (click)="goBack()"></div>
+          <div class="back-btn col-12 hidden-lg hidden-sm-md" id="appoint-your-executor-back" (click)="goBack()"></div>
         </div>
   
       <div class="intro-block__content">
         <div class="row text-center">
   
           <div class="col-lg-6 col-md-7 col-sm-12 intro-block__content__desc">
-            <p class="intro-block__content__heading">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.HERE_YOUR_WILL' | translate}}</p>
+            <div class="header">
+              <p class="intro-block__content__heading">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.HERE_YOUR_WILL' | translate}}</p>
+              <p class="owl"><img src="assets/images/will-writing/owl-mobile.svg"/></p>
+            </div>
+            <p class="sub-title">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.SUB_TITLE' | translate}}</p>
             <div class="instructions">
                 <div class="mask" id="intro-why-will">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.TITLE' | translate}}</div>
                 <div class="instruction-content">
-                  <ul>
+                  <ul class="mt20 pb20">
                     <li><div>
                         <div class="step">{{ 'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
                         <div>{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.PRINT_YOUR_WILL' | translate}}</div>
@@ -32,7 +36,8 @@
                   </ul>
                 </div>
               </div>
-            <button type="button" class="btn btn__footer--fixed width100" id="appoint-your-executor-continue" (click)="goToNext()">{{ 'LABEL.CONTINUE' | translate}}</button>
+              <div class="edit-will"><span class="edit-icon mr5"><img src="assets/images/will-writing/edit-dark.svg" /></span>{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.EDIT_YOUR_WILL' | translate}}</div>
+            <button type="button" class="btn btn__footer--fixed width100 btn-primary" id="appoint-your-executor-continue" (click)="goToNext()">{{ 'WILL_WRITING.VALIDATE_YOUR_WILL.DOWNLOAD_WILL' | translate}}</button>
           </div>
           
         </div>

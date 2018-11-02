@@ -220,7 +220,9 @@
       "PRINT_YOUR_WILL": "Print Your Will",
       "FIND_2_WITNESSES": "Find 2 Witnesses",
       "SIGN_YOUR_WILL": "Sign Your Will",
-      "KEEP_IT_SAFE": "Keep It In A Safe Place"
+      "KEEP_IT_SAFE": "Keep It In A Safe Place",
+      "DOWNLOAD_WILL": "Download Will",
+      "EDIT_YOUR_WILL": "Edit your will"
     }
   }
 }
