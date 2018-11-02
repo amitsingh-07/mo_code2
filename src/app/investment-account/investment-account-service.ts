@@ -394,7 +394,7 @@ export class InvestmentAccountService {
         return this.investmentAccountFormData.callBackInvestmentAccount;
     }
 
-    setFormData(data) {
+    setMyInfoFormData(data) {
         this.investmentAccountFormData.fullName = data.name.value;
         if (data.nationality.value) {
             this.investmentAccountFormData.nationalityCode = data.nationality.value;
@@ -410,23 +410,15 @@ export class InvestmentAccountService {
         }
 
         // Occupation
-        if (data.occupation && data.occupation.desc) {
-            this.investmentAccountFormData.occupation = data.occupation.desc;
+        if (data.occupation && data.occupation.value) {
+            this.investmentAccountFormData.occupation = data.occupation.value;
             this.disableAttributes.push('occupation');
         }
 
         // Monthly Household Income
-        if (data.householdincome) {
-            let highAmount: any = '';
-            if (data.householdincome.low && data.householdincome.high) {
-                if (data.householdincome.high === 'above') {
-                    highAmount = ' and ' + data.householdincome.high;
-                } else {
-                    highAmount = ' to $' + data.householdincome.high;
-                }
-                this.investmentAccountFormData.annualHouseHoldIncomeRange = '$' + data.householdincome.low + highAmount;
-                this.disableAttributes.push('annualHouseHoldIncomeRange');
-            }
+        if (data.householdincome && data.householdincome.value) {
+            this.investmentAccountFormData.annualHouseHoldIncomeRange = data.householdincome.value;
+            this.disableAttributes.push('annualHouseHoldIncomeRange');
         }
         this.investmentAccountFormData.disableAttributes = this.disableAttributes;
         this.investmentAccountFormData.isMyInfoEnabled = true;
@@ -465,7 +457,7 @@ export class InvestmentAccountService {
         // Register address
         if (data.regadd) {
             if (data.regadd.country) {
-                this.investmentAccountFormData.countryCode = data.regadd.country;
+                this.investmentAccountFormData.country = data.regadd.country;
                 this.disableAttributes.push('country');
             }
             if (data.regadd.floor) {
@@ -500,7 +492,7 @@ export class InvestmentAccountService {
     // MyInfo - Email Address
     setMyInfoEmailAddress(data) {
         if (data.mailadd.country) {
-            this.investmentAccountFormData.mailCountryCode = data.mailadd.country;
+            this.investmentAccountFormData.mailCountry = data.mailadd.country;
             this.disableAttributes.push('mailCountry');
         }
         if (data.mailadd.floor) {

@@ -34,7 +34,7 @@ export class CallBackComponent implements OnInit {
         // Investment account
         if (this.investmentAccountService.getCallBackInvestmentAccount()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
-            this.investmentAccountService.setFormData(data['person']);
+            this.investmentAccountService.setMyInfoFormData(data['person']);
             this.myInfoService.isMyInfoEnabled = false;
             this.myInfoService.closeMyInfoPopup(false);
             this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
