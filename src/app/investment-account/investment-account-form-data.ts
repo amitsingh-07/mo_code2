@@ -111,4 +111,5 @@ export class InvestmentAccountFormData {
     // MyInfo
     isMyInfoEnabled: boolean;
     disableAttributes: any;
+    callBackInvestmentAccount: boolean;
 }

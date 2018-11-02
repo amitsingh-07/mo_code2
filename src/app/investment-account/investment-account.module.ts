@@ -41,6 +41,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { PostLoginComponent } from './post-login/post-login.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
+import { SingPassComponent } from './sing-pass/sing-pass.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
 import {
@@ -74,6 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule
   ],
   declarations: [
+    SingPassComponent,
     PostLoginComponent,
     PersonalInfoComponent,
     ResidentialAddressComponent,
