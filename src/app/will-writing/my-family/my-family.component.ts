@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IChild, ISpouse } from '../will-writing-types';
@@ -16,7 +20,8 @@ import { WillWritingService } from '../will-writing.service';
   providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }],
   styleUrls: ['./my-family.component.scss']
 })
-export class MyFamilyComponent implements OnInit {
+export class MyFamilyComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   pageTitle: string;
   step: string;
 
@@ -25,14 +30,16 @@ export class MyFamilyComponent implements OnInit {
   hasSpouse: boolean;
   hasChild: boolean;
   submitted: boolean;
+  unsavedMsg: string;
 
   constructor(
     private config: NgbDatepickerConfig,
     private formBuilder: FormBuilder,
-    private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
     private router: Router,
     private translate: TranslateService,
+    private _location: Location,
+    private modal: NgbModal, public navbarService: NavbarService,
     private willWritingService: WillWritingService
   ) {
     const today: Date = new Date();
@@ -43,14 +50,47 @@ export class MyFamilyComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_FAMILY.TITLE');
+      this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
     this.childrenFormValues = this.willWritingService.getChildrenInfo();
     this.buildMyFamilyForm();
+    this.headerSubscription();
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (this.myFamilyForm.dirty) {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.unsavedMsg;
+          ref.componentInstance.unSaved = true;
+          ref.result.then((data) => {
+            if (data === 'yes') {
+              this._location.back();
+            }
+          });
+        } else {
+          this._location.back();
+        }
+        return false;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
   }
 
   /**

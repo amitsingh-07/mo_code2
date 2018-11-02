@@ -1,8 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
@@ -15,7 +20,7 @@ import { WillWritingService } from './../will-writing.service';
   templateUrl: './my-beneficiaries.component.html',
   styleUrls: ['./my-beneficiaries.component.scss']
 })
-export class MyBeneficiariesComponent implements OnInit {
+export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
@@ -30,12 +35,15 @@ export class MyBeneficiariesComponent implements OnInit {
   submitted = false;
   isFormOpen = false;
   maxBeneficiary = WILL_WRITING_CONFIG.MAX_BENEFICIARY;
+  private subscription: Subscription;
+  unsavedMsg: string;
 
   constructor(
-    private translate: TranslateService,
+    private translate: TranslateService, private _location: Location,
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
-    private router: Router
+    private modal: NgbModal,
+    private router: Router, public navbarService: NavbarService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -43,10 +51,13 @@ export class MyBeneficiariesComponent implements OnInit {
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_BENEFICIARY.TITLE');
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.minErrorMsg = this.translate.instant('WILL_WRITING.MY_BENEFICIARY.MIN_BENEFICIARY');
+      this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
     } else {
@@ -57,15 +68,45 @@ export class MyBeneficiariesComponent implements OnInit {
         this.beneficiaryList.push(spouse);
       }
       if (this.willWritingService.getChildrenInfo().length > 0) {
-        const childrens: any = this.willWritingService.getChildrenInfo();
-        for (const children of childrens) {
-          children.selected = true;
-          children.distPercentage = 0;
-          this.beneficiaryList.push(children);
+        const children: any = this.willWritingService.getChildrenInfo();
+        for (const child of children) {
+          child.selected = true;
+          child.distPercentage = 0;
+          this.beneficiaryList.push(child);
         }
       }
     }
     this.buildBeneficiaryForm();
+    this.headerSubscription();
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (this.addBeneficiaryForm.dirty) {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.unsavedMsg;
+          ref.componentInstance.unSaved = true;
+          ref.result.then((data) => {
+            if (data === 'yes') {
+              this._location.back();
+            }
+          });
+        } else {
+          this._location.back();
+        }
+        return false;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
   }
 
   buildBeneficiaryForm() {
@@ -118,7 +159,7 @@ export class MyBeneficiariesComponent implements OnInit {
   validateForm(index: number) {
     this.beneficiaryList[index].selected = !this.beneficiaryList[index].selected;
     if (this.beneficiaryList[index].selected === false) {
-    this.beneficiaryList[index].distPercentage = 0;
+      this.beneficiaryList[index].distPercentage = 0;
     }
   }
 
