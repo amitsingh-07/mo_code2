@@ -10,7 +10,7 @@
             "mobileNumber": "9988888888",
     
             "password": "",
-            "email" : "Satheesan@gmail.com"
+            "email" : "satheesanop@gmail.com"
         },
         "contactDetails": {
             "homeAddress": {
@@ -24,8 +24,8 @@
                     "countryCode": "SG",
                     "nationalityCode": "SG"
                 },
-                "addressLine1": "Address Line 1",
-                "addressLine2": "Address Line 1",
+                "addressLine1": "221B",
+                "addressLine2": "Baker Street",
                 "unitNumber": "23223232",
                 "postalCode": "L222334",
                 "townName": "Townname",
@@ -42,8 +42,8 @@
                     "countryCode": "SG",
                     "nationalityCode": "SG"
                 },
-                "addressLine1": "Address Line 1",
-                "addressLine2": "Address Line 1",
+                "addressLine1": "221B Baker Street",
+                "addressLine2": "mock address 2",
                 "unitNumber": "23223232",
                 "postalCode": "L222334",
                 "townName": "Townname",
@@ -57,10 +57,10 @@
             },
             "employerDetails": {
                 "id": 1,
-                "employerName": "Employer Name",
+                "employerName": "MoneyOwl",
                 "industry": {
                     "id": 1,
-                    "industry": "Industry Name",
+                    "industry": "Designer",
                     "ssicId": "2345"
                 },
                 "employerContact": "8877788",
@@ -75,8 +75,8 @@
                         "countryCode": "SG",
                         "nationalityCode": "SG"
                     },
-                    "addressLine1": "Address Line 1",
-                    "addressLine2": "Address Line 1",
+                    "addressLine1": "mock Address Line 1",
+                    "addressLine2": "mock Address Line 2",
                     "unitNumber": "23223232",
                     "postalCode": "L222334",
                     "townName": "Townname",
@@ -85,7 +85,7 @@
             },
             "occupation": {
                 "id": 1,
-                "occupation": "Occupation Name",
+                "occupation": "Designer",
                 "ssocId": "2345"
             }
         },

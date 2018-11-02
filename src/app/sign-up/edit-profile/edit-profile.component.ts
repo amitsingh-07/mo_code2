@@ -21,6 +21,11 @@ export class EditProfileComponent implements OnInit {
   fullName: string;
   compinedName: string;
   compinednricNum: string;
+  residentialAddress: any;
+  compinedAddress: string;
+  empolymentDetails: any;
+  compinedEmployerAddress: any;
+  bankDetails: any;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -77,10 +82,16 @@ export class EditProfileComponent implements OnInit {
       // tslint:disable-next-line:triple-equals
       console.log(data);
       this.personalData = data.objectList[0].personalInformation;
+      this.residentialAddress = data.objectList[0].contactDetails.homeAddress;
+      this.empolymentDetails = data.objectList[0].employmentDetails;
+      this.bankDetails = data.objectList[0].bankDetails;
       console.log(this.personalData);
       this.setFullName(this.personalData.firstName , this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName , this.personalData.lastName);
       this.setNric(this.personalData.nricNumber);
+      this.setAddres(this.residentialAddress.addressLine1 , this.residentialAddress.addressLine2);
+      // tslint:disable-next-line:max-line-length
+      this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
     });
   }
   setFullName(firstName, LastName) {
@@ -93,5 +104,11 @@ this.fullName = firstName + ' ' + LastName ;
   }
   setNric(nric) {
 this.compinednricNum = 'NRIC Number:' + nric;
+  }
+  setAddres(address1 , address2) {
+this.compinedAddress = address1 + ' ' + address2;
+  }
+  setEmployerAddress(address1 , address2) {
+this.compinedEmployerAddress = address1 + ' ' + address2;
   }
 }
