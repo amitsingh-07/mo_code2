@@ -21,6 +21,7 @@ export class IntroductionComponent implements OnInit {
 
   promoCodeForm: FormGroup;
   faqLink: string;
+  getNowLink: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +36,7 @@ export class IntroductionComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WILL_WRITING.INTRODUCTION.PAGE_TITLE');
       this.faqLink = this.translate.instant('WILL_WRITING.INTRODUCTION.FAQ_LINK');
+      this.getNowLink = this.translate.instant('WILL_WRITING.INTRODUCTION.GET_ONE_NOW_LINK');
     });
   }
 
@@ -84,6 +86,6 @@ export class IntroductionComponent implements OnInit {
   }
 
   getOneNow() {
-    this.router.navigate(['home']);
+    window.open(this.getNowLink, '_blank');
   }
 }

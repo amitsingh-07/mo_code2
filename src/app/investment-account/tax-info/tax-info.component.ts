@@ -75,7 +75,7 @@ export class TaxInfoComponent implements OnInit {
   }
 
   selectReason(reasonObj) {
-    this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue(reasonObj.name);
+    this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue(reasonObj);
   }
 
   markAllFieldsDirty(form) {

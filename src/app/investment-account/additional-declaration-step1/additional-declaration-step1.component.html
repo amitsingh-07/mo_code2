@@ -89,12 +89,12 @@
               <div class="dropdown-control">
                 <div ngbDropdown>
                   <button class="btn btn-dropdown without-border grey" id="pep_Info_employement_details_status-drpdown" ngbDropdownToggle>
-                    <span *ngIf="!addInfoForm.controls.pepoccupation.value">{{selectedOccupation| titlecase}}</span>
-                    <span *ngIf="addInfoForm.controls.pepoccupation.value">{{addInfoForm.controls.pepoccupation.value | titlecase}}</span>
+                    <span *ngIf="!addInfoForm.controls.pepoccupation.value">Select Occupation</span>
+                    <span *ngIf="addInfoForm.controls.pepoccupation.value">{{addInfoForm.controls.pepoccupation.value.occupation | titlecase}}</span>
                     
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                    <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue(option.occupation)"
+                    <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue(option)"
                       id="pep_Info_residentialAddress-country-option-{{i}}">{{ option.occupation | titlecase}}</button>
                   </div>
                 </div>

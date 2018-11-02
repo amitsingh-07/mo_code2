@@ -24,6 +24,8 @@ import { ReviewYourDetailsComponent } from './review-your-details/review-your-de
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
 import { WillWritingAccessGuard } from './will-writing-access-guard';
 import { WillWritingRoutingModule } from './will-writing-routing.module';
+import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -64,7 +66,9 @@ export function createTranslateLoader(http: HttpClient) {
     ReviewYourDetailsComponent,
     MyExecutorTrusteeComponent,
     MyEstateDistributionComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ValidateYourWillComponent,
+    SignUpComponent
   ],
   providers: [WillWritingAccessGuard]
 })
