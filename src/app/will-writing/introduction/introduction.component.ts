@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { WillDisclaimerComponent } from '../../shared/components/will-disclaimer/will-disclaimer.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
@@ -26,6 +27,7 @@ export class IntroductionComponent implements OnInit {
     private modal: NgbModal,
     private router: Router,
     private translate: TranslateService,
+    public navbarService: NavbarService,
     private willWritingService: WillWritingService,
     private willWritingApiService: WillWritingApiService
   ) {
@@ -37,6 +39,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     this.promoCodeForm = this.formBuilder.group({
       promoCode: ['', [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });

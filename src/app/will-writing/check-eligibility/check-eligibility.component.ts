@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { DirectService } from './../../direct/direct.service';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { WillWritingService } from './../will-writing.service';
 
@@ -13,7 +15,7 @@ import { WillWritingService } from './../will-writing.service';
   templateUrl: './check-eligibility.component.html',
   styleUrls: ['./check-eligibility.component.scss']
 })
-export class CheckEligibilityComponent implements OnInit {
+export class CheckEligibilityComponent implements OnInit, OnDestroy {
   pageTitle: string;
   isSingaporean = false;
   isAssets = false;
@@ -24,12 +26,14 @@ export class CheckEligibilityComponent implements OnInit {
   religionList;
   errorModal;
   tooltip;
+  private subscription: Subscription;
+  unsavedMsg: string;
   constructor(
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
     private router: Router,
-    private directService: DirectService,
-    private modal: NgbModal,
+    private _location: Location,
+    private modal: NgbModal, public navbarService: NavbarService,
     private translate: TranslateService
   ) {
     this.translate.use('en');
@@ -38,10 +42,13 @@ export class CheckEligibilityComponent implements OnInit {
       this.pageTitle = this.translate.instant('WILL_WRITING.ELIGIBILITY.TITLE');
       this.tooltip = this.translate.instant('WILL_WRITING.ELIGIBILITY.TOOLTIP');
       this.errorModal = this.translate.instant('WILL_WRITING.ELIGIBILITY.MUSLIM_ERROR');
+      this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     this.formValues = this.willWritingService.getEligibilityDetails();
     this.eligibilityForm = this.formBuilder.group({
       singaporean: [this.formValues.singaporean, Validators.required],
@@ -60,6 +67,36 @@ export class CheckEligibilityComponent implements OnInit {
         this.isSingaporean = true;
       }
     }, 100);
+    this.headerSubscription();
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (this.eligibilityForm.dirty) {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.unsavedMsg;
+          ref.componentInstance.unSaved = true;
+          ref.result.then((data) => {
+            if (data === 'yes') {
+              this._location.back();
+            }
+          });
+        } else {
+          this._location.back();
+        }
+        return false;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
   }
 
   selectReligion(religion) {
