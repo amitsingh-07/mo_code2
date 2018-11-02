@@ -55,16 +55,16 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
       assets: [this.formValues.assets, Validators.required],
       religion : [this.formValues.religion, Validators.required]
     });
+    if (this.formValues.assets === 'no') {
+      this.isAssets = true;
+    }
+    if (this.formValues.singaporean === 'no') {
+      this.isSingaporean = true;
+    }
     setTimeout(() => {
       if (this.formValues.religion !== undefined) {
         const index = this.religionList.findIndex((status) => status.value === this.formValues.religion);
         this.selectReligion(this.religionList[index]);
-      }
-      if (this.formValues.assets === 'no') {
-        this.isAssets = true;
-      }
-      if (this.formValues.assets === 'no') {
-        this.isSingaporean = true;
       }
     }, 100);
     this.headerSubscription();
