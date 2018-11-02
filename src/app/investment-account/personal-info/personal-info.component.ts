@@ -1,18 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-personal-info',
@@ -83,9 +84,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       lastName: [{ value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName') },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       nricNumber: [{ value: this.formValues.nricNumber, disabled: this.investmentAccountService.isDisabled('nricNumber') },
-      [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      [Validators.required, Validators.pattern(RegexConstants.NRIC)]],
       dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
-      Validators.required],
+      [Validators.required, this.validateMinimumAge]],
       gender: [{
         value: this.formValues.gender ? this.formValues.gender : 'male',
         disabled: this.investmentAccountService.isDisabled('gender')
@@ -106,9 +107,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       passportExpiry: [{
         value: this.formValues.passportExpiry,
         disabled: this.investmentAccountService.isDisabled('passportExpiry')
-      }, Validators.required],
+      }, [Validators.required, this.validateExpiry]],
       dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
-      Validators.required],
+      [Validators.required, this.validateMinimumAge]],
       gender: [{
         value: this.formValues.gender ? this.formValues.gender : 'male',
         disabled: this.investmentAccountService.isDisabled('gender')
@@ -162,4 +163,30 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       }
     };
   }
+
+  private validateMinimumAge(control: AbstractControl) {
+    const value = control.value;
+    if (control.value !== undefined && (isNaN(control.value))) {
+      const isMinAge =
+        new Date(value.year + INVESTMENT_ACCOUNT_CONFIG.personal_info.min_age, value.month - 1, value.day) <= new Date();
+      if (!isMinAge) {
+        return { isMinAge: true };
+      }
+    }
+    return null;
+  }
+
+  private validateExpiry(control: AbstractControl) {
+    const value = control.value;
+    const today = new Date();
+    if (control.value !== undefined && (isNaN(control.value))) {
+      const isMinExpiry = new Date(value.year, value.month - 1, value.day)
+        >= new Date(today.getFullYear(), today.getMonth() + INVESTMENT_ACCOUNT_CONFIG.personal_info.min_passport_expiry, today.getDate());
+      if (!isMinExpiry) {
+        return { isMinExpiry: true };
+      }
+    }
+    return null;
+  }
+
 }

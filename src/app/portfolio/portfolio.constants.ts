@@ -27,6 +27,9 @@ export let PORTFOLIO_CONFIG = {
   my_financials: {
     sufficient_emergency_fund: 'yes'
   },
+  risk_profile: {
+    should_not_invest_id: 6
+  },
   risk_assessment: {
     chart_legend: {
       1: 'vhfvhr',
