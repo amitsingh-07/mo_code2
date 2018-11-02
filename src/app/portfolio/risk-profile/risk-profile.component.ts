@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { PORTFOLIO_CONFIG } from '../../portfolio/portfolio.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../portfolio-routes.constants';
@@ -67,6 +68,10 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
+  }
+
+  canProceed() {
+    return this.selectedRiskProfile.riskProfileId !== PORTFOLIO_CONFIG.risk_profile.should_not_invest_id;
   }
 
 }
