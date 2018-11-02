@@ -24,6 +24,8 @@
       "NUMBER_OF_CHILDREN": "Number of Children",
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "Your changes will not be saved. Are you sure to exit this page?",
+      "CONFIRM": "This will overwrite your current information. Would you like to proceed with editing?",
+      "CONFIRM_IMPACT_MESSAGE": "<span class='mb10'>Required Actions</span><span>If you were to proceed with the changes, we may need you to go through the entire will writing journey as it may have some legal implications.</span>",
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
           "value": "parent"

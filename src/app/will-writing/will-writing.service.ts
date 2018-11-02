@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { SignUpService } from './../sign-up/sign-up.service';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
 import {
@@ -13,6 +14,7 @@ import {
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
+const FROM_CONFIRMATION_PAGE = 'from_confirmation_page';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +22,15 @@ const SESSION_STORAGE_KEY = 'app_will_writing_session';
 export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
+  fromConfirmationPage;
   constructor(
     private http: HttpClient,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private signUpService: SignUpService,
   ) {
     // get data from session storage
     this.getWillWritingFormData();
+    this.getFromConfirmPage();
   }
 
   /**
@@ -54,6 +59,11 @@ export class WillWritingService {
     if (window.sessionStorage) {
       sessionStorage.clear();
     }
+  }
+
+  isUserLoggedIn(): boolean {
+    const userInfo = this.signUpService.getUserProfileInfo();
+    return userInfo && userInfo.firstName;
   }
 
   clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged) {
@@ -263,14 +273,6 @@ export class WillWritingService {
   }
 
   /**
-   * clear children details.
-   */
-  clearGuardianInfo() {
-    delete this.willWritingFormData.guardian;
-    this.commit();
-  }
-
-  /**
    * get eligibility details.
    * @returns eligibility details.
    */
@@ -391,4 +393,18 @@ export class WillWritingService {
     return false;
   }
 
+
+  setFromConfirmPage(flag) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(FROM_CONFIRMATION_PAGE, flag);
+    }
+    this.fromConfirmationPage = flag;
+  }
+
+  getFromConfirmPage() {
+    if (window.sessionStorage && sessionStorage.getItem(FROM_CONFIRMATION_PAGE)) {
+      this.fromConfirmationPage = JSON.parse(sessionStorage.getItem(FROM_CONFIRMATION_PAGE));
+    }
+    return this.fromConfirmationPage;
+  }
 }
