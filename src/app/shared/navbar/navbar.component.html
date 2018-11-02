@@ -6,9 +6,12 @@
                     <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
                     <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
                 </li>
+                <li *ngIf="(navbarMode == 4)" class="nav-item">
+                        <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
+                    </li>
                 <li class="navbar__logo--primary hidden-sm-md" routerLink="/">
                     </li>
-                <li *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
+                <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
                     </li>
                 <li *ngIf="(navbarMode == 2)" class="navbar__separator hidden-sm-md">
                     </li>
@@ -17,7 +20,7 @@
                     <p class="secondary">powered by DIYInsurance</p>
                     </li>
                 </div>
-            <button *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar__menu-icon"></span>
                 </button>
             <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
@@ -35,7 +38,7 @@
                 </ul> 
             </div>
         
-        <div *ngIf="(navbarMode == 1 || navbarMode == 3)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+        <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
                     <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>

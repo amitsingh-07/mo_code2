@@ -1,11 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IGuardian } from '../will-writing-types';
@@ -16,13 +19,14 @@ import { WillWritingService } from '../will-writing.service';
   templateUrl: './my-child-guardian.component.html',
   styleUrls: ['./my-child-guardian.component.scss']
 })
-export class MyChildGuardianComponent implements OnInit {
+export class MyChildGuardianComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
   tooltip = {};
   isEdit: boolean;
   private selectedIndex: number;
+  private subscription: Subscription;
 
   addGuardianForm: FormGroup;
   guardianList: IGuardian[] = [];
@@ -32,12 +36,15 @@ export class MyChildGuardianComponent implements OnInit {
 
   hasSpouse: boolean;
   maxGuardian: number;
+  unsavedMsg: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private modal: NgbModal,
     private router: Router,
     private translate: TranslateService,
+    public navbarService: NavbarService,
+    private _location: Location,
     private willWritingService: WillWritingService
   ) {
     this.translate.use('en');
@@ -47,10 +54,13 @@ export class MyChildGuardianComponent implements OnInit {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_MESSAGE');
+      this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
     if (this.willWritingService.getGuardianInfo().length > 0) {
       this.guardianList = this.willWritingService.getGuardianInfo();
@@ -63,6 +73,36 @@ export class MyChildGuardianComponent implements OnInit {
     }
     this.maxGuardian = this.hasSpouse ? 2 : 1;
     this.buildAddGuardianForm();
+    this.headerSubscription();
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (this.addGuardianForm.dirty) {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.unsavedMsg;
+          ref.componentInstance.unSaved = true;
+          ref.result.then((data) => {
+            if (data === 'yes') {
+              this._location.back();
+            }
+          });
+        } else {
+          this._location.back();
+        }
+        return false;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
   }
 
   get addGud() { return this.addGuardianForm.controls; }

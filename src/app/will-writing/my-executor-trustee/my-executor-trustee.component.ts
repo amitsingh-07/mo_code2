@@ -1,9 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IExecTrustee, ISpouse } from '../will-writing-types';
@@ -15,7 +20,7 @@ import { WillWritingService } from '../will-writing.service';
   templateUrl: './my-executor-trustee.component.html',
   styleUrls: ['./my-executor-trustee.component.scss']
 })
-export class MyExecutorTrusteeComponent implements OnInit {
+export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
@@ -23,6 +28,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
   private formTitleMsg = {};
   isEdit: boolean;
   private selectedIndex: number;
+  private subscription: Subscription;
 
   addExeTrusteeForm: FormGroup;
   execTrusteeList: IExecTrustee[] = [];
@@ -34,11 +40,15 @@ export class MyExecutorTrusteeComponent implements OnInit {
   hasSpouse: boolean;
   hasChild: boolean;
   maxExecTrustee = WILL_WRITING_CONFIG.MAX_EXECUTOR_TRUSTEE;
+  unsavedMsg: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private translate: TranslateService,
     private willWritingService: WillWritingService,
+    public navbarService: NavbarService,
+    private _location: Location,
+    private modal: NgbModal,
     private router: Router,
   ) {
     this.translate.use('en');
@@ -48,10 +58,13 @@ export class MyExecutorTrusteeComponent implements OnInit {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_MESSAGE');
+      this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
     if (this.willWritingService.getExecTrusteeInfo().length > 0) {
@@ -62,6 +75,36 @@ export class MyExecutorTrusteeComponent implements OnInit {
       this.execTrusteeList.push(spouse);
     }
     this.buildMainForm();
+    this.headerSubscription();
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (this.addExeTrusteeForm.dirty) {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.unsavedMsg;
+          ref.componentInstance.unSaved = true;
+          ref.result.then((data) => {
+            if (data === 'yes') {
+              this._location.back();
+            }
+          });
+        } else {
+          this._location.back();
+        }
+        return false;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
   }
 
   get execTrustee() { return this.addExeTrusteeForm.controls; }
@@ -69,6 +112,7 @@ export class MyExecutorTrusteeComponent implements OnInit {
   /**
    * build about me form.
    */
+  // tslint:disable-next-line:cognitive-complexity
   buildMainForm() {
     this.addExeTrusteeForm = this.formBuilder.group({
       executorTrustee: this.formBuilder.array([this.buildExecTrusteeForm()]),
