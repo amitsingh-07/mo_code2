@@ -541,6 +541,10 @@ export class InvestmentAccountService {
         return this.apiService.getPortfolioAllocationDetails(urlParams);
     }
 
+    updateInvestment(params) {
+        return this.apiService.updateInvestment(params);
+    }
+
     createInvestmentAccount() {
         const payload = this.constructInvestmentAccountRequest();
         return this.apiService.createInvestmentAccount(payload);
@@ -705,4 +709,6 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
+
+    
 }
