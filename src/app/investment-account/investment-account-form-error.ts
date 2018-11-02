@@ -223,7 +223,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid NRIC Number',
-                errorMessage: 'NRIC Number should not contain special characters.'
+                errorMessage: 'NRIC Number you have entered is in invalid format.'
             }
         },
         passportNumber: {
@@ -242,6 +242,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Passport Expiry',
                 errorMessage: 'Please enter Passport Expiry.'
+            },
+            isMinExpiry: {
+                errorTitle: 'Invalid Passport Expiry',
+                errorMessage: 'You need to have atleast 6 months of passport validity'
             }
         },
         dob: {
@@ -249,6 +253,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Date Of Birth',
                 errorMessage: 'Please enter Date Of Birth.'
+            },
+            isMinAge: {
+                errorTitle: 'Invalid Date Of Birth',
+                errorMessage: 'You must be 18 yrs and above to create an investment account.'
             }
         },
         sourceOfIncome: {

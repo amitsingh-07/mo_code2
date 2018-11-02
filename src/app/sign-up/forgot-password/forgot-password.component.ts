@@ -1,10 +1,10 @@
-import { FooterService } from './../../shared/footer/footer.service';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { FooterService } from './../../shared/footer/footer.service';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
