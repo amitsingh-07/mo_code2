@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-validate-your-will',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValidateYourWillComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translate: TranslateService, private router: Router) {
+    this.translate.use('en');
+  }
 
   ngOnInit() {
   }

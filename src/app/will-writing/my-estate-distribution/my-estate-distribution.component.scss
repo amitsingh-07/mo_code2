@@ -226,6 +226,13 @@ input[type='checkbox']+label {
                 text-align: center;
             } 
         }
+        .step2 {
+            font-family: $muli-light;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+          }
     @include allmobiles {
         display: flex;
         flex-direction: column-reverse;
@@ -359,7 +366,11 @@ input[type='checkbox']+label {
       }
   }
   .estateDistributionForm {
-      padding-bottom: 60px;
+      padding-bottom: 5px;
+      @include allmobiles {
+        padding-bottom: 60px;
+      }
+      
   }
 
   input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
@@ -368,5 +379,12 @@ input[type='checkbox']+label {
     }
     input[type="number"] {
     -moz-appearance: textfield;
+    }
+
+    .distribution-container {
+        margin-top: 50px;
+        @include allmobiles {
+            margin-top: 0px;
+        }
     }
 

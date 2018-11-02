@@ -212,6 +212,17 @@
       "DESCRIPTION": "To view your will, please login to your account.",
       "LOGIN_NOW": "Log In Now",
       "CREATE_ACCOUNT": "Create Account"
+    },
+    "VALIDATE_YOUR_WILL": {
+      "HERE_YOUR_WILL": "Here’s Your Will!",
+      "TITLE": "Validate Your Will",
+      "SUB_TITLE": "Yay, your will is ready to be viewed! Please follow the steps below to validate your will.",
+      "PRINT_YOUR_WILL": "Print Your Will",
+      "FIND_2_WITNESSES": "Find 2 Witnesses",
+      "SIGN_YOUR_WILL": "Sign Your Will",
+      "KEEP_IT_SAFE": "Keep It In A Safe Place",
+      "DOWNLOAD_WILL": "Download Will",
+      "EDIT_YOUR_WILL": "Edit your will"
     }
   }
 }
