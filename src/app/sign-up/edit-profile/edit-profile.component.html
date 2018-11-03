@@ -159,10 +159,50 @@
       </div>
     </div>
     <div class="mailing-address flex">
-      <div><img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" /></div>
+      <div *ngIf="!this.mailingAddress"> 
+        <img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" />
+      </div> 
+      <div *ngIf="this.mailingAddress">
+          <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
+        </div>
       <div class="flex-col">
         <div>Mailing Address</div>
         <div>Same as Residential Address</div>
+      </div>
+    </div>
+    <div *ngIf="this.mailingAddress">
+
+    <div class="section-margin">
+        <div class="update-contact-title">
+          Country
+        </div>
+        <div class="update-contact-value">
+          {{this.mailingAddress.country.country}}
+        </div>
+      </div>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Postal Code
+        </div>
+        <div class="update-contact-value">
+         {{this.mailingAddress.postalCode}}
+        </div>
+      </div>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Address
+        </div>
+        <div class="update-contact-value">
+          {{ this.compinedMailingAddress}}
+        </div>
+      </div>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Unit Number
+        </div>
+        <div class="update-contact-value">
+          {{this.mailingAddress.unitNumber}}
+        </div>
       </div>
     </div>
     <button type="button" class="edit-button" (click)="editContactDetails()" id="confirmButton">
@@ -260,12 +300,54 @@
       </div>
     </div>
     <div class="mailing-address flex">
-      <div><img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" /></div>
+      <div>
+        <img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" />
+      </div>
+<!-- Need to Edit here too -->
+      <!-- <div *ngIf="this.mailingAddress">
+          <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
+        </div> -->
+
       <div class="flex-col">
         <div>Employer&apos;s Address</div>
-        <div>Same as Residential Address</div>
+        <div>Same as Mailing Address</div>
       </div>
     </div>
+    <!-- Have to add according to API -->
+    <div *ngIf="this.needtochangeThis">
+    <div class="section-margin">
+        <div class="update-contact-title">
+          Country
+        </div>
+        <div class="update-contact-value">
+          {{this.empolymentDetails.employerDetails.employerAddress.country.country}}
+        </div>
+      </div>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Postal Code
+        </div>
+        <div class="update-contact-value">
+          {{this.empolymentDetails.employerDetails.employerAddress.postalCode}}
+        </div>
+      </div>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Address
+        </div>
+        <div class="update-contact-value">
+         {{this.compinedEmployerAddress}}
+        </div>
+      </div>
+      <div class="section-margin">
+        <div class="update-contact-title">
+          Unit Number
+        </div>
+        <div class="update-contact-value">
+          {{this.empolymentDetails.employerDetails.employerAddress.unitNumber}}
+        </div>
+      </div>
+      </div>
     <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
       Edit
     </button>

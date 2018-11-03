@@ -23,9 +23,11 @@ export class EditProfileComponent implements OnInit {
   compinednricNum: string;
   residentialAddress: any;
   compinedAddress: string;
+  compinedMailingAddress: string;
   empolymentDetails: any;
   compinedEmployerAddress: any;
   bankDetails: any;
+  mailingAddress: any;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -85,13 +87,17 @@ export class EditProfileComponent implements OnInit {
       this.residentialAddress = data.objectList[0].contactDetails.homeAddress;
       this.empolymentDetails = data.objectList[0].employmentDetails;
       this.bankDetails = data.objectList[0].bankDetails;
+      this.mailingAddress = data.objectList[0].contactDetails.mailingAddress;
       console.log(this.personalData);
       this.setFullName(this.personalData.firstName , this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName , this.personalData.lastName);
       this.setNric(this.personalData.nricNumber);
       this.setAddres(this.residentialAddress.addressLine1 , this.residentialAddress.addressLine2);
+      this.setMailingAddres(this.mailingAddress.addressLine1 , this.mailingAddress.addressLine2);
       // tslint:disable-next-line:max-line-length
       this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
+      // tslint:disable-next-line:max-line-length
+      // this.setMailingAddres(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
     });
   }
   setFullName(firstName, LastName) {
@@ -108,7 +114,12 @@ this.compinednricNum = 'NRIC Number:' + nric;
   setAddres(address1 , address2) {
 this.compinedAddress = address1 + ' ' + address2;
   }
+  setMailingAddres(address1 , address2) {
+    this.compinedMailingAddress = address1 + ' ' + address2;
+      }
   setEmployerAddress(address1 , address2) {
 this.compinedEmployerAddress = address1 + ' ' + address2;
+  }
+  editEmployeDetails() {
   }
 }
