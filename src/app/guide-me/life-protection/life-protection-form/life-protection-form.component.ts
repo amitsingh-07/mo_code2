@@ -209,6 +209,11 @@ export class LifeProtectionFormComponent implements OnInit, OnChanges {
       if (!formData.value['supportAmount'] || isNaN(formData.value['supportAmount'])) {
         formData.value['supportAmount'] = 0;
       }
+      if (formData.value['educationSupport'] === false) {
+        formData.value['eduSupportCountry'] = null;
+        formData.value['eduSupportCourse'] = null;
+        formData.value['eduSupportNationality'] = null;
+      }
       formValues.push(formData.value);
     });
     this.guideMeService.setLifeProtection({ dependents: formValues });
