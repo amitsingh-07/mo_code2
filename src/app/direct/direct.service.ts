@@ -176,6 +176,7 @@ export class DirectService {
   }
 
   getLifeProtectionForm(): ILifeProtection {
+    this.getDirectFormData();
     if (!this.directFormData.lifeProtection) {
       this.directFormData.lifeProtection = {} as ILifeProtection;
     }
