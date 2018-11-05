@@ -60,8 +60,8 @@ export class ContactUsComponent implements OnInit {
     form.value.email = this.email;
     form.value.message = form.value.message.replace(/\n/g, '<br/>').replace(/"/g, '\\"');
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
-      console.log(data);
-      if (data) {
+      if (data.responseMessage.responseDescription === 'Successful response') {
+        this.sendSuccess = true;
       }
     });
   }

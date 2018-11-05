@@ -168,13 +168,11 @@ export class ApiService {
       subject: data.subject,
       body: data.message
     };
-    return this.authService.authenticate().map((response) => {
-      console.log('WH!!!!!!!!!!!!' + response);
-      this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
+    this.authService.authenticate().subscribe((response) => {});
+    return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
         .pipe(
           catchError((error: HttpErrorResponse) => this.handleError(error))
         );
-      });
     }
 
   subscribeNewsletter(data) {

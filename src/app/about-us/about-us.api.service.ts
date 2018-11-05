@@ -18,7 +18,6 @@ export class AboutUsApiService {
   }
 
   setContactUs(data) {
-    console.log(data);
     return this.apiService.sendContactUs(data);
   }
 }
