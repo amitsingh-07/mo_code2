@@ -35,7 +35,7 @@
                 translate}}</div>
               <div class="brdr-btm mb25 hidden-sm-md"></div>
               <div>
-                <input type="text" formControlName="promoCode" placeholder="Enter your promo code" id="intro-promo-text-field" />
+                <input type="text" #promoCode formControlName="promoCode" placeholder="Enter your promo code" id="intro-promo-text-field" />
               </div>
               <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now"
                   (click)="getOneNow()">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>

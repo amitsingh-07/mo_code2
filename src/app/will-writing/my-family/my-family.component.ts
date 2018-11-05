@@ -76,7 +76,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
    */
   buildMyFamilyForm() {
     this.myFamilyForm = this.formBuilder.group({
-      spouse: this.formBuilder.array([this.buildSpouseForm()]),
+      spouse: this.formBuilder.array([this.buildSpouseForm(0)]),
       childrens: this.formBuilder.array([this.buildChildrenForm(0)]),
     });
     if (this.hasChild) {
@@ -116,13 +116,13 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.navbarService.unsubscribeBackPress();
   }
 
-  buildSpouseForm(): FormGroup {
+  buildSpouseForm(index: number): FormGroup {
     if (this.hasSpouse) {
       return this.formBuilder.group({
-        name: [this.spouseFormValues ? this.spouseFormValues[0].name : '',
-        [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
-        uin: [this.spouseFormValues ? this.spouseFormValues[0].uin : '',
-        [Validators.required, Validators.pattern(RegexConstants.UIN)]],
+        name: [this.spouseFormValues.length > index ?
+          this.spouseFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+        uin: [this.spouseFormValues.length > index ?
+          this.spouseFormValues[index].uin : '', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
       });
     }
     return this.formBuilder.group({});
