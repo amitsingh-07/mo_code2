@@ -21,6 +21,7 @@
     letter-spacing: -0.3px;
     color: #2d8289;
     margin-top: 5px;
+    margin-bottom: 24px;
     @include allmobiles {
         margin-top: 10px;
     }
@@ -31,12 +32,12 @@
         font-weight: bold;
         letter-spacing: -0.4px;
         color: #066360;
-        margin-bottom: 19px;
-        padding: 20px;
+        padding: 20px !important;
         background: $white-color;
     }
     .flex-row{
-        padding: 20px;
+        padding:0 20px 20px;
+        justify-content: space-between;
     }
 }
 
@@ -93,6 +94,7 @@
 
 .executer-trustee-container {
     margin-top: 70px;
+    padding-right: 0;
     @include allmobiles{
         margin-bottom: 20px;
         background-color: #00a7a7;
@@ -157,6 +159,7 @@
     letter-spacing: -0.1px;
     font-weight: 100;
     color: #2d8289;
+    padding: 20px !important;
   }
 
   .title-cancel {
@@ -168,4 +171,8 @@
     color: #00a7a7;
     cursor: pointer;
     padding-top: 5px;
+}
+
+.autofill-logo{
+    margin-top: 40px;
 }

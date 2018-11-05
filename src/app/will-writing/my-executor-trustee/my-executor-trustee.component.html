@@ -36,25 +36,25 @@
                   <div  *ngIf="!formTitle[i]?.isAlt" class="flex-row title">
                       {{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}
                     </div>                  
-                  <div *ngIf="formTitle[i]?.isAlt" class="flex-row mb10 alternative-sub-title">
+                  <div *ngIf="formTitle[i]?.isAlt" class="flex-row alternative-sub-title">
                     {{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE_SUB_TITLE' | translate}}
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl1">
                         <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}</div>
                       </label>
                     </div>
-                    <div class="flex-col-7">
+                    <div class="flex-col-6">
                       <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.controls.name.invalid}"
                         id="myFamilyFormInpt1" class="form-control" #name formControlName="name">
                     </div>
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' | translate}}</label>
                     </div>
-                    <div class="flex-col-7">
+                    <div class="flex-col-6">
                       <div class="dropdown-control" [ngClass]="{'inline-error': submitted && execTrustee.controls.relationship.invalid}">
                         <div ngbDropdown id="relationshipDropDown">
                           <button type="button" class="btn btn-dropdown" id="dropdownRelationship" ngbDropdownToggle>
@@ -73,13 +73,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl2">
                         <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
                       </label>
                     </div>
-                    <div class="flex-col-7">
+                    <div class="flex-col-6">
                       <input type="text" [ngClass]="{'inline-error': submitted && execTrustee.controls.uin.invalid}" id="myFamilyFormInpt2"
                         class="form-control" #uin formControlName="uin">
                     </div>
