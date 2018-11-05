@@ -159,7 +159,10 @@
                 letter-spacing:-0.1px;
             }
             .error--msg{
-                color:$orange-color;
+                color:$red-color;
+                &.success{
+                    color:$green-color;
+                }
             }
         }
         .contact-us__side-panel{

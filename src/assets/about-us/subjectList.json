@@ -1,0 +1,20 @@
+{
+    "SUBJECTS": [
+        {
+            "SUBJECT": "Tell us how we are doing",
+            "EMAIL": "enquiry@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "Interested in Financial Planning",
+            "EMAIL": "enquiry@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "Looking for a product",
+            "EMAIL": "enquiry@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "How to make a claim",
+            "EMAIL": "enquiry@moneyowl.com.sg"
+        }
+    ]
+}

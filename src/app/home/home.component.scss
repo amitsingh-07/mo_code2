@@ -670,6 +670,9 @@ body{
         justify-content:center;
         align-items:flex-start;
         z-index:1;
+        @include minMobilemaxPhablet{
+            background-color:#f2f6f7;
+        }
         .subscribe__section--bg{
             position: absolute;
             background-image:url('../../assets/images/banner-bg.svg');
@@ -678,6 +681,9 @@ body{
             height:507px;
             bottom:0px;
             left:0px;
+            @include minMobilemaxPhablet{
+                height:760px;
+            }
         }
         .subscribe__section--footer{
             position: absolute;
@@ -814,6 +820,9 @@ body{
     align-items:center;
     flex-direction:column;
     padding:50px 20px;
+    @include minMobilemaxPhablet{
+        padding:50px 38px;
+    }
     .home__review--header{
         position: relative;
         display:block;

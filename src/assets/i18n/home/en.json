@@ -1,7 +1,19 @@
 {
     "GENERAL": {
         "TITLE": "Home",
-        "COMING_SOON": "Coming Soon"
+        "COMING_SOON": "Coming Soon",
+        "META": {
+            "GENERAL": {
+                "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+                "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+                "META_AUTHOR": "Moneyowl Pte Ltd",
+                "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            },
+            "SOCIAL": {
+                "META_DESCRIPTION": "",
+                "META_THUMBNAIL": ""
+            }
+        }
     },
     "BANNER": {
         "TITLE": "Making Wise Decisions Easy",
@@ -39,7 +51,11 @@
     },
     "NEWSLETTER": {
         "TITLE": "Join our newsletter and get wiser every day!",
-        "PLACEHOLDER": "Email",
+        "PLACEHOLDER": {
+            "EMAIL": "Email",
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name"
+            },
         "SUBSCRIBE": "Subscribe",
         "SUBTEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!"
     },

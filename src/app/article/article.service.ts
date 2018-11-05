@@ -30,7 +30,6 @@ export class ArticleService {
     return thisArticleEntry;
   }
   getCategoryElementList(data): IArticleCategory[] {
-    console.log(data);
     let sum = 0;
     const articleCategoryElementArray = [];
     data.forEach((category) => {

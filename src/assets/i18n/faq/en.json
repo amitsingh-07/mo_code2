@@ -1,5 +1,63 @@
 {
     "FAQ": {
-        "TITLE": "FAQs"
+        "TITLE": "FAQs",
+        "CONTENT": {
+            "GENERAL": {
+                "General": [
+                    {
+                        "QUESTION": "How should I get started? What insurance products should I buy?",
+                        "ANSWER": "We recommend you to begin with our step-by-step guided journey online to assess your needs and find out the gaps in your insurance coverage. Get suitable recommendations based on your needs and select the plan(s) that you are interested in. Once you have requested a quote, our dedicated team of Client Advisers will get in touch via mobile and email and when you are ready, meet you to complete your application. Get started with our online guided journey.<br/> We encourage you to read our articles where we have easy-to-read content for you to learn more about insurance. If you still have further questions and need advice, feel free to contact us at"
+                    },
+                    {
+                        "QUESTION": "Is there a difference in the features of the policy if I were to purchase it via MoneyOwl or if I do so from other financial planners or insurance agents?",
+                        "ANSWER": "There is no difference in terms of policy contract, benefits, coverage or premium offered when the same policy is bought, irrespective of whether it is from MoneyOwl or from other financial advisers or agents. Our Client Advisers will guide you to get the best plan for your needs. In addition, when you purchase through MoneyOwl, you get to <b>enjoy lower cost and receive up to 50% rebate in the agent’s commissions.</b>"
+                    },
+                    {
+                        "QUESTION": "Which are the insurance companies that are under MoneyOwl’s panel of insurance companies?",
+                        "ANSWER": "<ul><li>Aviva Ltd</li><li>Manulife (Singapore) Pte Ltd</li><li>NTUC Income Insurance Cooperative Ltd</li><li>Tokio Marine Life Insurance Singapore Ltd</li></ul>"
+                    },
+                    {
+                        "QUESTION": "I have a question that is not listed in the FAQs",
+                        "ANSWER": "It is important that we hear from you about your questions. Do let us know about your queries via email at enquiries@moneyowl.com.sg or give us a call at 6329 9189 (General enquiries) and 6329 9188 (Advisory enquiries) between Mondays-Fridays (excluding public holidays), 9am-6pm."
+                    }
+                    ],
+                "Buying Process and Comparison": [
+                    {
+                        "QUESTION": "What is the buying process like?",
+                        "ANSWER": "Buying through MoneyOwl is a fast and easy process! Our platform allows you to assess your needs and compare between plans online in your own time. Once you have requested a quote through our website, our friendly Client Advisers will get in touch via mobile and email and when you are ready, meet you to complete your application."
+                    },
+                    {
+                        "QUESTION": "Do I need to undergo medical underwriting?",
+                        "ANSWER": "Most policies categorised under the Protection segment such as Term Life, Whole Life, Occupational Disability and Critical Illness insurance plans require applicants to undergo medical underwriting. The insurer will offer such policies to those with good health. Those with pre-existing medical conditions may be offered the policy with exclusions or subject to premium loading or, in extreme cases, have their application rejected.<br/>Recently, <b>there have been an increasing number of policies that do not require</b> medical underwriting; hence the proof of good health is not necessary. Such policies are usually found in the Savings and Retirement Income categories. Insurance policies without the need for medical underwriting offer nominal protection benefits (such as death and Total Permanent Disability). Hence a relatively larger proportion of the policy premiums is used to generate <b>better returns for the policyholder and a smaller proportion to provide</b> for protection needs."
+                    },
+                    {
+                        "QUESTION": "Do I need to go for a medical check-up?",
+                        "ANSWER": "It depends on the types of insurance policies that you have applied for. Policies categorised under the Protection category require the applicants to undergo medical underwriting. A medical check-up <b>may only be required if the sum assured is of a sizeable amount, if the applicant is of a certain age or if there are existing medical conditions or family history.</b><br/><b>Many policies categorised under Savings and Retirement Income segments do not require a medical check-up.</b> This is because the main purpose of the policies is to generate a better return on your premium and less priority to provide for your protection needs."
+                    },
+                    {
+                        "QUESTION": "The plan recommended to me does not have the exact amount of coverage that I am looking for. What do I do?",
+                        "ANSWER": "In our recommendations, we have suggested a few options for you compare. If you have specific coverage amounts that you are looking for but are not provided, do contact us via email at enquiries@moneyowl.com.sg or give us a call at 6329 9188 (Advisory enquiries) between Mondays-Fridays, 9am-6pm (excluding public holidays). Our friendly team of Client Advisers will assist you"
+                    },
+                    {
+                        "QUESTION": "How do you rank Protection products?",
+                        "ANSWER": "<b>Protection products are each ranked according to different criteria as shown below:</b><br/><b>Term Life</b>: This is calculated by taking the ratio of sum assured or projected death or critical illness benefits to total premium. For two different plans with the same sum assured, the plan with the lower premium will be given a higher ranking.<br/><b>Whole life:</b> This is calculated by taking the ratio of Protection and surrender values at about age 65 over total premium. A higher ranking is given to the plan with higher projected benefits and surrender value at a specific age of 65 over the total premium payable. (The sum assured after including the minimum protection value / death benefit is around $200,000 applied for Whole Life Hybrid.)<br/><b>Long Term Care:</b> This is calculated by taking the ratio of total income payout over premium*. For two different plans with the same payout, the plan with the lower premium will be given a higher ranking.<br/>*Calculations are based on assumptions used for the duration of disability and life expectancy."
+                    },
+                    {
+                        "QUESTION": "How do you rank Savings products?",
+                        "ANSWER": "Savings products such as endowment funds are ranked based on the Internal Rate of Return (IRR) of total payout over premium."
+                    },
+                    {
+                        "QUESTION": "How do you rank Retirement Income products?",
+                        "ANSWER": "The ranking is based on the Internal Rate of Return (IRR) of total payout over premium.<br/>"
+                    }
+                    ]
+                },
+            "WILL WRITING":{
+
+                },
+            "INSURANCE": {
+
+                }
+            }
+        }
     }
-}

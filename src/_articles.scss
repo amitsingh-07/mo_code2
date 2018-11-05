@@ -6,6 +6,11 @@
 }
 
 .page-box{
+    padding:0px 30px 40px 30px;
+    @include minMobilemaxPhablet{
+        padding:0px 15px 30px 15px;
+    }
+
     /* Article Colors */
     .primary-color{
         color:$teal-color;
@@ -15,7 +20,6 @@
         width:25px;
     }
     
-
     /* Heading */
     h1,h2,h3 {
         font-family:$muli-bold;
@@ -41,6 +45,13 @@
     
     img{
         max-width:100%;
+        &.thumbnail{
+            margin: 0px 0px 10px 10px;
+            &.fullwidth{
+                margin:0px;
+                width:100%;
+            }           
+        }
     }
 
     /* Table Styles */
@@ -189,6 +200,7 @@
             }
         }
         &.list-unstyled{
+            
             @include minMobilemaxPhablet{
                 padding-inline-start:0px;
             }

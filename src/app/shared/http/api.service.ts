@@ -1,9 +1,10 @@
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, flatMap, map } from 'rxjs/operators';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
@@ -11,6 +12,7 @@ import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { MyInfoService } from './../Services/my-info.service';
 import { apiConstants } from './api.constants';
+import { AuthenticationService } from './auth/authentication.service';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
 
@@ -24,6 +26,7 @@ export class ApiService {
   constructor(
     private configService: ConfigService,
     private http: BaseService,
+    public authService: AuthenticationService,
     private modal: NgbModal,
     private myInfoService: MyInfoService,
     private guideMeService: GuideMeService,
@@ -152,22 +155,39 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
-  sendContactUs(data) {
-    // tslint:disable-next-line:no-commented-code
-    /*
-    return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, data, true)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
-    */
-    const url = '../../../assets/mock-data/customerReview.json';
+  getSubjectList() {
+    const url = '../../../assets/about-us/subjectList.json';
     return this.http.getMock(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
+    }
+  sendContactUs(data) {
+    const payload = {
+      toEmail: data.email,
+      subject: data.subject,
+      body: data.message
+    };
+    return this.authService.authenticate().map((response) => {
+      console.log('WH!!!!!!!!!!!!' + response);
+      this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
+        .pipe(
+          catchError((error: HttpErrorResponse) => this.handleError(error))
+        );
+      });
+    }
+
+  subscribeNewsletter(data) {
+    const payload = data;
+    return this.http.post(apiConstants.endpoint.subscription.base, payload)
+    .pipe (
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 
+  subscribeHandleError(error: HttpErrorResponse) {
+    console.log(error);
+  }
   getMyInfoData(data) {
     const url = '../assets/mock-data/myInfoValues.json';
     return this.http.post(apiConstants.endpoint.getMyInfoValues, data.code, true)

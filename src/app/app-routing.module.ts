@@ -5,6 +5,7 @@ import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
 import { HomeComponent } from './home/home.component';
 
+import { FAQComponent } from './faq/faq.component';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
@@ -25,10 +26,10 @@ const routes: Routes = [
       { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
-      /*
+      { path: 'faq', component: FAQComponent},
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
-
+      /*
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
       */

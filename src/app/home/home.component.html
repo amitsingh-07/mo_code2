@@ -112,8 +112,8 @@
             </div>
         
         <div class="subscribe__section"  #subscribeSection>
-            <div class="subscribe__section--bg"></div>
-            <!--
+            <div class="subscribe__section--bg">
+                </div>
             <form class="subscribe__form--plugin" name="subscribeForm" id="subscribeForm" [formGroup]="subscribeForm">
                 <div class="subscribe-title--container">
                     <div class="subscribe--title">
@@ -123,13 +123,19 @@
                         <img src="assets/images/owl--mini.svg"/>
                     </div> 
                     </div>
-                <div class="subscribe-input--container form-control">
-                    <input type="email" placeholder="{{'NEWSLETTER.PLACEHOLDER' | translate}}" formControlName="email"/>
-                    <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">{{'NEWSLETTER.SUBSCRIBE' | translate}}</button> 
+                <div class="subscribe-input--container">
+                    <div class="row">
+                        <input class="flex-col-6 form-control" type="text" placeholder="{{'NEWSLETTER.PLACEHOLDER.FIRST_NAME' | translate}}" formControlName="firstName"/>
+                        <input class="flex-col-6 form-control" type="text" placeholder="{{'NEWSLETTER.PLACEHOLDER.LAST_NAME' | translate}}" formControlName="lastName"/>
+                        </div>
+                    <div class="row">
+                        <input class="form-control" type="email" placeholder="{{'NEWSLETTER.PLACEHOLDER.EMAIL' | translate}}" formControlName="email"/>
                     </div>
+                    <p *ngIf="!(subscribeMessage === '')" class="sub-message" [ngClass]="{'success': subscribeSuccess}">{{subscribeMessage}}</p>
+                    <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">{{'NEWSLETTER.SUBSCRIBE' | translate}}</button>
+                    </div>                    
                 <p class="subscribe--subtext">{{'NEWSLETTER.SUBTEXT' | translate}}</p>
                 </form>
-            -->
             <div class="subscribe__section--footer" #subscribeFooter>
                 <div class="orange"></div>
                 </div>

@@ -1,6 +1,8 @@
 const PORTFOLIO_API_BASE_URL = 'invest/investment-microservice/';
 const ARTICLE_API_BASE_URL = 'insuranceproduct-microservice';
 const ABOUT_US_API_BASE_URL = 'insuranceproduct-microservice';
+const CONTACT_US_API_BASE_URL = 'account-microservice';
+const SUBSCRIPTION_API_BASE_URL = 'insuranceproduct-microservice';
 
 export let apiConstants = {
     endpoint: {
@@ -32,7 +34,10 @@ export let apiConstants = {
         },
         aboutus: {
             getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/getCustomerReviews',
-            sendContactUs: ABOUT_US_API_BASE_URL + '/api/sendContactUs'
+            sendContactUs: CONTACT_US_API_BASE_URL + '/api/contactus'
+        },
+        subscription: {
+            base: SUBSCRIPTION_API_BASE_URL + '/api/mailinglist/subscribe'
         },
         portfolio: {
             setInvestmentObjective: PORTFOLIO_API_BASE_URL + 'api/CustomerInvestmentObjective',

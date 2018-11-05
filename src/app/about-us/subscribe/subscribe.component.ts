@@ -35,7 +35,7 @@ export class SubscribeComponent implements OnInit {
   }
 
   subscribeMember() {
-    this.mailChimpApiService.setSubscribeFormData(this.subscribeForm.value);
+    this.mailChimpApiService.registerUser(this.subscribeForm.value);
   }
 
 }

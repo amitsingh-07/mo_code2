@@ -13,7 +13,12 @@ export class AboutUsApiService {
     return this.apiService.getCustomerReviewList();
   }
 
+  getSubjectList() {
+    return this.apiService.getSubjectList();
+  }
+
   setContactUs(data) {
+    console.log(data);
     return this.apiService.sendContactUs(data);
   }
 }
