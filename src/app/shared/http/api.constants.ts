@@ -45,6 +45,6 @@ export let apiConstants = {
             allDropdownlist: 'invest/investment-microservice/optionListCollection',
         },
         getPromoCode: '',
-        verifyPromoCode: ''
+        verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode'
     }
 };
