@@ -205,4 +205,7 @@ export class ResidentialAddressComponent implements OnInit {
     }
   }
 
+  isDisabled(field) {
+    return this.investmentAccountService.isDisabled(field);
+  }
 }
