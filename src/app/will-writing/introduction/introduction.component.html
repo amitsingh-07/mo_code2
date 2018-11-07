@@ -1,11 +1,12 @@
 <app-page-title [pageTitle]="pageTitle"></app-page-title>
-<div class="container-fluid max-width--1024">
+<div class="container-fluid">
+  <div class="container-fluid max-width--1024">
   <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
     <div class="content">
       <div class="flex-row">
         <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
           <h2 id="intro-title">{{ 'WILL_WRITING.INTRODUCTION.TITLE' | translate}}</h2>
-          <h6 class="hidden-sm-md sub-title" id="intro-sub-title">{{ 'WILL_WRITING.INTRODUCTION.SUB_TITLE' |
+          <h6 class="hidden-sm-md sub-title pr20" id="intro-sub-title">{{ 'WILL_WRITING.INTRODUCTION.SUB_TITLE' |
             translate}}</h6>
           <div class="banner-image">
             <img src="assets/images/will-start.svg" id="intro-img" />
@@ -35,7 +36,7 @@
                 translate}}</div>
               <div class="brdr-btm mb25 hidden-sm-md"></div>
               <div>
-                <input type="text" formControlName="promoCode" placeholder="Enter your promo code" id="intro-promo-text-field" />
+                <input type="text" #promoCode formControlName="promoCode" placeholder="Enter your promo code" id="intro-promo-text-field" />
               </div>
               <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now"
                   (click)="getOneNow()">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
@@ -47,4 +48,5 @@
       </div>
     </div>
   </form>
+</div>
 </div>

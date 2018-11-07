@@ -779,8 +779,9 @@ export class ApiService {
   }
 
   // Verify PromoCode
-  verifyPromoCode(promocode: string ) {
-    return this.http.post(apiConstants.endpoint.verifyPromoCode, promocode)
+  verifyPromoCode(promoCode) {
+    const url = '../assets/mock-data/validatePromo.json';
+    return this.http.post(apiConstants.endpoint.verifyPromoCode, promoCode)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -793,6 +794,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
+            return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');

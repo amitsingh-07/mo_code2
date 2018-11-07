@@ -24,7 +24,8 @@
                 <div class="edit-block checkbox-button two-label">
                   <label id="guardian_{{i+1}}">
                     <div class="input-label-black">{{guardian.name | titlecase }}</div>
-                    <div class="input-label-normal">{{guardian.relationship | titlecase }}</div>
+                    <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
+                        translate}} {{guardian.relationship | titlecase }}</div>
                   </label>
                   <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
                 </div>
@@ -83,7 +84,7 @@
                   <div class="flex-row mb10">
                     <div class="col-5 pl0">
                       <label for="name" id="addGuardianFormLbl2">
-                        <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
+                        <div class="with-help-icon">{{ 'WILL_WRITING.COMMON.NRIC' | translate}}<span class="help-icon" (click)="openToolTipModal()"></span></div>
                       </label>
                     </div>
                     <div class="col-7 pr0">

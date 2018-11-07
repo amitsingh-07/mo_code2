@@ -27,6 +27,7 @@ export class ConfirmationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.willWritingService.setFromConfirmPage(false);
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
     const estateDistribution = this.willWritingFormData.beneficiary.filter((beneficiary) => beneficiary.selected === true);
     for (const beneficiary of estateDistribution) {
@@ -41,6 +42,7 @@ export class ConfirmationComponent implements OnInit {
   }
 
   edit(url) {
+    this.willWritingService.setFromConfirmPage(true);
     this.router.navigate([url]);
   }
 

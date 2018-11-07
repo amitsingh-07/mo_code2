@@ -47,6 +47,6 @@ export let apiConstants = {
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective'
         },
         getPromoCode: '',
-        verifyPromoCode: ''
+        verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode'
     }
 };

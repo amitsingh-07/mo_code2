@@ -19,7 +19,10 @@ export class WillWritingApiService {
         return this.apiService.getPromoCode();
     }
 
-    verifyPromoCode(promoCode) {
+    verifyPromoCode(promoCodeData) {
+        const promoCode = {
+            promoCode: promoCodeData
+        };
         return this.apiService.verifyPromoCode(promoCode);
     }
 

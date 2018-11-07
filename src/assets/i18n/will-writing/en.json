@@ -17,6 +17,7 @@
       "RELATIONSHIP": "Relationship To You",
       "NRIC": "Identification Number",
       "ADD": "Add",
+      "SAVE": "Save",
       "CANCEL": "Cancel",
       "MY": "My",
       "GENDER": "Gender",
@@ -24,6 +25,8 @@
       "NUMBER_OF_CHILDREN": "Number of Children",
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "Your changes will not be saved. Are you sure to exit this page?",
+      "CONFIRM": "This will overwrite your current information. Would you like to proceed with editing?",
+      "CONFIRM_IMPACT_MESSAGE": "<span class='mb10'>Required Actions</span><span>If you were to proceed with the changes, we may need you to go through the entire will writing journey as it may have some legal implications.</span>",
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
           "value": "parent"
@@ -139,30 +142,30 @@
       "RELIGION": "Religion",
       "INLINE_ERROR": "Please consider seeking advice from a lawyer as you or your assets may be governed under the laws of a foreign jurisdiction.",
       "RELIGION_LIST": [{
+          "text": "Buddhist",
+          "value": "buddhist"
+        }, {
         "text": "Christian",
         "value": "christian"
-      }, {
-        "text": "Buddhist",
-        "value": "buddhist"
-      }, {
-        "text": "Muslim",
-        "value": "muslim"
       }, {
         "text": "Hindu",
         "value": "hindu"
       }, {
-        "text": "None",
-        "value": "none"
+        "text": "Muslim",
+        "value": "muslim"
       }, {
         "text": "Others",
         "value": "others"
+      }, {
+        "text": "None",
+        "value": "none"
       }],
       "ARE_YOU_SINGAPOREAN": "Are you a Singaporean?",
       "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?",
       "FIND_OUT_ASSETS_CAN_DISTRIBUTE": "Find out what assets can be distributed via your will.",
       "TOOLTIP": {
         "TITLE": "Assets to be Distributed",
-        "MESSAGE": "<p> Generally, only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nominations nor trusts)</li><li>- Property (Sole/Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
+        "MESSAGE": "<p> Generally, only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nomination or trusts)</li><li>- Property (Sole/Tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
       },
       "MUSLIM_ERROR": {
         "TITLE": "Sorry, we are unable to assist you.",
@@ -189,8 +192,9 @@
       "SUB_TITLE": "Name the beneficiaries that you would like to inherit your estate. Maximum 7 people",
       "FORM_HEADER": "Beneficiary",
       "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
-      "FORM_TITLE": "I would like my beneficiaries to be",
-      "MIN_BENEFICIARY": "Please select at least 1 beneficiary for your estate distribution to proceed"
+      "FORM_TITLE": "My beneficiaries are",
+      "MIN_BENEFICIARY": "Please select at least 1 beneficiary for your estate distribution to proceed",
+      "ADD_BENEFICIARY": "Beneficiary"
     },
     "MY_ESTATE_DISTRIBUTION": {
       "TITLE": "My Estate Distribution",
@@ -212,6 +216,17 @@
       "DESCRIPTION": "To view your will, please login to your account.",
       "LOGIN_NOW": "Log In Now",
       "CREATE_ACCOUNT": "Create Account"
+    },
+    "VALIDATE_YOUR_WILL": {
+      "HERE_YOUR_WILL": "Here’s Your Will!",
+      "TITLE": "Validate Your Will",
+      "SUB_TITLE": "Yay, your will is ready to be viewed! Please follow the steps below to validate your will.",
+      "PRINT_YOUR_WILL": "Print Your Will",
+      "FIND_2_WITNESSES": "Find 2 Witnesses",
+      "SIGN_YOUR_WILL": "Sign Your Will",
+      "KEEP_IT_SAFE": "Keep It In A Safe Place",
+      "DOWNLOAD_WILL": "Download Will",
+      "EDIT_YOUR_WILL": "Edit your will"
     }
   }
 }
