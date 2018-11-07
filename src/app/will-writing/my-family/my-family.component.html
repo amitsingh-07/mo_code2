@@ -88,7 +88,9 @@
               <div>
                 <button type="button" (click)="goToNext(myFamilyForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                   id="myFamilyFormBtn1">
-                  {{'LABEL.CONTINUE' | translate}}</button>
+                  <span *ngIf="!fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                  <span *ngIf="fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
+                </button>
               </div>
             </form>
           </div>

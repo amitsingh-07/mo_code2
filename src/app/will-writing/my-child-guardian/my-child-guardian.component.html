@@ -98,8 +98,8 @@
             <div>
               <button type="button" (click)="goToNext(addGuardianForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                 id="addGuardianFormBtn1">
-                <span *ngIf="!isEdit">{{'LABEL.CONTINUE' | translate}}</span>
-                <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
+                <span *ngIf="!isEdit && !fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                <span *ngIf="isEdit || fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
             </div>
           </form>
         </div>
