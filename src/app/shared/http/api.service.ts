@@ -745,7 +745,7 @@ export class ApiService {
   }
 
   // Verify PromoCode
-  verifyPromoCode(promoCode: string) {
+  verifyPromoCode(promoCode) {
     const url = '../assets/mock-data/validatePromo.json';
     return this.http.post(apiConstants.endpoint.verifyPromoCode, promoCode)
       .pipe(
