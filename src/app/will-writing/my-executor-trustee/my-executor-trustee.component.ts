@@ -127,10 +127,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
           this.formTitle.push({ isAlt: false, relationship: '' });
         }
       } else {
-        this.formTitle.push({ isAlt: true, relationship: '' });
         if (!this.hasSpouse && !this.hasChild) {
           this.formTitle.push({ isAlt: false, relationship: '' });
         }
+        this.formTitle.push({ isAlt: true, relationship: '' });
       }
     }
   }
