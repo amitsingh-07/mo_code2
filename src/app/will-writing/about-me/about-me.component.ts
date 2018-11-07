@@ -22,6 +22,7 @@ import { WillWritingService } from '../will-writing.service';
 export class AboutMeComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: string;
+  private confirmModal = {};
 
   aboutMeForm: FormGroup;
   formValues: IAboutMe;
@@ -32,6 +33,8 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   submitted: boolean;
   private subscription: Subscription;
   unsavedMsg: string;
+
+  fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,6 +49,8 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
       this.pageTitle = this.translate.instant('WILL_WRITING.ABOUT_ME.TITLE');
       this.maritalStatusList = this.translate.instant('WILL_WRITING.ABOUT_ME.FORM.MARITAL_STATUS_LIST');
+      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.setPageTitle(this.pageTitle);
     });
@@ -101,10 +106,10 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       if (this.formValues.maritalStatus !== undefined) {
         const index = this.maritalStatusList.findIndex((status) => status.value === this.formValues.maritalStatus);
-        this.selectMaritalStatus(this.maritalStatusList[index]);
+        this.selectMaritalStatus(this.maritalStatusList[index], '');
       }
       if (this.formValues.noOfChildren !== undefined) {
-        this.selectNoOfChildren(this.formValues.noOfChildren);
+        this.selectNoOfChildren(this.formValues.noOfChildren, '');
       }
     }, 100);
   }
@@ -113,7 +118,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
    * validate aboutMeForm.
    * @param form - user personal detail.
    */
-  save(form: any) {
+  validateAboutMeForm(form: any) {
     this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -121,10 +126,9 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       });
       const error = this.willWritingService.getFormError(form, 'aboutMeForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
-    } else {
-      this.willWritingService.setAboutMeInfo(form.value);
-      return true;
+      return false;
     }
+    return true;
   }
 
   get abtMe() { return this.aboutMeForm.controls; }
@@ -133,19 +137,46 @@ export class AboutMeComponent implements OnInit, OnDestroy {
    * set marital status.
    * @param index - marital Status List index.
    */
-  selectMaritalStatus(status) {
-    status = status ? status : {text: '', value: ''};
+  selectMaritalStatus(status, from) {
+    status = status ? status : { text: '', value: '' };
     this.maritalStatus = status.text;
     this.aboutMeForm.controls['maritalStatus'].setValue(status.value);
+    if (from) {
+      this.aboutMeForm.markAsDirty();
+    }
   }
 
   /**
    * set no of childrens.
    * @param children - no of children count.
    */
-  selectNoOfChildren(children: any) {
+  selectNoOfChildren(children: any, from) {
     this.noOfChildren = children;
     this.aboutMeForm.controls['noOfChildren'].setValue(this.noOfChildren);
+    if (from) {
+      this.aboutMeForm.markAsDirty();
+    }
+  }
+
+  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.unSaved = true;
+    if (hasImpact) {
+      ref.componentInstance.hasImpact = message;
+    }
+    ref.result.then((data) => {
+      if (data === 'yes') {
+        this.willWritingService.setFromConfirmPage(false);
+        this.save(form, url);
+      }
+    });
+    return false;
+  }
+
+  save(form, url) {
+    this.willWritingService.setAboutMeInfo(form.value);
+    this.router.navigate([url]);
   }
 
   /**
@@ -153,13 +184,35 @@ export class AboutMeComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if (this.save(form)) {
-      if (form.value.maritalStatus === 'single' && form.value.noOfChildren === 0) {
-        this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
+    if (this.validateAboutMeForm(form)) {
+      let url = (form.value.maritalStatus !== 'married' && form.value.noOfChildren === 0) ?
+        WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE : WILL_WRITING_ROUTE_PATHS.MY_FAMILY;
+      if (Object.keys(this.formValues).length === 0 && this.formValues.constructor === Object) {
+        this.save(form, url);
       } else {
-        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+        if (this.aboutMeForm.dirty) {
+          let isUserLogged = false;
+          let isChildChanged;
+          let isMaritalStatusChanged;
+          if (this.formValues.noOfChildren !== form.value.noOfChildren) {
+            isUserLogged = this.willWritingService.isUserLoggedIn();
+            isChildChanged = true;
+          }
+          if (this.formValues.maritalStatus !== form.value.maritalStatus) {
+            if (this.formValues.maritalStatus === 'married' || form.value.maritalStatus === 'married') {
+              isUserLogged = this.willWritingService.isUserLoggedIn();
+              isMaritalStatusChanged = true;
+            }
+          }
+          if (!isChildChanged && !isMaritalStatusChanged) {
+            url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : url;
+          }
+          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, isUserLogged, form);
+        } else {
+          url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : url;
+          this.router.navigate([url]);
+        }
       }
     }
   }
-
 }

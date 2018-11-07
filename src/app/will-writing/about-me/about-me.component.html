@@ -81,7 +81,7 @@
                           <button class="dropdown-item" (click)="selectMaritalStatus('')">{{'COMMON.LBL_SELECT' |
                             translate}}</button>
                           <button type="button" class="dropdown-item" *ngFor="let status of maritalStatusList; let i=index"
-                            (click)="selectMaritalStatus(status)">
+                            (click)="selectMaritalStatus(status, 'html')">
                             {{status.text}}
                           </button>
                         </div>
@@ -105,7 +105,7 @@
                         <div ngbDropdownMenu aria-labelledby="dropdownNoOfChildren">
                           <button class="dropdown-item" (click)="selectNoOfChildren('')">{{'COMMON.LBL_SELECT' |
                             translate}}</button>
-                          <button type="button" class="dropdown-item" *ngFor="let children of noOfChildrenList" (click)="selectNoOfChildren(children)">
+                          <button type="button" class="dropdown-item" *ngFor="let children of noOfChildrenList" (click)="selectNoOfChildren(children,'html')">
                             {{children}} {{ (children == 1 ? 'WILL_WRITING.ABOUT_ME.FORM.CHILD' :
                             'WILL_WRITING.ABOUT_ME.FORM.CHILDREN') | translate}}
                           </button>

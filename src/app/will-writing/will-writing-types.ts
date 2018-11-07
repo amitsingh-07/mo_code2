@@ -49,4 +49,5 @@ export interface IBeneficiary {
     uin: string;
     selected: boolean;
     distPercentage: number;
+    dob?: string;
 }
