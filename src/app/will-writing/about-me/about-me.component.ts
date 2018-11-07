@@ -185,7 +185,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
    */
   goToNext(form) {
     if (this.validateAboutMeForm(form)) {
-      let url = (form.value.maritalStatus !== 'married' && form.value.noOfChildren === 0) ?
+      let url = (form.value.maritalStatus !== WILL_WRITING_CONFIG.MARRIED && form.value.noOfChildren === 0) ?
         WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE : WILL_WRITING_ROUTE_PATHS.MY_FAMILY;
       if (Object.keys(this.formValues).length === 0 && this.formValues.constructor === Object) {
         this.save(form, url);
@@ -199,7 +199,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
             isChildChanged = true;
           }
           if (this.formValues.maritalStatus !== form.value.maritalStatus) {
-            if (this.formValues.maritalStatus === 'married' || form.value.maritalStatus === 'married') {
+            if (this.formValues.maritalStatus === WILL_WRITING_CONFIG.MARRIED || form.value.maritalStatus === WILL_WRITING_CONFIG.MARRIED) {
               isUserLogged = this.willWritingService.isUserLoggedIn();
               isMaritalStatusChanged = true;
             }

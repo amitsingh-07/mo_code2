@@ -13,6 +13,7 @@ import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IGuardian } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
+import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 
 @Component({
   selector: 'app-my-child-guardian',
@@ -66,7 +67,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
     if (this.willWritingService.getGuardianInfo().length > 0) {
       this.guardianList = this.willWritingService.getGuardianInfo();
     } else {

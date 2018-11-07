@@ -70,7 +70,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
     if (this.willWritingService.getExecTrusteeInfo().length > 0) {
       this.execTrusteeList = this.willWritingService.getExecTrusteeInfo();

@@ -12,6 +12,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IChild, ISpouse } from '../will-writing-types';
+import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
 
 @Component({
@@ -63,7 +64,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
     this.childrenFormValues = this.willWritingService.getChildrenInfo();
     this.spouseFormValues = this.willWritingService.getSpouseInfo();

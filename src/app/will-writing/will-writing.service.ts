@@ -187,7 +187,7 @@ export class WillWritingService {
   setAboutMeInfo(data: IAboutMe) {
     if (Object.keys(this.getAboutMeInfo()).length !== 0) {
       const isMaritalStatusChanged = this.getAboutMeInfo().maritalStatus !== data.maritalStatus &&
-        (this.getAboutMeInfo().maritalStatus === 'married' || data.maritalStatus === 'married');
+        (this.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED || data.maritalStatus === WILL_WRITING_CONFIG.MARRIED);
       const isNoOfChildrenChanged = this.getAboutMeInfo().noOfChildren !== data.noOfChildren;
       if (isMaritalStatusChanged || isNoOfChildrenChanged) {
         this.clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged);
