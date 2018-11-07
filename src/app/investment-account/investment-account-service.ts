@@ -546,6 +546,11 @@ export class InvestmentAccountService {
         return this.investmentAccountFormData.isMyInfoEnabled;
     }
 
+    setMyInfoStatus(status) {
+        this.investmentAccountFormData.isMyInfoEnabled = status;
+        this.commit();
+    }
+
     getAdditionDeclaration() {
         return {
             source: this.investmentAccountFormData.source,
