@@ -21,7 +21,7 @@
                 <label id="executor_{{i+1}}">
                   <div class="input-label-black">{{execTrustee.name | titlecase }}</div>
                   <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
-                      translate}} {{execTrustee.relationship | titlecase }}</div>
+                    translate}} {{execTrustee.relationship | titlecase }}</div>
                 </label>
                 <span (click)="editExecTrustee(execTrustee.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
               </div>
@@ -31,12 +31,12 @@
             <form [formGroup]="addExeTrusteeForm" id="addExeTrusteeForm" name="addExeTrusteeForm">
               <div class="addExeTrusteeForm" formArrayName="executorTrustee" *ngFor="let execTrustee of addExeTrusteeForm.get('executorTrustee').controls; let i = index;">
                 <div class="form-group" [formGroupName]="i">
-                  <div  *ngIf="formTitle[i]?.isAlt"class="flex-row title">
-                      {{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE' | translate}}
+                  <div *ngIf="formTitle[i]?.isAlt" class="flex-row title">
+                    {{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE' | translate}}
                   </div>
-                  <div  *ngIf="!formTitle[i]?.isAlt" class="flex-row title">
-                      {{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}
-                    </div>                  
+                  <div *ngIf="!formTitle[i]?.isAlt" class="flex-row title">
+                    {{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}
+                  </div>
                   <div *ngIf="formTitle[i]?.isAlt" class="flex-row alternative-sub-title">
                     {{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE_SUB_TITLE' | translate}}
                   </div>
@@ -77,7 +77,8 @@
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl2">
-                        <div class="with-help-icon">{{ 'WILL_WRITING.COMMON.NRIC' | translate}}<span class="help-icon" (click)="openToolTipModal()"></span></div>
+                        <div class="with-help-icon">{{ 'WILL_WRITING.COMMON.NRIC' | translate}}<span class="help-icon"
+                            (click)="openToolTipModal()"></span></div>
                       </label>
                     </div>
                     <div class="flex-col-6">
@@ -92,8 +93,8 @@
           <div>
             <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="myFamilyFormBtn1">
-              <span *ngIf="!isEdit">{{'LABEL.CONTINUE' | translate}}</span>
-              <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
+              <span *ngIf="!isEdit && !fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+              <span *ngIf="isEdit || fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
             </button>
           </div>
         </div>

@@ -17,6 +17,7 @@
       "RELATIONSHIP": "Relationship To You",
       "NRIC": "Identification Number",
       "ADD": "Add",
+      "SAVE": "Save",
       "CANCEL": "Cancel",
       "MY": "My",
       "GENDER": "Gender",
@@ -192,7 +193,8 @@
       "FORM_HEADER": "Beneficiary",
       "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
       "FORM_TITLE": "My beneficiaries are",
-      "MIN_BENEFICIARY": "Please select at least 1 beneficiary for your estate distribution to proceed"
+      "MIN_BENEFICIARY": "Please select at least 1 beneficiary for your estate distribution to proceed",
+      "ADD_BENEFICIARY": "Beneficiary"
     },
     "MY_ESTATE_DISTRIBUTION": {
       "TITLE": "My Estate Distribution",
