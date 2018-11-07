@@ -33,7 +33,7 @@ export let apiConstants = {
             getRelatedArticle: ARTICLE_API_BASE_URL + '/api/article/getTop3ArticlesByTagId'
         },
         aboutus: {
-            getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/getCustomerReviews',
+            getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/review/getAllReviews',
             sendContactUs: CONTACT_US_API_BASE_URL + '/api/contactus'
         },
         subscription: {

@@ -10,7 +10,7 @@ export class AboutUsService {
 
   constructor() { }
 
-  getCustomerReviews(data): ICustomerReview[] {
+  getCustomerReview(data): ICustomerReview[] {
     const customerReviewArray = [];
     data.forEach((review) => {
       customerReviewArray.push(this.createCustomerReview(review));

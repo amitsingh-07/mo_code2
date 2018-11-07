@@ -101,7 +101,7 @@ export class ApiService {
   }
 
   getArticleContent(art_id) {
-    const url = '../../../assets/articles/' + art_id + '.jsp';
+    const url = '/assets/articles/' + art_id + '.jsp';
     return this.http.getArticle(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
@@ -117,11 +117,6 @@ export class ApiService {
   }
 
   getArticleCategory() {
-    // tslint:disable-next-line:no-commented-code
-    /*
-    const url = '../../../assets/mock-data/articleCategory.json';
-    return this.http.getMock(url)
-    */
     const payload = null;
     return this.http.post(apiConstants.endpoint.article.getArticleCategory, payload)
       .pipe(
@@ -148,9 +143,8 @@ export class ApiService {
   // ---------------------------- ABOUT US MODULE ----------------------------
   getCustomerReviewList() {
     // tslint:disable-next-line:no-commented-code
-    // return this.http.get(apiConstants.endpoint.aboutus.getCustomerReview)
-    const url = '../../../assets/mock-data/customerReview.json';
-    return this.http.getMock(url)
+    const payload = {};
+    return this.http.post(apiConstants.endpoint.aboutus.getCustomerReviews, payload, true)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

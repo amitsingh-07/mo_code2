@@ -18,7 +18,7 @@
   <div class="faq__container">
     <div class="faq-category__container" *ngFor="let section of sections;">
       <div class="faq-category__header">
-        <h1>{{section.title}}</h1>
+        <h2>{{section.title}}</h2>
         </div>
       <div class="faq-category__body">
         <div class="faq-selection__panel" ngbDropdown *ngIf="section.groups.length > 0">

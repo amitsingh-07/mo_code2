@@ -168,6 +168,7 @@
             flex-basis:calc(100% - 390px);
             .dropdown-toggle {
                 color:$dark-grey-color;
+                padding-right:30px;
             }
             textarea{
                 margin-top:10px;
@@ -186,6 +187,15 @@
                 color:$red-color;
                 &.success{
                     color:$green-color;
+                }
+            }
+            .dropdown-menu{
+                width:100%;
+                .dropdown-item{
+                    white-space: normal;
+                    @include minMobilemaxPhablet {
+                        padding:0.75rem 1.5rem;
+                    }
                 }
             }
         }
