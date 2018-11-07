@@ -14,7 +14,10 @@
         .intro-block__tab {
             width: calc(50% - 10px);
             opacity:0.2;
-            margin-right: 10px;
+            margin-right: 30px;
+            @include allmobiles {
+                margin-right: 10px;
+            }
             background-color:$app-backgrnd-secondary-color;
             min-height:5px;
             &.active {
@@ -40,6 +43,12 @@
         @include iPadProPortrait {
             .banner-image img {
                 max-width:80%;
+            }
+        }
+        .banner-image img {
+            margin-top: 73px;
+            @include allmobiles {
+                margin-top: 20px;
             }
         }
     }
