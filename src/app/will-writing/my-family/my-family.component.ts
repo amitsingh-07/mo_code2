@@ -78,7 +78,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   buildMyFamilyForm() {
     this.myFamilyForm = this.formBuilder.group({
       spouse: this.formBuilder.array([this.buildSpouseForm()]),
-      childrens: this.formBuilder.array([this.buildChildrenForm(0)]),
+      children: this.formBuilder.array([this.buildChildrenForm(0)]),
     });
     if (this.hasChild) {
       const childrenCount: number = this.willWritingService.getAboutMeInfo().noOfChildren;
@@ -143,7 +143,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   }
 
   addChildrenForm(index: number): void {
-    const items: FormArray = this.myFamilyForm.get('childrens') as FormArray;
+    const items: FormArray = this.myFamilyForm.get('children') as FormArray;
     items.push(this.buildChildrenForm(index));
   }
 
@@ -169,7 +169,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       this.willWritingService.setSpouseInfo(form.value.spouse[0]);
     }
     if (this.hasChild) {
-      this.willWritingService.setChildrenInfo(form.value.childrens);
+      this.willWritingService.setChildrenInfo(form.value.children);
     }
     return true;
   }
@@ -184,7 +184,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     ref.result.then((data) => {
       if (data === 'yes') {
         if (this.willWritingService.getExecTrusteeInfo().length > 0 &&
-          this.willWritingService.checkChildrenAge(form.value.childrens) !== this.willWritingService.checkBeneficiaryAge()) {
+          this.willWritingService.checkChildrenAge(form.value.children) !== this.willWritingService.checkBeneficiaryAge()) {
           this.save(form);
           this.willWritingService.clearExecTrusteeInfo();
           const redirectUrl = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN) ?
@@ -207,13 +207,13 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   goToNext(form) {
     if (this.childrenFormValues.length === 0 && this.spouseFormValues.length === 0) {
       if (this.validateFamilyForm(form) && this.save(form)) {
-        const url = (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) ?
+        const url = (this.hasChild && this.willWritingService.checkChildrenAge(form.value.children)) ?
           WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
         this.router.navigate([url]);
       }
     } else {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
-      if (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) {
+      if (this.hasChild && this.willWritingService.checkChildrenAge(form.value.children)) {
         url = WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN;
       }
       if (this.myFamilyForm.dirty && this.validateFamilyForm(form)) {
