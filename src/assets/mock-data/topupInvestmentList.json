@@ -6,13 +6,13 @@
     "objectList": [
         {
             "id": 1,
-            "investmentDescription": "Min. $100",
-            "investmentType": "One-time Investment"
+            "value": "100",
+            "name": "One-time Investment"
         },
         {
             "id": 2,
-            "investmentDescription": "Min. $50",
-            "investmentType": "Monthly Investment"
+            "value": "50",
+            "name": "Monthly Investment"
         }
     ]
 }

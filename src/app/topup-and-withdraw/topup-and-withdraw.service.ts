@@ -14,39 +14,45 @@ const SESSION_STORAGE_KEY = 'app_inv_account_session';
 
 export class TopupAndWithDrawService {
   constructor(private http: HttpClient, private apiService: ApiService, public authService: AuthenticationService) {
-    this.getTopupInvestmentList();
+    this.getAllDropDownList();
     this.getTopUpFormData();
+    this.getTopupInvestmentList();
   }
-  private investmentAccountFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
+  private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
   private topUPFormError: any = new TopUPFormError();
 
   commit() {
     if (window.sessionStorage) {
-      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.investmentAccountFormData));
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(this.topUpAndWithdrawFormData));
     }
   }
 
   // Return the entire Form Data
   getTopUpFormData() {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
-      this.investmentAccountFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+      this.topUpAndWithdrawFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
     }
-    return this.investmentAccountFormData;
+    return this.topUpAndWithdrawFormData;
   }
+  getAllDropDownList() {
+    return this.apiService.getAllDropdownList();
+  }
+
   getTopupInvestmentList() {
     return this.apiService.getTopupInvestmentList();
+
   }
 
   doFinancialValidations(form) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals
     if (Number(form.value.oneTimeInvestmentAmount) <= 100 &&
-     form.value.investment === 'One-time Investment') {
+      form.value.Investment === 'One-time Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
       // tslint:disable-next-line:max-line-length
     } else if (Number(form.value.MonthlyInvestmentAmount) <= 50 &&
-      form.value.investment === 'Monthly Investment') {
+      form.value.Investment === 'Monthly Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
       // tslint:disable-next-line:max-line-length
@@ -65,4 +71,21 @@ export class TopupAndWithDrawService {
   //   return str;
   // }
 
+  getTopUp() {
+    return {
+      portfolio: this.topUpAndWithdrawFormData.portfolio,
+      oneTimeInvestmentAmount: this.topUpAndWithdrawFormData.oneTimeInvestmentAmount,
+      MonthlyInvestmentAmount: this.topUpAndWithdrawFormData.MonthlyInvestmentAmount,
+      Investment: this.topUpAndWithdrawFormData.Investment,
+      topupportfolioamount: this.topUpAndWithdrawFormData.topupportfolioamount
+    };
+  }
+  setTopUp(data) {
+    this.topUpAndWithdrawFormData.portfolio = data.portfolio;
+    this.topUpAndWithdrawFormData.oneTimeInvestmentAmount = data.oneTimeInvestmentAmount;
+    this.topUpAndWithdrawFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
+    this.topUpAndWithdrawFormData.Investment = data.Investment;
+    this.topUpAndWithdrawFormData.topupportfolioamount = data.topupportfolioamount;
+    this.commit();
+  }
 }

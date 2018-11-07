@@ -5,5 +5,6 @@ export class TopUpAndWithdrawFormData {
     oneTimeInvestmentAmount: number;
     MonthlyInvestmentAmount: number;
     portfolio: string;
-    investment: string;
-    }
+    Investment: string;
+    topupportfolioamount: number;
+}
