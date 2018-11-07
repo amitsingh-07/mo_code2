@@ -37,8 +37,8 @@ export class InvestmentAccountFormData {
     countryList: any;
     nationality: any;
     nationalityCode: any;
-    unitedStatesResident: string;
-    singaporeanResident: string;
+    unitedStatesResident: boolean;
+    singaporeanResident: boolean;
 
     // Tax Info
     taxCountry: any;
@@ -87,8 +87,8 @@ export class InvestmentAccountFormData {
     financialTotalLiabilities: string;
 
     source: string;
-    expectedNumberOfTransation: string;
-    expectedAmountPerTranction: string;
+    expectedNumberOfTransation: number;
+    expectedAmountPerTranction: number;
     personalSavings: string;
     otherSources: string;
     inheritanceGift: string;
@@ -111,4 +111,5 @@ export class InvestmentAccountFormData {
     // MyInfo
     isMyInfoEnabled: boolean;
     disableAttributes: any;
+    callBackInvestmentAccount: boolean;
 }

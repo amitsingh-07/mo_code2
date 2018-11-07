@@ -4,8 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { InvestmentAccountService } from '../investment-account/investment-account-service';
 import { MyInfoService } from '../shared/Services/my-info.service';
 
-import { appConstants } from '../app.constants';
 import { GuideMeService } from '../guide-me/guide-me.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account/investment-account-routes.constants';
 
 @Component({
   selector: 'app-call-back',
@@ -29,15 +29,15 @@ export class CallBackComponent implements OnInit {
         this.myInfoService.openFetchPopup();
         this.myInfoService.isMyInfoEnabled = true;
         this.data = this.route.queryParams['value'];
-        this.myInfoService.setMyInfoValue(this.data);
+        this.myInfoService.setMyInfoValue(this.data.code);
 
         // Investment account
-        if (this.investmentAccountService.callBackInvestmentAccount) {
+        if (this.investmentAccountService.getCallBackInvestmentAccount()) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
-            this.investmentAccountService.setFormData(data['person']);
+            this.investmentAccountService.setMyInfoFormData(data['person']);
             this.myInfoService.isMyInfoEnabled = false;
             this.myInfoService.closeMyInfoPopup(false);
-            this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
           }, (error) => {
             this.myInfoService.closeMyInfoPopup(true);
             this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);

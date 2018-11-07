@@ -4,17 +4,19 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
+import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import {
-  BreakdownAccordionComponent
+    BreakdownAccordionComponent
 } from '../../shared/components/breakdown-accordion/breakdown-accordion.component';
 import {
-  BreakdownBarComponent
+    BreakdownBarComponent
 } from '../../shared/components/breakdown-bar/breakdown-bar.component';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -22,10 +24,9 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 import {
-  EditInvestmentModalComponent
+    EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
-import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -45,6 +46,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   loaderDesc;
   formData: FormData = new FormData();
   portfolio;
+  riskProfileImage: any;
 
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
@@ -74,48 +76,23 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
+    this.getPortfolioDetails();
+  }
 
-    this.portfolio = {
-      "projectedValue": 112.0,
-      "portfolioId": "PORTFOLIO00057",
-      "tenure": "50",
-      "projectedReturns": "+5.50%",
-      "breakDown": [{
-        "id": "SECTOR00012",
-        "name": "Emerging Markets Equity",
-        "type": "Equities",
-        "riskRating": 9.0,
-        "totalPercentage": 60,
-        "funds": [{
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "percentage": 60,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        }]
-      }, {
-        "id": "SECTOR00013",
-        "name": "Global Bonds",
-        "type": "Bonds",
-        "riskRating": 9.0,
-        "totalPercentage": 40,
-        "funds": [{
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "percentage": 20,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        }, {
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "percentage": 20,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        }]
-      }]
+  getPortfolioDetails() {
+    const params = this.constructgetPortfolioParams();
+    this.investmentAccountService.getPortfolioAllocationDetails(params).subscribe((data) => {
+      this.portfolio = data.objectList;
+      this.portfolio.riskProfileId = 4; /* TODO: this will be removed after api availability */
+      this.riskProfileImage = ProfileIcons[this.portfolio.riskProfileId - 1]['icon'];
+    });
+  }
+
+  constructgetPortfolioParams() {
+    /* TODO: this will be removed after api availability */
+    return {
+      riskProfileId: 4,
+      enquiryId: 5931
     };
   }
 
@@ -174,13 +151,14 @@ export class ConfirmPortfolioComponent implements OnInit {
       centered: true
     });
     ref.componentInstance.investmentData = {
-      investmentPeriod: 5,
+      investmentPeriod: 5, /* TODO: this will be changed after api availability */
       oneTimeInvestment: 12000,
       monthlyInvestment: 1000
     };
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
       // update form data
       ref.close();
+      this.saveUpdatedInvestmentData(emittedValue);
     });
     this.dismissPopup(ref);
   }
@@ -193,8 +171,37 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
   }
 
+  saveUpdatedInvestmentData(updatedData) {
+    const params = this.constructUpdateInvestmentParams(updatedData);
+    this.investmentAccountService.updateInvestment(params).subscribe((data) => {
+      this.getPortfolioDetails();
+    });
+  }
+
+  constructUpdateInvestmentParams(data) {
+    /* TODO: this will be removed after api availability */
+    return {
+      initialInvestment: data.oneTimeInvestment,
+      monthlyInvestment: data.monthlyInvestment
+    };
+  }
+
   goToWhatsTheRisk() {
-    this.router.navigate([ PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
+  }
+
+  goToNext() {
+    const pepData = this.investmentAccountService.getPepData();
+    // tslint:disable-next-line:triple-equals
+    if (pepData == true) {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+    } else {
+      this.investmentAccountService.createInvestmentAccount().subscribe((data) => {
+        console.log('Investment Data: ');
+        console.log(data);
+      });
+    }
+
   }
 
 }
