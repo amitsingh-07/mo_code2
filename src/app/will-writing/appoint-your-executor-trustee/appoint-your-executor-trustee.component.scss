@@ -45,6 +45,12 @@
                 max-width:80%;
             }
         }
+        .banner-image img {
+            margin-top: 73px;
+            @include allmobiles {
+                margin-top: 20px;
+            }
+        }
     }
     .intro-block__content__desc {
         text-align: center;
