@@ -88,7 +88,7 @@
 	</table>
 </div>
 
-<h3 class="white-box text-center">Cost Savings buying through MoneyOwl: <strong><br>$44 per year + $55 in commission rebates*</strong></h3>
+<h3 class="white-box">Cost Savings buying through MoneyOwl: <strong><br>$44 per year + $55 in commission rebates*</strong></h3>
 <small class="text-muted">*Data as of 8 April 2015</small>
 <br><p>This shows that for any coverage which is above $400,000, buying through MoneyOwl will be the most cost-efficient method. There is a cost savings of $44 in annual premiums together with $55 of total commission  rebates. ($633 in annual premiums for the first calculation versus $677 of buying through the <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/direct-purchase-insurance.aspx" target="_blank" title="Direct Purchase Insurance">Direct Purchase Insurance</a> channel). </p>
 <p>Furthermore, this provides you with great convenience. Instead of going to 2 or more insurers to purchase insurance products, you are  able to fulfill your insurance needs just by coming to us.</p>
@@ -104,7 +104,7 @@
 <p>Making a claim on your insurance policy can be a very tedious process with many questions and uncertainties, especially in the area of determining whether you are  eligible for a claim. Having an  expert to advise you is always helpful.&nbsp;We  offer our assistance when you need to claim on your insurance. </p>
 <br><br><h3 class="primary-color"><strong>4. Rating System</strong></h3><br>
 <!-- <div class="text-center"><img src="../assets/images/compare_table.png" alt="rating system"></div>
-<br><br> --><p>The MoneyOwl rating system helps you find the product which is of the best  value that suits your needs. Our Specialist Consulting Group with expertise  insurance knowledge, compiles, analyses, compares, updates and research  products distributed by <a href="https://www.diyinsurance.moneyowl.com.sg/portal/help/faqs?tab=general&qn=general_4a">insurance companies</a> based on features and price. These assets take into account return of savings for endowment products. Based on the product&rsquo;s value, it is converted to the number of stars as displayed in the comparison platform. </p>	
+<br><br> --><p>The MoneyOwl rating system helps you find the product which is of the best  value that suits your needs. Our Specialist Consulting Group with expertise  insurance knowledge, compiles, analyses, compares, updates and research products distributed by insurance companies based on features and price. These assets take into account return of savings for endowment products. Based on the product&rsquo;s value, it is converted to the number of stars as displayed in the comparison platform. </p>	
 
 <br><br><h3 class="primary-color"><strong>5. Differences  between DPI and Non-DPI Products</strong></h3>
 <br><p><strong>Total  Permanent Disability claim definition</strong></p>
@@ -144,11 +144,10 @@
 </div>
 <p>This means non-DPI products have a wider range of critical illness which we can claim for.</p>
 <br>
+<!--
 <div class="text-xs-center"><a href="https://www.moneyowl.com.sg/guideme/">
-	<img src="../assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
+	<img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
-<br>
-
-<p><strong>Disclaimer</strong></p>
-<small>This presentation represents the house view of MoneyOwl and is intended for information and illustration purposes  only. It should not be construed as a recommendation to buy or sell any product  and do not purport to represent or warrant the outcome of any particular  investment strategy, program or product. It has been prepared without  consideration to the specific investment objective, financial situation and  particular needs of any specific person or persons. References to individuals,  individual companies or any financial instrument or investment product is for  illustration purposes only and should not be construed as a recommendation to  buy or sell or advice in relation to investment, legal or tax matters. Past  performance of any fund manager, insurer, insurance product, financial  instrument, investment product, the economy, stock markets, bond markets,  economic trends or any forecasts made are not necessarily indicative of the  future performance of the same. An investment in collective investment schemes,  funds or other investment products is subject to varying investment risks,  including the possible loss of the principal amount invested. You should seek  specific advice from your adviser where applicable. </small>
-<small class="text-muted">*Please refer to our <a href="https://www.diyinsurance.moneyowl.com.sg/portal/help/faqs">FAQ</a> on how rebates work.</small>
+-->
+<br/>
+<small class="text-muted">*Please refer to our <a href="https://www.moneyowl.com.sg/#/faq">FAQ</a> on how rebates work.</small>

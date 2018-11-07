@@ -34,8 +34,15 @@
         </div>
       </div>
     <div class="learn-about__section secondary">
-      <h4>Latest Articles</h4>
-      <p>Stay updated for the latest updates</p>
+      <div class="learn-about__recent-header">
+        <div class="recent-header__group">
+        <h4>Latest Articles</h4>
+        <p>Stay updated for the latest updates</p>
+        </div>
+        <div class="recent-header__group hidden-sm-md">
+          <a routerLink="/articles/category/all">view all<i class="material-icons">keyboard_arrow_right</i></a>
+          </div>
+        </div>
       <div class="learn-about__recent-articles">
         <div class="recent-article--card" *ngFor="let article of recentArticleList">
           <div class="article-card--img col-xl-5 col-lg-4 col-md-4 col-sm-5 col-xs-12" [ngStyle]="{'background-image': 'url(./../../assets/articles/images/'+article.id+'/thumbnail.jpg)'}">
@@ -52,6 +59,9 @@
               </div>
             </div>
           </div>
+        </div>
+      <div class="learn-about__recent-footer">
+        <button class="btn btn-primary" routerLink="/articles/category/all">View All</button>
         </div>
       </div>
     </div>

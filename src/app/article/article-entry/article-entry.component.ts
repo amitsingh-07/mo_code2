@@ -67,7 +67,7 @@ export class ArticleEntryComponent implements OnInit {
   }
 
   getArticle(id: number) {
-    const assetPath = '../../../assets/articles';
+    const assetPath = '/assets/articles';
     const articlePath = assetPath + id + '.jsp';
     const thumbnailPath = assetPath + '/images/' + id + '/thumbnail.jpg';
   }

@@ -44,11 +44,11 @@
           <div class="relate-side__card-container">
             <div class="relate-side__card" *ngFor="let relatedArticle of art_related">
               <div class="related-card__img">
-                <img src="../../../assets/articles/images/{{relatedArticle.id}}/thumbnail.jpg"/>
+                <img src="/assets/articles/images/{{relatedArticle.id}}/thumbnail.jpg"/>
                 </div>
               <div class="related-card__desc">
-                <a routerLink="/articles/entry/{{relatedArticle.id}}" class="related-card--title">{{relatedArticle.art_title}}</a>
-                <a routerLink="/articles/entry/{{relatedArticle.id}}">Read More <i class="material-icons">
+                <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}"class="related-card--title">{{relatedArticle.art_title}}</a>
+                <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}">Read More <i class="material-icons">
                     keyboard_arrow_right
                     </i></a>
                 </div>

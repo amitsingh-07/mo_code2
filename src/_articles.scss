@@ -31,9 +31,15 @@
     /* Heading */
     h1,h2,h3 {
         font-family:$muli-bold;
+        margin-top:10px;
     }
     h4,h5,h6 {
         font-family:$muli-semi-bold;
+    }
+    @include minMobilemaxPhablet{
+        h2{
+            font-size:1.5rem;
+        }
     }
     p{
         color:$black-color;
@@ -164,9 +170,12 @@
     .cell--dark-green{
         a{
             display:flex;
+            align-self:center;
+            font-family:$muli-bold;
             justify-content:center;
             align-items: center;
-            font-size:0.85rem;
+            font-size:1rem;
+            padding:5px 10px;
             line-height:1.5;
             border-radius:5px;
             color:$white-color;
@@ -183,6 +192,18 @@
             &:hover{
                 background-color:$orange-color;
                 border-color:$orange-color; 
+                color:$white-color;
+                filter:brightness(0.8);
+            }
+            &:focus{
+                background-color:$orange-color;
+                border-color:$orange-color;
+                color:$white-color;
+                filter:brightness(0.8);
+            }
+            &:active{
+                background-color:$orange-color;
+                border-color:$orange-color;
                 color:$white-color;
                 filter:brightness(0.8);
             }
@@ -260,7 +281,10 @@
     }
     
 }
-
+/** Card Block **/
+.card-block{
+    padding:10px;
+}
 /** Side Panel Card **/
 
 .relate-side__card{

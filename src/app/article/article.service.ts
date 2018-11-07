@@ -30,21 +30,11 @@ export class ArticleService {
     return thisArticleEntry;
   }
   getCategoryElementList(data): IArticleCategory[] {
-    let sum = 0;
     const articleCategoryElementArray = [];
     data.forEach((category) => {
       const articleCategory = this.createArticleCategoryElement(category);
-      sum += articleCategory.count;
       articleCategoryElementArray.push(articleCategory);
       });
-
-    // Creating the first entry
-    const allCategory = {
-      name: 'All',
-      count: sum,
-    } as IArticleCategory;
-    articleCategoryElementArray.unshift(allCategory);
-
     return articleCategoryElementArray;
     }
 

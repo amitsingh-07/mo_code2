@@ -21,7 +21,7 @@ export class ArticleApiService {
       quantity = param;
     }
     const articleElementList = this.apiService.getRecentArticles(quantity);
-
+    // console.log(articleElementList);
     return articleElementList;
   }
 

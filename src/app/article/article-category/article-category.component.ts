@@ -38,7 +38,18 @@ export class ArticleCategoryComponent implements OnInit {
     });
     this.articleApiService.getArticleCategory().subscribe((catList) => {
       if (catList) {
-        this.categoryList = this.articleService.getCategoryElementList(catList);
+        // Creating the first entry
+        const tempCatList = this.articleService.getCategoryElementList(catList);
+
+        this.articleApiService.getArticleCategoryList(this.category_id).subscribe((data) => {
+          const count_in = this.articleService.getArticleElementList(data).length;
+          const allCategory = {
+            name: 'All',
+            count: count_in,
+          } as IArticleCategory;
+          tempCatList.unshift(allCategory);
+        });
+        this.categoryList = tempCatList;
       }
     });
 

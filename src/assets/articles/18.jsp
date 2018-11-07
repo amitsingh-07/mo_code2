@@ -1,4 +1,4 @@
-<img src="./../../../assets/articles/images/18/couple-yellow-bg.jpg" class="pull-right" style=" padding:10px;" alt="Couple with yellow and pink shirt">
+<img src="/assets/articles/images/18/couple-yellow-bg.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Couple with yellow and pink shirt">
 <p>The journey to begin to invest is a difficult path on its  own. Most people are attracted by the high returns that investments could potentially provide but fail to understand the risks of investing. Many  investors jump into the sea of investments and end up drowning. Fear strikes me  when my peers get overly excited about &ldquo;investment opportunities&rdquo; and when they  are too eager to begin investing before laying the foundations.</p>
 <p>As with everything in life, we prioritise and take care  of what is <strong><u>important</u></strong> first. </p>
 <br>
@@ -56,13 +56,14 @@
 </table>
 </div>
 <p>It is possible for one aged 35 years old with average  income and moderate needs to be adequately insured for S$200+ a month. </p>
-<p>You can easily find out how much insurance coverage you need here: <a href="../calculators/life-insurance-calculator">Click  here to find out your life insurance needs</a> and <a href="../calculators/critical-illness-calculator">Click  here to find out your critical illness needs.</a></p>
 <br>
 <h3 class="primary-color"><strong>Have you done the above must-dos?</strong></h3>
 
 <p>If you have not, please do so now<a name="_GoBack"></a>. We do not want to risk having our hard-earned savings and  investment gains wiped out due to <strong>our </strong>own  greed and carelessness by not prioritising. We have to protect our existing  assets and plan ahead for any unexpected events first. The journey before  investing could take years and it is important to be patient before diving into  the markets. </p>
 <p>Let&rsquo;s encourage one another to clear our  debts, build our emergency savings, plan for our important expenses and insure ourselves adequately now. We are not only doing ourselves a favour but a very  important favour for our loved ones as well.</p>
 <br>
-<div class="text-xs-center"><a href="../guideme/">
-  <img src="../assets/images/banners/selfcheck_go_540w.png" alt="diyinsurance selfcheck"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme/">
+  <img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
+-->

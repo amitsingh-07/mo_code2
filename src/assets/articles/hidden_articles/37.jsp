@@ -1,4 +1,4 @@
-<img src="assets/articles/images/37/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="assets/articles/images/37/thumbnail.jpg" class="pull-right thumbnail full-width" style=" padding:10px;">
 <p><em>This  article is part of <strong>The Case of Term vs  Whole Life Insurance: A Comprehensive Consumer Guide</strong> e-book. The following  chapters will be released shortly.</em></p>
 
 <h2 class="primary-color"><strong>Prologue</strong></h2>
