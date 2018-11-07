@@ -69,7 +69,7 @@ export class WillWritingFormError {
                                         }
                                 }
                         },
-                        children: {
+                        childrens: {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
