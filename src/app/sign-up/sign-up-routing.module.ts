@@ -20,6 +20,7 @@ import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,9 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.EDIT_PASSWORD,
     component: EditPasswordComponent,
     canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.UPDATE_USER_ID,
+    component: UpdateUserIdComponent
   }
 ];
 
