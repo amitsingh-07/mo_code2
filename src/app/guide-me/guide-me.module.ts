@@ -12,6 +12,7 @@ import { ProductDetailComponent } from '../shared/components/product-detail/prod
 import { CustomCurrencyPipe } from '../shared/Pipes/custom-currency.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { PlanWidgetComponent } from '../shared/widgets/plan-widget/plan-widget.component';
+import { LoggedUserService } from '../sign-up/auth-guard.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { PlanDetailsWidgetComponent } from './../shared/widgets/plan-details-widget/plan-details-widget.component';
 import { CiAssessmentComponent } from './ci-assessment/ci-assessment.component';
@@ -81,7 +82,7 @@ export function createTranslateLoader(http: HttpClient) {
     RecommendationsComponent,
     CustomCurrencyPipe
   ],
-  providers: [CurrencyPipe, CustomCurrencyPipe],
+  providers: [CurrencyPipe, CustomCurrencyPipe, LoggedUserService],
   entryComponents: [ProductDetailComponent]
 })
 export class GuideMeModule {
