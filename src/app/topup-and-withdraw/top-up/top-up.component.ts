@@ -155,7 +155,6 @@ export class TopUpComponent implements OnInit {
     //  }
     //});
   }
-
   saveFundingDetails() {
     const topupValues = {
       oneTimeInvestmentAmount: this.formValues.oneTimeInvestmentAmount,
