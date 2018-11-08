@@ -10,6 +10,7 @@
     }
 }
 .banner-image{
+    margin: 0 32px;
     @include allmobiles{
         width: 178px;
         height: 153px;
@@ -37,6 +38,9 @@
     padding: 30px 25px;
     div{
         margin-bottom: 15px;
+        &:last-child{
+            margin-bottom: 0;
+        }
         span{
             display: flex;
         }
@@ -110,7 +114,7 @@
         margin-bottom: 70px;
     }
     .FAQ {
-        margin-top: 16px;
+        margin-top: 25px;
         font-size: 14px;
         text-align: center;
         color: #00c5c4;
@@ -141,18 +145,28 @@
             }
         }
         input{
-            font-family: $muli-light;
-            font-weight: 300;
-            font-style: italic;
+            border-radius: 6px;
+            font-family: $muli-bold;
+            font-size: 16px;
+            font-weight: bold;
             letter-spacing: -0.2px;
             text-align: center;
-            color: #a4a4a4;
-            border-radius: 27.5px;
+            color: #2d8289;
             border: solid 1px #c2d9ec;
-            font-size: 16px;  
-        }
+            padding: 18px 35px;
+            width: 247px;
+            height: 54px;
+          }
         input::placeholder{
-            color: #a4a4a4;
+            font-family: $muli-light;
+            font-size: 16px;
+            font-weight: 300;
+            font-style: italic;
+            color: #a4a4a4 !important;
+        }
+        #intro-no-promocode {
+            padding-top: 22px;
+            line-height: normal;
         }
         div{
             &:last-child{
@@ -167,6 +181,11 @@
                 }
             }
         }
+    }
+    .btn:disabled{
+        box-shadow: none !important;
+        background-color: #bff1f1;
+        color: #ffffff;
     }
 }
 .proceed-msg{

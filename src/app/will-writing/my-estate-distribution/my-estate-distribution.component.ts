@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingService } from './../will-writing.service';
 
@@ -24,9 +25,13 @@ export class MyEstateDistributionComponent implements OnInit {
   currentDist;
   errorMsg;
   filteredList;
-  constructor(private translate: TranslateService,
-              private willWritingService: WillWritingService,
-              private router: Router) {
+  fromConfirmationPage = this.willWritingService.fromConfirmationPage;
+
+  constructor(
+    private translate: TranslateService,
+    private willWritingService: WillWritingService,
+    public navbarService: NavbarService,
+    private router: Router) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_2');
@@ -36,34 +41,12 @@ export class MyEstateDistributionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
       this.estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
-      this.filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
-      if (this.willWritingService.isBeneficiaryAdded) {
-      this.divider = (this.remainingPercentage / this.estateDistList.length);
-      this.dividePercentage();
-      }
     }
     this.calculateRemPercentage();
-  }
-
-  dividePercentage() {
-    for (const percent of this.estateDistList) {
-      percent.distPercentage = Math.floor(this.divider);
-      if (this.estateDistList.indexOf(percent) === this.estateDistList.length - 1) {
-        if (this.estateDistList.length === 3) {
-          return percent.distPercentage += 1;
-        } else if (this.estateDistList.length === 6) {
-          return percent.distPercentage += 4;
-        } else if (this.estateDistList.length === 7) {
-          return percent.distPercentage += 2;
-        } else {
-          return false;
-        }
-      }
-    }
-
   }
 
   calculateRemPercentage() {
@@ -93,7 +76,6 @@ export class MyEstateDistributionComponent implements OnInit {
       this.remainingPercentage = 100 - (this.distPercentageSum - this.currentDist);
     }
     this.distPercentageSum = 0;
-
   }
 
   distributePercentage(index: number, event) {
@@ -105,6 +87,7 @@ export class MyEstateDistributionComponent implements OnInit {
             this.firstReset = true;
           } else {
             percentage.distPercentage = 0;
+            this.firstReset = true;
           }
         }
       }
@@ -125,13 +108,16 @@ export class MyEstateDistributionComponent implements OnInit {
       this.estateDistList.push(currentObject);
     }
     this.willWritingService.setBeneficiaryInfo(this.estateDistList);
-    this.willWritingService.isBeneficiaryAdded = false;
     return true;
   }
 
   goToNext() {
     if (this.save()) {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE]);
+      let url = WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE;
+      if (this.fromConfirmationPage) {
+        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
+      }
+      this.router.navigate([url]);
     }
   }
 

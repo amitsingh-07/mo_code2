@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EducationFormComponent } from 'src/app/direct/product-info/education-form/education-form.component';
 
+import { LoggedUserService } from '../sign-up/auth-guard.service';
 import { ComparePlansComponent } from './compare-plans/compare-plans.component';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DIRECT_ROUTES } from './direct-routes.constants';
@@ -14,8 +15,12 @@ import { RetirementIncomeFormComponent } from './product-info/retirement-income-
 import { SrsApprovedPlansFormComponent } from './product-info/srs-approved-plans-form/srs-approved-plans-form.component';
 
 const routes: Routes = [
-  { path: '', component: DirectComponent},
-  { path: DIRECT_ROUTES.COMPARE_PLANS, component: ComparePlansComponent }
+  {
+    path: '', canActivate: [LoggedUserService], children: [
+      { path: '', component: DirectComponent },
+      { path: DIRECT_ROUTES.COMPARE_PLANS, component: ComparePlansComponent }
+    ]
+  }
 ];
 
 /*
@@ -34,4 +39,4 @@ children: [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DirectRoutingModule {}
+export class DirectRoutingModule { }

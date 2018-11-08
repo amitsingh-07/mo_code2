@@ -12,9 +12,10 @@
         "LABEL": "Insure",
         "TITLE": "Get Insurance You Really Need",
         "DESCRIPTION": "Analyse your insurance coverage and compare insurance easily. Receive claims support and enjoy up to 50% rebate in agent’s commissions!",
-        "LINK1": "Find Out What I need",
+        "LINK1": "Find Out What I Need",
         "LINK2": "Or I Know What I Need!",
-        "TRUST_US": "355,000 users have trusted us" 
+        "TRUST_US": "355,000 users",
+        "TRUST_US2": "have trusted us" 
     },
     "WILL": {
         "LABEL": "Wills",

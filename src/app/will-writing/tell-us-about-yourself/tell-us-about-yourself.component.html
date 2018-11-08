@@ -8,20 +8,20 @@
         <div class="intro-block__tab" [class.active]="false"  id="willtab4"></div>
       </div>
       <div class="flex-row">
-        <div class="back-btn col-12" id="tell-us-yourself-back" (click) = "goBack()"></div>
+        <div class="back-btn col-12 hidden-lg" id="tell-us-yourself-back" (click) = "goBack()"></div>
       </div>
       <div class="intro-block__content">
         <div class="flex-row text-center">
           <div class="col-12">
             <div class="banner-image">
-              <img src="assets/images/tell-us-yourself.svg" id="tell-us-yourself-img" />
+              <img src="assets/images/will-writing/tell-us-yourself.svg" id="tell-us-yourself-img" />
             </div>
           </div>
   
           <div class="col-lg-5 col-md-7 col-sm-12 intro-block__content__desc">
             <p class="intro-block__content__heading" id="tell-us-yourself-heading">{{ 'WILL_WRITING.COMMON.STEP_1' | translate}}</p>
-            <p class="intro-block__content__title mb10" id="tell-us-yourself-title">{{ 'WILL_WRITING.TELL_US_YOURSELF.TITLE' | translate}}</p>
-            <p class="intro-block__content__sub-title mb40" id="tell-us-yourself-sub-title">{{ 'WILL_WRITING.TELL_US_YOURSELF.SUB_TITLE' | translate}}</p>
+            <p class="intro-block__content__title" id="tell-us-yourself-title">{{ 'WILL_WRITING.TELL_US_YOURSELF.TITLE' | translate}}</p>
+            <p class="intro-block__content__sub-title" id="tell-us-yourself-sub-title">{{ 'WILL_WRITING.TELL_US_YOURSELF.SUB_TITLE' | translate}}</p>
             <button type="button" class="btn btn__footer--fixed width100" id="tell-us-yourself-continue" (click) = "goToNext()">{{ 'LABEL.PROCEED' | translate}}</button>
           </div>
           

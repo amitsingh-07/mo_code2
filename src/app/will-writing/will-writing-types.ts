@@ -48,4 +48,6 @@ export interface IBeneficiary {
     relationship: string;
     uin: string;
     selected: boolean;
+    distPercentage: number;
+    dob?: string;
 }

@@ -16,7 +16,6 @@ import { FairDealingComponent } from './components/fair-dealing/fair-dealing.com
 import { LoaderComponent } from './components/loader/loader.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { SingPassComponent } from './components/sing-pass/sing-pass.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
@@ -58,7 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
     })],
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, SingPassComponent],
+    BreakdownBarComponent, BreakdownAccordionComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -69,7 +68,6 @@ export function createTranslateLoader(http: HttpClient) {
     WillDisclaimerComponent,
     TermsOfUseComponent,
     BreakdownBarComponent,
-    SingPassComponent,
     BreakdownAccordionComponent,
     PercentageInputDirective]
 })

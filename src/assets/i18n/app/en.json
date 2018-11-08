@@ -110,7 +110,7 @@
   "PROD_INFO_TOOLTIP": {
     "COMMISSION": {
           "TITLE": "Commission Rebate",
-          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
+          "MESSAGE": "<div><div class='rebate'><div>We give you a <span>50% rebate</span> on the agent commission that we receive from the insurer when you purchase a policy through us.</div><div>This excludes an admin charge of $26.75 per policy and is limited to the period that the insurer pays us commission.</div></div></div>"
       },
     "RATING": {
           "TITLE": "Insurer’s Rating",
@@ -147,20 +147,6 @@
       "TITLE": "Fair Dealing"
     }
   },
-  "MYINFO": {
-    "OPEN_MODAL_DATA": {
-      "TITLE": "Leave This Page",
-      "DESCRIPTION": "You will be redirected to Singpass MyInfo page to begin fetching your data."
-    },
-    "ERROR_MODAL_DATA": {
-      "TITLE": "Oops, Error!",
-      "DESCRIPTION": "We weren’t able to fetch your data from MyInfo."
-    },
-    "FETCH_MODAL_DATA": {
-      "TITLE": "Fetching Data...",
-      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
-    }
-  },
   "RECOMMENDATIONS": {
     "TITLE": "Recommendations",
     "DESCRIPTION": "Personalise your insurance coverage by selecting the plans you are interested in.",
@@ -170,7 +156,7 @@
     "CHOOSE_OPTIONS": "Choose one of the option to continue:",
     "CREATE_ACCOUNT": "Create Account",
     "LOGIN": "Log In",
-    "DISCLAIMER": "Disclaimer - Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
+    "DISCLAIMER": "Note: Premiums quoted are based on certain parameters and may differ depending on individual's profile, specific needs and changes by the insurers."
   },
   "FOOTER": {
     "TOP_SECTION": {
@@ -215,7 +201,7 @@
       }
     },
     "BOTTOM_SECTION": {
-      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Service Licence No: CMS100758.",
+      "CITATION": "MoneyOwl Pte Ltd is a financial adviser and fund management company licensed by MAS. We are a joint venture between NTUC Enterprise Co-operative Ltd and Providend Holding Pte Ltd. Capital Markets Services Licence No: CMS100758.",
       "LEGAL": {
         "TERMS_OF_USE": {
           "LABEL": "Terms of Use"

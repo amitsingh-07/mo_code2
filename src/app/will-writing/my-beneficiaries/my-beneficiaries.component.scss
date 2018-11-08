@@ -94,6 +94,7 @@
         @include allmobiles {
             width: 270px;
             color: #333846;
+            text-align: center;
         }
     }
     h2{
@@ -147,6 +148,7 @@ input[type='checkbox']+label {
   
   .form-group-single-column .checkbox-button.two-label {
     padding: 13px 18px;
+    margin-bottom: 23px;
   }
   .mobile-logo{
     display: none;
@@ -261,4 +263,21 @@ input[type='checkbox']+label {
 }
 .add-icon {
     cursor: pointer;
+}
+
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;
+    .help-icon {
+        background-image: url("../../../assets/images/help-icon.png");
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 5px;
+        border-radius: 0;
+        margin-right: -5px;
+    }
 }

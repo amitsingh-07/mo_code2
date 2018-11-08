@@ -1,7 +1,7 @@
 <div class="app-select-nationality">
   <div class="step-indicator-container">
     <div class="container-fluid">
-      <app-step-indicator [count]="7" [activeStepIndex]="4"></app-step-indicator>
+      <app-step-indicator [count]="9" [activeStepIndex]="4"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid">
@@ -71,7 +71,7 @@
             <div ngbDropdown>
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
-                <span *ngIf="taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.reasonDropdown.controls.noTinReason.value | titlecase }}</span>
+                <span *ngIf="taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{ taxInfoForm.controls.reasonDropdown.controls.noTinReason.value.name | titlecase }}</span>
                 <span *ngIf="!taxInfoForm.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">Select</span>
                 <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 

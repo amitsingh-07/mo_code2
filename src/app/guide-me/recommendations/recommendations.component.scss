@@ -299,4 +299,13 @@ app-recommendations {
     max-height: 100%;
   }
 }
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .insurance-plan-widget .insurer-logo {
+    img {
+      width:100%;
+      max-height: auto;
+      max-width: auto;
+    }
+  }
+}
 }

@@ -3,7 +3,7 @@
     <div class="btn-close-edit hidden-sm-md" [hidden]="!modalFreeze">
       <span class="btn-close" (click)="closeEditMode()"></span>
     </div>
-    <app-product-info (formSubmitCallback)="formSubmitCallback()" (backPressed)="backPressed()"></app-product-info>
+    <app-product-info [hideForm]="hideForm" (formSubmitCallback)="formSubmitCallback()" (backPressed)="backPressed()"></app-product-info>
   </div>
   <div>
     <ng-template #directResults></ng-template>

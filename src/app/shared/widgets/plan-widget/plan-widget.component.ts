@@ -129,10 +129,10 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
           riderName = this.data.rider.riderName;
           if (riderName && riderName.toLowerCase() === 'full rider') {
             riderName += ':';
-            riderDesc = 'Covers Co-Insurance and Deductible';
+            riderDesc = 'Covers co-payment components';
           } else if (riderName && riderName.toLowerCase() === 'partial rider') {
             riderName += ':';
-            riderDesc = 'Covers Co-Insurance';
+            riderDesc = 'Covers partial co-payment components';
           } else {
             riderName = 'Rider:';
             riderDesc = 'No Rider';
@@ -149,7 +149,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.highlights.push({ title: 'Escalating Benefit:', description: this.data.premium.escalatingBenefit });
       }
       if (this.type.indexOf('retirement') > -1) {
-        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay });
+        this.highlights.push({ title: 'Payout Period:', description: this.data.premium.retirementPayPeriodDisplay + ' Years' });
         if (this.data.premium.retirementPayoutDuration
           && this.data.premium.retirementPayoutDuration.toLowerCase() === 'limited years') {
           this.highlights.push({
