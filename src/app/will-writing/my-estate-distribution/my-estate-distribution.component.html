@@ -37,7 +37,7 @@
                       </div>
                       <div class="col-6">
                           <div class="form-control">   
-                          <input  #percent id="beneficiary_{{i+1}}" (change)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
+                          <input  #percent id="beneficiary_{{i+1}}" (keyup)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
                             value="{{currentDist.distPercentage}}" >
                           <i>%</i>
                         </div>
