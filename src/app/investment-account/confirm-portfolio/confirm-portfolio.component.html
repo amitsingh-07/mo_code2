@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="container-fluid">
-    <div class="content">
+    <div class="content" *ngIf="portfolio">
 
       <div class="portfolio-short-desc">
         <span>
@@ -33,7 +33,7 @@
                   'CONFIRM_PORTFOLIO.YEARS' | translate}}</span>
               </div>
               <div class="growth-icon">
-                <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
+                <img src="{{riskProfileImage}}" alt="" />
               </div>
             </div>
             <div class="values">

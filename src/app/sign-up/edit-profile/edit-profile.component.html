@@ -74,7 +74,7 @@
           {{this.personalData.email}}
         </div>
       </div>
-      <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
+      <button type="button" class="edit-button" id="editEmployeButton">
         Edit
       </button>
     </div>
@@ -103,7 +103,7 @@
           ******
         </div>
       </div>
-      <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
+      <button type="button" class="edit-button" id="editEmployeButton">
         Edit
       </button>
     </div>
@@ -205,7 +205,7 @@
         </div>
       </div>
     </div>
-    <button type="button" class="edit-button" (click)="editContactDetails()" id="confirmButton">
+    <button type="button" class="edit-button" id="confirmButton">
       Edit
     </button>
   </div>
@@ -314,7 +314,7 @@
       </div>
     </div>
     <!-- Have to add according to API -->
-    <div *ngIf="this.needtochangeThis">
+    <div *ngIf="needtochangeThis">
     <div class="section-margin">
         <div class="update-contact-title">
           Country
@@ -383,7 +383,7 @@
          {{this.bankDetails.accountNumber}}
         </div>
       </div>
-      <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
+      <button type="button" class="edit-button" id="editEmployeButton">
         Edit
       </button>
       <div class="banking-details-text">
