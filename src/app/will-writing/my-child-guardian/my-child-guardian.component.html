@@ -50,7 +50,7 @@
                   <div class="flex-row mb10">
                     <div class="col-5 pl0">
                       <label for="name" id="addGuardianFormLbl1">
-                        <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div>
+                        <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}<div class="sub_name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></div>
                       </label>
                     </div>
                     <div class="col-7 pr0">
@@ -98,8 +98,8 @@
             <div>
               <button type="button" (click)="goToNext(addGuardianForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                 id="addGuardianFormBtn1">
-                <span *ngIf="!isEdit">{{'LABEL.CONTINUE' | translate}}</span>
-                <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
+                <span *ngIf="!isEdit && !fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                <span *ngIf="isEdit || fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
             </div>
           </form>
         </div>

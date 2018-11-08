@@ -27,7 +27,8 @@ export class MyEstateDistributionComponent implements OnInit {
   filteredList;
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
-  constructor(private translate: TranslateService,
+  constructor(
+    private translate: TranslateService,
     private willWritingService: WillWritingService,
     public navbarService: NavbarService,
     private router: Router) {
