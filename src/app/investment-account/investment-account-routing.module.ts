@@ -137,7 +137,7 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FUND_YOUR_ACCOUNT,
     component: FundYourAccountComponent,
-    canActivate: [AuthGuard]
+   // canActivate: [AuthGuard]
   }
 ];
 

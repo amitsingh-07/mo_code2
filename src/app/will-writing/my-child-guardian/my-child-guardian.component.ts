@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IGuardian } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
@@ -16,6 +17,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-child-guardian.component.scss']
 })
 export class MyChildGuardianComponent implements OnInit {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
   tooltip = {};
@@ -88,7 +90,11 @@ export class MyChildGuardianComponent implements OnInit {
 
   editGuardian(relation: string, index: number) {
     if (relation === 'spouse') {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      if (this.addGuardianForm.dirty) {
+        this.pageTitleComponent.goBack();
+      } else {
+        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
+      }
     } else {
       this.selectedIndex = index;
       this.isEdit = true;

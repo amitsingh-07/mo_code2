@@ -1,3 +1,4 @@
+import { InvestmentAccountService } from './../investment-account-service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,6 +28,7 @@ export class PostLoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _location: Location,
+    private investmentAccountService: InvestmentAccountService,
     private translate: TranslateService) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
@@ -45,6 +47,7 @@ export class PostLoginComponent implements OnInit {
     this._location.back();
   }
   noButClick() {
+    this.investmentAccountService.setMyInfoStatus(false);
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
   }
 }

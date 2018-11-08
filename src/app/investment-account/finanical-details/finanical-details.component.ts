@@ -117,4 +117,7 @@ export class FinanicalDetailsComponent implements OnInit {
     }
   }
 
+  isDisabled() {
+    return this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange');
+  }
 }
