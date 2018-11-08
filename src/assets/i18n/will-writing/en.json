@@ -185,7 +185,8 @@
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",
       "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role as your children’s guardian in the event that your spouse passes away before you.",
       "TOOLTIP_TITLE": "What does executor & trustee do?",
-      "TOOLTIP_MESSAGE": "<p>After you have passed, your executor & trustee is in charge of carrying out the wishes of your will. Whilst the two roles hold different responsibilities, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes making funeral arrangements, settling outstanding bills or debts, managing your finances and distributing assets.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>"
+      "TOOLTIP_MESSAGE": "<p>After you have passed, your executor & trustee is in charge of carrying out the wishes of your will. Whilst the two roles hold different responsibilities, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes making funeral arrangements, settling outstanding bills or debts, managing your finances and distributing assets.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>",
+      "MESSAGE_TOOLTIP": "Generally, we advise you to appoint a family member or trusted friend as executor & trustee."
     },
     "MY_BENEFICIARY": {
       "TITLE": "My Beneficiaries",
@@ -206,7 +207,8 @@
         "MAX_PERCENTAGE": "You have reached the maximum percentage of your estate distribution. Please adjust your total distribution in order to proceed to the next page.",
         "ADJUST_PERCENTAGE": "Please adjust your total distribution to fill 100%",
         "EXCEED_PERCENTAGE": "You have exceeded the maximum percentage of your estate distribution."
-      }
+      },
+      "TOOLTIP_MESSAGE": "If any of your beneficiaries pass on before you, their portion of the estate will be redistributed to your other beneficiaries proportionately."
     },
     "CONFIRMATION": {
       "TITLE": "Confirmation",
