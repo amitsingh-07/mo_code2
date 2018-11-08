@@ -139,7 +139,7 @@
     "UNTIL_RETIREMENTAGE": 65,
     "MODAL_DATA": {
       "title": "Critical Illness",
-      "description": "<h4>Critical Illness</h4><p>After the age you have indicated, the coverage will cease and you will no longer be eligible for payout the event of a <b class=\"text-bold\">Critical Illness</b>.</p>",
+      "description": "<h4>Critical Illness</h4><p>This coverage replaces your income during recovery period (about 2-5 years) while you are unable to work. A person usually requires <b class=\"text-bold\">Critical Illness</b> coverage till their intended retirement age.</p>",
       "imageName": "ci-assessment.svg"
     },
     "COVERAGE_TOOLTIP" : {

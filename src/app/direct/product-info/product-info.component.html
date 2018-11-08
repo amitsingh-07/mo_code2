@@ -29,14 +29,14 @@
         </div>
     </div>
     <div class="product-info-form-wrapper">
-      <app-life-protection-form [hidden]="selectedCategoryId != 1"></app-life-protection-form>
-      <app-critical-illness-form [hidden]="selectedCategoryId != 2"></app-critical-illness-form>
-      <app-ocp-disability-form [hidden]="selectedCategoryId != 3"></app-ocp-disability-form>
-      <app-hospital-plan-form [hidden]="selectedCategoryId != 4"></app-hospital-plan-form>
-      <app-long-term-care-form [hidden]="selectedCategoryId != 5"></app-long-term-care-form>
-      <app-education-form [hidden]="selectedCategoryId != 6"></app-education-form>
-      <app-retirement-income-form [hidden]="selectedCategoryId != 7"></app-retirement-income-form>
-      <app-srs-approved-plans-form [hidden]="selectedCategoryId != 8"></app-srs-approved-plans-form>
+      <app-life-protection-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 1"></app-life-protection-form>
+      <app-critical-illness-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 2"></app-critical-illness-form>
+      <app-ocp-disability-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 3"></app-ocp-disability-form>
+      <app-hospital-plan-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 4"></app-hospital-plan-form>
+      <app-long-term-care-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 5"></app-long-term-care-form>
+      <app-education-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 6"></app-education-form>
+      <app-retirement-income-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 7"></app-retirement-income-form>
+      <app-srs-approved-plans-form (formSubmitted)="formSubmitted($event)" [hidden]="selectedCategoryId != 8"></app-srs-approved-plans-form>
     </div>
   </div> 
   <button class="btn search-btn" [ngClass]="{'show': toggleFormVisibility}" (click)="search(selectedCategoryId)">

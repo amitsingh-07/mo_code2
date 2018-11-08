@@ -31,9 +31,7 @@
       (showFilterTooltip)="showSettingsToolTip($event)"></app-settings-widget>
     <div [hidden]="!isComparePlanEnabled" class="overlay"></div>
   </div>
-  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on
-    individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not
-    guaranteed and are based on the higher projection rate of up to 4.75%.</div>
+  <div class="disclaimer">{{ 'RECOMMENDATIONS.DISCLAIMER' | translate}}</div>
 </div>
 <div id="results-mobile" *ngIf="isMobileView" [hidden]="!isResultsLoaded || resultsEmptyMessage?.length > 0" class="hidden-lg">
 
@@ -61,9 +59,7 @@
         [comparePlanSelected]="selectedComparePlans"></app-plan-widget>
     </div>
   </div>
-  <div class="disclaimer">Disclaimer - Premiums quoted are based on certain parameters and may differ depending on
-    individual's profile, specific needs and changes by the insurers. Projected values and returns shown are not
-    guaranteed and are based on the higher projection rate of up to 4.75%.</div>
+  <div class="disclaimer">{{ 'RECOMMENDATIONS.DISCLAIMER' | translate}}</div>
 </div>
 
 <!-- Floating plan selection footer -->
