@@ -6,7 +6,7 @@
     "objectList": [{
       "id": 1,
      
-      "name": "grouth"
+      "name": "growth"
     }, {
       "id": 2,
       
@@ -19,7 +19,7 @@
     }, {
       "id": 6,
       
-      "name": "Other"
+      "name": "Moderately Aggressive"
     }]
   
   }

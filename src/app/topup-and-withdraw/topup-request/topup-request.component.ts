@@ -25,7 +25,7 @@ export class TopupRequestComponent implements OnInit {
   formValues;
   topupportfolioamount;
   topupFormValues;
-  requestReceivecd = false;
+  requestReceivecd;
   fundDetails;
   constructor(public readonly translate: TranslateService,
     public authService: AuthenticationService,
@@ -38,10 +38,10 @@ export class TopupRequestComponent implements OnInit {
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.topupportfolioamount = this.topupFormValues.topupportfolioamount;
     if (this.topupportfolioamount && this.topupportfolioamount.investment === 'One-time Investment') {
-      this.requestReceivecd = false;
+      this.requestReceivecd = true;
 
     } else {
-      this.requestReceivecd = true;
+      this.requestReceivecd = false;
 
     }
 
@@ -49,3 +49,4 @@ export class TopupRequestComponent implements OnInit {
   goToNext() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
+}
