@@ -111,4 +111,16 @@ export class InvestmentAccountFormData {
     // MyInfo
     isMyInfoEnabled: boolean;
     disableAttributes: any;
+
+
+    // Fund Your Account
+
+    Investment: string;
+    oneTimeInvestmentAmount: number;
+    portfolio: string;
+    topupportfolioamount: number;
+    MonthlyInvestmentAmount: number;
+
+    fundDetails: any;
+
 }

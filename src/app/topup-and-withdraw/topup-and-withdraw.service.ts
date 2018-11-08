@@ -6,6 +6,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
 
 import { TopUPFormError } from './top-up/top-up-form-error';
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
 @Injectable({
@@ -19,6 +20,7 @@ export class TopupAndWithDrawService {
     this.getTopupInvestmentList();
   }
   private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
+  private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
 
   commit() {
@@ -43,6 +45,11 @@ export class TopupAndWithDrawService {
 
   }
 
+
+  getPortfolioList() {
+    return this.apiService.getPortfolioList();
+
+  }
   doFinancialValidations(form) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals
@@ -78,6 +85,7 @@ export class TopupAndWithDrawService {
       MonthlyInvestmentAmount: this.topUpAndWithdrawFormData.MonthlyInvestmentAmount,
       Investment: this.topUpAndWithdrawFormData.Investment,
       topupportfolioamount: this.topUpAndWithdrawFormData.topupportfolioamount
+
     };
   }
   setTopUp(data) {
@@ -87,5 +95,14 @@ export class TopupAndWithDrawService {
     this.topUpAndWithdrawFormData.Investment = data.Investment;
     this.topUpAndWithdrawFormData.topupportfolioamount = data.topupportfolioamount;
     this.commit();
+  }
+
+  setFundingDetails(fundDetails) {
+    this.investmentAccountFormData.fundDetails = fundDetails;
+    this.commit();
+  }
+
+  getFundingDetails() {
+    return this.investmentAccountFormData.fundDetails;
   }
 }

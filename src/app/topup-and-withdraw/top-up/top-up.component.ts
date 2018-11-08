@@ -12,6 +12,8 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
+import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
+
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 
 import { HostListener } from '@angular/core';
@@ -50,6 +52,7 @@ export class TopUpComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     private modal: NgbModal,
+
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -66,8 +69,7 @@ export class TopUpComponent implements OnInit {
     this.amount = amount;
     console.log(this.amount);
     console.log(this.balanceAmount);
-    if (this.amount > this.balanceAmount
-      && this.investment.name === 'One-time Investment') {
+    if (this.amount > this.balanceAmount) {
       this.topupportfolioamount = this.amount - this.balanceAmount;
       this.topupportfolio = true;
     } else {
@@ -88,12 +90,12 @@ export class TopUpComponent implements OnInit {
       portfolio: [this.formValues.portfolio, Validators.required],
       Investment: [this.formValues.Investment, Validators.required],
       oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required]
-      // MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
+      //MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
-    this.buildFormInvestment();
+    //this.buildFormInvestment();
   }
   getPortfolioList() {
-    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
+    this.topupAndWithDrawService.getPortfolioList().subscribe((data) => {
       this.portfolioList = data.objectList;
       console.log(this.portfolioList + 'dfsdfsfsdf');
     });
@@ -139,14 +141,9 @@ export class TopUpComponent implements OnInit {
       this.saveAndProceed(form);
     }
   }
-  SetTopValues() {
-  }
-  SetTopbalanceAmount(amount) {
-    this.balanceAmount = this.balanceAmount;
-    return amount;
-  }
 
   saveAndProceed(form: any) {
+    this.saveFundingDetails();
     form.value.topupportfolioamount = this.topupportfolioamount;
     this.topupAndWithDrawService.setTopUp(form.value);
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
@@ -157,5 +154,16 @@ export class TopUpComponent implements OnInit {
     //  this.authService.saveEnquiryId(data.objectList.enquiryId);
     //  }
     //});
+  }
+
+  saveFundingDetails() {
+    const topupValues = {
+      oneTimeInvestmentAmount: this.formValues.oneTimeInvestmentAmount,
+      MonthlyInvestmentAmount: this.formValues.MonthlyInvestmentAmount,
+      topupportfolioamount: this.formValues.topupportfolioamount,
+      Investment: this.formValues.Investment,
+      portfolio: this.formValues.portfolio
+    };
+    this.topupAndWithDrawService.setFundingDetails(topupValues);
   }
 }

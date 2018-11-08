@@ -33,7 +33,10 @@ export class FundYourAccountComponent implements OnInit {
   isUserNationalitySingapore;
   activeTabIndex = 0;
   topupFormValues;
-  topup = false;
+  topup = true;
+  setOnetimeInvestmentAmount;
+  setMonthlyInvestmentAmount;
+  fundDetails;
 
   constructor(
     public readonly translate: TranslateService,
@@ -46,17 +49,29 @@ export class FundYourAccountComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.topupFormValues = this.topupAndWithDrawService.getTopUp();
-    if (this.topupFormValues.topupportfolioamount >= 0 &&
-      this.topupFormValues.Investment === 'One-time Investment') {
-      this.topup = true;
+    this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
+
+    this.setOnetimeInvestmentAmount = this.topupFormValues.oneTimeInvestmentAmount;
+    this.setMonthlyInvestmentAmount = this.topupFormValues.MonthlyInvestmentAmount;
+    if (this.fundDetails) {
+      if (this.fundDetails.topupportfolioamount >= 0 &&
+        this.fundDetails.Investment === 'One-time Investment') {
+        this.topup = true;
+      } else if (this.fundDetails.Investment === 'Monthly Investment') {
+        this.topup = true;
+      } else {
+        this.topup = false;
+      }
     } else {
-      this.topup = false;
+      this.topup = true;
     }
     this.translate.get('COMMON').subscribe((result: string) => {
-      if (this.topupFormValues.Investment === 'One-time Investment') {
-        this.pageTitle = this.translate.instant('One Time investment');
-      } else if (this.topupFormValues.Investment === 'Monthly Investment') {
-        this.pageTitle = this.translate.instant('Monthly Investment');
+      if (this.fundDetails) {
+        if (this.fundDetails.Investment === 'One-time Investment') {
+          this.pageTitle = this.translate.instant('One Time investment');
+        } else {
+          this.pageTitle = this.translate.instant('Monthly Investment');
+        }
       } else {
         this.pageTitle = this.translate.instant('Fund Your Account ');
       }
@@ -73,6 +88,7 @@ export class FundYourAccountComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.topupFormValues = this.topupAndWithDrawService.getTopUp();
+    this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     console.log(this.topupFormValues);
   }
 

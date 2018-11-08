@@ -531,4 +531,13 @@ export class InvestmentAccountService {
         }
         this.commit();
     }
+
+    setFundyourAccount(data) {
+        this.investmentAccountFormData.Investment = data.Investment;
+        this.investmentAccountFormData.oneTimeInvestmentAmount  = data.oneTimeInvestmentAmount;
+        this.investmentAccountFormData.portfolio = data.portfolio;
+        this.investmentAccountFormData.topupportfolioamount = data.topupportfolioamount;
+        this.investmentAccountFormData.MonthlyInvestmentAmount  = data.MonthlyInvestmentAmount ;
+
+    }
 }

@@ -5,22 +5,34 @@
 
 
       <div class="fund-summary">
-        <div class="from-account">
+        <div class="from-account" *ngIf="fundDetails">
           <img src="../../../assets/images/investment-account/topupcoin.svg" alt="" />
           <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_INVESTMENT' | translate }}</div>
-          <div class="strong" *ngIf=true>${{topupFormValues.oneTimeInvestmentAmount}}(
+          <div class="strong" *ngIf=setOnetimeInvestmentAmount>${{fundDetails.oneTimeInvestmentAmount}}(
             <span>{{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }}</span>)</div>
-          <div class="strong" *ngIf=false>${{topupFormValues.MonthlyInvestmentAmount}}
+          <div class="strong" *ngIf=setMonthlyInvestmentAmount>${{fundDetails.MonthlyInvestmentAmount}}
             <span>/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</span>
           </div>
         </div>
+
+        <div class="from-account" *ngIf="!fundDetails">
+          <img src="../../../assets/images/investment-account/topupcoin.svg" alt="" />
+          <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_INVESTMENT' | translate }}</div>
+          <div class="strong" >$12,000(
+            <span>{{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }}</span>)</div>
+          <div class="strong" >$800
+            <span>/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</span>
+          </div>
+        </div>
+
         <div class="right-arrow">
           <img src="../../../assets/images/investment-account/arrow-right.png" alt="" />
         </div>
         <div class="to-account">
           <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
           <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_PORTFOLIO' | translate }}</div>
-          <div class="strong">{{topupFormValues.portfolio}}</div>
+          <div  *ngIf="fundDetails" class="strong">{{fundDetails.portfolio}}</div>
+          <div  *ngIf="!fundDetails" class="strong">growth</div>
         </div>
       </div>
 
@@ -45,14 +57,23 @@
               <div class="account-detail">
                 <label class="transfer-detail-label">{{ 'FUND_YOUR_ACCOUNT.AMOUNT_TO_TRANSFER' | translate }}</label>
                 <div class="value">
-                  <div class="investment-values">
-                    <div *ngIf=true>
-                      <span>${{topupFormValues.oneTimeInvestmentAmount}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate
+                  <div class="investment-values" *ngIf="fundDetails">
+                    <div *ngIf=setOnetimeInvestmentAmount>
+                      <span>${{fundDetails.topupportfolioamount}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate
                       }})</div>
-                    <div *ngIf=false>
-                      <span>${{topupFormValues.MonthlyInvestmentAmount}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate
+                    <div *ngIf=setMonthlyInvestmentAmount>
+                      <span>${{fundDetails.MonthlyInvestmentAmount}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate
                       }}</div>
                   </div>
+
+
+                  <div class="investment-values" *ngIf="!fundDetails">
+                    <div>
+                      <span>$12,000</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate
+                      }})</div>
+                      <span>$800</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate
+                    }}</div>
+                 
                 </div>
 
                 <label>{{ 'FUND_YOUR_ACCOUNT.RECIPENTS_NAME' | translate }}</label>
@@ -101,12 +122,20 @@
               <div class="account-detail">
                 <label class="transfer-detail-label">{{ 'FUND_YOUR_ACCOUNT.AMOUNT_TO_TRANSFER' | translate }}</label>
                 <div class="value">
-                  <div class="investment-values">
-                    <div *ngIf=true>
-                      <span>$120,000</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }})</div>
-                    <div *ngIf=false>
-                      <span>$800</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</div>
+                  <div class="investment-values" *ngIf="fundDetails">
+                    <div *ngIf=setOnetimeInvestmentAmount>
+                      <span>${{fundDetails.topupportfolioamount}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }})</div>
+                    <div *ngIf=setMonthlyInvestmentAmount>
+                      <span>${{fundDetails.MonthlyInvestmentAmount}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</div>
                   </div>
+
+
+                  <div class="investment-values" *ngIf="!fundDetails">
+                    <div>
+                      <span>$12,000</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate
+                      }})</div>
+                      <span>$800</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate
+                    }}</div>
                 </div>
 
                 <label>{{ 'FUND_YOUR_ACCOUNT.UNIQUE_ENTITY_NO' | translate }}</label>
@@ -148,10 +177,10 @@
       </div>
 
 
-      <button type="button" *ngIf="!topupFormValues" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button type="button" *ngIf="!fundDetails" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{ 'FUND_YOUR_ACCOUNT.OK_GOT_IT' | translate}}</button>
 
-      <button *ngIf="topupFormValues" type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button *ngIf="fundDetails" type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">
         Submit
       </button>

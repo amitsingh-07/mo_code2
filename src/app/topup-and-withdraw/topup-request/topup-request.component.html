@@ -7,10 +7,15 @@
         <div>
           <img src="../../../assets/images/investment-account/investment_Account_Created.svg" id="add_submit_custModalImg2" />
         </div>
-        <p class="custom-modal--title mt20" id="upload-document-later-lab">Top Up Request Received!
+        <p *ngIf="requestReceivecd"  class="custom-modal--title mt20" id="upload-document-later-lab">Top Up Request Received!
           </p>
+          <p *ngIf="requestProcessed" class="custom-modal--title mt20" id="upload-document-later-lab">Request will be processed once fund transfer is complete
+            </p>
+
+
+          
          
-        <button (click)="goToNext()" id="upload-document-later-back_to_dash_board" type="button" class="btn btn__footer--fixed btn-primary width100">Submit</button>
+        <button (click)="goToNext()" id="upload-document-later-back_to_dash_board" type="button" class="btn btn__footer--fixed btn-primary width100">Back To Dashboard</button>
       </div>    
     </div>
   </div>

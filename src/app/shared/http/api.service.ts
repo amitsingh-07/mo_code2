@@ -725,6 +725,16 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getPortfolioList() {
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
+    const url = '../../../assets/mock-data/portfolioList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   // tslint:disable-next-line:no-identical-functions
   uploadDocumentBO(data) {
     // tslint:disable-next-line
@@ -754,7 +764,7 @@ export class ApiService {
   }
 
   // Verify PromoCode
-  verifyPromoCode(promocode: string ) {
+  verifyPromoCode(promocode: string) {
     return this.http.post(apiConstants.endpoint.verifyPromoCode, promocode)
       .pipe(
         // tslint:disable-next-line:no-identical-functions

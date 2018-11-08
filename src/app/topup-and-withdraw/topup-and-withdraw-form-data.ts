@@ -7,4 +7,6 @@ export class TopUpAndWithdrawFormData {
     portfolio: string;
     Investment: string;
     topupportfolioamount: number;
+    topupValues: any;
+    fundDetails: any;
 }

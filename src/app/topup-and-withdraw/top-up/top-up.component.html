@@ -24,8 +24,8 @@
                       <div ngbDropdown>
                         <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
                           ngbDropdownToggle>
-                          <!-- {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value :'Select Portfolio'}} -->
-                          select Portfolio
+                          {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value :'Select Portfolio'}}
+                         
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('portfolio',portfolio.name)"
