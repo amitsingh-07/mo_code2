@@ -25,7 +25,6 @@
             
             </div>
         <div class="estateDistributionForm">
-            <div>
               <div *ngIf="true" class="estate-distribution-form">
                 <div class="form-title mb10">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.ESTATE_DISTRIBUTION' | translate}}</div>
                   <div *ngFor="let currentDist of estateDistList; let i = index" class="form-group-single-column mb15">
@@ -37,14 +36,19 @@
                       </div>
                       <div class="col-6">
                           <div class="form-control">   
-                          <input  #percent id="beneficiary_{{i+1}}" (change)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
+                          <input  #percent id="beneficiary_{{i+1}}" (keyup)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
                             value="{{currentDist.distPercentage}}" >
                           <i>%</i>
                         </div>
                       </div>
                     </div>
               </div>
-        </div>
+              <div class="message-block">
+                  <div class="tooltip-message-img">
+                    <img src="assets/images/will-writing/tooltip-message.svg"/>
+                  </div>
+                  <div class="tooltip-message">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TOOLTIP_MESSAGE' | translate}}</div>
+              </div>
       </div>
       <div>
         <button type="button" [disabled]="" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">
@@ -54,4 +58,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
