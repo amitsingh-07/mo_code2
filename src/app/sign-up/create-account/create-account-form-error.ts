@@ -103,6 +103,39 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid captcha',
                         errorMessage: 'Please enter valid captcha'
                 }
-        }
+        },
+        confirmPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your confirm password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'New Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                }
+        },
+        newPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your new password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'New Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                }
+        },
+        oldPassword: {
+                required : {
+                        errorTitle: 'Password required',
+                        errorMessage: 'Please enter your old password'
+                },
+                pattern : {
+                        errorTitle: 'Invalid password',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                }
+        },
     };
 }
