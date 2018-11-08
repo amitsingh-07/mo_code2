@@ -1,4 +1,4 @@
-const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
+export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 
 export let apiConstants = {
     endpoint: {
