@@ -13,6 +13,7 @@ import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IGuardian } from '../will-writing-types';
 import { WillWritingService } from '../will-writing.service';
+import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 
 @Component({
   selector: 'app-my-child-guardian',
@@ -27,6 +28,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   isEdit: boolean;
   private selectedIndex: number;
   private subscription: Subscription;
+  private confirmModal = {};
 
   addGuardianForm: FormGroup;
   guardianList: IGuardian[] = [];
@@ -37,6 +39,8 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   hasSpouse: boolean;
   maxGuardian: number;
   unsavedMsg: string;
+
+  fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,6 +58,8 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_MESSAGE');
+      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.setPageTitle(this.pageTitle);
     });
@@ -61,7 +67,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
     if (this.willWritingService.getGuardianInfo().length > 0) {
       this.guardianList = this.willWritingService.getGuardianInfo();
     } else {
@@ -84,14 +90,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (this.addGuardianForm.dirty) {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.unsavedMsg;
-          ref.componentInstance.unSaved = true;
-          ref.result.then((data) => {
-            if (data === 'yes') {
-              this._location.back();
-            }
-          });
+          this.pageTitleComponent.goBack();
         } else {
           this._location.back();
         }
@@ -150,7 +149,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
    * validate aboutMeForm.
    * @param form - user personal detail.
    */
-  save(form: any): boolean {
+  validateGuardianForm(form: any): boolean {
     this.submitted = true;
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -159,18 +158,21 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
       this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
       return false;
-    } else {
-      if (!this.isEdit) {
-        form.value.isAlt = this.hasSpouse ? true : false;
-        this.guardianList.push(form.value);
-      } else {
-        this.guardianList[this.selectedIndex].name = form.value.name;
-        this.guardianList[this.selectedIndex].relationship = form.value.relationship;
-        this.guardianList[this.selectedIndex].uin = form.value.uin;
-      }
-      this.willWritingService.setGuardianInfo(this.guardianList);
-      return true;
     }
+    return true;
+  }
+
+  save(form) {
+    if (!this.isEdit) {
+      form.value.isAlt = this.hasSpouse ? true : false;
+      this.guardianList.push(form.value);
+    } else {
+      this.guardianList[this.selectedIndex].name = form.value.name;
+      this.guardianList[this.selectedIndex].relationship = form.value.relationship;
+      this.guardianList[this.selectedIndex].uin = form.value.uin;
+    }
+    this.willWritingService.setGuardianInfo(this.guardianList);
+    return true;
   }
 
   resetForm() {
@@ -186,13 +188,47 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.willWritingService.openToolTipModal(title, message);
   }
 
+  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.unSaved = true;
+    if (hasImpact) {
+      ref.componentInstance.hasImpact = message;
+    }
+    ref.result.then((data) => {
+      if (data === 'yes') {
+        this.save(form);
+        this.router.navigate([url]);
+      }
+    });
+    return false;
+  }
+
   /**
    * redirect to next page.
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if ((this.isEdit && this.save(form)) || (!this.isEdit && (this.guardianList.length === this.maxGuardian || this.save(form)))) {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
+    let url = WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+    if (this.guardianList.length !== this.maxGuardian) {
+      if (this.validateGuardianForm(form) && this.save(form)) {
+        this.router.navigate([url]);
+      }
+    } else {
+      if (this.fromConfirmationPage) {
+        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
+      }
+      if (this.isEdit) {
+        if (this.addGuardianForm.dirty) {
+          if (this.validateGuardianForm(form)) {
+            this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+          }
+        } else {
+          this.router.navigate([url]);
+        }
+      } else {
+        this.router.navigate([url]);
+      }
     }
   }
 }

@@ -55,18 +55,14 @@ export class SelectNationalityComponent implements OnInit {
             this.editModalData = this.translate.instant('SELECT_NATIONALITY.editModalData');
             this.editModalData1 = this.translate.instant('SELECT_NATIONALITY.editModalData1');
         });
+        this.selectedNationality = 'Select Nationality';
+        this.getNationalityCountryList();
     }
 
     ngOnInit() {
         this.navbarService.setNavbarMobileVisibility(true);
         this.navbarService.setNavbarMode(1);
-        this.getNationalityCountryList();
         this.selectNationalityFormValues = this.investmentAccountService.getInvestmentAccountFormData();
-        this.selectedNationality = 'Select Nationality';
-        if (this.selectNationalityFormValues.nationalityCode) {
-            this.nationality = this.selectNationalityFormValues.nationality;
-            this.selectedNationality = this.getSelectedNationality(this.selectNationalityFormValues.nationalityCode);
-        }
         this.selectNationalityForm = new FormGroup({
             nationality: new FormControl(this.selectNationalityFormValues.nationality)
         });
@@ -74,8 +70,9 @@ export class SelectNationalityComponent implements OnInit {
     }
 
     getSelectedNationality(nationalityCode) {
-        const selectedNationality = this.selectNationalityFormValues.nationalityList.filter(
+        const selectedNationality = this.nationalityList.filter(
             (nationality) => nationality.nationalityCode === nationalityCode);
+        this.nationality = selectedNationality[0];
         return selectedNationality[0].name;
     }
 
@@ -111,6 +108,10 @@ export class SelectNationalityComponent implements OnInit {
             this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
                 this.nationalityList = data.objectList;
                 this.countryList = this.getCountryList(data.objectList);
+                if (this.selectNationalityFormValues.nationalityCode) {
+                    this.selectedNationality = this.getSelectedNationality(this.selectNationalityFormValues.nationalityCode);
+                    this.buildFormControls();
+                }
             });
         });
     }

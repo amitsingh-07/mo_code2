@@ -1,5 +1,66 @@
 {
   "objectList": {
+      "projectedValue": 45,
+      "portfolioId": "PORTFOLIO00058",
+      "tenure": "69",
+      "projectedReturns": "+ 5.50%",
+      "portfolioType": "Growth",
+      "portfolioMaturityYear": "2087",
+      "breakDown": [
+          {
+              "id": "SECTOR00012",
+              "name": "Emerging Markets Equity",
+              "type": "Equities",
+              "riskRating": 9,
+              "totalPercentage": 60,
+              "funds": [
+                  {
+                      "id": "FI3018",
+                      "name": "Fidelity ASEAN A SGD",
+                      "type": "UT",
+                      "percentage": 60,
+                      "factSheetLink": "http://",
+                      "htmlDesc": null
+                  }
+              ]
+          },
+          {
+              "id": "SECTOR00013",
+              "name": "Global Bonds",
+              "type": "Bonds",
+              "riskRating": 9,
+              "totalPercentage": 40,
+              "funds": [
+                  {
+                      "id": "FI3018",
+                      "name": "Fidelity ASEAN A SGD",
+                      "type": "UT",
+                      "percentage": 20,
+                      "factSheetLink": "http://",
+                      "htmlDesc": null
+                  },
+                  {
+                      "id": "FI3018",
+                      "name": "Fidelity ASEAN A SGD",
+                      "type": "UT",
+                      "percentage": 20,
+                      "factSheetLink": "http://",
+                      "htmlDesc": null
+                  }
+              ]
+          }
+      ]
+  },
+  "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+  }
+}
+
+
+
+/* {
+  "objectList": {
     "projectedValue": 2300000,
     "tenure": 30,
     "projectedReturns": "+ 5.50%",
@@ -76,3 +137,4 @@
   "responseCode": 6000,
   "responseDescription": "Successful response"
 }
+*/

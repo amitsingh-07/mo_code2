@@ -12,6 +12,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IChild, ISpouse } from '../will-writing-types';
+import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
 
 @Component({
@@ -63,7 +64,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === 'married';
+    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
     this.childrenFormValues = this.willWritingService.getChildrenInfo();
     this.spouseFormValues = this.willWritingService.getSpouseInfo();
@@ -119,9 +120,9 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   buildSpouseForm(): FormGroup {
     if (this.hasSpouse) {
       return this.formBuilder.group({
-        name: [this.spouseFormValues ? this.spouseFormValues[0].name : '',
+        name: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].name : '',
         [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
-        uin: [this.spouseFormValues ? this.spouseFormValues[0].uin : '',
+        uin: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].uin : '',
         [Validators.required, Validators.pattern(RegexConstants.UIN)]],
       });
     }
@@ -170,6 +171,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     if (this.hasChild) {
       this.willWritingService.setChildrenInfo(form.value.childrens);
     }
+    return true;
   }
 
   openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
@@ -181,8 +183,18 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     }
     ref.result.then((data) => {
       if (data === 'yes') {
-        this.save(form);
-        this.router.navigate([url]);
+        if (this.willWritingService.getExecTrusteeInfo().length > 0 &&
+          this.willWritingService.checkChildrenAge(form.value.childrens) !== this.willWritingService.checkBeneficiaryAge()) {
+          this.save(form);
+          this.willWritingService.clearExecTrusteeInfo();
+          const redirectUrl = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN) ?
+            WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : WILL_WRITING_ROUTE_PATHS.MY_EXECUTOR_TRUSTEE;
+          this.router.navigate([redirectUrl]);
+          this.willWritingService.setFromConfirmPage(false);
+        } else {
+          this.save(form);
+          this.router.navigate([url]);
+        }
       }
     });
     return false;
@@ -194,23 +206,20 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
    */
   goToNext(form) {
     if (this.childrenFormValues.length === 0 && this.spouseFormValues.length === 0) {
-      if (this.validateFamilyForm(form)) {
-        this.save(form);
-        if (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) {
-          this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN]);
-        } else {
-          this.router.navigate([WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE]);
-        }
+      if (this.validateFamilyForm(form) && this.save(form)) {
+        const url = (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) ?
+          WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+        this.router.navigate([url]);
       }
     } else {
-      let url = WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+      let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
       if (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) {
         url = WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN;
-      } else if (this.fromConfirmationPage) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
       }
       if (this.myFamilyForm.dirty) {
+        if (this.validateFamilyForm(form)) {
         this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+        }
       } else {
         this.router.navigate([url]);
       }

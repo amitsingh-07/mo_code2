@@ -24,7 +24,8 @@
                 <div class="edit-block checkbox-button two-label">
                   <label id="guardian_{{i+1}}">
                     <div class="input-label-black">{{guardian.name | titlecase }}</div>
-                    <div class="input-label-normal">{{guardian.relationship | titlecase }}</div>
+                    <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
+                        translate}} {{guardian.relationship | titlecase }}</div>
                   </label>
                   <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
                 </div>
@@ -97,8 +98,8 @@
             <div>
               <button type="button" (click)="goToNext(addGuardianForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                 id="addGuardianFormBtn1">
-                <span *ngIf="!isEdit">{{'LABEL.CONTINUE' | translate}}</span>
-                <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
+                <span *ngIf="!isEdit && !fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                <span *ngIf="isEdit || fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
             </div>
           </form>
         </div>
