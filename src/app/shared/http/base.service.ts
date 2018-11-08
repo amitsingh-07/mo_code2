@@ -36,7 +36,7 @@ export class BaseService {
 
   get(url) {
     let baseUrl = environment.apiBaseUrl;
-    if (url.indexOf(INVESTMENT_API_BASE_URL)) {
+    if (url.indexOf(INVESTMENT_API_BASE_URL) !== -1) {
       baseUrl = environment.apiBaseUrl2;
     }
     this.helperService.showLoader();
@@ -71,7 +71,7 @@ export class BaseService {
 
   post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
     let baseUrl = environment.apiBaseUrl;
-    if (url.indexOf(INVESTMENT_API_BASE_URL)) {
+    if (url.indexOf(INVESTMENT_API_BASE_URL) !== -1) {
       baseUrl = environment.apiBaseUrl2;
     }
     if (showLoader) {
