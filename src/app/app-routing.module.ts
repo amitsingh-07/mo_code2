@@ -31,6 +31,8 @@ const routes: Routes = [
       */
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
+      { path: 'topup-and-withdraw', loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule' },
+
       { path: 'will-writing', loadChildren: './will-writing/will-writing.module#WillWritingModule' },
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent},

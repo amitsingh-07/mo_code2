@@ -49,6 +49,8 @@ import { RequestCache } from './shared/http/http-cache.service';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
+
+import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.component';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
@@ -83,6 +85,7 @@ export function tokenGetterFn() {
     MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
+    BankDetailsComponent,
     ToolTipModalComponent,
     ModelWithButtonComponent,
     LifeProtectionModalComponent,
@@ -143,7 +146,7 @@ export function tokenGetterFn() {
     }, Formatter, CurrencyPipe],
   bootstrap: [AppComponent],
   entryComponents: [
-    HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
     SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent]
