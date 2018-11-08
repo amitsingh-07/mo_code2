@@ -18,10 +18,12 @@ import { Subscription } from 'rxjs';
 import { ProtectionNeeds } from '../../guide-me/protection-needs/protection-needs';
 import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { Formatter } from '../../shared/utils/formatter.util';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
+import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
 
@@ -33,6 +35,7 @@ import { DirectService } from './../direct.service';
 })
 export class ProductInfoComponent implements OnInit, OnDestroy {
 
+  @Input() hideForm: boolean;
   @Input() isEditMode: boolean;
   @Output() formSubmitCallback: EventEmitter<any> = new EventEmitter();
   @Output() backPressed: EventEmitter<any> = new EventEmitter();
@@ -55,6 +58,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   productCategorySelectedIndex = 0;
 
   private subscription: Subscription;
+  private prodSearchInfoSub: Subscription;
   pageTitle: string;
 
   selectedCategoryId = 0;
@@ -71,7 +75,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   ];
 
   minProdSearch: string;
-
+/*
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
@@ -85,14 +89,14 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
     }
   }
-
+*/
   constructor(
     public headerService: HeaderService, private directService: DirectService,
     private modal: NgbModal, private translate: TranslateService, private route: ActivatedRoute,
     private directApiService: DirectApiService, private googleAnalyticsService: GoogleAnalyticsService,
     private cdRef: ChangeDetectorRef, private configService: ConfigService,
     private authService: AuthenticationService, public navbarService: NavbarService,
-    private _location: Location) {
+    private _location: Location, private planService: SelectedPlansService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
@@ -145,6 +149,15 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     // measuring width and height
     this.innerWidth = window.innerWidth;
 
+    if (this.hideForm) {
+      this.initLoad = false;
+      this.toggleVisibility = false;
+      this.toggleBackdropVisibility = false;
+      this.directService.setModalFreeze(false);
+      this.selectedCategory = this.directService.getProductCategory();
+      this.selectedCategoryId = this.selectedCategory.id;
+    }
+
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (event === this.pageTitle) {
@@ -155,6 +168,14 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
           this.toggleVisibility = true;
           this.toggleBackdropVisibility = false;
           this.directService.setModalFreeze(false);
+
+          this.selectedCategory = this.directService.getProductCategory();
+          this.selectedCategoryId = this.selectedCategory.id;
+          let catId = Formatter.getIntValue(this.selectedCategoryId);
+          if (catId > 0) {
+            catId = catId - 1;
+          }
+          this.openProductCategory(catId);
           this.backPressed.emit('backPressed');
           //}
         } else {
@@ -163,15 +184,15 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.directService.prodSearchInfoData.subscribe((data) => {
-      if (data !== '') {
-        this.minProdSearch = data;
-        this.initLoad = false;
-        this.toggleVisibility = false;
-        this.toggleBackdropVisibility = false;
-        this.directService.setModalFreeze(false);
-        this.formSubmitCallback.emit(data);
-      }
+    this.prodSearchInfoSub = this.directService.prodSearchInfoData.subscribe((data) => {
+      // if (data !== '') {
+      //   this.minProdSearch = data;
+      //   this.initLoad = false;
+      //   this.toggleVisibility = false;
+      //   this.toggleBackdropVisibility = false;
+      //   this.directService.setModalFreeze(false);
+      //   this.formSubmitCallback.emit(data);
+      // }
     });
     this.directService.modalToolTipTrigger.subscribe((data) => {
       if (data.title !== '') {
@@ -180,10 +201,23 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     });
     this.googleAnalyticsService.startTime('initialDirectSearch');
     this.initDisplaySetup();
+
+  }
+
+  formSubmitted(data) {
+    if (data !== '') {
+      this.minProdSearch = data;
+      this.initLoad = false;
+      this.toggleVisibility = false;
+      this.toggleBackdropVisibility = false;
+      this.directService.setModalFreeze(false);
+      this.formSubmitCallback.emit(data);
+    }
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.prodSearchInfoSub.unsubscribe();
     this.navbarService.unsubscribeBackPress();
   }
 

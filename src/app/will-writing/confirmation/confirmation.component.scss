@@ -9,7 +9,30 @@
         padding: 10px 0 !important;
         border-radius: 0;
     }
+    .content {
+        @include allmobiles {
+            padding-bottom: 120px;
+        }
+    }
+
 }
+.col-lg-4.col-md-4.col-sm-12.flex-row{
+    position: relative;
+}
+.col-lg-4.col-md-4.col-sm-12.flex-row::after{
+    content: "";
+    width: 1px;
+    height: 120px;
+    border: solid 0.5px #009999;
+    top: 30px;
+    right: 0;
+    position: absolute;
+
+    &:nth-of-type(3) {
+        border: 0px !important;
+    }
+}
+
 
 .mobile-header--container {
     @include allmobiles{
@@ -111,6 +134,7 @@
         line-height: 1.71;
         letter-spacing: -0.3px;
         color: #9e9e9e;
+        padding-right: 0;
       }
     .label-value {
         font-family: $muli-semi-bold;
@@ -124,15 +148,42 @@
         }
       }
       .section-body {
-        display: flex;
-        padding-top: 22px;
-        padding-bottom:27px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        @include allmobiles {
-            flex-direction: column;
+            display: flex;
+            padding-top: 22px;
+            padding-bottom:27px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            @include allmobiles {
+                flex-direction: column;
+            }
+            .col-lg-6{
+                &.col-md-6{
+                    &.col-sm-12{
+                        &:nth-child(2n-1) {
+                            border-right: 0.5px solid #009999;
+                            padding-right: 0;
+                            @include allmobiles{
+                                border-right: none;
+                                padding-right: 15px;
+                            }
+                        }
+                        &:nth-child(2n-2) {
+                            padding-left: 40px;
+                            @include allmobiles{
+                                padding-left: 15px;
+                            }
+                        }
+                    }
+                }
+                &:last-child{
+                    .record{
+                        @include allmobiles{
+                            border: none;
+                        }
+                    }
+                }
+            }
         }
-      }
       .edit-dark {
           background-image: url("../../../assets/images/will-writing/edit-dark.svg");
           justify-content: right;
@@ -148,10 +199,14 @@
         cursor: pointer;
       }
       .record {
-          @include allmobiles {
-              display: flex;
-          }
+          display: flex;
           margin-bottom: 8px;
+          &:last-child{
+              @include allmobiles{
+                  padding-bottom: 5px;
+                  border-bottom: 0.5px solid #bbbbbb;
+              }
+          }
       }
       .section-header{
         font-family: $muli-semi-bold;
@@ -178,5 +233,49 @@
         @include tablet {
             display: flex;
         }
+        &:nth-of-type(3) {
+            border: solid 2px #000000;
+        }
       }
+}
+
+.section-row-header {
+    font-family: $muli-bold;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    color: #868686;
+    border-bottom: solid 0.5px #bbbbbb;
+    width: 80%;
+    padding: 0;
+    padding-bottom: 10px;
+    margin: 0 15px;
+    @include allmobiles {
+        width: 100%;
+        margin: 0 15px;
+    }
+}
+.stamp-block{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -65px;
+    .stamp-circle{
+        position: absolute;
+        margin-right: 40px;
+        right: 12%;
+        padding: 19px;
+        border-radius: 50%;
+        border: 1px solid #a4e7e7;
+        width: 210px;
+        height: 210px;
+    }
+    img {
+        margin-right: -32px;
+    }
+    div {
+        margin-right: 75px;
+    }
+}
+
+.no-brdr {
+    border: none !important;
 }

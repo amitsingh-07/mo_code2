@@ -95,7 +95,7 @@
       "PAYOUT_AGE": "Payout Start Age",
       "PAYOUT_DURATION": "Payout Duration",
       "PAYOUT_FEATURE": "Payout Feature",
-      "PAYOUT_DURATION_LIST": [ "Lifetime", "Limited Years" ],
+      "PAYOUT_DURATION_LIST": [ "Limited Years" ],
       "PAYOUT_FEATURE_LIST": ["Guaranteed", "Variable", "Increasing"],
       "FIXED_TOOLTIP": {
           "TITLE": "Payout Feature",

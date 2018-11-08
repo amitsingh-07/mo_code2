@@ -23,3 +23,16 @@
         color: #fff;
     }
 }
+
+.confirmation-warning{
+    span{
+        line-height: 1.31;
+        letter-spacing: -0.2px;
+        color: #5e5e5e;
+        &:first-child{
+            font-family: $muli-semi-bold;
+            font-size: 18px; 
+            color: #009999;
+        }
+    }
+}

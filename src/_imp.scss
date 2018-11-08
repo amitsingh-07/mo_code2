@@ -418,6 +418,10 @@ nouislider {
   &.grey {
     color: $text-color-secondary;
   }
+  a {
+    color: $white-color;
+    text-decoration: none;
+  }
 }
 .pos-fixed {
   position: fixed;
