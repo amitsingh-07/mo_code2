@@ -41,6 +41,9 @@
             background: $white-color;
             padding: 17px 20px;
         }
+        &.section{
+            margin-bottom: 23px;
+        }
     }
     .sublbl{
         font-family: $muli-regular;
@@ -126,3 +129,30 @@
        }
    }
 }
+
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;
+    .help-icon {
+        background-image: url("../../../assets/images/help-icon.png");
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 5px;
+        right: -20px;
+    }
+}
+
+.sub_name {
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #2d8289;
+  }

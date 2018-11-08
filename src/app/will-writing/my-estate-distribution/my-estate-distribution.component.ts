@@ -25,10 +25,13 @@ export class MyEstateDistributionComponent implements OnInit {
   currentDist;
   errorMsg;
   filteredList;
-  constructor(private translate: TranslateService,
-              private willWritingService: WillWritingService,
-              public navbarService: NavbarService,
-              private router: Router) {
+  fromConfirmationPage = this.willWritingService.fromConfirmationPage;
+
+  constructor(
+    private translate: TranslateService,
+    private willWritingService: WillWritingService,
+    public navbarService: NavbarService,
+    private router: Router) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_2');
@@ -73,7 +76,6 @@ export class MyEstateDistributionComponent implements OnInit {
       this.remainingPercentage = 100 - (this.distPercentageSum - this.currentDist);
     }
     this.distPercentageSum = 0;
-
   }
 
   distributePercentage(index: number, event) {
@@ -111,7 +113,11 @@ export class MyEstateDistributionComponent implements OnInit {
 
   goToNext() {
     if (this.save()) {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE]);
+      let url = WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE;
+      if (this.fromConfirmationPage) {
+        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
+      }
+      this.router.navigate([url]);
     }
   }
 

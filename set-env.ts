@@ -36,3 +36,4 @@ config.projects[defaultProject].architect.build.configurations.common = config.p
 writeFileSync(targetPath, beautify(config, null, 2, 100));
 
 console.log(`Final angular configuration generated at ${targetPath}`);
+

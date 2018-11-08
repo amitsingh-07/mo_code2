@@ -54,7 +54,10 @@ export class GuideMeApiService {
     }
 
     getMyInfoData() {
-        return this.apiService.getMyInfoData(this.myInfoService.myInfoValue);
+        const code = {
+            authorizationCode : this.myInfoService.myInfoValue
+        };
+        return this.apiService.getMyInfoData(code);
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {

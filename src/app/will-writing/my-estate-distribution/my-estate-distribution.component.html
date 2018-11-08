@@ -43,13 +43,14 @@
                         </div>
                       </div>
                     </div>
-                  
               </div>
-
         </div>
       </div>
       <div>
-        <button type="button" [disabled]="" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">{{ 'LABEL.CONTINUE' | translate}}</button>
+        <button type="button" [disabled]="" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">
+          <span *ngIf="!fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+          <span *ngIf="fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
+        </button>
       </div>
     </div>
   </div>
