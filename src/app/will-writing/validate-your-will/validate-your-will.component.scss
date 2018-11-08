@@ -209,12 +209,21 @@
         flex-direction: column-reverse;
       }
   }
-  .section {
-    border-left: 1px solid #00c5c4;
-    margin-left: -7px;
-    padding-bottom: 20px;
-    .sub-section {
-        margin-left: 25px;
-        margin-top: -4px;
+.instruction-content{
+    li{
+        &:last-child{
+            .section{
+                border-left: none;
+            }
+        }
+        .section {
+            border-left: 1px solid #00c5c4;
+            margin-left: -7px;
+            padding-bottom: 20px;
+            .sub-section {
+                margin-left: 25px;
+                margin-top: -4px;
+            }
+        }
     }
-  }
+}
