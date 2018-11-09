@@ -1,4 +1,4 @@
-const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
+export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 
 export let apiConstants = {
     endpoint: {
@@ -11,7 +11,7 @@ export let apiConstants = {
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
-        getMyInfoValues: 'myinfo-microservice/api/getMyInfo',
+        getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
         signUp: 'account/account-microservice/api/signup',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
@@ -47,6 +47,6 @@ export let apiConstants = {
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective'
         },
         getPromoCode: '',
-        verifyPromoCode: ''
+        verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode'
     }
 };

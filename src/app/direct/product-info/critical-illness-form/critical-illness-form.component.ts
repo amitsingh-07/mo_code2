@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
-import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
 import { DirectService } from './../../direct.service';
 
 @Component({
@@ -29,6 +28,8 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
   coverageAmtValuesTemp = Array(10).fill(100000).map((x, i) => x += i * 100000);
   coverageAmtValues = Array(12);
   durationValues = ['5 Years', '10 Years', 'Till Age 55', 'Till Age 60', 'Till Age 65', 'Till Age 70'];
+
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private directService: DirectService, private modal: NgbModal,
@@ -74,8 +75,8 @@ export class CriticalIllnessFormComponent implements OnInit, OnDestroy {
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '2') {
         if (this.save()) {
+          this.formSubmitted.emit(this.summarizeDetails());
           this.directService.setMinProdInfo(this.summarizeDetails());
-          this.directService.triggerSearch('');
         }
       }
     });

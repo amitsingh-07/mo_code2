@@ -14,7 +14,9 @@ import { MyEstateDistributionComponent } from './my-estate-distribution/my-estat
 import { MyExecutorTrusteeComponent } from './my-executor-trustee/my-executor-trustee.component';
 import { MyFamilyComponent } from './my-family/my-family.component';
 import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
+import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
 import { WillWritingAccessGuard } from './will-writing-access-guard';
 import { WILL_WRITING_ROUTES } from './will-writing-routes.constants';
 
@@ -92,6 +94,14 @@ const routes: Routes = [
     path: WILL_WRITING_ROUTES.CONFIRMATION,
     component: ConfirmationComponent,
     canActivate: [WillWritingAccessGuard]
+  },
+  {
+    path: WILL_WRITING_ROUTES.SIGN_UP,
+    component: SignUpComponent
+  },
+  {
+    path: WILL_WRITING_ROUTES.VALIDATE_YOUR_WILL,
+    component: ValidateYourWillComponent
   }
 ];
 

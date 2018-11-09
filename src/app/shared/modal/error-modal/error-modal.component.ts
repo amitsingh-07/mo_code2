@@ -18,6 +18,7 @@ export class ErrorModalComponent implements OnInit {
   @Input() isError: boolean;
   @Input() navToHome: boolean;
   @Input() unSaved: boolean;
+  @Input() hasImpact: any;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() retry: EventEmitter<any> = new EventEmitter();
 

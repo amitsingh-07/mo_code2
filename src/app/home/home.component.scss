@@ -16,6 +16,8 @@ body{
             display:block;
             width:100%;
             height:100%;
+            left:0px;
+            bottom:0px;
             z-index:0;
             .banner-bg--image{
                 position: absolute;
@@ -23,6 +25,7 @@ body{
                 width:100%;
                 height:350px;
                 bottom:0px;
+                left:0px;
                 background:url('../../assets/images/banner-bg.svg');
                 background-repeat: repeat-x;
             }
@@ -165,7 +168,7 @@ body{
         width:100%;
         height:85px;
         z-index:1;
-        overflow-x:auto;
+        overflow-x:hidden;
         overflow-y:hidden;
         justify-content:center;
         @include minMobilemaxPhablet{
@@ -178,6 +181,7 @@ body{
         &.fixed{
             position:fixed;
             top:84px;
+            left:0px;
             background-color:$white-color;
             z-index:10;
             border-bottom: 2px solid#e5f3f4;
@@ -667,6 +671,7 @@ body{
             width:100%;
             height:507px;
             bottom:0px;
+            left:0px;
         }
         .subscribe__section--footer{
             position: absolute;
@@ -674,6 +679,7 @@ body{
             width:100%;
             height:10px;
             bottom:0px;
+            left:0px;
             background-color:$dark-teal-color;
             .orange{
                 position: absolute;
