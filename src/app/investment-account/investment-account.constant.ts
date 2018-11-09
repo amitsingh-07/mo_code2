@@ -1,5 +1,9 @@
 export let INVESTMENT_ACCOUNT_CONFIG = {
-    personal_info: {},
+    SINGAPORE_NATIONALITY_CODE: 'SG',
+    personal_info: {
+        min_age: 18,
+        min_passport_expiry: 6 // in months
+    },
     residential_info: {
         isMailingAddressSame: true
     },
@@ -8,7 +12,9 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     },
     upload_documents: {
         default_thumb: 'cam-icon.svg',
-        max_file_size: 2 // in MB
+        max_file_size: 2, // in MB
+        image_file_types: ['JPG', 'JPEG', 'PNG', 'GIF', 'BMP'],
+        doc_file_types: ['PDF']
     },
     confirm_portfolio: {
         fees: {

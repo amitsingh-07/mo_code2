@@ -39,6 +39,7 @@ import { CreateAccountModelComponent } from './guide-me/recommendations/create-a
 import { HammerConfig } from './hammer.config';
 import { HomeComponent } from './home/home.component';
 import { TermsComponent } from './shared/components/terms/terms.component';
+import { WillDisclaimerComponent } from './shared/components/will-disclaimer/will-disclaimer.component';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -151,7 +152,7 @@ export function tokenGetterFn() {
     HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent]
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent]
 })
 
 export class AppModule {

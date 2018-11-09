@@ -65,6 +65,8 @@ export class DirectService {
   getDirectFormData(): DirectFormData {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.directFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    } else {
+      this.directFormData = {} as DirectFormData;
     }
     return this.directFormData;
   }
@@ -174,6 +176,7 @@ export class DirectService {
   }
 
   getLifeProtectionForm(): ILifeProtection {
+    this.getDirectFormData();
     if (!this.directFormData.lifeProtection) {
       this.directFormData.lifeProtection = {} as ILifeProtection;
     }

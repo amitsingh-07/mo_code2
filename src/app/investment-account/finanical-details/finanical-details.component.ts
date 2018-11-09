@@ -28,8 +28,6 @@ export class FinanicalDetailsComponent implements OnInit {
   pageTitle: string;
   financialDetails: FormGroup;
   FinancialFormData;
-  selectRangeValue = 'select Range';
-  selectNumber = 'Select Number';
   formValues;
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
@@ -59,7 +57,8 @@ export class FinanicalDetailsComponent implements OnInit {
     this.FinancialFormData = this.portfolioService.getMyFinancials();
     this.formValues = this.investmentAccountService.getFinancialFormData();
     this.financialDetails = this.formBuilder.group({
-      annualHouseHoldIncomeRange: [this.formValues.annualHouseHoldIncomeRange, Validators.required],
+      annualHouseHoldIncomeRange: [{value: this.formValues.annualHouseHoldIncomeRange,
+        disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')}, Validators.required],
       numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
       financialMonthlyIncome: [this.formValues.financialMonthlyIncome ?
         this.formValues.financialMonthlyIncome : this.FinancialFormData.monthlyIncome,
@@ -85,13 +84,10 @@ export class FinanicalDetailsComponent implements OnInit {
     });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
-    this.selectRangeValue = annualHouseHoldIncome.name;
-    this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(this.selectRangeValue);
-
+    this.financialDetails.controls['annualHouseHoldIncomeRange'].setValue(annualHouseHoldIncome);
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
-    this.selectNumber = HouseHoldMembers;
-    this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(this.selectNumber);
+    this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(HouseHoldMembers);
   }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
@@ -121,4 +117,7 @@ export class FinanicalDetailsComponent implements OnInit {
     }
   }
 
+  isDisabled() {
+    return this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange');
+  }
 }

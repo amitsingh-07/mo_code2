@@ -20,7 +20,6 @@ import { IPageComponent } from './../../shared/interfaces/page-component.interfa
 export class PersonalDeclarationComponent implements OnInit {
   sourceOfIncomeList: any;
   nationality: any;
-  source: any;
   translator: any;
   pageTitle: string;
   personalDeclarationForm: FormGroup;
@@ -45,25 +44,24 @@ export class PersonalDeclarationComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   selectSource(sourceObj) {
-this.source = sourceObj.name;
-this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
+    this.personalDeclarationForm.controls['sourceOfIncome'].setValue(sourceObj);
   }
   getSourceList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
-        this.sourceOfIncomeList = data.objectList.investmentSource;
+      this.sourceOfIncomeList = data.objectList.investmentSource;
     });
   }
   ngOnInit() {
     this.navbarService.setNavbarMode(2);
-    this.source = 'Select' ;
+
     this.getSourceList();
     this.personalDeclarationFormValues = this.investmentAccountService.getPersonalDeclaration();
     this.personalDeclarationForm = new FormGroup({
-      radioEmploye: new FormControl (this.personalDeclarationFormValues.ExistingEmploye),
-      radioBeneficial: new FormControl (this.personalDeclarationFormValues.beneficial),
-      radioPEP: new FormControl (this.personalDeclarationFormValues.pep),
-      sourceOfIncome: new FormControl (this.personalDeclarationFormValues.sourceOfIncome, Validators.required)
-      });
+      radioEmploye: new FormControl(this.personalDeclarationFormValues.ExistingEmploye),
+      radioBeneficial: new FormControl(this.personalDeclarationFormValues.beneficial),
+      radioPEP: new FormControl(this.personalDeclarationFormValues.pep),
+      sourceOfIncome: new FormControl(this.personalDeclarationFormValues.sourceOfIncome, Validators.required)
+    });
   }
   yesClick() {
   }
@@ -73,7 +71,7 @@ this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translator.PEP;
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription =  this.translator.PEP_DESC;
+    ref.componentInstance.errorDescription = this.translator.PEP_DESC;
     return false;
   }
   // tslint:disable-next-line:no-identical-functions
@@ -81,7 +79,7 @@ this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translator.BENEFICIAL;
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription = this.translator.BENEFICIAL_DESC ;
+    ref.componentInstance.errorDescription = this.translator.BENEFICIAL_DESC;
     return false;
   }
   goToNext(form) {
@@ -110,8 +108,8 @@ this.personalDeclarationForm.controls['sourceOfIncome'].setValue(this.source);
   }
   disableButton() {
     // tslint:disable-next-line:max-line-length
-    if ( this.personalDeclarationForm.controls.radioEmploye.value == null || this.personalDeclarationForm.controls.radioBeneficial.value == null || this.personalDeclarationForm.controls.radioPEP.value == null ) {
-return true;
+    if (this.personalDeclarationForm.controls.radioEmploye.value == null || this.personalDeclarationForm.controls.radioBeneficial.value == null || this.personalDeclarationForm.controls.radioPEP.value == null) {
+      return true;
     }
   }
 }

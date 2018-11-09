@@ -12,6 +12,7 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -33,7 +34,7 @@ export class UploadDocumentsComponent implements OnInit {
   loaderTitle;
   loaderDesc;
   formData: FormData = new FormData();
-
+  investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -58,7 +59,7 @@ export class UploadDocumentsComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
+    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
   }
@@ -106,18 +107,18 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {
-    const selectedFile: File = fileElem.target.files[0];
-    const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
-    if (fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size) {
-      const payloadKey = this.getPayloadKey(controlname);
-      this.formData.append(payloadKey, selectedFile);
-      if (thumbElem) {
-        this.setThumbnail(thumbElem, selectedFile);
-      }
-    } else {
+    const response = this.investmentAccountCommon.fileSelected(this.formData, control, controlname, fileElem, thumbElem);
+    if (!response.validFileSize) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE');
       const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE');
+      ref.componentInstance.errorTitle = errorTitle;
+      ref.componentInstance.errorDescription = errorDesc;
+      control.setValue('');
+    } else if (!response.validFileType) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE');
+      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE');
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
@@ -125,29 +126,7 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   getPayloadKey(controlname) {
-    let payloadKey;
-    switch (controlname) {
-      case 'NRIC_FRONT': {
-        payloadKey = 'nricFront';
-        break;
-      }
-      case 'NRIC_BACK': {
-        payloadKey = 'nricBack';
-        break;
-      }
-      case 'MAILING_ADDRESS': {
-        payloadKey = 'mailingAddressProof';
-        break;
-      }
-      case 'RESIDENTIAL_ADDRESS': {
-        payloadKey = 'residentialAddressProof';
-        break;
-      }
-      case 'PASSPORT': {
-        payloadKey = 'passport';
-        break;
-      }
-    }
+    const payloadKey = this.investmentAccountCommon.getPayloadKey(controlname);
     return payloadKey;
   }
 
@@ -156,38 +135,23 @@ export class UploadDocumentsComponent implements OnInit {
     this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
       if (data) {
         this.hideUploadLoader();
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        this.redirectToNextPage();
       }
     });
   }
 
   setThumbnail(thumbElem, file) {
     // Set Thumbnail
-    const reader: FileReader = new FileReader();
-    reader.onloadend = () => {
-      thumbElem.src = reader.result;
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      thumbElem.src = window.location.origin + '/assets/images/' + this.defaultThumb;
-    }
+    this.investmentAccountCommon.setThumbnail(thumbElem, file);
   }
 
   getFileName(fileElem) {
-    let fileName = '';
-    if (fileElem.files.length) {
-      fileName = fileElem.files[0].name;
-    }
+    const fileName = this.investmentAccountCommon.getFileName(fileElem);
     return fileName;
   }
 
   clearFileSelection(control, event, thumbElem?) {
-    event.stopPropagation();
-    control.setValue('');
-    if (thumbElem) {
-      thumbElem.src = window.location.origin + '/assets/images/' + this.defaultThumb;
-    }
+    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
   }
 
   showProofOfMailingDetails() {
@@ -216,9 +180,7 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = errorMessage;
       ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
       ref.componentInstance.primaryAction.subscribe(() => {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
-
-        
+        this.redirectToNextPage();
       });
     } else {
       this.proceed(form);
@@ -237,6 +199,16 @@ export class UploadDocumentsComponent implements OnInit {
 
   hideUploadLoader() {
     this.showLoader = false;
+  }
+
+  redirectToNextPage() {
+    const boStatus = this.investmentAccountService.getBOStatus();
+    // tslint:disable-next-line:triple-equals
+    if (boStatus == true) {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+    } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+    }
   }
 
 }

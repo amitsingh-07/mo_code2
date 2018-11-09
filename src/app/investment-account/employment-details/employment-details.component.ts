@@ -10,6 +10,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-employment-details',
@@ -18,7 +19,7 @@ import { InvestmentAccountService } from '../investment-account-service';
 })
 export class EmploymentDetailsComponent implements OnInit {
   pageTitle: string;
-  employementStatusList: any ;
+  employementStatusList: any;
   employementDetailsForm: FormGroup;
   formValues: any;
   countries;
@@ -42,7 +43,7 @@ export class EmploymentDetailsComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
     public navbarService: NavbarService,
-    private modal: NgbModal ) {
+    private modal: NgbModal) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('EMPLOYMENT_DETAILS.TITLE');
@@ -53,54 +54,39 @@ export class EmploymentDetailsComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
- ngOnInit() {
+  ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getOccupationList();
     this.getIndustryList();
     this.getEmployeList();
-    this.isUserNationalitySingapore = this.investmentAccountService.isUserNationalitySingapore();
+    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
     const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : 'Employed';
     if (employStatus === 'Unemployed') {
-          this.employementDetailsForm = this.buildFormUnemployement(employStatus);
-          this.showEmploymentControls = false;
-        } else {
-          this.employementDetailsForm = this.buildFormEmployement(employStatus);
-          this.showEmploymentControls = true;
-        }
+      this.employementDetailsForm = this.buildFormUnemployement(employStatus);
+      this.showEmploymentControls = false;
+    } else {
+      this.employementDetailsForm = this.buildFormEmployement(employStatus);
+      this.showEmploymentControls = true;
+    }
     this.addOrRemoveMailingAddress();
   }
 
   getIndustryList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.investmentAccountService.getIndustryList().subscribe((data) => {
-        this.industryList = data.objectList;
-      });
+    this.investmentAccountService.getIndustryList().subscribe((data) => {
+      this.industryList = data.objectList;
     });
-
   }
   getOccupationList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.investmentAccountService.getOccupationList().subscribe((data) => {
-        this.occupationList = data.objectList;
-      });
+    this.investmentAccountService.getOccupationList().subscribe((data) => {
+      this.occupationList = data.objectList;
     });
-
   }
   getEmployeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
-        this.employementStatusList = data.objectList.employmentStatus;
-        const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : this.employementStatusList[0].name;
-        if (employStatus === 'Unemployed') {
-          this.employementDetailsForm = this.buildFormUnemployement(employStatus);
-          this.showEmploymentControls = false;
-        } else {
-          this.employementDetailsForm = this.buildFormEmployement(employStatus);
-          this.showEmploymentControls = true;
-        }
-        this.addOrRemoveMailingAddress();
+      this.employementStatusList = data.objectList.employmentStatus;
     });
   }
   setEmployementStatus(key, value) {
@@ -124,15 +110,22 @@ export class EmploymentDetailsComponent implements OnInit {
 
   setDropDownValue(key, value, nestedKey) {
     this.employementDetailsForm.controls[nestedKey]['controls'][key].setValue(value);
-}
-getInlineErrorStatus(control) {
-  return (!control.pristine && !control.valid);
-}
+  }
+  getInlineErrorStatus(control) {
+    return (!control.pristine && !control.valid);
+  }
   buildFormEmployement(empStatus: string): FormGroup {
     return this.formBuilder.group({
       employmentStatus: [empStatus, Validators.required],
-      companyName: [this.formValues.companyName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      occupation: [this.formValues.occupation, Validators.required],
+      companyName: [{
+        value: this.formValues.companyName,
+        disabled: this.investmentAccountService.isDisabled('companyName')
+      },
+      [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+      occupation: [{
+        value: this.formValues.occupation,
+        disabled: this.investmentAccountService.isDisabled('occupation')
+      }, Validators.required],
       industry: [this.formValues.industry, Validators.required],
       contactNumber: [this.formValues.contactNumber, [Validators.required, Validators.pattern(RegexConstants.ContactNumber)]],
       isEmployeAddresSame: [this.formValues.isEmployeAddresSame]
@@ -148,55 +141,57 @@ getInlineErrorStatus(control) {
     if (!this.employementDetailsForm.controls.isEmployeAddresSame.value) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
-          empCountry: [this.formValues.nationality.country, Validators.required],
+          empCountry: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+            Validators.required],
           empPostalCode: [this.formValues.empPostalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          empAddress2: [this.formValues.empAddress2],
+          empAddress2: [this.formValues.empAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empUnitNo: [this.formValues.empUnitNo, Validators.required]
         }));
       } else { // Other Countries
         this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
-          empCountry: [this.formValues.nationality.country ? this.formValues.nationality.country : this.countries[0], Validators.required],
+          empCountry: [this.formValues.empCountry ? this.formValues.empCountry :
+            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
           empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          empAddress2: [this.formValues.empAddress2],
+          empAddress2: [this.formValues.empAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
           empCity: [this.formValues.empCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
           empState: [this.formValues.empState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]],
           empZipCode: [this.formValues.empZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
         }));
       }
     } else {
-      this.employementDetailsForm.removeControl('employeaddress'); 
+      this.employementDetailsForm.removeControl('employeaddress');
     }
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
     if (postalCode) {
-    this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
-      (response: any) => {
-        if (response) {
-          if (response.Status.code === 200) {
-            const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
-            const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
-            address1Control.setValue(address1);
-            address2Control.setValue(address2);
-          } else {
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
-            address1Control.setValue('');
-            address2Control.setValue('');
+      this.investmentAccountService.getAddressUsingPostalCode(postalCode).subscribe(
+        (response: any) => {
+          if (response) {
+            if (response.Status.code === 200) {
+              const address1 = response.Placemark[0].AddressDetails.Country.Thoroughfare.ThoroughfareName;
+              const address2 = response.Placemark[0].AddressDetails.Country.AddressLine;
+              address1Control.setValue(address1);
+              address2Control.setValue(address2);
+            } else {
+              const ref = this.modal.open(ErrorModalComponent, { centered: true });
+              ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_NOT_FOUND_ERROR.TITLE');
+              ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_NOT_FOUND_ERROR.MESSAGE');
+              address1Control.setValue('');
+              address2Control.setValue('');
+            }
           }
-        }
-      },
-      (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.ERROR.POSTAL_CODE_DESC');
-      });
+        },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.ERROR.POSTAL_CODE_TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.ERROR.POSTAL_CODE_DESC');
+        });
     } else {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('RESIDENTIAL_ADDRESS.POSTALCODE_EMPTY_ERROR.MESSAGE');
+      ref.componentInstance.errorTitle = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_EMPTY_ERROR.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('EMPLOYMENT_DETAILS.POSTALCODE_EMPTY_ERROR.MESSAGE');
     }
   }
 
@@ -212,7 +207,7 @@ getInlineErrorStatus(control) {
     });
   }
   goToNext(form) {
-  if (!form.valid) {
+    if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -223,5 +218,9 @@ getInlineErrorStatus(control) {
       this.investmentAccountService.setEmployeAddressFormData(form.value);
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
     }
+  }
+
+  isDisabled() {
+    return this.investmentAccountService.isDisabled('occupation');
   }
 }

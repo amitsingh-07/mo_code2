@@ -36,6 +36,8 @@ import {
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
+import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
+
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -68,6 +70,7 @@ export function createTranslateLoader(http: HttpClient) {
     FairDealingComponent,
     DisclosuresComponent,
     TermsComponent,
+    WillDisclaimerComponent,
     TermsOfUseComponent,
     BreakdownBarComponent,
     BreakdownAccordionComponent,

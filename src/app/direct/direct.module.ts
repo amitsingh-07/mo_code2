@@ -7,6 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NouisliderModule } from 'ng2-nouislider';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
+import { LoggedUserService } from '../sign-up/auth-guard.service';
 import { ProductDetailComponent } from './../shared/components/product-detail/product-detail.component';
 import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
@@ -61,7 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     OcpDisabilityFormComponent, EditProductInfoComponent,
     ComparePlansComponent,
     SrsApprovedPlansFormComponent],
-  providers: [CurrencyPipe, TitleCasePipe],
+  providers: [CurrencyPipe, TitleCasePipe, LoggedUserService],
   entryComponents: [ProductDetailComponent, DirectResultsComponent]
 })
 export class DirectModule {

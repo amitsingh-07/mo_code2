@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 import { ProtectionNeeds } from '../../guide-me/protection-needs/protection-needs';
 import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { Formatter } from '../../shared/utils/formatter.util';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
@@ -25,7 +26,6 @@ import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/toolti
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
-import { Formatter } from '../../shared/utils/formatter.util';
 
 @Component({
   selector: 'app-product-info',
@@ -75,7 +75,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   ];
 
   minProdSearch: string;
-
+/*
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
@@ -89,7 +89,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
     }
   }
-
+*/
   constructor(
     public headerService: HeaderService, private directService: DirectService,
     private modal: NgbModal, private translate: TranslateService, private route: ActivatedRoute,

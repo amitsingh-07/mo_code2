@@ -49,6 +49,7 @@ export interface ISetPassword {
     callbackUrl: string;
     resetType: string;
     resetCode: string;
+    selectedProducts: IPlan[];
 }
 
 export interface IVerifyCode {

@@ -13,6 +13,8 @@ import { AccountCreatedComponent } from './account-created/account-created.compo
 import { AuthGuardService } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
     ForgotPasswordResultComponent
@@ -20,7 +22,6 @@ import {
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordComponent } from './password/password.component';
-import { PostLoginComponent } from './post-login/post-login.component';
 import { PreLoginComponent } from './pre-login/pre-login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpAccessGuard } from './sign-up-access-guard';
@@ -63,10 +64,11 @@ export function createTranslateLoader(http: HttpClient) {
     ResetPasswordComponent,
     SuccessMessageComponent,
     DashboardComponent,
-    PostLoginComponent,
     PreLoginComponent,
     InputFocusDirective,
-    SecurePipe
+    SecurePipe,
+    EditProfileComponent,
+    EditPasswordComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

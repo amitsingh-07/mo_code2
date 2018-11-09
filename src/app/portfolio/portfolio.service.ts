@@ -227,6 +227,7 @@ export class PortfolioService {
 
   setFund(fund) {
     this.portfolioFormData.selectedFund = fund;
+    this.commit();
   }
   getSelectedFund() {
     return this.portfolioFormData.selectedFund;

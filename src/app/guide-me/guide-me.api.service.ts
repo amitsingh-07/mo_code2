@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MyInfoService } from '../shared/Services/my-info.service';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -9,6 +10,7 @@ import {
     ILifeProtection,
     IRecommendationRequest
 } from './../shared/interfaces/recommendations.request';
+import { Formatter } from './../shared/utils/formatter.util';
 import { GuideMeCalculateService } from './guide-me-calculate.service';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
@@ -20,6 +22,7 @@ export class GuideMeApiService {
     existingCoverage: IExistingCoverage;
     constructor(
         private http: HttpClient, private apiService: ApiService,
+        private myInfoService: MyInfoService,
         private authService: AuthenticationService, private guideMeService: GuideMeService,
         private calculateService: GuideMeCalculateService) {
         this.existingCoverage = this.guideMeService.getExistingCoverageValues();
@@ -52,7 +55,10 @@ export class GuideMeApiService {
     }
 
     getMyInfoData() {
-        return this.apiService.getMyInfoData(this.guideMeService.myInfoValue);
+        const code = {
+            authorizationCode : this.myInfoService.myInfoValue
+        };
+        return this.apiService.getMyInfoData(code);
     }
 
     private constructRecommendationsRequest(): IRecommendationRequest {
@@ -120,7 +126,7 @@ export class GuideMeApiService {
                 dependentProtectionNeeds: {
                     dependentId: 0,
                     educationCourse: dependent.eduSupportCourse,
-                    monthlySupportAmount: dependent.supportAmountValue,
+                    monthlySupportAmount: Formatter.getIntValue(dependent.supportAmount),
                     countryOfEducation: dependent.eduSupportCountry,
                     nationality: dependent.eduSupportNationality,
                     universityEntryAge: 0,
