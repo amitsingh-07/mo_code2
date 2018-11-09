@@ -15,6 +15,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditResidentialAddressComponent } from './edit-residential-address/edit-residential-address.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
     ForgotPasswordResultComponent
@@ -68,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     InputFocusDirective,
     SecurePipe,
     EditProfileComponent,
-    EditPasswordComponent
+    EditPasswordComponent,
+    EditResidentialAddressComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

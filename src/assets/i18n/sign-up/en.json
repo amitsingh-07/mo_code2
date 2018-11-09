@@ -7,7 +7,13 @@
         "TRY_AGAIN": "Try Again",
         "CAPTCHA": "Enter image text",
         "CAPTCHA_TITLE": "Enter the characters shown in the image",
-        "TRY_ANOTHER_TEXT": "Try another text"
+        "TRY_ANOTHER_TEXT": "Try another text",
+        "LABEL": {
+            "CONTINUE": "Continue",
+            "RETRIEVE": "Retrieve",
+            "VIEW_DETAILS": "View Details",
+            "SAVE_AND_CONTINUE": "Save and Continue"
+          }
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",
@@ -100,5 +106,29 @@
       "TITLE": "Are you an existing MoneyOwl user?",
       "YES_LOGIN": "Yes, Log In Now",
       "CREATE_ACCOUNT": "No, Create Account"
-    }
+    },
+    "RESIDENTIAL_ADDRESS": {
+        "TITLE": "Residential Address",
+        "COUNTRY": "Country",
+        "POSTAL_CODE": "Postal Code",
+        "ADDRESS_1": "Address Line 1",
+        "ADDRESS_2": "Address Line 2",
+        "FLOOR": "Floor",
+        "UNIT_NO": "Unit No.",
+        "CITY": "City",
+        "STATE": "State / Province / Region",
+        "ZIPCODE": "Zip Code",
+        "ERROR": {
+          "POSTAL_CODE_TITLE": "Error !",
+          "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+        },
+        "POSTALCODE_EMPTY_ERROR": {
+          "TITLE": "Invalid Postal Code",
+          "MESSAGE": "Please enter your postal code."
+        },
+        "POSTALCODE_NOT_FOUND_ERROR": {
+          "TITLE": "Invalid Postal Code",
+          "MESSAGE": "Please enter valid postal code."
+        }
+      }
 }

@@ -7,6 +7,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditResidentialAddressComponent } from './edit-residential-address/edit-residential-address.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
     ForgotPasswordResultComponent
@@ -20,7 +21,6 @@ import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
-
 const routes: Routes = [
   {
     path: SIGN_UP_ROUTES.ROOT,
@@ -78,6 +78,10 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.EDIT_PASSWORD,
     component: EditPasswordComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: SIGN_UP_ROUTES.EDIT_RESIDENTIAL,
+    component: EditResidentialAddressComponent,
     canActivate: [AuthGuard]
   }
 ];
