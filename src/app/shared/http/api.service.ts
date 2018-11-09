@@ -778,19 +778,20 @@ export class ApiService {
       );
   }
 
-  // Verify PromoCode
-  verifyPromoCode(promoCode) {
-    return this.http.post(apiConstants.endpoint.verifyPromoCode, promoCode)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
-  }
+   // Verify PromoCode
+   verifyPromoCode(promoCode) {
+     return this.http.post(apiConstants.endpoint.verifyPromoCode, promoCode)
+     .pipe(
+       catchError((error: HttpErrorResponse) => this.handleError(error))
+     );
+   }
 
-  // Get PromoCode
-  getPromoCode() {
-    return this.http.get(apiConstants.endpoint.getPromoCode)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
+   // Get PromoCode
+   getPromoCode() {
+     return this.http.get(apiConstants.endpoint.getPromoCode)
+       .pipe(
+         catchError((error: HttpErrorResponse) => this.handleError(error))
+       );
+   }
+
 }
