@@ -48,8 +48,6 @@ import {
     UploadDocumentsLaterComponent
 } from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
-import { ConfirmWithdrawalModalComponent } from './withdrawal-type/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -95,17 +93,14 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationInfoComponent,
     AdditionalDeclarationStep1Component,
     FeesModalComponent,
-    ConfirmWithdrawalModalComponent,
     AccountSetupCompletedComponent,
     AdditionalDeclarationSubmitComponent,
     UploadDocumentBOComponent,
-    FundYourAccountComponent,
-    WithdrawalTypeComponent
+    FundYourAccountComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
-    FeesModalComponent,
-    ConfirmWithdrawalModalComponent
+    FeesModalComponent
   ],
   providers: [CurrencyPipe]
 })

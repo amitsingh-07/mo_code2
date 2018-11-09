@@ -6,10 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
-import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
-import { ConfirmWithdrawalModalComponent } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
+import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import {
+    ConfirmWithdrawalModalComponent
+} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 
 @Component({
   selector: 'app-withdrawal-type',
@@ -41,7 +42,7 @@ export class WithdrawalTypeComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
-    public investmentAccountService: InvestmentAccountService) {
+    public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('WITHDRAW.TITLE');
@@ -56,7 +57,7 @@ export class WithdrawalTypeComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.buildForm();
 
     // Withdraw Type Changed Event
@@ -64,8 +65,8 @@ export class WithdrawalTypeComponent implements OnInit {
       this.withdrawForm.removeControl('portfolioGroup');
       this.isFromPortfolio = false;
       this.showWithdrawalAmountControl = true;
-      if (value.id === INVESTMENT_ACCOUNT_CONFIG.withdraw.PORTFOLIO_TO_CASH_TYPE_ID
-        || value.id === INVESTMENT_ACCOUNT_CONFIG.withdraw.PORTFOLIO_TO_BANK_TYPE_ID) {
+      if (value.id === TOPUPANDWITHDRAW_CONFIG.withdraw.PORTFOLIO_TO_CASH_TYPE_ID
+        || value.id === TOPUPANDWITHDRAW_CONFIG.withdraw.PORTFOLIO_TO_BANK_TYPE_ID) {
         this.withdrawForm.addControl('portfolioGroup', this.formBuilder.group({
           portfolio: new FormControl(null, [Validators.required])
         }));

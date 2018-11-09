@@ -4,7 +4,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfigService } from '../../../config/config.service';
 import { Formatter } from '../../../shared/utils/formatter.util';
-import { InvestmentAccountService } from '../../investment-account-service';
 
 @Component({
   selector: 'app-confirm-withdrawal-modal',

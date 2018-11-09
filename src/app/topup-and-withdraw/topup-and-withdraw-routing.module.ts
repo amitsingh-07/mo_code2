@@ -5,6 +5,7 @@ import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants
 
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
+import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP_REQUEST,
     component: TopupRequestComponent
+  },
+  {
+    path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAW,
+    component: WithdrawalTypeComponent
   }
 
 ];

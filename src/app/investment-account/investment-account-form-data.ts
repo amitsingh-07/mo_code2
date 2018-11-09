@@ -124,7 +124,4 @@ export class InvestmentAccountFormData {
     fundDetails: any;
 
     callBackInvestmentAccount: boolean;
-
-    // withdraw
-    withdrawType: any;
 }

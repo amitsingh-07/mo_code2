@@ -10,12 +10,13 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { SharedModule } from '../shared/shared.module';
-
-import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
-
 import { TopUpComponent } from './top-up/top-up.component';
+import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
-
+import {
+    ConfirmWithdrawalModalComponent
+} from './withdrawal-type/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
+import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -43,11 +44,14 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     SharedModule
   ],
-
   declarations: [
-   TopUpComponent,
-   TopupRequestComponent
-   
+    TopUpComponent,
+    TopupRequestComponent,
+    ConfirmWithdrawalModalComponent,
+    WithdrawalTypeComponent
+  ],
+  entryComponents: [
+    ConfirmWithdrawalModalComponent
   ],
   providers: [CurrencyPipe]
 })

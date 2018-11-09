@@ -1,11 +1,30 @@
 {
-  "TOPUP":{
+  "TOPUP": {
     "TITLE": "TOP UP",
-    "SELECT_POTODOLIO":"1. Select Portfolio ",
-    "ENTER_INVERSTMENT_AMOUNT":"2. Enter Investment Amount "
- }
- }
-
-
-
-
+    "SELECT_POTODOLIO": "1. Select Portfolio ",
+    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount "
+  },
+  "WITHDRAW": {
+    "TITLE": "Withdraw",
+    "WITHDRAW_TYPE": "Withdraw Type",
+    "WITHDRAWAL_AMOUNT": "Withdrawal Amount",
+    "PORTFOLIO": "Portfolio",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
+    "PORTFOLIO_VALUE": "Portfolio Value",
+    "SELECT_PORTFOLIO": "Select Portfolio",
+    "SELECT_TYPE": "Select Type",
+    "MODAL": {
+      "CONFIRM_WITHDRAWAL": {
+        "TITLE": "Confirm Withdrawal",
+        "DESC": "You are withdrawing the following amount from your",
+        "PORTFOLIO": "portfolio",
+        "CASH_ACCOUNT": "cash account",
+        "BANK_ACCOUNT": "bank account",
+        "TO_YOUR": "to your",
+        "CASH": "cash",
+        "ACCOUNT": "account",
+        "SUBMIT": "Submit"
+      }
+    }
+  }
+}
