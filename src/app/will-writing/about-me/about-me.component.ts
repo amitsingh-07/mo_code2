@@ -33,6 +33,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   submitted: boolean;
   private subscription: Subscription;
   unsavedMsg: string;
+  toolTip;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -52,6 +53,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -156,6 +158,10 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     if (from) {
       this.aboutMeForm.markAsDirty();
     }
+  }
+
+  openToolTipModal() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
 
   openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {

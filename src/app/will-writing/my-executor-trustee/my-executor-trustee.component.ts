@@ -42,6 +42,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   hasChild: boolean;
   maxExecTrustee = WILL_WRITING_CONFIG.MAX_EXECUTOR_TRUSTEE;
   unsavedMsg: string;
+  toolTip;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -64,6 +65,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -147,6 +149,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   addExecTrusteeForm() {
     const items: FormArray = this.addExeTrusteeForm.get('executorTrustee') as FormArray;
     items.push(this.buildExecTrusteeForm());
+  }
+
+  openToolTip() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
 
   /**
