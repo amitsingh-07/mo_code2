@@ -181,7 +181,7 @@
               </div>
               <div class="section-body">
                 <!-- Loop Start-->
-                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let beneficiary of willWritingFormData.beneficiary">
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let beneficiary of willBeneficiary">
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
                     <span *ngIf="beneficiary.relationship === 'spouse'">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
                     <span *ngIf="beneficiary.relationship === 'child'">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{beneficiary.pos}}</span>
@@ -277,6 +277,9 @@
                     <span *ngIf="execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE' | translate}}</span>
                     <span *ngIf="!execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}</span>
                   </div>
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                      {{'WILL_WRITING.COMMON.MY' | translate}} {{execTrustee.relationship | titlecase}}
+                    </div>
                   <div class="record">
                     <div class="label-header col-6">
                       {{'WILL_WRITING.COMMON.NAME' | translate}}
