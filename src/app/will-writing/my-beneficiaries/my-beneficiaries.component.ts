@@ -40,6 +40,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   unsavedMsg: string;
   isFormAltered = false;
   selectedBeneficiaryLength: number;
+  toolTip;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -59,6 +60,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -194,6 +196,10 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       return false;
     }
     return true;
+  }
+
+  openToolTipModal() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
 
   save(url) {

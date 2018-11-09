@@ -34,6 +34,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   hasChild: boolean;
   submitted: boolean;
   unsavedMsg: string;
+  toolTip;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -68,6 +69,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
     this.childrenFormValues = this.willWritingService.getChildrenInfo();
     this.spouseFormValues = this.willWritingService.getSpouseInfo();
+    this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
     this.buildMyFamilyForm();
     this.headerSubscription();
   }
@@ -162,6 +164,10 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       return false;
     }
     return true;
+  }
+
+  openToolTipModal() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
 
   save(form) {
