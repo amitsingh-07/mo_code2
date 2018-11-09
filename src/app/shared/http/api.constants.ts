@@ -1,8 +1,8 @@
 const PORTFOLIO_API_BASE_URL = 'invest/investment-microservice/';
-const ARTICLE_API_BASE_URL = 'insuranceproduct-microservice';
-const ABOUT_US_API_BASE_URL = 'insuranceproduct-microservice';
+const ARTICLE_API_BASE_URL = 'product/insurance-product';
+const ABOUT_US_API_BASE_URL = 'product/insurance-product';
 const CONTACT_US_API_BASE_URL = 'account-microservice';
-const SUBSCRIPTION_API_BASE_URL = 'insuranceproduct-microservice';
+const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 
 export let apiConstants = {
