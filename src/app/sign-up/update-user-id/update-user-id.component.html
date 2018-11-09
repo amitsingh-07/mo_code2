@@ -2,10 +2,9 @@
   <div class="content">
     <div class="row">
       <div class="col-lg-5 col-md-6">
-        <div class="update-user-id-text">Your User ID</div>
-        <div class="dots" ></div>
+        <div class="update-user-id-text pb10">{{ 'UPDATE_USER_ID.YOUR_USER_ID' | translate}}</div>
         <form id="updateUserIdForm" name="updateUserIdForm" [formGroup]="updateUserIdForm">
-          <div class="flex-row mb10">
+          <div class="flex-row mb20">
             <div class="flex-col-4 stretch mr15">
               <div class="dropdown-control form-control-left" style="pointer-events:none;">
                 <div ngbDropdown id="countryCode">
@@ -22,7 +21,7 @@
               <div [ngClass]="{'inline-error':editNumber}" class="form-group-floating-label">
                 <input type="input" maxlength="15" id="crtAccInpt1" #mobileNumber formControlName="mobileNumber" class="form-control"
                   (keyup)="onlyNumber(mobileNumber)" required>
-                <label class="form-control-placeholder" for="name">{{ 'CREATE_ACCOUNT.FORM.MOBILE_NUMBER' | translate}}</label>
+                <label class="form-control-placeholder" for="name">{{ 'UPDATE_USER_ID.MOBILE_NUMBER' | translate}}</label>
               </div>
             </div>
           </div>
@@ -30,12 +29,12 @@
             <div class="flex-col-12 stretch" [formGroup]="updateUserIdForm">
               <div class="form-group-floating-label">
                 <input type="text" id="crtAccInpt4" class="form-control" #email formControlName="email" required>
-                <label class="form-control-placeholder" for="lastName">{{ 'CREATE_ACCOUNT.FORM.EMAIL' | translate}}</label>
+                <label class="form-control-placeholder" for="lastName">{{ 'UPDATE_USER_ID.EMAIL' | translate}}</label>
               </div>
             </div>
           </div>
           <button id="nextDependentBtn" (click)="save(updateUserIdForm)" type="button" class="btn btn__footer--fixed btn-primary width100">{{
-            'COMMON.CONTINUE' | translate }}</button>
+            'UPDATE_USER_ID.APPLY_CHANGES' | translate }}</button>
         </form>
       </div>
     </div>

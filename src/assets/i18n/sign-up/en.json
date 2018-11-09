@@ -100,5 +100,12 @@
       "TITLE": "Are you an existing MoneyOwl user?",
       "YES_LOGIN": "Yes, Log In Now",
       "CREATE_ACCOUNT": "No, Create Account"
+    },
+    "UPDATE_USER_ID": {
+        "TITLE": "Update User ID",
+        "YOUR_USER_ID": "Your User ID",
+        "MOBILE_NUMBER": "Mobile Number",
+        "EMAIL": "Email Address",
+        "APPLY_CHANGES": "Apply Changes"
     }
 }

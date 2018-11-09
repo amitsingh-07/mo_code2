@@ -44,7 +44,7 @@ export class UpdateUserIdComponent implements OnInit {
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
+      this.pageTitle = this.translate.instant('UPDATE_USER_ID.TITLE');
       this.setPageTitle(this.pageTitle);
     });
     this.route.params.subscribe((params) => {
