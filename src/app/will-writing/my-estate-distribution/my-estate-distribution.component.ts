@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -14,7 +14,6 @@ export class MyEstateDistributionComponent implements OnInit {
   pageTitle: string;
   step: string;
 
-  estateDistList: any[] = [];
   beneficiaryList: any[] = [];
   remainingPercentage = 100;
   value = '';
@@ -44,30 +43,29 @@ export class MyEstateDistributionComponent implements OnInit {
     this.navbarService.setNavbarMode(4);
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
-      this.estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
     }
     this.calculateRemPercentage();
   }
 
   calculateRemPercentage() {
-    for (const percent of this.estateDistList) {
+    for (const percent of this.beneficiaryList) {
       this.remainingPercentage = (this.remainingPercentage - percent.distPercentage);
     }
     return this.remainingPercentage;
   }
 
   updateDistPercentage(index: number, event) {
-    for (const percent of this.estateDistList) {
-      this.estateDistList[index].distPercentage = Math.floor(event.target.value);
+    for (const percent of this.beneficiaryList) {
+      this.beneficiaryList[index].distPercentage = Math.floor(event.target.value);
       this.distributePercentage(index, event);
       this.distPercentageSum += percent.distPercentage;
     }
     if (this.distPercentageSum > 100) {
-      this.currentDist = this.estateDistList[index].distPercentage;
-      setTimeout(() => this.estateDistList[index].distPercentage = 0, 0);
+      this.currentDist = this.beneficiaryList[index].distPercentage;
+      setTimeout(() => this.beneficiaryList[index].distPercentage = 0, 0);
       this.willWritingService.openToolTipModal(this.errorMsg.EXCEED_PERCENTAGE, '');
       this.distPercentageSum = 0;
-      for (const percent of this.estateDistList) {
+      for (const percent of this.beneficiaryList) {
         this.distPercentageSum += percent.distPercentage;
       }
     }
@@ -81,9 +79,9 @@ export class MyEstateDistributionComponent implements OnInit {
   distributePercentage(index: number, event) {
     if (!this.firstReset) {
       if (this.filteredList < 1) {
-        for (const percentage of this.estateDistList) {
-          if (this.estateDistList.indexOf(percentage) === index) {
-            this.estateDistList[index].distPercentage = Math.floor(event.target.value);
+        for (const percentage of this.beneficiaryList) {
+          if (this.beneficiaryList.indexOf(percentage) === index) {
+            this.beneficiaryList[index].distPercentage = Math.floor(event.target.value);
             this.firstReset = true;
           } else {
             percentage.distPercentage = 0;
@@ -95,7 +93,8 @@ export class MyEstateDistributionComponent implements OnInit {
   }
 
   save() {
-    const arrLength = this.estateDistList.filter((greater) => greater.distPercentage < 1).length;
+    const estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
+    const arrLength = estateDistList.filter((greater) => greater.distPercentage < 1).length;
     if (arrLength > 0 && this.remainingPercentage === 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
       return false;
@@ -103,11 +102,7 @@ export class MyEstateDistributionComponent implements OnInit {
       this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
       return false;
     }
-    const unFilteredArray = this.beneficiaryList.filter((checked) => checked.selected === false);
-    for (const currentObject of unFilteredArray) {
-      this.estateDistList.push(currentObject);
-    }
-    this.willWritingService.setBeneficiaryInfo(this.estateDistList);
+    this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
     return true;
   }
 

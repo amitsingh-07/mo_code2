@@ -1,4 +1,4 @@
-<app-page-title [step]="step" [pageTitle]="pageTitle"></app-page-title>
+<app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]=""></app-page-title>
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="flex-row main-container">
@@ -27,15 +27,15 @@
         <div class="estateDistributionForm">
               <div *ngIf="true" class="estate-distribution-form">
                 <div class="form-title mb10">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.ESTATE_DISTRIBUTION' | translate}}</div>
-                  <div *ngFor="let currentDist of estateDistList; let i = index" class="form-group-single-column mb15">
-                      <div class="col-6">
+                  <div *ngFor="let currentDist of beneficiaryList; let i = index" class="form-group-single-column mb15">
+                      <div class="col-6" *ngIf="currentDist.selected === true">
                         <label for="beneficiary_{{i+1}}" id="beneficiary_{{i+1}}">
                           <div class="input-label-black">{{currentDist.name | titlecase}}</div>
                           <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
                               translate}} {{currentDist.relationship | titlecase}} {{currentDist.pos}}</div>
                         </label>
                       </div>
-                      <div class="col-6">
+                      <div class="col-6" *ngIf="currentDist.selected === true">
                           <div class="form-control">   
                           <input  #percent id="beneficiary_{{i+1}}" (keyup)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
                             value="{{currentDist.distPercentage}}" >
