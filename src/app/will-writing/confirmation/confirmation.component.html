@@ -117,6 +117,12 @@
                     </div>
                     <div class="label-value col-md-6 col-sm-6">{{children.uin}}</div>
                   </div>
+                  <div class="record">
+                      <div class="label-header col-6">
+                        {{'WILL_WRITING.MY_FAMILY.FORM.DOB' | translate}}
+                      </div>
+                      <div class="label-value col-md-6 col-sm-6">{{children.dob.day+'/'+children.dob.month+'/'+ children.dob.year | date:'M/dd/yy'}}</div>
+                    </div>
                 </div>
   
                 <!-- Removable code End-->
@@ -175,10 +181,10 @@
               </div>
               <div class="section-body">
                 <!-- Loop Start-->
-                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let beneficiary of willWritingFormData.beneficiary">
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let beneficiary of willBeneficiary">
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
                     <span *ngIf="beneficiary.relationship === 'spouse'">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
-                    <span *ngIf="beneficiary.relationship === 'child'">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}}</span>
+                    <span *ngIf="beneficiary.relationship === 'child'">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{beneficiary.pos}}</span>
                     <span *ngIf="beneficiary.relationship !== 'spouse' && beneficiary.relationship !== 'child'">{{'WILL_WRITING.COMMON.OTHERS'
                       | translate}}</span>
                   </div>
@@ -220,7 +226,7 @@
                     <div class="label-header col-6">
                       {{willEstateDistribution.spouse[0].name | titlecase}}
                     </div>
-                    <div class="label-value col-md-6 col-sm-6">{{willEstateDistribution.spouse[0].distPercentage}}</div>
+                    <div class="label-value col-md-6 col-sm-6">{{willEstateDistribution.spouse[0].distPercentage}}%</div>
                   </div>
                 </div>
                 <!-- Loop End-->
@@ -234,7 +240,7 @@
                     <div class="label-header col-6">
                       {{children.name | titlecase}}
                     </div>
-                    <div class="label-value col-md-6 col-sm-6">{{children.distPercentage}}</div>
+                    <div class="label-value col-md-6 col-sm-6">{{children.distPercentage}}%</div>
                   </div>
                 </div>
   
@@ -246,7 +252,7 @@
                     <div class="label-header col-6">
                       {{others.name | titlecase}}
                     </div>
-                    <div class="label-value col-6">{{others.distPercentage}}</div>
+                    <div class="label-value col-6">{{others.distPercentage}}%</div>
                   </div>
                 </div>
                 <!-- Removable code End-->
@@ -271,6 +277,9 @@
                     <span *ngIf="execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.ALT_EXEC_TRUSTEE' | translate}}</span>
                     <span *ngIf="!execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}</span>
                   </div>
+                  <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                      {{'WILL_WRITING.COMMON.MY' | translate}} {{execTrustee.relationship | titlecase}}
+                    </div>
                   <div class="record">
                     <div class="label-header col-6">
                       {{'WILL_WRITING.COMMON.NAME' | translate}}

@@ -42,7 +42,7 @@
                 </div>
               </div>
               <div *ngIf="hasChild">
-                <div class="aboutMe" formArrayName="childrens" *ngFor="let children of myFamilyForm.get('childrens').controls; let i = index;">
+                <div class="aboutMe" formArrayName="children" *ngFor="let children of myFamilyForm.get('children').controls; let i = index;">
                   <div class="form-group" [formGroupName]="i">
                     <div class="flex-row title">{{ 'WILL_WRITING.MY_FAMILY.FORM.MY_CHILD' | translate}} {{i+1}}</div>
                     <div class="flex-row">
