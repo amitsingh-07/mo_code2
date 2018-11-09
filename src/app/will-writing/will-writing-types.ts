@@ -17,6 +17,7 @@ export interface IChild {
     relationship: string;
     uin: string;
     dob: string;
+    pos: number;
 }
 
 export interface IGuardian {
@@ -50,4 +51,5 @@ export interface IBeneficiary {
     selected: boolean;
     distPercentage: number;
     dob?: string;
+    pos?: number;
 }
