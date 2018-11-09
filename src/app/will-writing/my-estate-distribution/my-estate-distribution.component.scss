@@ -401,9 +401,9 @@ input[type='checkbox']+label {
     .tooltip-message{
         padding: 14px 9px 17px 20px;
         position: absolute;
-        bottom: 23%;
+        bottom: 15%;
         width: 274px;
-        left: 16%;
+        left: 14%;
         font-size: 14px;
         font-weight: 600;
         font-style: normal;
@@ -411,8 +411,5 @@ input[type='checkbox']+label {
         line-height: normal;
         letter-spacing: -0.1px;
         color: #333846;
-        @include allmobiles{
-            bottom: 20%;
-        }
     }
 }
