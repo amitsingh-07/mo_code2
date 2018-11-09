@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { GuideMeApiService } from '../guide-me/guide-me.api.service';
 import { GuideMeService } from '../guide-me/guide-me.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../shared/navbar/navbar.service';
 import { MyInfoService } from './../shared/Services/my-info.service';
@@ -21,6 +22,7 @@ export class TestMyInfoComponent implements OnInit {
   constructor(private guideMeService: GuideMeService, private guideMeApiService: GuideMeApiService,
               public navbarService: NavbarService,
               private modal: NgbModal, private myInfoService: MyInfoService,
+              public authService: AuthenticationService,
               private translate: TranslateService, private activeModal: NgbActiveModal ) {
                 this.translate.use('en');
                 this.translate.get('COMMON').subscribe((result: string) => {
@@ -32,13 +34,19 @@ export class TestMyInfoComponent implements OnInit {
     this.testMyInfoForm = new FormGroup({
       cpf: new FormControl('')
     });
-    if (this.guideMeService.isMyInfoEnabled) {
+    this.authService.authenticate().subscribe((token) => {
+    });
+    if (this.myInfoService.isMyInfoEnabled) {
       this.guideMeApiService.getMyInfoData().subscribe((data) => {
+        if (data && data['person'] && data['person'].cpfcontributions) {
         this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
         this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
-        this.guideMeService.isMyInfoEnabled = false;
+        this.myInfoService.isMyInfoEnabled = false;
         this.setFormTotalValue();
         this.closeMyInfoPopup(false);
+        } else {
+          this.closeMyInfoPopup(true);
+        }
       }, (error) => {
         this.closeMyInfoPopup(true);
       });
@@ -49,7 +57,7 @@ export class TestMyInfoComponent implements OnInit {
   }
 
   closeMyInfoPopup(error: boolean) {
-    this.guideMeService.closeFetchPopup();
+    this.myInfoService.closeFetchPopup();
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';

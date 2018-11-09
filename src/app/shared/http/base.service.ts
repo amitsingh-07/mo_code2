@@ -2,6 +2,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import { apiConstants, INVESTMENT_API_BASE_URL } from './api.constants';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -34,9 +35,13 @@ export class BaseService {
   }
 
   get(url) {
+    let baseUrl = environment.apiBaseUrl;
+    if (url.indexOf(INVESTMENT_API_BASE_URL) !== -1) {
+      baseUrl = environment.apiBaseUrl2;
+    }
     this.helperService.showLoader();
     return this.httpClient
-      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`)
+      .get<IServerResponse>(`${baseUrl}/${url}`)
       .finally(() => {
         this.helperService.hideLoader();
       })
@@ -65,6 +70,10 @@ export class BaseService {
   }
 
   post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+    let baseUrl = environment.apiBaseUrl;
+    if (url.indexOf(INVESTMENT_API_BASE_URL) !== -1) {
+      baseUrl = environment.apiBaseUrl2;
+    }
     if (showLoader) {
       this.helperService.showLoader();
     }
@@ -73,7 +82,7 @@ export class BaseService {
       param = '?alert=' + showError;
     }
     return this.httpClient
-      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
+      .post<IServerResponse>(`${baseUrl}/${url}${param}`, postBody)
       .finally(() => {
         this.helperService.hideLoader();
       });

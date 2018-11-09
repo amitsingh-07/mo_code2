@@ -168,25 +168,9 @@ export class ApiService {
   }
 
   getMyInfoData(data) {
-    const url = '../assets/mock-data/myInfoValues.json';
-    return this.http.post(apiConstants.endpoint.getMyInfoValues, data.code, true)
+    return this.http.post(apiConstants.endpoint.getMyInfoValues, data, true)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-            return this.httpClient.get<IServerResponse>(url);
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
@@ -740,6 +724,25 @@ export class ApiService {
         })
       );
   }
+  getTopupInvestmentList() {
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
+    const url = '../../../assets/mock-data/topupInvestmentList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getPortfolioList() {
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
+    const url = '../../../assets/mock-data/portfolioList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   // tslint:disable-next-line:no-identical-functions
   uploadDocumentBO(data) {
     // tslint:disable-next-line
@@ -795,8 +798,9 @@ export class ApiService {
   }
 
   // Verify PromoCode
-  verifyPromoCode(promocode: string ) {
-    return this.http.post(apiConstants.endpoint.verifyPromoCode, promocode)
+  verifyPromoCode(promoCode) {
+    const url = '../assets/mock-data/validatePromo.json';
+    return this.http.post(apiConstants.endpoint.verifyPromoCode, promoCode)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -809,6 +813,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
+            return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
