@@ -390,4 +390,29 @@ input[type='checkbox']+label {
             margin-top: 41px !important;
         }
     }
-
+.message-block{
+    margin-top: 21px;
+    .tooltip-message-img{
+        position: relative;
+        img{
+            max-width: 100%;
+        }
+    }
+    .tooltip-message{
+        padding: 14px 9px 17px 20px;
+        position: absolute;
+        bottom: 23%;
+        width: 274px;
+        left: 16%;
+        font-size: 14px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.1px;
+        color: #333846;
+        @include allmobiles{
+            bottom: 20%;
+        }
+    }
+}

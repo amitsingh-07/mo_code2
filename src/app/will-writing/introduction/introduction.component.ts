@@ -67,8 +67,10 @@ export class IntroductionComponent implements OnInit {
       if (this.promoCode.responseCode === 6005) {
         this.willWritingService.setPromoCode(promoCode);
         this.openTermsOfConditions();
+      } else if (this.promoCode.responseCode === 5017) {
+        this.willWritingService.openToolTipModal('', this.promoCode.responseDescription);
       } else {
-        this.willWritingService.openToolTipModal(this.promoCode.responseDescription, this.promoCode.responseDescription);
+        return false;
       }
     }, (error) => {
     });

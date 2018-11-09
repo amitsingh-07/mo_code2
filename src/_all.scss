@@ -190,7 +190,7 @@ h6 {
     flex-direction: row;
     flex-basis: auto;
     justify-content: space-between;
-    max-width: 200px;
+    max-width: 270px;
 
     &.searchOpen {
       max-width: 600px;
@@ -1247,7 +1247,16 @@ a.link-white {
     bottom: 0;
   }
 }
-
+@supports (-ms-ime-align:auto) {
+  .floating-footer-wrapper {
+    width: 30%;
+    align-items: center;
+    position: fixed;
+    bottom: 10px;
+    left: 35%;
+    z-index: 999;
+  }
+}
 .floating-footer {
   background-color: $white-color;
   border-radius: 6px;
