@@ -1,0 +1,88 @@
+<div class="withdraw">
+
+  <div class="container-fluid">
+    <div class="content">
+
+      <div class="row">
+        <div class="col-md-12">
+          <form id="withdraw_form" name="withdrawForm" [formGroup]="withdrawForm">
+            <!-- TYPE -->
+            <div class="form-group">
+              <div class="flex-row">
+                <div class="flex-col-4">
+                  <label for="withdraw-type-drpdown" id="withdraw-type-lbl">{{
+                    'WITHDRAW.WITHDRAW_TYPE'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-8">
+                  <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="withdraw-type-drpdown" ngbDropdownToggle>
+                        <span *ngIf="!withdrawForm.controls.withdrawType.value">{{ 'WITHDRAW.SELECT_TYPE' | translate}}</span>
+                        <span *ngIf="withdrawForm.controls.withdrawType.value">{{withdrawForm.controls.withdrawType.value.name}}</span>
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
+                        <button class="dropdown-item" *ngFor="let type of withdrawalTypes; let i = index;" (click)="setDropDownValue('withdrawType',type, i)"
+                          id="withdraw-type-option-{{i}}">{{type.name}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PORTFOLIO -->
+            <div class="form-group" *ngIf="isFromPortfolio">
+              <div class="flex-row">
+                <div class="flex-col-4">
+                  <label for="withdraw-portfolio-drpdown" id="withdraw-portfolio-lbl">{{
+                    'WITHDRAW.PORTFOLIO'
+                    | translate}}</label>
+                </div>
+                <div class="flex-col-8">
+                  <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.portfolioGroup.controls.portfolio)}">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="withdraw-portfolio-drpdown" ngbDropdownToggle>
+                        <span *ngIf="!withdrawForm.controls.portfolioGroup.controls.portfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' | translate}}</span>
+                        <span *ngIf="withdrawForm.controls.portfolioGroup.controls.portfolio.value">{{withdrawForm.controls.portfolioGroup.controls.portfolio.value.name}}</span>
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
+                        <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setNestedDropDownValue('portfolio',portfolio, 'portfolioGroup')"
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.name}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AMOUNT -->
+            <div class="amount-panel" *ngIf="showWithdrawalAmountControl">
+              <label class="withdrawal-amount-lbl" for="withdraw-type-drpdown" id="withdraw-type-lbl">{{
+                'WITHDRAW.WITHDRAWAL_AMOUNT'
+                | translate}}
+              </label>
+              <div class="form-control">
+                <i id="myFinancialDollarSybmOne">$</i>
+                <div>
+                  <input class="input-control" type="text" id="myFinancialMonthlyIncomeInput" appCurrencyInput
+                    maxLength="7" #monthlyIncome formControlName="withdrawAmount" value="0">
+                </div>
+              </div>
+              <div class="cash-balance">
+                <span *ngIf="!isFromPortfolio">{{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}: $2,000</span>
+                <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}: $2,000</span>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+
+      <button type="button" (click)="showConfirmWithdrawModal()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="portfolioRecommendationNextBtn">{{
+        'LABEL.CONTINUE' | translate}}</button>
+
+    </div>
+  </div>
+</div>

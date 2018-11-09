@@ -36,6 +36,7 @@ import {
     UploadDocumentsLaterComponent
 } from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 
 const routes: Routes = [
   {
@@ -138,6 +139,10 @@ const routes: Routes = [
     path: INVESTMENT_ACCOUNT_ROUTES.FUND_YOUR_ACCOUNT,
     component: FundYourAccountComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.WITHDRAW,
+    component: WithdrawalTypeComponent
   }
 ];
 

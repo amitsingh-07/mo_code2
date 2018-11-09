@@ -23,5 +23,9 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
             fund_expense_ratio: '0.2% to 0.4%',
             total: '1% to 1.2%'
         }
+    },
+    withdraw: {
+        PORTFOLIO_TO_CASH_TYPE_ID: 1,
+        PORTFOLIO_TO_BANK_TYPE_ID: 2
     }
 };

@@ -112,4 +112,7 @@ export class InvestmentAccountFormData {
     isMyInfoEnabled: boolean;
     disableAttributes: any;
     callBackInvestmentAccount: boolean;
+
+    // withdraw
+    withdrawType: any;
 }
