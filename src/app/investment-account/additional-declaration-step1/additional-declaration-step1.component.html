@@ -23,13 +23,13 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_Info_tin_yes" value="yes"> Yes
+                  <input ngbButton type="radio" id="pep_Info_tin_yes" [value]=true> Yes
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_Info_tin_no" disabled value="no">No</label>
+                  <input ngbButton type="radio" id="pep_Info_tin_no" disabled [value]=false>No</label>
               </div>
             </div>
           </div>
@@ -89,10 +89,12 @@
               <div class="dropdown-control">
                 <div ngbDropdown>
                   <button class="btn btn-dropdown without-border grey" id="pep_Info_employement_details_status-drpdown" ngbDropdownToggle>
-                    {{selectedOccupation| titlecase}}
+                    <span *ngIf="!addInfoForm.controls.pepoccupation.value">Select Occupation</span>
+                    <span *ngIf="addInfoForm.controls.pepoccupation.value">{{addInfoForm.controls.pepoccupation.value.occupation | titlecase}}</span>
+                    
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                    <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue(option.occupation)"
+                    <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue(option)"
                       id="pep_Info_residentialAddress-country-option-{{i}}">{{ option.occupation | titlecase}}</button>
                   </div>
                 </div>
@@ -111,10 +113,10 @@
             <div class="flex-col-7">
               <div class="dropdown-control">
                 <div ngbDropdown>
-                  <button class="btn btn-dropdown without-border grey" id="pep_Info_residentialAddress-country-drpdown" ngbDropdownToggle>{{selectedCountry}}
+                  <button disabled class="btn btn-dropdown without-border grey" id="pep_Info_residentialAddress-country-drpdown" ngbDropdownToggle>{{addInfoForm.controls.pepCountry.value.name | titlecase}}
                   </button>
                   <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                    <button class="dropdown-item" *ngFor="let option of countries; let i = index;" (click)="setDropDownValue(option)" id="pep_Info_residentialAddress-country-option-{{i}}">{{option}}</button>
+                    <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue(country)" id="pep_Info_residentialAddress-country-option-{{i}}">{{option}}</button>
                   </div>
                 </div>
               </div>

@@ -7,6 +7,11 @@
       "SAVE_AND_CONTINUE": "Save and Continue"
     }
   },
+  "POSTLOGIN": {
+    "TITLE": "You are ready to set up your investment account!",
+    "PROCEED": "Proceed with",
+    "PROCEED_WITHOUT": "Proceed without SingPass"
+  },
   "PERSONAL_INFO": {
     "TITLE": "Personal Information",
     "DESCRIPTION": "Please choose the profile that best describes you.",
@@ -25,6 +30,7 @@
     "POSTAL_CODE": "Postal Code",
     "ADDRESS_1": "Address Line 1",
     "ADDRESS_2": "Address Line 2",
+    "FLOOR": "Floor",
     "UNIT_NO": "Unit No.",
     "CITY": "City",
     "STATE": "State / Province / Region",
@@ -62,7 +68,15 @@
     "CONTINUE": "Continue",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
-      "POSTAL_CODE_DESC": "Unable to retrieve address. Please enter manually"
+      "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+    },
+    "POSTALCODE_EMPTY_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter your postal code."
+    },
+    "POSTALCODE_NOT_FOUND_ERROR": {
+      "TITLE": "Invalid Postal Code",
+      "MESSAGE": "Please enter valid postal code."
     }
   },
   "SELECT_NATIONALITY": {
@@ -87,9 +101,9 @@
   },
   "FINANCIAL_DETAILS": {
     "TITLE": "Financial Details",
-    "ANNUAL_HOUSEHOLD_INCOME": "Annual Household Income",
+    "ANNUAL_HOUSEHOLD_INCOME": "Monthly Household Income",
     "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
-    "ANNUAL_INCOME": "Annual Income",
+    "ANNUAL_INCOME": "Monthly Income",
     "PERS_OF_INCOME_SAVED": "% Of Income Saved",
     "TOTAL_ASSETS": "Total Assets",
     "TOTAL_LOANS": "Total Loans"
@@ -143,6 +157,10 @@
       "FILE_SIZE_EXCEEDED": {
         "TITLE": "Error !",
         "MESSAGE": "File of size more than 2 MB is not allowed."
+      },
+      "FILE_TYPE_MISMATCH": {
+        "TITLE": "Error !",
+        "MESSAGE": "The selected file type is not allowed."
       }
     }
   },
@@ -153,9 +171,9 @@
     "PEP_DESC": "Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.",
     "BENEFICIAL": "Beneficial Owner",
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
-    "QUESTION1": "Are you a director, officer, trading representative or employee of SGX trading, excluding iFAST?",
+    "QUESTION1": "Are you a Director, Officer, Trading Representative or employee of a SGX Trading Member other than iFAST Financial Pvt Ltd?",
     "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
-    "QUESTION3": "Are you the beneficial owner of this account?",
+    "QUESTION3": "Do you have any beneficial owner?",
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
@@ -165,15 +183,20 @@
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
     "BACK_TO_DASHBOARD": "Back To Dashboard"
-
   },
   "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
     "TITLE": "Additional Declarations",
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
-    "BACK_TO_DASHBOARD": "Back To Dashboard"
+    "BACK_TO_DASHBOARD": "Back To Dashboard",
+    "EXPECTED_NUMBER_OF_TRANSATIONS": "Expected Number Of Transactions",
+    "EXPECTED_AMOUNT_PER_TRANSATION": "Expected Amount Per Transaction",
+    "SOURCE_OF_INVESTMENT_FUND": "Source Of Investment Funds",
+    "PERSONAL_SAVINGS": "Please indicate the employer that contributed most to your savings:",
+    "INVESTMENT_PERIOD": "Investment Period",
+    "EARNINGS_GENERATED_FORM": "Earnings Generated From",
+    "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
-
   "CONFIRM_PORTFOLIO": {
     "TITLE": "Your Portfolio",
     "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
@@ -220,5 +243,58 @@
   "ACKNOWLEDGEMENT": {
     "TITLE": "Acknowledgement",
     "AGREE": "I Agree"
+  },
+  "ACCOUNT_SETUP_COMPLETE": {
+    "TITLE": "Investment Account Setup Complete!",
+    "FUND": "Fund My Portfolio"
+  },
+  "ADDITIONAL_DECLARATION_SUBMIT": {
+    "TITLE": "Additional Declarations Submitted",
+    "DESC": "We will get back to you on your application in 1 - 2 working days.",
+    "BACK" : "Back To Dashboard"
+  },
+  "FUND_YOUR_ACCOUNT": {
+    "TITLE": "Fund Your Account",
+    "OK_GOT_IT": "Okay, Got It!",
+    "YOUR_INVESTMENT": "Your Investment",
+    "ONE_TIME": "one-time",
+    "MONTH": "mth",
+    "YOUR_PORTFOLIO": "Your Portfolio",
+    "VIA_BANK": "Via Bank Transfer",
+    "VIA_PAYNOW": "Via PayNow",
+    "LOGIN_TO_NETBANKING_PAYNOW": "Log in to PayNow via internet banking or mobile banking app to make the fund transfer.",
+    "LOGIN_TO_NETBANKING_BANK": "Log in to your internet banking or mobile banking app to make the fund transfer.",
+    "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
+    "AMOUNT_TO_TRANSFER": "Amount to Transfer",
+    "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+    "ENTITY_NAME": "Entity Name",
+    "REFERENCE_CODE": "Reference Code",
+    "ADD_REFERENCE_CODE_INFO": "To credit the funds to your account, please indicate this reference code in your fund transfer.",
+    "SETUP_AUTO_DEPOSIT_LBL": "Set Up Auto-Deposit",
+    "SETUP_AUTO_DEPOSIT_DESC": "Hey, you can save time when you set up auto-deposits through your bank! Find out how in the bank transfer details below.",
+    "VIEW_TRANSFER_INST": "View Transfer Instructions",
+    "PROCESS_TIME_INFO": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
+    "RECIPENTS_NAME": "Recipent's Name",
+    "BANK_NAME": "Bank Name",
+    "BANK_ACC_NO": "Bank Account No."
+  },
+  "INVESTMENT_ACCOUNT_MYINFO": {
+    "OPEN_MODAL_DATA": {
+      "TITLE": "Leave This Page",
+      "DESCRIPTION": "By signing in to SingPass, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>You will be redirected to SingPass MyInfo page. Would you like to proceed?"
+    },
+    "ERROR_MODAL_DATA": {
+      "TITLE": "Oops, Error!",
+      "DESCRIPTION": "We weren’t able to fetch your data from MyInfo."
+    },
+    "FETCH_MODAL_DATA": {
+      "TITLE": "Fetching Data...",
+      "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
+    },
+    "SING_PASS_CONFIRM": {
+      "TITLE": "The following details have been autofilled into the form.",
+      "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
+      "BTN-TEXT": "OK"
+    }
   }
 }

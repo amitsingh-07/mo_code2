@@ -1,0 +1,210 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    background-color: #fff;
+    padding: 50px 60px 65px;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+}
+.banner-image{
+    margin: 0 32px;
+    @include allmobiles{
+        width: 178px;
+        height: 153px;
+        object-fit: contain;
+        margin: auto;
+        img{
+            padding-top: 0;
+        }
+    }
+}
+.instructions {
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);   
+    @include allmobiles{
+        margin: 0 16px !important;
+    }
+}
+.instruction-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing: -0.3px;
+    color: #626362;
+    padding: 30px 25px;
+    div{
+        margin-bottom: 15px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+        span{
+            display: flex;
+        }
+    }
+}
+.no-promo {
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    background-color: #2d8289;
+    justify-content: center;
+    align-items: center;
+    input{
+        border-radius: 27.5px;
+        width:90%;
+        padding: 13px;
+        border: none;
+    }
+    .instruction-content{
+        color: #fff;
+        justify-content: space-around;
+        align-items: center;
+        @include allmobiles{
+            margin-bottom: 17px;
+        }
+        div{
+            padding-left:20px;
+            &:first-child{
+                width: 60%;
+                padding: 0 15px;
+                @include allmobiles{
+                    width: 100%;
+                }
+            }
+        }
+        & > * {
+          margin-bottom: 17px;  
+          text-align: center;
+        }
+        button{
+            font-family: $muli-bold;
+            font-size: 16px;
+            background-color: #00c5c4;
+            color: $white-color;
+            @include allmobiles{
+                width: 166px;
+                height: 46px;
+                border-radius: 6px;
+                padding: 0;
+            }
+        }
+    }
+}
+.mask {
+    background-color: #2d8289;
+    font-size: 22px;
+    font-family: $muli-bold;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 15px 0;
+    text-align: center;
+    @include allmobiles {
+        font-size: 18px;
+    }
+  }
+.promocode {
+    margin-top: 70px;
+    @include allmobiles {
+        margin-top: 25px;
+        padding: 0;
+        margin-bottom: 70px;
+    }
+    .FAQ {
+        margin-top: 25px;
+        font-size: 14px;
+        text-align: center;
+        color: #00c5c4;
+        cursor: pointer;
+    }
+    .offer-code{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 2.5;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: #2d8289;
+        .brdr-btm{
+            border: solid 0.5px #00a7a7;
+        }
+        .time-period {
+            position: relative;
+            top: 26px;
+            width: 70%;
+            padding: 5px 10px;
+            background: #fff;
+            margin: 0 auto;
+            @include allmobiles{
+                position: none;
+                top: 0;
+                width: 100%;
+            }
+        }
+        input{
+            border-radius: 6px;
+            font-family: $muli-bold;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: -0.2px;
+            text-align: center;
+            color: #2d8289;
+            border: solid 1px #c2d9ec;
+            padding: 18px 35px;
+            width: 247px;
+            height: 54px;
+          }
+        input::placeholder{
+            font-family: $muli-light;
+            font-size: 16px;
+            font-weight: 300;
+            font-style: italic;
+            color: #a4a4a4 !important;
+        }
+        #intro-no-promocode {
+            padding-top: 22px;
+            line-height: normal;
+        }
+        div{
+            &:last-child{
+                font-weight: 100;
+                font-family: $muli-regular;
+                color: #2d8289;
+                font-size: 16px;
+                span{
+                    font-family: $muli-bold;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .btn:disabled{
+        box-shadow: none !important;
+        background-color: #bff1f1;
+        color: #ffffff;
+    }
+}
+.proceed-msg{
+    display: flex;
+    flex-direction: column;
+    .sub-title{
+        color: #333846;
+    }
+    h2{
+        color: #00a7a7;
+        @include allmobiles {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: -0.4px;
+            text-align: center;
+            color: #066360;
+        }
+    }
+    @include allmobiles {
+        flex-direction: column-reverse;
+    }
+}

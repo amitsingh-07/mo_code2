@@ -58,11 +58,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
-    if (this.guideMeService.isMyInfoEnabled) {
+    if (this.myInfoService.isMyInfoEnabled) {
       this.guideMeApiService.getMyInfoData().subscribe((data) => {
         this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
         this.assetsForm.controls['cpf'].setValue(this.cpfValue);
-        this.guideMeService.isMyInfoEnabled = false;
+        this.myInfoService.isMyInfoEnabled = false;
         this.setFormTotalValue();
         this.closeMyInfoPopup(false);
       }, (error) => {
@@ -80,7 +80,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   }
 
   closeMyInfoPopup(error: boolean) {
-    this.guideMeService.closeFetchPopup();
+    this.myInfoService.closeFetchPopup();
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';

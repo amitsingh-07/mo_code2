@@ -11,11 +11,23 @@
       <ng-container *ngIf="errorMessageList">
         <p *ngFor="let errorMessage of errorMessageList"><span>{{errorMessage}}</span></p>
       </ng-container>
+      <ng-container *ngIf="multipleFormErrors">
+        <div *ngFor="let errorMessage of multipleFormErrors">
+          <p class="label">{{errorMessage.formName  | titlecase}}</p>
+          <p *ngFor="let error of errorMessage.errors"><span>{{error}}</span></p>
+        </div>
+      </ng-container>
       <span *ngIf="errorDescription" [innerHTML]="errorDescription"></span>
+      <div *ngIf="hasImpact" class="flex-col confirmation-warning" [innerHTML]="hasImpact"></div>
     </div>
     <button *ngIf="showErrorButton" (click)="activeModal.dismiss('Close click')" type="button" class="btn btn__footer--fixed btn-primary width100">Try Again</button>
     <button *ngIf="isButtonEnabled" (click)="goBack()" type="button" class="btn btn-primary width100 mt20">Let’s Go</button>
     <button *ngIf="isError" type="button" class="btn btn-primary width100 mt10" (click)="tryAgain()">Try Again</button>
     <button *ngIf="isError" type="button" (click)="activeModal.dismiss('Close click')" class="btn btn-secondary width100 mt10">Enter Manually</button>
+    <button *ngIf="navToHome" type="button" class="btn btn-primary width100 mt10" (click)="goToHome()">Back To Homepage</button>
+    <div class="yes_r_no">
+      <button *ngIf="unSaved" type="button" class="btn width100 mt10 col-5" (click)="activeModal.close('no')">No</button>
+      <button *ngIf="unSaved" type="button" class="btn btn-primary width100 mt10 col-5" (click)="activeModal.close('yes')">Yes</button>
+    </div>    
   </div>
   
