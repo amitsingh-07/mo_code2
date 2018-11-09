@@ -30,6 +30,7 @@ export class ConfirmationComponent implements OnInit {
     this.willWritingService.setFromConfirmPage(false);
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
     const estateDistribution = this.willWritingFormData.beneficiary.filter((beneficiary) => beneficiary.selected === true);
+    this.willWritingFormData.beneficiary = estateDistribution;
     for (const beneficiary of estateDistribution) {
       if (beneficiary.relationship === 'spouse') {
         this.willEstateDistribution.spouse.push(beneficiary);
