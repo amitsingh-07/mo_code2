@@ -41,8 +41,9 @@
                     <a class="nav-link">Home</a>
                     </li>
                 <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
+                    <!--  (mouseleave)="closeDropdown(id01);"-->
                     <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
-                    <div class="dropdown-menu right perma" ngbDropdownMenu aria-labelledby="id01">
+                    <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">
                             <img src="./../../../assets/images/nav/nav-insure-icon.svg"/>
                             <div class="navbar--text">

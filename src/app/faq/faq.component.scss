@@ -24,7 +24,7 @@
         padding:65px 0px;
         margin:0px auto;
         @include minMobilemaxPhablet{
-            padding:65px 15px;
+            padding:65px 0Fpx;
         }
     }
 
@@ -34,13 +34,19 @@
             text-align: center;
             }
         margin-bottom:45px;
+        @include minMobilemaxPhablet{
+            h2{
+                font-size:28px;
+                }
+            margin-bottom:20px;
+            }
     }
     .faq-category__body{
         position: relative;
         display:flex;
         width:100%;
         justify-content:space-between;
-        padding:10px;
+        padding: 10px 0px;
         @include minMobilemaxPhablet{
             flex-direction:column;
         }
@@ -53,7 +59,9 @@
             padding-inline-start: 0px;
             margin:0px;
             .dropdown-toggle{
+                padding-right:30px;
                 text-align: left;
+                white-space: normal;
                 &::after {
                     background-image: url('/assets/images/nav-dropdown-icon.svg');
                     background-size: 12px 8px;
@@ -88,6 +96,7 @@
                 }
             }
             .dropdown-menu{
+                position: relative;
                 display:block;
                 padding:0px;
                 margin:0px;
@@ -97,6 +106,7 @@
             @include minMobilemaxPhablet{
             flex-basis: unset;
                 .dropdown-menu{
+                    position: absolute;
                     display:none;
                     width:100%;
                     border:1px solid $border-grey-color;
@@ -130,6 +140,9 @@
                 border-bottom:1px dashed $border-grey-color;
                 padding:8px; 
                 margin:0px;
+                @include minMobilemaxPhablet{
+                    font-size:20px;
+                }
             }
             .question__element{
                 position: relative;
@@ -146,6 +159,9 @@
                     cursor: pointer;
                     padding:10px 0px;
                     line-height:1.2;
+                    @include minMobilemaxPhablet{
+                        font-size:16px;
+                    }
                     i{
                         color:$teal-color;
                         transform:translateY(-2px);
