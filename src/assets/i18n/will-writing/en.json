@@ -24,7 +24,7 @@
       "MARITAL_STATUS": "Marital Status",
       "NUMBER_OF_CHILDREN": "Number of Children",
       "APPLY_CHANGES": "Apply Changes",
-      "UNSAVED": "Your changes will not be saved. Are you sure to exit this page?",
+      "UNSAVED": "Your changes will not be saved. Are you sure you want to leave this page?",
       "CONFIRM": "This will overwrite your current information. Would you like to proceed with editing?",
       "CONFIRM_IMPACT_MESSAGE": "<span class='mb10'>Required Actions</span><span>If you were to proceed with the changes, we may need you to go through the entire will writing journey as it may have some legal implications.</span>",
       "RELATIONSHIP_LIST": [{
@@ -114,14 +114,16 @@
     },
     "MY_CHILDS_GUARDIAN": {
       "TITLE": "My Children's Guardian",
-      "SUB_TITLE": "Your children under 21 years old would need a guardian to care for and protect their interests.",
+      "SUB_TITLE_WITHOUT_SPOUSE": "Your children under 21 years old would need a guardian to care for and protect their interests.",
+      "SUB_TITLE_WITH_SPOUSE": "Your spouse will be the natural guardian of your children under 21 years old.",
       "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
       "ALTERNATIVE": "Alternative Guardian",
       "GUARDIAN": "Guardian",
       "MAIN_GUARDIAN": "Main Guardian",
       "ALTERNATIVE_SUB_TITLE": "Takes over the role as your children’s guardian in the event that your spouse passes away before you.",
       "GUARDIAN_SUB_TITLE": "We recommend you to appoint a family member, friend or someone you trust.",
-      "FORM_TITLE": "My children’s guardian is",
+      "FORM_TITLE_WITHOUT_SPOUSE": "My children’s guardian is",
+      "FORM_TITLE_WITH_SPOUSE": "My children’s guardian are",
       "TOOLTIP_TITLE": "Role Of A Guardian ",
       "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your children after you have passed on, until they reach the age of 21.</p><p>Taking over your role as the “parent”, the guardian will have the ability to make decisions that affect your children, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your children’s guardian to seek their agreement.</p>"
     },

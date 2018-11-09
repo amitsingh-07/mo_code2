@@ -281,3 +281,10 @@ input[type='checkbox']+label {
         margin-right: -5px;
     }
 }
+
+.form-control {
+    color: #00a7a7;
+    &:focus {
+        color: #00a7a7;
+    }
+}

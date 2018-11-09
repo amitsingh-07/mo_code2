@@ -135,6 +135,9 @@
         letter-spacing: -0.3px;
         color: #9e9e9e;
         padding-right: 0;
+        @include allmobiles {
+            padding-left: 10px !important;
+        }
       }
     .label-value {
         font-family: $muli-semi-bold;
@@ -251,7 +254,7 @@
     margin: 0 15px;
     @include allmobiles {
         width: 100%;
-        margin: 0 15px;
+        margin: 0 10px;
     }
 }
 .stamp-block{
@@ -278,4 +281,15 @@
 
 .no-brdr {
     border: none !important;
+}
+
+.col-lg-8 {
+    &.col-md-8 {
+        &.col-sm-9 {
+            padding-left: 0 !important;
+            @include allmobiles {
+                padding-left: 20px !important;
+            }
+        }
+    }
 }

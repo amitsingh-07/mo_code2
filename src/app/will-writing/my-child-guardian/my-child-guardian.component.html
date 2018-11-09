@@ -8,8 +8,10 @@
           <div class="autofill-link">
             <div class="autofill-text hidden-sm-md" id="my-child-guardian-title">{{
               'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}} <span class="help-icon" (click)="openToolTipModal()"></span></div>
-            <div class="sub-title" id="my-child-guardian-sub-title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.SUB_TITLE' |
-              translate}}</div>
+            <div class="sub-title" id="my-child-guardian-sub-title">
+              <span *ngIf="!hasSpouse">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.SUB_TITLE_WITHOUT_SPOUSE' | translate}}</span>
+              <span *ngIf="hasSpouse">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.SUB_TITLE_WITH_SPOUSE' | translate}}</span>
+            </div>
             <div class="autofill-logo hidden-sm-md mt15" id="my-child-guardian-img"><img class="img-fluid" src="assets/images/will-writing/my-child-guardian.svg" /></div>
             <div class="autofill-logo mobile-logo mb5 hidden-lg" id="my-child-guardian-mobile-img"><img class="img-fluid"
                 src="assets/images/will-writing/owl-mobile.svg" /></div>
@@ -18,14 +20,16 @@
         <div class="col-lg-5 col-md-5 col-12 mt10">
           <form [formGroup]="addGuardianForm" id="addGuardianForm" name="addGuardianForm">
             <div>
-              <div class="form-title form-group-single-column" id="my-child-guardian-form-title">{{
-                'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM_TITLE' | translate}}</div>
+              <div class="form-title form-group-single-column" id="my-child-guardian-form-title">
+                <span *ngIf="!hasSpouse">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM_TITLE_WITHOUT_SPOUSE' | translate}}</span>
+                <span *ngIf="hasSpouse">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM_TITLE_WITH_SPOUSE' | translate}}</span>
+              </div>
               <div class="form-group-single-column flex-col" *ngFor="let guardian of guardianList; let i = index">
                 <div class="edit-block checkbox-button two-label">
                   <label id="guardian_{{i+1}}">
                     <div class="input-label-black">{{guardian.name | titlecase }}</div>
                     <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
-                        translate}} {{guardian.relationship | titlecase }}</div>
+                      translate}} {{guardian.relationship | titlecase }}</div>
                   </label>
                   <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
                 </div>
@@ -50,7 +54,9 @@
                   <div class="flex-row mb10">
                     <div class="col-5 pl0">
                       <label for="name" id="addGuardianFormLbl1">
-                        <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}<div class="sub_name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></div>
+                        <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}<div class="sub_name">{{
+                            'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div>
+                        </div>
                       </label>
                     </div>
                     <div class="col-7 pr0">
@@ -84,7 +90,8 @@
                   <div class="flex-row mb10">
                     <div class="col-5 pl0">
                       <label for="name" id="addGuardianFormLbl2">
-                        <div class="with-help-icon">{{ 'WILL_WRITING.COMMON.NRIC' | translate}}<span class="help-icon" (click)="openToolTipModal()"></span></div>
+                        <div class="with-help-icon">{{ 'WILL_WRITING.COMMON.NRIC' | translate}}<span class="help-icon"
+                            (click)="openToolTipModal()"></span></div>
                       </label>
                     </div>
                     <div class="col-7 pr0">
