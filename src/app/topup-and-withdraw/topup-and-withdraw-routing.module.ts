@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
-
 import { TopUpComponent } from './top-up/top-up.component';
+import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
+import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
 import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 
 const routes: Routes = [
@@ -23,8 +23,12 @@ const routes: Routes = [
     component: TopupRequestComponent
   },
   {
-    path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAW,
+    path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL,
     component: WithdrawalTypeComponent
+  },
+  {
+    path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL_SUCCESS,
+    component: WithdrawalSuccessComponent
   }
 
 ];

@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
+import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
 import {
     ConfirmWithdrawalModalComponent
 } from './withdrawal-type/confirm-withdrawal-modal/confirm-withdrawal-modal.component';
@@ -48,7 +49,8 @@ export function createTranslateLoader(http: HttpClient) {
     TopUpComponent,
     TopupRequestComponent,
     ConfirmWithdrawalModalComponent,
-    WithdrawalTypeComponent
+    WithdrawalTypeComponent,
+    WithdrawalSuccessComponent
   ],
   entryComponents: [
     ConfirmWithdrawalModalComponent

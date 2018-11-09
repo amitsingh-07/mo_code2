@@ -26,5 +26,9 @@
         "SUBMIT": "Submit"
       }
     }
+  },
+  "WITHDRAW_SUCCESS": {
+    "TITLE": "Withdrawal Request Submitted",
+    "DESC": "We will update you on the status of your request within 2 working days."
   }
 }

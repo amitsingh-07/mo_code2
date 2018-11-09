@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 import {
@@ -108,6 +109,7 @@ export class WithdrawalTypeComponent implements OnInit {
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
       // confirmed
     });
     this.dismissPopup(ref);
