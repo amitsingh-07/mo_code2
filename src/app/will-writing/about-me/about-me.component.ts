@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IAboutMe } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -20,6 +21,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
   private confirmModal = {};
@@ -72,14 +74,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (this.aboutMeForm.dirty) {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.unsavedMsg;
-          ref.componentInstance.unSaved = true;
-          ref.result.then((data) => {
-            if (data === 'yes') {
-              this._location.back();
-            }
-          });
+          this.pageTitleComponent.goBack();
         } else {
           this._location.back();
         }

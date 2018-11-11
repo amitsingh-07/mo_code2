@@ -130,7 +130,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   }
 
   editGuardian(relation: string, index: number) {
-    if (relation === 'spouse') {
+    if (relation === WILL_WRITING_CONFIG.SPOUSE) {
       if (this.addGuardianForm.dirty) {
         this.pageTitleComponent.goBack();
       } else {
