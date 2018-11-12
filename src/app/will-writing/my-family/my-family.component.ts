@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,6 +10,7 @@ import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IChild, ISpouse } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -22,6 +23,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-family.component.scss']
 })
 export class MyFamilyComponent implements OnInit, OnDestroy {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   private subscription: Subscription;
   pageTitle: string;
   step: string;
@@ -98,14 +100,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (this.myFamilyForm.dirty) {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.unsavedMsg;
-          ref.componentInstance.unSaved = true;
-          ref.result.then((data) => {
-            if (data === 'yes') {
-              this._location.back();
-            }
-          });
+          this.pageTitleComponent.goBack();
         } else {
           this._location.back();
         }

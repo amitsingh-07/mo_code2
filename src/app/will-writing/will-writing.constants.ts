@@ -4,5 +4,7 @@ export const WILL_WRITING_CONFIG = {
     MAX_BENEFICIARY: 7,
     MIN_BENEFICIARY: 1,
     CHILD_GUARDIAN_AGE: 21,
-    MARRIED: 'married'
+    MARRIED: 'married',
+    CHILD: 'child',
+    SPOUSE: 'spouse'
 };
