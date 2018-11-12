@@ -176,7 +176,7 @@
                             transform:translateY(-2px) rotate(90deg);
                         }
                         & + .answer{
-                            max-height:1000px;
+                            max-height:2500px;
                             transition: max-height 0.3s ease-in;
                             padding:20px 0px 20px 26px;
                             line-height:1.6;
@@ -193,11 +193,24 @@
                     transition:0.3s;
                     padding-left:26px;
                     font-size:16px;
-                    li{
-                        list-style-type: disc;
+                    ul{
+                        li{
+                            list-style-type: disc;
+                        }
                     }
+                    ol{
+                        li {
+                            font-weight: bold;
+                        }
+                        li span { font-weight: normal; }
+                    }
+                    .tg{border-collapse:collapse;border-spacing:0;}
+                    .tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                    .tg th{text-align:center;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                    .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+                    .tg .tg-uys7{border-color:inherit;text-align:center}
+                    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
                 }
-                
             }
         }
     }
