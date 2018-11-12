@@ -1,4 +1,4 @@
-const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
+export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 
 export let apiConstants = {
     endpoint: {
@@ -43,7 +43,8 @@ export let apiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + 'industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + 'occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + 'optionListCollection',
-            createInvestmentAccount: INVESTMENT_API_BASE_URL + 'optionListCollection',
+            uploadDocument: 'account/account-microservice/saveInvestmentDetails',
+            createInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective'
         },
         getPromoCode: '',

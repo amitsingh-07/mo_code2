@@ -104,15 +104,13 @@ export class SelectNationalityComponent implements OnInit {
     }
 
     getNationalityCountryList() {
-        this.authService.authenticate().subscribe((token) => {
-            this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
-                this.nationalityList = data.objectList;
-                this.countryList = this.getCountryList(data.objectList);
-                if (this.selectNationalityFormValues.nationalityCode) {
-                    this.selectedNationality = this.getSelectedNationality(this.selectNationalityFormValues.nationalityCode);
-                    this.buildFormControls();
-                }
-            });
+        this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
+            this.nationalityList = data.objectList;
+            this.countryList = this.getCountryList(data.objectList);
+            if (this.selectNationalityFormValues.nationalityCode) {
+                this.selectedNationality = this.getSelectedNationality(this.selectNationalityFormValues.nationalityCode);
+                this.buildFormControls();
+            }
         });
     }
 

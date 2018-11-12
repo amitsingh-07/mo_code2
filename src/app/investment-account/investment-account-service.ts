@@ -356,13 +356,17 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.pepUnitNo = data.pepUnitNo;
         this.commit();
     }
+
     // Upload Document
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
     }
-    uploadDocumentBO(formData) {
-        return this.apiService.uploadDocumentBO(formData);
+
+    createInvestmentAccount() {
+        const payload = this.constructInvestmentAccountRequest();
+        return this.apiService.createInvestmentAccount(payload);
     }
+
     setFinancialFormData(data) {
         if (data.annualHouseHoldIncomeRange) {
             this.investmentAccountFormData.annualHouseHoldIncomeRange = data.annualHouseHoldIncomeRange;
@@ -600,24 +604,19 @@ export class InvestmentAccountService {
         return this.apiService.updateInvestment(params);
     }
 
-    createInvestmentAccount() {
-        const payload = this.constructInvestmentAccountRequest();
-        return this.apiService.createInvestmentAccount(payload);
-    }
-
     constructInvestmentAccountRequest() {
-        const formdata = this.getInvestmentAccountFormData();
+        const payload = this.getInvestmentAccountFormData();
         const request = {} as ICreateInvestmentAccountRequest;
-        request.myInfoVerified = formdata.isMyInfoEnabled;
-        request.isSingaporePR = formdata.singaporeanResident;
-        request.personalInfo = this.getPersonalInfoReqData(formdata);
-        request.residentialAddress = this.getResidentialAddressReqData(formdata);
-        request.mailingAddress = this.getMailingAddressReqData(formdata);
-        request.employmentDetails = this.getEmployementDetailsReqData(formdata);
-        request.householdDetails = this.getHouseholdDetailsReqData(formdata);
-        request.financialDetails = this.getFinancialDetailsReqData(formdata);
-        request.taxDetails = this.getTaxDetailsReqData(formdata);
-        request.personalDeclarations = this.getPersonalDecReqData(formdata);
+        request.myInfoVerified = payload.isMyInfoEnabled;
+        request.isSingaporePR = payload.singaporeanResident;
+        request.personalInfo = this.getPersonalInfoReqData(payload);
+        request.residentialAddress = this.getResidentialAddressReqData(payload);
+        request.mailingAddress = this.getMailingAddressReqData(payload);
+        request.employmentDetails = this.getEmployementDetailsReqData(payload);
+        request.householdDetails = this.getHouseholdDetailsReqData(payload);
+        request.financialDetails = this.getFinancialDetailsReqData(payload);
+        request.taxDetails = this.getTaxDetailsReqData(payload);
+        request.personalDeclarations = this.getPersonalDecReqData(payload);
         return request;
     }
 
