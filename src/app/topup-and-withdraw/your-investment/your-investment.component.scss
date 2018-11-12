@@ -2,10 +2,9 @@
 @import "../../../_mixins.scss";
 
 .background_img {
-    width: 100%;
-    height: 100%;
     object-fit: contain;
     position: relative;
+    width: 100%
 }
 .user_content{
     position: absolute;
@@ -20,7 +19,7 @@
     .col-4{
         position: absolute;
         right: 0;
-        bottom: -90%;
+        bottom: -57%;
     }
 }
 
@@ -28,4 +27,182 @@
     color: #fff;
     background-color: #276f75;
 }
+.container-fluid {
 
+    padding-top: -18px;
+}
+@media (max-width: 567px) and (min-width: 320px){
+
+.container-fluid {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    position: relative;
+    height: 100%;
+    padding:  0px;
+    margin-top: -42px;
+
+}
+}
+
+.form-group-with-bg {
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
+    background-color: #ffffff;
+.your_total_value{
+    background-color: #276f75;
+    
+}
+}
+.total_values{
+   
+  font-family: $muli-bold;
+  font-size: 40px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.4px;
+  text-align: center;
+  color: #ffffff;
+}
+.total_values_label{
+    
+    font-family: $muli-regular;
+    font-size: 16px;
+    
+    line-height: 0.88;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #ffffff;
+}
+.start_investment_label{
+    
+    font-family: Muli;
+    font-size: 13px;
+    
+    line-height: 1.62;
+    letter-spacing: -0.1px;
+    color: #5e5e5e;
+
+}
+.start_investment_value{
+   
+  font-family: $muli-bold;
+  font-size: 16px;
+  font-weight: bold;
+  
+  letter-spacing: -0.2px;
+  text-align: right;
+  color: #11b600;
+
+}
+.total_return_label{
+   
+    
+    color: #5e5e5e;
+    font-size: 16px;
+    color: #2d8289;
+}
+.total_return_value{
+   
+    font-family: $muli-regular;
+    font-size: 18px;
+    font-weight: bold;
+    
+    letter-spacing: -0.2px;
+    text-align: right;
+    color: #00a7a7;
+}
+.your_portfolio_container{
+    padding: 20px;
+    align-items: baseline;
+}
+.your_portfolio_label{
+    
+  font-family: $muli-regular;
+  font-size: 21px;
+
+  letter-spacing: -0.2px;
+  color: #ffffff;
+
+}
+.your_portfolio_number{
+  
+  font-family: $muli-regular;
+  font-size: 15px;
+  
+  letter-spacing: -0.3px;
+  color: #ffffff;
+
+}
+.your_portfolio_value{
+    background-color: #e7f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .flex-row{
+        align-items: center;
+        .conserve-icon{
+            width: 35px;
+            height: 35px;
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+    .forward_img{
+        margin-left: 25px;
+    }
+}
+.portfolio_heading{
+font-family: $muli-bold;
+  font-size: 18px;
+  
+  letter-spacing: -0.3px;
+ color: #00a7a7;
+  padding-left: 15px;
+  
+}
+
+  .top_aler {
+    margin-left: 10px;
+    margin-top: 7px;
+}
+
+.btn-with-icon {
+    border-radius: 6px;
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14) !important;
+   
+    background-color: #00c5c4;
+    font-family: $muli-bold;
+    font-size: 21px;
+    font-weight: $muli-bold;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 21px 0px;
+   
+
+    &:active {
+      outline: none;
+      background-color: #0de0de;
+      color: #fff;
+    }
+
+    &:hover {
+      outline: none;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: #0de0de;
+      color: #fff;
+    }
+
+    img {
+      margin-left: 8px;
+      margin-top: -1px;
+    }
+  }
