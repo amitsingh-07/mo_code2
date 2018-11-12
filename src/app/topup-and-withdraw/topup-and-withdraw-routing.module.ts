@@ -7,6 +7,7 @@ import { TopUpComponent } from './top-up/top-up.component';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
 
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
+import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_INVESY_TMENT,
     component: YourInvestmentComponent
+  },
+  {
+    path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_PORTFOLIO,
+    component: YourPortfolioComponent
   }
 
 ];
