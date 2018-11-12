@@ -217,7 +217,7 @@ export class WillWritingService {
       this.updateSpouseInfo(data);
     }
     this.willWritingFormData.spouse = [];
-    data.relationship = 'spouse';
+    data.relationship = WILL_WRITING_CONFIG.SPOUSE;
     this.willWritingFormData.spouse.push(data);
     this.commit();
   }
@@ -247,9 +247,12 @@ export class WillWritingService {
       }
     }
     this.willWritingFormData.children = [];
+    let i = 1;
     for (const children of data) {
-      children.relationship = 'child';
+      children.relationship = WILL_WRITING_CONFIG.CHILD;
+      children.pos = i;
       this.willWritingFormData.children.push(children);
+      i++;
     }
     this.commit();
   }

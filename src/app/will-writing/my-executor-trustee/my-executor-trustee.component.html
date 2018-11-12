@@ -77,8 +77,8 @@
                   <div class="flex-row">
                     <div class="flex-col-5">
                       <label for="name" id="myFamilyFormLbl2">
-                        <div class="with-help-icon">{{ 'WILL_WRITING.COMMON.NRIC' | translate}}<span class="help-icon"
-                            (click)="openToolTipModal()"></span></div>
+                          <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC' | translate}}</div>
+                          <div class="with-help-icon">{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon" (click)="openToolTip()"></span></div>
                       </label>
                     </div>
                     <div class="flex-col-6">
@@ -93,8 +93,9 @@
           <div class="message-block">
               <div class="tooltip-message-img">
                 <img src="assets/images/will-writing/tooltip-message.svg"/>
+                <div class="tooltip-message">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MESSAGE_TOOLTIP' | translate}}</div>
               </div>
-              <div class="tooltip-message">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MESSAGE_TOOLTIP' | translate}}</div>
+              
           </div>
           <div>
             <button type="button" (click)="goToNext(addExeTrusteeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"

@@ -11,7 +11,7 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IExecTrustee, ISpouse } from '../will-writing-types';
+import { IExecTrustee } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
 
@@ -42,6 +42,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   hasChild: boolean;
   maxExecTrustee = WILL_WRITING_CONFIG.MAX_EXECUTOR_TRUSTEE;
   unsavedMsg: string;
+  toolTip;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -64,6 +65,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -127,7 +129,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
           this.formTitle.push({ isAlt: false, relationship: '' });
         }
       } else {
-        if (!this.hasSpouse && !this.hasChild) {
+        if ((!this.hasSpouse && !this.hasChild) || (!this.hasSpouse && !this.willWritingService.checkBeneficiaryAge())) {
           this.formTitle.push({ isAlt: false, relationship: '' });
         }
         this.formTitle.push({ isAlt: true, relationship: '' });
@@ -149,6 +151,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     items.push(this.buildExecTrusteeForm());
   }
 
+  openToolTip() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
+  }
+
   /**
    * set marital status.
    * @param index - marital Status List index.
@@ -161,7 +167,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   }
 
   editExecTrustee(relation: string, index: number) {
-    if (relation === 'spouse') {
+    if (relation === WILL_WRITING_CONFIG.SPOUSE) {
       if (this.addExeTrusteeForm.dirty) {
         this.pageTitleComponent.goBack();
       } else {

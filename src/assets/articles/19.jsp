@@ -1,8 +1,8 @@
-<img src="./../../../assets/articles/images/19/empty_wallet.jpg" class="pull-right" style=" padding:10px;" alt="Emtpy Wallet Image">
+<img src="/assets/articles/images/19/empty_wallet.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Emtpy Wallet Image">
 <p>It  strikes me hard that for majority people of the people whom I know, they are  paying a significant amount from their hard-earned income for their insurance  but yet, are still severely underinsured.</p><br>
-<p>For  a young couple, it is not unthinkable that they may need $1million of life  insurance cover each. This is to provide for their family&rsquo;s living expenses and  children&rsquo;s education and repayment of outstanding loans if an unexpected event  of death occurs. While this figure seems like an enormous amount of coverage to  pay for, it need not cost a bomb. You can find out about your life insurance  coverage needs using this simple calculator: <a href="../calculators/life-insurance-calculator" target="_blank">Click Here</a></p>
+<p>For  a young couple, it is not unthinkable that they may need $1million of life  insurance cover each. This is to provide for their family&rsquo;s living expenses and  children&rsquo;s education and repayment of outstanding loans if an unexpected event  of death occurs. While this figure seems like an enormous amount of coverage to  pay for, it need not cost a bomb.</p>
 <br>
-<h3 class="primary-color"><strong>Amount of Premiums  We Pay </strong> <img class="width25" src="./../../../assets/articles/images/19/notequalsign.png" alt="Not equal sign"> <strong> Enough Insurance Coverage for Ourselves</strong></h3>
+<h3 class="primary-color"><strong>Amount of Premiums  We Pay </strong> <img class="width25" src="/assets/articles/images/19/notequalsign.png" alt="Not equal sign"> <strong> Enough Insurance Coverage for Ourselves</strong></h3>
 <p>We  consider the following example of a Male, Non-Smoker</p>
 <ul>
   <li>Policy  coverage till 65 years old (when children are independent)</li>
@@ -70,9 +70,9 @@
 <p>You  may wish to compare what you are currently paying for your insurance policy  against what is currently offered by the different insurers. <strong></strong><br>
   For  us to be covered by life insurance for our entire life, it is very expensive  with <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" target="_blank" title="Whole Life Insurance">whole life insurance</a>. We will find that we are not able to sufficiently  insure ourselves if we use whole life insurance. For a 30 year-old male,  $500,000 whole life coverage could cost <strong>S$7,000  annually*</strong> to be paid annually for 49 years! <br>
   Are  you overpaying for the amount of insurance coverage you have? Are you  sufficiently insured for your loved ones?<br><br>
-  Purchasing  a term insurance is the only way to provide for sufficient coverage. To understand  about the Case of Term Life Insurance: <a href="./../../../assets/articles/document/the-case-for-term-insurance-7-nov-2010.pdf" target="_blank">Read here</a></p>
+  Purchasing  a term insurance is the only way to provide for sufficient coverage. To understand  about the Case of Term Life Insurance: <a href="/assets/articles/document/the-case-for-term-insurance-7-nov-2010.pdf" target="_blank">Read here</a></p>
 <br><h3 class="primary-color"><strong>The Purpose of  Insurance </strong></h3>
-<img src="./../../../assets/articles/images/19/umbrella_coins.jpg" class="pull-right" style=" padding:10px;" alt="Umbrella with coins image">
+<img src="/assets/articles/images/19/umbrella_coins.jpg" class="pull-right" style=" padding:10px;" alt="Umbrella with coins image">
 <p><strong> </strong>
   The  purpose of insurance is to transfer our risk of a loss to another party in  exchange for money. It is important that we adequately transfer our risk  (sufficiently insure ourselves) and to keep the cost that we are paying for  insurance low. However, there are many misconceptions when it comes to  insurance and these are the common ones which I have come across: </p>
 <ul>
@@ -87,6 +87,8 @@
 </ul>
 <p>I  hope that more of us will understand and spread the word of the purpose of  insurance and the importance of insuring ourselves sufficiently. We do not have  to overpay when we purchase the right type of insurance and it does not cost us  an arm and a leg for us to be adequately insured for our loved ones.</p>
 <br>
-<div class="text-xs-center"><a href="./guideme/">
-	<img src="./../../../assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme/">
+	<img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
+-->

@@ -40,6 +40,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   unsavedMsg: string;
   isFormAltered = false;
   selectedBeneficiaryLength: number;
+  toolTip;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -59,6 +60,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -166,7 +168,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   }
 
   editBeneficiary(relation: string, index: number) {
-    if (relation === 'spouse' || relation === 'child') {
+    if (relation === WILL_WRITING_CONFIG.SPOUSE || relation === WILL_WRITING_CONFIG.CHILD) {
       if (this.addBeneficiaryForm.dirty) {
         this.pageTitleComponent.goBack();
       } else {
@@ -196,6 +198,10 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  openToolTipModal() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
+  }
+
   save(url) {
     this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
     this.router.navigate([url]);
@@ -205,9 +211,6 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.unSaved = true;
-    if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
-    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(url);
@@ -240,8 +243,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
         if (this.checkBeneficiaryData()) {
           url = WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url,
-            this.willWritingService.isUserLoggedIn());
+          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, true);
         } else if (this.isFormAltered) {
           this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false);
         } else {

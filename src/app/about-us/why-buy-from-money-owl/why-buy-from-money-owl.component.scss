@@ -1,0 +1,103 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+@-webkit-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);} 
+    40% {-webkit-transform: translateY(-20px);}
+    60% {-webkit-transform: translateY(-10px);}
+   }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+}
+
+.why-buy__wrapper{
+    position: relative;
+    display:flex;
+    width:100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+    background-color:$lighter-aqua-color;
+}
+
+.why-buy__container{
+    position: relative; 
+    display: flex;
+    width:100%;
+    flex-direction: column;
+    align-items:center;
+    min-height:500%;
+    background-color:$white-color;
+    
+    .why-buy__header{
+        position: relative;
+        display:flex;
+        width:100%;
+        max-width:1024px;
+        color:$teal-color;
+        flex-direction:column;
+        padding:100px 0px;
+        @include minPhabletmaxTablet{
+            padding:50px 20px;
+        }
+        @include minMobilemaxPhablet{
+            padding:20px 20px 15px 20px;
+        }
+    }
+    .why-buy__content{
+        position: relative;
+        display:flex;
+        width:100%;
+        max-width:1024px;
+        column-count: 2;
+        flex-wrap:wrap;
+        margin-bottom:100px;
+        @include minPhabletmaxTablet{
+            padding:0px 20px;
+        }
+        @include minMobilemaxPhablet{
+            padding: 15px 0px;
+            margin-bottom:15px;
+        }
+        .why-buy__element{
+            position: relative;
+            display:flex;
+            flex-basis:50%;
+            align-items:flex-start;
+            margin-bottom:20px;
+            cursor: default;
+            @include minMobilemaxPhablet{
+                flex-direction:column;
+                align-items:center;
+                flex-basis:100%;
+            }
+            &:hover{
+                img{
+                }
+            }
+            .why-buy__text{
+                position: relative;
+                display:flex;
+                flex-direction:column;
+                color:$teal-color;
+                padding:0px 20px 0px 20px;
+                h3{
+                    font-size:26px;
+                }
+                @include minMobilemaxPhablet{
+                    padding:15px 20px 0px 20px;
+                    h3{
+                        font-size:22px;
+                        text-align:center;
+                    }
+                    p{
+                        text-align:justify;
+                        font-size:15px;
+                    }   
+                }
+            }
+        }
+    }
+}

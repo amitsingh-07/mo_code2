@@ -278,6 +278,13 @@ input[type='checkbox']+label {
         position: absolute;
         bottom: 5px;
         border-radius: 0;
-        margin-right: -5px;
+        margin-right: -25px;
+    }
+}
+
+.form-control {
+    color: #00a7a7;
+    &:focus {
+        color: #00a7a7;
     }
 }

@@ -31,7 +31,8 @@
                       <div class="col-6">
                         <label for="beneficiary_{{i+1}}" id="beneficiary_{{i+1}}">
                           <div class="input-label-black">{{currentDist.name | titlecase}}</div>
-                          <div class="input-label-normal">{{currentDist.relationship | titlecase}}</div>
+                          <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
+                              translate}} {{currentDist.relationship | titlecase}} {{currentDist.pos}}</div>
                         </label>
                       </div>
                       <div class="col-6">
@@ -46,8 +47,8 @@
               <div class="message-block">
                   <div class="tooltip-message-img">
                     <img src="assets/images/will-writing/tooltip-message.svg"/>
+                    <div class="tooltip-message">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TOOLTIP_MESSAGE' | translate}}</div>
                   </div>
-                  <div class="tooltip-message">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TOOLTIP_MESSAGE' | translate}}</div>
               </div>
       </div>
       <div>

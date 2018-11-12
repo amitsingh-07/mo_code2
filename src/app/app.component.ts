@@ -56,8 +56,14 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     });
   }
 
-  @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
     return false;
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (!this.canDeactivate()) {
+        $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
+    }
   }
 }

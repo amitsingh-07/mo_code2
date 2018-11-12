@@ -157,3 +157,9 @@ app-terms {
 .modal-dialog.modal-dialog-centered{
   max-width: 790px !important;
 }
+
+.ptgap {
+  @include allmobiles {
+    padding-top: 20px;
+  }
+}
