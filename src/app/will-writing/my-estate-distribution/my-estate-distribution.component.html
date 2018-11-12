@@ -1,4 +1,5 @@
-<app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]=""></app-page-title>
+<app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]="distributionForm.dirty"></app-page-title>
+<form id="distributionForm" name="distributionForm" [formGroup]="distributionForm" id="distributionForm">
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="flex-row main-container">
@@ -37,8 +38,8 @@
                       </div>
                       <div class="col-6" *ngIf="currentDist.selected === true">
                           <div class="form-control">   
-                          <input  #percent id="beneficiary_{{i+1}}" (keyup)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
-                            value="{{currentDist.distPercentage}}" >
+                          <input  #percent id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
+                            value="{{currentDist.distPercentage}}" formControlName="percent" >
                           <i>%</i>
                         </div>
                       </div>
@@ -61,3 +62,4 @@
   </div>
 </div>
 </div>
+</form>

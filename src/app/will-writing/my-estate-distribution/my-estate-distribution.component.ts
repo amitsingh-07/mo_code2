@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingService } from './../will-writing.service';
 
@@ -10,17 +16,22 @@ import { WillWritingService } from './../will-writing.service';
   templateUrl: './my-estate-distribution.component.html',
   styleUrls: ['./my-estate-distribution.component.scss']
 })
-export class MyEstateDistributionComponent implements OnInit {
+export class MyEstateDistributionComponent implements OnInit, OnDestroy {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
+  private subscription: Subscription;
+  private confirmModal = {};
   pageTitle: string;
   step: string;
 
   beneficiaryList: any[] = [];
+  distributionForm: FormGroup;
   remainingPercentage = 100;
   value = '';
   showForm = false;
   divider: number;
   distPercentageSum = 0;
   firstReset = false;
+  isFormAltered = false;
   currentDist;
   errorMsg;
   filteredList;
@@ -29,13 +40,19 @@ export class MyEstateDistributionComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private willWritingService: WillWritingService,
+    private formBuilder: FormBuilder,
+    private _location: Location,
+    private modal: NgbModal,
     public navbarService: NavbarService,
     private router: Router) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_2');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE');
+      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.errorMsg = this.translate.instant('WILL_WRITING.MY_ESTATE_DISTRIBUTION.ERROR_MODAL');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
@@ -44,7 +61,32 @@ export class MyEstateDistributionComponent implements OnInit {
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
     }
+    this.buildBeneficiaryForm();
     this.calculateRemPercentage();
+    this.headerSubscription();
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (this.distributionForm.dirty) {
+          this.pageTitleComponent.goBack();
+        } else {
+          this._location.back();
+        }
+        return false;
+      }
+    });
+  }
+
+  buildBeneficiaryForm() {
+    this.distributionForm = this.formBuilder.group({
+      percent: ['', [Validators.required]]
+    });
   }
 
   calculateRemPercentage() {
@@ -60,10 +102,13 @@ export class MyEstateDistributionComponent implements OnInit {
       this.distributePercentage(index, event);
       this.distPercentageSum += percent.distPercentage;
     }
+    if (this.beneficiaryList[index].distPercentage < 0 || this.beneficiaryList[index].distPercentage > 100) {
+      this.willWritingService.openToolTipModal('Please input a value between 0 and 100', '');
+    }
     if (this.distPercentageSum > 100) {
       this.currentDist = this.beneficiaryList[index].distPercentage;
       setTimeout(() => this.beneficiaryList[index].distPercentage = 0, 0);
-      this.willWritingService.openToolTipModal(this.errorMsg.EXCEED_PERCENTAGE, '');
+      //this.willWritingService.openToolTipModal(this.errorMsg.EXCEED_PERCENTAGE, '');
       this.distPercentageSum = 0;
       for (const percent of this.beneficiaryList) {
         this.distPercentageSum += percent.distPercentage;
@@ -74,6 +119,7 @@ export class MyEstateDistributionComponent implements OnInit {
       this.remainingPercentage = 100 - (this.distPercentageSum - this.currentDist);
     }
     this.distPercentageSum = 0;
+    this.isFormAltered = true;
   }
 
   distributePercentage(index: number, event) {
@@ -92,7 +138,27 @@ export class MyEstateDistributionComponent implements OnInit {
     }
   }
 
-  save() {
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+  }
+
+  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.unSaved = true;
+    if (hasImpact) {
+      ref.componentInstance.hasImpact = message;
+    }
+    ref.result.then((data) => {
+      if (data === 'yes') {
+        this.save(url);
+      }
+    });
+    return false;
+  }
+
+  validateBeneficiaryForm() {
     const estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
     const arrLength = estateDistList.filter((greater) => greater.distPercentage < 1).length;
     if (arrLength > 0 && this.remainingPercentage === 0) {
@@ -102,17 +168,27 @@ export class MyEstateDistributionComponent implements OnInit {
       this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
       return false;
     }
-    this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
     return true;
   }
 
+  save(url) {
+    this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
+    this.router.navigate([url]);
+  }
+
   goToNext() {
-    if (this.save()) {
+    if (this.validateBeneficiaryForm()) {
       let url = WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE;
-      if (this.fromConfirmationPage) {
+      if (this.fromConfirmationPage && this.isFormAltered) {
         url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
+        this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url,
+        this.willWritingService.isUserLoggedIn());
+      } else if (this.fromConfirmationPage) {
+        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
+        this.save(url);
+      } else {
+        this.save(url);
       }
-      this.router.navigate([url]);
     }
   }
 
