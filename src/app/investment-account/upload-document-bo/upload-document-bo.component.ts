@@ -93,8 +93,8 @@ export class UploadDocumentBOComponent implements OnInit {
 
   uploadDocument() {
     this.showUploadLoader();
-    this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
-      if (data) {
+    this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+      if (response) {
         this.hideUploadLoader();
         this.redirectToNextPage();
       }

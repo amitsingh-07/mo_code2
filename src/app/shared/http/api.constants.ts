@@ -44,8 +44,9 @@ export let apiConstants = {
             occupationlist: INVESTMENT_API_BASE_URL + 'occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + 'optionListCollection',
             uploadDocument: 'account/account-microservice/saveInvestmentDetails',
-            createInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
-            updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective'
+            saveInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
+            updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
+            createInvestmentAccount: 'account/account-microservice/createIFastAccount',
         },
         getPromoCode: '',
         verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode'
