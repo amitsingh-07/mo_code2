@@ -1,4 +1,4 @@
-<p><a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank">MediShield Life</a> is a significant upgrade of the current	MediShield to help address the basic healthcare needs of Singapore.</p>
+<p><a href="https://www.medishieldlife.sg/" target="_blank">MediShield Life</a> is a significant upgrade of the current	MediShield to help address the basic healthcare needs of Singapore.</p>
 
 <p>Beginning in end 2015, all Singapore citizens and permanent residents will be included in the new compulsory scheme, regardless of age and health. In addition, all pre-existing conditions will be covered.</p>
 <br>
@@ -72,7 +72,7 @@
 Source: Ministry of Health (MOH)
 </small>
 <br>
-<p><a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank">MediShield Life</a> offers better protection by increasing its claimable benefits and lowering the co-insurance (the portion you need to bear). Besides higher inpatient benefits, outpatient benefits such as chemotherapy for cancer will also be increased. Essentially, a larger portion of the hospital bill is now claimable, resulting in	smaller out-of-pocket expenses.</p>
+<p><a href="https://www.medishieldlife.sg" target="_blank">MediShield Life</a> offers better protection by increasing its claimable benefits and lowering the co-insurance (the portion you need to bear). Besides higher inpatient benefits, outpatient benefits such as chemotherapy for cancer will also be increased. Essentially, a larger portion of the hospital bill is now claimable, resulting in	smaller out-of-pocket expenses.</p>
 <br>
 <h3 class="primary-color">
 	<strong>Compare Key Benefits</strong>

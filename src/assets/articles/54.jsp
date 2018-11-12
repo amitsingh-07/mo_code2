@@ -1,4 +1,4 @@
-<img src="images/54/thumbnail.jpg" class="pull-right" style=" padding:10px;" alt="Cost of Child's Future Education Image">
+<img src="/assets/articles/images/54/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Cost of Child's Future Education Image">
 
 	<p>The transition into parenthood is a time that  provides parents with immense joy. It is also the start of a long journey that  demands great sacrifice. </p><p>
   As a quote goes, &ldquo;<em>Until you become a parent, you can't begin to discover your capacity  for strength, love and fatigue</em>.&rdquo; </p>
@@ -6,7 +6,7 @@
   Of the many heavy responsibilities that comes  with parenthood, it includes the financial demands of having a child. A report  in 2016 estimated that raising a child in Singapore would cost S$360,000 on  average and up to S$1milllion on the high end. A bulk of the amount is  attributed to the provision for a child&rsquo;s tertiary education tuition fees and  expenses. </p><p>
   And as the government increases the number of  university places to 40% of each cohort in 3 years&rsquo; time, everyone wants to get a university degree and everyone wants to plan for their children to attend University.</p>
   <p>
-  No doubt, the provision of <a href="https://www.providend.com/insurance-for-newborns/" target="_blank" title="Insurance for children">children&rsquo;s  university education</a> cost is one of parents&rsquo; top worries. </p>
+  No doubt, the provision of children&rsquo;s university education cost is one of parents&rsquo; top worries. </p>
   <br><br>
 <h2 class="primary-color"><strong>Cost of University Education in 2017</strong></h2>
   <p>The entire cost of university education cost  is made up of 2 components; Tuition Fees and Cost of Living. </p>
@@ -159,8 +159,7 @@
   <strong>S$131,737</strong></p>
 <p>Setting aside S$130,000 is not a simple  affair for most people. If you have intentions to save for your child's  overseas studies in Australia, United Kingdom or the United States of America,  the amount you need could be tripled!</p>
 <p> Saving for your child's tertiary education  demands you to plan as soon as possible so that you have a longer run way to  save and grow your savings. Start early so you have the greatest chance in  providing your child with this important opportunity that he/she may need. </p>
-<p>To find out how much you need for your child's  education, use this <a href="../calculators/education-savings-calculator">simple  calculator here.</a> <a href="../packages/baby-package">Click  here</a> to learn more about Child's Education  Savings plans and <a href="../compare/savings">click  here</a> to compare education savings plans.</p>
-  <p>If you have any questions, feel free to  contact us at <a href="mailto:enquiry@diyinsurance.com.sg">enquiry@diyinsurance.com.sg</a> . Our non-commission based expert advisers will assist you in solving your  needs for your children's education. </p>
+
  
  <br>
   <small><strong>Notes: </strong></small><br>
@@ -177,6 +176,8 @@
   <li>Tuition  fees in 2009: http://newshub.nus.edu.sg/news/1003/PDF/FEES-st-19mar-pA1&amp;A4.pdf</li>
 </ul>
 <br>
-<div class="text-xs-center"><a href="../selfcheck/">
-  <img src="../assets/images/banners/selfcheck_go_540w.png" alt="diyinsurance selfcheck"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme">
+  <img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
+-->

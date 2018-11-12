@@ -72,6 +72,7 @@ export class BaseService {
     if (showError) {
       param = '?alert=' + showError;
     }
+
     return this.httpClient
       .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
       .finally(() => {

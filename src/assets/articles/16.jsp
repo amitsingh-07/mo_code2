@@ -1,4 +1,4 @@
-<img src="./../../../assets/articles/images/16/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="/assets/articles/images/16/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 <h3 class="primary-color"><strong>Do  you look forward to a claim when you buy insurance?</strong></h3>
 <p>  Whenever  I travel, I would cover myself with travel insurance. Just because I am covered  with travel insurance, do I actually hope to lose my baggage, miss my flight  connection, fall ill or meet with an accident? I definitely do not. I still  remember my fateful experience of losing my wallet while I was holidaying in  Hawaii. Was it an anti-climax to the holiday? I was certaintly thankful that I recovered some loss through an insurance claim. </p>
 <p>  Life insurance serves as a way to compensate  for a loss. If the item we lose is an object like a luggage or house, it can be  easily quantified into dollar terms. But what if death occurs, how do you quantify  the loss of your life? How much life insurance do you and your family really  need?</p>
@@ -8,7 +8,7 @@
   <div class="white-box"><u>Example:</u> If you earn $40,000 a year and  a factor of 10 is used, you probably need around $400,000 of death benefits.  ($40,000 x 10 = $400,000)</div><br><br>
   But this is too simplistic to determine  your needs isn&rsquo;t it? It does not consider critical considerations such as your dependants&rsquo; (eg. your spouse, children, your parents) living expenses, future  obligations and your current financial resources when you are no longer around  to provide for them. A more comprehensive approach is preferred now.</p><br>
 <h3 class="primary-color"><strong>Life Insurance Computation</strong></h3>
-<p>  Finding out how much death benefit you  require is simple. You just need to determine two things - your financial obligation to your dependants and your available resources now. You can use this <a href="https://www.diyinsurance.moneyowl.com.sg/portal/calculators/life-insurance-calculator" target="_blank">Life Insurance Calculator</a> to guide you.</p>
+<p>  Finding out how much death benefit you  require is simple. You just need to determine two things - your financial obligation to your dependants and your available resources now.</p>
 <p>&nbsp;</p>
 
 <ol>
@@ -28,7 +28,7 @@
           <br>
           <li>
               <p><strong>b) Do  you need to provide for your child&rsquo;s university education?</strong></p>
-              <p>The cost of <a href="http://www.moneysense.gov.sg/financial-planning/guides-and-articles/it-pays-to-plan-ahead-for-your-children-education.aspx" target="_blank" title="Forward Planning for your Child&rsquo;s Education">university education</a> is expensive.  How much you need depends on the number of children you are supporting and their  field of study (medicine or non-medicine course). </p>
+              <p>The cost of <a href="https://www.moneyowl.com.sg/#/articles/entry/56" target="_blank" title="Forward Planning for your Child&rsquo;s Education">university education</a> is expensive. How much you need depends on the number of children you are supporting and their  field of study (medicine or non-medicine course). </p>
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <tr class="cell-turquoise" >
@@ -92,7 +92,7 @@
             <strong>e) Your  existing insurance coverage</strong>
             <p>How much coverage you have in:</p>
             <ul class="bluedot">
-              <li>Your  own policies - eg. <a href="http://www.moneysense.gov.sg/life-events/death-of-a-breadwinner.aspx" target="_blank" title="DPS Case-Study">Dependant Protection Scheme (DPS)</a>, policies bought from  agents</li>
+              <li>Your  own policies - eg. <a href="https://www.cpf.gov.sg/Members/Schemes/schemes/other-matters/dependants-protection-scheme" target="_blank" title="DPS Case-Study">Dependant Protection Scheme (DPS)</a>, policies bought from  agents</li>
               <li>Your  company insurance (employee benefits)</li>
             </ul>
 
@@ -111,9 +111,10 @@
   </li>
 </ol>
 
-<p>Once these considerations are entered  into the <a href="https://www.diyinsurance.moneyowl.com.sg/portal/calculators/life-insurance-calculator" target="_blank">Life Insurance Calculator</a>, it will show you whether you have a  Shortfall or an Excess in your life insurance needs. </p>
-<p>If there is a shortfall, you can close  the gap to provide for your dependents in the event of your unfortunate demise. You can easily compare across different insurance companies and find the most suitable insurance policy in our <a href="https://www.moneyowl.com.sg/direct/life-protection">comparison page</a>.<br><br>
+<br>You could input all of these considerations into our guided journey and find out if you have a shortfall or an excess in your life insurance needs. <a href="https://www.moneyowl.com.sg/#/direct">Give it a go today</a><br>
 </p>
-  <div class="text-xs-center"><a href="https://www.moneyowl.com.sg/direct/life-protection">
-  <img src="../assets/images/banners/compare_pro_540w.png" alt="direct protection plans"></a>
+<!--
+  <div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+  <img src="/assets/images/banners/compare_pro_540w.png" alt="direct protection plans"></a>
 </div>
+-->

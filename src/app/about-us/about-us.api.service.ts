@@ -13,6 +13,10 @@ export class AboutUsApiService {
     return this.apiService.getCustomerReviewList();
   }
 
+  getSubjectList() {
+    return this.apiService.getSubjectList();
+  }
+
   setContactUs(data) {
     return this.apiService.sendContactUs(data);
   }

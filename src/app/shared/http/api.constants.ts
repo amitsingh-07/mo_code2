@@ -1,3 +1,8 @@
+const PORTFOLIO_API_BASE_URL = 'invest/investment-microservice/';
+const ARTICLE_API_BASE_URL = 'product/insurance-product';
+const ABOUT_US_API_BASE_URL = 'product/insurance-product';
+const CONTACT_US_API_BASE_URL = 'account-microservice';
+const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 
 export let apiConstants = {
@@ -21,14 +26,19 @@ export let apiConstants = {
         forgotPassword: 'account/account-microservice/api/forgotPassword',
         userProfileInfo: 'account/account-microservice/api/getProfileSummary',
         article: {
-            getRecentArticles: 'article/article-microservice/api/getRecentArticles',
-            getArticleCategoryList: 'article/article-microservice/api/getArticleCategoryList',
-            getArticleCategory: 'article/article-micorservice/api/getArticleCategory',
-            getArticle: 'article/article-microservice/api/getArticle'
+            getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
+            getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
+            getArticleCategoryList: ARTICLE_API_BASE_URL + '/api/article/getArticlesByTagId',
+            getArticleCategoryAllList: ARTICLE_API_BASE_URL + '/api/article/getAllArticles',
+            getArticle: ARTICLE_API_BASE_URL + '/api/article/getArticleById',
+            getRelatedArticle: ARTICLE_API_BASE_URL + '/api/article/getTop3ArticlesByTagId'
         },
         aboutus: {
-            getCustomerReviews: 'aboutus/aboutus-microservice/api/getCustomerReviews',
-            sendContactUs: 'aboutus/aboutus-microservice/api/sendContactUs'
+            getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/review/getAllReviews',
+            sendContactUs: CONTACT_US_API_BASE_URL + '/api/contactus'
+        },
+        subscription: {
+            base: SUBSCRIPTION_API_BASE_URL + '/api/mailinglist/subscribe'
         },
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
