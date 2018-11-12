@@ -1,0 +1,31 @@
+@import "../../../_variables.scss";
+@import "../../../_mixins.scss";
+
+.background_img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+}
+.user_content{
+    position: absolute;
+    top: 12%;
+    .user_summary{
+        font-family: $muli-regular;
+        font-size: 18px;
+        line-height: 1.28;
+        letter-spacing: -0.2px;
+        position: relative;
+    }
+    .col-4{
+        position: absolute;
+        right: 0;
+        bottom: -90%;
+    }
+}
+
+.dropdown-control .btn-dropdown.grey {
+    color: #fff;
+    background-color: #276f75;
+}
+

@@ -16,6 +16,8 @@ import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.modu
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
 
+import { YourInvestmentComponent } from './your-investment/your-investment.component';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -46,7 +48,8 @@ export function createTranslateLoader(http: HttpClient) {
 
   declarations: [
    TopUpComponent,
-   TopupRequestComponent
+   TopupRequestComponent,
+   YourInvestmentComponent
    
   ],
   providers: [CurrencyPipe]

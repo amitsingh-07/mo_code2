@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="flex-row">
+    <div class="flex-col-12">
+      
+        <img id="edit_profile_bg_img" class="background_img" src="assets/images/edit-profile-bg.svg" />
+        <div class="flex-row user_content">
+          
+        <div class="user_summary col-8">Hey Kelvin, here’s a performance summary of your 2 portfolios.</div>
+        
+        
+        <div class="col-4" >
+          <div class="dropdown-control ">
+            <div ngbDropdown>
+              <button class="btn btn-dropdown without-border grey" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+               More</button>
+              <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj)"
+                  id="additional_declaration_sourse-drpdown-option-{{i}}">sourceObj.name</button>
+              </div>
+            </div>
+          </div>
+        </div>
+   </div>
+
+      </div>
+      
+    </div>
+  </div>
