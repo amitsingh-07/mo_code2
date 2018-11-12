@@ -756,6 +756,13 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
-
-    
+setEditProfileContactInfo(data , nationalityList , countryList) {
+    this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
+    this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
+    this.investmentAccountFormData.unitedStatesResident = false;
+    this.investmentAccountFormData.singaporeanResident = true;
+    this.investmentAccountFormData.nationalityList = nationalityList;
+    this.investmentAccountFormData.countryList = countryList;
+    this.commit();
+}
 }

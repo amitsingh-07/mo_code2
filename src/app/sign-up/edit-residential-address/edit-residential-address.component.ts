@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
@@ -28,7 +29,12 @@ export class EditResidentialAddressComponent implements OnInit {
   formValues;
   countries;
   isUserNationalitySingapore;
-
+  defaultThumb;
+  showLoader;
+  loaderTitle;
+  loaderDesc;
+  formData: FormData = new FormData();
+  investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -41,8 +47,10 @@ export class EditResidentialAddressComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESIDENTIAL_ADDRESS.TITLE');
       this.setPageTitle(this.pageTitle);
+      this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
+      this.showLoader = false;
     });
-    this.getNationalityCountryList();
+    //this.getNationalityCountryList();
   }
 
   setPageTitle(title: string) {
@@ -52,9 +60,8 @@ export class EditResidentialAddressComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    //this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
+    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
-    
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.isUserNationalitySingapore = true ;
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
@@ -88,7 +95,10 @@ getCountryList(data) {
         [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       floor: [{value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')}, Validators.required],
       unitNo: [{value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')}, Validators.required],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+      isMailingAddressSame: [this.formValues.isMailingAddressSame],
+      nricFrontImage: [this.formValues.nricFrontImage, Validators.required],
+      nricBackImage: [this.formValues.nricBackImage, Validators.required],
+      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
     });
   }
 
@@ -105,7 +115,10 @@ getCountryList(data) {
       state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       zipCode: [{value: this.formValues.zipCode, disabled: this.investmentAccountService.isDisabled('zipCode')},
         [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+      isMailingAddressSame: [this.formValues.isMailingAddressSame],
+      passportImage: [this.formValues.passportImage, Validators.required],
+      resAddressProof: [this.formValues.resAddressProof, Validators.required],
+      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
     });
   }
 
@@ -219,5 +232,86 @@ getCountryList(data) {
 
   isDisabled(field) {
     return this.investmentAccountService.isDisabled(field);
+  }
+
+
+  openFileDialog(elem) {
+    if (!elem.files.length) {
+      elem.click();
+    }
+  }
+
+  fileSelected(control, controlname, fileElem, thumbElem?) {
+    const response = this.investmentAccountCommon.fileSelected(this.formData, control, controlname, fileElem, thumbElem);
+    if (!response.validFileSize) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE');
+      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.MESSAGE');
+      ref.componentInstance.errorTitle = errorTitle;
+      ref.componentInstance.errorDescription = errorDesc;
+      control.setValue('');
+    } else if (!response.validFileType) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE');
+      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE');
+      ref.componentInstance.errorTitle = errorTitle;
+      ref.componentInstance.errorDescription = errorDesc;
+      control.setValue('');
+    }
+  }
+
+  getPayloadKey(controlname) {
+    const payloadKey = this.investmentAccountCommon.getPayloadKey(controlname);
+    return payloadKey;
+  }
+
+  // uploadDocument() {
+  //   this.showUploadLoader();
+  //   this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
+  //     if (data) {
+  //       this.hideUploadLoader();
+  //       this.redirectToNextPage();
+  //     }
+  //   });
+  // }
+
+  setThumbnail(thumbElem, file) {
+    // Set Thumbnail
+    this.investmentAccountCommon.setThumbnail(thumbElem, file);
+  }
+
+  getFileName(fileElem) {
+    const fileName = this.investmentAccountCommon.getFileName(fileElem);
+    return fileName;
+  }
+
+  clearFileSelection(control, event, thumbElem?) {
+    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
+  }
+
+  showProofOfMailingDetails() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.TITLE');
+    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.MAILING_ADDRESS_PROOF.MESSAGE');
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorDescription = errorDesc;
+  }
+
+  // tslint:disable-next-line:no-identical-functions
+  showProofOfResDetails() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.TITLE');
+    const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.RES_ADDRESS_PROOF.MESSAGE');
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorDescription = errorDesc;
+  }
+  showUploadLoader() {
+    this.showLoader = true;
+    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
+    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
+  }
+
+  hideUploadLoader() {
+    this.showLoader = false;
   }
 }
