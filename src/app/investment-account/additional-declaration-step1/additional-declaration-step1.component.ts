@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -57,41 +57,38 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addInfoFormValues = this.investmentAccountService.getPepInfo();
     this.addInfoForm = new FormGroup({
-      radioPep: new FormControl (this.addInfoFormValues.radioPep, Validators.required),
-      fName: new FormControl (this.addInfoFormValues.fName, Validators.required),
-      lName: new FormControl (this.addInfoFormValues.lName, Validators.required),
-      cName: new FormControl (this.addInfoFormValues.cName, Validators.required),
-      pepoccupation: new FormControl (this.addInfoFormValues.pepoccupation, Validators.required),
-      pepCountry: new FormControl (
+      radioPep: new FormControl(this.addInfoFormValues.radioPep, Validators.required),
+      fName: new FormControl(this.addInfoFormValues.fName, Validators.required),
+      lName: new FormControl(this.addInfoFormValues.lName, Validators.required),
+      cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
+      pepoccupation: new FormControl(this.addInfoFormValues.pepoccupation, Validators.required),
+      pepCountry: new FormControl(
         this.investmentAccountService.getCountryFromNationalityCode(
           INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE), Validators.required),
-      pepPostalCode: new FormControl (this.addInfoFormValues.pepPostalCode, Validators.required),
-      pepAddress1: new FormControl (this.addInfoFormValues.pepAddress1, Validators.required),
-      pepAddress2: new FormControl (this.addInfoFormValues.pepAddress2, Validators.required),
-      pepUnitNo: new FormControl (this.addInfoFormValues.pepUnitNo, Validators.required),
-      });
+      pepPostalCode: new FormControl(this.addInfoFormValues.pepPostalCode, Validators.required),
+      pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1, Validators.required),
+      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, Validators.required),
+      pepUnitNo: new FormControl(this.addInfoFormValues.pepUnitNo, Validators.required),
+    });
     this.addInfoForm.controls.radioPep.setValue(true);
   }
   getOccupationList() {
-    this.authService.authenticate().subscribe((token) => {
-      this.investmentAccountService.getOccupationList().subscribe((data) => {
-        this.occupationList = data.objectList;
-      });
+    this.investmentAccountService.getOccupationList().subscribe((data) => {
+      this.occupationList = data.objectList;
     });
-
   }
   setOccupationValue(value) {
-  this.addInfoForm.controls.pepoccupation.setValue(value);
+    this.addInfoForm.controls.pepoccupation.setValue(value);
   }
 
   setDropDownValue(value) {
     this.addInfoForm.controls.pepCountry.setValue(value);
-}
+  }
   showHelpModalPep() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = this.translator.PEP;
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorDescription =  this.translator.PEP_DESC;
+    ref.componentInstance.errorDescription = this.translator.PEP_DESC;
     return false;
   }
   retrieveAddress(postalCode, address1Control, address2Control) {
@@ -123,26 +120,26 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   }
   goToNext(form) {
     if (!form.valid) {
-        this.markAllFieldsDirty(form);
-        const error = this.investmentAccountService.getFormErrorList(form);
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = error.title;
-        ref.componentInstance.errorMessageList = error.errorMessages;
-        return false;
+      this.markAllFieldsDirty(form);
+      const error = this.investmentAccountService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
+    } else {
+      this.investmentAccountService.setAdditionalInfoFormData(form.getRawValue());
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2]);
+    }
+  }
+  markAllFieldsDirty(form) {
+    Object.keys(form.controls).forEach((key) => {
+      if (form.get(key).controls) {
+        Object.keys(form.get(key).controls).forEach((nestedKey) => {
+          form.get(key).controls[nestedKey].markAsDirty();
+        });
       } else {
-        this.investmentAccountService.setAdditionalInfoFormData(form.getRawValue());
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2]);
+        form.get(key).markAsDirty();
       }
-    }
-    markAllFieldsDirty(form) {
-      Object.keys(form.controls).forEach((key) => {
-        if (form.get(key).controls) {
-          Object.keys(form.get(key).controls).forEach((nestedKey) => {
-            form.get(key).controls[nestedKey].markAsDirty();
-          });
-        } else {
-          form.get(key).markAsDirty();
-        }
-      });
-    }
+    });
+  }
 }

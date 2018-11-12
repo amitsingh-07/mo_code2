@@ -137,7 +137,7 @@ export class UploadDocumentsComponent implements OnInit {
         this.hideUploadLoader();
         this.redirectToNextPage();
         // INTERIM SAVE
-        this.investmentAccountService.createInvestmentAccount().subscribe((data) => {
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
         });
       }
     });

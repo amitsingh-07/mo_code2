@@ -149,8 +149,13 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setAdditionDeclaration(form.getRawValue());
-      this.investmentAccountService.createInvestmentAccount();
-      //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+      this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+        // CREATE INVESTMENT ACCOUNT
+        console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
+        this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+        });
+      });
     }
   }
 

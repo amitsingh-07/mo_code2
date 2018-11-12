@@ -720,8 +720,15 @@ export class ApiService {
     );
   }
 
-  createInvestmentAccount(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.createInvestmentAccount, data)
+  saveInvestmentAccount(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.saveInvestmentAccount, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  createInvestmentAccount() {
+    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

@@ -7,7 +7,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
-    IAddress, ICreateInvestmentAccountRequest, IEmployment, IFinancial, IHousehold, IPep,
+    IAddress, ISaveInvestmentAccountRequest, IEmployment, IFinancial, IHousehold, IPep,
     IPersonalDeclaration, IPersonalInfo, ITax
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
@@ -367,9 +367,13 @@ export class InvestmentAccountService {
         return this.apiService.uploadDocument(formData);
     }
 
-    createInvestmentAccount() {
+    saveInvestmentAccount() {
         const payload = this.constructInvestmentAccountRequest();
-        return this.apiService.createInvestmentAccount(payload);
+        return this.apiService.saveInvestmentAccount(payload);
+    }
+
+    createInvestmentAccount() {
+        return this.apiService.createInvestmentAccount();
     }
 
     setFinancialFormData(data) {
@@ -575,7 +579,6 @@ export class InvestmentAccountService {
         };
     }
     setAdditionDeclaration(data) {
-
         this.investmentAccountFormData.expectedNumberOfTransation = data.expectedNumberOfTransation;
         this.investmentAccountFormData.expectedAmountPerTranction = data.expectedAmountPerTranction;
         this.investmentAccountFormData.source = data.source;
@@ -611,7 +614,7 @@ export class InvestmentAccountService {
 
     constructInvestmentAccountRequest() {
         const payload = this.getInvestmentAccountFormData();
-        const request = {} as ICreateInvestmentAccountRequest;
+        const request = {} as ISaveInvestmentAccountRequest;
         request.myInfoVerified = payload.isMyInfoEnabled;
         request.isSingaporePR = payload.singaporeanResident;
         request.personalInfo = this.getPersonalInfoReqData(payload);
@@ -749,8 +752,8 @@ export class InvestmentAccountService {
                 expectedAmountPerTransaction: data.expectedAmountPerTranction,
                 investmentSourceId: (data.source) ? data.source.id : null,
                 additionalInfo: this.getadditionalInfoDesc(data),
-                investmentPeriodId: (data.investinvestmentEarnings) ? data.investinvestmentEarnings.investmentPeriod.id : null,
-                earningSourceId: (data.investinvestmentEarnings) ? data.investinvestmentEarnings.earningsGenerated.id : null
+                investmentPeriodId: (data.investmentPeriod) ? data.investmentPeriod.id : null,
+                earningSourceId: (data.earningsGenerated) ? data.earningsGenerated.id : null
             }
         };
     }
@@ -771,10 +774,10 @@ export class InvestmentAccountService {
 
     getadditionalInfoDesc(data) {
         let additionalDesc = '';
-        if (data.inheritanceGiftFrom) {
-            additionalDesc = data.inheritanceGiftFrom.inheritanceGift;
-        } else if (data.personalSavingForm) {
-            additionalDesc = data.personalSavingForm.personalSavings;
+        if (data.inheritanceGift) {
+            additionalDesc = data.inheritanceGift;
+        } else if (data.personalSavings) {
+            additionalDesc = data.personalSavings;
         }
         return additionalDesc;
     }
