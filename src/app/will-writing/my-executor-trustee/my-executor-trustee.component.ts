@@ -11,7 +11,7 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IExecTrustee, ISpouse } from '../will-writing-types';
+import { IExecTrustee } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
 
@@ -129,7 +129,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
           this.formTitle.push({ isAlt: false, relationship: '' });
         }
       } else {
-        if (!this.hasSpouse && !this.hasChild) {
+        if ((!this.hasSpouse && !this.hasChild) || (!this.hasSpouse && !this.willWritingService.checkBeneficiaryAge())) {
           this.formTitle.push({ isAlt: false, relationship: '' });
         }
         this.formTitle.push({ isAlt: true, relationship: '' });
@@ -167,7 +167,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   }
 
   editExecTrustee(relation: string, index: number) {
-    if (relation === 'spouse') {
+    if (relation === WILL_WRITING_CONFIG.SPOUSE) {
       if (this.addExeTrusteeForm.dirty) {
         this.pageTitleComponent.goBack();
       } else {

@@ -168,7 +168,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   }
 
   editBeneficiary(relation: string, index: number) {
-    if (relation === 'spouse' || relation === 'child') {
+    if (relation === WILL_WRITING_CONFIG.SPOUSE || relation === WILL_WRITING_CONFIG.CHILD) {
       if (this.addBeneficiaryForm.dirty) {
         this.pageTitleComponent.goBack();
       } else {
@@ -211,9 +211,6 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     ref.componentInstance.unSaved = true;
-    if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
-    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(url);
@@ -246,8 +243,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
         if (this.checkBeneficiaryData()) {
           url = WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url,
-            this.willWritingService.isUserLoggedIn());
+          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, true);
         } else if (this.isFormAltered) {
           this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false);
         } else {

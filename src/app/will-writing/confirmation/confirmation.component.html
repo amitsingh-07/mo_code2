@@ -183,9 +183,9 @@
                 <!-- Loop Start-->
                 <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let beneficiary of willBeneficiary">
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                    <span *ngIf="beneficiary.relationship === 'spouse'">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
-                    <span *ngIf="beneficiary.relationship === 'child'">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{beneficiary.pos}}</span>
-                    <span *ngIf="beneficiary.relationship !== 'spouse' && beneficiary.relationship !== 'child'">{{'WILL_WRITING.COMMON.OTHERS'
+                    <span *ngIf="beneficiary.relationship === willWritingConfig.SPOUSE">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
+                    <span *ngIf="beneficiary.relationship === willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{beneficiary.pos}}</span>
+                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.OTHERS'
                       | translate}}</span>
                   </div>
                   <div class="record">
