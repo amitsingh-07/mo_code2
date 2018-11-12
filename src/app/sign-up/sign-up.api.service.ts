@@ -77,6 +77,22 @@ export class SignUpApiService {
   }
 
   /**
+   * form create user account request.
+   */
+  updateAccountBodyRequest(data) {
+    return {
+      customer: {
+        email: data.email,
+        mobileNumber: data.mobileNumber,
+        notificationByEmail: true,
+        countryCode: data.countryCode,
+        notificationByPhone: true
+      },
+      sessionId: this.authService.getSessionId()
+    };
+  }
+
+  /**
    * form request new OTP request.
    * @returns IVerifyRequestOTP - VerifyRequest
    */
@@ -131,6 +147,15 @@ export class SignUpApiService {
   createAccount(captcha) {
     const payload = this.createAccountBodyRequest(captcha);
     return this.apiService.createAccount(payload);
+  }
+
+  /**
+   * update user account.
+   * @param data - Country code, Mobile number and Email address.
+   */
+  updateAccount(data) {
+    const payload = this.updateAccountBodyRequest(data);
+    return this.apiService.updateAccount(payload);
   }
 
   /**
@@ -192,7 +217,6 @@ export class SignUpApiService {
    * @param password - password.
    */
   verifyLogin(userEmail, userPassword, captcha) {
-    //const sessionId = this.signUpService.getCaptchaSessionId();
     const sessionId = this.authService.getSessionId();
     return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
   }

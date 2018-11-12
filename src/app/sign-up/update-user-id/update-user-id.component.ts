@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { TermsComponent } from '../../shared/components/terms/terms.component';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -22,7 +22,6 @@ import { ValidateRange } from './range.validator';
 })
 export class UpdateUserIdComponent implements OnInit {
   private pageTitle: string;
-  private description: string;
 
   updateUserIdForm: FormGroup;
   formValues: any;
@@ -41,6 +40,7 @@ export class UpdateUserIdComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
+    private investmentAccountService: InvestmentAccountService
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -62,15 +62,15 @@ export class UpdateUserIdComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.buildAccountInfoForm();
+    this.buildUpdateAccountForm();
     this.getCountryCode();
   }
 
   /**
-   * build account form.
+   * build update account form.
    */
-  buildAccountInfoForm() {
-    this.formValues = this.signUpService.getAccountInfo();
+  buildUpdateAccountForm() {
+    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
     this.updateUserIdForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
@@ -95,7 +95,7 @@ export class UpdateUserIdComponent implements OnInit {
       return false;
     } else {
       this.signUpService.setAccountInfo(form.value);
-      this.openTermsOfConditions();
+      this.updateUserAccount();
     }
   }
 
@@ -129,9 +129,10 @@ export class UpdateUserIdComponent implements OnInit {
   /**
    * request one time password.
    */
-  createAccount() {
-    this.signUpApiService.createAccount(this.updateUserIdForm.value.captcha).subscribe((data: any) => {
+  updateUserAccount() {
+    this.signUpApiService.updateAccount(this.updateUserIdForm.value).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
+        this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.LOGIN);
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
       } else {
@@ -147,14 +148,5 @@ export class UpdateUserIdComponent implements OnInit {
 
   goBack() {
     this._location.back();
-  }
-
-  openTermsOfConditions() {
-    const ref = this.modal.open(TermsComponent, { centered: true, windowClass: 'sign-up-terms-modal-dialog' });
-    ref.result.then((data) => {
-      if (data === 'proceed') {
-        this.createAccount();
-      }
-    });
   }
 }
