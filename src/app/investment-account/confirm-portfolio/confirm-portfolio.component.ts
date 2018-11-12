@@ -83,8 +83,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     const params = this.constructgetPortfolioParams();
     this.investmentAccountService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
-      this.portfolio.riskProfileId = 4; /* TODO: this will be removed after api availability */
-      this.riskProfileImage = ProfileIcons[this.portfolio.riskProfileId - 1]['icon'];
+      this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
     });
   }
 
@@ -149,7 +148,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
     ref.componentInstance.investmentData = {
       investmentPeriod: this.portfolio.tenure,
-      oneTimeInvestment: this.portfolio.oneTimeInvestment,
+      oneTimeInvestment: this.portfolio.initialInvestment,
       monthlyInvestment: this.portfolio.monthlyInvestment
     };
     ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
@@ -196,7 +195,15 @@ export class ConfirmPortfolioComponent implements OnInit {
         // CREATE INVESTMENT ACCOUNT
         console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+          if (response.objectList[0]) {
+            if (response.objectList[0].data.status === 'confirmed') {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+            } else {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+            }
+          } else { // TODO : ELSE TO BE REMOVED
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+          }
         });
       });
     }

@@ -153,7 +153,15 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
         // CREATE INVESTMENT ACCOUNT
         console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+          if (response.objectList[0]) {
+            if (response.objectList[0].data.status === 'confirmed') {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+            } else {
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_SUBMIT]);
+            }
+          } else { // TODO : ELSE TO BE REMOVED
+            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_SUBMIT]);
+          }
         });
       });
     }
