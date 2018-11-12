@@ -130,7 +130,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
         ref.componentInstance.errorMessageList = error.errorMessages;
         return false;
       } else {
-        this.investmentAccountService.setAdditionalInfoFormData(form.value);
+        this.investmentAccountService.setAdditionalInfoFormData(form.getRawValue());
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONAL_DECLARATION_SCREEN_2]);
       }
     }

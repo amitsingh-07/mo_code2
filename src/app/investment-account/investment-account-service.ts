@@ -357,6 +357,11 @@ export class InvestmentAccountService {
         this.commit();
     }
 
+    setEmploymentStatusList(list) {
+        this.investmentAccountFormData.employmentStatusList = list;
+        this.commit();
+    }
+
     // Upload Document
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
@@ -589,10 +594,10 @@ export class InvestmentAccountService {
 
     setFundyourAccount(data) {
         this.investmentAccountFormData.Investment = data.Investment;
-        this.investmentAccountFormData.oneTimeInvestmentAmount  = data.oneTimeInvestmentAmount;
+        this.investmentAccountFormData.oneTimeInvestmentAmount = data.oneTimeInvestmentAmount;
         this.investmentAccountFormData.portfolio = data.portfolio;
         this.investmentAccountFormData.topupportfolioamount = data.topupportfolioamount;
-        this.investmentAccountFormData.MonthlyInvestmentAmount  = data.MonthlyInvestmentAmount ;
+        this.investmentAccountFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
 
     }
     getPortfolioAllocationDetails(params) {
@@ -612,7 +617,7 @@ export class InvestmentAccountService {
         request.personalInfo = this.getPersonalInfoReqData(payload);
         request.residentialAddress = this.getResidentialAddressReqData(payload);
         request.mailingAddress = this.getMailingAddressReqData(payload);
-        request.employmentDetails = this.getEmployementDetailsReqData(payload);
+        request.employmentDetails = this.getEmploymentDetailsReqData(payload);
         request.householdDetails = this.getHouseholdDetailsReqData(payload);
         request.financialDetails = this.getFinancialDetailsReqData(payload);
         request.taxDetails = this.getTaxDetailsReqData(payload);
@@ -621,7 +626,7 @@ export class InvestmentAccountService {
     }
 
     getPersonalInfoReqData(data): IPersonalInfo {
-        return  {
+        return {
             nationalityCode: data.nationalityCode,
             fullName: data.fullName,
             firstName: data.firstName,
@@ -637,49 +642,62 @@ export class InvestmentAccountService {
 
     getResidentialAddressReqData(data): IAddress {
         return {
-            countryId: (data.country) ? data.country.id : '',
+            countryId: (data.country) ? data.country.id : null,
             state: data.state,
             postalCode: (this.isSingaporeResident) ? data.postalCode : data.zipCode,
             addressLine1: data.address1,
             addressLine2: data.address2,
             unitNumber: data.unitNo,
-            townName: 'Residential Town Name', // todo - not available in client
+            townName: null, // todo - not available in client
             city: data.city
         };
     }
 
     getMailingAddressReqData(data): IAddress {
+        let addressDetails = null;
+        if (!data.isMailingAddressSame) {
+            addressDetails = {
+                countryId: (data.mailCountry) ? data.mailCountry.id : null,
+                state: data.mailState,
+                postalCode: (this.isSingaporeResident) ? data.mailPostalCode : data.mailZipCode,
+                addressLine1: data.mailAddress1,
+                addressLine2: data.mailAddress2,
+                unitNumber: data.unitNo,
+                townName: null, // todo - not available in client
+                city: data.mailCity
+            };
+        }
+        return addressDetails;
+    }
+
+    getEmploymentDetailsReqData(data): IEmployment {
+        const empStatus = this.getEmploymentByName(data.employmentStatus);
         return {
-            countryId: (data.mailCountry) ? data.mailCountry.id : '',
-            state: data.mailState,
-            postalCode: (this.isSingaporeResident) ? data.mailPostalCode : data.mailZipCode,
-            addressLine1: data.mailAddress1,
-            addressLine2: data.mailAddress2,
-            unitNumber: data.unitNo,
-            townName: 'Mailing Town Name2', // todo - not available in client
-            city: data.mailCity
+            employmentStatusId: empStatus.id,
+            industryId: (data.industry) ? data.industry.id : null,
+            occupationId: (data.occupation) ? data.occupation.id : null,
+            employerName: data.companyName,
+            contactNumber: data.contactNumber,
+            unemployedReason: null, // todo not available in client
+            employerAddress: this.getEmployerAddressReqData(data)
         };
     }
 
-    getEmployementDetailsReqData(data): IEmployment {
-        return {
-            employmentStatusId: 1, // todo - need to work on employment details
-            industryId: (data.industry) ? data.industry.id : '',
-            occupationId: (data.occupation) ? data.occupation.id : '',
-            employerName: data.companyName,
-            contactNumber: data.contactNumber,
-            unemployedReason: 'No Reason', // todo not available in client
-            employerAddress: {
-                countryId: (data.empCountry) ? data.empCountry.id : '',
+    getEmployerAddressReqData(data): IAddress {
+        let addressDetails = null;
+        if (!data.isEmployeAddresSame) {
+            addressDetails = {
+                countryId: (data.empCountry) ? data.empCountry.id : null,
                 state: data.empState,
                 postalCode: (this.isSingaporeResident) ? data.empPostalCode : data.empZipCode,
                 addressLine1: data.empAddress1,
                 addressLine2: data.empAddress2,
                 unitNumber: data.empUnitNo,
-                townName: 'Employer Town Name', // todo not available in client
+                townName: null, // todo not available in client
                 city: data.empCity
-            }
-        };
+            };
+        }
+        return addressDetails;
     }
 
     getHouseholdDetailsReqData(data): IHousehold {
@@ -700,15 +718,15 @@ export class InvestmentAccountService {
 
     getTaxDetailsReqData(data): ITax {
         return {
-            taxCountryId: (data.taxCountry) ? data.taxCountry.id : '',
-            tinNumber: (data.tinNumberText) ? data.tinNumberText.tinNumber : '',
-            noTinReason: (data.reasonDropdown) ? data.reasonDropdown.noTinReason.id : ''
+            taxCountryId: (data.taxCountry) ? data.taxCountry.id : null,
+            tinNumber: (data.tinNumberText) ? data.tinNumberText.tinNumber : null,
+            noTinReason: (data.reasonDropdown) ? data.reasonDropdown.noTinReason.id : null
         };
     }
 
     getPersonalDecReqData(data): IPersonalDeclaration {
         return {
-            investmentSourceId: (data.sourceOfIncome) ? data.sourceOfIncome.id : '',
+            investmentSourceId: (data.sourceOfIncome) ? data.sourceOfIncome.id : null,
             beneficialOwner: data.radioBeneficial,
             politicallyExposed: data.radioPEP,
             connectedToInvestmentFirm: data.radioEmploye,
@@ -716,23 +734,23 @@ export class InvestmentAccountService {
                 firstName: data.fName,
                 lastName: data.lName,
                 companyName: data.cName,
-                occupationId: (data.pepoccupation) ? data.pepoccupation.id : '',
+                occupationId: (data.pepoccupation) ? data.pepoccupation.id : null,
                 pepAddress: {
-                    countryId: (data.pepCountry) ? data.pepCountry.id : '',
-                    state: '', // info - always empty
+                    countryId: (data.pepCountry) ? data.pepCountry.id : null,
+                    state: null, // info - always empty
                     postalCode: data.pepPostalCode,
                     addressLine1: data.pepAddress1,
                     addressLine2: data.pepAddress2,
                     unitNumber: data.pepUnitNo,
-                    townName: 'TOWN NAME', // todo not available in client
-                    city: '' // info - always empty
+                    townName: null, // todo not available in client
+                    city: null // info - always empty
                 },
                 expectedNumberOfTransactions: data.expectedNumberOfTransation,
                 expectedAmountPerTransaction: data.expectedAmountPerTranction,
-                investmentSourceId: (data.source) ? data.source.id : '',
+                investmentSourceId: (data.source) ? data.source.id : null,
                 additionalInfo: this.getadditionalInfoDesc(data),
-                investmentPeriodId: (data.investinvestmentEarnings) ? data.investinvestmentEarnings.investmentPeriod.id : '',
-                earningSourceId: (data.investinvestmentEarnings) ? data.investinvestmentEarnings.earningsGenerated.id : ''
+                investmentPeriodId: (data.investinvestmentEarnings) ? data.investinvestmentEarnings.investmentPeriod.id : null,
+                earningSourceId: (data.investinvestmentEarnings) ? data.investinvestmentEarnings.earningsGenerated.id : null
             }
         };
     }
@@ -743,6 +761,12 @@ export class InvestmentAccountService {
             convertedDate = dateObject.day + '-' + dateObject.month + '-' + dateObject.year;
         }
         return convertedDate;
+    }
+
+    getEmploymentByName(name) {
+        const employmentStatus = this.investmentAccountFormData.employmentStatusList.filter(
+            (status) => status.name === name);
+        return employmentStatus[0];
     }
 
     getadditionalInfoDesc(data) {
@@ -764,5 +788,5 @@ export class InvestmentAccountService {
         return '?' + params.toString();
     }
 
-    
+
 }

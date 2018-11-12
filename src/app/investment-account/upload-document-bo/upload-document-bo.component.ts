@@ -97,9 +97,6 @@ export class UploadDocumentBOComponent implements OnInit {
       if (response) {
         this.hideUploadLoader();
         this.redirectToNextPage();
-        // SAVE PARTIAL DATA
-        this.investmentAccountService.createInvestmentAccount().subscribe((data) => {
-        });
       }
     });
   }
