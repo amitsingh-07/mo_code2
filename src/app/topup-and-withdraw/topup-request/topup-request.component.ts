@@ -25,19 +25,19 @@ export class TopupRequestComponent implements OnInit {
   formValues;
   topupportfolioamount;
   topupFormValues;
-  requestReceivecd;
+  requestReceivecd = false;
   fundDetails;
   constructor(public readonly translate: TranslateService,
-    public authService: AuthenticationService,
     private router: Router,
     private modal: NgbModal,
+    public authService: AuthenticationService,
     public topupAndWithDrawService: TopupAndWithDrawService) {
   }
   ngOnInit() {
     this.topupFormValues = this.topupAndWithDrawService.getTopUp();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.topupportfolioamount = this.topupFormValues.topupportfolioamount;
-    if (this.topupportfolioamount && this.topupportfolioamount.investment === 'One-time Investment') {
+    if (!(this.fundDetails.topupportfolioamount) && this.fundDetails.Investment === 'One-time Investment') {
       this.requestReceivecd = true;
 
     } else {
