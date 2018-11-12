@@ -89,10 +89,7 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   constructgetPortfolioParams() {
-    /* TODO: this will be removed after api availability */
     return {
-      riskProfileId: 4,
-      enquiryId: 5931
     };
   }
 
