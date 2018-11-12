@@ -125,7 +125,7 @@ export class SelectNationalityComponent implements OnInit {
     }
 
     save(form) {
-        const singaporeanResident = form.controls.singaporeanResident ? form.controls.singaporeanResident.value : '';
+        const singaporeanResident = form.controls.singaporeanResident ? form.controls.singaporeanResident.value : false;
         this.investmentAccountService.setNationality(this.nationalityList, this.countryList,
             this.nationality, form.controls.unitedStatesResident.value, singaporeanResident);
     }
