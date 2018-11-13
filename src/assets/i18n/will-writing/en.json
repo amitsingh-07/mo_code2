@@ -94,22 +94,22 @@
         "CHILDREN": "children",
         "CHILD": "child",
         "MARITAL_STATUS_LIST": [{
-          "text": "Single",
+          "text": "single",
           "value": "single"
         }, {
-          "text": "Married",
+          "text": "married",
           "value": "married"
         }, {
-          "text": "Divorced",
+          "text": "divorced",
           "value": "divorced"
         }, {
-          "text": "Widowed",
+          "text": "widowed",
           "value": "widowed"
         }]
       }
     },
     "MY_FAMILY": {
-      "TITLE": "My Family",
+      "TITLE": "About My Family",
       "SUB_TITLE": "Please enter your details accurately, as per identification document (NRIC, FIN, Birth Cert or Passport)",
       "FORM": {
         "MY_CHILD": "My Child",
