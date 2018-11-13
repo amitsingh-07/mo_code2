@@ -48,6 +48,7 @@ import {
     UploadDocumentsLaterComponent
 } from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { AccountCreationErrorModalComponent } from './account-creation-error-modal/account-creation-error-modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -96,11 +97,13 @@ export function createTranslateLoader(http: HttpClient) {
     AccountSetupCompletedComponent,
     AdditionalDeclarationSubmitComponent,
     UploadDocumentBOComponent,
-    FundYourAccountComponent
+    FundYourAccountComponent,
+    AccountCreationErrorModalComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
-    FeesModalComponent
+    FeesModalComponent,
+    AccountCreationErrorModalComponent
   ],
   providers: [CurrencyPipe]
 })
