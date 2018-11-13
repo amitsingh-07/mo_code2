@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild,ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -13,8 +13,10 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 @Component({
   selector: 'app-withdrawal-payment-method',
   templateUrl: './withdrawal-payment-method.component.html',
-  styleUrls: ['./withdrawal-payment-method.component.scss']
+  styleUrls: ['./withdrawal-payment-method.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
+
 export class WithdrawalPaymentMethodComponent implements OnInit {
   pageTitle;
 
