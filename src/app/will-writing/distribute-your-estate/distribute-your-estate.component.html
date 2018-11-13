@@ -8,7 +8,7 @@
         <div class="intro-block__tab" [class.active]="false"  id="willtab4"></div>
       </div>
       <div class="flex-row">
-          <div class="back-btn col-12" id="distribute-your-estate-back" (click)="goBack()"></div>
+          <div class="back-btn col-12 hidden-lg" id="distribute-your-estate-back" (click)="goBack()"></div>
         </div>
   
       <div class="intro-block__content">
@@ -21,10 +21,10 @@
           </div>
   
           <div class="col-lg-5 col-md-7 col-sm-12 intro-block__content__desc">
-            <p class="intro-block__content__heading" id="distribute-your-estate-heading">{{ 'WILL_WRITING.COMMON.STEP_2' | translate}}</p>
+            <p class="intro-block__content__heading mb10" id="distribute-your-estate-heading">{{ 'WILL_WRITING.COMMON.STEP_2' | translate}}</p>
             <p class="intro-block__content__title mb10" id="distribute-your-estate-title">{{ 'WILL_WRITING.DISTRIBUTE_YOUR_ESTATE.TITLE' | translate}}</p>
-            <p class="intro-block__content__sub-title mb40" id="distribute-your-estate-sub-title">{{ 'WILL_WRITING.DISTRIBUTE_YOUR_ESTATE.SUB_TITLE' | translate}}</p>
-            <button type="button" class="btn btn__footer--fixed width100" id="distribute-your-estate-continue" (click)="goToNext()">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <p class="intro-block__content__sub-title" id="distribute-your-estate-sub-title">{{ 'WILL_WRITING.DISTRIBUTE_YOUR_ESTATE.SUB_TITLE' | translate}}</p>
+            <button type="button" class="btn btn__footer--fixed width100" id="distribute-your-estate-continue" (click)="goToNext()">{{ 'LABEL.PROCEED' | translate}}</button>
           </div>
           
         </div>

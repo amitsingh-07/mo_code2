@@ -226,6 +226,13 @@ input[type='checkbox']+label {
                 text-align: center;
             } 
         }
+        .step2 {
+            font-family: $muli-light;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+          }
     @include allmobiles {
         display: flex;
         flex-direction: column-reverse;
@@ -286,12 +293,11 @@ input[type='checkbox']+label {
         position: relative;
         left: 0;
         right: 0;
+        @include allmobiles{
+            margin: 0 15px;
+        }
         img{
             width:100%;
-            @include allmobiles{
-                width: 100%;
-            }
-            
         }
       }
       .distribution-content{
@@ -305,6 +311,9 @@ input[type='checkbox']+label {
         .percentage{
             font-size: 48px !important;
             font-family: $muli-bold;
+            @include iphone5{
+                line-height: 1.22;
+            }
         }
         .sub-title{
             font-family: $muli-semi-bold;
@@ -357,7 +366,11 @@ input[type='checkbox']+label {
       }
   }
   .estateDistributionForm {
-      padding-bottom: 60px;
+      padding-bottom: 5px;
+      @include allmobiles {
+        padding-bottom: 60px;
+      }
+      
   }
 
   input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
@@ -368,3 +381,38 @@ input[type='checkbox']+label {
     -moz-appearance: textfield;
     }
 
+    .distribution-container {
+        margin-top: 50px;
+        @include allmobiles {
+            margin-top: 0px;
+        }
+        .btn{
+            margin-top: 41px !important;
+        }
+    }
+.message-block{
+    margin-top: 21px;
+    .tooltip-message-img{
+        position: relative;
+        img{
+            max-width: 100%;
+        }
+    }
+    .tooltip-message{
+        padding: 14px 9px 17px 20px;
+        position: absolute;
+        bottom: 23%;
+        width: 274px;
+        left: 16%;
+        font-size: 14px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.1px;
+        color: #333846;
+        @include allmobiles{
+            bottom: 20%;
+        }
+    }
+}

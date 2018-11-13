@@ -34,7 +34,7 @@
                 <div class="sub-text" *ngIf="!uploadForm.controls.passportImage.value">{{
                   'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value" [innerHtml]="getFileName(passport)"></div>
-                <input type="file" #passport formControlName="passportImage" (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT', $event, passportThumb)"
+                <input type="file" #passport formControlName="passportImage" (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT_BO', $event, passportThumb)"
                   name="passport" accept="image/*" class="is-hidden">
               </div>
             </div>

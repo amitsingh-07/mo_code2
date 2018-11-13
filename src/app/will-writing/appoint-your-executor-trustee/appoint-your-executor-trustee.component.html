@@ -8,7 +8,7 @@
         <div class="intro-block__tab" [class.active]="false"  id="willtab4"></div>
       </div>
       <div class="flex-row">
-          <div class="back-btn col-12" id="appoint-your-executor-back" (click)="goBack()"></div>
+          <div class="back-btn col-12 hidden-lg" id="appoint-your-executor-back" (click)="goBack()"></div>
         </div>
   
       <div class="intro-block__content">
@@ -20,10 +20,10 @@
             </div>
           </div>
   
-          <div class="col-lg-5 col-md-7 col-sm-12 intro-block__content__desc">
-            <p class="intro-block__content__heading" id="appoint-your-executor-heading">{{ 'WILL_WRITING.COMMON.STEP_3' | translate}}</p>
+          <div class="col-lg-6 col-md-7 col-sm-12 intro-block__content__desc">
+            <p class="intro-block__content__heading mb10" id="appoint-your-executor-heading">{{ 'WILL_WRITING.COMMON.STEP_3' | translate}}</p>
             <p class="intro-block__content__title mb10" id="appoint-your-executor-title">{{ 'WILL_WRITING.APPOINT_YOUR_EXECUTOR_TRUSTEE.TITLE' | translate}}</p>
-            <p class="intro-block__content__sub-title mb40" id="appoint-your-executor-sub-title">{{ 'WILL_WRITING.APPOINT_YOUR_EXECUTOR_TRUSTEE.SUB_TITLE' | translate}}</p>
+            <p class="intro-block__content__sub-title" id="appoint-your-executor-sub-title">{{ 'WILL_WRITING.APPOINT_YOUR_EXECUTOR_TRUSTEE.SUB_TITLE' | translate}}</p>
             <button type="button" class="btn btn__footer--fixed width100" id="appoint-your-executor-continue" (click)="goToNext()">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
           

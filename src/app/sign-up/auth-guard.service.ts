@@ -21,3 +21,23 @@ export class AuthGuardService implements CanActivate {
     return true;
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+
+// tslint:disable-next-line:max-classes-per-file
+export class LoggedUserService implements CanActivate {
+  constructor(private signUpService: SignUpService,
+              private route: Router
+  ) {
+  }
+  canActivate(): boolean {
+    const userInfo = this.signUpService.getUserProfileInfo();
+    if (userInfo && userInfo.firstName) {
+      this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+      return false;
+    }
+    return true;
+  }
+}

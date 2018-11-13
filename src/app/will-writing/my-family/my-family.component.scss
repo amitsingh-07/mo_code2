@@ -17,7 +17,7 @@
     font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
-    margin-top: 15px;
+    margin-top: 23px;
     @include allmobiles {
         margin-top: 19px;
     }
@@ -25,7 +25,7 @@
         color:#00a7a7;
     }
     .flex-row{
-        padding: 0 19px 25px; 
+        padding: 0 19px 23px; 
     }
     .title {
         background: $white-color;
@@ -132,3 +132,30 @@
         padding: 0;
     }
 }
+
+.with-help-icon{
+    display:flex;
+    align-items: flex-end;
+    position: relative;
+    .help-icon {
+        background-image: url("../../../assets/images/help-icon.png");
+        width: 40px;
+        height: 20px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 5px;
+        margin-right: -5px;
+    }
+}
+
+.sub_name {
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #2d8289;
+  }

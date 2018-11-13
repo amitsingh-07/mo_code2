@@ -3,7 +3,7 @@
   <div class="container-fluid max-width--1024">
     <div class="content">
       <div class="flex-row">
-        <div class="col-lg-7 col-md-7 col-12 mobile-content">
+        <div class="col-lg-6 col-md-6 col-12 mobile-content">
           <div class="heading hidden-sm-md" id="about-me-step1">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
           <div class="autofill-link">
             <div class="autofill-text hidden-sm-md" id="about-me-title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
@@ -18,10 +18,10 @@
             <div class="aboutMe">
               <div class="form-group">
                 <div class="flex-row title" id="about-me-form-title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
-                <div class="flex-row mb10 mt20">
+                <div class="flex-row section mt20">
                   <div class="flex-col-5">
                     <label for="name" id="aboutMeFormLbl1">
-                      <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}</div>
+                      <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}<div class="sub_name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></div>
                     </label>
                   </div>
                   <div class="flex-col-7">
@@ -29,11 +29,11 @@
                       class="form-control" #name formControlName="name">
                   </div>
                 </div>
-                <div class="flex-row mb10">
+                <div class="flex-row section">
                   <div class="flex-col-5">
                     <label for="name" id="aboutMeFormLbl2">
                       <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC' | translate}}</div>
-                      <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}}</div>
+                      <div class="with-help-icon">{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon"></span></div>
                     </label>
                   </div>
                   <div class="flex-col-7">
@@ -41,15 +41,15 @@
                       class="form-control" #uin formControlName="uin">
                   </div>
                 </div>
-                <div class="flex-row mb10">
+                <div class="flex-row section">
                   <div class="flex-col-5">
                     <label for="name" id="aboutMeFormLbl3">{{ 'WILL_WRITING.ABOUT_ME.FORM.I_AM_A' | translate}}</label>
                   </div>
                   <div class="flex-col-7 direct-form-grp">
                     <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-                      <div class="flex-row mb10 pl0 pr0">
+                      <div class="flex-row section pl0 pr0 mb0 space-btwn">
                         <div class="flex-col-6">
-                          <label ngbButtonLabel class="direct-form-btn--radio btn mr5" [ngClass]="{'inline-error': submitted && abtMe.gender.invalid}"
+                          <label ngbButtonLabel class="direct-form-btn--radio btn mr10 male" [ngClass]="{'inline-error': submitted && abtMe.gender.invalid}"
                             id="aboutMeFormLbl4">
                             <input ngbButton type="radio" value="male" id="aboutMeFormInpt3"> {{ 'LABEL.MALE' |
                             translate}}
@@ -66,7 +66,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="flex-row mb10">
+                <div class="flex-row section">
                   <div class="flex-col-5">
                     <label for="name" id="aboutMeFormLbl6">{{ 'WILL_WRITING.ABOUT_ME.FORM.AND' | translate}}</label>
                   </div>
@@ -78,10 +78,10 @@
                           <span *ngIf="maritalStatus !== ''">{{maritalStatus}}</span>
                         </button>
                         <div ngbDropdownMenu aria-labelledby="dropdownMaritalStatus">
-                          <button class="dropdown-item" (click)="selectMaritalStatus('')">{{'COMMON.LBL_SELECT' |
+                          <button class="dropdown-item" (click)="selectMaritalStatus('','')">{{'COMMON.LBL_SELECT' |
                             translate}}</button>
                           <button type="button" class="dropdown-item" *ngFor="let status of maritalStatusList; let i=index"
-                            (click)="selectMaritalStatus(status)">
+                            (click)="selectMaritalStatus(status, 'html')">
                             {{status.text}}
                           </button>
                         </div>
@@ -103,9 +103,9 @@
                             'WILL_WRITING.ABOUT_ME.FORM.CHILD' : 'WILL_WRITING.ABOUT_ME.FORM.CHILDREN') | translate}}</span>
                         </button>
                         <div ngbDropdownMenu aria-labelledby="dropdownNoOfChildren">
-                          <button class="dropdown-item" (click)="selectNoOfChildren('')">{{'COMMON.LBL_SELECT' |
+                          <button class="dropdown-item" (click)="selectNoOfChildren('','')">{{'COMMON.LBL_SELECT' |
                             translate}}</button>
-                          <button type="button" class="dropdown-item" *ngFor="let children of noOfChildrenList" (click)="selectNoOfChildren(children)">
+                          <button type="button" class="dropdown-item" *ngFor="let children of noOfChildrenList" (click)="selectNoOfChildren(children,'html')">
                             {{children}} {{ (children == 1 ? 'WILL_WRITING.ABOUT_ME.FORM.CHILD' :
                             'WILL_WRITING.ABOUT_ME.FORM.CHILDREN') | translate}}
                           </button>
@@ -119,7 +119,9 @@
             <div>
               <button type="button" (click)="goToNext(aboutMeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                 id="aboutMeFormBtn1">
-                {{'LABEL.CONTINUE' | translate}}</button>
+                <span *ngIf="!fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                <span *ngIf="fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
+              </button>
             </div>
           </form>
         </div>

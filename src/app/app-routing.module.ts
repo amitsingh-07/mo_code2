@@ -25,13 +25,16 @@ const routes: Routes = [
       { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
-      /*
+
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
-      */
+
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
+      { path: 'topup-and-withdraw', loadChildren: './topup-and-withdraw/topup-and-withdraw.module#TopupAndWithdrawModule' },
+
       { path: 'will-writing', loadChildren: './will-writing/will-writing.module#WillWritingModule' },
+
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent},
       { path: 'privacy-policy', component: PrivacyPolicyComponent},
