@@ -13,6 +13,7 @@ export let apiConstants = {
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
         signUp: 'account/account-microservice/api/signup',
+        updateUserId: 'account/account-microservice/api/update?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
         setPassword: 'account/account-microservice/api/setPassword',
