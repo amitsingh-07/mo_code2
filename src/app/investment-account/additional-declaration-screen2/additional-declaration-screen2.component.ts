@@ -5,16 +5,16 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
-
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import {
+    AccountCreationErrorModalComponent
+} from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
@@ -139,6 +139,16 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       }
     });
   }
+
+  showInvestmentAccountErrorModal(errorList) {
+    const errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE');
+    const errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.DESCRIPTION');
+    const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorMessage = errorMessage;
+    ref.componentInstance.errorList = errorList;
+  }
+
   goToNext(form) {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
@@ -153,14 +163,18 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
         // CREATE INVESTMENT ACCOUNT
         console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
-          if (response.objectList[0]) {
-            if (response.objectList[0].data.status === 'confirmed') {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
-            } else {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_SUBMIT]);
+          if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
+            const errorResponse = response.objectList[response.objectList.length - 1];
+            const errorList = errorResponse.serverStatus.errors;
+            this.showInvestmentAccountErrorModal(errorList);
+          } else { // SUCCESS SCENARIO
+            if (response.objectList[response.objectList.length - 1]) {
+              if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+              } else {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_SUBMIT]);
+              }
             }
-          } else { // TODO : ELSE TO BE REMOVED
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_SUBMIT]);
           }
         });
       });
