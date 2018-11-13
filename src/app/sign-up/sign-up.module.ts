@@ -28,6 +28,7 @@ import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -68,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     InputFocusDirective,
     SecurePipe,
     EditProfileComponent,
-    EditPasswordComponent
+    EditPasswordComponent,
+    UpdateUserIdComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

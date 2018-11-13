@@ -219,6 +219,13 @@ export class ApiService {
       );
   }
 
+  updateAccount(payload) {
+    return this.http.post(apiConstants.endpoint.updateUserId, payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
   requestNewOTP(payload: IVerifyRequestOTP) {
     return this.http.post(apiConstants.endpoint.resendOTP, payload)
       .pipe(
