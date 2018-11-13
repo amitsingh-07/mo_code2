@@ -979,25 +979,31 @@ input::placeholder {
 }
 
 .subscribe__form--plugin{
-
-}
-
-.subscribe__form--plugin{
   position: relative;
   display:flex;
   flex-direction:column;
   width:400px;
   justify-content:center;
+  margin-bottom:70px;
+  @include minMobilemaxPhablet{
+    width:320px;
+  }
   .subscribe-title--container{
     position: relative;
     display:flex;
-    width:100%; 
+    width:100%;
+    align-items:flex-end;
     .subscribe--title{
       font-family:$muli-bold;
       font-size:24px;
       color:$teal-color;
-      line-height:1.25;
-      margin-left:18px;
+      line-height:30px;
+      margin:0px 0px 10px 16px;
+      @include minMobilemaxPhablet{
+        font-size:18px;
+        line-height:21px;
+        margin:0px 0px 20px 16px;
+      }
     }
     .subscribe--icon{
       margin-right:10px;
@@ -1006,34 +1012,58 @@ input::placeholder {
   .subscribe-input--container{
     position: relative;
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     width:100%;
-    height:60px;
-    background-color:$white-color;
-    border: solid 1px #add9d8;
+    height:auto;
     margin-bottom:10px;
     padding:0px;
-    
-    input[type=email] {
+    .row{
+      position: relative;
+      display:flex;
+      flex-direction:row;
+      justify-content: space-between;
+      margin:0px 0px 10px 0px; 
+      .flex-col-6{
+        flex-basis:calc(50% - 5px);
+        width:calc(50% - 5px);
+      }
+    }
+    .sub-message{
+      font-family:$muli-bold;
+      color:$red-color;
+      font-size:14px;
+      letter-spacing:-0.1px;
+      line-height:1.2;
+      padding:0px 0px 16px 0px;
+      margin:0px;
+      &.success{
+        color:$green-color;
+        }
+      }
+    .form-control {
       display:inline-block;
       border:0px;
-      width:100%;
-      padding:0px 10px;
+      height:60px;
+      padding:0px 10px 0px 15px;
+      border:1px solid $light-teal-color;
       border-radius:6px;
+      &::placeholder{
+        color:$light-teal-color;
+      }
     }
     
     .subscribe-btn{
       position: relative;
       display: flex;
-      min-width:115px;
-      min-height:38px;
+      width:100%;
+      height:60px;
       padding:0px;
       justify-content:center;
       align-items:center;
       font-family:$muli-bold;
-      font-size:18px;
-      letter-spacing:-0.1px;     
-      margin-right:10px; 
+      font-size:22px;
+      letter-spacing:-0.2px;
+      box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14) !important;    
     }
     
   }
@@ -1041,8 +1071,9 @@ input::placeholder {
     font-family:$muli-regular;
     font-size:14px;
     line-height:1.2;
-    color:$black-color;
+    color:#4a4a4a;
     opacity:0.9;
+    margin-top:10px;
     text-align:center;
   }
 }

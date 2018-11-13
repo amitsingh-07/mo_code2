@@ -25,10 +25,10 @@
               </div>
             <div class="art-author__container">
               <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
-              <span>{{article.art_date}}</span>
+              <span>{{article.art_date | date:'dd MMM yyyy'}}</span>
               </div>
             <div class="art-tag__container">
-              <div class="art-tag__element" *ngFor="let article_tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(article_tag)}}">
+              <div class="art-tag__element" *ngFor="let article_tag of article.art_tags" routerLink="/articles/category/{{article_tag | StringToLink}}">
                 <i class="material-icons">local_offer</i>{{article_tag}}
                 </div>
             </div>
@@ -43,17 +43,9 @@
       <div class="category-container" ngbDropdown>
           <button class="btn btn-dropdown category-btn" id="categoryDropdown" ngbDropdownToggle>{{category}}</button>
           <div class="category-list" ngbDropdownMenu aria-labelledby="categoryDropdown">
-            <div class="category">
-              <a>Protection</a>
-              <span>4</span>
-              </div>
-            <div class="category">
-              <a>Critical Illness</a> 
-              <span>5</span>
-              </div>
-            <div class="category">
-              <a>Retirement Income</a>
-              <span>3</span>
+            <div class="category" *ngFor="let category of categoryList" routerLink = "/articles/category/{{category.name | StringToLink}}">
+              <a>{{category.name}}</a>
+              <span>{{category.count}}</span>
               </div> 
             </div>
         </div>

@@ -16,7 +16,7 @@ import { ICustomerReview } from './customer-reviews.interface';
 export class CustomerReviewsComponent implements OnInit {
   customerReviewList: ICustomerReview[];
 
-  constructor(public navbarService: NavbarService, public footerService:FooterService,
+  constructor(public navbarService: NavbarService, public footerService: FooterService,
               public aboutUsApiService: AboutUsApiService, private aboutUsService: AboutUsService) {
   }
 
@@ -27,7 +27,7 @@ export class CustomerReviewsComponent implements OnInit {
     this.footerService.setFooterVisibility(true);
 
     this.aboutUsApiService.getCustomerReviews().subscribe((data) => {
-      this.customerReviewList = this.aboutUsService.getCustomerReviews(data);
+      this.customerReviewList = this.aboutUsService.getCustomerReview(data);
     });
   }
 
