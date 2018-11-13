@@ -722,8 +722,8 @@ export class InvestmentAccountService {
     getTaxDetailsReqData(data): ITax {
         return {
             taxCountryId: (data.taxCountry) ? data.taxCountry.id : null,
-            tinNumber: (data.tinNumberText) ? data.tinNumberText.tinNumber : null,
-            noTinReason: (data.reasonDropdown) ? data.reasonDropdown.noTinReason.id : null
+            tinNumber: (data.radioTin) ? data.tinNumber : null,
+            noTinReason: (!data.radioTin) ? data.noTinReason.id : null
         };
     }
 
