@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
+import { SignUpService } from './../sign-up/sign-up.service';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
 import {
@@ -13,6 +14,7 @@ import {
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
+const FROM_CONFIRMATION_PAGE = 'from_confirmation_page';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +22,15 @@ const SESSION_STORAGE_KEY = 'app_will_writing_session';
 export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
-  isBeneficiaryAdded = false;
+  fromConfirmationPage;
   constructor(
     private http: HttpClient,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private signUpService: SignUpService,
   ) {
     // get data from session storage
     this.getWillWritingFormData();
+    this.getFromConfirmPage();
   }
 
   /**
@@ -57,6 +61,11 @@ export class WillWritingService {
     }
   }
 
+  isUserLoggedIn(): boolean {
+    const userInfo = this.signUpService.getUserProfileInfo();
+    return userInfo && userInfo.firstName;
+  }
+
   clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged) {
     if (isMaritalStatusChanged) {
       this.willWritingFormData.spouse = [];
@@ -67,6 +76,47 @@ export class WillWritingService {
     this.willWritingFormData.guardian = [];
     this.willWritingFormData.beneficiary = [];
     this.willWritingFormData.execTrustee = [];
+  }
+
+  updateSpouseInfo(data) {
+    // update spouse in guardian
+    if (this.getGuardianInfo().length > 0) {
+      const spouseGuardian = this.getGuardianInfo();
+      spouseGuardian[0].name = data.name;
+      spouseGuardian[0].uin = data.uin;
+      this.setGuardianInfo(spouseGuardian);
+    }
+
+    // update spouse in beneficiary
+    if (this.getBeneficiaryInfo().length > 0) {
+      const spouseBeneficiary = this.getBeneficiaryInfo();
+      spouseBeneficiary[0].name = data.name;
+      spouseBeneficiary[0].uin = data.uin;
+      this.setBeneficiaryInfo(spouseBeneficiary);
+    }
+
+    // update spouse in executor and trustee
+    if (this.getExecTrusteeInfo().length > 0) {
+      const spouseExecTrustee = this.getExecTrusteeInfo();
+      spouseExecTrustee[0].name = data.name;
+      spouseExecTrustee[0].uin = data.uin;
+      this.setExecTrusteeInfo(spouseExecTrustee);
+    }
+  }
+
+  updateChildrenInfo(data) {
+    const childrenBeneficiary = this.getBeneficiaryInfo();
+    const childrenList = this.getChildrenInfo();
+    let i = this.getSpouseInfo().length > 0 ? 1 : 0;
+    for (const children of data) {
+      if (children.name !== childrenList[0].name || children.uin !== childrenList[0].uin || children.dob !== childrenList[0].dob) {
+        childrenBeneficiary[i].name = children.name;
+        childrenBeneficiary[i].uin = children.uin;
+        childrenBeneficiary[i].dob = children.dob;
+      }
+      i++;
+    }
+    this.setBeneficiaryInfo(childrenBeneficiary);
   }
 
   /**
@@ -135,8 +185,9 @@ export class WillWritingService {
    * @param data - about me details.
    */
   setAboutMeInfo(data: IAboutMe) {
-    if (this.getAboutMeInfo()) {
-      const isMaritalStatusChanged = this.getAboutMeInfo().maritalStatus !== data.maritalStatus;
+    if (Object.keys(this.getAboutMeInfo()).length !== 0) {
+      const isMaritalStatusChanged = this.getAboutMeInfo().maritalStatus !== data.maritalStatus &&
+        (this.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED || data.maritalStatus === WILL_WRITING_CONFIG.MARRIED);
       const isNoOfChildrenChanged = this.getAboutMeInfo().noOfChildren !== data.noOfChildren;
       if (isMaritalStatusChanged || isNoOfChildrenChanged) {
         this.clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged);
@@ -162,6 +213,9 @@ export class WillWritingService {
    * @param data - spouse details.
    */
   setSpouseInfo(data: ISpouse) {
+    if (this.getSpouseInfo().length > 0 && (this.getSpouseInfo()[0].name !== data.name || this.getSpouseInfo()[0].uin !== data.uin)) {
+      this.updateSpouseInfo(data);
+    }
     this.willWritingFormData.spouse = [];
     data.relationship = 'spouse';
     this.willWritingFormData.spouse.push(data);
@@ -184,6 +238,14 @@ export class WillWritingService {
    * @param data - children details.
    */
   setChildrenInfo(data: IChild[]) {
+    if (this.getChildrenInfo().length > 0) {
+      if (this.getBeneficiaryInfo().length > 0) {
+        this.updateChildrenInfo(data);
+      }
+      if (this.getGuardianInfo().length > 0 && !this.checkChildrenAge(data)) {
+        this.willWritingFormData.guardian = [];
+      }
+    }
     this.willWritingFormData.children = [];
     for (const children of data) {
       children.relationship = 'child';
@@ -209,14 +271,6 @@ export class WillWritingService {
    */
   setGuardianInfo(data: IGuardian[]) {
     this.willWritingFormData.guardian = data;
-    this.commit();
-  }
-
-  /**
-   * clear children details.
-   */
-  clearGuardianInfo() {
-    delete this.willWritingFormData.guardian;
     this.commit();
   }
 
@@ -268,6 +322,11 @@ export class WillWritingService {
    */
   setExecTrusteeInfo(data: IExecTrustee[]) {
     this.willWritingFormData.execTrustee = data;
+    this.commit();
+  }
+
+  clearExecTrusteeInfo() {
+    this.willWritingFormData.execTrustee = [];
     this.commit();
   }
 
@@ -341,4 +400,18 @@ export class WillWritingService {
     return false;
   }
 
+
+  setFromConfirmPage(flag) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(FROM_CONFIRMATION_PAGE, flag);
+    }
+    this.fromConfirmationPage = flag;
+  }
+
+  getFromConfirmPage() {
+    if (window.sessionStorage && sessionStorage.getItem(FROM_CONFIRMATION_PAGE)) {
+      this.fromConfirmationPage = JSON.parse(sessionStorage.getItem(FROM_CONFIRMATION_PAGE));
+    }
+    return this.fromConfirmationPage;
+  }
 }

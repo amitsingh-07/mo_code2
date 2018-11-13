@@ -63,6 +63,7 @@ export class InvestmentAccountFormData {
     empCity: string;
     empState: string;
     empZipCode: number;
+    employmentStatusList: any;
 
     // Upload documents
     nricFrontImage: File;
@@ -111,5 +112,17 @@ export class InvestmentAccountFormData {
     // MyInfo
     isMyInfoEnabled: boolean;
     disableAttributes: any;
+
+
+    // Fund Your Account
+
+    Investment: string;
+    oneTimeInvestmentAmount: number;
+    portfolio: string;
+    topupportfolioamount: number;
+    MonthlyInvestmentAmount: number;
+
+    fundDetails: any;
+
     callBackInvestmentAccount: boolean;
 }

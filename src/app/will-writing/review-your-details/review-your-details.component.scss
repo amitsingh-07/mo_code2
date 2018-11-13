@@ -14,7 +14,10 @@
         .intro-block__tab {
             width: calc(50% - 10px);
             opacity:0.2;
-            margin-right: 10px;
+            margin-right: 30px;
+            @include allmobiles {
+                margin-right: 10px;
+            }
             background-color:$app-backgrnd-secondary-color;
             min-height:5px;
             &.active {
@@ -26,6 +29,9 @@
             }
         }
     }
+    .btn__footer--fixed {
+        margin: 0 auto;
+    }
     .intro-block__content {
         @include tablet {
             .banner-image img {
@@ -35,13 +41,21 @@
         @include allmobiles {
             .banner-image img {
                 max-width:70%;
-                margin-top: 20px;
+                margin-top: 50px;
                 margin-left: 60px;
             }
         }
         @include iPadProPortrait {
             .banner-image img {
                 max-width:80%;
+            }
+        }
+        .banner-image img {
+            margin-left: 70px;
+            margin-top: 68px;
+            @include allmobiles {
+                margin-left: 60px;
+                margin-top: 50px;
             }
         }
     }
@@ -63,6 +77,10 @@
         letter-spacing: -0.4px;
         text-align: center;
         color: #ffffff;
+        margin-top: 30px;
+        @include allmobiles{
+            margin-top: 0 !important;
+        }
     }
     .intro-block__content__title {
         font-family: $muli-semi-bold;
@@ -103,4 +121,7 @@
     top: 5%;
     left: 20px;
     z-index:999;
+}
+.button-proceed {
+    margin: 0 auto;
 }

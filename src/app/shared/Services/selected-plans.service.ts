@@ -34,6 +34,8 @@ export class SelectedPlansService {
   getSelectedPlan() {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.selectedPlanData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    } else {
+      this.selectedPlanData = {};
     }
     return this.selectedPlanData;
   }

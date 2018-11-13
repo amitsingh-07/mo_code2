@@ -14,7 +14,10 @@
         .intro-block__tab {
             width: calc(50% - 10px);
             opacity:0.2;
-            margin-right: 10px;
+            margin-right: 30px;
+            @include allmobiles {
+                margin-right: 10px;
+            }
             background-color:$app-backgrnd-secondary-color;
             min-height:5px;
             &.active {
@@ -42,6 +45,9 @@
                 max-width:80%;
             }
         }
+        .banner-image img {
+                margin-top: 0;
+        }
     }
     .intro-block__content__desc {
         text-align: center;
@@ -61,6 +67,7 @@
         letter-spacing: -0.4px;
         text-align: center;
         color: #ffffff;
+        margin-top: 30px;
     }
     .intro-block__content__title {
         font-family: $muli-semi-bold;

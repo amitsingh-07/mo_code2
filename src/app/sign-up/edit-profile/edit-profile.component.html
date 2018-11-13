@@ -210,156 +210,157 @@
         </button>
       </div>
     </div>
-  
-  <!-- Update Employee Details  -->
-  <div *ngIf="empolymentDetails">
-    <div class="edit-profile-section-bg">
-      <div class="flex-row">
-        <div class="flex-col-11">
-          <div class="form-group-heading">
-            Update Employment Details
-          </div>
-        </div>
-        <div class="flex-col-1">
-          <div class="dropdown-img">
-            <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp) />
-          </div>
-        </div>
-      </div>
-      <div class="dots" #showHideEmp>
-        <div class="section-margin">
-          <div class="update-contact-title">
-            Employer Status
-          </div>
-          <div class="update-contact-value">
-            {{this.empolymentDetails.employmentStatus.name }}
-          </div>
-        </div>
-        <div class="section-margin">
-          <div class="update-contact-title">
-            Employer Name
-          </div>
-          <div class="update-contact-value">
-            {{this.empolymentDetails.employerDetails.employerName }}
-          </div>
-        </div>
-        <div class="section-margin">
-          <div class="update-contact-title">
-            Industry
-          </div>
-          <div class="update-contact-value">
-            {{this.empolymentDetails.employerDetails.industry.industry }}
-          </div>
-        </div>
-        <div class="section-margin">
-          <div class="update-contact-title">
-            Employer Contact
-          </div>
-          <div class="update-contact-value">
-            {{this.empolymentDetails.employerDetails.employerContact }}
-          </div>
-        </div>
-        <div class="section-margin">
-          <div class="update-contact-title">
-            Occupation
-          </div>
-          <div class="update-contact-value">
-            {{this.empolymentDetails.occupation.occupation}}
-          </div>
-        </div>
-        
-        <div class="mailing-address flex">
-          <div *ngIf="!employerAddress">
-            <img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" />
-          </div>
-          <div *ngIf="employerAddress">
-          <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
-        </div>
 
-          <div class="flex-col">
-            <div>Employer&apos;s Address</div>
-            <div>Same as Mailing Address</div>
-          </div>
-        </div>
-        <!-- Have to add according to API -->
-        <div *ngIf="employerAddress">
-          <div class="section-margin">
-            <div class="update-contact-title">
-              Country
-            </div>
-            <div class="update-contact-value">
-              {{this.empolymentDetails.employerDetails.employerAddress.country.country}}
-            </div>
-          </div>
-          <div class="section-margin">
-            <div class="update-contact-title">
-              Postal Code
-            </div>
-            <div class="update-contact-value">
-              {{this.empolymentDetails.employerDetails.employerAddress.postalCode}}
-            </div>
-          </div>
-          <div class="section-margin">
-            <div class="update-contact-title">
-              Address
-            </div>
-            <div class="update-contact-value">
-              {{this.compinedEmployerAddress}}
-            </div>
-          </div>
-          <div class="section-margin">
-            <div class="update-contact-title">
-              Unit Number
-            </div>
-            <div class="update-contact-value">
-              {{this.empolymentDetails.employerDetails.employerAddress.unitNumber}}
-            </div>
-          </div>
-        </div>
-        <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
-          Edit
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- Update bank details  -->
-  <div *ngIf="bankDetails">
-    <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
-      <div class="flex-row">
-        <div class="flex-col-11">
-          <div class="bank-details-heading">
-            Update Bank Details
-          </div>
-        </div>
-        <div class="flex-col-1">
-          <div class="dropdown-img">
-            <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
-          </div>
-        </div>
-      </div>
-
-      <div class="dots" #showHideBank>
+    <!-- Update Employee Details  -->
+    <div *ngIf="empolymentDetails">
+      <div class="edit-profile-section-bg">
         <div class="flex-row">
-
-          <div class="flex-col-4">
-
-            <div class="bank-account">
-              Bank Account
+          <div class="flex-col-11">
+            <div class="form-group-heading">
+              Update Employment Details
             </div>
           </div>
-          <div class="flex-col-8">
-            <div class="bank-account-num">
-              {{this.bankDetails.accountNumber}}
+          <div class="flex-col-1">
+            <div class="dropdown-img">
+              <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp) />
             </div>
           </div>
-          <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
+        </div>
+        <div class="dots" #showHideEmp>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Employer Status
+            </div>
+            <div class="update-contact-value">
+              {{this.empolymentDetails.employmentStatus.name }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Employer Name
+            </div>
+            <div class="update-contact-value">
+              {{this.empolymentDetails.employerDetails.employerName }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Industry
+            </div>
+            <div class="update-contact-value">
+              {{this.empolymentDetails.employerDetails.industry.industry }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Employer Contact
+            </div>
+            <div class="update-contact-value">
+              {{this.empolymentDetails.employerDetails.employerContact }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Occupation
+            </div>
+            <div class="update-contact-value">
+              {{this.empolymentDetails.occupation.occupation}}
+            </div>
+          </div>
+
+          <div class="mailing-address flex">
+            <div *ngIf="!employerAddress">
+              <img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" />
+            </div>
+            <div *ngIf="employerAddress">
+              <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
+            </div>
+
+            <div class="flex-col">
+              <div>Employer&apos;s Address</div>
+              <div>Same as Mailing Address</div>
+            </div>
+          </div>
+          <!-- Have to add according to API -->
+          <div *ngIf="employerAddress">
+            <div class="section-margin">
+              <div class="update-contact-title">
+                Country
+              </div>
+              <div class="update-contact-value">
+                {{this.empolymentDetails.employerDetails.employerAddress.country.country}}
+              </div>
+            </div>
+            <div class="section-margin">
+              <div class="update-contact-title">
+                Postal Code
+              </div>
+              <div class="update-contact-value">
+                {{this.empolymentDetails.employerDetails.employerAddress.postalCode}}
+              </div>
+            </div>
+            <div class="section-margin">
+              <div class="update-contact-title">
+                Address
+              </div>
+              <div class="update-contact-value">
+                {{this.compinedEmployerAddress}}
+              </div>
+            </div>
+            <div class="section-margin">
+              <div class="update-contact-title">
+                Unit Number
+              </div>
+              <div class="update-contact-value">
+                {{this.empolymentDetails.employerDetails.employerAddress.unitNumber}}
+              </div>
+            </div>
+          </div>
+          <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
             Edit
           </button>
-          <div class="banking-details-text">
-            This banking details will only impact on investment products.
+        </div>
+      </div>
+    </div>
+    <!-- Update bank details  -->
+    <div *ngIf="bankDetails">
+      <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
+        <div class="flex-row">
+          <div class="flex-col-11">
+            <div class="bank-details-heading">
+              Update Bank Details
+            </div>
+          </div>
+          <div class="flex-col-1">
+            <div class="dropdown-img">
+              <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
+            </div>
+          </div>
+        </div>
+
+        <div class="dots" #showHideBank>
+          <div class="flex-row">
+
+            <div class="flex-col-4">
+
+              <div class="bank-account">
+                Bank Account
+              </div>
+            </div>
+            <div class="flex-col-8">
+              <div class="bank-account-num">
+                {{this.bankDetails.accountNumber}}
+              </div>
+            </div>
+            <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
+              Edit
+            </button>
+            <div class="banking-details-text">
+              This banking details will only impact on investment products.
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
+</div>

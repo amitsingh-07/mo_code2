@@ -94,7 +94,7 @@
                 <img src="../assets/images/close-button.svg" alt="" />
               </div>
             </div>
-            <input type="file" accept=".xlsx, .xls, .doc, .docx, .ppt, .pptx,.txt, .pdf" #resAddressProof formControlName="resAddressProof" (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
+            <input type="file" accept=".pdf" #resAddressProof formControlName="resAddressProof" (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
               name="proofOfResAddress" class="is-hidden">
           </div>
         </div>
@@ -121,7 +121,7 @@
                 <img src="../assets/images/close-button.svg" alt="" />
               </div>
             </div>
-            <input type="file" accept=".xlsx, .xls, .doc, .docx, .ppt, .pptx,.txt, .pdf" #mailAdressProof formControlName="mailAdressProof" (change)="fileSelected(uploadForm.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
+            <input type="file" accept=".pdf" #mailAdressProof formControlName="mailAdressProof" (change)="fileSelected(uploadForm.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
               name="proofOfMailAddress" class="is-hidden">
           </div>
         </div>
