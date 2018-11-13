@@ -243,7 +243,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
         if (this.checkBeneficiaryData()) {
           url = WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, true);
+          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false);
         } else if (this.isFormAltered) {
           this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false);
         } else {
