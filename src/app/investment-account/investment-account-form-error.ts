@@ -20,7 +20,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Postal Code should contain only 6 digit number.'
+                errorMessage: 'Please enter valid Postal Code.'
             }
         },
         mailPostalCode: {
@@ -30,7 +30,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Postal Code should contain only 6 digit number.'
+                errorMessage: 'Please enter valid Postal Code.'
             }
         },
         address1: {
@@ -310,7 +310,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Postal Code should contain only 6 digit number.'
+                errorMessage: 'Please enter valid Postal Code.'
             }
         },
         empAddress1: {

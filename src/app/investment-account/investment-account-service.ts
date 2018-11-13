@@ -368,7 +368,7 @@ export class InvestmentAccountService {
     }
 
     saveInvestmentAccount() {
-        const payload = this.constructInvestmentAccountRequest();
+        const payload = this.constructSaveInvestmentAccountRequest();
         return this.apiService.saveInvestmentAccount(payload);
     }
 
@@ -612,7 +612,7 @@ export class InvestmentAccountService {
         return this.apiService.updateInvestment(params);
     }
 
-    constructInvestmentAccountRequest() {
+    constructSaveInvestmentAccountRequest() {
         const payload = this.getInvestmentAccountFormData();
         const request = {} as ISaveInvestmentAccountRequest;
         request.myInfoVerified = payload.isMyInfoEnabled;
@@ -706,7 +706,7 @@ export class InvestmentAccountService {
     getHouseholdDetailsReqData(data): IHousehold {
         return {
             numberOfMembers: data.numberOfHouseHoldMembers,
-            houseHoldIncome: data.annualHouseHoldIncomeRange
+            houseHoldIncome: (data.annualHouseHoldIncomeRange) ? data.annualHouseHoldIncomeRange.id : null
         };
     }
 
