@@ -35,13 +35,9 @@ export class BaseService {
   }
 
   get(url) {
-    let baseUrl = environment.apiBaseUrl;
-    if (url.indexOf(INVESTMENT_API_BASE_URL) !== -1) {
-      baseUrl = environment.apiBaseUrl2;
-    }
     this.helperService.showLoader();
     return this.httpClient
-      .get<IServerResponse>(`${baseUrl}/${url}`)
+      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`)
       .finally(() => {
         this.helperService.hideLoader();
       })
@@ -70,10 +66,6 @@ export class BaseService {
   }
 
   post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
-    let baseUrl = environment.apiBaseUrl;
-    if (url.indexOf(INVESTMENT_API_BASE_URL) !== -1) {
-      baseUrl = environment.apiBaseUrl2;
-    }
     if (showLoader) {
       this.helperService.showLoader();
     }
@@ -82,7 +74,7 @@ export class BaseService {
       param = '?alert=' + showError;
     }
     return this.httpClient
-      .post<IServerResponse>(`${baseUrl}/${url}${param}`, postBody)
+      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
       .finally(() => {
         this.helperService.hideLoader();
       });
@@ -151,5 +143,4 @@ export class BaseService {
       return data;
     }
   }
-
 }

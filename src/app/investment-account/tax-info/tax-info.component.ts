@@ -126,7 +126,7 @@ export class TaxInfoComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setTaxInfoFormData(form.value);
+      this.investmentAccountService.setTaxInfoFormData(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_DECLARATION]);
     }
   }

@@ -53,7 +53,7 @@ export class SignUpApiService {
     const selectedPlanData = this.selectedPlansService.getSelectedPlan();
     const formatDob = userInfo.dob;
     const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;
-
+    const investmentEnqId = this.authService.getEnquiryId(); // Investment Enquiry ID
     return {
       customer: {
         id: 0,
@@ -69,7 +69,7 @@ export class SignUpApiService {
         gender: userInfo.gender,
         acceptMarketEmails: getAccountInfo.marketingAcceptance
       },
-      enquiryId: selectedPlanData.enquiryId,
+      enquiryId: selectedPlanData.enquiryId ? selectedPlanData.enquiryId : investmentEnqId,
       selectedProducts: selectedPlanData.plans,
       sessionId: this.authService.getSessionId(),
       captcha: captchaValue
@@ -194,7 +194,8 @@ export class SignUpApiService {
   verifyLogin(userEmail, userPassword, captcha) {
     //const sessionId = this.signUpService.getCaptchaSessionId();
     const sessionId = this.authService.getSessionId();
-    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId);
+    const invEnqId = this.authService.getEnquiryId();
+    return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, invEnqId);
   }
 
   getUserProfileInfo() {

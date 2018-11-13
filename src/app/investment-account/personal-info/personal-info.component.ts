@@ -148,7 +148,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setPersonalInfo(form.value);
+      this.investmentAccountService.setPersonalInfo(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
     }
   }

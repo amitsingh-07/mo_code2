@@ -1,4 +1,4 @@
-export interface ICreateInvestmentAccountRequest {
+export interface ISaveInvestmentAccountRequest {
     myInfoVerified: boolean;
     isSingaporePR: boolean;
     personalInfo: IPersonalInfo;

@@ -63,6 +63,7 @@ export class InvestmentAccountFormData {
     empCity: string;
     empState: string;
     empZipCode: number;
+    employmentStatusList: any;
 
     // Upload documents
     nricFrontImage: File;
