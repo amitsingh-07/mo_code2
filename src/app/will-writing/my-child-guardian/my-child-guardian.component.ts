@@ -12,8 +12,8 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IGuardian } from '../will-writing-types';
-import { WillWritingService } from '../will-writing.service';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
+import { WillWritingService } from '../will-writing.service';
 
 @Component({
   selector: 'app-my-child-guardian',
@@ -216,15 +216,12 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    let url = WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+    const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
     if (this.guardianList.length !== this.maxGuardian) {
       if (this.validateGuardianForm(form) && this.save(form)) {
         this.router.navigate([url]);
       }
     } else {
-      if (this.fromConfirmationPage) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
-      }
       if (this.isEdit) {
         if (this.addGuardianForm.dirty) {
           if (this.validateGuardianForm(form)) {
