@@ -756,13 +756,54 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
-setEditProfileContactInfo(data , nationalityList , countryList) {
+// tslint:disable-next-line:cognitive-complexity
+setEditProfileContactInfo(data , nationalityList , countryList, isMailingAddressSame) {
     this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
     this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
     this.investmentAccountFormData.unitedStatesResident = false;
     this.investmentAccountFormData.singaporeanResident = true;
     this.investmentAccountFormData.nationalityList = nationalityList;
     this.investmentAccountFormData.countryList = countryList;
+    if (data.contactDetails.homeAddress.country.country) {
+    this.investmentAccountFormData.country = data.contactDetails.homeAddress.country.country;
+    }
+    if (data.contactDetails.homeAddress.postalCode) {
+    this.investmentAccountFormData.postalCode = data.contactDetails.homeAddress.postalCode;
+    }
+    if (data.contactDetails.homeAddress.addressLine1) {
+    this.investmentAccountFormData.address1 = data.contactDetails.homeAddress.addressLine1;
+    }
+    if (data.contactDetails.homeAddress.addressLine2) {
+    this.investmentAccountFormData.address2 = data.contactDetails.homeAddress.addressLine2;
+    }
+    if (data.contactDetails.homeAddress.unitNumber) {
+    this.investmentAccountFormData.unitNo = data.contactDetails.homeAddress.unitNumber;
+    }
+    if (data.contactDetails.homeAddress.state) {
+    this.investmentAccountFormData.state = data.contactDetails.homeAddress.state;
+    }
+    this.investmentAccountFormData.isMailingAddressSame = isMailingAddressSame;
+    if (!isMailingAddressSame) {
+        if (data.contactDetails.mailingAddress.country.country) {
+        this.investmentAccountFormData.mailCountry = data.contactDetails.mailingAddress.country.country;
+        }
+        if (data.contactDetails.mailingAddress.postalCode) {
+        this.investmentAccountFormData.mailPostalCode = data.contactDetails.mailingAddress.postalCode;
+        }
+        if (data.contactDetails.mailingAddress.addressLine1) {
+        this.investmentAccountFormData.mailAddress1 = data.contactDetails.mailingAddress.addressLine1;
+        }
+        if ( data.contactDetails.mailingAddress.addressLine2) {
+        this.investmentAccountFormData.mailAddress2 = data.contactDetails.mailingAddress.addressLine2;
+        }
+        if ( data.contactDetails.mailingAddress.unitNumber) {
+        this.investmentAccountFormData.mailUnitNo = data.contactDetails.mailingAddress.unitNumber;
+        }
+        if ( data.contactDetails.mailingAddress.state) {
+        this.investmentAccountFormData.mailState = data.contactDetails.mailingAddress.state;
+        }
+
+    }
     this.commit();
 }
 }

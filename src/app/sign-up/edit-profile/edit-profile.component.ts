@@ -37,6 +37,7 @@ export class EditProfileComponent implements OnInit {
   entireUserData: any;
   nationalityList: any;
   countryList: any;
+  isMailingAddressSame: boolean;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -61,6 +62,7 @@ export class EditProfileComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.buildForgotPasswordForm();
     this.getEditProfileData();
+    this.isMailingAddressSame = true;
   }
   showHidePassword(el) {
     if (el.type === 'password') {
@@ -104,6 +106,7 @@ export class EditProfileComponent implements OnInit {
       this.bankDetails = data.objectList[0].bankDetails;
       if ( data.objectList[0].contactDetails) {
       this.mailingAddress = data.objectList[0].contactDetails.mailingAddress;
+      this.isMailingAddressSame = false;
       }
       this.contactDetails = data.objectList[0].contactDetails;
       console.log(this.personalData);
@@ -166,7 +169,8 @@ getCountryList(data) {
     return countryList;
 }
   editContactDetails() {
-    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList);
+    // tslint:disable-next-line:max-line-length
+    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList , this.isMailingAddressSame);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   editBankDetails() {
