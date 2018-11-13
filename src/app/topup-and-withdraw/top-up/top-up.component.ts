@@ -143,17 +143,10 @@ export class TopUpComponent implements OnInit {
   }
 
   saveAndProceed(form: any) {
-    this.saveFundingDetails();
     form.value.topupportfolioamount = this.topupportfolioamount;
     this.topupAndWithDrawService.setTopUp(form.value);
+    this.saveFundingDetails();
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-
-    // CALL API
-    // this.portfolioService.savePersonalInfo().subscribe((data) => {
-    // if (data) {
-    //  this.authService.saveEnquiryId(data.objectList.enquiryId);
-    //  }
-    //});
   }
   saveFundingDetails() {
     const topupValues = {
