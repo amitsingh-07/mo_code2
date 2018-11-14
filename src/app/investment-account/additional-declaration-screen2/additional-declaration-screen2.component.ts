@@ -74,7 +74,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.removeControl('investmentEarning');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
-    if (this.additionDeclarationtwo.controls.source.value && this.additionDeclarationtwo.controls.source.value.name === 'Gift/Inheritanc') {
+    if (this.additionDeclarationtwo.controls.source.value &&
+      this.additionDeclarationtwo.controls.source.value.name === 'Gift/Inheritance') {
       this.additionDeclarationtwo.addControl('inheritanceGiftFrom', this.formBuilder.group({
         inheritanceGift: [this.formValues.inheritanceGift, Validators.required]
       }));
@@ -93,13 +94,13 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
 
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
-    } if ((this.additionDeclarationtwo.controls.source.value.name === 'Business Profits') ||
+    }
+    if ((this.additionDeclarationtwo.controls.source.value.name === 'Business Profits') ||
       (this.additionDeclarationtwo.controls.source.value.name === 'Sale of Real Estate') ||
       (this.additionDeclarationtwo.controls.source.value.name === 'Salary')) {
-
-      this.additionDeclarationtwo.removeControl('personalSavingForm');
-      this.additionDeclarationtwo.removeControl('investmentEarnings');
-      this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
+          this.additionDeclarationtwo.removeControl('personalSavingForm');
+          this.additionDeclarationtwo.removeControl('investmentEarnings');
+          this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
 
   }
@@ -168,7 +169,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setAdditionDeclaration(form.getRawValue());
-     this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+      this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
         // CREATE INVESTMENT ACCOUNT
         console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
