@@ -39,7 +39,7 @@ export class TestMyInfoComponent implements OnInit {
     if (this.myInfoService.isMyInfoEnabled) {
       this.myInfoService.getMyInfoData().subscribe((data) => {
         if (data && data['objectList']) {
-        this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.getTotal);
+        this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
         this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
         this.myInfoService.isMyInfoEnabled = false;
         this.setFormTotalValue();
