@@ -78,8 +78,7 @@ export class TestMyInfoComponent implements OnInit {
     ref.componentInstance.isButtonEnabled = true;
     ref.result.then(() => {
       // tslint:disable-next-line:max-line-length
-     // const myInfoAttributes = 'name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,assessableincome,hanyupinyinname,aliasname,hanyupinyinaliasname,marriedname,cpfcontributions,cpfbalances';
-      const myInfoAttributes = 'cpfbalances';
+      const myInfoAttributes = 'name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,assessableincome,ownerprivate,assessyear,cpfcontributions,cpfbalances,passportnumber,passportexpirydate,mailadd,occupation,employment,householdincome';
       this.myInfoService.setMyInfoAttributes(myInfoAttributes);
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
