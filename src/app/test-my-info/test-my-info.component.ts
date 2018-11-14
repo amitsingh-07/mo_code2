@@ -37,7 +37,7 @@ export class TestMyInfoComponent implements OnInit {
     this.authService.authenticate().subscribe((token) => {
     });
     if (this.myInfoService.isMyInfoEnabled) {
-      this.guideMeApiService.getMyInfoData().subscribe((data) => {
+      this.myInfoService.getMyInfoData().subscribe((data) => {
         if (data && data['person'] && data['person'].cpfcontributions) {
         this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
         this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
@@ -77,7 +77,10 @@ export class TestMyInfoComponent implements OnInit {
     ref.componentInstance.errorMessage = this.translate.instant('You will be redirected to Singpass MyInfo page to begin fetching your data.');
     ref.componentInstance.isButtonEnabled = true;
     ref.result.then(() => {
-      this.myInfoService.setMyInfoAttributes('cpfbalances');
+      // tslint:disable-next-line:max-line-length
+      //const myInfoAttributes = 'name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,assessableincome,ownerprivate,assessyear,cpfcontributions,cpfbalances,passportnumber,passportexpirydate,mailadd,occupation,employment,householdincome';
+      const myInfoAttributes = 'cpfbalances';
+      this.myInfoService.setMyInfoAttributes(myInfoAttributes);
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });

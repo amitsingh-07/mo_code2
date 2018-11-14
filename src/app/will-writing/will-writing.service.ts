@@ -66,12 +66,9 @@ export class WillWritingService {
     return userInfo && userInfo.firstName;
   }
 
-  clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged) {
+  clearWillWritingData(isMaritalStatusChanged) {
     if (isMaritalStatusChanged) {
       this.willWritingFormData.spouse = [];
-    }
-    if (isNoOfChildrenChanged) {
-      this.willWritingFormData.children = [];
     }
     this.willWritingFormData.guardian = [];
     this.willWritingFormData.beneficiary = [];
@@ -190,7 +187,10 @@ export class WillWritingService {
         (this.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED || data.maritalStatus === WILL_WRITING_CONFIG.MARRIED);
       const isNoOfChildrenChanged = this.getAboutMeInfo().noOfChildren !== data.noOfChildren;
       if (isMaritalStatusChanged || isNoOfChildrenChanged) {
-        this.clearWillWritingData(isMaritalStatusChanged, isNoOfChildrenChanged);
+        if (this.getAboutMeInfo().noOfChildren > data.noOfChildren) {
+          this.willWritingFormData.children = this.willWritingFormData.children.slice(0, data.noOfChildren);
+        }
+        this.clearWillWritingData(isMaritalStatusChanged);
       }
     }
     this.willWritingFormData.aboutMe = data;
@@ -325,11 +325,6 @@ export class WillWritingService {
    */
   setExecTrusteeInfo(data: IExecTrustee[]) {
     this.willWritingFormData.execTrustee = data;
-    this.commit();
-  }
-
-  clearExecTrusteeInfo() {
-    this.willWritingFormData.execTrustee = [];
     this.commit();
   }
 
