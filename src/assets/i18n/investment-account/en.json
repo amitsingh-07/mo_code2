@@ -303,6 +303,10 @@
     "ACCOUNT_CREATION_ERROR_MODAL": {
       "TITLE": "Error !",
       "DESCRIPTION": "Please fix the below list of errors and then proceed."
+    },
+    "GENERAL_ERROR": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Sorry, Something went wrong. Please try again."
     }
   }
 }
