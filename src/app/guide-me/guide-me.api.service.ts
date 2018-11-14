@@ -54,13 +54,6 @@ export class GuideMeApiService {
         return this.apiService.getRecommendations(this.constructRecommendationsRequest());
     }
 
-    getMyInfoData() {
-        const code = {
-            authorizationCode : this.myInfoService.myInfoValue
-        };
-        return this.apiService.getMyInfoData(code);
-    }
-
     private constructRecommendationsRequest(): IRecommendationRequest {
         const requestObj = {} as IRecommendationRequest;
         requestObj.sessionId = this.authService.getSessionId();
