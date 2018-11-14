@@ -123,15 +123,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       }
     }
     if (this.execTrusteeList.length !== this.maxExecTrustee) {
-      if (this.hasChild && this.willWritingService.checkBeneficiaryAge()) {
-        this.formTitle.push({ isAlt: false, relationship: '' });
-        if (!this.hasSpouse) {
-          this.formTitle.push({ isAlt: false, relationship: '' });
-        }
+      if (this.hasSpouse) {
+        this.formTitle.push({ isAlt: true, relationship: '' });
       } else {
-        if ((!this.hasSpouse && !this.hasChild) || (!this.hasSpouse && !this.willWritingService.checkBeneficiaryAge())) {
-          this.formTitle.push({ isAlt: false, relationship: '' });
-        }
+        this.formTitle.push({ isAlt: false, relationship: '' });
         this.formTitle.push({ isAlt: true, relationship: '' });
       }
     }
@@ -251,15 +246,12 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    let url = WILL_WRITING_ROUTE_PATHS.REVIEW_YOUR_DETAILS;
+    const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.REVIEW_YOUR_DETAILS;
     if (this.execTrusteeList.length !== this.maxExecTrustee) {
       if (this.validateExecTrusstee(form) && this.save(form)) {
         this.router.navigate([url]);
       }
     } else {
-      if (this.fromConfirmationPage) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
-      }
       if (this.isEdit) {
         if (this.addExeTrusteeForm.dirty) {
           if (this.validateExecTrusstee(form)) {
