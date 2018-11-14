@@ -30,6 +30,7 @@ import {
     EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -63,6 +64,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public portfolioService: PortfolioService,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -195,6 +197,11 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorTitle = errorTitle;
     ref.componentInstance.errorMessage = errorMessage;
     ref.componentInstance.errorList = errorList;
+  }
+
+  viewFundDetails(fund) {
+    this.portfolioService.setFund(fund);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
 
   goToNext() {
