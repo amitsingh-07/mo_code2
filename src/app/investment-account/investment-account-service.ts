@@ -7,8 +7,8 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
-    IAddress, ISaveInvestmentAccountRequest, IEmployment, IFinancial, IHousehold, IPep,
-    IPersonalDeclaration, IPersonalInfo, ITax
+    IAddress, IEmployment, IFinancial, IHousehold, IPep, IPersonalDeclaration, IPersonalInfo,
+    ISaveInvestmentAccountRequest, ITax
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 
@@ -790,6 +790,4 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
-
-
 }

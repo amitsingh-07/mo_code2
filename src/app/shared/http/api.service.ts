@@ -498,7 +498,7 @@ export class ApiService {
   }
 
   createInvestmentAccount() {
-    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount)
+    return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount + '?handleError=true')
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
