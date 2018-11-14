@@ -167,7 +167,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     }
   }
 
-  editBeneficiary(relation: string, index: number) {
+  editBeneficiary(relation: string, index: number, el) {
     if (relation === WILL_WRITING_CONFIG.SPOUSE || relation === WILL_WRITING_CONFIG.CHILD) {
       if (this.addBeneficiaryForm.dirty) {
         this.pageTitleComponent.goBack();
@@ -183,6 +183,9 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       this.addBeneficiaryForm.controls['uin'].setValue(beneficiary.uin);
       const beneRelationship = this.relationshipList.filter((relationship) => relationship.value === beneficiary.relationship);
       this.selectRelationship(beneRelationship[0]);
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
     }
   }
 
