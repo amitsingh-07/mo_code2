@@ -52,4 +52,8 @@ export class ConfirmationComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+  goNext() {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.SIGN_UP]);
+  }
+
 }

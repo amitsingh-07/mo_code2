@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="back-btn hidden-lg"></div>
+    <div class="back-btn hidden-lg" (click)="goBack()"></div>
     <div class="content">
       <div class="flex-row sign-up-container">
         <div class="col-lg-5 col-md-5 col-sm-12 pl0 pr0">
@@ -10,12 +10,12 @@
         <div class="col-lg-12 pl0 pr0">
             <div class="flex-row mb15">
               <div class="flex-col-12 stretch">
-                 <button class="yes-login-but" id="yes_btn">{{ 'WILL_WRITING.SIGN_UP.LOGIN_NOW' | translate}}</button>
+                 <button (click)="redirectTo(signUpRoutePaths.LOGIN)" class="yes-login-but" id="yes_btn">{{ 'WILL_WRITING.SIGN_UP.LOGIN_NOW' | translate}}</button>
               </div>
             </div>
             <div class="flex-row mb20">
               <div class="flex-col-12 stretch">
-                  <button class="no-login-but" id="no_btn">{{ 'WILL_WRITING.SIGN_UP.CREATE_ACCOUNT' | translate}}</button>
+                  <button (click)="redirectTo(signUpRoutePaths.CREATE_ACCOUNT)" class="no-login-but" id="no_btn">{{ 'WILL_WRITING.SIGN_UP.CREATE_ACCOUNT' | translate}}</button>
               </div>
             </div>
         </div>
