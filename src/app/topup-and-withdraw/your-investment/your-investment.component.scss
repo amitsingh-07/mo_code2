@@ -18,11 +18,22 @@
     }
     .col-4{
         position: absolute;
-        right: 0;
+        right: 5px;
         bottom: -57%;
     }
 }
-
+p{
+   
+    padding: 20px;
+    text-align: center;
+  
+    font-family: Muli;
+    font-size: 14px;
+    
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #5e5e5e;
+}
 .dropdown-control .btn-dropdown.grey {
     color: #fff;
     background-color: #276f75;
@@ -183,7 +194,7 @@ font-family: $muli-bold;
     color: #fff;
     width: 100%;
     padding: 21px 0px;
-   
+    border-width: 0px;
 
     &:active {
       outline: none;

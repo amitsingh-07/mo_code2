@@ -50,6 +50,9 @@ export class TopupAndWithDrawService {
     return this.apiService.getPortfolioList();
 
   }
+  getMoreList() {
+    return this.apiService.getMoreList();
+  }
   doFinancialValidations(form) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals

@@ -1,0 +1,15 @@
+{
+    "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+    },
+    "objectList": [{
+      "id": 1,
+      "name": "Transaction History"
+    },
+    {
+      "id": 2,
+     "name": "Withdraw Portfolio"
+    }]
+  
+  }

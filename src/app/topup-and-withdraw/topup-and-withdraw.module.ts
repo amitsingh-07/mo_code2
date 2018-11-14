@@ -19,6 +19,8 @@ import { TopupRequestComponent } from './topup-request/topup-request.component';
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 
+import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -51,7 +53,8 @@ export function createTranslateLoader(http: HttpClient) {
    TopUpComponent,
    TopupRequestComponent,
    YourInvestmentComponent,
-   YourPortfolioComponent
+   YourPortfolioComponent,
+   AssetAllocationComponent
    
   ],
   providers: [CurrencyPipe]
