@@ -25,8 +25,8 @@
       "NUMBER_OF_CHILDREN": "Number of Children",
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "Your changes will not be saved. Are you sure you want to leave this page?",
-      "CONFIRM": "This will overwrite your current information. Would you like to proceed with editing?",
-      "CONFIRM_IMPACT_MESSAGE": "<span class='mb10'>Required Actions</span><span>If you were to proceed with the changes, we may need you to go through the entire will writing journey as it may have some legal implications.</span>",
+      "CONFIRM": "Your previous information will be overwritten. <br/>Would you like to proceed?",
+      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your will has to be rewritten and you will be redirected back to Step 1. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
         "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."

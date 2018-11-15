@@ -52,8 +52,8 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
       this.pageTitle = this.translate.instant('WILL_WRITING.ABOUT_ME.TITLE');
       this.maritalStatusList = this.translate.instant('WILL_WRITING.ABOUT_ME.FORM.MARITAL_STATUS_LIST');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['hasImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
@@ -159,12 +159,12 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, hasImpact: boolean, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
     ref.componentInstance.unSaved = true;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
+      ref.componentInstance.hasImpact = this.confirmModal['hasImpact'];
     }
     ref.result.then((data) => {
       if (data === 'yes') {
@@ -208,7 +208,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
           if (!isChildChanged && !isMaritalStatusChanged) {
             url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : url;
           }
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, isUserLogged, form);
+          this.openConfirmationModal(url, isUserLogged, form);
         } else {
           url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : url;
           this.router.navigate([url]);

@@ -62,8 +62,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_MESSAGE');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
@@ -159,6 +158,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     this.formTitle[index].relationship = relationship.text;
     const relation = this.addExeTrusteeForm.get('executorTrustee');
     relation['controls'][index].controls['relationship'].setValue(relationship.value);
+    this.addExeTrusteeForm.markAsDirty();
   }
 
   editExecTrustee(relation: string, index: number) {
@@ -225,13 +225,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     this.willWritingService.openToolTipModal(title, message);
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     ref.componentInstance.unSaved = true;
-    if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
-    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(form);
@@ -255,7 +252,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       if (this.isEdit) {
         if (this.addExeTrusteeForm.dirty) {
           if (this.validateExecTrusstee(form)) {
-            this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+            this.openConfirmationModal(url, form);
           }
         } else {
           this.router.navigate([url]);
