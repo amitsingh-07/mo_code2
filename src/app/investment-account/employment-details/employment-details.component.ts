@@ -87,6 +87,7 @@ export class EmploymentDetailsComponent implements OnInit {
   getEmployeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.employementStatusList = data.objectList.employmentStatus;
+      this.investmentAccountService.setEmploymentStatusList(data.objectList.employmentStatus);
     });
   }
   setEmployementStatus(key, value) {
@@ -215,7 +216,7 @@ export class EmploymentDetailsComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setEmployeAddressFormData(form.value);
+      this.investmentAccountService.setEmployeAddressFormData(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
     }
   }
