@@ -158,6 +158,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     this.formTitle[index].relationship = relationship.text;
     const relation = this.addExeTrusteeForm.get('executorTrustee');
     relation['controls'][index].controls['relationship'].setValue(relationship.value);
+    this.addExeTrusteeForm.markAsDirty();
   }
 
   editExecTrustee(relation: string, index: number) {

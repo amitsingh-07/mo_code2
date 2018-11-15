@@ -124,6 +124,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     relationship = relationship ? relationship : { text: '', value: '' };
     this.relationship = relationship.text;
     this.addBeneficiaryForm.controls['relationship'].setValue(relationship.value);
+    this.addBeneficiaryForm.markAsDirty();
   }
 
   addBeneficiary(form) {

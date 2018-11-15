@@ -149,7 +149,12 @@
                     <span *ngIf="!guardian.isAlt">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.MAIN_GUARDIAN' | translate}}</span>
                   </div>
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                    {{'WILL_WRITING.COMMON.MY' | translate}} {{guardian.relationship | titlecase}}
+                    <span *ngIf="guardian.relationship !== 'others'">
+                        {{'WILL_WRITING.COMMON.MY' | translate}} {{guardian.relationship | titlecase}}
+                    </span>
+                    <span *ngIf="guardian.relationship === 'others'">
+                        {{guardian.relationship | titlecase}}
+                    </span>
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
@@ -185,8 +190,12 @@
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
                     <span *ngIf="beneficiary.relationship === willWritingConfig.SPOUSE">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
                     <span *ngIf="beneficiary.relationship === willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{beneficiary.pos}}</span>
-                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD">{{beneficiary.relationship
-                      | titlecase}}</span>
+                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD && beneficiary.relationship !== 'others'">
+                      {{'WILL_WRITING.COMMON.MY' | translate}} {{beneficiary.relationship  | titlecase}}
+                    </span>
+                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD && beneficiary.relationship === 'others'">
+                        {{beneficiary.relationship  | titlecase}}
+                      </span>
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
@@ -278,8 +287,13 @@
                     <span *ngIf="!execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}</span>
                   </div>
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
+                    <span *ngIf="execTrustee.relationship !== 'others'">
                       {{'WILL_WRITING.COMMON.MY' | translate}} {{execTrustee.relationship | titlecase}}
-                    </div>
+                    </span>
+                    <span *ngIf="execTrustee.relationship === 'others'">
+                      {{execTrustee.relationship | titlecase}}
+                    </span>
+                  </div>
                   <div class="record">
                     <div class="label-header col-6">
                       {{'WILL_WRITING.COMMON.NAME' | translate}}
