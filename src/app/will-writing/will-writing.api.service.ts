@@ -19,10 +19,6 @@ export class WillWritingApiService {
         return this.apiService.getProfileList();
     }
 
-    getPromoCode() {
-        return this.apiService.getPromoCode();
-    }
-
     verifyPromoCode(promoCodeData) {
         const promoCode = {
             promoCode: promoCodeData
