@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -99,43 +99,26 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
   updateDistPercentage(index: number, event) {
     for (const percent of this.beneficiaryList) {
       this.beneficiaryList[index].distPercentage = Math.floor(event.target.value);
-      this.distributePercentage(index, event);
       this.distPercentageSum += percent.distPercentage;
     }
     if (this.beneficiaryList[index].distPercentage < 0 || this.beneficiaryList[index].distPercentage > 100) {
-      this.willWritingService.openToolTipModal('Please input a value between 0 and 100', '');
-    }
-    if (this.distPercentageSum > 100) {
       this.currentDist = this.beneficiaryList[index].distPercentage;
       setTimeout(() => this.beneficiaryList[index].distPercentage = 0, 0);
-      //this.willWritingService.openToolTipModal(this.errorMsg.EXCEED_PERCENTAGE, '');
+      this.willWritingService.openToolTipModal('Please input a value between 0 and 100', '');
       this.distPercentageSum = 0;
       for (const percent of this.beneficiaryList) {
         this.distPercentageSum += percent.distPercentage;
       }
-    }
+      this.remainingPercentage = 100 - (this.distPercentageSum - this.beneficiaryList[index].distPercentage);
+    } else {
     this.remainingPercentage = 100 - this.distPercentageSum;
-    if (this.remainingPercentage < 0) {
-      this.remainingPercentage = 100 - (this.distPercentageSum - this.currentDist);
     }
     this.distPercentageSum = 0;
     this.isFormAltered = true;
   }
 
-  distributePercentage(index: number, event) {
-    if (!this.firstReset) {
-      if (this.filteredList < 1) {
-        for (const percentage of this.beneficiaryList) {
-          if (this.beneficiaryList.indexOf(percentage) === index) {
-            this.beneficiaryList[index].distPercentage = Math.floor(event.target.value);
-            this.firstReset = true;
-          } else {
-            percentage.distPercentage = 0;
-            this.firstReset = true;
-          }
-        }
-      }
-    }
+  calcAfterReset() {
+    this.remainingPercentage = 100 - this.distPercentageSum;
   }
 
   ngOnDestroy() {

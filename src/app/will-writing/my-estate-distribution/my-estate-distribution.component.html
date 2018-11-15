@@ -20,7 +20,7 @@
               <div class="distribution-img mb20"><img src="assets/images/will-writing/estate-distribution-bg.png"/></div>
               <div class="distribution-content">
                 <span class="title">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.DISTRIBUTE_YOUR_ESTATE' | translate}}</span>
-                <span class="percentage">{{this.remainingPercentage}}%</span>
+                <span class="percentage" [ngClass]= "{'error-text': this.remainingPercentage < 0}">{{this.remainingPercentage}}%</span>
                 <span class="sub-title">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.LEFT_TO_DISTRIBUTE' | translate}}</span>
               </div>
             
@@ -38,7 +38,7 @@
                       </div>
                       <div class="col-6" *ngIf="currentDist.selected === true">
                           <div class="form-control">   
-                          <input  #percent id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
+                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" maxLength="3" pattern="(100)|(0*\d{1,2})" type="string" class="input-control"
                             value="{{currentDist.distPercentage}}" formControlName="percent" >
                           <i>%</i>
                         </div>
