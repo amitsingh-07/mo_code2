@@ -362,6 +362,15 @@ export class InvestmentAccountService {
         this.commit();
     }
 
+    setOptionList(list) {
+        this.investmentAccountFormData.optionList = list;
+        this.commit();
+    }
+
+    getOptionList() {
+        return this.investmentAccountFormData.optionList;
+    }
+
     // Upload Document
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);

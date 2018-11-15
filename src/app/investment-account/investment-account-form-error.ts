@@ -1,6 +1,30 @@
 export class InvestmentAccountFormError {
     formFieldErrors: object = {
         errorTitle: 'Error !',
+        salutation: {
+            required: {
+                errorTitle: 'Invalid Salutation',
+                errorMessage: 'Please select Salutation.'
+            },
+        },
+        birthCountry: {
+            required: {
+                errorTitle: 'Invalid Birth Country',
+                errorMessage: 'Please select your Country of Birth.'
+            },
+        },
+        passportIssuedCountry: {
+            required: {
+                errorTitle: 'Invalid Passport issued Country',
+                errorMessage: 'Please select your Passport issued Country.'
+            },
+        },
+        race: {
+            required: {
+                errorTitle: 'Invalid Race',
+                errorMessage: 'Please select your Race.'
+            },
+        },
         country: {
             required: {
                 errorTitle: 'Invalid Country',
