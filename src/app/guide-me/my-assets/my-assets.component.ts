@@ -28,6 +28,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   assetsTotal: any;
   cpfValue: number;
   useMyInfo: boolean;
+  cpfFromMyInfo = false;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
@@ -60,16 +61,22 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     });
     if (this.myInfoService.isMyInfoEnabled) {
       this.myInfoService.getMyInfoData().subscribe((data) => {
-        this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
-        this.assetsForm.controls['cpf'].setValue(this.cpfValue);
-        this.myInfoService.isMyInfoEnabled = false;
-        this.setFormTotalValue();
-        this.closeMyInfoPopup(false);
+        if (data && data['objectList']) {
+          this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+          this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+          this.myInfoService.isMyInfoEnabled = false;
+          this.cpfFromMyInfo = true;
+          this.setFormTotalValue();
+          this.closeMyInfoPopup(false);
+        } else {
+          this.closeMyInfoPopup(true);
+        }
       }, (error) => {
         this.closeMyInfoPopup(true);
       });
     }
     this.setFormTotalValue();
+    window.sessionStorage.setItem('currentUrl', window.location.hash);
   }
   ngOnDestroy(): void {
     this.locationSubscription.unsubscribe();
