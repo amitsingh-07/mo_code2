@@ -185,8 +185,8 @@
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
                     <span *ngIf="beneficiary.relationship === willWritingConfig.SPOUSE">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
                     <span *ngIf="beneficiary.relationship === willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{beneficiary.pos}}</span>
-                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.OTHERS'
-                      | translate}}</span>
+                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD">{{beneficiary.relationship
+                      | titlecase}}</span>
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
