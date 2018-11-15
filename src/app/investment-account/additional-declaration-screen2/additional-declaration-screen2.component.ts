@@ -21,8 +21,9 @@ import { InvestmentAccountService } from '../investment-account-service';
 @Component({
   selector: 'app-additional-declaration-screen2',
   templateUrl: './additional-declaration-screen2.component.html',
-  styleUrls: ['./additional-declaration-screen2.component.scss']
-})
+  styleUrls: ['./additional-declaration-screen2.component.scss'],
+  encapsulation: ViewEncapsulation.None
+  })
 export class AdditionalDeclarationScreen2Component implements OnInit {
   pageTitle: string;
   sourceOfIncomeList;
