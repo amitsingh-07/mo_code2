@@ -10,7 +10,10 @@
             "mobileNumber": "9988888888",
     
             "password": "",
-            "email" : "satheesanop@gmail.com"
+            "email" : "satheesanop@gmail.com",
+            "isSIngaporeResident": true,
+            "isUSResident": false
+
         },
         "contactDetails": {
             "homeAddress": {
@@ -53,7 +56,7 @@
         "employmentDetails": {
             "employmentStatus": {
                 "id": 1,
-                "name": "Employed"
+                "name": "un-Employed"
             },
             "employerDetails": {
                 "id": 1,

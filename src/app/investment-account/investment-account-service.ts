@@ -840,4 +840,124 @@ setEditProfileContactInfo(data , nationalityList , countryList, isMailingAddress
     }
     this.commit();
 }
+setEditProfileEmployeInfo(data , nationalityList , countryList, isEmployeAddresSame) {
+    this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
+    this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
+    this.investmentAccountFormData.unitedStatesResident = false;
+    this.investmentAccountFormData.singaporeanResident = true;
+    this.investmentAccountFormData.nationalityList = nationalityList;
+    this.investmentAccountFormData.countryList = countryList;
+
+    if (data.employmentDetails.employmentStatus.name !== 'Unemployed') {
+        this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
+        if (data.employmentDetails.employerDetails.employerName) {
+            this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.employerName;
+        }
+        if (data.employmentDetails.occupation.occupation) {
+            this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
+        }
+        this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.industry;
+        this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.employerContact;
+        this.investmentAccountFormData.isEmployeAddresSame = isEmployeAddresSame;
+
+        if (!isEmployeAddresSame) {
+            this.investmentAccountFormData.empCountry = data.employmentDetails.employerDetails.employerAddress.country;
+            this.investmentAccountFormData.empPostalCode = data.employmentDetails.employerDetails.employerAddress.postalCode;
+            this.investmentAccountFormData.empAddress1 =  data.employmentDetails.employerDetails.employerAddress.addressLine1;
+            this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.employerAddress.addressLine2;
+            this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.employerAddress.unitNumber;
+           // this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.employerAddress.unitNumber;
+            this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.employerAddress.state;
+            //this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
+        }
+    } else {
+        this.investmentAccountFormData.employmentStatus = data.employmentStatus;
+    }
+    this.commit();
+
+}
+// tslint:disable-next-line:no-identical-functions
+editResidentialAddressFormData(data) {
+    if (data.country) {
+        this.investmentAccountFormData.country = data.country;
+    }
+    if (data.postalCode) {
+        this.investmentAccountFormData.postalCode = data.postalCode;
+    }
+    if (data.zipCode) {
+        this.investmentAccountFormData.zipCode = data.zipCode;
+    }
+    if (data.address1) {
+        this.investmentAccountFormData.address1 = data.address1;
+    }
+    if (data.address2) {
+        this.investmentAccountFormData.address2 = data.address2;
+    }
+    if (data.floor) {
+        this.investmentAccountFormData.floor = data.floor;
+    }
+    if (data.unitNo) {
+        this.investmentAccountFormData.unitNo = data.unitNo;
+    }
+    this.investmentAccountFormData.city = data.city;
+    this.investmentAccountFormData.state = data.state;
+    this.investmentAccountFormData.isMailingAddressSame = data.isMailingAddressSame;
+    if (!data.isMailingAddressSame) {
+        this.setEmailingAddress(data);
+    }
+    this.commit();
+    let request;
+    if (!data.isMailingAddressSame) {
+     request = this.constructEditContactRequestMailingSame(data);
+    } else {
+        request = this.constructEditContactRequest(data);
+    }
+    return this.apiService.requestEditContact(request);
+}
+// tslint:disable-next-line:no-identical-functions
+constructEditContactRequestMailingSame(data) {
+    return {
+        contactDetails: {
+        homeAddress: {
+            id: 1,
+            country: data.country,
+            addressLine1: data.address1,
+            addressLine2: data.address2,
+            unitNumber: data.unitNo,
+            postalCode: data.postalCode,
+            townName: "Townname",
+            state: "State Name"
+        },
+        mailingAddress: {
+            id: 2,
+            country:  data.mailingAddress.mailCountry,
+            addressLine1: data.mailingAddress.mailAddress1,
+            addressLine2: data.mailingAddress.mailAddress2,
+            unitNumber: data.mailingAddress.mailUnitNo,
+            postalCode: data.mailingAddress.mailPostalCode,
+            townName: "Townname",
+            state: "State Name"
+        }
+    }
+
+    };
+}
+constructEditContactRequest(data) {
+    return {
+        contactDetails: {
+        homeAddress: {
+            id: 1,
+            country: data.country,
+            addressLine1: data.address1,
+            addressLine2: data.address2,
+            unitNumber: data.unitNo,
+            postalCode: data.postalCode,
+            townName: "Townname",
+            state: "State Name"
+        },
+        mailingAddress: null
+    }
+
+    };
+}
 }

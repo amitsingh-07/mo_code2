@@ -65,13 +65,19 @@ export class EditPasswordComponent implements OnInit {
       ref.componentInstance.errorTitle = error.errorTitle;
       ref.componentInstance.errorMessage = error.errorMessage;
       return false;
-    } else if (form.value.resetPassword1 !== form.value.confirmpassword) {
+    } else if (form.value.newPassword !== form.value.confirmPassword) {
       const error = this.signUpService.currentFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Password Should Match';
       return false;
+    // tslint:disable-next-line:no-duplicated-branches
+    } else if (form.value.newPassword === form.value.oldPassword) {
+      const error = this.signUpService.currentFormError(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = 'Old password and new password can not be same';
+      return false;
     } else {
-    this.signUpService.setResetPasswordInfo(form.value.oldPassword, form.value.newPassword).subscribe((data) => {
+    this.signUpService.setEditPasswordInfo(form.value.oldPassword, form.value.newPassword).subscribe((data) => {
       // tslint:disable-next-line:triple-equals
       // if ( data.responseMessage.responseCode == 6000) {
          // tslint:disable-next-line:max-line-length
