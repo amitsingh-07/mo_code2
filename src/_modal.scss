@@ -2,10 +2,18 @@
 @import './mixins';
 
 body.modal-open {
-  position: fixed;
+  position: inherit;
   overflow: hidden;
   width: 100%;
   background-color: $black-color;
+}
+
+body.modal-open {
+  -moz-appearance: menuimage;
+}
+
+body.modal-open::-webkit-scrollbar {
+   width: 0 !important;
 }
 
 .modal-backdrop.show {

@@ -25,8 +25,8 @@
       "NUMBER_OF_CHILDREN": "Number of Children",
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "Your changes will not be saved. Are you sure you want to leave this page?",
-      "CONFIRM": "This will overwrite your current information. Would you like to proceed with editing?",
-      "CONFIRM_IMPACT_MESSAGE": "<span class='mb10'>Required Actions</span><span>If you were to proceed with the changes, we may need you to go through the entire will writing journey as it may have some legal implications.</span>",
+      "CONFIRM": "Your previous information will be overwritten. <br/>Would you like to proceed?",
+      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your will has to be rewritten and you will be redirected back to Step 1. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
         "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."
@@ -94,22 +94,22 @@
         "CHILDREN": "children",
         "CHILD": "child",
         "MARITAL_STATUS_LIST": [{
-          "text": "Single",
+          "text": "single",
           "value": "single"
         }, {
-          "text": "Married",
+          "text": "married",
           "value": "married"
         }, {
-          "text": "Divorced",
+          "text": "divorced",
           "value": "divorced"
         }, {
-          "text": "Widowed",
+          "text": "widowed",
           "value": "widowed"
         }]
       }
     },
     "MY_FAMILY": {
-      "TITLE": "My Family",
+      "TITLE": "About My Family",
       "SUB_TITLE": "Please enter your details accurately, as per identification document (NRIC, FIN, Birth Cert or Passport)",
       "FORM": {
         "MY_CHILD": "My Child",
@@ -136,7 +136,7 @@
       "SUB_TITLE": "In the next step, you will decide who inherits which portion of your estate."
     },
     "APPOINT_YOUR_EXECUTOR_TRUSTEE": {
-      "TITLE": "Appoint Your Executor & Trustee",
+      "TITLE": "Appoint Your Executor & Trustees",
       "SUB_TITLE": "In the next step, you will appoint someone to manage and carry out the wishes of your will."
     },
     "ELIGIBILITY": {
@@ -170,7 +170,7 @@
       "YOUR_ASSETS_IN_SINGAPORE": "Are all your assets in Singapore?",
       "FIND_OUT_ASSETS_CAN_DISTRIBUTE": "Find out what assets can be distributed via your will.",
       "TOOLTIP": {
-        "TITLE": "Assets to be Distributed",
+        "TITLE": "Assets To Be Distributed",
         "MESSAGE": "<p> Generally, only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nomination or trusts)</li><li>- Property (Sole or tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
       },
       "MUSLIM_ERROR": {

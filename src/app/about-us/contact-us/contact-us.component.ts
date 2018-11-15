@@ -15,11 +15,14 @@ import { AboutUsService } from './../about-us.service';
 })
 export class ContactUsComponent implements OnInit {
   public subject = 'Subject';
+  public email = 'enquiry@moneyowl.com.sg';
 
   contactUsForm: FormGroup;
   contactUsFormValues: IContactUs;
+  subjectList: any;
+  public subjectItems: any;
+  sendSuccess = false;
 
-  public subjectItems = ['Tell us how we are doing', 'Interested in Financial Planning', 'Looking for a product', 'How to make a claim'];
   constructor(
     public navbarService: NavbarService,
     public footerService: FooterService,
@@ -27,7 +30,10 @@ export class ContactUsComponent implements OnInit {
     public aboutUsApiService: AboutUsApiService,
     private formBuilder: FormBuilder
     ) {
-
+      this.aboutUsApiService.getSubjectList().subscribe((data) => {
+        this.subjectItems = this.aboutUsService.getSubject(data);
+        console.log(this.subjectItems);
+      });
     }
 
   ngOnInit() {
@@ -36,8 +42,14 @@ export class ContactUsComponent implements OnInit {
     this.contactUsFormValues = this.aboutUsService.getContactUs();
     this.contactUsForm = new FormGroup({
       subject: new FormControl(this.contactUsFormValues.subject),
+      email: new FormControl(this.contactUsFormValues.email),
       message: new FormControl(this.contactUsFormValues.message, [Validators.required])
     });
+  }
+
+  selectSubject(in_subject) {
+    this.subject = in_subject.subject;
+    this.email = in_subject.email;
   }
 
   save(form: any) {
@@ -45,14 +57,12 @@ export class ContactUsComponent implements OnInit {
       form.get(key).markAsDirty();
     });
     form.value.subject = this.subject;
-
+    form.value.email = this.email;
+    form.value.message = form.value.message.replace(/\n/g, '<br/>').replace(/"/g, '\\"');
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
-      if (data) {
+      if (data.responseMessage.responseDescription === 'Successful response') {
+        this.sendSuccess = true;
       }
     });
-  }
-
-  selectSubject(subject: string) {
-    this.subject = subject;
   }
 }

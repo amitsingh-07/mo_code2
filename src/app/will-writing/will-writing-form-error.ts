@@ -1,11 +1,11 @@
 export class WillWritingFormError {
         aboutMeForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         name: {
                                 required: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Please input the Name'
+                                        errorMessage: 'Full Name'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
@@ -15,7 +15,7 @@ export class WillWritingFormError {
                         uin: {
                                 required: {
                                         errorTitle: 'Invalid Identification Number',
-                                        errorMessage: 'Please input Identification Number'
+                                        errorMessage: 'Identification Number'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Identification Number',
@@ -26,13 +26,13 @@ export class WillWritingFormError {
                         gender: {
                                 required: {
                                         errorTitle: 'Invalid Gender',
-                                        errorMessage: 'Please select your gender'
+                                        errorMessage: 'Gender'
                                 }
                         },
                         maritalStatus: {
                                 required: {
                                         errorTitle: 'Invalid Marital Status',
-                                        errorMessage: 'Please select your marital status'
+                                        errorMessage: 'Marital status'
                                 }
                         },
                         noOfChildren: {
@@ -45,12 +45,12 @@ export class WillWritingFormError {
         };
         myFamilyForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         spouse: {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please input the Name'
+                                                errorMessage: 'Full Name'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
@@ -60,12 +60,12 @@ export class WillWritingFormError {
                                 uin: {
                                         required: {
                                                 errorTitle: 'Invalid Identification Number',
-                                                errorMessage: 'Please input Identification Number'
+                                                errorMessage: 'Identification Number'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
                                         }
                                 }
                         },
@@ -73,7 +73,7 @@ export class WillWritingFormError {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please input the Name'
+                                                errorMessage: 'Full Name'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
@@ -83,18 +83,18 @@ export class WillWritingFormError {
                                 uin: {
                                         required: {
                                                 errorTitle: 'Invalid Identification Number',
-                                                errorMessage: 'Please input Identification Number'
+                                                errorMessage: 'Identification Number'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
                                         }
                                 },
                                 dob: {
                                         required: {
                                                 errorTitle: 'Invalid Date of Birth',
-                                                errorMessage: 'Please select your child date of birth'
+                                                errorMessage: 'Date of Birth'
                                         }
                                 }
                         }
@@ -102,11 +102,11 @@ export class WillWritingFormError {
         };
         guardBeneForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         name: {
                                 required: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Please input the Name'
+                                        errorMessage: 'Full Name'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
@@ -116,7 +116,7 @@ export class WillWritingFormError {
                         uin: {
                                 required: {
                                         errorTitle: 'Invalid Identification Number',
-                                        errorMessage: 'Please input Identification Number'
+                                        errorMessage: 'Identification Number'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Identification Number',
@@ -127,19 +127,19 @@ export class WillWritingFormError {
                         relationship: {
                                 required: {
                                         errorTitle: 'Invalid Relationship',
-                                        errorMessage: 'Please indicate relationship to you'
+                                        errorMessage: 'Relationship to you'
                                 }
                         }
                 }
         };
         addExecTrusteeForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         executorTrustee: {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please input the Name'
+                                                errorMessage: 'Full Name'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
@@ -149,18 +149,18 @@ export class WillWritingFormError {
                                 uin: {
                                         required: {
                                                 errorTitle: 'Invalid Identification Number',
-                                                errorMessage: 'Please input Identification Number'
+                                                errorMessage: 'Identification Number'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
                                         }
                                 },
                                 relationship: {
                                         required: {
                                                 errorTitle: 'Invalid Relationship',
-                                                errorMessage: 'Please indicate relationship to you'
+                                                errorMessage: 'Relationship to you'
                                         }
                                 }
                         }

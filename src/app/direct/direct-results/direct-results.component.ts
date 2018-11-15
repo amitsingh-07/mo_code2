@@ -295,6 +295,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       case PRODUCT_CATEGORY_INDEX.HOSPITAL_PLAN:
         delete this.filters[0];
         this.filters.push(fullPartialRider);
+        this.directService.setPremiumFrequencyFilter('yearly');
         break;
       case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
         delete this.filters[0];

@@ -1,7 +1,19 @@
 {
     "GENERAL": {
         "TITLE": "Home",
-        "COMING_SOON": "Coming Soon"
+        "COMING_SOON": "Coming Soon",
+        "META": {
+            "GENERAL": {
+                "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+                "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+                "META_AUTHOR": "Moneyowl Pte Ltd",
+                "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            },
+            "SOCIAL": {
+                "META_DESCRIPTION": "",
+                "META_THUMBNAIL": ""
+            }
+        }
     },
     "BANNER": {
         "TITLE": "Making Wise Decisions Easy",
@@ -14,7 +26,7 @@
         "DESCRIPTION": "Analyse your insurance coverage and compare insurance easily. Receive claims support and enjoy up to 50% rebate in agent’s commissions!",
         "LINK1": "Find Out What I Need",
         "LINK2": "Or I Know What I Need!",
-        "TRUST_US": "355,000 users",
+        "TRUST_US": "355,000 users ",
         "TRUST_US2": "have trusted us" 
     },
     "WILL": {
@@ -39,7 +51,11 @@
     },
     "NEWSLETTER": {
         "TITLE": "Join our newsletter and get wiser every day!",
-        "PLACEHOLDER": "Email",
+        "PLACEHOLDER": {
+            "EMAIL": "Email",
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name"
+            },
         "SUBSCRIBE": "Subscribe",
         "SUBTEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!"
     },

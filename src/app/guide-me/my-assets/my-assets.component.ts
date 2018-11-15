@@ -59,7 +59,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
     if (this.myInfoService.isMyInfoEnabled) {
-      this.guideMeApiService.getMyInfoData().subscribe((data) => {
+      this.myInfoService.getMyInfoData().subscribe((data) => {
         this.cpfValue = Math.floor(data['person'].cpfcontributions.cpfcontribution.slice(-1)[0]['amount']);
         this.assetsForm.controls['cpf'].setValue(this.cpfValue);
         this.myInfoService.isMyInfoEnabled = false;

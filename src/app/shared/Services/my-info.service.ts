@@ -5,6 +5,8 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 
+const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,11 +24,11 @@ export class MyInfoService {
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
-    window.sessionStorage.setItem('attributes', this.attributes);
+    window.sessionStorage.setItem(MYINFO_ATTRIBUTE_KEY, this.attributes);
   }
 
   getMyInfoAttributes() {
-    return window.sessionStorage.getItem('attributes');
+    return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
 
   goToMyInfo() {
@@ -69,6 +71,10 @@ export class MyInfoService {
   }
 
   getMyInfoData() {
-    return this.apiService.getMyInfoData(this.myInfoValue);
-  }
+    const code = {
+        authorizationCode : this.myInfoValue,
+        personAttributes: this.getMyInfoAttributes()
+    };
+    return this.apiService.getMyInfoData(code);
+}
 }

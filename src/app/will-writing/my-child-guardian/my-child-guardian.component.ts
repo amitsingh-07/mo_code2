@@ -12,8 +12,8 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IGuardian } from '../will-writing-types';
-import { WillWritingService } from '../will-writing.service';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
+import { WillWritingService } from '../will-writing.service';
 
 @Component({
   selector: 'app-my-child-guardian',
@@ -59,8 +59,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_MESSAGE');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
@@ -127,6 +126,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     relationship = relationship ? relationship : { text: '', value: '' };
     this.relationship = relationship.text;
     this.addGuardianForm.controls['relationship'].setValue(relationship.value);
+    this.addGuardianForm.markAsDirty();
   }
 
   editGuardian(relation: string, index: number) {
@@ -195,13 +195,10 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   }
 
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     ref.componentInstance.unSaved = true;
-    if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
-    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(form);
@@ -216,19 +213,16 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    let url = WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+    const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
     if (this.guardianList.length !== this.maxGuardian) {
       if (this.validateGuardianForm(form) && this.save(form)) {
         this.router.navigate([url]);
       }
     } else {
-      if (this.fromConfirmationPage) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
-      }
       if (this.isEdit) {
         if (this.addGuardianForm.dirty) {
           if (this.validateGuardianForm(form)) {
-            this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+            this.openConfirmationModal(url, form);
           }
         } else {
           this.router.navigate([url]);
