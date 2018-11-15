@@ -38,7 +38,7 @@ export class WillWritingFormError {
                         noOfChildren: {
                                 required: {
                                         errorTitle: 'Invalid Child Count',
-                                        errorMessage: 'Please select your child count'
+                                        errorMessage: 'Number of Children'
                                 }
                         }
                 }
