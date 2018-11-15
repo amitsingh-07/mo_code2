@@ -53,7 +53,11 @@ export class ConfirmationComponent implements OnInit {
   }
 
   goNext() {
+    if (this.willWritingService.isUserLoggedIn()) {
+      this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+    } else {
       this.router.navigate([WILL_WRITING_ROUTE_PATHS.SIGN_UP]);
+    }
   }
 
 }
