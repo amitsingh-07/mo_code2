@@ -218,6 +218,9 @@
         letter-spacing: -0.3px;
         font-weight: 600;
         color: #9e9e9e;
+        @include allmobiles {
+            padding-left: 10px;
+        }
       }
       .separator {
         width: 1px;
