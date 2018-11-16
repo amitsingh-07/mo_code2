@@ -1,7 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { GuideMeApiService } from '../guide-me/guide-me.api.service';
 import { GuideMeService } from '../guide-me/guide-me.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -19,38 +21,42 @@ export class TestMyInfoComponent implements OnInit {
   assetsTotal = 0;
   cpfValue;
   pageTitle: string;
-  constructor(private guideMeService: GuideMeService, private guideMeApiService: GuideMeApiService,
-              public navbarService: NavbarService,
-              private modal: NgbModal, private myInfoService: MyInfoService,
-              public authService: AuthenticationService,
-              private translate: TranslateService, private activeModal: NgbActiveModal ) {
-                this.translate.use('en');
-                this.translate.get('COMMON').subscribe((result: string) => {
-                this.pageTitle = this.translate.instant('Test MyInfo');
-                this.setPageTitle(this.pageTitle);
-              });
-            }
+  constructor(
+    private guideMeService: GuideMeService, private guideMeApiService: GuideMeApiService,
+    public navbarService: NavbarService,
+    private modal: NgbModal, private myInfoService: MyInfoService,
+    public authService: AuthenticationService,
+    private translate: TranslateService, private activeModal: NgbActiveModal,
+    private route: ActivatedRoute) {
+    this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.pageTitle = this.translate.instant('Test MyInfo');
+      this.setPageTitle(this.pageTitle);
+    });
+  }
   ngOnInit() {
     this.testMyInfoForm = new FormGroup({
       cpf: new FormControl('')
     });
     this.authService.authenticate().subscribe((token) => {
     });
-    if (this.myInfoService.isMyInfoEnabled) {
-      this.myInfoService.getMyInfoData().subscribe((data) => {
-        if (data && data['objectList']) {
-        this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-        this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
-        this.myInfoService.isMyInfoEnabled = false;
-        this.setFormTotalValue();
-        this.closeMyInfoPopup(false);
-        } else {
+    this.route.params.subscribe((params) => {
+      if (params.myinfo && this.myInfoService.isMyInfoEnabled) {
+        this.myInfoService.getMyInfoData().subscribe((data) => {
+          if (data && data['objectList']) {
+            this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+            this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
+            this.myInfoService.isMyInfoEnabled = false;
+            this.setFormTotalValue();
+            this.closeMyInfoPopup(false);
+          } else {
+            this.closeMyInfoPopup(true);
+          }
+        }, (error) => {
           this.closeMyInfoPopup(true);
-        }
-      }, (error) => {
-        this.closeMyInfoPopup(true);
-      });
-    }
+        });
+      }
+    });
   }
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.testMyInfoForm.value);

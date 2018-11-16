@@ -1,11 +1,10 @@
-import { ConfigService, IConfig } from './../../config/config.service';
 import { Location } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Router } from '@angular/router';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -13,6 +12,7 @@ import { MyInfoService } from '../../shared/Services/my-info.service';
 import { GUIDE_ME_ROUTE_PATHS } from '../guide-me-routes.constants';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
+import { ConfigService, IConfig } from './../../config/config.service';
 import { IMyAssets } from './my-assets.interface';
 
 @Component({
@@ -35,7 +35,8 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     private modal: NgbModal, private location: Location,
     private myInfoService: MyInfoService,
     public guideMeApiService: GuideMeApiService, private configService: ConfigService,
-    private guideMeService: GuideMeService, private translate: TranslateService) {
+    private guideMeService: GuideMeService, private translate: TranslateService,
+    private route: ActivatedRoute) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('MY_ASSETS.TITLE');
@@ -59,24 +60,26 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
-    if (this.myInfoService.isMyInfoEnabled) {
-      this.myInfoService.getMyInfoData().subscribe((data) => {
-        if (data && data['objectList']) {
-          this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-          this.assetsForm.controls['cpf'].setValue(this.cpfValue);
-          this.myInfoService.isMyInfoEnabled = false;
-          this.cpfFromMyInfo = true;
-          this.setFormTotalValue();
-          this.closeMyInfoPopup(false);
-        } else {
+    this.route.params.subscribe((params) => {
+      if (params.myinfo && this.myInfoService.isMyInfoEnabled) {
+        this.myInfoService.getMyInfoData().subscribe((data) => {
+          if (data && data['objectList']) {
+            this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+            this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+            this.myInfoService.isMyInfoEnabled = false;
+            this.cpfFromMyInfo = true;
+            this.setFormTotalValue();
+            this.closeMyInfoPopup(false);
+          } else {
+            this.closeMyInfoPopup(true);
+          }
+        }, (error) => {
           this.closeMyInfoPopup(true);
-        }
-      }, (error) => {
-        this.closeMyInfoPopup(true);
-      });
-    }
+        });
+      }
+    });
+
     this.setFormTotalValue();
-    window.sessionStorage.setItem('currentUrl', window.location.hash);
   }
   ngOnDestroy(): void {
     this.locationSubscription.unsubscribe();
