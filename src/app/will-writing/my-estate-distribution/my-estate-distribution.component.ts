@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
@@ -43,6 +44,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private _location: Location,
     private modal: NgbModal,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     private router: Router) {
     this.translate.use('en');
@@ -64,6 +66,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     this.buildBeneficiaryForm();
     this.calculateRemPercentage();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
@@ -146,16 +149,13 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     const filteredArr = estateDistList.filter((greater) => greater.distPercentage < 1);
     const joinedArray = [];
     if (this.remainingPercentage < 0) {
-      this.willWritingService.openToolTipModal('You have distributed more than 100% of your estate.', '');
+      this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
       return false;
     } else if (this.remainingPercentage !== 0 && filteredArr.length < 1 ) {
-      this.willWritingService.openToolTipModal(`You have ${this.remainingPercentage}% left to distribute`, '');
+      this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
       return false;
     } else if ( filteredArr.length > 0) {
-      for (const beneficiary of filteredArr) {
-      joinedArray.push(beneficiary.name);
-      }
-      this.willWritingService.openToolTipModal(`Please input value to be allocated for ${joinedArray.join()}`, '');
+      this.willWritingService.openToolTipModal(this.errorMsg.NON_ALLOCATED_PERCENTAGE, '');
       return false;
     }
     return true;

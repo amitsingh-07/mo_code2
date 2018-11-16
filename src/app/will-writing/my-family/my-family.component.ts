@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
@@ -46,6 +47,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     private parserFormatter: NgbDateParserFormatter,
     private router: Router,
     private _location: Location,
+    public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private translate: TranslateService,
     private willWritingService: WillWritingService
@@ -74,6 +76,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.spouseFormValues = this.willWritingService.getSpouseInfo();
     this.buildMyFamilyForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   /**

@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { WillDisclaimerComponent } from '../../shared/components/will-disclaimer/will-disclaimer.component';
+import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -34,6 +35,7 @@ export class IntroductionComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public authService: AuthenticationService,
     private willWritingService: WillWritingService,
     private willWritingApiService: WillWritingApiService
@@ -59,6 +61,7 @@ export class IntroductionComponent implements OnInit {
     this.promoCodeForm = this.formBuilder.group({
       promoCode: [promoCodeValue, [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
+    this.footerService.setFooterVisibility(false);
   }
 
   @HostListener('input', ['$event'])
