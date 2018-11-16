@@ -1,4 +1,5 @@
-<app-page-title [step]="step" [pageTitle]="pageTitle"></app-page-title>
+<app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]="distributionForm.dirty"></app-page-title>
+<form id="distributionForm" name="distributionForm" [formGroup]="distributionForm" id="distributionForm">
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="flex-row main-container">
@@ -19,7 +20,7 @@
               <div class="distribution-img mb20"><img src="assets/images/will-writing/estate-distribution-bg.png"/></div>
               <div class="distribution-content">
                 <span class="title">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.DISTRIBUTE_YOUR_ESTATE' | translate}}</span>
-                <span class="percentage">{{this.remainingPercentage}}%</span>
+                <span class="percentage" [ngClass]= "{'error-text': this.remainingPercentage < 0}">{{this.remainingPercentage}}%</span>
                 <span class="sub-title">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.LEFT_TO_DISTRIBUTE' | translate}}</span>
               </div>
             
@@ -27,18 +28,18 @@
         <div class="estateDistributionForm">
               <div *ngIf="true" class="estate-distribution-form">
                 <div class="form-title mb10">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.ESTATE_DISTRIBUTION' | translate}}</div>
-                  <div *ngFor="let currentDist of estateDistList; let i = index" class="form-group-single-column mb15">
-                      <div class="col-6">
+                  <div *ngFor="let currentDist of beneficiaryList; let i = index" class="form-group-single-column mb15">
+                      <div class="col-6" *ngIf="currentDist.selected === true">
                         <label for="beneficiary_{{i+1}}" id="beneficiary_{{i+1}}">
                           <div class="input-label-black">{{currentDist.name | titlecase}}</div>
                           <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
                               translate}} {{currentDist.relationship | titlecase}} {{currentDist.pos}}</div>
                         </label>
                       </div>
-                      <div class="col-6">
+                      <div class="col-6" *ngIf="currentDist.selected === true">
                           <div class="form-control">   
-                          <input  #percent id="beneficiary_{{i+1}}" (keyup)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" pattern="(100)|(0*\d{1,2})" type="number" class="input-control"
-                            value="{{currentDist.distPercentage}}" >
+                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" maxLength="3" pattern="(100)|(0*\d{1,2})" type="text" class="input-control"
+                            value="{{currentDist.distPercentage}}" formControlName="percent" >
                           <i>%</i>
                         </div>
                       </div>
@@ -61,3 +62,4 @@
   </div>
 </div>
 </div>
+</form>

@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
@@ -48,6 +49,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     private modal: NgbModal,
     private router: Router,
     private translate: TranslateService,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     private _location: Location,
     private willWritingService: WillWritingService
@@ -81,6 +83,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.maxGuardian = this.hasSpouse ? 2 : 1;
     this.buildAddGuardianForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
