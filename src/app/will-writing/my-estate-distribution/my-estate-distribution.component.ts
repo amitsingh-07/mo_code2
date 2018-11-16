@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -143,12 +143,19 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
 
   validateBeneficiaryForm() {
     const estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
-    const arrLength = estateDistList.filter((greater) => greater.distPercentage < 1).length;
-    if (arrLength > 0 && this.remainingPercentage === 0) {
-      this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
+    const filteredArr = estateDistList.filter((greater) => greater.distPercentage < 1);
+    const joinedArray = [];
+    if (this.remainingPercentage < 0) {
+      this.willWritingService.openToolTipModal('You have distributed more than 100% of your estate.', '');
       return false;
-    } else if (arrLength < 1 && this.remainingPercentage !== 0 || arrLength > 0 && this.remainingPercentage !== 0) {
-      this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
+    } else if (this.remainingPercentage !== 0 && filteredArr.length < 1 ) {
+      this.willWritingService.openToolTipModal(`You have ${this.remainingPercentage}% left to distribute`, '');
+      return false;
+    } else if ( filteredArr.length > 0) {
+      for (const beneficiary of filteredArr) {
+      joinedArray.push(beneficiary.name);
+      }
+      this.willWritingService.openToolTipModal(`Please input value to be allocated for ${joinedArray.join()}`, '');
       return false;
     }
     return true;

@@ -50,8 +50,14 @@ export class IntroductionComponent implements OnInit {
     this.navbarService.setNavbarMode(4);
     this.authService.authenticate().subscribe((token) => {
     });
+    let promoCodeValue: any = this.willWritingService.getPromoCode();
+    if (Object.keys(promoCodeValue).length > 0) {
+      promoCodeValue = promoCodeValue.toUpperCase();
+    } else {
+      promoCodeValue = '';
+    }
     this.promoCodeForm = this.formBuilder.group({
-      promoCode: ['', [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
+      promoCode: [promoCodeValue, [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
   }
 
