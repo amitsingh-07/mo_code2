@@ -18,7 +18,7 @@ const SESSION_STORAGE_KEY = 'app_inv_account_session';
     providedIn: 'root'
 })
 export class InvestmentAccountService {
-    disableAttributes = ['fullName'];
+    disableAttributes = [];
     myInfoAttributes = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
         'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
 
@@ -282,6 +282,10 @@ export class InvestmentAccountService {
         if (data.gender) {
             this.investmentAccountFormData.gender = data.gender;
         }
+        this.investmentAccountFormData.salutation = data.salutation;
+        this.investmentAccountFormData.birthCountry = data.birthCountry;
+        this.investmentAccountFormData.passportIssuedCountry = data.passportIssuedCountry;
+        this.investmentAccountFormData.race = data.race;
         this.commit();
     }
     getPersonalInfo() {
@@ -418,6 +422,7 @@ export class InvestmentAccountService {
 
     setMyInfoFormData(data) {
         this.investmentAccountFormData.fullName = data.name.value;
+        this.disableAttributes.push('fullName');
         if (data.nationality.value) {
             this.investmentAccountFormData.nationalityCode = data.nationality.value;
             this.disableAttributes.push('nationality');
@@ -643,12 +648,15 @@ export class InvestmentAccountService {
             fullName: data.fullName,
             firstName: data.firstName,
             lastName: data.lastName,
-            nricNumber: data.nricNumber,
-            passportNumber: data.passportNumber,
-            passportExpiryDate: this.convertDate(data.passportExpiry),
-            passportIssuedCountryId: 1,
+            nricNumber: (data.nricNumber) ? data.nricNumber : null,
+            passportNumber: (data.passportNumber) ? data.passportNumber : null,
+            passportExpiryDate: (data.passportExpiry) ? this.convertDate(data.passportExpiry) : null,
+            passportIssuedCountryId: (data.passportIssuedCountry) ? data.passportIssuedCountry.id : null,
             dateOfBirth: this.convertDate(data.dob),
-            gender: data.gender
+            gender: data.gender,
+            salutation: (data.salutation) ? data.salutation.name : null,
+            birthCountryId: (data.birthCountry) ? data.birthCountry.id : null,
+            race: (data.race) ? data.race.name : null
         };
     }
 

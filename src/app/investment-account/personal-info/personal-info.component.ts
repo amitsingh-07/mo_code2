@@ -59,7 +59,6 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       this.passportMinDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
       this.passportMaxDate = { year: (today.getFullYear() + 20), month: (today.getMonth() + 1), day: today.getDate() };
     });
-    this.setOptionList();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -67,10 +66,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.optionList = this.investmentAccountService.getOptionList();
-    this.salutaionList = this.optionList.salutation;
-    this.raceList = this.optionList.race;
-    this.countries = this.investmentAccountService.getCountriesFormData();
+    this.setOptionList();
     // get profile
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.populateFullName();
@@ -89,11 +85,11 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     return this.formBuilder.group({
       salutation: [{ value: this.formValues.salutation, disabled: this.investmentAccountService.isDisabled('salutation') },
       [Validators.required]],
-      fullName: [{ value: this.formValues.fullName, disabled: true },
+      fullName: [{ value: this.formValues.fullName, disabled: this.investmentAccountService.isDisabled('fullName') },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{ value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName') },
+      firstName: [{ value: this.formValues.firstName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{ value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName') },
+      lastName: [{ value: this.formValues.lastName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       nricNumber: [{ value: this.formValues.nricNumber, disabled: this.investmentAccountService.isDisabled('nricNumber') },
       [Validators.required, Validators.pattern(RegexConstants.NRIC)]],
@@ -114,11 +110,11 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     return this.formBuilder.group({
       salutation: [{ value: this.formValues.salutation, disabled: this.investmentAccountService.isDisabled('salutation') },
       [Validators.required]],
-      fullName: [{ value: this.formValues.fullName, disabled: true },
+      fullName: [{ value: this.formValues.fullName, disabled: this.investmentAccountService.isDisabled('fullName') },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{ value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName') },
+      firstName: [{ value: this.formValues.firstName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{ value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName') },
+      lastName: [{ value: this.formValues.lastName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
       [Validators.required, this.validateMinimumAge]],
@@ -216,6 +212,10 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   setOptionList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.investmentAccountService.setOptionList(data.objectList);
+      this.optionList = this.investmentAccountService.getOptionList();
+      this.salutaionList = this.optionList.salutation;
+      this.raceList = this.optionList.race;
+      this.countries = this.investmentAccountService.getCountriesFormData();
     });
   }
 

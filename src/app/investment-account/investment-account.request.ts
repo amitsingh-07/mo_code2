@@ -22,6 +22,9 @@ export interface IPersonalInfo {
     passportIssuedCountryId: number;
     dateOfBirth: string;
     gender: string;
+    salutation: any;
+    birthCountryId: any;
+    race: any;
 }
 
 export interface IAddress {

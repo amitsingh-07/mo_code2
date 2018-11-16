@@ -26,7 +26,11 @@
     "SALUTATION": "Salutation",
     "BIRTH_COUNTRY": "Country of Birth",
     "PASSPORT_ISSUED_COUNTRY": "Passport Issued Country",
-    "RACE": "Race"
+    "RACE": "Race",
+    "SELECT_SALUTATION": "Select Salutation",
+    "SELECT_BIRTH_COUNTRY": "Select Country",
+    "SELECT_PASSPORT_ISSUED_COUNTRY": "Select Country",
+    "SELECT_RACE": "Select Race"
   },
   "RESIDENTIAL_ADDRESS": {
     "TITLE": "Residential Address",
