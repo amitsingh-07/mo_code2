@@ -52,6 +52,14 @@ export class AppRoutingModule { }
 // MyInfo changes
 export function validateUrl(url: UrlSegment[], group: UrlSegmentGroup, route: Route) {
   if (window.location.search === '?errorcode=eSingPass_00_00_01') {
-    return ({ consumed: url });
+    if (window.opener && window.opener.myinfo) {
+      const token: string = window.opener.failed('FAILED');
+      if (token === 'MY_INFO') {
+
+      }
+      // attempt to authenticate with the token...
+    } else {
+      return ({ consumed: url });
+    }
   }
 }

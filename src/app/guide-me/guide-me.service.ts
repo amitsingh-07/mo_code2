@@ -59,7 +59,7 @@ export class GuideMeService {
   private result_value;
 
   constructor(private http: HttpClient, private modal: NgbModal,
-              private authService: AuthenticationService, private translate: TranslateService ) {
+    private authService: AuthenticationService, private translate: TranslateService) {
     this.getGuideMeFormData();
     this.protectionNeedsPageIndex = this.guideMeFormData.protectionNeedsPageIndex;
     if (this.guideMeFormData.existingCoverageValues) {
@@ -372,7 +372,7 @@ export class GuideMeService {
     const hospitalPlan = {
       hospitalClassId: 0,
       hospitalClass: 'None',
-      hospitalClassDescription: ''
+      hospitalClassDescription: '',
     } as HospitalPlan;
 
     const existingCoverage = {
@@ -380,8 +380,9 @@ export class GuideMeService {
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
       occupationalDisabilityCoveragePerMonth: 0,
-      selectedHospitalPlan: hospitalPlan
-    };
+      selectedHospitalPlan: hospitalPlan,
+      selectedHospitalPlanId: 0
+    } as IExistingCoverage;
     return existingCoverage;
   }
 
@@ -399,8 +400,9 @@ export class GuideMeService {
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
       occupationalDisabilityCoveragePerMonth: 0,
-      selectedHospitalPlan: hospitalPlan
-    };
+      selectedHospitalPlan: hospitalPlan,
+      selectedHospitalPlanId: hospitalPlan.hospitalClassId
+    } as IExistingCoverage;
     this.setExistingCoverageValues(existingCoverage);
 
     return existingCoverage;
@@ -436,7 +438,8 @@ export class GuideMeService {
         id: 0,
         hospitalClass: 'None',
         hospitalClassDescription: ''
-      }
+      },
+      selectedHospitalPlanId: 0
     }];
   }
 
