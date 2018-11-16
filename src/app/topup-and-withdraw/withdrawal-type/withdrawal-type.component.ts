@@ -54,7 +54,6 @@ export class WithdrawalTypeComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.buildForm();
-
     // Withdraw Type Changed Event
     this.withdrawForm.get('withdrawType').valueChanges.subscribe((value) => {
       this.withdrawForm.removeControl('portfolioGroup');
@@ -62,8 +61,9 @@ export class WithdrawalTypeComponent implements OnInit {
       this.showWithdrawalAmountControl = true;
       if (value.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID
         || value.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID) {
+        console.log(this.formValues);
         this.withdrawForm.addControl('portfolioGroup', this.formBuilder.group({
-          withdrawPortfolio: new FormControl(null, [Validators.required])
+          withdrawPortfolio: new FormControl(this.formValues.withdrawPortfolio, [Validators.required])
         }));
         this.isFromPortfolio = true;
         this.showWithdrawalAmountControl = false;
@@ -74,6 +74,12 @@ export class WithdrawalTypeComponent implements OnInit {
         });
       }
     });
+    if (this.formValues.withdrawType) { // trigger change event
+      this.withdrawForm.get('withdrawType').setValue(this.formValues.withdrawType);
+    }
+    if (this.withdrawForm.get('portfolioGroup')) { // trigger change event
+      this.withdrawForm.get('portfolioGroup').get('withdrawPortfolio').setValue(this.formValues.withdrawPortfolio);
+    }
   }
 
   getLookupList() {
