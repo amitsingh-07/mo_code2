@@ -14,6 +14,7 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IExecTrustee } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
+import { FooterService } from '../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-my-executor-trustee',
@@ -50,6 +51,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private translate: TranslateService,
     private willWritingService: WillWritingService,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     private _location: Location,
     private modal: NgbModal,
@@ -82,6 +84,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     }
     this.buildMainForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
