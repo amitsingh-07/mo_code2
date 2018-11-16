@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -48,6 +49,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private _location: Location,
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
+    public footerService: FooterService,
     private modal: NgbModal,
     private router: Router, public navbarService: NavbarService
   ) {
@@ -88,6 +90,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     }
     this.buildBeneficiaryForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
