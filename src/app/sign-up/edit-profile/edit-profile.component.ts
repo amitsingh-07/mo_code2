@@ -38,6 +38,8 @@ export class EditProfileComponent implements OnInit {
   nationalityList: any;
   countryList: any;
   isMailingAddressSame: boolean;
+  isEmployeAddresSame: boolean;
+  isSingaporeResident: boolean;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -63,6 +65,7 @@ export class EditProfileComponent implements OnInit {
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
+    this.isEmployeAddresSame = true;
   }
   showHidePassword(el) {
     if (el.type === 'password') {
@@ -115,10 +118,14 @@ export class EditProfileComponent implements OnInit {
       this.setNric(this.personalData.nricNumber);
       this.setAddres(this.residentialAddress.addressLine1 , this.residentialAddress.addressLine2);
       this.setMailingAddres(this.mailingAddress.addressLine1 , this.mailingAddress.addressLine2);
+      if ( this.personalData) {
+        this.isSingaporeResident = this.personalData.isSingaporeResident;
+        }
       if ( this.empolymentDetails.employerDetails.employerAddress) {
-      this.employerAddress = this.empolymentDetails.employerDetails.employerAddress ;
+        this.isEmployeAddresSame = false;
+        this.employerAddress = this.empolymentDetails.employerDetails.employerAddress ;
       // tslint:disable-next-line:max-line-length
-      this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
+        this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
       // tslint:disable-next-line:max-line-length
       // this.setMailingAddres(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
       }
@@ -145,18 +152,21 @@ this.compinedAddress = address1 + ' ' + address2;
 this.compinedEmployerAddress = address1 + ' ' + address2;
   }
   editEmployeDetails() {
+    // tslint:disable-next-line:max-line-length
+    this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData , this.nationalityList, this.countryList, this.isEmployeAddresSame , this.isSingaporeResident );
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], {queryParams: {enableEditProfile: true}, fragment: 'loading'});
   }
   editUserDetails() {
   }
   editPassword() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
   }
   getNationalityCountryList() {
-    this.authService.authenticate().subscribe((token) => {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
             this.nationalityList = data.objectList;
             this.countryList = this.getCountryList(data.objectList);
         });
-      });
    }
 
 getCountryList(data) {
@@ -170,7 +180,7 @@ getCountryList(data) {
 }
   editContactDetails() {
     // tslint:disable-next-line:max-line-length
-    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList , this.isMailingAddressSame);
+    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList , this.isMailingAddressSame , this.isSingaporeResident);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   editBankDetails() {
