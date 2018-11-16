@@ -36,7 +36,7 @@
           <div class="form-group" style="position: relative;">
             <div class="form-group-with-bg--content">
               <div class="investmentSlider">
-                  <input type="text" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
+                  <input type="hidden" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
                 <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
                   [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" id="personalInfoSlider" data-placement="bottom"></nouislider>
               </div>
