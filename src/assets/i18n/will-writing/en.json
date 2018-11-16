@@ -25,7 +25,7 @@
       "NUMBER_OF_CHILDREN": "Number of Children",
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "<span class='flex mr17'>Your changes will not be saved. Are you sure you want to leave this page?</span>",
-      "CONFIRM": "Your previous information will be overwritten. <br/>Would you like to proceed?",
+      "CONFIRM": "Your previous information will be overwritten. <br/><br/>Would you like to proceed?",
       "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your will has to be rewritten and you will be redirected back to Step 1. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
@@ -171,7 +171,7 @@
       "FIND_OUT_ASSETS_CAN_DISTRIBUTE": "Find out what assets can be distributed via your will.",
       "TOOLTIP": {
         "TITLE": "Assets To Be Distributed",
-        "MESSAGE": "<p> Generally, only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nomination or trusts)</li><li>- Property (Sole or tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
+        "MESSAGE": "<p> Generally, only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nomination or trusts)</li><li>- Property (Sole or tenancy-in-common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
       },
       "MUSLIM_ERROR": {
         "TITLE": "Sorry, we are unable to assist you.",

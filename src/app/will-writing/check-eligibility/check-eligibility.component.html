@@ -32,8 +32,8 @@
                 </div>
                 <div class="flex-col-7 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="singaporean" formControlName="singaporean">
-                    <div class="flex-row mb0" style="justify-content: space-between;">
-                      <div>
+                    <div class="flex-row mb0">
+                      <div class="mr5">
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl2">
                           <input ngbButton type="radio" (click) = "changeState($event)" value="yes" id="eligibilityInpt1"> {{ 'COMMON.LBL_YES' | translate}}
                         </label>
@@ -47,15 +47,15 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row section">
+              <div class="flex-row section assetslbl">
                 <div class="flex-col-5 with-help-icon">
-                  <label class="label mr10" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
+                  <label class="label mr10 lbl4" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
                     translate}}</label>
                 </div>
                 <div class="flex-col-7 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="assets" formControlName="assets">
-                    <div class="flex-row mb0" style="justify-content: space-between;">
-                      <div>
+                    <div class="flex-row mb0">
+                      <div class="mr5">
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl5">
                           <input ngbButton type="radio" value="yes" (click) = "changeAssets($event)" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
                         </label>
