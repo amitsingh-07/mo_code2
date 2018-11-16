@@ -412,4 +412,8 @@ export class WillWritingService {
     }
     return this.fromConfirmationPage;
   }
+
+  checkBeneficiary(uin) {
+    return this.getBeneficiaryInfo().filter((data) => data.uin === uin && data.selected === true);
+  }
 }
