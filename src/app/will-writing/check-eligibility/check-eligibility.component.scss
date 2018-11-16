@@ -102,7 +102,7 @@
         letter-spacing: -0.2px;
         color: #333846;
         @include allmobiles {
-            margin-bottom: 20px;        
+            margin-bottom: 12px;        
             text-align: center;
             padding: 0 30px;
         }
@@ -182,7 +182,12 @@
     letter-spacing: -0.3px;
     color: #2d8289;
     margin-bottom: 29px;
-    justify-content: space-between;
+    .assetslbl {
+        @include allmobiles {
+            margin-bottom: 25px;
+        }
+        
+    }
 }
 .dropdown-control{
      .dropdown-menu{
@@ -213,4 +218,16 @@
   line-height: 1.31;
   letter-spacing: -0.2px;
   color: #2d8289;
+}
+
+.lbl4 {
+    @include allmobiles{
+        margin-top:-20px;
+    }
+}
+
+.direct-form-grp .btn-group--toggle .direct-form-btn--radio {
+    @include allmobiles {
+        max-width:96px;
+    }
 }
