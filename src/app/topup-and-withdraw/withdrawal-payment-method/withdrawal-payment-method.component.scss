@@ -50,6 +50,7 @@
     }
     .available_accounts{
         opacity: 0.7;
+        padding:10px 0px;
         border-radius: 6px;
         background-color: $white-color;
         font-family: $muli-regular;
@@ -59,9 +60,16 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        min-height: 137px;
         .selected_logo{
             display: none;
+        }
+        .bank_logo{
+            min-height: 70px;
+            min-width: 70px;
+        }
+        .bank_img{
+            max-height: 70px;
+            max-width: 70px;
         }
         .user_account{
             font-family: $muli-semi-bold;
@@ -120,6 +128,13 @@
         .link{
             font-family: $muli-bold;
             font-weight: bold;
+        }
+    }
+    .tab-content{
+        display:none;
+
+        &.active {
+            display:block;
         }
     }
 }

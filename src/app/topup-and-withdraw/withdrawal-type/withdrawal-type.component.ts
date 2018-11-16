@@ -5,13 +5,14 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import {
+  ConfirmWithdrawalModalComponent
+} from '../confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
-import {
-    ConfirmWithdrawalModalComponent
-} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 
 @Component({
   selector: 'app-withdrawal-type',
@@ -25,16 +26,8 @@ export class WithdrawalTypeComponent implements OnInit {
   formValues;
   showWithdrawalAmountControl = false;
   isFromPortfolio = false;
-  withdrawalTypes = [
-    { id: 1, name: 'Portfolio to Cash Account' },
-    { id: 2, name: 'Portfolio to Bank Account' },
-    { id: 3, name: 'Cash Account to Bank Ac' }
-  ];
-  portfolioList = [
-    { id: 1, name: 'Growth' },
-    { id: 2, name: 'Conservative' },
-    { id: 3, name: 'Equity' }
-  ];
+  withdrawalTypes;
+  portfolioList;
 
   constructor(
     public readonly translate: TranslateService,
@@ -56,6 +49,7 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getLookupList();
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
@@ -66,20 +60,35 @@ export class WithdrawalTypeComponent implements OnInit {
       this.withdrawForm.removeControl('portfolioGroup');
       this.isFromPortfolio = false;
       this.showWithdrawalAmountControl = true;
-      if (value.id === TOPUPANDWITHDRAW_CONFIG.withdraw.PORTFOLIO_TO_CASH_TYPE_ID
-        || value.id === TOPUPANDWITHDRAW_CONFIG.withdraw.PORTFOLIO_TO_BANK_TYPE_ID) {
+      if (value.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID
+        || value.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID) {
         this.withdrawForm.addControl('portfolioGroup', this.formBuilder.group({
-          portfolio: new FormControl(null, [Validators.required])
+          withdrawPortfolio: new FormControl(null, [Validators.required])
         }));
         this.isFromPortfolio = true;
         this.showWithdrawalAmountControl = false;
-        this.withdrawForm.get('portfolioGroup').get('portfolio').valueChanges.subscribe((portfolio) => {
+        this.withdrawForm.get('portfolioGroup').get('withdrawPortfolio').valueChanges.subscribe((portfolio) => {
           if (portfolio) {
             this.showWithdrawalAmountControl = true;
           }
         });
       }
     });
+  }
+
+  getLookupList() {
+    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
+      this.withdrawalTypes = [
+        { id: 1, name: 'Portfolio to Cash Account' },
+        { id: 2, name: 'Portfolio to Bank Account' },
+        { id: 3, name: 'Cash Account to Bank Ac' }
+      ];
+      this.portfolioList = [
+        { id: 'PORT2334', name: 'Growth', value: 12050 },
+        { id: 'PORT2335', name: 'Conservative', value: 9500 }
+      ];
+    });
+
   }
 
   buildForm() {
@@ -101,7 +110,7 @@ export class WithdrawalTypeComponent implements OnInit {
     this.withdrawForm.controls[nestedKey]['controls'][key].setValue(value);
   }
 
-  showConfirmWithdrawModal() {
+  showConfirmWithdrawModal(form) {
     const ref = this.modal.open(ConfirmWithdrawalModalComponent, {
       centered: true
     });
@@ -109,7 +118,8 @@ export class WithdrawalTypeComponent implements OnInit {
     ref.componentInstance.withdrawType = this.withdrawForm.get('withdrawType').value;
     ref.componentInstance.confirmed.subscribe(() => {
       ref.close();
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
+      this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
+      this.saveWithdrawal();
       // confirmed
     });
     this.dismissPopup(ref);
@@ -121,6 +131,43 @@ export class WithdrawalTypeComponent implements OnInit {
         ref.close();
       }
     });
+  }
+
+  markAllFieldsDirty(form) {
+    Object.keys(form.controls).forEach((key) => {
+      if (form.get(key).controls) {
+        Object.keys(form.get(key).controls).forEach((nestedKey) => {
+          form.get(key).controls[nestedKey].markAsDirty();
+        });
+      } else {
+        form.get(key).markAsDirty();
+      }
+    });
+  }
+
+  saveWithdrawal() {
+    this.topupAndWithDrawService.saveWithdrawalRequest(this.formValues).subscribe((response) => {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
+    });
+  }
+
+  goToNext(form) {
+    if (!form.valid) {
+      this.markAllFieldsDirty(form);
+      const error = this.topupAndWithDrawService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
+    } else {
+      this.topupAndWithDrawService.setWithdrawalTypeFormData(form.getRawValue());
+      if ((form.value.withdrawType.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID) ||
+        (form.value.withdrawType.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID)) {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_PAYMENT_METHOD]);
+      } else {
+        this.showConfirmWithdrawModal(form);
+      }
+    }
   }
 
 }

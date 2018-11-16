@@ -2,7 +2,7 @@
 
   <div class="container-fluid">
     <div class="content">
-
+      <form id="bank_form" name="bankForm" [formGroup]="bankForm">
       <div class="row">
         <div class="col-md-12">
           <div class="flex-row">
@@ -10,48 +10,63 @@
               <div class="btn-group--toggle tabs">
                 <div class="flex-row">
                   <div class="flex-col-6">
-                      <button type="button" class="btn btn-primary width100 right-btn active"><div>By Bank</div><div>Transfer</div></button>
+                    <button type="button" class="btn btn-primary width100 right-btn" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'" (click)="selectMode('BANK')">
+                      <div>By Bank</div>
+                      <div>Transfer</div>
+                    </button>
                   </div>
                   <div class="flex-col-6">
-                      <button type="button" class="btn btn-primary width100 left-btn"><div>By</div><div>Cheque</div></button>
+                    <button type="button" class="btn btn-primary width100 left-btn" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'" (click)="selectMode('CHEQUE')">
+                      <div>By</div>
+                      <div>Cheque</div>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="bank_transfer flex-col">
-            <div class="flex-col available_accounts">
+
+          <!-- BANK -->
+          <div class="bank_transfer flex-col tab-content" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'">
+            <div class="flex-col available_accounts" *ngFor="let bank of userBankList; let i = index;" (click)="selectBank(bank)"
+              [ngClass]="{'selected': (bankForm.controls.withdrawBank.value) && (bankForm.controls.withdrawBank.value.id === bank.id)}">
               <div class="selected_logo"><img src="../../../assets/images/topupwithdraw/check_orange.svg" /></div>
-              <div class="bank_logo"><img src="" /></div>
-              <div class="user_account">0123487623</div>
-              <div>Kelvin Goh</div>
+              <div class="bank_logo"><img class="bank_img" src="../../../assets/images/topupwithdraw/{{bank.bankName}}.png" /></div>
+              <div class="user_account">{{bank.accountNo}}</div>
+              <div>{{bank.accountName}}</div>
             </div>
+            <!--
             <div class="flex-col available_accounts selected">
               <div class="selected_logo"><img src="../../../assets/images/topupwithdraw/check_orange.svg" /></div>  
               <div class="bank_logo"><img src="" /></div>
               <div class="user_account">01234567899</div>
               <div>Kelvin Goh</div>
             </div>
-            <div class="flex-col add_account mb20">
-              <div class="flex-row"><img src="../../../assets/images/topupwithdraw/add_no-bg.svg" class="mr5"/><span>Add Bank Account</span></div>
+            -->
+            <div class="flex-col add_account mb20" (click)="showNewBankFormModal()">
+              <div class="flex-row"><img src="../../../assets/images/topupwithdraw/add_no-bg.svg" class="mr5" /><span>Add
+                  Bank Account</span></div>
             </div>
           </div>
-          <div class="cheque flex-col">
+
+          <!-- CHEQUE -->
+          <div class="cheque flex-col tab-content" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'">
             <div class="cheque_msg">Cheque will be posted to this address:</div>
             <div class="cheque_address flex-col">
-                <div>23 Keong Saik Road</div>
-                <div>Singapore 123456</div>
+              <div>23 Keong Saik Road</div>
+              <div>Singapore 123456</div>
             </div>
             <div class="cheque_footer">
-                If you wish to change your mailing address, please write to us <span class="link">help@moneyowl.com.sg</span>
+              If you wish to change your mailing address, please write to us <span class="link">help@moneyowl.com.sg</span>
             </div>
           </div>
         </div>
       </div>
-      
-      <button type="button" (click)="showConfirmWithdrawModal()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+
+      <button type="button" (click)="goToNext(bankForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{
         'LABEL.CONTINUE' | translate}}</button>
+        </form>
 
     </div>
   </div>

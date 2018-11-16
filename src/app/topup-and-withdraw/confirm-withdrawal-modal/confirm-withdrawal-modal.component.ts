@@ -2,9 +2,6 @@ import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncap
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConfigService } from '../../../config/config.service';
-import { Formatter } from '../../../shared/utils/formatter.util';
-
 @Component({
   selector: 'app-confirm-withdrawal-modal',
   templateUrl: './confirm-withdrawal-modal.component.html',

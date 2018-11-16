@@ -30,5 +30,16 @@
   "WITHDRAW_SUCCESS": {
     "TITLE": "Withdrawal Request Submitted",
     "DESC": "We will update you on the status of your request within 2 working days."
+  },
+  "WITHDRAW_PAYMENT_METHOD": {
+    "TITLE": "Choose Payment Method",
+    "ADD_BANK_MODAL": {
+      "TITLE": "Add Bank Account",
+      "ACCOUNT_HOLDER_NAME": "Account Holder's Name",
+      "ACCOUNT_HOLDER_DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
+      "BANK_NAME": "Bank Name",
+      "ACCOUNT_NO": "Account"
+      
+    }
   }
 }

@@ -12,4 +12,8 @@ export class TopUpAndWithdrawFormData {
 
     // withdraw
     withdrawType: any;
+    withdrawAmount: number;
+    withdrawPortfolio: any;
+    withdrawMode: string;
+    withdrawBank: any;
 }
