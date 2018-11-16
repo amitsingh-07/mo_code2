@@ -39,6 +39,7 @@ export class EditProfileComponent implements OnInit {
   countryList: any;
   isMailingAddressSame: boolean;
   isEmployeAddresSame: boolean;
+  isSingaporeResident: boolean;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -117,6 +118,9 @@ export class EditProfileComponent implements OnInit {
       this.setNric(this.personalData.nricNumber);
       this.setAddres(this.residentialAddress.addressLine1 , this.residentialAddress.addressLine2);
       this.setMailingAddres(this.mailingAddress.addressLine1 , this.mailingAddress.addressLine2);
+      if ( this.personalData) {
+        this.isSingaporeResident = this.personalData.isSingaporeResident;
+        }
       if ( this.empolymentDetails.employerDetails.employerAddress) {
         this.isEmployeAddresSame = false;
         this.employerAddress = this.empolymentDetails.employerDetails.employerAddress ;
@@ -149,7 +153,7 @@ this.compinedEmployerAddress = address1 + ' ' + address2;
   }
   editEmployeDetails() {
     // tslint:disable-next-line:max-line-length
-    this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData , this.nationalityList, this.countryList, this.isEmployeAddresSame );
+    this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData , this.nationalityList, this.countryList, this.isEmployeAddresSame , this.isSingaporeResident );
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
   }
   editUserDetails() {
@@ -175,7 +179,7 @@ getCountryList(data) {
 }
   editContactDetails() {
     // tslint:disable-next-line:max-line-length
-    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList , this.isMailingAddressSame);
+    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList , this.isMailingAddressSame , this.isSingaporeResident);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   editBankDetails() {

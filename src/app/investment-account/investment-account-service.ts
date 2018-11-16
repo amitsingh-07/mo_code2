@@ -791,15 +791,14 @@ export class InvestmentAccountService {
         return '?' + params.toString();
     }
 // tslint:disable-next-line:cognitive-complexity
-setEditProfileContactInfo(data , nationalityList , countryList, isMailingAddressSame) {
+setEditProfileContactInfo(data , nationalityList , countryList, isMailingAddressSame , isSingaporeResident) {
     this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
     this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
-    this.investmentAccountFormData.unitedStatesResident = false;
-    this.investmentAccountFormData.singaporeanResident = true;
+    this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
     this.investmentAccountFormData.nationalityList = nationalityList;
     this.investmentAccountFormData.countryList = countryList;
-    if (data.contactDetails.homeAddress.country.country) {
-    this.investmentAccountFormData.country = data.contactDetails.homeAddress.country.country;
+    if (data.contactDetails.homeAddress.country) {
+    this.investmentAccountFormData.country = data.contactDetails.homeAddress.country;
     }
     if (data.contactDetails.homeAddress.postalCode) {
     this.investmentAccountFormData.postalCode = data.contactDetails.homeAddress.postalCode;
@@ -813,13 +812,22 @@ setEditProfileContactInfo(data , nationalityList , countryList, isMailingAddress
     if (data.contactDetails.homeAddress.unitNumber) {
     this.investmentAccountFormData.unitNo = data.contactDetails.homeAddress.unitNumber;
     }
-    if (data.contactDetails.homeAddress.state) {
-    this.investmentAccountFormData.state = data.contactDetails.homeAddress.state;
+    if (data.contactDetails.homeAddress.floor) {
+        this.investmentAccountFormData.floor = data.contactDetails.homeAddress.floor;
+        }
+    if (data.contactDetails.homeAddress.city) {
+    this.investmentAccountFormData.city = data.contactDetails.homeAddress.city;
     }
+    if (data.contactDetails.homeAddress.zipcode) {
+        this.investmentAccountFormData.zipCode = data.contactDetails.homeAddress.zipCode;
+        }
+    if (data.contactDetails.homeAddress.city) {
+        this.investmentAccountFormData.state = data.contactDetails.homeAddress.state;
+        }
     this.investmentAccountFormData.isMailingAddressSame = isMailingAddressSame;
     if (!isMailingAddressSame) {
-        if (data.contactDetails.mailingAddress.country.country) {
-        this.investmentAccountFormData.mailCountry = data.contactDetails.mailingAddress.country.country;
+        if (data.contactDetails.mailingAddress.country) {
+        this.investmentAccountFormData.mailCountry = data.contactDetails.mailingAddress.country;
         }
         if (data.contactDetails.mailingAddress.postalCode) {
         this.investmentAccountFormData.mailPostalCode = data.contactDetails.mailingAddress.postalCode;
@@ -833,18 +841,26 @@ setEditProfileContactInfo(data , nationalityList , countryList, isMailingAddress
         if ( data.contactDetails.mailingAddress.unitNumber) {
         this.investmentAccountFormData.mailUnitNo = data.contactDetails.mailingAddress.unitNumber;
         }
+        if ( data.contactDetails.mailingAddress.floor) {
+            this.investmentAccountFormData.mailFloor = data.contactDetails.mailingAddress.floor;
+            }
         if ( data.contactDetails.mailingAddress.state) {
         this.investmentAccountFormData.mailState = data.contactDetails.mailingAddress.state;
         }
+        if ( data.contactDetails.mailingAddress.city) {
+            this.investmentAccountFormData.mailCity = data.contactDetails.mailingAddress.city;
+            }
+        if ( data.contactDetails.mailingAddress.zipCode) {
+                this.investmentAccountFormData.mailZipCode = data.contactDetails.mailingAddress.zipCode;
+                }
 
     }
     this.commit();
 }
-setEditProfileEmployeInfo(data , nationalityList , countryList, isEmployeAddresSame) {
+setEditProfileEmployeInfo(data , nationalityList , countryList, isEmployeAddresSame, isSingaporeResident) {
     this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
     this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
-    this.investmentAccountFormData.unitedStatesResident = false;
-    this.investmentAccountFormData.singaporeanResident = true;
+    this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
     this.investmentAccountFormData.nationalityList = nationalityList;
     this.investmentAccountFormData.countryList = countryList;
 
@@ -866,9 +882,9 @@ setEditProfileEmployeInfo(data , nationalityList , countryList, isEmployeAddresS
             this.investmentAccountFormData.empAddress1 =  data.employmentDetails.employerDetails.employerAddress.addressLine1;
             this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.employerAddress.addressLine2;
             this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.employerAddress.unitNumber;
-           // this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.employerAddress.unitNumber;
+            this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.employerAddress.city;
             this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.employerAddress.state;
-            //this.investmentAccountFormData.empZipCode = data.employeaddress.empZipCode;
+            this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.employerAddress.zipCode;
         }
     } else {
         this.investmentAccountFormData.employmentStatus = data.employmentStatus;

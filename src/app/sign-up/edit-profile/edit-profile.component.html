@@ -13,32 +13,32 @@
     <div class="user-profile-bg">
 
 
-      <div class="circle"> {{this.compinedName}} </div>
+      <div class="circle"> {{compinedName}} </div>
 
 
       <img id="edit_profile_edit_img" class="user-edit-img" src="assets/images/editProfileIcon.svg" />
 
 
-      <div class="heading">{{ this.fullName }}</div>
-      <div class="nric-text">{{this.compinednricNum}}</div>
+      <div class="heading">{{fullName }}</div>
+      <div class="nric-text">{{compinednricNum}}</div>
       <div class="flex-row pb10 mb20">
         <div class="flex-col-2">
           <div class="content-text">Gender</div>
-          <div class="grid-content-text">{{this.personalData.gender}}</div>
+          <div class="grid-content-text">{{personalData.gender}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
         </div>
         <div class="flex-col-4">
           <div class="content-text">Nationality</div>
-          <div class="grid-content-text">{{this.personalData.nationality}}</div>
+          <div class="grid-content-text">{{personalData.nationality}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
         </div>
         <div class="flex-col-4">
           <div class="content-text">Date of Birth</div>
-          <div class="grid-content-text">{{this.personalData.dateOfBirth}}</div>
+          <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@
           Mobile Number
         </div>
         <div class="update-contact-value">
-          {{this.personalData.mobileNumber}}
+          {{personalData.mobileNumber}}
         </div>
       </div>
       <div class="section-margin">
@@ -73,7 +73,7 @@
           Email Address
         </div>
         <div class="update-contact-value">
-          {{this.personalData.email}}
+          {{personalData.email}}
         </div>
       </div>
       <button type="button" class="edit-button" id="editEmployeButton" (click)="editUserDetails()">
@@ -133,77 +133,155 @@
             Country
           </div>
           <div class="update-contact-value">
-            {{this.residentialAddress.country.country}}
+            {{residentialAddress.country.country}}
           </div>
         </div>
-        <div class="section-margin">
+        <div class="section-margin" *ngIf="isSingaporeResident">
           <div class="update-contact-title">
             Postal Code
           </div>
           <div class="update-contact-value">
-            {{this.residentialAddress.postalCode}}
+            {{residentialAddress.postalCode}}
           </div>
         </div>
         <div class="section-margin">
           <div class="update-contact-title">
-            Address
+            Address Line 1
           </div>
           <div class="update-contact-value">
-            {{this.compinedAddress}}
+             {{ residentialAddress.addressLine1 }}
           </div>
         </div>
         <div class="section-margin">
+          <div class="update-contact-title">
+            Address Line 2
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.addressLine2}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="isSingaporeResident">
+          <div class="update-contact-title">
+            Floor
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.floor}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="isSingaporeResident">
           <div class="update-contact-title">
             Unit Number
           </div>
           <div class="update-contact-value">
-            {{this.residentialAddress.unitNumber}}
+            {{residentialAddress.unitNumber}}
           </div>
         </div>
-        <div class="mailing-address flex">
-          <div *ngIf="!this.mailingAddress">
-            <img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" />
+        <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="update-contact-title">
+            City
           </div>
-          <div *ngIf="this.mailingAddress">
-            <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
+          <div class="update-contact-value">
+            {{residentialAddress.city}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="update-contact-title">
+            State
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.state}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="update-contact-title">
+            Zip Code
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.zipCode}}
+          </div>
+        </div>
+
+        <div class="mailing-address flex" *ngIf="!mailingAddress">
+          <div >
+            <img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" />
           </div>
           <div class="flex-col">
             <div>Mailing Address</div>
             <div>Same as Residential Address</div>
           </div>
         </div>
-        <div *ngIf="this.mailingAddress">
-
+        <div *ngIf="mailingAddress">
+<div class="mailing-address-text section-margin">Mailing Address</div>
           <div class="section-margin">
             <div class="update-contact-title">
               Country
             </div>
             <div class="update-contact-value">
-              {{this.mailingAddress.country.country}}
+              {{mailingAddress.country.country}}
             </div>
           </div>
-          <div class="section-margin">
+          <div class="section-margin" *ngIf="isSingaporeResident">
             <div class="update-contact-title">
               Postal Code
             </div>
             <div class="update-contact-value">
-              {{this.mailingAddress.postalCode}}
+              {{mailingAddress.postalCode}}
             </div>
           </div>
           <div class="section-margin">
             <div class="update-contact-title">
-              Address
+              Address Line 1
             </div>
             <div class="update-contact-value">
-              {{ this.compinedMailingAddress}}
+              {{ mailingAddress.addressLine1}}
             </div>
           </div>
           <div class="section-margin">
+            <div class="update-contact-title">
+              Address Line 2
+            </div>
+            <div class="update-contact-value">
+              {{ mailingAddress.addressLine2}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="isSingaporeResident">
+            <div class="update-contact-title">
+             Floor
+            </div>
+            <div class="update-contact-value">
+              {{mailingAddress.floor}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="isSingaporeResident">
             <div class="update-contact-title">
               Unit Number
             </div>
             <div class="update-contact-value">
-              {{this.mailingAddress.unitNumber}}
+              {{mailingAddress.unitNumber}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="update-contact-title">
+              City
+            </div>
+            <div class="update-contact-value">
+              {{residentialAddress.city}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="update-contact-title">
+              State
+            </div>
+            <div class="update-contact-value">
+              {{residentialAddress.state}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="update-contact-title">
+              Zip Code
+            </div>
+            <div class="update-contact-value">
+              {{residentialAddress.zipCode}}
             </div>
           </div>
         </div>
@@ -234,7 +312,7 @@
               Employer Status
             </div>
             <div class="update-contact-value">
-              {{this.empolymentDetails.employmentStatus.name }}
+              {{empolymentDetails.employmentStatus.name }}
             </div>
           </div>
           <div class="section-margin">
@@ -242,7 +320,7 @@
               Employer Name
             </div>
             <div class="update-contact-value">
-              {{this.empolymentDetails.employerDetails.employerName }}
+              {{empolymentDetails.employerDetails.employerName }}
             </div>
           </div>
           <div class="section-margin">
@@ -250,7 +328,7 @@
               Industry
             </div>
             <div class="update-contact-value">
-              {{this.empolymentDetails.employerDetails.industry.industry }}
+              {{empolymentDetails.employerDetails.industry.industry }}
             </div>
           </div>
           <div class="section-margin">
@@ -258,7 +336,7 @@
               Employer Contact
             </div>
             <div class="update-contact-value">
-              {{this.empolymentDetails.employerDetails.employerContact }}
+              {{empolymentDetails.employerDetails.employerContact }}
             </div>
           </div>
           <div class="section-margin">
@@ -266,11 +344,11 @@
               Occupation
             </div>
             <div class="update-contact-value">
-              {{this.empolymentDetails.occupation.occupation}}
+              {{empolymentDetails.occupation.occupation}}
             </div>
           </div>
 
-          <div class="mailing-address flex">
+          <!-- <div class="mailing-address flex">
             <div *ngIf="!employerAddress">
               <img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" />
             </div>
@@ -282,7 +360,7 @@
               <div>Employer&apos;s Address</div>
               <div>Same as Mailing Address</div>
             </div>
-          </div>
+          </div> -->
           <!-- Have to add according to API -->
           <div *ngIf="employerAddress">
             <div class="section-margin">
@@ -290,31 +368,71 @@
                 Country
               </div>
               <div class="update-contact-value">
-                {{this.empolymentDetails.employerDetails.employerAddress.country.country}}
+                {{empolymentDetails.employerDetails.employerAddress.country.country}}
               </div>
             </div>
-            <div class="section-margin">
+            <div class="section-margin" *ngIf="isSingaporeResident">
               <div class="update-contact-title">
                 Postal Code
               </div>
               <div class="update-contact-value">
-                {{this.empolymentDetails.employerDetails.employerAddress.postalCode}}
+                {{empolymentDetails.employerDetails.employerAddress.postalCode}}
               </div>
             </div>
             <div class="section-margin">
               <div class="update-contact-title">
-                Address
+                Address Line 1
               </div>
               <div class="update-contact-value">
-                {{this.compinedEmployerAddress}}
+                {{empolymentDetails.employerDetails.employerAddress.addressLine1}}
               </div>
             </div>
             <div class="section-margin">
               <div class="update-contact-title">
-                Unit Number
+                Address Line 2
               </div>
               <div class="update-contact-value">
-                {{this.empolymentDetails.employerDetails.employerAddress.unitNumber}}
+                {{empolymentDetails.employerDetails.employerAddress.addressLine2}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="isSingaporeResident">
+              <div class="update-contact-title" >
+               Floor
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.floor}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="isSingaporeResident">
+              <div class="update-contact-title" >
+                Unit No
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.unitNumber}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="!isSingaporeResident">
+              <div class="update-contact-title">
+                City
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.city}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="!isSingaporeResident">
+              <div class="update-contact-title">
+                State
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.state}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="!isSingaporeResident">
+              <div class="update-contact-title">
+                Zip Code
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.zipCode}}
               </div>
             </div>
           </div>
@@ -351,7 +469,7 @@
             </div>
             <div class="flex-col-8">
               <div class="bank-account-num">
-                {{this.bankDetails.accountNumber}}
+                {{bankDetails.accountNumber}}
               </div>
             </div>
             <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">

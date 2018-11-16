@@ -63,9 +63,9 @@ export class EditResidentialAddressComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
-    this.isUserNationalitySingapore = true ;
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
+
   }
   getNationalityCountryList() {
         this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
