@@ -662,12 +662,8 @@ body.modal-open::-webkit-scrollbar {
 .full-height-will {
   &.modal {
     display: block !important;
-    height: 100vh;
     width: 100vw;
     overflow: hidden !important;
-    @include allmobiles {
-      max-height: 90vh !important;
-    }
   }
   
   /* Important part */
@@ -681,7 +677,6 @@ body.modal-open::-webkit-scrollbar {
   }
 
   .modal-body {
-    height: 90vh;
     overflow-y: auto;
 
     @include allmobiles {

@@ -23,6 +23,7 @@
                   <div class="input-label-normal"><span *ngIf="execTrustee.relationship !== 'others'">{{'WILL_WRITING.COMMON.MY' |
                       translate}}</span> {{execTrustee.relationship | titlecase }}</div>
                 </label>
+                <span class="default">Default</span>
                 <span (click)="editExecTrustee(execTrustee.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
               </div>
             </div>
