@@ -171,7 +171,7 @@
       "FIND_OUT_ASSETS_CAN_DISTRIBUTE": "Find out what assets can be distributed via your will.",
       "TOOLTIP": {
         "TITLE": "Assets To Be Distributed",
-        "MESSAGE": "<p> Generally, only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nomination or trusts)</li><li>- Property (Sole or tenancy-In-Common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
+        "MESSAGE": "<p> Generally, only the following assets can be distributed via your will.</p><ul class='list-none pl0'><li>- Bank Accounts (Non-joint)</li><li>- Investments (Non-joint)</li><li>- Insurance (Without nomination or trusts)</li><li>- Property (Sole or tenancy-in-common)</li></ul><p>To distribute your CPF, you should make a separate CPF nomination.</p>"
       },
       "MUSLIM_ERROR": {
         "TITLE": "Sorry, we are unable to assist you.",
