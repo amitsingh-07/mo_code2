@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
@@ -34,6 +34,8 @@ export class EmploymentDetailsComponent implements OnInit {
   occupationList;
   employementstatus;
   showEmploymentControls: boolean;
+  queryParams: any;
+  isEditProfile: boolean;
 
   constructor(
     public readonly translate: TranslateService,
@@ -42,6 +44,7 @@ export class EmploymentDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     public authService: AuthenticationService,
     private router: Router,
+    private route: ActivatedRoute,
     public navbarService: NavbarService,
     private modal: NgbModal) {
     this.translate.use('en');
@@ -63,6 +66,8 @@ export class EmploymentDetailsComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
+    this.queryParams = this.route.snapshot.queryParams;
+    this.isEditProfile = this.queryParams.enableEditProfile;
     const employStatus = this.formValues.employmentStatus ? this.formValues.employmentStatus : 'Employed';
     if (employStatus === 'Unemployed') {
       this.employementDetailsForm = this.buildFormUnemployement(employStatus);

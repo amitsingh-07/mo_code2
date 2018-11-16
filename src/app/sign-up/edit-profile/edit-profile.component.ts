@@ -154,7 +154,8 @@ this.compinedEmployerAddress = address1 + ' ' + address2;
   editEmployeDetails() {
     // tslint:disable-next-line:max-line-length
     this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData , this.nationalityList, this.countryList, this.isEmployeAddresSame , this.isSingaporeResident );
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], {queryParams: {enableEditProfile: true}, fragment: 'loading'});
   }
   editUserDetails() {
   }

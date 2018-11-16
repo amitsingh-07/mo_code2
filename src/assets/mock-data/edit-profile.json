@@ -61,7 +61,7 @@
         "employmentDetails": {
             "employmentStatus": {
                 "id": 1,
-                "name": "un-Employed"
+                "name": "Employed"
             },
             "employerDetails": {
                 "id": 1,
