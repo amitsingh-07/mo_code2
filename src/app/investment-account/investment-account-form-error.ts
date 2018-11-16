@@ -453,8 +453,8 @@ export class InvestmentAccountFormError {
         inheritanceGift: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid enter Inheritance Gift',
-                errorMessage: 'Please enter inheritance Gift.'
+                errorTitle: 'Invalid enter Gift Inheritance',
+                errorMessage: 'Please enter Gift Inheritance.'
             }
         },
         investmentPeriod: {
