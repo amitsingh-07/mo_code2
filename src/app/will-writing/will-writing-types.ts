@@ -66,13 +66,13 @@ export interface IwillProfile {
     genderCode: string;
     maritalStatusCode: string;
     noOfChildren: number;
-    promoCode?: string;
+    promoCode?: IPromoCode;
 }
 
 export interface IWillProfileMembers {
     uin: string;
     name: string;
-    dob: number;
+    dob?: number;
     relationshipCode: string;
     isFamily: string;
     isBeneficiary: string;
@@ -81,4 +81,26 @@ export interface IWillProfileMembers {
     isTrusteee: string;
     isAltTrusteee: string;
     distribution: number;
+}
+
+export enum IRelationship {
+    parent = 'P',
+    sibling = 'SBL',
+    parent_in_law = 'PIL',
+    friend = 'F',
+    others = 'O',
+    spouse = 'S',
+    child = 'C'
+}
+
+export enum IMaritalStatus {
+    single = 'S',
+    married = 'M',
+    divorced = 'D',
+    widowed = 'W'
+}
+
+export enum IGender {
+    male = 'M',
+    female = 'F'
 }

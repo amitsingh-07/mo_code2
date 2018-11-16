@@ -41,6 +41,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   hasSpouse: boolean;
   hasChild: boolean;
+  willWritingConfig = WILL_WRITING_CONFIG;
   maxExecTrustee = WILL_WRITING_CONFIG.MAX_EXECUTOR_TRUSTEE;
   unsavedMsg: string;
   toolTip;

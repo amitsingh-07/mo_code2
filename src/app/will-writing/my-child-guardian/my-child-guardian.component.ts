@@ -36,6 +36,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   relationship = '';
   relationshipList;
   submitted: boolean;
+  willWritingConfig = WILL_WRITING_CONFIG;
 
   hasSpouse: boolean;
   maxGuardian: number;

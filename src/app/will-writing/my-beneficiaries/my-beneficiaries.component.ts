@@ -36,6 +36,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   relationship = '';
   submitted = false;
   isFormOpen = false;
+  willWritingConfig = WILL_WRITING_CONFIG;
   maxBeneficiary = WILL_WRITING_CONFIG.MAX_BENEFICIARY;
   private subscription: Subscription;
   unsavedMsg: string;
