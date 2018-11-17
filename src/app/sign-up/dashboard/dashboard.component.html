@@ -1,13 +1,85 @@
-<div class="post-login-dashboard">
-  <div class="welcome-user">
-      <div>Welcome back,<br/>
-        <span>{{userProfileInfo.firstName + ' ' + userProfileInfo.lastName}}</span>
+<div class="content">
+  <div class="post-login-dashboard">
+    <div class="welcome-user">
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <div class="widget-block">
+            <img id="edit_profile_bg_img" class="grass_bg" src="assets/images/edit-profile-bg.svg" />
+            <div class="overlap-grass col-12">
+                <div class="user-profile-bg flex-col-6">
+                  <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
+                  <div class="user_name">{{userProfileInfo.firstName + ' ' + userProfileInfo.lastName}}</div>
+                  <div><span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span><span class="user-edit-img"><img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" /></span></div>
+                </div>
+                <div class="advisor-profile-bg flex-col-6" *ngIf=false>
+                  <div><img src="assets/images/investment-account/agent.svg"/></div>
+                  <div class="advisor-details">
+                    <div>{{'DASHBOARD.PROFILE.YOUR_ADVISOR' | translate}}</div>
+                    <div>Peter Neo</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="widgets flex-col-12">
+            <div class="widget">
+                <div class="widget-title"><span>{{'DASHBOARD.INVESTMENT.TITLE' | translate}}</span><span>{{'DASHBOARD.INVESTMENT.VIEW_ALL' | translate}}</span></div>
+                <div class="widget-body">
+                  <div class="scenarios flex-col-12">
+                    <div class="primary flex col-12">
+                      <div class="flex-col-4"><img src="assets/images/investment-account/investment-portfolio.svg"/></div>
+                      <div class="flex-col-8">
+                        <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO' | translate}}</div>
+                        <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                        <div class="time-lapse"><div>{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div><div class="flex-row"><span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span><span class="circle"></span></div></div>
+                      </div>
+                    </div>
+                    <div class="portfolio">
+                      <div class="portfolio_value">
+                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
+                        <div class="value">$76,286</div>
+                      </div>
+                      <div class="portfolio_graph"><img src="assets/images/investment-account/investment_graph.svg"/></div>
+                      <div class="portfolio_footer">
+                        <div class="flex-col col-7">
+                          <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
+                          <div class="portfolio_footer_value">$2,000</div>
+                        </div>
+                        <div class="flex-col col-5">
+                          <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
+                          <div class="portfolio_footer_value">$2,000</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="warning col-12">
+                      <div class="warning-txt">
+                        <img src="assets/images/investment-account/inline-error.svg" />
+                        <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div>
+                      </div>
+                      <div class="flex mt15"><button type="button" class="btn btn-primary col-8">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button></div>
+                    </div> 
+                  </div>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="widget-title"><span>{{'DASHBOARD.WILL_WRITING.TITLE' | translate}}</span><span>{{'DASHBOARD.WILL_WRITING.VIEW_ALL' | translate}}</span></div>
+                <div class="widget-body">
+                  <div class="scenarios">
+                    <div class="primary flex col-12">
+                      <div class="flex-col-4"><img src="assets/images/investment-account/investment-portfolio.svg"/></div>
+                      <div class="flex-col-8">
+                        <div>{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL' | translate}}</div>
+                        <div>{{'DASHBOARD.WILL_WRITING.CREATE_YOUR_WILL_DESC' | translate}}</div>
+                        <div class="time-lapse"><div>{{'DASHBOARD.WILL_WRITING.GET_STARTED' | translate}}</div><div class="flex-row"><span>{{'DASHBOARD.WILL_WRITING.TIME' | translate}}</span><span class="circle"></span></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div><img src="./assets/images/owl.svg" /></div>
+     
+    
+    </div>
   </div>
-  <div class="welcome-desc">
-    <div>Coming Soon!</div>
-    <div>Stay tuned for more exciting features launching soon.</div>
-    <div class="mt20">If you had submitted a quote request, we will contact you within 3 working days. For assistance, please email enquiries@moneyowl.com.sg or call us at (65) 63299188.</div>
   </div>
-</div>
