@@ -140,16 +140,17 @@ export class WillWritingService {
    * @param form - form details.
    * @returns first error of the form.
    */
-  getMultipleFormError(form, formName) {
+  getMultipleFormError(form, formName, formTitle) {
     const forms = form.controls;
     const errors: any = {};
     errors.errorMessages = [];
     errors.title = this.willWritingFormError[formName].formFieldErrors.errorTitle;
+    let index = 0;
 
     // tslint:disable-next-line:forin
     for (const field in forms) {
       for (const control of forms[field].controls) {
-        const formGroup = { formName: field, errors: [] };
+        const formGroup = { formName: formTitle[index], errors: [] };
         // tslint:disable-next-line:forin
         for (const name in control.controls) {
           if (control.controls[name].invalid) {
@@ -160,6 +161,7 @@ export class WillWritingService {
         }
         if (formGroup.errors.length > 0) {
           errors.errorMessages.push(formGroup);
+          index++;
         }
       }
     }
@@ -387,17 +389,17 @@ export class WillWritingService {
     return false;
   }
 
-  openErrorModal(title: string, message: string, isMultipleForm: boolean) {
+  openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
+      ref.componentInstance.formName = formName;
       ref.componentInstance.errorMessageList = message;
     } else {
       ref.componentInstance.multipleFormErrors = message;
     }
     return false;
   }
-
 
   setFromConfirmPage(flag) {
     if (window.sessionStorage) {

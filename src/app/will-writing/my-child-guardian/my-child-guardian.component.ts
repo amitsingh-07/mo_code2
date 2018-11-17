@@ -42,6 +42,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   maxGuardian: number;
   unsavedMsg: string;
   toolTip;
+  formName: string;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -85,6 +86,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.buildAddGuardianForm();
     this.headerSubscription();
     this.footerService.setFooterVisibility(false);
+    this.formName = this.hasSpouse ? 'Alternative Guardian' : 'Guardian';
   }
 
   setPageTitle(title: string) {
@@ -162,7 +164,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, this.formName);
       return false;
     }
     return true;

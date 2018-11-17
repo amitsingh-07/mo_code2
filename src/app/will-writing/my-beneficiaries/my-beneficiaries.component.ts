@@ -138,7 +138,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, 'Beneficiary');
     } else {
       if (!this.isEdit) {
         form.value.selected = true;
