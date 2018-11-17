@@ -1,0 +1,58 @@
+{
+	"responseMessage": {
+		"responseCode": 6000,
+		"responseDescription": "Successful response"
+	},
+	"objectList": {
+		"totalPortfolioValue": "76286",
+		"summary": {
+			"totalValue": 76286,
+			"totalReturns": 56286,
+			"invetmentReturns": "8.98%",
+			"cashAccountBalance": 94586
+		},
+		"portfolios": [
+			{
+				"id": "POR88776",
+				"name": "Conservative",
+				"value": 76286,
+				"totalReturns": 6086,
+				"invetmentReturns": "8.98%",
+				"riskProfile": {
+					"id": 2,
+					"name": "Conservative"
+				}
+			},
+			{
+				"id": "POR88776",
+				"name": "Conservative",
+				"riskProfile": {
+					"id": 1,
+					"name": "Low"
+				},
+				"expiryDate": "18/9/2018"
+			},
+			{
+				"id": "POR88776",
+				"name": "growth",
+				"riskProfile": {
+					"id": 1,
+					"name": "Low"
+				},
+				"expiryDate": "18/9/2018"
+			},
+			{
+				"id": "POR88776",
+				"name": "Moderately",
+				"value": 765644,
+				"totalReturns": 762996,
+				"invetmentReturns": "6.98%",
+				"riskProfile": {
+					"id": 1,
+					"name": "Low"
+				},
+				"expiryDate": "18/9/2018"
+			}
+		]
+	}
+}

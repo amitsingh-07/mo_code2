@@ -1,17 +1,16 @@
 <div class="content">
   <div class="flex-row">
     <div class="flex-col-12">
-      <img id="edit_profile_bg_img" class="background_img" src="assets/images/edit-profile-bg.svg" />
+      <img id="edit_profile_bg_img" class="background_img" src="assets/images/investment_header.svg" />
       <div class="flex-row user_content">
-        <div class="user_summary col-8">Hey Kelvin, here’s a performance summary of your 2 portfolios.</div>
+        <div class="user_summary col-8">{{'YOUR_INVESTMENT.PROFILE_NAME' | translate}}</div>
         <div class="col-4">
           <div class="dropdown-control ">
             <div ngbDropdown>
               <button class="btn btn-dropdown without-border grey" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
-                More</button>
+                {{'YOUR_INVESTMENT.MORE' | translate}}</button>
               <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                <button class="dropdown-item" *ngFor="let sourceObj of sourceOfIncomeList; let i = index;" (click)="selectSource('source', sourceObj)"
-                  id="additional_declaration_sourse-drpdown-option-{{i}}">sourceObj.name</button>
+                <button class="dropdown-item" *ngFor="let option of moreList; let i = index;" (click)="selectSource(option)" id="additional_declaration_sourse-drpdown-option-{{i}}">{{option.name}}</button>
               </div>
             </div>
           </div>
@@ -23,52 +22,51 @@
             <div class="form-group-with-bg">
               <!--Form Header-->
               <div class="form-group-with-bg--header your_total_value">
-
                 <div id="myFinancialLbl">
-                  <div class="total_values">$76,286</div>
-                  <div class="total_values_label">Total Value</div>
+                  <div class="total_values">{{totalPortfolioValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="total_values_label">{{'YOUR_INVESTMENT.TOTAL_VALUE' | translate}}</div>
                 </div>
               </div>
               <!--Form Content-->
               <div class="form-group-with-bg--content">
                 <div class="flex-row">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="total return">Total Returns
+                    <div class="total_return_label" for="total return">{{'YOUR_INVESTMENT.TOTAL_RETURNS' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="total value">$6,286
+                    <div class="total_return_value" for="total value">{{investmentoverviewlist.summary.totalReturns| currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
                 <div class="flex-row">
                   <div class="flex-col-8">
-                    <div class="start_investment_label" for="name">From start of investment
+                    <div class="start_investment_label" for="name">{{'YOUR_INVESTMENT.FROM_START_OF_INVESTMENT' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-4">
-                    <div class="start_investment_value" for="name">+ 8.98%
+                    <div class="start_investment_value" for="name">+{{investmentoverviewlist.summary.invetmentReturns}}
                     </div>
                   </div>
                 </div>
                 <hr>
                 <div class="flex-row mb-20">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="tota">Total Invested
+                    <div class="total_return_label" for="tota">{{'YOUR_INVESTMENT.TOTAL_INVESTED' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="name">$72,000
+                    <div class="total_return_value" for="name">{{investmentoverviewlist.summary.totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
                 <div class="flex-row mt20">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="tota">Cash Account Balance
+                    <div class="total_return_label" for="tota">{{'YOUR_INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="name">$2,000
+                    <div class="total_return_value" for="name">{{investmentoverviewlist.summary.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
@@ -77,87 +75,90 @@
           </div>
         </div>
         <!-- your portfolio label -->
-        <div class="flex-row">
+        <div class="flex-row mb20">
           <div class="flex-col-9">
-            <div class="your_portfolio_label"> Your Portfolios</div>
+            <div class="your_portfolio_label"> {{'YOUR_INVESTMENT.YOUR_PORTFOLIOS' | translate}}</div>
           </div>
           <div class="flex-col-3">
-            <div class="your_portfolio_number">Total of 2</div>
+            <div class="your_portfolio_number">{{'YOUR_INVESTMENT.TOTAL_OF' | translate}} {{investmentoverviewlist.portfolios.length}}</div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <div class="form-group-with-bg">
-              <!--Form Header-->
-              <div class="form-group-with-bg--header your_portfolio_value">
-                <div class="flex-row">
-                  <div class="conserve-icon">
-                    <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
-                  </div>
-                  <div class="portfolio_heading">Conservative </div>
+        <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList">
+          <div *ngIf="portfolio.totalReturns">
+            <!--Form Header-->
+            <div class="form-group-with-bg--header your_portfolio_value">
+              <div class="flex-row">
+                <div class="conserve-icon">
+                  <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
                 </div>
-                <div class="forward_img">
-                  <img src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" />
-                </div>
+                <div class="portfolio_heading">{{portfolio.name}}</div>
               </div>
-              <!--Form Content-->
-              <div class="form-group-with-bg--content">
-                <div class="flex-row">
-                  <div class="flex-col-9">
-                    <div class="total_return_label" for="total return">Total Returns </div>
-                  </div>
-                  <div class="flex-col-3">
-                    <div class="total_return_value" for="total value">$6,286</div>
-
-                  </div>
-                </div>
-                <div class="flex-row">
-                  <div class="flex-col-8">
-                    <div class="start_investment_label" for="name">From start of investment</div>
-                  </div>
-                  <div class="flex-col-4">
-                    <div class="start_investment_value" for="name">+ 8.98% </div>
-                  </div>
-                </div>
+              <div class="forward_img" (click)="yourPortfolio()">
+                <img src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" (click)="yourPortfolio(portfolio)" />
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <div class="form-group-with-bg">
-              <!--Form Header-->
-              <div class="form-group-with-bg--header your_portfolio_value">
-                <div class="flex-row">
-                  <div class="conserve-icon">
-                    <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
-                  </div>
-                  <div class="portfolio_heading">Conservative </div>
+            <!-- zero portfolio -->
+
+            <!--Form Content-->
+            <div class="form-group-with-bg--content">
+              <div class="row">
+                <div class="flex-col-6">
+                  <div class="portfolio_label" for="total return">{{'YOUR_INVESTMENT.PORTFOLIO_VALUES' | translate}}</div>
+                  <div class="portfolio_value" for="total value">{{portfolio.value | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                 </div>
-                <div class="flex-row">
-                  <div class="top_alert">
-                    <img src="../../../assets/images/investment-account/topup-alert.svg" alt="" />
-                  </div>
-                  <div class="forward_img">
-                    <img src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="form-group-with-bg--content">
-                <div class="flex-row">
-                  <div class="flex-col-12">
-                    <p>No investment yet</p>
-                  </div>
-                  <div class="flex-col-4">
-                  </div>
+
+
+                <div class="flex-col-6">
+                  <div class="total_return_value pr10" for="name">{{portfolio.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="start_investment_value pr10" for="name">+ {{portfolio.invetmentReturns}} </div>
                 </div>
               </div>
 
             </div>
           </div>
+          <!-- content zero investment -->
+          <div *ngIf=!portfolio.totalReturns>
+            <div class="form-group-with-bg--header your_portfolio_value">
+              <div class="flex-row">
+                <div class="conserve-icon">
+                  <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
+                </div>
+                <div class="portfolio_heading">{{portfolio.name}} </div>
+              </div>
+              <div class="flex-row">
+                <div class="top_alert">
+                  <img src="../../../assets/images/investment-account/topup-alert.svg" alt="" />
+                </div>
+                <div class="forward_img" (click)="yourPortfolio()">
+                  <img src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" (click)="yourPortfolio(portfolio)" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-with-bg--content pb10">
+              <div class="flex-row">
+                <div class="flex-col-12">
+                  <p>{{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
-        <button type="button" class="btn-with-icon" id="errorModeButton">
-          <img src="../../../assets/images/investment-account/plus_icon.svg" alt="" /> Add Portfolio </button>
+        <!-- <div style="position: relative">
+          <div class="pointer-container" style="transform: translate(99%,2%) rotate(180deg);">
+            <div class="pointer" style="position:absolute"></div>
+          </div>
+        </div>
+        <div class="callout">
+          <div>
+            <h5>Hii</h5>
+            <p> information</p>
+          </div>
+        </div> -->
+        <button type="button" class="btn-with-icon mt10" id="errorModeButton" (click)="addPortfolio()">
+          <img src="../../../assets/images/investment-account/plus_icon.svg" alt="" /> {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
+
       </div>
     </div>
-  </div>

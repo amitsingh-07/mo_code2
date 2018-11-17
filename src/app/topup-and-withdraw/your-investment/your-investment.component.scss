@@ -1,5 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+app-your-investment{
+
 
 .background_img {
     object-fit: contain;
@@ -55,6 +57,34 @@ p{
 }
 }
 
+
+.dropdown-control 
+.dropdown-menu.show {
+    left: auto !important;
+    right: 0;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    letter-spacing: -0.2px;
+    color: #2d8289 !important;
+    //border-bottom: solid 1px #00a7a7 !important;
+
+    
+} 
+.dropdown-item:first-child{
+    border-bottom: solid 1px #00a7a7 !important;
+}
+
 .form-group-with-bg {
     box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
     background-color: #ffffff;
@@ -96,15 +126,20 @@ p{
 
 }
 .start_investment_value{
-   
-  font-family: $muli-bold;
+   font-family: $muli-bold;
   font-size: 16px;
   font-weight: bold;
-  
   letter-spacing: -0.2px;
   text-align: right;
   color: #11b600;
+  padding-right: 10px;
 
+}
+
+.form-group-with-bg 
+.form-group-with-bg--content 
+.flex-row:not(:last-child) {
+      margin-bottom: 0px; 
 }
 .total_return_label{
    
@@ -114,14 +149,13 @@ p{
     color: #2d8289;
 }
 .total_return_value{
-   
-    font-family: $muli-regular;
+   font-family: $muli-regular;
     font-size: 18px;
     font-weight: bold;
-    
     letter-spacing: -0.2px;
     text-align: right;
     color: #00a7a7;
+    padding-right: 10px;
 }
 .your_portfolio_container{
     padding: 20px;
@@ -137,16 +171,15 @@ p{
 
 }
 .your_portfolio_number{
-  
   font-family: $muli-regular;
   font-size: 15px;
-  
   letter-spacing: -0.3px;
   color: #ffffff;
+  padding-top: 5px;
 
 }
 .your_portfolio_value{
-    background-color: #e7f3f3;
+    background-color: #e7f3f3 !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -174,7 +207,22 @@ font-family: $muli-bold;
   padding-left: 15px;
   
 }
-
+.portfolio_value{
+    font-family: $muli-bold;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+    color: #00a7a7;
+    padding: 0px 0px 0px 15px;
+    
+}
+.portfolio_label{
+   font-size: 16px;
+   line-height: 1.31;
+   letter-spacing: -0.1px;
+   color: #8a9ba9;
+   padding: 0px 0px 0px 15px;
+}
   .top_aler {
     margin-left: 10px;
     margin-top: 7px;
@@ -198,8 +246,8 @@ font-family: $muli-bold;
 
     &:active {
       outline: none;
-      background-color: #0de0de;
-      color: #fff;
+      background-color: #fff;
+    //   color: #fff;
     }
 
     &:hover {
@@ -208,12 +256,46 @@ font-family: $muli-bold;
 
     &:focus {
       outline: none;
-      background-color: #0de0de;
-      color: #fff;
+      background-color:#fff;
+    //   color: #fff;
     }
 
     img {
       margin-left: 8px;
       margin-top: -1px;
     }
+ .pointer {
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 18px solid transparent;
+        border-bottom: 18px solid #fff;
+        right: 0px;
+        left: auto;
+        position: absolute;
+    }
+    
+    .pointer-container {
+        position: absolute;
+        bottom: -18px;
+        left: 0px;
+      
+        right: 0px;
+        -webkit-transform: translate(-100%, 0px);
+        transform: translate(-100%, 0px);
+    }
+    .callout {
+        padding: 15px;
+        background-color: #fff;
+        color: #000;
+        border-radius: 6px;
+        margin-top: 30px;
+        position: relative;
+        font-family: "Muli", sans-serif;
+        font-size: 18px;
+        font-weight: normal;
+    }
+    
+   
   }
+}

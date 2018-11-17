@@ -213,8 +213,8 @@ font-family: $muli-bold;
 
     &:active {
       outline: none;
-      background-color: #0de0de;
-      color: #fff;
+      background-color: #fff;
+      
     }
 
     &:hover {
@@ -223,8 +223,8 @@ font-family: $muli-bold;
 
     &:focus {
       outline: none;
-      background-color: #0de0de;
-      color: #fff;
+      background-color: #fff;
+     
     }
 
     img {
@@ -271,22 +271,32 @@ font-family: $muli-bold;
       margin-top: -1px;
     }
   }
-  .pre_portfolio{
-    border-radius: 6px;
-    border: solid 1px #ffffff;
-    background-color: #00a7a7;
-   font-family: $muli-bold;
-    font-size: 21px;
-    font-weight: $muli-bold;
-    line-height: normal;
-    letter-spacing: -0.3px;
+  .fund-account{
     text-align: center;
-    color: #fff;
-    width: 50%;
-    padding: 10px;
-   
-img {
-      margin-left: 8px;
-      margin-top: -1px;
-    }  
+    border-radius: 6px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.21);
+    background-color: #ffffff;
+    width: 100%;
+    padding: 30px;
   }
+  .fund-account-information {
+   font-size: 16px;
+    line-height: 1.38;
+    letter-spacing: -0.2px;
+    color: #000000;
+    background-color: #ffffff;
+   
+  }
+  .fund-account-btn{
+    font-size: 21px;
+    font-weight: bold;
+    
+   letter-spacing: -0.2px;
+   color: #ff872f;
+}
+.form-group-with-bg 
+.form-group-with-bg--content 
+.flex-row:not(:last-child) {
+      margin-bottom: 0px; 
+}
+  

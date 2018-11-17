@@ -108,4 +108,14 @@ export class TopupAndWithDrawService {
   getFundingDetails() {
     return this.investmentAccountFormData.fundDetails;
   }
+  getInvestmentOverview() {
+    return this.apiService.getInvestmentOverview();
+  }
+  setPortfolioValues(portfolio) {
+    this.topUpAndWithdrawFormData.PortfolioValues = portfolio;
+  }
+  getPortfolioValues() {
+    return this.topUpAndWithdrawFormData.PortfolioValues;
+  }
+
 }

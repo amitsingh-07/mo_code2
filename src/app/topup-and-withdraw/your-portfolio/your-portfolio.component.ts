@@ -24,6 +24,9 @@ export class YourPortfolioComponent implements OnInit {
   pageTitle: string;
   setPageTitle: string;
   moreList: any;
+  PortfolioValues;
+
+ 
 
   constructor(
     public readonly translate: TranslateService,
@@ -33,7 +36,7 @@ export class YourPortfolioComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     private modal: NgbModal,
-
+    private currencyPipe: CurrencyPipe,
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -48,6 +51,8 @@ export class YourPortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.getMoreList();
+    this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+
   }
   getMoreList() {
     this.topupAndWithDrawService.getMoreList().subscribe((data) => {
@@ -55,5 +60,12 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
 
+   
   }
+
+
+  gotoTopUp(){
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
+
 }
