@@ -85,6 +85,12 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     this.personalInfoForm = this.formBuilder.group({
       dob: [this.formValues.dob, Validators.required],
       investmentPeriod: ['', Validators.required],
+      sliderValueSetter: ['']
+    });
+
+    this.personalInfoForm.get('sliderValueSetter').valueChanges.subscribe( (value) => {
+      this.piInvestmentSlider.writeValue(value);
+      this.onSliderChange(value);
     });
   }
 
@@ -100,7 +106,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
       const pointerPosition = self.elRef.nativeElement.querySelectorAll('.noUi-origin')[0].style.transform;
       self.elRef.nativeElement.querySelectorAll('.pointer-container')[0].style.transform = pointerPosition;
     }, 1);
-    this.isSufficientInvYears = (value > PORTFOLIO_CONFIG.personal_info.min_investment_period) ?  true : false;
+    this.isSufficientInvYears = (value > PORTFOLIO_CONFIG.personal_info.min_investment_period) ? true : false;
   }
 
   setSliderDescByRange(value) {

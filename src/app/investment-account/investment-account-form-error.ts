@@ -20,7 +20,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Postal Code should contain only 6 digit number.'
+                errorMessage: 'Please enter valid Postal Code.'
             }
         },
         mailPostalCode: {
@@ -30,7 +30,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Postal Code should contain only 6 digit number.'
+                errorMessage: 'Please enter valid Postal Code.'
             }
         },
         address1: {
@@ -310,7 +310,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Postal Code should contain only 6 digit number.'
+                errorMessage: 'Please enter valid Postal Code.'
             }
         },
         empAddress1: {
@@ -453,8 +453,8 @@ export class InvestmentAccountFormError {
         inheritanceGift: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid enter Inheritance Gift',
-                errorMessage: 'Please enter inheritance Gift.'
+                errorTitle: 'Invalid enter Gift Inheritance',
+                errorMessage: 'Please enter Gift Inheritance.'
             }
         },
         investmentPeriod: {
@@ -483,6 +483,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid First Name',
                 errorMessage: 'Please enter your First Name.'
+            },
+            pattern: {
+                errorTitle: 'Invalid First Name',
+                errorMessage: 'First Name should not contain numbers and special characters.'
             }
         },
         lName: {
@@ -490,6 +494,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Last Name',
                 errorMessage: 'Please enter your Last Name.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Last Name',
+                errorMessage: 'Last Name should not contain numbers and special characters.'
             }
         },
         cName: {
@@ -511,6 +519,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Postal Code',
                 errorMessage: 'Please enter your Postal Code.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Postal Code',
+                errorMessage: 'Postal code should be numeric'
             }
         },
         pepAddress1: {
@@ -518,6 +530,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Address Line 1',
                 errorMessage: 'Please enter your Address Line 1.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Address1',
+                errorMessage: 'Address1 should not contain  special characters.'
             }
         },
         pepAddress2: {
@@ -525,6 +541,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Address Line 2.',
                 errorMessage: 'Please enter your Address Line 2.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Address2',
+                errorMessage: 'Address2 should not contain  special characters.'
             }
         },
 
@@ -533,6 +553,10 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Unit No.',
                 errorMessage: 'Please enter your Unit No.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Unit No.',
+                errorMessage: 'Unit No should not contain alphabet characters.'
             }
         },
     };

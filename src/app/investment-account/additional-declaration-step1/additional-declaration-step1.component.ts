@@ -58,17 +58,20 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.addInfoFormValues = this.investmentAccountService.getPepInfo();
     this.addInfoForm = new FormGroup({
       radioPep: new FormControl(this.addInfoFormValues.radioPep, Validators.required),
-      fName: new FormControl(this.addInfoFormValues.fName, Validators.required),
-      lName: new FormControl(this.addInfoFormValues.lName, Validators.required),
+      fName: new FormControl(this.addInfoFormValues.fName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
+      lName: new FormControl(this.addInfoFormValues.lName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
       pepoccupation: new FormControl(this.addInfoFormValues.pepoccupation, Validators.required),
       pepCountry: new FormControl(
         this.investmentAccountService.getCountryFromNationalityCode(
           INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE), Validators.required),
-      pepPostalCode: new FormControl(this.addInfoFormValues.pepPostalCode, Validators.required),
-      pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1, Validators.required),
-      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, Validators.required),
-      pepUnitNo: new FormControl(this.addInfoFormValues.pepUnitNo, Validators.required),
+      // tslint:disable-next-line:max-line-length
+      pepPostalCode: new FormControl(this.addInfoFormValues.pepPostalCode, [Validators.required , Validators.pattern(RegexConstants.NumericOnly)]),
+      // tslint:disable-next-line:max-line-length
+      pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]),
+      // tslint:disable-next-line:max-line-length
+      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [Validators.pattern(RegexConstants.Alphanumeric)]),
+      pepUnitNo: new FormControl(this.addInfoFormValues.pepUnitNo, [Validators.required, Validators.pattern(RegexConstants.SymbolNumber)]),
     });
     this.addInfoForm.controls.radioPep.setValue(true);
   }

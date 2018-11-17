@@ -7,8 +7,8 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
-    IAddress, ISaveInvestmentAccountRequest, IEmployment, IFinancial, IHousehold, IPep,
-    IPersonalDeclaration, IPersonalInfo, ITax
+    IAddress, IEmployment, IFinancial, IHousehold, IPep, IPersonalDeclaration, IPersonalInfo,
+    ISaveInvestmentAccountRequest, ITax
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 
@@ -368,7 +368,7 @@ export class InvestmentAccountService {
     }
 
     saveInvestmentAccount() {
-        const payload = this.constructInvestmentAccountRequest();
+        const payload = this.constructSaveInvestmentAccountRequest();
         return this.apiService.saveInvestmentAccount(payload);
     }
 
@@ -612,7 +612,7 @@ export class InvestmentAccountService {
         return this.apiService.updateInvestment(params);
     }
 
-    constructInvestmentAccountRequest() {
+    constructSaveInvestmentAccountRequest() {
         const payload = this.getInvestmentAccountFormData();
         const request = {} as ISaveInvestmentAccountRequest;
         request.myInfoVerified = payload.isMyInfoEnabled;
@@ -706,7 +706,7 @@ export class InvestmentAccountService {
     getHouseholdDetailsReqData(data): IHousehold {
         return {
             numberOfMembers: data.numberOfHouseHoldMembers,
-            houseHoldIncome: data.annualHouseHoldIncomeRange
+            houseHoldIncome: (data.annualHouseHoldIncomeRange) ? data.annualHouseHoldIncomeRange.id : null
         };
     }
 
@@ -722,8 +722,8 @@ export class InvestmentAccountService {
     getTaxDetailsReqData(data): ITax {
         return {
             taxCountryId: (data.taxCountry) ? data.taxCountry.id : null,
-            tinNumber: (data.tinNumberText) ? data.tinNumberText.tinNumber : null,
-            noTinReason: (data.reasonDropdown) ? data.reasonDropdown.noTinReason.id : null
+            tinNumber: (data.radioTin) ? data.tinNumber : null,
+            noTinReason: (!data.radioTin) ? data.noTinReason.id : null
         };
     }
 

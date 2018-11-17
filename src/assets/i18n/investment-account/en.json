@@ -124,8 +124,10 @@
     "TITLE": "Upload Documents",
     "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
     "PROOF_OF_IDENTITY": "Proof Of Identity",
+    "PROOF_OF_IDENTITY_BO": "Proof Of Beneficial Owner's Identity",
     "NRIC": "NRIC",
     "PASSPORT": "Passport",
+    "PASSPORT_BO": "Beneficial Owner's Passport",
     "FRONT_NRIC": "Front NRIC",
     "BACK_NRIC": "Back NRIC",
     "TAP_TO_UPLOAD": "Tap to Upload",
@@ -295,6 +297,16 @@
       "TITLE": "The following details have been autofilled into the form.",
       "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
+    }
+  },
+  "INVESTMENT_ACCOUNT_COMMON": {
+    "ACCOUNT_CREATION_ERROR_MODAL": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Please fix the below list of errors and then proceed."
+    },
+    "GENERAL_ERROR": {
+      "TITLE": "Error !",
+      "DESCRIPTION": "Sorry, Something went wrong. Please try again."
     }
   }
 }
