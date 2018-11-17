@@ -1,5 +1,6 @@
 {
     "COMMON": {
+        "APPLY_CHANGES": "Apply Changes",
         "CONTINUE": "Continue",
         "VERIFY": "Verify", 
         "LOGIN": "Log In",

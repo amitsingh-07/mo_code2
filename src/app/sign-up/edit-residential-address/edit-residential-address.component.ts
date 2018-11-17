@@ -63,9 +63,9 @@ export class EditResidentialAddressComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.countries = this.investmentAccountService.getCountriesFormData();
-    this.isUserNationalitySingapore = true ;
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
+
   }
   getNationalityCountryList() {
         this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
@@ -96,9 +96,9 @@ getCountryList(data) {
       floor: [{value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')}, Validators.required],
       unitNo: [{value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')}, Validators.required],
       isMailingAddressSame: [this.formValues.isMailingAddressSame],
-      nricFrontImage: [this.formValues.nricFrontImage, Validators.required],
-      nricBackImage: [this.formValues.nricBackImage, Validators.required],
-      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
+      nricFrontImage: [this.formValues.nricFrontImage],
+      nricBackImage: [this.formValues.nricBackImage],
+      mailAdressProof: [this.formValues.mailAdressProof]
     });
   }
 
@@ -225,8 +225,10 @@ getCountryList(data) {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setResidentialAddressFormData(form.value);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+      this.investmentAccountService.editResidentialAddressFormData(form.value).subscribe((data) => {
+        console.log (data);
+        this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      });
     }
   }
 

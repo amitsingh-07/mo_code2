@@ -297,7 +297,7 @@ export class SignUpService {
     // API Call here
     return this.apiService.getEditProfileList();
   }
-  constructResetPassword(oldpassword , newpassword) {
+  constructEditPassword(oldpassword , newpassword) {
     return {
       oldPassword: oldpassword,
       newPassword: newpassword
@@ -305,7 +305,7 @@ export class SignUpService {
   }
   setEditPasswordInfo(oldPassword, newPassword) {
     // API Call here
-    const data = this.constructResetPassword(this.cryptoService.encrypt(oldPassword), this.cryptoService.encrypt(newPassword));
+    const data = this.constructEditPassword(this.cryptoService.encrypt(oldPassword), this.cryptoService.encrypt(newPassword));
     return this.apiService.requestEditPassword(data);
   }
 
