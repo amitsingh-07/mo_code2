@@ -30,15 +30,15 @@
                       <div class="flex-col-8">
                         <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO' | translate}}</div>
                         <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
-                        <div class="time-lapse"><div>{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div><div class="flex-row"><span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span><span class="circle"></span></div></div>
+                        <div class="time-lapse"><div (click) = "goToEngagement()">{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div><div class="flex-row"><span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span><span class="circle"></span></div></div>
                       </div>
                     </div>
-                    <div class="portfolio">
+                    <div class="portfolio" *ngIf=false>
                       <div class="portfolio_value">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
                         <div class="value">$76,286</div>
                       </div>
-                      <div class="portfolio_graph"><img src="assets/images/investment-account/investment_graph.svg"/></div>
+                      <div class="portfolio_graph"></div>
                       <div class="portfolio_footer">
                         <div class="flex-col col-7">
                           <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
@@ -50,7 +50,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="warning col-12">
+                    <div class="warning col-12" *ngIf=false>
                       <div class="warning-txt">
                         <img src="assets/images/investment-account/inline-error.svg" />
                         <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div>
