@@ -60,7 +60,7 @@ export interface IWill {
 }
 
 export interface IwillProfile {
-    customerId: number;
+    customerId: string;
     uin: string;
     name: string;
     genderCode: string;

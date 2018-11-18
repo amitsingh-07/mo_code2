@@ -26,7 +26,7 @@
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "<span class='flex mr17'>Your changes will not be saved. Are you sure you want to leave this page?</span>",
       "CONFIRM": "Your previous information will be overwritten. <br/><br/>Would you like to proceed?",
-      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your will has to be rewritten and you will be redirected back to Step 1. <br/>Would you like to proceed?",
+      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
         "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."

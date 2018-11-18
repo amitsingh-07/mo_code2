@@ -15,6 +15,7 @@ import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 const FROM_CONFIRMATION_PAGE = 'from_confirmation_page';
+const IS_WILL_CREATED = 'is_will_created';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
   fromConfirmationPage;
+  isWillCreated;
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -31,6 +33,7 @@ export class WillWritingService {
     // get data from session storage
     this.getWillWritingFormData();
     this.getFromConfirmPage();
+    this.getIsWillCreated();
   }
 
   /**
@@ -413,6 +416,20 @@ export class WillWritingService {
       this.fromConfirmationPage = JSON.parse(sessionStorage.getItem(FROM_CONFIRMATION_PAGE));
     }
     return this.fromConfirmationPage;
+  }
+
+  setIsWillCreated(flag) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(IS_WILL_CREATED, flag);
+    }
+    this.isWillCreated = flag;
+  }
+
+  getIsWillCreated() {
+    if (window.sessionStorage && sessionStorage.getItem(IS_WILL_CREATED)) {
+      this.isWillCreated = JSON.parse(sessionStorage.getItem(IS_WILL_CREATED));
+    }
+    return this.isWillCreated;
   }
 
   checkBeneficiary(uin) {
