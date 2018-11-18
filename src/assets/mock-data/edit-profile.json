@@ -10,44 +10,52 @@
             "mobileNumber": "9988888888",
     
             "password": "",
-            "email" : "satheesanop@gmail.com"
+            "email" : "satheesanop@gmail.com",
+            "isSingaporeResident": false
+
         },
         "contactDetails": {
             "homeAddress": {
                 "id": 1,
                 "country": {
                     "id": 1,
-                    "country": "Singapore",
-                    "nationality": "Singaporean",
+                    "name": "BOLIVIA",
+                    "nationality": "BOLIVIAN",
                     "isBlocked": "0",
-                    "phoneCode": "+1",
-                    "countryCode": "SG",
-                    "nationalityCode": "SG"
+                    "phoneCode": "+ 591",
+                    "countryCode": "BO",
+                    "nationalityCode": "BO"
                 },
                 "addressLine1": "221B",
                 "addressLine2": "Baker Street",
                 "unitNumber": "23223232",
                 "postalCode": "L222334",
                 "townName": "Townname",
-                "state": "State Name"
+                "state": "State Name",
+                "floor": "6",
+                "city": "Chennai",
+                "zipCode": "673508"
             },
             "mailingAddress": {
                 "id": 2,
                 "country": {
                     "id": 1,
-                    "country": "Singapore",
-                    "nationality": "Singaporean",
+                    "name": "BOLIVIA",
+                    "nationality": "BOLIVIAN",
                     "isBlocked": "0",
-                    "phoneCode": "+1",
-                    "countryCode": "SG",
-                    "nationalityCode": "SG"
+                    "phoneCode": "+ 591",
+                    "countryCode": "BO",
+                    "nationalityCode": "BO"
                 },
                 "addressLine1": "221B Baker Street",
                 "addressLine2": "mock address 2",
                 "unitNumber": "23223266",
                 "postalCode": "L222007",
                 "townName": "Townname",
-                "state": "State Name"
+                "state": "State Name",
+                "floor": "6",
+                "city": "Chennai",
+                "zipCode": "673508"
             }
         },
         "employmentDetails": {
@@ -68,19 +76,22 @@
                     "id": 2,
                     "country": {
                         "id": 1,
-                        "country": "Singapore",
-                        "nationality": "Singaporean",
+                        "name": "BOLIVIA",
+                        "nationality": "BOLIVIAN",
                         "isBlocked": "0",
-                        "phoneCode": "+1",
-                        "countryCode": "SG",
-                        "nationalityCode": "SG"
+                        "phoneCode": "+ 591",
+                        "countryCode": "BO",
+                        "nationalityCode": "BO"
                     },
                     "addressLine1": "mock Address Line 1",
                     "addressLine2": "mock Address Line 2",
                     "unitNumber": "23223232",
                     "postalCode": "L222334",
                     "townName": "Townname",
-                    "state": "State Name"
+                    "state": "State Name",
+                    "floor": "6",
+                    "city": "Chennai",
+                    "zipCode": "673508"
                 }
             },
             "occupation": {

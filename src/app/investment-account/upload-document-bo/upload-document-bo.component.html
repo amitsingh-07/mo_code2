@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
-              <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_IDENTITY' | translate}}
+              <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_IDENTITY_BO' | translate}}
                 <span>({{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}})</span>
               </span>
             </div>
@@ -30,7 +30,7 @@
                 <img #passportThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
               </div>
               <div class="upload-content">
-                <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}}</div>
+                <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT_BO' | translate}}</div>
                 <div class="sub-text" *ngIf="!uploadForm.controls.passportImage.value">{{
                   'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value" [innerHtml]="getFileName(passport)"></div>

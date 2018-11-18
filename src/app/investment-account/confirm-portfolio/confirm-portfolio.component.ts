@@ -20,6 +20,9 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import {
+    AccountCreationErrorModalComponent
+} from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -27,6 +30,7 @@ import {
     EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -60,6 +64,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public portfolioService: PortfolioService,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -185,6 +190,20 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
   }
 
+  showInvestmentAccountErrorModal(errorList) {
+    const errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE');
+    const errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.DESCRIPTION');
+    const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorMessage = errorMessage;
+    ref.componentInstance.errorList = errorList;
+  }
+
+  viewFundDetails(fund) {
+    this.portfolioService.setFund(fund);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+  }
+
   goToNext() {
     const pepData = this.investmentAccountService.getPepData();
     // tslint:disable-next-line:triple-equals
@@ -193,21 +212,32 @@ export class ConfirmPortfolioComponent implements OnInit {
     } else {
       this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
         // CREATE INVESTMENT ACCOUNT
-        console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
+        console.log('Attempting to create ifast account');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
-          if (response.objectList[0]) {
-            if (response.objectList[0].data.status === 'confirmed') {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
-            } else {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+          if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
+            const errorResponse = response.objectList[response.objectList.length - 1];
+            const errorList = errorResponse.serverStatus.errors;
+            this.showInvestmentAccountErrorModal(errorList);
+          } else { // SUCCESS SCENARIO
+            if (response.objectList[response.objectList.length - 1]) {
+              if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+              } else {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+              }
             }
-          } else { // TODO : ELSE TO BE REMOVED
-            this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
           }
+        },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
         });
       });
     }
 
   }
+
+  
 
 }

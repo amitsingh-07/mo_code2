@@ -3,7 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../../investment-account/investment-account.constant';
 import { HeaderService } from '../../shared/header/header.service';
+import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -28,6 +32,14 @@ export class EditProfileComponent implements OnInit {
   compinedEmployerAddress: any;
   bankDetails: any;
   mailingAddress: any;
+  contactDetails: any;
+  employerAddress: any;
+  entireUserData: any;
+  nationalityList: any;
+  countryList: any;
+  isMailingAddressSame: boolean;
+  isEmployeAddresSame: boolean;
+  isSingaporeResident: boolean;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -38,10 +50,13 @@ export class EditProfileComponent implements OnInit {
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
+    public authService: AuthenticationService,
+    public investmentAccountService: InvestmentAccountService,
     private translate: TranslateService) {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
     });
+    this.getNationalityCountryList();
   }
 
   ngOnInit() {
@@ -49,6 +64,8 @@ export class EditProfileComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.buildForgotPasswordForm();
     this.getEditProfileData();
+    this.isMailingAddressSame = true;
+    this.isEmployeAddresSame = true;
   }
   showHidePassword(el) {
     if (el.type === 'password') {
@@ -83,21 +100,35 @@ export class EditProfileComponent implements OnInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       // tslint:disable-next-line:triple-equals
       console.log(data);
+      this.entireUserData = data.objectList[0];
       this.personalData = data.objectList[0].personalInformation;
+      if ( data.objectList[0].contactDetails) {
       this.residentialAddress = data.objectList[0].contactDetails.homeAddress;
+      }
       this.empolymentDetails = data.objectList[0].employmentDetails;
       this.bankDetails = data.objectList[0].bankDetails;
+      if ( data.objectList[0].contactDetails) {
       this.mailingAddress = data.objectList[0].contactDetails.mailingAddress;
+      this.isMailingAddressSame = false;
+      }
+      this.contactDetails = data.objectList[0].contactDetails;
       console.log(this.personalData);
       this.setFullName(this.personalData.firstName , this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName , this.personalData.lastName);
       this.setNric(this.personalData.nricNumber);
       this.setAddres(this.residentialAddress.addressLine1 , this.residentialAddress.addressLine2);
       this.setMailingAddres(this.mailingAddress.addressLine1 , this.mailingAddress.addressLine2);
+      if ( this.personalData) {
+        this.isSingaporeResident = this.personalData.isSingaporeResident;
+        }
+      if ( this.empolymentDetails.employerDetails.employerAddress) {
+        this.isEmployeAddresSame = false;
+        this.employerAddress = this.empolymentDetails.employerDetails.employerAddress ;
       // tslint:disable-next-line:max-line-length
-      this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
+        this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
       // tslint:disable-next-line:max-line-length
       // this.setMailingAddres(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
+      }
     });
   }
   setFullName(firstName, LastName) {
@@ -121,5 +152,37 @@ this.compinedAddress = address1 + ' ' + address2;
 this.compinedEmployerAddress = address1 + ' ' + address2;
   }
   editEmployeDetails() {
+    // tslint:disable-next-line:max-line-length
+    this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData , this.nationalityList, this.countryList, this.isEmployeAddresSame , this.isSingaporeResident );
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], {queryParams: {enableEditProfile: true}, fragment: 'loading'});
+  }
+  editUserDetails() {
+  }
+  editPassword() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
+  }
+  getNationalityCountryList() {
+    this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
+            this.nationalityList = data.objectList;
+            this.countryList = this.getCountryList(data.objectList);
+        });
+   }
+
+getCountryList(data) {
+    const countryList = [];
+    data.forEach((nationality) => {
+        nationality.countries.forEach((country) => {
+            countryList.push(country);
+        });
+    });
+    return countryList;
+}
+  editContactDetails() {
+    // tslint:disable-next-line:max-line-length
+    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList , this.isMailingAddressSame , this.isSingaporeResident);
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
+  }
+  editBankDetails() {
   }
 }

@@ -8,9 +8,9 @@
         <div class="from-account" *ngIf="fundDetails">
           <img src="../../../assets/images/investment-account/topupcoin.svg" alt="" />
           <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_INVESTMENT' | translate }}</div>
-          <div class="strong" *ngIf=setOnetimeInvestmentAmount>${{fundDetails.oneTimeInvestmentAmount}}(
+          <div class="strong" *ngIf=setOnetimeInvestmentAmount>{{fundDetails.oneTimeInvestmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}(
             <span>{{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }}</span>)</div>
-          <div class="strong" *ngIf=setMonthlyInvestmentAmount>${{fundDetails.MonthlyInvestmentAmount}}
+          <div class="strong" *ngIf=setMonthlyInvestmentAmount>{{fundDetails.MonthlyInvestmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
             <span>/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</span>
           </div>
         </div>
@@ -59,10 +59,10 @@
                 <div class="value">
                   <div class="investment-values" *ngIf="fundDetails">
                     <div *ngIf=setOnetimeInvestmentAmount>
-                      <span>${{fundDetails.topupportfolioamount}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate
+                      <span>{{fundDetails.topupportfolioamount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate
                       }})</div>
                     <div *ngIf=setMonthlyInvestmentAmount>
-                      <span>${{fundDetails.MonthlyInvestmentAmount}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate
+                      <span>{{fundDetails.MonthlyInvestmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate
                       }}</div>
                   </div>
 
@@ -124,9 +124,9 @@
                 <div class="value">
                   <div class="investment-values" *ngIf="fundDetails">
                     <div *ngIf=setOnetimeInvestmentAmount>
-                      <span>${{fundDetails.topupportfolioamount}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }})</div>
+                      <span>{{fundDetails.topupportfolioamount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }})</div>
                     <div *ngIf=setMonthlyInvestmentAmount>
-                      <span>${{fundDetails.MonthlyInvestmentAmount}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</div>
+                      <span>{{fundDetails.MonthlyInvestmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</div>
                   </div>
 
 
