@@ -158,6 +158,7 @@ this.compinedEmployerAddress = address1 + ' ' + address2;
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], {queryParams: {enableEditProfile: true}, fragment: 'loading'});
   }
   editUserDetails() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
   editPassword() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PASSWORD]);
