@@ -87,6 +87,7 @@ export class MyInfoService {
         //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
         //   ]);
       } else {
+        this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
         this.isMyInfoEnabled = false;
       }
       return 'MY_INFO';
