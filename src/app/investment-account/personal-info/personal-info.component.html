@@ -214,7 +214,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('race').enabled && !invPersonalInfoForm.get('race').valid && !invPersonalInfoForm.get('race').pristine}">
                     <div ngbDropdown>
-                      <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="race-drpdown"
+                      <button class="btn btn-dropdown without-border grey" id="race-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.race.value">
                             {{ 'PERSONAL_INFO.SELECT_RACE' | translate }}

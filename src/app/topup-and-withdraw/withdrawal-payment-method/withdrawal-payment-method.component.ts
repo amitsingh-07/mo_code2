@@ -125,7 +125,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.dismissPopup(ref);
   }
 
-  showNewBankFormModal(form) {
+  showNewBankFormModal() {
     const ref = this.modal.open(AddBankModalComponent, {
       centered: true
     });
