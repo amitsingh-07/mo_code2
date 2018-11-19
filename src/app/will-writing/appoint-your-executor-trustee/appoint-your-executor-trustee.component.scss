@@ -71,7 +71,9 @@
         text-align: center;
         color: #ffffff;
         margin-top: 30px;
+        margin-bottom: 13px;
         @include allmobiles {
+            margin-bottom: 8px;
             margin-top: 0 !important;
         }
     }
@@ -83,6 +85,10 @@
         text-align: center;
         color: #ffffff;
         line-height: normal;
+        margin-bottom: 12px;
+        @include allmobiles {
+            margin-bottom: 10px;
+        }
     }
     .intro-block__content__sub-title {
         font-family: $muli-regular;
