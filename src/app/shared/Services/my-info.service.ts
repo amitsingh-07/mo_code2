@@ -49,6 +49,7 @@ export class MyInfoService {
   }
 
   newWindow(authoriseUrl): void {
+    this.isMyInfoEnabled = true;
     const screenWidth = screen.width;
     const screenHeight = screen.height;
     const left = 0;
@@ -73,6 +74,8 @@ export class MyInfoService {
         this.router.navigate(
           [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
           ]);
+      } else {
+        this.isMyInfoEnabled = false;
       }
       return 'MY_INFO';
     };
@@ -86,7 +89,6 @@ export class MyInfoService {
         if (this.myInfoValue) {
           this.isMyInfoEnabled = false;
         } else {
-          this.isMyInfoEnabled = true;
           const myInfoAuthCode = params.get('code');
           this.setMyInfoValue(myInfoAuthCode);
           this.router.navigate(
