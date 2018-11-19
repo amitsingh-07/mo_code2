@@ -26,7 +26,7 @@
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "<span class='flex mr17'>Your changes will not be saved. Are you sure you want to leave this page?</span>",
       "CONFIRM": "Your previous information will be overwritten. <br/><br/>Would you like to proceed?",
-      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your will has to be rewritten and you will be redirected back to Step 1. <br/>Would you like to proceed?",
+      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
         "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."
@@ -41,7 +41,7 @@
         },
         {
           "text": "Parent-in-law",
-          "value": "parent-in-law"
+          "value": "parent_in_law"
         },
         {
           "text": "Friend",
@@ -183,9 +183,9 @@
       "SUB_TITLE": "In the next step, please check that all details provided are accurate."
     },
     "MY_EXECUTOR_TRUSTEE": {
-      "TITLE": "My Executor & Trustee",
+      "TITLE": "My Executors & Trustees",
       "SUB_TITLE": "As this person plays a critical role in executing your will, please choose someone you trust.",
-      "FORM_TITLE": "I would like my executor & trustee to be:",
+      "FORM_TITLE": "My executors & trustees are",
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",

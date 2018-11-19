@@ -15,6 +15,7 @@ import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 const FROM_CONFIRMATION_PAGE = 'from_confirmation_page';
+const IS_WILL_CREATED = 'is_will_created';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
   fromConfirmationPage;
+  isWillCreated;
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -31,6 +33,7 @@ export class WillWritingService {
     // get data from session storage
     this.getWillWritingFormData();
     this.getFromConfirmPage();
+    this.getIsWillCreated();
   }
 
   /**
@@ -140,16 +143,17 @@ export class WillWritingService {
    * @param form - form details.
    * @returns first error of the form.
    */
-  getMultipleFormError(form, formName) {
+  getMultipleFormError(form, formName, formTitle) {
     const forms = form.controls;
     const errors: any = {};
     errors.errorMessages = [];
     errors.title = this.willWritingFormError[formName].formFieldErrors.errorTitle;
+    let index = 0;
 
     // tslint:disable-next-line:forin
     for (const field in forms) {
       for (const control of forms[field].controls) {
-        const formGroup = { formName: field, errors: [] };
+        const formGroup = { formName: formTitle[index], errors: [] };
         // tslint:disable-next-line:forin
         for (const name in control.controls) {
           if (control.controls[name].invalid) {
@@ -160,6 +164,7 @@ export class WillWritingService {
         }
         if (formGroup.errors.length > 0) {
           errors.errorMessages.push(formGroup);
+          index++;
         }
       }
     }
@@ -387,17 +392,17 @@ export class WillWritingService {
     return false;
   }
 
-  openErrorModal(title: string, message: string, isMultipleForm: boolean) {
+  openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
+      ref.componentInstance.formName = formName;
       ref.componentInstance.errorMessageList = message;
     } else {
       ref.componentInstance.multipleFormErrors = message;
     }
     return false;
   }
-
 
   setFromConfirmPage(flag) {
     if (window.sessionStorage) {
@@ -411,5 +416,23 @@ export class WillWritingService {
       this.fromConfirmationPage = JSON.parse(sessionStorage.getItem(FROM_CONFIRMATION_PAGE));
     }
     return this.fromConfirmationPage;
+  }
+
+  setIsWillCreated(flag) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(IS_WILL_CREATED, flag);
+    }
+    this.isWillCreated = flag;
+  }
+
+  getIsWillCreated() {
+    if (window.sessionStorage && sessionStorage.getItem(IS_WILL_CREATED)) {
+      this.isWillCreated = JSON.parse(sessionStorage.getItem(IS_WILL_CREATED));
+    }
+    return this.isWillCreated;
+  }
+
+  checkBeneficiary(uin) {
+    return this.getBeneficiaryInfo().filter((data) => data.uin === uin && data.selected === true);
   }
 }
