@@ -36,6 +36,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   relationship = '';
   submitted = false;
   isFormOpen = false;
+  willWritingConfig = WILL_WRITING_CONFIG;
   maxBeneficiary = WILL_WRITING_CONFIG.MAX_BENEFICIARY;
   private subscription: Subscription;
   unsavedMsg: string;
@@ -137,7 +138,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, 'Beneficiary');
     } else {
       if (!this.isEdit) {
         form.value.selected = true;

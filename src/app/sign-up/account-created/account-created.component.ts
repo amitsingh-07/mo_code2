@@ -2,6 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 
@@ -12,9 +14,12 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 })
 export class AccountCreatedComponent implements OnInit {
 
-  constructor(private translate: TranslateService,
-              private googleAnalyticsService: GoogleAnalyticsService,
-              private router: Router) {
+  constructor(
+    private translate: TranslateService,
+    private googleAnalyticsService: GoogleAnalyticsService,
+    private willWritingApiService: WillWritingApiService,
+    private willWritingService: WillWritingService,
+    private router: Router) {
     this.translate.use('en');
   }
 
@@ -25,6 +30,13 @@ export class AccountCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
+    if (this.willWritingService.getWillWritingFormData() && !this.willWritingService.getIsWillCreated()) {
+      this.willWritingApiService.createWill().subscribe((data) => {
+        if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+          this.willWritingService.setIsWillCreated(true);
+        }
+      });
+    }
   }
 
   /**

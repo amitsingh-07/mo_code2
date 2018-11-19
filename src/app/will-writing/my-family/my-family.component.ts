@@ -38,6 +38,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   submitted: boolean;
   unsavedMsg: string;
   toolTip;
+  formName: string[] = [];
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -119,6 +120,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   buildSpouseForm(): FormGroup {
     if (this.hasSpouse) {
+      this.formName.push('My Spouse');
       return this.formBuilder.group({
         name: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].name : '',
         [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -131,6 +133,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   buildChildrenForm(index: number): FormGroup {
     if (this.hasChild) {
+      this.formName.push('My Child ' + (index + 1));
       return this.formBuilder.group({
         name: [this.childrenFormValues.length > index ?
           this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -157,7 +160,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm');
+      const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm', this.formName);
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
       return false;
     }

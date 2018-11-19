@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
@@ -14,7 +15,6 @@ import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IExecTrustee } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
-import { FooterService } from '../../shared/footer/footer.service';
 
 @Component({
   selector: 'app-my-executor-trustee',
@@ -41,9 +41,11 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   hasSpouse: boolean;
   hasChild: boolean;
+  willWritingConfig = WILL_WRITING_CONFIG;
   maxExecTrustee = WILL_WRITING_CONFIG.MAX_EXECUTOR_TRUSTEE;
   unsavedMsg: string;
   toolTip;
+  formName: string[] = [];
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -127,9 +129,12 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     if (this.execTrusteeList.length !== this.maxExecTrustee) {
       if (this.hasSpouse) {
         this.formTitle.push({ isAlt: true, relationship: '' });
+        this.formName.push('Alternative Executor & Trustee');
       } else {
         this.formTitle.push({ isAlt: false, relationship: '' });
         this.formTitle.push({ isAlt: true, relationship: '' });
+        this.formName.push('Main Executor & Trustee');
+        this.formName.push('Alternative Executor & Trustee');
       }
     }
   }
@@ -180,6 +185,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         title: execTrustee.isAlt ? this.formTitleMsg['alt'] : this.formTitleMsg['main'],
         relationship: ''
       };
+      this.formName[0] = execTrustee.isAlt ? 'Alternative Executor & Trustee' : 'Main Executor & Trustee';
       const execTrusteeForm = this.addExeTrusteeForm.get('executorTrustee')['controls'][0];
       execTrusteeForm.controls['name'].setValue(execTrustee.name);
       execTrusteeForm.controls['uin'].setValue(execTrustee.uin);
@@ -198,7 +204,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getMultipleFormError(form, 'addExecTrusteeForm');
+      const error = this.willWritingService.getMultipleFormError(form, 'addExecTrusteeForm', this.formName);
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
       return false;
     }

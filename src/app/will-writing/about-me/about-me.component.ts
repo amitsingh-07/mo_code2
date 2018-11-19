@@ -125,7 +125,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'aboutMeForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, 'About Me');
       return false;
     }
     return true;

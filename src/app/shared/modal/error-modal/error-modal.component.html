@@ -9,6 +9,7 @@
     <div class="modal-body-message">
       <span *ngIf="errorMessage">{{errorMessage}}</span>
       <ng-container *ngIf="errorMessageList">
+        <p class="label">{{formName  | titlecase}}</p>
         <p *ngFor="let errorMessage of errorMessageList"><span>{{errorMessage}}</span></p>
       </ng-container>
       <ng-container *ngIf="multipleFormErrors">
