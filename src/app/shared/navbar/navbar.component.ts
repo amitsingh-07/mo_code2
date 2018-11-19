@@ -15,6 +15,8 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavbarService } from './navbar.service';
 
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -40,12 +42,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   innerWidth: any;
   mobileThreshold = 567;
   isNavbarCollapsed = true;
+  notifications: any;
+  count: any;
+  totoalNotification: any;
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
-    private cdr: ChangeDetectorRef, private router: Router) {
+    private cdr: ChangeDetectorRef, private router: Router,
+    public investmentAccountService: InvestmentAccountService) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -69,6 +75,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
+      this.investmentAccountService.getAllNotifications().subscribe((response) => {
+        console.log(response);
+        this.notifications = response.objectList;
+        this.count = this.notifications.length;
+        this.totoalNotification = this.notifications.length;
+        if ( this.count > 99) {
+        this.count = '99+';
+        }
+        this.notifications.splice(3);
+        console.log('After Splice ' + this.notifications);
+        });
     });
 
     this.router.events.subscribe((val) => {
@@ -126,4 +143,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   hideMenu() {
     this.isNavbarCollapsed = true;
   }
+  // tslint:disable-next-line:member-ordering
+  IsHidden = true;
+ onSelect() {
+  this.IsHidden = !this.IsHidden;
+}
+viewAllNotifications() {
+  this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
+  this.IsHidden = true;
+}
 }

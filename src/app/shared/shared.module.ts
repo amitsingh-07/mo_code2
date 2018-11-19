@@ -69,6 +69,7 @@ export function createTranslateLoader(http: HttpClient) {
     TermsOfUseComponent,
     BreakdownBarComponent,
     BreakdownAccordionComponent,
-    PercentageInputDirective]
+    PercentageInputDirective
+    ]
 })
 export class SharedModule { }
