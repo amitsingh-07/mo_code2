@@ -71,15 +71,15 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
               this.myInfoService.isMyInfoEnabled = false;
               this.cpfFromMyInfo = true;
               this.setFormTotalValue();
-              this.closeMyInfoPopup(false);
+              this.closeMyInfoPopup();
             } else {
-              this.closeMyInfoPopup(true);
+              this.closeMyInfoPopup();
             }
           }, (error) => {
-            this.closeMyInfoPopup(true);
+            this.closeMyInfoPopup();
           });
         } else {
-          this.closeMyInfoPopup(true);
+          this.closeMyInfoPopup();
         }
       }
     });
@@ -94,9 +94,10 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.assetsForm.value);
   }
 
-  closeMyInfoPopup(error: boolean) {
+  closeMyInfoPopup() {
     this.myInfoService.closeFetchPopup();
-    if (error) {
+    if (this.myInfoService.isMyInfoEnabled) {
+      this.myInfoService.isMyInfoEnabled = false;
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';
       ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
