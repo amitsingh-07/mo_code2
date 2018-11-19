@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid">
+      <div class="container-fluid" *ngIf="investmentoverviewlist">
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="form-group-with-bg">
@@ -28,7 +28,7 @@
                 </div>
               </div>
               <!--Form Content-->
-              <div class="form-group-with-bg--content">
+              <div class="form-group-with-bg--content" >
                 <div class="flex-row">
                   <div class="flex-col-9">
                     <div class="total_return_label" for="total return">{{'YOUR_INVESTMENT.TOTAL_RETURNS' | translate}}
@@ -83,7 +83,7 @@
             <div class="your_portfolio_number">{{'YOUR_INVESTMENT.TOTAL_OF' | translate}} {{investmentoverviewlist.portfolios.length}}</div>
           </div>
         </div>
-        <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList">
+        <div class="form-group-with-bg"  *ngFor="let portfolio of portfolioList; let i = index">
           <div *ngIf="portfolio.totalReturns">
             <!--Form Header-->
             <div class="form-group-with-bg--header your_portfolio_value">
@@ -119,6 +119,7 @@
           <!-- content zero investment -->
           <div *ngIf=!portfolio.totalReturns>
             <div class="form-group-with-bg--header your_portfolio_value">
+
               <div class="flex-row">
                 <div class="conserve-icon">
                   <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
@@ -126,13 +127,27 @@
                 <div class="portfolio_heading">{{portfolio.name}} </div>
               </div>
               <div class="flex-row">
+                  <div *ngIf="selected === i">
+                <div class="callout-content" *ngIf="showAlretPopUp">
+                 
+                  <div class="Remember">{{'YOUR_INVESTMENT.REMEMBER' | translate}} {{portfolio.expiryDate}}.</div>
+                  <div class="Fund_your_account">
+                    <u> {{'YOUR_INVESTMENT.HOW_TO_FUND_YOUR_ACCOUNT' | translate}}</u>
+                  </div>
+                  <button type="button" class="close" aria-label="Close" (click)="ClosedPopup()">
+                    <span aria-hidden="true"></span>
+                  </button>
+                  <div class="callout-arrow"></div>
+                </div>
+                </div>
                 <div class="top_alert">
-                  <img src="../../../assets/images/investment-account/topup-alert.svg" alt="" />
+                  <img src="../../../assets/images/investment-account/topup-alert.svg" alt="" (click)="alertPopUp(i)" />
                 </div>
                 <div class="forward_img" (click)="yourPortfolio()">
                   <img src="../../../assets/images/investment-account/forward_portfolio.svg" alt="" (click)="yourPortfolio(portfolio)" />
                 </div>
-              </div>
+                </div>
+             
             </div>
 
             <div class="form-group-with-bg--content pb10">
@@ -140,23 +155,10 @@
                 <div class="flex-col-12">
                   <p>{{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}</p>
                 </div>
-
-              </div>
+               </div>
             </div>
-
           </div>
         </div>
-        <!-- <div style="position: relative">
-          <div class="pointer-container" style="transform: translate(99%,2%) rotate(180deg);">
-            <div class="pointer" style="position:absolute"></div>
-          </div>
-        </div>
-        <div class="callout">
-          <div>
-            <h5>Hii</h5>
-            <p> information</p>
-          </div>
-        </div> -->
         <button type="button" class="btn-with-icon mt10" id="errorModeButton" (click)="addPortfolio()">
           <img src="../../../assets/images/investment-account/plus_icon.svg" alt="" /> {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
 

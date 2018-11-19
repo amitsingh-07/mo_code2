@@ -179,6 +179,7 @@ p{
 
 }
 .your_portfolio_value{
+    position:relative;
     background-color: #e7f3f3 !important;
     display: flex;
     align-items: center;
@@ -223,9 +224,8 @@ font-family: $muli-bold;
    color: #8a9ba9;
    padding: 0px 0px 0px 15px;
 }
-  .top_aler {
-    margin-left: 10px;
-    margin-top: 7px;
+  .top_alert {
+    position: relative;
 }
 
 .btn-with-icon {
@@ -264,38 +264,72 @@ font-family: $muli-bold;
       margin-left: 8px;
       margin-top: -1px;
     }
- .pointer {
+    
+    
+   
+  }
+
+.Remember{
+  
+  font-family: $muli-regular;
+  font-size: 16px;
+  
+  letter-spacing: -0.2px;
+  color: #ffffff;
+  padding-right: 23px;
+}
+
+.Fund_your_account{
+  width: 203px;
+  height: 20px;
+  font-family: $muli-regular;
+  font-size: 16px;
+ 
+  letter-spacing: -0.2px;
+  color: #ff872f;
+}
+.close {
+    position: absolute !important;
+    right: 25px !important;
+    top: 15px !important;
+    text-shadow: none !important;
+    background: url("/assets/images/close-button-dark.svg") !important;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat !important;
+  
+    // position: relative;
+    // float: right;
+    // top: 14px;
+    // right: 5px;
+    @include allmobiles {
+      top: 30px !important;
+      z-index: 9;
+      //opacity: 1 !important;
+      right: 15px !important;
+    }
+  }
+
+  .callout-content{
+      padding:10px;
+      background-color:#276f75;
+      color:#000;
+      border-radius:6px;
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      bottom:54px;
+      padding: 23px;
+  }
+  .callout-arrow{
         width: 0;
         height: 0;
         border-left: 15px solid transparent;
         border-right: 18px solid transparent;
-        border-bottom: 18px solid #fff;
-        right: 0px;
-        left: auto;
+        border-top: 18px solid #276f75;
+        left:auto;
+        bottom: -17px;
+        right: 43px;
         position: absolute;
-    }
-    
-    .pointer-container {
-        position: absolute;
-        bottom: -18px;
-        left: 0px;
-      
-        right: 0px;
-        -webkit-transform: translate(-100%, 0px);
-        transform: translate(-100%, 0px);
-    }
-    .callout {
-        padding: 15px;
-        background-color: #fff;
-        color: #000;
-        border-radius: 6px;
-        margin-top: 30px;
-        position: relative;
-        font-family: "Muli", sans-serif;
-        font-size: 18px;
-        font-weight: normal;
-    }
-    
-   
   }
 }

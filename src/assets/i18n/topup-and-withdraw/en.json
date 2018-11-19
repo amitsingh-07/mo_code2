@@ -17,8 +17,9 @@
     "PORTFOLIO_VALUES": "Portfolio Value",
     "NO_INVESTMENT_YET": "Your portfolio has not started.",
     "ADD_PORTFOLIO": "Add Portfolio",
-    "MORE":"More"
-    
+    "MORE": "More",
+    "REMEMBER": "Remember to top up your portfolio by",
+    "HOW_TO_FUND_YOUR_ACCOUNT": "How to fund your account?"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
@@ -33,9 +34,5 @@
     "FUND_YOUR_ACCOUNT": "Fund Your Account",
     "PERFORMANCE": "Performance",
     "ASSET_ALLOCATION": "Asset Allocation"
-    
-    
-
-   
   }
 }

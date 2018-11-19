@@ -1,8 +1,10 @@
 import { CurrencyPipe } from '@angular/common';
+
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
@@ -19,6 +21,9 @@ import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../../portfolio/portfol
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 
 import { HostListener } from '@angular/core';
+
+
+
 import { SignUpService } from '../../sign-up/sign-up.service';
 
 @Component({
@@ -33,12 +38,16 @@ export class YourInvestmentComponent implements OnInit {
   portfolioList;
   totalReturnss;
   summaryValues;
+
   pageTitle: string;
   NumberPortfolio = 2;
   moreList: any;
   PortfolioValues;
   portfolios;
   userProfileInfo;
+  showAlretPopUp = false;
+  selected;
+  summary;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -49,6 +58,7 @@ export class YourInvestmentComponent implements OnInit {
     private modal: NgbModal,
     private currencyPipe: CurrencyPipe,
     public signUpService: SignUpService,
+    public activeModal: NgbActiveModal,
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -86,6 +96,9 @@ export class YourInvestmentComponent implements OnInit {
   }
   selectSource(option) {
   }
+
+
+
   getInvestmentOverview() {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
@@ -93,4 +106,14 @@ export class YourInvestmentComponent implements OnInit {
       this.portfolioList = this.investmentoverviewlist.portfolios;
     });
   }
+
+  alertPopUp(i) {
+    this.selected = i;
+    this.showAlretPopUp = true;
+  }
+  ClosedPopup() {
+    this.showAlretPopUp = false;
+
+  }
+
 }
