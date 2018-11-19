@@ -20,9 +20,10 @@
               <div class="edit-block checkbox-button two-label">
                 <label id="executor_{{i+1}}">
                   <div class="input-label-black">{{execTrustee.name | titlecase }}</div>
-                  <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
-                    translate}} {{execTrustee.relationship | titlecase }}</div>
+                  <div class="input-label-normal"><span *ngIf="execTrustee.relationship !== 'others'">{{'WILL_WRITING.COMMON.MY' |
+                      translate}}</span> {{execTrustee.relationship | titlecase }}</div>
                 </label>
+                <span class="default" *ngIf="execTrustee.relationship === 'spouse'">Default</span>
                 <span (click)="editExecTrustee(execTrustee.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
               </div>
             </div>

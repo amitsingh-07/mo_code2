@@ -1,3 +1,4 @@
+import { HospitalPlan } from './../../hospital-plan/hospital-plan';
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -105,6 +106,7 @@ export class ExistingCoverageModalComponent implements OnInit {
 
     this.guideMeService.isExistingCoverAdded = true;
     this.existingCoverageForm.controls.selectedHospitalPlan.setValue(this.selectedHospitalPlan);
+    this.existingCoverageForm.value.selectedHospitalPlanId = this.selectedHospitalPlan.id;
     this.guideMeService.setExistingCoverageValues(this.existingCoverageForm.value);
     this.dataOutput.emit(this.existingCoverageForm.value);
     this.activeModal.close();

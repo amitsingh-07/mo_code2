@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -48,6 +49,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     private translate: TranslateService, private _location: Location,
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
+    public footerService: FooterService,
     private modal: NgbModal,
     private router: Router, public navbarService: NavbarService
   ) {
@@ -57,8 +59,8 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_BENEFICIARY.TITLE');
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.minErrorMsg = this.translate.instant('WILL_WRITING.MY_BENEFICIARY.MIN_BENEFICIARY');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['hasImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
@@ -88,6 +90,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     }
     this.buildBeneficiaryForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
@@ -124,6 +127,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     relationship = relationship ? relationship : { text: '', value: '' };
     this.relationship = relationship.text;
     this.addBeneficiaryForm.controls['relationship'].setValue(relationship.value);
+    this.addBeneficiaryForm.markAsDirty();
   }
 
   addBeneficiary(form) {
@@ -167,7 +171,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     }
   }
 
-  editBeneficiary(relation: string, index: number) {
+  editBeneficiary(relation: string, index: number, el) {
     if (relation === WILL_WRITING_CONFIG.SPOUSE || relation === WILL_WRITING_CONFIG.CHILD) {
       if (this.addBeneficiaryForm.dirty) {
         this.pageTitleComponent.goBack();
@@ -183,6 +187,9 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       this.addBeneficiaryForm.controls['uin'].setValue(beneficiary.uin);
       const beneRelationship = this.relationshipList.filter((relationship) => relationship.value === beneficiary.relationship);
       this.selectRelationship(beneRelationship[0]);
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
     }
   }
 
@@ -207,10 +214,13 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     this.router.navigate([url]);
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean) {
+  openConfirmationModal(url: string, hasImpact: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
     ref.componentInstance.unSaved = true;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
+    if (hasImpact) {
+      ref.componentInstance.hasImpact = this.confirmModal['hasImpact'];
+    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(url);
@@ -243,9 +253,10 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
         if (this.checkBeneficiaryData()) {
           url = WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false);
+          const hasImpact = this.willWritingService.isUserLoggedIn();
+          this.openConfirmationModal(url, hasImpact);
         } else if (this.isFormAltered) {
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false);
+          this.openConfirmationModal(url, false);
         } else {
           this.save(url);
         }

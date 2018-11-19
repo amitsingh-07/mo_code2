@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
@@ -46,6 +47,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     private parserFormatter: NgbDateParserFormatter,
     private router: Router,
     private _location: Location,
+    public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private translate: TranslateService,
     private willWritingService: WillWritingService
@@ -58,8 +60,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_FAMILY.TITLE');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['hasImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
@@ -74,6 +76,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.spouseFormValues = this.willWritingService.getSpouseInfo();
     this.buildMyFamilyForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   /**
@@ -175,12 +178,12 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, hasImpact: boolean, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
     ref.componentInstance.unSaved = true;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
+      ref.componentInstance.hasImpact = this.confirmModal['hasImpact'];
     }
     ref.result.then((data) => {
       if (data === 'yes') {
@@ -208,7 +211,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         }
       } else {
         if (this.myFamilyForm.dirty) {
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+          const hasImpact = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN && this.willWritingService.isUserLoggedIn()) ? true : false;
+          this.openConfirmationModal(url, hasImpact, form);
         } else {
           this.router.navigate([url]);
         }

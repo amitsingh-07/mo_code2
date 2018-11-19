@@ -149,7 +149,10 @@
                     <span *ngIf="!guardian.isAlt">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.MAIN_GUARDIAN' | translate}}</span>
                   </div>
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                    {{'WILL_WRITING.COMMON.MY' | translate}} {{guardian.relationship | titlecase}}
+                    <span *ngIf="guardian.relationship !== willWritingConfig.OTHERS">
+                        {{'WILL_WRITING.COMMON.MY' | translate}} 
+                    </span>
+                    {{guardian.relationship | titlecase}}
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
@@ -185,8 +188,12 @@
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
                     <span *ngIf="beneficiary.relationship === willWritingConfig.SPOUSE">{{'WILL_WRITING.COMMON.MY_SPOUSE' | translate}}</span>
                     <span *ngIf="beneficiary.relationship === willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.MY_CHILD' | translate}} {{beneficiary.pos}}</span>
-                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD">{{'WILL_WRITING.COMMON.OTHERS'
-                      | translate}}</span>
+                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD && beneficiary.relationship !== willWritingConfig.OTHERS">
+                      {{'WILL_WRITING.COMMON.MY' | translate}} {{beneficiary.relationship  | titlecase}}
+                    </span>
+                    <span *ngIf="beneficiary.relationship !== willWritingConfig.SPOUSE && beneficiary.relationship !== willWritingConfig.CHILD && beneficiary.relationship === willWritingConfig.OTHERS">
+                        {{beneficiary.relationship  | titlecase}}
+                      </span>
                   </div>
                   <div class="record">
                     <div class="label-header col-6">
@@ -244,11 +251,14 @@
                   </div>
                 </div>
   
-                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="willEstateDistribution.others.length > 0">
+                <div class="col-lg-6 col-md-6 col-sm-12" *ngFor="let others of willEstateDistribution.others">
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                    {{'WILL_WRITING.COMMON.OTHERS' | translate}}
+                    <span *ngIf="others.relationship !== willWritingConfig.OTHERS">
+                      {{'WILL_WRITING.COMMON.MY' | translate}}
+                    </span>
+                    {{others.relationship | titlecase}}
                   </div>
-                  <div class="record" *ngFor="let others of willEstateDistribution.others">
+                  <div class="record">
                     <div class="label-header col-6">
                       {{others.name | titlecase}}
                     </div>
@@ -278,8 +288,11 @@
                     <span *ngIf="!execTrustee.isAlt">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.MAIN_EXEC_TRUSTEE' | translate}}</span>
                   </div>
                   <div class="section-header  col-lg-12 col-md-12 col-sm-12 mb10">
-                      {{'WILL_WRITING.COMMON.MY' | translate}} {{execTrustee.relationship | titlecase}}
-                    </div>
+                    <span *ngIf="execTrustee.relationship !== willWritingConfig.OTHERS">
+                      {{'WILL_WRITING.COMMON.MY' | translate}}
+                    </span>
+                    {{execTrustee.relationship | titlecase}}
+                  </div>
                   <div class="record">
                     <div class="label-header col-6">
                       {{'WILL_WRITING.COMMON.NAME' | translate}}
@@ -300,7 +313,7 @@
           </div>
         </div>
         <div class="stamp-block">
-            <div class="col-lg-5 col-sm-12 col-md-5"><button type="button" class="btn btn__footer--fixed width100 btn-primary">{{ 'LABEL.CONTINUE' | translate}}</button></div>
+            <div class="col-lg-5 col-sm-12 col-md-5"><button type="button" (click)="goNext()" class="btn btn__footer--fixed width100 btn-primary">{{ 'LABEL.CONTINUE' | translate}}</button></div>
             <img class="hidden-sm-md" src="assets/images/will-writing/owl-stamp.svg"/>
           </div>
       </div>

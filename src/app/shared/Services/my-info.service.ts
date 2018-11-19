@@ -1,9 +1,15 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
+import { GuideMeService } from './../../guide-me/guide-me.service';
+
+const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
+declare var window: Window;
 
 @Injectable({
   providedIn: 'root'
@@ -18,26 +24,63 @@ export class MyInfoService {
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
-  constructor(private modal: NgbModal, private apiService: ApiService) { }
+  constructor(
+    private modal: NgbModal, private apiService: ApiService, private router: Router) { }
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
-    window.sessionStorage.setItem('attributes', this.attributes);
+    window.sessionStorage.setItem(MYINFO_ATTRIBUTE_KEY, this.attributes);
   }
 
   getMyInfoAttributes() {
-    return window.sessionStorage.getItem('attributes');
+    return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
 
   goToMyInfo() {
-    window.sessionStorage.setItem('currentUrl', window.location.hash);
+    window.sessionStorage.setItem('currentUrl', window.location.hash.split(';')[0]);
     const authoriseUrl = this.authApiUrl +
       '?client_id=' + this.clientId +
       '&attributes=' + this.getMyInfoAttributes() +
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
-    window.location.href = authoriseUrl;
+    //window.location.href = authoriseUrl;
+    this.newWindow(authoriseUrl);
+  }
+
+  newWindow(authoriseUrl): void {
+    const screenWidth = screen.width;
+    const screenHeight = screen.height;
+    const left = 0;
+    const top = 0;
+    // tslint:disable-next-line:max-line-length
+    const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+    window.failed = (values) => {
+      window.failed = () => null;
+      windowRef.close();
+      return 'MY_INFO';
+    };
+
+    window.success = (values) => {
+      console.log('Success values returned from myinfo :' + values);
+      window.success = () => null;
+      windowRef.close();
+      const params = new HttpParams({ fromString: values });
+      if (window.sessionStorage.currentUrl && params && params.get('code')) {
+        if (this.myInfoValue) {
+          this.isMyInfoEnabled = false;
+        } else {
+          this.openFetchPopup();
+          this.isMyInfoEnabled = true;
+          const myInfoAuthCode = params.get('code');
+          this.setMyInfoValue(myInfoAuthCode);
+          this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: new Date().getTime() }]);
+        }
+      } else {
+        this.router.navigate(['home']);
+      }
+      return 'MY_INFO';
+    };
   }
 
   openFetchPopup() {
@@ -69,6 +112,10 @@ export class MyInfoService {
   }
 
   getMyInfoData() {
-    return this.apiService.getMyInfoData(this.myInfoValue);
+    const code = {
+      authorizationCode: this.myInfoValue,
+      personAttributes: this.getMyInfoAttributes()
+    };
+    return this.apiService.getMyInfoData(code);
   }
 }

@@ -53,3 +53,32 @@ export interface IBeneficiary {
     dob?: string;
     pos?: number;
 }
+
+export interface IWill {
+    willProfile: IwillProfile;
+    willProfileMembers: IWillProfileMembers[];
+}
+
+export interface IwillProfile {
+    customerId: number;
+    uin: string;
+    name: string;
+    genderCode: string;
+    maritalStatusCode: string;
+    noOfChildren: number;
+    promoCode?: string;
+}
+
+export interface IWillProfileMembers {
+    uin: string;
+    name: string;
+    dob: number;
+    relationshipCode: string;
+    isFamily: string;
+    isBeneficiary: string;
+    isGuardian: string;
+    isAltGuardian: string;
+    isTrusteee: string;
+    isAltTrusteee: string;
+    distribution: number;
+}

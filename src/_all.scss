@@ -1367,3 +1367,11 @@ a.link-white {
 .grey {
   color: $text-color-secondary;
 }
+.input-group.date-picker {
+  .dropdown-menu.show {
+    @include allmobiles {
+      left: inherit !important;
+      right: 0px;
+    }
+  }
+}
