@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 import { IEnquiryUpdate } from '../signup-types';
 import { AppService } from './../../app.service';
@@ -8,6 +9,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { Formatter } from './../../shared/utils/formatter.util';
 import { SignUpService } from './../sign-up.service';
+import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +21,7 @@ export class DashboardComponent implements OnInit {
   insuranceEnquiry: any;
 
   constructor(
+    private router: Router,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
     public navbarService: NavbarService, private selectedPlansService: SelectedPlansService) { }
@@ -41,5 +44,9 @@ export class DashboardComponent implements OnInit {
         this.selectedPlansService.clearData();
       });
     }
+  }
+
+  goToEngagement() {
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
 }

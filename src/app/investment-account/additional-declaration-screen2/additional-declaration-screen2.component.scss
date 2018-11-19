@@ -1,7 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
-
+app-additional-declaration-screen2 {
 .step-indicator-container {
     background-color: #fff;
     padding: 10px 0px;
@@ -38,9 +38,7 @@
     font-family: $muli-semi-bold; 
     font-weight: normal;
   }
-  .form-control .input-control {
-    text-align: right;
-  }
+ 
   
 .year {
   font-family: $muli-regular;
@@ -51,4 +49,15 @@
 }
 .dropdown-control .btn-dropdown {
  padding-right: 28px;
+}
+.form-control-right {
+  padding-left: 0;
+    padding-right: 18px;
+    text-align: right;
+}
+.doller-center{
+  right: 45px !important;
+  color: #00a7a7 !important;
+  padding-right: 30px !important;
+}
 }

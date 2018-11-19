@@ -79,7 +79,7 @@ export class TopUpComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(2);
     this.getPortfolioList();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
       this.investmentTypeList = data.objectList; // Getting the information from the API

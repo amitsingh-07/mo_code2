@@ -1,6 +1,30 @@
 export class InvestmentAccountFormError {
     formFieldErrors: object = {
         errorTitle: 'Error !',
+        salutation: {
+            required: {
+                errorTitle: 'Invalid Salutation',
+                errorMessage: 'Please select Salutation.'
+            },
+        },
+        birthCountry: {
+            required: {
+                errorTitle: 'Invalid Birth Country',
+                errorMessage: 'Please select your Country of Birth.'
+            },
+        },
+        passportIssuedCountry: {
+            required: {
+                errorTitle: 'Invalid Passport issued Country',
+                errorMessage: 'Please select your Passport issued Country.'
+            },
+        },
+        race: {
+            required: {
+                errorTitle: 'Invalid Race',
+                errorMessage: 'Please select your Race.'
+            },
+        },
         country: {
             required: {
                 errorTitle: 'Invalid Country',
@@ -453,8 +477,8 @@ export class InvestmentAccountFormError {
         inheritanceGift: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid enter Inheritance Gift',
-                errorMessage: 'Please enter inheritance Gift.'
+                errorTitle: 'Invalid enter Gift Inheritance',
+                errorMessage: 'Please enter Gift Inheritance.'
             }
         },
         investmentPeriod: {

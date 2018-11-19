@@ -219,6 +219,13 @@ export class ApiService {
       );
   }
 
+  updateAccount(payload) {
+    return this.http.post(apiConstants.endpoint.updateUserId, payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
   requestNewOTP(payload: IVerifyRequestOTP) {
     return this.http.post(apiConstants.endpoint.resendOTP, payload)
       .pipe(
@@ -598,10 +605,17 @@ export class ApiService {
   }
   // tslint:disable-next-line:no-identical-functions
   requestEditPassword(data) {
-    return this.http.post(apiConstants.endpoint.resetPassword, data)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
+    return this.http.post(apiConstants.endpoint.editPassword, data)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 
+  // tslint:disable-next-line:no-identical-functions
+  requestEditContact(data) {
+    return this.http.post(apiConstants.endpoint.editContactDeatails, data)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
 }

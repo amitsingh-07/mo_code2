@@ -1,80 +1,230 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+
 .post-login-dashboard{
-   .welcome-user{
-        position: absolute;
+    .widget-block{
+        position: relative;
+    }
+    .grass_bg {
         width: 100%;
-        left: 0;
-        @extend .flex;
-        @extend .align-center;
+        height: 100%;
+        object-fit: contain;
+        position: relative;
+    }
+    .overlap-grass{
+        position: absolute;
+        top: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include min300max325{
+            top: 0%;
+        }
+    }
+    .user-profile-bg{
+        padding: 10px 3px;
         font-family: $muli-light;
         font-size: 22px;
         font-weight: 300;
-        line-height: 1.36;
+        line-height: 1.55;
         letter-spacing: -0.2px;
-        color: $welcome-user-txt-color;
-        background: $white-color;
-        padding: 16px 26% 0;
-        top: 84px;
-        box-shadow: 0 0px 14px 0 rgba(0, 0, 0, 0.25);
-        @include allmobiles{
-            padding: 16px 20px 0;
-            top: 49px;
-            justify-content: space-between;
+        @include min300max325{
+            padding: 10px 0px;
+            font-size: 20px;
         }
-        @include iphone5{
-            top: 50px;
-        }
-        @include min768max768{
-            padding: 0 24%;
-        }
-        @include phablet{
-            top: 50px;
-            padding: 0 20px;
-        }
-        @include iPadProPortrait{
-            padding: 0 18%;
-        }
-        span{
+        .user_name{
             font-family: $muli-bold;
         }
-        img{
-            width: 112px;
-            height: 94px;
-            margin-left: 30px;
+        .txt-lyt{
+            font-family: $muli-light;
+            font-size: 14px;
+            letter-spacing: -0.1px;
+            margin-left: 3px;
+        }
+        .user-edit-img{
+            margin-left: 15px;
+            width: 5px;
+            height: 21px;
         }
     }
-    .welcome-desc{
-        position: relative;
-        top:199px;
+   .advisor-profile-bg{
+         border-radius: 6px;
+        padding: 15px 4px 13px;
         font-family: $muli-regular;
-        font-size: 21px;
-        line-height: 1.19;
-        letter-spacing: -0.2px;
-        text-align: center;
-        color: $white-color;
-        margin: 0 auto;
-        width: 50%;
-        padding: 10px 30px;
-        min-height: 416px;
-        @include allmobiles{
-            margin: 0 auto;
-            width: 100%;
+        letter-spacing: -0.1px;
+        color: #004864;
+        background: $white-color;
+        display: flex;
+        align-items: center;
+        .advisor-details{
+            margin-left: 10px;
+            @include min300max325{
+                margin-left: 4px;
+            }
+            div{
+                &:last-child{
+                    font-family: $muli-semi-bold;
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: -0.3px;
+                    color: #004865;
+                }
+            }
         }
-        @include phablet{
-            margin: 0 auto;
-        } 
-        @include min768max768{
-            margin: 0 auto;
-            width: 60%;
+   }
+    .widgets{
+        position: absolute;
+        top: 195px;
+        @include iphone5{
+            top: 180px;
         }
-        div:first-child{
-            font-family: $muli-semi-bold;
-            font-size: 36px;
-            font-weight: 600;
-            line-height: normal;
-            letter-spacing: -0.4px;
-            margin-bottom: 15px;
+        @include tablet{
+            top: 25%;
+        }
+        @include iPadLandscape{
+            top: 35%;
+        }
+        @include iPadProPortrait{
+            top: 30%;
+        }
+        @include iPadProLandscape{
+            top: 35%;
+        }
+        .widget{
+            background: $white-color;
+            margin: 0px 15px 20px;
+            border-radius: 6px;
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);
+            .widget-title{
+                font-family: $muli-bold;
+                font-size: 22px;
+                font-weight: bold;
+                letter-spacing: -0.2px;
+                color: #00a7a7;
+                padding: 20px 15px;
+                display: flex;
+                justify-content: space-between;
+                span{
+                    &:last-child{
+                        font-family: $muli-regular;
+                        font-size: 16px;
+                        font-weight: normal;
+                        display: none;
+                    }
+                }
+            }
+            .widget-body{
+                display: flex;
+                align-items: center;
+                font-family: $muli;
+                font-size: 14px;
+                font-weight: normal;
+                letter-spacing: -0.1px;
+                padding: 0 0 20px;
+                .scenarios{
+                    .primary{
+                        align-items: center;
+                    }
+                    .warning{
+                        .warning-txt{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: flex-start;
+                            font-family: $muli-regular;
+                            font-size: 16px;
+                            line-height: 1.5;
+                            letter-spacing: -0.2px;
+                            color: #2d8289;
+                            img{
+                                margin-top: 5px;
+                                margin-right: 6px;
+                            }   
+                        }
+                    }
+                    .portfolio{
+                        font-family: $muli-regular;
+                        font-size: 16px;
+                        line-height: 1.31;
+                        letter-spacing: -0.1px;
+                        color: #8a9ba9;
+                        .portfolio_value{
+                            padding: 0 15px;
+                            .value{
+                                font-family: $muli-bold;
+                                font-size: 36px;
+                                font-weight: bold;
+                                font-style: normal;
+                                letter-spacing: -0.4px;
+                                color: #00a7a7;
+                            }
+                        }
+                        .portfolio_graph{
+                            padding: 0 38px;
+                            margin-bottom: 11px;
+                            img{
+                                max-width: 100%;
+                            }
+                        }
+                        .portfolio_footer{
+                            display: flex;
+                            justify-content: space-between;
+                            border-top: 1px solid #00a7a7;
+                            padding: 7.9px 15px;
+                            .flex-col{
+                                padding: 0 5px;
+                                justify-content: space-between;
+                                .portfolio_footer_value{
+                                    font-size: 18px;
+                                    letter-spacing: -0.2px;
+                                    color: #5e5e5e;
+                                }
+                            }
+                        }
+                    }
+                }
+                .flex-col-8{
+                    div{
+                        color: #5e5e5e;
+                        &:first-child{
+                            font-family: $muli-bold;
+                            font-size: 18px;
+                            font-weight: bold;
+                            letter-spacing: -0.3px;
+                            color: #00a7a7;
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .time-lapse{
+                        font-family: Muli;
+                        font-size: 18px;
+                        font-weight: normal;
+                        letter-spacing: -0.2px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 10px;
+                        div{
+                            color: #00a7a7;
+                            &:first-child{
+                                color: #ec681c;
+                                margin-bottom: 0;
+                            }
+                        }
+                        .flex-row{
+                            justify-content: space-between;
+                            align-items: center; 
+                        }
+                    }
+                }
+            }
+        }
+        .circle{
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #98dfdf;
+            border: solid 1px #00a7a7;
+            margin-left: 10px;
         }
     }
 }
