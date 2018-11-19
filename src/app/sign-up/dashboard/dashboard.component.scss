@@ -13,7 +13,7 @@
     }
     .overlap-grass{
         position: absolute;
-        top: 10%;
+        top: 21px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -22,11 +22,11 @@
         }
     }
     .user-profile-bg{
-        padding: 10px 3px;
+        padding: 0px 3px;
         font-family: $muli-light;
         font-size: 22px;
         font-weight: 300;
-        line-height: 1.55;
+        line-height: 1.3;
         letter-spacing: -0.2px;
         @include min300max325{
             padding: 10px 0px;
@@ -34,6 +34,7 @@
         }
         .user_name{
             font-family: $muli-bold;
+            font-weight: bold;
         }
         .txt-lyt{
             font-family: $muli-light;
@@ -74,9 +75,12 @@
    }
     .widgets{
         position: absolute;
-        top: 195px;
+        top: 190px;
         @include iphone5{
-            top: 180px;
+            top: 168px;
+        }
+        @include min360{
+            top: 185px;
         }
         @include tablet{
             top: 25%;
