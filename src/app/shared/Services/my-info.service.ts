@@ -54,7 +54,7 @@ export class MyInfoService {
     const left = 0;
     const top = 0;
     // tslint:disable-next-line:max-line-length
-    const windowRef: Window = window.open(authoriseUrl); //, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+    const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
 
     const timer = setInterval(() => {
       if (windowRef.closed) {
@@ -66,6 +66,7 @@ export class MyInfoService {
     }, 500);
 
     window.failed = (value) => {
+      clearInterval(timer);
       window.failed = () => null;
       windowRef.close();
       if (value === 'FAILED') {
@@ -77,6 +78,7 @@ export class MyInfoService {
     };
 
     window.success = (values) => {
+      clearInterval(timer);
       window.success = () => null;
       windowRef.close();
       const params = new HttpParams({ fromString: values });
