@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { AppService } from '../app.service';
 import { ApiService } from '../shared/http/api.service';
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { IGender, IMaritalStatus, IRelationship, IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 import { WillWritingService } from './will-writing.service';
@@ -13,6 +14,7 @@ import { WillWritingService } from './will-writing.service';
 export class WillWritingApiService {
     constructor(
         private appService: AppService,
+        private authService: AuthenticationService,
         private http: HttpClient,
         private apiService: ApiService,
         private willWritingService: WillWritingService
@@ -25,7 +27,8 @@ export class WillWritingApiService {
 
     verifyPromoCode(promoCodeData) {
         const promoCode = {
-            promoCode: promoCodeData
+            promoCode: promoCodeData,
+            sessionId: this.authService.getSessionId(),
         };
         return this.apiService.verifyPromoCode(promoCode);
     }
@@ -40,7 +43,7 @@ export class WillWritingApiService {
         const will = Object.assign([], this.willWritingService.getWillWritingFormData());
         const willProfile: IwillProfile = {
             customerId: customeId ? customeId : this.appService.getCustomerId(),
-            enquiryId: 123456,
+            enquiryId: 0,
             uin: will.aboutMe.uin,
             name: will.aboutMe.name,
             genderCode: IGender[will.aboutMe.gender],
@@ -48,11 +51,6 @@ export class WillWritingApiService {
             noOfChildren: will.aboutMe.noOfChildren,
             promoCode: will.promoCode
         };
-
-        if (this.willWritingService.isUserLoggedIn()) {
-            delete willProfile.promoCode;
-            delete willProfile.enquiryId;
-        }
 
         const willProfileMembers: IWillProfileMembers[] = [];
 
@@ -94,6 +92,8 @@ export class WillWritingApiService {
         const beneficiaryList = will.beneficiary.filter((data) =>
             data.selected === true && data.relationship !== WILL_WRITING_CONFIG.SPOUSE && data.relationship !== WILL_WRITING_CONFIG.CHILD
         );
+
+        will.guardian = will.guardian ? will.guardian : [];
 
         const guardianList = will.guardian.filter((data) =>
             data.relationship !== WILL_WRITING_CONFIG.SPOUSE
