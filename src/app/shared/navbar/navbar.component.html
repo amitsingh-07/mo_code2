@@ -20,6 +20,32 @@
                     <p class="secondary">powered by DIYInsurance</p>
                     </li>
                 </div>
+                <button class="notification-icon hidden-lg" type="button" (click)="onSelect()" >
+
+                    <span class="notification-number">{{ count }}</span>
+                    
+                    </button>
+                    
+                    <div class="notification-tooltip__arrow" [hidden]="IsHidden"></div>
+                    
+                    <div class="notification-tooltip" [hidden]="IsHidden">
+                    
+                    <div class="notification-tooltip__header">Notifications</div>
+                    
+                    <div class="notification-tooltip__container">
+                    
+                    <ul class="pl0">
+                    
+                    <li class="notification-tooltip__container--desc"  *ngFor="let notification of notifications">{{notification.message}}<div class="notification-tooltip__container--time">{{notification.time}}</div></li>
+                    
+                    
+                    </ul>
+                    
+                    </div>
+                    
+                    <div class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
+                    
+                    </div>
             <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar__menu-icon"></span>
                 </button>

@@ -993,4 +993,7 @@ constructEditContactRequest(data) {
 
     };
 }
+getAllNotifications() {
+    return this.apiService.getAllNotifications();
+}
 }
