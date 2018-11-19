@@ -61,9 +61,9 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
     this.route.params.subscribe((params) => {
-      if (params.myinfo && this.myInfoService.isMyInfoEnabled) {
+      if (params.myinfo) {
         this.myInfoService.openFetchPopup();
-        if (params.myinfo === 'SUCCESS') {
+        if (params.myinfo === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
           this.myInfoService.getMyInfoData().subscribe((data) => {
             if (data && data['objectList']) {
               this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);

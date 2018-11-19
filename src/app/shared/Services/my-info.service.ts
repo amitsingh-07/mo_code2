@@ -94,7 +94,9 @@ export class MyInfoService {
             ]);
         }
       } else {
-        this.router.navigate(['home']);
+        this.router.navigate(
+          [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
+          ]);
       }
       return 'MY_INFO';
     };
