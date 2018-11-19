@@ -41,7 +41,7 @@
                     <span *ngIf="hasSpouse" class="mr5">
                       {{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.ALTERNATIVE' | translate}}
                     </span>
-                    <div *ngIf="!hasSpouse" class="col-8">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}</div>
+                    <div *ngIf="!hasSpouse" class="flex-col-8">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}</div>
                     <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">
                       {{'WILL_WRITING.COMMON.CANCEL' | translate}}
                     </div>
