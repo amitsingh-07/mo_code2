@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
@@ -35,11 +36,13 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   relationship = '';
   relationshipList;
   submitted: boolean;
+  willWritingConfig = WILL_WRITING_CONFIG;
 
   hasSpouse: boolean;
   maxGuardian: number;
   unsavedMsg: string;
   toolTip;
+  formName: string;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -48,6 +51,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     private modal: NgbModal,
     private router: Router,
     private translate: TranslateService,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     private _location: Location,
     private willWritingService: WillWritingService
@@ -81,6 +85,8 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.maxGuardian = this.hasSpouse ? 2 : 1;
     this.buildAddGuardianForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
+    this.formName = this.hasSpouse ? 'Alternative Guardian' : 'Guardian';
   }
 
   setPageTitle(title: string) {
@@ -158,7 +164,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, this.formName);
       return false;
     }
     return true;

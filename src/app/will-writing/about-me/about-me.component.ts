@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
@@ -44,6 +45,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
+    public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private willWritingService: WillWritingService
   ) {
@@ -64,6 +66,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(4);
     this.buildAboutMeForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
@@ -122,7 +125,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'aboutMeForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, 'About Me');
       return false;
     }
     return true;

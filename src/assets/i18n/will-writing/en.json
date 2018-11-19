@@ -26,7 +26,7 @@
       "APPLY_CHANGES": "Apply Changes",
       "UNSAVED": "<span class='flex mr17'>Your changes will not be saved. Are you sure you want to leave this page?</span>",
       "CONFIRM": "Your previous information will be overwritten. <br/><br/>Would you like to proceed?",
-      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your will has to be rewritten and you will be redirected back to Step 1. <br/>Would you like to proceed?",
+      "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
         "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."
@@ -41,7 +41,7 @@
         },
         {
           "text": "Parent-in-law",
-          "value": "parent-in-law"
+          "value": "parent_in_law"
         },
         {
           "text": "Friend",
@@ -210,9 +210,9 @@
       "ESTATE_DISTRIBUTION": "Estate Distribution",
       "LEFT_TO_DISTRIBUTE": "Left to distribute",
       "ERROR_MODAL": {
-        "MAX_PERCENTAGE": "You have reached the maximum percentage of your estate distribution. Please adjust your total distribution in order to proceed to the next page.",
-        "ADJUST_PERCENTAGE": "Please adjust your total distribution to fill 100%",
-        "EXCEED_PERCENTAGE": "You have exceeded the maximum percentage of your estate distribution."
+        "MAX_PERCENTAGE": "Oops! Your distribution has exceeded 100%.",
+        "ADJUST_PERCENTAGE": "Oops! You need to distribute all 100% of your estate.",
+        "NON_ALLOCATED_PERCENTAGE": "<span class='flex mr10'> Oops! You have a beneficiary that was not allocated any percentage of your estate.</span>"
       },
       "TOOLTIP_MESSAGE": "If any of your beneficiaries pass on before you, their portion of the estate will be redistributed to your other beneficiaries proportionately."
     },

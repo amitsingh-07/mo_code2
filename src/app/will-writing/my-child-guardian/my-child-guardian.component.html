@@ -28,10 +28,10 @@
                 <div class="edit-block checkbox-button two-label">
                   <label id="guardian_{{i+1}}">
                     <div class="input-label-black">{{guardian.name | titlecase }}</div>
-                    <div class="input-label-normal"><span *ngIf="guardian.relationship !== 'others'">{{'WILL_WRITING.COMMON.MY' |
+                    <div class="input-label-normal"><span *ngIf="guardian.relationship !== willWritingConfig.OTHERS">{{'WILL_WRITING.COMMON.MY' |
                         translate}}</span> {{guardian.relationship | titlecase }}</div>
                   </label>
-                  <span class="default" *ngIf="guardian.relationship == 'spouse'">Default</span>
+                  <span class="default" *ngIf="guardian.relationship === willWritingConfig.SPOUSE">Default</span>
                   <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
                 </div>
               </div>

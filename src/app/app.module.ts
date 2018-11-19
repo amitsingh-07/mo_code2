@@ -58,6 +58,7 @@ import { RecommendationsModalComponent } from './shared/modal/recommendations-mo
 import { SuccessModalComponent } from './shared/modal/success-modal/success-modal.component';
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { RoutingService } from './shared/Services/routing.service';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
@@ -71,7 +72,7 @@ export function createTranslateLoader(http: HttpClient) {
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
       { prefix: './assets/i18n/home/', suffix: '.json' },
-      { prefix: './assets/i18n/faq/', suffix: '.json'}
+      { prefix: './assets/i18n/faq/', suffix: '.json' }
     ]);
 }
 
@@ -145,7 +146,7 @@ export function tokenGetterFn() {
       useClass: JwtInterceptor,
       multi: true,
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
-    }, Formatter, CurrencyPipe,
+    }, Formatter, CurrencyPipe, RoutingService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

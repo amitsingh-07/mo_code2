@@ -214,7 +214,8 @@ export class DirectService {
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
       occupationalDisabilityCoveragePerMonth: 0,
-      selectedHospitalPlan: hospitalPlan
+      selectedHospitalPlan: hospitalPlan,
+      selectedHospitalPlanId: hospitalPlan.hospitalClassId
     };
     return existingCoverage;
   }

@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
@@ -37,6 +38,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   submitted: boolean;
   unsavedMsg: string;
   toolTip;
+  formName: string[] = [];
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -46,6 +48,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     private parserFormatter: NgbDateParserFormatter,
     private router: Router,
     private _location: Location,
+    public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private translate: TranslateService,
     private willWritingService: WillWritingService
@@ -74,6 +77,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.spouseFormValues = this.willWritingService.getSpouseInfo();
     this.buildMyFamilyForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   /**
@@ -116,6 +120,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   buildSpouseForm(): FormGroup {
     if (this.hasSpouse) {
+      this.formName.push('My Spouse');
       return this.formBuilder.group({
         name: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].name : '',
         [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -128,6 +133,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   buildChildrenForm(index: number): FormGroup {
     if (this.hasChild) {
+      this.formName.push('My Child ' + (index + 1));
       return this.formBuilder.group({
         name: [this.childrenFormValues.length > index ?
           this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -154,7 +160,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm');
+      const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm', this.formName);
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
       return false;
     }

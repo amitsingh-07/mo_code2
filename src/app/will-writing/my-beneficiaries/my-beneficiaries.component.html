@@ -25,7 +25,7 @@
                   type="checkbox" class="field checkbox">
                 <label for="beneficiary_{{i+1}}" id="beneficry_{{i+1}}">
                   <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
-                  <div class="input-label-normal"><span *ngIf="beneficiary.relationship !== 'others'">{{'WILL_WRITING.COMMON.MY' |
+                  <div class="input-label-normal"><span *ngIf="beneficiary.relationship !== willWritingConfig.OTHERS">{{'WILL_WRITING.COMMON.MY' |
                       translate}}</span> {{beneficiary.relationship | titlecase }} {{beneficiary.pos}}</div>
                 </label>
                 <span (click)="editBeneficiary(beneficiary.relationship,i, addBeneForm)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>

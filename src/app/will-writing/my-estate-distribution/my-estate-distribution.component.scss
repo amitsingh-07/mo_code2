@@ -431,4 +431,6 @@ input[type='checkbox']+label {
     @include allmobiles {
         padding-left: 21px;
     }
+.error-text{
+    color: red !important;
 }
