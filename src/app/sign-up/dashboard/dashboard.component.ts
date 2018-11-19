@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
+import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { IEnquiryUpdate } from '../signup-types';
 import { AppService } from './../../app.service';
+import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.constants';
 import { ApiService } from './../../shared/http/api.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { Formatter } from './../../shared/utils/formatter.util';
 import { SignUpService } from './../sign-up.service';
-import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -49,4 +50,9 @@ export class DashboardComponent implements OnInit {
   goToEngagement() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
   }
+
+  goToEditProfile() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+  }
+
 }

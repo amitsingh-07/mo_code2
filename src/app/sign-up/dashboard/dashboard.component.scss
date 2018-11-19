@@ -108,13 +108,10 @@
                 padding: 20px 15px;
                 display: flex;
                 justify-content: space-between;
-                span{
-                    &:last-child{
+                .view_all{
                         font-family: $muli-regular;
                         font-size: 16px;
                         font-weight: normal;
-                        display: none;
-                    }
                 }
             }
             .widget-body{
@@ -226,9 +223,9 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background-color: #98dfdf;
             border: solid 1px #00a7a7;
             margin-left: 10px;
+            background-image: linear-gradient(8deg, #98dfdf 50%, transparent 50%), linear-gradient(-90deg, #98dfdf 50%, transparent 50%);
         }
     }
 }
