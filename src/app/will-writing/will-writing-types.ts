@@ -61,6 +61,7 @@ export interface IWill {
 
 export interface IwillProfile {
     customerId: string;
+    enquiryId?: number;
     uin: string;
     name: string;
     genderCode: string;
@@ -72,7 +73,7 @@ export interface IwillProfile {
 export interface IWillProfileMembers {
     uin: string;
     name: string;
-    dob?: number;
+    dob?: string;
     relationshipCode: string;
     isFamily: string;
     isBeneficiary: string;

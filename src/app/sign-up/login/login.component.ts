@@ -9,13 +9,13 @@ import { WillWritingService } from '../../will-writing/will-writing.service';
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
 } from '../../investment-account/investment-account-routes.constants';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { CreateWillService } from '../../shared/Services/create-will.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal,
     public authService: AuthenticationService,
-    private createWillService: CreateWillService,
+    private willWritingApiService: WillWritingApiService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
@@ -152,8 +152,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
                 this.router.navigate([redirect_url]);
               } else if (this.willWritingService.getWillWritingFormData()) {
                 if (!this.willWritingService.getIsWillCreated()) {
-                  this.createWillService.createWill().subscribe((data) => {
+                  this.willWritingApiService.createWill().subscribe((data) => {
                     if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+                      this.willWritingService.setIsWillCreated(true);
                       this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
                     }
                   });
