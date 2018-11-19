@@ -7,7 +7,7 @@ export class FormError {
                 },
         'Invalid Resource': {
                 errorTitle: 'Invalid Resource',
-                errorMessage: 'Invalid Email Address'
+                errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         },
         DEFAULT: {

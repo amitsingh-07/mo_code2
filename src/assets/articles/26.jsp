@@ -1,4 +1,4 @@
-<p>We know insurance is necessary but can be costly. At DIYinsurance we help you to be even more prudent by identifying what you probably need at various life stages. These are the key and essential areas you should focus first. If your budget allows, you can then consider other areas to enhance your insurance portfolio further.</p>
+<p>We know insurance is necessary but can be costly. At MoneyOwl we help you to be even more prudent by identifying what you probably need at various life stages. These are the key and essential areas you should focus first. If your budget allows, you can then consider other areas to enhance your insurance portfolio further.</p>
 <div class="table-responsive">
 	<table class="table" style="text-decoration:none;">
 	  <tr class="img-width--clear">
