@@ -53,7 +53,7 @@ export class AppRoutingModule { }
 export function validateUrl(url: UrlSegment[], group: UrlSegmentGroup, route: Route) {
   if (window.location.search === '?errorcode=eSingPass_00_00_01') {
     if (window.opener && window.opener.myinfo) {
-      const token: string = window.opener.failed('FAILED');
+      const token: string = window.opener.failed('CANCELLED');
       if (token === 'MY_INFO') {
 
       }

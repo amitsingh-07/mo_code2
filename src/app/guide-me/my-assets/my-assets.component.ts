@@ -62,20 +62,25 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
     });
     this.route.params.subscribe((params) => {
       if (params.myinfo && this.myInfoService.isMyInfoEnabled) {
-        this.myInfoService.getMyInfoData().subscribe((data) => {
-          if (data && data['objectList']) {
-            this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-            this.assetsForm.controls['cpf'].setValue(this.cpfValue);
-            this.myInfoService.isMyInfoEnabled = false;
-            this.cpfFromMyInfo = true;
-            this.setFormTotalValue();
-            this.closeMyInfoPopup(false);
-          } else {
+        this.myInfoService.openFetchPopup();
+        if (params.myinfo === 'SUCCESS') {
+          this.myInfoService.getMyInfoData().subscribe((data) => {
+            if (data && data['objectList']) {
+              this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+              this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+              this.myInfoService.isMyInfoEnabled = false;
+              this.cpfFromMyInfo = true;
+              this.setFormTotalValue();
+              this.closeMyInfoPopup(false);
+            } else {
+              this.closeMyInfoPopup(true);
+            }
+          }, (error) => {
             this.closeMyInfoPopup(true);
-          }
-        }, (error) => {
+          });
+        } else {
           this.closeMyInfoPopup(true);
-        });
+        }
       }
     });
 

@@ -54,15 +54,29 @@ export class MyInfoService {
     const left = 0;
     const top = 0;
     // tslint:disable-next-line:max-line-length
-    const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
-    window.failed = (values) => {
+    const windowRef: Window = window.open(authoriseUrl); //, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+
+    const timer = setInterval(() => {
+      if (windowRef.closed) {
+        clearInterval(timer);
+        this.router.navigate(
+          [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
+          ]);
+      }
+    }, 500);
+
+    window.failed = (value) => {
       window.failed = () => null;
       windowRef.close();
+      if (value === 'FAILED') {
+        this.router.navigate(
+          [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
+          ]);
+      }
       return 'MY_INFO';
     };
 
     window.success = (values) => {
-      console.log('Success values returned from myinfo :' + values);
       window.success = () => null;
       windowRef.close();
       const params = new HttpParams({ fromString: values });
@@ -70,11 +84,12 @@ export class MyInfoService {
         if (this.myInfoValue) {
           this.isMyInfoEnabled = false;
         } else {
-          this.openFetchPopup();
           this.isMyInfoEnabled = true;
           const myInfoAuthCode = params.get('code');
           this.setMyInfoValue(myInfoAuthCode);
-          this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: new Date().getTime() }]);
+          this.router.navigate(
+            [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'SUCCESS', time: new Date().getTime() }
+            ]);
         }
       } else {
         this.router.navigate(['home']);
