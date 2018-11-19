@@ -182,6 +182,7 @@
     letter-spacing: -0.3px;
     color: #2d8289;
     margin-bottom: 29px;
+    justify-content: space-between;
     .assetslbl {
         @include allmobiles {
             margin-bottom: 25px;
@@ -204,10 +205,11 @@
     letter-spacing: -0.3px;
     color: #2d8289;
     padding-bottom: 33px;
+    position: relative;
     .help-icon{
-        bottom: unset;
         right: unset;
         margin-left: 10px;
+        top: 30px;
     }
 }
 
@@ -221,13 +223,19 @@
 }
 
 .lbl4 {
+    margin-right: -10px;
     @include allmobiles{
         margin-top:-20px;
     }
 }
 
-.direct-form-grp .btn-group--toggle .direct-form-btn--radio {
-    @include allmobiles {
-        max-width:96px;
+.direct-form-grp {
+    .btn-group--toggle {
+        justify-content: space-between;
+        .direct-form-btn--radio {
+            @include allmobiles {
+                max-width:96px;
+            }
+        }
     }
 }
