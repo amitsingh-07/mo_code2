@@ -17,7 +17,7 @@
         object-fit: contain;
         margin: auto;
         img{
-            padding-top: 0;
+            padding-top: 19px;
         }
     }
 }
@@ -202,6 +202,7 @@
             letter-spacing: -0.4px;
             text-align: center;
             color: #066360;
+            padding-top: 16px;
         }
     }
     @include allmobiles {
