@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
+} from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -95,23 +97,24 @@ export class WithdrawalTypeComponent implements OnInit {
     this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value ?
-        this.withdrawForm.addControl('withdrawAmount', new FormControl('', Validators.required)) :
+        this.withdrawForm.addControl('withdrawAmount', new FormControl('',
+          [Validators.required, this.withdrawAmountValidator(this.withdrawForm.get('withdrawPortfolio'), 'CONTROL')])) :
         this.withdrawForm.removeControl('withdrawAmount');
     });
   }
 
-  // tslint:disable-next-line
+  // tslint:disable
   buildFormForPortfolioToBank() {
     this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value ?
-        this.withdrawForm.addControl('withdrawAmount', new FormControl('', Validators.required)) :
+        this.withdrawForm.addControl('withdrawAmount', new FormControl('', [Validators.required, this.withdrawAmountValidator(this.withdrawForm.get('withdrawPortfolio'), 'CONTROL')])) :
         this.withdrawForm.removeControl('withdrawAmount');
     });
   }
 
   buildFormForCashToBank() {
-    this.withdrawForm.addControl('withdrawAmount', new FormControl('', Validators.required));
+    this.withdrawForm.addControl('withdrawAmount', new FormControl('', [Validators.required, this.withdrawAmountValidator(this.cashBalance, 'VALUE')]));
     this.withdrawForm.removeControl('withdrawPortfolio');
   }
 
@@ -199,6 +202,26 @@ export class WithdrawalTypeComponent implements OnInit {
         this.showConfirmWithdrawModal(form);
       }
     }
+  }
+
+  withdrawAmountValidator(amount, type): ValidatorFn {
+    return (c: AbstractControl) => {
+      if (c) {
+        let isValid;
+        if (type === 'CONTROL') {
+          isValid = c.value <= amount.value.value;
+        }
+        else {
+          isValid = c.value <= amount;
+        }
+
+        if (isValid) {
+          return null;
+        } else {
+          return { sufficientBalance: true };
+        }
+      }
+    };
   }
 
 }

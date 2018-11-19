@@ -2,6 +2,7 @@ import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncap
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 
 @Component({
   selector: 'app-add-bank-modal',
@@ -23,9 +24,9 @@ export class AddBankModalComponent implements OnInit {
 
   ngOnInit() {
     this.addBankForm = new FormGroup({
-      accountHolderName: new FormControl('', Validators.required),
+      accountHolderName: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.SymbolAlphabets)]),
       bank: new FormControl('', Validators.required),
-      accountNo: new FormControl('', Validators.required)
+      accountNo: new FormControl('', [Validators.required, Validators.pattern(RegexConstants.NumericOnly)])
     });
   }
 

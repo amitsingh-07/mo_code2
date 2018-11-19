@@ -85,7 +85,7 @@
       </div>
 
 
-      <button type="button" (click)="goToNext(withdrawForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button type="button" [disabled]="!withdrawForm.get('withdrawType').value" (click)="goToNext(withdrawForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{
         'LABEL.CONTINUE' | translate}}</button>
 

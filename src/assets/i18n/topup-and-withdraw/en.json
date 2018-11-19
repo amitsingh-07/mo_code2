@@ -29,7 +29,8 @@
   },
   "WITHDRAW_SUCCESS": {
     "TITLE": "Withdrawal Request Submitted",
-    "DESC": "We will update you on the status of your request within 2 working days."
+    "DESC": "We will update you on the status of your request within 2 working days.",
+    "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "WITHDRAW_PAYMENT_METHOD": {
     "TITLE": "Choose Payment Method",

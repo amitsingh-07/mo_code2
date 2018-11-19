@@ -11,12 +11,12 @@
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <button type="button" class="btn btn-primary width100 right-btn" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'" (click)="selectMode('BANK')">
-                      <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER' | translate}}</div>
+                      {{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER' | translate}}
                     </button>
                   </div>
                   <div class="flex-col-6">
                     <button type="button" class="btn btn-primary width100 left-btn" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'" (click)="selectMode('CHEQUE')">
-                      <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE' | translate}}</div>
+                      {{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE' | translate}}
                     </button>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
         </div>
       </div>
 
-      <button type="button" (click)="goToNext(bankForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+      <button type="button" [disabled]="!bankForm.valid" (click)="goToNext(bankForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">{{
         'LABEL.CONTINUE' | translate}}</button>
         </form>

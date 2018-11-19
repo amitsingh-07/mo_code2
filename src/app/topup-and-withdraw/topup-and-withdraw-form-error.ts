@@ -12,6 +12,10 @@ export class TopUpAndWithdrawFormError {
                 errorTitle: 'Invalid Withdraw Amount',
                 errorMessage: 'Please enter Withdraw Amount.'
             },
+            sufficientBalance: {
+                errorTitle: 'Invalid Withdraw Amount',
+                errorMessage: 'Value you have entered is more than the available balance. Please enter the valid amount <= available balance.'
+            }
         },
         withdrawPortfolio: {
             required: {
