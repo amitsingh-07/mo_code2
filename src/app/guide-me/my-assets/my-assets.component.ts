@@ -71,6 +71,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
               this.assetsForm.controls['cpf'].setValue(this.cpfValue);
               this.myInfoService.isMyInfoEnabled = false;
               this.cpfFromMyInfo = true;
+              this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
               this.setFormTotalValue();
               this.closeMyInfoPopup();
             } else {

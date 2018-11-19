@@ -84,7 +84,7 @@
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.3px;
-    padding: 26px 0 19px;
+    padding: 9px 0 19px;
 }
 
 .form-group-single-column{
@@ -111,7 +111,7 @@
             margin-top: 19px;
         }
         .flex-row{
-            padding: 0 19px 25px; 
+            padding: 0 19px 22px; 
             .form-control{
                 font-family: $muli-regular;
                 color: #00a7a7;
@@ -232,4 +232,8 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #d8d8d8;
+  }
+
+  .form-group-single-column .checkbox-button {
+      margin-bottom: 22px;
   }
