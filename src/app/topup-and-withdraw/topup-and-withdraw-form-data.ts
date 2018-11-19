@@ -9,9 +9,7 @@ export class TopUpAndWithdrawFormData {
     topupportfolioamount: number;
     topupValues: any;
     fundDetails: any;
-<<<<<<< HEAD
     PortfolioValues: any;
-=======
 
     // withdraw
     withdrawType: any;
@@ -19,5 +17,4 @@ export class TopUpAndWithdrawFormData {
     withdrawPortfolio: any;
     withdrawMode: string;
     withdrawBank: any;
->>>>>>> 44d4eaaa9e13555b6941a1981f01fb230fd268d3
 }

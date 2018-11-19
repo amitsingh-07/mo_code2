@@ -17,7 +17,7 @@ import { AssetAllocationComponent } from './asset-allocation/asset-allocation.co
 
 const routes: Routes = [
   {
-    path: TOPUP_AND_WITHDRAW_ROUTES.ROOT,
+   path: TOPUP_AND_WITHDRAW_ROUTES.ROOT,
     redirectTo: TOPUP_AND_WITHDRAW_ROUTES.TOPUP,
     pathMatch: 'full',
 

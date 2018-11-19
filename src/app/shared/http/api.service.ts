@@ -647,7 +647,6 @@ export class ApiService {
   }
   // tslint:disable-next-line:no-identical-functions
   requestEditPassword(data) {
-<<<<<<< HEAD
     // tslint:disable-next-line
     // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
     const url = '../assets/mock-data/forgotPassword.json';
@@ -671,12 +670,10 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
-=======
     return this.http.post(apiConstants.endpoint.editPassword, data)
     .pipe(
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
->>>>>>> 44d4eaaa9e13555b6941a1981f01fb230fd268d3
   }
 
   // tslint:disable-next-line:no-identical-functions

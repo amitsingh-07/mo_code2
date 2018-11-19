@@ -12,25 +12,22 @@ import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-i
 import { SharedModule } from '../shared/shared.module';
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
 import {
-    ConfirmWithdrawalModalComponent
+  ConfirmWithdrawalModalComponent
 } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
-<<<<<<< HEAD
 
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 
-=======
 import {
-    WithdrawalPaymentMethodComponent
+  WithdrawalPaymentMethodComponent
 } from './withdrawal-payment-method/withdrawal-payment-method.component';
 import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
 import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
->>>>>>> 44d4eaaa9e13555b6941a1981f01fb230fd268d3
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -59,14 +56,11 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule
   ],
   declarations: [
-<<<<<<< HEAD
-   TopUpComponent,
-   TopupRequestComponent,
-   YourInvestmentComponent,
-   YourPortfolioComponent,
-   AssetAllocationComponent
-   
-=======
+    TopUpComponent,
+    TopupRequestComponent,
+    YourInvestmentComponent,
+    YourPortfolioComponent,
+    AssetAllocationComponent,
     TopUpComponent,
     TopupRequestComponent,
     ConfirmWithdrawalModalComponent,
@@ -78,7 +72,6 @@ export function createTranslateLoader(http: HttpClient) {
   entryComponents: [
     ConfirmWithdrawalModalComponent,
     AddBankModalComponent
->>>>>>> 44d4eaaa9e13555b6941a1981f01fb230fd268d3
   ],
   providers: [CurrencyPipe]
 })
