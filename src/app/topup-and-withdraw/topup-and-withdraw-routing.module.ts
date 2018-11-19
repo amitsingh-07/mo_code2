@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
-
 import { TopUpComponent } from './top-up/top-up.component';
+import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
+import {
+    WithdrawalPaymentMethodComponent
+} from './withdrawal-payment-method/withdrawal-payment-method.component';
+import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
+import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
@@ -37,6 +41,18 @@ const routes: Routes = [
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.ASSET_ALLOCATION,
     component: AssetAllocationComponent
+  },
+  {
+    path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL,
+    component: WithdrawalTypeComponent
+  },
+  {
+    path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL_PAYMENT_METHOD,
+    component: WithdrawalPaymentMethodComponent
+  },
+  {
+    path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL_SUCCESS,
+    component: WithdrawalSuccessComponent
   }
 
 ];

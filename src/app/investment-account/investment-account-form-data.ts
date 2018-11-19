@@ -8,6 +8,11 @@ export class InvestmentAccountFormData {
     passportExpiry: any;
     dob: any;
     gender: string;
+    optionList: any;
+    salutation: any;
+    birthCountry: any;
+    passportIssuedCountry: any;
+    race: any;
 
     // Residential Address
     country: string;
@@ -63,6 +68,7 @@ export class InvestmentAccountFormData {
     empCity: string;
     empState: string;
     empZipCode: number;
+    employmentStatusList: any;
 
     // Upload documents
     nricFrontImage: File;
@@ -112,9 +118,8 @@ export class InvestmentAccountFormData {
     isMyInfoEnabled: boolean;
     disableAttributes: any;
 
-
-    // Fund Your Account
-
+    
+	// Fund Your Account
     Investment: string;
     oneTimeInvestmentAmount: number;
     portfolio: string;

@@ -82,6 +82,7 @@ export class TopUpComponent implements OnInit {
     // this.navbarService.setNavbarMode(1);
     // this.navbarService.setNavbarMode(2);
     this.navbarService.setNavbarDirectGuided(true);
+    this.navbarService.setNavbarMode(2);
     this.getPortfolioList();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
       this.investmentTypeList = data.objectList; // Getting the information from the API
@@ -145,17 +146,10 @@ export class TopUpComponent implements OnInit {
   }
 
   saveAndProceed(form: any) {
-    this.saveFundingDetails();
     form.value.topupportfolioamount = this.topupportfolioamount;
     this.topupAndWithDrawService.setTopUp(form.value);
+    this.saveFundingDetails();
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-
-    // CALL API
-    // this.portfolioService.savePersonalInfo().subscribe((data) => {
-    // if (data) {
-    //  this.authService.saveEnquiryId(data.objectList.enquiryId);
-    //  }
-    //});
   }
   saveFundingDetails() {
     const topupValues = {
