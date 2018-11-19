@@ -183,9 +183,9 @@
       "SUB_TITLE": "In the next step, please check that all details provided are accurate."
     },
     "MY_EXECUTOR_TRUSTEE": {
-      "TITLE": "My Executor & Trustee",
+      "TITLE": "My Executors & Trustees",
       "SUB_TITLE": "As this person plays a critical role in executing your will, please choose someone you trust.",
-      "FORM_TITLE": "I would like my executor & trustee to be:",
+      "FORM_TITLE": "My executors & trustees are",
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",
