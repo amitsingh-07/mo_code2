@@ -204,6 +204,10 @@ input[type='checkbox']+label {
       padding:5px;
   }
   
+  .form-group-single-column {
+      display: flex;
+      justify-content: space-between;
+  }
   .form-group-single-column .checkbox-button.two-label {
     padding: 20px !important;
   }
@@ -213,6 +217,7 @@ input[type='checkbox']+label {
         display: block;
         justify-content: center;
         align-items: center;
+        margin: 12px 0;
     }
 }
 
@@ -224,6 +229,7 @@ input[type='checkbox']+label {
                 justify-content: center;
                 width: 300px;
                 text-align: center;
+                margin-bottom: 23px;
             } 
         }
         .step2 {
@@ -238,7 +244,7 @@ input[type='checkbox']+label {
         flex-direction: column-reverse;
         align-items: center;
         margin-top: -10px;
-        padding-bottom: 100px;
+        padding-bottom: 80px;
         color: #333846 !important;
         background-color: #fff;
     }  
@@ -298,6 +304,11 @@ input[type='checkbox']+label {
         }
         img{
             width:100%;
+            @include allmobiles {
+                max-width:281px;
+                margin: 0 auto;
+                display: flex;
+            }
         }
       }
       .distribution-content{
@@ -353,10 +364,11 @@ input[type='checkbox']+label {
         font-weight: bold;
         letter-spacing: -0.4px;
         color: #066360;
-        padding-left: 10px;
+        padding-left: 21px;
         padding-bottom: 20px;
       }
       .form-control{
+          max-width: 107px;
           .input-control{
               text-align: left;
           }
@@ -411,5 +423,12 @@ input[type='checkbox']+label {
         line-height: normal;
         letter-spacing: -0.1px;
         color: #333846;
+    }
+}
+
+.header-label{
+    padding-left: 33px;
+    @include allmobiles {
+        padding-left: 21px;
     }
 }

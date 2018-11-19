@@ -36,7 +36,7 @@
         background: $white-color;
     }
     .flex-row{
-        padding:0 20px 20px;
+        padding:0 20px 21px;
         justify-content: space-between;
     }
 }
@@ -101,7 +101,12 @@
         padding: 15px;
         margin-top: 10px;
     }
-
+    .flex-col-12{
+        margin-bottom: 22px;
+        @include allmobiles {
+            margin-bottom: 21px;
+        }
+    }
     .edit-block{
         @extend .flex;
         justify-content: space-between;
@@ -144,8 +149,8 @@
     cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
-    right: 14px;
-    bottom: 17px;
+    right: -3px;
+    bottom: 15px;
     background-color: #fff;
     border-radius: 50%;
 }
@@ -175,6 +180,9 @@
 
 .autofill-logo{
     margin-top: 40px;
+    @include allmobiles{
+        margin-top: 0;
+    }
 }
 
 .with-help-icon{
