@@ -21,7 +21,7 @@
           </div>
           <div class="flex-col-6">
             <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.accountHolderName)}">
-              <input id="addBank-oneTimeInv-txt" autocomplete="off" class="input-control" type="text" maxLength="10"
+              <input id="addBank-oneTimeInv-txt" autocomplete="off" class="input-control" type="text"
                 name="accountHolderName" formControlName="accountHolderName" value="0">
             </div>
           </div>
@@ -37,7 +37,7 @@
             <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(addBankForm.controls.bank)}">
               <div ngbDropdown>
                 <button class="btn btn-dropdown" id="residentialAddress-country-drpdown" ngbDropdownToggle>
-                  <span *ngIf="!addBankForm.controls.bank.value">Select</span>
+                  <span *ngIf="!addBankForm.controls.bank.value">{{ 'WITHDRAW_PAYMENT_METHOD.SELECT' | translate}}</span>
                   <span *ngIf="addBankForm.controls.bank.value">{{addBankForm.controls.bank.value.name | titlecase}}</span>
                 </button>
                 <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">

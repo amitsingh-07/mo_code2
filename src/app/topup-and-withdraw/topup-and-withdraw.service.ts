@@ -137,7 +137,7 @@ export class TopupAndWithDrawService {
   setWithdrawalTypeFormData(data) {
     this.topUpAndWithdrawFormData.withdrawType = data.withdrawType;
     this.topUpAndWithdrawFormData.withdrawAmount = data.withdrawAmount;
-    this.topUpAndWithdrawFormData.withdrawPortfolio = (data.portfolioGroup) ? data.portfolioGroup.withdrawPortfolio : null;
+    this.topUpAndWithdrawFormData.withdrawPortfolio = data.withdrawPortfolio;
     this.commit();
   }
 

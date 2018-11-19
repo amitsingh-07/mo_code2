@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,10 +24,10 @@ export class WithdrawalTypeComponent implements OnInit {
   pageTitle: string;
   withdrawForm;
   formValues;
-  showWithdrawalAmountControl = false;
   isFromPortfolio = false;
   withdrawalTypes;
   portfolioList;
+  cashBalance = 1409.12; // Todo
 
   constructor(
     public readonly translate: TranslateService,
@@ -54,32 +54,65 @@ export class WithdrawalTypeComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.buildForm();
+  }
+
+  buildForm() {
+    this.withdrawForm = this.formBuilder.group({
+      withdrawType: [this.formValues.withdrawType, Validators.required]
+    });
+
     // Withdraw Type Changed Event
     this.withdrawForm.get('withdrawType').valueChanges.subscribe((value) => {
-      this.withdrawForm.removeControl('portfolioGroup');
-      this.isFromPortfolio = false;
-      this.showWithdrawalAmountControl = true;
-      if (value.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID
-        || value.id === TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID) {
-        console.log(this.formValues);
-        this.withdrawForm.addControl('portfolioGroup', this.formBuilder.group({
-          withdrawPortfolio: new FormControl(this.formValues.withdrawPortfolio, [Validators.required])
-        }));
-        this.isFromPortfolio = true;
-        this.showWithdrawalAmountControl = false;
-        this.withdrawForm.get('portfolioGroup').get('withdrawPortfolio').valueChanges.subscribe((portfolio) => {
-          if (portfolio) {
-            this.showWithdrawalAmountControl = true;
-          }
-        });
+      if (value) {
+        this.withdrawForm.removeControl('withdrawPortfolio');
+        this.withdrawForm.removeControl('withdrawAmount');
+        switch (value.id) {
+          case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_CASH_TYPE_ID:
+            this.buildFormForPortfolioToCash();
+            this.isFromPortfolio = true;
+            break;
+          case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.PORTFOLIO_TO_BANK_TYPE_ID:
+            this.buildFormForPortfolioToBank();
+            this.isFromPortfolio = true;
+            break;
+          case TOPUPANDWITHDRAW_CONFIG.WITHDRAW.CASH_TO_BANK_TYPE_ID:
+            this.buildFormForCashToBank();
+            this.isFromPortfolio = false;
+            break;
+        }
       }
     });
+
     if (this.formValues.withdrawType) { // trigger change event
       this.withdrawForm.get('withdrawType').setValue(this.formValues.withdrawType);
     }
-    if (this.withdrawForm.get('portfolioGroup')) { // trigger change event
-      this.withdrawForm.get('portfolioGroup').get('withdrawPortfolio').setValue(this.formValues.withdrawPortfolio);
+    if (this.withdrawForm.get('withdrawPortfolio')) { // trigger change event
+      this.withdrawForm.get('withdrawPortfolio').setValue(this.formValues.withdrawPortfolio);
     }
+  }
+
+  buildFormForPortfolioToCash() {
+    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
+    this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
+      value ?
+        this.withdrawForm.addControl('withdrawAmount', new FormControl('', Validators.required)) :
+        this.withdrawForm.removeControl('withdrawAmount');
+    });
+  }
+
+  // tslint:disable-next-line
+  buildFormForPortfolioToBank() {
+    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
+    this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
+      value ?
+        this.withdrawForm.addControl('withdrawAmount', new FormControl('', Validators.required)) :
+        this.withdrawForm.removeControl('withdrawAmount');
+    });
+  }
+
+  buildFormForCashToBank() {
+    this.withdrawForm.addControl('withdrawAmount', new FormControl('', Validators.required));
+    this.withdrawForm.removeControl('withdrawPortfolio');
   }
 
   getLookupList() {
@@ -93,14 +126,6 @@ export class WithdrawalTypeComponent implements OnInit {
         { id: 'PORT2334', name: 'Growth', value: 12050 },
         { id: 'PORT2335', name: 'Conservative', value: 9500 }
       ];
-    });
-
-  }
-
-  buildForm() {
-    this.withdrawForm = this.formBuilder.group({
-      withdrawType: [this.formValues.withdrawType, Validators.required],
-      withdrawAmount: [this.formValues.withdrawAmount, Validators.required]
     });
   }
 

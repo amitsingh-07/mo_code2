@@ -11,14 +11,12 @@
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <button type="button" class="btn btn-primary width100 right-btn" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'" (click)="selectMode('BANK')">
-                      <div>By Bank</div>
-                      <div>Transfer</div>
+                      <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER' | translate}}</div>
                     </button>
                   </div>
                   <div class="flex-col-6">
                     <button type="button" class="btn btn-primary width100 left-btn" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'" (click)="selectMode('CHEQUE')">
-                      <div>By</div>
-                      <div>Cheque</div>
+                      <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE' | translate}}</div>
                     </button>
                   </div>
                 </div>
@@ -44,20 +42,19 @@
             </div>
             -->
             <div class="flex-col add_account mb20" (click)="showNewBankFormModal()">
-              <div class="flex-row"><img src="../../../assets/images/topupwithdraw/add_no-bg.svg" class="mr5" /><span>Add
-                  Bank Account</span></div>
+              <div class="flex-row"><img src="../../../assets/images/topupwithdraw/add_no-bg.svg" class="mr5" /><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span></div>
             </div>
           </div>
 
           <!-- CHEQUE -->
           <div class="cheque flex-col tab-content" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'">
-            <div class="cheque_msg">Cheque will be posted to this address:</div>
+            <div class="cheque_msg">{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}:</div>
             <div class="cheque_address flex-col">
-              <div>23 Keong Saik Road</div>
-              <div>Singapore 123456</div>
+              <div>{{ 'WITHDRAW_PAYMENT_METHOD.CHEQUE_POSTED_ADDRESS_LINE1' | translate}}</div>
+              <div>{{ 'WITHDRAW_PAYMENT_METHOD.CHEQUE_POSTED_ADDRESS_LINE2' | translate}}</div>
             </div>
             <div class="cheque_footer">
-              If you wish to change your mailing address, please write to us <span class="link">help@moneyowl.com.sg</span>
+                {{ 'WITHDRAW_PAYMENT_METHOD.IF_WISH_TO_CHANGE_WRITE' | translate}} <span class="link">{{ 'WITHDRAW_PAYMENT_METHOD.CONTACT_EMAIL' | translate}}</span>
             </div>
           </div>
         </div>
