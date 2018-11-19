@@ -9,4 +9,11 @@ export class TopUpAndWithdrawFormData {
     topupportfolioamount: number;
     topupValues: any;
     fundDetails: any;
+
+    // withdraw
+    withdrawType: any;
+    withdrawAmount: number;
+    withdrawPortfolio: any;
+    withdrawMode: string;
+    withdrawBank: any;
 }

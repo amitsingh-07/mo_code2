@@ -442,9 +442,9 @@ export class ApiService {
 
   updateInvestment(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.updateInvestment, data)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   // tslint:disable-next-line:no-identical-functions
@@ -457,9 +457,9 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions
   requestResetPassword(data) {
     return this.http.post(apiConstants.endpoint.resetPassword, data)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   // tslint:disable-next-line:no-identical-functions
@@ -477,24 +477,24 @@ export class ApiService {
   getAddressUsingPostalCode(code) {
     const q = code ? code : '';
     return this.httpClient.jsonp(apiConstants.endpoint.investmentAccount.getAddressByPincode + '&q=' + q, 'callback')
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getUserProfileInfo() {
     return this.http.get(apiConstants.endpoint.userProfileInfo)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   // tslint:disable-next-line:no-identical-functions
   uploadDocument(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.uploadDocument, data)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   saveInvestmentAccount(data) {
@@ -527,6 +527,23 @@ export class ApiService {
     // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
     const url = '../../../assets/mock-data/portfolioList.json';
     return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getUserBankList() {
+    // tslint:disable-next-line:no-commented-code
+    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
+    const url = '../../../assets/mock-data/portfolioList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  saveNewBank(data) {
+    return this.http.post(apiConstants.endpoint.resetPassword, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -593,6 +610,7 @@ export class ApiService {
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
+
   // tslint:disable-next-line:no-identical-functions
   requestEditContact(data) {
     return this.http.post(apiConstants.endpoint.editContactDeatails, data)

@@ -1,1 +1,8 @@
-export let    TOPUPANDWITHDRAW_CONFIG = {};
+export let TOPUPANDWITHDRAW_CONFIG = {
+    WITHDRAW: {
+        PORTFOLIO_TO_CASH_TYPE_ID: 1,
+        PORTFOLIO_TO_BANK_TYPE_ID: 2,
+        CASH_TO_BANK_TYPE_ID: 3,
+        DEFAULT_WITHDRAW_MODE: 'BANK'
+    }
+};

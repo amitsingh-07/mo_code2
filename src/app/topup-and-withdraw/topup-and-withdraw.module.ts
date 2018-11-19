@@ -10,12 +10,18 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { SharedModule } from '../shared/shared.module';
-
-import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
-
+import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
+import {
+    ConfirmWithdrawalModalComponent
+} from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { TopUpComponent } from './top-up/top-up.component';
+import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
-
+import {
+    WithdrawalPaymentMethodComponent
+} from './withdrawal-payment-method/withdrawal-payment-method.component';
+import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
+import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -43,11 +49,18 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     SharedModule
   ],
-
   declarations: [
-   TopUpComponent,
-   TopupRequestComponent
-   
+    TopUpComponent,
+    TopupRequestComponent,
+    ConfirmWithdrawalModalComponent,
+    AddBankModalComponent,
+    WithdrawalTypeComponent,
+    WithdrawalSuccessComponent,
+    WithdrawalPaymentMethodComponent
+  ],
+  entryComponents: [
+    ConfirmWithdrawalModalComponent,
+    AddBankModalComponent
   ],
   providers: [CurrencyPipe]
 })
