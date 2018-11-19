@@ -52,9 +52,11 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
     this.assetsFormValues = this.guideMeService.getMyAssets();
+    this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
       cpf: new FormControl(this.assetsFormValues.cpf),
+      cpfFromMyInfo: new FormControl(this.cpfFromMyInfo),
       homeProperty: new FormControl(this.assetsFormValues.homeProperty),
       investmentProperties: new FormControl(this.assetsFormValues.investmentProperties),
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
