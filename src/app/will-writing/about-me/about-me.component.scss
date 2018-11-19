@@ -109,10 +109,12 @@
         text-align: center;
         width: 300px;
         padding:0;
+        padding-bottom: 11px;
     }
 }
 .mobile-logo{
     display: none;
+    margin: 17px auto 11px;
     @include allmobiles {
         display: block;
         justify-content: center;
