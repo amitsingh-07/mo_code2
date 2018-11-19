@@ -9,7 +9,7 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                        errorMessage: 'Full Name should be 2 - 40 characters long'
                                 }
                         },
                         uin: {
@@ -20,7 +20,7 @@ export class WillWritingFormError {
                                 pattern: {
                                         errorTitle: 'Invalid Identification Number',
                                         errorMessage:
-                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                 }
                         },
                         gender: {
@@ -54,7 +54,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorMessage: 'Full Name should be 2 - 40 characters long'
                                         }
                                 },
                                 uin: {
@@ -65,7 +65,7 @@ export class WillWritingFormError {
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                         }
                                 }
                         },
@@ -77,7 +77,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorMessage: 'Full Name should be 2 - 40 characters long'
                                         }
                                 },
                                 uin: {
@@ -88,7 +88,7 @@ export class WillWritingFormError {
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                         }
                                 },
                                 dob: {
@@ -110,7 +110,7 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                        errorMessage: 'Full Name should be 2 - 40 characters long'
                                 }
                         },
                         uin: {
@@ -121,7 +121,7 @@ export class WillWritingFormError {
                                 pattern: {
                                         errorTitle: 'Invalid Identification Number',
                                         errorMessage:
-                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                 }
                         },
                         relationship: {
@@ -143,7 +143,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorMessage: 'Full Name should be 2 - 40 characters long'
                                         }
                                 },
                                 uin: {
@@ -154,7 +154,7 @@ export class WillWritingFormError {
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                         }
                                 },
                                 relationship: {
