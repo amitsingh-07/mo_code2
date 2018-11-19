@@ -70,7 +70,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   verifyPromoCode(promoCode) {
-    promoCode = promoCode.toLowerCase();
+    promoCode = promoCode.toUpperCase();
     this.willWritingApiService.verifyPromoCode(promoCode).subscribe((data) => {
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
