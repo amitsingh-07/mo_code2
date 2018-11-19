@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { WillWritingService } from 'src/app/will-writing/will-writing.service';
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
@@ -21,15 +22,17 @@ import { ValidatePassword } from './password.validator';
 export class PasswordComponent implements OnInit {
   passwordForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-              public navbarService: NavbarService,
-              public footerService: FooterService,
-              private modal: NgbModal,
-              private selectedPlansService: SelectedPlansService,
-              private signUpApiService: SignUpApiService,
-              private signUpService: SignUpService,
-              private router: Router,
-              private translate: TranslateService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public navbarService: NavbarService,
+    public footerService: FooterService,
+    private modal: NgbModal,
+    private selectedPlansService: SelectedPlansService,
+    private signUpApiService: SignUpApiService,
+    private signUpService: SignUpService,
+    private router: Router,
+    private willWritingService: WillWritingService,
+    private translate: TranslateService) {
     this.translate.use('en');
   }
 
@@ -102,9 +105,11 @@ export class PasswordComponent implements OnInit {
   setPassword(pwd) {
     this.signUpApiService.setPassword(pwd).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
+        if (!this.willWritingService.getWillWritingFormData()) {
+          sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
+        }
         this.signUpService.clearData();
         this.selectedPlansService.clearData();
-        sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
         this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
       }
     });
