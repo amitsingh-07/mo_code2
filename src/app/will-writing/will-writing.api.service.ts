@@ -43,7 +43,7 @@ export class WillWritingApiService {
         const will = Object.assign([], this.willWritingService.getWillWritingFormData());
         const willProfile: IwillProfile = {
             customerId: customeId ? customeId : this.appService.getCustomerId(),
-            enquiryId: 0,
+            enquiryId: will.enquiryId,
             uin: will.aboutMe.uin,
             name: will.aboutMe.name,
             genderCode: IGender[will.aboutMe.gender],
@@ -168,5 +168,19 @@ export class WillWritingApiService {
     updateWill() {
         const payload: IWill = this.willRequestPayload();
         return this.apiService.updateWill(payload);
+    }
+
+    getWill() {
+        const payload = {
+            customerId: this.appService.getCustomerId()
+        };
+        return this.apiService.getWill(payload);
+    }
+
+    downloadWill() {
+        const payload = {
+            customerId: this.appService.getCustomerId()
+        };
+        return this.apiService.downloadWill(payload);
     }
 }

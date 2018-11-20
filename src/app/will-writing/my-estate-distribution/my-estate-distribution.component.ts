@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -51,8 +51,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_2');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.errorMsg = this.translate.instant('WILL_WRITING.MY_ESTATE_DISTRIBUTION.ERROR_MODAL');
       this.setPageTitle(this.pageTitle);
     });
@@ -114,7 +113,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
       }
       this.remainingPercentage = 100 - (this.distPercentageSum - this.beneficiaryList[index].distPercentage);
     } else {
-    this.remainingPercentage = 100 - this.distPercentageSum;
+      this.remainingPercentage = 100 - this.distPercentageSum;
     }
     this.distPercentageSum = 0;
     this.isFormAltered = true;
@@ -131,11 +130,8 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
 
   openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     ref.componentInstance.unSaved = true;
-    if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
-    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(url);
@@ -151,10 +147,10 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     if (this.remainingPercentage < 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
       return false;
-    } else if (this.remainingPercentage !== 0 && filteredArr.length < 1 ) {
+    } else if (this.remainingPercentage !== 0 && filteredArr.length < 1) {
       this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
       return false;
-    } else if ( filteredArr.length > 0) {
+    } else if (filteredArr.length > 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.NON_ALLOCATED_PERCENTAGE, '');
       return false;
     }
@@ -168,13 +164,11 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
 
   goToNext() {
     if (this.validateBeneficiaryForm()) {
-      let url = WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE;
+      const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE;
       if (this.fromConfirmationPage && this.isFormAltered) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
         this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url,
-        this.willWritingService.isUserLoggedIn());
+          this.willWritingService.isUserLoggedIn());
       } else if (this.fromConfirmationPage) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
         this.save(url);
       } else {
         this.save(url);

@@ -40,6 +40,7 @@ export class AccountCreatedComponent implements OnInit {
         }
       });
       sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
+      this.signUpService.clearData();
     }
   }
 

@@ -8,6 +8,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
 import { DirectService } from './../direct/direct.service';
@@ -26,7 +27,7 @@ export class SignUpApiService {
     private apiService: ApiService, private authService: AuthenticationService,
     private signUpService: SignUpService, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public cryptoService: CryptoService,
-    private directService: DirectService, private appService: AppService
+    private directService: DirectService, private appService: AppService, private willWritingService: WillWritingService
   ) {
   }
 
@@ -60,10 +61,14 @@ export class SignUpApiService {
       };
     }
     const getAccountInfo = this.signUpService.getAccountInfo();
-    let selectedPlanData = { enquiryId: 0, plans: [] };
+    let selectedPlanData;
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
       this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
+      selectedPlanData = { enquiryId: this.willWritingService.getEnquiryId(), plans: [] };
+    } else {
+      selectedPlanData = { enquiryId: 0, plans: [] };
     }
     const formatDob = userInfo.dob;
     const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;

@@ -38,7 +38,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   submitted: boolean;
   willWritingConfig = WILL_WRITING_CONFIG;
 
-  hasSpouse: boolean;
+  hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
   maxGuardian: number;
   unsavedMsg: string;
   toolTip;
@@ -59,7 +59,8 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
-      this.pageTitle = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE');
+      this.pageTitle = this.hasSpouse ? this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE_SPOUSE') :
+        this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE');
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_MESSAGE');
@@ -72,7 +73,6 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
     if (this.willWritingService.getGuardianInfo().length > 0) {
       this.guardianList = this.willWritingService.getGuardianInfo();
     } else {

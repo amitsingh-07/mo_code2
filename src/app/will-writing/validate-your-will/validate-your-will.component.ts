@@ -12,6 +12,7 @@ import { WillWritingApiService } from '../will-writing.api.service';
   styleUrls: ['./validate-your-will.component.scss']
 })
 export class ValidateYourWillComponent implements OnInit {
+  data;
 
   constructor(private translate: TranslateService,
               public footerService: FooterService,
@@ -29,7 +30,24 @@ export class ValidateYourWillComponent implements OnInit {
   }
 
   downloadWill() {
-
+    this.data = 'http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf';
+    this.brochure(this.data, 'brochure.pdf');
+    // this.willWritingApiService.downloadWill().subscribe((data: any) => {
+    //   console.log(data);
+    //   this.brochure(data, 'brochure.pdf');
+    // });
   }
+
+  // tslint:disable-next-line:member-ordering
+  brochure = (() => {
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    return ((link, fileName) => {
+      a.href = link;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(link);
+    });
+  })();
 
 }

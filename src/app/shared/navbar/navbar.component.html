@@ -65,7 +65,7 @@
                 </ul> 
             </div>
         
-        <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+        <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item" [routerLink]="['/']">
                     <a class="nav-link">Home</a>
