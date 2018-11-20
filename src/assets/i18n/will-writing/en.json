@@ -117,8 +117,8 @@
       }
     },
     "MY_CHILDS_GUARDIAN": {
-      "TITLE": "My Children's Guardians",
-      "TITLE2": "My Children's Guardian",
+      "TITLE_SPOUSE": "My Children's Guardians",
+      "TITLE": "My Children's Guardian",
       "SUB_TITLE_WITHOUT_SPOUSE": "Your children under 21 years old would need a guardian to care for and protect their interests.",
       "SUB_TITLE_WITH_SPOUSE": "Your spouse will be the natural guardian of your children under 21 years old.",
       "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
@@ -176,7 +176,7 @@
       },
       "MUSLIM_ERROR": {
         "TITLE": "Sorry, we are unable to assist you.",
-        "MESSAGE": "As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer."
+        "MESSAGE": "<div class='mb15'>As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer.</div>"
       }
     },
     "REVIEW_YOUR_DETAILS": {
@@ -191,7 +191,7 @@
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",
-      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role as your executor & trustee in the event that your spouse passes on before you.",
+      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role of executor & trustee in the event that your spouse passes on before you.",
       "TOOLTIP_TITLE": "Role Of An Executor & Trustee",
       "TOOLTIP_MESSAGE": "<p>After you have passed on, your executor and trustee is in charge of carrying out the wishes of your will. As the 2 roles tend to overlap, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes settling outstanding debts of your estate (using your assets) and distributing your estate according to your wishes.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>",
       "MESSAGE_TOOLTIP": "Generally, we advise you to appoint a family member or trusted friend as executor & trustee."

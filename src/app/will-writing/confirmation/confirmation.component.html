@@ -134,7 +134,14 @@
           <div class="col-lg-12 col-md-12 col-12 mb20" *ngIf="willWritingFormData.guardian && willWritingFormData.guardian.length > 0">
             <div class="section-container">
               <div class="header col-lg-12 col-md-12 col-12">
-                <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</div>
+                <div class="col-lg-8 col-md-8 col-sm-9">
+                  <span *ngIf="willWritingFormData.aboutMe.maritalStatus === willWritingConfig.MARRIED">
+                      {{'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE_SPOUSE' | translate}}
+                  </span>
+                  <span *ngIf="willWritingFormData.aboutMe.maritalStatus !== willWritingConfig.MARRIED">
+                      {{'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}
+                  </span>
+                </div>
                 <div class="col-lg-3 col-md-3 col-3">
                   <div class="edit-dark"></div>
                   <div (click)="edit(willWritingRoutePaths.MY_CHILD_GUARDIAN)" class="edit">Edit</div>
