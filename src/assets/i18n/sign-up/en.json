@@ -1,5 +1,6 @@
 {
     "COMMON": {
+        "APPLY_CHANGES": "Apply Changes",
         "CONTINUE": "Continue",
         "VERIFY": "Verify", 
         "LOGIN": "Log In",
@@ -7,7 +8,13 @@
         "TRY_AGAIN": "Try Again",
         "CAPTCHA": "Enter image text",
         "CAPTCHA_TITLE": "Enter the characters shown in the image",
-        "TRY_ANOTHER_TEXT": "Try another text"
+        "TRY_ANOTHER_TEXT": "Try another text",
+        "LABEL": {
+            "CONTINUE": "Continue",
+            "RETRIEVE": "Retrieve",
+            "VIEW_DETAILS": "View Details",
+            "SAVE_AND_CONTINUE": "Save and Continue"
+          }
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",
@@ -100,5 +107,108 @@
       "TITLE": "Are you an existing MoneyOwl user?",
       "YES_LOGIN": "Yes, Log In Now",
       "CREATE_ACCOUNT": "No, Create Account"
+    },
+    "RESIDENTIAL_ADDRESS": {
+        "TITLE": "Residential Address",
+        "COUNTRY": "Country",
+        "POSTAL_CODE": "Postal Code",
+        "ADDRESS_1": "Address Line 1",
+        "ADDRESS_2": "Address Line 2",
+        "FLOOR": "Floor",
+        "UNIT_NO": "Unit No.",
+        "CITY": "City",
+        "STATE": "State / Province / Region",
+        "ZIPCODE": "Zip Code",
+        "ERROR": {
+          "POSTAL_CODE_TITLE": "Error !",
+          "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+        },
+        "POSTALCODE_EMPTY_ERROR": {
+          "TITLE": "Invalid Postal Code",
+          "MESSAGE": "Please enter your postal code."
+        },
+        "POSTALCODE_NOT_FOUND_ERROR": {
+          "TITLE": "Invalid Postal Code",
+          "MESSAGE": "Please enter valid postal code."
+        }
+      },
+      "UPLOAD_DOCUMENTS": {
+        "TITLE": "Upload Documents",
+        "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
+        "PROOF_OF_IDENTITY": "Proof Of Identity",
+        "NRIC": "NRIC",
+        "PASSPORT": "Passport",
+        "FRONT_NRIC": "Front NRIC",
+        "BACK_NRIC": "Back NRIC",
+        "TAP_TO_UPLOAD": "Tap to Upload",
+        "PROOF_OF_MAILING": "Proof Of Mailing Address",
+        "PROOF_OF_MAILING_SUBTEXT": "This document must match the information provided under \"Mailing Address\" earlier.",
+        "PROOF_OF_RESIDENT": "Proof Of Residential Address",
+        "PROOF_OF_RESIDENT_SUBTEXT": "This document must match the information provided under \"Residential Address\" earlier.",
+        "CHOOSE_FILE": "Choose File",
+        "UPLOADED": "Uploaded",
+        "NO_FILE_SELECTED": "no file selected",
+        "MODAL": {
+          "MAILING_ADDRESS_PROOF": {
+            "TITLE": "Proof Of Mailing Address",
+            "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+          },
+          "RES_ADDRESS_PROOF": {
+            "TITLE": "Proof Of Residential Address",
+            "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
+          },
+          "UPLOAD_LATER": {
+            "TITLE": "Upload Documents Later?",
+            "MESSAGE": "<p>You may save your progress and log in later to upload your verification documents. However, this will delay the set up of your investment account.</p><p>Would you like to continue?</p>",
+            "CONFIRM_PROCEED": "Yes! Upload Later"
+          },
+          "UPLOADING_LOADER": {
+            "TITLE": "Uploading",
+            "MESSAGE": "Please be patient, upload may take a few minutes."
+          },
+          "FILE_SIZE_EXCEEDED": {
+            "TITLE": "Error !",
+            "MESSAGE": "File of size more than 2 MB is not allowed."
+          },
+          "FILE_TYPE_MISMATCH": {
+            "TITLE": "Error !",
+            "MESSAGE": "The selected file type is not allowed."
+          }
+        }
+      },
+    "UPDATE_USER_ID": {
+        "TITLE": "Update User ID",
+        "YOUR_USER_ID": "Your User ID",
+        "MOBILE_NUMBER": "Mobile Number",
+        "EMAIL": "Email Address",
+        "APPLY_CHANGES": "Apply Changes"
+    },
+    "DASHBOARD": {
+        "PROFILE": {
+            "WELCOME": "Welcome back,",
+            "EDIT_PROFILE": "Edit Profile",
+            "YOUR_ADVISOR": "Your Advisor"
+        },
+        "INVESTMENT": {
+            "TITLE": "Investment",
+            "VIEW_ALL": "View all",
+            "CREATE_YOUR_PORTFOLIO": "Create Your Portfolio",
+            "CREATE_YOUR_PORTFOLIO_DESC": "Answer a few questions to  determine the portfolio most suited to you!",
+            "GET_STARTED": "Get Started!",
+            "TIME": "8mins",
+            "TOTAL_PORTFOLIO": "Total Portfolio Value",
+            "TOTAL_AMOUNT_INVESTED": "Total Amount Invested",
+            "TOTAL_RETURNS": "Total Returns",
+            "PENDING_DOC_UPLOAD_DESC": "You are almost there! Please complete your application by giving us your identification documents!",
+            "UPDATE": "Update"
+        },
+        "WILL_WRITING": {
+            "TITLE": "Will Writing",
+            "VIEW_ALL": "View all",
+            "CREATE_YOUR_WILL": "Create Your Will",
+            "CREATE_YOUR_WILL_DESC": "Answer a few questions to  determine the portfolio most suited to you!",
+            "GET_STARTED": "Get Started!",
+            "TIME": "8mins"
+        }
     }
 }

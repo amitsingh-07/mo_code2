@@ -9,10 +9,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class BankDetailsComponent implements OnInit {
   @Input() errorTitle: any;
   @Input() errorDescription: any;
+  @Input() bankDetailsLists: any;
 
-constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
-
+  
 }

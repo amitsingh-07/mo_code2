@@ -69,7 +69,7 @@
             }
             &.btn{ 
                 @include allmobiles{
-                    margin: 0 !important;
+                    //margin: 0 !important;
                 }
             }
         }
@@ -109,10 +109,12 @@
         text-align: center;
         width: 300px;
         padding:0;
+        padding-bottom: 11px;
     }
 }
 .mobile-logo{
     display: none;
+    margin: 17px auto 11px;
     @include allmobiles {
         display: block;
         justify-content: center;
@@ -136,13 +138,13 @@
     position: relative;
     .help-icon {
         background-image: url("../../../assets/images/help-icon.png");
-        width: 40px;
+        width: 20px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
         bottom: 5px;
-        right: -20px;
+        right: -8px;
     }
 }
 

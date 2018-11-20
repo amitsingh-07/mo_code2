@@ -1,4 +1,4 @@
-<img src="./../../../assets/articles/images/13/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="/assets/articles/images/13/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 <p>If you've had a look at the insurance products we feature on our comparison engine, you may have noticed that we do not feature <a href="http://www.moneysense.gov.sg/understanding-financial-products/investments/types-of-investments/investment-linked-insurance-policies.aspx" target="_blank" title="Investment Linked Policies">Investment-Linked Policies (ILPs)</a> at all. There's a very good reason why we don't advocate them. Read on to find out.</p>
 <br>
 
@@ -29,6 +29,8 @@ If that doesn't convince you, here are a few more reasons:</p>
 
 <p>ILPs' claim to kill two birds with one stone certainly has its appeal. However, we've shown that there's a very real possibility that you might end up achieving neither the protection nor the investment objective, so it's better to keep them separate. </p>  
 <br>
-<div class="text-xs-center"><a href="../direct/savings">
-  <img src="./../../../assets/images/banners/compare_sav_540w.png" alt="compare savings plans"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+  <img src="/assets/images/banners/compare_sav_540w.png" alt="compare savings plans"></a>
 </div>
+-->

@@ -15,6 +15,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import {
+    EditResidentialAddressComponent
+} from './edit-residential-address/edit-residential-address.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import {
     ForgotPasswordResultComponent
@@ -27,6 +30,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
+import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -68,7 +72,9 @@ export function createTranslateLoader(http: HttpClient) {
     InputFocusDirective,
     SecurePipe,
     EditProfileComponent,
-    EditPasswordComponent
+    EditPasswordComponent,
+    EditResidentialAddressComponent,
+    UpdateUserIdComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

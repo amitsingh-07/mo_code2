@@ -1,4 +1,4 @@
-<img src="./../../../assets/articles/images/14/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="/assets/articles/images/14/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 <p><a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/health-insurance/types-of-health-insurance/critical-illness-insurance.aspx" title="Critical Illness Insurance" target="_blank">Critical Illness (CI) policies</a> provide insurance against the diagnosis of the severe stage of medical conditions, using well-defined wordings. However, before 2003 it was up to individual insurers to define the CIs covered. The language used was relatively difficult to understand and potentially created uncertainty in the minds of consumers.</p>
 <br>
 
@@ -35,5 +35,5 @@ Obtaining protection is always the first priority. If you have a shortfall in yo
 </li>
 </ol>
 <br>
-<p>The more important question to ask yourself is: "Do I need <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/health-insurance/types-of-health-insurance/critical-illness-insurance.aspx" title="Critical Illness Insurance" target="_blank">Critical Illness</a> protection at my current stage in life?" If so, it is better to get the protection as soon as you can.  Use our <a href="../articles/html?title=Life+Stage+Planning&art_id=26">Life Stage Planner</a> to find out if you need Critical Illness protection, and our <a href="../calculators/critical-illness-calculator">Critical Illness calculator</a> to determine how much coverage you need. Check out the ongoing <a href="../promotions/">promotions</a> as well for even more savings on your Critical Illness plan. </p>
+<p>The more important question to ask yourself is: "Do I need <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/health-insurance/types-of-health-insurance/critical-illness-insurance.aspx" title="Critical Illness Insurance" target="_blank">Critical Illness</a> protection at my current stage in life?" If so, it is better to get the protection as soon as you can. </p>
 

@@ -25,8 +25,8 @@
     cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
-    right: 0;
-    bottom: 17px;
+    right: -6px;
+    bottom: 15px;
     background-color: #fff;
     border-radius: 50%;
 }
@@ -43,7 +43,7 @@
         margin-top: 15px;
         font-family: $muli;
         @include allmobiles{
-            width: 290px;
+            width: 294px;
             margin-top: 0;
         }
     }
@@ -84,7 +84,7 @@
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.3px;
-    padding: 26px 0 19px;
+    padding: 9px 0 19px;
 }
 
 .form-group-single-column{
@@ -111,7 +111,7 @@
             margin-top: 19px;
         }
         .flex-row{
-            padding: 0 19px 25px; 
+            padding: 0 19px 22px; 
             .form-control{
                 font-family: $muli-regular;
                 color: #00a7a7;
@@ -202,14 +202,14 @@
     position: relative;
     .help-icon {
         background-image: url("../../../assets/images/help-icon.png");
-        width: 40px;
+        width: 20px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
         bottom: 5px;
         border-radius: 0;
-        margin-right: -20px;
+        margin-right: -8px !important;
     }
 }
 
@@ -222,4 +222,22 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #2d8289;
+  }
+  .default {
+    font-family: $muli-regular;
+    font-size: 18px;
+    font-weight: 100;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #d8d8d8;
+  }
+
+  .form-group-single-column .checkbox-button {
+      margin-bottom: 22px;
+  }
+
+  .relationship {
+      width: 119px;
   }

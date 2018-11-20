@@ -36,7 +36,7 @@
         background: $white-color;
     }
     .flex-row{
-        padding:0 20px 20px;
+        padding:0 20px 21px;
         justify-content: space-between;
     }
 }
@@ -77,8 +77,9 @@
     letter-spacing: -0.2px;
     color: #fff;
     @include allmobiles{
+        font-size: 16px;
         color: #333846;
-        width:280px;
+        width:297px;
         text-align: center;
     }
 
@@ -101,7 +102,12 @@
         padding: 15px;
         margin-top: 10px;
     }
-
+    .flex-col-12{
+        margin-bottom: 22px;
+        @include allmobiles {
+            margin-bottom: 21px;
+        }
+    }
     .edit-block{
         @extend .flex;
         justify-content: space-between;
@@ -144,8 +150,8 @@
     cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
-    right: 14px;
-    bottom: 17px;
+    right: -3px;
+    bottom: 15px;
     background-color: #fff;
     border-radius: 50%;
 }
@@ -175,6 +181,9 @@
 
 .autofill-logo{
     margin-top: 40px;
+    @include allmobiles{
+        margin-top: 0;
+    }
 }
 
 .with-help-icon{
@@ -183,13 +192,13 @@
     position: relative;
     .help-icon {
         background-image: url("../../../assets/images/help-icon.png");
-        width: 40px;
+        width: 20px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
         bottom: 5px;
-        right: 0;
+        right: -8px;
         border-radius: 0;
     }
 }
@@ -223,9 +232,9 @@
     .tooltip-message{
         padding: 14px 9px 17px 20px;
         position: absolute;
-        bottom: 10%;
+        bottom: 20%;
         width: 274px;
-        left: 16%;
+        left: 14%;
         font-size: 14px;
         font-weight: 600;
         font-style: normal;
@@ -233,8 +242,19 @@
         line-height: normal;
         letter-spacing: -0.1px;
         color: #333846;
-        @include allmobiles{
-            bottom: 4%;
-        }
     }
 }
+
+.default {
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-weight: 100;
+    font-style: italic;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #d8d8d8;
+  }
+  .relationship {
+      width: 119px;
+  }

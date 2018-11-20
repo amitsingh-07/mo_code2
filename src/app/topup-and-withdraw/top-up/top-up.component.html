@@ -7,7 +7,7 @@
             <div class="form-group-with-bg--header">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <div class="form-group-with-bg--header-label" id="myFinancialLbl">1. Select Portfolio
+                  <div class="form-group-with-bg--header-label" id="myFinancialLbl">{{'TOPUP.SELECT_POTODOLIO' | translate}}
                   </div>
                 </div>
               </div>
@@ -40,41 +40,14 @@
             <div class="form-group-with-bg--header">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <div class="form-group-with-bg--header-label" id="MyFinacialInvestmentLbl">2. Enter Investment Amount
+  
+                  <div class="form-group-with-bg--header-label" id="MyFinacialInvestmentLbl">{{'TOPUP.ENTER_INVERSTMENT_AMOUNT' | translate}}
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-group-with-bg--content">
-              <!-- <div class="flex-row">
-
-                <div class="flex-col-12">
-                  <div class="btn-group-toggle" ngbRadioGroup name="radioGender"  formControlName="investment">
-                    <div class="flex-row mb0">
-                      <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10 " id="invPersInfoLbl2">
-                          <input ngbButton type="radio" value="One-time Investment" (change)="setInvestmentType('One-time Investment')">
-                          <div class="row">
-                            <div class="input-label-white">One-time Investment</div>
-                            <div class="input-label-normal">Min. $100</div>
-                          </div>
-                        </label>
-                      </div>
-                      <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm " >
-                          <input ngbButton type="radio" value="Monthly Investment" (change)="setInvestmentType('Monthly Investment')">
-                          <div class="row">
-                            <div class="input-label-white">Monthly Investment</div>
-                            <div class="input-label-normal ">Min. $50</div>
-                          </div>
-
-
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div> -->
+            
               <!-- radio button -->
               <div class="special-radio-button hidden" *ngFor="let investmenttype of investmentTypeList; let i = index">
                 <input id="investmenttype_{{i+1}}" (change)="selectedInvestment(investmenttype)" value={{investmenttype.name}} formControlName="Investment"
@@ -92,7 +65,7 @@
                     <i id="myFinancialDollerSymbThree">$</i>
                     <div name="totalLiabilities">
                       <input class="input-control" type="text" appCurrencyInput maxLength="7" #oneTimeInvestmentAmount value="0" formControlName="oneTimeInvestmentAmount"
-                        (keyup)="validateAmonut(topForm.controls.oneTimeInvestmentAmount.value)">
+                        (input)="validateAmonut(topForm.controls.oneTimeInvestmentAmount.value)">
                     </div>
                   </div>
                 </div>
@@ -107,8 +80,10 @@
                   </div>
                 </div>
               </div>
-              <p class="balance-amount mb10">Cash Account Balance: {{balanceAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
-              <p class="topupportfolio-amount" *ngIf="topupportfolio">Please top up {{topupportfolioamount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+              <!-- <p class="balance-amount mb10">Cash Account Balance: {{ balanceAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+              <p class="topupportfolio-amount mt5" *ngIf="topupportfolio">Please top up {{ topupportfolioamount | currency:'USD':'symbol-narrow':'1.0-2'}}</p> -->
+              <p class="balance-amount mb10">Cash Account Balance: {{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+              <p class="topupportfolio-amount" *ngIf="isAmountExceedCash">Please top up {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
             </div>
           </div>
           <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>

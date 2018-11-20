@@ -13,13 +13,40 @@
                     </li>
                 <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
                     </li>
-                <li *ngIf="(navbarMode == 2)" class="navbar__separator hidden-sm-md">
+                <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
                     </li>
-                <li *ngIf="(navbarMode == 2)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
+                <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
                     <p>Insurance Adviser</p>
-                    <p class="secondary">powered by DIYInsurance</p>
+                    <p *ngIf="(navbarMode == 2)" class="secondary">powered by DIYInsurance</p>
                     </li>
                 </div>
+                <div *ngIf="isNotificationEnabled">
+                <button class="notification-icon hidden-lg" type="button" (click)="onSelect()" >
+
+                    <span class="notification-number">{{ count }}</span>
+                    
+                    </button>
+                </div>
+                    <div class="notification-tooltip__arrow" [hidden]="IsHidden"></div>
+                    
+                    <div class="notification-tooltip" [hidden]="IsHidden">
+                    
+                    <div class="notification-tooltip__header">Notifications</div>
+                    
+                    <div class="notification-tooltip__container">
+                    
+                    <ul class="pl0">
+                    
+                    <li class="notification-tooltip__container--desc"  *ngFor="let notification of notifications">{{notification.message}}<div class="notification-tooltip__container--time">{{notification.time}}</div></li>
+                    
+                    
+                    </ul>
+                    
+                    </div>
+                    
+                    <div class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
+                    
+                    </div>
             <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar__menu-icon"></span>
                 </button>
@@ -38,14 +65,15 @@
                 </ul> 
             </div>
         
-        <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+        <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item" [routerLink]="['/']">
                     <a class="nav-link">Home</a>
                     </li>
                 <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
+                    <!--  (mouseleave)="closeDropdown(id01);"-->
                     <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
-                    <div class="dropdown-menu right perma" ngbDropdownMenu aria-labelledby="id01">
+                    <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
                         <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">
                             <img src="./../../../assets/images/nav/nav-insure-icon.svg"/>
                             <div class="navbar--text">
@@ -76,16 +104,16 @@
                         <div class="tip"></div>
                         </div>
                     </li>
-                <!--
                 <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
-                    <a class="nav-link dropdown-toggle" id="id02" href="#" ngbDropdownToggle>Learn</a>
-                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id02">
-                        <button class="dropdown-item" [routerLink]="['/articles']">Recent Articles</button>
+                    <a class="nav-link dropdown-toggle" id="id02" ngbDropdownToggle>Learn</a>
+                    <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id02">
+                        <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About Insurance</button>
                         <button class="dropdown-item" [routerLink]="['/articles/category/all']">All Articles</button>
-                        <button class="dropdown-item" [routerLink]="['/articles/entry/8']">Trending</button> 
                         </div>
                     </li>
-                -->
+                <li class="nav-item" [routerLink]="['/faq']">
+                    <a class="nav-link">FAQs</a>
+                    </li>
                 <!--
                 <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="openDropdown(id03);" (mouseleave)="closeDropdown.close(id03);">
                     <a class="nav-link dropdown-toggle" id="id03" href="#" ngbDropdownToggle >Help</a>
@@ -107,7 +135,12 @@
                         <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">
                             <div class="navbar--text">Customer Reviews</div>
                             </button>
-                        <!-- <button class="dropdown-item">Subscribe</button> -->
+                        <button class="dropdown-item" [routerLink]="['/about-us/why-buy-from-moneyowl']">
+                            <div class="navbar--text">Why Buy from MoneyOwl</div>
+                            </button>
+                        <button class="dropdown-item" [routerLink]="['/about-us/contact-us']">
+                            <div class="navbar--text">Contact Us</div>
+                            </button> 
                     </div>
                     </li>
             </ul>

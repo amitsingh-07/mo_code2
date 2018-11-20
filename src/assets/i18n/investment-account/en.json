@@ -17,12 +17,20 @@
     "DESCRIPTION": "Please choose the profile that best describes you.",
     "FULL_NAME": "Full Name",
     "FIRST_NAME": "First Name",
-    "LAST_NAME": "Last Name",
+    "LAST_NAME": "Last Name (Family Name)",
     "NRIC_NUMBER": "NRIC Number",
     "PASSPORT_NUMBER": "Passport Number",
     "PASSPORT_EXPIRY": "Passport Expiry",
     "DOB": "Date of Birth",
-    "GENDER": "Gender"
+    "GENDER": "Gender",
+    "SALUTATION": "Salutation",
+    "BIRTH_COUNTRY": "Country of Birth",
+    "PASSPORT_ISSUED_COUNTRY": "Passport Issued Country",
+    "RACE": "Race",
+    "SELECT_SALUTATION": "Select Salutation",
+    "SELECT_BIRTH_COUNTRY": "Select Country",
+    "SELECT_PASSPORT_ISSUED_COUNTRY": "Select Country",
+    "SELECT_RACE": "Select Race"
   },
   "RESIDENTIAL_ADDRESS": {
     "TITLE": "Residential Address",

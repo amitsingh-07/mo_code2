@@ -8,6 +8,11 @@ export class InvestmentAccountFormData {
     passportExpiry: any;
     dob: any;
     gender: string;
+    optionList: any;
+    salutation: any;
+    birthCountry: any;
+    passportIssuedCountry: any;
+    race: any;
 
     // Residential Address
     country: string;
@@ -113,15 +118,18 @@ export class InvestmentAccountFormData {
     isMyInfoEnabled: boolean;
     disableAttributes: any;
 
-    
-	// Fund Your Account
+    // confirm portfolio
+    invOneTime: number;
+    invMonthly: number;
+    riskProfileId: number;
+    riskProfileType: string;
+
+    // Fund Your Account
     Investment: string;
     oneTimeInvestmentAmount: number;
     portfolio: string;
     topupportfolioamount: number;
     MonthlyInvestmentAmount: number;
-
-    fundDetails: any;
 
     callBackInvestmentAccount: boolean;
 }

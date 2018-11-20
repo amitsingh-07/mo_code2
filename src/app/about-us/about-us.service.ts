@@ -10,7 +10,7 @@ export class AboutUsService {
 
   constructor() { }
 
-  getCustomerReviews(data): ICustomerReview[] {
+  getCustomerReview(data): ICustomerReview[] {
     const customerReviewArray = [];
     data.forEach((review) => {
       customerReviewArray.push(this.createCustomerReview(review));
@@ -30,6 +30,20 @@ export class AboutUsService {
     return thisReview;
   }
 
+  getSubject(data): any[] {
+    const subjectArray = [];
+    data['SUBJECTS'].forEach((subject) => {
+      subjectArray.push(this.createSubject(subject));
+    });
+    return subjectArray;
+  }
+  createSubject(data): any {
+    const subject = {
+      subject: data.SUBJECT,
+      email: data.EMAIL
+    };
+    return subject;
+  }
   getContactUs(): IContactUs {
     const contactUs = {} as IContactUs;
     return contactUs;

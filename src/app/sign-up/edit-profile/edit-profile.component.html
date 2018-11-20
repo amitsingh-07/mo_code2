@@ -8,43 +8,45 @@
   </div>
 
   <!-- First Section with profile pic  -->
+  <div *ngIf="personalData">
   <div class="overlap-grass">
     <div class="user-profile-bg">
 
 
-      <div class="circle"> {{this.compinedName}} </div>
+      <div class="circle"> {{compinedName}} </div>
 
 
       <img id="edit_profile_edit_img" class="user-edit-img" src="assets/images/editProfileIcon.svg" />
 
 
-      <div class="heading">{{ this.fullName }}</div>
-      <div class="nric-text">{{this.compinednricNum}}</div>
+      <div class="heading">{{fullName }}</div>
+      <div class="nric-text">{{compinednricNum}}</div>
       <div class="flex-row pb10 mb20">
         <div class="flex-col-2">
           <div class="content-text">Gender</div>
-          <div class="grid-content-text">{{this.personalData.gender}}</div>
+          <div class="grid-content-text">{{personalData.gender}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
         </div>
         <div class="flex-col-4">
           <div class="content-text">Nationality</div>
-          <div class="grid-content-text">{{this.personalData.nationality}}</div>
+          <div class="grid-content-text">{{personalData.nationality}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
         </div>
         <div class="flex-col-4">
           <div class="content-text">Date of Birth</div>
-          <div class="grid-content-text">{{this.personalData.dateOfBirth}}</div>
+          <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
         </div>
       </div>
     </div>
   </div>
+
   <!-- Update user id section -->
 
-  <div class="edit-profile-section-bg" >
+  <div class="edit-profile-section-bg">
     <div class="flex-row">
       <div class="flex-col-11">
         <div class="form-group-heading">
@@ -53,7 +55,7 @@
       </div>
       <div class="flex-col-1">
         <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser)/>
+          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) />
         </div>
       </div>
     </div>
@@ -63,7 +65,7 @@
           Mobile Number
         </div>
         <div class="update-contact-value">
-          {{this.personalData.mobileNumber}}
+          {{personalData.mobileNumber}}
         </div>
       </div>
       <div class="section-margin">
@@ -71,17 +73,17 @@
           Email Address
         </div>
         <div class="update-contact-value">
-          {{this.personalData.email}}
+          {{personalData.email}}
         </div>
       </div>
-      <button type="button" class="edit-button" id="editEmployeButton">
+      <button type="button" class="edit-button" id="editEmployeButton" (click)="editUserDetails()">
         Edit
       </button>
     </div>
-    
+
   </div>
   <!-- Change Password Section  -->
-  <div class="edit-profile-section-bg" >
+  <div class="edit-profile-section-bg">
     <div class="flex-row">
       <div class="flex-col-11">
         <div class="form-group-heading">
@@ -90,7 +92,7 @@
       </div>
       <div class="flex-col-1">
         <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword)/>
+          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) />
         </div>
       </div>
     </div>
@@ -103,293 +105,382 @@
           ******
         </div>
       </div>
-      <button type="button" class="edit-button" id="editEmployeButton">
+      <button type="button" class="edit-button" id="editEmployeButton" (click)="editPassword()">
         Edit
       </button>
     </div>
-    
+  </div>
   </div>
 
   <!-- Update contact section  -->
+  <div *ngIf="contactDetails">
+    <div class="edit-profile-section-bg">
+      <div class="flex-row">
+        <div class="flex-col-11">
+          <div class="form-group-heading">
+            Update Contact Details
+          </div>
+        </div>
+        <div class="flex-col-1">
+          <div class="dropdown-img">
+            <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideContact) />
+          </div>
+        </div>
+      </div>
+      <div class="dots" #showHideContact>
+        <div class="section-margin">
+          <div class="update-contact-title">
+            Country
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.country.country}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="isSingaporeResident">
+          <div class="update-contact-title">
+            Postal Code
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.postalCode}}
+          </div>
+        </div>
+        <div class="section-margin">
+          <div class="update-contact-title">
+            Address Line 1
+          </div>
+          <div class="update-contact-value">
+             {{ residentialAddress.addressLine1 }}
+          </div>
+        </div>
+        <div class="section-margin">
+          <div class="update-contact-title">
+            Address Line 2
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.addressLine2}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="isSingaporeResident">
+          <div class="update-contact-title">
+            Floor
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.floor}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="isSingaporeResident">
+          <div class="update-contact-title">
+            Unit Number
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.unitNumber}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="update-contact-title">
+            City
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.city}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="update-contact-title">
+            State
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.state}}
+          </div>
+        </div>
+        <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="update-contact-title">
+            Zip Code
+          </div>
+          <div class="update-contact-value">
+            {{residentialAddress.zipCode}}
+          </div>
+        </div>
 
-  <div class="edit-profile-section-bg" >
-    <div class="flex-row">
-      <div class="flex-col-11">
-        <div class="form-group-heading">
-          Update Contact Details
+        <div class="mailing-address flex" *ngIf="!mailingAddress">
+          <div >
+            <img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" />
+          </div>
+          <div class="flex-col">
+            <div>Mailing Address</div>
+            <div>Same as Residential Address</div>
+          </div>
         </div>
-      </div>
-      <div class="flex-col-1">
-        <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideContact)/>
+        <div *ngIf="mailingAddress">
+<div class="mailing-address-text section-margin">Mailing Address</div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Country
+            </div>
+            <div class="update-contact-value">
+              {{mailingAddress.country.country}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="isSingaporeResident">
+            <div class="update-contact-title">
+              Postal Code
+            </div>
+            <div class="update-contact-value">
+              {{mailingAddress.postalCode}}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Address Line 1
+            </div>
+            <div class="update-contact-value">
+              {{ mailingAddress.addressLine1}}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Address Line 2
+            </div>
+            <div class="update-contact-value">
+              {{ mailingAddress.addressLine2}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="isSingaporeResident">
+            <div class="update-contact-title">
+             Floor
+            </div>
+            <div class="update-contact-value">
+              {{mailingAddress.floor}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="isSingaporeResident">
+            <div class="update-contact-title">
+              Unit Number
+            </div>
+            <div class="update-contact-value">
+              {{mailingAddress.unitNumber}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="update-contact-title">
+              City
+            </div>
+            <div class="update-contact-value">
+              {{residentialAddress.city}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="update-contact-title">
+              State
+            </div>
+            <div class="update-contact-value">
+              {{residentialAddress.state}}
+            </div>
+          </div>
+          <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="update-contact-title">
+              Zip Code
+            </div>
+            <div class="update-contact-value">
+              {{residentialAddress.zipCode}}
+            </div>
+          </div>
         </div>
+        <button type="button" class="edit-button" id="confirmButton" (click)="editContactDetails()">
+          Edit
+        </button>
       </div>
     </div>
-    <div class="dots" #showHideContact>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Country
-      </div>
-      <div class="update-contact-value">
-        {{this.residentialAddress.country.country}}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Postal Code
-      </div>
-      <div class="update-contact-value">
-       {{this.residentialAddress.postalCode}}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Address
-      </div>
-      <div class="update-contact-value">
-        {{this.compinedAddress}}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Unit Number
-      </div>
-      <div class="update-contact-value">
-        {{this.residentialAddress.unitNumber}}
-      </div>
-    </div>
-    <div class="mailing-address flex">
-      <div *ngIf="!this.mailingAddress"> 
-        <img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" />
-      </div> 
-      <div *ngIf="this.mailingAddress">
-          <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
-        </div>
-      <div class="flex-col">
-        <div>Mailing Address</div>
-        <div>Same as Residential Address</div>
-      </div>
-    </div>
-    <div *ngIf="this.mailingAddress">
 
-    <div class="section-margin">
-        <div class="update-contact-title">
-          Country
+    <!-- Update Employee Details  -->
+    <div *ngIf="empolymentDetails">
+      <div class="edit-profile-section-bg">
+        <div class="flex-row">
+          <div class="flex-col-11">
+            <div class="form-group-heading">
+              Update Employment Details
+            </div>
+          </div>
+          <div class="flex-col-1">
+            <div class="dropdown-img">
+              <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp) />
+            </div>
+          </div>
         </div>
-        <div class="update-contact-value">
-          {{this.mailingAddress.country.country}}
-        </div>
-      </div>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          Postal Code
-        </div>
-        <div class="update-contact-value">
-         {{this.mailingAddress.postalCode}}
-        </div>
-      </div>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          Address
-        </div>
-        <div class="update-contact-value">
-          {{ this.compinedMailingAddress}}
-        </div>
-      </div>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          Unit Number
-        </div>
-        <div class="update-contact-value">
-          {{this.mailingAddress.unitNumber}}
+        <div class="dots" #showHideEmp>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Employer Status
+            </div>
+            <div class="update-contact-value">
+              {{empolymentDetails.employmentStatus.name }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Employer Name
+            </div>
+            <div class="update-contact-value">
+              {{empolymentDetails.employerDetails.employerName }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Industry
+            </div>
+            <div class="update-contact-value">
+              {{empolymentDetails.employerDetails.industry.industry }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Employer Contact
+            </div>
+            <div class="update-contact-value">
+              {{empolymentDetails.employerDetails.employerContact }}
+            </div>
+          </div>
+          <div class="section-margin">
+            <div class="update-contact-title">
+              Occupation
+            </div>
+            <div class="update-contact-value">
+              {{empolymentDetails.occupation.occupation}}
+            </div>
+          </div>
+
+          <!-- <div class="mailing-address flex">
+            <div *ngIf="!employerAddress">
+              <img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" />
+            </div>
+            <div *ngIf="employerAddress">
+              <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
+            </div>
+
+            <div class="flex-col">
+              <div>Employer&apos;s Address</div>
+              <div>Same as Mailing Address</div>
+            </div>
+          </div> -->
+          <!-- Have to add according to API -->
+          <div *ngIf="employerAddress">
+            <div class="section-margin">
+              <div class="update-contact-title">
+                Country
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.country.country}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="isSingaporeResident">
+              <div class="update-contact-title">
+                Postal Code
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.postalCode}}
+              </div>
+            </div>
+            <div class="section-margin">
+              <div class="update-contact-title">
+                Address Line 1
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.addressLine1}}
+              </div>
+            </div>
+            <div class="section-margin">
+              <div class="update-contact-title">
+                Address Line 2
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.addressLine2}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="isSingaporeResident">
+              <div class="update-contact-title" >
+               Floor
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.floor}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="isSingaporeResident">
+              <div class="update-contact-title" >
+                Unit No
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.unitNumber}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="!isSingaporeResident">
+              <div class="update-contact-title">
+                City
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.city}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="!isSingaporeResident">
+              <div class="update-contact-title">
+                State
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.state}}
+              </div>
+            </div>
+            <div class="section-margin" *ngIf="!isSingaporeResident">
+              <div class="update-contact-title">
+                Zip Code
+              </div>
+              <div class="update-contact-value">
+                {{empolymentDetails.employerDetails.employerAddress.zipCode}}
+              </div>
+            </div>
+          </div>
+          <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
+            Edit
+          </button>
         </div>
       </div>
     </div>
-    <button type="button" class="edit-button" id="confirmButton">
-      Edit
-    </button>
+    <!-- Update bank details  -->
+    <div *ngIf="bankDetails">
+      <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
+        <div class="flex-row">
+          <div class="flex-col-11">
+            <div class="bank-details-heading">
+              Update Bank Details
+            </div>
+          </div>
+          <div class="flex-col-1">
+            <div class="dropdown-img">
+              <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
+            </div>
+          </div>
+        </div>
+
+        <div class="dots" #showHideBank>
+          <div class="flex-row">
+
+            <div class="flex-col-4">
+
+              <div class="bank-account">
+                Bank Account
+              </div>
+            </div>
+            <div class="flex-col-8">
+              <div class="bank-account-num">
+                {{bankDetails.accountNumber}}
+              </div>
+            </div>
+            <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
+              Edit
+            </button>
+            <div class="banking-details-text">
+              This banking details will only impact on investment products.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
-
-  <!-- Update Employee Details  -->
-
-  <div class="edit-profile-section-bg" >
-    <div class="flex-row">
-      <div class="flex-col-11">
-        <div class="form-group-heading">
-          Update Employment Details
-        </div>
-      </div>
-      <div class="flex-col-1">
-        <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp)/>
-        </div>
-      </div>
-    </div>
-    <div class="dots" #showHideEmp>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Employer Status
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.employmentStatus.name }}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Employer Name
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.employerDetails.employerName }}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Industry
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.employerDetails.industry.industry }}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Employer Contact
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.employerDetails.employerContact }}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Occupation
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.occupation.occupation}}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Country
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.employerDetails.employerAddress.country.country}}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Postal Code
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.employerDetails.employerAddress.postalCode}}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Address
-      </div>
-      <div class="update-contact-value">
-       {{this.compinedEmployerAddress}}
-      </div>
-    </div>
-    <div class="section-margin">
-      <div class="update-contact-title">
-        Unit Number
-      </div>
-      <div class="update-contact-value">
-        {{this.empolymentDetails.employerDetails.employerAddress.unitNumber}}
-      </div>
-    </div>
-    <div class="mailing-address flex">
-      <div>
-        <img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" />
-      </div>
-<!-- Need to Edit here too -->
-      <!-- <div *ngIf="this.mailingAddress">
-          <img id="chk_img" class="chk-box-img" src="assets/images/check-box-normal.svg" />
-        </div> -->
-
-      <div class="flex-col">
-        <div>Employer&apos;s Address</div>
-        <div>Same as Mailing Address</div>
-      </div>
-    </div>
-    <!-- Have to add according to API -->
-    <div>
-    <div class="section-margin">
-        <div class="update-contact-title">
-          Country
-        </div>
-        <div class="update-contact-value">
-          {{this.empolymentDetails.employerDetails.employerAddress.country.country}}
-        </div>
-      </div>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          Postal Code
-        </div>
-        <div class="update-contact-value">
-          {{this.empolymentDetails.employerDetails.employerAddress.postalCode}}
-        </div>
-      </div>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          Address
-        </div>
-        <div class="update-contact-value">
-         {{this.compinedEmployerAddress}}
-        </div>
-      </div>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          Unit Number
-        </div>
-        <div class="update-contact-value">
-          {{this.empolymentDetails.employerDetails.employerAddress.unitNumber}}
-        </div>
-      </div>
-      </div>
-    <button type="button" class="edit-button" (click)="editEmployeDetails()" id="editEmployeButton">
-      Edit
-    </button>
-    </div>
-  </div>
-
-  <!-- Update bank details  -->
-  <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
-    <div class="flex-row">
-      <div class="flex-col-11">
-        <div class="bank-details-heading">
-          Update Bank Details
-        </div>
-      </div>
-      <div class="flex-col-1">
-        <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
-        </div>
-      </div>
-    </div>
-
-    <div class="dots" #showHideBank>
-    <div class="flex-row">
-
-      <div class="flex-col-4">
-
-        <div class="bank-account">
-          Bank Account
-        </div>
-      </div>
-      <div class="flex-col-8">
-        <div class="bank-account-num">
-         {{this.bankDetails.accountNumber}}
-        </div>
-      </div>
-      <button type="button" class="edit-button" id="editEmployeButton">
-        Edit
-      </button>
-      <div class="banking-details-text">
-        This banking details will only impact on investment products.
-      </div>
-    </div>
-    </div>
-
-  </div>
+</div>

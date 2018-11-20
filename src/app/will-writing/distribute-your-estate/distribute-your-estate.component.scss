@@ -37,7 +37,7 @@
         }
         @include allmobiles {
             .banner-image img {
-                max-width:70%;
+                max-width:192px;
             }
         }
         @include iPadProPortrait {
@@ -53,7 +53,6 @@
         text-align: center;
         margin: 0 auto;
         @include allmobiles {
-            margin-top: 30px;
             text-align: center;
         }
         @include tablet {
@@ -68,6 +67,9 @@
         text-align: center;
         color: #ffffff;
         margin-top: 30px;
+        @include allmobiles {
+            margin-top:10px;
+        }
     }
     .intro-block__content__title {
         font-family: $muli-semi-bold;

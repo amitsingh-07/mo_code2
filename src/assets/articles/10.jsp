@@ -1,16 +1,16 @@
 	
-		<p>While <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank" title="MediShield Life">MediShield Life</a> will be offering better benefits than its predecessor, MediShield, it is nonetheless meant for hospitalisation in B2/C wards. People who want higher class wards in B1/A or even at private hospitals would have to purchase <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/integrated-shield-plans/about-integrated-shield-plans--ips-.html" target="_blank" title="Integrated Shield Plans">Integrated Shield Plans (IPs)</a> from private insurers, namely, AIA, AXA, Aviva, Great Eastern, NTUC Income and Prudential.</p>
+		<p>While <a href="https://www.medishieldlife.sg/" target="_blank" title="MediShield Life">MediShield Life</a> will be offering better benefits than its predecessor, MediShield, it is nonetheless meant for hospitalisation in B2/C wards. People who want higher class wards in B1/A or even at private hospitals would have to purchase <a href="https://www.moh.gov.sg/medishield-life/about-integrated-shield-plans" target="_blank" title="Integrated Shield Plans">Integrated Shield Plans (IPs)</a> from private insurers, namely, AIA, AXA, Aviva, Great Eastern, NTUC Income and Prudential.</p>
 		<p>An Integrated Shield Plan is essentially made up of 2 parts - a basic MediShield, which is managed by the CPF Board and a top-up portion with enhanced benefits managed by the private insurer. </p>
 		<p>Operationally, the private insurer acts as the point-of-contact to deal with all communication with the integrated shield plan policyholders from the collection of premium to the settlement of claim. When the premium is collected from the policyholder, the private insurer will then split and pass the portion of premium attributed to MediShield Life to CPF Board. In the event of getting a claim, the private insurer settles the claim with the policyholder and gets reimbursed from CPF Board for the MediShield Life portion of the claim.
 		</p>
 		<br>
 
-		<div class="text-center"><img src="./../../../assets/articles/images/10/pic01.gif" alt="Part 3: Integrated Shield Plans - Uncovered Problems and Proposed Solutions"></div>
+		<div class="text-center"><img src="/assets/articles/images/10/pic01.gif" alt="Part 3: Integrated Shield Plans - Uncovered Problems and Proposed Solutions"></div>
 		<br><br>
 
 		<h3 class="primary-color"><strong>Consumers' Dissatisfaction with IPs</strong></h3>
 
-        <p>More than 60% of Singaporeans (data from Ministry of Health) have an <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/integrated-shield-plans/about-integrated-shield-plans--ips-.html" target="_blank" title="Integrated Shield Plans">Integrated Shield Plan</a> since it was introduced in 2008. While IPs are popular, there seems to be an undercurrent of dissatisfaction or confusion that was not brought to awareness until now, says the <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank" title="MediShield Life">MediShield Life</a> Review Committee. </p>
+        <p>More than 60% of Singaporeans (data from Ministry of Health) have an <a href="https://www.medishieldlife.sg/" target="_blank" title="MediShield Life">MediShield Life</a> Review Committee. </p>
 		<br>
 		<p>Some  insights from focused group discussions are: </p><br>
 		<ol>
@@ -80,7 +80,7 @@
 
 		<br><br>
 		<h3 class="primary-color"><strong>MediShield Life Review Recommendations  to make IPs work better</strong></h3>
-        <p>One significant outcome of the <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank" title="MediShield Life">MediShield Life</a> Review is the much needed call to review and improve the way IP  is being managed. The main suggestions and recommendations by the Review  Committee are:</p>
+        <p>One significant outcome of the <a href="https://www.medishieldlife.sg/" target="_blank" title="MediShield Life">MediShield Life</a> Review is the much needed call to review and improve the way IP  is being managed. The main suggestions and recommendations by the Review  Committee are:</p>
 		<br>
 
 		<ol>
@@ -104,4 +104,4 @@
 		</ol>
 		<br><br>
         <h3 class="primary-color"><strong>Conclusion</strong></h3>
-        <p>The <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/integrated-shield-plans/about-integrated-shield-plans--ips-.html" target="_blank" title="Integrated Shield Plans">Integrated Shield Plan</a> is an important hospital insurance catering  to those who want coverage higher than B2/C wards. However, the way IPs are  currently operating has caused much concern and frustration. Now that the  government has stepped in to initiate improvements, the future of IPs will  hopefully become more relevant, more sustainable and more affordable.</p>
+        <p>The <a href="https://www.moh.gov.sg/medishield-life/about-integrated-shield-plans" target="_blank" title="Integrated Shield Plans">Integrated Shield Plan</a> is an important hospital insurance catering  to those who want coverage higher than B2/C wards. However, the way IPs are  currently operating has caused much concern and frustration. Now that the  government has stepped in to initiate improvements, the future of IPs will  hopefully become more relevant, more sustainable and more affordable.</p>

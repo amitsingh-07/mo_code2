@@ -1,4 +1,9 @@
 export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
+const ARTICLE_API_BASE_URL = 'product/insurance-product';
+const ABOUT_US_API_BASE_URL = 'product/insurance-product';
+const CONTACT_US_API_BASE_URL = 'account-microservice';
+const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
+const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 
 export let apiConstants = {
     endpoint: {
@@ -13,6 +18,7 @@ export let apiConstants = {
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
         signUp: 'account/account-microservice/api/signup',
+        updateUserId: 'account/account-microservice/api/update?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
         setPassword: 'account/account-microservice/api/setPassword',
@@ -20,15 +26,22 @@ export let apiConstants = {
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
         userProfileInfo: 'account/account-microservice/api/getProfileSummary',
+        editContactDeatails: 'account/account-microservice/api/updateAddress',
+        editPassword: 'account/account-microservice/api/editPassword',
         article: {
-            getRecentArticles: 'article/article-microservice/api/getRecentArticles',
-            getArticleCategoryList: 'article/article-microservice/api/getArticleCategoryList',
-            getArticleCategory: 'article/article-micorservice/api/getArticleCategory',
-            getArticle: 'article/article-microservice/api/getArticle'
+            getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
+            getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
+            getArticleCategoryList: ARTICLE_API_BASE_URL + '/api/article/getArticlesByTagId',
+            getArticleCategoryAllList: ARTICLE_API_BASE_URL + '/api/article/getAllArticles',
+            getArticle: ARTICLE_API_BASE_URL + '/api/article/getArticleById',
+            getRelatedArticle: ARTICLE_API_BASE_URL + '/api/article/getTop3ArticlesByTagId'
         },
         aboutus: {
-            getCustomerReviews: 'aboutus/aboutus-microservice/api/getCustomerReviews',
-            sendContactUs: 'aboutus/aboutus-microservice/api/sendContactUs'
+            getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/review/getAllReviews',
+            sendContactUs: CONTACT_US_API_BASE_URL + '/api/contactus'
+        },
+        subscription: {
+            base: SUBSCRIPTION_API_BASE_URL + '/api/mailinglist/subscribe'
         },
         portfolio: {
             setInvestmentObjective: INVESTMENT_API_BASE_URL + 'api/CustomerInvestmentObjective',
@@ -47,8 +60,14 @@ export let apiConstants = {
             saveInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: 'account/account-microservice/createIFastAccount',
+            getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails'
         },
-        getPromoCode: '',
-        verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode'
+        willWriting: {
+            verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
+            createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile',
+            getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
+            updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile',
+            downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
+        }
     }
 };
