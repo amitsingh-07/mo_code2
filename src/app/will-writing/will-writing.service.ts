@@ -153,9 +153,10 @@ export class WillWritingService {
     // tslint:disable-next-line:forin
     for (const field in forms) {
       for (const control of forms[field].controls) {
-        const formGroup = { formName: formTitle[index], errors: [] };
+        const formGroup = { formName: '', errors: [] };
         // tslint:disable-next-line:forin
         for (const name in control.controls) {
+          formGroup.formName = formTitle[index];
           if (control.controls[name].invalid) {
             formGroup.errors.push(
               this.willWritingFormError[formName].formFieldErrors[field][name][Object.keys(control.controls[name]['errors'])
@@ -164,8 +165,8 @@ export class WillWritingService {
         }
         if (formGroup.errors.length > 0) {
           errors.errorMessages.push(formGroup);
-          index++;
         }
+        index++;
       }
     }
     return errors;
@@ -256,6 +257,7 @@ export class WillWritingService {
     for (const children of data) {
       children.relationship = WILL_WRITING_CONFIG.CHILD;
       children.pos = i;
+      children.formatedDob = new Date(children.dob['year'] + '-' + children.dob['month'] + '-' + children.dob['day']);
       this.willWritingFormData.children.push(children);
       i++;
     }
@@ -359,6 +361,26 @@ export class WillWritingService {
    */
   setBeneficiaryInfo(data: IBeneficiary[]) {
     this.willWritingFormData.beneficiary = data;
+    this.commit();
+  }
+
+  /**
+   * get PromoCode details.
+   * @returns PromoCode details.
+   */
+  getEnquiryId(): number {
+    if (!this.willWritingFormData.enquiryId) {
+      this.willWritingFormData.enquiryId = {} as number;
+    }
+    return this.willWritingFormData.enquiryId;
+  }
+
+  /**
+   * set PromoCode details.
+   * @param data - PromoCode details.
+   */
+  setEnquiryId(data: number) {
+    this.willWritingFormData.enquiryId = data;
     this.commit();
   }
 

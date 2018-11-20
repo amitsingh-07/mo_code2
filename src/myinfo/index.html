@@ -10,8 +10,8 @@
       if (query != null && window.opener && window.opener.success) {
         window.opener.success(query);
       } else {
-        if (window.opener.failed) {
-          window.opener.failed('FAILED FETCHING DATA FROM MYINFO');
+        if (window.opener && window.opener.failed) {
+          window.opener.failed('FAILED');
         } else {
           window.close();
         }
