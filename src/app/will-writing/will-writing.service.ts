@@ -364,6 +364,26 @@ export class WillWritingService {
     this.commit();
   }
 
+  /**
+   * get PromoCode details.
+   * @returns PromoCode details.
+   */
+  getEnquiryId(): number {
+    if (!this.willWritingFormData.enquiryId) {
+      this.willWritingFormData.enquiryId = {} as number;
+    }
+    return this.willWritingFormData.enquiryId;
+  }
+
+  /**
+   * set PromoCode details.
+   * @param data - PromoCode details.
+   */
+  setEnquiryId(data: number) {
+    this.willWritingFormData.enquiryId = data;
+    this.commit();
+  }
+
   checkBeneficiaryAge() {
     const beneficiaries = this.getBeneficiaryInfo().filter((beneficiary) =>
       beneficiary.relationship === 'child' && beneficiary.selected === true);

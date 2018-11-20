@@ -107,8 +107,8 @@ export class PasswordComponent implements OnInit {
       if (data.responseMessage.responseCode === 6000) {
         if (!this.willWritingService.getWillWritingFormData()) {
           sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
+          this.signUpService.clearData();
         }
-        this.signUpService.clearData();
         this.selectedPlansService.clearData();
         this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_CREATED]);
       }
