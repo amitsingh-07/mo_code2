@@ -181,6 +181,6 @@ export class WillWritingApiService {
         const payload = {
             customerId: this.appService.getCustomerId()
         };
-        return this.apiService.updateWill(payload);
+        return this.apiService.downloadWill(payload);
     }
 }
