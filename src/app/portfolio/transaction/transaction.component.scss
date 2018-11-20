@@ -1,6 +1,5 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
 .btn-group--toggle{
     &.tabs{
         .btn{
@@ -28,8 +27,9 @@
     }
 }
 
-.transactions{
-    background: $white-color;
+
+.transactions {
+ background: $white-color;
     text-align: center;
     font-family: $muli-regular;
     color: #5e5e5e;
@@ -138,4 +138,23 @@
             }   
         }
     }
+    .nav-item {
+        width: 50%;
+    }
+    .nav-tabs .nav-link {
+        border: none;
+        color: #d2d2d2;
+        font-size: 18px;
+        font-family: $muli-bold;
+        letter-spacing: -0.2px;
+        &.active {
+            color: #ff872f;
+            border-bottom: 6px solid #ff872f;
+        }
+    }
+    .card-header {
+        display: none;
+    }
 }
+
+   
