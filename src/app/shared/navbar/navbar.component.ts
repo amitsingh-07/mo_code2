@@ -17,6 +17,7 @@ import { NavbarService } from './navbar.service';
 
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -45,12 +46,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   notifications: any;
   count: any;
   totoalNotification: any;
+  isNotificationEnabled: boolean;
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router,
+    private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
@@ -67,6 +70,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.hideMenu();
+    this.isNotificationEnabled = this.canActivateNotification();
     this.innerWidth = window.innerWidth;
     this.navbarService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.navbarService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
@@ -151,5 +155,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 viewAllNotifications() {
   this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
   this.IsHidden = true;
+}
+canActivateNotification() {
+  const userInfo = this.signUpService.getUserProfileInfo();
+  if (!(userInfo && userInfo.firstName)) {
+    return false;
+  }
+  return true;
 }
 }
