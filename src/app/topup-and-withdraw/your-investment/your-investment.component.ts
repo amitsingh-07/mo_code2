@@ -103,6 +103,10 @@ export class YourInvestmentComponent implements OnInit {
       this.portfolioList = this.investmentoverviewlist.portfolios;
     });
   }
+  fundYourAccount() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+
+  }
 
   alertPopUp(i) {
     this.selected = i;
