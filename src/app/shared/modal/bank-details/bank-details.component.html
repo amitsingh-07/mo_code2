@@ -1,83 +1,17 @@
-<div class="modal-header">
- 
-</div>
 <div class="modal-body white-bg">
-
   <div class="modal-body-title">{{errorTitle}}</div>
   <div class="modal-body-message">
-   {{errorDescription}}</div>
-
-
-   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    {{errorDescription}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true"></span>
   </button>
-  
-  <div class="flex-row">
-    <div class="flex-col-6">
+
+  <div class="bank_logos">
+    <div class="img-content" *ngFor="let bank of bankDetailsLists; let i = index;">
+      <div class="img-border">
      
-      <img src="./assets/images/owl.svg" />
-      
-    </div>
-    <div class="flex-col-6">
-     
-        <img src="./assets/images/owl.svg" />
-     
-      <!-- <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" />
-      </div> -->
-     
+        <!-- <a download href="./assets/banks/icons/{{bank.value.pdf}}"><img src="./assets/banks/icons/{{bank.value.png}}" /></a> -->
+        <a download href="./assets/banks/instructions/5027.pdf"><img src="./assets/banks/icons/5027.png" /></a>
+      </div>
     </div>
   </div>
-
-
-  <div class="flex-row">
-      <div class="flex-col-6">
-        
-          <img src="./assets/images/owl.svg" />
-       
-        <!-- <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div> -->
-      </div>
-      <div class="flex-col-6">
-      
-          <img src="./assets/images/owl.svg" />
-       
-        <!-- <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" />
-        </div> -->
-       
-      </div>
-    </div>
-
-    <div class="flex-row">
-        <div class="flex-col-6">
-          
-            <img src="./assets/images/owl.svg" />
-          
-          <!-- <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div> -->
-        </div>
-        <div class="flex-col-6">
-         
-            <img src="./assets/images/owl.svg" />
-          
-          <!-- <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" />
-          </div> -->
-         
-        </div>
-      </div>
-
-      <div class="flex-row">
-          <div class="flex-col-6">
-            
-              <img src="./assets/images/owl.svg" />
-           
-            <!-- <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" /></div> -->
-          </div>
-          <div class="flex-col-6">
-           
-              <img src="./assets/images/owl.svg" />
-           
-            <!-- <div class="modal-title popup-header-icon"><img src="./assets/images/owl.svg" />
-            </div> -->
-           
-          </div>
-        </div>
-
-</div>

@@ -37,7 +37,7 @@ export class FundYourAccountComponent implements OnInit {
   setOnetimeInvestmentAmount;
   setMonthlyInvestmentAmount;
   fundDetails;
-
+  bankDetailsList;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -87,6 +87,7 @@ export class FundYourAccountComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+    this.getBankDetailsList();
     this.topupFormValues = this.topupAndWithDrawService.getTopUp();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     console.log(this.topupFormValues);
@@ -96,11 +97,20 @@ export class FundYourAccountComponent implements OnInit {
     const ref = this.modal.open(BankDetailsComponent, { centered: true });
     ref.componentInstance.errorTitle = 'Select Your Bank';
     ref.componentInstance.errorDescription = 'You will be transferring funds from:';
+    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
+    console.log(this.bankDetailsList);
     return false;
 
   }
   selectFundingMethod(index) {
     this.activeTabIndex = index;
+  }
+
+  getBankDetailsList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.bankDetailsList = data.objectList.bankList;
+      console.log(this.bankDetailsList);
+    });
   }
   goToNext() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
