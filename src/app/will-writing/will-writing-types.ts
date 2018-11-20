@@ -18,6 +18,7 @@ export interface IChild {
     uin: string;
     dob: string;
     pos: number;
+    formatedDob: Date;
 }
 
 export interface IGuardian {
@@ -82,16 +83,6 @@ export interface IWillProfileMembers {
     isTrusteee: string;
     isAltTrusteee: string;
     distribution: number;
-}
-
-export enum IRelationship {
-    parent = 'P',
-    sibling = 'SBL',
-    parent_in_law = 'PIL',
-    friend = 'F',
-    others = 'O',
-    spouse = 'S',
-    child = 'C'
 }
 
 export enum IMaritalStatus {

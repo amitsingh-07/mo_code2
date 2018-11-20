@@ -7,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -41,6 +43,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(
+    private appService: AppService,
     private formBuilder: FormBuilder,
     private router: Router,
     private translate: TranslateService,
@@ -67,6 +70,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     this.buildAboutMeForm();
     this.headerSubscription();
     this.footerService.setFooterVisibility(false);
+    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_WILL_WRITING);
   }
 
   setPageTitle(title: string) {

@@ -77,8 +77,9 @@
     letter-spacing: -0.2px;
     color: #fff;
     @include allmobiles{
+        font-size: 16px;
         color: #333846;
-        width:280px;
+        width:297px;
         text-align: center;
     }
 
@@ -191,13 +192,13 @@
     position: relative;
     .help-icon {
         background-image: url("../../../assets/images/help-icon.png");
-        width: 40px;
+        width: 20px;
         height: 20px;
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
         bottom: 5px;
-        right: -25px;
+        right: -8px;
         border-radius: 0;
     }
 }
@@ -253,4 +254,7 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #d8d8d8;
+  }
+  .relationship {
+      width: 119px;
   }

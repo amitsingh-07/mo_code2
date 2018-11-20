@@ -84,6 +84,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
    * build about me form.
    */
   buildMyFamilyForm() {
+    this.formName.push('My Spouse');
     this.myFamilyForm = this.formBuilder.group({
       spouse: this.formBuilder.array([this.buildSpouseForm()]),
       children: this.formBuilder.array([this.buildChildrenForm(0)]),
@@ -120,7 +121,6 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   buildSpouseForm(): FormGroup {
     if (this.hasSpouse) {
-      this.formName.push('My Spouse');
       return this.formBuilder.group({
         name: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].name : '',
         [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],

@@ -41,7 +41,7 @@
         },
         {
           "text": "Parent-in-law",
-          "value": "parent_in_law"
+          "value": "parent-in-law"
         },
         {
           "text": "Friend",
@@ -117,7 +117,8 @@
       }
     },
     "MY_CHILDS_GUARDIAN": {
-      "TITLE": "My Children's Guardians",
+      "TITLE_SPOUSE": "My Children's Guardians",
+      "TITLE": "My Children's Guardian",
       "SUB_TITLE_WITHOUT_SPOUSE": "Your children under 21 years old would need a guardian to care for and protect their interests.",
       "SUB_TITLE_WITH_SPOUSE": "Your spouse will be the natural guardian of your children under 21 years old.",
       "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
@@ -127,7 +128,7 @@
       "ALTERNATIVE_SUB_TITLE": "Takes over the role as your children’s guardian in the event that your spouse passes on before you.",
       "GUARDIAN_SUB_TITLE": "We recommend you to appoint a family member, friend or someone you trust.",
       "FORM_TITLE_WITHOUT_SPOUSE": "My children’s guardian is",
-      "FORM_TITLE_WITH_SPOUSE": "My children’s guardian are",
+      "FORM_TITLE_WITH_SPOUSE": "My children’s guardians are",
       "TOOLTIP_TITLE": "Role Of A Guardian ",
       "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your children after you have passed on, until they reach the age of 21.</p><p>Taking over your role as the “parent”, the guardian will have the ability to make decisions that affect your children, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your children’s guardian to seek their agreement.</p>"
     },
@@ -137,7 +138,7 @@
     },
     "APPOINT_YOUR_EXECUTOR_TRUSTEE": {
       "TITLE": "Appoint Your Executors & Trustees",
-      "SUB_TITLE": "In the next step, you will appoint someone to manage and carry out the wishes of your will."
+      "SUB_TITLE": "In the next step, you will appoint 2 people to manage and carry out the wishes of your will."
     },
     "ELIGIBILITY": {
       "TITLE": "Check Your Eligibility",
@@ -175,7 +176,7 @@
       },
       "MUSLIM_ERROR": {
         "TITLE": "Sorry, we are unable to assist you.",
-        "MESSAGE": "As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer."
+        "MESSAGE": "<div class='mb15'>As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer.</div>"
       }
     },
     "REVIEW_YOUR_DETAILS": {
@@ -184,14 +185,15 @@
     },
     "MY_EXECUTOR_TRUSTEE": {
       "TITLE": "My Executors & Trustees",
-      "SUB_TITLE": "As this person plays a critical role in executing your will, please choose someone you trust.",
+      "TITLE2": "My Executor & Trustee",
+      "SUB_TITLE": "As this is a critical role in the execution of your will, please choose people that you trust.",
       "FORM_TITLE": "My executors & trustees are",
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",
-      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role as your children’s guardian in the event that your spouse passes on before you.",
+      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role of executor & trustee in the event that your spouse passes on before you.",
       "TOOLTIP_TITLE": "Role Of An Executor & Trustee",
-      "TOOLTIP_MESSAGE": "<p>After you have passed on, your executor & trustee is in charge of carrying out the wishes of your will. As the 2 roles tend to overlap, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes settling outstanding debts of your estate (using your assets) and distributing your estate according to your wishes.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>",
+      "TOOLTIP_MESSAGE": "<p>After you have passed on, your executor and trustee is in charge of carrying out the wishes of your will. As the 2 roles tend to overlap, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes settling outstanding debts of your estate (using your assets) and distributing your estate according to your wishes.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>",
       "MESSAGE_TOOLTIP": "Generally, we advise you to appoint a family member or trusted friend as executor & trustee."
     },
     "MY_BENEFICIARY": {

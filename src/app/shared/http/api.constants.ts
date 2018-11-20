@@ -1,7 +1,7 @@
 const PORTFOLIO_API_BASE_URL = 'invest/investment-microservice/';
 const ARTICLE_API_BASE_URL = 'product/insurance-product';
 const ABOUT_US_API_BASE_URL = 'product/insurance-product';
-const CONTACT_US_API_BASE_URL = 'account-microservice';
+const CONTACT_US_API_BASE_URL = 'account/account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
@@ -62,6 +62,7 @@ export let apiConstants = {
             createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile',
             getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
             updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile',
+            downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
         }
     }
 };

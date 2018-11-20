@@ -28,7 +28,7 @@
         <div class="estateDistributionForm">
               <div *ngIf="true" class="estate-distribution-form">
                 <div class="form-title mb10">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.ESTATE_DISTRIBUTION' | translate}}</div>
-                  <div *ngFor="let currentDist of estateDistList; let i = index" class="form-group-single-column mb15">
+                  <div *ngFor="let currentDist of beneficiaryList; let i = index" class="form-group-single-column mb15">
                       <div class="col-6 header-label" *ngIf="currentDist.selected === true">
                         <label for="beneficiary_{{i+1}}" id="beneficiary_{{i+1}}">
                           <div class="input-label-black">{{currentDist.name | titlecase}}</div>
@@ -38,7 +38,7 @@
                       </div>
                       <div class="col-5"  *ngIf="currentDist.selected === true">
                           <div class="form-control">   
-                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" maxLength="3" pattern="(100)|(0*\d{1,2})" type="text" class="input-control"
+                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" maxLength="3" type="text" class="input-control"
                             value="{{currentDist.distPercentage}}" formControlName="percent" >
                           <i>%</i>
                         </div>

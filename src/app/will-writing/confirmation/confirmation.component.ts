@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WillWritingFormData } from '../will-writing-form-data';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IBeneficiary } from '../will-writing-types';
@@ -15,7 +16,7 @@ import { WillWritingService } from '../will-writing.service';
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.scss']
 })
-export class ConfirmationComponent implements OnInit {
+export class ConfirmationComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: string;
 
@@ -29,16 +30,19 @@ export class ConfirmationComponent implements OnInit {
     private translate: TranslateService,
     private willWritingService: WillWritingService,
     public footerService: FooterService,
+    public navbarService: NavbarService,
     private willWritingApiService: WillWritingApiService,
     private router: Router) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_4');
       this.pageTitle = this.translate.instant('WILL_WRITING.CONFIRMATION.TITLE');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     this.willWritingService.setFromConfirmPage(false);
     this.willWritingFormData = this.willWritingService.getWillWritingFormData();
     const estateDistribution = this.willWritingFormData.beneficiary.filter((beneficiary) => beneficiary.selected === true);
@@ -53,6 +57,14 @@ export class ConfirmationComponent implements OnInit {
       }
     }
     this.footerService.setFooterVisibility(false);
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
+  ngOnDestroy() {
+    this.navbarService.unsubscribeBackPress();
   }
 
   edit(url) {

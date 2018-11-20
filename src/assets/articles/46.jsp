@@ -1,6 +1,6 @@
 <img src="/assets/articles/images/46/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 
-<p><a href="https://www.moneyowl.com/#/articles/entry/45">In our  previous article</a>, we shared a simple guide of how you can identify types of products to suit your retirement needs. In this final part of our focus on the Supplementary Retirement Scheme (SRS), we compare products that are available. </p>
+<p><a href="#/articles/entry/45">In our  previous article</a>, we shared a simple guide of how you can identify types of products to suit your retirement needs. In this final part of our focus on the Supplementary Retirement Scheme (SRS), we compare products that are available. </p>
 <br>
 <h3 class="primary-color"><strong>A: If you are looking for a product that pays a stream of income for life</strong></h3>
 <br>
@@ -37,10 +37,12 @@
 <br>
 
 <p><strong>NTUC Income Guaranteed Life Annuity: </strong>Having a yearly  payout that increases (subject to NTUC Income&rsquo;s performance) helps to take care  of inflation otherwise the value of money will erode over time.</p>
+<br/>
 <p style="padding:15px 25px"><em>Example on the effects of inflation:</em><br>
   <em>If inflation is at an average of 3% yearly, the real value of $1 now will turn into $0.50 after 24 years. In other words, you will need $2 in 24 years&rsquo; time to buy what you can with $1 today.</em></p>
 <br>
 <p><strong>Manulife Retire-Ready:</strong> Although its payout does not increase yearly, it provides an extra yearly payout in the event of a severe disability (same definition used for ElderShield). This  benefit is relevant to retirees as the risk of such disability increases as one  grows older.</p>
+<br/>
 <p><strong><em>How do the  products compare?</em></strong></p>
 <p>Using the  example of a male, non-smoker, age last birthday 45, has $60,000 in SRS and  preference for an income payout to start around age 65:</p>
 <br>
@@ -165,16 +167,21 @@
 </div>
 <small class="text-muted">Some figures  are estimated. Please refer to the product illustration for details. <br>
   * based on  4.75% projection (non-guaranteed)<br>
-  # if unable  to perform at least 3 out of 6 Activities of Daily Living, i.e. feeding,  washing, dressing, toileting, transferring and mobility.<br>
+	# if unable  to perform at least 3 out of 6 Activities of Daily Living, i.e. feeding,  washing, dressing, toileting, transferring and mobility.<br>
+	*Data from MoneyOwl, as of 3 October 2017<br>
   Gtd:  Guaranteed</small>
 <br><br>
 <p>You will  notice that the payout for NTUC begins one year earlier due to an inherent  constraint of the product&rsquo;s structure.</p>
 <br>
 <h3 class="primary-color"><strong><em>Key Observations</em></strong></h3>
 <p><strong>Nature of income payout:</strong> In the  table, you will see how the yearly payout changes over time for the NTUC  policy, while the Manulife policy remains the same. And even though age 90 is  used for computation in the table, the payout from these policies would  continue beyond age 90 as long as one is alive.<strong></strong></p>
+<br/>
 <p><strong>Yearly payout amount:</strong> The initial  payout from NTUC ($6,285) is lower than Manulife ($7,070). However, at older  ages the projected payout from NTUC can be quite high. At age 90, NTUC payout might  increase to $10,311 while Manulife payout remains at $7,070.</p>
+<br/>
 <p><strong>Total amount of payouts:</strong> The total  amount of payouts till age 85 and 90 show that NTUC policy offers higher  projected payout than Manulife. At age 90, the internal return for NTUC policy  is around 4% and Manulife is around 3.5%. A higher internal return means that  you are getting more payout per dollar of premium paid. </p>
+<br/>
 <p><strong>Additional benefits:</strong> The  additional benefit from Manulife is contingent of one suffering from a severe  disability, when its payout would increase by $3,600/year. This narrows the  differences between the two products. </p>
+<br/>
 <p><strong>Conclusion:</strong> From the above example, it would appear that <strong>NTUC Income Guaranteed Life Annuity</strong> offers  better value.</p>
 <p>&nbsp;</p>
 <h3 class="primary-color"><strong>B: If you prefer to have a plan with  higher payout over a shorter and fixed number of years rather than a plan with lower  payout over lifetime </strong></h3>
@@ -227,8 +234,10 @@
 	  </tr>
 	</table>
 </div>
+<small class="text-muted">*Data from MoneyOwl, as of 3 October 2017</small>
 <br>
 <p>Every product is structured differently hence your choice of plan depends on when you  prefer your income payout to begin and how long the payout should last. Fundamentally,  these products are similar since the income payout comprises of both guaranteed  and non-guaranteed amounts.</p>
+<br/>
 <p>Tokio Marine&rsquo;s plan allows you to do a yearly SRS contribution to the same policy so this provides you extra convenience when you top-up. For other insurers, you  will need to go through the entire application process for every SRS top up. </p>
 <p><strong><em>&nbsp;</em></strong></p>
 <h3 class="primary-color"><strong><em>How do these  products compare?</em></strong></h3>
@@ -307,12 +316,16 @@
 </div>
 <small class="text-muted">Some figures are estimated. Please refer to the product illustration for details.<br>
   * based on 4.75% projection found  in benefit illustration.<br>
-  # if unable to perform at least 3  out of 6 Activities of Daily Living, i.e. feeding, washing, dressing, toileting, transferring and mobility.</small>
+	# if unable to perform at least 3  out of 6 Activities of Daily Living, i.e. feeding, washing, dressing, toileting, transferring and mobility.<br>
+	*Data from MoneyOwl, as of 3 October 2017</small>
 <p>&nbsp;</p>
 <h3 class="primary-color"><strong><em>Key Observations</em></strong></h3>
 <p><strong>Projected benefits:</strong>You would probably notice that their benefit projections are quite high. All 3 products offer a projected return of more than 4%, which I personally  think is good for an insurance product. NTUC Income&rsquo;s SAIL offers the highest  at 4.4%. The differences in internal return between the products is quite small.   </p>
+<br/>
 <p><strong>Guaranteed payout:</strong> When you look at row of &ldquo;Breakdown of Yearly Payout&rdquo; in the table, Manulife policy  offers the highest guaranteed portion. Half of the projected yearly payout for  Manulife is guaranteed. For the other two plans, about 20 to 25 percent of the  projected payout is guaranteed. Hence, for those who are risk averse, a higher  guarantee portion will be more assuring.</p>
+<br/>
 <p><strong>Additional benefits:</strong> In the event one suffers a severe disability, Manulife&rsquo;s policy will pay an additional  annual income of $4,800 on top of the regular payout. When this occurs, the projected  internal return would be even higher than the 4.1% as shown above.</p>
+<br/>
 <p><strong>Conclusion:</strong> In this comparison, I would think <strong>Manulife Retire-Ready</strong> policy offers better  value. </p>
 <p>&nbsp;</p>
 <h3 class="primary-color"><strong>In conclusion:</strong></h3>

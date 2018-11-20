@@ -141,24 +141,18 @@
                 </div>
             </div>
         </div>
-    <!-- 
     <div class="home__licensed-tab-section">
-        <div class="home__licensed-tab-section--inner">
-            <div class="licensed-tab__trust-container">
-                <img src="assets/images/trust-us-icon.svg"/>
-                <div class="licensed-tab__text-container">
-                    <p class="primary ">{{'TRUSTED.TITLE'  | translate}}</p>
-                    <p class="secondary" [innerHTML]="trustedSubTitle"></p>
-                    </div>
-                </div>
-            <div class="licensed-tab__icon-container">
+        <p class="licensed-tab-section--title">{{'TRUSTED.TITLE' | translate}}</p>
+        <div class="licensed-tab-section__inner-container">
+            <div class="licensed-tab-section__icon-container">
                 <div class="licensed-tab__icon" *ngFor="let reason of trustedReasons">
                     <img src="{{reason.IMAGE}}"/>
-                    <p>{{reason.LABEL}}</p>
+                    <p innerHTML="{{reason.LABEL}}"></p>
                     </div>
                 </div>
             </div>
-        </div>-->
+        <div class="btn btn-primary licensed-tab-section--more-btn" routerLink="/about-us/why-buy-from-moneyowl">{{'TRUSTED.BTN_LABEL' | translate}}</div>
+        </div>
     <div class="home__reviews">
         <div class="home__review--header">
             {{'REVIEWS.TITLE' | translate}}
