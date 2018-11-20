@@ -1,19 +1,23 @@
 <head>
   <script>
-    window.addEventListener('load', function(){setTimeout(redirect(), 100)}, false);
+    window.addEventListener('load', function () {
+      setTimeout(redirect(), 100)
+    }, false);
 
     function redirect() {
       var query = null;
       if (document.location.href.indexOf('?') >= 0) {
         query = document.location.href.split('?')[1];
       }
-      if (query != null && window.opener && window.opener.success) {
+      if (query != null && window.opener && typeof window.opener.failed == 'function') {
         window.opener.success(query);
       } else {
-        if (window.opener && window.opener.failed) {
+        if (window.opener && typeof window.opener.failed == 'function') {
           window.opener.failed('FAILED');
         } else {
-          window.close();
+          if (!window.close()) {
+            window.location.href = '/';
+          }
         }
       }
     }
