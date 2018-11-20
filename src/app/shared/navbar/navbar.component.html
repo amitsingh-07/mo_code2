@@ -20,12 +20,13 @@
                     <p class="secondary">powered by DIYInsurance</p>
                     </li>
                 </div>
+                <div *ngIf="isNotificationEnabled">
                 <button class="notification-icon hidden-lg" type="button" (click)="onSelect()" >
 
                     <span class="notification-number">{{ count }}</span>
                     
                     </button>
-                    
+                </div>
                     <div class="notification-tooltip__arrow" [hidden]="IsHidden"></div>
                     
                     <div class="notification-tooltip" [hidden]="IsHidden">
