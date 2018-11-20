@@ -85,16 +85,6 @@ export interface IWillProfileMembers {
     distribution: number;
 }
 
-export enum IRelationship {
-    parent = 'P',
-    sibling = 'SBL',
-    parent_in_law = 'PIL',
-    friend = 'F',
-    others = 'O',
-    spouse = 'S',
-    child = 'C'
-}
-
 export enum IMaritalStatus {
     single = 'S',
     married = 'M',
