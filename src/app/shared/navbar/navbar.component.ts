@@ -108,6 +108,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
+      if ( navbarMode !== 2) {
+      this.isNotificationEnabled = this.canActivateNotification();
+      } else {
+        this.isNotificationEnabled = false;
+      }
       this.cdr.detectChanges();
     });
     this.navbarService.currentNavbarShadowVisibility.subscribe((showNavShadow) => {
