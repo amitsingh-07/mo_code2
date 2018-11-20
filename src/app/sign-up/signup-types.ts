@@ -4,6 +4,7 @@ export interface ISignUp {
     selectedProducts: IPlan[];
     captcha: any;
     sessionId: any;
+    journeyType: string;
 }
 
 export interface IEnquiryUpdate {
@@ -50,6 +51,7 @@ export interface ISetPassword {
     resetType: string;
     resetCode: string;
     selectedProducts: IPlan[];
+    journeyType: string;
 }
 
 export interface IVerifyCode {

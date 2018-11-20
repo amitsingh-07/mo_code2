@@ -40,21 +40,25 @@ export class TestMyInfoComponent implements OnInit {
     });
     this.authService.authenticate().subscribe((token) => {
     });
-    this.route.params.subscribe((params) => {
-      if (params.myinfo && this.myInfoService.isMyInfoEnabled) {
-        this.myInfoService.getMyInfoData().subscribe((data) => {
-          if (data && data['objectList']) {
-            this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-            this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
-            this.myInfoService.isMyInfoEnabled = false;
-            this.setFormTotalValue();
-            this.closeMyInfoPopup(false);
-          } else {
-            this.closeMyInfoPopup(true);
-          }
-        }, (error) => {
-          this.closeMyInfoPopup(true);
-        });
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+          this.myInfoService.getMyInfoData().subscribe((data) => {
+            if (data && data['objectList']) {
+              this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+              this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
+              this.myInfoService.isMyInfoEnabled = false;
+              this.setFormTotalValue();
+              this.closeMyInfoPopup();
+              } else {
+                this.closeMyInfoPopup();
+              }
+          }, (error) => {
+            this.closeMyInfoPopup();
+          });
+        } else {
+          this.closeMyInfoPopup();
+        }
       }
     });
   }
@@ -62,9 +66,11 @@ export class TestMyInfoComponent implements OnInit {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.testMyInfoForm.value);
   }
 
-  closeMyInfoPopup(error: boolean) {
+  closeMyInfoPopup() {
     this.myInfoService.closeFetchPopup();
-    if (error) {
+    if (this.myInfoService.isMyInfoEnabled) {
+      this.myInfoService.changeListener.next('');
+      this.myInfoService.isMyInfoEnabled = false;
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';
       ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';

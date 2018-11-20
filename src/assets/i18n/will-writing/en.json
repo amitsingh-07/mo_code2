@@ -117,8 +117,8 @@
       }
     },
     "MY_CHILDS_GUARDIAN": {
-      "TITLE": "My Children's Guardians",
-      "TITLE2": "My Children's Guardian",
+      "TITLE_SPOUSE": "My Children's Guardians",
+      "TITLE": "My Children's Guardian",
       "SUB_TITLE_WITHOUT_SPOUSE": "Your children under 21 years old would need a guardian to care for and protect their interests.",
       "SUB_TITLE_WITH_SPOUSE": "Your spouse will be the natural guardian of your children under 21 years old.",
       "BOTTOM_INFO": "Your spouse will be the natural guardian of your child. However you may appoint an alternative guardian in the unfortunate event that your spouse no longer around.",
