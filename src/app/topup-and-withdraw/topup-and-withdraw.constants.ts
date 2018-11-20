@@ -1,1 +1,6 @@
-export let    TOPUPANDWITHDRAW_CONFIG = {};
+export let TOPUPANDWITHDRAW_CONFIG = {
+    TOPUP: {
+        ONE_TIME_INVESTMENT_OPTION_ID: 1,
+        MONTHLY_INVESTMENT_OPTION_ID: 2
+    }
+};

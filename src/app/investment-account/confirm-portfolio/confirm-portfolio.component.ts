@@ -1,3 +1,5 @@
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -20,9 +22,11 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import {
     AccountCreationErrorModalComponent
 } from '../account-creation-error-modal/account-creation-error-modal.component';
+import { FundDetails } from '../fund-your-account/fund-details';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -30,7 +34,6 @@ import {
     EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
-import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
 @Component({
   selector: 'app-confirm-portfolio',
@@ -65,6 +68,7 @@ export class ConfirmPortfolioComponent implements OnInit {
     private modal: NgbModal,
     public navbarService: NavbarService,
     public portfolioService: PortfolioService,
+    public topupAndWithDrawService: TopupAndWithDrawService,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -89,7 +93,22 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.investmentAccountService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
       this.riskProfileImage = ProfileIcons[this.portfolio.riskProfile.id - 1]['icon'];
+      const fundingParams = this.constructFundingParams(data.objectList);
+      this.topupAndWithDrawService.setFundingDetails(fundingParams);
     });
+  }
+
+  constructFundingParams(data): FundDetails {
+    const topupValues = {
+      oneTimeInvestment: data.initialInvestment,
+      monthlyInvestment: data.monthlyInvestment,
+      investmentAmount: 0,
+      fundingAmount: 0,
+      fundingType: '',
+      source: 'FUNDING'
+      portfolio: data.riskProfile.type
+    };
+    return topupValues;
   }
 
   constructgetPortfolioParams() {
@@ -210,6 +229,8 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (pepData == true) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+      /*
       this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
         // CREATE INVESTMENT ACCOUNT
         console.log('Attempting to create ifast account');
@@ -233,11 +254,7 @@ export class ConfirmPortfolioComponent implements OnInit {
           ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
           ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
         });
-      });
+        */
+      }
     }
-
-  }
-
-  
-
 }

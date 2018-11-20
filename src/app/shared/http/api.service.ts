@@ -600,4 +600,11 @@ export class ApiService {
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
+
+  getTransferDetails() {
+    return this.http.get(apiConstants.endpoint.investmentAccount.getFundTransferDetails)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }

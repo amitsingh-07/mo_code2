@@ -50,6 +50,7 @@ export let apiConstants = {
             saveInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: 'account/account-microservice/createIFastAccount',
+            getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails'
         },
         getPromoCode: '',
         verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode'
