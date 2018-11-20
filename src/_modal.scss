@@ -742,3 +742,13 @@ body.modal-open::-webkit-scrollbar {
     }
   }
 }
+
+.will-custom-modal {
+    .modal-body{
+        width: 375px !important;
+        @include allmobiles{
+          width: 100vw !important;
+        }      
+    }
+}
+
