@@ -408,14 +408,14 @@ export class WillWritingService {
   }
 
   openToolTipModal(title: string, message: string) {
-    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true, windowClass: 'will-custom-modal' });
     ref.componentInstance.tooltipTitle = title;
     ref.componentInstance.tooltipMessage = message;
     return false;
   }
 
   openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal'});
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
       ref.componentInstance.formName = formName;
