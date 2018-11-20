@@ -24,6 +24,7 @@ export class ArticleComponent implements OnInit {
       this.getStartedArticleList = this.articleService.getArticleElementList(data);
     });
     this.articleApiService.getRecentArticle(8).subscribe((data) => {
+      console.log(data);
       this.recentArticleList = this.articleService.getArticleElementList(data);
     });
     this.footerService.setFooterVisibility(true);

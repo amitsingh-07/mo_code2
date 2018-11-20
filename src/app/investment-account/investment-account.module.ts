@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { AccountCreationErrorModalComponent } from './account-creation-error-modal/account-creation-error-modal.component';
 import {
     AccountSetupCompletedComponent
 } from './account-setup-completed/account-setup-completed.component';
@@ -48,7 +49,8 @@ import {
     UploadDocumentsLaterComponent
 } from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-import { AccountCreationErrorModalComponent } from './account-creation-error-modal/account-creation-error-modal.component';
+import { ViewAllNotificationsComponent } from './view-all-notifications/view-all-notifications.component';
+import { TopBarWithClearButtonComponent } from './top-bar-with-clear-button/top-bar-with-clear-button.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -98,7 +100,9 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationSubmitComponent,
     UploadDocumentBOComponent,
     FundYourAccountComponent,
-    AccountCreationErrorModalComponent
+    AccountCreationErrorModalComponent,
+    ViewAllNotificationsComponent,
+    TopBarWithClearButtonComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

@@ -1,6 +1,6 @@
-<div class="text-center"><img src="./../../../assets/articles/images/11/pic01.gif" alt="Part 4: How To Choose The Right Plan?"></div>
+<div class="text-center"><img src="/assets/articles/images/11/pic01.gif" alt="Part 4: How To Choose The Right Plan?"></div>
 		<br><br>
-		<p>Hospitalisation insurance is one of the  most important policies everyone should have. Without it, one could be easily  saddled with huge medical bills that would cause havoc to his/her financial  life. With the advancements in the medical industry, many conditions are now  treatable with lesser side effects and provide a faster recovery. While all  these developments are good, the medical bills may not be as appealing. Thankfully,  having MediShield (Life) and the right <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/integrated-shield-plans/about-integrated-shield-plans--ips-.html" target="_blank" title="Integrated Shield Plans">Integrated Shield Plans (IPs)</a> , these large  bills can be taken care of.</p>
+		<p>Hospitalisation insurance is one of the  most important policies everyone should have. Without it, one could be easily  saddled with huge medical bills that would cause havoc to his/her financial  life. With the advancements in the medical industry, many conditions are now  treatable with lesser side effects and provide a faster recovery. While all  these developments are good, the medical bills may not be as appealing. Thankfully,  having MediShield (Life) and the right <a href="https://www.moh.gov.sg/medishield-life/about-integrated-shield-plans" target="_blank" title="Integrated Shield Plans">Integrated Shield Plans (IPs)</a> , these large  bills can be taken care of.</p>
 		<p>But how does one choose the right plan?  There are no straightforward answers but the following provides you with 3 key  considerations to use as a guide when choosing a plan that best suits you and  your family&rsquo;s needs.</p>
 		<br>
 
@@ -11,14 +11,14 @@
 			  	<p><strong>Desired Level of Healthcare</strong></p>
 				<p>In which ward class do you intend to be warded in the  event of <a href="http://www.moneysense.gov.sg/Understanding-Financial-Products/Insurance/Types-of-Insurance/Health-insurance/Types-of-Health-Insurance/Medical-Expense-Insurance.aspx" target="_blank" title="Types of Medical Expense Insurance">hospitalisation</a>? Some do not mind subsidised wards (i.e. B2/C wards)  while others prefer a more comfortable environment with more amenities such as air-conditioning, television and a personal  bathroom in their wards (i.e. A/B1 wards). There are also those who do not mind  buying pricier plans for private hospitals so they can receive treatment  without the long wait and have the privilege of choosing their doctors in the  private practice who are perceived to be better.</p>
 				<p>Having the right plan is important because you will  end up paying much more if you stay in a ward class that is higher than your  entitlement. </p>
-                <p>Based on the <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank" title="MediShield Life">MediShield Life</a> Review Committee Report,  70% of policyholders who have IPs for Class A wards actually end up staying in  a ward of lower class than their entitlement while another 10% of policyholders  end up staying in private hospitals (higher class ward). This could be because people  prefer having options in the event that they must go to a private hospital.</p>
+                <p>Based on the <a href="https://www.medishieldlife.sg/" target="_blank" title="MediShield Life">MediShield Life</a> Review Committee Report,  70% of policyholders who have IPs for Class A wards actually end up staying in  a ward of lower class than their entitlement while another 10% of policyholders  end up staying in private hospitals (higher class ward). This could be because people  prefer having options in the event that they must go to a private hospital.</p>
 			</li>
 			<br>
 			<li>
 				<p><strong>Long Term Affordability </strong></p>
 				<p>Because premiums for IPs are based on the age it was  attained, therefore premiums increases with age (see table below). Do note that  these premiums are not fixed and are subject to increase in the event of medical  inflation and claim experience similar to 2008 and 2013. </p>
 
-				<div class="text-center"><img src="./../../../assets/articles/images/11/pic02.gif" alt="Excerpt from MediShield Life Review Committee Report"></div>
+				<div class="text-center"><img src="/assets/articles/images/11/pic02.gif" alt="Excerpt from MediShield Life Review Committee Report"></div>
 			  	<small><i><br>(Excerpt from MediShield Life Review Committee  Report)</i></small>
 				<br><br>
 				<p>Premiums may be affordable now, but one should really  consider whether it would still be within his/her means when he/she reaches 60  - 90 years old. </p>

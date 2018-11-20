@@ -1,14 +1,13 @@
-<%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<img src="images/46/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="/assets/articles/images/46/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 
-<p><a href="html?title=Heres+How+to+Use+Your+Funds+in+the+SRS&art_id=45">In our  previous article</a>, we shared a simple guide of how you can identify types of products to suit your retirement needs. In this final part of our focus on the Supplementary Retirement Scheme (SRS), we compare products that are available. </p>
+<p><a href="https://www.moneyowl.com/#/articles/entry/45">In our  previous article</a>, we shared a simple guide of how you can identify types of products to suit your retirement needs. In this final part of our focus on the Supplementary Retirement Scheme (SRS), we compare products that are available. </p>
 <br>
 <h3 class="primary-color"><strong>A: If you are looking for a product that pays a stream of income for life</strong></h3>
 <br>
 <p>We compare  the following products that payout for life (annuities):</p>
 <ul class="bluedot">
   <li><strong><em>NTUC Income Guaranteed Life Annuity</em></strong></li>
-  <li><strong><em><a href="https://www.manulife.com.sg/our-solutions/save/retirement/retire-ready.html" target="_blank">Manulife Retire-Ready</a></em></strong></li>
+  <li><strong><em>Manulife Retire-Ready</em></strong></li>
 </ul>
 <p>Although both  provide lifetime income, they have key differences as shown below:</p>
 <div class="table-responsive">
@@ -181,9 +180,9 @@
 <h3 class="primary-color"><strong>B: If you prefer to have a plan with  higher payout over a shorter and fixed number of years rather than a plan with lower  payout over lifetime </strong></h3>
 <p>In this category, you have plenty of choices to choose from. I will highlight 3 good products for  comparison:</p>
 <ul class="bluedot">
-    <li><strong><em><a href="https://www.manulife.com.sg/our-solutions/save/retirement/retire-ready.html" target="_blank">Manulife Retire-Ready</a> (limited years)</em></strong></li>
-  <li><strong><em><a href="https://www.income.com.sg/savings-and-investments/savings-plans-single-premium/sail" target="_blank">NTUC Income SAIL</a></em></strong></li>
-  <li><strong><em><a href="https://www.tokiomarine.com/sg/en/personal/save/for-your-retirement/tm-retirement-SP.html" target="_blank">Tokio Marine TM Retirement @65</a></em></strong></li>
+    <li><strong><em>Manulife Retire-Ready (limited years)</em></strong></li>
+  <li><strong><em>NTUC Income SAIL</em></strong></li>
+  <li><strong><em>Tokio Marine TM Retirement @65</em></strong></li>
 </ul>
 
 <p>Structures  and features of limited-pay SRS-approved plans:</p>
@@ -317,14 +316,16 @@
 <p><strong>Conclusion:</strong> In this comparison, I would think <strong>Manulife Retire-Ready</strong> policy offers better  value. </p>
 <p>&nbsp;</p>
 <h3 class="primary-color"><strong>In conclusion:</strong></h3>
-<p>There are  many options available to make your SRS funds work harder rather than just leaving it as bank deposit. Retirement income-based insurance is one of these  options. You can <a href="/portal/compare/retirement-income">click here  to compare retirement income products</a> or send us a <a href="/portal/products/quote">Quote  Request</a> here. Alternatively, you may want to give us a call at 6309-2478 and we  can guide you in the selection process. <br>
- </p>
+<p>There are  many options available to make your SRS funds work harder rather than just leaving it as bank deposit. Retirement income-based insurance is one of these  options.
+</p>
 
  <p>There is not much time left so act soon and contribute to your SRS to enjoy tax-savings next year.</p>
  <br>
-<div class="text-xs-center"><a href="../compare/retirement-income">
-  <img src="../assets/images/banners/compare_ri_540w.png" alt="compare retirement plans"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+  <img src="../assets/images/banners/compare_ri_540w.png" alt="direct retirement plans"></a>
 </div>
+-->
 <br>
 <small class="text-muted"><em>Disclaimers: </em><br>
 

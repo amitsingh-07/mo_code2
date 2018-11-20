@@ -36,6 +36,7 @@ import {
     UploadDocumentsLaterComponent
 } from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { ViewAllNotificationsComponent } from './view-all-notifications/view-all-notifications.component';
 
 const routes: Routes = [
   {
@@ -137,6 +138,11 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.FUND_YOUR_ACCOUNT,
     component: FundYourAccountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: INVESTMENT_ACCOUNT_ROUTES.VIEW_ALL_NOTIFICATIONS,
+    component: ViewAllNotificationsComponent,
     canActivate: [AuthGuard]
   }
 ];

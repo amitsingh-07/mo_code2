@@ -44,16 +44,30 @@ export class SignUpApiService {
   createAccountBodyRequest(captchaValue): ISignUp {
     const selectedPlan: IPlan[] = [];
     let userInfo: UserInfo;
+    let journey = 'insurance';
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) {
       userInfo = this.directService.getUserInfo();
-    } else {
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       userInfo = this.guideMeService.getUserInfo();
+    } else {
+      journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
+      userInfo = {
+        gender: 'male',
+        dob: '',
+        customDob: '',
+        smoker: '',
+        dependent: 0,
+      };
     }
     const getAccountInfo = this.signUpService.getAccountInfo();
-    const selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    let selectedPlanData = { enquiryId: 0, plans: [] };
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    }
     const formatDob = userInfo.dob;
     const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;
-    const investmentEnqId = this.authService.getEnquiryId(); // Investment Enquiry ID
+    const investmentEnqId = Number(this.authService.getEnquiryId()); // Investment Enquiry ID
     return {
       customer: {
         id: 0,
@@ -72,7 +86,8 @@ export class SignUpApiService {
       enquiryId: selectedPlanData.enquiryId ? selectedPlanData.enquiryId : investmentEnqId,
       selectedProducts: selectedPlanData.plans,
       sessionId: this.authService.getSessionId(),
-      captcha: captchaValue
+      captcha: captchaValue,
+      journeyType: journey
     };
   }
 
@@ -120,14 +135,21 @@ export class SignUpApiService {
   setPasswordBodyRequest(pwd: string): ISetPassword {
     const custRef = this.signUpService.getCustomerRef();
     const resCode = this.signUpService.getResetCode();
-    const selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    let selectedPlanData = { enquiryId: 0, plans: [] };
+    let journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+    this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      journey = 'insurance';
+      selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    }
     return {
       customerRef: custRef,
       password: this.cryptoService.encrypt(pwd),
       callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
       resetType: 'New',
       selectedProducts: selectedPlanData.plans,
-      resetCode: resCode
+      resetCode: resCode,
+      journeyType: journey
     };
   }
 
