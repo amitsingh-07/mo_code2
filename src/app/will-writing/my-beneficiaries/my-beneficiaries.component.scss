@@ -59,7 +59,7 @@
     margin-top: 23px;
     padding: 0 20px;
     @include allmobiles {
-        margin-top: 25px;
+        margin-top: 0px;
         margin-bottom: 80px;
     }
     
@@ -288,4 +288,8 @@ input[type='checkbox']+label {
     &:focus {
         color: #00a7a7;
     }
+}
+
+.relationship {
+    width: 119px;
 }

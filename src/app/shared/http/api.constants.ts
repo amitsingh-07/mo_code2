@@ -69,6 +69,7 @@ export let apiConstants = {
             createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile',
             getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
             updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile',
+            downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
         }
     }
 };
