@@ -202,7 +202,7 @@
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
-      "DESCRIPTION": "We weren\'t able to fetch your data from MyInfo."
+      "DESCRIPTION": "We weren't able to fetch your data from MyInfo."
     },
     "FETCH_MODAL_DATA": {
       "TITLE": "Fetching Data...",
