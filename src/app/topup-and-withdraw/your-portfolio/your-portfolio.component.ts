@@ -59,12 +59,8 @@ export class YourPortfolioComponent implements OnInit {
       this.moreList = data.objectList;
       console.log(this.moreList);
     });
-
-   
   }
-
-
-  gotoTopUp(){
+ gotoTopUp() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
   }
 

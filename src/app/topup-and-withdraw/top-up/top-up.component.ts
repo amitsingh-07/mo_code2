@@ -75,11 +75,10 @@ export class TopUpComponent implements OnInit {
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    // this.navbarService.setNavbarMode(1);
-    // this.navbarService.setNavbarMode(2);
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getPortfolioList();
+   
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
       this.investmentTypeList = data.objectList; // Getting the information from the API
       console.log(this.investmentTypeList);
@@ -96,14 +95,14 @@ export class TopUpComponent implements OnInit {
   getPortfolioList() {
     this.topupAndWithDrawService.getPortfolioList().subscribe((data) => {
       this.portfolioList = data.objectList;
-      console.log(this.portfolioList + 'dfsdfsfsdf');
+      console.log(this.portfolioList);
     });
   }
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
   }
 
-  buildFormInvestment() {
+    buildFormInvestment() {
     if (this.investment.name === 'One-time Investment') {
       this.topForm.addControl('oneTimeInvestmentAmount', new FormControl('', Validators.required));
       this.topForm.removeControl('MonthlyInvestmentAmount');

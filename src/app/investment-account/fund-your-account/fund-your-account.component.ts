@@ -26,6 +26,7 @@ export class FundYourAccountComponent implements OnInit {
   isUserNationalitySingapore;
   activeTabIndex = 0;
   fundDetails;
+  bankDetailsList;
   bankDetails;
   paynowDetails;
 
@@ -48,6 +49,8 @@ export class FundYourAccountComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+    this.getBankDetailsList();
+    // this.topupFormValues = this.topupAndWithDrawService.getTopUp();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();
     const pageTitle = this.getPageTitleByType(this.fundDetails.source, this.fundDetails.fundingType);
@@ -79,6 +82,8 @@ export class FundYourAccountComponent implements OnInit {
     const ref = this.modal.open(BankDetailsComponent, { centered: true });
     ref.componentInstance.errorTitle = 'Select Your Bank';
     ref.componentInstance.errorDescription = 'You will be transferring funds from:';
+    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
+    console.log(this.bankDetailsList);
     return false;
 
   }
@@ -86,6 +91,12 @@ export class FundYourAccountComponent implements OnInit {
     this.activeTabIndex = index;
   }
 
+  getBankDetailsList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.bankDetailsList = data.objectList.bankList;
+      console.log(this.bankDetailsList);
+    });
+  }
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter((transferType) => transferType.institutionType === 'bank')[0];
     this.paynowDetails = data.filter((transferType) => transferType.institutionType === 'PayNow')[0];
