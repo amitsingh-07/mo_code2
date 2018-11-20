@@ -102,12 +102,16 @@ export class TopupAndWithDrawService {
   }
 
   setFundingDetails(fundDetails) {
-    this.investmentAccountFormData.fundDetails = fundDetails;
+    this.topUpAndWithdrawFormData.fundDetails = fundDetails;
     this.commit();
   }
 
   getFundingDetails() {
-    return this.investmentAccountFormData.fundDetails;
+    return this.topUpAndWithdrawFormData.fundDetails;
+  }
+
+  getTransferDetails() {
+    return this.apiService.getTransferDetails();
   }
   getInvestmentOverview() {
     return this.apiService.getInvestmentOverview();

@@ -155,7 +155,7 @@ p{
     letter-spacing: -0.2px;
     text-align: right;
     color: #00a7a7;
-    padding-right: 10px;
+    padding-right: 7px;
 }
 .your_portfolio_container{
     padding: 20px;
@@ -270,13 +270,12 @@ font-family: $muli-bold;
   }
 
 .Remember{
-  
   font-family: $muli-regular;
   font-size: 16px;
-  
   letter-spacing: -0.2px;
   color: #ffffff;
-  padding-right: 23px;
+  margin-bottom: 13px;
+  width: 243px;
 }
 
 .Fund_your_account{
@@ -303,23 +302,22 @@ font-family: $muli-bold;
     // top: 14px;
     // right: 5px;
     @include allmobiles {
-      top: 30px !important;
+      top: 14px !important;
       z-index: 9;
       //opacity: 1 !important;
-      right: 15px !important;
+      right: 14px !important;
     }
   }
 
   .callout-content{
-      padding:10px;
+      padding:10px 23px;
       background-color:#276f75;
       color:#000;
-      border-radius:6px;
       position: absolute;
       left: 5px;
       right: 5px;
       bottom:54px;
-      padding: 23px;
+      min-height: 108.7px;
   }
   .callout-arrow{
         width: 0;

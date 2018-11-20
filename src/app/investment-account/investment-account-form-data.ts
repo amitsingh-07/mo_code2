@@ -118,15 +118,18 @@ export class InvestmentAccountFormData {
     isMyInfoEnabled: boolean;
     disableAttributes: any;
 
-    
-	// Fund Your Account
+    // confirm portfolio
+    invOneTime: number;
+    invMonthly: number;
+    riskProfileId: number;
+    riskProfileType: string;
+
+    // Fund Your Account
     Investment: string;
     oneTimeInvestmentAmount: number;
     portfolio: string;
     topupportfolioamount: number;
     MonthlyInvestmentAmount: number;
-
-    fundDetails: any;
 
     callBackInvestmentAccount: boolean;
 }
