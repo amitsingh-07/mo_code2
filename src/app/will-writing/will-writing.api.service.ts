@@ -169,4 +169,18 @@ export class WillWritingApiService {
         const payload: IWill = this.willRequestPayload();
         return this.apiService.updateWill(payload);
     }
+
+    getWill() {
+        const payload = {
+            customerId: this.appService.getCustomerId()
+        };
+        return this.apiService.getWill(payload);
+    }
+
+    downloadWill() {
+        const payload = {
+            customerId: this.appService.getCustomerId()
+        };
+        return this.apiService.updateWill(payload);
+    }
 }

@@ -77,8 +77,9 @@
     letter-spacing: -0.2px;
     color: #fff;
     @include allmobiles{
+        font-size: 16px;
         color: #333846;
-        width:280px;
+        width:297px;
         text-align: center;
     }
 
@@ -253,4 +254,7 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #d8d8d8;
+  }
+  .relationship {
+      width: 119px;
   }

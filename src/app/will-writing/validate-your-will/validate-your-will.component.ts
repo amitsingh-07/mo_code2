@@ -29,7 +29,8 @@ export class ValidateYourWillComponent implements OnInit {
   }
 
   downloadWill() {
-
+    this.willWritingApiService.downloadWill().subscribe((data) => {
+    });
   }
 
 }
