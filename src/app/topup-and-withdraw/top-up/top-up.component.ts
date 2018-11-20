@@ -84,9 +84,6 @@ export class TopUpComponent implements OnInit {
       console.log(this.investmentTypeList);
     });
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
-    if (this.formValues.topupportfolioamount > 0) {
-      this.topupportfolio = true;
-    }
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.portfolio, Validators.required],
       Investment: [this.formValues.Investment, Validators.required],
@@ -105,7 +102,7 @@ export class TopUpComponent implements OnInit {
     this.topForm.controls[key].setValue(value);
   }
 
-  buildFormInvestment() {
+    buildFormInvestment() {
     if (this.investment.name === 'One-time Investment') {
       this.topForm.addControl('oneTimeInvestmentAmount', new FormControl('', Validators.required));
       this.topForm.removeControl('MonthlyInvestmentAmount');

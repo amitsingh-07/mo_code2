@@ -50,7 +50,7 @@ export class FundYourAccountComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getBankDetailsList();
-    this.topupFormValues = this.topupAndWithDrawService.getTopUp();
+    // this.topupFormValues = this.topupAndWithDrawService.getTopUp();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();
     const pageTitle = this.getPageTitleByType(this.fundDetails.source, this.fundDetails.fundingType);
