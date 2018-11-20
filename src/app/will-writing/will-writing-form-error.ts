@@ -1,100 +1,100 @@
 export class WillWritingFormError {
         aboutMeForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         name: {
                                 required: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Please input the Name'
+                                        errorMessage: 'Full Name'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                        errorMessage: 'Full Name should be 2 - 40 characters long'
                                 }
                         },
                         uin: {
                                 required: {
                                         errorTitle: 'Invalid Identification Number',
-                                        errorMessage: 'Please input Identification Number'
+                                        errorMessage: 'Identification Number'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Identification Number',
                                         errorMessage:
-                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                 }
                         },
                         gender: {
                                 required: {
                                         errorTitle: 'Invalid Gender',
-                                        errorMessage: 'Please select your gender'
+                                        errorMessage: 'Gender'
                                 }
                         },
                         maritalStatus: {
                                 required: {
                                         errorTitle: 'Invalid Marital Status',
-                                        errorMessage: 'Please select your marital status'
+                                        errorMessage: 'Marital status'
                                 }
                         },
                         noOfChildren: {
                                 required: {
                                         errorTitle: 'Invalid Child Count',
-                                        errorMessage: 'Please select your child count'
+                                        errorMessage: 'Number of Children'
                                 }
                         }
                 }
         };
         myFamilyForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         spouse: {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please input the Name'
+                                                errorMessage: 'Full Name'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorMessage: 'Full Name should be 2 - 40 characters long'
                                         }
                                 },
                                 uin: {
                                         required: {
                                                 errorTitle: 'Invalid Identification Number',
-                                                errorMessage: 'Please input Identification Number'
+                                                errorMessage: 'Identification Number'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                         }
                                 }
                         },
-                        childrens: {
+                        children: {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please input the Name'
+                                                errorMessage: 'Full Name'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorMessage: 'Full Name should be 2 - 40 characters long'
                                         }
                                 },
                                 uin: {
                                         required: {
                                                 errorTitle: 'Invalid Identification Number',
-                                                errorMessage: 'Please input Identification Number'
+                                                errorMessage: 'Identification Number'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                         }
                                 },
                                 dob: {
                                         required: {
                                                 errorTitle: 'Invalid Date of Birth',
-                                                errorMessage: 'Please select your child date of birth'
+                                                errorMessage: 'Date of Birth'
                                         }
                                 }
                         }
@@ -102,65 +102,65 @@ export class WillWritingFormError {
         };
         guardBeneForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         name: {
                                 required: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Please input the Name'
+                                        errorMessage: 'Full Name'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                        errorMessage: 'Full Name should be 2 - 40 characters long'
                                 }
                         },
                         uin: {
                                 required: {
                                         errorTitle: 'Invalid Identification Number',
-                                        errorMessage: 'Please input Identification Number'
+                                        errorMessage: 'Identification Number'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Identification Number',
                                         errorMessage:
-                                                'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                 }
                         },
                         relationship: {
                                 required: {
                                         errorTitle: 'Invalid Relationship',
-                                        errorMessage: 'Please indicate relationship to you'
+                                        errorMessage: 'Relationship to you'
                                 }
                         }
                 }
         };
         addExecTrusteeForm: object = {
                 formFieldErrors: {
-                        errorTitle: 'Invalid Form',
+                        errorTitle: 'Oops! Please enter the following details:',
                         executorTrustee: {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Please input the Name'
+                                                errorMessage: 'Full Name'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Name field can only contain alphabets value of 2 - 40 characters in length'
+                                                errorMessage: 'Full Name should be 2 - 40 characters long'
                                         }
                                 },
                                 uin: {
                                         required: {
                                                 errorTitle: 'Invalid Identification Number',
-                                                errorMessage: 'Please input Identification Number'
+                                                errorMessage: 'Identification Number'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Identification Number',
                                                 errorMessage:
-                                                        'Identification Number field can contains alphanumeric value of 9 characters in length'
+                                                'Identification Number should contain  9 alphanumeric characters'
                                         }
                                 },
                                 relationship: {
                                         required: {
                                                 errorTitle: 'Invalid Relationship',
-                                                errorMessage: 'Please indicate relationship to you'
+                                                errorMessage: 'Relationship to you'
                                         }
                                 }
                         }

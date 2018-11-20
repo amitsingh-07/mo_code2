@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
@@ -32,6 +33,7 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private willWritingService: WillWritingService,
     private router: Router,
+    public footerService: FooterService,
     private _location: Location,
     private modal: NgbModal, public navbarService: NavbarService,
     private translate: TranslateService
@@ -68,6 +70,7 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
       }
     }, 100);
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {

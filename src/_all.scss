@@ -188,9 +188,8 @@ h6 {
   .navbar-collapse {
     display: flex;
     flex-direction: row;
-    flex-basis: auto;
     justify-content: space-between;
-    max-width: 270px;
+    max-width: 400px;
 
     &.searchOpen {
       max-width: 600px;
@@ -202,6 +201,7 @@ h6 {
       overflow: hidden;
       height: 0px;
       max-width: unset;
+      flex-basis:auto; 
 
       &.show {
         height: auto;
@@ -281,7 +281,17 @@ h6 {
       cursor: pointer;
       font-size: 16px;
       letter-spacing: -0.2px;
-
+      &.show{
+        @include minMobilemaxPhablet{
+          .dropdown-toggle{
+            background-color:$teal-color;
+            color:$white-color;
+            &:after{
+              background-image:url("/assets/images/nav-dropdown-icon--white.svg");
+            }
+          }
+        }
+      }
       &.open {
         width: 100%;
         margin-right: 10px;
@@ -1141,7 +1151,7 @@ h6 {
       justify-content: center;
       align-items: center;
       margin-left: 45px;
-
+      text-decoration: none;
       @include minMobilemaxPhablet {
         margin-left: unset;
         margin-right: 20px;
@@ -1172,6 +1182,10 @@ h6 {
         font-family: $muli-bold;
         font-size: 18px;
         letter-spacing: -0.3px;
+        color:$white-color;
+        &:hover{
+          text-decoration:none;
+        }
       }
     }
   }
@@ -1352,4 +1366,12 @@ a.link-white {
 
 .grey {
   color: $text-color-secondary;
+}
+.input-group.date-picker {
+  .dropdown-menu.show {
+    @include allmobiles {
+      left: inherit !important;
+      right: 0px;
+    }
+  }
 }

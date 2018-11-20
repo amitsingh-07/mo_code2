@@ -19,7 +19,7 @@ export class CreateAccountFormError {
                 },
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
-                        errorMessage: 'Mobile number should contain 8 digits'
+                        errorMessage: 'Invalid Mobile Number'
                 }
         },
         firstName: {

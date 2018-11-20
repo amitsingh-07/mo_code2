@@ -21,11 +21,11 @@ import { MyExecutorTrusteeComponent } from './my-executor-trustee/my-executor-tr
 import { MyFamilyComponent } from './my-family/my-family.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { ReviewYourDetailsComponent } from './review-your-details/review-your-details.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-about-yourself.component';
+import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
 import { WillWritingAccessGuard } from './will-writing-access-guard';
 import { WillWritingRoutingModule } from './will-writing-routing.module';
-import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(

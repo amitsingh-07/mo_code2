@@ -7,10 +7,12 @@ import { IEnquiryUpdate } from '../signup-types';
 import { AppService } from './../../app.service';
 import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.constants';
 import { ApiService } from './../../shared/http/api.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
 import { Formatter } from './../../shared/utils/formatter.util';
 import { SignUpService } from './../sign-up.service';
+
+import { FooterService } from './../../shared/footer/footer.service';
+import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,12 +27,13 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
-    public navbarService: NavbarService, private selectedPlansService: SelectedPlansService) { }
+    public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) { }
 
   ngOnInit() {
     this.navbarService.setNavbarVisibility(true);
-    this.navbarService.setNavbarMode(3);
+    this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
+    this.footerService.setFooterVisibility(false);
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.translate.use('en');
 

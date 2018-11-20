@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, HostListener, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
@@ -9,6 +9,7 @@ import { IComponentCanDeactivate } from './changes.guard';
 import { GoogleAnalyticsService } from './shared/ga/google-analytics.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
+import { RoutingService } from './shared/Services/routing.service';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +23,19 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
 
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
-    private googleAnalyticsService: GoogleAnalyticsService, private modal: NgbModal, public route: Router) {
+    private googleAnalyticsService: GoogleAnalyticsService, private modal: NgbModal, public route: Router,
+    public routingService: RoutingService) {
     this.translate.setDefaultLang('en');
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    window.myinfo = window.myinfo || {};
+    window.myinfo.namespace = window.myinfo.namespace || {};
+    window.failed = window.failed || {};
+    window.failed.namespace = window.failed.namespace || {};
+    window.success = window.success || {};
+    window.success.namespace = window.success.namespace || {};
+  }
 
   ngAfterViewInit() {
     this.route.events.subscribe((val) => {
@@ -56,8 +65,14 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     });
   }
 
-  @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
     return false;
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (!this.canDeactivate()) {
+      $event.returnValue = 'Changes you made will not be saved. Do you want to continue?';
+    }
   }
 }

@@ -11,15 +11,15 @@
 <h3 class="primary-color">1. Retirement Income stream with  Guaranteed Amount for limited years</h3>
 <p>This type  of product is designed to pay an income stream starting from a specified age in  the future and paid out over a limited number of years (e.g., 10/15/20 years).  On the final payout, an additional maturity benefit may be payable to us. The  unique feature of this type of product is that the regular income payout amount  is fully guaranteed. Hence this is good for those who are risk adverse but yet  desire a good return on their <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> money.</p>
 <br>
-<p class="text-center"><img style="max-width: 100%;"  src="images/21/retirement-plan1.png" alt="Retirement Income stream with  Guaranteed Amount for limited years"></p>
+<p class="text-center"><img style="max-width: 100%;"  src="assets/articles/images/21/retirement-plan1.png" alt="Retirement Income stream with  Guaranteed Amount for limited years"></p>
 <br>
 <p><strong>Example: Person  age 52</strong></p>
 <div class="table-responsive">
    <table class="table table-bordered" >
 	  <tr>
 	    <td width="205" valign="top"><p>SRS    Product</p></td>
-	    <td width="205" valign="top"><p align="center">Aviva MyIncomePlus</p></td>
-	    <td width="205" valign="top"><p align="center">Tokio Marine TM Wealth Enhancement (Cash Back)</p></td>
+	    <td width="205" valign="top" class="xs-minWidth150"><p align="center">Aviva MyIncomePlus</p></td>
+	    <td width="205" valign="top" class="xs-minWidth150"><p align="center">Tokio Marine TM Wealth Enhancement (Cash Back)</p></td>
 	  </tr>
 	  <tr>
 	    <td width="205" valign="top"><p>SRS    Premium Contribution</p></td>
@@ -60,14 +60,14 @@
 <br>
 <h3 class="primary-color">2. Retirement Income stream with  Variable Amount for limited years</h3>
 <p>The  difference with this product as compared to the first, is that instead of a full  guaranteed payment amount that is paid out to you, the payout amount which you  receive is only partially guaranteed. If you have chosen this product and have  decided to bear with some risks (uncertainty) in your payout, you could  potentially receive a higher payout as compared to the first type of product. This  product type is suitable for those who are prepared to bear with some  fluctuations in exchange for a higher potential payout.</p>
-<p class="text-center"><img style="max-width: 100%;"  src="images/21/retirement-plan2.png" alt="Retirement Income stream with  Variable Amount for limited years"></p>
+<p class="text-center"><img style="max-width: 100%;"  src="/assets/articles/images/21/retirement-plan2.png" alt="Retirement Income stream with  Variable Amount for limited years"></p>
 <p><strong>Example:  Person age 36</strong></p>
 <div class="table-responsive">
    <table class="table table-bordered" >
 	  <tr>
 	    <td width="196" valign="top"><p>SRS    Product</p></td>
-	    <td width="208" valign="top"><p align="center">NTUC Income SAIL</p></td>
-	    <td width="212" valign="top"><p align="center">Tokio Marine TM Retirement @63</p></td>
+	    <td width="208" valign="top" class="xs-minWidth150"><p align="center">NTUC Income SAIL</p></td>
+	    <td width="212" valign="top" class="xs-minWidth150"><p align="center">Tokio Marine TM Retirement @63</p></td>
 	  </tr>
 	  <tr>
 	    <td width="196" valign="top"><p>SRS Premium    Contribution</p></td>
@@ -107,10 +107,10 @@
 <br>
 <h3 class="primary-color">3. Retirement Income with Increasing  Amount for life</h3>
 <p>This product  type is quite different from the earlier first two. The income portion for this  type of product is payable for as long as you live. If you think you might live  up to a ripe old age, this product is a good consideration. Another good  product feature is that the amount of income payout has the potential to  increase! Whenever the insurer declares a bonus, the income amount will  increase to a higher level and the income amount would be guaranteed from  thereon. In this way, this policy not only pays for life, the amount can  increase to offset inflation. </p>
-<p class="text-center"><img style="max-width: 100%;"  src="images/21/retirement-plan3.png" alt="Retirement Income with Increasing  Amount for life"></p>
+<p class="text-center"><img style="max-width: 100%;"  src="/assets/articles/images/21/retirement-plan3.png" alt="Retirement Income with Increasing  Amount for life"></p>
 <p><strong>Example:  Person age 45</strong></p>
 <div class="table-responsive">
-   <table class="table table-bordered" >
+   <table class="table table-bordered">
 	  <tr>
 	    <td width="205" valign="top"><p>SRS    Product</p></td>
 	    <td width="237" valign="top"><p align="center">NTUC Income Guaranteed <br>
@@ -151,9 +151,10 @@
 <p>For an annuity  plan, the longer the life-span, the better the return.</p>
 <br>
 <p>Whilst it  is good to contribute into SRS to build up your retirement nest egg, you should  also optimise your SRS savings by investing appropriately to grow your nest egg  bigger and achieve your retirement objectives. There are other rules on SRS such as treatment for early death, migration and bankruptcy which you may find out more from the <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">Ministry of Finance SRS webpage.</a></p>
-<p>The above  examples are for illustration purposes only. Policy projections are  non-guaranteed and actual figures are dependent on the performance of their  life funds. Please contact us at 6309-2478 or email us at <a href="mailto:enquiry@diyinsurance.com.sg">enquiry@diyinsurance.com.sg</a> if you have any queries and we  can guide you on your SRS matters.</p>
-
+<p>The above  examples are for illustration purposes only. Policy projections are  non-guaranteed and actual figures are dependent on the performance of their  life funds.</p>
 <br>
-<div class="text-xs-center"><a href="../compare/retirement-income">
-	<img src="../assets/images/banners/compare_ri_540w.png" alt="compare retirement plans"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+	<img src="/assets/images/banners/compare_ri_540w.png" alt="compare retirement plans"></a>
 </div>
+-->

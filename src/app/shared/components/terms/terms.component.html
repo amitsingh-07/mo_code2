@@ -1,5 +1,5 @@
 <div class="modal-body white-bg">
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button type="button" class="close" aria-label="Close" (click)="dismiss()">
     <span aria-hidden="true"></span>
     </button>
   <div class="modal-body-message">
@@ -10,7 +10,7 @@
       </div>
   </div>
   <div class="tnc__btn">
-      <button (click)="activeModal.close('proceed')" type="button" class="btn btn-primary">I Agree</button>
+      <button (click)="close()" type="button" class="btn btn-primary">I Agree</button>
       </div>
 </div>
 

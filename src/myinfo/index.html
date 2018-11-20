@@ -1,10 +1,21 @@
 <head>
   <script>
-    window.addEventListener('load', redirect, false);
+    window.addEventListener('load', function(){setTimeout(redirect(), 100)}, false);
 
     function redirect() {
-      var url = document.location.protocol + "//" + document.location.host + "/#/myinfo"
-      document.location.href = url + document.location.search;
+      var query = null;
+      if (document.location.href.indexOf('?') >= 0) {
+        query = document.location.href.split('?')[1];
+      }
+      if (query != null && window.opener && window.opener.success) {
+        window.opener.success(query);
+      } else {
+        if (window.opener && window.opener.failed) {
+          window.opener.failed('FAILED');
+        } else {
+          window.close();
+        }
+      }
     }
 
   </script>
