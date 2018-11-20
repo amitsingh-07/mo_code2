@@ -1,3 +1,4 @@
+import { ErrorModalComponent } from './../../shared/modal/error-modal/error-modal.component';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
@@ -7,27 +8,27 @@ import { TranslateService } from '@ngx-translate/core';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import {
-    BreakdownAccordionComponent
+  BreakdownAccordionComponent
 } from '../../shared/components/breakdown-accordion/breakdown-accordion.component';
 import {
-    BreakdownBarComponent
+  BreakdownBarComponent
 } from '../../shared/components/breakdown-bar/breakdown-bar.component';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import {
-    AccountCreationErrorModalComponent
+  AccountCreationErrorModalComponent
 } from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 import {
-    EditInvestmentModalComponent
+  EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
@@ -199,6 +200,14 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorList = errorList;
   }
 
+  showCustomErrorModal(title, desc) {
+    const errorTitle = title;
+    const errorMessage = desc;
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorMessage = errorMessage;
+  }
+
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
@@ -215,9 +224,15 @@ export class ConfirmPortfolioComponent implements OnInit {
         console.log('Attempting to create ifast account');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
           if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
-            const errorResponse = response.objectList[response.objectList.length - 1];
-            const errorList = errorResponse.serverStatus.errors;
-            this.showInvestmentAccountErrorModal(errorList);
+            if (response.responseMessage.responseCode === 5018
+              || response.responseMessage.responseCode === 5019) {
+              const errorResponse = response.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              const errorResponse = response.objectList[response.objectList.length - 1];
+              const errorList = errorResponse.serverStatus.errors;
+              this.showInvestmentAccountErrorModal(errorList);
+            }
           } else { // SUCCESS SCENARIO
             if (response.objectList[response.objectList.length - 1]) {
               if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
@@ -228,16 +243,16 @@ export class ConfirmPortfolioComponent implements OnInit {
             }
           }
         },
-        (err) => {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
-          ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
-        });
+          (err) => {
+            const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+          });
       });
     }
 
   }
 
-  
+
 
 }
