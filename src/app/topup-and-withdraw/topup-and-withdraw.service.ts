@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
-
 import { TopUPFormError } from './top-up/top-up-form-error';
-import { InvestmentAccountFormData } from '../investment-account/investment-account-form-data';
+import { TopUpAndWithdrawFormData } from './topup-and-withdraw-form-data';
+import { TopUpAndWithdrawFormError } from './topup-and-withdraw-form-error';
+import { TOPUPANDWITHDRAW_CONFIG } from './topup-and-withdraw.constants';
 
-const SESSION_STORAGE_KEY = 'app_inv_account_session';
+const SESSION_STORAGE_KEY = 'app_withdraw-session';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,10 +19,12 @@ export class TopupAndWithDrawService {
     this.getAllDropDownList();
     this.getTopUpFormData();
     this.getTopupInvestmentList();
+    this.topUpAndWithdrawFormData.withdrawMode = TOPUPANDWITHDRAW_CONFIG.WITHDRAW.DEFAULT_WITHDRAW_MODE;
   }
   private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
   private topUPFormError: any = new TopUPFormError();
+  private topUpAndWithdrawFormError: any = new TopUpAndWithdrawFormError();
 
   commit() {
     if (window.sessionStorage) {
@@ -44,11 +47,12 @@ export class TopupAndWithDrawService {
     return this.apiService.getTopupInvestmentList();
 
   }
-
-
   getPortfolioList() {
     return this.apiService.getPortfolioList();
 
+  }
+  getMoreList() {
+    return this.apiService.getMoreList();
   }
   doFinancialValidations(form) {
     const invalid = [];
@@ -109,4 +113,84 @@ export class TopupAndWithDrawService {
   getTransferDetails() {
     return this.apiService.getTransferDetails();
   }
+  getInvestmentOverview() {
+    return this.apiService.getInvestmentOverview();
+  }
+  setPortfolioValues(portfolio) {
+    this.topUpAndWithdrawFormData.PortfolioValues = portfolio;
+  }
+  getPortfolioValues() {
+    return this.topUpAndWithdrawFormData.PortfolioValues;
+  }
+    // tslint:disable-next-line
+    getFormErrorList(form) {
+      const controls = form.controls;
+      const errors: any = {};
+      errors.errorMessages = [];
+      errors.title = this.topUpAndWithdrawFormError.formFieldErrors.errorTitle;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          // HAS NESTED CONTROLS ?
+          if (controls[name].controls) {
+            const nestedControls = controls[name].controls;
+            for (const nestedControlName in nestedControls) {
+              if (nestedControls[nestedControlName].invalid) {
+                // tslint:disable-next-line
+                errors.errorMessages.push(this.topUpAndWithdrawFormError.formFieldErrors[nestedControlName][Object.keys(nestedControls[nestedControlName]['errors'])[0]].errorMessage);
+              }
+            }
+          } else { // NO NESTED CONTROLS
+            // tslint:disable-next-line
+            errors.errorMessages.push(this.topUpAndWithdrawFormError.formFieldErrors[name][Object.keys(controls[name]['errors'])[0]].errorMessage);
+          }
+        }
+      }
+      return errors;
+    }
+
+    setWithdrawalTypeFormData(data) {
+      this.topUpAndWithdrawFormData.withdrawType = data.withdrawType;
+      this.topUpAndWithdrawFormData.withdrawAmount = data.withdrawAmount;
+      this.topUpAndWithdrawFormData.withdrawPortfolio = data.withdrawPortfolio;
+      this.commit();
+    }
+
+    setWithdrawalPaymentFormData(data) {
+      this.topUpAndWithdrawFormData.withdrawMode = data.withdrawMode;
+      this.topUpAndWithdrawFormData.withdrawBank = data.withdrawBank;
+      this.commit();
+    }
+
+    getUserBankList() {
+      return this.apiService.getUserBankList();
+    }
+
+    saveNewBank(data) {
+      const payload = this.constructSaveNewBankRequest(data);
+      return this.apiService.saveNewBank(payload);
+    }
+
+    constructSaveNewBankRequest(data) {
+      const request = {};
+      request['accountHolderName'] = data.accountHolderName;
+      request['bank'] = data.bank.id;
+      request['accountNo'] = data.accountNo;
+      return request;
+    }
+
+    saveWithdrawalRequest(data) {
+      const payload = this.constructWithdrawalRequestParams(data);
+      return this.apiService.saveNewBank(payload);
+    }
+
+    constructWithdrawalRequestParams(data) {
+      const request = {};
+      request['type'] = (data.withdrawType) ? data.withdrawType.id : null;
+      request['portfolio'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.id : null;
+      request['amount'] = data.withdrawAmount;
+      request['mode'] = data.withdrawMode;
+      request['bank'] = (data.withdrawBank) ? data.withdrawBank.id : null;
+      return request;
+    }
+
 }

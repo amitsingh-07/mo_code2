@@ -56,7 +56,6 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent
   },
-  /*
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
   },
@@ -69,7 +68,6 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.SUCCESS_MESSAGE,
     component: SuccessMessageComponent
   },
-  */
   { path: SIGN_UP_ROUTES.DASHBOARD,
     component: DashboardComponent,
     canActivate: [AuthGuard]

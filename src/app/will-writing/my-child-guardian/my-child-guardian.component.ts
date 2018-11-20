@@ -7,13 +7,14 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IGuardian } from '../will-writing-types';
-import { WillWritingService } from '../will-writing.service';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
+import { WillWritingService } from '../will-writing.service';
 
 @Component({
   selector: 'app-my-child-guardian',
@@ -35,10 +36,13 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   relationship = '';
   relationshipList;
   submitted: boolean;
+  willWritingConfig = WILL_WRITING_CONFIG;
 
   hasSpouse: boolean;
   maxGuardian: number;
   unsavedMsg: string;
+  toolTip;
+  formName: string;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -47,6 +51,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     private modal: NgbModal,
     private router: Router,
     private translate: TranslateService,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     private _location: Location,
     private willWritingService: WillWritingService
@@ -58,9 +63,9 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_CHILDS_GUARDIAN.TOOLTIP_MESSAGE');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -80,6 +85,8 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.maxGuardian = this.hasSpouse ? 2 : 1;
     this.buildAddGuardianForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
+    this.formName = this.hasSpouse ? 'Alternative Guardian' : 'Guardian';
   }
 
   setPageTitle(title: string) {
@@ -125,10 +132,11 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     relationship = relationship ? relationship : { text: '', value: '' };
     this.relationship = relationship.text;
     this.addGuardianForm.controls['relationship'].setValue(relationship.value);
+    this.addGuardianForm.markAsDirty();
   }
 
   editGuardian(relation: string, index: number) {
-    if (relation === 'spouse') {
+    if (relation === WILL_WRITING_CONFIG.SPOUSE) {
       if (this.addGuardianForm.dirty) {
         this.pageTitleComponent.goBack();
       } else {
@@ -156,7 +164,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, this.formName);
       return false;
     }
     return true;
@@ -188,13 +196,15 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
     this.willWritingService.openToolTipModal(title, message);
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openToolTip() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
+  }
+
+
+  openConfirmationModal(url: string, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     ref.componentInstance.unSaved = true;
-    if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
-    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(form);
@@ -209,19 +219,16 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    let url = WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+    const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
     if (this.guardianList.length !== this.maxGuardian) {
       if (this.validateGuardianForm(form) && this.save(form)) {
         this.router.navigate([url]);
       }
     } else {
-      if (this.fromConfirmationPage) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
-      }
       if (this.isEdit) {
         if (this.addGuardianForm.dirty) {
           if (this.validateGuardianForm(form)) {
-            this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+            this.openConfirmationModal(url, form);
           }
         } else {
           this.router.navigate([url]);

@@ -5,9 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
+import { WillWritingService } from '../../will-writing/will-writing.service';
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 
+import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import {
   INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
 } from '../../investment-account/investment-account-routes.constants';
@@ -15,6 +17,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
@@ -45,12 +48,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder, private appService: AppService,
     private modal: NgbModal,
     public authService: AuthenticationService,
+    private willWritingApiService: WillWritingApiService,
     public navbarService: NavbarService,
     public footerService: FooterService,
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
+    private willWritingService: WillWritingService,
     private _location: Location,
     private translate: TranslateService) {
     this.translate.use('en');
@@ -145,6 +150,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
                 this.router.navigate([redirect_url]);
+              } else if (this.willWritingService.getWillWritingFormData()) {
+                if (!this.willWritingService.getIsWillCreated()) {
+                  this.willWritingApiService.createWill().subscribe((data) => {
+                    if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
+                      this.willWritingService.setIsWillCreated(true);
+                      this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+                    }
+                  });
+                } else {
+                  this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+                }
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
               }

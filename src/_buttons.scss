@@ -114,6 +114,13 @@ button:active:focus {
       color: $app-backgrnd-color !important;
       background-color: transparent !important;
     }
+    &.absolute {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      padding: 5px;
+      font-size: 16px;
+    }
   }
 
   &:disabled {

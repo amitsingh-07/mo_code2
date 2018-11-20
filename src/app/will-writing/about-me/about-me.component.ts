@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,8 +7,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { appConstants } from '../../app.constants';
+import { AppService } from '../../app.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IAboutMe } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -20,6 +24,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit, OnDestroy {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   pageTitle: string;
   step: string;
   private confirmModal = {};
@@ -33,14 +38,17 @@ export class AboutMeComponent implements OnInit, OnDestroy {
   submitted: boolean;
   private subscription: Subscription;
   unsavedMsg: string;
+  toolTip;
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
   constructor(
+    private appService: AppService,
     private formBuilder: FormBuilder,
     private router: Router,
     private translate: TranslateService,
     private _location: Location,
+    public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private willWritingService: WillWritingService
   ) {
@@ -49,9 +57,10 @@ export class AboutMeComponent implements OnInit, OnDestroy {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
       this.pageTitle = this.translate.instant('WILL_WRITING.ABOUT_ME.TITLE');
       this.maritalStatusList = this.translate.instant('WILL_WRITING.ABOUT_ME.FORM.MARITAL_STATUS_LIST');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['hasImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -60,6 +69,8 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(4);
     this.buildAboutMeForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
+    this.appService.setJourneyType(appConstants.JOURNEY_TYPE_WILL_WRITING);
   }
 
   setPageTitle(title: string) {
@@ -70,14 +81,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (this.aboutMeForm.dirty) {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.unsavedMsg;
-          ref.componentInstance.unSaved = true;
-          ref.result.then((data) => {
-            if (data === 'yes') {
-              this._location.back();
-            }
-          });
+          this.pageTitleComponent.goBack();
         } else {
           this._location.back();
         }
@@ -125,7 +129,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'aboutMeForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, 'About Me');
       return false;
     }
     return true;
@@ -158,12 +162,16 @@ export class AboutMeComponent implements OnInit, OnDestroy {
     }
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openToolTipModal() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
+  }
+
+  openConfirmationModal(url: string, hasImpact: boolean, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
     ref.componentInstance.unSaved = true;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
+      ref.componentInstance.hasImpact = this.confirmModal['hasImpact'];
     }
     ref.result.then((data) => {
       if (data === 'yes') {
@@ -207,7 +215,7 @@ export class AboutMeComponent implements OnInit, OnDestroy {
           if (!isChildChanged && !isMaritalStatusChanged) {
             url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : url;
           }
-          this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, isUserLogged, form);
+          this.openConfirmationModal(url, isUserLogged, form);
         } else {
           url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : url;
           this.router.navigate([url]);

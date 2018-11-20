@@ -1,5 +1,5 @@
-<img src="./../../../assets/articles/images/15/thumbnail.jpg" class="pull-right" style=" padding:10px;">
-<p>When it comes to insurance, most  people are familiar with the standard benefits like <a href="https://www.moneyowl.com.sg/direct" target="_blank" title="Compare Protection Plans Now">death</a>, critical illnesses  (e.g. cancer, heart attack) and hospitalisation. Yes, these are indeed important  life risks that we ought to insure against. The financial impact can be  disastrous if we die too early, not leaving enough for dependants&rsquo; living  expenses or be saddled with huge medical bills from treatment of serious  illnesses. However, most people seem to have missed out one other important  risk factor: disability.<br><br>
+<img src="/assets/articles/images/15/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
+<p>When it comes to insurance, most  people are familiar with the standard benefits like <a href="https://www.moneyowl.com.sg/#/direct" target="_blank" title="Compare Protection Plans Now">death</a>, critical illnesses  (e.g. cancer, heart attack) and hospitalisation. Yes, these are indeed important  life risks that we ought to insure against. The financial impact can be  disastrous if we die too early, not leaving enough for dependants&rsquo; living  expenses or be saddled with huge medical bills from treatment of serious  illnesses. However, most people seem to have missed out one other important  risk factor: disability.<br><br>
 
 If an accident or illness happens,  resulting in our being unable to work, we would have lost one of our biggest  assets - our income earning capacity. <br>
 </p><br>
@@ -32,7 +32,7 @@ If an accident or illness happens,  resulting in our being unable to work, we wo
 		<p><strong>If  insured is able to return to work but suffers a pay drop, a partial monthly income  benefit is payable to supplement the income.</strong></p>
 
 		<p>3 years on, John is  able to return to work but at a lower capacity and could only earn $2,000 per month.  His insurance will pay him a partial benefit of $1,500 per month (benefit is  computed based on proportional drop in his income before suffering disability).  In total, John&rsquo;s income is now $3,500 ($2,000 + $1,500). The partial income  benefit serves as an incentive for John to return to work as he would receive  more income than not working.<br><br>
-            There are other benefits included  in the disability income policy, such as rehabilitation benefit (3-6 months of  income benefit) and  <a href="https://www.moneyowl.com.sg/direct" target="_blank" title="Compare Life Protection Plans Now">death benefit</a>.<br>
+            There are other benefits included  in the disability income policy, such as rehabilitation benefit (3-6 months of  income benefit) and  <a href="https://www.moneyowl.com.sg/#/direct" target="_blank" title="Compare Life Protection Plans Now">death benefit</a>.<br>
   		</p>
 	</li>
 </ol>
@@ -46,7 +46,7 @@ If an accident or illness happens,  resulting in our being unable to work, we wo
 <ul class="bluedot">
 	<li>
 		<p><strong>Not easy  for insurance advisors to explain to consumers. </strong></p>
-        <p>Indeed Disability Income  policies are more complex than the  <a href="https://www.moneyowl.com.sg/direct" target="_blank" title="Compare Protection Plans Now">standard death and critical illness policies</a>. It is not easy to explain, in definite terms, to what extent the  disability must be before the income benefit continues to be payable after 2  years (see point b). </p>
+        <p>Indeed Disability Income  policies are more complex than the  <a href="https://www.moneyowl.com.sg/#/direct" target="_blank" title="Compare Protection Plans Now">standard death and critical illness policies</a>. It is not easy to explain, in definite terms, to what extent the  disability must be before the income benefit continues to be payable after 2  years (see point b). </p>
 		<p>What is meant by a  reasonable occupation by virtue of &lsquo;training, education or experience?&rsquo; It is  too general and subjective to accept. In assessing claims, insurance companies rely  on their in-house objective judgement together with medical and other  professionals&rsquo; opinions. </p>
 		<p>Unfortunately, that  is the nature of such insurance. Important but difficult to explain. As such,  many advisors may prefer to avoid this insurance and go for those easier to  market.</p>
 	</li>
@@ -65,7 +65,9 @@ If an accident or illness happens,  resulting in our being unable to work, we wo
 </ul>
   
 <h3 class="primary-color"><strong>Conclusion</strong></h3>
-<p>  If earning an  income is very important to you and your dependants, you need to insure it.  Disability Income insurance is the only policy that is able to do that. To find out more about this product, <a href="../products/product-information?insurer=Aviva&amp;prod_name=IdealIncome&amp;objective=Disability%20Income&amp;type=Term">click here</a>.</p>
-<div class="text-xs-center"><a href="../compare/protection">
+<p>  If earning an  income is very important to you and your dependants, you need to insure it.  Disability Income insurance is the only policy that is able to do that.</p>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
   <img src="../assets/images/banners/compare_pro_540w.png" alt="compare protection plans"></a>
 </div>
+-->

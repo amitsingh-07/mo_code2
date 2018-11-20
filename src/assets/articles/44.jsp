@@ -1,5 +1,4 @@
-<%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<img src="images/44/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="/assets/articles/images/44/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 
 <p>It is the time of the year when the focus is on the <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">Supplementary Retirement Scheme (SRS)</a> again as the deadline for contributing to the SRS draws closer. </p>
 <p>Despite  the benefits that come with the Supplementary Retirement Scheme (SRS), it is often  overlooked as some find it difficult to understand how the scheme works.</p>
@@ -8,7 +7,7 @@
 <h2 class="primary-color"><strong>How can we benefit from SRS? </strong></h2>
 <p>We illustrate using an example.</p>
 <br>
-<img border="0" width="100%" height="auto" max-width="727px" src="images/44/srs_chart.png" alt="SRS chart"></p>
+<img border="0" width="100%" height="auto" max-width="727px" src="/assets/articles/images/44/srs_chart.png" alt="SRS chart"></p>
 <br><br>
 <h5><strong><u>Enjoy Tax Savings</u></strong></h5><br>
 Assuming you have a taxable income of $72,000 before  tax-relief from SRS, <br>
@@ -28,9 +27,11 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
   If you have saved $400,000 in SRS at age 62, you can  withdraw $40,000 each year over 10 years. Since 50% of withdrawals are not  taxable with SRS, only $20,000 (50% x $40,000) is taxable. </p>
  <p> <a href="https://www.iras.gov.sg/irashome/Individuals/Locals/Working-Out-Your-Taxes/Income-Tax-Rates/" target="_blank">Based on current  tax rates</a>, the first $20,000 is not taxable and hence you do not  have to pay any taxes if you have no additional income. </p>
 <br>
-<div class="text-xs-center"><a href="../compare/retirement-income">
-	<img src="../assets/images/banners/compare_ri_540w.png" alt="compare retirement plans"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+	<img src=" /assets/articles/images/banners/compare_ri_540w.png" alt="direct retirement plans"></a>
 </div>
+-->
 <br><h3 class="primary-color"><strong>Important Pointers about SRS</strong></h3><br>
 <p>There are some key areas about contributing and withdrawing  from your SRS account that would be useful for you to know if you are  considering to make use of it. </p>
 <p><strong><u>SRS Contributions</u></strong><br>
@@ -89,7 +90,6 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 <p>I hope this article has been useful for you to understand the features and benefits SRS. In the next article, we share about options you can consider to grow your SRS. 
   </p>
   <p>As we draw nearer to the end of the year, don't forget to contribute to your SRS <strong>31st December 2017</strong> to enjoy tax relief in Year of Assessment (YA) 2018!</p>
-  <p>To compare and learn more about using your SRS with retirement  income products through DIYInsurance, <a href="../compare/retirement-income" target="_blank">click here</a>. For advice  on SRS, please contact us at <a href="mailto:enquiry@diyinsurance.com.sg">enquiry@diyinsurance.com.sg</a></p>
   <br><p><strong>Useful sources: </strong><br>
   Visit the Supplementary Retirement Scheme Webpage by the Ministry of Finance for more details.</p>
 
