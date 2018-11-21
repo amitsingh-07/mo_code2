@@ -5,5 +5,6 @@ export class FundDetails {
     fundingAmount: number; // Topup
     fundingType: string;
     source: string;
-    portfolio: string;
+    portfolioName: string;
+    portfolioId: string;
 }

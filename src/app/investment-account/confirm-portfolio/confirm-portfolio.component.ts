@@ -105,7 +105,8 @@ export class ConfirmPortfolioComponent implements OnInit {
       fundingAmount: 0,
       fundingType: '',
       source: 'FUNDING',
-      portfolio: data.riskProfile.type
+      portfolioName: data.riskProfile.type,
+      portfolioId: data.portfolioId
     };
     return topupValues;
   }

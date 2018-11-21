@@ -193,4 +193,18 @@ export class TopupAndWithDrawService {
       return request;
     }
 
+    buyPortfolio(data, mode) {
+      const payload = this.constructBuyPortfolioParams(data, mode);
+      return this.apiService.buyPortfolio(payload);
+    }
+
+    constructBuyPortfolioParams(data, mode) {
+      return {
+        portfolioId: data.portfolioId,
+        trustId: '', // todo
+        redemptionAmount: data.investmentAmount, // todo
+        transferMode: mode // todo
+      };
+    }
+
 }

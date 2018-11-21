@@ -62,7 +62,8 @@ export let apiConstants = {
             saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
-            getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails'
+            getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
+            buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy'
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',

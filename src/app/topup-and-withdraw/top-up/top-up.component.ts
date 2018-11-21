@@ -156,7 +156,8 @@ export class TopUpComponent implements OnInit {
       fundingAmount: this.isAmountExceedCash ? this.topupAmount : fundingAmount,
       fundingType: this.topForm.get('Investment').value === 'Monthly Investment' ? 'MONTHLY' : 'ONETIME',
       source: 'TOPUP',
-      portfolio: this.formValues.portfolio
+      portfolioName: this.formValues.portfolio,
+      portfolioId: this.formValues.portfolioId // todo
     };
     this.topupAndWithDrawService.setFundingDetails(topupValues);
   }
