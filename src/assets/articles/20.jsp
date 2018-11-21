@@ -1,8 +1,8 @@
 <img src="/assets/articles/images/20/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Compare Term Life Insurance Image">
 
 		<p>It is difficult to compare insurance policies between different companies.</p>
-		<p>To provide greater transparency, we launched this comparison table so that consumers can compare <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/term-insurance.aspx" target="_blank" title="Term Life Insurance">term life insurance</a> policies across insurers in Singapore and make informed decisions when insuring themselves and their loved ones. </p>
-		<p>There are large price differences between the insurers. This comparison has been updated since November 2015.</p>
+		<p>To provide greater transparency, we launched this comparison table so that consumers can compare term life insurance policies across insurers in Singapore and make informed decisions when insuring themselves and their loved ones. </p>
+		<p>There are large price differences between the insurers. This comparison table has been updated since November 2015.</p>
 		<br><br>
 		<p>We consider the following example:</p>
 		<ul class="bluedot">
@@ -94,7 +94,6 @@
 	    <tr>
 	      <td  style="text-align: center;">45</td>
 	      <td>$3,538</td>
-        <td>-</td>
 	      <td>$2,014</td>
 	      <td>$1,990</td>
 	      <td>$1,917</td>

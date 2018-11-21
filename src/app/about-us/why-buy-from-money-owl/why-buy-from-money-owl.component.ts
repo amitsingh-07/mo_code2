@@ -1,5 +1,5 @@
-import { Title, Meta } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from 'src/app/shared/navbar/navbar.service';
