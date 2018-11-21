@@ -840,7 +840,7 @@ h6 {
       transform:translateY(3px);
       color:$black-color;
       font-size:16px;
-      margin:0px 10px;  
+      margin:0px 5px 0px 8px;  
       @include minMobilemaxPhablet{
         margin:0px 5px;
       }    
@@ -1174,6 +1174,12 @@ h6 {
         &.youtube-icon {
           background-image: url('/assets/images/youtube-icon.svg');
           width: 22px;
+          height: 16px;
+        }
+
+        &.linkedin-icon {
+          background-image: url('/assets/images/linkedin-icon.svg');
+          width: 16px;
           height: 16px;
         }
       }

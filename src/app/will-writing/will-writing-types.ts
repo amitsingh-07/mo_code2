@@ -84,15 +84,3 @@ export interface IWillProfileMembers {
     isAltTrusteee: string;
     distribution: number;
 }
-
-export enum IMaritalStatus {
-    single = 'S',
-    married = 'M',
-    divorced = 'D',
-    widowed = 'W'
-}
-
-export enum IGender {
-    male = 'M',
-    female = 'F'
-}

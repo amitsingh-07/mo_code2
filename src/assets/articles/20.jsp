@@ -1,8 +1,8 @@
 <img src="/assets/articles/images/20/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Compare Term Life Insurance Image">
 
 		<p>It is difficult to compare insurance policies between different companies.</p>
-		<p>To provide greater transparency, we launched this comparison table so that consumers can compare <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/term-insurance.aspx" target="_blank" title="Term Life Insurance">term life insurance</a> policies across insurers in Singapore and make informed decisions when insuring themselves and their loved ones. </p>
-		<p>There are large price differences between the insurers. This comparison has been updated since November 2015.</p>
+		<p>To provide greater transparency, we launched this comparison table so that consumers can compare term life insurance policies across insurers in Singapore and make informed decisions when insuring themselves and their loved ones. </p>
+		<p>There are large price differences between the insurers. This comparison table has been updated since November 2015.</p>
 		<br><br>
 		<p>We consider the following example:</p>
 		<ul class="bluedot">
@@ -51,7 +51,7 @@
 	      <td>-</td>
         <td>$819</td>
 	      <td>$925</td>
-	      <td>$-</td>
+	      <td>-</td>
 	      <td>$910</td>
 	      <td>$1,070</td>
 	      <td>-</td>
@@ -94,7 +94,6 @@
 	    <tr>
 	      <td  style="text-align: center;">45</td>
 	      <td>$3,538</td>
-        <td>-</td>
 	      <td>$2,014</td>
 	      <td>$1,990</td>
 	      <td>$1,917</td>
@@ -221,13 +220,14 @@
 <p>You are advised to approach a financial adviser to determine your needs and to understand the features, details and current quotes of the products before purchasing a product or surrendering your existing policies.</p>
 <p>
 	<br/>
-	To find out what you need, use MoneyOwl&rsquo;s simple <a href="https://www.moneyowl.com.sg/#/guide-me">insurance guided journey here</a><br/>
+	To find out what you need, use MoneyOwl&rsquo;s simple <a href="https://www.moneyowl.com.sg/#/guideme">insurance guided journey here</a><br/>
 	If you already know what you need, use MoneyOwl&rsquo;s <a href="https://www.moneyowl.com.sg/#/direct">insurance comparison tool here</a><br/>
 	<br/>
 </p>
 
 <p>We have used the following parameters for these reasons:</p>
-<p><em><strong>S$1 million sum coverage:</strong></em> For those of us who are supporting our families, having S$1 million life coverage to provide for our dependents is not unthinkable. To find out how much you need, do feel free to drop us an enquiry <a href="https://www.moneyowl.com.sg/#/about-us/contact-us">contact us</a>.</p>
+<p><em><strong>S$1 million sum coverage:</strong></em> For those of us who are supporting our families, having S$1 million life coverage to provide for our dependents is not unthinkable. To find out how much you need, do feel free to <a href="https://www.moneyowl.com.sg/#/about-us/contact-us">drop us an enquiry</a>.</p>
+<br/>
 <p><em><strong>Coverage until 65 years old:</strong></em> There comes a time in our life when our dependents (Eg. spouse and children) are no longer dependent on us and our existing assets and savings would be sufficient to provide for them should anything unexpected happen to us. 65 years old is a good estimate for how long we should cover ourselves with life insurance until. <br><br>
 </p>
 <p>For $500k term life insurance and critical illness comparison table, <strong><a href="https://www.moneyowl.com.sg/#/articles/entry/53">click here</a></strong>.</p>

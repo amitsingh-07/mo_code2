@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -29,7 +29,7 @@ import { LoginFormError } from './login-form-error';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private loginFormError: any = new LoginFormError();
   private pageTitle: string;
   private description: string;
@@ -150,7 +150,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
                 this.router.navigate([redirect_url]);
-              } else if (this.willWritingService.getWillWritingFormData()) {
+              } else if (Object.keys(this.willWritingService.getWillWritingFormData()).length !== 0) {
                 if (!this.willWritingService.getIsWillCreated()) {
                   this.willWritingApiService.createWill().subscribe((data) => {
                     if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
@@ -190,6 +190,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorMessage = error;
     return false;
+  }
+
+  ngOnDestroy() {
+    this.navbarService.unsubscribeBackPress();
   }
 
   markAllFieldsDirty(form) {

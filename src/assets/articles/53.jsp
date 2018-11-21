@@ -1,8 +1,9 @@
 <img src="/assets/articles/images/53/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Compare Term Life plus Critical Illness Insurance Image">
 
 		<p>In this comparison table, we compare all Term Life with Critical illness insurance plans in Singapore.</p>
-		<p>While a hospitalisation plan helps to cover the costs of a hospital stay, a critical illness plan provides for post-hospitalisation treatment costs and alternative treatment needs in the event of a critical illness.<br> A lump sum payout from a critical illness plan in your insurance coverage can also play the role of replacing your income and allow you time for recuperation.</p>
-		<br><br>
+		<br/>
+		<p>While a hospitalisation plan helps to cover the costs of a hospital stay, a critical illness plan provides for post-hospitalisation treatment costs and alternative treatment needs in the event of a critical illness.<br/><br/> A lump sum payout from a critical illness plan in your insurance coverage can also play the role of replacing your income and allow you time for recuperation.</p>
+		<br>
 		<p>We consider the following example of a <strong>Male, Non-Smoker</strong>:</p>
 		<ul class="bluedot ">
 			<li>Policy coverage till 65 years old</li>
@@ -10,7 +11,7 @@
 			<li>S$500,000 Critical Illness Coverage</li>
 		</ul>
 <br>
-<p><strong>For a Male Non-Smoker</strong></p>
+<p><strong>For a Male Non-Smoker,</strong></p>
 <p><strong>Annual premiums (S$):</strong></p>
 
 <div class="table-responsive">
@@ -100,7 +101,7 @@
 <br><br>
 
 
-<p>For a Female, Non-Smoker,</p>
+<p><strong>For a Female, Non-Smoker,</strong></p>
 <p><strong>Annual premiums (S$):</strong></p>
 
 <div class="table-responsive">
@@ -197,7 +198,7 @@
 <p>You are advised to approach a financial adviser to determine your needs and to understand the features, details and current quotes of the products before purchasing a product or surrendering your existing policies.</p>
 <p>
 		<br/>
-		To find out what you need, use MoneyOwl&rsquo;s simple <a href="https://www.moneyowl.com.sg/#/guide-me">insurance guided journey here</a><br/>
+		To find out what you need, use MoneyOwl&rsquo;s simple <a href="https://www.moneyowl.com.sg/#/guideme">insurance guided journey here</a><br/>
 		If you already know what you need, use MoneyOwl&rsquo;s <a href="https://www.moneyowl.com.sg/#/direct">insurance comparison tool here</a><br/>
 		<br/>
 	</p>
@@ -206,6 +207,7 @@
 <p>We have used the following parameters for these reasons:</p>
 
 <p><em><strong>S$500,000 life coverage:</strong></em> This amount could be used to provide for your dependents, existing loans or as a gift to your beneficiaries.</p>
+<br/>
 <p><em><strong>S$500,000 critical illness coverage:</strong></em> This amount allows you to recuperate in the event of an critical illness or provide for alternative treatment needs.</p>
 
 <p>For $1million term life insurance comparison table, <strong><a href="https://www.moneyowl.com.sg/#/articles/entry/20">click here</a></strong>.</p>
