@@ -24,7 +24,7 @@ export class ContactUsComponent implements OnInit {
   contactUsErrorMessage: string;
   subjectList: any;
   subjectPreset = 'Choose a Subject*';
-  
+
   public subjectItems: any;
   sendSuccess = false;
 
@@ -44,17 +44,17 @@ export class ContactUsComponent implements OnInit {
       this.translate.get('COMMON').subscribe((result: string) => {
         this.contactUsErrorMessage = this.translate.instant('ERROR.CONTACT_US.EMPTY_TEXT');
       });
+      this.contactUsFormValues = this.aboutUsService.getContactUs();
+      this.contactUsForm = new FormGroup({
+        subject: new FormControl(this.contactUsFormValues.subject),
+        email: new FormControl(this.contactUsFormValues.email),
+        message: new FormControl(this.contactUsFormValues.message, [Validators.required])
+      });
     }
 
   ngOnInit() {
     this.sendSuccess = false;
     this.footerService.setFooterVisibility(true);
-    this.contactUsFormValues = this.aboutUsService.getContactUs();
-    this.contactUsForm = new FormGroup({
-      subject: new FormControl(this.contactUsFormValues.subject),
-      email: new FormControl(this.contactUsFormValues.email),
-      message: new FormControl(this.contactUsFormValues.message, [Validators.required])
-    });
   }
 
   selectSubject(in_subject) {
@@ -70,6 +70,7 @@ export class ContactUsComponent implements OnInit {
     form.value.email = this.email;
     form.value.message = form.value.message.replace(/\n/g, '<br/>').replace(/"/g, '\\"');
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
+      console.log(data);
       if (data.responseMessage.responseDescription === 'Successful response') {
         this.sendSuccess = true;
       }
