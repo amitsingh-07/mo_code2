@@ -144,18 +144,26 @@ export class TopUpComponent implements OnInit {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
   saveFundingDetails() {
-    const fundingAmount = this.formValues.oneTimeInvestmentAmount ?
+    const toBeFundedAmount = this.formValues.oneTimeInvestmentAmount ?
       this.formValues.oneTimeInvestmentAmount : this.formValues.MonthlyInvestmentAmount;
     const topupValues: FundDetails = {
-      oneTimeInvestment: 0,
-      monthlyInvestment: 0,
-      investmentAmount: fundingAmount,
-      fundingAmount: this.isAmountExceedCash ? this.topupAmount : fundingAmount,
-      fundingType: this.topForm.get('Investment').value === 'Monthly Investment' ? 'MONTHLY' : 'ONETIME',
       source: 'TOPUP',
+      oneTimeInvestment: this.formValues.oneTimeInvestmentAmount ? this.formValues.oneTimeInvestmentAmount : 0,
+      monthlyInvestment: this.formValues.MonthlyInvestmentAmount ? this.formValues.MonthlyInvestmentAmount : 0,
+      investmentAmount: 0,
+      amountToTransfer: this.getAmountToTransfer(),
+      isAmountExceedCash: this.isAmountExceedCash,
       portfolioName: this.formValues.portfolio,
       portfolioId: this.formValues.portfolioId // todo
     };
     this.topupAndWithDrawService.setFundingDetails(topupValues);
+  }
+
+  getAmountToTransfer(): number {
+    let amountToTransfer = 0;
+    if (this.formValues.oneTimeInvestmentAmount && this.isAmountExceedCash) {
+      amountToTransfer = this.cashBalance - this.formValues.oneTimeInvestmentAmount;
+    }
+    return amountToTransfer;
   }
 }

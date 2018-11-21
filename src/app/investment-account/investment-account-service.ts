@@ -629,7 +629,7 @@ export class InvestmentAccountService {
     constructSaveInvestmentAccountRequest() {
         const payload = this.getInvestmentAccountFormData();
         const request = {} as ISaveInvestmentAccountRequest;
-        request.myInfoVerified = payload.isMyInfoEnabled;
+        request.myInfoVerified = true;
         request.isSingaporePR = payload.singaporeanResident;
         request.personalInfo = this.getPersonalInfoReqData(payload);
         request.residentialAddress = this.getResidentialAddressReqData(payload);
