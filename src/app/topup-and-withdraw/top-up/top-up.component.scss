@@ -55,12 +55,13 @@
 
   .form-group-with-bg--header-label {
     color: #2d8289  !important;
+    font-family: $muli-regular !important;
   }
   
 
 
 
-  .special-radio-button {
+.topup-radio-button {
     padding: 0px;
     margin-bottom: 15px;
   
@@ -105,6 +106,7 @@
       position: relative;
       border: none;
       border: solid 1px #99cfce;
+      border-radius: 6px;
       
   
       @include allmobiles {
@@ -184,20 +186,16 @@
         }
       }
    }
-  
-    input[type='radio']:checked+label,
+   input[type='radio']:checked+label,
     input[type='checkbox']:checked+label {
       background-image: none;
       background-color:#00a7a7;
-      box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.3);
-  
-      .input-label-white,
+     .input-label-white,
       .input-label-normal,
       .input-label-top20 {
         color: #fff;
       }
     }
-  
     input[type='radio']:checked,
     input[type='checkBox']:checked {}
   }
