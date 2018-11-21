@@ -31,7 +31,7 @@ export class TopUpComponent implements OnInit {
   portfolio; // todo
   investment;
   portfolioList;
-  isAmountExceedCash = false;
+  isAmountExceedBalance = false;
   topupAmount: any;
   investmentTypeList: any;
   showOnetimeInvestmentAmount = true;
@@ -39,7 +39,7 @@ export class TopUpComponent implements OnInit {
   formValues;
   topForm: FormGroup;
   enteringAmount;
-  cashBalance = 120000;
+  cashBalance = 1200;
   investmentype;
   constructor(
     public readonly translate: TranslateService,
@@ -65,9 +65,9 @@ export class TopUpComponent implements OnInit {
   validateAmonut(amount) {
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
-      this.isAmountExceedCash = true;
+      this.isAmountExceedBalance = true;
     } else {
-      this.isAmountExceedCash = false;
+      this.isAmountExceedBalance = false;
     }
   }
 
@@ -144,26 +144,16 @@ export class TopUpComponent implements OnInit {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
   saveFundingDetails() {
-    const toBeFundedAmount = this.formValues.oneTimeInvestmentAmount ?
-      this.formValues.oneTimeInvestmentAmount : this.formValues.MonthlyInvestmentAmount;
-    const topupValues: FundDetails = {
+    const topupValues = {
       source: 'TOPUP',
-      oneTimeInvestment: this.formValues.oneTimeInvestmentAmount ? this.formValues.oneTimeInvestmentAmount : 0,
-      monthlyInvestment: this.formValues.MonthlyInvestmentAmount ? this.formValues.MonthlyInvestmentAmount : 0,
-      investmentAmount: 0,
-      amountToTransfer: this.getAmountToTransfer(),
-      isAmountExceedCash: this.isAmountExceedCash,
       portfolioName: this.formValues.portfolio,
-      portfolioId: this.formValues.portfolioId // todo
+      portfolioId: this.formValues.portfolioId, // todo
+      oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, //topup
+      monthlyInvestment: this.formValues.MonthlyInvestmentAmount, //topup
+      fundingType: this.formValues.MonthlyInvestmentAmount ? 'MONTHLY' : 'ONETIME',
+      isAmountExceedBalance: this.isAmountExceedBalance,
+      exceededAmount: this.topupAmount
     };
     this.topupAndWithDrawService.setFundingDetails(topupValues);
-  }
-
-  getAmountToTransfer(): number {
-    let amountToTransfer = 0;
-    if (this.formValues.oneTimeInvestmentAmount && this.isAmountExceedCash) {
-      amountToTransfer = this.cashBalance - this.formValues.oneTimeInvestmentAmount;
-    }
-    return amountToTransfer;
   }
 }

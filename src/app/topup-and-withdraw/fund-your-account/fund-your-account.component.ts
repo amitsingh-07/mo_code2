@@ -52,12 +52,28 @@ export class FundYourAccountComponent implements OnInit {
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();
+    debugger;
     const pageTitle = this.getPageTitleBySource(this.fundDetails.source, this.fundDetails.fundingType);
     this.setPageTitle(pageTitle);
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
+  }
+
+  getBankDetailsList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.bankDetailsList = data.objectList.bankList;
+      console.log(this.bankDetailsList);
+    });
+  }
+  showBankDetails() {
+    const ref = this.modal.open(BankDetailsComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Select Your Bank';
+    ref.componentInstance.errorDescription = 'You will be transferring funds from:';
+    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
+    console.log(this.bankDetailsList);
+    return false;
   }
 
   getPageTitleBySource(source, type) {
@@ -77,28 +93,17 @@ export class FundYourAccountComponent implements OnInit {
     });
   }
 
-  showBankDetails() {
-    const ref = this.modal.open(BankDetailsComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Select Your Bank';
-    ref.componentInstance.errorDescription = 'You will be transferring funds from:';
-    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
-    console.log(this.bankDetailsList);
-    return false;
-
-  }
   selectFundingMethod(mode) {
     this.activeMode = mode;
   }
 
-  getBankDetailsList() {
-    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
-      this.bankDetailsList = data.objectList.bankList;
-      console.log(this.bankDetailsList);
-    });
-  }
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter((transferType) => transferType.institutionType === 'bank')[0];
     this.paynowDetails = data.filter((transferType) => transferType.institutionType === 'PayNow')[0];
+  }
+
+  oneTimeSufficient() {
+    return (this.fundDetails.fundingType === 'ONETIME' && !this.fundDetails.isAmountExceedBalance);
   }
 
   goToNext() {
@@ -106,5 +111,4 @@ export class FundYourAccountComponent implements OnInit {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
     });
   }
-
 }
