@@ -33,7 +33,6 @@ import {
 import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
-import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
 import {
@@ -100,7 +99,6 @@ export function createTranslateLoader(http: HttpClient) {
     AccountSetupCompletedComponent,
     AdditionalDeclarationSubmitComponent,
     UploadDocumentBOComponent,
-    FundYourAccountComponent,
     AccountCreationErrorModalComponent,
     ViewAllNotificationsComponent,
     TopBarWithClearButtonComponent,

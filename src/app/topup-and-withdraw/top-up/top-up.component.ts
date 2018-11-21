@@ -1,5 +1,3 @@
-import { FundDetails } from 'src/app/investment-account/fund-your-account/fund-details';
-
 import { CurrencyPipe } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,16 +6,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { FundDetails } from '../fund-your-account/fund-details';
 import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
@@ -86,9 +85,9 @@ export class TopUpComponent implements OnInit {
       portfolio: [this.formValues.portfolio, Validators.required],
       Investment: [this.formValues.Investment, Validators.required],
       oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required]
-      //MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
+      // MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
-    //this.buildFormInvestment();
+    // this.buildFormInvestment();
   }
   getPortfolioList() {
     this.topupAndWithDrawService.getPortfolioList().subscribe((data) => {
@@ -142,7 +141,7 @@ export class TopUpComponent implements OnInit {
     form.value.topupAmount = this.topupAmount;
     this.topupAndWithDrawService.setTopUp(form.value);
     this.saveFundingDetails();
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
   saveFundingDetails() {
     const fundingAmount = this.formValues.oneTimeInvestmentAmount ?

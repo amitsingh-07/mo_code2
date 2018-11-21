@@ -4,14 +4,14 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HeaderService } from '../../shared/header/header.service';
 import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import {
-  TOPUP_AND_WITHDRAW_ROUTE_PATHS
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
-import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
   selector: 'app-fund-your-account',

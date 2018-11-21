@@ -104,8 +104,7 @@ export class YourInvestmentComponent implements OnInit {
     });
   }
   fundYourAccount() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
 
   alertPopUp(i) {

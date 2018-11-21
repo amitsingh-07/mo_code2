@@ -958,8 +958,8 @@ export class InvestmentAccountService {
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
                     postalCode: data.postalCode,
-                    townName: "Townname",
-                    state: "State Name"
+                    townName: 'Townname',
+                    state: 'State Name'
                 },
                 mailingAddress: {
                     id: 2,
@@ -968,8 +968,8 @@ export class InvestmentAccountService {
                     addressLine2: data.mailingAddress.mailAddress2,
                     unitNumber: data.mailingAddress.mailUnitNo,
                     postalCode: data.mailingAddress.mailPostalCode,
-                    townName: "Townname",
-                    state: "State Name"
+                    townName: 'Townname',
+                    state: 'State Name'
                 }
             }
 
@@ -985,8 +985,8 @@ export class InvestmentAccountService {
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
                     postalCode: data.postalCode,
-                    townName: "Townname",
-                    state: "State Name"
+                    townName: 'Townname',
+                    state: 'State Name'
                 },
                 mailingAddress: null
             }
