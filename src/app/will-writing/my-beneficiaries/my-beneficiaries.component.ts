@@ -149,9 +149,9 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         this.beneficiaryList[this.selectedIndex].name = form.value.name;
         this.beneficiaryList[this.selectedIndex].relationship = form.value.relationship;
         this.beneficiaryList[this.selectedIndex].uin = form.value.uin;
-        this.isFormAltered = true;
         this.resetForm();
       }
+      this.isFormAltered = true;
     }
   }
 
