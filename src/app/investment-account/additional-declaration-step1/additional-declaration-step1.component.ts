@@ -68,9 +68,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
       // tslint:disable-next-line:max-line-length
       pepPostalCode: new FormControl(this.addInfoFormValues.pepPostalCode, [Validators.required , Validators.pattern(RegexConstants.NumericOnly)]),
       // tslint:disable-next-line:max-line-length
-      pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]),
+      pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]),
       // tslint:disable-next-line:max-line-length
-      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [Validators.pattern(RegexConstants.Alphanumeric)]),
+      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]),
       pepUnitNo: new FormControl(this.addInfoFormValues.pepUnitNo, [Validators.required, Validators.pattern(RegexConstants.SymbolNumber)]),
     });
     this.addInfoForm.controls.radioPep.setValue(true);
