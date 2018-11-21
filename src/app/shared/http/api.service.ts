@@ -161,11 +161,13 @@ export class ApiService {
       subject: data.subject,
       body: data.message
     };
-    this.authService.authenticate().subscribe((response) => {});
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((response) => {});
+    }
     return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
-        .pipe(
-          catchError((error: HttpErrorResponse) => this.handleError(error))
-        );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
     }
 
   subscribeNewsletter(data) {
@@ -618,7 +620,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            //return this.httpClient.get<IServerResponse>(url);
+            // return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
@@ -680,7 +682,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            //return this.httpClient.get<IServerResponse>(url);
+            // return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
