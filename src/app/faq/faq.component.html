@@ -17,7 +17,7 @@
     </div>
   <div class="faq__container">
 
-      <div class="home__navbar" #homeNavBar [ngClass]="{'fixed': homeNavBarFixed,'hide': homeNavBarHide}">
+      <div class="home__navbar" #homeNavBar [ngClass]="">
           <div class="home__navbar--inner">
               <div class="navbar__btn" #homeNavInsurance (click)="goToSection('insurance')">
                   <span class="navbar__btn--title">{{'INSURANCE.LABEL' | translate}}</span>
@@ -32,7 +32,7 @@
                   <span class="navbar__btn--title">{{'COMPREHENSIVE.LABEL' | translate}}</span>
                   <span class="navbar__btn--subtitle">{{'COMPREHENSIVE.SUB_LABEL' | translate}}</span> 
                   </div>
-              <div class="home__navbar--border" [ngClass]="{'hide': homeNavBarFixed}"></div>
+              <div class="home__navbar--border" [ngClass]=""></div>
               </div>
           </div>
 
