@@ -20,12 +20,6 @@
         position: relative;
         display:block;
         width:100%;
-        max-width:1024px;
-        padding:65px 0px;
-        margin:0px auto;
-        @include minMobilemaxPhablet{
-            padding:65px 0Fpx;
-        }
     }
 
     .faq-category__header{
@@ -46,11 +40,11 @@
         display:flex;
         width:100%;
         justify-content:space-between;
-        padding: 10px 0px;
-        @include minPhabletmaxTablet{
-            justify-content:flex-start;
-        }
+        max-width:1024px;
+        padding:65px 0px;
+        margin:0px auto;
         @include minMobilemaxPhablet{
+            padding:65px 0px;
             flex-direction:column;
         }
         .faq-selection__panel{
