@@ -95,7 +95,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   openFAQ() {
-    window.open(this.faqLink, '_blank');
+    this.router.navigate(['faq']);
   }
 
   openTermsOfConditions() {
