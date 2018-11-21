@@ -69,8 +69,8 @@ export class WillWritingApiService {
             enquiryId: will.enquiryId,
             uin: will.aboutMe.uin,
             name: will.aboutMe.name,
-            genderCode: this.maritalStatus.get(will.aboutMe.gender),
-            maritalStatusCode: this.gender.get(will.aboutMe.maritalStatus),
+            genderCode: this.gender.get(will.aboutMe.gender),
+            maritalStatusCode: this.maritalStatus.get(will.aboutMe.maritalStatus),
             noOfChildren: will.aboutMe.noOfChildren,
             promoCode: will.promoCode
         };
