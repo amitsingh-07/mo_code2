@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { AppService } from '../app.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { IGender, IMaritalStatus, IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
+import { IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 import { WillWritingService } from './will-writing.service';
 
@@ -14,13 +14,25 @@ import { WillWritingService } from './will-writing.service';
 export class WillWritingApiService {
 
     private relationship: any = new Map([
-        ['parent' , 'P'],
-        ['sibling' , 'SBL'],
-        ['parent-in-law' , 'PIL'],
-        ['friend' , 'F'],
-        ['others' , 'O'],
-        ['spouse' , 'S'],
-        ['child' , 'C'],
+        ['parent', 'P'],
+        ['sibling', 'SBL'],
+        ['parent-in-law', 'PIL'],
+        ['friend', 'F'],
+        ['others', 'O'],
+        ['spouse', 'S'],
+        ['child', 'C'],
+    ]);
+
+    private maritalStatus: any = new Map([
+        ['single', 'S'],
+        ['married', 'M'],
+        ['divorced', 'D'],
+        ['widowed', 'W']
+    ]);
+
+    private gender: any = new Map([
+        ['male', 'M'],
+        ['female', 'F']
     ]);
 
     constructor(
@@ -57,8 +69,8 @@ export class WillWritingApiService {
             enquiryId: will.enquiryId,
             uin: will.aboutMe.uin,
             name: will.aboutMe.name,
-            genderCode: IGender[will.aboutMe.gender],
-            maritalStatusCode: IMaritalStatus[will.aboutMe.maritalStatus],
+            genderCode: this.maritalStatus.get(will.aboutMe.gender),
+            maritalStatusCode: this.gender.get(will.aboutMe.maritalStatus),
             noOfChildren: will.aboutMe.noOfChildren,
             promoCode: will.promoCode
         };
