@@ -16,6 +16,7 @@ export class FAQComponent implements OnInit {
   public pageTitle: string;
   public sections: any;
   public navBarElement: ElementRef;
+  activeSection;
   constructor(private navbarService: NavbarService, private footerService: FooterService,
               public translate: TranslateService, public renderer: Renderer2) {
                 this.translate.use('en');
@@ -36,6 +37,7 @@ export class FAQComponent implements OnInit {
   @ViewChild('homeNavComprehensive') HomeNavComprehensive: ElementRef;
   ngOnInit() {
     this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
+    this.activeSection = 0;
   }
 
   toggleActive(event: any) {
@@ -109,21 +111,25 @@ export class FAQComponent implements OnInit {
         this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 1;
       } else if (elementName === 'investment') {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
         this.renderer.addClass(this.HomeNavInvest.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 2;
       } else if (elementName === 'comprehensive') {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
         this.renderer.addClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 3;
       } else {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 0;
       }
 
     }
