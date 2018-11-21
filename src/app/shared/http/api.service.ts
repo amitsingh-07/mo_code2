@@ -655,6 +655,13 @@ export class ApiService {
       );
   }
 
+  sellPortfolio(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   // tslint:disable-next-line:no-identical-functions
   getAllNotifications() {
     const url = '../assets/mock-data/notifications.json';

@@ -140,7 +140,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   saveWithdrawal() {
-    this.topupAndWithDrawService.saveWithdrawalRequest(this.formValues).subscribe((response) => {
+    this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe((response) => {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
     });
   }
