@@ -8,18 +8,24 @@
 }
 .user_content{
     position: absolute;
-    top: 12%;
+    top: 78px;
+    padding: 0 29px 0 28px;
     .user_portfolio{
         font-family: $muli-regular;
-         font-size: 30px;;
+        font-size: 30px;;
         line-height: 1.28;
         letter-spacing: -0.2px;
         position: relative;
+        div{
+            &:last-child{
+                font-weight: bold;
+            }
+        }
     }
-    .col-4{
+    .flex-col-4{
         position: absolute;
         right: 21px;
-        bottom: -20px
+        top: 40px;
     }
 }
 .dropdown-control 
@@ -299,4 +305,6 @@ font-family: $muli-bold;
 .flex-row:not(:last-child) {
       margin-bottom: 0px; 
 }
-  
+  hr{
+    background-color: #98dfdf;
+  }

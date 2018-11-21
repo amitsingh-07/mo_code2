@@ -24,12 +24,14 @@ app-your-investment{
         bottom: -57%;
     }
 }
+hr{
+    background-color: #98dfdf;
+}
 p{
    
     padding: 20px;
     text-align: center;
-  
-    font-family: Muli;
+  font-family: Muli;
     font-size: 14px;
     
     letter-spacing: -0.1px;
@@ -155,7 +157,7 @@ p{
     letter-spacing: -0.2px;
     text-align: right;
     color: #00a7a7;
-    padding-right: 7px;
+    padding-right: 17px;
 }
 .your_portfolio_container{
     padding: 20px;
@@ -168,7 +170,7 @@ p{
 
   letter-spacing: -0.2px;
   color: #ffffff;
-
+  padding-left: 12px;
 }
 .your_portfolio_number{
   font-family: $muli-regular;
@@ -206,6 +208,7 @@ font-family: $muli-bold;
   letter-spacing: -0.3px;
  color: #00a7a7;
   padding-left: 15px;
+  max-width: 180px;
   
 }
 .portfolio_value{
@@ -246,7 +249,7 @@ font-family: $muli-bold;
 
     &:active {
       outline: none;
-      background-color: #fff;
+      background-color:  #00c5c4;
     //   color: #fff;
     }
 
@@ -256,7 +259,7 @@ font-family: $muli-bold;
 
     &:focus {
       outline: none;
-      background-color:#fff;
+      background-color: #00c5c4;
     //   color: #fff;
     }
 
