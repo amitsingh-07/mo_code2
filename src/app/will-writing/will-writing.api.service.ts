@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { AppService } from '../app.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { IGender, IMaritalStatus, IRelationship, IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
+import { IGender, IMaritalStatus, IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 import { WillWritingService } from './will-writing.service';
 
@@ -12,6 +12,17 @@ import { WillWritingService } from './will-writing.service';
     providedIn: 'root'
 })
 export class WillWritingApiService {
+
+    private relationship: any = new Map([
+        ['parent' , 'P'],
+        ['sibling' , 'SBL'],
+        ['parent-in-law' , 'PIL'],
+        ['friend' , 'F'],
+        ['others' , 'O'],
+        ['spouse' , 'S'],
+        ['child' , 'C'],
+    ]);
+
     constructor(
         private appService: AppService,
         private authService: AuthenticationService,
@@ -59,7 +70,7 @@ export class WillWritingApiService {
             willProfileMembers.push({
                 uin: will.spouse[0].uin,
                 name: will.spouse[0].name,
-                relationshipCode: IRelationship[will.spouse[0].relationship],
+                relationshipCode: this.relationship.get(will.spouse[0].relationship),
                 isFamily: 'Y',
                 isBeneficiary: beneficiary ? 'Y' : 'N',
                 isGuardian: 'Y',
@@ -77,7 +88,7 @@ export class WillWritingApiService {
                     uin: children.uin,
                     name: children.name,
                     dob: children.dob['year'] + '' + children.dob['month'] + '' + children.dob['day'],
-                    relationshipCode: IRelationship[children.relationship],
+                    relationshipCode: this.relationship.get(children.relationship),
                     isFamily: 'Y',
                     isBeneficiary: beneficiary ? 'Y' : 'N',
                     isGuardian: 'N',
@@ -109,7 +120,7 @@ export class WillWritingApiService {
             willProfileMembers.push({
                 uin: beneficiary.uin,
                 name: beneficiary.name,
-                relationshipCode: IRelationship[beneficiary.relationship],
+                relationshipCode: this.relationship.get(beneficiary.relationship),
                 isFamily: 'N',
                 isBeneficiary: 'Y',
                 isGuardian: guardian.length > 0 ? guardian[0].isAlt ? 'N' : 'Y' : 'N',
@@ -126,7 +137,7 @@ export class WillWritingApiService {
                 willProfileMembers.push({
                     uin: guardian.uin,
                     name: guardian.name,
-                    relationshipCode: IRelationship[guardian.relationship],
+                    relationshipCode: this.relationship.get(guardian.relationship),
                     isFamily: 'N',
                     isBeneficiary: 'N',
                     isGuardian: guardian.isAlt ? 'N' : 'Y',
@@ -143,7 +154,7 @@ export class WillWritingApiService {
                 willProfileMembers.push({
                     uin: execTrustee.uin,
                     name: execTrustee.name,
-                    relationshipCode: IRelationship[execTrustee.relationship],
+                    relationshipCode: this.relationship.get(execTrustee.relationship),
                     isFamily: 'N',
                     isBeneficiary: 'N',
                     isGuardian: 'N',

@@ -66,6 +66,9 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   }
 
   canDeactivate(): Observable<boolean> | boolean {
+    if (window.opener) {
+      return true;
+    }
     return false;
   }
 

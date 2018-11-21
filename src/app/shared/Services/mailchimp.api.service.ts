@@ -46,7 +46,7 @@ export class MailchimpApiService {
       } else
       if (data.status === 'pending') {
         console.log('pending success');
-        this.subscribeMessage.next('A verification email has been sent. Do verify to receive our newsletters');
+        this.subscribeMessage.next('To confirm your subscription, please click on the verification link sent to your email.');
       }
     }
   }

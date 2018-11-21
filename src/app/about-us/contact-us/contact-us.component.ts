@@ -14,7 +14,7 @@ import { AboutUsService } from './../about-us.service';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
-  public subject = 'Subject';
+  public subject = 'Choose a Subject*';
   public email = 'enquiry@moneyowl.com.sg';
 
   contactUsForm: FormGroup;

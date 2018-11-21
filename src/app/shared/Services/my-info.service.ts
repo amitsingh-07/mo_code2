@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
-import { GuideMeService } from './../../guide-me/guide-me.service';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -20,7 +19,9 @@ const SUCCESS = 1;
   providedIn: 'root'
 })
 export class MyInfoService {
+
   changeListener = new Subject();
+
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
@@ -144,11 +145,12 @@ export class MyInfoService {
   }
 
   closeMyInfoPopup(error: boolean) {
+    this.isMyInfoEnabled = false;
     this.closeFetchPopup();
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
+      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
       ref.componentInstance.isError = true;
       ref.result.then(() => {
         this.goToMyInfo();

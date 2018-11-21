@@ -97,11 +97,13 @@ const routes: Routes = [
   },
   {
     path: WILL_WRITING_ROUTES.SIGN_UP,
-    component: SignUpComponent
+    component: SignUpComponent,
+    canActivate: [WillWritingAccessGuard]
   },
   {
     path: WILL_WRITING_ROUTES.VALIDATE_YOUR_WILL,
-    component: ValidateYourWillComponent
+    component: ValidateYourWillComponent,
+    canActivate: [WillWritingAccessGuard]
   }
 ];
 

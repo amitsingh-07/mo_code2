@@ -1,12 +1,13 @@
 <img src="/assets/articles/images/45/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="old couple cycling image">
 
-<p>This article follows from our earlier piece on <a href="https://www.moneyowl.com.sg/#/articles/entry/44">&ldquo;How to save on taxes using SRS?&ldquo;</a></p>
-
-    <p>Funds in the <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">Supplementary Retirement Scheme (SRS)</a> can be invested into a wide range of instruments such as shares, unit trusts, insurance, bonds and fixed deposits. Or you can simply leave your SRS monies in cash, which is not a wise financial decision due to the current low interest rates of 0.05% offered by the banks. </p>
+<p>This article follows from our earlier piece on <a href="#/articles/entry/44">&ldquo;How to save on taxes using SRS?&ldquo;</a></p>
+<br/>
+<p>Funds in the <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">Supplementary Retirement Scheme (SRS)</a> can be invested into a wide range of instruments such as shares, unit trusts, insurance, bonds and fixed deposits. Or you can simply leave your SRS monies in cash, which is not a wise financial decision due to the current low interest rates of 0.05% offered by the banks. </p>
 <p>&nbsp;</p>
 <p class="text-xs-center"><img border="0" width="100%"  style="max-width:631px" src="/assets/articles/images/45/srs_funds.jpg" alt="SRS Funds Pie Chart"></p>
 <p>&nbsp;</p>
 <p>As of 31st December 2016, total SRS contributions amounted to $7,200,000,000! And surprisingly, a third of these money sits in cash, which earns little interest.  </p>
+<br/>
 <p>On top of enjoying tax savings with SRS, it is important to look at how you can grow your SRS funds. Since you are likely to only withdraw your SRS after retirement age to avoid penalties, you should make your SRS funds work harder since you have the benefit of time </p>
 <br>
 <h3 class="primary-color"><strong>The Power of Compounding</strong></h3>
@@ -53,10 +54,12 @@
 </div>
 <p>&nbsp;</p>
 <p>If $30,000 of <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> is left in cash and assuming an interest of 0.5%, you can expect your SRS funds to grow to about $34,000 after 25 years. But if you are able to obtain a higher rate of return of 4%, the end result will be around $80,000, a potential gain of 224%. Of course, these returns are not guaranteed. However, some insurance products do provide some form of guarantee on their projection.</p>
+<br/>
 <p>Whilst you can invest your SRS in various instruments, the focus of this article is on SRS-approved insurance policies and how you can use them to build up your retirement nest egg.</p>
 <p>&nbsp;</p>
 <h3 class="primary-color"><strong>Using SRS to generate income stream for Retirement</strong></h3>
 <p>When you have stopped working and are in retirement, how would you fund your living expenses?</p>
+<br/>
 <p>For many people, it could be either:</p>
 <ul class="bluedot">
   <li>Withdrawing from your bank account. This can cause undue worry when you notice how your bank balance decreases with each withdrawal. The current low interest rate environment does not help. </li>
@@ -72,7 +75,8 @@
 <p class="text-xs-center"><img border="0"  width="100%" style="max-width:670px" src="/assets/articles/images/45/how_retirement_works.png" alt="How retirement works"></p>
 <p>&nbsp;</p>
 <p>There are many SRS-approved insurance products in the market and it can be confusing. Every product has different features and you are more likely to have more questions than answers about them.  </p>
-<p>At DIYinsurance, we understand your concerns. And we make things easier for you. The following is a 3-step guide to help you select a suitable retirement income product that meet your needs.</p>
+<br/>
+<p>At MoneyOwl, we understand your concerns. And we make things easier for you. The following is a 3-step guide to help you select a suitable retirement income product that meet your needs.</p>
 <p>&nbsp;</p>
 
 <h3 class="primary-color"><strong>3-step Selection Guide</strong></h3>
@@ -86,6 +90,7 @@
 
 <p><strong>Step 2: Do you require your recurring income amount to be fixed (guaranteed), variable (fluctuating) or increasing?</strong></p>
 <p>Generally, if you like your income payout to increase every year to combat inflation, there is a higher cost (greater premiums). On the other hand, it will cost lesser if you prefer your income payout to remain the same (fixed amount). The premiums (cost) may be even lesser if you do not mind that your payout fluctuates, i.e. your payout is lower if the insurer dosen&rsquo;t do so well (although there is some guaranteed portion).</p>
+<br/>
 <p>In addition, there are further considerations which are a bit trickier for you to consider such as your risk tolerance, the size of your retirement goal relative to your resources and your other sources of retirement income. Since your SRS funds is usually a small component of your overall nest egg, a quick way is to consider based on your preference on the nature of income payout.</p>
 
 <p>&nbsp;</p>
@@ -112,10 +117,13 @@
 
 <br><br>
 <p><strong>Step 3: Compare the Products</strong></p>
-<p>Hopefully with Steps 1 &amp; 2, you have a better understanding of the features you are looking for. Now is the time to look for suitable products. One easy way is to use our DIYinsurance platform to compare.</p>
+<p>Hopefully with Steps 1 &amp; 2, you have a better understanding of the features you are looking for. Now is the time to look for suitable products. One easy way is to use our MoneyOwl platform to compare.</p>
+<br/>
 <p>You will see a list of available products based on your selected criteria. A ranking of products is also provided to help you identify superior products. You can also drill in to understand the product&rsquo;s unique features and benefits. </p>
+<br/>
 <p>If you have further questions or require advice, please feel free to send a non-obligatory <strong>Quote Request</strong> and we will get back to assist you.</p>
-<p><a href="https://www.moneyowl.com.sg/#/articles/entry/46">Click here</a> to find out about the best SRS-approved retirement plans you can use in our next article. </p>
+<br/>
+<p><a href="#/articles/entry/46">Click here</a> to find out about the best SRS-approved retirement plans you can use in our next article. </p>
 <br>
 <!--
 <div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
