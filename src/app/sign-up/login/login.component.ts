@@ -150,7 +150,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
                 this.router.navigate([redirect_url]);
-              } else if (this.willWritingService.getWillWritingFormData()) {
+              } else if (Object.keys(this.willWritingService.getWillWritingFormData()).length !== 0) {
                 if (!this.willWritingService.getIsWillCreated()) {
                   this.willWritingApiService.createWill().subscribe((data) => {
                     if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
