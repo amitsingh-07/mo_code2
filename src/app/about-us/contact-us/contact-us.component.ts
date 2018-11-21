@@ -9,6 +9,7 @@ import { NavbarService } from './../../shared/navbar/navbar.service';
 
 import { AboutUsApiService } from './../about-us.api.service';
 import { AboutUsService } from './../about-us.service';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -17,7 +18,7 @@ import { AboutUsService } from './../about-us.service';
 })
 export class ContactUsComponent implements OnInit {
   public subject = 'Choose a Subject*';
-  public email = 'enquiry@moneyowl.com.sg';
+  public email = 'enquiries@moneyowl.com.sg';
 
   contactUsForm: FormGroup;
   contactUsFormValues: IContactUs;
@@ -34,8 +35,10 @@ export class ContactUsComponent implements OnInit {
     public aboutUsService: AboutUsService,
     public aboutUsApiService: AboutUsApiService,
     public translate: TranslateService,
+    public authService: AuthenticationService,
     private formBuilder: FormBuilder
     ) {
+      this.authService.authenticate().subscribe((response) => {});
       this.aboutUsApiService.getSubjectList().subscribe((data) => {
         this.subjectItems = this.aboutUsService.getSubject(data);
         console.log(this.subjectItems);
@@ -70,7 +73,6 @@ export class ContactUsComponent implements OnInit {
     form.value.email = this.email;
     form.value.message = form.value.message.replace(/\n/g, '<br/>').replace(/"/g, '\\"');
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
-      console.log(data);
       if (data.responseMessage.responseDescription === 'Successful response') {
         this.sendSuccess = true;
       }

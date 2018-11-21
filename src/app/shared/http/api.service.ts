@@ -161,9 +161,6 @@ export class ApiService {
       subject: data.subject,
       body: data.message
     };
-    if (!this.authService.isAuthenticated()) {
-      this.authService.authenticate().subscribe((response) => {});
-    }
     return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
