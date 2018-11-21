@@ -1,11 +1,19 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NouisliderComponent } from 'ng2-nouislider';
 
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
-import { Formatter } from '../../../shared/utils/formatter.util';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
 
@@ -17,6 +25,7 @@ import { DirectService } from '../../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
   defaultEmployee;
   categorySub: any;
   @ViewChild('ocpDisabilityFormSlider') ocpDisabilityFormSlider: NouisliderComponent;
@@ -77,9 +86,9 @@ export class OcpDisabilityFormComponent implements OnInit, AfterViewInit, OnDest
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '3') {
         if (this.save()) {
+          this.formSubmitted.emit(this.summarizeDetails());
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
-        this.directService.triggerSearch('');
       }
     });
   }

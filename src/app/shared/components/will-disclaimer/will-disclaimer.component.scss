@@ -1,0 +1,164 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+app-terms {
+
+  .close {
+    position: absolute !important;
+    right: 20px !important;
+    top: 20px !important;
+  }
+
+  .bottom-btn {
+    position: fixed;
+    bottom: 15px;
+    width: 95%;
+
+    @include allmobiles {
+      bottom: 0px;
+      margin: 0px;
+      border-radius: 0px;
+      width: 100%;
+    }
+  }
+
+  .legal__header--inner {
+    background: $white-color !important;
+  }
+
+  .legal__header .legal__header--bg {
+    position: absolute;
+    display: block;
+    background: none;
+    z-index: 1;
+    width: 100%;
+    height: 200px;
+    background-color: #ffffff;
+  }
+
+  .white-bg {
+    @include allmobiles {
+      margin-bottom: 140px !important;
+    }
+  }
+  .modal-body {
+    padding: 15px 0 !important;
+    text-overflow: auto;
+
+    .close {
+      @include allmobiles {
+        top: 34px !important;
+        position: fixed;
+      }
+    }
+  }
+
+  .t-c-content {
+    max-height: 90vh;
+    font-size: 13px !important;
+    line-height: 1.62;
+    letter-spacing: -0.1px;
+    @extend .flex;
+    flex-direction: column;
+
+    @include allmobiles {
+      max-height: 100vh;
+    }
+
+    button {
+      width: 190px;
+      height: 57px;
+
+      @include allmobiles {
+        width: 100%;
+      }
+    }
+  }
+
+  .sub-navigation {
+    .sub-navigation--inner {
+      display: none;
+    }
+  }
+
+  .legal__header {
+    background-color: $white-color;
+  }
+
+  .legal--title {
+    text-align: center !important;
+    letter-spacing: -0.3px;
+    font-weight: 600;
+    color: #009999;
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+
+    h1 {
+      font-size: 28px;
+    }
+
+    @include allmobiles {
+      margin-bottom: 20px;
+    }
+  }
+
+  .legal__section--inner {
+    padding: 20px !important;
+
+    ol,
+    ul {
+      padding: 0 14px !important;
+    }
+
+    .section--title {
+      font-weight: bold;
+      display: none;
+    }
+
+    li {
+      ol {
+        margin-top: 4px;
+      }
+    }
+  }
+
+}
+
+.modal-body-message {
+  font-size: 13px;
+  line-height: 23px;
+  }
+.modal-body-title {
+  font-size: 18px;
+  margin: 10px auto;
+  color: #00a7a7
+}
+
+.section-container {
+  overflow: auto !important;
+  padding: 10px;
+  @include allmobiles{
+    margin: 0;
+  } 
+}
+
+.btn-primary {
+  width: 190px;
+  @include allmobiles {
+    width: 100%;
+  }
+}
+
+.modal-open .modal {
+  overflow: hidden;
+}
+
+.modal-dialog.modal-dialog-centered{
+  max-width: 790px !important;
+}
+
+.ptgap {
+  @include allmobiles {
+    padding-top: 20px;
+  }
+}

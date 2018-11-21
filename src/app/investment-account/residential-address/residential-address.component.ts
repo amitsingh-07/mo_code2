@@ -50,6 +50,14 @@ export class ResidentialAddressComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
+    if (this.formValues.isMyInfoEnabled) {
+      if (this.formValues.countryCode) {
+        this.formValues.country = this.investmentAccountService.getCountryFromCountryCode(this.formValues.countryCode);
+      }
+      if (this.formValues.mailCountryCode) {
+        this.formValues.mailCountry = this.investmentAccountService.getCountryFromCountryCode(this.formValues.mailCountryCode);
+      }
+    }
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
@@ -57,26 +65,34 @@ export class ResidentialAddressComponent implements OnInit {
 
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
-      country: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+      country: [{value: this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+        disabled: this.investmentAccountService.isDisabled('country')},
         Validators.required],
-      postalCode: [this.formValues.postalCode, [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
-      address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [this.formValues.address2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      floor: [this.formValues.floor],
-      unitNo: [this.formValues.unitNo, Validators.required],
+      postalCode: [{value: this.formValues.postalCode, disabled: this.investmentAccountService.isDisabled('postalCode')},
+        [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]],
+      address1: [{value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1')},
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      address2: [{value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2')},
+        [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      floor: [{value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')}, Validators.required],
+      unitNo: [{value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')}, Validators.required],
       isMailingAddressSame: [this.formValues.isMailingAddressSame]
     });
   }
 
   buildFormForOtherCountry(): FormGroup {
     return this.formBuilder.group({
-      country: [this.formValues.country ? this.formValues.country :
-        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
-      address1: [this.formValues.address1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      address2: [this.formValues.address2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      country: [{value: this.formValues.country ? this.formValues.country :
+        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
+        disabled: this.investmentAccountService.isDisabled('country')}, Validators.required],
+      address1: [{value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1')},
+        [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      address2: [{value: this.formValues.address2,
+        disabled: this.investmentAccountService.isDisabled('address2')}, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       city: [this.formValues.city, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       state: [this.formValues.state, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      zipCode: [this.formValues.zipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      zipCode: [{value: this.formValues.zipCode, disabled: this.investmentAccountService.isDisabled('zipCode')},
+        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       isMailingAddressSame: [this.formValues.isMailingAddressSame]
     });
   }
@@ -85,23 +101,35 @@ export class ResidentialAddressComponent implements OnInit {
     if (this.addressForm.controls.isMailingAddressSame.value !== true) {
       if (this.isUserNationalitySingapore) { // Singapore
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
-            Validators.required],
-          mailPostalCode: [this.formValues.mailPostalCode, Validators.required],
-          mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [this.formValues.mailAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailFloor: [this.formValues.mailFloor],
-          mailUnitNo: [this.formValues.mailUnitNo, Validators.required]
+          mailCountry: [{value:
+            this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+            disabled: this.investmentAccountService.isDisabled('mailCountry')}, Validators.required],
+          mailPostalCode: [{value: this.formValues.mailPostalCode,
+            disabled: this.investmentAccountService.isDisabled('mailPostalCode')}, Validators.required],
+          mailAddress1: [{value: this.formValues.mailAddress1, disabled: this.investmentAccountService.isDisabled('mailAddress1')},
+            [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          mailAddress2: [{value: this.formValues.mailAddress2, disabled: this.investmentAccountService.isDisabled('mailAddress2')},
+            [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          mailFloor: [{value: this.formValues.mailFloor,
+            disabled: this.investmentAccountService.isDisabled('mailFloor')}, Validators.required],
+          mailUnitNo: [{value: this.formValues.mailUnitNo,
+            disabled: this.investmentAccountService.isDisabled('mailUnitNo')}, Validators.required]
         }));
       } else { // Other Countries
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
-          mailCountry: [this.formValues.mailCountry ? this.formValues.mailCountry :
-            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode), Validators.required],
-          mailAddress1: [this.formValues.mailAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailAddress2: [this.formValues.mailAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          mailCity: [this.formValues.mailCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-          mailState: [this.formValues.mailState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-          mailZipCode: [this.formValues.mailZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+          mailCountry: [{value: this.formValues.mailCountry ? this.formValues.mailCountry :
+            this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
+            disabled: this.investmentAccountService.isDisabled('mailCountry')}, Validators.required],
+          mailAddress1: [{value: this.formValues.mailAddress1, disabled: this.investmentAccountService.isDisabled('mailAddress1')},
+            [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          mailAddress2: [{value: this.formValues.mailAddress2, disabled: this.investmentAccountService.isDisabled('mailAddress2')},
+            [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+          mailCity: [{value: this.formValues.mailCity, disabled: this.investmentAccountService.isDisabled('mailCity')},
+            [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+          mailState: [{value: this.formValues.mailState, disabled: this.investmentAccountService.isDisabled('mailState')},
+            [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
+          mailZipCode: [{value: this.formValues.mailZipCode, disabled: this.investmentAccountService.isDisabled('mailZipCode')},
+            [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
         }));
       }
     } else {

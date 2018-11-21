@@ -71,11 +71,11 @@ export class TaxInfoComponent implements OnInit {
   }
 
   selectCountry(country) {
-    this.taxInfoForm.controls.taxCountry.setValue(country.name);
+    this.taxInfoForm.controls.taxCountry.setValue(country);
   }
 
   selectReason(reasonObj) {
-    this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue(reasonObj.name);
+    this.taxInfoForm.controls.reasonDropdown['controls']['noTinReason'].setValue(reasonObj);
   }
 
   markAllFieldsDirty(form) {
@@ -98,7 +98,7 @@ export class TaxInfoComponent implements OnInit {
   }
 
   isTinNumberAvailChanged(flag) {
-    if (flag === 'yes') {
+    if (flag) {
       this.taxInfoForm.addControl('tinNumberText', this.formBuilder.group({
         tinNumber: new FormControl(this.taxInfoFormValues.tinNumber, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)])
       }));

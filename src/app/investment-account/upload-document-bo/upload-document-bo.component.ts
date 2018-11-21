@@ -96,7 +96,7 @@ export class UploadDocumentBOComponent implements OnInit {
     this.investmentAccountService.uploadDocumentBO(this.formData).subscribe((data) => {
       if (data) {
         this.hideUploadLoader();
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        this.redirectToNextPage();
       }
     });
   }
@@ -133,7 +133,7 @@ export class UploadDocumentBOComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = errorMessage;
       ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
       ref.componentInstance.primaryAction.subscribe(() => {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+        this.redirectToNextPage();
       });
     } else {
       this.proceed(form);
@@ -142,6 +142,10 @@ export class UploadDocumentBOComponent implements OnInit {
 
   proceed(form) {
     this.uploadDocument();
+  }
+
+  redirectToNextPage() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
   }
 
 }

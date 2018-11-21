@@ -46,7 +46,7 @@
                 <img class="robo" src="assets/images/home-insurance-robo.svg"/>
                 <div class="value-prop">
                     <img src="assets/images/trust-us-icon.svg"/>
-                    <p>{{'INSURANCE.TRUST_US' | translate}}</p>
+                    <p>{{'INSURANCE.TRUST_US' | translate}}<br/>{{'INSURANCE.TRUST_US2' | translate}}</p>
                     </div>
             </div>
             <div class="home__section--text-container primary">
@@ -66,8 +66,8 @@
             <div class="home__section--text-container secondary">
                 <p class="home__section--title">{{'WILL.TITLE' | translate}}</p>
                 <p class="home__section--desc">{{'WILL.DESCRIPTION' | translate}}</p>
-                <button class="btn btn-secondary home__section--btn" disabled>
-                    <span>{{'GENERAL.COMING_SOON' | translate}}</span>
+                <button class="btn btn-primary-dark home__section--btn" routerLink="/will-writing">
+                    <span>{{'WILL.LINK1' | translate}}</span>
                     </button>
                 </div>
             <div class="home__section--img secondary">
@@ -112,8 +112,8 @@
             </div>
         
         <div class="subscribe__section"  #subscribeSection>
-            <div class="subscribe__section--bg"></div>
-            <!--
+            <div class="subscribe__section--bg">
+                </div>
             <form class="subscribe__form--plugin" name="subscribeForm" id="subscribeForm" [formGroup]="subscribeForm">
                 <div class="subscribe-title--container">
                     <div class="subscribe--title">
@@ -123,36 +123,36 @@
                         <img src="assets/images/owl--mini.svg"/>
                     </div> 
                     </div>
-                <div class="subscribe-input--container form-control">
-                    <input type="email" placeholder="{{'NEWSLETTER.PLACEHOLDER' | translate}}" formControlName="email"/>
-                    <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">{{'NEWSLETTER.SUBSCRIBE' | translate}}</button> 
+                <div class="subscribe-input--container">
+                    <div class="row">
+                        <input class="flex-col-6 form-control" type="text" placeholder="{{'NEWSLETTER.PLACEHOLDER.FIRST_NAME' | translate}}" formControlName="firstName"/>
+                        <input class="flex-col-6 form-control" type="text" placeholder="{{'NEWSLETTER.PLACEHOLDER.LAST_NAME' | translate}}" formControlName="lastName"/>
+                        </div>
+                    <div class="row">
+                        <input class="form-control" type="email" placeholder="{{'NEWSLETTER.PLACEHOLDER.EMAIL' | translate}}" formControlName="email"/>
                     </div>
+                    <p *ngIf="!(subscribeMessage === '')" class="sub-message" [ngClass]="{'success': subscribeSuccess}">{{subscribeMessage}}</p>
+                    <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">{{'NEWSLETTER.SUBSCRIBE' | translate}}</button>
+                    </div>                    
                 <p class="subscribe--subtext">{{'NEWSLETTER.SUBTEXT' | translate}}</p>
                 </form>
-            -->
             <div class="subscribe__section--footer" #subscribeFooter>
                 <div class="orange"></div>
                 </div>
             </div>
         </div>
-    <!-- 
     <div class="home__licensed-tab-section">
-        <div class="home__licensed-tab-section--inner">
-            <div class="licensed-tab__trust-container">
-                <img src="assets/images/trust-us-icon.svg"/>
-                <div class="licensed-tab__text-container">
-                    <p class="primary ">{{'TRUSTED.TITLE'  | translate}}</p>
-                    <p class="secondary" [innerHTML]="trustedSubTitle"></p>
-                    </div>
-                </div>
-            <div class="licensed-tab__icon-container">
+        <p class="licensed-tab-section--title">{{'TRUSTED.TITLE' | translate}}</p>
+        <div class="licensed-tab-section__inner-container">
+            <div class="licensed-tab-section__icon-container">
                 <div class="licensed-tab__icon" *ngFor="let reason of trustedReasons">
                     <img src="{{reason.IMAGE}}"/>
-                    <p>{{reason.LABEL}}</p>
+                    <p innerHTML="{{reason.LABEL}}"></p>
                     </div>
                 </div>
             </div>
-        </div>-->
+        <div class="btn btn-primary licensed-tab-section--more-btn" routerLink="/about-us/why-moneyowl">{{'TRUSTED.BTN_LABEL' | translate}}</div>
+        </div>
     <div class="home__reviews">
         <div class="home__review--header">
             {{'REVIEWS.TITLE' | translate}}

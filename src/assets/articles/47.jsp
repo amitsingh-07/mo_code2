@@ -1,8 +1,9 @@
-<%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<img src="images/47/thumbnail.jpg" class="pull-right" style=" padding:10px;" alt="Family with kids staking coins">
+<img src="/assets/articles/images/47/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Family with kids staking coins">
 
 <p>As the festive season of Chinese New Year approaches, and your children's excitement escalates, it is an opportune time for you to help your child cultivate a healthy relationship with money.</p>
+<br/>
 <p>With a significant sum stuffed in red packets each year, opening a savings account for the child is an effective way to start your child on the road to good saving habits and investments. While it encourages the concept of savings to the child, it also shows your child the benefits of compound interest and how they can put their money to better use.</p>
+<br/>
 <p>If you are a parent and are looking at setting up a bank account for your child, there are many available now. For your easy reference, we compiled the <strong>key features of 7 kids&rsquo; bank accounts</strong> in Singapore. </p>
 <br>
 
@@ -10,17 +11,17 @@
       <table class="table table-bordered table-condensed" style="font-size: 0.7em; background-color: #d9e1e1; color: black; text-align:center;">
 		  <tr style="background-color: white">
 		    	<td width="160" rowspan="2">&nbsp;</td>
-			  <td width="160"><img src="images/47/logo_cimb.png" alt="CIMB Logo"></td>
-			  <td width="160"><img src="images/47/logo_citi.png" alt="CITI Bank Logo"></td>
-			  <td width="170"><img src="images/47/logo_maybank.png" alt="Maybank Logo"></td>
-			  <td width="170"><img src="images/47/logo_ocbc.png" alt="OCBC Logo"></td>
-			  <td width="170"><img src="images/47/logo_posb.png" alt="POSB Logo"></td>
-			  <td width="170"><img src="images/47/logo_stanchart.png" alt="Standard Chartard Logo"></td>
-			  <td width="170"><img src="images/47/logo_uob.png" alt="UOB Logo"></td>
+			  <td width="160"><img src="/assets/articles/images/47/logo_cimb.png" alt="CIMB Logo"></td>
+			  <td width="160"><img src="/assets/articles/images/47/logo_citi.png" alt="CITI Bank Logo"></td>
+			  <td width="170"><img src="/assets/articles/images/47/logo_maybank.png" alt="Maybank Logo"></td>
+			  <td width="170"><img src="/assets/articles/images/47/logo_ocbc.png" alt="OCBC Logo"></td>
+			  <td width="170"><img src="/assets/articles/images/47/logo_posb.png" alt="POSB Logo"></td>
+			  <td width="170"><img src="/assets/articles/images/47/logo_stanchart.png" alt="Standard Chartard Logo"></td>
+			  <td width="170"><img src="/assets/articles/images/47/logo_uob.png" alt="UOB Logo"></td>
 		  </tr>
 		  <tr style="font-size: 1.2em; line-height: 0.9em; margin: 30px 10px !important; ">
 
-			  <td width="160" style="background-color:#d9e1e1; text-align:center;"><strong>CIMB<br>Junior Saver</strong></td>
+			  <td width="160" class="cell--clean"><strong>CIMB<br>Junior Saver</strong></td>
 			  <td width="160"><strong>Citibank<br>Junior Savings</strong></td>
 			  <td width="170"><strong>Maybank<br>Youngstarz</strong></td>
 			  <td width="170"><strong>OCBC<br>Mighty Savers</strong></td>
@@ -88,24 +89,24 @@
 		    <td width="170">Free insurance up to 100% of deposit (min. $3000 over 6 months)</td>
 		  </tr>
 		  <tr>
-		    <td width="170" style="background-color: #d9e1e1; padding: 10px; font-weight: normal;">A free Teddy bear at Build-A-Bear workshop with min $2,000</td>
+		    <td width="170" class="cell--clean">A free Teddy bear at Build-A-Bear workshop with min $2,000</td>
 		    <td width="170">Free 6-month popular membership card for aged 7-15</td>
 		    <td width="170">Complimentary UOB ATM Card with NETs and PLUS facilities</td>
 		  </tr>
 		  <tr>
 		    <td width="180">Bank account website</td>
-		    <td width="160"><a type="button" class="btn btn-link btn-block btn-sm" href="https://www.cimbbank.com.sg/en/personal/products/accounts/savings-accounts/cimb-junior-saver-account.html" target="_blank"><small><strong>Details</strong></small></a></td>
-		    <td width="160"><a type="button" class="btn btn-link btn-block btn-sm" href="https://www.citibank.com.sg/gcb/deposits/cb_junior.htm?lid=SGENCBLDPLNTLCitibankJuniorSavingsAccountsDPLN" target="_blank"><small><strong>Details</strong></small></a></td>
-		    <td width="170"><a type="button" class="btn btn-link btn-block btn-sm" href="http://info.maybank2u.com.sg/personal/deposits-banking/savings/youngstarz-account.aspx" target="_blank"><small><strong>Details</strong></small></a></td>
-		    <td width="170"><a type="button" class="btn btn-link btn-block btn-sm" href="https://www.ocbc.com/personal-banking/accounts/mightysavers.html?cid=sg:en:family:accounts:Mighty-Savers:CNY:January:sem:Google-Search:Generic-Kids-Account:Text-Ad:%2Bkids%20%2Bbank%20%2Baccount::&utm_source=Google-Search&utm_medium=Generic-Kids-Account&u" target="_blank"><small><strong>Details</strong></small></a></td>
-		    <td width="170"><a type="button" class="btn btn-link btn-block btn-sm" href="https://www.posb.com.sg/personal/deposits/savings-accounts/posbkids" target="_blank"><small><strong>Details</strong></small></a></td>
-		    <td width="170"><a type="button" class="btn btn-link btn-block btn-sm" href="https://www.sc.com/sg/save/saving-esaver-kids.html" target="_blank"><small><strong>Details</strong></small></a></td>
-		    <td width="170"><a type="button" class="btn btn-link btn-block btn-sm" href="http://www.uob.com.sg/personal/save/savings/junior-savers-account.page" target="_blank"><small><strong>Details</strong></small></a></td>
+		    <td width="160" class="cell--dark-green xs-minWidth150"><a type="button" class="btn btn-secondary btn-link btn-block btn-sm" href="https://www.cimbbank.com.sg/en/personal/products/accounts/savings-accounts/cimb-junior-saver-account.html" target="_blank"><small><strong>Details</strong></small></a></td>
+		    <td width="160" class="cell--dark-green xs-minWidth150"><a type="button" class="btn btn-secondary btn-link btn-block btn-sm" href="https://www.citibank.com.sg/gcb/deposits/cb_junior.htm?lid=SGENCBLDPLNTLCitibankJuniorSavingsAccountsDPLN" target="_blank"><small><strong>Details</strong></small></a></td>
+		    <td width="170" class="cell--dark-green xs-minWidth150"><a type="button" class="btn btn-secondary btn-link btn-block btn-sm" href="http://info.maybank2u.com.sg/personal/deposits-banking/savings/youngstarz-account.aspx" target="_blank"><small><strong>Details</strong></small></a></td>
+		    <td width="170" class="cell--dark-green xs-minWidth150"><a type="button" class="btn btn-secondary btn-link btn-block btn-sm" href="https://www.ocbc.com/personal-banking/accounts/mightysavers.html?cid=sg:en:family:accounts:Mighty-Savers:CNY:January:sem:Google-Search:Generic-Kids-Account:Text-Ad:%2Bkids%20%2Bbank%20%2Baccount::&utm_source=Google-Search&utm_medium=Generic-Kids-Account&u" target="_blank"><small><strong>Details</strong></small></a></td>
+		    <td width="170" class="cell--dark-green xs-minWidth150"><a type="button" class="btn btn-secondary btn-link btn-block btn-sm" href="https://www.posb.com.sg/personal/deposits/savings-accounts/posbkids" target="_blank"><small><strong>Details</strong></small></a></td>
+		    <td width="170" class="cell--dark-green xs-minWidth150"><a type="button" class="btn btn-secondary btn-link btn-block btn-sm" href="https://www.sc.com/sg/save/saving-esaver-kids.html" target="_blank"><small><strong>Details</strong></small></a></td>
+		    <td width="170" class="cell--dark-green xs-minWidth150"><a type="button" class="btn btn-secondary btn-link btn-block btn-sm" href="http://www.uob.com.sg/personal/save/savings/junior-savers-account.page" target="_blank"><small><strong>Details</strong></small></a></td>
 		  </tr>
 	</table>
 </div>
     
-<p>We have compared the bank accounts and these are our top favourites for you to Do It Your-way (DIY)! </p>
+<p>We have compared the bank accounts and these are our top favourites for you! </p>
 <br>
 <div class="card">
   <div class="card-header primary-color">
@@ -126,10 +127,12 @@
   </div>
 </div>
 
-<br>
+<br/>
 <p>Do remember to bring along your child’s birth certificate when you head to the bank. We hope this comparison gives you a good head start in selecting a suitable bank account for your child.</p>
     
 <p>Happy Saving for your little one!</p>
-<div class="text-xs-center"><a href="../compare/savings">
-  <img src="../assets/images/banners/compare_sav_540w.png" alt="compare savings plans"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+  <img src="/assets/images/banners/compare_sav_540w.png" alt="direct savings plans"></a>
 </div>
+-->

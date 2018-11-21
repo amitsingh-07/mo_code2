@@ -1,7 +1,7 @@
 <div class="personal-info">
   <div class="step-indicator-container">
     <div class="container-fluid">
-      <app-step-indicator [count]="7" [activeStepIndex]="0"></app-step-indicator>
+      <app-step-indicator [count]="9" [activeStepIndex]="0"></app-step-indicator>
     </div>
   </div>
   <div class="container-fluid">
@@ -17,7 +17,7 @@
                 <div class="flex-col-5">
                   <label for="name" id="invPersInfoLbl1" >{{ 'PERSONAL_INFO.FULL_NAME' | translate}}</label>
                 </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('fullName').valid && !invPersonalInfoForm.get('fullName').pristine}">
+                <div class="flex-col-7">
                   <input type="text" id="invPersInfoInpt1" class="form-control" #fullName formControlName="fullName">
                 </div>
               </div>
@@ -42,7 +42,7 @@
                   <label for="name"  id="invPersInfoLbl4">{{ 'PERSONAL_INFO.NRIC_NUMBER' | translate}}</label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !invPersonalInfoForm.get('nricNumber').valid && !invPersonalInfoForm.get('nricNumber').pristine}">
-                  <input type="text" id="invPersInfoInpt4" class="form-control" #nricNumber formControlName="nricNumber">
+                  <input type="text"  placeholder="e.g S9305244F" id="invPersInfoInpt4" class="form-control" #nricNumber formControlName="nricNumber">
                 </div>
               </div>
               <div class="flex-row"   *ngIf="showPassport" >

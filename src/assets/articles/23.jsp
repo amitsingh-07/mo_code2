@@ -1,8 +1,12 @@
-<img src="assets/articles/images/23/thumbnail.jpg" class="pull-right" style=" padding:10px;"  alt="Answers to Singaporeans' top 5 questions on insurance">
+<img src="/assets/articles/images/23/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;"  alt="Answers to Singaporeans' top 5 questions on insurance">
 <p>I feel a large sense  of injustice when I hear my peers paying large sums of money for their  insurance plans and yet, they do not have the essential insurance coverage they  need. It could be disastrous for them if they meet a crisis. </p>
+<br/>
 <p>Have you been  introduced to insurance by a family member, a friend or a stranger on the  streets? While we faintly know that having insurance is essential, it is  difficult to fully understand and get an independent opinion on insurance.</p>
+<br/>
 <p>I want to help as many  Singaporeans as possible plan for their insurance needs the right way and hope  that this article will point you in the right direction by providing  easy-to-understand answers on some of the questions which you may have about  insurance. </p>
+<br/>
 <p>This could also act as  a good guide for you to go about planning for your own insurance needs. </p>
+<br/>
 <ol>
   	<li>  
   		<h4 class="primary-color"><strong>Why  do I need insurance? </strong></h4>	
@@ -106,11 +110,11 @@
 	
 	</div>
 	
-	
+	<br/>
 	<li>
   		<h4 class="primary-color"><strong>Should  I get a Term Life Insurance or a Whole Life Plan?</strong></h4>
         <p>There is no need for a  Whole Life Insurance Plan. If you get a Whole Life Insurance Plan, it is very  difficult to fulfill both of your insurance needs and <a href="http://www.moneysense.gov.sg/life-events/retirement.aspx" target="_blank">retirement</a> needs.</p>
-		<p>Find out more about  The Case for Term Insurance, <a href="the-case-for-term-insurance-7-nov-2010.pdf">click  here</a>.</p>
+		<p>Find out more about The Case for Term Insurance, <a href="/assets/articles/document/the-case-for-term-insurance-7-nov-2010.pdf" target="blank">click  here</a>.</p>
   		<br>
   	</li>	  
 	  <li>
@@ -127,11 +131,12 @@
 <br><br>You are advised to  speak to a financial advisor to advise you on your unique insurance needs before purchasing a product. </p>
 <br><h4 class="primary-color"><strong>Further reads: </strong></h4>
 <p>
-  <a href="../articles/html?title=Life+Stage+Planning&art_id=26">Life stage insurance planning</a><br>
-  <a href="..//calculators/life-insurance-calculator">Life insurance calculator</a> <br>
-  <a href="../packages/young-working-adult">*Details for possible coverage  of a 25-year-old Male</a>
+	<a href="https://www.moneyowl.com.sg/#/articles/entry/26">Life stage insurance planning</a><br>
+	<a href="https://www.moneyowl.com.sg/#/direct">Compare Plans</a>
  </p>
  <br>
-<div class="text-xs-center"><a href="../selfcheck/">
-	<img src="../assets/images/banners/selfcheck_go_540w.png" alt="diyinsurance selfcheck"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/guideme/">
+	<img src="/assets/images/banners/selfcheck_go_540w.png" alt="moneyowl guideme"></a>
 </div>
+-->

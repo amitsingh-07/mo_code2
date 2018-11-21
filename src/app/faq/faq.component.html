@@ -1,0 +1,44 @@
+<div class="faq__wrapper">
+  <div class="about-us__header">
+    <div class="about-us__header--bg">
+      </div>
+    <div class="about-us__header--inner"> 
+      <div class="sub-navigation">
+        <div class="sub-navigation--inner">
+            <span routerLink="/">Home</span>
+            <i class="material-icons">keyboard_arrow_right</i>
+            <span routerLink="/about-us">FAQs</span>
+          </div>
+        </div>
+      <div class="header--title">
+        <h1>{{ 'FAQ.TITLE' | translate}}</h1>
+        </div>
+      </div>
+    </div>
+  <div class="faq__container">
+    <div class="faq-category__container" *ngFor="let section of sections;">
+      <div class="faq-category__header">
+        <h2>{{section.title}}</h2>
+        </div>
+      <div class="faq-category__body">
+        <div class="faq-selection__panel" ngbDropdown *ngIf="section.groups.length > 0">
+          <button class="btn btn-dropdown form-control hidden-lg" id="dropdownBasic1" ngbDropdownToggle>{{section.groups[0]}}</button>
+          <div ngbDropdownMenu>
+            <div class="faq-selection__element" *ngFor="let group of section.groups; let isFirstRow=first" [ngClass]="{'active' : isFirstRow}" (click)="toggleSection($event)">{{group}}</div> 
+            </div>
+          </div>
+        <div class="questions__panel" *ngFor="let question_set of section.questions; let questionRow=first; let i=index" [ngClass]="{'active': questionRow}">
+          <h3>{{section.groups[i]}}</h3>
+          <div class="question__element" *ngFor="let question of question_set">
+            <div class="question"  (click)="toggleActive($event)">
+              <i class="material-icons">keyboard_arrow_right</i>
+              {{question.QUESTION}}
+              </div>
+            <div class="answer" innerHTML="{{question.ANSWER}}">
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

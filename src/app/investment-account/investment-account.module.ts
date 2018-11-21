@@ -32,6 +32,7 @@ import {
 import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
+import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
 import {
     PersonalDeclarationComponent
@@ -40,6 +41,7 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { PostLoginComponent } from './post-login/post-login.component';
 import { ResidentialAddressComponent } from './residential-address/residential-address.component';
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
+import { SingPassComponent } from './sing-pass/sing-pass.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
 import {
@@ -73,6 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule
   ],
   declarations: [
+    SingPassComponent,
     PostLoginComponent,
     PersonalInfoComponent,
     ResidentialAddressComponent,
@@ -92,7 +95,8 @@ export function createTranslateLoader(http: HttpClient) {
     FeesModalComponent,
     AccountSetupCompletedComponent,
     AdditionalDeclarationSubmitComponent,
-    UploadDocumentBOComponent
+    UploadDocumentBOComponent,
+    FundYourAccountComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,

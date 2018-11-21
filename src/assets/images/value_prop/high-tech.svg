@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="260px" height="260px" viewBox="0 0 260 260" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>DDF5662A-B356-4A27-A457-7CE7B34C8D13</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <circle id="path-1" cx="130" cy="130" r="130"></circle>
+        <path d="M56.4801073,20.4587107 C60.5291904,8.83261345 71.2286385,0.525353862 83.7931717,0.525353862 C99.834014,0.525353862 112.838044,14.0666343 112.838044,30.7689835 C112.838044,65.1959263 106.696988,93.1055535 56.4801073,93.1055535 C3.3112995,93.1055535 0.121377294,65.1959263 0.121377294,30.7689835 C0.121377294,14.0666343 13.1262007,0.525353862 29.1686296,0.525353862 C41.7323695,0.525353862 52.4310243,8.83261345 56.4801073,20.4587107 Z" id="path-3"></path>
+        <path d="M12.4494598,1.96792699 L1.41132986,13.5974109 C0.221051665,14.8497281 -0.0263561601,16.7904487 0.811089572,18.3329671 L8.30899202,32.1587466 C11.2863879,37.6494855 19.2238431,37.6494855 22.2020892,32.1587466 L29.6999916,18.3329671 C30.5374374,16.7904487 30.2900295,14.8497281 29.0989011,13.5974109 L18.064172,1.96792699 C17.302394,1.16657591 16.2787548,0.765075931 15.2559657,0.765075931 C14.2323265,0.765075931 13.2086872,1.16657591 12.4494598,1.96792699 Z" id="path-5"></path>
+        <path d="M0.783089694,11.7797104 L7.13675693,11.7797104 C7.13675693,9.91591313 7.66297325,5.58010051 12.5377482,5.58010051 C17.4116918,5.58010051 17.9370768,9.91591313 17.9370768,11.7797104 L24.290744,11.7797104 C24.290744,4.8461739 19.568098,0.188186312 12.5377482,0.188186312 C5.50656702,0.188186312 0.783089694,4.8461739 0.783089694,11.7797104 Z" id="path-7"></path>
+        <filter x="-11.0%" y="-10.5%" width="122.3%" height="119.5%" filterUnits="objectBoundingBox" id="filter-9">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="latest" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1024px---Why-moneyowl" transform="translate(-679.000000, -1228.000000)">
+            <g id="icon4" transform="translate(679.000000, 1228.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#005960" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Group-61" stroke-width="1" fill-rule="evenodd" mask="url(#mask-2)">
+                    <g transform="translate(58.500000, 55.250000)">
+                        <path d="M74.7424562,149.5 C33.5615584,149.5 3.54229941,129.722727 3.54229941,108.462396 L3.54229941,72.5475933 C3.54229941,69.8523532 3.68779164,67.1931412 3.97196946,64.575104 C5.13760902,53.829314 4.19148406,42.9934539 1.51902141,32.5298834 C1.02553897,30.5955211 0.572045623,28.588245 0.141524737,26.5080549 C-0.96795992,21.1192904 4.6662482,16.9400385 9.33816557,19.7039033 C11.4303609,20.9417237 13.605087,22.1418003 15.7772606,23.2089164 C18.5484197,24.571977 21.8394371,23.9723676 23.9937432,21.7351982 C36.9195798,8.33191176 54.8874455,0 74.7424562,0 C94.5966161,0 112.569587,8.33362738 125.493722,21.7403451 C127.648879,23.9783722 130.937344,24.576266 133.708503,23.2157788 C135.886632,22.1460894 138.066463,20.9460127 140.161211,19.7039033 C144.836532,16.9400385 150.469889,21.1218638 149.357852,26.5097705 C148.92648,28.6045434 148.469583,30.6255445 147.971847,32.572774 C145.29513,43.0354866 144.355812,53.8739201 145.513794,64.6231414 C145.794568,67.2240223 145.93921,69.8695094 145.93921,72.5475933 C145.655599,82.3172413 145.513794,94.2888423 145.513794,108.462396 C145.513794,129.722727 115.923354,149.5 74.7424562,149.5 Z" id="Clip-11" stroke="none" fill="#138887" fill-rule="evenodd"></path>
+                        <g id="Group-15" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(16.250000, 35.750000)">
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <use id="Clip-14" fill="#DAF5F5" xlink:href="#path-3"></use>
+                        </g>
+                        <g id="Group-29" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(58.500000, 71.500000)">
+                            <mask id="mask-6" fill="white">
+                                <use xlink:href="#path-5"></use>
+                            </mask>
+                            <use id="Clip-28" stroke="#00AAA8" xlink:href="#path-5"></use>
+                        </g>
+                        <g id="Group-32" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(87.750000, 58.500000)">
+                            <mask id="mask-8" fill="white">
+                                <use xlink:href="#path-7"></use>
+                            </mask>
+                            <use id="Clip-31" stroke="#00AAA8" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-7"></use>
+                        </g>
+                        <circle id="Oval-3" stroke="#00AAA8" stroke-width="1" fill="none" fill-rule="nonzero" cx="94.25" cy="16.25" r="6.5"></circle>
+                        <circle id="Oval-3-Copy-10" stroke="#00AAA8" stroke-width="1" fill="none" fill-rule="nonzero" cx="82.875" cy="27.625" r="11.375"></circle>
+                        <circle id="Oval-3-Copy" stroke="#00AAA8" stroke-width="1" fill="none" fill-rule="nonzero" cx="112.125" cy="24.375" r="8.125"></circle>
+                        <path d="M39,35.75 L39,27.5 L71.5,3.25" id="Path-7" stroke="#00AAA8" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2,3" fill-rule="nonzero"></path>
+                        <path d="M61.75,74.75 L61.75,47.25 L68.25,42.25" id="Path-7-Copy-3" stroke="#00AAA8" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2,3" fill-rule="nonzero" transform="translate(65.000000, 58.500000) scale(1, -1) translate(-65.000000, -58.500000) "></path>
+                        <path d="M87.75,84.5 L87.75,54.25 L123.5,48.75" id="Path-7-Copy-4" stroke="#00AAA8" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2,3" fill-rule="nonzero" transform="translate(105.625000, 66.625000) scale(-1, -1) translate(-105.625000, -66.625000) "></path>
+                        <path d="M22.75,104 L50.9736842,126.75 L71.5,126.75" id="Path-7-Copy" stroke="#00AAA8" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2,3" fill-rule="nonzero" transform="translate(47.125000, 115.375000) scale(-1, -1) translate(-47.125000, -115.375000) "></path>
+                        <path d="M29.25,146.25 L29.25,137.125 L55.25,120.25" id="Path-7-Copy-2" stroke="#00AAA8" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2,3" fill-rule="nonzero" transform="translate(42.250000, 133.250000) scale(1, -1) translate(-42.250000, -133.250000) "></path>
+                        <circle id="Oval-3-Copy-5" stroke="#00AAA8" stroke-width="1" fill="#FF902C" fill-rule="nonzero" transform="translate(42.250000, 68.250000) rotate(-180.000000) translate(-42.250000, -68.250000) " cx="42.25" cy="68.25" r="9.75"></circle>
+                    </g>
+                </g>
+                <g id="Group-60" filter="url(#filter-9)" stroke-width="1" fill-rule="evenodd" mask="url(#mask-2)">
+                    <g transform="translate(120.250000, 117.000000)">
+                        <g id="Group-59" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(63.375000, 63.375000) rotate(-45.000000) translate(-63.375000, -63.375000) translate(19.500000, 19.500000)">
+                            <path d="M43.875,74.5875 C47.9893837,74.5875 51.9148058,73.7784596 55.5008576,72.3107878 C61.6856555,69.779521 66.860987,65.2891372 70.2552376,59.6112507 C73.0064451,55.0090439 74.5875,49.6266595 74.5875,43.875 C74.5875,26.9129546 60.8370454,13.1625 43.875,13.1625 C26.9129546,13.1625 13.1625,26.9129546 13.1625,43.875" id="Oval-6" stroke="#29CAC5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero" transform="translate(43.875000, 43.875000) rotate(-45.000000) translate(-43.875000, -43.875000) "></path>
+                            <circle id="Oval-3-Copy-7" fill="#FF902C" fill-rule="nonzero" transform="translate(43.875000, 43.875000) rotate(-180.000000) translate(-43.875000, -43.875000) " cx="43.875" cy="43.875" r="17.55"></circle>
+                        </g>
+                        <path d="M89.3267994,86.5216339 C88.7132923,86.2686766 88.0636967,86.1241295 87.3780124,86.1241295 L84.6352751,86.1241295 L84.6352751,62.5851663 C84.6352751,59.5858147 82.2173357,57.1646514 79.2219779,57.1646514 C76.2266201,57.1646514 73.8086807,59.5858147 73.8086807,62.5851663 C73.8086807,90.2900205 73.8086807,104.142448 73.8086807,104.142448 C73.8086807,104.142448 70.1998159,103.239028 66.590951,100.528771 C62.9820862,97.8185135 57.4244344,98.4689753 55.7643566,100.528771 C55.7643566,102.937889 56.9673115,105.347006 59.3732214,107.756124 C61.7791313,110.165242 66.218035,114.453472 72.6899326,120.620813 C73.6643261,121.596506 75.0356947,122.210831 76.5153293,122.210831 L101.019521,122.210831 C103.72617,122.210831 105.819312,120.223309 106.216287,117.585325 L109.897329,96.9150943 C109.933417,96.662137 109.969506,96.4091796 109.969506,96.192359 C109.969506,93.9518795 108.598137,92.0004941 106.685439,91.2054853 L89.3267994,86.5216339 Z" id="Shape" fill="#00A7A7" fill-rule="nonzero" transform="translate(82.866931, 89.687741) scale(-1, 1) rotate(43.000000) translate(-82.866931, -89.687741) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

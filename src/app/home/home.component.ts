@@ -1,18 +1,21 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
   Input,
+  OnChanges,
   OnInit,
   Renderer2,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { AppService } from './../app.service';
@@ -25,11 +28,10 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [NgbCarouselConfig],
   encapsulation: ViewEncapsulation.None
 })
 
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit{
   pageTitle: string;
   trustedSubTitle: any;
   trustedReasons: any;
@@ -41,16 +43,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   modalRef: NgbModalRef;
 
   subscribeForm: FormGroup;
+  subscribeMessage = '';
+  subscribeSuccess = false;
   formValues: SubscribeMember;
 
   constructor(
-    public navbarService: NavbarService, public footerService: FooterService, carouselConfig: NgbCarouselConfig,
+    public navbarService: NavbarService, public footerService: FooterService, private meta: Meta, private title: Title,
     public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
-    public readonly translate: TranslateService, private modal: NgbModal, private router: Router,
+    public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
     private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService) {
-    carouselConfig.showNavigationArrows = true;
-    carouselConfig.showNavigationIndicators = true;
-    carouselConfig.wrap = false;
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
@@ -65,15 +66,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('HOME.TITLE');
       this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
       this.trustedReasons = this.translate.instant('TRUSTED.REASONS');
       this.setPageTitle(this.pageTitle);
+      // Navbar Service
       this.navbarService.setNavbarVisibility(true);
       this.navbarService.setNavbarMode(1);
       this.navbarService.setNavbarMobileVisibility(true);
       this.navbarService.setNavbarShadowVisibility(true);
       this.footerService.setFooterVisibility(true);
+    });
+
+    this.translate.get('HOME').subscribe((result: string) => {
+      // Meta Tag and Title Methods
+      this.title.setTitle(this.translate.instant('GENERAL.TITLE'));
+      this.meta.addTag({name: 'description', content: this.translate.instant('GENERAL.META.GENERAL.META_DESCRIPTION')});
+      this.meta.addTag({name: 'keywords', content: this.translate.instant('GENERAL.META.GENERAL.META_KEYWORDS')});
+      this.meta.addTag({name: 'author', content: this.translate.instant('GENERAL.META.META_AUTHOR')});
+      this.meta.addTag({name: 'copyright', content: this.translate.instant('GENERAL.META.META_COPYRIGHT')});
+    });
+
+    this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
+      if (data !== '') {
+        if (data['errorMessage']) {
+          this.subscribeSuccess = false;
+          this.subscribeMessage = data['errorMessage'];
+        } else {
+          this.subscribeMessage = data;
+          this.subscribeSuccess = true;
+        }
+      }
     });
   }
 
@@ -100,17 +122,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.navbarService.getNavbarDetails();
     this.formValues = this.mailChimpApiService.getSubscribeFormData();
     this.render.addClass(this.HomeNavInsurance.nativeElement, 'active');
     this.subscribeForm = new FormGroup({
-      email: new FormControl(this.formValues.email),
+      firstName: new FormControl(this.formValues.firstName),
+      lastName: new FormControl(this.formValues.lastName),
+      email: new FormControl(this.formValues.email, [Validators.required]),
     });
     this.authService.clearSession();
     this.appService.startAppSession();
   }
 
   ngAfterViewInit() {
+    this.navbarService.getNavbarDetails();
+    this.cdr.detectChanges();
+
   }
 
   setPageTitle(title: string) {
@@ -121,15 +147,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (fragment === 'insurance') {
       this.goToSection(this.InsuranceElement.nativeElement);
     } else
-      if (fragment === 'will') {
-        this.goToSection(this.WillElement.nativeElement);
-      } else
-        if (fragment === 'invest') {
-          this.goToSection(this.InvestElement.nativeElement);
-        } else
-          if (fragment === 'comprehensive') {
-            this.goToSection(this.ComprehensiveElement.nativeElement);
-          }
+    if (fragment === 'will') {
+      this.goToSection(this.WillElement.nativeElement);
+    } else
+    if (fragment === 'invest') {
+      this.goToSection(this.InvestElement.nativeElement);
+    } else
+    if (fragment === 'comprehensive') {
+      this.goToSection(this.ComprehensiveElement.nativeElement);
+    }
   }
 
   checkScrollStickyHomeNav() {
@@ -226,20 +252,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const homeNavbarHeight = (homeNavBarElement.bottom - homeNavBarElement.top);
     const navbarElement = this.navBarElement.nativeElement.getBoundingClientRect();
     const navbarHeight = (navbarElement.bottom - navbarElement.top);
-
     const selectedSection = elementName.getBoundingClientRect();
+
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
                              - homeNavbarHeight - navbarHeight + 10;
 
     if (innerWidth > this.mobileThreshold) {
-      window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+      const isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
+      if (!isIEOrEdge) {
+        window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+      } else {
+        elementName.scrollIntoView(true);
+      }
     } else {
       elementName.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
   }
 
   subscribeMember() {
-    this.mailChimpApiService.setSubscribeFormData(this.subscribeForm.value, true);
-    this.router.navigateByUrl('/about-us/subscribe');
+    this.mailChimpApiService.registerUser(this.subscribeForm.value);
   }
 }

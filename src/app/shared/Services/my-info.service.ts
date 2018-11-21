@@ -1,14 +1,27 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
 
+const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
+declare var window: Window;
+
+const CANCELLED = -2;
+const FAILED = -1;
+const SUCCESS = 1;
+
 @Injectable({
   providedIn: 'root'
 })
 export class MyInfoService {
+
+  changeListener = new Subject();
+
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
@@ -18,30 +31,111 @@ export class MyInfoService {
   myInfoValue: any;
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
-  constructor(private modal: NgbModal, private apiService: ApiService) { }
+  status;
+  constructor(
+    private modal: NgbModal, private apiService: ApiService, private router: Router) { }
 
   setMyInfoAttributes(attributes) {
     this.attributes = attributes;
-    window.sessionStorage.setItem('attributes', this.attributes);
+    window.sessionStorage.setItem(MYINFO_ATTRIBUTE_KEY, this.attributes);
   }
 
   getMyInfoAttributes() {
-    return window.sessionStorage.getItem('attributes');
+    return window.sessionStorage.getItem(MYINFO_ATTRIBUTE_KEY);
   }
 
   goToMyInfo() {
-    window.sessionStorage.setItem('currentUrl', window.location.hash);
+    window.sessionStorage.setItem('currentUrl', window.location.hash.split(';')[0]);
     const authoriseUrl = this.authApiUrl +
       '?client_id=' + this.clientId +
       '&attributes=' + this.getMyInfoAttributes() +
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
-    window.location.href = authoriseUrl;
+    //window.location.href = authoriseUrl;
+    this.newWindow(authoriseUrl);
+  }
+
+  newWindow(authoriseUrl): void {
+    this.openFetchPopup();
+    this.isMyInfoEnabled = true;
+    const screenWidth = screen.width;
+    const screenHeight = screen.height;
+    const left = 0;
+    const top = 0;
+    // tslint:disable-next-line:max-line-length
+    const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+
+    const timer = setInterval(() => {
+      if (windowRef.closed) {
+        clearInterval(timer);
+        this.status = 'FAILED';
+        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+        // this.router.navigate(
+        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
+        //   ]);
+      }
+    }, 500);
+
+    window.failed = (value) => {
+      clearInterval(timer);
+      window.failed = () => null;
+      windowRef.close();
+      if (value === 'FAILED') {
+        this.status = 'FAILED';
+        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+        // this.router.navigate(
+        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
+        //   ]);
+      } else {
+        this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
+        this.isMyInfoEnabled = false;
+      }
+      return 'MY_INFO';
+    };
+
+    window.success = (values) => {
+      clearInterval(timer);
+      window.success = () => null;
+      windowRef.close();
+      const params = new HttpParams({ fromString: values });
+      if (window.sessionStorage.currentUrl && params && params.get('code')) {
+
+        const myInfoAuthCode = params.get('code');
+        this.setMyInfoValue(myInfoAuthCode);
+        this.status = 'SUCCESS';
+        this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, myInfoAuthCode));
+        // this.router.navigate(
+        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'SUCCESS', time: new Date().getTime() }
+        //   ]);
+
+      } else {
+        this.status = 'FAILED';
+        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+        // this.router.navigate(
+        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
+        //   ]);
+      }
+      return 'MY_INFO';
+    };
+  }
+
+  getMyinfoReturnMessage(status: number, code?: string): any {
+    if (status === SUCCESS) {
+      return { status: 'SUCCESS', authorizeCode: code };
+    } else {
+      return { status: 'FAILED' };
+    }
   }
 
   openFetchPopup() {
-    this.loadingModalRef = this.modal.open(ErrorModalComponent, { centered: true });
+    const ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false,
+      centered: true,
+      windowClass: 'hide-close'
+    };
+    this.loadingModalRef = this.modal.open(ErrorModalComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
     this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
   }
@@ -51,11 +145,12 @@ export class MyInfoService {
   }
 
   closeMyInfoPopup(error: boolean) {
+    this.isMyInfoEnabled = false;
     this.closeFetchPopup();
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
+      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
       ref.componentInstance.isError = true;
       ref.result.then(() => {
         this.goToMyInfo();
@@ -69,6 +164,10 @@ export class MyInfoService {
   }
 
   getMyInfoData() {
-    return this.apiService.getMyInfoData(this.myInfoValue);
+    const code = {
+      authorizationCode: this.myInfoValue,
+      personAttributes: this.getMyInfoAttributes()
+    };
+    return this.apiService.getMyInfoData(code);
   }
 }

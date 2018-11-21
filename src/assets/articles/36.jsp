@@ -1,10 +1,12 @@
-<img src="assets/articles/images/36/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="/assets/articles/images/36/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 
 <p>In November 2004, when I wrote in this column  on why one should use term insurances instead of <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" target="_blank" title="Whole Life Plans">whole life plans</a>, I never  expected it to create such a great interest. Over the last 2 months, I received  letters, emails, forum threads and phone calls expressing their opinions. Many  advisers also wrote articles on the same topic to express their views. While  some financial advisers wished <a href="https://www.providend.com/" target="_blank" title="Providend">Providend</a> would somehow disappear from the face  of this earth for rocking the boat, many clients, members of the public (from  as far as US) and people from the financial fraternity expressed their  appreciation of our opinions. And since we were the ones who started the topic,  I thought it would only be appropriate for us to clarify some misconceptions,  which have surfaced as a result of our article.</p>
   <br clear="all">
 
   <h3 class="primary-color"><strong>Limited resources, unlimited needs</strong><strong> </strong></h3>
+  <br/>
   <p>All of us have plenty of financial needs. Insurance for protection,  investments for our retirement &amp; kid&rsquo;s education, paying our mortgages, car  loans and so on. But our resources are limited. If you are a male aged 35 and  need to provide your family with a monthly income of $3,000 for 20 years in  the event of your unfortunate demise, you will need about 600,000 cover. If you intend to retire at age 55, Table 1 shows the  comparison for the various types of plans.</p>
+  <br/>
   <p>The truth is, how many  can afford paying more than $6,000 or $10,000 per year, just to cover his individual death needs? In the  above example, we haven&rsquo;t even considered his medical, his spouse, and his  children insurance needs yet. We can discuss all the merits of whole life with  cash values and so on, but if we cannot even fully cover our needs, what&rsquo;s the point? </p>
 	<br clear="all">
 
@@ -157,12 +159,15 @@
 
 <h3 class="primary-color"><strong>About insurance being a low risk instrument for investing</strong></h3>
 <p>Most insurance companies use 5.25% as the projected  returns; it is also stated in the benefit illustration of <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" target="_blank" title="Whole Life Plans">whole life plans</a> that  the projected yield could be 6.75%. As such, insurance companies may take a much higher risk to achieve the returns for  policyholders. However, after deducting for distribution cost, the actual  return, depending on when you surrender the policy, can be as low as 1% p.a or an average of 3-4% p.a. The low return may give the  perception that it is a low risk vehicle where in fact it is caused by the cost  of distribution.</p>
-
+<br/>
 <p>In the past, portions  of the cash values come with a certain guarantee, as it is regulatory  requirements to do so. However, with the ushering in of the new risk-based  capital regime, this requirement has been cancelled. What this means is that we  may increasingly see traditional plans with no guaranteed cash values, which  will put it in equal footing with all investment instruments. People should  know that the advantage of insurance lies not in the returns but in the  protection it gives for a relatively small premium. It is encouraging to see  that the insurance companies that <a href="https://www.providend.com/" target="_blank" title="Providend">Providend</a> represents are continuously  developing excellent term plans for our clients. Companies such as Asia Life, HSBC, NTUC &amp; UOB have excellent  term life. AXA, Manulife have  got one of the best hospitalisation plans in Singapore. This  signals their belief in being an institution that truly want to care for the  protection needs of their policyholders.</p>
-  <p>The last 2 months have not been easy for us as we sing a different  tune and receive all sorts of unkind comments. But as long as readers gets the  financial education that is so badly needed, and as long as we can help you  consider these issues before you buy your next insurance, we will continue to  toil on.</p>
+<br/>
+<p>The last 2 months have not been easy for us as we sing a different  tune and receive all sorts of unkind comments. But as long as readers gets the  financial education that is so badly needed, and as long as we can help you  consider these issues before you buy your next insurance, we will continue to  toil on.</p>
 <br>
   <p class="text-muted"><em>The edited copy appeared in The Business Times in January 2005. The spirit and principle of the article remains relevant although some products are no longer available. Please seek our advice if you are interested in certain products. </em></p>
 <br>
+<!--
 <div class="text-xs-center"><a href="/guide-me">
   <img src="assets/images/banners/selfcheck_go_540w.png" alt="MoneyOwl Guide Me"></a>
 </div>
+-->

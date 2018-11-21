@@ -4,6 +4,13 @@ body{
     background-color: #00a7a7;
 }
 app-select-nationality{
+
+    .banner-image {
+        img {
+            padding-top: 1vh;
+        }
+    }
+
     .container-fluid {
         padding-top: 0px !important;
     }

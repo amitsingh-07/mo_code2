@@ -1,0 +1,131 @@
+<div class="personal-info">
+  <app-page-title [step]="step" [pageTitle]="pageTitle" [unsaved]="aboutMeForm.dirty"></app-page-title>
+  <div class="container-fluid max-width--1024">
+    <div class="content">
+      <div class="flex-row">
+        <div class="col-lg-6 col-md-6 col-12 mobile-content">
+          <div class="heading hidden-sm-md" id="about-me-step1">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
+          <div class="autofill-link">
+            <div class="autofill-text hidden-sm-md" id="about-me-title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
+            <div class="sub-title" id="about-me-sub-title">{{ 'WILL_WRITING.ABOUT_ME.SUB_TITLE' | translate}}</div>
+            <div class="autofill-logo hidden-sm-md" id="about-me-img"><img class="img-fluid" src="assets/images/about-me.svg" /></div>
+            <div class="autofill-logo mobile-logo hidden-lg" id="about-me-mobile-img"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-12">
+
+          <form [formGroup]="aboutMeForm" id="aboutMeForm" name="aboutMeForm">
+            <div class="aboutMe">
+              <div class="form-group">
+                <div class="flex-row title" id="about-me-form-title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
+                <div class="flex-row section mt20">
+                  <div class="flex-col-5">
+                    <label for="name" id="aboutMeFormLbl1">
+                      <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}<div class="sub_name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></div>
+                    </label>
+                  </div>
+                  <div class="flex-col-7">
+                    <input type="text" [ngClass]="{'inline-error': submitted && abtMe.name.invalid}" id="aboutMeFormInpt1"
+                      class="form-control" #name formControlName="name">
+                  </div>
+                </div>
+                <div class="flex-row section">
+                  <div class="flex-col-5">
+                    <label for="name" id="aboutMeFormLbl2">
+                      <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC' | translate}}</div>
+                      <div class="with-help-icon">{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon" (click)="openToolTipModal()"></span></div>
+                    </label>
+                  </div>
+                  <div class="flex-col-7">
+                    <input type="text" [ngClass]="{'inline-error': submitted && abtMe.uin.invalid}" id="aboutMeFormInpt2"
+                      class="form-control" #uin formControlName="uin">
+                  </div>
+                </div>
+                <div class="flex-row section">
+                  <div class="flex-col-5">
+                    <label for="name" id="aboutMeFormLbl3">{{ 'WILL_WRITING.ABOUT_ME.FORM.I_AM_A' | translate}}</label>
+                  </div>
+                  <div class="flex-col-7 direct-form-grp">
+                    <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+                      <div class="flex-row section pl0 pr0 mb0 space-btwn">
+                        <div class="flex-col-6">
+                          <label ngbButtonLabel class="direct-form-btn--radio btn mr10 male" [ngClass]="{'inline-error': submitted && abtMe.gender.invalid}"
+                            id="aboutMeFormLbl4">
+                            <input ngbButton type="radio" value="male" id="aboutMeFormInpt3"> {{ 'LABEL.MALE' |
+                            translate}}
+                          </label>
+                        </div>
+                        <div class="flex-col-6">
+                          <label ngbButtonLabel class="direct-form-btn--radio btn" [ngClass]="{'inline-error': submitted && abtMe.gender.invalid}"
+                            id="aboutMeFormLbl5">
+                            <input ngbButton type="radio" value="female" id="aboutMeFormInpt4"> {{ 'LABEL.FEMALE' |
+                            translate}}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-row section">
+                  <div class="flex-col-5">
+                    <label for="name" id="aboutMeFormLbl6">{{ 'WILL_WRITING.ABOUT_ME.FORM.AND' | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="dropdown-control" [ngClass]="{'inline-error': submitted && abtMe.maritalStatus.invalid}">
+                      <div ngbDropdown id="maritalStatusDropDown">
+                        <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
+                          <span *ngIf="maritalStatus === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="maritalStatus !== ''">{{maritalStatus}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownMaritalStatus">
+                          <button class="dropdown-item" (click)="selectMaritalStatus('','')">{{'COMMON.LBL_SELECT' |
+                            translate}}</button>
+                          <button type="button" class="dropdown-item" *ngFor="let status of maritalStatusList; let i=index"
+                            (click)="selectMaritalStatus(status, 'html')">
+                            {{status.text}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-row pb30">
+                  <div class="flex-col-5">
+                    <label for="name" id="aboutMeFormLbl7">{{ 'WILL_WRITING.ABOUT_ME.FORM.WITH' | translate}}</label>
+                  </div>
+                  <div class="flex-col-7">
+                    <div class="dropdown-control" [ngClass]="{'inline-error': submitted && abtMe.noOfChildren.invalid}">
+                      <div ngbDropdown id="noOfChildrenDropDown">
+                        <button type="button" class="btn btn-dropdown width100" id="dropdownNoOfChildren"
+                          ngbDropdownToggle>
+                          <span *ngIf="noOfChildren === ''">{{'COMMON.LBL_SELECT' | translate}}</span>
+                          <span *ngIf="noOfChildren !== ''">{{noOfChildren}} {{ (noOfChildren == 1 ?
+                            'WILL_WRITING.ABOUT_ME.FORM.CHILD' : 'WILL_WRITING.ABOUT_ME.FORM.CHILDREN') | translate}}</span>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownNoOfChildren">
+                          <button class="dropdown-item" (click)="selectNoOfChildren('','')">{{'COMMON.LBL_SELECT' |
+                            translate}}</button>
+                          <button type="button" class="dropdown-item" *ngFor="let children of noOfChildrenList" (click)="selectNoOfChildren(children,'html')">
+                            {{children}} {{ (children == 1 ? 'WILL_WRITING.ABOUT_ME.FORM.CHILD' :
+                            'WILL_WRITING.ABOUT_ME.FORM.CHILDREN') | translate}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="button" (click)="goToNext(aboutMeForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+                id="aboutMeFormBtn1">
+                <span *ngIf="!fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                <span *ngIf="fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

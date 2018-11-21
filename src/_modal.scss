@@ -2,10 +2,18 @@
 @import './mixins';
 
 body.modal-open {
-  position: fixed;
+  position: inherit;
   overflow: hidden;
   width: 100%;
   background-color: $black-color;
+}
+
+body.modal-open {
+  -moz-appearance: menuimage;
+}
+
+body.modal-open::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .modal-backdrop.show {
@@ -144,6 +152,12 @@ body.modal-open {
 
 .modal {
   width: 100%;
+
+  &.hide-close {
+    .close {
+      display: none;
+    }
+  }
 
   .close {
     position: absolute;
@@ -653,6 +667,33 @@ body.modal-open {
   }
 }
 
+.full-height-will {
+  &.modal {
+    display: block !important;
+    width: 100vw;
+    overflow: hidden !important;
+  }
+
+  /* Important part */
+  .modal-dialog {
+    overflow-y: initial !important;
+    max-width: 80vw !important;
+
+    @include allmobiles {
+      max-width: 100vw !important;
+    }
+  }
+
+  .modal-body {
+    overflow-y: auto;
+
+    @include allmobiles {
+      height: 100vh;
+      padding-bottom: 220px !important;
+    }
+  }
+}
+
 .sign-up-terms-modal-dialog {
   @include minMobilemaxPhablet {
     max-height: unset !important;
@@ -693,6 +734,7 @@ body.modal-open {
     }
   }
 }
+
 .otp-error-modal {
   @include allmobiles {
     .modal-body {
@@ -700,3 +742,29 @@ body.modal-open {
     }
   }
 }
+
+.will-custom-modal {
+    .modal-header {
+      width: 375px !important;
+      @include allmobiles{
+        width: 100vw !important;
+      }
+    }
+    .modal-body{
+        width: 375px !important;
+        &.white-bg {
+          .close {
+            top: 25px !important;
+            right: 20px !important;
+            @include allmobiles {
+              top: 25px !important;
+              right: 15px !important;
+            }
+          }
+        }
+        @include allmobiles{
+          width: 100vw !important;
+        }      
+    }
+}
+

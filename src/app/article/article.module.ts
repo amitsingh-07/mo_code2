@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { ArticleCategoryComponent } from './article-category/article-category.component';
 import { ArticleEntryComponent } from './article-entry/article-entry.component';
 import { ArticleRoutingModule } from './article-routing.module';
 import { ArticleComponent } from './article/article.component';
-import { ArticleService } from './article.service';
+
+import { StringToLinkFormatPipe } from './../shared/Pipes/string-to-link.pipe';
 
 import { SubscribeSideComponent } from './../shared/components/subscribe-side/subscribe-side.component';
 
@@ -14,8 +16,12 @@ import { SubscribeSideComponent } from './../shared/components/subscribe-side/su
   imports: [
     CommonModule,
     ArticleRoutingModule,
-    NgbModule
-  ],
-  declarations: [ArticleComponent, ArticleCategoryComponent, ArticleEntryComponent, SubscribeSideComponent]
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
+   ],
+  declarations: [ArticleComponent, ArticleCategoryComponent,
+    ArticleEntryComponent, SubscribeSideComponent,
+    StringToLinkFormatPipe]
 })
 export class ArticleModule { }

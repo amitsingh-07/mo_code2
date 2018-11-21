@@ -1,15 +1,18 @@
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
 import { ConfigService } from '../../config/config.service';
 import { GuideMeService } from '../../guide-me/guide-me.service';
 import { IEnquiryUpdate, ISetPassword, ISignUp, IVerifyRequestOTP } from '../../sign-up/signup-types';
 import { IRecommendationRequest } from './../interfaces/recommendations.request';
 import { apiConstants } from './api.constants';
+import { AuthenticationService } from './auth/authentication.service';
 import { BaseService } from './base.service';
 import { IServerResponse } from './interfaces/server-response.interface';
 
@@ -23,6 +26,7 @@ export class ApiService {
   constructor(
     private configService: ConfigService,
     private http: BaseService,
+    public authService: AuthenticationService,
     private modal: NgbModal,
     private guideMeService: GuideMeService,
     private httpClient: HttpClient,
@@ -81,111 +85,106 @@ export class ApiService {
     if (quantity) {
       payload.number = quantity;
     }
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getRecentArticles, payload)
-    const url = '../../../assets/mock-data/recentArticles.json';
-    return this.http.getMock(url)
+    return this.http.post(apiConstants.endpoint.article.getRecentArticles, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
-  getArticle(art_id) {
+  getArticleData(art_id) {
     const payload = { article_id: art_id };
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getArticle, payload)
-    const url = '../../../assets/mock-data/currentArticle.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
-  }
-
-  getRelatedArticle(in_tag_id: number) {
-    const payload = { tag_id: in_tag_id };
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getRelatedArticle, payload);
-    const url = '../../../assets/mock-data/currentCategoryList.json';
-    return this.http.getMock(url)
+    return this.http.post(apiConstants.endpoint.article.getArticle + '/' + art_id, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   getArticleContent(art_id) {
-    const url = '../../../assets/articles/' + art_id + '.jsp';
+    const url = '/assets/articles/' + art_id + '.jsp';
     return this.http.getArticle(url)
       .pipe(
         catchError((error: HttpErrorResponse) => this.router.navigate(['/articles']))
       );
   }
 
-  getArticleCategoryList(category_name) {
-    const payload = { category: category_name };
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.post(apiConstants.endpoint.article.getArticleCategoryList, payload)
-    const url = '../../../assets/mock-data/articleCategoryList.json';
-    return this.http.getMock(url)
+  getRelatedArticle(in_tag_id: number) {
+    const payload = { tag_id: in_tag_id };
+    return this.http.post(apiConstants.endpoint.article.getRelatedArticle + '/' + in_tag_id, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   getArticleCategory() {
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
-    const url = '../../../assets/mock-data/articleCategory.json';
-    return this.http.getMock(url)
+    const payload = null;
+    return this.http.post(apiConstants.endpoint.article.getArticleCategory, payload)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getArticleCategoryList(category_id) {
+    const urlAddOn = category_id;
+    const payload = null;
+    if (urlAddOn === -1) {
+      return this.http.post(apiConstants.endpoint.article.getArticleCategoryAllList, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+    } else {
+      return this.http.post(apiConstants.endpoint.article.getArticleCategoryList + '/' + urlAddOn, payload)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+    }
+  }
+
   // ---------------------------- ABOUT US MODULE ----------------------------
   getCustomerReviewList() {
     // tslint:disable-next-line:no-commented-code
-    // return this.http.get(apiConstants.endpoint.aboutus.getCustomerReview)
-    const url = '../../../assets/mock-data/customerReview.json';
-    return this.http.getMock(url)
+    const payload = {};
+    return this.http.post(apiConstants.endpoint.aboutus.getCustomerReviews, payload, true)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
+  getSubjectList() {
+    const url = '../../../assets/about-us/subjectList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+    }
   sendContactUs(data) {
-    // tslint:disable-next-line:no-commented-code
-    /*
-    return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, data, true)
-    .pipe(
+    const payload = {
+      toEmail: data.email,
+      subject: data.subject,
+      body: data.message
+    };
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((response) => {});
+    }
+    return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+    }
+
+  subscribeNewsletter(data) {
+    const payload = data;
+    return this.http.post(apiConstants.endpoint.subscription.base, payload)
+    .pipe (
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
-    */
-    const url = '../../../assets/mock-data/customerReview.json';
-    return this.http.getMock(url)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
   }
 
+  subscribeHandleError(error: HttpErrorResponse) {
+    console.log(error);
+  }
   getMyInfoData(data) {
-    const url = '../assets/mock-data/myInfoValues.json';
-    return this.http.post(apiConstants.endpoint.getMyInfoValues, data.code, true)
+    return this.http.post(apiConstants.endpoint.getMyInfoValues, data, true)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-            return this.httpClient.get<IServerResponse>(url);
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
@@ -577,6 +576,30 @@ export class ApiService {
         })
       );
   }
+
+  updateInvestment(data) {
+    const url = '../assets/mock-data/reason.json';
+    return this.http.post(apiConstants.endpoint.investmentAccount.updateInvestment, data)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+            return this.httpClient.get<IServerResponse>(url);
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
   // tslint:disable-next-line:no-identical-functions
   requestForgotPasswordLink(data) {
     // tslint:disable-next-line
@@ -597,7 +620,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            //return this.httpClient.get<IServerResponse>(url);
+            // return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
@@ -659,7 +682,7 @@ export class ApiService {
             console.error(
               `Backend returned code ${error.status}, ` + `body was: ${error.error}`
             );
-            //return this.httpClient.get<IServerResponse>(url);
+            // return this.httpClient.get<IServerResponse>(url);
           }
           // return an observable with a user-facing error message
           return throwError('Something bad happened; please try again later.');
@@ -742,4 +765,123 @@ export class ApiService {
         })
       );
   }
+
+  createInvestmentAccount(data) {
+    // tslint:disable-next-line
+    // const url = 'http://bfa-uat.ntuclink.cloud/insurance-needs-microservice/api/getProtectionTypesList';
+    const url = '../assets/mock-data/createInvestmentAccount.json';
+
+    return this.http.post(apiConstants.endpoint.investmentAccount.createInvestmentAccount, data)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+            return this.httpClient.get<IServerResponse>(url);
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
+   // Verify PromoCode
+   verifyPromoCode(promoCode) {
+     return this.http.post(apiConstants.endpoint.willWriting.verifyPromoCode, promoCode)
+     .pipe(
+       catchError((error: HttpErrorResponse) => this.handleError(error))
+     );
+   }
+
+   createWill(payload) {
+    return this.http.post(apiConstants.endpoint.willWriting.createWill, payload)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
+  updateWill(payload) {
+    return this.http.post(apiConstants.endpoint.willWriting.updateWill, payload)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
+  getWill(payload) {
+    return this.http.post(apiConstants.endpoint.willWriting.getWill, payload)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
+  downloadWill(payload) {
+    return this.http.post(apiConstants.endpoint.willWriting.downloadWill, payload)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
+
 }

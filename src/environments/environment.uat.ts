@@ -7,10 +7,11 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
   production: true,
   isDebugMode: false,
-  apiBaseUrl: 'https://bfa-uat.ntucbfa.com',
+  apiBaseUrl: '',
   myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
   myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com/myinfo',
-  myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise'
+  myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
+  gaPropertyId: 'UA-125256446-1'
 };
 /*
  * In development mode, to ignore zone related error stack frames such as

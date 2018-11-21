@@ -17,6 +17,7 @@ import { AppService } from './../app.service';
 import { FooterService } from './../shared/footer/footer.service';
 import { IPageComponent } from './../shared/interfaces/page-component.interface';
 import { NavbarService } from './../shared/navbar/navbar.service';
+import { SelectedPlansService } from './../shared/Services/selected-plans.service';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectService } from './direct.service';
 
@@ -33,16 +34,24 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   @ViewChild('directResults', { read: ViewContainerRef }) container: ViewContainerRef;
   components = [];
 
-  isMobileView: boolean;
+  isMobileView = false;
   modalFreeze: boolean;
   pageTitle: string;
   showingResults = false;
+  hideForm = false;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
     public footerService: FooterService, private directService: DirectService, private translate: TranslateService,
     public modal: NgbModal, private route: ActivatedRoute,
-    private factoryResolver: ComponentFactoryResolver, private appService: AppService) {
+    private factoryResolver: ComponentFactoryResolver, private appService: AppService,
+    private planService: SelectedPlansService) {
+    this.modalFreeze = false;
+    if (window.innerWidth < mobileThreshold) {
+      this.isMobileView = true;
+    } else {
+      this.isMobileView = false;
+    }
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_DIRECT);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -52,18 +61,21 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
     });
     this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
     this.showProductInfo();
-  }
 
-  ngOnInit() {
-    this.directService.setMinProdInfo('');
     this.navbarService.unsubscribeBackPress();
     this.navbarService.setNavbarDirectGuided(true);
     this.footerService.setFooterVisibility(false);
     this.removeComponent(DirectResultsComponent);
-    if (window.innerWidth < mobileThreshold) {
-      this.isMobileView = true;
-    } else {
-      this.isMobileView = false;
+  }
+
+  ngOnInit() {
+    const selectedPlans = this.planService.getSelectedPlan();
+    if (selectedPlans && selectedPlans.enquiryId) {
+      if (this.isMobileView) {
+        this.directService.setModalFreeze(true);
+      }
+      this.hideForm = true;
+      this.formSubmitCallback();
     }
   }
 
@@ -89,6 +101,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   }
 
   backPressed() {
+    this.hideForm = false;
     this.navbarService.unsubscribeBackPress();
     this.showingResults = false;
     this.setPageTitle(this.pageTitle, null, false);

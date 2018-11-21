@@ -19,9 +19,9 @@
 
               <button class="btn btn-dropdown" ngbDropdownToggle>
                 <span class="dependent-count dropdown_text" *ngIf="!personalDeclarationForm.controls.sourceOfIncome.value"
-                  id="persoanl_declaration__dropdown_source1">{{ source | titlecase }}</span>
+                  id="persoanl_declaration__dropdown_source1">Select Source</span>
                 <span class="dependent-count dropdown_text" *ngIf="personalDeclarationForm.controls.sourceOfIncome.value"
-                  id="persoanl_declaration__dropdown_source2">{{personalDeclarationForm.controls.sourceOfIncome.value |
+                  id="persoanl_declaration__dropdown_source2">{{personalDeclarationForm.controls.sourceOfIncome.value.name |
                   titlecase}}</span>
               </button>
 
@@ -52,14 +52,14 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="empolye_yes" value="yes" (click)="yesClick()"> {{
+                  <input ngbButton type="radio" id="empolye_yes" [value]=true (click)="yesClick()"> {{
                   'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="empolye_no" value="no" (click)="noClick()">{{
+                  <input ngbButton type="radio" id="empolye_no" [value]=false (click)="noClick()">{{
                   'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>
@@ -84,14 +84,14 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_yes" value="yes" (click)="yesClick()"> {{
+                  <input ngbButton type="radio" id="pep_yes" [value]=true (click)="yesClick()"> {{
                   'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_no" value="no" (click)="noClick()">{{
+                  <input ngbButton type="radio" id="pep_no" [value]=false (click)="noClick()">{{
                   'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>
@@ -116,14 +116,14 @@
             <div class="flex-row">
               <div class="flex-col-6">
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="ben_yes" value="yes" (click)="yesClick()"> {{
+                  <input ngbButton type="radio" id="ben_yes" [value]=true (click)="yesClick()"> {{
                   'PERSONAL_DECLARATION.YES_lBL' | translate}}
                 </label>
               </div>
               <div class="flex-col-6">
 
                 <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="ben_no" value="no" (click)="noClick()">{{
+                  <input ngbButton type="radio" id="ben_no" [value]=false (click)="noClick()">{{
                   'PERSONAL_DECLARATION.NO_LBL' | translate}}</label>
               </div>
             </div>

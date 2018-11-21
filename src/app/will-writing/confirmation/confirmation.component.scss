@@ -1,0 +1,298 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    background-color: #fff;
+    padding: 50px 60px 65px;
+    font-family: $muli-semi-bold;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+    .content {
+        @include allmobiles {
+            padding-bottom: 120px;
+        }
+    }
+
+}
+.col-lg-4.col-md-4.col-sm-12.flex-row{
+    position: relative;
+}
+.col-lg-4.col-md-4.col-sm-12.flex-row::after{
+    content: "";
+    width: 1px;
+    height: 120px;
+    border: solid 0.5px #009999;
+    top: 30px;
+    right: 0;
+    position: absolute;
+
+    &:nth-of-type(3) {
+        border: 0px !important;
+    }
+}
+
+
+.mobile-header--container {
+    @include allmobiles{
+        background-image: url('../../../assets/images/will-writing/confirmation-mobile.svg');
+        background-repeat: no-repeat;
+        margin-bottom: 25px;
+    }
+}
+.heading {
+    font-family: $muli-light;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    color: #00a7a7;
+    @include allmobiles {
+        font-family: $muli-bold;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.4px;
+        text-align: center;
+        color: #066360;
+    }
+}
+.autofill-link {
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+.autofill-text{
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: #00a7a7;  
+}
+
+.autofill-logo {
+    display: flex;
+    justify-content: flex-end;
+}
+.sub-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.2px;
+    color: #333846;
+    @include allmobiles {
+        width: 271px;
+        text-align: center;
+    }
+}
+.mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin-top: 17px;
+    }
+}
+
+.myFamilyForm{
+    @include allmobiles{
+        padding: 19px 19px 100px;
+        background-color: #00a7a7;
+    }
+}
+
+.section-container {
+    border-radius: 6px;
+    box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.21);
+    background-color: #f4fafb;
+    margin-bottom: 20px;
+    @include allmobiles {
+        margin-bottom: 10px;
+    }
+    .header {
+        padding: 18px 20px;
+        background-color: #fff;
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+        font-family: $muli-bold;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        color: #066360;
+        display: flex;
+        justify-content: space-between;
+        @include allmobiles{
+            padding: 18px 4px;
+        }
+    }
+    .label-header {
+        opacity: 0.95;
+        font-family: $muli-light;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.71;
+        letter-spacing: -0.3px;
+        color: #9e9e9e;
+        padding-right: 0;
+        @include allmobiles {
+            padding-left: 10px !important;
+        }
+      }
+    .label-value {
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.5;
+        letter-spacing: -0.2px;
+        color: #2d8289;
+        @include allmobiles {
+            display: flex;
+        }
+      }
+      .section-body {
+            display: flex;
+            padding-top: 22px;
+            padding-bottom:27px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            @include allmobiles {
+                flex-direction: column;
+            }
+            .col-lg-6{
+                &.col-md-6{
+                    &.col-sm-12{
+                        &:nth-child(2n-1) {
+                            border-right: 0.5px solid #009999;
+                            padding-right: 0;
+                            @include allmobiles{
+                                border-right: none;
+                                padding-right: 15px;
+                            }
+                        }
+                        &:nth-child(2n-2) {
+                            padding-left: 40px;
+                            @include allmobiles{
+                                padding-left: 15px;
+                            }
+                        }
+                    }
+                }
+                &:last-child{
+                    .record{
+                        @include allmobiles{
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+      .edit-dark {
+          background-image: url("../../../assets/images/will-writing/edit-dark.svg");
+          justify-content: right;
+          background-repeat: no-repeat;
+      }
+      .edit {
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 100;
+        letter-spacing: -0.2px;
+        color: #00a7a7;
+        text-align: right;
+        cursor: pointer;
+      }
+      .record {
+          display: flex;
+          margin-bottom: 8px;
+          &:last-child{
+              @include allmobiles{
+                  padding-bottom: 16px;
+                  border-bottom: 0.5px solid #bbbbbb;
+              }
+          }
+      }
+      .section-header{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+        font-weight: 600;
+        color: #9e9e9e;
+        @include allmobiles {
+            padding-left: 10px;
+        }
+      }
+      .separator {
+        width: 1px;
+        height: 120px;
+        border: solid 0.5px #009999;
+        margin-top: 40px;
+        @include allmobiles {
+            width: 89%;
+            align-items: center;
+            height: 1px;
+            border: solid 0.5px #bbbbbb;
+            margin-top: 0;
+            margin-left: 21px;
+            margin-right:21px;
+        }
+        @include tablet {
+            display: flex;
+        }
+        &:nth-of-type(3) {
+            border: solid 2px #000000;
+        }
+      }
+}
+
+.section-row-header {
+    font-family: $muli-bold;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    color: #868686;
+    border-bottom: solid 0.5px #bbbbbb;
+    width: 80%;
+    padding: 0;
+    padding-bottom: 10px;
+    margin: 0 15px;
+    @include allmobiles {
+        width: 100%;
+        margin: 0 10px;
+    }
+}
+.stamp-block{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -65px;
+    .stamp-circle{
+        position: absolute;
+        margin-right: 40px;
+        right: 12%;
+        padding: 19px;
+        border-radius: 50%;
+        border: 1px solid #a4e7e7;
+        width: 210px;
+        height: 210px;
+    }
+    img {
+        margin-right: -32px;
+    }
+    div {
+        margin-right: 75px;
+    }
+}
+
+.no-brdr {
+    border: none !important;
+}
+
+.col-lg-8 {
+    &.col-md-8 {
+        &.col-sm-9 {
+            padding-left: 0 !important;
+            @include allmobiles {
+                padding-left: 20px !important;
+            }
+        }
+    }
+}

@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbDateParserFormatter, NgbDatepickerConfig, NgbDropdown, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
-
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
+import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from './../../direct.service';
 
 @Component({
@@ -15,6 +15,7 @@ import { DirectService } from './../../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class EducationFormComponent implements OnInit, OnDestroy {
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
   categorySub: any;
   modalRef: NgbModalRef;
   educationForm: FormGroup;
@@ -29,11 +30,11 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter,
     private formBuilder: FormBuilder, private translate: TranslateService, private config: NgbDatepickerConfig) {
-      const today: Date = new Date();
-      config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-      config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
-      config.outsideDays = 'collapsed';
-     }
+    const today: Date = new Date();
+    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    config.outsideDays = 'collapsed';
+  }
 
   ngOnInit() {
     this.formValues = this.directService.getEducationForm();
@@ -43,18 +44,18 @@ export class EducationFormComponent implements OnInit, OnDestroy {
       contribution: [this.formValues.contribution, Validators.required],
       selectedunivercityEntryAge: [this.formValues.selectedunivercityEntryAge, Validators.required]
     });
-    if (this.formValues.contribution !== undefined ) {
-       this.selectMonthlyContribution(this.formValues.contribution);
+    if (this.formValues.contribution !== undefined) {
+      this.selectMonthlyContribution(this.formValues.contribution);
     }
-    if (this.formValues.selectedunivercityEntryAge !== undefined ) {
-       this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
+    if (this.formValues.selectedunivercityEntryAge !== undefined) {
+      this.selectEntryAge(this.formValues.selectedunivercityEntryAge);
     }
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '6') {
-         if (this.save()) {
-            this.directService.setMinProdInfo(this.summarizeDetails());
-         }
-         this.directService.triggerSearch('');
+        if (this.save()) {
+          this.formSubmitted.emit(this.summarizeDetails());
+          this.directService.setMinProdInfo(this.summarizeDetails());
+        }
       }
     });
   }
@@ -110,6 +111,6 @@ export class EducationFormComponent implements OnInit, OnDestroy {
     this.directService.showToolTipModal(
       this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.TITLE'),
       this.translate.instant('DIRECT_LIFE_PROTECTION.PREMIUM_WAIVER.TOOLTIP.MESSAGE')
-      );
+    );
   }
 }

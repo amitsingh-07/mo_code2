@@ -107,7 +107,7 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {
-    const response = this.investmentAccountCommon.fileSelected(this.formData , control, controlname, fileElem, thumbElem);
+    const response = this.investmentAccountCommon.fileSelected(this.formData, control, controlname, fileElem, thumbElem);
     if (!response.validFileSize) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_SIZE_EXCEEDED.TITLE');
@@ -116,12 +116,12 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
     } else if (!response.validFileType) {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE');
-        const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE');
-        ref.componentInstance.errorTitle = errorTitle;
-        ref.componentInstance.errorDescription = errorDesc;
-        control.setValue('');
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const errorTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.TITLE');
+      const errorDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.FILE_TYPE_MISMATCH.MESSAGE');
+      ref.componentInstance.errorTitle = errorTitle;
+      ref.componentInstance.errorDescription = errorDesc;
+      control.setValue('');
     }
   }
 
@@ -135,13 +135,7 @@ export class UploadDocumentsComponent implements OnInit {
     this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
       if (data) {
         this.hideUploadLoader();
-        const boStatus = this.investmentAccountService.getBOStatus();
-    // tslint:disable-next-line:triple-equals
-        if ( boStatus == 'yes') {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
-    } else {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
-    }
+        this.redirectToNextPage();
       }
     });
   }
@@ -186,7 +180,7 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = errorMessage;
       ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
       ref.componentInstance.primaryAction.subscribe(() => {
-        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+        this.redirectToNextPage();
       });
     } else {
       this.proceed(form);
@@ -205,6 +199,16 @@ export class UploadDocumentsComponent implements OnInit {
 
   hideUploadLoader() {
     this.showLoader = false;
+  }
+
+  redirectToNextPage() {
+    const boStatus = this.investmentAccountService.getBOStatus();
+    // tslint:disable-next-line:triple-equals
+    if (boStatus == true) {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+    } else {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+    }
   }
 
 }

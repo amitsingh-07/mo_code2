@@ -13,7 +13,11 @@ export const RegexConstants = {
     EmailOrMobile: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{8,10})+$/,
     AlphanumericWithSpaces: /^[a-zA-Z0-9\s]*$/,
     SixDigitNumber: /^[0-9]{6}$/,
+    SixDigitPromo: /^[a-zA-Z0-9]{6}$/,
     OnlyAlphaWithoutLimit: /^[a-zA-Z\s]*$/,
+    NameWithSymbol: /^[a-zA-Z@-\s]{2,40}$/,
+    UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{9}$/,
     ContactNumber: /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/,
-    Email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+    Email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+    NRIC: /^[STst][a-zA-Z0-9]{8}$/
 };

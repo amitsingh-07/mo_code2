@@ -1,10 +1,10 @@
-<div class="text-center"><img src="./../../../assets/articles/images/9/pic01.gif" alt="Is MediShield Life Affordable?"></div>
+<div class="text-center"><img src="/assets/articles/images/9/pic01.gif" alt="Is MediShield Life Affordable?"></div>
 <br><br><br>
-<p>With better insurance benefits and universal coverage that includes all regardless of ones health condition, the new <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank">MediShield Life</a> premiums will naturally cost more. The burning question is how affordable it is going to be and who will be most affected?</p>
+<p>With better insurance benefits and universal coverage that includes all regardless of ones health condition, the new <a href="https://www.medishieldlife.sg" target="_blank">MediShield Life</a> premiums will naturally cost more. The burning question is how affordable it is going to be and who will be most affected?</p>
  		<br>
 		<h4>To begin, let's compare the premiums for MediShield and MediShield Life before any subsidy.</h4>
 		<br>
-		<div class="text-center"><img src="./../../../assets/articles/images/9/pic02.gif" alt=" MediShield vs MediShield Life"></div>
+		<div class="text-center"><img src="/assets/articles/images/9/pic02.gif" alt=" MediShield vs MediShield Life"></div>
 		<div class="hdivider"></div>
 		
 		<p><strong>Observations on MediShield Life premiums:</strong></p>
@@ -25,9 +25,9 @@
 		<div class="table-responsive">
 				<table class="table table-condensed table-bordered" >
 			  <tr>
-			    <td width="149" valign="top" class="cell-turquoise"><p align="center"><strong>For Who</strong></p></td>
-			    <td width="293" valign="top" class="cell-turquoise"><p align="center"><strong>Eligibility Criteria / Amount of Subsidies</strong></p></td>
-			    <td width="174" valign="top" class="cell-turquoise"><p align="center"><strong>Remarks</strong></p></td>
+			    <td width="149" valign="top" class="cell-turquoise xs-minWidth150"><p align="center"><strong>For Who</strong></p></td>
+			    <td width="293" valign="top" class="cell-turquoise xs-minWidth150"><p align="center"><strong>Eligibility Criteria / Amount of Subsidies</strong></p></td>
+			    <td width="174" valign="top" class="cell-turquoise xs-minWidth150"><p align="center"><strong>Remarks</strong></p></td>
 			  </tr>
 			  <tr>
 			    <td width="149" valign="top" class="cell-lightgrey">
@@ -101,9 +101,9 @@
 		<div class="table-responsive">
 				<table class="table table-condensed table-bordered" >
 			  <tr>
-			    <td width="149" valign="top" class="cell-turquoise"><p align="center"><strong>For Who</strong></p></td>
-			    <td width="293" valign="top" class="cell-turquoise"><p align="center"><strong>Eligibility Criteria / Amount of    Subsidies</strong></p></td>
-			    <td width="174" valign="top" class="cell-turquoise"><p align="center"><strong>Remarks</strong></p></td>
+			    <td width="149" valign="top" class="cell-turquoise  xs-minWidth150"><p align="center"><strong>For Who</strong></p></td>
+			    <td width="293" valign="top" class="cell-turquoise  xs-minWidth150"><p align="center"><strong>Eligibility Criteria / Amount of    Subsidies</strong></p></td>
+			    <td width="174" valign="top" class="cell-turquoise  xs-minWidth150"><p align="center"><strong>Remarks</strong></p></td>
 			  </tr>
 			  <tr>
 			    <td width="149" valign="top" class="cell-lightgrey">
@@ -127,19 +127,19 @@
 		<div class="table-responsive">
 				<table class="table table-condensed table-bordered" >
 			  <tr>
-			    <td width="149" valign="top" class="cell-turquoise"><p align="center"><strong>For Who</strong></p></td>
-			    <td width="293" valign="top" class="cell-turquoise"><p align="center"><strong>Eligibility Criteria / Amount of    Subsidies</strong></p></td>
-			    <td width="174" valign="top" class="cell-turquoise"><p align="center"><strong>Remarks</strong></p></td>
+			    <td width="149" valign="top" class="cell-turquoise xs-minWidth150"><p align="center"><strong>For Who</strong></p></td>
+			    <td width="293" valign="top" class="cell-turquoise xs-minWidth150"><p align="center"><strong>Eligibility Criteria / Amount of    Subsidies</strong></p></td>
+			    <td width="174" valign="top" class="cell-turquoise xs-minWidth150"><p align="center"><strong>Remarks</strong></p></td>
 			  </tr>
 			  <tr>
-			    <td width="149" valign="top" class="cell-lightgrey">
+			    <td width="149" valign="top" class="cell-lightgrey xs-minWidth150">
 			      <strong>(D) Needy Singaporeans</strong>
 			    </td>
-			    <td width="293" valign="top" class="cell-lightgrey"><ul class="bluedot">
-			      <li>Anyone who cannot afford the premium can apply for    it</li>
+			    <td width="293" valign="top" class="cell-lightgrey xs-minWidth150"><ul class="bluedot">
+			      <li>Anyone who cannot afford the premium can apply for it</li>
 			    </ul>
 			      </td>
-			    <td width="174" valign="top" class="cell-lightgrey"><ul class="bluedot">
+			    <td width="174" valign="top" class="cell-lightgrey xs-minWidth150"><ul class="bluedot">
 			      <li>Not applicable for PRs</li>
 			    </ul></td>
 			  </tr>
@@ -147,7 +147,7 @@
 		</div>
 		
 		<br><br>
-<h3 class="primary-color"><strong>Compare <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank">MediShield Life</a> premiums factoring in financial support</strong></h3>
+<h3 class="primary-color"><strong>Compare <a class="primary-color" href="https://www.medishieldlife.sg" target="_blank">MediShield Life</a> premiums factoring in financial support</strong></h3>
 		<p>The 2 tables below show the premium outcome after including the Permanent and Transitional Subsidies.</p>
 		<br>
 		<p><strong>(1) In the first year (2015) with Transitional Subsidies</strong></p>
@@ -156,15 +156,15 @@
 			  <tr>
 			    <td width="67" rowspan="2" valign="bottom" class=""><p align="center">&nbsp;</p>
 			      <p align="center">Age</p></td>
-                  <td width="85" rowspan="2" valign="bottom" class=""><p align="center">Current    <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/premiums---subsidies/medishield-life-premiums-and-subsidies.html" target="_blank" title="MediShield Life Premiums and Subsidies">MediShield Premium</a></p></td>
-			    <td width="104" rowspan="2" valign="bottom" class=""><p align="center">MediShield    Life Premium Before Subsidy</p></td>
-			    <td width="350" colspan="4" valign="bottom" class=""><p align="center">2015    MediShield Life Premium<br>
+          <td width="85" rowspan="2" valign="bottom" class=""><p align="center">Current MediShield Premium</p></td>
+			    <td width="104" rowspan="2" valign="bottom" class=""><p align="center">MediShield Life Premium Before Subsidy</p></td>
+			    <td width="350" colspan="4" valign="bottom" class=""><p align="center">2015 MediShield Life Premium<br>
 			      <em>(staying in residence with AV =&lt;    $13,000)</em></p></td>
 			  </tr>
 			  <tr>
 			    <td width="76" valign="bottom" class="cell--header" ><p align="center">Lower-Income</p></td>
-			    <td width="94" valign="bottom" class="cell--header"><p align="center">Lower-Middle    Income </p></td>
-			    <td width="95" valign="bottom" class="cell--header"><p align="center">Upper-Middle    Income </p></td>
+			    <td width="94" valign="bottom" class="cell--header"><p align="center">Lower-Middle Income </p></td>
+			    <td width="95" valign="bottom" class="cell--header"><p align="center">Upper-Middle Income </p></td>
 			    <td width="85" valign="bottom" class="cell--header"><p align="center">High <br>
 			      Income</p></td>
 			  </tr>
@@ -233,15 +233,15 @@
 			  <tr>
 			    <td width="67" rowspan="2" valign="bottom"  class="cell-turquoise"><br>
 			      Age </td>
-                  <td width="85" rowspan="2" valign="bottom"  class="cell-turquoise"><p align="center">Current    <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/premiums---subsidies/medishield-life-premiums-and-subsidies.html" target="_blank" title="MediShield Life Premiums and Subsidies">MediShield Premium</a></p></td>
-			    <td width="104" rowspan="2" valign="bottom"  class="cell-turquoise"><p align="center">MediShield    Life Premium Before Subsidy</p></td>
-			    <td width="350" colspan="4" valign="bottom"  class="cell-turquoise"><p align="center">2019    MediShield Life Premium<br>
+                  <td width="85" rowspan="2" valign="bottom"  class="cell-turquoise"><p align="center">Current MediShield Premium</p></td>
+			    <td width="104" rowspan="2" valign="bottom"  class="cell-turquoise"><p align="center">MediShield Life Premium Before Subsidy</p></td>
+			    <td width="350" colspan="4" valign="bottom"  class="cell-turquoise"><p align="center">2019 MediShield Life Premium<br>
 			      <em>(staying in residence with AV =&lt; $13,000)</em></p></td>
 			  </tr>
 			  <tr>
 			    <td width="76" valign="bottom"  class="cell-lightgrey"><p align="center">Lower-Income</p></td>
-			    <td width="94" valign="bottom" class="cell--header"><p align="center">Lower-Middle    Income </p></td>
-			    <td width="95" valign="bottom" class="cell--header"><p align="center">Upper-Middle    Income </p></td>
+			    <td width="94" valign="bottom" class="cell--header"><p align="center">Lower-Middle Income </p></td>
+			    <td width="95" valign="bottom" class="cell--header"><p align="center">Upper-Middle Income </p></td>
 			    <td width="85" valign="bottom" class="cell--header"><p align="center">High <br>
 			      Income</p></td>
 			  </tr>
@@ -306,8 +306,8 @@
 		<br>
 		<p><strong>Observations & Remarks:</strong></p>
 		<ol>
-		  <li>The Pioneer Generation (see *) will end up paying less than the current <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/premiums---subsidies/medishield-life-premiums-and-subsidies.html" target="_blank" title="MediShield Life Premiums and Subsidies">MediShield premium</a></li>
-            <li>During the first year of <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank">MediShield Life</a> (2015), the maximum premium increase will be less than $30 per year for the lower-income and not more than $60 per year for the high income.</li>
+		  <li>The Pioneer Generation (see *) will end up paying less than the current MediShield premium</li>
+      <li>During the first year of <a href="https://www.medishieldlife.sg/" target="_blank">MediShield Life</a> (2015), the maximum premium increase will be less than $30 per year for the lower-income and not more than $60 per year for the high income.</li>
 		  <li>After phasing out the Transitional Subsidies of 4 years (Year 2019), the premium will increase by an average of $36 to $128 per year for the lower-income and $80 to $300 per year for the high income.</li>
 		  <li>The above premium tables are for those staying in residence with an Annual Value (AV) less than $13,000. Those with an AV &gt; of more than $13,000 will receive lesser subsidies, hence a higher increase in premiums.</li>
 		  <li>PRs will receive half the amount of subsidies compared to Singapore citizens if they belong to the lower-middle income. However, they will not be able to enjoy the Transitional Subsidies.</li>
@@ -321,7 +321,7 @@
 			<li><strong>Additional 1% Medisave contribution by employer</strong>
                 <p>This can be quite significant especially for the high-income group who do not enjoy the Permanent Subsidies that the lower-middle income group get. <br> <br>For example, those earning more than $5,000/mth will see an increase of $600 per year added into their <a href="https://www.cpf.gov.sg/members/schemes/schemes/healthcare/medisave" target="_blank" title="MediSave">Medisave account</a>.</p></li>
 			<li><strong>MediShield Life premiums can be fully paid through Medisave</strong>
-                <p>Hence, no out-of-pocket expenses for <a href="https://www.moh.gov.sg/content/moh_web/medishield-life/about-medishield-life/what-is-medishield-life.html" target="_blank">MediShield Life</a> provided you have sufficient Medisave for deduction.</p></li>
+                <p>Hence, no out-of-pocket expenses for <a href="https://www.medishieldlife.sg" target="_blank">MediShield Life</a> provided you have sufficient Medisave for deduction.</p></li>
 			<li><strong>Premium rebates for MediShield Life starting earlier from age 66</strong>
 			<p>Existing policyholders will start receiving rebates from age 71, which would help reduce the net premium. Having paid a prepaid premium at a younger age, Singaporeans above 66 years old will get to enjoy the benefits earlier. The rebate is structured such that those who join the Medishield scheme earlier will receive more rebates. In addition, the older you become the higher the rebate given. </p>
 		</li>

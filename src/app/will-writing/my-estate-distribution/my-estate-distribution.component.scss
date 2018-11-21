@@ -1,0 +1,437 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.container-fluid {
+    padding: 50px 60px 65px;
+    @include allmobiles{
+        padding: 10px 0 !important;
+        border-radius: 0;
+    }
+    .main-container {
+        justify-content: space-between;
+    }
+}
+.banner-image{
+    @include allmobiles{
+        width: 178px;
+        height: 153px;
+        object-fit: contain;
+        margin: auto;
+        img{
+            padding-top: 0;
+        }
+    }
+}
+.instructions {
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25);   
+    @include allmobiles{
+        margin: 0 16px !important;
+    }
+}
+.instruction-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing: -0.3px;
+    color: #626362;
+    padding: 30px 25px;
+    div{
+        margin-bottom: 15px;
+        span{
+            display: flex;
+        }
+    }
+}
+.no-promo {
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    background-color: #2d8289;
+    justify-content: center;
+    align-items: center;
+    input{
+        border-radius: 27.5px;
+        width:90%;
+        padding: 13px;
+        border: none;
+    }
+    .instruction-content{
+        color: #fff;
+        justify-content: space-around;
+        align-items: center;
+        @include allmobiles{
+            margin-bottom: 17px;
+        }
+        div{
+            padding-left:20px;
+            &:first-child{
+                width: 60%;
+                padding: 0 15px;
+                @include allmobiles{
+                    width: 100%;
+                }
+            }
+        }
+        & > * {
+          margin-bottom: 17px;  
+          text-align: center;
+        }
+        button{
+            font-family: $muli-bold;
+            font-size: 16px;
+            background-color: #00c5c4;
+            color: $white-color;
+            @include allmobiles{
+                width: 166px;
+                height: 46px;
+                border-radius: 6px;
+                padding: 0;
+            }
+        }
+    }
+}
+.mask {
+    background-color: #2d8289;
+    font-size: 22px;
+    font-family: $muli-bold;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 15px 0;
+    text-align: center;
+  }
+.beneficiaries-container {
+    margin-top: 70px;
+    @include allmobiles {
+        margin-top: 25px;
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    .FAQ {
+        margin-top: 16px;
+        font-size: 14px;
+        text-align: center;
+        color: #00c5c4;
+    }
+    .offer-code{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 2.5;
+        letter-spacing: -0.2px;
+        text-align: center;
+        color: #2d8289;
+        .brdr-btm{
+            border: solid 0.5px #00a7a7;
+        }
+        .time-period {
+            position: relative;
+            top: 26px;
+            width: 70%;
+            padding: 5px 10px;
+            background: #fff;
+            margin: 0 auto;
+            @include allmobiles{
+                position: none;
+                top: 0;
+                width: 100%;
+            }
+        }
+        input{
+            font-family: $muli-light;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: -0.2px;
+            text-align: center;
+            color: #a4a4a4;
+            border-radius: 6px;
+            border: solid 1px #c2d9ec;
+            font-size: 16px;  
+        }
+        input::placeholder{
+            color: #a4a4a4;
+        }
+        div{
+            &:last-child{
+                font-family: $muli-regular;
+                color: #2d8289;
+                font-size: 16px;
+                span{
+                    font-family: $muli-bold;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+.proceed-msg{
+    display: flex;
+    flex-direction: column;
+    .sub-title{
+        color: #333846 !important;
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        @include allmobiles {
+            justify-content: center;
+            padding:10px !important;
+            text-align: center;
+        }
+    }
+    h6 {
+        @include allmobiles {
+            justify-content: center;
+            padding:0 40px !important;
+        } 
+    }
+}
+
+input[type='checkbox']+label {
+    margin: 0;
+    clear: none;
+    padding: 0px 0 0px 35px;
+    cursor: pointer;
+    background: url("../../../assets/images/check-box-normal.svg") left center no-repeat;
+  }
+  
+  input[type='checkbox']:checked+label {
+    background-image: url("../../../assets/images/check-box-select.svg");
+  }
+
+  .add-beneficiaries{
+      padding:5px;
+  }
+  
+  .form-group-single-column {
+      display: flex;
+      justify-content: space-between;
+  }
+  .form-group-single-column .checkbox-button.two-label {
+    padding: 20px !important;
+  }
+  .mobile-logo{
+    display: none;
+    @include allmobiles {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin: 12px 0;
+    }
+}
+
+.mobile-header {
+         background-color: #00a7a7;
+         position: relative;
+         h6 {
+            @include allmobiles {
+                justify-content: center;
+                width: 300px;
+                text-align: center;
+                margin-bottom: 23px;
+            } 
+        }
+        .step2 {
+            font-family: $muli-light;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+          }
+    @include allmobiles {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: -10px;
+        padding-bottom: 80px;
+        color: #333846 !important;
+        background-color: #fff;
+    }  
+}
+
+.add-beneficiaries-container {
+    background-color: #fff;
+    color:#2d8289;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+}
+.beneficiaries-container{
+    padding: 0 10px
+}
+.aboutMe{
+    .btn {
+        padding: 8px !important;
+        font-family: $muli-regular !important;
+        color:#2d8289;
+        background-color: #fff;
+    }
+    .btn-primary{
+        background-color: #00a7a7;
+        color: #fff !important;
+        font-family: $muli-regular !important;
+    }
+}
+
+.header-container{
+    padding: 0px !important;
+}
+
+.content-title {
+    font-family: $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    padding:20px !important;
+  }
+  .add-beneficiary{
+      justify-content: flex-end;
+  }
+  .estate-distribution {
+      padding: 0;
+      @include allmobiles {   
+        z-index: 999;
+        margin-top: -80px;
+      }
+      .distribution-img{
+        position: relative;
+        left: 0;
+        right: 0;
+        @include allmobiles{
+            margin: 0 15px;
+        }
+        img{
+            width:100%;
+            @include allmobiles {
+                max-width:281px;
+                margin: 0 auto;
+                display: flex;
+            }
+        }
+      }
+      .distribution-content{
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.3px;
+        text-align: center;
+        .title{
+            font-family: $muli-semi-bold;
+        }
+        .percentage{
+            font-size: 48px !important;
+            font-family: $muli-bold;
+            @include iphone5{
+                line-height: 1.22;
+            }
+        }
+        .sub-title{
+            font-family: $muli-semi-bold;
+        }
+        color: #ffffff;
+        display: flex;
+        position: absolute;
+        top: 9%;
+        flex-direction: column;
+        left: 0;
+        right: 0;
+        justify-content: center;
+        align-items: center;
+      }
+  }
+  .estate-distribution-form{
+      background-color: #fff;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-radius: 6px;
+      .input-label-black{
+        font-family: $muli-semi-bold;
+        font-size: 18px;
+        letter-spacing: -0.3px;
+        color: #000000;
+      }
+      .input-label-normal {
+        font-family: $muli-regular;
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: -0.2px;
+        color: #5e5e5e;
+      }
+      .form-title {
+        font-family: $muli-bold;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: -0.4px;
+        color: #066360;
+        padding-left: 21px;
+        padding-bottom: 20px;
+      }
+      .form-control{
+          max-width: 107px;
+          .input-control{
+              text-align: left;
+          }
+          i{
+              right: 10px;
+          }
+      }
+  }
+  .estateDistributionForm {
+      padding-bottom: 5px;
+      @include allmobiles {
+        padding-bottom: 60px;
+      }
+      
+  }
+
+  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+    input[type="number"] {
+    -moz-appearance: textfield;
+    }
+
+    .distribution-container {
+        margin-top: 50px;
+        @include allmobiles {
+            margin-top: 0px;
+        }
+        .btn{
+            margin-top: 41px !important;
+        }
+    }
+.message-block{
+    margin-top: 21px;
+    .tooltip-message-img{
+        position: relative;
+        img{
+            max-width: 100%;
+        }
+    }
+    .tooltip-message{
+        padding: 14px 9px 17px 20px;
+        position: absolute;
+        bottom: 15%;
+        width: 274px;
+        left: 14%;
+        font-size: 14px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.1px;
+        color: #333846;
+    }
+}
+
+.header-label{
+    padding-left: 33px;
+    @include allmobiles {
+        padding-left: 21px;
+    }
+}
+.error-text{
+    color: red !important;
+}

@@ -6,6 +6,11 @@
 }
 
 .page-box{
+    padding:0px 30px 40px 30px;
+    @include minMobilemaxPhablet{
+        padding:0px 15px 50px 15px;
+    }
+
     /* Article Colors */
     .primary-color{
         color:$teal-color;
@@ -14,14 +19,27 @@
     .width25{
         width:25px;
     }
+    @include minMobilemaxPhablet{
+        .xs-miWidth50{
+            min-width:50px;
+        }
+        .xs-minWidth150{
+            min-width:150px;
+        }
+    }
     
-
     /* Heading */
     h1,h2,h3 {
         font-family:$muli-bold;
+        margin-top:10px;
     }
     h4,h5,h6 {
         font-family:$muli-semi-bold;
+    }
+    @include minMobilemaxPhablet{
+        h2{
+            font-size:1.5rem;
+        }
     }
     p{
         color:$black-color;
@@ -41,6 +59,17 @@
     
     img{
         max-width:100%;
+        &.thumbnail{
+            margin: 0px 0px 15px 15px;
+            @include minMobilemaxPhablet{
+                margin:15px 0px 15px 0px;
+                width:100%;
+            }
+            &.fullwidth{
+                margin:0px;
+                width:100%;
+            }           
+        }
     }
 
     /* Table Styles */
@@ -141,9 +170,12 @@
     .cell--dark-green{
         a{
             display:flex;
+            align-self:center;
+            font-family:$muli-bold;
             justify-content:center;
             align-items: center;
-            font-size:0.85rem;
+            font-size:1rem;
+            padding:5px 10px;
             line-height:1.5;
             border-radius:5px;
             color:$white-color;
@@ -163,10 +195,25 @@
                 color:$white-color;
                 filter:brightness(0.8);
             }
+            &:focus{
+                background-color:$orange-color;
+                border-color:$orange-color;
+                color:$white-color;
+                filter:brightness(0.8);
+            }
+            &:active{
+                background-color:$orange-color;
+                border-color:$orange-color;
+                color:$white-color;
+                filter:brightness(0.8);
+            }
         }
     }
     /* List Styling */
     ol{
+        @include minMobilemaxPhablet{
+            padding-inline-start:20px;
+        }
         li{
             color:$black-color;
         }
@@ -189,6 +236,7 @@
             }
         }
         &.list-unstyled{
+            
             @include minMobilemaxPhablet{
                 padding-inline-start:0px;
             }
@@ -233,7 +281,10 @@
     }
     
 }
-
+/** Card Block **/
+.card-block{
+    padding:10px;
+}
 /** Side Panel Card **/
 
 .relate-side__card{
