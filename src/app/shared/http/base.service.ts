@@ -64,7 +64,7 @@ export class BaseService {
       );
   }
 
-  post(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+  post(url, postBody: any, showLoader?: boolean, showError?: boolean, isBlob?: boolean ) {
     if (showLoader) {
       this.helperService.showLoader();
     }
@@ -73,6 +73,9 @@ export class BaseService {
       param = '?alert=' + showError;
     }
 
+    if (isBlob) {
+      return this.httpClient.post(`${environment.apiBaseUrl}/${url}${param}`, postBody, { responseType: 'blob' });
+    }
     return this.httpClient
       .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
       .finally(() => {
