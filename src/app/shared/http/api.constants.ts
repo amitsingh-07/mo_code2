@@ -56,11 +56,16 @@ export let apiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + 'industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + 'occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + 'optionListCollection',
-            uploadDocument: 'account/account-microservice/saveInvestmentDetails',
-            saveInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
+            //uploadDocument: 'account/account-microservice/saveInvestmentDetails',
+            uploadDocument: 'account/account-microservice/saveDocuments',
+            //saveInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
+            saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
-            createInvestmentAccount: 'account/account-microservice/createIFastAccount',
-            getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails'
+            createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
+            getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
+            buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
+            sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
+            investmentoverview: 'invest/investment-microservice/portfolio/holdings'
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',

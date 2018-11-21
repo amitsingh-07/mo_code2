@@ -4,10 +4,10 @@
       <img id="edit_profile_bg_img" class="background_img" src="assets/images/investment_header.svg" />
 
       <div class="flex-row user_content flex-col-12">
-        <div class="user_portfolio col-8">{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}
-          <b>{{PortfolioValues.name}}</b>
+        <div class="flex-col-8 user_portfolio"><div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
+          <div>{{PortfolioValues.productName}}</div>
         </div>
-        <div class="col-4">
+        <div class="flex-col-4">
           <div class="dropdown-control ">
             <div ngbDropdown>
               <button class="btn btn-dropdown without-border grey" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
@@ -20,7 +20,8 @@
         </div>
       </div>
       <div class="container-fluid">
-        <div class="row" *ngIf="PortfolioValues.totalReturns">
+        <!-- Already fund portfolio -->
+        <div class="row" *ngIf="PortfolioValues.investmentAmount">
           <div class="col-lg-12 col-md-12">
             <div class="flex-row">
 
@@ -32,7 +33,7 @@
               <!--Form Header-->
               <div class="form-group-with-bg--header your_total_value">
                 <div id="myFinancialLbl">
-                  <div class="total_values">{{PortfolioValues.value | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="total_values">{{PortfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                   <div class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
                 </div>
               </div>
@@ -44,7 +45,7 @@
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="total value">$6,286
+                    <div class="total_return_value" for="total value">{{PortfolioValues.investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
@@ -54,7 +55,7 @@
                     </div>
                   </div>
                   <div class="flex-col-4">
-                    <div class="start_investment_value" for="name">+ {{PortfolioValues.invetmentReturns}}
+                    <div class="start_investment_value" for="name">+ {{PortfolioValues.investmentAmount}}% <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -65,7 +66,7 @@
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="start_investment_value" for="name">+ {{PortfolioValues.invetmentReturns}}
+                     <div class="start_investment_value" for="name"> + 323.35%  <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -76,7 +77,7 @@
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="name">{{PortfolioValues.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}
+                    <div class="total_return_value" for="name">{{PortfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}} <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -84,10 +85,10 @@
             </div>
           </div>
         </div>
-        <!-- your portfolio label -->
+      
         
-        <!-- Zero Investment portfolio -->
-        <div class="row" *ngIf="!PortfolioValues.totalReturns"
+        <!-- not funded portfolio -->
+        <div class="row" *ngIf="!PortfolioValues.investmentAmount"
         >
           <div class="col-lg-12 col-md-12">
             <div class="flex-row mb20">
@@ -101,7 +102,7 @@
                 </div>
               </div>
             </div>
-
+       
             <div class="form-group-with-bg mt10">
               <!--Form Header-->
               <div class="form-group-with-bg--header your_total_value">
@@ -118,7 +119,7 @@
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="total value">$0
+                    <div class="total_return_value" for="total value">$0  <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -128,7 +129,7 @@
                     </div>
                   </div>
                   <div class="flex-col-4">
-                    <div class="start_investment_value" for="name">+ 0%
+                    <div class="start_investment_value" for="name">+ 0% <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -139,7 +140,7 @@
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="start_investment_value" for="name">+ 0%
+                    <div class="start_investment_value" for="name">+ 0% <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -150,7 +151,7 @@
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="name">$0
+                    <div class="total_return_value" for="name">$0  <!--todo -->
                     </div>
                   </div>
                 </div>

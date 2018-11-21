@@ -22,7 +22,7 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investm
 
 import { HostListener } from '@angular/core';
 
-
+import { ConsoleLoggerService } from '../../shared/logger/console-logger.service';
 
 import { SignUpService } from '../../sign-up/sign-up.service';
 
@@ -38,7 +38,7 @@ export class YourInvestmentComponent implements OnInit {
   portfolioList;
   totalReturnss;
   summaryValues;
-
+  selectedDropDown;
   pageTitle: string;
   NumberPortfolio = 2;
   moreList: any;
@@ -99,14 +99,14 @@ export class YourInvestmentComponent implements OnInit {
   getInvestmentOverview() {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
-      this.totalPortfolioValue = this.investmentoverviewlist.totalPortfolioValue;
-      this.portfolioList = this.investmentoverviewlist.portfolios;
+      this.portfolioList = this.investmentoverviewlist.data.portfolios;
+      console.log(this.portfolioList);
+      console.log(this.investmentoverviewlist.data.totalValue);
     });
   }
   fundYourAccount() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-
-  }
+    //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+ }
 
   alertPopUp(i) {
     this.selected = i;
@@ -115,6 +115,14 @@ export class YourInvestmentComponent implements OnInit {
   ClosedPopup() {
     this.showAlretPopUp = false;
 
+  }
+  selectOption(option) {
+    this.selectedDropDown = option.name;
+    if (this.selectedDropDown === 'Withdraw Portfolio') {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
+    } else {
+      console.log('Transaction History');  //TODO
+    }
   }
 
 }

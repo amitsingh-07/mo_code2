@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP_REQUEST,
     component: TopupRequestComponent
+  },
+  {
+    path: TOPUP_AND_WITHDRAW_ROUTES.FUND_YOUR_ACCOUNT,
+    component: FundYourAccountComponent
   },
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_INVESY_TMENT,

@@ -1,9 +1,10 @@
 export class FundDetails {
+    source: string;
     oneTimeInvestment: number; // Funding
     monthlyInvestment: number; // Funding
     investmentAmount: number; // Topup
-    fundingAmount: number; // Topup
-    fundingType: string;
-    source: string;
-    portfolio: string;
+    amountToTransfer: number; // Topup
+    isAmountExceedCash: boolean;
+    portfolioName: string;
+    portfolioId: string;
 }

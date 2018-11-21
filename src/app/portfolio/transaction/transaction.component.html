@@ -1,0 +1,86 @@
+<div class="transactions pr0 pl0">
+  <div class="content">
+  <ngb-tabset>
+  <ngb-tab title="History">
+    <ng-template ngbTabContent>
+         <div class="flex-row">
+      <div class="flex-col-12">
+        <div class="history">
+          <div class="record">
+            <div class="record-date">22 August 2018</div>
+            <div class="flex-col record-data">
+              <div class="flex-row record-title ">
+                <div class="flex-col-6"><span class="flex-col-3">SELL</span><span class="flex-col-9">Global Bonds</span></div>
+                <div class="flex-col-6"><span>- $500.00</span><i class='fa right' [class.fa-chevron-down]="true" [class.fa-chevron-up]="false"></i></div>
+              </div>
+            </div>
+            <div class="record-date">22 August 2018</div>
+            <div class="flex-col record-data buy">
+            <div class="flex-row record-title" (click)="acc.toggle('toggle-1')">
+                  <div class="flex-col-6"><span class="flex-col-3">BUY</span><span class="flex-col-9">Growth - PID012345</span></div>
+                  <div class="flex-col-6"><span>$100.00</span><i class='fa right' [class.fa-chevron-down]="flase" [class.fa-chevron-up]="true"></i></div>
+                </div>
+            </div>
+            <!--     <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Toggle first</button> -->
+            <ngb-accordion #acc="ngbAccordion">
+                <ngb-panel id="toggle-1">
+           
+                <ng-template ngbPanelContent>
+                	 <div class="flex-col record-data buy">
+                <div class="flex-col record-details">
+                  <div class="flex-row">
+                    <div class="flex-col"><span>Dimensional Global Short</span><span>Fixed Inc ACC-H SGD</span></div><div>$10.00</div>
+                  </div>
+                  <div class="flex-row">
+                      <div class="flex-col"><span>Dimensional Global Short</span><span>Fixed Inc ACC-H SGD</span></div><div>$20.00</div>
+                  </div>
+                  <div class="flex-row">
+                      <div class="flex-col"><span>Dimensional Global Short</span><span>Fixed Inc ACC-H SGD</span></div><div>$70.00</div>
+                  </div>
+                </div>
+                 </div>
+            	</ng-template>
+             
+              </ngb-panel>
+            </ngb-accordion>
+
+
+            <div class="no-data">
+              <img src="../../../assets/images/investment-account/light_owl.svg"/>
+              <div>No Transaction History!</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab  class="btn width100" title="Statements">
+    <ng-template ngbTabContent>
+	   <div class="flex-row">
+		     <div class="flex-col-12">
+		      	<div class="statements">
+		            <div class="record">
+		              <div class="flex-col record-data">
+		                <div class="record-date">2018</div>
+		                <div class="flex-row"><span>September</span><span>Download</span></div>
+		                <div class="flex-row"><span>August</span><span>Download</span></div>
+		                <div class="flex-row"><span>July</span><span>Download</span></div>
+		                <div class="flex-row"><span>June</span><span>Download</span></div>
+		                <div class="flex-row"><span>May</span><span>Download</span></div>                          
+		              </div>
+		              <div class="no-data">
+		                <img src="../../../assets/images/investment-account/light_owl.svg"/>
+		                <div>No Transaction Statements!</div>
+		              </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+  </div>
+</div>
+<button>modal</button>
