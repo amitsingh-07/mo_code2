@@ -673,7 +673,31 @@ body.modal-open::-webkit-scrollbar {
     width: 100vw;
     overflow: hidden !important;
   }
-
+  .modal-body {
+    &.white-bg {
+      .close {
+        top: 25px !important;
+        right: 20px !important;
+      }
+    }
+  }
+  @include allmobiles {
+    .modal-body-title {
+      margin: -5px 0 10px 0 !important;
+    }
+    .modal-body-message {
+      margin-right:0 !important;
+      padding: 0 !important
+    }
+    .modal-body {
+      &.white-bg {
+        .close {
+          top: 25px !important;
+          right: 20px !important;
+        }
+      }
+    }
+  }
   /* Important part */
   .modal-dialog {
     overflow-y: initial !important;
