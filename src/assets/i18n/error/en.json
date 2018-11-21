@@ -1,0 +1,8 @@
+{
+"ERROR": {
+    "CONTACT_US": {
+        "EMPTY_TEXT": "*Please input your message.",
+        "EMPTY_SUBJECT": "Please input your subject"
+        }
+    }
+}

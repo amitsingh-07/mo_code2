@@ -628,8 +628,8 @@ body.modal-open::-webkit-scrollbar {
   .modal-body {
     &.white-bg {
       .close {
-        top: 25px !important;
-        right: 10px !important;
+        top: 20px !important;
+        right: 20px !important;
       }
     }
   }
@@ -744,8 +744,24 @@ body.modal-open::-webkit-scrollbar {
 }
 
 .will-custom-modal {
+    .modal-header {
+      width: 375px !important;
+      @include allmobiles{
+        width: 100vw !important;
+      }
+    }
     .modal-body{
         width: 375px !important;
+        &.white-bg {
+          .close {
+            top: 25px !important;
+            right: 20px !important;
+            @include allmobiles {
+              top: 25px !important;
+              right: 15px !important;
+            }
+          }
+        }
         @include allmobiles{
           width: 100vw !important;
         }      

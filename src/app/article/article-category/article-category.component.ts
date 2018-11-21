@@ -41,7 +41,7 @@ export class ArticleCategoryComponent implements OnInit {
         // Creating the first entry
         const tempCatList = this.articleService.getCategoryElementList(catList);
 
-        this.articleApiService.getArticleCategoryList(this.category_id).subscribe((data) => {
+        this.articleApiService.getArticleCategoryList(-1).subscribe((data) => {
           const count_in = this.articleService.getArticleElementList(data).length;
           const allCategory = {
             name: 'All',
