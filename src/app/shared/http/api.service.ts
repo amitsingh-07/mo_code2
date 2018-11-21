@@ -822,7 +822,7 @@ export class ApiService {
   }
 
   downloadWill(payload): Observable<any>  {
-    return this.http.post(apiConstants.endpoint.willWriting.downloadWill, payload, false , false , true)
+    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, payload, false , false)
      .pipe(
        catchError((error: HttpErrorResponse) => this.handleError(error))
      );
