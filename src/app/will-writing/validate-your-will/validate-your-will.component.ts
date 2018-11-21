@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../shared/footer/footer.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
 
@@ -11,43 +12,45 @@ import { WillWritingApiService } from '../will-writing.api.service';
   templateUrl: './validate-your-will.component.html',
   styleUrls: ['./validate-your-will.component.scss']
 })
-export class ValidateYourWillComponent implements OnInit {
-  data;
-
+export class ValidateYourWillComponent implements OnInit, OnDestroy {
+  pageTitle: string;
   constructor(private translate: TranslateService,
               public footerService: FooterService,
               private router: Router,
+              public navbarService: NavbarService,
               private willWritingApiService: WillWritingApiService) {
     this.translate.use('en');
+    this.pageTitle = this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.TITLE');
+    this.setPageTitle(this.pageTitle);
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarDirectGuided(true);
+    this.navbarService.setNavbarMode(4);
     this.footerService.setFooterVisibility(false);
+  }
+
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
 
   editWill() {
     this.router.navigate([WILL_WRITING_ROUTE_PATHS.CONFIRMATION]);
   }
 
-  downloadWill() {
-    this.data = 'http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf';
-    this.brochure(this.data, 'brochure.pdf');
-    // this.willWritingApiService.downloadWill().subscribe((data: any) => {
-    //   console.log(data);
-    //   this.brochure(data, 'brochure.pdf');
-    // });
+  ngOnDestroy() {
+    this.navbarService.unsubscribeBackPress();
   }
 
-  // tslint:disable-next-line:member-ordering
-  brochure = (() => {
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    return ((link, fileName) => {
-      a.href = link;
-      a.download = fileName;
-      a.click();
-      window.URL.revokeObjectURL(link);
-    });
-  })();
+  downloadWill() {
+    this.willWritingApiService.downloadWill().subscribe((data: any) => {
+      this.downloadFile(data);
+    }, (error) => console.log(error));
+  }
+  downloadFile(data: any) {
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
+  }
 
 }
