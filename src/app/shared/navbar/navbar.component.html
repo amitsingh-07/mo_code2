@@ -21,7 +21,7 @@
                     </li>
                 </div>
             <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar__menu-icon"></span>
+                <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon"></span>
                 </button>
             <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
                 <div class="navbar__title--mobile">{{pageTitle}}</div>
