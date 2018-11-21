@@ -4,14 +4,14 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HeaderService } from '../../shared/header/header.service';
 import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import {
-  TOPUP_AND_WITHDRAW_ROUTE_PATHS
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
-import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
   selector: 'app-fund-your-account',
@@ -24,7 +24,7 @@ export class FundYourAccountComponent implements OnInit {
   pageTitle: string;
   formValues;
   isUserNationalitySingapore;
-  activeTabIndex = 0;
+  activeMode = 'BANK';
   fundDetails;
   bankDetailsList;
   bankDetails;
@@ -50,10 +50,9 @@ export class FundYourAccountComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getBankDetailsList();
-    // this.topupFormValues = this.topupAndWithDrawService.getTopUp();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();
-    const pageTitle = this.getPageTitleByType(this.fundDetails.source, this.fundDetails.fundingType);
+    const pageTitle = this.getPageTitleBySource(this.fundDetails.source, this.fundDetails.fundingType);
     this.setPageTitle(pageTitle);
   }
 
@@ -61,7 +60,7 @@ export class FundYourAccountComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
-  getPageTitleByType(source, type) {
+  getPageTitleBySource(source, type) {
     let pageTitle;
     if (source === 'FUNDING') {
       pageTitle = this.translate.instant('Fund Your Account');
@@ -87,8 +86,8 @@ export class FundYourAccountComponent implements OnInit {
     return false;
 
   }
-  selectFundingMethod(index) {
-    this.activeTabIndex = index;
+  selectFundingMethod(mode) {
+    this.activeMode = mode;
   }
 
   getBankDetailsList() {
@@ -103,7 +102,9 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   goToNext() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
+    this.topupAndWithDrawService.buyPortfolio(this.fundDetails, this.activeMode).subscribe((data) => {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
+    });
   }
 
 }

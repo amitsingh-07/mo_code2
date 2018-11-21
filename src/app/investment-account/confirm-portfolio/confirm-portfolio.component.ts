@@ -1,36 +1,37 @@
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import {
-  BreakdownAccordionComponent
+    BreakdownAccordionComponent
 } from '../../shared/components/breakdown-accordion/breakdown-accordion.component';
 import {
-  BreakdownBarComponent
+    BreakdownBarComponent
 } from '../../shared/components/breakdown-bar/breakdown-bar.component';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { FundDetails } from '../../topup-and-withdraw/fund-your-account/fund-details';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import {
-  AccountCreationErrorModalComponent
+    AccountCreationErrorModalComponent
 } from '../account-creation-error-modal/account-creation-error-modal.component';
-import { FundDetails } from '../fund-your-account/fund-details';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 import {
-  EditInvestmentModalComponent
+    EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
 
@@ -105,7 +106,8 @@ export class ConfirmPortfolioComponent implements OnInit {
       fundingAmount: 0,
       fundingType: '',
       source: 'FUNDING',
-      portfolio: data.riskProfile.type
+      portfolioName: data.riskProfile.type,
+      portfolioId: data.portfolioId
     };
     return topupValues;
   }
