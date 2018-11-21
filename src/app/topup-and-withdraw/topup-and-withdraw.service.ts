@@ -178,18 +178,18 @@ export class TopupAndWithDrawService {
       return request;
     }
 
-    saveWithdrawalRequest(data) {
-      const payload = this.constructWithdrawalRequestParams(data);
-      return this.apiService.saveNewBank(payload);
+    sellPortfolio(data) {
+      const payload = this.constructSellPortfolioRequestParams(data);
+      return this.apiService.sellPortfolio(payload);
     }
 
-    constructWithdrawalRequestParams(data) {
+    constructSellPortfolioRequestParams(data) {
       const request = {};
-      request['type'] = (data.withdrawType) ? data.withdrawType.id : null;
-      request['portfolio'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.id : null;
-      request['amount'] = data.withdrawAmount;
-      request['mode'] = data.withdrawMode;
-      request['bank'] = (data.withdrawBank) ? data.withdrawBank.id : null;
+      request['type'] = (data.withdrawType) ? data.withdrawType.id : null; // todo
+      request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.id : null;
+      request['redemptionAmount'] = data.withdrawAmount;
+      request['mode'] = data.withdrawMode; // todo
+      request['bank'] = (data.withdrawBank) ? data.withdrawBank.id : null; // todo
       return request;
     }
 
