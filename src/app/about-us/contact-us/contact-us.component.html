@@ -13,12 +13,18 @@
       <div class="banner__text-container">
         <h1 class="banner--title">Contact Us</h1>
         <h3 class="banner--subtitle">We are here for you</h3>
+        <div class="banner__img-container hidden-lg">
+          <img src="/assets/images/about-us/contact-us-header.svg"/>
+          </div>
         <p class="banner--description">
           Feel free to contact us if you have any comments or questions. We are happy to learn about your experience and offer our assistance.
           Your privacy is our priority and all information shared will be kept confidential.
           </p>
         </div>
-      <div class="banner__img-container">
+      <div class="banner__subtext-container"> 
+        
+        </div>
+      <div class="banner__img-container hidden-sm-md">
         <img src="/assets/images/about-us/contact-us-header.svg"/>
         </div> 
     </div> 
@@ -40,10 +46,10 @@
             </div>
           </div>
           <textarea class="form-control" formControlName="message" placeholder="Your Message and Contact Details Here" ></textarea>
-          <p class="error--msg" *ngIf="!contactUsForm.controls.message.valid && contactUsForm.controls.message.dirty">*This field is required</p>
+          <p class="error--msg" *ngIf="(!contactUsForm.controls.message.valid && contactUsForm.controls.message.dirty)">{{contactUsErrorMessage}}</p>
           <p class="error--msg success" *ngIf="sendSuccess">Your Enquiry has been sent successfully</p>
-          <p>Do remember to leave us your contact details if you would like us to contact you.</p>
-          <button class="form-control btn btn-primary" [disabled]="!contactUsForm.valid" (click)="save(contactUsForm)">Send Message</button>
+          <p>Do leave us your contact details if you would like us to contact you.</p>
+          <button class="form-control btn btn-primary" [disabled]="!contactUsForm.valid || subject == subjectPreset" (click)="save(contactUsForm)">Send Message</button>
           </form> 
         </div>
       <div class="contact-us__side-panel">

@@ -12,13 +12,15 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { WhyBuyFromMoneyOwlComponent } from './why-buy-from-money-owl/why-buy-from-money-owl.component';
+import { WhyMoneyOwlComponent } from './why-money-owl/why-money-owl.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
     [
       { prefix: './assets/i18n/app/', suffix: '.json' },
-      { prefix: './assets/i18n/about-us/', suffix: '.json' }
+      { prefix: './assets/i18n/about-us/', suffix: '.json' },
+      { prefix: './assets/i18n/error/', suffix: '.json' }
     ]);
 }
 
@@ -35,6 +37,6 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  declarations: [CustomerReviewsComponent, SubscribeComponent, ContactUsComponent, AboutUsComponent, WhyBuyFromMoneyOwlComponent]
+  declarations: [CustomerReviewsComponent, SubscribeComponent, ContactUsComponent, AboutUsComponent, WhyBuyFromMoneyOwlComponent, WhyMoneyOwlComponent]
 })
 export class AboutUsModule { }
