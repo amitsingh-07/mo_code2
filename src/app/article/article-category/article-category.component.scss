@@ -114,6 +114,8 @@
             }
             @include minMobilemaxPhablet{
                 display:block;
+                padding-right:30px;
+                white-space: normal;
             }
         }
         .category-list{
