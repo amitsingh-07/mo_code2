@@ -20,7 +20,7 @@ const routes: Routes = [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: '4456test-myinfo', component: TestMyInfoComponent},
+      { path: '9462test-myinfo', component: TestMyInfoComponent},
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
       { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
@@ -53,7 +53,7 @@ export class AppRoutingModule { }
 export function validateUrl(url: UrlSegment[], group: UrlSegmentGroup, route: Route) {
   if (window.location.search === '?errorcode=eSingPass_00_00_01') {
     if (window.opener && window.opener.myinfo) {
-      const token: string = window.opener.failed('FAILED');
+      const token: string = window.opener.failed('CANCELLED');
       if (token === 'MY_INFO') {
 
       }

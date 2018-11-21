@@ -15,6 +15,7 @@ import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
 const SESSION_STORAGE_KEY = 'app_will_writing_session';
 const FROM_CONFIRMATION_PAGE = 'from_confirmation_page';
+const IS_WILL_CREATED = 'is_will_created';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class WillWritingService {
   private willWritingFormData: WillWritingFormData = new WillWritingFormData();
   private willWritingFormError: any = new WillWritingFormError();
   fromConfirmationPage;
+  isWillCreated;
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -31,6 +33,7 @@ export class WillWritingService {
     // get data from session storage
     this.getWillWritingFormData();
     this.getFromConfirmPage();
+    this.getIsWillCreated();
   }
 
   /**
@@ -140,18 +143,20 @@ export class WillWritingService {
    * @param form - form details.
    * @returns first error of the form.
    */
-  getMultipleFormError(form, formName) {
+  getMultipleFormError(form, formName, formTitle) {
     const forms = form.controls;
     const errors: any = {};
     errors.errorMessages = [];
     errors.title = this.willWritingFormError[formName].formFieldErrors.errorTitle;
+    let index = 0;
 
     // tslint:disable-next-line:forin
     for (const field in forms) {
       for (const control of forms[field].controls) {
-        const formGroup = { formName: field, errors: [] };
+        const formGroup = { formName: '', errors: [] };
         // tslint:disable-next-line:forin
         for (const name in control.controls) {
+          formGroup.formName = formTitle[index];
           if (control.controls[name].invalid) {
             formGroup.errors.push(
               this.willWritingFormError[formName].formFieldErrors[field][name][Object.keys(control.controls[name]['errors'])
@@ -161,6 +166,7 @@ export class WillWritingService {
         if (formGroup.errors.length > 0) {
           errors.errorMessages.push(formGroup);
         }
+        index++;
       }
     }
     return errors;
@@ -251,6 +257,7 @@ export class WillWritingService {
     for (const children of data) {
       children.relationship = WILL_WRITING_CONFIG.CHILD;
       children.pos = i;
+      children.formatedDob = new Date(children.dob['year'] + '-' + children.dob['month'] + '-' + children.dob['day']);
       this.willWritingFormData.children.push(children);
       i++;
     }
@@ -357,6 +364,26 @@ export class WillWritingService {
     this.commit();
   }
 
+  /**
+   * get PromoCode details.
+   * @returns PromoCode details.
+   */
+  getEnquiryId(): number {
+    if (!this.willWritingFormData.enquiryId) {
+      this.willWritingFormData.enquiryId = {} as number;
+    }
+    return this.willWritingFormData.enquiryId;
+  }
+
+  /**
+   * set PromoCode details.
+   * @param data - PromoCode details.
+   */
+  setEnquiryId(data: number) {
+    this.willWritingFormData.enquiryId = data;
+    this.commit();
+  }
+
   checkBeneficiaryAge() {
     const beneficiaries = this.getBeneficiaryInfo().filter((beneficiary) =>
       beneficiary.relationship === 'child' && beneficiary.selected === true);
@@ -381,23 +408,23 @@ export class WillWritingService {
   }
 
   openToolTipModal(title: string, message: string) {
-    const ref = this.modal.open(ToolTipModalComponent, { centered: true });
+    const ref = this.modal.open(ToolTipModalComponent, { centered: true, windowClass: 'will-custom-modal' });
     ref.componentInstance.tooltipTitle = title;
     ref.componentInstance.tooltipMessage = message;
     return false;
   }
 
-  openErrorModal(title: string, message: string, isMultipleForm: boolean) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+  openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal'});
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
+      ref.componentInstance.formName = formName;
       ref.componentInstance.errorMessageList = message;
     } else {
       ref.componentInstance.multipleFormErrors = message;
     }
     return false;
   }
-
 
   setFromConfirmPage(flag) {
     if (window.sessionStorage) {
@@ -411,5 +438,23 @@ export class WillWritingService {
       this.fromConfirmationPage = JSON.parse(sessionStorage.getItem(FROM_CONFIRMATION_PAGE));
     }
     return this.fromConfirmationPage;
+  }
+
+  setIsWillCreated(flag) {
+    if (window.sessionStorage) {
+      sessionStorage.setItem(IS_WILL_CREATED, flag);
+    }
+    this.isWillCreated = flag;
+  }
+
+  getIsWillCreated() {
+    if (window.sessionStorage && sessionStorage.getItem(IS_WILL_CREATED)) {
+      this.isWillCreated = JSON.parse(sessionStorage.getItem(IS_WILL_CREATED));
+    }
+    return this.isWillCreated;
+  }
+
+  checkBeneficiary(uin) {
+    return this.getBeneficiaryInfo().filter((data) => data.uin === uin && data.selected === true);
   }
 }

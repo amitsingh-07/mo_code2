@@ -8,6 +8,7 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { CryptoService } from '../shared/utils/crypto';
 import { IPlan, ISetPassword, ISignUp, IVerifyCode, IVerifyRequestOTP } from '../sign-up/signup-types';
+import { WillWritingService } from '../will-writing/will-writing.service';
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
 import { DirectService } from './../direct/direct.service';
@@ -26,7 +27,7 @@ export class SignUpApiService {
     private apiService: ApiService, private authService: AuthenticationService,
     private signUpService: SignUpService, private guideMeService: GuideMeService,
     private selectedPlansService: SelectedPlansService, public cryptoService: CryptoService,
-    private directService: DirectService, private appService: AppService
+    private directService: DirectService, private appService: AppService, private willWritingService: WillWritingService
   ) {
   }
 
@@ -44,13 +45,31 @@ export class SignUpApiService {
   createAccountBodyRequest(captchaValue): ISignUp {
     const selectedPlan: IPlan[] = [];
     let userInfo: UserInfo;
+    let journey = 'insurance';
     if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT) {
       userInfo = this.directService.getUserInfo();
-    } else {
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
       userInfo = this.guideMeService.getUserInfo();
+    } else {
+      journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
+      userInfo = {
+        gender: 'male',
+        dob: '',
+        customDob: '',
+        smoker: '',
+        dependent: 0,
+      };
     }
     const getAccountInfo = this.signUpService.getAccountInfo();
-    const selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    let selectedPlanData;
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+      this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING) {
+      selectedPlanData = { enquiryId: this.willWritingService.getEnquiryId(), plans: [] };
+    } else {
+      selectedPlanData = { enquiryId: 0, plans: [] };
+    }
     const formatDob = userInfo.dob;
     const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;
 
@@ -72,7 +91,8 @@ export class SignUpApiService {
       enquiryId: selectedPlanData.enquiryId,
       selectedProducts: selectedPlanData.plans,
       sessionId: this.authService.getSessionId(),
-      captcha: captchaValue
+      captcha: captchaValue,
+      journeyType: journey
     };
   }
 
@@ -104,14 +124,21 @@ export class SignUpApiService {
   setPasswordBodyRequest(pwd: string): ISetPassword {
     const custRef = this.signUpService.getCustomerRef();
     const resCode = this.signUpService.getResetCode();
-    const selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    let selectedPlanData = { enquiryId: 0, plans: [] };
+    let journey = this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING ? 'will-writing' : 'investment';
+    if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_DIRECT ||
+    this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_GUIDED) {
+      journey = 'insurance';
+      selectedPlanData = this.selectedPlansService.getSelectedPlan();
+    }
     return {
       customerRef: custRef,
       password: this.cryptoService.encrypt(pwd),
       callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
       resetType: 'New',
       selectedProducts: selectedPlanData.plans,
-      resetCode: resCode
+      resetCode: resCode,
+      journeyType: journey
     };
   }
 

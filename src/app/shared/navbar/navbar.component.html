@@ -13,11 +13,11 @@
                     </li>
                 <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
                     </li>
-                <li *ngIf="(navbarMode == 2)" class="navbar__separator hidden-sm-md">
+                <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
                     </li>
-                <li *ngIf="(navbarMode == 2)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
+                <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
                     <p>Insurance Adviser</p>
-                    <p class="secondary">powered by DIYInsurance</p>
+                    <p *ngIf="(navbarMode == 2)" class="secondary">powered by DIYInsurance</p>
                     </li>
                 </div>
             <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
                 </ul> 
             </div>
         
-        <div *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+        <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                 <li class="nav-item" [routerLink]="['/']">
                     <a class="nav-link">Home</a>

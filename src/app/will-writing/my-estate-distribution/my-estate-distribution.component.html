@@ -11,7 +11,7 @@
         <div class="banner-image hidden-sm-md">
             <img src="assets/images/will-writing/my-estate-distribution.svg" id="intro-img"/>  
         </div>
-        <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+        <div class="autofill-logo mobile-logo hidden-lg"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
         </div>
       </div>
       
@@ -29,16 +29,16 @@
               <div *ngIf="true" class="estate-distribution-form">
                 <div class="form-title mb10">{{ 'WILL_WRITING.MY_ESTATE_DISTRIBUTION.ESTATE_DISTRIBUTION' | translate}}</div>
                   <div *ngFor="let currentDist of beneficiaryList; let i = index" class="form-group-single-column mb15">
-                      <div class="col-6" *ngIf="currentDist.selected === true">
+                      <div class="col-6 header-label" *ngIf="currentDist.selected === true">
                         <label for="beneficiary_{{i+1}}" id="beneficiary_{{i+1}}">
                           <div class="input-label-black">{{currentDist.name | titlecase}}</div>
                           <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
                               translate}} {{currentDist.relationship | titlecase}} {{currentDist.pos}}</div>
                         </label>
                       </div>
-                      <div class="col-6" *ngIf="currentDist.selected === true">
+                      <div class="col-5"  *ngIf="currentDist.selected === true">
                           <div class="form-control">   
-                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" maxLength="3" pattern="(100)|(0*\d{1,2})" type="text" class="input-control"
+                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" maxLength="3" type="text" class="input-control"
                             value="{{currentDist.distPercentage}}" formControlName="percent" >
                           <i>%</i>
                         </div>

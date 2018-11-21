@@ -7,8 +7,9 @@
         <span aria-hidden="true"></span>
       </button>
     <div class="modal-body-message">
-      <span *ngIf="errorMessage">{{errorMessage}}</span>
+      <span *ngIf="errorMessage" [innerHTML]="errorMessage"></span>
       <ng-container *ngIf="errorMessageList">
+        <p class="label">{{formName  | titlecase}}</p>
         <p *ngFor="let errorMessage of errorMessageList"><span>{{errorMessage}}</span></p>
       </ng-container>
       <ng-container *ngIf="multipleFormErrors">

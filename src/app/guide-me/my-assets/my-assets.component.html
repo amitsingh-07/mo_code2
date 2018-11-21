@@ -52,9 +52,9 @@
 
                         </div>
                         <div class="flex-col-6">
-                        <div class="form-control">
+                        <div class="form-control" [ngClass]="{'readonly-disabled': cpfFromMyInfo}">
                             <i>$</i>
-                        <div name="cpf" [ngClass]="{'readonly': cpf.value != 0}"><input [readonly]="cpfFromMyInfo"  class="input-control" type="text" appCurrencyInput maxLength="7" #cpf formControlName="cpf" value="0"></div>
+                        <div name="cpf" [ngClass]="{'readonly': cpf.value != 0}"><input [readonly]="cpfFromMyInfo" [ngClass]="{'readonly-disabled': cpfFromMyInfo}" class="input-control" type="text" appCurrencyInput maxLength="7" #cpf formControlName="cpf" value="0"></div>
                         </div>    
                       </div>
                       </div>

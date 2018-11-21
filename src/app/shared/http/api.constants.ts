@@ -4,6 +4,7 @@ const ABOUT_US_API_BASE_URL = 'product/insurance-product';
 const CONTACT_US_API_BASE_URL = 'account/account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
+const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 
 export let apiConstants = {
     endpoint: {
@@ -56,6 +57,12 @@ export let apiConstants = {
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'optionListCollection',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective'
         },
-        verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode'
+        willWriting: {
+            verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
+            createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile',
+            getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
+            updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile',
+            downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
+        }
     }
 };

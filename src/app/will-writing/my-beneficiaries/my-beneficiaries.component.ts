@@ -36,6 +36,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   relationship = '';
   submitted = false;
   isFormOpen = false;
+  willWritingConfig = WILL_WRITING_CONFIG;
   maxBeneficiary = WILL_WRITING_CONFIG.MAX_BENEFICIARY;
   private subscription: Subscription;
   unsavedMsg: string;
@@ -137,7 +138,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         form.get(key).markAsDirty();
       });
       const error = this.willWritingService.getFormError(form, 'guardBeneForm');
-      this.willWritingService.openErrorModal(error.title, error.errorMessages, false);
+      this.willWritingService.openErrorModal(error.title, error.errorMessages, false, 'Beneficiary');
     } else {
       if (!this.isEdit) {
         form.value.selected = true;
@@ -166,6 +167,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
 
   validateForm(index: number) {
     this.beneficiaryList[index].selected = !this.beneficiaryList[index].selected;
+    this.isFormAltered = true;
     if (this.beneficiaryList[index].selected === false) {
       this.beneficiaryList[index].distPercentage = 0;
     }
@@ -251,7 +253,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     if (this.validateBeneficiaryForm()) {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
-        if (this.checkBeneficiaryData()) {
+        if (this.checkBeneficiaryData() && this.isFormAltered) {
           url = WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
           const hasImpact = this.willWritingService.isUserLoggedIn();
           this.openConfirmationModal(url, hasImpact);

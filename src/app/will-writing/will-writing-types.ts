@@ -18,6 +18,7 @@ export interface IChild {
     uin: string;
     dob: string;
     pos: number;
+    formatedDob: Date;
 }
 
 export interface IGuardian {
@@ -60,19 +61,20 @@ export interface IWill {
 }
 
 export interface IwillProfile {
-    customerId: number;
+    customerId: string;
+    enquiryId?: number;
     uin: string;
     name: string;
     genderCode: string;
     maritalStatusCode: string;
     noOfChildren: number;
-    promoCode?: string;
+    promoCode?: IPromoCode;
 }
 
 export interface IWillProfileMembers {
     uin: string;
     name: string;
-    dob: number;
+    dob?: string;
     relationshipCode: string;
     isFamily: string;
     isBeneficiary: string;
@@ -81,4 +83,16 @@ export interface IWillProfileMembers {
     isTrusteee: string;
     isAltTrusteee: string;
     distribution: number;
+}
+
+export enum IMaritalStatus {
+    single = 'S',
+    married = 'M',
+    divorced = 'D',
+    widowed = 'W'
+}
+
+export enum IGender {
+    male = 'M',
+    female = 'F'
 }

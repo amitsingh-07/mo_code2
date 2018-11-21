@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -21,7 +22,7 @@ import { IMyAssets } from './my-assets.interface';
   styleUrls: ['./my-assets.component.scss']
 })
 export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
-  locationSubscription: any;
+  myinfoChangeListener: Subscription;
   pageTitle: string;
   assetsForm: FormGroup;
   assetsFormValues: IMyAssets;
@@ -50,51 +51,61 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
-    this.locationSubscription = this.location.subscribe(() => this.router.navigate([GUIDE_ME_ROUTE_PATHS.EXPENSES]));
     this.assetsFormValues = this.guideMeService.getMyAssets();
+    this.cpfFromMyInfo = this.assetsFormValues.cpfFromMyInfo;
     this.assetsForm = new FormGroup({
       cash: new FormControl(this.assetsFormValues.cash),
       cpf: new FormControl(this.assetsFormValues.cpf),
+      cpfFromMyInfo: new FormControl(this.cpfFromMyInfo),
       homeProperty: new FormControl(this.assetsFormValues.homeProperty),
       investmentProperties: new FormControl(this.assetsFormValues.investmentProperties),
       otherInvestments: new FormControl(this.assetsFormValues.otherInvestments),
       otherAssets: new FormControl(this.assetsFormValues.otherAssets)
     });
-    this.route.params.subscribe((params) => {
-      if (params.myinfo && this.myInfoService.isMyInfoEnabled) {
-        this.myInfoService.getMyInfoData().subscribe((data) => {
-          if (data && data['objectList']) {
-            this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-            this.assetsForm.controls['cpf'].setValue(this.cpfValue);
-            this.myInfoService.isMyInfoEnabled = false;
-            this.cpfFromMyInfo = true;
-            this.setFormTotalValue();
-            this.closeMyInfoPopup(false);
-          } else {
-            this.closeMyInfoPopup(true);
-          }
-        }, (error) => {
-          this.closeMyInfoPopup(true);
-        });
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+          this.myInfoService.getMyInfoData().subscribe((data) => {
+            if (data && data['objectList']) {
+              this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+              this.assetsForm.controls['cpf'].setValue(this.cpfValue);
+              this.myInfoService.isMyInfoEnabled = false;
+              this.cpfFromMyInfo = true;
+              this.assetsForm.controls['cpfFromMyInfo'].setValue(this.cpfFromMyInfo);
+              this.setFormTotalValue();
+              this.closeMyInfoPopup();
+            } else {
+              this.closeMyInfoPopup();
+            }
+          }, (error) => {
+            this.closeMyInfoPopup();
+          });
+        } else {
+          this.closeMyInfoPopup();
+        }
       }
     });
 
     this.setFormTotalValue();
   }
   ngOnDestroy(): void {
-    this.locationSubscription.unsubscribe();
+    if (this.myinfoChangeListener) {
+      this.myinfoChangeListener.unsubscribe();
+    }
   }
 
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.assetsForm.value);
   }
 
-  closeMyInfoPopup(error: boolean) {
+  closeMyInfoPopup() {
     this.myInfoService.closeFetchPopup();
-    if (error) {
+    if (this.myInfoService.isMyInfoEnabled) {
+      this.myInfoService.changeListener.next('');
+      this.myInfoService.isMyInfoEnabled = false;
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
+      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
       ref.componentInstance.isError = true;
       ref.result.then(() => {
         this.myInfoService.goToMyInfo();

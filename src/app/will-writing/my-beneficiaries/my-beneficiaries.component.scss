@@ -59,7 +59,7 @@
     margin-top: 23px;
     padding: 0 20px;
     @include allmobiles {
-        margin-top: 25px;
+        margin-top: 0px;
         margin-bottom: 80px;
     }
     
@@ -120,7 +120,7 @@
 input[type='checkbox']+label {
     margin: 0;
     clear: none;
-    padding: 0px 0 0px 35px;
+    padding: 0px 0 0px 40px;
     cursor: pointer;
     background: url("../../../assets/images/check-box-normal.svg") left center no-repeat;
   }
@@ -148,7 +148,7 @@ input[type='checkbox']+label {
   
   .form-group-single-column .checkbox-button.two-label {
     padding: 13px 18px;
-    margin-bottom: 23px;
+    margin-bottom: 21px;
   }
   .mobile-logo{
     display: none;
@@ -156,6 +156,7 @@ input[type='checkbox']+label {
         display: block;
         justify-content: center;
         align-items: center;
+        margin-bottom: 12px;
     }
 }
 
@@ -287,4 +288,8 @@ input[type='checkbox']+label {
     &:focus {
         color: #00a7a7;
     }
+}
+
+.relationship {
+    width: 119px;
 }
