@@ -40,10 +40,10 @@
             </div>
           </div>
           <textarea class="form-control" formControlName="message" placeholder="Your Message and Contact Details Here" ></textarea>
-          <p class="error--msg" *ngIf="!contactUsForm.controls.message.valid && contactUsForm.controls.message.dirty">*This field is required</p>
+          <p class="error--msg" *ngIf="(!contactUsForm.controls.message.valid && contactUsForm.controls.message.dirty)">{{contactUsErrorMessage}}</p>
           <p class="error--msg success" *ngIf="sendSuccess">Your Enquiry has been sent successfully</p>
           <p>Do remember to leave us your contact details if you would like us to contact you.</p>
-          <button class="form-control btn btn-primary" [disabled]="!contactUsForm.valid" (click)="save(contactUsForm)">Send Message</button>
+          <button class="form-control btn btn-primary" [disabled]="!contactUsForm.valid || subject == subjectPreset" (click)="save(contactUsForm)">Send Message</button>
           </form> 
         </div>
       <div class="contact-us__side-panel">
