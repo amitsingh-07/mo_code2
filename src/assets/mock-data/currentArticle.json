@@ -1,16 +1,20 @@
 {
-    "responseMessage": {
-      "responseCode": 6000,
-      "responseDescription": "Successful response"
-    },
-    "objectList": [{
-        "id": 26,
-        "art_title": "Life Stage Planning",
-        "art_author": "Providend",
-        "art_date": "2018-12-23",
-        "art_tags": ["Protection", "Whole Life Insurance"],
-        "art_keywords": ["life stage planning"],
-        "art_desc": "We know insurance is necessary but can be costly. At DIYinsurance we help you to be even more prudent by identifying what ..."
+  "artId": 19,
+  "title": "Are You Overpaying for your Life Insurance?",
+  "date": "2015-09-21",
+  "summary": "It strikes me hard that for majority people of the people whom I know, they are paying a significant amount from their ...",
+  "keywords": "compare and save, compare, first compare web portal, dpi, direct purchase insurance, term insurance,singapore insurance company, life insurance,do-it-your-way-insurance, do it your way, doityourway, diyinsurance, diy insurance, diyinsurance articles",
+  "tag": {
+      "tagName": "General"
+  },
+  "profile": {
+      "author": "Shawn Lee",
+      "desc": "Mr. Shawn Lee, BSc (Brand Management Executive) is committed to reaching out to more people on financial planning and helping them to achieve their life goals. Passionate about promoting financial literacy, Shawn was an Executive Committee Member of the Securities Investors Association (Singapore) Youth-Chapter (SIAS-YC), Hub Manager with the Citi-NIE Financial Literacy Hub for Teachers and the President of SIM Investment & Networking Club of 1,700 members. Shawn graduated with a Bachelor of Science (Honours) in Accounting & Finance Degree from the University of London International Programmes.",
+      "title": "Brand Management Executive"
+  },
+  "articleTagMap": [
+      {
+          "tagId": 2
       }
-    ]
+  ]
 }

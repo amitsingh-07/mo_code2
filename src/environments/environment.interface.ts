@@ -5,4 +5,5 @@ export interface IEnvironment {
     myInfoClientId: string;
     myInfoCallbackBaseUrl: string;
     myInfoAuthorizeUrl: string;
+    gaPropertyId: string;
 }

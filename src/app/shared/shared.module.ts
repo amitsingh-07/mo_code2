@@ -3,6 +3,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
@@ -28,6 +29,7 @@ import {
 } from './modal/recommendations-modal/recommendations-modal.component';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
+import { StringToLinkFormatPipe } from './Pipes/string-to-link.pipe';
 import {
     PlanDetailsWidgetComponent
 } from './widgets/plan-details-widget/plan-details-widget.component';
@@ -54,7 +56,10 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })],
+    }),
+    FormsModule,
+    ReactiveFormsModule
+  ],
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent],
@@ -69,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
     TermsOfUseComponent,
     BreakdownBarComponent,
     BreakdownAccordionComponent,
-    PercentageInputDirective]
+    PercentageInputDirective
+    ]
 })
 export class SharedModule { }

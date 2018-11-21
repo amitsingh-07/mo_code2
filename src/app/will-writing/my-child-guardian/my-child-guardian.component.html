@@ -6,10 +6,14 @@
         <div class="col-lg-6 col-md-6 col-12 header-section">
           <div class="heading hidden-sm-md" id="my-child-guardian-step1">{{'WILL_WRITING.COMMON.STEP_1' | translate}}</div>
           <div class="autofill-link">
-            <div class="autofill-text hidden-sm-md" id="my-child-guardian-title">{{
-              'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}} <span class="help-icon" (click)="openToolTipModal()"></span></div>
-            <div class="sub-title" id="my-child-guardian-sub-title">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.SUB_TITLE' |
-              translate}}</div>
+            <div class="autofill-text hidden-sm-md" id="my-child-guardian-title">
+              <span *ngIf="!hasSpouse">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE' | translate}}</span> 
+              <span *ngIf="hasSpouse">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.TITLE_SPOUSE' | translate}}</span>
+              <span class="help-icon" (click)="openToolTipModal()"></span></div>
+            <div class="sub-title" id="my-child-guardian-sub-title">
+              <span *ngIf="!hasSpouse">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.SUB_TITLE_WITHOUT_SPOUSE' | translate}}</span>
+              <span *ngIf="hasSpouse">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.SUB_TITLE_WITH_SPOUSE' | translate}}</span>
+            </div>
             <div class="autofill-logo hidden-sm-md mt15" id="my-child-guardian-img"><img class="img-fluid" src="assets/images/will-writing/my-child-guardian.svg" /></div>
             <div class="autofill-logo mobile-logo mb5 hidden-lg" id="my-child-guardian-mobile-img"><img class="img-fluid"
                 src="assets/images/will-writing/owl-mobile.svg" /></div>
@@ -18,14 +22,18 @@
         <div class="col-lg-5 col-md-5 col-12 mt10">
           <form [formGroup]="addGuardianForm" id="addGuardianForm" name="addGuardianForm">
             <div>
-              <div class="form-title form-group-single-column" id="my-child-guardian-form-title">{{
-                'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM_TITLE' | translate}}</div>
+              <div class="form-title form-group-single-column" id="my-child-guardian-form-title">
+                <span *ngIf="!hasSpouse">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM_TITLE_WITHOUT_SPOUSE' | translate}}</span>
+                <span *ngIf="hasSpouse">{{'WILL_WRITING.MY_CHILDS_GUARDIAN.FORM_TITLE_WITH_SPOUSE' | translate}}</span>
+              </div>
               <div class="form-group-single-column flex-col" *ngFor="let guardian of guardianList; let i = index">
                 <div class="edit-block checkbox-button two-label">
                   <label id="guardian_{{i+1}}">
                     <div class="input-label-black">{{guardian.name | titlecase }}</div>
-                    <div class="input-label-normal">{{guardian.relationship | titlecase }}</div>
+                    <div class="input-label-normal"><span *ngIf="guardian.relationship !== willWritingConfig.OTHERS">{{'WILL_WRITING.COMMON.MY' |
+                        translate}}</span> {{guardian.relationship | titlecase }}</div>
                   </label>
+                  <span class="default" *ngIf="guardian.relationship === willWritingConfig.SPOUSE">Default</span>
                   <span (click)="editGuardian(guardian.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
                 </div>
               </div>
@@ -35,7 +43,7 @@
                     <span *ngIf="hasSpouse" class="mr5">
                       {{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.ALTERNATIVE' | translate}}
                     </span>
-                    <div *ngIf="!hasSpouse" class="col-8">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}</div>
+                    <div *ngIf="!hasSpouse" class="flex-col-8">{{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN' | translate}}</div>
                     <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">
                       {{'WILL_WRITING.COMMON.CANCEL' | translate}}
                     </div>
@@ -46,10 +54,12 @@
                   <div *ngIf="!hasSpouse" class="flex-row mb10 alternative-sub-title">
                     {{ 'WILL_WRITING.MY_CHILDS_GUARDIAN.GUARDIAN_SUB_TITLE' | translate}}
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="col-5 pl0">
                       <label for="name" id="addGuardianFormLbl1">
-                        <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div>
+                        <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}<div class="sub_name">{{
+                            'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div>
+                        </div>
                       </label>
                     </div>
                     <div class="col-7 pr0">
@@ -57,9 +67,9 @@
                         class="form-control" #name formControlName="name">
                     </div>
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="col-5 pl0">
-                      <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' | translate}}</label>
+                      <label for="name" id="addGuardianFormLbl3" class="relationship">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' | translate}}</label>
                     </div>
                     <div class="col-7 pr0">
                       <div class="dropdown-control" [ngClass]="{'inline-error': submitted && addGud.relationship.invalid}">
@@ -80,10 +90,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="flex-row mb10">
+                  <div class="flex-row">
                     <div class="col-5 pl0">
                       <label for="name" id="addGuardianFormLbl2">
-                        <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
+                          <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC' | translate}}</div>
+                          <div class="with-help-icon">{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}} <span (click)="openToolTip()" class="help-icon"></span></div>
                       </label>
                     </div>
                     <div class="col-7 pr0">
@@ -97,8 +108,8 @@
             <div>
               <button type="button" (click)="goToNext(addGuardianForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
                 id="addGuardianFormBtn1">
-                <span *ngIf="!isEdit">{{'LABEL.CONTINUE' | translate}}</span>
-                <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
+                <span *ngIf="!isEdit && !fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                <span *ngIf="isEdit || fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span></button>
             </div>
           </form>
         </div>

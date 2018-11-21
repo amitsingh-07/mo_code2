@@ -1,58 +1,50 @@
 <app-page-title [pageTitle]="pageTitle"></app-page-title>
-<div class="container-fluid max-width--1024">
+<div class="container-fluid">
+  <div class="container-fluid max-width--1024">
   <form id="promoCodeForm" name="promoCodeForm" [formGroup]="promoCodeForm" id="promoCodeFrm">
-  <div class="content">
-    <div class="flex-row">
-      <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
-        <h2 id="intro-title">{{ 'WILL_WRITING.INTRODUCTION.TITLE' | translate}}</h2>
-        <h6 class="hidden-sm-md sub-title" id="intro-sub-title">{{ 'WILL_WRITING.INTRODUCTION.SUB_TITLE' | translate}}</h6>
-        <div class="banner-image">
-          <img src="assets/images/will-start.svg" id="intro-img"/>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6  col-sm-12 promocode">
-        <div name="promocodeForm">
-        <div class="instructions">
-          <div class="mask" id="intro-why-will">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL' | translate}}</div>
-          <div class="instruction-content">
-            <div id="intro-why-will_lbl-1">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1' | translate}}</div>
-            <div id="intro-why-will_lbl-2">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_2' | translate}}</div>
-            <div id="intro-why-will_lbl-3">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_3' | translate}}</div>
-            <div><span id="intro-why-will_lbl-4">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4' | translate}}</span>
-              <span id="intro-why-will_lbl-4a">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4A' | translate}}</span>
-              <span id="intro-why-will_lbl-4b">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4B' | translate}}</span>
-            </div>
+    <div class="content">
+      <div class="flex-row">
+        <div class="col-lg-6 col-md-6 col-sm-12 proceed-msg">
+          <h2 id="intro-title">{{ 'WILL_WRITING.INTRODUCTION.TITLE' | translate}}</h2>
+          <div class="banner-image">
+            <img src="assets/images/will-start.svg" id="intro-img" />
           </div>
         </div>
-
-        <div class="FAQ" (click)="openFAQ()" id="intro-faq-link">{{ 'WILL_WRITING.INTRODUCTION.FAQ_LINK_TITLE' | translate}}</div>
-
-        <div class="offer-code">
-          <div class="time-period"  id="intro-offer-period">{{ 'WILL_WRITING.INTRODUCTION.OFFER_PERIOD' | translate}}</div>
-          <div class="brdr-btm mb25 hidden-sm-md"></div>
-          <div>
-            <input type="text" formControlName="promoCode" placeholder="Enter your promocode"  id="intro-promo-text-field"/>
-          </div>
-          <div  id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now" (click) = "getOneNow()">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
-        </div>
-
-        <!-- <div class="no-promo">
-            <div class="instruction-content">
-              <div  id="intro-sent-via-email">{{ 'WILL_WRITING.INTRODUCTION.SENT_VIA_EMAIL' | translate}}</div>
-              <input type="email" placeholder="Enter an E-mail address" *ngIf = "true"  id="intro-email-text-field"/>
-              <img src="assets/images/mail-sent.svg" *ngIf = "false"  id="intro-mail-sent-img">
-              <div *ngIf = "true"  id="intro-email-content">{{ 'WILL_WRITING.INTRODUCTION.EMAIL_CONTENT' | translate}}</div>
-              <div *ngIf = "false"  id="intro-sent-success">{{ 'WILL_WRITING.INTRODUCTION.SENT_SUCCESS' | translate}}</div>
-              <button type="button" class="btn"
-              id="intro-get-my-code">{{ 'WILL_WRITING.COMMON.GET_MY_CODE' | translate}}</button>  
+        <div class="col-lg-6 col-md-6  col-sm-12 promocode">
+          <div name="promocodeForm">
+            <div class="instructions">
+              <div class="mask" id="intro-why-will">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL' | translate}}</div>
+              <div class="instruction-content">
+                <div id="intro-why-will_lbl-1">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_1' | translate}}</div>
+                <div id="intro-why-will_lbl-2">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_2' | translate}}</div>
+                <div id="intro-why-will_lbl-3">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_3' | translate}}</div>
+                <div>
+                  <span id="intro-why-will_lbl-4">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4' | translate}}</span>
+                  <span id="intro-why-will_lbl-4a">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4A' | translate}}</span>
+                  <span id="intro-why-will_lbl-4b">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_4B' | translate}}</span>
+                </div>
+                <div id="intro-why-will_lbl-5">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_5' | translate}}</div>
+                <div id="intro-why-will_lbl-6">{{ 'WILL_WRITING.INTRODUCTION.WHY_WILL_CONTENT_6' | translate}}</div>
+              </div>
             </div>
-          </div> -->
-
-          <button type="button"  [disabled]="!promoCodeForm.valid" (click)="save(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
-          id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
+            <div class="FAQ" (click)="openFAQ()" id="intro-faq-link">{{ 'WILL_WRITING.INTRODUCTION.FAQ_LINK_TITLE' |
+              translate}}</div>
+            <div class="offer-code">
+              <div class="time-period" id="intro-offer-period">{{ 'WILL_WRITING.INTRODUCTION.OFFER_PERIOD' |
+                translate}}</div>
+              <div class="brdr-btm mb25 hidden-sm-md"></div>
+              <div>
+                <input type="text" #promoCode formControlName="promoCode" placeholder="Enter your promo code" id="intro-promo-text-field" />
+              </div>
+              <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now"
+                  (click)="getOneNow()">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
+            </div>
+            <button type="button" [disabled]="!promoCodeForm.valid" (click)="save(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
+              id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </form>
+</div>
 </div>

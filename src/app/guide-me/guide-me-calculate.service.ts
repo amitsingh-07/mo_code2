@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ApiService } from '../shared/http/api.service';
-import { ICriticalIllnessData, ILongTermCareNeedsData } from './../shared/interfaces/recommendations.request';
+import { ICriticalIllnessData, ILongTermCareNeedsData, IOccupationalDisabilityData } from './../shared/interfaces/recommendations.request';
 import { GuideMeService } from './guide-me.service';
 import { IExistingCoverage } from './insurance-results/existing-coverage-modal/existing-coverage.interface';
 import { ILifeProtectionNeedsData } from './life-protection/life-protection';
@@ -193,7 +193,18 @@ export class GuideMeCalculateService {
     if (isNaN(ocpData.coverageAmount) || ocpData.coverageAmount < 0) {
       ocpData.coverageAmount = 0;
     }
-    return ocpData;
+
+    let empStatusId = 0;
+    if (ocpData.selectedEmployee) {
+      empStatusId = (ocpData.selectedEmployee.indexOf('Salaried') >= 0) ? 1 : 2;
+    }
+    const ocpRequestData: IOccupationalDisabilityData = {
+      percentageCoverage: ocpData.percentageCoverage,
+      coverageDuration: ocpData.coverageDuration,
+      coverageAmount: ocpData.coverageAmount,
+      employmentStatusId: empStatusId,
+    } as IOccupationalDisabilityData;
+    return ocpRequestData;
   }
 
   getLtcData() {

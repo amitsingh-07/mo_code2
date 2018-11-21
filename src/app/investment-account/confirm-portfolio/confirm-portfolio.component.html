@@ -10,17 +10,17 @@
       <div class="portfolio-short-desc">
         <span>
           <span id="portfolio_portfolioValue_lbl">{{ 'CONFIRM_PORTFOLIO.PORTFOLIO_VALUE_FOR' | translate }} </span>
-          <span class="strong" id="portfolio_oneTimeInvValue_lbl">$120,000</span>&nbsp;<span class="strong" id="portfolio_oneTimeInv_lbl">{{ 'CONFIRM_PORTFOLIO.ONE_TIME_INVESTMENT' |
-            translate }}</span> {{ 'CONFIRM_PORTFOLIO.AND' | translate }} <span class="strong" id="portfolio_monthInvValue_lbl">$800</span>
+          <span class="strong" id="portfolio_oneTimeInvValue_lbl">{{portfolio.initialInvestment | currency}}</span>&nbsp;<span class="strong" id="portfolio_oneTimeInv_lbl">{{ 'CONFIRM_PORTFOLIO.ONE_TIME_INVESTMENT' |
+            translate }}</span> {{ 'CONFIRM_PORTFOLIO.AND' | translate }} <span class="strong" id="portfolio_monthInvValue_lbl">{{portfolio.monthlyInvestment | currency }}</span>
           <span class="strong" id="portfolio_monthInv_lbl"> {{ 'CONFIRM_PORTFOLIO.MONTHLY_INVESTMENT' | translate }}</span> {{
           'CONFIRM_PORTFOLIO.FOR' | translate }} <span class="strong" id="portfolio_tenureValue_lbl">{{ portfolio.tenure}}</span> {{
-          'CONFIRM_PORTFOLIO.YEARS' | translate }}
+          'CONFIRM_PORTFOLIO.YEARS' | translate | lowercase }}
         </span>
       </div>
 
       <div class="portfolio-detail">
         <div class="portfolio-head">
-          <span id="portfolio_riskProfile_lbl">Conservative</span>
+          <span id="portfolio_riskProfile_lbl">{{portfolio.riskProfile.type | titlecase}}</span>
         </div>
 
         <div class="portfolio-content">
@@ -38,12 +38,12 @@
             </div>
             <div class="values">
               <div class="amount">
-                <div>$<span id="portfolio_projectedValueValue_lbl">{{portfolio.projectedValue}}</span></div>
+                <div><span id="portfolio_projectedValueValue_lbl">{{portfolio.projectedValue | currency}}</span></div>
                 <span class="editLink" (click)="openEditInvestmentModal()">Edit</span>
               </div>
               <div class="year">
                 <span>{{ 'CONFIRM_PORTFOLIO.YEAR' | translate }}</span>
-                <span id="portfolio_projectedYearValue_lbl">2048</span>
+                <span id="portfolio_projectedYearValue_lbl">{{portfolio.portfolioMaturityYear}}</span>
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
           </span>
           <div class="whatsrisk" (click)="goToWhatsTheRisk()">{{ 'CONFIRM_PORTFOLIO.WHATS_THE_RISK' | translate}}</div>
         </div>
-        <div class="percentage" id="portfolio_projectedReturnsValue_lbl">{{portfolio.projectedReturns}}</div>
+        <div class="percentage" id="portfolio_projectedReturnsValue_lbl">{{portfolio.projectedReturns}}%</div>
       </div>
 
       <!-- ALLOCATION -->

@@ -234,6 +234,10 @@
   padding-top: 10px !important;
 }
 
+.pt50 {
+  padding-top: 50px !important;
+}
+
 .pb10 {
   padding-bottom: 10px !important;
 }
@@ -417,6 +421,10 @@ nouislider {
   font-family: $muli-bold;
   &.grey {
     color: $text-color-secondary;
+  }
+  a {
+    color: $white-color;
+    text-decoration: none;
   }
 }
 .pos-fixed {

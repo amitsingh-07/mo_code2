@@ -22,6 +22,9 @@ export class WillWritingFormData {
     // promoCode info;
     promoCode: IPromoCode;
 
+    // promoCode info;
+    enquiryId: number;
+
     // Executor and Trustee
     execTrustee: IExecTrustee[];
 

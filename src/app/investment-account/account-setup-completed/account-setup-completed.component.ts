@@ -13,6 +13,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-withdraw.service';
 
 @Component({
   selector: 'app-account-setup-completed',
@@ -20,7 +21,7 @@ import { InvestmentAccountService } from '../investment-account-service';
   styleUrls: ['./account-setup-completed.component.scss']
 })
 export class AccountSetupCompletedComponent implements OnInit {
-
+  formValues;
   pageTitle: string;
   constructor(
     public headerService: HeaderService,
@@ -29,20 +30,22 @@ export class AccountSetupCompletedComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private router: Router,
     private investmentAccountService: InvestmentAccountService,
+    private topupAndWithDrawService: TopupAndWithDrawService,
     private modal: NgbModal,
     public footerService: FooterService,
     public readonly translate: TranslateService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe(() => {
-      });
+    });
   }
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
+    this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
   }
   redirectToFund() {
-
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
 
 }

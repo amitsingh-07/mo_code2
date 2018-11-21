@@ -10,7 +10,7 @@
           <div class="banner-image hidden-sm-md">
             <img src="assets/images/will-writing/my-beneficiaries.svg" id="intro-img" />
           </div>
-          <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
+          <div class="autofill-logo mobile-logo hidden-lg"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
         </div>
       </div>
       <div class="col-lg-5 col-md-5  col-sm-12 beneficiaries-container">
@@ -25,20 +25,20 @@
                   type="checkbox" class="field checkbox">
                 <label for="beneficiary_{{i+1}}" id="beneficry_{{i+1}}">
                   <div class="input-label-black">{{beneficiary.name | titlecase }}</div>
-                  <div class="input-label-normal">{{beneficiary.relationship | titlecase }}</div>
+                  <div class="input-label-normal"><span *ngIf="beneficiary.relationship !== willWritingConfig.OTHERS">{{'WILL_WRITING.COMMON.MY' |
+                      translate}}</span> {{beneficiary.relationship | titlecase }} {{beneficiary.pos}}</div>
                 </label>
-                <span (click)="editBeneficiary(beneficiary.relationship,i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
+                <span (click)="editBeneficiary(beneficiary.relationship,i, addBeneForm)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
               </div>
             </div>
             <div>
-              <form id="addBeneficiaryForm" name="addBeneficiaryForm" [formGroup]="addBeneficiaryForm" id="addBeneficiaryFrm">
+              <form #addBeneForm id="addBeneficiaryForm" name="addBeneficiaryForm" [formGroup]="addBeneficiaryForm" id="addBeneficiaryFrm">
                 <div *ngIf="isFormOpen" class="add-beneficiaries-container">
                   <div id="addGuardianForm" name="addGuardianForm">
                     <div class="aboutMe">
                       <div class="form-group">
-                        <div class="col-12 flex-row title"><div class="col-8 pl0">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}</div>
-                          <div *ngIf="isEdit" (click)="resetForm()" class="title-cancel col-3">{{'WILL_WRITING.COMMON.CANCEL'
-                            | translate}}</div>
+                        <div class="col-12 flex-row title">
+                          <div class="col-8 pl0">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}</div>
                         </div>
                         <div class="flex-row mb10">
                           <div class="flex-col-5">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="flex-row mb10">
                           <div class="flex-col-5">
-                            <label for="name" id="addGuardianFormLbl3">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' |
+                            <label for="name" id="addGuardianFormLbl3" class="relationship">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' |
                               translate}}</label>
                           </div>
                           <div class="flex-col-7">
@@ -80,24 +80,27 @@
                           </div>
                         </div>
                         <div class="flex-row mb10">
-                            <div class="flex-col-5">
-                              <label for="name" id="addGuardianFormLbl2">
-                                <div>{{ 'WILL_WRITING.COMMON.NRIC' | translate}}</div>
-                              </label>
-                            </div>
-                            <div class="flex-col-7">
-                              <input type="text" [ngClass]="{'inline-error': submitted && addBen.uin.invalid}" id="addGuardianFormInpt2"
-                                class="form-control" #uin formControlName="uin">
-                            </div>
+                          <div class="flex-col-5">
+                            <label for="name" id="addGuardianFormLbl2">
+                                <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC' | translate}}</div>
+                                <div class="with-help-icon">{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon" (click)="openToolTipModal()"></span></div>
+                            </label>
                           </div>
-                        <div class="flex-row mb10 add-beneficiary" *ngIf="!isEdit">
+                          <div class="flex-col-7">
+                            <input type="text" [ngClass]="{'inline-error': submitted && addBen.uin.invalid}" id="addGuardianFormInpt2"
+                              class="form-control" #uin formControlName="uin">
+                          </div>
+                        </div>
+                        <div class="flex-row mb10 add-beneficiary">
                           <div class="flex-col-5">
                             <button type="button" (click)="resetForm()" class="btn width100">{{
                               'WILL_WRITING.COMMON.CANCEL' | translate}}</button>
                           </div>
                           <div class="flex-col-5">
-                            <button type="button" (click)="addBeneficiary(addBeneficiaryForm)" class="btn btn-primary width100">{{
-                              'WILL_WRITING.COMMON.ADD' | translate}}</button>
+                            <button type="button" (click)="addBeneficiary(addBeneficiaryForm)" class="btn btn-primary width100">
+                              <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.SAVE' | translate}}</span>
+                              <span *ngIf="!isEdit">{{'WILL_WRITING.COMMON.ADD' | translate}}</span>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -107,18 +110,16 @@
               </form>
             </div>
             <div *ngIf="beneficiaryList.length < maxBeneficiary && !isFormOpen" (click)="isFormOpen= !isFormOpen" class="form-group-single-column  mb0 flex-col">
-              <div class="add-beneficiaries checkbox-button two-label mb0">
+              <div class="add-beneficiaries checkbox-button two-label">
                 <span class="add-icon"><img id="add" src="assets/images/will-writing/add.svg" /></span>
-                <span>Add Beneficiaries</span>
+                <span>{{ 'WILL_WRITING.MY_BENEFICIARY.ADD_BENEFICIARY' | translate}}</span>
               </div>
             </div>
             <div>
-              <button *ngIf="!isEdit" type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100"
-                id="prtNeedBtn1">
-                {{'LABEL.CONTINUE' | translate}} </button>
-              <button *ngIf="isEdit" type="button" (click)="addBeneficiary(addBeneficiaryForm)" class="btn btn-primary btn__footer--fixed width100"
-                id="prtNeedBtn1">
-                {{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}} </button>
+              <button type="button" (click)="goToNext()" class="btn btn-primary btn__footer--fixed width100" id="prtNeedBtn1">
+                <span *ngIf="!fromConfirmationPage">{{'LABEL.CONTINUE' | translate}}</span>
+                <span *ngIf="fromConfirmationPage">{{'WILL_WRITING.COMMON.APPLY_CHANGES' | translate}}</span>
+              </button>
             </div>
           </div>
         </div>

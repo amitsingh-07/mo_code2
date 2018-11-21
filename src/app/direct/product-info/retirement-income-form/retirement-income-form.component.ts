@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ErrorModalComponent } from '../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from '../../../shared/utils/ngb-date-custom-parser-formatter';
 import { DirectService } from '../../direct.service';
@@ -14,6 +15,7 @@ import { DirectService } from '../../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
   retirementIncomeForm: FormGroup;
   categorySub: any;
   formValues: any;
@@ -69,9 +71,9 @@ export class RetirementIncomeFormComponent implements OnInit, OnDestroy {
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '7') {
         if (this.save()) {
+          this.formSubmitted.emit(this.summarizeDetails());
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
-        this.directService.triggerSearch('');
       }
     });
   }

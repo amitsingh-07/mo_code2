@@ -47,6 +47,7 @@ export class DirectService {
   currentIndexValue: number;
 
   constructor(private currencyPipe: CurrencyPipe, private googleAnalyticsService: GoogleAnalyticsService) {
+    this.getDirectFormData();
   }
 
   commit() {
@@ -64,6 +65,8 @@ export class DirectService {
   getDirectFormData(): DirectFormData {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.directFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+    } else {
+      this.directFormData = {} as DirectFormData;
     }
     return this.directFormData;
   }
@@ -91,6 +94,7 @@ export class DirectService {
   /* Search Button Trigger */
   triggerSearch(event) {
     this.searchBtn.next(event);
+    this.searchBtn.next('');
   }
   /* Search Button Success */
   gaDirectSuccess(category: string) {
@@ -123,7 +127,16 @@ export class DirectService {
 
   /* Handling Minified Product Info */
   setMinProdInfo(prodString: string) {
-    this.prodSearchInfo.next(prodString);
+    //this.prodSearchInfo.next(prodString);
+    this.directFormData.minProdInfo = prodString;
+    this.commit();
+  }
+
+  getMinProdInfo() {
+    if (!this.directFormData.minProdInfo) {
+      this.directFormData.minProdInfo = '';
+    }
+    return this.directFormData.minProdInfo;
   }
 
   /* Custom Currency */
@@ -163,6 +176,7 @@ export class DirectService {
   }
 
   getLifeProtectionForm(): ILifeProtection {
+    this.getDirectFormData();
     if (!this.directFormData.lifeProtection) {
       this.directFormData.lifeProtection = {} as ILifeProtection;
     }
@@ -200,7 +214,8 @@ export class DirectService {
       lifeProtectionCoverage: 0,
       longTermCareCoveragePerMonth: 0,
       occupationalDisabilityCoveragePerMonth: 0,
-      selectedHospitalPlan: hospitalPlan
+      selectedHospitalPlan: hospitalPlan,
+      selectedHospitalPlanId: hospitalPlan.hospitalClassId
     };
     return existingCoverage;
   }

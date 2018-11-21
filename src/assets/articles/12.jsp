@@ -1,23 +1,23 @@
-	<img src="./../../../assets/articles/images/12/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+	<img src="/assets/articles/images/12/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 	<h3 class="primary-color"><strong>Start Planning Early</strong></h3>
 	<p>There is immense joy that comes with parenthood. While we savour the joy our children bring into our lives, we are also constantly thinking about their futures. In particular, their education is the biggest concern and is a major financial commitment. </p>
 	<br>
 
 	<h3 class="primary-color"><strong>First, Decide How Much to Save</strong></h3>
-	<p>Before deciding which product to buy, you must first establish how much you need to save. We have developed an <a href="https://www.moneyowl.com.sg/calculators/education-savings-calculator" target="_blank"> Education Savings Calculator</a> to help you determine how much you need to save towards your child's University education. You would need to input the following:</p>
+	<p>Before deciding which product to buy, you must first establish how much you need to save. We have developed an Education Savings Calculator to help you determine how much you need to save towards your child's University education. You would need to input the following:</p>
 	<ul>
 		<li>Number of years before your child enters University</li>
 		<li>Intended course of study</li>
 		<li>How much to provide</li>
 	</ul>
 		
-	<p><a href="https://en.wikipedia.org/wiki/Endowment_policy" target="_blank">Endowment policies</a> are suitable for parents who do not prefer to take too much risk and yet want better returns than what the banks provide. There are now endowment plans specifically designed for children's education, which spread the maturity payout over the University years instead of just providing a lump sum at the end of the policy. </p>
+	<p><a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/endowment-insurance.aspx" target="_blank">Endowment policies</a> are suitable for parents who do not prefer to take too much risk and yet want better returns than what the banks provide. There are now endowment plans specifically designed for children's education, which spread the maturity payout over the University years instead of just providing a lump sum at the end of the policy. </p>
 
 	<p>The following diagram gives a sample of how much one would need to save in the endowment plan for a child entering University in the next 5, 10, 15 and 20 years. Clearly, the more time you have to save for your child's education, the less you need to save every month. It pays to start early. </p>
 
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" style="text-align:center; padding:15px 0px;">			
-		   	<img src="./../../../assets/articles/images/12/monthly_savings_vs_years_to_uni.gif" alt="How much one would need to save in the endowment plan for a child entering university in the next 5, 10, 15 and  20 years">			  
+		   	<img src="/assets/articles/images/12/monthly_savings_vs_years_to_uni.gif" alt="How much one would need to save in the endowment plan for a child entering university in the next 5, 10, 15 and  20 years">			  
 		</div>
 	</div>
 	<br><br><br>
@@ -30,74 +30,33 @@
 	<br>
 	<h3 class="primary-color">Aviva MyEduPlan</h3>
 		<div style="text-align:center; padding:15px 0px;">			
-		   	<img src="./../../../assets/articles/images/12/aviva-my-edu-plan.gif" alt="Aviva MyEduPlan">		  
+		   	<img src="/assets/articles/images/12/aviva-my-edu-plan.gif" alt="Aviva MyEduPlan">		  
 		</div>
-	<br>
-	<!--
-	<div style="text-align:center;">
-		<a href="https://www.moneyowl.com.sg/products/product-information?insurer=Aviva&prod_name=MyEduPlan" type="button" class="btn btn-secondary-outline">More details</a>
-
-		<a href="https://www.moneyowl.com.sg/products/quote" type="button" class="btn btn-primary">Apply Now</a>
-	</div>
-	-->
 	<br>
 	<br>
 	<h3 class="primary-color">AXA Early Saver Plus</h3>
 		<div style="text-align:center; padding:15px 0px;">			
-		   	<img src="./../../../assets/articles/images/12/axa-early-saver-plus.gif" alt="Aviva MyEduPlan">		  
+		   	<img src="/assets/articles/images/12/axa-early-saver-plus.gif" alt="Aviva MyEduPlan">		  
 		</div>
-	<br>
-	<!--
-	<div style="text-align:center;">
-		<a href="https://www.moneyowl.com.sg/products/product-information?insurer=AXA+Life&prod_name=AXA+Early%20Saver%20Plus" type="button" class="btn btn-secondary-outline">More details</a>
-
-		<a href="https://www.moneyowl.com.sg/products/quote" type="button" class="btn btn-primary">Apply Now</a>
-	</div>
-	-->
 	<br>
 	<br>
 	<h3 class="primary-color">Manulife Educate</h3>	
 		<div style="text-align:center; padding:15px 0px;">			
-		   <img src="./../../../assets/articles/images/12/manulife-educate.gif" alt="Manulife Scholar (II)">		  
+		   <img src="/assets/articles/images/12/manulife-educate.gif" alt="Manulife Scholar (II)">		  
 		</div>
-	<br>
-	<!--	
-	<div style="text-align:center;">
-		<a href="https://www.moneyowl.com.sg/products/product-information?insurer=Manulife&prod_name=Educate " type="button" class="btn btn-secondary-outline">More details</a>
-
-		<a href="https://www.moneyowl.com.sg/products/quote" type="button" class="btn btn-primary">Apply Now</a>
-	</div>
-	-->
-
 	<br>
 	<br>
 	<h3 class="primary-color">NTUC Income VivoChild</h3>
 		<div style="text-align:center; padding:15px 0px;">			
-		   	<img src="./../../../assets/articles/images/12/ntuc-vivochild.gif" alt="Tokio Marine TM Education">		  
+		   	<img src="/assets/articles/images/12/ntuc-vivochild.gif" alt="Tokio Marine TM Education">		  
 		</div>
-	<br>
-	<!--
-	<div style="text-align:center;">
-		<a href="https://www.moneyowl.com.sg/products/product-information?insurer=NTUC+Income&prod_name=VivoChild" type="button" class="btn btn-secondary-outline">More details</a>
-
-		<a href="https://www.moneyowl.com.sg/products/quote" type="button" class="btn btn-primary">Apply Now</a>
-	</div>
-	-->
 	<br>
 	<br>
 	<h3 class="primary-color">Tokio Marine Kidstart</h3>
 		<div style="text-align:center; padding:15px 0px;">			
-		   	<img src="./../../../assets/articles/images/12/tokio-marine-kidstart.gif" alt="Tokio Marine TM Education">		  
+		   	<img src="/assets/articles/images/12/tokio-marine-kidstart.gif" alt="Tokio Marine TM Education">		  
 		</div>
-	<br>
-	<!--
-	<div style="text-align:center;">
-		<a href="https://www.moneyowl.com.sg/products/product-information?insurer=Tokio+Marine&prod_name=TM+KidStart" type="button" class="btn btn-secondary-outline">More details</a>
 
-		<a href="https://www.moneyowl.com.sg/products/quote" type="button" class="btn btn-primary">Apply Now</a>
-	</div>
-	-->
-	<br>
 	<br><br>
 	<p>Here&rsquo;s how the plans stack up against one other:</p>
 	<div class="table-responsive">
@@ -177,8 +136,10 @@
 	<h3 class="primary-color"><strong>Our Verdict</strong></h3>
 	<p>Based on the above example, NTUC Income VivoChild seems to be the most attractive plan, because it offers the flexibility of payouts before University age as well as choice of premium duration, all while offering one of the highest returns of the five.</p>
 
-	<p>Do note that the most suitable plan may differ for children of different profiles (Eg. age and gender). Have a chat with one of our experts for guidance. Also check out our <a href="https://www.moneyowl.com.sg/direct/savings" target="_blank" title="Compare Savings Plans Now">comparison tool</a> to compare the plans today!</p>
+	<p>Do note that the most suitable plan may differ for children of different profiles (Eg. age and gender). Have a chat with one of our experts for guidance. Also check out our <a href="https://www.moneyowl.com.sg/#/direct/" target="_blank" title="Compare Savings Plans Now">comparison tool</a> to compare the plans today!</p>
 <br>
-<div class="text-xs-center"><a href="../direct/savings">
-  <img src="./../../../assets/images/banners/compare_sav_540w.png" alt="direct savings plans"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+  <img src="/assets/images/banners/compare_sav_540w.png" alt="direct savings plans"></a>
 </div>
+-->

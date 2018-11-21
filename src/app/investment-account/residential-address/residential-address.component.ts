@@ -200,7 +200,7 @@ export class ResidentialAddressComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setResidentialAddressFormData(form.value);
+      this.investmentAccountService.setResidentialAddressFormData(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
     }
   }
