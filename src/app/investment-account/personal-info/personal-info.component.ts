@@ -34,6 +34,11 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   showNric = true;
   disabledFullName: true;
   userProfileInfo;
+  optionList: any;
+  salutaionList: any;
+  countries: any;
+  raceList: any;
+
   constructor(
     private router: Router,
     private myInfoService: MyInfoService,
@@ -61,6 +66,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+    this.setOptionList();
     // get profile
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.populateFullName();
@@ -77,11 +83,13 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
 
   buildFormForNricNumber(): FormGroup {
     return this.formBuilder.group({
-      fullName: [{ value: this.formValues.fullName, disabled: true },
+      salutation: [{ value: this.formValues.salutation, disabled: this.investmentAccountService.isDisabled('salutation') },
+      [Validators.required]],
+      fullName: [{ value: this.formValues.fullName, disabled: this.investmentAccountService.isDisabled('fullName') },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{ value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName') },
+      firstName: [{ value: this.formValues.firstName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{ value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName') },
+      lastName: [{ value: this.formValues.lastName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       nricNumber: [{ value: this.formValues.nricNumber, disabled: this.investmentAccountService.isDisabled('nricNumber') },
       [Validators.required, Validators.pattern(RegexConstants.NRIC)]],
@@ -91,30 +99,42 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         value: this.formValues.gender ? this.formValues.gender : 'male',
         disabled: this.investmentAccountService.isDisabled('gender')
       },
-      Validators.required]
+      Validators.required],
+      birthCountry: [{value: this.formValues.birthCountry,
+        disabled: this.investmentAccountService.isDisabled('birthCountry')}, Validators.required],
+      race: [{ value: this.formValues.race, disabled: this.investmentAccountService.isDisabled('race') },
+      [Validators.required]]
     }, { validator: this.validateName() });
   }
   buildFormForPassportDetails(): FormGroup {
     return this.formBuilder.group({
-      fullName: [{ value: this.formValues.fullName, disabled: true },
+      salutation: [{ value: this.formValues.salutation, disabled: this.investmentAccountService.isDisabled('salutation') },
+      [Validators.required]],
+      fullName: [{ value: this.formValues.fullName, disabled: this.investmentAccountService.isDisabled('fullName') },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      firstName: [{ value: this.formValues.firstName, disabled: this.investmentAccountService.isDisabled('firstName') },
+      firstName: [{ value: this.formValues.firstName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      lastName: [{ value: this.formValues.lastName, disabled: this.investmentAccountService.isDisabled('lastName') },
+      lastName: [{ value: this.formValues.lastName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
-      passportNumber: [{ value: this.formValues.passportNumber, disabled: this.investmentAccountService.isDisabled('passportNumber') },
-      [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      passportExpiry: [{
-        value: this.formValues.passportExpiry,
-        disabled: this.investmentAccountService.isDisabled('passportExpiry')
-      }, [Validators.required, this.validateExpiry]],
       dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
       [Validators.required, this.validateMinimumAge]],
       gender: [{
         value: this.formValues.gender ? this.formValues.gender : 'male',
         disabled: this.investmentAccountService.isDisabled('gender')
-      },
-      Validators.required]
+      }, Validators.required],
+      birthCountry: [{value: this.formValues.birthCountry,
+        disabled: this.investmentAccountService.isDisabled('birthCountry')}, Validators.required],
+      passportNumber: [{ value: this.formValues.passportNumber, disabled: this.investmentAccountService.isDisabled('passportNumber') },
+      [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+      passportIssuedCountry: [{value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
+        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
+        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')}, Validators.required],
+      passportExpiry: [{
+        value: this.formValues.passportExpiry,
+        disabled: this.investmentAccountService.isDisabled('passportExpiry')
+      }, [Validators.required, this.validateExpiry]],
+      race: [{ value: this.formValues.race, disabled: this.investmentAccountService.isDisabled('race') },
+      [Validators.required]]
     }, { validator: this.validateName() });
   }
   markAllFieldsDirty(form) {
@@ -148,7 +168,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setPersonalInfo(form.value);
+      this.investmentAccountService.setPersonalInfo(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.RESIDENTIAL_ADDRESS]);
     }
   }
@@ -187,6 +207,20 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       }
     }
     return null;
+  }
+
+  setOptionList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.investmentAccountService.setOptionList(data.objectList);
+      this.optionList = this.investmentAccountService.getOptionList();
+      this.salutaionList = this.optionList.salutation;
+      this.raceList = this.optionList.race;
+      this.countries = this.investmentAccountService.getCountriesFormData();
+    });
+  }
+
+  setDropDownValue(key, value) {
+    this.invPersonalInfoForm.controls[key].setValue(value);
   }
 
 }

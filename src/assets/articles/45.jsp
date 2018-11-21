@@ -1,11 +1,10 @@
-<%@page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<img src="images/45/thumbnail.jpg" class="pull-right" style=" padding:10px;" alt="old couple cycling image">
+<img src="/assets/articles/images/45/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="old couple cycling image">
 
-<p>This article follows from our earlier piece on <a href="html?title=How+to+Save+on+Taxes+Using+the+SRS&art_id=44">&ldquo;How to save on taxes using SRS?&ldquo;</a></p>
+<p>This article follows from our earlier piece on <a href="https://www.moneyowl.com.sg/#/articles/entry/44">&ldquo;How to save on taxes using SRS?&ldquo;</a></p>
 
     <p>Funds in the <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">Supplementary Retirement Scheme (SRS)</a> can be invested into a wide range of instruments such as shares, unit trusts, insurance, bonds and fixed deposits. Or you can simply leave your SRS monies in cash, which is not a wise financial decision due to the current low interest rates of 0.05% offered by the banks. </p>
 <p>&nbsp;</p>
-<p class="text-xs-center"><img border="0" width="100%"  style="max-width:631px" src="images/45/srs_funds.jpg" alt="SRS Funds Pie Chart"></p>
+<p class="text-xs-center"><img border="0" width="100%"  style="max-width:631px" src="/assets/articles/images/45/srs_funds.jpg" alt="SRS Funds Pie Chart"></p>
 <p>&nbsp;</p>
 <p>As of 31st December 2016, total SRS contributions amounted to $7,200,000,000! And surprisingly, a third of these money sits in cash, which earns little interest.  </p>
 <p>On top of enjoying tax savings with SRS, it is important to look at how you can grow your SRS funds. Since you are likely to only withdraw your SRS after retirement age to avoid penalties, you should make your SRS funds work harder since you have the benefit of time </p>
@@ -70,7 +69,7 @@
 <h3 class="primary-color"><strong>How do retirement income products work?</strong></h3>
 <p>You first commit a lump-sum amount. At a specified age (e.g. age 62), the policy will pay a series of income pay out either for a fixed number of years (e.g. 10 or 15 years) or for life. For some plans, there is an additional pay out when the policy ends (at maturity).</p>
 <p>&nbsp;</p>
-<p class="text-xs-center"><img border="0"  width="100%" style="max-width:670px" src="images/45/how_retirement_works.png" alt="How retirement works"></p>
+<p class="text-xs-center"><img border="0"  width="100%" style="max-width:670px" src="/assets/articles/images/45/how_retirement_works.png" alt="How retirement works"></p>
 <p>&nbsp;</p>
 <p>There are many SRS-approved insurance products in the market and it can be confusing. Every product has different features and you are more likely to have more questions than answers about them.  </p>
 <p>At DIYinsurance, we understand your concerns. And we make things easier for you. The following is a 3-step guide to help you select a suitable retirement income product that meet your needs.</p>
@@ -80,7 +79,7 @@
 <p><strong>Step 1: Do you need an income stream that pays for life or only for limited years?</strong></p>
 <p>Lifelong income takes away the fear of out-living your assets. Naturally, a plan that pays lifelong income would cost more than one than pays only for a fixed number of years. </p>
 <p>&nbsp;</p>
-<p class="text-xs-center"><img border="0"  width="100%" style="max-width:660px" src="images/45/higher_payout.png" alt="higher payout for srs fund"></p>
+<p class="text-xs-center"><img border="0"  width="100%" style="max-width:660px" src="/assets/articles/images/45/higher_payout.png" alt="higher payout for srs fund"></p>
 <p>&nbsp;</p>
 <p>With the same <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> amount, the shorter the payout duration (e.g. for 10 or 15 years), the higher is the yearly payout. Generally, if you plan to have multiple sources of lifelong retirement income such as dividends and rental income, you may not need to be too concerned with getting another policy for an additional lifelong income. A plan which pays for a fixed number of years and with a higher recurring payout may suffice.</p>
 <p>&nbsp;</p>
@@ -114,19 +113,12 @@
 <br><br>
 <p><strong>Step 3: Compare the Products</strong></p>
 <p>Hopefully with Steps 1 &amp; 2, you have a better understanding of the features you are looking for. Now is the time to look for suitable products. One easy way is to use our DIYinsurance platform to compare.</p>
-<p>To compare products:</p>
-<ol>
- <li>Go to <a href="../home/">www.diyinsurance.com.sg</a></li>
-  <li>Select the <strong>Retirement Income</strong> module</li>
-  <li>Specify your <strong>Gender</strong>, <strong>Age</strong></li>
-  <li>Select your purpose; either <strong>Income Payout over limited years</strong> or <strong>Income Payout for  life</strong></li>
-  <li>Select your payout type; <strong>Increasing</strong>, <strong>Fixed</strong> or <strong>Variable</strong> (some options may not be available)</li>
-  <li>Finally select the <strong>Payout Age</strong> and <strong>Payout Amount</strong>,<strong> </strong>and <strong>GO</strong></li>
-</ol>
 <p>You will see a list of available products based on your selected criteria. A ranking of products is also provided to help you identify superior products. You can also drill in to understand the product&rsquo;s unique features and benefits. </p>
 <p>If you have further questions or require advice, please feel free to send a non-obligatory <strong>Quote Request</strong> and we will get back to assist you.</p>
-<p><a href="html?title=Best+SRS+Approved+Single+Premium+Plans&art_id=46">Click here</a> to find out about the best SRS-approved retirement plans you can use in our next article. </p>
+<p><a href="https://www.moneyowl.com.sg/#/articles/entry/46">Click here</a> to find out about the best SRS-approved retirement plans you can use in our next article. </p>
 <br>
-<div class="text-xs-center"><a href="../compare/retirement-income">
-  <img src="../assets/images/banners/compare_ri_540w.png" alt="compare retirement plans"></a>
+<!--
+<div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
+  <img src="/assets/images/banners/compare_ri_540w.png" alt="direct retirement plans"></a>
 </div>
+-->

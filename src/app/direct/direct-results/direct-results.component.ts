@@ -270,7 +270,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     };
     const payoutPeriod = {
       title: this.filterTypes.PAYOUT_YEARS, name: 'payoutPeriod',
-      filterTypes: this.payoutYears, allBtn: true
+      filterTypes: this.payoutPeriod, allBtn: true
     };
     const claimCriteria = {
       title: this.filterTypes.CLAIM_CRITERIA, toolTip:
@@ -295,6 +295,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       case PRODUCT_CATEGORY_INDEX.HOSPITAL_PLAN:
         delete this.filters[0];
         this.filters.push(fullPartialRider);
+        this.directService.setPremiumFrequencyFilter('yearly');
         break;
       case PRODUCT_CATEGORY_INDEX.LONG_TERM_CARE:
         delete this.filters[0];
@@ -367,6 +368,14 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   selectPlan(data) {
+    try {
+      const deferredPeriod = data.plan.premium.deferredPeriod.replace(' Months', '');
+      const escalatingBenefit = data.plan.premium.escalatingBenefit.replace('%', '');
+      data.plan.premium.deferredPeriod = deferredPeriod;
+      data.plan.premium.escalatingBenefit = escalatingBenefit;
+    } catch (e) {
+      // supress error
+    }
     const index: number = this.selectedPlans.indexOf(data.plan);
     if (data.selected) {
       if (index === -1) {

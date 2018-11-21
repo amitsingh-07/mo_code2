@@ -91,7 +91,7 @@ export class PersonalDeclarationComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setPersonalDeclarationData(form.value);
+      this.investmentAccountService.setPersonalDeclarationData(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
     }
   }

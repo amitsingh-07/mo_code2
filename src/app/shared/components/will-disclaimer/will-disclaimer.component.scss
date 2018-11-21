@@ -126,16 +126,16 @@ app-terms {
 
 .modal-body-message {
   font-size: 13px;
-  line-height: 1.62;
+  line-height: 23px;
   }
 .modal-body-title {
-  font-size: 24px;
+  font-size: 18px;
   margin: 10px auto;
+  color: #00a7a7
 }
 
 .section-container {
   overflow: auto !important;
-  margin-top: 30px;
   padding: 10px;
   @include allmobiles{
     margin: 0;
@@ -155,4 +155,10 @@ app-terms {
 
 .modal-dialog.modal-dialog-centered{
   max-width: 790px !important;
+}
+
+.ptgap {
+  @include allmobiles {
+    padding-top: 20px;
+  }
 }

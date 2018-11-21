@@ -24,6 +24,10 @@ export class InvestmentAccountCommon {
         payloadKey = 'passport';
         break;
       }
+      case 'PASSPORT_BO': {
+        payloadKey = 'supportingDocument';
+        break;
+      }
     }
     return payloadKey;
   }

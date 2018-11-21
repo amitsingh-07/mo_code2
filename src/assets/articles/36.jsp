@@ -1,4 +1,4 @@
-<img src="assets/articles/images/36/thumbnail.jpg" class="pull-right" style=" padding:10px;">
+<img src="/assets/articles/images/36/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
 
 <p>In November 2004, when I wrote in this column  on why one should use term insurances instead of <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" target="_blank" title="Whole Life Plans">whole life plans</a>, I never  expected it to create such a great interest. Over the last 2 months, I received  letters, emails, forum threads and phone calls expressing their opinions. Many  advisers also wrote articles on the same topic to express their views. While  some financial advisers wished <a href="https://www.providend.com/" target="_blank" title="Providend">Providend</a> would somehow disappear from the face  of this earth for rocking the boat, many clients, members of the public (from  as far as US) and people from the financial fraternity expressed their  appreciation of our opinions. And since we were the ones who started the topic,  I thought it would only be appropriate for us to clarify some misconceptions,  which have surfaced as a result of our article.</p>
   <br clear="all">
@@ -163,6 +163,8 @@
 <br>
   <p class="text-muted"><em>The edited copy appeared in The Business Times in January 2005. The spirit and principle of the article remains relevant although some products are no longer available. Please seek our advice if you are interested in certain products. </em></p>
 <br>
+<!--
 <div class="text-xs-center"><a href="/guide-me">
   <img src="assets/images/banners/selfcheck_go_540w.png" alt="MoneyOwl Guide Me"></a>
 </div>
+-->

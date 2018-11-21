@@ -29,7 +29,7 @@ export class CallBackComponent implements OnInit {
         this.myInfoService.openFetchPopup();
         this.myInfoService.isMyInfoEnabled = true;
         this.data = this.route.queryParams['value'];
-        this.myInfoService.setMyInfoValue(this.data);
+        this.myInfoService.setMyInfoValue(this.data.code);
 
         // Investment account
         if (this.investmentAccountService.getCallBackInvestmentAccount()) {

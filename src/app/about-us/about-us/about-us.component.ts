@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from './../../shared/footer/footer.service';
@@ -15,11 +16,18 @@ export class AboutUsComponent implements OnInit {
   public people: any;
 
   constructor(private navbarService: NavbarService, private footerService: FooterService,
-              public translate: TranslateService) {
+              public translate: TranslateService, private title: Title, private meta: Meta) {
               this.translate.use('en');
               this.translate.get('COMMON').subscribe((result: string) => {
-                this.pageTitle = this.translate.instant('PROFILE.TITLE');
+                this.pageTitle = this.translate.instant('ABOUT_US.TITLE');
                 this.people = this.translate.instant('ABOUT_US.PEOPLE.MGT');
+
+                // meta tag and title
+                this.title.setTitle(this.translate.instant('ABOUT_US.TITLE'));
+                this.meta.addTag({name: 'description', content: this.translate.instant('ABOUT_US.META.META_DESCRIPTION')});
+                this.meta.addTag({name: 'keywords', content: this.translate.instant('ABOUT_US.META.META_KEYWORDS')});
+                this.meta.addTag({name: 'author', content: this.translate.instant('ABOUT_US.META.META_AUTHOR')});
+                this.meta.addTag({name: 'copyright', content: this.translate.instant('ABOUT_US.META.META_COPYRIGHT')});
               });
             }
 

@@ -1,0 +1,17 @@
+<div class="modal-body white-bg">
+  <div class="modal-body-title">{{errorTitle}}</div>
+  <div class="modal-body-message">
+    {{errorDescription}}</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true"></span>
+  </button>
+
+  <div class="bank_logos">
+    <div class="img-content" *ngFor="let bank of bankDetailsLists; let i = index;">
+      <div class="img-border">
+     
+        <!-- <a download href="./assets/banks/icons/{{bank.value.pdf}}"><img src="./assets/banks/icons/{{bank.value.png}}" /></a> -->
+        <a download href="./assets/banks/instructions/5027.pdf"><img src="./assets/banks/icons/5027.png" /></a>
+      </div>
+    </div>
+  </div>

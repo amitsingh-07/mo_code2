@@ -112,7 +112,7 @@ export class FinanicalDetailsComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setFinancialFormData(form.value);
+      this.investmentAccountService.setFinancialFormData(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.TAX_INFO]);
     }
   }

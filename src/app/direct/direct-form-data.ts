@@ -10,6 +10,7 @@ import { IRetirementIncome } from './product-info/retirement-income-form/retirem
 import { ISrsApprovedPlans } from './product-info/srs-approved-plans-form/srs-approved-plans-form.interface';
 
 export class DirectFormData {
+    minProdInfo: string;
     // prodCategory: IProductCategory;
     gender: string;
     dob: any;

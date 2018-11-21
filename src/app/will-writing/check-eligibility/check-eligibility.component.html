@@ -22,23 +22,23 @@
         </div>
         <div class="mobile-logo mb5 hidden-lg" id="check-eligibility-mobile-img"><img src="assets/images/will-writing/owl-mobile.svg" /></div>
       </div>
-      <div class="col-lg-5 col-md-5  col-sm-12 eligibilityForm">
+      <div class="col-lg-6 col-md-6 col-sm-12 eligibilityForm">
         <div class="doselfCheck setpOneForm">
           <form name="eligibilityForm" id="eligibilityForm" [formGroup]="eligibilityForm" class="flex-row">
-            <div class="form-group direct-form">
+            <div class="form-group direct-form flex-col-12">
               <div class="flex-row section">
-                <div class="flex-col-5">
+                <div class="flex-col-4">
                   <label class="label" for="name" id="eligibilityLbl1">{{ 'WILL_WRITING.ELIGIBILITY.ARE_YOU_SINGAPOREAN' | translate}}</label>
                 </div>
-                <div class="flex-col-7 direct-form-grp">
+                <div class="flex-col-8 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="singaporean" formControlName="singaporean">
-                    <div class="flex-row mb0" style="justify-content: space-between;">
-                      <div>
+                    <div class="flex-row mb0">
+                      <div class="flex-col-6">
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl2">
                           <input ngbButton type="radio" (click) = "changeState($event)" value="yes" id="eligibilityInpt1"> {{ 'COMMON.LBL_YES' | translate}}
                         </label>
                       </div>
-                      <div>
+                      <div class="flex-col-6">
                         <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : isSingaporean}" id="eligibilityLbl3">
                           <input ngbButton type="radio" (click) = "changeState($event)" value="no" id="eligibilityInpt2"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
@@ -47,20 +47,20 @@
                   </div>
                 </div>
               </div>
-              <div class="flex-row section">
-                <div class="flex-col-5 with-help-icon">
-                  <label class="label mr10" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
+              <div class="flex-row section assetslbl">
+                <div class="flex-col-4 with-help-icon">
+                  <label class="label lbl4" for="name" id="eligibilityLbl4">{{ 'WILL_WRITING.ELIGIBILITY.YOUR_ASSETS_IN_SINGAPORE' |
                     translate}}</label>
                 </div>
-                <div class="flex-col-7 direct-form-grp">
+                <div class="flex-col-8 direct-form-grp">
                   <div class="btn-group--toggle" ngbRadioGroup name="assets" formControlName="assets">
-                    <div class="flex-row mb0" style="justify-content: space-between;">
-                      <div>
+                    <div class="flex-row mb0">
+                      <div class="flex-col-6">
                         <label ngbButtonLabel class="direct-form-btn--radio btn" id="eligibilityLbl5">
                           <input ngbButton type="radio" value="yes" (click) = "changeAssets($event)" id="eligibilityInpt3"> {{ 'COMMON.LBL_YES' | translate}}
                         </label>
                       </div>
-                      <div>
+                      <div class="flex-col-6">
                         <label ngbButtonLabel class="direct-form-btn--radio btn no" [ngClass] = "{'inline-error' : isAssets}" id="eligibilityLbl6">
                           <input ngbButton type="radio" value="no" (click) = "changeAssets($event)" id="eligibilityInpt4"> {{ 'COMMON.LBL_NO' | translate}}
                         </label>
@@ -90,8 +90,8 @@
                   </div>
                 </div>
                 <div *ngIf="isSingaporean || isAssets" class="col-12 flex pl0 pr0 mt15">
-                    <div class="inline-warning col-1"></div>
-                    <div class="warning-message col-11">{{ 'WILL_WRITING.ELIGIBILITY.INLINE_ERROR' | translate}}</div>
+                    <div class="inline-warning flex-col-1"></div>
+                    <div class="warning-message flex-col-11">{{ 'WILL_WRITING.ELIGIBILITY.INLINE_ERROR' | translate}}</div>
                 </div>
               </div>
               <div class="flex-row">

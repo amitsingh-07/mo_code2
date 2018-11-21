@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from './../../../shared/modal/error-modal/error-modal.component';
 import { NgbDateCustomParserFormatter } from './../../../shared/utils/ngb-date-custom-parser-formatter';
-import { DIRECT_ROUTE_PATHS } from './../../direct-routes.constants';
 import { DirectService } from './../../direct.service';
 
 @Component({
@@ -18,6 +17,7 @@ import { DirectService } from './../../direct.service';
   encapsulation: ViewEncapsulation.None
 })
 export class LifeProtectionFormComponent implements OnInit, OnDestroy {
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
   dobValue;
   categorySub: any;
   modalRef: NgbModalRef;
@@ -74,6 +74,7 @@ export class LifeProtectionFormComponent implements OnInit, OnDestroy {
     this.categorySub = this.directService.searchBtnTrigger.subscribe((data) => {
       if (data !== '' && data === '1') {
         if (this.save()) {
+          this.formSubmitted.emit(this.summarizeDetails());
           this.directService.setMinProdInfo(this.summarizeDetails());
         }
       }

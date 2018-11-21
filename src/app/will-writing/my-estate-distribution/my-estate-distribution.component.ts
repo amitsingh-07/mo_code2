@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { FooterService } from '../../shared/footer/footer.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingService } from './../will-writing.service';
 
@@ -9,129 +17,162 @@ import { WillWritingService } from './../will-writing.service';
   templateUrl: './my-estate-distribution.component.html',
   styleUrls: ['./my-estate-distribution.component.scss']
 })
-export class MyEstateDistributionComponent implements OnInit {
+export class MyEstateDistributionComponent implements OnInit, OnDestroy {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
+  private subscription: Subscription;
+  private confirmModal = {};
   pageTitle: string;
   step: string;
 
-  estateDistList: any[] = [];
   beneficiaryList: any[] = [];
+  distributionForm: FormGroup;
   remainingPercentage = 100;
   value = '';
   showForm = false;
   divider: number;
   distPercentageSum = 0;
   firstReset = false;
+  isFormAltered = false;
   currentDist;
   errorMsg;
   filteredList;
-  constructor(private translate: TranslateService,
-              private willWritingService: WillWritingService,
-              private router: Router) {
+  fromConfirmationPage = this.willWritingService.fromConfirmationPage;
+
+  constructor(
+    private translate: TranslateService,
+    private willWritingService: WillWritingService,
+    private formBuilder: FormBuilder,
+    private _location: Location,
+    private modal: NgbModal,
+    public footerService: FooterService,
+    public navbarService: NavbarService,
+    private router: Router) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_2');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.errorMsg = this.translate.instant('WILL_WRITING.MY_ESTATE_DISTRIBUTION.ERROR_MODAL');
+      this.setPageTitle(this.pageTitle);
     });
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMode(4);
     if (this.willWritingService.getBeneficiaryInfo().length > 0) {
       this.beneficiaryList = this.willWritingService.getBeneficiaryInfo();
-      this.estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
-      this.filteredList = this.estateDistList.filter((filtered) => filtered.distPercentage === 0).length;
-      if (this.willWritingService.isBeneficiaryAdded) {
-      this.divider = (this.remainingPercentage / this.estateDistList.length);
-      this.dividePercentage();
-      }
     }
+    this.buildBeneficiaryForm();
     this.calculateRemPercentage();
+    this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
-  dividePercentage() {
-    for (const percent of this.estateDistList) {
-      percent.distPercentage = Math.floor(this.divider);
-      if (this.estateDistList.indexOf(percent) === this.estateDistList.length - 1) {
-        if (this.estateDistList.length === 3) {
-          return percent.distPercentage += 1;
-        } else if (this.estateDistList.length === 6) {
-          return percent.distPercentage += 4;
-        } else if (this.estateDistList.length === 7) {
-          return percent.distPercentage += 2;
-        } else {
-          return false;
-        }
-      }
-    }
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
 
+  headerSubscription() {
+    this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
+      if (event && event !== '') {
+        if (this.distributionForm.dirty) {
+          this.pageTitleComponent.goBack();
+        } else {
+          this._location.back();
+        }
+        return false;
+      }
+    });
+  }
+
+  buildBeneficiaryForm() {
+    this.distributionForm = this.formBuilder.group({
+      percent: ['', [Validators.required]]
+    });
   }
 
   calculateRemPercentage() {
-    for (const percent of this.estateDistList) {
+    for (const percent of this.beneficiaryList) {
       this.remainingPercentage = (this.remainingPercentage - percent.distPercentage);
     }
     return this.remainingPercentage;
   }
 
   updateDistPercentage(index: number, event) {
-    for (const percent of this.estateDistList) {
-      this.estateDistList[index].distPercentage = Math.floor(event.target.value);
-      this.distributePercentage(index, event);
+    for (const percent of this.beneficiaryList) {
+      this.beneficiaryList[index].distPercentage = Math.floor(event.target.value);
       this.distPercentageSum += percent.distPercentage;
     }
-    if (this.distPercentageSum > 100) {
-      this.currentDist = this.estateDistList[index].distPercentage;
-      setTimeout(() => this.estateDistList[index].distPercentage = 0, 0);
-      this.willWritingService.openToolTipModal(this.errorMsg.EXCEED_PERCENTAGE, '');
+    if (this.beneficiaryList[index].distPercentage < 0 || this.beneficiaryList[index].distPercentage > 100) {
+      this.currentDist = this.beneficiaryList[index].distPercentage;
+      setTimeout(() => this.beneficiaryList[index].distPercentage = 0, 0);
+      this.willWritingService.openToolTipModal('Please input a value between 0 and 100', '');
       this.distPercentageSum = 0;
-      for (const percent of this.estateDistList) {
+      for (const percent of this.beneficiaryList) {
         this.distPercentageSum += percent.distPercentage;
       }
-    }
-    this.remainingPercentage = 100 - this.distPercentageSum;
-    if (this.remainingPercentage < 0) {
-      this.remainingPercentage = 100 - (this.distPercentageSum - this.currentDist);
+      this.remainingPercentage = 100 - (this.distPercentageSum - this.beneficiaryList[index].distPercentage);
+    } else {
+      this.remainingPercentage = 100 - this.distPercentageSum;
     }
     this.distPercentageSum = 0;
-
+    this.isFormAltered = true;
   }
 
-  distributePercentage(index: number, event) {
-    if (!this.firstReset) {
-      if (this.filteredList < 1) {
-        for (const percentage of this.estateDistList) {
-          if (this.estateDistList.indexOf(percentage) === index) {
-            this.estateDistList[index].distPercentage = Math.floor(event.target.value);
-            this.firstReset = true;
-          } else {
-            percentage.distPercentage = 0;
-          }
-        }
+  calcAfterReset() {
+    this.remainingPercentage = 100 - this.distPercentageSum;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.navbarService.unsubscribeBackPress();
+  }
+
+  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
+    ref.componentInstance.unSaved = true;
+    ref.result.then((data) => {
+      if (data === 'yes') {
+        this.save(url);
       }
-    }
+    });
+    return false;
   }
 
-  save() {
-    const arrLength = this.estateDistList.filter((greater) => greater.distPercentage < 1).length;
-    if (arrLength > 0 && this.remainingPercentage === 0) {
+  validateBeneficiaryForm() {
+    const estateDistList = this.beneficiaryList.filter((checked) => checked.selected === true);
+    const filteredArr = estateDistList.filter((greater) => greater.distPercentage < 1);
+    const joinedArray = [];
+    if (this.remainingPercentage < 0) {
       this.willWritingService.openToolTipModal(this.errorMsg.MAX_PERCENTAGE, '');
       return false;
-    } else if (arrLength < 1 && this.remainingPercentage !== 0 || arrLength > 0 && this.remainingPercentage !== 0) {
+    } else if (this.remainingPercentage !== 0 && filteredArr.length < 1) {
       this.willWritingService.openToolTipModal(this.errorMsg.ADJUST_PERCENTAGE, '');
       return false;
+    } else if (filteredArr.length > 0) {
+      this.willWritingService.openToolTipModal(this.errorMsg.NON_ALLOCATED_PERCENTAGE, '');
+      return false;
     }
-    const unFilteredArray = this.beneficiaryList.filter((checked) => checked.selected === false);
-    for (const currentObject of unFilteredArray) {
-      this.estateDistList.push(currentObject);
-    }
-    this.willWritingService.setBeneficiaryInfo(this.estateDistList);
-    this.willWritingService.isBeneficiaryAdded = false;
     return true;
   }
 
+  save(url) {
+    this.willWritingService.setBeneficiaryInfo(this.beneficiaryList);
+    this.router.navigate([url]);
+  }
+
   goToNext() {
-    if (this.save()) {
-      this.router.navigate([WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE]);
+    if (this.validateBeneficiaryForm()) {
+      const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.APPOINT_EXECUTOR_TRUSTEE;
+      if (this.fromConfirmationPage && this.isFormAltered) {
+        this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url,
+          this.willWritingService.isUserLoggedIn());
+      } else if (this.fromConfirmationPage) {
+        this.save(url);
+      } else {
+        this.save(url);
+      }
     }
   }
 

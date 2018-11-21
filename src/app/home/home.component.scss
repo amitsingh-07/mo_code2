@@ -16,6 +16,8 @@ body{
             display:block;
             width:100%;
             height:100%;
+            left:0px;
+            bottom:0px;
             z-index:0;
             .banner-bg--image{
                 position: absolute;
@@ -23,6 +25,7 @@ body{
                 width:100%;
                 height:350px;
                 bottom:0px;
+                left:0px;
                 background:url('../../assets/images/banner-bg.svg');
                 background-repeat: repeat-x;
             }
@@ -165,7 +168,7 @@ body{
         width:100%;
         height:85px;
         z-index:1;
-        overflow-x:auto;
+        overflow-x:hidden;
         overflow-y:hidden;
         justify-content:center;
         @include minMobilemaxPhablet{
@@ -178,6 +181,7 @@ body{
         &.fixed{
             position:fixed;
             top:84px;
+            left:0px;
             background-color:$white-color;
             z-index:10;
             border-bottom: 2px solid#e5f3f4;
@@ -291,6 +295,12 @@ body{
                     img{
                         height:80px;
                     }
+                    br{
+                        @include minMobilemaxPhablet{
+                            display:none;
+                        }
+                    }
+                    
                     p{
                         font-family:$muli-bold;
                         color:$dark-orange-color;
@@ -574,7 +584,7 @@ body{
                 display:inline-flex;
                 justify-content:center;
                 align-content:flex-start;
-                width:240px;
+                width:255px;
                 height:57px;
                 box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
                 span{
@@ -660,6 +670,9 @@ body{
         justify-content:center;
         align-items:flex-start;
         z-index:1;
+        @include minMobilemaxPhablet{
+            background-color:#f2f6f7;
+        }
         .subscribe__section--bg{
             position: absolute;
             background-image:url('../../assets/images/banner-bg.svg');
@@ -667,6 +680,10 @@ body{
             width:100%;
             height:507px;
             bottom:0px;
+            left:0px;
+            @include minMobilemaxPhablet{
+                height:760px;
+            }
         }
         .subscribe__section--footer{
             position: absolute;
@@ -674,6 +691,7 @@ body{
             width:100%;
             height:10px;
             bottom:0px;
+            left:0px;
             background-color:$dark-teal-color;
             .orange{
                 position: absolute;
@@ -802,6 +820,9 @@ body{
     align-items:center;
     flex-direction:column;
     padding:50px 20px;
+    @include minMobilemaxPhablet{
+        padding:50px 38px;
+    }
     .home__review--header{
         position: relative;
         display:block;

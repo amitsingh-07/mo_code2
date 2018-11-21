@@ -90,3 +90,9 @@ input::-webkit-credentials-auto-fill-button {
   float: right;
   margin-top: 10px;
 }
+
+.signup-wrapper__header-icon {
+  @include allmobiles {
+    display: block !important;
+  }
+}

@@ -5,10 +5,13 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
+import {
+  TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { InvestmentAccountService } from '../investment-account-service';
-import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 @Component({
   selector: 'app-fund-your-account',
@@ -22,6 +25,10 @@ export class FundYourAccountComponent implements OnInit {
   formValues;
   isUserNationalitySingapore;
   activeTabIndex = 0;
+  fundDetails;
+  bankDetailsList;
+  bankDetails;
+  paynowDetails;
 
   constructor(
     public readonly translate: TranslateService,
@@ -30,25 +37,73 @@ export class FundYourAccountComponent implements OnInit {
     public headerService: HeaderService,
     private modal: NgbModal,
     public navbarService: NavbarService,
+    public topupAndWithDrawService: TopupAndWithDrawService,
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
+    this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
+
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('FUND_YOUR_ACCOUNT.TITLE');
-      this.setPageTitle(this.pageTitle);
     });
+  }
+
+  ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(2);
+    this.getBankDetailsList();
+    // this.topupFormValues = this.topupAndWithDrawService.getTopUp();
+    this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
+    this.getTransferDetails();
+    const pageTitle = this.getPageTitleByType(this.fundDetails.source, this.fundDetails.fundingType);
+    this.setPageTitle(pageTitle);
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
 
-  ngOnInit() {
-    this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+  getPageTitleByType(source, type) {
+    let pageTitle;
+    if (source === 'FUNDING') {
+      pageTitle = this.translate.instant('Fund Your Account');
+    } else if (source === 'TOPUP') {
+      type === 'ONETIME' ?
+        pageTitle = this.translate.instant('One-time Investment') : pageTitle = this.translate.instant('Monthly Investment');
+    }
+    return pageTitle;
   }
 
+  getTransferDetails() {
+    this.topupAndWithDrawService.getTransferDetails().subscribe((data) => {
+      this.setBankPayNowDetails(data.objectList[0]);
+    });
+  }
+
+  showBankDetails() {
+    const ref = this.modal.open(BankDetailsComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Select Your Bank';
+    ref.componentInstance.errorDescription = 'You will be transferring funds from:';
+    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
+    console.log(this.bankDetailsList);
+    return false;
+
+  }
   selectFundingMethod(index) {
     this.activeTabIndex = index;
+  }
+
+  getBankDetailsList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.bankDetailsList = data.objectList.bankList;
+      console.log(this.bankDetailsList);
+    });
+  }
+  setBankPayNowDetails(data) {
+    this.bankDetails = data.filter((transferType) => transferType.institutionType === 'bank')[0];
+    this.paynowDetails = data.filter((transferType) => transferType.institutionType === 'PayNow')[0];
+  }
+
+  goToNext() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
   }
 
 }

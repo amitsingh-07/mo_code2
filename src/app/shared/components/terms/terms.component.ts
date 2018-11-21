@@ -17,7 +17,19 @@ export class TermsComponent implements OnInit {
     this.translate.use('en');
   }
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(true);
+    this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
+  }
+
+  dismiss() {
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
+    this.activeModal.dismiss('Cross click');
+  }
+
+  close() {
+    this.navbarService.setNavbarDirectGuided(false);
+    this.footerService.setFooterVisibility(false);
+    this.activeModal.close('proceed');
   }
 }
