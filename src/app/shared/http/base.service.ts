@@ -80,6 +80,22 @@ export class BaseService {
       });
   }
 
+  postForBlob(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+    if (showLoader) {
+      this.helperService.showLoader();
+    }
+    let param = '';
+    if (showError) {
+      param = '?alert=' + showError;
+    }
+
+    return this.httpClient
+      .post(`${environment.apiBaseUrl}/${url}${param}`, postBody, { responseType: 'blob' })
+      .finally(() => {
+        this.helperService.hideLoader();
+      });
+  }
+
   delete(url, postBody: any) {
     this.helperService.showLoader();
     return this.http

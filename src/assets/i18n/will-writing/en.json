@@ -176,7 +176,7 @@
       },
       "MUSLIM_ERROR": {
         "TITLE": "Sorry, we are unable to assist you.",
-        "MESSAGE": "<div class='mb15'>As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer.</div>"
+        "MESSAGE": "<div class='mb15' style='margin-right: -13px'>As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer.</div>"
       }
     },
     "REVIEW_YOUR_DETAILS": {
