@@ -12,6 +12,7 @@ import {
     TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-fund-your-account',
@@ -106,7 +107,12 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   goToNext() {
-    this.topupAndWithDrawService.buyPortfolio(this.fundDetails, this.activeMode).subscribe((data) => {
+    // redirect to dashboard
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+  }
+
+  buyPortfolio() {
+    this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((data) => {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
     });
   }
