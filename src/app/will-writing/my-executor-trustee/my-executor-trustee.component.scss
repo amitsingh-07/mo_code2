@@ -223,6 +223,10 @@
 
 .message-block{
     margin-top: 21px;
+    @include allmobiles {
+        padding-bottom: 20px;
+    }
+    
     .tooltip-message-img{
         position: relative;
         img{
