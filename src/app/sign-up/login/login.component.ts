@@ -222,8 +222,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   refreshCaptcha() {
-    const time = new Date().getMilliseconds();
-    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=`
-      + this.authService.getSessionId() + '&time=' + time;
+    this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }

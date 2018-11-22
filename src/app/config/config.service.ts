@@ -8,6 +8,7 @@ import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
 
 export interface IConfig {
   useMyInfo: boolean;
+  willWritingEnabled: boolean;
   hospitalPlanData: HospitalPlan[];
   productCategory: IProductCategory[];
 }

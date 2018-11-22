@@ -172,8 +172,6 @@ export class CreateAccountComponent implements OnInit, AfterViewInit {
 
   refreshCaptcha() {
     this.createAccountForm.controls['captcha'].reset();
-    const time = new Date().getMilliseconds();
-    // tslint:disable-next-line:max-line-length
-    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=` + this.authService.getSessionId() + '&time=' + time;
+    this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }

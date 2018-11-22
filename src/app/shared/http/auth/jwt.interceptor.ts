@@ -92,7 +92,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     saveCache(request: HttpRequest<any>, event: HttpResponse<IServerResponse>) {
-        const apiPath = request.url.split(environment.apiBaseUrl + '/')[1];
+        const apiPath = request.url.split(window.location.host + '/')[1];
         if (!exceptionUrlList.has(apiPath)) {
             this.cache.put(request, event);
         }
