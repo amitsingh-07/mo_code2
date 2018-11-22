@@ -180,6 +180,7 @@
                         height:26px;
                         width:26px;
                         transition:0.5s;
+                        padding-right: 26px;
                     }
                     &.active{
                         i{
@@ -297,4 +298,23 @@
             display:none; 
         }
     }
+}
+
+.faq-img {
+    img{
+        width: 215px;
+        margin: 0 auto;
+    }
+    
+}
+.faq-title {
+    font-family: $muli-semi-bold;
+    font-size: 32px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    text-align: center;
+    color: #00a7a7;
 }
