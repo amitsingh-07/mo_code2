@@ -136,7 +136,7 @@
         color: #9e9e9e;
         padding-right: 0;
         @include allmobiles {
-            padding-left: 10px !important;
+            padding-left: 0px !important;
         }
       }
     .label-value {
@@ -204,6 +204,9 @@
       .record {
           display: flex;
           margin-bottom: 8px;
+          @include allmobiles{
+              margin-left: 10px;
+          }
           &:last-child{
               @include allmobiles{
                   padding-bottom: 16px;
@@ -295,4 +298,8 @@
             }
         }
     }
+}
+
+.br0 {
+    border-right: 0 !important;
 }
