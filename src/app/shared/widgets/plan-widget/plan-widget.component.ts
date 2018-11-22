@@ -83,6 +83,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   // tslint:disable-next-line:cognitive-complexity
   ngOnInit() {
     if (this.data) {
+      this.isSelected = this.data.selected ? true : false;
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
@@ -213,6 +214,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     ref.result.then((result) => {
       if (result.plan) {
         this.isSelected = result.selected;
+        this.temp.selected = this.isSelected;
         this.select.emit({ plan: this.temp, selected: this.isSelected });
       }
     }).catch((e) => {
@@ -226,6 +228,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
 
   selectPlan() {
     this.isSelected = !this.isSelected;
+    this.temp.selected = this.isSelected;
     this.temp.bestValue = this.bestValue;
     this.select.emit({ plan: this.temp, selected: this.isSelected });
   }
@@ -268,6 +271,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     }
     this.isComparePlanSelected = !this.isComparePlanSelected;
     this.temp.bestValue = this.bestValue;
+    this.temp.selected = this.isSelected;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }

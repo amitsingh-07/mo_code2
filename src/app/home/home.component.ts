@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 
     this.translate.get('HOME').subscribe((result: string) => {
       // Meta Tag and Title Methods
-      this.title.setTitle(this.translate.instant('GENERAL.TITLE'));
+      // this.title.setTitle(this.translate.instant('GENERAL.TITLE'));
       this.meta.addTag({name: 'description', content: this.translate.instant('GENERAL.META.GENERAL.META_DESCRIPTION')});
       this.meta.addTag({name: 'keywords', content: this.translate.instant('GENERAL.META.GENERAL.META_KEYWORDS')});
       this.meta.addTag({name: 'author', content: this.translate.instant('GENERAL.META.META_AUTHOR')});

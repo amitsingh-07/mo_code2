@@ -59,6 +59,7 @@ import { SuccessModalComponent } from './shared/modal/success-modal/success-moda
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RoutingService } from './shared/Services/routing.service';
+import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
@@ -146,7 +147,8 @@ export function tokenGetterFn() {
       useClass: JwtInterceptor,
       multi: true,
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
-    }, Formatter, CurrencyPipe, RoutingService
+    }, Formatter, CurrencyPipe, RoutingService,
+    StateStoreService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
