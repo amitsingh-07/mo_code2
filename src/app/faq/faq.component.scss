@@ -301,13 +301,14 @@
 }
 
 .faq-img {
+    display:none;
     img{
         width: 215px;
         margin: 0 auto;
     }
-    
 }
 .faq-title {
+    display:none;
     font-family: $muli-semi-bold;
     font-size: 32px;
     font-weight: 600;
