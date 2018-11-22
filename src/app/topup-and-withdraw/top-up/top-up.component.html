@@ -50,13 +50,16 @@
             
               <!-- radio button -->
               <div class="topup-radio-button hidden" *ngFor="let investmenttype of investmentTypeList; let i = index">
-                <input id="tupup_radio_button_{{i+1}}" (change)="selectedInvestment(investmenttype)" value={{investmenttype.name}} formControlName="Investment"
+                <input  id="investmenttype_{{i+1}}" (change)="selectedInvestment(investmenttype)"   value="{{investmenttype.name}}"
+                formControlName="Investment"
                   name="Investment" type="radio" class="field radio" tabindex="{{i+1}}" />
                 <label for="tupup_radio_button_{{i+1}}">
                   <div id="topup_investmenttype_name" class="input-label-white mb10">{{investmenttype.name}}</div>
                   <div id="topup_investmenttype_value" class="input-label-normal">Min. ${{investmenttype.value}}</div>
                 </label>
               </div>
+
+
               <!-- Onetimeinvestment -->
               <div class="flex-row" *ngIf="showOnetimeInvestmentAmount">
 
@@ -83,7 +86,7 @@
               <!-- <p class="balance-amount mb10">Cash Account Balance: {{ balanceAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
               <p class="topupportfolio-amount mt5" *ngIf="topupportfolio">Please top up {{ topupportfolioamount | currency:'USD':'symbol-narrow':'1.0-2'}}</p> -->
               <p  id="cash_account_balance" class="balance-amount mb10">Cash Account Balance: {{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
-              <p id="topup_amount" class="topupportfolio-amount" *ngIf="isAmountExceedBalance">Please top up {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+              <p id="topup_amount" class="topupportfolio-amount"  *ngIf="isAmountExceedBalance" >Please top up {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
             </div>
           </div>
           <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
