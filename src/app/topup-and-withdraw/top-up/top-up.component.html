@@ -50,7 +50,7 @@
             
               <!-- radio button -->
               <div class="topup-radio-button hidden" *ngFor="let investmenttype of investmentTypeList; let i = index">
-                <input  id="investmenttype_{{i+1}}" (change)="selectedInvestment(investmenttype)"   value="{{investmenttype.name}}"
+                <input  id="tupup_radio_button_{{i+1}}" (change)="selectedInvestment(investmenttype)"   value="{{investmenttype.name}}"
                 formControlName="Investment"
                   name="Investment" type="radio" class="field radio" tabindex="{{i+1}}" />
                 <label for="tupup_radio_button_{{i+1}}">
