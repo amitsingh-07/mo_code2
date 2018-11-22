@@ -5,7 +5,7 @@ export class WillWritingFormError {
                         name: {
                                 required: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Full Name'
+                                        errorMessage: 'Full Name (as per ID)'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
@@ -50,7 +50,7 @@ export class WillWritingFormError {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name'
+                                                errorMessage: 'Full Name (as per ID)'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
@@ -73,7 +73,7 @@ export class WillWritingFormError {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name'
+                                                errorMessage: 'Full Name (as per ID)'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
@@ -106,7 +106,7 @@ export class WillWritingFormError {
                         name: {
                                 required: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Full Name'
+                                        errorMessage: 'Full Name (as per ID)'
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
@@ -139,7 +139,7 @@ export class WillWritingFormError {
                                 name: {
                                         required: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name'
+                                                errorMessage: 'Full Name (as per ID)'
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
