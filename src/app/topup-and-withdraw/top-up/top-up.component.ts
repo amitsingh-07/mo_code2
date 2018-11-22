@@ -40,7 +40,7 @@ export class TopUpComponent implements OnInit {
   topForm: FormGroup;
   enteringAmount;
   cashBalance = 1200;
-  investmentype;
+ 
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
