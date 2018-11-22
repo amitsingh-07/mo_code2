@@ -4,8 +4,6 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Input,
-  OnChanges,
   OnInit,
   Renderer2,
   ViewChild,
@@ -15,10 +13,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { AppService } from './../app.service';
+import { ConfigService, IConfig } from './../config/config.service';
 import { FooterService } from './../shared/footer/footer.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
@@ -31,7 +30,7 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
   encapsulation: ViewEncapsulation.None
 })
 
-export class HomeComponent implements OnInit, AfterViewInit{
+export class HomeComponent implements OnInit, AfterViewInit {
   pageTitle: string;
   trustedSubTitle: any;
   trustedReasons: any;
@@ -46,12 +45,14 @@ export class HomeComponent implements OnInit, AfterViewInit{
   subscribeMessage = '';
   subscribeSuccess = false;
   formValues: SubscribeMember;
+  isWillWritingEnabled = false;
 
   constructor(
     public navbarService: NavbarService, public footerService: FooterService, private meta: Meta, private title: Title,
     public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
     public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
-    private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService) {
+    private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService,
+    private configService: ConfigService) {
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
@@ -79,11 +80,15 @@ export class HomeComponent implements OnInit, AfterViewInit{
 
     this.translate.get('HOME').subscribe((result: string) => {
       // Meta Tag and Title Methods
-      this.title.setTitle(this.translate.instant('GENERAL.TITLE'));
-      this.meta.addTag({name: 'description', content: this.translate.instant('GENERAL.META.GENERAL.META_DESCRIPTION')});
-      this.meta.addTag({name: 'keywords', content: this.translate.instant('GENERAL.META.GENERAL.META_KEYWORDS')});
-      this.meta.addTag({name: 'author', content: this.translate.instant('GENERAL.META.META_AUTHOR')});
-      this.meta.addTag({name: 'copyright', content: this.translate.instant('GENERAL.META.META_COPYRIGHT')});
+      // this.title.setTitle(this.translate.instant('GENERAL.TITLE'));
+      this.meta.addTag({ name: 'description', content: this.translate.instant('GENERAL.META.GENERAL.META_DESCRIPTION') });
+      this.meta.addTag({ name: 'keywords', content: this.translate.instant('GENERAL.META.GENERAL.META_KEYWORDS') });
+      this.meta.addTag({ name: 'author', content: this.translate.instant('GENERAL.META.META_AUTHOR') });
+      this.meta.addTag({ name: 'copyright', content: this.translate.instant('GENERAL.META.META_COPYRIGHT') });
+    });
+
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isWillWritingEnabled = config.willWritingEnabled;
     });
 
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
@@ -147,15 +152,15 @@ export class HomeComponent implements OnInit, AfterViewInit{
     if (fragment === 'insurance') {
       this.goToSection(this.InsuranceElement.nativeElement);
     } else
-    if (fragment === 'will') {
-      this.goToSection(this.WillElement.nativeElement);
-    } else
-    if (fragment === 'invest') {
-      this.goToSection(this.InvestElement.nativeElement);
-    } else
-    if (fragment === 'comprehensive') {
-      this.goToSection(this.ComprehensiveElement.nativeElement);
-    }
+      if (fragment === 'will') {
+        this.goToSection(this.WillElement.nativeElement);
+      } else
+        if (fragment === 'invest') {
+          this.goToSection(this.InvestElement.nativeElement);
+        } else
+          if (fragment === 'comprehensive') {
+            this.goToSection(this.ComprehensiveElement.nativeElement);
+          }
   }
 
   checkScrollStickyHomeNav() {
@@ -255,12 +260,12 @@ export class HomeComponent implements OnInit, AfterViewInit{
     const selectedSection = elementName.getBoundingClientRect();
 
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
-                             - homeNavbarHeight - navbarHeight + 10;
+      - homeNavbarHeight - navbarHeight + 10;
 
     if (innerWidth > this.mobileThreshold) {
       const isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
       if (!isIEOrEdge) {
-        window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+        window.scrollTo({ top: CurrentOffsetTop, behavior: 'smooth' });
       } else {
         elementName.scrollIntoView(true);
       }
