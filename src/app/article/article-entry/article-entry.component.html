@@ -16,7 +16,7 @@
     <div class="article-entry__content">
       <div class="page-header">
         <div class="art-tag__container">
-            <div class="art-tag__element" routerLink="/articles/category/{{art_tag | StringToLink}}" *ngFor="let art_tag of tags"><i class="material-icons">local_offer</i>{{art_tag}}</div>
+            <div class="art-tag__element" routerLink="/articles/category/{{art_tag | StringToLink}}" *ngFor="let art_tag of tags">{{art_tag}}</div>
           </div>
         <div class="page-header--inner">
           <h1>{{title}}</h1>
@@ -24,12 +24,14 @@
             <div class="author--img"> 
               <img src="assets/images/profile/{{author | StringToLink}}.jpg">
             </div>
+            <div class="author-ded">
             <div class="author--name">
-              By <a>{{author}}</a> 
+              <a>{{author}}</a> 
               </div>
             <div class="date">
-              {{date | date:'dd MMM yyyy'}}
+              {{date | date:'MMM dd, yyyy'}}
               </div>
+            </div>
           </div>
           </div>
       </div>

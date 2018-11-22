@@ -36,6 +36,9 @@ export class FAQComponent implements OnInit {
   // tslint:disable-next-line:member-ordering
   @ViewChild('homeNavComprehensive') HomeNavComprehensive: ElementRef;
   ngOnInit() {
+    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.footerService.setFooterVisibility(true);
     this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
     this.activeSection = 0;
   }

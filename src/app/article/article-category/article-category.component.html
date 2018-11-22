@@ -24,8 +24,8 @@
                 {{article.art_desc}}
               </div>
             <div class="art-author__container">
-              <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
-              <span>{{article.art_date | date:'dd MMM yyyy'}}</span>
+              <span class="author"><a class="author-link">{{article.art_author}}</a></span>
+              <span class="date">{{article.art_date | date:'MMM dd, yyyy'}}</span>
               </div>
             <div class="art-tag__container">
               <div class="art-tag__element" *ngFor="let article_tag of article.art_tags" routerLink="/articles/category/{{article_tag | StringToLink}}">
