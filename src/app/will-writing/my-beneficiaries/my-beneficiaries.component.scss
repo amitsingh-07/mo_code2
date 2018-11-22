@@ -92,9 +92,10 @@
             letter-spacing: -0.2px;
             color: #ffffff;
         @include allmobiles {
-            width: 300px;
+            width: 321px;
             color: #333846;
             text-align: center;
+            font-size: 16px;
         }
     }
     h2{
