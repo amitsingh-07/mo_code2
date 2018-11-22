@@ -8,7 +8,7 @@
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    background-color:$lighter-aqua-color;
+    background-color:$white-color;
 }
 .article-entry__header{
     position: relative;
@@ -16,7 +16,10 @@
     width:100%;
     height:auto;
     padding:20px 0px 15px 0px;
-    background-color:$light-aqua-color;
+    background-color:$white-color;
+    @include minMobilemaxPhablet{
+        padding:20px 0px 0px 0px;
+    }
     .sub-navigation{
         position: relative;
         height:auto;
@@ -54,6 +57,7 @@
         flex-direction:column;
         justify-content: center;
         align-items: center;
+        padding:10px 0px 20px;
     }
 }
 .article-entry__content{
@@ -76,13 +80,12 @@
         padding:20px 30px;
         flex-direction:column;
         @include minMobilemaxPhablet{
-            padding:20px 15px;
+            padding:0px 0px 20px 0px;
         }
         .art-tag__container{
             position: relative;
             display:flex;
             top:5px;
-            left:5px;
             justify-content:flex-start;
             align-items:center;
             flex-wrap:wrap;
@@ -95,16 +98,17 @@
                 background-color:$white-color;
                 border: 1px solid #e1e1e1;  
                 color:$dark-teal-color;
-                font-size:12px;
+                font-size:11px;
                 font-family:$muli-semi-bold;
                 padding:2px 5px;
                 margin-right:5px;
                 margin-bottom:5px;
                 cursor: pointer;
-                i{
-                    font-size:14px;
-                    transform:translateY(2px);
-                    margin-right:2px;
+                transition:0.2s;
+                &:hover{
+                    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
+                    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
+                    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3); 
                     }
                 }
             }
@@ -122,6 +126,7 @@
             }
             h1{
                 flex-basis:calc(100% - 140px);
+                font-family:$muli-semi-bold;
                 @include minMobilemaxPhablet{
                     font-size:1.5rem;
                 }
@@ -134,15 +139,23 @@
                 margin-left:20px;
                 @include minMobilemaxPhablet{
                     margin-left:0px;
+                    margin-top:10px;
+                    flex-direction:row;
+                    width:unset;
                 }
                 .author--img{
                     position: relative;
                     display:block;
                     width:80px;
                     height:80px;
+                    border:1px solid $border-grey-color;
                     border-radius:50%;
                     overflow:hidden;
                     z-index:2;
+                    @include minMobilemaxPhablet{
+                        width:50px;
+                        height:50px;
+                    }
                     img{
                         position: absolute;
                         display:block;
@@ -153,20 +166,24 @@
                         z-index:1;
                         }
                     }
+                .author-ded{
+                    @include minMobilemaxPhablet{
+                        margin-left:10px;
+                        align-items:flex-end;
+                    }
+                }
                 .author--name{
                     margin-top:10px;
                     font-size:13px;
-                    font-family:$muli-regular;
-                    color:$teal-grey-color;
-                    border-bottom:4px solid $lighter-aqua-color;
+                    border-bottom:3px solid $lighter-aqua-color;
                     a{ 
                         font-size:13px;
-                        font-family:$muli-bold;
-                        color:$orange-color;
+                        font-family:$muli-regular;
+                        color:$black-color;
                     }
                 }
                 .date{
-                    font-family:$muli;
+                    font-family:$muli-regular;
                     font-size:13px;
                     color:$teal-grey-color;
                 }
