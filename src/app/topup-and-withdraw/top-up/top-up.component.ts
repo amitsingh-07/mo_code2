@@ -67,7 +67,7 @@ export class TopUpComponent implements OnInit {
     if (amount > this.cashBalance && this.investment.name === 'One-time Investment') {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
-    }  else {
+    } else {
       this.isAmountExceedBalance = false;
     }
   }
@@ -94,6 +94,11 @@ export class TopUpComponent implements OnInit {
       this.topForm.removeControl('oneTimeInvestmentAmount');
       this.showOnetimeInvestmentAmount = false;
       this.showmonthlyInvestmentAmount = true;
+    } else {
+      this.topForm.addControl('oneTimeInvestmentAmount', new FormControl('', Validators.required));
+      this.topForm.removeControl('MonthlyInvestmentAmount');
+      this.showOnetimeInvestmentAmount = true;
+      this.showmonthlyInvestmentAmount = false;
     }
   }
   getPortfolioList() {
