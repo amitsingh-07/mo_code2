@@ -52,7 +52,6 @@ export class FundYourAccountComponent implements OnInit {
     this.getBankDetailsList();
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.getTransferDetails();
-    debugger;
     const pageTitle = this.getPageTitleBySource(this.fundDetails.source, this.fundDetails.fundingType);
     this.setPageTitle(pageTitle);
   }
