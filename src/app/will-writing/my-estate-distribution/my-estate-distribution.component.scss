@@ -427,6 +427,9 @@ input[type='checkbox']+label {
         letter-spacing: -0.1px;
         color: #333846;
         font-family: $muli-semi-bold;
+        @include allmobiles {
+            bottom: 10%;
+        }
     }
 }
 
