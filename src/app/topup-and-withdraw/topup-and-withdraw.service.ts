@@ -199,7 +199,7 @@ export class TopupAndWithDrawService {
     }
 
     constructBuyPortfolioParams(data) {
-      let redeemAmount;
+      let redeemAmount: number;
       let isPayMonthly = false;
       if (data.oneTimeInvestment) {
         redeemAmount = data.oneTimeInvestment;
@@ -208,8 +208,9 @@ export class TopupAndWithDrawService {
         isPayMonthly = true;
       }
       return {
-        portfolioId: data.portfolioId,
-        redemptionAmount: redeemAmount, // todo
+        //portfolioId: data.portfolio.id,
+        portfolioId: 'PORTFOLIO00046', // todo: hard coded, actual lookup api needed
+        investmentAmount: Number(redeemAmount), // todo
         payMonthly: isPayMonthly
       };
     }

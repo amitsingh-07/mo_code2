@@ -18,11 +18,11 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="topup_portfolio_dropdwon_value" ngbDropdownToggle>
-                        {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value :'Select Portfolio'}}
+                        {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.name :'Select Portfolio'}}
 
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown" >
-                        <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('portfolio',portfolio.name)"
+                        <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('portfolio',portfolio)"
                           id="topup_portfolio_option-{{i}}">{{portfolio.name}}</button>
                       </div>
                     </div>
@@ -52,7 +52,7 @@
               <div class="topup-radio-button hidden" *ngFor="let investmenttype of investmentTypeList; let i = index">
                 <input id="tupup_radio_button_{{i+1}}" (change)="selectedInvestment(investmenttype)" value={{investmenttype.name}} formControlName="Investment"
                   name="Investment" type="radio" class="field radio" tabindex="{{i+1}}" />
-                <label for="investmenttype_{{i+1}}">
+                <label for="tupup_radio_button_{{i+1}}">
                   <div id="topup_investmenttype_name" class="input-label-white mb10">{{investmenttype.name}}</div>
                   <div id="topup_investmenttype_value" class="input-label-normal">Min. ${{investmenttype.value}}</div>
                 </label>

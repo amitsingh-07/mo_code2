@@ -27,7 +27,7 @@ const routes: Routes = [
     component: TopUpComponent
   },
   {
-    path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP_REQUEST,
+    path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP_REQUEST + '/:status',
     component: TopupRequestComponent
   },
   {

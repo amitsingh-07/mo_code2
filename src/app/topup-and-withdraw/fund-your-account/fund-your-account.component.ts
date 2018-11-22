@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,11 +8,11 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { HeaderService } from '../../shared/header/header.service';
 import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+  TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-fund-your-account',
@@ -113,7 +113,13 @@ export class FundYourAccountComponent implements OnInit {
 
   buyPortfolio() {
     this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((data) => {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
+      if (data.responseMessage.responseCode >= 6000) { // success scenario
+        if (!this.fundDetails.isAmountExceedBalance) {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
+        } else {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
+        }
+      }
     });
   }
 }

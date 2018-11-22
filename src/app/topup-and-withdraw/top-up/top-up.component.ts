@@ -146,10 +146,9 @@ export class TopUpComponent implements OnInit {
   saveFundingDetails() {
     const topupValues = {
       source: 'TOPUP',
-      portfolioName: this.formValues.portfolio,
-      portfolioId: this.formValues.portfolioId, // todo
-      oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, //topup
-      monthlyInvestment: this.formValues.MonthlyInvestmentAmount, //topup
+      portfolio: this.formValues.portfolio,
+      oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, // topup
+      monthlyInvestment: this.formValues.MonthlyInvestmentAmount, // topup
       fundingType: this.formValues.MonthlyInvestmentAmount ? 'MONTHLY' : 'ONETIME',
       isAmountExceedBalance: this.isAmountExceedBalance,
       exceededAmount: this.topupAmount
