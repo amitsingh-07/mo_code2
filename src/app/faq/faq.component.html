@@ -37,8 +37,10 @@
               <div class="home__navbar--border"></div>
               </div>
           </div>
-
     <div class="faq-category__container" *ngFor="let section of sections; let i = index">
+      <div class="faq-category__header">
+        <h2>{{section.title}}</h2>
+        </div>
       <div class="faq-category__body" *ngIf = "activeSection == i">
         <div class="faq-selection__panel" ngbDropdown *ngIf="section.groups.length > 0">
           <button class="btn btn-dropdown form-control hidden-lg" id="dropdownBasic1" ngbDropdownToggle>{{section.groups[0]}}</button>
