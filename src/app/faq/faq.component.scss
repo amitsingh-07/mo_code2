@@ -101,7 +101,8 @@
                 padding:0px;
                 margin:0px;
                 border:0px;
-                top:0px !important;    
+                top:0px !important;   
+                width:100%; 
             }
             @include minMobilemaxPhablet{
             flex-basis: unset;
@@ -219,7 +220,7 @@
                         }
                         li span { font-weight: normal; }
                     }
-                    .tg{border-collapse:collapse;border-spacing:0;}
+                    .tg{border-collapse:collapse;border-spacing:0;position: relative;display:block;width:100%;overflow:auto;}
                     .tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
                     .tg th{text-align:center;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
                     .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
