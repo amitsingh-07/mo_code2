@@ -40,7 +40,8 @@ export class TopUpComponent implements OnInit {
   topForm: FormGroup;
   enteringAmount;
   cashBalance = 1200;
- 
+  fundDetails;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -63,10 +64,10 @@ export class TopUpComponent implements OnInit {
   }
 
   validateAmonut(amount) {
-    if (amount > this.cashBalance) {
+    if (amount > this.cashBalance && this.investment.name === 'One-time Investment') {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
-    } else {
+    }  else {
       this.isAmountExceedBalance = false;
     }
   }
@@ -80,14 +81,20 @@ export class TopUpComponent implements OnInit {
       this.investmentTypeList = data.objectList; // Getting the information from the API
       console.log(this.investmentTypeList);
     });
+    this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.portfolio, Validators.required],
       Investment: [this.formValues.Investment, Validators.required],
-      oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required]
-      // MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
+      oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
+      MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
-    // this.buildFormInvestment();
+    if (this.formValues.Investment === 'Monthly Investment') {
+      this.topForm.addControl('MonthlyInvestmentAmount', new FormControl('', Validators.required));
+      this.topForm.removeControl('oneTimeInvestmentAmount');
+      this.showOnetimeInvestmentAmount = false;
+      this.showmonthlyInvestmentAmount = true;
+    }
   }
   getPortfolioList() {
     this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {

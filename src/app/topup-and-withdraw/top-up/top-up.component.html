@@ -86,7 +86,7 @@
               <!-- <p class="balance-amount mb10">Cash Account Balance: {{ balanceAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
               <p class="topupportfolio-amount mt5" *ngIf="topupportfolio">Please top up {{ topupportfolioamount | currency:'USD':'symbol-narrow':'1.0-2'}}</p> -->
               <p  id="cash_account_balance" class="balance-amount mb10">Cash Account Balance: {{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
-              <p id="topup_amount" class="topupportfolio-amount" *ngIf="isAmountExceedBalance">Please top up {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+              <p id="topup_amount" class="topupportfolio-amount"  *ngIf="isAmountExceedBalance" >Please top up {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
             </div>
           </div>
           <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
