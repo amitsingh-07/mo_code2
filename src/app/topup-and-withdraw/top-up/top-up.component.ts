@@ -63,14 +63,7 @@ export class TopUpComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
-  validateAmonut(amount) {
-    if (amount > this.cashBalance && this.investment.name === 'One-time Investment') {
-      this.topupAmount = amount - this.cashBalance;
-      this.isAmountExceedBalance = true;
-    } else {
-      this.isAmountExceedBalance = false;
-    }
-  }
+ 
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -109,6 +102,15 @@ export class TopUpComponent implements OnInit {
   }
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
+  }
+
+  validateAmonut(amount) {
+    if (amount > this.cashBalance && this.investment.name === 'One-time Investment') {
+      this.topupAmount = amount - this.cashBalance;
+      this.isAmountExceedBalance = true;
+    } else {
+      this.isAmountExceedBalance = false;
+    }
   }
 
   buildFormInvestment() {
