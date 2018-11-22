@@ -165,7 +165,7 @@
                     font-size:20px;
                     color:$black-color;
                     cursor: pointer;
-                    padding:10px 0px;
+                    padding:10px 26px;
                     line-height:1.2;
                     @include minMobilemaxPhablet{
                         font-size:16px;
@@ -178,6 +178,7 @@
                         height:26px;
                         width:26px;
                         transition:0.5s;
+                        padding-right: 26px;
                     }
                     &.active{
                         i{
