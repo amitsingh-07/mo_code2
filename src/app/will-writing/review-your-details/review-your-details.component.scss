@@ -98,7 +98,8 @@
         text-align: center;
         color: #ffffff;
         @include allmobiles{
-            padding: 0 15px;
+            width: 219px;
+            margin: 0 auto;
         }
     }
     .btn {
