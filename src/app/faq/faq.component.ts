@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../shared/footer/footer.service';
@@ -15,6 +15,8 @@ import { IFAQSection } from './faq.interface';
 export class FAQComponent implements OnInit {
   public pageTitle: string;
   public sections: any;
+  public navBarElement: ElementRef;
+  activeSection;
   constructor(private navbarService: NavbarService, private footerService: FooterService,
               public translate: TranslateService, public renderer: Renderer2) {
                 this.translate.use('en');
@@ -23,8 +25,22 @@ export class FAQComponent implements OnInit {
                   this.sections = this.getFAQSections(this.translate.instant('FAQ.CONTENT'));
                 });
               }
-
+  // tslint:disable-next-line:member-ordering
+  @ViewChild('homeNavBar') HomeNavBar: ElementRef;
+  // tslint:disable-next-line:member-ordering
+  @ViewChild('homeNavInsurance') HomeNavInsurance: ElementRef;
+  // tslint:disable-next-line:member-ordering
+  @ViewChild('homeNavWill') HomeNavWill: ElementRef;
+  // tslint:disable-next-line:member-ordering
+  @ViewChild('homeNavInvest') HomeNavInvest: ElementRef;
+  // tslint:disable-next-line:member-ordering
+  @ViewChild('homeNavComprehensive') HomeNavComprehensive: ElementRef;
   ngOnInit() {
+    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.footerService.setFooterVisibility(true);
+    this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
+    this.activeSection = 0;
   }
 
   toggleActive(event: any) {
@@ -91,4 +107,33 @@ export class FAQComponent implements OnInit {
       this.renderer.addClass(event.srcElement, 'active');
     }
   }
+
+    goToSection(elementName) {
+      if (elementName === 'will') {
+        this.renderer.addClass(this.HomeNavWill.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 1;
+      } else if (elementName === 'investment') {
+        this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+        this.renderer.addClass(this.HomeNavInvest.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 2;
+      } else if (elementName === 'comprehensive') {
+        this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        this.renderer.addClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 3;
+      } else {
+        this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
+        this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        this.activeSection = 0;
+      }
+
+    }
 }

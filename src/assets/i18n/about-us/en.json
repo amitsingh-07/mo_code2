@@ -99,5 +99,53 @@
                 }
             }
         }
+    },
+    "WHY_MONEYOWL": {
+        "TITLE": "Why MoneyOwl",
+        "META": {
+            "GENERAL": {
+                "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+                "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+                "META_AUTHOR": "Moneyowl Pte Ltd",
+                "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            },
+            "SOCIAL": {
+                "META_DESCRIPTION": "",
+                "META_THUMBNAIL": ""
+            }
+        },
+        "GENERAL":{
+            "HEADER":{
+                "TITLE": "Why MoneyOwl",
+                "DESCRIPTION": "We provide financial advice that is comprehensive, competent and conflict-free, using solutions that are fit-for-purpose so that you can be empowered to live a fulfilling life."
+            },
+            "VALUE_PROP": [ 
+                {
+                    "IMAGE": "mas-licensed.svg",
+                    "LABEL": "MAS-licensed",
+                    "DESCRIPTION": "MoneyOwl is a financial adviser and fund management company licensed by the MAS. Inheriting our DNA to Do Good and Do Right from our two corporate parents, NTUC Enterprise and Providend, we hold ourselves to the highest of standards to put your interests first. The key leaders of MoneyOwl have a wealth of experience in comprehensive financial planning and fund management so you can be assured of receiving the most competent advice."
+                },
+                {
+                    "IMAGE": "high-tech.svg",
+                    "LABEL": "High-tech + Human wisdom",
+                    "DESCRIPTION": "Statistical models are static. Human relationships are dynamic. So, while robots can do precise calculations, only humans can understand your emotions and aspirations which must be considered in making money decisions. Have the best of both worlds. Leverage MoneyOwl’s advanced technology and receive advice from our dedicated Client Advisers. This is what we mean by Bionic – integrating technology with human wisdom to help you achieve your goals."
+                },
+                {
+                    "IMAGE": "salary-advice.svg",
+                    "LABEL": "Non commissioned-based Advisers",
+                    "DESCRIPTION": "We want to provide you with advice that is conflict-free. MoneyOwl’s advisers are salaried-based and are not remunerated by commissions. There is no incentive to hard-sell or to promote products that reward with higher commissions. Our focus is on helping you make wise money decisions in your best interests."                   
+                },
+                {
+                    "IMAGE": "national.svg",
+                    "LABEL": "Integration with National Schemes",
+                    "DESCRIPTION": "National schemes like our CPF are often ignored when it comes to financial planning in Singapore. Despite CPF playing such a large role in retirement planning, there is insufficient understanding of the scheme and an absence of advice in this key area. Integrating our advice with national schemes, you can now consolidate all your financial information, craft a comprehensive financial plan and achieve a more secure retirement."
+                },
+                {
+                    "IMAGE": "secure.svg",
+                    "LABEL": "Secure Platform",
+                    "DESCRIPTION": "Your privacy is our priority. We do not sell or refer your personal information to a third party. MoneyOwl’s platform is built by an experienced technology team led by our very own Chief Technology Officer, undergoes rigorous penetration testing and meets technology risk management guidelines by MAS to ensure highest security and data protection, so that you can have peace of mind."
+                }
+            ]
+        }
     }
 }

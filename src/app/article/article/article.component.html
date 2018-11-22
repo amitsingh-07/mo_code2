@@ -18,7 +18,7 @@
       <div class="learn-about__get-started">
           <div class="get-started--card" *ngFor="let article of getStartedArticleList">
             <div class="art-tag__container">
-              <a class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}"><i class="material-icons">local_offer</i>{{tag}}</a>
+              <a class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}">{{tag}}</a>
               </div>
             <div class="article-card--img">
               <img src="./../../assets/articles/images/{{article.id}}/thumbnail.jpg"/>
@@ -26,8 +26,8 @@
             <div class="article-card--desc">
               <a class="art-title" routerLink="/articles/entry/{{article.id}}">{{article.art_title}}</a>
               <p class="art-desc">
-                <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
-                <span>{{article.art_date}}</span>
+                <span class="author"><a class="author-link">{{article.art_author}}</a></span>
+                <span class="date">{{article.art_date | date:'MMM dd, yyyy'}}</span>
               </p>
               </div>
             </div> 
@@ -51,11 +51,11 @@
           <div class="article-card--desc col-xl-7 col-lg-8 col-md-8 col-sm-7 col-xs-12">
             <a class="art-title" routerLink="/articles/entry/{{article.id}}">{{article.art_title}}</a>
             <p class="art-desc">
-              <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
-              <span>{{article.art_date}}</span>
+              <span class="author"><a class="author-link">{{article.art_author}}</a></span>
+              <span class="date">{{article.art_date | date:'MMM dd, yyyy'}}</span>
               </p>
             <div class="art-tag__container latest-art">
-              <div class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}"><i class="material-icons">local_offer</i>{{tag}}</div>
+              <div class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}">{{tag}}</div>
               </div>
             </div>
           </div>

@@ -75,8 +75,7 @@ export class IntroductionComponent implements OnInit {
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
         this.willWritingService.setPromoCode(promoCode);
-        //data.objectList[0].enquiryId
-        this.willWritingService.setEnquiryId(123456);
+        this.willWritingService.setEnquiryId(data.objectList[0].enquiryId);
         this.openTermsOfConditions();
       } else if (this.promoCode.responseCode === 5017) {
         this.willWritingService.openToolTipModal('', this.promoCode.responseDescription);
@@ -96,7 +95,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   openFAQ() {
-    window.open(this.faqLink, '_blank');
+    this.router.navigate(['faq']);
   }
 
   openTermsOfConditions() {

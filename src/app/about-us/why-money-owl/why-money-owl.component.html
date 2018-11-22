@@ -1,0 +1,37 @@
+<div class="why-moneyowl__wrapper">
+  <div class="sub-navigation">
+    <div class="sub-navigation--inner pdlr">
+      <span routerLink="/">Home</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+      <span routerLink="/about-us">About Us</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+      <span>Why MoneyOwl</span>
+      </div>
+  </div>
+  <div class="banner" #banner>
+    <div class="banner-bg">
+        <div class="banner-bg--image"></div>
+    </div>
+    <div class="banner__container">
+      <div class="banner__text-container">
+        <h1 class="banner--title">{{'WHY_MONEYOWL.GENERAL.HEADER.TITLE' | translate}}</h1>
+        <h3 class="banner--sub-title" innerHTML="{{headerDesc}}"></h3>
+        </div>
+    </div> 
+    </div>
+  <div class="why-moneyowl__content">
+    <div class="why-moneyowl__section" *ngFor="let section of whyMoneyowlSections">
+      <div class="why-moneyowl__image">
+          <img src="/assets/images/value_prop/{{section.IMAGE}}"/>
+        </div>
+      <div class="why-moneyowl__description">
+        <div class="why-moneyowl__description--title">
+            {{section.LABEL}}
+          </div>
+        <div class="why-moneyowl__description--main">
+            {{section.DESCRIPTION}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

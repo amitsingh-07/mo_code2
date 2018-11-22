@@ -9,6 +9,9 @@
     justify-content: center;
     flex-direction:column;
     background-color:$white-color;
+    .about-us__header{
+        background-color:$white-color;
+    }
 }
 
 .faq__container{
@@ -20,12 +23,6 @@
         position: relative;
         display:block;
         width:100%;
-        max-width:1024px;
-        padding:65px 0px;
-        margin:0px auto;
-        @include minMobilemaxPhablet{
-            padding:65px 0Fpx;
-        }
     }
 
     .faq-category__header{
@@ -46,8 +43,11 @@
         display:flex;
         width:100%;
         justify-content:space-between;
-        padding: 10px 0px;
+        max-width:1024px;
+        padding:45px 0px;
+        margin:0px auto;
         @include minMobilemaxPhablet{
+            padding:30px 0px;
             flex-direction:column;
         }
         .faq-selection__panel{
@@ -58,6 +58,9 @@
             margin-inline-start: 0px;
             padding-inline-start: 0px;
             margin:0px;
+            @include minPhabletmaxTablet{
+                flex-basis:180px;
+            }
             .dropdown-toggle{
                 padding-right:30px;
                 text-align: left;
@@ -101,7 +104,8 @@
                 padding:0px;
                 margin:0px;
                 border:0px;
-                top:0px !important;    
+                top:0px !important;   
+                width:100%; 
             }
             @include minMobilemaxPhablet{
             flex-basis: unset;
@@ -124,6 +128,14 @@
             margin-inline-start: 0px;
             padding-inline-start: 0px;
             flex-basis:calc(100% - 270px);
+            @include minPhabletmaxTablet{
+                flex-basis:calc(100% - 250px);
+                max-width:calc(100% - 200px);
+                margin-left:20px;
+            }
+            @include min568max767{
+                max-width:100%;
+            }
             @include minMobilemaxPhablet{
                 margin-top:20px;
             }
@@ -133,7 +145,7 @@
             h3{
                 position: relative;
                 display:block;
-                font-family:$muli-regular;
+                font-family:$muli-semi-bold;
                 font-size:24px;
                 letter-spacing:-0.3px;
                 color:$black-color;
@@ -193,6 +205,13 @@
                     transition:0.3s;
                     padding-left:26px;
                     font-size:16px;
+                    a{
+                        color:$orange-color !important;
+                        &:hover{
+                            color:$orange-color !important;
+                            text-decoration:underline;
+                        }
+                    }
                     ul{
                         li{
                             list-style-type: disc;
@@ -204,7 +223,7 @@
                         }
                         li span { font-weight: normal; }
                     }
-                    .tg{border-collapse:collapse;border-spacing:0;}
+                    .tg{border-collapse:collapse;border-spacing:0;position: relative;display:block;width:100%;overflow:auto;}
                     .tg td{padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
                     .tg th{text-align:center;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
                     .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
@@ -213,5 +232,101 @@
                 }
             }
         }
+    }
+}
+
+.home__navbar{
+    position: relative;
+    display:flex;
+    width:100%;
+    height:85px;
+    z-index:1;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    justify-content:center;
+    @include minMobilemaxPhablet{
+        border-bottom: 2px solid #e5f3f4;
+    }
+    &::-webkit-scrollbar {
+        height:0px;
+    }
+
+    &.fixed{
+        position:fixed;
+        top:84px;
+        left:0px;
+        background-color:$white-color;
+        z-index:10;
+        border-bottom: 2px solid#e5f3f4;
+        @include minMobilemaxPhablet{
+            top:45px;
+        }
+    }
+    &.hide{
+        position: absolute;
+        top:unset;
+        bottom:5px;
+    }
+    @include minMobilemaxPhablet{
+        height:80px;
+    }
+    .home__navbar--inner{
+        position: relative;
+        display:flex;
+        width:calc(100% - 204px);
+        max-width:1024px;
+        @include tablet{
+            width:calc(100% - 90px);
+        }
+        @include phablet{
+            width:100%;
+        }
+        @include minMobilemaxPhablet{
+            width:100%;
+        }
+    }
+    .home__navbar--border{
+        position: absolute;
+        display:block;
+        width:100%;
+        height:2px;
+        bottom:0px;
+        background-color:#e5f3f4;
+        @include minMobilemaxPhablet{
+            display:none;
+        }
+        &.hide{
+            display:none; 
+        }
+    }
+}
+
+
+.faq-img {
+    margin-top:26px;
+    img{
+        width: 215px;
+        margin: 0 auto;
+        @include minMobilemaxPhablet{
+            width:210px;
+        }
+    }
+    @include minMobilemaxPhablet{
+        margin-bottom:-15px;
+    }
+}
+.faq-title {
+    font-family: $muli-semi-bold;
+    font-size: 32px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.6px;
+    text-align: center;
+    color:$teal-color;
+    @include minMobilemaxPhablet{
+        font-size:21px;
+        margin-bottom:30px;
     }
 }

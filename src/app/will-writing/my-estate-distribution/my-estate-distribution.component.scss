@@ -332,12 +332,15 @@ input[type='checkbox']+label {
         color: #ffffff;
         display: flex;
         position: absolute;
-        top: 9%;
+        top: 12%;
         flex-direction: column;
         left: 0;
         right: 0;
         justify-content: center;
         align-items: center;
+        @include allmobiles {
+            top: 6%;
+        }
       }
   }
   .estate-distribution-form{
@@ -423,6 +426,10 @@ input[type='checkbox']+label {
         line-height: normal;
         letter-spacing: -0.1px;
         color: #333846;
+        font-family: $muli-semi-bold;
+        @include allmobiles {
+            bottom: 10%;
+        }
     }
 }
 

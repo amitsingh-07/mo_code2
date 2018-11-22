@@ -51,6 +51,7 @@ export class ArticleEntryComponent implements OnInit {
 
   getArticleContent(art_id: number) {
     // Getting Article Details
+    window.scroll(0, 0);
     this.articleApiService.getArticle(art_id).subscribe((data) => {
       const art_data = this.articleService.getArticleEntry(data);
       this.getRelatedArticles(art_data.art_pri_tag);

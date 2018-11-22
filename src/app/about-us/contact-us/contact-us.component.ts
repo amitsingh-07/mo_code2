@@ -1,12 +1,15 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IContactUs } from './contact-us.interface';
 
+import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
 import { AboutUsApiService } from './../about-us.api.service';
 import { AboutUsService } from './../about-us.service';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -15,11 +18,14 @@ import { AboutUsService } from './../about-us.service';
 })
 export class ContactUsComponent implements OnInit {
   public subject = 'Choose a Subject*';
-  public email = 'enquiry@moneyowl.com.sg';
+  public email = 'enquiries@moneyowl.com.sg';
 
   contactUsForm: FormGroup;
   contactUsFormValues: IContactUs;
+  contactUsErrorMessage: string;
   subjectList: any;
+  subjectPreset = 'Choose a Subject*';
+
   public subjectItems: any;
   sendSuccess = false;
 
@@ -28,23 +34,30 @@ export class ContactUsComponent implements OnInit {
     public footerService: FooterService,
     public aboutUsService: AboutUsService,
     public aboutUsApiService: AboutUsApiService,
+    public translate: TranslateService,
+    public authService: AuthenticationService,
     private formBuilder: FormBuilder
     ) {
+      this.authService.authenticate().subscribe((response) => {});
       this.aboutUsApiService.getSubjectList().subscribe((data) => {
         this.subjectItems = this.aboutUsService.getSubject(data);
         console.log(this.subjectItems);
       });
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe((result: string) => {
+        this.contactUsErrorMessage = this.translate.instant('ERROR.CONTACT_US.EMPTY_TEXT');
+      });
+      this.contactUsFormValues = this.aboutUsService.getContactUs();
+      this.contactUsForm = new FormGroup({
+        subject: new FormControl(this.contactUsFormValues.subject),
+        email: new FormControl(this.contactUsFormValues.email),
+        message: new FormControl(this.contactUsFormValues.message, [Validators.required])
+      });
     }
 
   ngOnInit() {
+    this.sendSuccess = false;
     this.footerService.setFooterVisibility(true);
-
-    this.contactUsFormValues = this.aboutUsService.getContactUs();
-    this.contactUsForm = new FormGroup({
-      subject: new FormControl(this.contactUsFormValues.subject),
-      email: new FormControl(this.contactUsFormValues.email),
-      message: new FormControl(this.contactUsFormValues.message, [Validators.required])
-    });
   }
 
   selectSubject(in_subject) {

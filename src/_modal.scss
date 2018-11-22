@@ -628,8 +628,8 @@ body.modal-open::-webkit-scrollbar {
   .modal-body {
     &.white-bg {
       .close {
-        top: 25px !important;
-        right: 10px !important;
+        top: 20px !important;
+        right: 20px !important;
       }
     }
   }
@@ -673,7 +673,31 @@ body.modal-open::-webkit-scrollbar {
     width: 100vw;
     overflow: hidden !important;
   }
-
+  .modal-body {
+    &.white-bg {
+      .close {
+        top: 25px !important;
+        right: 20px !important;
+      }
+    }
+  }
+  @include allmobiles {
+    .modal-body-title {
+      margin: -5px 0 10px 0 !important;
+    }
+    .modal-body-message {
+      margin-right:0 !important;
+      padding: 0 !important
+    }
+    .modal-body {
+      &.white-bg {
+        .close {
+          top: 25px !important;
+          right: 20px !important;
+        }
+      }
+    }
+  }
   /* Important part */
   .modal-dialog {
     overflow-y: initial !important;
@@ -744,8 +768,29 @@ body.modal-open::-webkit-scrollbar {
 }
 
 .will-custom-modal {
+    .modal-header {
+      width: 375px !important;
+      @include allmobiles{
+        width: 100vw !important;
+      }
+    }
     .modal-body{
         width: 375px !important;
+        .modal-body-message {
+          @include allmobiles {
+            padding: 0 !important;
+          }
+        }
+        &.white-bg {
+          .close {
+            top: 25px !important;
+            right: 20px !important;
+            @include allmobiles {
+              top: 25px !important;
+              right: 20px !important;
+            }
+          }
+        }
         @include allmobiles{
           width: 100vw !important;
         }      
