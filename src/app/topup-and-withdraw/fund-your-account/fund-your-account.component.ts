@@ -12,6 +12,7 @@ import {
     TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
   selector: 'app-fund-your-account',
@@ -60,6 +61,21 @@ export class FundYourAccountComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
+  getBankDetailsList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.bankDetailsList = data.objectList.bankList;
+      console.log(this.bankDetailsList);
+    });
+  }
+  showBankDetails() {
+    const ref = this.modal.open(BankDetailsComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Select Your Bank';
+    ref.componentInstance.errorDescription = 'You will be transferring funds from:';
+    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
+    console.log(this.bankDetailsList);
+    return false;
+  }
+
   getPageTitleBySource(source, type) {
     let pageTitle;
     if (source === 'FUNDING') {
@@ -77,34 +93,27 @@ export class FundYourAccountComponent implements OnInit {
     });
   }
 
-  showBankDetails() {
-    const ref = this.modal.open(BankDetailsComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Select Your Bank';
-    ref.componentInstance.errorDescription = 'You will be transferring funds from:';
-    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
-    console.log(this.bankDetailsList);
-    return false;
-
-  }
   selectFundingMethod(mode) {
     this.activeMode = mode;
   }
 
-  getBankDetailsList() {
-    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
-      this.bankDetailsList = data.objectList.bankList;
-      console.log(this.bankDetailsList);
-    });
-  }
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter((transferType) => transferType.institutionType === 'bank')[0];
     this.paynowDetails = data.filter((transferType) => transferType.institutionType === 'PayNow')[0];
   }
 
+  oneTimeSufficient() {
+    return (this.fundDetails.fundingType === 'ONETIME' && !this.fundDetails.isAmountExceedBalance);
+  }
+
   goToNext() {
-    this.topupAndWithDrawService.buyPortfolio(this.fundDetails, this.activeMode).subscribe((data) => {
+    // redirect to dashboard
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+  }
+
+  buyPortfolio() {
+    this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((data) => {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST]);
     });
   }
-
 }

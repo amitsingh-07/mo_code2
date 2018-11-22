@@ -98,16 +98,16 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
   }
 
-  constructFundingParams(data): FundDetails {
+  constructFundingParams(data) {
     const topupValues = {
       source: 'FUNDING',
+      portfolioName: data.riskProfile.type,
+      portfolioId: data.portfolioId,
       oneTimeInvestment: data.initialInvestment,
       monthlyInvestment: data.monthlyInvestment,
-      investmentAmount: 0,
-      amountToTransfer: 0,
-      isAmountExceedCash: true,
-      portfolioName: data.riskProfile.type,
-      portfolioId: data.portfolioId
+      fundingType: '', // todo
+      isAmountExceedBalance: 0,
+      exceededAmount: 0
     };
     return topupValues;
   }
