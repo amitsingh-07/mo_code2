@@ -19,33 +19,33 @@
               <div class="form-group">
                 <div class="flex-row title" id="about-me-form-title">{{ 'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
                 <div class="flex-row section mt20">
-                  <div class="flex-col-5">
+                  <div class="pl0 col-5">
                     <label for="name" id="aboutMeFormLbl1">
                       <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NAME' | translate}}<div class="sub_name">{{ 'WILL_WRITING.COMMON.SUB_NAME' | translate}}</div></div>
                     </label>
                   </div>
-                  <div class="flex-col-7">
+                  <div class="pr0 col-7">
                     <input type="text" [ngClass]="{'inline-error': submitted && abtMe.name.invalid}" id="aboutMeFormInpt1"
                       class="form-control" #name formControlName="name">
                   </div>
                 </div>
                 <div class="flex-row section">
-                  <div class="flex-col-5">
+                  <div class="pl0 col-5">
                     <label for="name" id="aboutMeFormLbl2">
                       <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC' | translate}}</div>
                       <div class="with-help-icon">{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon" (click)="openToolTipModal()"></span></div>
                     </label>
                   </div>
-                  <div class="flex-col-7">
+                  <div class="pr0 col-7">
                     <input type="text" [ngClass]="{'inline-error': submitted && abtMe.uin.invalid}" id="aboutMeFormInpt2"
                       class="form-control" #uin formControlName="uin">
                   </div>
                 </div>
                 <div class="flex-row section">
-                  <div class="flex-col-5">
+                  <div class="pl0 col-5">
                     <label for="name" id="aboutMeFormLbl3">{{ 'WILL_WRITING.ABOUT_ME.FORM.I_AM_A' | translate}}</label>
                   </div>
-                  <div class="flex-col-7 direct-form-grp">
+                  <div class="pr0 col-7 direct-form-grp">
                     <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
                       <div class="flex-row section pl0 pr0 mb0 space-btwn">
                         <div class="flex-col-6">
@@ -67,10 +67,10 @@
                   </div>
                 </div>
                 <div class="flex-row section">
-                  <div class="flex-col-5">
+                  <div class="pl0 col-5">
                     <label for="name" id="aboutMeFormLbl6">{{ 'WILL_WRITING.ABOUT_ME.FORM.AND' | translate}}</label>
                   </div>
-                  <div class="flex-col-7">
+                  <div class="pr0 col-7">
                     <div class="dropdown-control" [ngClass]="{'inline-error': submitted && abtMe.maritalStatus.invalid}">
                       <div ngbDropdown id="maritalStatusDropDown">
                         <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
@@ -90,10 +90,10 @@
                   </div>
                 </div>
                 <div class="flex-row pb30">
-                  <div class="flex-col-5">
+                  <div class="pl0 col-5">
                     <label for="name" id="aboutMeFormLbl7">{{ 'WILL_WRITING.ABOUT_ME.FORM.WITH' | translate}}</label>
                   </div>
-                  <div class="flex-col-7">
+                  <div class="pr0 col-7">
                     <div class="dropdown-control" [ngClass]="{'inline-error': submitted && abtMe.noOfChildren.invalid}">
                       <div ngbDropdown id="noOfChildrenDropDown">
                         <button type="button" class="btn btn-dropdown width100" id="dropdownNoOfChildren"
