@@ -60,7 +60,6 @@ export function createTranslateLoader(http: HttpClient) {
     YourPortfolioComponent,
     AssetAllocationComponent,
     FundYourAccountComponent,
-    TopUpComponent,
     TopupRequestComponent,
     ConfirmWithdrawalModalComponent,
     AddBankModalComponent,
