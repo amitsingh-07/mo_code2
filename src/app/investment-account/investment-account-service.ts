@@ -996,8 +996,4 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.riskProfileType = data.riskProfile.type;
         this.commit();
     }
-
-    getAllNotifications() {
-        return this.apiService.getAllNotifications();
-    }
 }

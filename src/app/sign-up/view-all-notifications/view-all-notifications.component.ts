@@ -8,16 +8,11 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import {
-  AccountCreationErrorModalComponent
-} from '../account-creation-error-modal/account-creation-error-modal.component';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
-import { TopBarWithClearButtonComponent } from '../top-bar-with-clear-button/top-bar-with-clear-button.component';
+import { SignUpService } from '../sign-up.service';
 
 @Component({
   selector: 'app-view-all-notifications',
@@ -34,7 +29,7 @@ export class ViewAllNotificationsComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private router: Router,
     private formBuilder: FormBuilder,
-    private investmentAccountService: InvestmentAccountService,
+    private signUpService: SignUpService,
     private modal: NgbModal,
     public authService: AuthenticationService,
     public readonly translate: TranslateService) {
@@ -48,12 +43,62 @@ export class ViewAllNotificationsComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
-    this.investmentAccountService.getAllNotifications().subscribe((response) => {
+    /*
+    this.signUpService.getAllNotifications().subscribe((response) => {
     console.log(response);
     this.notifications = response.objectList;
     console.log(this.notifications);
     this.notificationCount = this.notifications.length;
     });
+    */
+
+  const response = {
+    'responseMessage': {
+      'responseCode': 6000,
+      'responseDescription': 'Successful response'
+    },
+    'objectList': [{
+      'id': 1,
+      'description': 'this is a sample notification',
+      'message': 'Notification 1',
+      'time': '5 Mins ago'
+
+    }, {
+      'id': 2,
+      'description': 'this is a sample notification',
+      'message': 'Notification 2',
+      'time': '10 Mins ago'
+    }, {
+      'id': 3,
+      'description': 'this is a sample notification',
+      'message': 'Notification 3',
+      'time': '20 Mins ago'
+    }, {
+      'id': 4,
+      'description': 'this is a sample notification',
+      'message': 'Notification 4',
+      'time': '25 Mins ago'
+    }, {
+      'id': 5,
+      'description': 'this is a sample notification',
+      'message': 'Notification 5',
+      'time': '30 Mins ago'
+    }, {
+      'id': 6,
+      'description': 'this is a sample notification',
+      'message': 'Notification 6',
+      'time': '30 Mins ago'
+    }, {
+      'id': 7,
+      'description': 'this is a sample notification',
+      'message': 'Notification 7',
+      'time': '30 Mins ago'
+    }]
+
+                    };
+  this.notifications = response.objectList;
+  this.notificationCount = this.notifications.length;
+
   }
   hideNotification(notification) {
     console.log(notification);

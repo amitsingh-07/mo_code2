@@ -30,8 +30,14 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
+import {
+    TopBarWithClearButtonComponent
+} from './top-bar-with-clear-button/top-bar-with-clear-button.component';
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import {
+    ViewAllNotificationsComponent
+} from './view-all-notifications/view-all-notifications.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -74,7 +80,9 @@ export function createTranslateLoader(http: HttpClient) {
     EditProfileComponent,
     EditPasswordComponent,
     EditResidentialAddressComponent,
-    UpdateUserIdComponent
+    UpdateUserIdComponent,
+    ViewAllNotificationsComponent,
+    TopBarWithClearButtonComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

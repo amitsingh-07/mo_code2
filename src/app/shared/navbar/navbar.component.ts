@@ -1,23 +1,17 @@
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
+
 import { Location } from '@angular/common';
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  Renderer2,
-  ViewChild
+    AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
+    ViewChild
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { NavbarService } from './navbar.service';
-
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { NavbarService } from './navbar.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -79,7 +73,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
-      this.investmentAccountService.getAllNotifications().subscribe((response) => {
+      this.signUpService.getAllNotifications().subscribe((response) => {
         console.log(response);
         this.notifications = response.objectList;
         this.count = this.notifications.length;
@@ -158,7 +152,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   this.IsHidden = !this.IsHidden;
 }
 viewAllNotifications() {
-  this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
+  this.router.navigate([SIGN_UP_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
   this.IsHidden = true;
 }
 canActivateNotification() {
