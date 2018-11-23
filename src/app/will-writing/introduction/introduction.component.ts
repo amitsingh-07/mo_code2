@@ -27,6 +27,8 @@ export class IntroductionComponent implements OnInit {
   private el: ElementRef;
   promoCode;
   isPromoCodeValid: boolean;
+  isDisabled: boolean;
+  errorMsg: string;
   @ViewChild('promoCode') promoCodeRef: ElementRef;
 
   constructor(
@@ -45,6 +47,7 @@ export class IntroductionComponent implements OnInit {
       this.pageTitle = this.translate.instant('WILL_WRITING.INTRODUCTION.PAGE_TITLE');
       this.faqLink = this.translate.instant('WILL_WRITING.INTRODUCTION.FAQ_LINK');
       this.getNowLink = this.translate.instant('WILL_WRITING.INTRODUCTION.GET_ONE_NOW_LINK');
+      this.errorMsg = this.translate.instant('WILL_WRITING.INTRODUCTION.PROMO_ERROR');
     });
   }
 
@@ -71,6 +74,7 @@ export class IntroductionComponent implements OnInit {
 
   verifyPromoCode(promoCode) {
     promoCode = promoCode.toUpperCase();
+    this.isDisabled = true;
     this.willWritingApiService.verifyPromoCode(promoCode).subscribe((data) => {
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
@@ -78,11 +82,14 @@ export class IntroductionComponent implements OnInit {
         this.willWritingService.setEnquiryId(data.objectList[0].enquiryId);
         this.openTermsOfConditions();
       } else if (this.promoCode.responseCode === 5017) {
-        this.willWritingService.openToolTipModal('', this.promoCode.responseDescription);
+        this.willWritingService.openToolTipModal('', this.errorMsg);
+        this.isDisabled = false;
       } else {
+        this.isDisabled = false;
         return false;
       }
     }, (error) => {
+      this.isDisabled = false;
     });
   }
 
@@ -103,6 +110,8 @@ export class IntroductionComponent implements OnInit {
     ref.result.then((data) => {
       if (data === 'proceed') {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.CHECK_ELIGIBILITY]);
+      } else {
+        this.isDisabled = false;
       }
     });
   }
