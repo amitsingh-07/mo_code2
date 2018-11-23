@@ -191,7 +191,7 @@
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",
-      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role of executor & trustee in the event that your spouse passes on before you.",
+      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role as your executor & trustee in the event that your main executor & trustee passes on before you.",
       "TOOLTIP_TITLE": "Role Of An Executor & Trustee",
       "TOOLTIP_MESSAGE": "<p>After you have passed on, your executor and trustee is in charge of carrying out the wishes of your will. As the 2 roles tend to overlap, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes settling outstanding debts of your estate (using your assets) and distributing your estate according to your wishes.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>",
       "MESSAGE_TOOLTIP": "Generally, we advise you to appoint a family member or trusted friend as executor & trustee."
@@ -229,7 +229,7 @@
     },
     "VALIDATE_YOUR_WILL": {
       "HERE_YOUR_WILL": "Here’s Your Will!",
-      "TITLE": "Validate Your Will",
+      "TITLE": "Execute Your Will",
       "SUB_TITLE": "Yay, your will is ready to be viewed! Please follow the steps below to validate your will.",
       "PRINT_YOUR_WILL": "Print Your Will",
       "FIND_2_WITNESSES": "Find 2 Witnesses",

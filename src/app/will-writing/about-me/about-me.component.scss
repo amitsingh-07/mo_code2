@@ -57,8 +57,12 @@
     }
     .direct-form-grp {
         .direct-form-btn--radio{
-            width: unset;
-            min-width: unset;
+            width: auto;
+            min-width: auto;
+            margin-left: 15px;
+            &.female{
+                margin-left: 10px;
+            }
             @include allmobiles{
                 background: $white-color;
                 color: #00a7a7;
