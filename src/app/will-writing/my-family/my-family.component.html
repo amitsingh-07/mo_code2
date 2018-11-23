@@ -71,7 +71,7 @@
                       <div class="col-7 pr0">
                         <div class="datepicker-control">
                           <div class="input-group date-picker mb0" [ngClass]="{'inline-error': submitted && children.controls.dob.invalid}">
-                            <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                            <input readonly class="form-control" placeholder="DD/MM/YYYY" formControlName="dob" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                             <div class="input-group-append">
                               <button (click)="d.toggle()" class="btn btn-primary" type="button">
                                 <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="!submitted || children.controls.dob.valid || children.controls.dob.pristine" src="./assets/images/calendar-normal.svg"
