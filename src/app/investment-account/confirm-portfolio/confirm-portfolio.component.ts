@@ -237,7 +237,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (pepData == true) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
       this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
         // CREATE INVESTMENT ACCOUNT
         console.log('Attempting to create ifast account');
