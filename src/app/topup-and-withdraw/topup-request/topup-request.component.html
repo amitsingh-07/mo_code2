@@ -7,9 +7,9 @@
         <div>
           <img src="../../../assets/images/investment-account/investment_Account_Created.svg" id="add_submit_custModalImg2" />
         </div>
-        <p *ngIf="requestReceivecd"  class="custom-modal--title mt20" id="upload-document-later-lab">Top Up Request Received!
+        <p *ngIf="status == 'success'"  class="custom-modal--title mt20" id="upload-document-later-lab">Top Up Request Received!
           </p>
-          <p *ngIf="!requestReceivecd" class="custom-modal--title mt20" id="upload-document-later-lab">Request will be processed once fund transfer is complete
+          <p *ngIf="status == 'pending'" class="custom-modal--title mt20" id="upload-document-later-lab">Request will be processed once fund transfer is complete
             </p>
 
 

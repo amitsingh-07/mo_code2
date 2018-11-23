@@ -25,10 +25,8 @@ export class YourPortfolioComponent implements OnInit {
   setPageTitle: string;
   moreList: any;
   PortfolioValues;
-
- 
-
-  constructor(
+  selectedDropDown;
+ constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
@@ -62,6 +60,14 @@ export class YourPortfolioComponent implements OnInit {
   }
  gotoTopUp() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
+  selectOption(option) {
+    this.selectedDropDown = option.name;
+    if (this.selectedDropDown === 'Withdraw Portfolio') {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
+    } else {
+      console.log('Transaction History');  //TODO
+    }
   }
 
 }

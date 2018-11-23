@@ -1,19 +1,19 @@
 <div class="content">
   <div class="flex-row">
     <div class="flex-col-12">
-      <img id="edit_profile_bg_img" class="background_img" src="assets/images/investment_header.svg" />
+      <img id="edit_profile_bg_img" id="your_portfolio_backgroung_img" class="background_img" src="assets/images/investment_header.svg" />
 
       <div class="flex-row user_content flex-col-12">
-        <div class="flex-col-8 user_portfolio"><div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
-          <div>{{PortfolioValues.productName}}</div>
+        <div class="flex-col-8 user_portfolio" id="youe_portfolio_summary"><div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
+          <div id="youe_portfolio_name">{{PortfolioValues.productName}}</div>
         </div>
         <div class="flex-col-4">
           <div class="dropdown-control ">
             <div ngbDropdown>
-              <button class="btn btn-dropdown without-border grey" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+              <button class="btn btn-dropdown without-border grey" id="your_portfolio-drpdown" ngbDropdownToggle>
                 More</button>
               <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                <button class="dropdown-item" *ngFor="let option of moreList; let i = index;" (click)="selectOption(option)" id="additional_declaration_sourse-drpdown-option-{{i}}">{{option.name}}</button>
+                <button class="dropdown-item" *ngFor="let option of moreList; let i = index;" (click)="selectOption(option)" id="your_portfolio-drpdown-option-{{i}}">{{option.name}}</button>
               </div>
             </div>
           </div>
@@ -25,59 +25,59 @@
           <div class="col-lg-12 col-md-12">
             <div class="flex-row">
 
-              <button type="button" class="btn-with-icon mb20" id="errorModeButton" (click)="gotoTopUp()" >
-                <img src="../../../assets/images/investment-account/money-topup.svg" alt="" /> {{'YOUR_PORTFOLIO.TOP_UP' | translate}}
+              <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()" >
+                <img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /> {{'YOUR_PORTFOLIO.TOP_UP' | translate}}
               </button>
             </div>
             <div class="form-group-with-bg">
               <!--Form Header-->
               <div class="form-group-with-bg--header your_total_value">
                 <div id="myFinancialLbl">
-                  <div class="total_values">{{PortfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                  <div class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
+                  <div id="portdolio_value" class="total_values">{{PortfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div  id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
                 </div>
               </div>
               <!--Form Content-->
               <div class="form-group-with-bg--content">
                 <div class="flex-row">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
+                    <div  id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="total value">{{PortfolioValues.investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+                    <div   id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">{{PortfolioValues.investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
                 <div class="flex-row">
                   <div class="flex-col-8">
-                    <div class="start_investment_label" for="name">{{'YOUR_PORTFOLIO.FROM_START_OF_INVESTMENT' | translate}}
+                    <div  id="your_portfolio_start_value_lbl" class="start_investment_label" for="name">{{'YOUR_PORTFOLIO.FROM_START_OF_INVESTMENT' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-4">
-                    <div class="start_investment_value" for="name">+ {{PortfolioValues.investmentAmount}}% <!--todo -->
+                    <div id="your_portfolio_start_value_value" class="start_investment_value" for="name">+ {{PortfolioValues.investmentAmount}}% <!--todo -->
                     </div>
                   </div>
                 </div>
 
                 <div class="flex-row mt20">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="tota">{{'YOUR_PORTFOLIO.YEARLY_RETURNS' | translate}}
+                    <div id="your_portfolio_yearly_return" class="total_return_label" for="tota">{{'YOUR_PORTFOLIO.YEARLY_RETURNS' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                     <div class="start_investment_value" for="name"> + 323.35%  <!--todo -->
+                     <div  id="your_portfolio_yearly_return_value" class="start_investment_value" for="name"> + 323.35%  <!--todo -->
                     </div>
                   </div>
                 </div>
                 <hr>
                 <div class="flex-row mt20">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="tota"> {{'YOUR_PORTFOLIO.TOTAL_INVESTED' | translate}}
+                    <div  id="your_portfolio_yearly_total_invested" class="total_return_label" for="tota"> {{'YOUR_PORTFOLIO.TOTAL_INVESTED' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="name">{{PortfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}} <!--todo -->
+                    <div  id="your_portfolio_yearly_total_invested_value" class="total_return_value" for="name">{{PortfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}} <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -107,40 +107,40 @@
               <!--Form Header-->
               <div class="form-group-with-bg--header your_total_value">
                 <div id="myFinancialLbl">
-                  <div class="total_values">$0</div>
-                  <div class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
+                  <div  id="your_portfolio_total_lb" class="total_values">$0</div>
+                  <div id="your_portfolio_total_value" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
                 </div>
               </div>
               <!--Form Content-->
               <div class="form-group-with-bg--content">
                 <div class="flex-row">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
+                    <div id="your_portfolio_totalreturn_lb" class="total_return_label" for="total return">{{'YOUR_PORTFOLIO.TOTAL_RETURNS' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="total_return_value" for="total value">$0  <!--todo -->
+                    <div  id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">$0  <!--todo -->
                     </div>
                   </div>
                 </div>
                 <div class="flex-row">
                   <div class="flex-col-8">
-                    <div class="start_investment_label" for="name">{{'YOUR_PORTFOLIO.FROM_START_OF_INVESTMENT' | translate}}
+                    <div   id="your_portfolio_start_value_lbl" class="start_investment_label" for="name">{{'YOUR_PORTFOLIO.FROM_START_OF_INVESTMENT' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-4">
-                    <div class="start_investment_value" for="name">+ 0% <!--todo -->
+                    <div  id="your_portfolio_start_value_value" class="start_investment_value" for="name">+ 0% <!--todo -->
                     </div>
                   </div>
                 </div>
 
                 <div class="flex-row mt20">
                   <div class="flex-col-9">
-                    <div class="total_return_label" for="tota">{{'YOUR_PORTFOLIO.YEARLY_RETURNS' | translate}}
+                    <div  id="your_portfolio_yearly_total_invested" class="total_return_label" for="tota">{{'YOUR_PORTFOLIO.YEARLY_RETURNS' | translate}}
                     </div>
                   </div>
                   <div class="flex-col-3">
-                    <div class="start_investment_value" for="name">+ 0% <!--todo -->
+                    <div   id="your_portfolio_yearly_total_invested" class="start_investment_value" for="name">+ 0% <!--todo -->
                     </div>
                   </div>
                 </div>
@@ -163,10 +163,10 @@
 
         <div class="flex-row">
           <div class="flex-col-9">
-            <div class="your_portfolio_label">{{'YOUR_PORTFOLIO.PERFORMANCE' | translate}}</div>
+            <div id="performance_lbl"class="your_portfolio_label">{{'YOUR_PORTFOLIO.PERFORMANCE' | translate}}</div>
           </div>
         </div>
-        <button type="button" class="asset_allocation_btn mb20" id="errorModeButton">
+        <button type="button" class="asset_allocation_btn mb20" id="asset_allocation_btn">
           {{'YOUR_PORTFOLIO.ASSET_ALLOCATION' | translate}}
           <img src="../../../assets/images/investment-account/forward.svg" alt="" />
         </button>

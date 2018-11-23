@@ -56,13 +56,13 @@ export class TopupAndWithDrawService {
   }
   doFinancialValidations(form) {
     const invalid = [];
-    // tslint:disable-next-line:triple-equals
-    if (Number(form.value.oneTimeInvestmentAmount) <= 100 &&
+    // tslint:disable-next-line:triple-equals                              //TODO
+    if (Number(form.value.oneTimeInvestmentAmount) < 99 &&
       form.value.Investment === 'One-time Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
-      // tslint:disable-next-line:max-line-length
-    } else if (Number(form.value.MonthlyInvestmentAmount) <= 50 &&
+      // tslint:disable-next-line:max-line-length                            //TODO
+    } else if (Number(form.value.MonthlyInvestmentAmount) < 49  &&
       form.value.Investment === 'Monthly Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
@@ -199,7 +199,7 @@ export class TopupAndWithDrawService {
     }
 
     constructBuyPortfolioParams(data) {
-      let redeemAmount;
+      let redeemAmount: number;
       let isPayMonthly = false;
       if (data.oneTimeInvestment) {
         redeemAmount = data.oneTimeInvestment;
@@ -208,8 +208,9 @@ export class TopupAndWithDrawService {
         isPayMonthly = true;
       }
       return {
-        portfolioId: data.portfolioId,
-        redemptionAmount: redeemAmount, // todo
+        //portfolioId: data.portfolio.id,
+        portfolioId: 'PORTFOLIO00046', // todo: hard coded, actual lookup api needed
+        investmentAmount: Number(redeemAmount), // todo
         payMonthly: isPayMonthly
       };
     }
