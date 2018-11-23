@@ -63,7 +63,15 @@
                 }
             }
         }
-        
+        .btn {
+            font-family: $muli-bold;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: -0.2px;
+            text-align: center;  
+            color: #ffffff !important;
+            background-color: #00c5c4 !important; 
+        }
     }
     .intro-block__content__heading {
         font-family: $muli-semi-bold;
@@ -100,13 +108,7 @@
             padding: 0 15px;
         }
     }
-    .btn {
-        font-family: $muli-bold;
-        font-size: 22px;
-        font-weight: bold;
-        letter-spacing: -0.2px;
-        text-align: center; 
-    }
+    
 }
 .back-btn {
 	background-image: url("../../../assets/images/back-web.svg");
@@ -195,7 +197,7 @@
     line-height: 1.33;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #00a7a7;
+    color: #5e5e5e;
     @include allmobiles {
         color: #ffffff;
     }

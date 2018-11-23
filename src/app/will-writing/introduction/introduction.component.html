@@ -39,7 +39,7 @@
               <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now"
                   (click)="getOneNow()">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
             </div>
-            <button type="button" [disabled]="!promoCodeForm.valid" (click)="save(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
+            <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" (click)="save(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
               id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </div>
