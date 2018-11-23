@@ -17,7 +17,7 @@ export const WILL_WRITING_ROUTES = {
   MY_EXECUTOR_TRUSTEE: 'executor-trustee',
   MY_ESTATE_DISTRIBUTION: 'estate-distribution',
   CONFIRMATION: 'confirmation',
-  VALIDATE_YOUR_WILL: 'validate-your-will',
+  VALIDATE_YOUR_WILL: 'execute-your-will',
   SIGN_UP: 'sign-up'
 };
 
