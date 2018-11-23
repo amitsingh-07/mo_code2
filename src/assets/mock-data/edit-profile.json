@@ -8,12 +8,12 @@
             "nationality": "Singaporean",
             "dateOfBirth": "25/09/1987",
             "mobileNumber": "9988888888",
+            "countryCode": "+ 591",
     
             "password": "",
             "email" : "satheesanop@gmail.com",
             "isSingaporeResident": false
-
-        },
+},
         "contactDetails": {
             "homeAddress": {
                 "id": 1,
