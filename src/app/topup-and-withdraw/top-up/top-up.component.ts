@@ -63,7 +63,7 @@ export class TopUpComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
- 
+
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -136,18 +136,24 @@ export class TopUpComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-    }
-    const error = this.topupAndWithDrawService.doFinancialValidations(form);
-    console.log('error' + error);
-    if (error) {
-      // tslint:disable-next-line:no-commented-code
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      // tslint:disable-next-line:triple-equals
-
+      const error = this.topupAndWithDrawService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
     } else {
-      this.saveAndProceed(form);
+      const error = this.topupAndWithDrawService.doFinancialValidations(form);
+      console.log('error' + error);
+      if (error) {
+        // tslint:disable-next-line:no-commented-code
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = error.errorTitle;
+        ref.componentInstance.errorMessage = error.errorMessage;
+        // tslint:disable-next-line:triple-equals
+
+      } else {
+        this.saveAndProceed(form);
+      }
     }
   }
 
