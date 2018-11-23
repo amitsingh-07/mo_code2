@@ -232,7 +232,6 @@ export class ConfirmPortfolioComponent implements OnInit {
   }
 
   goToNext() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
     const pepData = this.investmentAccountService.getPepData();
     // tslint:disable-next-line:triple-equals
     if (pepData == true) {

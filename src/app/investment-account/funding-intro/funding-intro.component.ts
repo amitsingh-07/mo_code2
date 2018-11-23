@@ -1,3 +1,7 @@
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,7 +11,6 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
 
 @Component({
   selector: 'app-funding-intro',
