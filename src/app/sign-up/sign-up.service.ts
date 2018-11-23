@@ -311,4 +311,11 @@ export class SignUpService {
     return this.apiService.requestEditPassword(data);
   }
 
+  setContactDetails(countryCode, mobileNumber, email) {
+    this.signUpFormData.countryCode = countryCode;
+    this.signUpFormData.mobileNumber = mobileNumber;
+    this.signUpFormData.email = email;
+    this.commit();
+  }
+
 }

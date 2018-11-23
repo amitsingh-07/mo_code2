@@ -19,7 +19,7 @@ export let apiConstants = {
         //getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoMock',
         signUp: 'account/account-microservice/api/signup',
-        updateUserId: 'account/account-microservice/api/update?handleError=true',
+        updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
         setPassword: 'account/account-microservice/api/setPassword',

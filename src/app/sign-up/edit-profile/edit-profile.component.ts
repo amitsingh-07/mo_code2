@@ -158,6 +158,8 @@ this.compinedEmployerAddress = address1 + ' ' + address2;
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], {queryParams: {enableEditProfile: true}, fragment: 'loading'});
   }
   editUserDetails() {
+    const countryCode = '+65';
+    this.signUpService.setContactDetails(countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
   editPassword() {

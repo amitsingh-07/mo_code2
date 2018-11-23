@@ -101,14 +101,12 @@ export class SignUpApiService {
    */
   updateAccountBodyRequest(data) {
     return {
-      customer: {
-        email: data.email,
+        emailId: data.email,
         mobileNumber: data.mobileNumber,
-        notificationByEmail: true,
         countryCode: data.countryCode,
+        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+        notificationByEmail: true,
         notificationByPhone: true
-      },
-      sessionId: this.authService.getSessionId()
     };
   }
 
