@@ -57,12 +57,12 @@ export class TopupAndWithDrawService {
   doFinancialValidations(form) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals                              //TODO
-    if (Number(form.value.oneTimeInvestmentAmount) < 99 &&
+    if (Number(form.value.oneTimeInvestmentAmount) < 100 &&
       form.value.Investment === 'One-time Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
       // tslint:disable-next-line:max-line-length                            //TODO
-    } else if (Number(form.value.MonthlyInvestmentAmount) < 49  &&
+    } else if (Number(form.value.MonthlyInvestmentAmount) < 50  &&
       form.value.Investment === 'Monthly Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
