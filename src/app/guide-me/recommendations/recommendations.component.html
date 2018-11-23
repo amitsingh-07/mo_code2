@@ -21,7 +21,7 @@
     </span>
   </div>
 </div>
-<div [hidden]="resultsEmptyMessage?.length > 0">
+<div [hidden]="state.resultsEmptyMessage?.length > 0">
 <div class="coverage-details-wrapper">
   <div *ngIf="state.recommendationPlans" class="coverage-details">
     <span class="coverage-type hidden-sm-md">{{state.activeRecommendationType}}</span>
