@@ -1,8 +1,4 @@
-import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
-
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,19 +6,24 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
+import { InvestmentAccountService } from '../investment-account-service';
+import {
+  TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
 
 @Component({
   selector: 'app-funding-intro',
   templateUrl: './funding-intro.component.html',
   styleUrls: ['./funding-intro.component.scss']
 })
-export class FundingIntroComponent implements OnInit {
-
+export class FundingIntroComponent implements OnInit, AfterViewInit {
+  animateStaticModal = false;
+  hideStaticModal = false;
   pageTitle: string;
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
+    private investmentAccountService: InvestmentAccountService,
     private router: Router,
     public navbarService: NavbarService,
     public headerService: HeaderService,
@@ -35,8 +36,22 @@ export class FundingIntroComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
   }
+  ngAfterViewInit() {
+    if (this.investmentAccountService.getAccountSuccussModalCounter() === 0) {
+      this.investmentAccountService.setAccountSuccussModalCounter(1);
+      setInterval(() => {
+        this.animateStaticModal = true;
+      }, 2000);
+
+      setInterval(() => {
+        this.hideStaticModal = true;
+      }, 3000);
+    } else {
+      this.hideStaticModal = true;
+    }
+  }
   goNext() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-}
+  }
 
 }

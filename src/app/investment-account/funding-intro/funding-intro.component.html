@@ -1,3 +1,22 @@
+<!-- popup -->
+<div [ngClass]="{'fade-out-animation': animateStaticModal, 'hide-custom-modal': hideStaticModal}">
+
+  <div class="custom-modal-backdrop"></div>
+  <div class="custom-modal-wrapper">
+    <div class="custom-modal--icon">
+      <img src="../../../assets/images/custom-modal-icon.svg" id="portfolioRecommenadtionCustModalImg1" />
+      <div class="custom-modal--content">
+        <p class="custom-modal--title" id="portfolioRecommenadtionCustModalTitle">{{ 'FUND_INTRO.SUCCESS' | translate}}</p>
+      </div>
+    </div>
+    <div class="custom-modal-content">
+      <div>
+        <img src="../../../assets/images/custom-modal-overlay-bg.svg" id="portfolioRecommendationCustModalImg2" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- popUp -->
 <div class="app-additional-declaration">
   <div class="intro-block__content">
       <div class="row text-center">
