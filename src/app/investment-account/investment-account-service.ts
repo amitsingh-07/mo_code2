@@ -421,7 +421,9 @@ export class InvestmentAccountService {
     }
 
     setMyInfoFormData(data) {
-        this.investmentAccountFormData.fullName = data.name.value;
+        if (data.name && data.name.value) {
+            this.investmentAccountFormData.fullName = data.name.value;
+        }
         this.disableAttributes.push('fullName');
         if (data.nationality.value) {
             this.investmentAccountFormData.nationalityCode = data.nationality.value;
@@ -437,14 +439,14 @@ export class InvestmentAccountService {
         }
 
         // Occupation
-        if (data.occupation && data.occupation.value) {
-            this.investmentAccountFormData.occupation = data.occupation.value;
+        if (data.occupation && data.occupation.occupationDetails) {
+            this.investmentAccountFormData.occupation = data.occupation.occupationDetails;
             this.disableAttributes.push('occupation');
         }
 
         // Monthly Household Income
-        if (data.householdincome && data.householdincome.value) {
-            this.investmentAccountFormData.annualHouseHoldIncomeRange = data.householdincome.value;
+        if (data.householdincome && data.householdincome.householdRange) {
+            this.investmentAccountFormData.annualHouseHoldIncomeRange = data.householdincome.householdRange;
             this.disableAttributes.push('annualHouseHoldIncomeRange');
         }
         this.investmentAccountFormData.disableAttributes = this.disableAttributes;
@@ -454,8 +456,8 @@ export class InvestmentAccountService {
 
     // MyInfo - Personal data
     setMyInfoPersonal(data) {
-        if (data.uinfin) {
-            this.investmentAccountFormData.nricNumber = data.uinfin;
+        if (data.uin) {
+            this.investmentAccountFormData.nricNumber = data.uin;
             this.disableAttributes.push('nricNumber');
         }
         if (data.passportnumber && data.passportnumber.value) {
@@ -483,8 +485,8 @@ export class InvestmentAccountService {
     setMyInfoResidentialAddress(data) {
         // Register address
         if (data.regadd) {
-            if (data.regadd.country) {
-                this.investmentAccountFormData.country = data.regadd.country;
+            if (data.regadd.countryDetails) {
+                this.investmentAccountFormData.country = data.regadd.countryDetails;
                 this.disableAttributes.push('country');
             }
             if (data.regadd.floor) {
@@ -518,8 +520,8 @@ export class InvestmentAccountService {
 
     // MyInfo - Email Address
     setMyInfoEmailAddress(data) {
-        if (data.mailadd.country) {
-            this.investmentAccountFormData.mailCountry = data.mailadd.country;
+        if (data.mailadd.countryDetails) {
+            this.investmentAccountFormData.mailCountry = data.mailadd.countryDetails;
             this.disableAttributes.push('mailCountry');
         }
         if (data.mailadd.floor) {
@@ -553,18 +555,11 @@ export class InvestmentAccountService {
 
     isDisabled(fieldName): boolean {
         let disable: boolean;
-        if (this.investmentAccountFormData.isMyInfoEnabled) {
-            if (this.investmentAccountFormData.disableAttributes.includes(fieldName)) {
-                disable = true;
-            } else {
-                disable = false;
-            }
+        if (this.investmentAccountFormData.isMyInfoEnabled
+            && this.investmentAccountFormData.disableAttributes.includes(fieldName)) {
+            disable = true;
         } else {
-            if (['firstName', 'lastName'].includes(fieldName)) {
-                disable = true;
-            } else {
-                disable = false;
-            }
+            disable = false;
         }
         return disable;
     }

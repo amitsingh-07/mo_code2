@@ -1,3 +1,7 @@
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -32,7 +36,7 @@ export class FundingIntroComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
   }
   goNext() {
-    //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_STEP1]);
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
 }
 
 }

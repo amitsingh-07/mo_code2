@@ -45,7 +45,7 @@
                   <label for="name" id="employment_company_name">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}
                   </label>
                 </div>
-                <div class="flex-col-7" [ngClass]="{'inline-error': !employementDetailsForm.get('companyName').valid && !employementDetailsForm.get('companyName').pristine}">
+                <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('companyName').enabled && !employementDetailsForm.get('companyName').valid && !employementDetailsForm.get('companyName').pristine}">
                   <input type="text" formControlName="companyName" id="empliyement_status_company_input" class="form-control">
                 </div>
               </div>
@@ -82,7 +82,7 @@
                     <label for="employement_details_occupation_lab" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.OCCUPATION' | translate}}
                     </label>
                   </div>
-                  <div class="flex-col-7" [ngClass]="{'inline-error': !employementDetailsForm.get('occupation').valid && !employementDetailsForm.get('occupation').pristine}">
+                  <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('occupation').enabled && !employementDetailsForm.get('occupation').valid && !employementDetailsForm.get('occupation').pristine}">
                     <div class="dropdown-control employe-dropdown-control">
                       <div ngbDropdown>
                         <button [disabled]="isDisabled()" class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>

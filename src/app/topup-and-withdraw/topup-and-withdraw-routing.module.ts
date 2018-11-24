@@ -18,7 +18,7 @@ import { AssetAllocationComponent } from './asset-allocation/asset-allocation.co
 const routes: Routes = [
   {
    path: TOPUP_AND_WITHDRAW_ROUTES.ROOT,
-    redirectTo: TOPUP_AND_WITHDRAW_ROUTES.TOPUP,
+    redirectTo: TOPUP_AND_WITHDRAW_ROUTES.YOUR_INVESTMENT,
     pathMatch: 'full',
 
   },
@@ -27,7 +27,7 @@ const routes: Routes = [
     component: TopUpComponent
   },
   {
-    path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP_REQUEST,
+    path: TOPUP_AND_WITHDRAW_ROUTES.TOPUP_REQUEST + '/:status',
     component: TopupRequestComponent
   },
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
     component: FundYourAccountComponent
   },
   {
-    path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_INVESY_TMENT,
+    path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_INVESTMENT,
     component: YourInvestmentComponent
   },
   {

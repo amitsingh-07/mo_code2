@@ -6,13 +6,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -40,7 +40,8 @@ export class TopUpComponent implements OnInit {
   topForm: FormGroup;
   enteringAmount;
   cashBalance = 1200;
-  investmentype;
+  fundDetails;
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -62,14 +63,7 @@ export class TopUpComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
-  validateAmonut(amount) {
-    if (amount > this.cashBalance) {
-      this.topupAmount = amount - this.cashBalance;
-      this.isAmountExceedBalance = true;
-    } else {
-      this.isAmountExceedBalance = false;
-    }
-  }
+
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -80,23 +74,43 @@ export class TopUpComponent implements OnInit {
       this.investmentTypeList = data.objectList; // Getting the information from the API
       console.log(this.investmentTypeList);
     });
+    this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.portfolio, Validators.required],
       Investment: [this.formValues.Investment, Validators.required],
-      oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required]
-      // MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
+      oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
+      MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
-    // this.buildFormInvestment();
+    if (this.formValues.Investment === 'Monthly Investment') {
+      this.topForm.addControl('MonthlyInvestmentAmount', new FormControl('', Validators.required));
+      this.topForm.removeControl('oneTimeInvestmentAmount');
+      this.showOnetimeInvestmentAmount = false;
+      this.showmonthlyInvestmentAmount = true;
+    } else {
+      this.topForm.addControl('oneTimeInvestmentAmount', new FormControl('', Validators.required));
+      this.topForm.removeControl('MonthlyInvestmentAmount');
+      this.showOnetimeInvestmentAmount = true;
+      this.showmonthlyInvestmentAmount = false;
+    }
   }
   getPortfolioList() {
-    this.topupAndWithDrawService.getPortfolioList().subscribe((data) => {
-      this.portfolioList = data.objectList;
+    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
+      this.portfolioList = data.objectList.riskProfileTypes;
       console.log(this.portfolioList);
     });
   }
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
+  }
+
+  validateAmonut(amount) {
+    if (amount > this.cashBalance && this.investment.name === 'One-time Investment') {
+      this.topupAmount = amount - this.cashBalance;
+      this.isAmountExceedBalance = true;
+    } else {
+      this.isAmountExceedBalance = false;
+    }
   }
 
   buildFormInvestment() {
@@ -122,18 +136,24 @@ export class TopUpComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-    }
-    const error = this.topupAndWithDrawService.doFinancialValidations(form);
-    console.log('error' + error);
-    if (error) {
-      // tslint:disable-next-line:no-commented-code
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      // tslint:disable-next-line:triple-equals
-
+      const error = this.topupAndWithDrawService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
     } else {
-      this.saveAndProceed(form);
+      const error = this.topupAndWithDrawService.doFinancialValidations(form);
+      console.log('error' + error);
+      if (error) {
+        // tslint:disable-next-line:no-commented-code
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = error.errorTitle;
+        ref.componentInstance.errorMessage = error.errorMessage;
+        // tslint:disable-next-line:triple-equals
+
+      } else {
+        this.saveAndProceed(form);
+      }
     }
   }
 
@@ -146,10 +166,9 @@ export class TopUpComponent implements OnInit {
   saveFundingDetails() {
     const topupValues = {
       source: 'TOPUP',
-      portfolioName: this.formValues.portfolio,
-      portfolioId: this.formValues.portfolioId, // todo
-      oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, //topup
-      monthlyInvestment: this.formValues.MonthlyInvestmentAmount, //topup
+      portfolio: this.formValues.portfolio,
+      oneTimeInvestment: this.formValues.oneTimeInvestmentAmount, // topup
+      monthlyInvestment: this.formValues.MonthlyInvestmentAmount, // topup
       fundingType: this.formValues.MonthlyInvestmentAmount ? 'MONTHLY' : 'ONETIME',
       isAmountExceedBalance: this.isAmountExceedBalance,
       exceededAmount: this.topupAmount
