@@ -1,6 +1,6 @@
 {
   "useMyInfo": false,
-  "willWritingEnabled": false,
+  "willWritingEnabled": true,
   "hospitalPlanData": [{
     "id": 0,
     "hospitalClass": "None",
