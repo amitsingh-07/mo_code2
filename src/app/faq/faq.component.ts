@@ -32,9 +32,9 @@ export class FAQComponent implements OnInit {
   // tslint:disable-next-line:member-ordering
   @ViewChild('homeNavWill') HomeNavWill: ElementRef;
   // tslint:disable-next-line:member-ordering
-  @ViewChild('homeNavInvest') HomeNavInvest: ElementRef;
+  // @ViewChild('homeNavInvest') HomeNavInvest: ElementRef;
   // tslint:disable-next-line:member-ordering
-  @ViewChild('homeNavComprehensive') HomeNavComprehensive: ElementRef;
+  // @ViewChild('homeNavComprehensive') HomeNavComprehensive: ElementRef;
   ngOnInit() {
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
@@ -112,26 +112,26 @@ export class FAQComponent implements OnInit {
       if (elementName === 'will') {
         this.renderer.addClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        // this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        // this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 1;
       } else if (elementName === 'investment') {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-        this.renderer.addClass(this.HomeNavInvest.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        // this.renderer.addClass(this.HomeNavInvest.nativeElement, 'active');
+        // this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 2;
       } else if (elementName === 'comprehensive') {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        this.renderer.addClass(this.HomeNavComprehensive.nativeElement, 'active');
+        //this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        //this.renderer.addClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 3;
       } else {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        //this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        //this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 0;
       }
 

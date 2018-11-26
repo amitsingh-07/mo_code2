@@ -6,7 +6,7 @@
     border-radius: 6px;
     background-color: #ffffff;
     box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
-    width: 100%;
+    width: 315px;
     height: 57px;
     font-family: $muli-bold;
     font-size: 22px;
@@ -15,9 +15,6 @@
     text-align: center;
     color: #00a7a7;
     border-width:0px; 
-    @include allmobiles {
-
-    }
   }
   .no-login-but{
     font-family: $muli-bold;
@@ -26,7 +23,7 @@
     letter-spacing: -0.2px;
     text-align: center;
     color: #ffffff;
-    width: 100%;
+    width: 315px;
     height: 57px;
     border-radius: 6px;
     border: solid 1px #ffffff;
@@ -36,16 +33,19 @@
   {
     font-family: $muli-semi-bold;
     font-size: 24px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     text-align: center;
     color: #ffffff;
+    margin-bottom: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 312px;
   }
   .signup-wrapper__header-icon  {
     @include allmobiles {
     width: 188px;
-   
     }
+    margin: 0 auto;
 }
 .back-btn {
   background-image: url("../../../assets/images/back-web.svg");
@@ -79,4 +79,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.button {
+    margin: 0 auto;
 }
