@@ -36,6 +36,7 @@
     .flex-row{
         padding:0 20px 21px;
         justify-content: space-between;
+        line-height: normal;
     }
 }
 
@@ -72,6 +73,7 @@
     line-height: 1.22;
     letter-spacing: -0.2px;
     color: #fff;
+    font-family: $muli-regular;
     @include allmobiles{
         font-size: 16px;
         color: #333846;
@@ -108,7 +110,10 @@
         @extend .flex;
         justify-content: space-between;
         align-items: center;
-        padding: 13px 28px;
+        padding-left: 28px;
+        padding-right: 28px;
+        padding-top: 13px;
+        height: 76px;
         span{
             margin-bottom: 8px;
         }

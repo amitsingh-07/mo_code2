@@ -122,7 +122,7 @@ body.modal-open::-webkit-scrollbar {
   line-height: normal;
   letter-spacing: -0.2px;
   color: #009999;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-right: 10px;
   //padding: 0 15px 0 0;
 }
@@ -681,6 +681,9 @@ body.modal-open::-webkit-scrollbar {
       }
     }
   }
+  .modal-body-message {
+    padding: 0 !important
+  }
   @include allmobiles {
     .modal-body-title {
       margin: -5px 0 10px 0 !important;
@@ -710,9 +713,14 @@ body.modal-open::-webkit-scrollbar {
 
   .modal-body {
     overflow-y: auto;
+    width: 790px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 36px;
 
     @include allmobiles {
       height: 100vh;
+      width: 100vw;
       padding-bottom: 220px !important;
     }
   }

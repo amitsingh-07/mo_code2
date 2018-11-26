@@ -1,4 +1,5 @@
 <app-page-title [pageTitle]="pageTitle" [unsaved]="eligibilityForm.dirty"></app-page-title>
+<div  class="container-fluid">
 <div class="container-fluid max-width--1024">
   <div class="content">
     <div class="flex-row main-container">
@@ -20,7 +21,7 @@
             <div class="flex-col-12 tooltip-content"><div>{{ 'WILL_WRITING.ELIGIBILITY.FIND_OUT_ASSETS_CAN_DISTRIBUTE' | translate}}</div>
             <span class="help-icon" (click)="openToolTipModal()"></span></div>
         </div>
-        <div class="mobile-logo mb5 hidden-lg" id="check-eligibility-mobile-img"><img src="assets/images/will-writing/owl-mobile.svg" /></div>
+        <div class="mobile-logo hidden-lg" id="check-eligibility-mobile-img"><img src="assets/images/will-writing/owl-mobile.svg" /></div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 eligibilityForm">
         <div class="doselfCheck setpOneForm">
@@ -89,7 +90,7 @@
                     </div>
                   </div>
                 </div>
-                <div *ngIf="isSingaporean || isAssets" class="col-12 flex pl0 pr0 mt15">
+                <div *ngIf="isSingaporean || isAssets" class="col-12 flex pl0 pr0 warning-message-container">
                     <div class="inline-warning flex-col-1"></div>
                     <div class="warning-message flex-col-11">{{ 'WILL_WRITING.ELIGIBILITY.INLINE_ERROR' | translate}}</div>
                 </div>
@@ -110,4 +111,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
