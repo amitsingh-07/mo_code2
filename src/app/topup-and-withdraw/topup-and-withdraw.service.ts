@@ -211,7 +211,7 @@ export class TopupAndWithDrawService {
 
   constructSellPortfolioRequestParams(data) {
     const request = {};
-    request['type'] = (data.withdrawType) ? data.withdrawType.id : null; // todo
+    request['type'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
     //request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
     request['portfolioId'] = 'PORTFOLIO00046';
     request['redemptionAmount'] = data.withdrawAmount;
