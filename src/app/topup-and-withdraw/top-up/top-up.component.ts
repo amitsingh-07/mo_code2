@@ -41,7 +41,6 @@ export class TopUpComponent implements OnInit {
   enteringAmount;
   cashBalance;
   fundDetails;
-
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -94,12 +93,14 @@ export class TopUpComponent implements OnInit {
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
-     } else {
+    } else {
       this.isAmountExceedBalance = false;
     }
   }
 
- selectedInvestment(investmenttype) {
+  
+
+  selectedInvestment(investmenttype) {
     this.investment = investmenttype;
     this.formValues.Investment = this.investment.name;
     this.buildFormInvestment();
