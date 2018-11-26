@@ -211,13 +211,13 @@ export class TopupAndWithDrawService {
 
   constructSellPortfolioRequestParams(data) {
     const request = {};
-    request['type'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
+    request['withdrawType'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
     //request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
     request['portfolioId'] = 'PORTFOLIO00046';
     request['redemptionAmount'] = data.withdrawAmount;
     request['mode'] = data.withdrawMode; // todo
     if (request['mode'] === 'BANK') {
-      request['bank'] = (data.withdrawBank) ? data.withdrawBank.id : null; // todo
+      request['customerBankDetail'] = (data.withdrawBank) ? data.withdrawBank : null; // todo
     }
     return request;
   }
