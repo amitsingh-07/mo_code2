@@ -6,7 +6,7 @@
         <div class="user_summary flex-col-8" id="investment_overview_profile_dec">                     
           {{'YOUR_INVESTMENT.PROFILE_DEC' | translate:welcomeInfo}}
         </div>
-        <div class="flex-col-4">
+        <div class="flex-col-3">
           <div class="dropdown-control ">
             <div ngbDropdown>
               <button class="btn btn-dropdown without-border grey" id="your-investment-drpdown" ngbDropdownToggle>
@@ -32,43 +32,43 @@
               <!--Form Content-->
               <div class="form-group-with-bg--content" >
                 <div class="flex-row">
-                  <div class="flex-col-9">
+                  <div class="flex-col-7">
                     <div class="total_return_label" for="total return" id="investment_overview_total_returns_labl">{{'YOUR_INVESTMENT.TOTAL_RETURNS' | translate}}
                     </div>
                   </div>
-                  <div class="flex-col-3">
+                  <div class="flex-col-5">
                     <div class="total_return_value" for="total value" id="investment_overview_total_returns_value">{{investmentoverviewlist.data.totalReturns| currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
                 <div class="flex-row">
-                  <div class="flex-col-8">
+                  <div class="flex-col-7">
                     <div class="start_investment_label" for="name" id="investment_overview_investment_start_labl">{{'YOUR_INVESTMENT.FROM_START_OF_INVESTMENT' | translate}}
                     </div>
                   </div>
-                  <div class="flex-col-4">
+                  <div class="flex-col-5">
                     <div class="start_investment_value" for="name" id="investment_overview_investment_start_value">+{{investmentoverviewlist.data.investmentReturns}}%
                     </div>
                   </div>
                 </div>
                 <hr>
                 <div class="flex-row mb-20">
-                  <div class="flex-col-9">
+                  <div class="flex-col-7">
                     <div class="total_return_label" for="tota" id="investment_overview_total_invested_lbl">{{'YOUR_INVESTMENT.TOTAL_INVESTED' | translate}}
                     </div>
                   </div>
-                  <div class="flex-col-3">
+                  <div class="flex-col-5">
                     <div class="total_return_value" for="name" id="investment_overview_total_invested__value">{{investmentoverviewlist.data.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
                 <div class="flex-row mt20">
-                  <div class="flex-col-9">
+                  <div class="flex-col-7">
                     <div class="total_return_label" for="tota" id="investment_overview_investment_cash_labl">{{'YOUR_INVESTMENT.CASH_ACCOUNT_BALANCE' | translate}}
                     </div>
                   </div>
-                  <div class="flex-col-3">
-                    <div class="total_return_value" for="name" id="investment_overview_investment_cash_labl">{{investmentoverviewlist.data.cashAccountBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
+                  <div class="flex-col-5">
+                    <div class="total_return_value" for="name" id="investment_overview_investment_cash_labl">{{investmentoverviewlist.data.cashAccountDetails.availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
@@ -105,13 +105,13 @@
               <div class="row">
                 <div class="flex-col-6">
                   <div class="portfolio_label" for="total return" id="investment_overview_portfolio_labl">{{'YOUR_INVESTMENT.PORTFOLIO_VALUES' | translate}}</div>
-                  <div class="portfolio_value" for="total value" id="investment_overview_portfolio_value">{{portfolio.investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="portfolio_value" for="total value" id="investment_overview_portfolio_value">{{portfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                 </div>
 
 
                 <div class="flex-col-6">
-                  <div class="total_return_value pr10" for="name" id="investment_overview_portfolio_total_returns_labl">{{portfolio.investmentAmount| currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                  <div class="start_investment_value pr10" for="name" id="investment_overview_portfolio_total_returns_value">+ {{portfolio.profitAndLossPercentage}}% </div>
+                  <div class="total_return_value pr10" for="name" id="investment_overview_portfolio_total_returns_labl">{{portfolio.totalReturns| currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="start_investment_value pr10" for="name" id="investment_overview_portfolio_total_returns_value">+ {{portfolio.totalReturnsPercentage}}% </div>
                 </div>
               </div>
 

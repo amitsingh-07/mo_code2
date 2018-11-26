@@ -38,7 +38,6 @@ export class YourInvestmentComponent implements OnInit {
   investmentoverviewlist: any;
   portfolioList;
   totalReturnss;
-  summaryValues;
   selectedDropDown;
   pageTitle: string;
   moreList: any;
@@ -47,7 +46,7 @@ export class YourInvestmentComponent implements OnInit {
   userProfileInfo;
   showAlretPopUp = false;
   selected;
-  summary;
+ 
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
