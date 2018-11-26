@@ -97,7 +97,6 @@
     .sub-title{
         font-family: $muli-semi-bold;
         font-size: 18px;
-        font-weight: 600;
         line-height: 1.22;
         letter-spacing: -0.2px;
         color: #333846;
@@ -114,7 +113,6 @@
         color: #00a7a7;
         @include allmobiles {
             font-size: 20px;
-            font-weight: bold;
             letter-spacing: -0.4px;
             text-align: center;
             color: #066360;
@@ -178,7 +176,6 @@
     margin-bottom: 56px;
     font-family: $muli-semi-bold;
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
     margin-bottom: 29px;
@@ -201,7 +198,6 @@
 .tooltip-content{
     font-family: $muli-semi-bold;
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
     padding-bottom: 33px;

@@ -1,5 +1,6 @@
+import { SlickComponent } from 'ngx-slick';
 import { CurrencyPipe, Location } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -23,6 +24,9 @@ import { RecommendationsState } from './recommendations.state';
   providers: [NgbCarouselConfig]
 })
 export class RecommendationsComponent implements IPageComponent, OnInit, AfterViewChecked, OnDestroy {
+  @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
+  @ViewChild('mobileHeaderMenu', { read: ElementRef }) mobileHeaderMenu: ElementRef<any>;
+
   pageTitle: string;
   subTitle: string;
 
@@ -90,6 +94,9 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
         this.getRecommendationsFromServer();
       }
     }, 500);
+
+    this.state.recommendationCarousel = this.recommendationCarousel;
+    this.state.mobileHeaderMenu = this.mobileHeaderMenu;
   }
 
   ngOnDestroy() {
