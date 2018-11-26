@@ -2,7 +2,7 @@ import { catchError } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -28,10 +28,14 @@ export class AddUpdateBankComponent implements OnInit {
   formValues: any;
   banks: any;
   bankForm: FormGroup;
+  addBank: any;
+  queryParams: any;
+  buttonTitle;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     public headerService: HeaderService,
     public navbarService: NavbarService,
     private signUpService: SignUpService,
@@ -39,8 +43,6 @@ export class AddUpdateBankComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = 'Edit Bank Details';
-      this.setPageTitle(this.pageTitle);
     });
   }
 
@@ -51,6 +53,16 @@ export class AddUpdateBankComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+    this.queryParams = this.route.snapshot.queryParams;
+    this.addBank = this.queryParams.addBank;
+    if (this.addBank === 'true') {
+      this.pageTitle = 'Add Bank Details';
+      this.buttonTitle = 'Add Now';
+    } else {
+      this.pageTitle = 'Edit Bank Details';
+      this.buttonTitle = 'Apply Changes';
+    }
+    this.setPageTitle(this.pageTitle);
     this.buildBankForm();
   }
   buildBankForm() {
@@ -70,5 +82,4 @@ export class AddUpdateBankComponent implements OnInit {
   setNestedDropDownValue(key, value, nestedKey) {
     this.bankForm.controls[nestedKey]['controls'][key].setValue(value);
   }
-
 }

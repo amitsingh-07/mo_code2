@@ -12,19 +12,19 @@
     
             "password": "",
             "email" : "satheesanop@gmail.com",
-            "isSingaporeResident": false
+            "isSingaporeResident": true
 },
         "contactDetails": {
             "homeAddress": {
                 "id": 1,
                 "country": {
-                    "id": 1,
-                    "name": "BOLIVIA",
-                    "nationality": "BOLIVIAN",
+                    "id": 225,
+                    "name": "SINGAPORE",
+                    "nationality": "SINGAPOREAN",
                     "isBlocked": "0",
-                    "phoneCode": "+ 591",
-                    "countryCode": "BO",
-                    "nationalityCode": "BO"
+                    "phoneCode": "+ +65",
+                    "countryCode": "SG",
+                    "nationalityCode": "SG"
                 },
                 "addressLine1": "221B",
                 "addressLine2": "Baker Street",
@@ -36,27 +36,7 @@
                 "city": "Chennai",
                 "zipCode": "673508"
             },
-            "mailingAddress": {
-                "id": 2,
-                "country": {
-                    "id": 1,
-                    "name": "BOLIVIA",
-                    "nationality": "BOLIVIAN",
-                    "isBlocked": "0",
-                    "phoneCode": "+ 591",
-                    "countryCode": "BO",
-                    "nationalityCode": "BO"
-                },
-                "addressLine1": "221B Baker Street",
-                "addressLine2": "mock address 2",
-                "unitNumber": "23223266",
-                "postalCode": "L222007",
-                "townName": "Townname",
-                "state": "State Name",
-                "floor": "6",
-                "city": "Chennai",
-                "zipCode": "673508"
-            }
+            "mailingAddress": null
         },
         "employmentDetails": {
             "employmentStatus": {
@@ -75,13 +55,13 @@
                 "employerAddress": {
                     "id": 2,
                     "country": {
-                        "id": 1,
-                        "name": "BOLIVIA",
-                        "nationality": "BOLIVIAN",
+                        "id": 225,
+                        "name": "SINGAPORE",
+                        "nationality": "SINGAPOREAN",
                         "isBlocked": "0",
-                        "phoneCode": "+ 591",
-                        "countryCode": "BO",
-                        "nationalityCode": "BO"
+                        "phoneCode": "+ +65",
+                        "countryCode": "SG",
+                        "nationalityCode": "SG"
                     },
                     "addressLine1": "mock Address Line 1",
                     "addressLine2": "mock Address Line 2",
