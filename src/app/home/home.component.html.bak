@@ -91,11 +91,8 @@
       <div class="home__section--text-container tertiary">
         <p class="home__section--title">{{'INVESTMENT.TITLE' | translate}}</p>
         <p class="home__section--desc">{{'INVESTMENT.DESCRIPTION' | translate}}</p>
-        <button *ngIf="!isInvestmentEnabled" class="btn btn-secondary home__section--btn" disabled>
+        <button class="btn btn-secondary home__section--btn" disabled>
           <span>{{'GENERAL.COMING_SOON' | translate}}</span>
-        </button>
-        <button *ngIf="isInvestmentEnabled" class="btn btn-primary-dark home__section--btn" routerLink="/investment">
-          <span>{{'INVESTMENT.LINK1' | translate}}</span>
         </button>
       </div>
       <div class="home__seperator tertiary">
@@ -108,11 +105,8 @@
         <p class="home__section--title">{{'COMPREHENSIVE.TITLE' | translate}}</p>
         <p class="home__section--sub-title">{{'COMPREHENSIVE.SUB_TITLE' | translate}}</p>
         <p class="home__section--desc">{{'COMPREHENSIVE.DESCRIPTION' | translate}}</p>
-        <button *ngIf="!isComprehensiveEnabled" class="btn btn-secondary home__section--btn" disabled>
+        <button class="btn btn-secondary home__section--btn" disabled>
           <span>{{'GENERAL.COMING_SOON' | translate}}</span>
-        </button>
-        <button *ngIf="isComprehensiveEnabled" class="btn btn-primary-dark home__section--btn" routerLink="/comprehensive">
-          <span>{{'COMPREHENSIVE.LINK1' | translate}}</span>
         </button>
       </div>
       <div class="home__section--img quaternary">

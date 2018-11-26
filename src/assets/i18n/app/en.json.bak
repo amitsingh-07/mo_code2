@@ -1,6 +1,5 @@
 {
   "COMMON": {
-    "PRE_TITLE": "MoneyOwl | ",
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
     "LBL_PLAN_SELECTED": "Plan Selected",
@@ -219,14 +218,6 @@
       },
       "ALL_RIGHTS_RESERVED": "© 2018 MoneyOwl Pte Ltd. All Rights Reserved."
     }
-  },
-  "SUBSCRIBE_SIDE": {
-    "TITLE": "Join our mailing list and get wiser!",
-    "FIRST_NAME": "First Name",
-    "LAST_NAME": "Last Name",
-    "EMAIL": "Email",
-    "SUB_TEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!",
-    "SUBSCRIBE": "Subscribe"
   }
 }
 

@@ -1,13 +1,19 @@
 {
     "GENERAL": {
-        "TITLE": "MoneyOwl",
+        "TITLE": "Home",
         "COMING_SOON": "Coming Soon",
         "META": {
-            "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-            "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
-            "META_AUTHOR": "Moneyowl Pte Ltd",
-            "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            "GENERAL": {
+                "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+                "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+                "META_AUTHOR": "Moneyowl Pte Ltd",
+                "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            },
+            "SOCIAL": {
+                "META_DESCRIPTION": "",
+                "META_THUMBNAIL": ""
             }
+        }
     },
     "BANNER": {
         "TITLE": "Making Wise Decisions Easy",
@@ -34,7 +40,7 @@
         "LABEL": "Invest",
         "TITLE": "Invest With Confidence",
         "DESCRIPTION": "Feel confident about investing even as a beginner! Get access to low-cost and best-in-class globally diversified investments at your fingertips!",
-        "LINK1": "Start Investing"
+        "LINK1": ""
     },
     "COMPREHENSIVE": {
         "LABEL": "Comprehensive",
@@ -42,7 +48,7 @@
         "TITLE": "Comprehensive Financial Planning",
         "SUB_TITLE": "(integrating national schemes)",
         "DESCRIPTION": "Are you financially healthy? Get a holistic financial assessment and trusted financial advice integrated with CPF and other national schemes to reach your goals!",
-        "LINK1": "Start your Financial Journey"
+        "LINK": ""
     },
     "NEWSLETTER": {
         "TITLE": "Join our mailing list and get wiser!",

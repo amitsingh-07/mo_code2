@@ -68,23 +68,15 @@ export class ArticleCategoryComponent implements OnInit {
     if (this.category_id > -1) {
       this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
       this.requestArticleData();
-      this.setSeoData();
     } else {
       if (this.category_id === -1) {
         this.category = 'All';
         this.requestArticleData();
-        this.setSeoData();
       } else {
         // Redirect away
         this.router.navigate(['/articles/category/all']);
       }
     }
-  }
-
-  setSeoData() {
-    this.translate.get('COMMON').subscribe((result) => {
-      this.seoService.setTitle(this.translate.instant('COMMON.PRE_TITLE') + this.category);
-    });
   }
 
   requestArticleData() {
