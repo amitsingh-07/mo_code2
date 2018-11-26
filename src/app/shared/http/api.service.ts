@@ -573,17 +573,21 @@ export class ApiService {
   }
 
   getUserBankList() {
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
-    const url = '../../../assets/mock-data/portfolioList.json';
-    return this.http.getMock(url)
+    return this.http.get(apiConstants.endpoint.investment.getUserBankList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getUserAddress() {
+    return this.http.get(apiConstants.endpoint.investment.getUserAddress)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   saveNewBank(data) {
-    return this.http.post(apiConstants.endpoint.resetPassword, data)
+    return this.http.post(apiConstants.endpoint.investment.addNewBank, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
