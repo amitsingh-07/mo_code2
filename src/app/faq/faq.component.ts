@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfigService, IConfig } from './../config/config.service';
 
 import { FooterService } from '../shared/footer/footer.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
@@ -17,14 +18,24 @@ export class FAQComponent implements OnInit {
   public sections: any;
   public navBarElement: ElementRef;
   activeSection;
+  isWillWritingEnabled = false;
+  isInvestmentEnabled = true;
+  isComprehensiveEnabled = true;
   constructor(private navbarService: NavbarService, private footerService: FooterService,
-              public translate: TranslateService, public renderer: Renderer2) {
+              public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService) {
                 this.translate.use('en');
                 this.translate.get('COMMON').subscribe((result: string) => {
                   this.pageTitle = this.translate.instant('FAQ.TITLE');
                   this.sections = this.getFAQSections(this.translate.instant('FAQ.CONTENT'));
                 });
+                this.configService.getConfig().subscribe((config: IConfig) => {
+                  console.log(config.willWritingEnabled);
+                  this.isWillWritingEnabled = config.willWritingEnabled;
+                  this.isInvestmentEnabled = config.investmentEnabled;
+                  this.isComprehensiveEnabled = config.comprehensiveEnabled;
+                });
               }
+
   // tslint:disable-next-line:member-ordering
   @ViewChild('homeNavBar') HomeNavBar: ElementRef;
   // tslint:disable-next-line:member-ordering
@@ -124,14 +135,14 @@ export class FAQComponent implements OnInit {
       } else if (elementName === 'comprehensive') {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-        //this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        //this.renderer.addClass(this.HomeNavComprehensive.nativeElement, 'active');
+        // this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        // this.renderer.addClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 3;
       } else {
         this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
         this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
-        //this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        //this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+        // this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
+        // this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 0;
       }
 
