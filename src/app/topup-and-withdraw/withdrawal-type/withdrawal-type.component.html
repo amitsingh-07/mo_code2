@@ -46,13 +46,13 @@
                         ngbDropdownToggle>
                         <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                           translate}}</span>
-                        <span *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.name}}</span>
+                        <span *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.productName}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
                         <button class="dropdown-item" (click)="setDropDownValue('withdrawPortfolio','')" id="withdraw-type-option-select">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                             translate}}</button>
                         <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('withdrawPortfolio',portfolio)"
-                          id="withdraw-portfolio-option-{{i}}">{{portfolio.name}}</button>
+                          id="withdraw-portfolio-option-{{i}}">{{portfolio.productName}}</button>
                       </div>
                     </div>
                   </div>
@@ -76,7 +76,7 @@
               <div class="cash-balance">
                 <span *ngIf="!isFromPortfolio">{{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}: {{cashBalance | currency}}</span>
                 <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:
-                  {{withdrawForm.controls.withdrawPortfolio.value.value}}</span>
+                  {{withdrawForm.controls.withdrawPortfolio.value.currentValue}}</span>
               </div>
             </div>
 
