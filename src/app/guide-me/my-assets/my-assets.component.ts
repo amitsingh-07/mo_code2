@@ -81,6 +81,7 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
             this.closeMyInfoPopup();
           });
         } else {
+          this.myInfoService.isMyInfoEnabled = false;
           this.closeMyInfoPopup();
         }
       }
@@ -100,8 +101,8 @@ export class MyAssetsComponent implements IPageComponent, OnInit, OnDestroy {
 
   closeMyInfoPopup() {
     this.myInfoService.closeFetchPopup();
+    this.myInfoService.changeListener.next('');
     if (this.myInfoService.isMyInfoEnabled) {
-      this.myInfoService.changeListener.next('');
       this.myInfoService.isMyInfoEnabled = false;
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';

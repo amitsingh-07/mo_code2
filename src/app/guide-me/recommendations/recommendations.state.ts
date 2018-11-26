@@ -1,10 +1,10 @@
-import { ElementRef, ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { SlickComponent } from 'ngx-slick';
 
 export class RecommendationsState {
 
-    @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
-    @ViewChild('mobileHeaderMenu', { read: ElementRef }) public mobileHeaderMenu: ElementRef<any>;
+    recommendationCarousel: SlickComponent;
+    mobileHeaderMenu: ElementRef<any>;
 
     pageTitle: string;
     subTitle: string;

@@ -52,7 +52,6 @@ export class MyInfoService {
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
-    //window.location.href = authoriseUrl;
     this.newWindow(authoriseUrl);
   }
 
@@ -71,9 +70,6 @@ export class MyInfoService {
         clearInterval(timer);
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
-        //   ]);
       }
     }, 500);
 
@@ -84,9 +80,6 @@ export class MyInfoService {
       if (value === 'FAILED') {
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
-        //   ]);
       } else {
         this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
         this.isMyInfoEnabled = false;
@@ -100,21 +93,13 @@ export class MyInfoService {
       windowRef.close();
       const params = new HttpParams({ fromString: values });
       if (window.sessionStorage.currentUrl && params && params.get('code')) {
-
         const myInfoAuthCode = params.get('code');
         this.setMyInfoValue(myInfoAuthCode);
         this.status = 'SUCCESS';
         this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, myInfoAuthCode));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'SUCCESS', time: new Date().getTime() }
-        //   ]);
-
       } else {
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
-        //   ]);
       }
       return 'MY_INFO';
     };
