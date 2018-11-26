@@ -297,4 +297,27 @@
     color: #868686;
     border: solid 0.5px #bbbbbb;
   }
+  .arrow {
+    display:block;
+    border-style: solid;
+    border-color:#00a7a7;
+    border-width: 0 0 2px 2px;
+    width: 10px;
+    height: 10px;
+    line-height: 0;
+    font-size: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    float:right;
+    margin-top:6px;
+}
+.arrow.active {
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+  margin-top:10px;
+}
   

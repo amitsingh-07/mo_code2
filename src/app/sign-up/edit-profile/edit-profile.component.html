@@ -47,7 +47,7 @@
   <!-- Update user id section -->
 
   <div class="edit-profile-section-bg">
-    <div class="flex-row">
+    <div class="flex-row" (click)=showHide(showHideUser) >
       <div class="flex-col-11">
         <div class="form-group-heading">
           Update User ID
@@ -55,7 +55,9 @@
       </div>
       <div class="flex-col-1">
         <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) />
+            <span id="showHideUser" class="arrow" [class.active]="showHideUser.style.display === 'block' || showHideUser.style.display === ''"></span>
+
+          <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) /> -->
         </div>
       </div>
     </div>
@@ -84,7 +86,7 @@
   </div>
   <!-- Change Password Section  -->
   <div class="edit-profile-section-bg">
-    <div class="flex-row">
+    <div class="flex-row" (click)=showHide(showHidePassword)>
       <div class="flex-col-11">
         <div class="form-group-heading">
           Change Password
@@ -92,7 +94,8 @@
       </div>
       <div class="flex-col-1">
         <div class="dropdown-img">
-          <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) />
+            <span id="showHidePassword" class="arrow"  [class.active]="showHidePassword.style.display === 'block' || showHidePassword.style.display === ''"></span>
+          <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) /> -->
         </div>
       </div>
     </div>
@@ -115,7 +118,7 @@
   <!-- Update contact section  -->
   <div *ngIf="contactDetails">
     <div class="edit-profile-section-bg">
-      <div class="flex-row">
+      <div class="flex-row" (click)=showHide(showHideContact)>
         <div class="flex-col-11">
           <div class="form-group-heading">
             Update Contact Details
@@ -123,7 +126,8 @@
         </div>
         <div class="flex-col-1">
           <div class="dropdown-img">
-            <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideContact) />
+              <span id="showHideContact" class="arrow"  [class.active]="showHideContact.style.display === 'block' || showHideContact.style.display === ''" ></span>
+            <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideContact) /> -->
           </div>
         </div>
       </div>
@@ -294,7 +298,7 @@
     <!-- Update Employee Details  -->
     <div *ngIf="empolymentDetails">
       <div class="edit-profile-section-bg">
-        <div class="flex-row">
+        <div class="flex-row" (click)=showHide(showHideEmp)>
           <div class="flex-col-11">
             <div class="form-group-heading">
               Update Employment Details
@@ -302,7 +306,8 @@
           </div>
           <div class="flex-col-1">
             <div class="dropdown-img">
-              <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp) />
+                <span id="showHideEmp" class="arrow"  [class.active]="showHideEmp.style.display === 'block' || showHideEmp.style.display === ''"></span>
+              <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp) /> -->
             </div>
           </div>
         </div>
@@ -453,7 +458,8 @@
           </div>
           <div class="flex-col-1">
             <div class="dropdown-img">
-              <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" />
+                <span id="showHideBank" class="arrow"   [class.active]="showHideBank.style.display === 'block' || showHideBank.style.display === ''"></span>
+              <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
             </div>
           </div>
         </div>
