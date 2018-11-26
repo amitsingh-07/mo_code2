@@ -159,7 +159,6 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   goToNext(form) {
-    debugger;
     // If Bank Mode
     if (this.bankForm.controls.withdrawMode.value === 'BANK') {
       if (!form.valid) { // INVALID FORM

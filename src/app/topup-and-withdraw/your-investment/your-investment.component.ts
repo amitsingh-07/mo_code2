@@ -104,6 +104,8 @@ export class YourInvestmentComponent implements OnInit {
       this.welcomeInfo = { name: this.userProfileInfo.firstName, total: this.totalPortfolio };
       console.log(this.portfolioList);
       console.log(this.investmentoverviewlist.data.totalValue);
+      this.topupAndWithDrawService.setUserPortfolioList(this.portfolioList);
+      this.topupAndWithDrawService.setUserCashBalance(this.investmentoverviewlist.data.cashAccountDetails.availableBalance);
     });
   }
   fundYourAccount() {
