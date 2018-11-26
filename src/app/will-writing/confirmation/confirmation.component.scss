@@ -5,6 +5,7 @@
     background-color: #fff;
     padding: 50px 60px 65px;
     font-family: $muli-semi-bold;
+    padding-bottom: 0;
     @include allmobiles{
         padding: 10px 0 !important;
         border-radius: 0;
@@ -73,6 +74,7 @@
     justify-content: flex-end;
 }
 .sub-title {
+    font-family: $muli-regular;
     font-size: 18px;
     line-height: 1.22;
     letter-spacing: -0.2px;
@@ -80,6 +82,7 @@
     @include allmobiles {
         width: 271px;
         text-align: center;
+        font-size: 16px;
     }
 }
 .mobile-logo{
@@ -153,6 +156,8 @@
             justify-content: space-between;
             @include allmobiles {
                 flex-direction: column;
+                padding-bottom: 18px;
+                padding-top: 10px;
             }
             .col-lg-6{
                 &.col-md-6{
@@ -162,7 +167,7 @@
                             padding-right: 0;
                             @include allmobiles{
                                 border-right: none;
-                                padding-right: 15px;
+                                padding-right: 25px;
                             }
                         }
                         &:nth-child(2n-2) {
@@ -182,11 +187,7 @@
                 }
             }
         }
-      .edit-dark {
-          background-image: url("../../../assets/images/will-writing/edit-dark.svg");
-          justify-content: right;
-          background-repeat: no-repeat;
-      }
+      
       .edit {
         font-family: $muli-semi-bold;
         font-size: 18px;
@@ -195,6 +196,9 @@
         color: #00a7a7;
         text-align: right;
         cursor: pointer;
+        .edit-dark {
+            padding-right: 7px;
+        }
       }
       .record {
           display: flex;
@@ -216,6 +220,7 @@
         color: #9e9e9e;
         @include allmobiles {
             padding-left: 10px;
+            padding-top: 7px;
         }
       }
       .separator {
@@ -224,7 +229,7 @@
         border: solid 0.5px #009999;
         margin-top: 40px;
         @include allmobiles {
-            width: 89%;
+            width: 80%;
             align-items: center;
             height: 1px;
             border: solid 0.5px #bbbbbb;
@@ -247,7 +252,7 @@
     letter-spacing: -0.3px;
     color: #868686;
     border-bottom: solid 0.5px #bbbbbb;
-    width: 80%;
+    width: 70%;
     padding: 0;
     padding-bottom: 10px;
     margin: 0 15px;
