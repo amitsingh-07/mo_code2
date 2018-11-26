@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CustomerReviewsComponent } from './customer-reviews/customer-reviews.component';
+import { WhyBuyFromMoneyOwlComponent } from './why-buy-from-money-owl/why-buy-from-money-owl.component';
 import { WhyMoneyOwlComponent } from './why-money-owl/why-money-owl.component';
 
 const routes: Routes = [
@@ -17,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AboutUsRoutingModule {}
+export class AboutUsRoutingModule { }

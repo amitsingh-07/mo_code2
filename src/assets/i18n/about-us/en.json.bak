@@ -2,10 +2,16 @@
     "ABOUT_US": {
         "TITLE": "About MoneyOwl",
         "META": {
-            "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-            "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
-            "META_AUTHOR": "Moneyowl Pte Ltd",
-            "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            "GENERAL": {
+                "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+                "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+                "META_AUTHOR": "Moneyowl Pte Ltd",
+                "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            },
+            "SOCIAL": {
+                "META_DESCRIPTION": "",
+                "META_THUMBNAIL": ""
+            }
         },
         "WHO_WE_ARE": {
             "TITLE": "Who We Are",
@@ -51,27 +57,63 @@
             }]
         }
     },
-    "CUSTOMER_REVIEWS": {
-        "TITLE": "Customer Reviews",
-        "META": {
-            "META_DESCRIPTION": "Customer Reviews about our Financial Advisory Services ",
-            "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
-            "META_AUTHOR": "Moneyowl Pte Ltd",
-            "META_COPYRIGHT": "Moneyowl Pte Ltd"
-        },
-        "GENERAL": {
-            "TITLE": "Customer Reviews",
-            "SUB_TITLE": "Hear what our clients say about us"
-        }
-    },
-    "WHY_MONEYOWL": {
+    "WHY_BUY": {
         "TITLE": "Why MoneyOwl",
         "META": {
+            "GENERAL": {
                 "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
                 "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
                 "META_AUTHOR": "Moneyowl Pte Ltd",
                 "META_COPYRIGHT": "Moneyowl Pte Ltd"
             },
+            "SOCIAL": {
+                "META_DESCRIPTION": "",
+                "META_THUMBNAIL": ""
+            }
+        },
+        "GENERAL":{
+            "HEADER":{
+                "TITLE": "Why MoneyOwl",
+                "DESCRIPTION": "We provide financial advice that is comprehensive, competent and conflict-free, using solutions that are fit-for-purpose so that you can be empowered to live a fulfilling life."
+            },
+            "VALUE_PROP": { 
+                "MAS_LICENSED": {
+                    "LABEL": "MAS-licensed",
+                    "DESCRIPTION": "MoneyOwl is a financial adviser and fund management company licensed by the MAS. Inheriting our DNA to Do Good and Do Right from our two corporate parents, NTUC Enterprise and Providend, we hold ourselves to the highest of standards to put your interests first. The key leaders of MoneyOwl have a wealth of experience in comprehensive financial planning and fund management so you can be assured of receiving the most competent advice."
+                },
+                "HIGH_TECH": {
+                    "LABEL": "High-tech + Human wisdom",
+                    "DESCRIPTION": "Statistical models are static. Human relationships are dynamic. So, while robots can do precise calculations, only humans can understand your emotions and aspirations which must be considered in making money decisions. Have the best of both worlds. Leverage MoneyOwl’s advanced technology and receive advice from our dedicated Client Advisers. This is what we mean by Bionic – integrating technology with human wisdom to help you achieve your goals."
+                },
+                "NON_COMMISSIONED": {
+                    "LABEL": "Non commissioned-based Advisers",
+                    "DESCRIPTION": "We want to provide you with advice that is conflict-free. MoneyOwl’s advisers are salaried-based and are not remunerated by commissions. There is no incentive to hard-sell or to promote products that reward with higher commissions. Our focus is on helping you make wise money decisions in your best interests."                   
+                },
+                "INTEGRATE_SCHEMES": {
+                    "LABEL": "Integration with National Schemes",
+                    "DESCRIPTION": "National schemes like our CPF are often ignored when it comes to financial planning in Singapore. Despite CPF playing such a large role in retirement planning, there is insufficient understanding of the scheme and an absence of advice in this key area. Integrating our advice with national schemes, you can now consolidate all your financial information, craft a comprehensive financial plan and achieve a more secure retirement."
+                },
+                "SECURE_PLATFORM": {
+                    "LABEL": "Secure Platform",
+                    "DESCRIPTION": "Your privacy is our priority. We do not sell or refer your personal information to a third party. MoneyOwl’s platform is built by an experienced technology team led by our very own Chief Technology Officer, undergoes rigorous penetration testing and meets technology risk management guidelines by MAS to ensure highest security and data protection, so that you can have peace of mind."
+                }
+            }
+        }
+    },
+    "WHY_MONEYOWL": {
+        "TITLE": "Why MoneyOwl",
+        "META": {
+            "GENERAL": {
+                "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+                "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+                "META_AUTHOR": "Moneyowl Pte Ltd",
+                "META_COPYRIGHT": "Moneyowl Pte Ltd"
+            },
+            "SOCIAL": {
+                "META_DESCRIPTION": "",
+                "META_THUMBNAIL": ""
+            }
+        },
         "GENERAL":{
             "HEADER":{
                 "TITLE": "Why MoneyOwl",
@@ -104,39 +146,6 @@
                     "DESCRIPTION": "Your privacy is our priority. We do not sell or refer your personal information to a third party. MoneyOwl’s platform is built by an experienced technology team led by our very own Chief Technology Officer, undergoes rigorous penetration testing and meets technology risk management guidelines by MAS to ensure highest security and data protection, so that you can have peace of mind."
                 }
             ]
-        }
-    },
-    "CONTACT_US": {
-        "TITLE": "Contact Us",
-        "META": {
-            "META_DESCRIPTION": "Reach out to us if you have any enquiries",
-            "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
-            "META_AUTHOR": "Moneyowl Pte Ltd",
-            "META_COPYRIGHT": "Moneyowl Pte Ltd"
-        },
-        "GENERAL": {
-            "TITLE": "Contact Us",
-            "SUB_TITLE": "We are here for you",
-            "DESCRIPTION": "Feel free to contact us if you have any comments or questions. We are happy to learn about your experience and offer our assistance. Your privacy is our priority and all information shared will be kept confidential.",
-            "FORM" : {
-                "PLACEHOLDER": "Your Message and Contact Details Here",
-                "SUCCESS_MSG": "Your Enquiry has been sent successfully",
-                "SUB_TEXT": "Do leave us your contact details if you would like us to contact you.",
-                "SEND_MESSAGE": "Send Message"
-            },
-            "INFO": {
-                "GENERAL_LINE": "General line",
-                "GENERAL_NUMBER": "(65) 6329 9189",
-                "ADVISORY_LINE": "Advisory Line",
-                "ADVISORY_NUMBER": "(65) 6329 9188",
-                "OFFICE": "Office",
-                "ADDRESS": "23 Keong Saik Road<br/>Singapore 089130",
-                "EMAIL": "enquiries@moneyowl.com.sg",
-                "PARTNERSHIP": "For Corporate Fianncial Literacy Programmes and Financial  Wellness Partnerships",
-                "PARTNERSHIP_EMAIL": "partnership@moneyowl.com.sg",
-                "OPERATING_HOURS": "Operating Hours",
-                "OPERATING_HOURS_CONTENT": "9am - 6pm, Mon - Fri<br/>excluding Public Holidays<br/>"
-            }
         }
     }
 }

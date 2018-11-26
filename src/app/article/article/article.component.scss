@@ -152,6 +152,7 @@
         font-family:$muli-semi-bold;
         color:$orange-color;
         cursor: pointer;
+        text-transform: lowercase;
         &:hover{
             text-decoration:underline;
         }
