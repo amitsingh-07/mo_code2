@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   countryCodeOptions;
   heighlightMobileNumber;
   buttonTitle;
-  captchaSrc: any = '';
+  captchaSrc: any;
 
   constructor(
     // tslint:disable-next-line
@@ -100,6 +100,10 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
           // tslint:disable-next-line:triple-equals
         } else if (data.responseMessage.responseCode == 6000) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+        } else {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+          this.refreshCaptcha();
         }
       });
     }

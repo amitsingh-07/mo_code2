@@ -1,5 +1,6 @@
+import { filter } from 'rxjs/operators';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -31,6 +32,12 @@ export class ModelWithButtonComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.events
+            .pipe(filter((event) => event instanceof NavigationEnd))
+            .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+                // dismiss all bootstrap modal dialog
+                this.activeModal.dismiss();
+            });
   }
 
   primaryActionSelected() {
