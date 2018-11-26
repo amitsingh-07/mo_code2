@@ -17,4 +17,8 @@ export class TopUpAndWithdrawFormData {
     withdrawPortfolio: any;
     withdrawMode: string;
     withdrawBank: any;
+
+    userPortfolios: any;
+    selectedPortfolioForTopup: any;
+    cashAccountBalance: number;
 }

@@ -295,6 +295,7 @@
   "FUND_INTRO": {
     "TITLE": "Fund Your Account",
     "DESC": "In the next step, you can select the method to fund your account.",
-    "BACK" : "Proceed"
+    "BACK" : "Proceed",
+    "SUCCESS": "Investment Account Setup Successful"
   }
 }

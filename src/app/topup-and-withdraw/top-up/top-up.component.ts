@@ -39,7 +39,7 @@ export class TopUpComponent implements OnInit {
   formValues;
   topForm: FormGroup;
   enteringAmount;
-  cashBalance = 1200;
+  cashBalance;
   fundDetails;
 
   constructor(
@@ -63,13 +63,12 @@ export class TopUpComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
- 
-
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getPortfolioList();
+    this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
       this.investmentTypeList = data.objectList; // Getting the information from the API
       console.log(this.investmentTypeList);
@@ -77,7 +76,7 @@ export class TopUpComponent implements OnInit {
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
-      portfolio: [this.formValues.portfolio, Validators.required],
+      portfolio: [this.formValues.PortfolioValues, Validators.required],
       Investment: [this.formValues.Investment, Validators.required],
       oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
       MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
@@ -95,10 +94,7 @@ export class TopUpComponent implements OnInit {
     }
   }
   getPortfolioList() {
-    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
-      this.portfolioList = data.objectList.riskProfileTypes;
-      console.log(this.portfolioList);
-    });
+    this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
   }
   setDropDownValue(key, value) {
     this.topForm.controls[key].setValue(value);
@@ -136,18 +132,24 @@ export class TopUpComponent implements OnInit {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-    }
-    const error = this.topupAndWithDrawService.doFinancialValidations(form);
-    console.log('error' + error);
-    if (error) {
-      // tslint:disable-next-line:no-commented-code
-      const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-      ref.componentInstance.errorTitle = error.errorTitle;
-      ref.componentInstance.errorMessage = error.errorMessage;
-      // tslint:disable-next-line:triple-equals
-
+      const error = this.topupAndWithDrawService.getFormErrorList(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.title;
+      ref.componentInstance.errorMessageList = error.errorMessages;
+      return false;
     } else {
-      this.saveAndProceed(form);
+      const error = this.topupAndWithDrawService.doFinancialValidations(form);
+      console.log('error' + error);
+      if (error) {
+        // tslint:disable-next-line:no-commented-code
+        const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+        ref.componentInstance.errorTitle = error.errorTitle;
+        ref.componentInstance.errorMessage = error.errorMessage;
+        // tslint:disable-next-line:triple-equals
+
+      } else {
+        this.saveAndProceed(form);
+      }
     }
   }
 

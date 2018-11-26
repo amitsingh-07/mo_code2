@@ -68,6 +68,11 @@ export let apiConstants = {
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
             investmentoverview: 'invest/investment-microservice/portfolio/holdings'
         },
+        investment: {
+            getUserAddress: 'account/account-microservice/api/customer/address',
+            getUserBankList: 'account/account-microservice/api/customer/banks',
+            addNewBank: 'account/account-microservice/api/customer/bank'
+        },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
             createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile',

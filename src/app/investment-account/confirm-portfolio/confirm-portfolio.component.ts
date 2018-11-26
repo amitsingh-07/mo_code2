@@ -237,7 +237,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (pepData == true) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
       this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
         // CREATE INVESTMENT ACCOUNT
         console.log('Attempting to create ifast account');
@@ -255,7 +254,8 @@ export class ConfirmPortfolioComponent implements OnInit {
           } else { // SUCCESS SCENARIO
             if (response.objectList[response.objectList.length - 1]) {
               if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+                this.investmentAccountService.setAccountSuccussModalCounter(0);
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
               } else {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
               }
