@@ -165,6 +165,10 @@ export class TopupAndWithDrawService {
       return this.apiService.getUserBankList();
     }
 
+    getUserAddress() {
+      return this.apiService.getUserAddress();
+    }
+
     saveNewBank(data) {
       const payload = this.constructSaveNewBankRequest(data);
       return this.apiService.saveNewBank(payload);
@@ -172,9 +176,9 @@ export class TopupAndWithDrawService {
 
     constructSaveNewBankRequest(data) {
       const request = {};
-      request['accountHolderName'] = data.accountHolderName;
-      request['bank'] = data.bank.id;
-      request['accountNo'] = data.accountNo;
+      request['bank'] = data.bank;
+      request['accountName'] = data.accountHolderName;
+      request['accountNumber'] = data.accountNo;
       return request;
     }
 

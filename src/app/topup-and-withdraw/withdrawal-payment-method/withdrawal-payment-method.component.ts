@@ -29,6 +29,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   formValues: any;
   banks;
   userBankList;
+  userAddress;
 
   constructor(
     public readonly translate: TranslateService,
@@ -48,6 +49,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   ngOnInit() {
     this.getLookupList();
     this.getUserBankList();
+    this.getUserAddress();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.buildForm();
   }
@@ -61,20 +63,23 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
 
   getLookupList() {
     this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
-      this.banks = [
-        { id: 1, name: 'HDFC' },
-        { id: 2, name: 'ICICI' },
-        { id: 2, name: 'HSBC' }
-      ];
+      this.banks = data.objectList.bankList;
     });
   }
 
   getUserBankList() {
     this.topupAndWithDrawService.getUserBankList().subscribe((data) => {
-      this.userBankList = [
-        { id: 1, accountName: 'Kelvin Goh', bankName: 'hdfc', bankLogo: 'http://images.com/s.png', accountNo: 43620283740923 },
-        { id: 2, accountName: 'Mark Smith', bankName: 'icici', bankLogo: 'http://images.com/s.png', accountNo: 634221232328462 }
-      ];
+      if (data.responseMessage.responseCode >= 6000) {
+        this.userBankList = data.objectList;
+      }
+    });
+  }
+
+  getUserAddress() {
+    this.topupAndWithDrawService.getUserAddress().subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000) {
+        this.userAddress = data.objectList.mailingAddress ? data.objectList.mailingAddress : data.objectList.homeAddress;
+      }
     });
   }
 
@@ -87,6 +92,12 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   selectMode(mode) {
+    if (mode === 'BANK') {
+      this.bankForm.controls['withdrawBank'].setValidators([Validators.required]);
+    } else {
+      this.bankForm.controls['withdrawBank'].clearValidators();
+    }
+    this.bankForm.controls['withdrawBank'].updateValueAndValidity();
     this.bankForm.controls.withdrawMode.setValue(mode);
   }
 
@@ -133,7 +144,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     ref.componentInstance.saved.subscribe((data) => {
       ref.close();
       this.topupAndWithDrawService.saveNewBank(data).subscribe((response) => {
-        // todo
+        if (response.responseMessage.responseCode >= 6000) {
+          this.getUserBankList(); // refresh updated bank list
+        }
       });
     });
     this.dismissPopup(ref);
@@ -146,6 +159,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   goToNext(form) {
+    debugger;
     // If Bank Mode
     if (this.bankForm.controls.withdrawMode.value === 'BANK') {
       if (!form.valid) { // INVALID FORM
