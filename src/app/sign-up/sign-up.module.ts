@@ -33,6 +33,7 @@ import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -76,6 +77,7 @@ export function createTranslateLoader(http: HttpClient) {
     EditPasswordComponent,
     EditResidentialAddressComponent,
     UpdateUserIdComponent,
+    AccountUpdatedComponent,
     AddUpdateBankComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]

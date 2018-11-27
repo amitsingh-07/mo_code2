@@ -20,4 +20,9 @@ export class SignUpFormData {
 
     // User information after the login
     userProfileInfo: any;
+
+    // Edit Contact
+    editContact: boolean;
+    updateMobile: boolean;
+    updateEmail: boolean;
 }
