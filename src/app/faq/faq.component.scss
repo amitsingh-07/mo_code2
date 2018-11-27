@@ -247,6 +247,12 @@
     overflow-x:hidden;
     overflow-y:hidden;
     justify-content:center;
+    .navbar__btn {
+        @include allmobiles {
+            max-width: unset !important;
+            width: unset;
+        }
+    }
     @include minMobilemaxPhablet{
         border-bottom: 2px solid #e5f3f4;
     }
