@@ -211,11 +211,14 @@ export class TopupAndWithDrawService {
 
   constructSellPortfolioRequestParams(data) {
     const request = {};
-    request['type'] = (data.withdrawType) ? data.withdrawType.id : null; // todo
-    request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.id : null;
+    request['withdrawType'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
+    //request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
+    request['portfolioId'] = 'PORTFOLIO00046';
     request['redemptionAmount'] = data.withdrawAmount;
     request['mode'] = data.withdrawMode; // todo
-    request['bank'] = (data.withdrawBank) ? data.withdrawBank.id : null; // todo
+    if (request['mode'] === 'BANK') {
+      request['customerBankDetail'] = (data.withdrawBank) ? data.withdrawBank : null; // todo
+    }
     return request;
   }
 
@@ -234,8 +237,8 @@ export class TopupAndWithDrawService {
       isPayMonthly = true;
     }
     return {
-      //portfolioId: data.portfolio.id,
-      portfolioId: 'PORTFOLIO00046', // todo: hard coded, actual lookup api needed
+      portfolioId: 'PORTFOLIO00046',
+      //portfolioId: data.portfolio.productCode,
       investmentAmount: Number(redeemAmount), // todo
       payMonthly: isPayMonthly
     };
