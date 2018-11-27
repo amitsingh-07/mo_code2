@@ -74,7 +74,7 @@
       "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
       "SENT_SUCCESS": "Your promo code has successfully been sent to your email.",
       "FAQ_LINK": "http://www.moneyowl.com.sg/faqs",
-      "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg",
+      "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg/home#subscribe",
       "SUBSCRIBE": "Subscribe to our mailing list and ",
       "PROMO_ERROR": "Invalid promo code. Please try again."
     },
