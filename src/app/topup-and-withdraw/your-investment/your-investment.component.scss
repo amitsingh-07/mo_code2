@@ -17,11 +17,15 @@ app-your-investment{
         line-height: 1.28;
         letter-spacing: -0.2px;
         position: relative;
+        padding: 0 29px 0 28px;
     }
-    .col-4{
+    .flex-col-3{
         position: absolute;
-        right: 5px;
-        bottom: -57%;
+        right: 22px;
+        top: 40px;
+        @include iphone5{
+            top: 30px;
+        }
     }
 }
 hr{
@@ -134,7 +138,7 @@ p{
   letter-spacing: -0.2px;
   text-align: right;
   color: #11b600;
-  padding-right: 10px;
+  padding-right: 16px;
 
 }
 

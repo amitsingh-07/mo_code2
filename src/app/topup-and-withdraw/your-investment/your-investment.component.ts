@@ -33,21 +33,20 @@ import { SignUpService } from '../../sign-up/sign-up.service';
   encapsulation: ViewEncapsulation.None
 })
 export class YourInvestmentComponent implements OnInit {
+  totalPortfolio;
+  welcomeInfo;
   investmentoverviewlist: any;
-  totalPortfolioValue;
   portfolioList;
   totalReturnss;
-  summaryValues;
   selectedDropDown;
   pageTitle: string;
-  NumberPortfolio = 2;
   moreList: any;
   PortfolioValues;
   portfolios;
   userProfileInfo;
   showAlretPopUp = false;
   selected;
-  summary;
+ 
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -100,8 +99,12 @@ export class YourInvestmentComponent implements OnInit {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
       this.portfolioList = this.investmentoverviewlist.data.portfolios;
+      this.totalPortfolio = this.portfolioList.length;
+      this.welcomeInfo = { name: this.userProfileInfo.firstName, total: this.totalPortfolio };
       console.log(this.portfolioList);
       console.log(this.investmentoverviewlist.data.totalValue);
+      this.topupAndWithDrawService.setUserPortfolioList(this.portfolioList);
+      this.topupAndWithDrawService.setUserCashBalance(this.investmentoverviewlist.data.cashAccountDetails.availableBalance);
     });
   }
   fundYourAccount() {

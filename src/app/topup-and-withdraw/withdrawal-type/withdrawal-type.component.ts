@@ -29,7 +29,7 @@ export class WithdrawalTypeComponent implements OnInit {
   isFromPortfolio = false;
   withdrawalTypes;
   portfolioList;
-  cashBalance = 1409.12; // Todo
+  cashBalance; // Todo
 
   constructor(
     public readonly translate: TranslateService,
@@ -55,6 +55,8 @@ export class WithdrawalTypeComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
+    this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
+    this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
     this.buildForm();
   }
 
@@ -94,7 +96,7 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   buildFormForPortfolioToCash() {
-    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
+    this.withdrawForm.addControl('withdrawPortfolio', new FormControl(this.formValues.PortfolioValues, Validators.required));
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value ?
         this.withdrawForm.addControl('withdrawAmount', new FormControl('',
@@ -105,7 +107,7 @@ export class WithdrawalTypeComponent implements OnInit {
 
   // tslint:disable
   buildFormForPortfolioToBank() {
-    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
+    this.withdrawForm.addControl('withdrawPortfolio', new FormControl(this.formValues.PortfolioValues, Validators.required));
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value ?
         this.withdrawForm.addControl('withdrawAmount', new FormControl('', [Validators.required, this.withdrawAmountValidator(this.withdrawForm.get('withdrawPortfolio'), 'CONTROL')])) :
@@ -119,17 +121,7 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   getLookupList() {
-    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
-      this.withdrawalTypes = [
-        { id: 1, name: 'Portfolio to Cash Account' },
-        { id: 2, name: 'Portfolio to Bank Account' },
-        { id: 3, name: 'Cash Account to Bank Ac' }
-      ];
-      this.portfolioList = [
-        { id: 'PORT2334', name: 'Growth', value: 12050 },
-        { id: 'PORT2335', name: 'Conservative', value: 9500 }
-      ];
-    });
+    this.withdrawalTypes = TOPUPANDWITHDRAW_CONFIG.WITHDRAW.WITHDRAWAL_TYPES;
   }
 
   getInlineErrorStatus(control) {
@@ -181,7 +173,9 @@ export class WithdrawalTypeComponent implements OnInit {
 
   saveWithdrawal() {
     this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe((response) => {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
+      if (response.responseMessage.responseCode >= 6000) {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
+      }
     });
   }
 
@@ -209,7 +203,7 @@ export class WithdrawalTypeComponent implements OnInit {
       if (c) {
         let isValid;
         if (type === 'CONTROL') {
-          isValid = c.value <= amount.value.value;
+          isValid = c.value <= amount.value.currentValue;
         }
         else {
           isValid = c.value <= amount;

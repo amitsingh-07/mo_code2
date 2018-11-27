@@ -30,9 +30,10 @@
           <img src="../../../assets/images/investment-account/arrow-right.png" alt="" />
         </div>
         <div class="to-account">
-          <img src="../../../assets/images/investment-account/growth_icon.svg" alt="" /> <!-- TODO  -->
+          <img *ngIf="riskProfileImg" src="{{riskProfileImg}}" alt="" />
+          <img *ngIf="!riskProfileImg" src="../../../assets/images/investment-account/growth_icon.svg" alt="" /> <!-- TODO  -->
           <div>{{ 'FUND_YOUR_ACCOUNT.YOUR_PORTFOLIO' | translate }}</div>
-          <div class="strong">{{fundDetails.portfolio.name}}</div>
+          <div class="strong">{{fundDetails.portfolio.productName}}</div>
         </div>
       </div>
 
