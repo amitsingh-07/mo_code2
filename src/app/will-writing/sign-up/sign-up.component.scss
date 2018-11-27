@@ -10,16 +10,15 @@
     height: 57px;
     font-family: $muli-bold;
     font-size: 22px;
-    font-weight: bold;
     letter-spacing: -0.2px;
     text-align: center;
     color: #00a7a7;
-    border-width:0px; 
+    border-width:0px;
+    cursor: pointer;
   }
   .no-login-but{
     font-family: $muli-bold;
     font-size: 22px;
-    font-weight: bold;
     letter-spacing: -0.2px;
     text-align: center;
     color: #ffffff;
@@ -28,6 +27,7 @@
     border-radius: 6px;
     border: solid 1px #ffffff;
     background-color: #00a7a7;
+    cursor: pointer;
   }
   .prelogin-wrapper__title
   {

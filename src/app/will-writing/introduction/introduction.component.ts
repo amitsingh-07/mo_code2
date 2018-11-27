@@ -117,6 +117,6 @@ export class IntroductionComponent implements OnInit {
   }
 
   getOneNow() {
-    window.open(this.getNowLink, '_blank');
+    this.router.navigate( ['/home'], {fragment: 'subscribe'});
   }
 }

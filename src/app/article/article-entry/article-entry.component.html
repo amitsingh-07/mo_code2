@@ -42,7 +42,7 @@
     <div class="article-entry__side-panel">
         <app-subscribe-side></app-subscribe-side>
         <div class="related-side">
-          <p class="related-side--title">Related Articles:</p>
+          <p class="related-side--title">{{'ARTICLE_INDIVIDUAL.RELATED_ARTICLES.LABEL' | translate}}</p>
           <div class="relate-side__card-container">
             <div class="relate-side__card" *ngFor="let relatedArticle of art_related">
               <div class="related-card__img">
@@ -50,7 +50,7 @@
                 </div>
               <div class="related-card__desc">
                 <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}"class="related-card--title">{{relatedArticle.art_title}}</a>
-                <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}">Read More <i class="material-icons">
+                <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}">{{'ARTICLE_INDIVIDUAL.RELATED_ARTICLES.READ_MORE' | translate}} <i class="material-icons">
                     keyboard_arrow_right
                     </i></a>
                 </div>

@@ -1,4 +1,11 @@
 {
+    "FAQ_GENERAL": {
+        "TITLE": "FAQ",
+        "META": {
+            "META_DESCRIPTION": "Questions on Insurance",
+            "META_KEYWORDS": "FAQ, Insurance, Will Writing"
+            }
+    },
     "FAQ": {
         "TITLE": "FAQs",
         "PAGE_TITLE": "Frequently Asked Questions on",

@@ -85,7 +85,7 @@
         color: #ffffff;
       }
     .sub-title{
-            font-family: $muli-semi-bold;
+            font-family: $muli-regular;
             font-size: 18px;
             line-height: 1.22;
             letter-spacing: -0.2px;
@@ -177,6 +177,7 @@ input[type='checkbox']+label {
         box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
         font-size: 18px;
         letter-spacing: -0.3px;
+        line-height: normal;
         color: #2d8289;
         margin-top: 0px;
         font-family: $muli-semi-bold;
@@ -184,7 +185,7 @@ input[type='checkbox']+label {
             margin-top: 19px !important;
         }
         .flex-row{
-            padding: 0 19px 25px; 
+            padding: 0 19px 21px; 
         }
         .title {
             background: $white-color;
@@ -231,7 +232,7 @@ input[type='checkbox']+label {
     padding:20px 0;
   }
   .add-beneficiary{
-      justify-content: flex-end;
+      justify-content: center;
   }
 
   .sub-name {

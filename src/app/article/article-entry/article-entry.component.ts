@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute  , Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SeoServiceService } from './../../shared/Services/seo-service.service';
 
 import { ArticleApiService } from '../article.api.service';
 import { ArticleService } from '../article.service';
@@ -27,8 +29,14 @@ export class ArticleEntryComponent implements OnInit {
 
   public art_related: IArticleElement[];
 
-  constructor(public navbarService: NavbarService, public footerService: FooterService, private route: ActivatedRoute,
-              public articleApiService: ArticleApiService, public articleService: ArticleService) {}
+  constructor(public navbarService: NavbarService, public footerService: FooterService,
+              private route: ActivatedRoute, private seoService: SeoServiceService,
+              public articleApiService: ArticleApiService, public articleService: ArticleService,
+              private translate: TranslateService) {
+                this.translate.use('en');
+                this.translate.get('COMMON').subscribe((result) => {
+                });
+              }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -60,6 +68,7 @@ export class ArticleEntryComponent implements OnInit {
       this.author = art_data.author;
       this.tags = art_data.tag;
       this.date = art_data.date;
+      this.seoService.setTitle(this.translate.instant('COMMON.PRE_TITLE') + this.title);
     });
     //  Getting Article Content
     this.articleApiService.getArticleContent(art_id).subscribe((data) => {

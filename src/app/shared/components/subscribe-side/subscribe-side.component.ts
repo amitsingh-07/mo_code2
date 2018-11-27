@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+import { TranslateService } from '@ngx-translate/core';
 import { MailchimpApiService } from '../../Services/mailchimp.api.service';
 import { SubscribeMember } from './../../Services/subscribeMember';
 
@@ -16,7 +17,8 @@ export class SubscribeSideComponent implements OnInit {
   subscribeSuccess = false;
   formValues: SubscribeMember;
 
-  constructor(public mailChimpApiService: MailchimpApiService) {
+  constructor(public mailChimpApiService: MailchimpApiService, private translate: TranslateService) {
+    this.translate.use('en');
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
       if (data !== '') {
         if (data['errorMessage']) {
