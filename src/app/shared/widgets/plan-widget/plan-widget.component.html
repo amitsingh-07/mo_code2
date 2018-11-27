@@ -109,7 +109,7 @@
       </button>
     </div>
     <div class="col-btn-bottom width100" *ngIf="isComparePlanEnabled">
-      <button type="button" (click)="comparePlans()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{
+      <button type="button" (click)="comparePlans()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': data.compareSelected}">{{
         'BUTTON.COMPARE' | translate }}</button>
     </div>
   </div>

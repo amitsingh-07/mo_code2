@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -6,11 +7,13 @@ import {
   Type,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnDestroy
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription, SubscriptionLike } from 'rxjs';
 
 import { appConstants } from './../app.constants';
 import { AppService } from './../app.service';
@@ -18,8 +21,10 @@ import { FooterService } from './../shared/footer/footer.service';
 import { IPageComponent } from './../shared/interfaces/page-component.interface';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { SelectedPlansService } from './../shared/Services/selected-plans.service';
+import { StateStoreService } from './../shared/Services/state-store.service';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectService } from './direct.service';
+import { DirectState } from './direct.state';
 
 const mobileThreshold = 567;
 
@@ -30,27 +35,57 @@ const mobileThreshold = 567;
   encapsulation: ViewEncapsulation.None
 })
 
-export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
+export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, OnDestroy {
   @ViewChild('directResults', { read: ViewContainerRef }) container: ViewContainerRef;
-  components = [];
-
-  isMobileView = false;
-  modalFreeze: boolean;
   pageTitle: string;
-  showingResults = false;
-  hideForm = false;
+
+  routeSubscription: Subscription;
+  locationSubscription: SubscriptionLike;
+  state: DirectState = new DirectState();
+  componentName: string;
 
   constructor(
     private router: Router, public navbarService: NavbarService,
     public footerService: FooterService, private directService: DirectService, private translate: TranslateService,
     public modal: NgbModal, private route: ActivatedRoute,
     private factoryResolver: ComponentFactoryResolver, private appService: AppService,
-    private planService: SelectedPlansService) {
-    this.modalFreeze = false;
-    if (window.innerWidth < mobileThreshold) {
-      this.isMobileView = true;
+    private planService: SelectedPlansService, private stateStoreService: StateStoreService,
+    private location: Location) {
+
+    /* ************** STATE HANDLING - START ***************** */
+    this.componentName = DirectComponent.name;
+
+    this.routeSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart && event.url !== '/direct') {
+        this.stateStoreService.saveState(this.componentName, this.state);
+      } else if (event instanceof NavigationEnd) {
+
+      }
+    });
+    if (this.stateStoreService.has(this.componentName)) {
+      this.state = this.stateStoreService.getState(this.componentName);
     } else {
-      this.isMobileView = false;
+      this.state = new DirectState();
+    }
+
+    this.locationSubscription = this.location.subscribe((popStateEvent: PopStateEvent) => {
+      if (popStateEvent.type === 'popstate') {
+        const eventSubscription = this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd && event.url === '/home') {
+            this.stateStoreService.clearState(this.componentName);
+            this.directService.setSelectedPlans([]);
+            eventSubscription.unsubscribe();
+          }
+        });
+      }
+    });
+    /* ************** STATE HANDLING - END ***************** */
+
+    this.state.modalFreeze = false;
+    if (window.innerWidth < mobileThreshold) {
+      this.state.isMobileView = true;
+    } else {
+      this.state.isMobileView = false;
     }
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_DIRECT);
     this.translate.use('en');
@@ -59,7 +94,7 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
       this.setPageTitle(this.pageTitle, null, false);
       this.directService.setModalFreeze(false);
     });
-    this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.modalFreeze = freezeCheck);
+    this.directService.modalFreezeCheck.subscribe((freezeCheck) => this.state.modalFreeze = freezeCheck);
     this.showProductInfo();
 
     this.navbarService.unsubscribeBackPress();
@@ -69,17 +104,33 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   }
 
   ngOnInit() {
+    this.state.container = this.container;
     const selectedPlans = this.planService.getSelectedPlan();
-    if (selectedPlans && selectedPlans.enquiryId) {
-      if (this.isMobileView) {
+    const selectedComparePlans = this.directService.getSelectedPlans();
+    if ((selectedPlans && selectedPlans.enquiryId) ||
+      (selectedComparePlans && selectedComparePlans.hasOwnProperty('length') && selectedComparePlans.length > 0)) {
+      if (this.state.isMobileView) {
         this.directService.setModalFreeze(true);
       }
-      this.hideForm = true;
+      this.state.hideForm = true;
       this.formSubmitCallback();
     }
   }
 
   ngAfterViewInit() {
+
+  }
+
+  ngOnDestroy() {
+    if (this.routeSubscription instanceof Subscription) {
+      this.routeSubscription.unsubscribe();
+    }
+
+    try {
+      this.locationSubscription.unsubscribe();
+    } catch (e) {
+
+    }
 
   }
 
@@ -95,15 +146,15 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   }
 
   formSubmitCallback() {
-    this.showingResults = true;
+    this.state.showingResults = true;
     this.removeComponent(DirectResultsComponent);
     this.addComponent(DirectResultsComponent);
   }
 
   backPressed() {
-    this.hideForm = false;
+    this.state.hideForm = false;
     this.navbarService.unsubscribeBackPress();
-    this.showingResults = false;
+    this.state.showingResults = false;
     this.setPageTitle(this.pageTitle, null, false);
     this.removeComponent(DirectResultsComponent);
   }
@@ -111,22 +162,22 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent {
   addComponent(componentClass: Type<any>) {
     // Create component dynamically inside the ng-template
     const componentFactory = this.factoryResolver.resolveComponentFactory(componentClass);
-    const component = this.container.createComponent(componentFactory);
-    component.instance.isMobileView = this.isMobileView;
+    const component = this.state.container.createComponent(componentFactory);
+    component.instance.isMobileView = this.state.isMobileView;
 
     // Push the component so that we can keep track of which components are created
-    this.components.push(component);
+    this.state.components.push(component);
   }
 
   removeComponent(componentClass: Type<any>) {
     // Find the component
-    const component = this.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
-    const componentIndex = this.components.indexOf(component);
+    const component = this.state.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
+    const componentIndex = this.state.components.indexOf(component);
 
     if (componentIndex !== -1) {
       // Remove component from both view and array
-      this.container.remove(this.container.indexOf(component));
-      this.components.splice(componentIndex, 1);
+      this.state.container.remove(this.state.container.indexOf(component));
+      this.state.components.splice(componentIndex, 1);
     }
   }
 
