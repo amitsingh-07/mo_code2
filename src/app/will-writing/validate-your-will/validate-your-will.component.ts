@@ -50,7 +50,15 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
   downloadFile(data: any) {
     const blob = new Blob([data], { type: 'application/pdf' });
     const url = window.URL.createObjectURL(blob);
-    window.open(url);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+
   }
 
 }

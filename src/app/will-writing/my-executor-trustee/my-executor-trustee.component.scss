@@ -225,7 +225,8 @@
 .message-block{
     margin-top: 21px;
     @include allmobiles {
-        padding-bottom: 20px;
+        margin-top: 0;
+        padding-bottom: 30px;
     }
     
     .tooltip-message-img{
@@ -237,7 +238,7 @@
     .tooltip-message{
         padding: 14px 9px 17px 20px;
         position: absolute;
-        bottom: 20%;
+        bottom: 21%;
         width: 274px;
         left: 14%;
         font-size: 14px;
@@ -267,4 +268,11 @@
         border: none;
         border-radius: 4px;
     }
+  }
+
+  .form-group-single-column .checkbox-button.two-label {
+      margin-bottom: 19px;
+      @include allmobiles {
+          margin-bottom: 24px;
+      }
   }
