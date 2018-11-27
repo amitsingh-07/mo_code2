@@ -221,7 +221,8 @@
     }
   },
   "SUBSCRIBE_SIDE": {
-    "TITLE": "Join our mailing list and get promo code for <span class='orange-color'>FREE</span> Will writing!",
+    "TITLE": "Join our Mailing List &",
+    "PROMO_TITLE": "Get Promo Code for FREE Will Writing",
     "FIRST_NAME": "First Name",
     "LAST_NAME": "Last Name",
     "EMAIL": "Email",
