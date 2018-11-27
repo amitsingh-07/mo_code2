@@ -604,7 +604,7 @@ export class ApiService {
     // tslint:disable-next-line:no-commented-code
     const url = '../assets/mock-data/forgotPassword.json';
 
-    return this.http.post(apiConstants.endpoint.forgotPassword, data)
+    return this.http.post(apiConstants.endpoint.forgotPassword + '?handleError=true', data)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {

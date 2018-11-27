@@ -909,7 +909,7 @@ button:active:focus {
 
     @include minMobilemaxPhablet {
       flex-basis: unset;
-      //max-width: 150px;
+      max-width: 150px;
     }
 
     .navbar__btn--title {

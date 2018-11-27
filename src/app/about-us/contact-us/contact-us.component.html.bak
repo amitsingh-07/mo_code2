@@ -11,13 +11,14 @@
   <div class="banner" #banner>
     <div class="banner-container">
       <div class="banner__text-container">
-        <h1 class="banner--title">{{'CONTACT_US.GENERAL.TITLE' | translate}}</h1>
-        <h3 class="banner--subtitle">{{'CONTACT_US.GENERAL.SUB_TITLE' | translate}}</h3>
+        <h1 class="banner--title">Contact Us</h1>
+        <h3 class="banner--subtitle">We are here for you</h3>
         <div class="banner__img-container hidden-lg">
           <img src="/assets/images/about-us/contact-us-header.svg"/>
           </div>
         <p class="banner--description">
-          {{'CONTACT_US.GENERAL.DESCRIPTION' | translate}}
+          Feel free to contact us if you have any comments or questions. We are happy to learn about your experience and offer our assistance.
+          Your privacy is our priority and all information shared will be kept confidential.
           </p>
         </div>
       <div class="banner__subtext-container"> 
@@ -44,35 +45,41 @@
               </div>
             </div>
           </div>
-          <textarea class="form-control" formControlName="message" placeholder="{{'CONTACT_US.GENERAL.FORM.PLACEHOLDER' | translate}}" ></textarea>
+          <textarea class="form-control" formControlName="message" placeholder="Your Message and Contact Details Here" ></textarea>
           <p class="error--msg" *ngIf="(!contactUsForm.controls.message.valid && contactUsForm.controls.message.dirty)">{{contactUsErrorMessage}}</p>
-          <p class="error--msg success" *ngIf="sendSuccess">{{'CONTACT_US.GENERAL.FORM.SUCCESS_MSG' | translate}}</p>
-          <p>{{'CONTACT_US.GENERAL.FORM.SUB_TEXT' | translate}}</p>
-          <button class="form-control btn btn-primary" [disabled]="!contactUsForm.valid || subject == subjectPreset" (click)="save(contactUsForm)">{{'CONTACT_US.GENERAL.FORM.SEND_MESSAGE' | translate}}</button>
+          <p class="error--msg success" *ngIf="sendSuccess">Your Enquiry has been sent successfully</p>
+          <p>Do leave us your contact details if you would like us to contact you.</p>
+          <button class="form-control btn btn-primary" [disabled]="!contactUsForm.valid || subject == subjectPreset" (click)="save(contactUsForm)">Send Message</button>
           </form> 
         </div>
       <div class="contact-us__side-panel">
         <div class="info-group">
-          <h4>{{'CONTACT_US.GENERAL.INFO.GENERAL_LINE' | translate}}</h4>
-          <p>{{'CONTACT_US.GENERAL.INFO.GENERAL_NUMBER' | translate}}</p>
-          <h4>{{'CONTACT_US.GENERAL.INFO.ADVISORY_LINE' | translate}}</h4>
-          <p>{{'CONTACT_US.GENERAL.INFO.ADVISORY_NUMBER' | translate}}</p>
+          <h4>General line</h4>
+          <p>(65) 6329 9189</p>
+          <h4>Advisory Line</h4>
+          <p>(65) 6329 9188</p>
         </div>
         <div class="info-group">
-          <h4>{{'CONTACT_US.GENERAL.INFO.OFFICE' | translate}}</h4>
-          <p innerHTML="{{'CONTACT_US.GENERAL.INFO.ADDRESS' | translate}}"></p>
+          <h4>Office</h4>
+          <p>
+            23 Keong Saik Road<br/>
+            Singapore 089130
+          </p>
           </div>
         <div class="info-group">
           <h4>Email</h4>
-          <a href="mailto:enquiries@moneyowl.com.sg">{{'CONTACT_US.GENERAL.INFO.EMAIL' | translate}}</a>
+          <a href="mailto:enquiries@moneyowl.com.sg">enquiries@moneyowl.com.sg</a>
           </div>
         <div class="info-group">
-          <h4>{{'CONTACT_US.GENERAL.INFO.PARTNERSHIP' | translate}}</h4>
-          <a href="mailto:partnership@moneyowl.com.sg">{{'CONTACT_US.GENERAL.INFO.PARTNERSHIP_EMAIL' | translate}}</a> 
+          <h4>For Corporate Fianncial Literacy Programmes and Financial  Wellness Partnerships</h4>
+          <a href="mailto:partnership@moneyowl.com.sg">partnership@moneyowl.com.sg</a> 
           </div>
         <div class="info-group"> 
-          <h4>{{'CONTACT_US.GENERAL.INFO.OPERATING_HOURS' | translate}}</h4>
-          <p innerHTML="{{'CONTACT_US.GENERAL.INFO.OPERATING_HOURS_CONTENT' | translate}}"></p>
+          <h4>Operating Hours</h4>
+          <p>
+            9am - 6pm, Mon - Fri<br/>
+            excluding Public Holidays<br/>
+          </p>
           </div>
         </div>
       </div>

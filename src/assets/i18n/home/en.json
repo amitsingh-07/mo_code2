@@ -1,19 +1,13 @@
 {
     "GENERAL": {
-        "TITLE": "Home",
+        "TITLE": "MoneyOwl",
         "COMING_SOON": "Coming Soon",
         "META": {
-            "GENERAL": {
-                "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
-                "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
-                "META_AUTHOR": "Moneyowl Pte Ltd",
-                "META_COPYRIGHT": "Moneyowl Pte Ltd"
-            },
-            "SOCIAL": {
-                "META_DESCRIPTION": "",
-                "META_THUMBNAIL": ""
+            "META_DESCRIPTION": "Singapore’s 1st Bionic Financial Adviser where human wisdom and technology come together to deliver best-in-class financial advice that integrates national schemes.",
+            "META_KEYWORDS": "1st Bionic Financial Adviser, Financial Adviser, Singapore Financial Adviser",
+            "META_AUTHOR": "Moneyowl Pte Ltd",
+            "META_COPYRIGHT": "Moneyowl Pte Ltd"
             }
-        }
     },
     "BANNER": {
         "TITLE": "Making Wise Decisions Easy",
@@ -40,7 +34,7 @@
         "LABEL": "Invest",
         "TITLE": "Invest With Confidence",
         "DESCRIPTION": "Feel confident about investing even as a beginner! Get access to low-cost and best-in-class globally diversified investments at your fingertips!",
-        "LINK1": ""
+        "LINK1": "Start Investing"
     },
     "COMPREHENSIVE": {
         "LABEL": "Comprehensive",
@@ -48,10 +42,10 @@
         "TITLE": "Comprehensive Financial Planning",
         "SUB_TITLE": "(integrating national schemes)",
         "DESCRIPTION": "Are you financially healthy? Get a holistic financial assessment and trusted financial advice integrated with CPF and other national schemes to reach your goals!",
-        "LINK": ""
+        "LINK1": "Start your Financial Journey"
     },
     "NEWSLETTER": {
-        "TITLE": "Join our mailing list and get wiser!",
+        "TITLE": "Join our Mailing List and Get a Promo Code for FREE Will Writing!",
         "PLACEHOLDER": {
             "EMAIL": "Email",
             "FIRST_NAME": "First Name",
