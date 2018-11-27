@@ -29,7 +29,7 @@
       "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
-        "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."
+        "MESSAGE": "<div class='pt5'>You may enter your NRIC, FIN, Birth Cert or Passport Number.</div>"
       },
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
@@ -74,7 +74,7 @@
       "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
       "SENT_SUCCESS": "Your promo code has successfully been sent to your email.",
       "FAQ_LINK": "http://www.moneyowl.com.sg/faqs",
-      "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg",
+      "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg/home#subscribe",
       "SUBSCRIBE": "Subscribe to our mailing list and ",
       "PROMO_ERROR": "Invalid promo code. Please try again."
     },
