@@ -100,18 +100,20 @@ export class EditProfileComponent implements OnInit {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       // tslint:disable-next-line:triple-equals
       console.log(data);
-      this.entireUserData = data.objectList[0];
-      this.personalData = data.objectList[0].personalInformation;
-      if ( data.objectList[0].contactDetails) {
-      this.residentialAddress = data.objectList[0].contactDetails.homeAddress;
+      this.entireUserData = data.objectList;
+      this.personalData = data.objectList.personalInformation;
+      if ( data.objectList.contactDetails.homeAddress) {
+      this.residentialAddress = data.objectList.contactDetails.homeAddress;
       }
-      this.empolymentDetails = data.objectList[0].employmentDetails;
-      this.bankDetails = data.objectList[0].bankDetails;
-      if ( data.objectList[0].contactDetails.mailingAddress) {
-      this.mailingAddress = data.objectList[0].contactDetails.mailingAddress;
+      this.empolymentDetails = data.objectList.employmentDetails;
+      this.bankDetails = data.objectList.customerBankDetail[0];
+      if ( data.objectList.contactDetails.mailingAddress) {
+      this.mailingAddress = data.objectList.contactDetails.mailingAddress;
       this.isMailingAddressSame = false;
       }
-      this.contactDetails = data.objectList[0].contactDetails;
+      if ( data.objectList.contactDetails) {
+      this.contactDetails = data.objectList.contactDetails;
+      }
       console.log(this.personalData);
       this.setFullName(this.personalData.firstName , this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName , this.personalData.lastName);
@@ -123,10 +125,12 @@ export class EditProfileComponent implements OnInit {
         this.isEmployeAddresSame = false;
         this.employerAddress = this.empolymentDetails.employerDetails.employerAddress ;
       // tslint:disable-next-line:max-line-length
-        this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
+        //this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
       // tslint:disable-next-line:max-line-length
       // this.setMailingAddres(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
       }
+      console.log('RESIDENTIAL');
+      console.log(this.residentialAddress);
     });
   }
   setFullName(firstName, LastName) {
@@ -183,9 +187,11 @@ getCountryList(data) {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   editBankDetails() {
+    this.investmentAccountService.setEditProfileBankDetail(this.fullName, this.bankDetails.bank, this.bankDetails.accountNumber , false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], {queryParams: {addBank: false}, fragment: 'bank'});
   }
   addBankDetails() {
+    this.investmentAccountService.setEditProfileBankDetail(null, null, null , true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], {queryParams: {addBank: true}, fragment: 'bank'});
   }
 }

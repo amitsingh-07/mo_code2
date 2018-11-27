@@ -14,6 +14,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
@@ -40,7 +41,8 @@ export class AddUpdateBankComponent implements OnInit {
     public navbarService: NavbarService,
     private signUpService: SignUpService,
     private modal: NgbModal,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService,
+    public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
     });
@@ -63,13 +65,15 @@ export class AddUpdateBankComponent implements OnInit {
       this.buttonTitle = 'Apply Changes';
     }
     this.setPageTitle(this.pageTitle);
+    this.getLookupList();
     this.buildBankForm();
   }
   buildBankForm() {
-    this.formValues = this.signUpService.getForgotPasswordInfo();
+    this.formValues = this.investmentAccountService.getBankInfo();
     this.bankForm = this.formBuilder.group({
-      bankName: [this.formValues.oldPassword, [Validators.required]],
-      account: [this.formValues.oldPassword, [Validators.required]],
+      bank: [this.formValues.bank, [Validators.required]],
+      accountNo: [this.formValues.accountNumber, [Validators.required]],
+      accountHolderName: [this.formValues.fullName, [Validators.required]]
     });
   }
   getInlineErrorStatus(control) {
@@ -96,9 +100,19 @@ export class AddUpdateBankComponent implements OnInit {
       // tslint:disable-next-line:no-all-duplicated-branches
       if (this.addBank === 'true') {
        // Add Bank API Here
+       this.topupAndWithDrawService.saveNewBank(form.value).subscribe((response) => {
+        if (response.responseMessage.responseCode >= 6000) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+        }
+      });
       } else {
       // Edit Bank APi here
       }
     }
+  }
+  getLookupList() {
+    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
+      this.banks = data.objectList.bankList;
+    });
   }
 }

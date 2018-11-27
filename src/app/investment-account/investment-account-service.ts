@@ -905,6 +905,32 @@ export class InvestmentAccountService {
         this.commit();
 
     }
+    setEditProfileBankDetail(Fullname , Bank , AccountNumber , isAddBank) {
+        if  ( isAddBank ) {
+            this.investmentAccountFormData.fullName = Fullname ;
+            this.investmentAccountFormData.bank = Bank ;
+            this.investmentAccountFormData.accountNumber = AccountNumber ;
+
+        } else {
+        if ( Fullname) {
+        this.investmentAccountFormData.fullName = Fullname ;
+        }
+        if ( Bank) {
+        this.investmentAccountFormData.bank = Bank ;
+        }
+        if ( AccountNumber) {
+        this.investmentAccountFormData.accountNumber = AccountNumber ;
+        }
+    }
+        this.commit();
+    }
+    getBankInfo() {
+        return {
+            fullName: this.investmentAccountFormData.fullName ,
+            bank: this.investmentAccountFormData.bank,
+            accountNumber: this.investmentAccountFormData.accountNumber
+        };
+      }
     // tslint:disable-next-line:no-identical-functions
     editResidentialAddressFormData(data) {
         if (data.country) {
