@@ -32,6 +32,7 @@ export class FundYourAccountComponent implements OnInit {
   bankDetails;
   paynowDetails;
   riskProfileImg: any;
+  fundaccountcontent: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -44,9 +45,9 @@ export class FundYourAccountComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
-
     this.translate.get('COMMON').subscribe((result: string) => {
     });
+    this.fundaccountcontent = this.translate.instant('FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK');
   }
 
   ngOnInit() {

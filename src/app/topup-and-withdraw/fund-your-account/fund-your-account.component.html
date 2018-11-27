@@ -11,7 +11,7 @@
 
           <div>
             <div class="strong" *ngIf="fundDetails.fundingType == 'ONETIME'">{{fundDetails.oneTimeInvestment |
-              currency:'USD':'symbol-narrow':'1.0-2'}} (<span>{{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }}</span>)</div>
+              currency:'USD':'symbol-narrow':'1.0-2'}}</div>
             <div class="strong" *ngIf="fundDetails.fundingType == 'MONTHLY'">{{fundDetails.monthlyInvestment |
               currency:'USD':'symbol-narrow':'1.0-2'}}<span> / {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</span>
             </div>
