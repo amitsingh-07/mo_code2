@@ -22,10 +22,13 @@
             }
         }
     }
-    .flex-col-4{
+    .flex-col-3{
         position: absolute;
         right: 21px;
         top: 40px;
+        @include iphone5{
+            top:30px;
+        }
     }
 }
 .dropdown-control 
@@ -59,18 +62,26 @@
     background-color: #276f75;
 }
 .container-fluid {
-
     padding-top: -18px;
+    @include allmobiles{
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        position: relative;
+        height: 100%;
+        padding:  0px;
+        margin-top: -18px;
+    }
+    @include iphone6plus{
+        margin-top: -42px;
+    }
+    @include iphone5{
+        margin-top: 10px;
+    }
 }
 @media (max-width: 567px) and (min-width: 320px){
 
 .container-fluid {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    position: relative;
-    height: 100%;
-    padding:  0px;
-    margin-top: -42px;
+    
 
 }
 }
@@ -273,7 +284,7 @@ font-family: $muli-bold;
     }
 
     img {
-      margin-left: 8px;
+      margin-left: 121px;
       margin-top: -1px;
     }
   }

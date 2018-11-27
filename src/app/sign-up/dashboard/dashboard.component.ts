@@ -1,18 +1,21 @@
+import {
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { AppService } from '../../app.service';
+import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
+import { FooterService } from '../../shared/footer/footer.service';
+import { ApiService } from '../../shared/http/api.service';
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
+import { Formatter } from '../../shared/utils/formatter.util';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
-import { AppService } from './../../app.service';
-import { PORTFOLIO_ROUTE_PATHS } from './../../portfolio/portfolio-routes.constants';
-import { ApiService } from './../../shared/http/api.service';
-import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
-import { Formatter } from './../../shared/utils/formatter.util';
-import { SignUpService } from './../sign-up.service';
-
-import { FooterService } from './../../shared/footer/footer.service';
-import { NavbarService } from './../../shared/navbar/navbar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -56,6 +59,10 @@ export class DashboardComponent implements OnInit {
 
   goToEditProfile() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+  }
+
+  goToInvOverview() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
   }
 
 }

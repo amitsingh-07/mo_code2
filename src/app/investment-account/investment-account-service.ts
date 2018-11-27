@@ -13,6 +13,7 @@ import {
 import { PersonalInfo } from './personal-info/personal-info';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
+const ACCOUNT_SUCCESS_COUNTER_KEY = "investment_account_success_counter"
 
 @Injectable({
     providedIn: 'root'
@@ -995,5 +996,19 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.riskProfileId = data.riskProfile.id;
         this.investmentAccountFormData.riskProfileType = data.riskProfile.type;
         this.commit();
+    }
+
+    getAllNotifications() {
+        return this.apiService.getAllNotifications();
+    }
+
+    setAccountSuccussModalCounter(value: number) {
+        if (window.sessionStorage) {
+            sessionStorage.setItem(ACCOUNT_SUCCESS_COUNTER_KEY, value.toString());
+        }
+    }
+
+    getAccountSuccussModalCounter() {
+        return parseInt(sessionStorage.getItem(ACCOUNT_SUCCESS_COUNTER_KEY), 10);
     }
 }

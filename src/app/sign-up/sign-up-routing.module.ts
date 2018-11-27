@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -96,7 +97,10 @@ const routes: Routes = [
   },
   {
     path: SIGN_UP_ROUTES.VIEW_ALL_NOTIFICATIONS,
-    component: ViewAllNotificationsComponent,
+    component: ViewAllNotificationsComponent
+  },
+  { path: SIGN_UP_ROUTES.UPDATE_BANK,
+    component: AddUpdateBankComponent,
     canActivate: [AuthGuard]
   }
 ];
