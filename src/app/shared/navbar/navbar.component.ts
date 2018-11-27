@@ -9,6 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SignUpService } from '../../sign-up/sign-up.service';
 import { NavbarService } from './navbar.service';
 
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   navbarMode: number;
   showNavShadow: boolean;
   showSearchBar = false;
+  notificationMaxLimit: number;
 
   pageTitle: string;
   subTitle = '';
@@ -37,9 +39,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   innerWidth: any;
   mobileThreshold = 567;
   isNavbarCollapsed = true;
-  notifications: any;
+  recentMessages: any;
   count: any;
-  totoalNotification: any;
   isNotificationEnabled: boolean;
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
@@ -73,17 +74,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
+      this.notificationMaxLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
       this.signUpService.getAllNotifications().subscribe((response) => {
-        console.log(response);
-        this.notifications = response.objectList;
-        this.count = this.notifications.length;
-        this.totoalNotification = this.notifications.length;
-        if ( this.count > 99) {
-        this.count = '99+';
-        }
-        this.notifications.splice(3);
-        console.log('After Splice ' + this.notifications);
-        });
+        this.signUpService.setNotificationList(response.objectList.notifications);
+        this.count = response.objectList.unreadCount;
+        const allMessages = this.signUpService.getAllMessagesByNotifications(response.objectList.notifications);
+        this.recentMessages = allMessages.slice(0 , SIGN_UP_CONFIG.RECENT_NOTIFICATION_COUNT);
+        console.log(this.recentMessages);
+      });
     });
 
     this.router.events.subscribe((val) => {
@@ -102,8 +100,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
     this.navbarService.currentNavbarMode.subscribe((navbarMode) => {
       this.navbarMode = navbarMode;
-      if ( navbarMode !== 2) {
-      this.isNotificationEnabled = this.canActivateNotification();
+      if (navbarMode !== 2) {
+        this.isNotificationEnabled = this.canActivateNotification();
       } else {
         this.isNotificationEnabled = false;
       }
@@ -148,18 +146,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
   // tslint:disable-next-line:member-ordering
   IsHidden = true;
- onSelect() {
-  this.IsHidden = !this.IsHidden;
-}
-viewAllNotifications() {
-  this.router.navigate([SIGN_UP_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
-  this.IsHidden = true;
-}
-canActivateNotification() {
-  const userInfo = this.signUpService.getUserProfileInfo();
-  if (!(userInfo && userInfo.firstName)) {
-    return false;
+  onSelect() {
+    this.IsHidden = !this.IsHidden;
   }
-  return true;
-}
+  viewAllNotifications() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
+    this.IsHidden = true;
+  }
+  canActivateNotification() {
+    const userInfo = this.signUpService.getUserProfileInfo();
+    if (!(userInfo && userInfo.firstName)) {
+      return false;
+    }
+    return true;
+  }
 }

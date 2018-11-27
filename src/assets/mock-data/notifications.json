@@ -1,44 +1,50 @@
 {
-    "responseMessage": {
-      "responseCode": 6000,
-      "responseDescription": "Successful response"
-    },
-    "objectList": [{
-      "id": 1,
-      "description": "this is a sample notification",
-      "message": "Notification 1",
-      "time" : "5 Mins ago"
-
-    }, {
-      "id": 2,
-      "description": "this is a sample notification",
-      "message": "Notification 2",
-      "time" : "10 Mins ago"
-    }, {
-      "id": 3,
-      "description": "this is a sample notification",
-      "message": "Notification 3",
-      "time" : "20 Mins ago"
-    }, {
-      "id": 4,
-      "description": "this is a sample notification",
-      "message": "Notification 4",
-      "time" : "25 Mins ago"
-    }, {
-      "id": 5,
-      "description": "this is a sample notification",
-      "message": "Notification 5",
-      "time" : "30 Mins ago"
-    }, {
-      "id": 6,
-      "description": "this is a sample notification",
-      "message": "Notification 6",
-      "time" : "30 Mins ago"
-    }, {
-        "id": 7,
-        "description": "this is a sample notification",
-        "message": "Notification 7",
-        "time" : "30 Mins ago"
-      }]
-  
+  "responseMessage": {
+    "responseCode": 6000,
+    "responseDescription": "Successful response"
+  },
+  "objectList": {
+    "unreadCount": 100,
+    "notifications": [
+      {
+        "groupName": "August 2018",
+        "messages": [{
+            "message": "Your insurance quote request has been received.",
+            "time": "10 mins ago"
+          },
+          {
+            "message": "$10,000 has been deposited into  Growth-PID012345 Cash Account.",
+            "time": "3 days ago"
+          },
+          {
+            "message": "$5,000 has been deposited into  Growth-PID012345 Cash Account.",
+            "time": "21 August 2018"
+          }
+        ]
+      },
+      {
+        "groupName": "July 2018",
+        "messages": [{
+          "message": "$10,000 has been deposited into  Growth-PID012345 Cash Account.",
+          "time": "10 mins"
+        },
+        {
+          "message": "$10,000 has been deposited into  Growth-PID012345 Cash Account.",
+          "time": "10 mins"
+        },
+        {
+          "message": "$10,000 has been deposited into  Growth-PID012345 Cash Account.",
+          "time": "10 mins"
+        },
+        {
+          "message": "$10,000 has been deposited into  Growth-PID012345 Cash Account.",
+          "time": "10 mins"
+        },
+        {
+          "message": "$10,000 has been deposited into  Growth-PID012345 Cash Account.",
+          "time": "10 mins"
+        }]
+      }
+    ]
   }
+}

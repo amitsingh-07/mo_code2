@@ -4,20 +4,20 @@
     <div class="row">
       <div class="col-12">
         <!--Notifications container-->
-        <div class="notifications-container">
+        <div class="notifications-container" *ngFor="let notification of notifications">
           <!--Notifications Header-->
           <div *ngIf="notificationCount > 0">
           <div class="notifications-container__header">
-              August 2018
+              {{notification.groupName}}
           </div>
           <!--Notifications Header //-->
           <!--Notifications lists-->
-          <div class="notifications-container__lists"  *ngFor="let notification of notifications" [hidden]="IsHidden">
-            <div class="notifications-container__lists--close" (click)="hideNotification(notification)">X</div>
+          <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of notification.messages">
+            <div class="notifications-container__lists--close" (click)="hideNotification(message)">X</div>
             <div class="notifications-container__lists--desc">
-             {{notification.message}} 
+             {{message.message}} 
               <div class="notifications-container__lists--duration">
-                {{notification.time}} 
+                {{message.time}} 
               </div>
             </div>
           </div>

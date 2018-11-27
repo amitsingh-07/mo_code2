@@ -23,7 +23,10 @@
                 <div *ngIf="isNotificationEnabled">
                 <button class="notification-icon hidden-lg" type="button" (click)="onSelect()" >
 
-                    <span class="notification-number">{{ count }}</span>
+                    <span class="notification-number">
+                        <span *ngIf="count <= notificationMaxLimit">{{ count }}</span>
+                        <span *ngIf="count > notificationMaxLimit">{{ notificationMaxLimit }}+</span>
+                    </span>
                     
                     </button>
                 </div>
@@ -37,7 +40,12 @@
                     
                     <ul class="pl0">
                     
-                    <li class="notification-tooltip__container--desc"  *ngFor="let notification of notifications">{{notification.message}}<div class="notification-tooltip__container--time">{{notification.time}}</div></li>
+                    <li class="notification-tooltip__container--desc">
+                        <div class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
+                            {{message.message}}
+                            <div class="notification-tooltip__container--time">{{message.time}}</div>
+                        </div>
+                    </li>
                     
                     
                     </ul>

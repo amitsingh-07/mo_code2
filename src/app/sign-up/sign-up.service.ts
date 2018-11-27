@@ -315,4 +315,24 @@ export class SignUpService {
     return this.apiService.getAllNotifications();
   }
 
+  setNotificationList(data) {
+    this.signUpFormData.notificationList = data;
+    this.commit();
+  }
+
+  getNotificationList() {
+    return this.signUpFormData.notificationList;
+  }
+
+  getAllMessagesByNotifications(notifications) {
+    const messages = [];
+    const notificationMessageList = notifications.map((notification) => {
+      const messageList = notification.messages.map((message) => {
+        messages.push(message);
+      });
+    });
+    console.log(messages);
+    return messages;
+  }
+
 }

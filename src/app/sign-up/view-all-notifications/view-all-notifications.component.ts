@@ -24,6 +24,7 @@ export class ViewAllNotificationsComponent implements OnInit {
   notifications: any;
   ref;
   notificationCount: any;
+  allMessages;
   constructor(
     public navbarService: NavbarService,
     public activeModal: NgbActiveModal,
@@ -43,62 +44,9 @@ export class ViewAllNotificationsComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
   ngOnInit() {
-    /*
-    this.signUpService.getAllNotifications().subscribe((response) => {
-    console.log(response);
-    this.notifications = response.objectList;
-    console.log(this.notifications);
+    this.notifications = this.signUpService.getNotificationList();
     this.notificationCount = this.notifications.length;
-    });
-    */
-
-  const response = {
-    'responseMessage': {
-      'responseCode': 6000,
-      'responseDescription': 'Successful response'
-    },
-    'objectList': [{
-      'id': 1,
-      'description': 'this is a sample notification',
-      'message': 'Notification 1',
-      'time': '5 Mins ago'
-
-    }, {
-      'id': 2,
-      'description': 'this is a sample notification',
-      'message': 'Notification 2',
-      'time': '10 Mins ago'
-    }, {
-      'id': 3,
-      'description': 'this is a sample notification',
-      'message': 'Notification 3',
-      'time': '20 Mins ago'
-    }, {
-      'id': 4,
-      'description': 'this is a sample notification',
-      'message': 'Notification 4',
-      'time': '25 Mins ago'
-    }, {
-      'id': 5,
-      'description': 'this is a sample notification',
-      'message': 'Notification 5',
-      'time': '30 Mins ago'
-    }, {
-      'id': 6,
-      'description': 'this is a sample notification',
-      'message': 'Notification 6',
-      'time': '30 Mins ago'
-    }, {
-      'id': 7,
-      'description': 'this is a sample notification',
-      'message': 'Notification 7',
-      'time': '30 Mins ago'
-    }]
-
-                    };
-  this.notifications = response.objectList;
-  this.notificationCount = this.notifications.length;
-
+    console.log(this.notifications);
   }
   hideNotification(notification) {
     console.log(notification);
