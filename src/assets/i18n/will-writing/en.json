@@ -29,7 +29,7 @@
       "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
-        "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."
+        "MESSAGE": "<div class='pt10'>You may enter your NRIC, FIN, Birth Cert or Passport Number.</div>"
       },
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
