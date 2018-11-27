@@ -32,6 +32,7 @@ export class VerifyMobileComponent implements OnInit {
   isRetryEnabled: boolean;
   retryDuration = 30; // in seconds
   retrySecondsLeft;
+  editProfile: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,6 +58,7 @@ export class VerifyMobileComponent implements OnInit {
     this.progressModal = false;
     this.showCodeSentText = false;
     this.mobileNumberVerified = false;
+    this.editProfile = this.signUpService.getAccountInfo().editContact;
     this.mobileNumber = this.signUpService.getMobileNumber();
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
@@ -101,7 +103,7 @@ export class VerifyMobileComponent implements OnInit {
   verifyOTP(otp) {
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
-    this.signUpApiService.verifyOTP(otp).subscribe((data: any) => {
+    this.signUpApiService.verifyOTP(otp, this.editProfile).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified'];
@@ -134,9 +136,9 @@ export class VerifyMobileComponent implements OnInit {
    */
   redirectToPasswordPage() {
     const redirect_url = this.signUpService.getRedirectUrl();
-    if (redirect_url) {
+    if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
       this.signUpService.clearRedirectUrl();
-      this.router.navigate([redirect_url]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
     } else {
       this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
     }
@@ -146,7 +148,11 @@ export class VerifyMobileComponent implements OnInit {
    * redirect to create account page.
    */
   editNumber() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true }]);
+    if (this.editProfile) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true }]);
+    }
   }
 
   /**

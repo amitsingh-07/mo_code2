@@ -124,11 +124,12 @@ export class SignUpApiService {
   /**
    * form verify OTP request.
    */
-  verifyOTPBodyRequest(code): IVerifyRequestOTP {
+  verifyOTPBodyRequest(code, editProf): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
     return {
       customerRef: custRef,
-      otp: code
+      otp: code,
+      editProfile: editProf
     };
   }
 
@@ -195,8 +196,8 @@ export class SignUpApiService {
    * verify one time password.
    * @param otp - one time password.
    */
-  verifyOTP(otp) {
-    const payload = this.verifyOTPBodyRequest(otp);
+  verifyOTP(otp, editProfile?) {
+    const payload = this.verifyOTPBodyRequest(otp, editProfile);
     return this.apiService.verifyOTP(payload);
   }
 

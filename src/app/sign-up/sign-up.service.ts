@@ -262,6 +262,13 @@ export class SignUpService {
     }
   }
 
+  setEditContact(editContact, mobileUpdate, emailUpdate) {
+    this.signUpFormData.editContact = editContact;
+    this.signUpFormData.updateMobile = mobileUpdate;
+    this.signUpFormData.updateEmail = emailUpdate;
+    this.commit();
+  }
+
   clearRedirectUrl() {
     sessionStorage.removeItem(REDIRECT_URL_KEY);
   }

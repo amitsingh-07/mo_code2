@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -41,7 +42,7 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.VERIFY_MOBILE,
     component: VerifyMobileComponent,
-    canActivate: [SignUpAccessGuard]
+    canActivate: [AuthGuard]
   },
   { path: SIGN_UP_ROUTES.PASSWORD,
     component: PasswordComponent,
@@ -90,6 +91,9 @@ const routes: Routes = [
   },
   { path: SIGN_UP_ROUTES.UPDATE_USER_ID,
     component: UpdateUserIdComponent
+  },
+  { path: SIGN_UP_ROUTES.ACCOUNT_UPDATED,
+    component: AccountUpdatedComponent
   }
 ];
 

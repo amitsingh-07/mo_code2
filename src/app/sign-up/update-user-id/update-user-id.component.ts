@@ -31,6 +31,11 @@ export class UpdateUserIdComponent implements OnInit {
   defaultCountryCode;
   countryCodeOptions;
   editNumber;
+  OldCountryCode;
+  OldMobileNumber;
+  OldEmail;
+  updateMobile: boolean;
+  updateEmail: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -75,11 +80,14 @@ export class UpdateUserIdComponent implements OnInit {
   buildUpdateAccountForm() {
     this.formValues = this.signUpService.getAccountInfo();
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
+    this.OldCountryCode = this.formValues.countryCode;
+    this.OldMobileNumber = this.formValues.mobileNumber;
+    this.OldEmail = this.formValues.email;
     this.updateUserIdForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],
       email: [this.formValues.email, [Validators.required, Validators.email]]
-    });
+    }, { validator: this.validateContacts() });
   }
 
   /**
@@ -97,7 +105,12 @@ export class UpdateUserIdComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.signUpService.setContactDetails(form.value.countryCode, form.value.mobileNumber, form.value.email);
+      if (this.OldMobileNumber !== form.value.mobileNumber) {
+        this.updateMobile = true;
+      }
+      if (this.OldEmail !== form.value.email) {
+        this.updateEmail = true;
+      }
       this.updateUserAccount();
     }
   }
@@ -135,14 +148,32 @@ export class UpdateUserIdComponent implements OnInit {
   updateUserAccount() {
     this.signUpApiService.updateAccount(this.updateUserIdForm.value).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6000) {
+        this.signUpService.setContactDetails(this.updateUserIdForm.value.countryCode,
+          this.updateUserIdForm.value.mobileNumber, this.updateUserIdForm.value.email);
+        this.signUpService.setEditContact(true, this.updateMobile, this.updateEmail);
         this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
         this.signUpService.setCustomerRef(data.objectList[0].customerRef);
-        this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+        if (this.updateMobile) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
+        } else {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
+        }
       } else {
         const ref = this.modal.open(ErrorModalComponent, { centered: true });
         ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
       }
     });
+  }
+
+  private validateContacts() {
+    return (group: FormGroup) => {
+      if (this.OldMobileNumber === group.controls['mobileNumber'].value
+      && this.OldEmail === group.controls['email'].value) {
+        return group.controls['mobileNumber'].setErrors({ notChanged: true });
+      } else {
+        return group.controls['mobileNumber'].setErrors(null);
+      }
+    };
   }
 
   onlyNumber(el) {
