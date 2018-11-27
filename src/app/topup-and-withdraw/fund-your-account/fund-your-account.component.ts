@@ -5,6 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import { HeaderService } from '../../shared/header/header.service';
 import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
@@ -30,6 +31,7 @@ export class FundYourAccountComponent implements OnInit {
   bankDetailsList;
   bankDetails;
   paynowDetails;
+  riskProfileImg: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -55,6 +57,9 @@ export class FundYourAccountComponent implements OnInit {
     this.getTransferDetails();
     const pageTitle = this.getPageTitleBySource(this.fundDetails.source, this.fundDetails.fundingType);
     this.setPageTitle(pageTitle);
+    if (this.fundDetails.portfolio.riskProfile) {
+      this.riskProfileImg = ProfileIcons[this.fundDetails.portfolio.riskProfile.id - 1]['icon'];
+    }
   }
 
   setPageTitle(title: string) {
