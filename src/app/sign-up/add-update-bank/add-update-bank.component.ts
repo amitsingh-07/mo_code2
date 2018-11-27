@@ -82,4 +82,23 @@ export class AddUpdateBankComponent implements OnInit {
   setNestedDropDownValue(key, value, nestedKey) {
     this.bankForm.controls[nestedKey]['controls'][key].setValue(value);
   }
+  applyChanges(form: any) {
+    if (!form.valid) {
+      Object.keys(form.controls).forEach((key) => {
+        form.get(key).markAsDirty();
+      });
+      const error = this.signUpService.currentFormError(form);
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = error.errorTitle;
+      ref.componentInstance.errorMessage = error.errorMessage;
+      return false;
+    } else {
+      // tslint:disable-next-line:no-all-duplicated-branches
+      if (this.addBank === 'true') {
+       // Add Bank API Here
+      } else {
+      // Edit Bank APi here
+      }
+    }
+  }
 }
