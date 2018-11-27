@@ -2,8 +2,8 @@ import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 
 import { Location } from '@angular/common';
 import {
-    AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
-    ViewChild
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
+  ViewChild
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   showNavShadow: boolean;
   showSearchBar = false;
   notificationMaxLimit: number;
+  isNotificationHidden = true;
 
   pageTitle: string;
   subTitle = '';
@@ -49,7 +50,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router,
     private signUpService: SignUpService,
-    public investmentAccountService: InvestmentAccountService) {
+    public investmentAccountService: InvestmentAccountService,
+  ) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -66,6 +68,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.hideMenu();
     this.isNotificationEnabled = this.canActivateNotification();
+    this.notificationMaxLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
     this.innerWidth = window.innerWidth;
     this.navbarService.currentPageTitle.subscribe((title) => this.pageTitle = title);
     this.navbarService.currentPageSubTitle.subscribe((subTitle) => this.subTitle = subTitle);
@@ -74,14 +77,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
-      this.notificationMaxLimit = SIGN_UP_CONFIG.NOTIFICATION_MAX_LIMIT;
-      this.signUpService.getAllNotifications().subscribe((response) => {
-        this.signUpService.setNotificationList(response.objectList.notifications);
-        this.count = response.objectList.unreadCount;
-        const allMessages = this.signUpService.getAllMessagesByNotifications(response.objectList.notifications);
-        this.recentMessages = allMessages.slice(0 , SIGN_UP_CONFIG.RECENT_NOTIFICATION_COUNT);
-        console.log(this.recentMessages);
-      });
     });
 
     this.router.events.subscribe((val) => {
@@ -104,6 +99,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.isNotificationEnabled = this.canActivateNotification();
       } else {
         this.isNotificationEnabled = false;
+      }
+      if (this.isNotificationEnabled) {
+        this.signUpService.getAllNotifications().subscribe((response) => {
+          this.signUpService.setNotificationList(response.objectList.notifications);
+          this.count = response.objectList.unreadCount;
+          const allMessages = this.signUpService.getAllMessagesByNotifications(response.objectList.notifications);
+          this.recentMessages = allMessages.slice(0, SIGN_UP_CONFIG.RECENT_NOTIFICATION_COUNT);
+          console.log(this.recentMessages);
+        });
       }
       this.cdr.detectChanges();
     });
@@ -144,14 +148,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   hideMenu() {
     this.isNavbarCollapsed = true;
   }
-  // tslint:disable-next-line:member-ordering
-  IsHidden = true;
+
   onSelect() {
-    this.IsHidden = !this.IsHidden;
+    this.isNotificationHidden = !this.isNotificationHidden;
   }
   viewAllNotifications() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
-    this.IsHidden = true;
+    this.isNotificationHidden = true;
   }
   canActivateNotification() {
     const userInfo = this.signUpService.getUserProfileInfo();
