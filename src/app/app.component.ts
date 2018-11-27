@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +25,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
     private googleAnalyticsService: GoogleAnalyticsService, private modal: NgbModal, public route: Router,
-    public routingService: RoutingService) {
+    public routingService: RoutingService, private location: Location) {
     this.translate.setDefaultLang('en');
   }
 

@@ -46,6 +46,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   highlights = [];
   temp;
   isSelected = false;
+  isCompareSelected = false;
   isComparePlanSelected = false;
   canShowRanking = true;
   canShowRating = true;
@@ -84,6 +85,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   ngOnInit() {
     if (this.data) {
       this.isSelected = this.data.selected ? true : false;
+      this.isCompareSelected = this.data.compareSelected ? true : false;
       this.icon = this.data.icon;
       this.insurerLogo = 'assets/images/' + this.data.insurer.logoName;
       this.premiumAmount = this.data.premium.premiumAmount;
@@ -224,6 +226,8 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   unselectPlan() {
     this.isComparePlanSelected = false;
     this.isSelected = false;
+    this.data.selected = false;
+    this.data.compareSelected = false;
   }
 
   selectPlan() {
@@ -256,6 +260,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
 
   comparePlans() {
+    this.isComparePlanSelected = this.temp.compareSelected;
     if (!this.isComparePlanSelected) {
       if (window.innerWidth <= this.mobileThreshold) {
         if (this.comparePlanSelected && this.comparePlanSelected.length >= 2 && !this.isComparePlanSelected) {
@@ -271,7 +276,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
     }
     this.isComparePlanSelected = !this.isComparePlanSelected;
     this.temp.bestValue = this.bestValue;
-    this.temp.selected = this.isSelected;
+    this.temp.compareSelected = this.isComparePlanSelected;
     this.compare.emit({ plan: this.temp, selected: this.isComparePlanSelected });
   }
 }

@@ -105,6 +105,17 @@ export class DirectService {
     this.googleAnalyticsService.emitEvent('Direct', category, 'Success');
   }
 
+  getProductCategoryList(): IProductCategory[] {
+    if (!this.directFormData.productCategoryList) {
+      this.directFormData.productCategoryList = [] as IProductCategory[];
+    }
+    return this.directFormData.productCategoryList;
+  }
+  setProductCategoryList(prodCatList: IProductCategory[]) {
+    this.directFormData.productCategoryList = prodCatList;
+    this.commit();
+  }
+
   /* Get Product Category List */
   getProductCategory() {
     if (!this.directFormData.prodCategory) {

@@ -146,7 +146,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.navbarService.getNavbarDetails();
     this.cdr.detectChanges();
-
   }
 
   setPageTitle(title: string) {

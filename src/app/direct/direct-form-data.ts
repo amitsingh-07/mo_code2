@@ -22,6 +22,7 @@ export class DirectFormData {
     duration: string;
     userInfo: UserInfo;
     prodCategory: IProductCategory;
+    productCategoryList: IProductCategory[];
 
     // Life Protection Form
     lifeProtection: ILifeProtection;
