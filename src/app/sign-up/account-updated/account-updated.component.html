@@ -5,7 +5,7 @@
       <img src="../../../assets/images/account-created-icon.svg" id="custModalImg1" />
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{'ACCOUNT_UPDATED.TITLE' | translate}}</p>
-        <p class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_UPDATED.SUB_TITLE1' | translate}}</p>
+        <p class="custom-modal--desc" id="custModalDesc" *ngIf="updateMobile">{{'ACCOUNT_UPDATED.SUB_TITLE1' | translate}}</p>
         <p class="custom-modal--desc" id="custModalDesc" *ngIf="updateEmail">{{'ACCOUNT_UPDATED.SUB_TITLE2' | translate}}</p>
         <button (click)="redirectToEditProfile()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'ACCOUNT_UPDATED.EDIT_PROFILE' | translate}}</button>
       </div>
