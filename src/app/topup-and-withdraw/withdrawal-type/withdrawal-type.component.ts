@@ -96,23 +96,25 @@ export class WithdrawalTypeComponent implements OnInit {
   }
 
   buildFormForPortfolioToCash() {
-    this.withdrawForm.addControl('withdrawPortfolio', new FormControl(this.formValues.PortfolioValues, Validators.required));
+    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value ?
         this.withdrawForm.addControl('withdrawAmount', new FormControl('',
           [Validators.required, this.withdrawAmountValidator(this.withdrawForm.get('withdrawPortfolio'), 'CONTROL')])) :
         this.withdrawForm.removeControl('withdrawAmount');
     });
+    this.withdrawForm.controls.withdrawPortfolio.setValue(this.formValues.PortfolioValues);
   }
 
   // tslint:disable
   buildFormForPortfolioToBank() {
-    this.withdrawForm.addControl('withdrawPortfolio', new FormControl(this.formValues.PortfolioValues, Validators.required));
+    this.withdrawForm.addControl('withdrawPortfolio', new FormControl('', Validators.required));
     this.withdrawForm.get('withdrawPortfolio').valueChanges.subscribe((value) => {
       value ?
         this.withdrawForm.addControl('withdrawAmount', new FormControl('', [Validators.required, this.withdrawAmountValidator(this.withdrawForm.get('withdrawPortfolio'), 'CONTROL')])) :
         this.withdrawForm.removeControl('withdrawAmount');
     });
+    this.withdrawForm.controls.withdrawPortfolio.setValue(this.formValues.PortfolioValues);
   }
 
   buildFormForCashToBank() {
