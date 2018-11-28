@@ -1140,61 +1140,99 @@ h6 {
     }
   }
 
-  .footer-social {
+  .footer-social__container{
+    position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
-
-    .social-btn {
+    max-width:346px;
+    margin-left:30px;
+    @include minMobilemaxPhablet{
+      margin-left:0px;
+    }
+    .footer-social {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      margin-left: 45px;
-      text-decoration: none;
-      @include minMobilemaxPhablet {
-        margin-left: unset;
-        margin-right: 20px;
-        margin-top: 15px;
+      align-items: flex-start;
+      
+      .social-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        margin-left:25px;
+        &:first-child{
+          margin-left:unset;
+        }
+        @include minMobilemaxPhablet {
+          margin-left:unset;
+          margin-right: 20px;
+          margin-top: 15px;
+        }
+  
+        cursor: pointer;
+  
+        .icon {
+          display: block;
+          background: no-repeat;
+          margin-right: 10px;
+  
+          &.facebook-icon {
+            background-image: url('/assets/images/facebook-icon.svg');
+            width: 16px;
+            height: 16px;
+          }
+  
+          &.youtube-icon {
+            background-image: url('/assets/images/youtube-icon.svg');
+            width: 22px;
+            height: 16px;
+          }
+  
+          &.linkedin-icon {
+            background-image: url('/assets/images/linkedin-icon.svg');
+            width: 16px;
+            height: 16px;
+          }
+        }
+  
+        span {
+          font-family: $muli-bold;
+          font-size: 18px;
+          letter-spacing: -0.3px;
+          color:$white-color;
+          &:hover{
+            text-decoration:none;
+          }
+        }
       }
-
-      cursor: pointer;
-
-      .icon {
-        display: block;
-        background: no-repeat;
-        margin-right: 10px;
-
-        &.facebook-icon {
-          background-image: url('/assets/images/facebook-icon.svg');
-          width: 16px;
-          height: 16px;
-        }
-
-        &.youtube-icon {
-          background-image: url('/assets/images/youtube-icon.svg');
-          width: 22px;
-          height: 16px;
-        }
-
-        &.linkedin-icon {
-          background-image: url('/assets/images/linkedin-icon.svg');
-          width: 16px;
-          height: 16px;
-        }
+    }
+    .footer-maintenance {
+      position: relative;
+      display:flex;
+      flex-direction:column;
+      background-color:#227980;
+      padding:20px 25px;
+      margin-top:80px;
+      border-radius: 6px;
+      @include minMobilemaxPhablet{
+        margin-top:20px;
       }
-
-      span {
-        font-family: $muli-bold;
-        font-size: 18px;
-        letter-spacing: -0.3px;
-        color:$white-color;
-        &:hover{
-          text-decoration:none;
+      p{
+        font-family:$muli;
+        font-style:italic;
+        font-size:13px;
+        color:#cdeae6;
+        margin-bottom:0px;
+        &:first-child{
+          margin-bottom:10px;
         }
       }
     }
   }
+  
+  
 
   .footer-copyright {
     font-family: $muli-regular;
