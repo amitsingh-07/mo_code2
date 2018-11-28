@@ -181,6 +181,11 @@ export class VerifyMobileComponent implements OnInit {
     ref.componentInstance.errorTitle = error.errorTitle;
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.showErrorButton = showErrorButton;
+    ref.result.then(() => {
+      this.verifyMobileForm.reset();
+    }).catch((e) => {
+      this.verifyMobileForm.reset();
+    });
   }
 
   /**
