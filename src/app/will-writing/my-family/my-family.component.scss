@@ -163,3 +163,10 @@
         border-radius: 4px;
     }
   }
+
+  .date-picker .form-control::placeholder {
+    @include allmobiles{
+        font-size: 14px;
+        padding-left:0;
+    }  
+  }

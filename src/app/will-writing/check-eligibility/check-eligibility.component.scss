@@ -197,6 +197,7 @@
 }
 .dropdown-control{
      .dropdown-menu{
+        z-index: 999;
         &.show{
             margin-bottom: 20px;
         }
@@ -230,7 +231,7 @@
 .lbl4 {
     margin-right: -10px;
     @include allmobiles{
-        margin-top:-20px;
+        margin-top: -5px;
     }
 }
 
@@ -244,3 +245,8 @@
         }
     }
 }
+
+.form-group .flex-col-4 .label {
+    line-height: normal;
+        
+} 

@@ -136,10 +136,10 @@
 
 .dropdown-control{
     .dropdown-menu{
-        max-height: 200px;
-        overflow: auto;
+        z-index: 998;
+        height: auto;
        &.show{
-           margin-bottom: 20px;
+           margin-bottom: 65px;
        }
    }
 }
