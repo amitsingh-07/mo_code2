@@ -123,6 +123,9 @@
             <span class="text-left word-break">{{feature}}</span>
           </div>
         </div>
+        <div *ngIf="!plan.features || plan.features == ''">
+          <span>-</span>
+        </div>
       </div>
     </div>
   </div>

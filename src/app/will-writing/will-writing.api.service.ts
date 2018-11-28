@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { AppService } from '../app.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
-import { IGender, IMaritalStatus, IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
+import { IWill, IwillProfile, IWillProfileMembers } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 import { WillWritingService } from './will-writing.service';
 
@@ -14,13 +15,25 @@ import { WillWritingService } from './will-writing.service';
 export class WillWritingApiService {
 
     private relationship: any = new Map([
-        ['parent' , 'P'],
-        ['sibling' , 'SBL'],
-        ['parent-in-law' , 'PIL'],
-        ['friend' , 'F'],
-        ['others' , 'O'],
-        ['spouse' , 'S'],
-        ['child' , 'C'],
+        ['parent', 'P'],
+        ['sibling', 'SBL'],
+        ['parent-in-law', 'PIL'],
+        ['friend', 'F'],
+        ['others', 'O'],
+        ['spouse', 'S'],
+        ['child', 'C'],
+    ]);
+
+    private maritalStatus: any = new Map([
+        ['single', 'S'],
+        ['married', 'M'],
+        ['divorced', 'D'],
+        ['widowed', 'W']
+    ]);
+
+    private gender: any = new Map([
+        ['male', 'M'],
+        ['female', 'F']
     ]);
 
     constructor(
@@ -57,8 +70,8 @@ export class WillWritingApiService {
             enquiryId: will.enquiryId,
             uin: will.aboutMe.uin,
             name: will.aboutMe.name,
-            genderCode: IGender[will.aboutMe.gender],
-            maritalStatusCode: IMaritalStatus[will.aboutMe.maritalStatus],
+            genderCode: this.gender.get(will.aboutMe.gender),
+            maritalStatusCode: this.maritalStatus.get(will.aboutMe.maritalStatus),
             noOfChildren: will.aboutMe.noOfChildren,
             promoCode: will.promoCode
         };
@@ -87,7 +100,7 @@ export class WillWritingApiService {
                 willProfileMembers.push({
                     uin: children.uin,
                     name: children.name,
-                    dob: children.dob['year'] + '' + children.dob['month'] + '' + children.dob['day'],
+                    dob: children.dob['year'] + '' + padNumber(children.dob['month']) + '' + padNumber(children.dob['day']),
                     relationshipCode: this.relationship.get(children.relationship),
                     isFamily: 'Y',
                     isBeneficiary: beneficiary ? 'Y' : 'N',

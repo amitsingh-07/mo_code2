@@ -117,7 +117,6 @@
     .offer-code{
         font-family: $muli-semi-bold;
         font-size: 18px;
-        font-weight: 600;
         line-height: 2.5;
         letter-spacing: -0.2px;
         text-align: center;
@@ -159,7 +158,6 @@
                 font-size: 16px;
                 span{
                     font-family: $muli-bold;
-                    font-weight: bold;
                 }
             }
         }
@@ -170,9 +168,8 @@
     flex-direction: column;
     .sub-title{
         color: #333846 !important;
-        font-family: $muli-semi-bold;
+        font-family: $muli-regular;
         font-size: 16px;
-        font-weight: 600;
         letter-spacing: -0.2px;
         @include allmobiles {
             justify-content: center;
@@ -281,7 +278,6 @@ input[type='checkbox']+label {
 .content-title {
     font-family: $muli-semi-bold;
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     color: #ffffff;
     padding:20px !important;
@@ -313,7 +309,6 @@ input[type='checkbox']+label {
       }
       .distribution-content{
         font-size: 18px;
-        font-weight: 600;
         letter-spacing: -0.3px;
         text-align: center;
         .title{
@@ -327,17 +322,20 @@ input[type='checkbox']+label {
             }
         }
         .sub-title{
-            font-family: $muli-semi-bold;
+            font-family: $muli-regular;
         }
         color: #ffffff;
         display: flex;
         position: absolute;
-        top: 9%;
+        top: 12%;
         flex-direction: column;
         left: 0;
         right: 0;
         justify-content: center;
         align-items: center;
+        @include allmobiles {
+            top: 6%;
+        }
       }
   }
   .estate-distribution-form{
@@ -361,7 +359,6 @@ input[type='checkbox']+label {
       .form-title {
         font-family: $muli-bold;
         font-size: 20px;
-        font-weight: bold;
         letter-spacing: -0.4px;
         color: #066360;
         padding-left: 21px;
@@ -380,7 +377,7 @@ input[type='checkbox']+label {
   .estateDistributionForm {
       padding-bottom: 5px;
       @include allmobiles {
-        padding-bottom: 60px;
+        padding-bottom: 65px;
       }
       
   }
@@ -399,11 +396,15 @@ input[type='checkbox']+label {
             margin-top: 0px;
         }
         .btn{
-            margin-top: 41px !important;
+            margin-top: 30px !important;
         }
     }
-.message-block{
-    margin-top: 21px;
+.message-block{ 
+    margin-top: 40px;
+    @include allmobiles{ 
+        margin-top: 21px;
+    }
+   
     .tooltip-message-img{
         position: relative;
         img{
@@ -417,12 +418,15 @@ input[type='checkbox']+label {
         width: 274px;
         left: 14%;
         font-size: 14px;
-        font-weight: 600;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;
         letter-spacing: -0.1px;
         color: #333846;
+        font-family: $muli-semi-bold;
+        @include allmobiles {
+            bottom: 12%;
+        }
     }
 }
 

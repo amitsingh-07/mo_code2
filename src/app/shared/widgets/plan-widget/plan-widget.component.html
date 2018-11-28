@@ -1,4 +1,4 @@
-<div class="carousel-content insurance-plan-widget" [ngClass]="{'plan-selected-wrapper': isSelected}">
+<div class="carousel-content insurance-plan-widget" [ngClass]="{'plan-selected-wrapper': data.selected}">
   <img class="info-icon hidden-lg" (click)="viewDetails()" src="./assets/images/tooltip-info.svg" />
   <div class="insurance-plan-widget__container flex__box--vert">
 
@@ -103,13 +103,13 @@
         }}</button>
     </div>
     <div class="flex-1 widget-btn-select" *ngIf="!isComparePlanEnabled">
-      <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': isSelected}">
-        <span *ngIf="!isSelected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
-        <span *ngIf="isSelected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
+      <button type="button" (click)="selectPlan()" class="btn btn-select width100" [ngClass]="{'plan-selected': data.selected}">
+        <span *ngIf="!data.selected">{{ 'BUTTON.SELECT_PLAN' | translate }}</span>
+        <span *ngIf="data.selected">{{ 'BUTTON.UN_SELECT' | translate }}</span>
       </button>
     </div>
     <div class="col-btn-bottom width100" *ngIf="isComparePlanEnabled">
-      <button type="button" (click)="comparePlans()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': isComparePlanSelected}">{{
+      <button type="button" (click)="comparePlans()" class="btn compareplan-btn width100" [ngClass]="{'plan-selected': data.compareSelected}">{{
         'BUTTON.COMPARE' | translate }}</button>
     </div>
   </div>

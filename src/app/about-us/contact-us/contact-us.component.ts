@@ -1,3 +1,4 @@
+import { SeoServiceService } from './../../shared/Services/seo-service.service';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 import { AboutUsApiService } from './../about-us.api.service';
 import { AboutUsService } from './../about-us.service';
 
@@ -17,7 +19,7 @@ import { AboutUsService } from './../about-us.service';
 })
 export class ContactUsComponent implements OnInit {
   public subject = 'Choose a Subject*';
-  public email = 'enquiry@moneyowl.com.sg';
+  public email = 'enquiries@moneyowl.com.sg';
 
   contactUsForm: FormGroup;
   contactUsFormValues: IContactUs;
@@ -34,8 +36,11 @@ export class ContactUsComponent implements OnInit {
     public aboutUsService: AboutUsService,
     public aboutUsApiService: AboutUsApiService,
     public translate: TranslateService,
-    private formBuilder: FormBuilder
+    public authService: AuthenticationService,
+    private formBuilder: FormBuilder,
+    private seoService: SeoServiceService
     ) {
+      this.authService.authenticate().subscribe((response) => {});
       this.aboutUsApiService.getSubjectList().subscribe((data) => {
         this.subjectItems = this.aboutUsService.getSubject(data);
         console.log(this.subjectItems);
@@ -43,6 +48,12 @@ export class ContactUsComponent implements OnInit {
       this.translate.use('en');
       this.translate.get('COMMON').subscribe((result: string) => {
         this.contactUsErrorMessage = this.translate.instant('ERROR.CONTACT_US.EMPTY_TEXT');
+        // meta tag and title
+        this.seoService.setTitle(this.translate.instant('CONTACT_US.TITLE'));
+        this.seoService.setBaseSocialMetaTags(this.translate.instant('CONTACT_US.TITLE'),
+                                              this.translate.instant('CONTACT_US.META.META_DESCRIPTION'),
+                                              this.translate.instant('CONTACT_US.META.META_KEYWORDS')
+                                              );
       });
       this.contactUsFormValues = this.aboutUsService.getContactUs();
       this.contactUsForm = new FormGroup({
@@ -70,7 +81,6 @@ export class ContactUsComponent implements OnInit {
     form.value.email = this.email;
     form.value.message = form.value.message.replace(/\n/g, '<br/>').replace(/"/g, '\\"');
     this.aboutUsApiService.setContactUs(form.value).subscribe((data) => {
-      console.log(data);
       if (data.responseMessage.responseDescription === 'Successful response') {
         this.sendSuccess = true;
       }

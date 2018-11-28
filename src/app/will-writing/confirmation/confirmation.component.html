@@ -1,5 +1,6 @@
 <div class="personal-info">
     <app-page-title [step]="step" [pageTitle]="pageTitle"></app-page-title>
+    <div class="container-fluid">
     <div class="container-fluid max-width--1024">
       <div class="content">
         <div class="flex-row">
@@ -11,7 +12,7 @@
                   translate}}</div>
                 <div class="sub-title mb20" id="myFamily-sub-title">{{ 'WILL_WRITING.CONFIRMATION.SUB_TITLE' |
                   translate}}</div>
-                <div class="heading hidden-lg">{{ 'Almost there!'}}</div>
+                <div class="heading hidden-lg mb10">{{ 'Almost there!'}}</div>
                 <div class="autofill-logo mobile-logo hidden-lg mb5" id="myFamily-mobile-img"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
               </div>
             </div>
@@ -24,8 +25,9 @@
                 <div class="header col-lg-12 col-md-12 col-12">
                   <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.ABOUT_ME.TITLE' | translate}}</div>
                   <div class="col-lg-3 col-md-3 col-sm-3">
-                    <div class="edit-dark"></div>
-                    <div (click)="edit(willWritingRoutePaths.ABOUT_ME)" class="edit">Edit</div>
+                    <div class="edit" (click)="edit(willWritingRoutePaths.ABOUT_ME)">
+                      <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg"/></span><span>Edit</span>
+                    </div>
                   </div>
                 </div>
                 <div class="section-body">
@@ -75,8 +77,9 @@
               <div class="header col-lg-12 col-md-12 col-12">
                 <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_FAMILY.TITLE' | translate}}</div>
                 <div class="col-lg-3 col-md-3 col-3">
-                  <div class="edit-dark"></div>
-                  <div (click)="edit(willWritingRoutePaths.MY_FAMILY)" class="edit">Edit</div>
+                  <div (click)="edit(willWritingRoutePaths.MY_FAMILY)" class="edit">
+                      <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg"/></span><span>Edit</span>
+                  </div>
                 </div>
               </div>
               <div class="section-body">
@@ -121,7 +124,7 @@
                       <div class="label-header col-6">
                         {{'WILL_WRITING.MY_FAMILY.FORM.DOB' | translate}}
                       </div>
-                      <div class="label-value col-md-6 col-sm-6">{{children.formatedDob | date:'dd/MM/yy'}}</div>
+                      <div class="label-value col-md-6 col-sm-6">{{children.formatedDob | formatDate}}</div>
                     </div>
                 </div>
   
@@ -143,8 +146,9 @@
                   </span>
                 </div>
                 <div class="col-lg-3 col-md-3 col-3">
-                  <div class="edit-dark"></div>
-                  <div (click)="edit(willWritingRoutePaths.MY_CHILD_GUARDIAN)" class="edit">Edit</div>
+                  <div (click)="edit(willWritingRoutePaths.MY_CHILD_GUARDIAN)" class="edit">
+                      <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg"/></span><span>Edit</span>
+                  </div>
                 </div>
               </div>
               <div class="section-body">
@@ -185,8 +189,9 @@
               <div class="header col-lg-12 col-md-12 col-12">
                 <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_BENEFICIARY.TITLE' | translate}}</div>
                 <div class="col-lg-3 col-md-3 col-3">
-                  <div class="edit-dark"></div>
-                  <div (click)="edit(willWritingRoutePaths.MY_BENEFICIARIES)" class="edit">Edit</div>
+                  <div (click)="edit(willWritingRoutePaths.MY_BENEFICIARIES)" class="edit">
+                      <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg"/></span><span>Edit</span>
+                  </div>
                 </div>
               </div>
               <div class="section-body">
@@ -226,8 +231,9 @@
               <div class="header col-lg-12 col-md-12 col-12">
                 <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_ESTATE_DISTRIBUTION.TITLE' | translate}}</div>
                 <div class="col-lg-3 col-md-3 col-3">
-                  <div class="edit-dark"></div>
-                  <div (click)="edit(willWritingRoutePaths.MY_ESTATE_DISTRIBUTION)" class="edit">Edit</div>
+                  <div (click)="edit(willWritingRoutePaths.MY_ESTATE_DISTRIBUTION)" class="edit">
+                      <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg"/></span><span>Edit</span>
+                  </div>
                 </div>
               </div>
               <div class="section-body">
@@ -283,8 +289,9 @@
               <div class="header col-lg-12 col-md-12 col-12">
                 <div class="col-lg-8 col-md-8 col-sm-9">{{'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}}</div>
                 <div class="col-lg-3 col-md-3 col-3">
-                  <div class="edit-dark"></div>
-                  <div (click)="edit(willWritingRoutePaths.MY_EXECUTOR_TRUSTEE)" class="edit">Edit</div>
+                  <div (click)="edit(willWritingRoutePaths.MY_EXECUTOR_TRUSTEE)" class="edit">
+                      <span class="edit-dark hidden-sm-md"><img src="assets/images/will-writing/edit-dark.svg"/></span><span>Edit</span>
+                  </div>
                 </div>
               </div>
               <div class="section-body">
@@ -325,5 +332,6 @@
           </div>
       </div>
     </div>
+  </div>
   </div>
   

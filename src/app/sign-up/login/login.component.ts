@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -29,7 +29,7 @@ import { LoginFormError } from './login-form-error';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private loginFormError: any = new LoginFormError();
   private pageTitle: string;
   private description: string;
@@ -68,7 +68,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(5);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     this.authService.authenticate().subscribe((token) => {
@@ -192,6 +195,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     return false;
   }
 
+  ngOnDestroy() {
+    this.navbarService.unsubscribeBackPress();
+  }
+
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
@@ -218,8 +225,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   refreshCaptcha() {
-    const time = new Date().getMilliseconds();
-    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=`
-      + this.authService.getSessionId() + '&time=' + time;
+    this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }

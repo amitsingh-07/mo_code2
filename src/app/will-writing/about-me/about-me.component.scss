@@ -21,7 +21,6 @@
     border-radius: 6px;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
     margin-top: 70px;
@@ -34,7 +33,6 @@
         &.title{
             font-family: $muli-bold;
             font-size: 20px;
-            font-weight: bold;
             letter-spacing: -0.4px;
             color: #066360;
             border-radius: 6px;
@@ -56,9 +54,24 @@
         color:#00a7a7;
     }
     .direct-form-grp {
+        .btn-group--toggle{
+            .flex-row{
+                flex-wrap: nowrap;
+            }
+        }
         .direct-form-btn--radio{
-            width: unset;
-            min-width: unset;
+            width: auto;
+            min-width: auto;
+            margin-left: 15px;
+            &.female{
+                margin-left: 10px;
+                @include desktop{
+                    width: 77px;
+                }
+                @include tablet{
+                    width: 77px;
+                }
+            }
             @include allmobiles{
                 background: $white-color;
                 color: #00a7a7;
@@ -91,14 +104,13 @@
 }
 .autofill-text{
     font-size: 36px;
-    font-weight: 600;
     letter-spacing: -0.4px;
     color: #ffffff;  
 }
 
 .sub-title {
+    font-family: $muli-regular;
     font-size: 18px;
-    font-weight: 600;
     line-height: 1.22;
     letter-spacing: -0.2px;
     color: #ffffff;

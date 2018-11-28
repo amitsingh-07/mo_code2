@@ -60,7 +60,7 @@
     padding: 0 20px;
     @include allmobiles {
         margin-top: 0px;
-        margin-bottom: 80px;
+        margin-bottom: 60px;
     }
     
     .edit-block{
@@ -85,28 +85,26 @@
         color: #ffffff;
       }
     .sub-title{
-            font-family: $muli-semi-bold;
+            font-family: $muli-regular;
             font-size: 18px;
-            font-weight: 600;
             line-height: 1.22;
             letter-spacing: -0.2px;
             color: #ffffff;
         @include allmobiles {
-            width: 300px;
+            width: 321px;
             color: #333846;
             text-align: center;
+            font-size: 16px;
         }
     }
     h2{
         
         font-family: $muli-semi-bold;
         font-size: 36px;
-        font-weight: 600;
         letter-spacing: -0.4px;
         color: #ffffff;
         @include allmobiles {
             font-size: 20px;
-            font-weight: bold;
             letter-spacing: -0.4px;
             text-align: center;
             color: #066360;
@@ -136,7 +134,6 @@ input[type='checkbox']+label {
       span{
         font-family: $muli-semi-bold;
         font-size: 18px;
-        font-weight: 600;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;
@@ -179,8 +176,8 @@ input[type='checkbox']+label {
         border-radius: 6px;
         box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
         font-size: 18px;
-        font-weight: 600;
         letter-spacing: -0.3px;
+        line-height: normal;
         color: #2d8289;
         margin-top: 0px;
         font-family: $muli-semi-bold;
@@ -188,13 +185,12 @@ input[type='checkbox']+label {
             margin-top: 19px !important;
         }
         .flex-row{
-            padding: 0 19px 25px; 
+            padding: 0 19px 21px; 
         }
         .title {
             background: $white-color;
             font-family: $muli-bold;
             font-size: 20px;
-            font-weight: bold;
             letter-spacing: -0.4px;
             color: #066360;
             margin-bottom: 19px;
@@ -214,7 +210,6 @@ input[type='checkbox']+label {
                 padding: 8px !important;
                 color:#00a7a7;
                 font-size: 16px;
-                font-weight: 600;
                 background-color: #f4fafb;
             }
             .btn-primary{
@@ -232,13 +227,12 @@ input[type='checkbox']+label {
 .content-title {
     font-family: $muli-semi-bold;
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     color: #ffffff;
     padding:20px 0;
   }
   .add-beneficiary{
-      justify-content: flex-end;
+      justify-content: center;
   }
 
   .sub-name {

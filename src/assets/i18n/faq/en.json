@@ -1,6 +1,14 @@
 {
+    "FAQ_GENERAL": {
+        "TITLE": "FAQ",
+        "META": {
+            "META_DESCRIPTION": "Questions on Insurance",
+            "META_KEYWORDS": "FAQ, Insurance, Will Writing"
+            }
+    },
     "FAQ": {
         "TITLE": "FAQs",
+        "PAGE_TITLE": "Frequently Asked Questions on",
         "CONTENT": {
             "Insurance": {
                 "General": [
@@ -156,7 +164,7 @@
                     },
                     {
                         "QUESTION": "How will my estate be distributed if I do not have a will?",
-                        "ANSWER": "<table class=\"tg\"><tr><th>Deceased Dies Intestate Leaving:</th><th>Distribution</th></tr><tr><td>Spouse (No parents or issue*)</td><td>Spouse – 100%</td></tr><tr><td>Spouse, Issue (With or without parents)</td><td>Spouse – 50%<br>Issue – 50% To be shared equally</td></tr><tr><td>Issue (No spouse)</td><td>Issue – 100% To be shared equally</td></tr><tr><td>Spouse, Parents (No issue)</td><td>Spouse – 50%<br>Parents – 50% To be shared equally</td></tr><tr><td>Parents (No spouse or issue)</td><td>Parents – 100%<br>To be shared equally</td></tr><tr><td>Siblings  (No spouse, issue or parents)</td><td>Siblings – 100%<br>To be shared equally</td></tr><tr><td>Grandparents (No spouse, issue, parent or<br>siblings)</td><td>Grandparents – 100%<br>To be shared equally</td></tr><tr><td>Uncles & Aunts (No spouse, issue, parents,<br>siblings, grandparents)</td><td>Uncles and Aunts – 100%<br>To be shared equally</td></tr><tr><td>None of the above</td><td>Government – 100%</td></tr></table><br>* “issue” - includes children and the descendants of deceased children."
+                        "ANSWER": "<table class=\" will-table\"><tr><th class='will-th'>Deceased Dies Intestate Leaving:</th><th class='will-th'>Distribution</th></tr><tr><td>Spouse <div class='sub'>(No parents or issue*)</div></td><td><div class='distribute'><div>Spouse</div><div class='percentage'>100%</div></td></tr><tr><td>Spouse, Issue <div class='sub'>(With or without parents)</div></td><td><div class='distribute'><div>Spouse</div><div class='percentage'>50%</div></div><div class='distribute'><div>Issue<span class='sub'>(To be shared equally)</span></div><div class='percentage'>50%</div></div></td></tr><tr><td>Issue <div class='sub'>(No spouse)</div></td><td><div class='distribute'><div>Issue<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></td></tr><tr><td>Spouse, Parents <div class='sub'>(No issue)</div></td><td><div class='distribute'><div>Spouse</div><div class='percentage'>50%</div></div><div class='distribute'><div>Parents <span class='sub'>(To be shared equally)</span></div><div class='percentage'>50%</div></div></td></tr><tr><td>Parents <div class='sub'>(No spouse or issue)</div></td><td><div class='distribute'><div>Parents<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>Siblings <div class='sub'>(No spouse, issue or parents)</div></td><td><div class='distribute'><div>Siblings <div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>Grandparents <div class='sub'>(No spouse, issue, parent or siblings)</div></td><td><div class='distribute'><div>Grandparents<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>Uncles & Aunts <div class='sub'>(No spouse, issue, parents, siblings, grandparents)</div></td><td><div class='distribute'><div>Uncles and Aunts<div class='sub'>(To be shared equally)</div></div><div class='percentage'>100%</div></div></td></tr><tr><td>None of the above</td><td class='distribute'><div>Government</div><div class='percentage'>100%</div></td></tr></table><br><div class='sub'>* “issue” - includes children and the descendants of deceased children.</div>"
                     }
                 ],
                 "Who Is Eligible?": [

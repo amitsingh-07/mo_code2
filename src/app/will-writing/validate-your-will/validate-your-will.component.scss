@@ -63,12 +63,18 @@
                 }
             }
         }
-        
+        .btn {
+            font-family: $muli-bold;
+            font-size: 22px;
+            letter-spacing: -0.2px;
+            text-align: center;  
+            color: #ffffff !important;
+            background-color: #00c5c4 !important; 
+        }
     }
     .intro-block__content__heading {
         font-family: $muli-semi-bold;
         font-size: 36px;
-        font-weight: 600;
         letter-spacing: -0.4px;
         text-align: center;
         color: #00a7a7;
@@ -83,7 +89,6 @@
     .intro-block__content__title {
         font-family: $muli-semi-bold;
         font-size: 24px;
-        font-weight: 600;
         letter-spacing: -0.3px;
         text-align: center;
         color: #ffffff;
@@ -100,13 +105,7 @@
             padding: 0 15px;
         }
     }
-    .btn {
-        font-family: $muli-bold;
-        font-size: 22px;
-        font-weight: bold;
-        letter-spacing: -0.2px;
-        text-align: center; 
-    }
+    
 }
 .back-btn {
 	background-image: url("../../../assets/images/back-web.svg");
@@ -149,13 +148,13 @@
   li{
         font-family: $muli-bold;
         font-size: 18px;
-        font-weight: bold;
         letter-spacing: -0.3px;
         color: #066360;
       .step {
         font-family: $muli-regular;
         font-size: 16px;
         line-height: 1.25;
+        font-weight: normal;
         letter-spacing: -0.2px;
         color: #5e5e5e;
       }
@@ -173,6 +172,7 @@
     letter-spacing: -0.2px;
     text-align: center;
     color: #00a7a7;
+    cursor: pointer;
     @include allmobiles {
         color: #ffffff;
     }
@@ -195,7 +195,7 @@
     line-height: 1.33;
     letter-spacing: -0.2px;
     text-align: center;
-    color: #00a7a7;
+    color: #5e5e5e;
     @include allmobiles {
         color: #ffffff;
     }

@@ -22,6 +22,7 @@ import { IServerResponse } from './interfaces/server-response.interface';
 })
 export class BaseService {
   config$: Observable<IConfig>;
+  apiBaseUrl = '';
 
   constructor(
     public http: HttpService,
@@ -31,12 +32,15 @@ export class BaseService {
     public configService: ConfigService
   ) {
     this.config$ = this.configService.getConfig();
+    if (window.location.href.indexOf('localhost') >= 0) {
+      this.apiBaseUrl = environment.apiBaseUrl;
+    }
   }
 
   get(url) {
     this.helperService.showLoader();
     return this.httpClient
-      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`)
+      .get<IServerResponse>(`${this.apiBaseUrl}/${url}`)
       .finally(() => {
         this.helperService.hideLoader();
       })
@@ -74,7 +78,23 @@ export class BaseService {
     }
 
     return this.httpClient
-      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
+      .post<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, postBody)
+      .finally(() => {
+        this.helperService.hideLoader();
+      });
+  }
+
+  postForBlob(url, postBody: any, showLoader?: boolean, showError?: boolean) {
+    if (showLoader) {
+      this.helperService.showLoader();
+    }
+    let param = '';
+    if (showError) {
+      param = '?alert=' + showError;
+    }
+
+    return this.httpClient
+      .post(`${this.apiBaseUrl}/${url}${param}`, postBody, { responseType: 'blob' })
       .finally(() => {
         this.helperService.hideLoader();
       });

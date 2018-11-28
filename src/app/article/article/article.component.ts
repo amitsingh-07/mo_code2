@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { ArticleApiService } from '../article.api.service';
 import { ArticleService } from '../article.service';
+import { SeoServiceService } from './../../shared/Services/seo-service.service';
 
 import { IArticleElement } from '../articleElement.interface';
 
@@ -16,15 +18,22 @@ export class ArticleComponent implements OnInit {
   getStartedArticleList: IArticleElement[];
   recentArticleList: IArticleElement[];
 
-  constructor(public navbarService: NavbarService, public footerService: FooterService,
-              private articleService: ArticleService, public articleApiService: ArticleApiService) {}
-
+  constructor(public navbarService: NavbarService, public footerService: FooterService, private seoService: SeoServiceService,
+              private articleService: ArticleService, public articleApiService: ArticleApiService, private translate: TranslateService) {
+                this.translate.use('en');
+                this.translate.get('COMMON').subscribe((result) => {
+                  this.seoService.setTitle(this.translate.instant('COMMON.PRE_TITLE') + this.translate.instant('GENERAL_ARTICLES.TITLE'));
+                  this.seoService.setBaseSocialMetaTags(this.translate.instant('GENERAL_ARTICLES.TITLE'),
+                                            this.translate.instant('GENERAL_ARTICLES.META.META_DESCRIPTION'),
+                                            this.translate.instant('GENERAL_ARTICLES.META.META_KEYWORDS'),
+                                            );
+                });
+              }
   ngOnInit() {
     this.articleApiService.getGetStartedArticle().subscribe((data) => {
       this.getStartedArticleList = this.articleService.getArticleElementList(data);
     });
     this.articleApiService.getRecentArticle(8).subscribe((data) => {
-      console.log(data);
       this.recentArticleList = this.articleService.getArticleElementList(data);
     });
     this.footerService.setFooterVisibility(true);

@@ -29,7 +29,7 @@
       "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
-        "MESSAGE": "You may enter your NRIC, FIN, Birth Cert or Passport Number."
+        "MESSAGE": "<div class='pt5'>You may enter your NRIC, FIN, Birth Cert or Passport Number.</div>"
       },
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
@@ -69,12 +69,14 @@
       "FAQ_LINK_TITLE": "Find out more in FAQs",
       "OFFER_PERIOD": "FREE for a limited time only!",
       "NO_PROMOCODE": "No promo code? ",
-      "GET_NOW": "Get one now!",
+      "GET_NOW": "get one now!",
       "SENT_VIA_EMAIL": "Your promocode will be sent via email!",
       "EMAIL_CONTENT": "Get exclusive access to promotions, personal finance tips and updates on the latest news.",
       "SENT_SUCCESS": "Your promo code has successfully been sent to your email.",
       "FAQ_LINK": "http://www.moneyowl.com.sg/faqs",
-      "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg"
+      "GET_ONE_NOW_LINK": "http://www.moneyowl.com.sg/home#subscribe",
+      "SUBSCRIBE": "Subscribe to our mailing list and ",
+      "PROMO_ERROR": "Invalid promo code. Please try again."
     },
     "TELL_US_YOURSELF": {
       "TITLE": "Tell Us About Yourself",
@@ -176,7 +178,7 @@
       },
       "MUSLIM_ERROR": {
         "TITLE": "Sorry, we are unable to assist you.",
-        "MESSAGE": "<div class='mb15'>As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer.</div>"
+        "MESSAGE": "<div class='mb10' style='margin-right: -13px'>As you are covered under Syariah laws, your will must adhere to faraid principles. We recommend that you approach a Syariah-law trained lawyer.</div>"
       }
     },
     "REVIEW_YOUR_DETAILS": {
@@ -191,7 +193,7 @@
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",
-      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role of executor & trustee in the event that your spouse passes on before you.",
+      "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role as your executor & trustee in the event that your main executor & trustee passes on before you.",
       "TOOLTIP_TITLE": "Role Of An Executor & Trustee",
       "TOOLTIP_MESSAGE": "<p>After you have passed on, your executor and trustee is in charge of carrying out the wishes of your will. As the 2 roles tend to overlap, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes settling outstanding debts of your estate (using your assets) and distributing your estate according to your wishes.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>",
       "MESSAGE_TOOLTIP": "Generally, we advise you to appoint a family member or trusted friend as executor & trustee."
@@ -229,8 +231,8 @@
     },
     "VALIDATE_YOUR_WILL": {
       "HERE_YOUR_WILL": "Here’s Your Will!",
-      "TITLE": "Validate Your Will",
-      "SUB_TITLE": "Yay, your will is ready to be viewed! Please follow the steps below to validate your will.",
+      "TITLE": "Execute Your Will",
+      "SUB_TITLE": "Yay, your will is ready to be viewed! Please follow the steps below to execute your will.",
       "PRINT_YOUR_WILL": "Print Your Will",
       "FIND_2_WITNESSES": "Find 2 Witnesses",
       "SIGN_YOUR_WILL": "Sign Your Will",
