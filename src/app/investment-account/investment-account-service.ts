@@ -879,25 +879,37 @@ export class InvestmentAccountService {
 
         if (data.employmentDetails.employmentStatus.name !== 'Unemployed') {
             this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
-            if (data.employmentDetails.employerDetails.employerName) {
-                this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.employerName;
+            if (data.empolymentDetails.employerDetails.detailedEmployerDetails.employerName ) {
+                this.investmentAccountFormData.companyName = data.empolymentDetails.employerDetails.detailedEmployerDetails.employerName ;
             }
             if (data.employmentDetails.occupation.occupation) {
                 this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
             }
-            this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.industry;
-            this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.employerContact;
+            if ( data.empolymentDetails.employerDetails.detailedEmployerDetails.industry) {
+            this.investmentAccountFormData.industry = data.empolymentDetails.employerDetails.detailedEmployerDetails.industry;
+            }
+            if ( data.empolymentDetails.employerDetails.detailedEmployerDetails.employerContact) {
+            this.investmentAccountFormData.contactNumber = data.empolymentDetails.employerDetails.detailedEmployerDetails.employerContact;
+            }
             this.investmentAccountFormData.isEmployeAddresSame = isEmployeAddresSame;
 
             if (!isEmployeAddresSame) {
-                this.investmentAccountFormData.empCountry = data.employmentDetails.employerDetails.employerAddress.country;
-                this.investmentAccountFormData.empPostalCode = data.employmentDetails.employerDetails.employerAddress.postalCode;
-                this.investmentAccountFormData.empAddress1 = data.employmentDetails.employerDetails.employerAddress.addressLine1;
-                this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.employerAddress.addressLine2;
-                this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.employerAddress.unitNumber;
-                this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.employerAddress.city;
-                this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.employerAddress.state;
-                this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.employerAddress.zipCode;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empCountry = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.country;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empPostalCode = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.postalCode;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empAddress1 = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine1;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empAddress2 = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine2;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empUnitNo = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.unitNumber;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empCity = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.city;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empState = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.state;
+                // tslint:disable-next-line:max-line-length
+                this.investmentAccountFormData.empZipCode = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.zipCode;
             }
         } else {
             this.investmentAccountFormData.employmentStatus = data.employmentStatus;
@@ -954,23 +966,29 @@ export class InvestmentAccountService {
         if (data.unitNo) {
             this.investmentAccountFormData.unitNo = data.unitNo;
         }
+        if (data.city) {
         this.investmentAccountFormData.city = data.city;
+        }
+        if (data.state) {
         this.investmentAccountFormData.state = data.state;
+        }
+        if (data.isMailingAddressSame) {
         this.investmentAccountFormData.isMailingAddressSame = data.isMailingAddressSame;
+        }
         if (!data.isMailingAddressSame) {
             this.setEmailingAddress(data);
         }
         this.commit();
         let request;
         if (!data.isMailingAddressSame) {
-            request = this.constructEditContactRequestMailingSame(data);
+            request = this.constructEditContactRequestMailingNotSame(data);
         } else {
             request = this.constructEditContactRequest(data);
         }
         return this.apiService.requestEditContact(request);
     }
     // tslint:disable-next-line:no-identical-functions
-    constructEditContactRequestMailingSame(data) {
+    constructEditContactRequestMailingNotSame(data) {
         return {
             contactDetails: {
                 homeAddress: {
@@ -980,8 +998,8 @@ export class InvestmentAccountService {
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
                     postalCode: data.postalCode,
-                    townName: 'Townname',
-                    state: 'State Name'
+                    floor: data.floor,
+                    state: data.state,
                 },
                 mailingAddress: {
                     id: 2,

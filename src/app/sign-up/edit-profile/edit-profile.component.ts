@@ -40,6 +40,7 @@ export class EditProfileComponent implements OnInit {
   isMailingAddressSame: boolean;
   isEmployeAddresSame: boolean;
   isSingaporeResident: boolean;
+  hiddenAccountNum: any;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -123,9 +124,9 @@ export class EditProfileComponent implements OnInit {
       if ( this.personalData) {
         this.isSingaporeResident = this.personalData.isSingaporeResident;
         }
-      if ( this.empolymentDetails.employerAddress) {
+      if ( this.empolymentDetails.employerDetails.detailedemployerAddress) {
         this.isEmployeAddresSame = false;
-        this.employerAddress = this.empolymentDetails.employerAddress ;
+        this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress ;
       // tslint:disable-next-line:max-line-length
         //this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
       // tslint:disable-next-line:max-line-length
@@ -134,6 +135,14 @@ export class EditProfileComponent implements OnInit {
       console.log('RESIDENTIAL');
       console.log(this.residentialAddress);
     });
+  }
+  createMaskString(val) {
+    let i;
+    let maskedStr = '';
+    for ( i = 0; i < val; i++ ) {
+maskedStr = maskedStr + '*' ;
+    }
+    return maskedStr;
   }
   setFullName(firstName, LastName) {
 this.fullName = firstName + ' ' + LastName ;

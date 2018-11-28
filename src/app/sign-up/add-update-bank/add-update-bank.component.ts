@@ -6,6 +6,7 @@ import { ActivatedRoute , Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
+import { distinctUntilChanged } from 'rxjs/operators';
 import { InvestmentAccountCommon } from '../../investment-account/investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
@@ -18,7 +19,6 @@ import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-with
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
-
 @Component({
   selector: 'app-add-update-bank',
   templateUrl: './add-update-bank.component.html',
@@ -67,13 +67,18 @@ export class AddUpdateBankComponent implements OnInit {
     this.setPageTitle(this.pageTitle);
     this.getLookupList();
     this.buildBankForm();
+
+    this.bankForm.get('accountNo').valueChanges.pipe(distinctUntilChanged()).subscribe((value) => {
+      this.bankForm.get('accountNo').setValidators([Validators.required,  Validators.pattern(RegexConstants.NumericOnly)]);
+      this.bankForm.get('accountNo').updateValueAndValidity();
+    });
   }
   buildBankForm() {
     this.formValues = this.investmentAccountService.getBankInfo();
     this.bankForm = this.formBuilder.group({
       bank: [this.formValues.bank, [Validators.required]],
-      accountNo: [this.formValues.accountNumber, [Validators.required]],
-      accountHolderName: [this.formValues.fullName, [Validators.required]]
+      accountNo: [this.formValues.accountNumber],
+      accountHolderName: [this.formValues.fullName, [Validators.required,  Validators.pattern(RegexConstants.SymbolAlphabets)]]
     });
   }
   getInlineErrorStatus(control) {

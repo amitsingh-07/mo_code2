@@ -96,9 +96,10 @@ getCountryList(data) {
       floor: [{value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')}, Validators.required],
       unitNo: [{value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')}, Validators.required],
       isMailingAddressSame: [this.formValues.isMailingAddressSame],
-      nricFrontImage: [this.formValues.nricFrontImage],
-      nricBackImage: [this.formValues.nricBackImage],
-      mailAdressProof: [this.formValues.mailAdressProof]
+      // nricFrontImage: [this.formValues.nricFrontImage],
+      // nricBackImage: [this.formValues.nricBackImage],
+       //mailAdressProof: [this.formValues.mailAdressProof],
+      resAddressProof: [this.formValues.resAddressProof]
     });
   }
 
@@ -116,9 +117,9 @@ getCountryList(data) {
       zipCode: [{value: this.formValues.zipCode, disabled: this.investmentAccountService.isDisabled('zipCode')},
         [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       isMailingAddressSame: [this.formValues.isMailingAddressSame],
-      passportImage: [this.formValues.passportImage, Validators.required],
+      // passportImage: [this.formValues.passportImage, Validators.required],
       resAddressProof: [this.formValues.resAddressProof, Validators.required],
-      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
+      // mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
     });
   }
 
@@ -138,7 +139,9 @@ getCountryList(data) {
           mailFloor: [{value: this.formValues.mailFloor,
             disabled: this.investmentAccountService.isDisabled('mailFloor')}, Validators.required],
           mailUnitNo: [{value: this.formValues.mailUnitNo,
-            disabled: this.investmentAccountService.isDisabled('mailUnitNo')}, Validators.required]
+            disabled: this.investmentAccountService.isDisabled('mailUnitNo')}, Validators.required],
+          mailAdressProof: [{value: this.formValues.mailAdressProof,
+              disabled: this.investmentAccountService.isDisabled('mailAdressProof')}, Validators.required]
         }));
       } else { // Other Countries
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
@@ -155,6 +158,8 @@ getCountryList(data) {
             [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
           mailZipCode: [{value: this.formValues.mailZipCode, disabled: this.investmentAccountService.isDisabled('mailZipCode')},
             [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
+            mailAdressProof: [{value: this.formValues.mailAdressProof,
+              disabled: this.investmentAccountService.isDisabled('mailAdressProof')}, Validators.required]
         }));
       }
     } else {

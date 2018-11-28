@@ -596,8 +596,8 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions
   getEditProfileList() {
     const url = '../assets/mock-data/edit-profile.json';
-    return this.http.get(url)
-    //return this.http.get(apiConstants.endpoint.editProfile)
+    //return this.http.get(url)
+    return this.http.get(apiConstants.endpoint.editProfile)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
