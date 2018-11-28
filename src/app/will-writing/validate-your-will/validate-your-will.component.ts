@@ -55,7 +55,7 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
 
     const blob = new Blob([data], { type: 'application/pdf' });
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, 'Will writing.pdf');
+      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else if (isSafari && iOS || otherBrowsers) {
       this.downloadFile(data);
     } else {
@@ -75,7 +75,7 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     document.body.appendChild(a);
     a.setAttribute('style', 'display: none');
     a.href = url;
-    a.download = 'Will Writing.pdf';
+    a.download = 'MoneyOwl Will Writing.pdf';
     a.click();
     window.URL.revokeObjectURL(url);
     a.remove();
