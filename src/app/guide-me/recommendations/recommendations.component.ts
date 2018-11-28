@@ -1,8 +1,17 @@
-import { SlickComponent } from 'ngx-slick';
 import { CurrencyPipe, Location } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { SlickComponent } from 'ngx-slick';
 import { Subscription } from 'rxjs';
 
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '../../../../node_modules/@angular/router';
@@ -30,11 +39,11 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   pageTitle: string;
   subTitle: string;
 
-  routeSubscription: Subscription;
-
   slideConfig = { slidesToShow: 1, slidesToScroll: 1, infinite: false };
-  state: RecommendationsState;
   modalRef: NgbModalRef;
+
+  routeSubscription: Subscription;
+  state: RecommendationsState;
   componentName: string;
 
   constructor(
@@ -46,6 +55,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
     private stateStoreService: StateStoreService, private route: ActivatedRoute,
     private location: Location) {
 
+    /* ************** STATE HANDLING - START ***************** */
     this.componentName = this.route.routeConfig.component.name;
 
     this.routeSubscription = this.router.events.subscribe((event) => {
@@ -72,6 +82,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
         });
       }
     });
+    /* ************** STATE HANDLING - END ***************** */
 
     this.carouselConfig.wrap = false;
     this.translate.use('en');

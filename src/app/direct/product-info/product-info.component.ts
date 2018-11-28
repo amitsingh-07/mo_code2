@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -24,6 +23,8 @@ import { HeaderService } from './../../shared/header/header.service';
 import { AuthenticationService } from './../../shared/http/auth/authentication.service';
 import { ToolTipModalComponent } from './../../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SelectedPlansService } from './../../shared/Services/selected-plans.service';
+import { StateStoreService } from './../../shared/Services/state-store.service';
+import { DirectResultsComponent } from './../direct-results/direct-results.component';
 import { DirectApiService } from './../direct.api.service';
 import { DirectService } from './../direct.service';
 
@@ -60,6 +61,8 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private prodSearchInfoSub: Subscription;
   pageTitle: string;
+  editPageTitle: string;
+  resultsPageTitle: string;
 
   selectedCategoryId = 0;
   routerOptions = [
@@ -75,31 +78,34 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   ];
 
   minProdSearch: string;
-/*
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.innerWidth = window.innerWidth;
-    if (this.innerWidth < this.mobileThreshold) {
-      this.toggleFormVisibility = false;
-      this.directService.setModalFreeze(false);
-      this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
-    } else {
-      this.toggleSelectVisibility = true;
-      this.toggleFormVisibility = true;
-      this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
+  /*
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+      this.innerWidth = window.innerWidth;
+      if (this.innerWidth < this.mobileThreshold) {
+        this.toggleFormVisibility = false;
+        this.directService.setModalFreeze(false);
+        this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
+      } else {
+        this.toggleSelectVisibility = true;
+        this.toggleFormVisibility = true;
+        this.searchText = this.translate.instant('COMMON.LBL_SEARCH_PLAN');
+      }
     }
-  }
-*/
+  */
   constructor(
     public headerService: HeaderService, private directService: DirectService,
     private modal: NgbModal, private translate: TranslateService, private route: ActivatedRoute,
     private directApiService: DirectApiService, private googleAnalyticsService: GoogleAnalyticsService,
     private cdRef: ChangeDetectorRef, private configService: ConfigService,
     private authService: AuthenticationService, public navbarService: NavbarService,
-    private _location: Location, private planService: SelectedPlansService) {
+    private _location: Location, private planService: SelectedPlansService,
+    private stateStoreService: StateStoreService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RESULTS.TITLE');
+      this.editPageTitle = this.translate.instant('PROFILE.TITLE2');
+      this.resultsPageTitle = this.translate.instant('RESULTS.TITLE');
       if (this.innerWidth < this.mobileThreshold) {
         this.searchText = this.translate.instant('COMMON.LBL_CONTINUE');
       } else {
@@ -115,7 +121,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
         this.isEditMode = false;
       }
     });
-    this.getProductCategoryList();
   }
 
   getProductCategoryList() {
@@ -146,6 +151,11 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (!this.productCategoryList || !this.productCategoryList.hasOwnProperty('length') ||
+      this.productCategoryList.length === 0) {
+      this.getProductCategoryList();
+    }
+
     // measuring width and height
     this.innerWidth = window.innerWidth;
 
@@ -154,8 +164,12 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       this.toggleVisibility = false;
       this.toggleBackdropVisibility = false;
       this.directService.setModalFreeze(false);
-      this.selectedCategory = this.directService.getProductCategory();
+    }
+
+    this.selectedCategory = this.directService.getProductCategory();
+    if (this.selectedCategory) {
       this.selectedCategoryId = this.selectedCategory.id;
+      this.productCategorySelected = this.selectedCategory.prodCatName;
     }
 
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
@@ -169,15 +183,12 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
           this.toggleBackdropVisibility = false;
           this.directService.setModalFreeze(false);
 
-          this.selectedCategory = this.directService.getProductCategory();
-          this.selectedCategoryId = this.selectedCategory.id;
-          let catId = Formatter.getIntValue(this.selectedCategoryId);
-          if (catId > 0) {
-            catId = catId - 1;
-          }
-          this.openProductCategory(catId);
+          this.setSelectedCategory();
           this.backPressed.emit('backPressed');
           //}
+        } else if (event === this.editPageTitle) {
+          this.directService.setModalFreeze(false);
+          this.navbarService.setPageTitle(this.resultsPageTitle, null, false, true);
         } else {
           this._location.back();
         }
@@ -202,6 +213,17 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     this.googleAnalyticsService.startTime('initialDirectSearch');
     this.initDisplaySetup();
 
+  }
+
+  setSelectedCategory() {
+    this.selectedCategory = this.directService.getProductCategory();
+    this.selectedCategoryId = this.selectedCategory.id;
+    this.productCategorySelected = this.selectedCategory.prodCatName;
+    let catId = Formatter.getIntValue(this.selectedCategoryId);
+    if (catId > 0) {
+      catId = catId - 1;
+    }
+    this.openProductCategory(catId);
   }
 
   formSubmitted(data) {
@@ -230,6 +252,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   }
 
   initCategorySetup() {
+    this.directService.setProductCategoryList(this.productCategoryList);
     this.selectedCategory = this.directService.getProductCategory();
     let categoryIndex = this.selectedCategory.id;
     /*
@@ -248,6 +271,7 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   }
 
   search(index) {
+    this.stateStoreService.clearState(DirectResultsComponent.name);
     this.directService.setProductCategory(this.selectedCategory);
     this.directService.triggerSearch(this.selectedCategory.id + '');
   }
@@ -255,11 +279,13 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
   editProdInfo() {
     this.isEditMode = true;
     this.toggleVisibility = true;
+    this.hideForm = false;
     if (this.innerWidth < this.mobileThreshold) {
       this.toggleSelectVisibility = false;
       this.toggleBackdropVisibility = false;
       this.toggleFormVisibility = true;
     } else {
+      this.setSelectedCategory();
       this.toggleBackdropVisibility = true;
     }
   }
@@ -277,7 +303,9 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
       this.toggleFormVisibility = true;
       this.directService.setModalFreeze(true);
     }
-
+    if (!this.productCategoryList) {
+      this.productCategoryList = this.directService.getProductCategoryList();
+    }
     const category = this.productCategoryList[index];
     category.active = true;
     this.selectProductCategory(category, index);
