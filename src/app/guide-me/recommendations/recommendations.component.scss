@@ -38,6 +38,7 @@ app-recommendations {
     //top: 100px;
     width: 100%;
     z-index: 999;
+    overflow-x: hidden;
   .enable-scroll {
     touch-action: pan-y !important;
     -webkit-overflow-scrolling: touch !important; 
