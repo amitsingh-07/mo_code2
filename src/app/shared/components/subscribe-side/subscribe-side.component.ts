@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { TranslateService } from '@ngx-translate/core';
 import { MailchimpApiService } from '../../Services/mailchimp.api.service';
+import { ConfigService, IConfig } from './../../../config/config.service';
 import { SubscribeMember } from './../../Services/subscribeMember';
 
 @Component({
@@ -17,7 +18,9 @@ export class SubscribeSideComponent implements OnInit {
   subscribeSuccess = false;
   formValues: SubscribeMember;
 
-  constructor(public mailChimpApiService: MailchimpApiService, private translate: TranslateService) {
+  isWillWritingEnabled: boolean;
+
+  constructor(public mailChimpApiService: MailchimpApiService, private translate: TranslateService, private configService: ConfigService) {
     this.translate.use('en');
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
       if (data !== '') {
@@ -29,6 +32,9 @@ export class SubscribeSideComponent implements OnInit {
           this.subscribeSuccess = true;
         }
       }
+      this.configService.getConfig().subscribe((config: IConfig) => {
+        this.isWillWritingEnabled = config.willWritingEnabled;
+      });
     });
   }
 

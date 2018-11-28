@@ -199,6 +199,14 @@
         "LABEL": "Operating Hours",
         "CONTENT": "9am - 6pm, Mon - Fri",
         "EXCEPTION": "excluding Public Holidays"
+      },
+      "SOCIAL": {
+        "FACEBOOK": "Facebook",
+        "LINKEDIN": "LinkedIn"
+      },
+      "MAINTENANCE":{
+        "MSG1": "Dear users, our website will be undergoing a weekly scheduled maintenance every Wednesday, 10.30pm - 12.30am. ",
+        "MSG2": "Thank you for your patience and understanding!"
       }
     },
     "BOTTOM_SECTION": {
@@ -221,7 +229,9 @@
     }
   },
   "SUBSCRIBE_SIDE": {
-    "TITLE": "Join our mailing list and get promo code for <span class='orange-color'>FREE</span> Will writing!",
+    "TITLE": "Join our Mailing List and get wiser!",
+    "PROMO_TITLE": "Join our Mailing List &",
+    "PROMO_SUB_TITLE": "Get Promo Code for FREE Will Writing",
     "FIRST_NAME": "First Name",
     "LAST_NAME": "Last Name",
     "EMAIL": "Email",

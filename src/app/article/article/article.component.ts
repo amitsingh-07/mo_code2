@@ -25,7 +25,8 @@ export class ArticleComponent implements OnInit {
                   this.seoService.setTitle(this.translate.instant('COMMON.PRE_TITLE') + this.translate.instant('GENERAL_ARTICLES.TITLE'));
                   this.seoService.setBaseSocialMetaTags(this.translate.instant('GENERAL_ARTICLES.TITLE'),
                                             this.translate.instant('GENERAL_ARTICLES.META.META_DESCRIPTION'),
-                                            this.translate.instant('GENERAL_ARTICLES.META.META_KEYWORDS'));
+                                            this.translate.instant('GENERAL_ARTICLES.META.META_KEYWORDS'),
+                                            );
                 });
               }
   ngOnInit() {
@@ -33,7 +34,6 @@ export class ArticleComponent implements OnInit {
       this.getStartedArticleList = this.articleService.getArticleElementList(data);
     });
     this.articleApiService.getRecentArticle(8).subscribe((data) => {
-      console.log(data);
       this.recentArticleList = this.articleService.getArticleElementList(data);
     });
     this.footerService.setFooterVisibility(true);
