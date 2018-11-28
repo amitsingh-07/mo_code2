@@ -188,6 +188,12 @@
     color: #2d8289;
     margin-bottom: 17px;
     justify-content: space-between;
+    @include allmobiles {
+        margin-bottom: 37px;
+        .assetslbl {
+            margin-bottom: 25px;
+        }
+    }
     .assetslbl {
         @include allmobiles {
             margin-bottom: 25px;
@@ -195,10 +201,16 @@
         
     }
 }
+.flex-row.section.assetslbl {
+    @include allmobiles {
+        margin-bottom: 25px;
+    }
+}
 .dropdown-control{
      .dropdown-menu{
+        z-index: 999;
         &.show{
-            margin-bottom: 20px;
+            margin-bottom: 65px;
         }
     }
 }
@@ -230,7 +242,7 @@
 .lbl4 {
     margin-right: -10px;
     @include allmobiles{
-        margin-top:-20px;
+        margin-top: -5px;
     }
 }
 
@@ -244,3 +256,8 @@
         }
     }
 }
+
+.form-group .flex-col-4 .label {
+    line-height: normal;
+        
+} 

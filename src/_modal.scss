@@ -682,6 +682,10 @@ body.modal-open::-webkit-scrollbar {
         right: 20px !important;
       }
     }
+    @include allmobiles {
+      padding: 20px !important;
+      padding-left: 15px !important;
+    }
   }
   .modal-body-message {
     padding: 0 !important
@@ -689,19 +693,25 @@ body.modal-open::-webkit-scrollbar {
   @include allmobiles {
     .modal-body-title {
       margin: -5px 0 10px 0 !important;
+      font-size: 24px !important;
     }
     .modal-body-message {
       margin-right:0 !important;
-      padding: 0 !important
+      padding: 0 !important;
+      font-size: 16px !important;
     }
     .modal-body {
       &.white-bg {
         .close {
-          top: 25px !important;
+          top: 30px !important;
           right: 20px !important;
         }
       }
     }
+  }
+
+  .section-container {
+    padding-right: 0 !important;
   }
   /* Important part */
   .modal-dialog {
@@ -723,7 +733,7 @@ body.modal-open::-webkit-scrollbar {
     @include allmobiles {
       height: 100vh;
       width: 100vw;
-      padding-bottom: 220px !important;
+      padding-bottom: 270px !important;
     }
   }
 }
@@ -805,5 +815,11 @@ body.modal-open::-webkit-scrollbar {
           width: 100vw !important;
         }      
     }
+}
+
+.guided-existing-coverage {
+  @include allmobiles{
+    max-height: 100% !important;
+  }
 }
 

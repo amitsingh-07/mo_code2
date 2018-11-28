@@ -29,6 +29,7 @@ import {
 } from './modal/recommendations-modal/recommendations-modal.component';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
+import { TruncatePipe } from './Pipes/truncate.pipe';
 import { StringToLinkFormatPipe } from './Pipes/string-to-link.pipe';
 import {
     PlanDetailsWidgetComponent
@@ -63,7 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, FormatDatePipe],
+    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -75,6 +76,8 @@ export function createTranslateLoader(http: HttpClient) {
     TermsOfUseComponent,
     BreakdownBarComponent,
     BreakdownAccordionComponent,
-    PercentageInputDirective]
+    PercentageInputDirective,
+    TruncatePipe
+  ]
 })
 export class SharedModule { }

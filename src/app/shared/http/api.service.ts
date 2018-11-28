@@ -128,14 +128,14 @@ export class ApiService {
     const payload = null;
     if (urlAddOn === -1) {
       return this.http.post(apiConstants.endpoint.article.getArticleCategoryAllList, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
+        .pipe(
+          catchError((error: HttpErrorResponse) => this.handleError(error))
+        );
     } else {
       return this.http.post(apiConstants.endpoint.article.getArticleCategoryList + '/' + urlAddOn, payload)
-      .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
-      );
+        .pipe(
+          catchError((error: HttpErrorResponse) => this.handleError(error))
+        );
     }
   }
 
@@ -154,7 +154,7 @@ export class ApiService {
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-    }
+  }
   sendContactUs(data) {
     const payload = {
       toEmail: data.email,
@@ -165,14 +165,14 @@ export class ApiService {
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-    }
+  }
 
   subscribeNewsletter(data) {
     const payload = data;
     return this.http.post(apiConstants.endpoint.subscription.base, payload)
-    .pipe (
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   subscribeHandleError(error: HttpErrorResponse) {
@@ -252,7 +252,7 @@ export class ApiService {
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {
-    return this.http.post(apiConstants.endpoint.verifyOTP, payload)
+    return this.http.post(apiConstants.endpoint.verifyOTP + '?handleError=true', payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -789,40 +789,40 @@ export class ApiService {
       );
   }
 
-   // Verify PromoCode
-   verifyPromoCode(promoCode) {
-     return this.http.post(apiConstants.endpoint.willWriting.verifyPromoCode, promoCode)
-     .pipe(
-       catchError((error: HttpErrorResponse) => this.handleError(error))
-     );
-   }
+  // Verify PromoCode
+  verifyPromoCode(promoCode) {
+    return this.http.post(apiConstants.endpoint.willWriting.verifyPromoCode, promoCode)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
-   createWill(payload) {
+  createWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.createWill, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   updateWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.updateWill, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   getWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.getWill, payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
-  downloadWill(payload): Observable<any>  {
-    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, payload, false , false)
-     .pipe(
-       catchError((error: HttpErrorResponse) => this.handleError(error))
-     );
+  downloadWill(payload): Observable<any> {
+    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, payload, false, false)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
 }

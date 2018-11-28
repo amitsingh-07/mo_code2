@@ -27,7 +27,6 @@ setTitle(in_title: string) {
   // Meta Tag Features
 setBaseSocialMetaTags(in_title: string, description: string, keyword: string, thumbnailImageUrl?: string) {
     const url = this.router.url;
-    console.log(url);
     if (!thumbnailImageUrl) {
       thumbnailImageUrl = this.seo_credentials.default.default_thumbnail;
     }

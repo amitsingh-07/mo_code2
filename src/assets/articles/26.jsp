@@ -68,7 +68,7 @@
 <div class="hdivider"></div><div class="hdivider"></div>
 
 <div class="row">
-	<div class="col-lg-3 hidden-sm-md">
+	<div class="col-lg-3 hidden-sm-md hidden-tablet">
 		<img src="assets/articles/images/life_stage_age1.png" alt="Age timeline">
 	</div>
 

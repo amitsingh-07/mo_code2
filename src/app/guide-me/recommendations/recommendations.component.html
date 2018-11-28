@@ -15,7 +15,7 @@
   </div>
 
   <div #mobileHeaderMenu id="mobileHeaderMenu" class="plan-type-list md-none hidden-lg" style="    overflow-x: auto;  width: 100vw;  max-width: 100vw;">
-    <span class="plan-type" (click)="jumpToSlide(recommendation, i)" [attr.data-type]="recommendation.protectionType" [class.active]="recommendation.protectionType == state.activeRecommendationType"
+    <span class="plan-type {{recommendation.protectionType.replace(' ', '-')}}" (click)="jumpToSlide(recommendation, i)" [attr.data-type]="recommendation.protectionType" [class.active]="recommendation.protectionType == state.activeRecommendationType"
       *ngFor="let recommendation of state.recommendationPlans; let i = index">
       <span [innerHtml]="recommendation.protectionType ? recommendation.protectionType.replace('-', '&#8209;') : recommendation.protectionType"></span>
     </span>
