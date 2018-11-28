@@ -106,7 +106,9 @@ export class EditProfileComponent implements OnInit {
       this.residentialAddress = data.objectList.contactDetails.homeAddress;
       }
       this.empolymentDetails = data.objectList.employmentDetails;
+      if (data.objectList.customerBankDetail) {
       this.bankDetails = data.objectList.customerBankDetail[0];
+      }
       if ( data.objectList.contactDetails.mailingAddress) {
       this.mailingAddress = data.objectList.contactDetails.mailingAddress;
       this.isMailingAddressSame = false;
@@ -121,9 +123,9 @@ export class EditProfileComponent implements OnInit {
       if ( this.personalData) {
         this.isSingaporeResident = this.personalData.isSingaporeResident;
         }
-      if ( this.empolymentDetails.employerDetails.employerAddress) {
+      if ( this.empolymentDetails.employerAddress) {
         this.isEmployeAddresSame = false;
-        this.employerAddress = this.empolymentDetails.employerDetails.employerAddress ;
+        this.employerAddress = this.empolymentDetails.employerAddress ;
       // tslint:disable-next-line:max-line-length
         //this.setEmployerAddress(this.empolymentDetails.employerDetails.employerAddress.addressLine1 , this.empolymentDetails.employerDetails.employerAddress.addressLine2);
       // tslint:disable-next-line:max-line-length

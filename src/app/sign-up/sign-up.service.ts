@@ -310,5 +310,19 @@ export class SignUpService {
     const data = this.constructEditPassword(this.cryptoService.encrypt(oldPassword), this.cryptoService.encrypt(newPassword));
     return this.apiService.requestEditPassword(data);
   }
+  updateBankInfo(bank, fullName , accountNum , id) {
+    // API Call here
+    const data = this.constructUpdateBankPayload(bank, fullName , accountNum , id);
+    return this.apiService.requestUpdateBank(data);
+  }
+  // tslint:disable-next-line:no-identical-functions
+  constructUpdateBankPayload(bank , fullName , accountNum , id) {
+    const request = {};
+    request['id'] = id;
+    request['bank'] = bank;
+    request['accountName'] = fullName;
+    request['accountNumber'] = accountNum;
+    return request;
+  }
 
 }

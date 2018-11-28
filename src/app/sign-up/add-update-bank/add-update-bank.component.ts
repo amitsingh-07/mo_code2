@@ -106,6 +106,15 @@ export class AddUpdateBankComponent implements OnInit {
         }
       });
       } else {
+        const id = form.value.bank.id;
+        console.log('current bank id ' + id);
+        this.signUpService.updateBankInfo(form.value.bank, form.value.accountHolderName , form.value.accountNo , id).subscribe((data) => {
+          // tslint:disable-next-line:triple-equals
+          if ( data.responseMessage.responseCode == 6000) {
+            // tslint:disable-next-line:max-line-length
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+          }
+        });
       // Edit Bank APi here
       }
     }

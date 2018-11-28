@@ -1,5 +1,5 @@
 {
-	"objectList": [{
+	"objectList": {
         "personalInformation": {
             "firstName": "Kelvin",
             "lastName": "Goh",
@@ -80,14 +80,19 @@
                 "ssocId": "2345"
             }
         },
-        "bankDetails": {
-            "name": "BAnk Name",
-            "accountNumber": "1124334556******"
-        }
+        "customerBankDetail":[{
+            "bank": { "id": 57, "name": "CIMB Bank Berhad", "value": "7986" },
+            "accountNumber": "112433455644"
+        }]
     }
-	],
+	,
 	"responseMessage": {
 		"responseCode": 6000,
 		"responseDescription": "Successful response"
 	}
 }
+
+
+
+
+
