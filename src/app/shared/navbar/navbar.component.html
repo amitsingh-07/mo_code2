@@ -6,12 +6,12 @@
                     <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
                     <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
                 </li>
-                <li *ngIf="(navbarMode == 4)" class="nav-item">
+                <li *ngIf="(navbarMode == 4 || navbarMode == 5)" class="nav-item">
                         <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
                     </li>
                 <li class="navbar__logo--primary hidden-sm-md" routerLink="/">
                     </li>
-                <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
+                <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
                     </li>
                 <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
                     </li>
