@@ -76,7 +76,7 @@
               <div class="cash-balance">
                 <span *ngIf="!isFromPortfolio">{{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}: {{cashBalance | currency}}</span>
                 <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:
-                  {{withdrawForm.controls.withdrawPortfolio.value.currentValue}}</span>
+                  {{withdrawForm.controls.withdrawPortfolio.value.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
               </div>
             </div>
 
