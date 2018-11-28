@@ -61,9 +61,11 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(5);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
-    this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarDirectGuided(false);
     this.buildForgotPasswordForm();
   }
 
