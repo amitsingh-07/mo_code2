@@ -287,3 +287,10 @@ input[type='checkbox']+label {
 .relationship {
     width: 119px;
 }
+.dropdown-menu {
+    z-index: 998;
+    height: auto;
+    &.show{
+        margin-bottom: 65px;
+    }
+}
