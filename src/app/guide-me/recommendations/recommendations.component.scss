@@ -281,9 +281,9 @@ app-recommendations {
     font-family: $muli-bold;
     font-size: 18px;
     margin-right: 50px;
-  }
-  .coverage-premium-from {
-    margin-right: 0 !important;
+    @include allmobiles {
+      margin-right: 0 !important;
+    }
   }
 
   .recommendation-wrapper__disclaimer {
