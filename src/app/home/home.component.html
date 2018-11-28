@@ -126,14 +126,17 @@
       </div>
       <form class="subscribe__form--plugin" name="subscribeForm" id="subscribeForm" [formGroup]="subscribeForm">
         <div class="subscribe-title--container">
-          <div class="subscribe--title">
+          <div *ngIf="!isWillWritingEnabled" class="subscribe--title">
             {{'NEWSLETTER.TITLE' | translate}}
           </div>
+          <div *ngIf="isWillWritingEnabled" class="subscribe--will-title">
+            {{'NEWSLETTER.WILL_TITLE' | translate}}
+            </div>
           <div class="subscribe--icon">
             <img src="assets/images/owl--mini.svg" />
           </div>
           </div>
-        <div class="subscribe-promo--container">
+        <div *ngIf="isWillWritingEnabled" class="subscribe-promo--container">
           <div class="subscribe--promo">
             {{'NEWSLETTER.PROMO_TITLE' | translate}}
             </div>

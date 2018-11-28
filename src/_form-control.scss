@@ -1029,8 +1029,21 @@ input::placeholder {
     width: 100%;
     align-items: flex-end;
     justify-content:space-between;
-
     .subscribe--title {
+      font-family: $muli-bold;
+      font-size: 24px;
+      color: $teal-color;
+      line-height: 1.3;
+      margin: 0px 0px 10px 16px;
+
+      @include minMobilemaxPhablet {
+        font-size: 18px;
+        line-height: 1.3;
+        margin: 0px 0px 20px 16px;
+      }
+    }
+
+    .subscribe--will-title {
       font-family: $muli-bold;
       font-size: 26px;
       color: $teal-color;
