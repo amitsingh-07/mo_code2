@@ -188,11 +188,22 @@
     color: #2d8289;
     margin-bottom: 17px;
     justify-content: space-between;
+    @include allmobiles {
+        margin-bottom: 37px;
+        .assetslbl {
+            margin-bottom: 25px;
+        }
+    }
     .assetslbl {
         @include allmobiles {
             margin-bottom: 25px;
         }
         
+    }
+}
+.flex-row.section.assetslbl {
+    @include allmobiles {
+        margin-bottom: 25px;
     }
 }
 .dropdown-control{
