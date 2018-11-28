@@ -80,9 +80,9 @@ export class UpdateUserIdComponent implements OnInit {
   buildUpdateAccountForm() {
     this.formValues = this.signUpService.getAccountInfo();
     this.formValues.countryCode = this.formValues.countryCode ? this.formValues.countryCode : this.defaultCountryCode;
-    this.OldCountryCode = this.formValues.countryCode;
-    this.OldMobileNumber = this.formValues.mobileNumber;
-    this.OldEmail = this.formValues.email;
+    this.OldCountryCode = this.formValues.OldCountryCode;
+    this.OldMobileNumber = this.formValues.OldMobileNumber;
+    this.OldEmail = this.formValues.OldEmail;
     this.updateUserIdForm = this.formBuilder.group({
       countryCode: [this.formValues.countryCode, [Validators.required]],
       mobileNumber: [this.formValues.mobileNumber, [Validators.required, ValidateRange]],

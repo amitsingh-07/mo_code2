@@ -325,4 +325,12 @@ export class SignUpService {
     this.commit();
   }
 
+  setOldContactDetails(countryCode, mobileNumber, email) {
+    this.setContactDetails(countryCode, mobileNumber, email);
+    this.signUpFormData.OldCountryCode = countryCode;
+    this.signUpFormData.OldMobileNumber = mobileNumber;
+    this.signUpFormData.OldEmail = email;
+    this.commit();
+  }
+
 }
