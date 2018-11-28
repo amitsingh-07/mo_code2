@@ -212,8 +212,7 @@ export class TopupAndWithDrawService {
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
-    //request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
-    request['portfolioId'] = 'PORTFOLIO00046';
+    request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
     request['redemptionAmount'] = data.withdrawAmount;
     request['mode'] = data.withdrawMode; // todo
     if (request['mode'] === 'BANK') {
@@ -237,8 +236,7 @@ export class TopupAndWithDrawService {
       isPayMonthly = true;
     }
     return {
-      portfolioId: 'PORTFOLIO00046',
-      //portfolioId: data.portfolio.productCode,
+      portfolioId: data.portfolio.productCode,
       investmentAmount: Number(redeemAmount), // todo
       payMonthly: isPayMonthly
     };
