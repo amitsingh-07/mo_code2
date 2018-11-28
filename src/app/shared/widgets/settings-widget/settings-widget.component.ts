@@ -1,5 +1,8 @@
+import { filter } from 'rxjs/operators';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 export interface IDropDownData {
   displayText: string;
@@ -27,7 +30,9 @@ export class SettingsWidgetComponent implements OnInit {
   types;
   modalData;
 
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService, private router: Router,
+    private activeModal: NgbActiveModal) {
     this.filterProducts = new EventEmitter();
     this.showFilterTooltip = new EventEmitter();
     this.translate.use('en');
@@ -35,6 +40,13 @@ export class SettingsWidgetComponent implements OnInit {
       this.types = this.translate.instant('SETTINGS.TYPES');
       this.modalData = this.translate.instant('FILTER_TOOLTIPS.CLAIM_CRITERIA');
     });
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
   }
   ngOnInit() {
     if (this.selectedFilterList && this.selectedFilterList.premiumFrequency) {
@@ -57,7 +69,7 @@ export class SettingsWidgetComponent implements OnInit {
     if (this.selectedFilterList && this.selectedFilterList.length > 1) {
 
     } else {
-      
+
     }
   }
 

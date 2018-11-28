@@ -1,4 +1,3 @@
-import { FooterService } from './../../shared/footer/footer.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,6 +8,8 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { FooterService } from './../../shared/footer/footer.service';
+import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 
@@ -41,7 +42,7 @@ export class VerifyMobileComponent implements OnInit {
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private router: Router,
-    private translate: TranslateService) {
+    private translate: TranslateService, private errorHandler: CustomErrorHandlerService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
@@ -111,6 +112,10 @@ export class VerifyMobileComponent implements OnInit {
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
         const showErrorButton = data.responseMessage.responseCode === 5007 ? true : false;
         this.openErrorModal(title, message, showErrorButton);
+      } else {
+        this.progressModal = false;
+        this.errorHandler.handleCustomError(data, true);
+        this.startRetryCounter();
       }
     });
   }
