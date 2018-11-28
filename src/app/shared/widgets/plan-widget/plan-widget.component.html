@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-md-8 col-md-push-3">
-        <h4>{{productName}}</h4>
+        <h4>{{productName | truncate:[20, '...']}}</h4>
         <div class="grey subtitle--rider-name" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</div>
         <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
           <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}

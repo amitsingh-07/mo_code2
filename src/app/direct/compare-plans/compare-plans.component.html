@@ -15,7 +15,7 @@
         </div>
         <div class="flex-row mt10 mb10">
           <div class="col-md-12 col-md-push-3">
-            <h4 class="mb20">{{plan.productName}}</h4>
+            <h4 class="mb20">{{plan.productName | truncate:[20, '...']}}</h4>
             <h2 [hidden]="plan.premium.intrestRateOfReturn > 0">
               <span [hidden]="frequencyFilter !== 'monthly'">{{plan.premium.premiumAmount | currency}}</span>
               <span [hidden]="frequencyFilter !== 'yearly'">{{plan.premium.premiumAmountYearly | currency}}</span>
@@ -80,7 +80,7 @@
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
-        <span><img src="../../../assets/images/{{plan.underWritting}}.png" /></span>
+        <span><img src="../../../assets/images/{{plan.underWritting}}.svg" /></span>
       </div>
       <div class="heading">&nbsp;</div>
     </div>
@@ -95,7 +95,7 @@
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
-        <span><img src="../../../assets/images/{{plan.cashValue}}.png" /></span>
+        <span><img src="../../../assets/images/{{plan.cashValue}}.svg" /></span>
       </div>
       <div class="heading">&nbsp;</div>
     </div>
@@ -118,11 +118,11 @@
       [ngClass]="{'lb-round': i == 0, 'hidden-sm-md': i > 1, 'rb-round': i == plansData.length - 1}">
       <div class="plan-content feature-list">
         <div *ngIf="plan.features && plan.features != ''">
-          <div *ngFor="let feature of plan.features.split('~')">
-            <div class="features" *ngIf="feature && feature != ''">
-              <span><img src="../../../assets/images/Yes.png" /></span>
-              <span class="text-left">{{feature}}</span>
-            </div>
+        <div *ngFor="let feature of plan.features.split('~')">
+          <div class="features" *ngIf="feature && feature != ''">
+            <span><img src="../../../assets/images/Yes.svg" /></span>
+            <span class="text-left word-break">{{feature}}</span>
+          </div>
           </div>
         </div>
         <div *ngIf="!plan.features || plan.features == ''">
