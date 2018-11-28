@@ -3,7 +3,7 @@
 
   <div class="modal-header">
     <div class="modal-title popup-header-icon">
-        <img src="./assets/images/owl.svg" />
+      <img src="./assets/images/owl.svg" />
     </div>
   </div>
   <div class="modal-body white-bg">
@@ -13,9 +13,12 @@
     </button>
 
     <div class="modal-body-message">
-      {{ 'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC' | translate}}
-      {{ withdrawType.name | lowercase}} <br />
-
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_CASH_TYPE_ID">{{
+        'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_CASH' | translate}}</span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.PORTFOLIO_TO_BANK_TYPE_ID">{{
+        'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_PORTFOLIO_TO_BANK' | translate}}</span>
+      <span *ngIf="withdrawType.id === WITHDRAW_CONSTANTS.CASH_TO_BANK_TYPE_ID">{{
+        'WITHDRAW.MODAL.CONFIRM_WITHDRAWAL.DESC_CASH_TO_BANK' | translate}}</span><br />
 
       <div class="amount-section">
         <img src="../../../../assets/images/topupwithdraw/wallet.svg" alt="" />
