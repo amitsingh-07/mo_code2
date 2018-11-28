@@ -1,11 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
-import { environment } from '../../../../environments/environment';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
+import { Util } from '../../utils/util';
 import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { appConstants } from './../../../app.constants';
@@ -21,9 +20,8 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient, public jwtHelper: JwtHelperService,
     private cache: RequestCache) {
-    if (window.location.href.indexOf('localhost') >= 0) {
-      this.apiBaseUrl = environment.apiBaseUrl;
-    }
+
+    this.apiBaseUrl = Util.getApiBaseUrl();
   }
 
   private getAppSecretKey() {
@@ -118,10 +116,7 @@ export class AuthenticationService {
 
   public getCaptchaUrl(): string {
     const time = new Date().getMilliseconds();
-    let apiBaseUrl = '';
-    if (window.location.href.indexOf('localhost') >= 0) {
-      apiBaseUrl = environment.apiBaseUrl;
-    }
+    const apiBaseUrl = Util.getApiBaseUrl();
     return `${apiBaseUrl}/account/account-microservice/getCaptcha?code=`
       + this.getSessionId() + '&time=' + time;
   }
