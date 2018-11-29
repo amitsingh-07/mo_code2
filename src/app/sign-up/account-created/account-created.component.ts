@@ -39,7 +39,8 @@ export class AccountCreatedComponent implements OnInit {
 
   ngOnInit() {
     this.googleAnalyticsService.emitEvent('Sign-Up', 'Sign-Up', 'Success');
-    if (this.willWritingService.getWillWritingFormData() && !this.willWritingService.getIsWillCreated()) {
+    if (this.willWritingEnabled && this.willWritingService.getWillWritingFormData().enquiryId
+      && !this.willWritingService.getIsWillCreated()) {
       this.willWritingApiService.createWill(this.signUpService.getCustomerRef()).subscribe((data) => {
         if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
           this.willWritingService.setIsWillCreated(true);
