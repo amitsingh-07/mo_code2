@@ -1,6 +1,6 @@
 {
   "useMyInfo": false,
-  "willWritingEnabled": false,
+  "willWritingEnabled": true,
   "investmentEnabled": false,
   "comprehensiveEnabled": false,
   "maintenanceEnabled": true,

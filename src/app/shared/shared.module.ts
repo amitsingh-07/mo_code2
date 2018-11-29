@@ -38,6 +38,7 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
 import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
+import { DistributePercentDirective } from './directives/distribute-percent.directive';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -62,9 +63,9 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+  exports: [CurrencyInputDirective,  PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe],
+    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -77,7 +78,8 @@ export function createTranslateLoader(http: HttpClient) {
     BreakdownBarComponent,
     BreakdownAccordionComponent,
     PercentageInputDirective,
-    TruncatePipe
+    TruncatePipe,
+    DistributePercentDirective
   ]
 })
 export class SharedModule { }

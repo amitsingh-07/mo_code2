@@ -106,7 +106,7 @@ export class MyEstateDistributionComponent implements OnInit, OnDestroy {
     if (this.beneficiaryList[index].distPercentage < 0 || this.beneficiaryList[index].distPercentage > 100) {
       this.currentDist = this.beneficiaryList[index].distPercentage;
       setTimeout(() => this.beneficiaryList[index].distPercentage = 0, 0);
-      this.willWritingService.openToolTipModal('Please input a value between 1 and 100', '');
+      this.willWritingService.openToolTipModal(this.errorMsg.MIN_ERROR, '');
       this.distPercentageSum = 0;
       for (const percent of this.beneficiaryList) {
         this.distPercentageSum += percent.distPercentage;
