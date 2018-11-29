@@ -81,6 +81,13 @@ export class TopUpComponent implements OnInit {
       MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
     this.buildFormInvestment();
+
+    if (this.topForm.get('oneTimeInvestmentAmount')) {
+      this.topForm.get('oneTimeInvestmentAmount').valueChanges.subscribe((value) => {
+        this.validateAmonut(value);
+      });
+      this.topForm.get('oneTimeInvestmentAmount').setValue(this.formValues.oneTimeInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+    }
   }
   getPortfolioList() {
     this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
@@ -98,11 +105,11 @@ export class TopUpComponent implements OnInit {
     }
   }
 
-  
-
   selectedInvestment(investmenttype) {
     this.investment = investmenttype;
     this.formValues.Investment = this.investment.name;
+    this.isAmountExceedBalance = false;
+    this.topupAmount = 0;
     this.buildFormInvestment();
   }
   buildFormInvestment() {

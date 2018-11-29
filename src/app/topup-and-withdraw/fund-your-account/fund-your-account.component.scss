@@ -18,16 +18,18 @@
       flex-direction: column;
       flex: 4;
       align-items: center;
-
+      font-family: $muli-regular;
       img {
         max-width: 80px;
         margin-bottom: 10px;
       }
-
+      .strong{
+        font-family: $muli-bold;
+      }
       div {
         align-self: center;
         text-align: center;
-        font-family: $muli-bold;
+        word-break: break-all;
       }
     }
 
@@ -47,16 +49,17 @@
       flex-direction: column;
       align-items: center;
       flex: 4;
-
+      font-family: $muli-regular;
       img {
         max-width: 55px;
         margin-bottom: 10px;
       }
-
+      .strong{
+        font-family: $muli-bold;
+      }
       div {
         align-self: center;
         text-align: center;
-        font-family: $muli-bold;
       }
     }
   }
@@ -110,11 +113,11 @@
     }
 
     .instruction-txt {
-      text-align: left;
+      text-align: center;
       font-size: 15px;
       margin-bottom: 15px;
       font-family: $muli-regular;
-      color: #5e5e5e;
+      
     }
 
     .btn-bordered {
@@ -156,13 +159,14 @@
           div {
             display: flex;
             color: #2d8289;
-
+            font-family: $muli-regular;
             &:first-child {
               margin-right: 20px;
             }
 
             span {
               color: #ff872f;
+              font-family: $muli-semi-bold;
             }
           }
         }
@@ -173,6 +177,8 @@
       color: #5e5e5e;
       font-size: 13px;
       line-height: 1.38;
+      font-family: $muli-regular;
+      letter-spacing: -0.1px;
     }
 
     .setup-auto-deposit {

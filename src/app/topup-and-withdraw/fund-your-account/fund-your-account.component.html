@@ -52,7 +52,7 @@
           <div class="tab-content-container">
             <!-- TAB 1 -->
             <div class="tab-content" [class.active]="activeMode == 'BANK'">
-              <div class="instruction-txt" [innerHTML]="fundaccountcontent"></div>
+              <div class="instruction-txt" >{{ 'FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK' | translate }}</div>
 
               <!--<button class="btn btn-bordered">{{ 'FUND_YOUR_ACCOUNT.TAKE_SCREENSHOT' | translate }}</button>-->
 
@@ -61,9 +61,8 @@
                 <div class="value">
                   <div class="investment-values" *ngIf="fundDetails.source == 'FUNDING'">
                     <div>
-                      <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;({{
-                      'FUND_YOUR_ACCOUNT.ONE_TIME' | translate
-                      }})</div>
+                      <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;
+                      ({{'FUND_YOUR_ACCOUNT.ONE_TIME' | translate}})</div>
                     <div>
                       <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/
                       {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate
@@ -125,7 +124,7 @@
 
             <!-- TAB 2 -->
             <div class="tab-content" [class.active]="activeMode == 'PAYNOW'">
-              <div class="instruction-txt" [innerHTML]="fundaccountcontent"></div>
+              <div class="instruction-txt">{{ 'FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_PAYNOW' | translate }}</div>
 
               <!--<button class="btn btn-bordered">{{ 'FUND_YOUR_ACCOUNT.TAKE_SCREENSHOT' | translate }}</button>-->
 
