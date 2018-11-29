@@ -210,11 +210,11 @@
      .dropdown-menu{
         z-index: 999;
         @include allmobiles {
-            height: auto !important;
-            max-height: 100px !important;
+            max-height: 200px !important;
             overflow: auto;
+            top: -205px !important;
             &.show{
-                //margin-bottom: 85px;
+                // margin-bottom: 85px;
             }
         }
         
