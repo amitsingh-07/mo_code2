@@ -10,6 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SecurePipe } from '../shared/Pipes/secure.pipe';
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
 import { AuthGuardService } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -32,6 +33,7 @@ import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -74,7 +76,9 @@ export function createTranslateLoader(http: HttpClient) {
     EditProfileComponent,
     EditPasswordComponent,
     EditResidentialAddressComponent,
-    UpdateUserIdComponent
+    UpdateUserIdComponent,
+    AccountUpdatedComponent,
+    AddUpdateBankComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

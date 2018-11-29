@@ -107,7 +107,7 @@ export class EditProfileComponent implements OnInit {
       }
       this.empolymentDetails = data.objectList[0].employmentDetails;
       this.bankDetails = data.objectList[0].bankDetails;
-      if ( data.objectList[0].contactDetails) {
+      if ( data.objectList[0].contactDetails.mailingAddress) {
       this.mailingAddress = data.objectList[0].contactDetails.mailingAddress;
       this.isMailingAddressSame = false;
       }
@@ -116,8 +116,6 @@ export class EditProfileComponent implements OnInit {
       this.setFullName(this.personalData.firstName , this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName , this.personalData.lastName);
       this.setNric(this.personalData.nricNumber);
-      this.setAddres(this.residentialAddress.addressLine1 , this.residentialAddress.addressLine2);
-      this.setMailingAddres(this.mailingAddress.addressLine1 , this.mailingAddress.addressLine2);
       if ( this.personalData) {
         this.isSingaporeResident = this.personalData.isSingaporeResident;
         }
@@ -158,6 +156,7 @@ this.compinedEmployerAddress = address1 + ' ' + address2;
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], {queryParams: {enableEditProfile: true}, fragment: 'loading'});
   }
   editUserDetails() {
+    this.signUpService.setOldContactDetails(this.personalData.countryCode, this.personalData.mobileNumber, this.personalData.email);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
   }
   editPassword() {
@@ -185,5 +184,9 @@ getCountryList(data) {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   editBankDetails() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], {queryParams: {addBank: false}, fragment: 'bank'});
+  }
+  addBankDetails() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], {queryParams: {addBank: true}, fragment: 'bank'});
   }
 }

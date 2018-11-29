@@ -46,7 +46,7 @@ export class JwtInterceptor implements HttpInterceptor {
                     'Authorization': `${this.auth.getToken()}`
                 })
             });
-        } else if (request.url.indexOf('saveInvestmentDetails') > -1) { // for upload documents
+        } else if (request.url.indexOf('saveDocuments') > -1) { // for upload documents
             request = request.clone({
                 headers: new HttpHeaders({
                     Authorization: `${this.auth.getToken()}`

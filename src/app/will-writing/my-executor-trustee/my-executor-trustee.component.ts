@@ -7,11 +7,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RegexConstants } from '../../../app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
-import { IExecTrustee, ISpouse } from '../will-writing-types';
+import { IExecTrustee } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
 import { WillWritingService } from '../will-writing.service';
 
@@ -40,8 +41,11 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   hasSpouse: boolean;
   hasChild: boolean;
+  willWritingConfig = WILL_WRITING_CONFIG;
   maxExecTrustee = WILL_WRITING_CONFIG.MAX_EXECUTOR_TRUSTEE;
   unsavedMsg: string;
+  toolTip;
+  formName: string[] = [];
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -49,6 +53,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private translate: TranslateService,
     private willWritingService: WillWritingService,
+    public footerService: FooterService,
     public navbarService: NavbarService,
     private _location: Location,
     private modal: NgbModal,
@@ -61,9 +66,9 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_MESSAGE');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -81,6 +86,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     }
     this.buildMainForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   setPageTitle(title: string) {
@@ -121,16 +127,14 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       }
     }
     if (this.execTrusteeList.length !== this.maxExecTrustee) {
-      if (this.hasChild && this.willWritingService.checkBeneficiaryAge()) {
-        this.formTitle.push({ isAlt: false, relationship: '' });
-        if (!this.hasSpouse) {
-          this.formTitle.push({ isAlt: false, relationship: '' });
-        }
-      } else {
-        if (!this.hasSpouse && !this.hasChild) {
-          this.formTitle.push({ isAlt: false, relationship: '' });
-        }
+      if (this.hasSpouse) {
         this.formTitle.push({ isAlt: true, relationship: '' });
+        this.formName.push('Alternative Executor & Trustee');
+      } else {
+        this.formTitle.push({ isAlt: false, relationship: '' });
+        this.formTitle.push({ isAlt: true, relationship: '' });
+        this.formName.push('Main Executor & Trustee');
+        this.formName.push('Alternative Executor & Trustee');
       }
     }
   }
@@ -149,6 +153,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     items.push(this.buildExecTrusteeForm());
   }
 
+  openToolTip() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
+  }
+
   /**
    * set marital status.
    * @param index - marital Status List index.
@@ -158,10 +166,11 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     this.formTitle[index].relationship = relationship.text;
     const relation = this.addExeTrusteeForm.get('executorTrustee');
     relation['controls'][index].controls['relationship'].setValue(relationship.value);
+    this.addExeTrusteeForm.markAsDirty();
   }
 
   editExecTrustee(relation: string, index: number) {
-    if (relation === 'spouse') {
+    if (relation === WILL_WRITING_CONFIG.SPOUSE) {
       if (this.addExeTrusteeForm.dirty) {
         this.pageTitleComponent.goBack();
       } else {
@@ -176,6 +185,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         title: execTrustee.isAlt ? this.formTitleMsg['alt'] : this.formTitleMsg['main'],
         relationship: ''
       };
+      this.formName[0] = execTrustee.isAlt ? 'Alternative Executor & Trustee' : 'Main Executor & Trustee';
       const execTrusteeForm = this.addExeTrusteeForm.get('executorTrustee')['controls'][0];
       execTrusteeForm.controls['name'].setValue(execTrustee.name);
       execTrusteeForm.controls['uin'].setValue(execTrustee.uin);
@@ -194,7 +204,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getMultipleFormError(form, 'addExecTrusteeForm');
+      const error = this.willWritingService.getMultipleFormError(form, 'addExecTrusteeForm', this.formName);
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
       return false;
     }
@@ -224,13 +234,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     this.willWritingService.openToolTipModal(title, message);
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     ref.componentInstance.unSaved = true;
-    if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
-    }
     ref.result.then((data) => {
       if (data === 'yes') {
         this.save(form);
@@ -245,19 +252,16 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    let url = WILL_WRITING_ROUTE_PATHS.REVIEW_YOUR_DETAILS;
+    const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.REVIEW_YOUR_DETAILS;
     if (this.execTrusteeList.length !== this.maxExecTrustee) {
       if (this.validateExecTrusstee(form) && this.save(form)) {
         this.router.navigate([url]);
       }
     } else {
-      if (this.fromConfirmationPage) {
-        url = WILL_WRITING_ROUTE_PATHS.CONFIRMATION;
-      }
       if (this.isEdit) {
         if (this.addExeTrusteeForm.dirty) {
           if (this.validateExecTrusstee(form)) {
-            this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+            this.openConfirmationModal(url, form);
           }
         } else {
           this.router.navigate([url]);

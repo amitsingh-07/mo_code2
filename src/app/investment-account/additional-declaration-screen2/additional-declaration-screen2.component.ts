@@ -175,9 +175,15 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
         console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
           if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
-            const errorResponse = response.objectList[response.objectList.length - 1];
-            const errorList = errorResponse.serverStatus.errors;
-            this.showInvestmentAccountErrorModal(errorList);
+            if (response.responseMessage.responseCode === 5018
+              || response.responseMessage.responseCode === 5019) {
+              const errorResponse = response.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              const errorResponse = response.objectList[response.objectList.length - 1];
+              const errorList = errorResponse.serverStatus.errors;
+              this.showInvestmentAccountErrorModal(errorList);
+            }
           } else { // SUCCESS SCENARIO
             if (response.objectList[response.objectList.length - 1]) {
               if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
@@ -190,6 +196,14 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
         });
       });
     }
+  }
+
+  showCustomErrorModal(title, desc) {
+    const errorTitle = title;
+    const errorMessage = desc;
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorMessage = errorMessage;
   }
 
 }

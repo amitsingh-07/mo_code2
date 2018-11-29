@@ -1,0 +1,33 @@
+@import '../../../variables';
+
+.withdraw {
+
+  .dropdown-control .dropdown-menu.show {
+    right: 0 !important;
+    overflow: auto;
+    // height: calc(70vh);
+    }
+
+    .dropdown-item{
+      white-space:normal;
+    }
+
+  .amount-panel{
+    padding: 30px;
+    background-color:#276f75;
+    border-radius: 6px;
+  }
+
+  .withdrawal-amount-lbl{
+    font-size: 18px;
+    font-family:$muli-bold;
+    color:#fff;
+  }
+
+  .cash-balance {
+    margin-top: 10px;
+    text-align: right;
+    font-size: 14px;
+    color: #98dfdf;
+  }
+}

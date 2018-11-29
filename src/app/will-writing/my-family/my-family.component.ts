@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,9 +7,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Subscription } from 'rxjs';
 import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
+import { PageTitleComponent } from '../page-title/page-title.component';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { IChild, ISpouse } from '../will-writing-types';
 import { WILL_WRITING_CONFIG } from '../will-writing.constants';
@@ -22,6 +24,7 @@ import { WillWritingService } from '../will-writing.service';
   styleUrls: ['./my-family.component.scss']
 })
 export class MyFamilyComponent implements OnInit, OnDestroy {
+  @ViewChild(PageTitleComponent) pageTitleComponent: PageTitleComponent;
   private subscription: Subscription;
   pageTitle: string;
   step: string;
@@ -34,6 +37,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   hasChild: boolean;
   submitted: boolean;
   unsavedMsg: string;
+  toolTip;
+  formName: string[] = [];
 
   fromConfirmationPage = this.willWritingService.fromConfirmationPage;
 
@@ -43,6 +48,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     private parserFormatter: NgbDateParserFormatter,
     private router: Router,
     private _location: Location,
+    public footerService: FooterService,
     private modal: NgbModal, public navbarService: NavbarService,
     private translate: TranslateService,
     private willWritingService: WillWritingService
@@ -55,9 +61,10 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_1');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_FAMILY.TITLE');
-      this.confirmModal['title'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
-      this.confirmModal['message'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
+      this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
+      this.confirmModal['hasImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM_IMPACT_MESSAGE');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
+      this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -70,15 +77,17 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.spouseFormValues = this.willWritingService.getSpouseInfo();
     this.buildMyFamilyForm();
     this.headerSubscription();
+    this.footerService.setFooterVisibility(false);
   }
 
   /**
    * build about me form.
    */
   buildMyFamilyForm() {
+    this.formName.push('My Spouse');
     this.myFamilyForm = this.formBuilder.group({
       spouse: this.formBuilder.array([this.buildSpouseForm()]),
-      childrens: this.formBuilder.array([this.buildChildrenForm(0)]),
+      children: this.formBuilder.array([this.buildChildrenForm(0)]),
     });
     if (this.hasChild) {
       const childrenCount: number = this.willWritingService.getAboutMeInfo().noOfChildren;
@@ -96,14 +105,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     this.subscription = this.navbarService.subscribeBackPress().subscribe((event) => {
       if (event && event !== '') {
         if (this.myFamilyForm.dirty) {
-          const ref = this.modal.open(ErrorModalComponent, { centered: true });
-          ref.componentInstance.errorTitle = this.unsavedMsg;
-          ref.componentInstance.unSaved = true;
-          ref.result.then((data) => {
-            if (data === 'yes') {
-              this._location.back();
-            }
-          });
+          this.pageTitleComponent.goBack();
         } else {
           this._location.back();
         }
@@ -131,6 +133,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
 
   buildChildrenForm(index: number): FormGroup {
     if (this.hasChild) {
+      this.formName.push('My Child ' + (index + 1));
       return this.formBuilder.group({
         name: [this.childrenFormValues.length > index ?
           this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
@@ -143,7 +146,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   }
 
   addChildrenForm(index: number): void {
-    const items: FormArray = this.myFamilyForm.get('childrens') as FormArray;
+    const items: FormArray = this.myFamilyForm.get('children') as FormArray;
     items.push(this.buildChildrenForm(index));
   }
 
@@ -157,11 +160,15 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       Object.keys(form.controls).forEach((key) => {
         form.get(key).markAsDirty();
       });
-      const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm');
+      const error = this.willWritingService.getMultipleFormError(form, 'myFamilyForm', this.formName);
       this.willWritingService.openErrorModal(error.title, error.errorMessages, true);
       return false;
     }
     return true;
+  }
+
+  openToolTipModal() {
+    this.willWritingService.openToolTipModal(this.toolTip.TITLE, this.toolTip.MESSAGE);
   }
 
   save(form) {
@@ -169,32 +176,22 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       this.willWritingService.setSpouseInfo(form.value.spouse[0]);
     }
     if (this.hasChild) {
-      this.willWritingService.setChildrenInfo(form.value.childrens);
+      this.willWritingService.setChildrenInfo(form.value.children);
     }
     return true;
   }
 
-  openConfirmationModal(title: string, message: string, url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, hasImpact: boolean, form: any) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
     ref.componentInstance.unSaved = true;
+    ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
     if (hasImpact) {
-      ref.componentInstance.hasImpact = message;
+      ref.componentInstance.hasImpact = this.confirmModal['hasImpact'];
     }
     ref.result.then((data) => {
       if (data === 'yes') {
-        if (this.willWritingService.getExecTrusteeInfo().length > 0 &&
-          this.willWritingService.checkChildrenAge(form.value.childrens) !== this.willWritingService.checkBeneficiaryAge()) {
-          this.save(form);
-          this.willWritingService.clearExecTrusteeInfo();
-          const redirectUrl = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN) ?
-            WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : WILL_WRITING_ROUTE_PATHS.MY_EXECUTOR_TRUSTEE;
-          this.router.navigate([redirectUrl]);
-          this.willWritingService.setFromConfirmPage(false);
-        } else {
-          this.save(form);
-          this.router.navigate([url]);
-        }
+        this.save(form);
+        this.router.navigate([url]);
       }
     });
     return false;
@@ -205,23 +202,23 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
    * @param form - aboutMeForm.
    */
   goToNext(form) {
-    if (this.childrenFormValues.length === 0 && this.spouseFormValues.length === 0) {
-      if (this.validateFamilyForm(form) && this.save(form)) {
-        const url = (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) ?
-          WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
-        this.router.navigate([url]);
-      }
-    } else {
+    if (this.validateFamilyForm(form)) {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
-      if (this.hasChild && this.willWritingService.checkChildrenAge(form.value.childrens)) {
-        url = WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN;
-      }
-      if (this.myFamilyForm.dirty) {
-        if (this.validateFamilyForm(form)) {
-        this.openConfirmationModal(this.confirmModal['title'], this.confirmModal['message'], url, false, form);
+      url = (this.hasChild && this.willWritingService.getGuardianInfo().length === 0 &&
+        this.willWritingService.checkChildrenAge(form.value.children)) ?
+        WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : url;
+      if ((this.hasChild && this.childrenFormValues.length !== this.willWritingService.getAboutMeInfo().noOfChildren) ||
+        (this.hasSpouse && this.spouseFormValues.length === 0)) {
+        if (this.save(form)) {
+          this.router.navigate([url]);
         }
       } else {
-        this.router.navigate([url]);
+        if (this.myFamilyForm.dirty) {
+          const hasImpact = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN && this.willWritingService.isUserLoggedIn()) ? true : false;
+          this.openConfirmationModal(url, hasImpact, form);
+        } else {
+          this.router.navigate([url]);
+        }
       }
     }
   }

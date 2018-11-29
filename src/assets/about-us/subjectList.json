@@ -1,0 +1,28 @@
+{
+    "SUBJECTS": [
+        {
+            "SUBJECT": "Advisory queries",
+            "EMAIL": "enquiries@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "Client support & making a claim",
+            "EMAIL": "clientsupport@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "Corporate financial literacy & wellness programme",
+            "EMAIL": "partnership@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "Feedback",
+            "EMAIL": "enquiries@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "Marketing & media",
+            "EMAIL": "marketing@moneyowl.com.sg"
+        },
+        {
+            "SUBJECT": "Others",
+            "EMAIL": "enquiries@moneyowl.com.sg"
+        }
+    ]
+}

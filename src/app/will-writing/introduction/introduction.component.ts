@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { WillDisclaimerComponent } from '../../shared/components/will-disclaimer/will-disclaimer.component';
+import { FooterService } from '../../shared/footer/footer.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
@@ -34,6 +35,7 @@ export class IntroductionComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     public authService: AuthenticationService,
     private willWritingService: WillWritingService,
     private willWritingApiService: WillWritingApiService
@@ -50,9 +52,16 @@ export class IntroductionComponent implements OnInit {
     this.navbarService.setNavbarMode(4);
     this.authService.authenticate().subscribe((token) => {
     });
+    let promoCodeValue: any = this.willWritingService.getPromoCode();
+    if (Object.keys(promoCodeValue).length > 0) {
+      promoCodeValue = promoCodeValue.toUpperCase();
+    } else {
+      promoCodeValue = '';
+    }
     this.promoCodeForm = this.formBuilder.group({
-      promoCode: ['', [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
+      promoCode: [promoCodeValue, [Validators.required, Validators.pattern(RegexConstants.SixDigitPromo)]]
     });
+    this.footerService.setFooterVisibility(false);
   }
 
   @HostListener('input', ['$event'])
@@ -61,14 +70,18 @@ export class IntroductionComponent implements OnInit {
   }
 
   verifyPromoCode(promoCode) {
-    promoCode = promoCode.toLowerCase();
+    promoCode = promoCode.toUpperCase();
     this.willWritingApiService.verifyPromoCode(promoCode).subscribe((data) => {
       this.promoCode = data.responseMessage;
       if (this.promoCode.responseCode === 6005) {
         this.willWritingService.setPromoCode(promoCode);
+        //data.objectList[0].enquiryId
+        this.willWritingService.setEnquiryId(123456);
         this.openTermsOfConditions();
+      } else if (this.promoCode.responseCode === 5017) {
+        this.willWritingService.openToolTipModal('', this.promoCode.responseDescription);
       } else {
-        this.willWritingService.openToolTipModal(this.promoCode.responseDescription, this.promoCode.responseDescription);
+        return false;
       }
     }, (error) => {
     });
