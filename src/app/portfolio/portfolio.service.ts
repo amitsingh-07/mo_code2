@@ -232,7 +232,4 @@ export class PortfolioService {
   getSelectedFund() {
     return this.portfolioFormData.selectedFund;
   }
-  getAllTransactions() {
-      return this.apiService.getAllTransactions();
-  }
 }

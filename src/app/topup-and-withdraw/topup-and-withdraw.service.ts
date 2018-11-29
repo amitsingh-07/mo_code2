@@ -242,4 +242,8 @@ export class TopupAndWithDrawService {
     };
   }
 
+  getAllTransactions() {
+    return this.apiService.getAllTransactions();
+  }
+
 }

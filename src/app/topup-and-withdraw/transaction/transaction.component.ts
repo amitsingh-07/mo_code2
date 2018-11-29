@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavbarService } from '../../shared/navbar/navbar.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { PortfolioService } from '../portfolio.service';
+
+import { NavbarService } from '../../shared/navbar/navbar.service';
+import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -14,7 +16,7 @@ export class TransactionComponent implements OnInit {
   transactions: any;
   constructor(
     private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private portfolioService: PortfolioService) {
+    private translate: TranslateService, private topupAndWithDrawService: TopupAndWithDrawService) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -25,7 +27,7 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.portfolioService.getAllTransactions().subscribe((response) => {
+    this.topupAndWithDrawService.getAllTransactions().subscribe((response) => {
       console.log(response);
       this.transactions = response.objectList;
       console.log(this.transactions);
@@ -38,6 +40,3 @@ export class TransactionComponent implements OnInit {
 }
 
 //export class NgbdTabsetBasic { }
-
-
-

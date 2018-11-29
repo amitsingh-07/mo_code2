@@ -19,6 +19,7 @@ import { FundYourAccountComponent } from './fund-your-account/fund-your-account.
 import { TopUpComponent } from './top-up/top-up.component';
 import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.module';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
+import { TransactionComponent } from './transaction/transaction.component';
 import {
     WithdrawalPaymentMethodComponent
 } from './withdrawal-payment-method/withdrawal-payment-method.component';
@@ -65,7 +66,8 @@ export function createTranslateLoader(http: HttpClient) {
     AddBankModalComponent,
     WithdrawalTypeComponent,
     WithdrawalSuccessComponent,
-    WithdrawalPaymentMethodComponent
+    WithdrawalPaymentMethodComponent,
+    TransactionComponent
   ],
   entryComponents: [
     ConfirmWithdrawalModalComponent,
