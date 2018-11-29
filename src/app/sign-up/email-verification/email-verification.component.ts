@@ -1,3 +1,4 @@
+import { ConfigService, IConfig } from './../../config/config.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -21,7 +22,7 @@ export class EmailVerificationComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService, private configService: ConfigService
   ) {
     this.translate.use('en');
   }
