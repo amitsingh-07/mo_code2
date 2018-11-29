@@ -198,11 +198,12 @@ getCountryList(data) {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   editBankDetails() {
-    this.investmentAccountService.setEditProfileBankDetail(this.fullName, this.bankDetails.bank, this.bankDetails.accountNumber , false);
+    // tslint:disable-next-line:max-line-length accountName
+    this.investmentAccountService.setEditProfileBankDetail(this.bankDetails.accountName, this.bankDetails.bank, this.bankDetails.accountNumber ,  this.bankDetails.id , false);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], {queryParams: {addBank: false}, fragment: 'bank'});
   }
   addBankDetails() {
-    this.investmentAccountService.setEditProfileBankDetail(null, null, null , true);
+    this.investmentAccountService.setEditProfileBankDetail(null, null, null , null , true);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_BANK], {queryParams: {addBank: true}, fragment: 'bank'});
   }
 }

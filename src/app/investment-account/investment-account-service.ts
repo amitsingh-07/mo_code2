@@ -349,7 +349,7 @@ export class InvestmentAccountService {
     }
     updateEmployerAddress(data) {
        const payload = this.constructEmploymentDetailsReqData(data);
-       console.log(payload);
+       return this.apiService.requestUpdateEmployerAddress(payload);
     }
     constructEmploymentDetailsReqData(data): IEmployment {
         const empStatus = this.getEmploymentByName(data.employmentStatus);
@@ -360,13 +360,13 @@ export class InvestmentAccountService {
             employerName: data.companyName,
             contactNumber: data.contactNumber,
             unemployedReason: null, // todo not available in client
-            employerAddress: this.constructEmployerAddressReqData(data.employeaddress)
+            employerAddress: this.constructEmployerAddressReqData(data.employeaddress , data.isEmployeAddresSame)
         };
     }
 
-    constructEmployerAddressReqData(data): IAddress {
+    constructEmployerAddressReqData(data , isEmployeAddresSame): IAddress {
         let addressDetails = null;
-        if (!data.isEmployeAddresSame) {
+        if (!isEmployeAddresSame) {
             addressDetails = {
                 countryId: (data.empCountry) ? data.empCountry.id : null,
                 state: data.empState,

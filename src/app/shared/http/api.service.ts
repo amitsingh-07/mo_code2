@@ -630,6 +630,13 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // tslint:disable-next-line:no-identical-functions
+  requestUpdateEmployerAddress(data) {
+    return this.http.post(apiConstants.endpoint.editEmployerAddress, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   // tslint:disable-next-line:no-identical-functions
   requestEditContact(data) {
