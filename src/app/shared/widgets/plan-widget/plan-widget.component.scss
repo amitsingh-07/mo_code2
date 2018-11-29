@@ -129,23 +129,22 @@ app-plan-widget {
         font-size: 21px;
         color: $black-color;
         font-family: $muli-semi-bold;
-
         @include allmobiles {
           font-size: 16px;
           text-align: center;
           justify-content: center;
-          height: 60px;
+          //height: 60px;
           padding: 0 10px;
-          display: block !important;
+          display: flex;
           align-items: center;
           margin: 15px 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2; /* number of lines to show */
+          //overflow: hidden;
+          //text-overflow: ellipsis;
+          //display: -webkit-box;
+         // -webkit-box-orient: vertical;
+          //-webkit-line-clamp: 2; /* number of lines to show */
           line-height: 20px;        /* fallback */
-          max-height: 40px; 
+          height: 40px; 
         }
       }
 

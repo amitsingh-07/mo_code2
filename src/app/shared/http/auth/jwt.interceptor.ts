@@ -54,7 +54,6 @@ export class JwtInterceptor implements HttpInterceptor {
                 })
             });
         }
-
         return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
                 // do stuff with response if you want

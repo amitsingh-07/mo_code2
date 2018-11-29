@@ -817,3 +817,9 @@ body.modal-open::-webkit-scrollbar {
     }
 }
 
+.guided-existing-coverage {
+  @include allmobiles{
+    max-height: 100% !important;
+  }
+}
+
