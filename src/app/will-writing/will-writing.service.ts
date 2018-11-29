@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SignUpService } from './../sign-up/sign-up.service';
@@ -257,11 +258,20 @@ export class WillWritingService {
     for (const children of data) {
       children.relationship = WILL_WRITING_CONFIG.CHILD;
       children.pos = i;
-      children.formatedDob = new Date(children.dob['year'] + '-' + children.dob['month'] + '-' + children.dob['day']);
+      let formattedValue: any = new Date(children.dob['year'] + '-' + children.dob['month'] + '-' + children.dob['day']);
+      formattedValue = this.formatDob(formattedValue);
+      children.formatedDob = formattedValue;
       this.willWritingFormData.children.push(children);
       i++;
     }
     this.commit();
+  }
+
+  formatDob(value) {
+    const date = padNumber(value.getDate());
+    const month = padNumber(value.getMonth() + 1);
+    const year = value.getFullYear().toString().substr(-2);
+    return `${date}/${month}/${year}`;
   }
 
   /**
@@ -415,7 +425,7 @@ export class WillWritingService {
   }
 
   openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal'});
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal' });
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
       ref.componentInstance.formName = formName;
