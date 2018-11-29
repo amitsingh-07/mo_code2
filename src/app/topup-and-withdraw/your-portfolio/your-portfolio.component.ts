@@ -37,7 +37,7 @@ export class YourPortfolioComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('Your Portfolio');  //TODO
+      this.pageTitle = this.translate.instant('YOUR_PORTFOLIO.TITLE');
       this.setPageTitle(this.pageTitle);
     });
 
