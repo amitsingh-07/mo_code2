@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 @Component({
@@ -14,6 +15,9 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 export class TransactionComponent implements OnInit {
   pageTitle: string;
   transactions: any;
+  accountCreationDate: any;
+  statementMonthsList: any;
+  Object = Object;
   constructor(
     private router: Router, public navbarService: NavbarService,
     private translate: TranslateService, private topupAndWithDrawService: TopupAndWithDrawService) {
@@ -32,9 +36,19 @@ export class TransactionComponent implements OnInit {
       this.transactions = response.objectList;
       console.log(this.transactions);
     });
+
+    // Statement
+    this.accountCreationDate = new Date('2016-04-23');
+    this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title, null, false, false, true);
+  }
+
+  getStatementLink(month) {
+    const base_url = TOPUPANDWITHDRAW_CONFIG.STATEMENT.STATEMENT_BASE_PATH;
+    const fileName = month.monthName + '_' + month.year + '.pdf';
+    return base_url + fileName ;
   }
 
 }

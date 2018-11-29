@@ -1,55 +1,57 @@
 <div class="transactions pr0 pl0">
   <div class="container-fluid">
-  <div class="content">
-  <ngb-tabset>
-  <ngb-tab title="History">
-    <ng-template ngbTabContent>
-         <div class="flex-row">
-      <div class="flex-col-12">
-        <div class="history">
-          <div class="record"  *ngFor="let transaction of transactions">
-            <div class="record-date">{{transaction.description}}</div>
-            <div class="flex-col record-data">
-              <div class="flex-row record-title">
-                <div class="flex-col-6"><span class="flex-col-3">{{transaction.description}}</span><span class="flex-col-9">Global Bonds</span></div>
-                <div class="flex-col-6"><span>- $500.00</span><i class='fa right' [class.fa-chevron-down]="true" [class.fa-chevron-up]="false"></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="no-data">
+    <div class="content">
+      <ngb-tabset>
+        <ngb-tab title="History">
+          <ng-template ngbTabContent>
+            <div class="flex-row">
+              <div class="flex-col-12">
+                <div class="history">
+                  <div class="record" *ngFor="let transaction of transactions">
+                    <div class="record-date">{{transaction.description}}</div>
+                    <div class="flex-col record-data">
+                      <div class="flex-row record-title">
+                        <div class="flex-col-6"><span class="flex-col-3">{{transaction.description}}</span><span class="flex-col-9">Global
+                            Bonds</span></div>
+                        <div class="flex-col-6"><span>- $500.00</span><i class='fa right' [class.fa-chevron-down]="true"
+                            [class.fa-chevron-up]="false"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="no-data">
           <img src="../../../assets/images/investment-account/light_owl.svg"/>
           <div>No Transaction History!</div>
         </div> -->
-      </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab class="btn width100" title="Statements">
+          <ng-template ngbTabContent>
+            <div class="flex-row">
+              <div class="flex-col-12">
+                <div class="statements">
+                  <div class="record">
+                    <div class="flex-col record-data" *ngIf="statementMonthsList">
+                      <div *ngFor="let statementMonth of statementMonthsList">
+                        <div class="record-date">{{statementMonth.year}}</div>
+                        <div class="flex-row" *ngFor="let month of statementMonth.months"><span>{{month.monthName}}</span>
+                          <a class="download-link" target="_blank" download [href]="getStatementLink(month)">Download</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="no-data" *ngIf="!statementMonthsList">
+                      <img src="../../../assets/images/investment-account/light_owl.svg" />
+                      <div>No Transaction Statements!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
     </div>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab  class="btn width100" title="Statements">
-    <ng-template ngbTabContent>
-	   <div class="flex-row">
-		     <div class="flex-col-12">
-		      	<div class="statements">
-		            <div class="record">
-		              <div class="flex-col record-data">
-		                <div class="record-date">2018</div>
-		                <div class="flex-row"><span>September</span><span>Download</span></div>
-		                <div class="flex-row"><span>August</span><span>Download</span></div>
-		                <div class="flex-row"><span>July</span><span>Download</span></div>
-		                <div class="flex-row"><span>June</span><span>Download</span></div>
-		                <div class="flex-row"><span>May</span><span>Download</span></div>                          
-		              </div>
-		              <div class="no-data">
-		                <img src="../../../assets/images/investment-account/light_owl.svg"/>
-		                <div>No Transaction Statements!</div>
-		              </div>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
   </div>
-</div>
 </div>

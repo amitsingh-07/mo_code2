@@ -246,4 +246,36 @@ export class TopupAndWithDrawService {
     return this.apiService.getAllTransactions();
   }
 
+  getMonthListByPeriod(from, to) {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+    let durationMonths = [];
+    const fromYear = from.getFullYear();
+    const toYear = to.getFullYear();
+    const diffYear = (12 * (toYear - fromYear)) + to.getMonth();
+    for (let i = from.getMonth(); i <= diffYear; i++) {
+      durationMonths.unshift({
+        monthName: monthNames[i % 12],
+        year: Math.floor(fromYear + (i / 12))
+      });
+    }
+
+    // GROUPING
+    const groups = {};
+    for (const month of durationMonths) {
+      const groupName = month.year;
+      if (!groups[groupName]) {
+        groups[groupName] = [];
+      }
+      groups[groupName].push(month);
+    }
+    durationMonths = [];
+    for (let groupName in groups) {
+      durationMonths.unshift({ year: groupName, months: groups[groupName] });
+    }
+    console.log(durationMonths);
+
+    return durationMonths;
+  }
+
 }
