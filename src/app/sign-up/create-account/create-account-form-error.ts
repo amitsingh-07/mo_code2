@@ -20,6 +20,10 @@ export class CreateAccountFormError {
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
                         errorMessage: 'Invalid Mobile Number'
+                },
+                notChanged : {
+                        errorTitle: 'Not Changed',
+                        errorMessage: 'Update Mobile Number / Email address'
                 }
         },
         firstName: {
