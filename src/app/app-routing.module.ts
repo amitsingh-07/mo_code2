@@ -29,11 +29,11 @@ const routes: Routes = [
       { path: 'faq', component: FAQComponent},
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
-
+/*
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
       { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
       { path: 'will-writing', loadChildren: './will-writing/will-writing.module#WillWritingModule' },
-
+*/
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent},
       { path: 'privacy-policy', component: PrivacyPolicyComponent},

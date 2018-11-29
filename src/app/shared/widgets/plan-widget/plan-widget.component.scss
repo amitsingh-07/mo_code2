@@ -135,14 +135,14 @@ app-plan-widget {
           justify-content: center;
           //height: 60px;
           padding: 0 10px;
-          display: flex;
+          display: block !important;
           align-items: center;
           margin: 15px 0;
-          //overflow: hidden;
-          //text-overflow: ellipsis;
-          //display: -webkit-box;
-         // -webkit-box-orient: vertical;
-          //-webkit-line-clamp: 2; /* number of lines to show */
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+         -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; /* number of lines to show */
           line-height: 20px;        /* fallback */
           height: 40px; 
         }

@@ -21,6 +21,7 @@ import { WillWritingAccessGuard } from './will-writing-access-guard';
 import { WILL_WRITING_ROUTES } from './will-writing-routes.constants';
 
 const routes: Routes = [
+  /*
   {
     path: WILL_WRITING_ROUTES.ROOT,
     pathMatch: 'full',
@@ -105,6 +106,7 @@ const routes: Routes = [
     component: ValidateYourWillComponent,
     canActivate: [WillWritingAccessGuard]
   }
+  */
 ];
 
 @NgModule({

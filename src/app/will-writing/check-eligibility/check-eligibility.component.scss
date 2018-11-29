@@ -209,9 +209,15 @@
 .dropdown-control{
      .dropdown-menu{
         z-index: 999;
-        &.show{
-            margin-bottom: 65px;
+        @include allmobiles {
+            height: auto !important;
+            max-height: 100px !important;
+            overflow: auto;
+            &.show{
+                //margin-bottom: 85px;
+            }
         }
+        
     }
 }
 
