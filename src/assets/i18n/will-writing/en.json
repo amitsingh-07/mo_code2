@@ -216,7 +216,8 @@
       "ERROR_MODAL": {
         "MAX_PERCENTAGE": "Oops! Your distribution has exceeded 100%.",
         "ADJUST_PERCENTAGE": "Oops! You need to distribute all 100% of your estate.",
-        "NON_ALLOCATED_PERCENTAGE": "<span class='flex mr10'> Oops! You have a beneficiary that was not allocated any percentage of your estate.</span>"
+        "NON_ALLOCATED_PERCENTAGE": "<span class='flex mr10'> Oops! You have a beneficiary that was not allocated any percentage of your estate.</span>",
+        "MIN_ERROR": "Please enter a value between 1 to 100."
       },
       "TOOLTIP_MESSAGE": "If any of your beneficiaries pass on before you, their portion of the estate will be redistributed to your other beneficiaries proportionately."
     },

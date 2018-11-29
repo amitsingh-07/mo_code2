@@ -1,3 +1,4 @@
+import { IConfig, ConfigService } from './../../config/config.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,14 +17,19 @@ import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 })
 export class AccountCreatedComponent implements OnInit {
 
+  willWritingEnabled = false;
+
   constructor(
     private translate: TranslateService,
     private googleAnalyticsService: GoogleAnalyticsService,
     private willWritingApiService: WillWritingApiService,
     private willWritingService: WillWritingService,
-    private signUpService: SignUpService,
+    private signUpService: SignUpService, private configService: ConfigService,
     private router: Router) {
     this.translate.use('en');
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.willWritingEnabled = config.willWritingEnabled;
+    });
   }
 
   @HostListener('window:popstate', ['$event'])
