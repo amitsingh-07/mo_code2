@@ -136,4 +136,6 @@ export class InvestmentAccountFormData {
     // Edit Bank
     bank: any;
     accountNumber: any;
+    bankUpdateId: any;
+    accountHolderName: any;
 }

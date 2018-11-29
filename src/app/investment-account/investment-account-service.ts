@@ -347,6 +347,39 @@ export class InvestmentAccountService {
         }
         this.commit();
     }
+    updateEmployerAddress(data) {
+       const payload = this.constructEmploymentDetailsReqData(data);
+       console.log(payload);
+    }
+    constructEmploymentDetailsReqData(data): IEmployment {
+        const empStatus = this.getEmploymentByName(data.employmentStatus);
+        return {
+            employmentStatusId: empStatus.id,
+            industryId: (data.industry) ? data.industry.id : null,
+            occupationId: (data.occupation) ? data.occupation.id : null,
+            employerName: data.companyName,
+            contactNumber: data.contactNumber,
+            unemployedReason: null, // todo not available in client
+            employerAddress: this.constructEmployerAddressReqData(data.employeaddress)
+        };
+    }
+
+    constructEmployerAddressReqData(data): IAddress {
+        let addressDetails = null;
+        if (!data.isEmployeAddresSame) {
+            addressDetails = {
+                countryId: (data.empCountry) ? data.empCountry.id : null,
+                state: data.empState,
+                postalCode: (this.isSingaporeResident) ? data.empPostalCode : data.empZipCode,
+                addressLine1: data.empAddress1,
+                addressLine2: data.empAddress2,
+                unitNumber: data.empUnitNo,
+                townName: null, // todo not available in client
+                city: data.empCity
+            };
+        }
+        return addressDetails;
+    }
     // Additional info pep data
     setAdditionalInfoFormData(data) {
         this.investmentAccountFormData.radioPep = data.radioPep;
@@ -879,37 +912,37 @@ export class InvestmentAccountService {
 
         if (data.employmentDetails.employmentStatus.name !== 'Unemployed') {
             this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
-            if (data.empolymentDetails.employerDetails.detailedEmployerDetails.employerName ) {
-                this.investmentAccountFormData.companyName = data.empolymentDetails.employerDetails.detailedEmployerDetails.employerName ;
+            if (data.employmentDetails.employerDetails.detailedEmployerDetails.employerName ) {
+                this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName ;
             }
             if (data.employmentDetails.occupation.occupation) {
                 this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
             }
-            if ( data.empolymentDetails.employerDetails.detailedEmployerDetails.industry) {
-            this.investmentAccountFormData.industry = data.empolymentDetails.employerDetails.detailedEmployerDetails.industry;
+            if ( data.employmentDetails.employerDetails.detailedEmployerDetails.industry) {
+            this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.detailedEmployerDetails.industry;
             }
-            if ( data.empolymentDetails.employerDetails.detailedEmployerDetails.employerContact) {
-            this.investmentAccountFormData.contactNumber = data.empolymentDetails.employerDetails.detailedEmployerDetails.employerContact;
+            if ( data.employmentDetails.employerDetails.detailedEmployerDetails.employerContact) {
+            this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.detailedEmployerDetails.employerContact;
             }
             this.investmentAccountFormData.isEmployeAddresSame = isEmployeAddresSame;
 
             if (!isEmployeAddresSame) {
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empCountry = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.country;
+                this.investmentAccountFormData.empCountry = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.country;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empPostalCode = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.postalCode;
+                this.investmentAccountFormData.empPostalCode = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.postalCode;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empAddress1 = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine1;
+                this.investmentAccountFormData.empAddress1 = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine1;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empAddress2 = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine2;
+                this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine2;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empUnitNo = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.unitNumber;
+                this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.unitNumber;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empCity = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.city;
+                this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.city;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empState = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.state;
+                this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.state;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empZipCode = data.empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.zipCode;
+                this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.zipCode;
             }
         } else {
             this.investmentAccountFormData.employmentStatus = data.employmentStatus;
@@ -917,15 +950,15 @@ export class InvestmentAccountService {
         this.commit();
 
     }
-    setEditProfileBankDetail(Fullname , Bank , AccountNumber , isAddBank) {
+    setEditProfileBankDetail(Fullname , Bank , AccountNumber , id , isAddBank  ) {
         if  ( isAddBank ) {
-            this.investmentAccountFormData.fullName = Fullname ;
+            this.investmentAccountFormData.accountHolderName = Fullname ;
             this.investmentAccountFormData.bank = Bank ;
             this.investmentAccountFormData.accountNumber = AccountNumber ;
 
         } else {
         if ( Fullname) {
-        this.investmentAccountFormData.fullName = Fullname ;
+        this.investmentAccountFormData.accountHolderName = Fullname ;
         }
         if ( Bank) {
         this.investmentAccountFormData.bank = Bank ;
@@ -933,14 +966,18 @@ export class InvestmentAccountService {
         if ( AccountNumber) {
         this.investmentAccountFormData.accountNumber = AccountNumber ;
         }
+        if ( id) {
+            this.investmentAccountFormData.bankUpdateId = id ;
+            }
     }
         this.commit();
     }
     getBankInfo() {
         return {
-            fullName: this.investmentAccountFormData.fullName ,
+            fullName: this.investmentAccountFormData.accountHolderName ,
             bank: this.investmentAccountFormData.bank,
-            accountNumber: this.investmentAccountFormData.accountNumber
+            accountNumber: this.investmentAccountFormData.accountNumber,
+            id: this.investmentAccountFormData.bankUpdateId
         };
       }
     // tslint:disable-next-line:no-identical-functions
