@@ -107,6 +107,7 @@ export class TopUpComponent implements OnInit {
 
   selectedInvestment(investmenttype) {
     this.investment = investmenttype;
+    this.topupAndWithDrawService.setInvestmentValue(this.investment.value);
     this.formValues.Investment = this.investment.name;
     this.isAmountExceedBalance = false;
     this.topupAmount = 0;
