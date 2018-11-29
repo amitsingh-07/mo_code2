@@ -118,7 +118,7 @@ getCountryList(data) {
         [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
       isMailingAddressSame: [this.formValues.isMailingAddressSame],
       // passportImage: [this.formValues.passportImage, Validators.required],
-      resAddressProof: [this.formValues.resAddressProof, Validators.required],
+      resAddressProof: [this.formValues.resAddressProof],
       // mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
     });
   }
@@ -141,7 +141,7 @@ getCountryList(data) {
           mailUnitNo: [{value: this.formValues.mailUnitNo,
             disabled: this.investmentAccountService.isDisabled('mailUnitNo')}, Validators.required],
           mailAdressProof: [{value: this.formValues.mailAdressProof,
-              disabled: this.investmentAccountService.isDisabled('mailAdressProof')}, Validators.required]
+              disabled: this.investmentAccountService.isDisabled('mailAdressProof')}]
         }));
       } else { // Other Countries
         this.addressForm.addControl('mailingAddress', this.formBuilder.group({
@@ -159,7 +159,7 @@ getCountryList(data) {
           mailZipCode: [{value: this.formValues.mailZipCode, disabled: this.investmentAccountService.isDisabled('mailZipCode')},
             [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
             mailAdressProof: [{value: this.formValues.mailAdressProof,
-              disabled: this.investmentAccountService.isDisabled('mailAdressProof')}, Validators.required]
+              disabled: this.investmentAccountService.isDisabled('mailAdressProof')}]
         }));
       }
     } else {
@@ -232,6 +232,7 @@ getCountryList(data) {
     } else {
       this.investmentAccountService.editResidentialAddressFormData(form.value).subscribe((data) => {
         console.log (data);
+        this.uploadDocument();
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       });
     }
@@ -241,7 +242,20 @@ getCountryList(data) {
     return this.investmentAccountService.isDisabled(field);
   }
 
+  
 
+  uploadDocument() {
+    this.showUploadLoader();
+    this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+      if (response) {
+        this.hideUploadLoader();
+        // INTERIM SAVE
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          console.log ('After uploading ' + data);
+        });
+      }
+    });
+  }
   openFileDialog(elem) {
     if (!elem.files.length) {
       elem.click();

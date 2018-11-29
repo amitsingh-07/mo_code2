@@ -33,6 +33,7 @@ export class AddUpdateBankComponent implements OnInit {
   queryParams: any;
   buttonTitle;
   updateId: any;
+  isAccountEdited: boolean;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -72,6 +73,7 @@ export class AddUpdateBankComponent implements OnInit {
     this.bankForm.get('accountNo').valueChanges.pipe(distinctUntilChanged()).subscribe((value) => {
       this.bankForm.get('accountNo').setValidators([Validators.required,  Validators.pattern(RegexConstants.NumericOnly)]);
       this.bankForm.get('accountNo').updateValueAndValidity();
+      this.isAccountEdited = true;
     });
   }
   buildBankForm() {
@@ -93,6 +95,7 @@ export class AddUpdateBankComponent implements OnInit {
   setNestedDropDownValue(key, value, nestedKey) {
     this.bankForm.controls[nestedKey]['controls'][key].setValue(value);
   }
+  // tslint:disable-next-line:cognitive-complexity
   applyChanges(form: any) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {
@@ -114,7 +117,11 @@ export class AddUpdateBankComponent implements OnInit {
       });
       } else {
         // tslint:disable-next-line:max-line-length
-        this.signUpService.updateBankInfo(form.value.bank, form.value.accountHolderName , form.value.accountNo , this.updateId).subscribe((data) => {
+        let accountNum = null;
+        if (this.isAccountEdited) {
+         accountNum = form.value.accountNo;
+        }
+        this.signUpService.updateBankInfo(form.value.bank, form.value.accountHolderName , accountNum , this.updateId).subscribe((data) => {
           // tslint:disable-next-line:triple-equals
           if ( data.responseMessage.responseCode == 6000) {
             // tslint:disable-next-line:max-line-length

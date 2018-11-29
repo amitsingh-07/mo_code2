@@ -867,7 +867,7 @@ export class InvestmentAccountService {
         if (data.contactDetails.homeAddress.zipcode) {
             this.investmentAccountFormData.zipCode = data.contactDetails.homeAddress.zipCode;
         }
-        if (data.contactDetails.homeAddress.city) {
+        if (data.contactDetails.homeAddress.state) {
             this.investmentAccountFormData.state = data.contactDetails.homeAddress.state;
         }
         this.investmentAccountFormData.isMailingAddressSame = isMailingAddressSame;
@@ -981,6 +981,7 @@ export class InvestmentAccountService {
         };
       }
     // tslint:disable-next-line:no-identical-functions
+    // tslint:disable-next-line:cognitive-complexity
     editResidentialAddressFormData(data) {
         if (data.country) {
             this.investmentAccountFormData.country = data.country;
@@ -1017,42 +1018,57 @@ export class InvestmentAccountService {
         }
         this.commit();
         let request;
-        if (!data.isMailingAddressSame) {
-            request = this.constructEditContactRequestMailingNotSame(data);
-        } else {
-            request = this.constructEditContactRequest(data);
+        let postalCode = null;
+        let mailPostalCode = null;
+        if (data.postalCode) {
+            postalCode = data.postalCode;
         }
+        if (data.zipCode) {
+            postalCode = data.zipCode;
+        }
+        if (data.mailingAddress) {
+            mailPostalCode = data.mailingAddress.mailPostalCode;
+        }
+        if (data.mailingAddress) {
+            mailPostalCode = data.mailingAddress.mailZipCode;
+        }
+        if (!data.isMailingAddressSame) {
+            request = this.constructEditContactRequestMailingNotSame(data , postalCode , mailPostalCode );
+        } else {
+            request = this.constructEditContactRequest(data , postalCode);
+        }
+        console.log (' Edit Residential Payload %@', request ) ;
         return this.apiService.requestEditContact(request);
     }
     // tslint:disable-next-line:no-identical-functions
-    constructEditContactRequestMailingNotSame(data) {
+    constructEditContactRequestMailingNotSame(data , postalcode , mailPostalcode) {
         return {
             contactDetails: {
                 homeAddress: {
-                    id: 1,
                     country: data.country,
                     addressLine1: data.address1,
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
-                    postalCode: data.postalCode,
+                    postalCode: postalcode,
                     floor: data.floor,
                     state: data.state,
+                    city: data.city
                 },
                 mailingAddress: {
-                    id: 2,
                     country: data.mailingAddress.mailCountry,
                     addressLine1: data.mailingAddress.mailAddress1,
                     addressLine2: data.mailingAddress.mailAddress2,
                     unitNumber: data.mailingAddress.mailUnitNo,
-                    postalCode: data.mailingAddress.mailPostalCode,
-                    townName: 'Townname',
-                    state: 'State Name'
+                    postalCode: mailPostalcode,
+                    state: data.mailingAddress.mailState,
+                    floor:  data.mailingAddress.mailFloor,
+                    city: data.mailingAddress.mailCity,
                 }
             }
 
         };
     }
-    constructEditContactRequest(data) {
+    constructEditContactRequest(data , postalcode) {
         return {
             contactDetails: {
                 homeAddress: {
@@ -1061,9 +1077,10 @@ export class InvestmentAccountService {
                     addressLine1: data.address1,
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
-                    postalCode: data.postalCode,
-                    townName: 'Townname',
-                    state: 'State Name'
+                    postalCode: postalcode,
+                    floor: data.floor,
+                    state: data.state,
+                    city: data.city,
                 },
                 mailingAddress: null
             }
