@@ -206,9 +206,9 @@
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        bottom: 5px;
+        bottom: 3px;
         border-radius: 0;
-        margin-right: -8px !important;
+        margin-right: -1px !important;
     }
 }
 
@@ -246,3 +246,15 @@
         border-radius: 4px;
     }
   }
+
+  .dropdown-control{
+    .dropdown-menu{
+        z-index: 998;
+        max-height: 180px !important;
+        overflow: auto;
+        top: -184px !important;
+        &.show{
+           //margin-bottom: 65px;
+        }
+    }
+}
