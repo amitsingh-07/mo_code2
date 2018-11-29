@@ -120,11 +120,12 @@ export class YourInvestmentComponent implements OnInit {
 
   }
   selectOption(option) {
-    this.selectedDropDown = option.name;
-    if (this.selectedDropDown === 'Withdraw Portfolio') {
+    if (option.id === 1) {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
+    } else if (option.id === 2) {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     } else {
-      console.log('Transaction History');  //TODO
+      console.log('Transaction History');
     }
   }
 
