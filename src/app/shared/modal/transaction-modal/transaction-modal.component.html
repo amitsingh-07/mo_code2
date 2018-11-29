@@ -1,0 +1,26 @@
+<div class="modal-body white-bg" id="erorr_popup">
+  <div class="modal-body-title">Filter By Time Period</div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true"></span>
+    </button>
+  <div class="modal-body-message">
+      <form id="userInfoForm" name="userInfoForm" [formGroup]="userInfoForm" id="getStrdFrm">
+        <div class="form-group">
+        <div class="datepicker-control">
+          <div class="input-group date-picker mb0">
+            <input readonly (click)="d.toggle()" class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp" ngbDatepicker #d="ngbDatepicker"
+              required id="getStrdInpt3">
+            <div class="input-group-append">
+              <button (click)="d.toggle()" class="btn btn-primary" type="button" id="getStrdBtn1">
+                <img class="date-picker-image--valid" id="getStrdImg1" src="./assets/images/calendar-normal.svg"
+                />
+                <img class="date-picker-image--invalid" id="getStrdImg1" src="./assets/images/calendar-error.svg"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

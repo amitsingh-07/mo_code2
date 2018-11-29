@@ -18,6 +18,8 @@ import { NavbarService } from './navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { TransactionModalComponent } from '../../shared/modal/transaction-modal/transaction-modal.component';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -30,12 +32,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   navbarMode: number;
   showNavShadow: boolean;
   showSearchBar = false;
-
+  modalRef: NgbModalRef;
   pageTitle: string;
   subTitle = '';
   helpIcon = false;
   closeIcon = false;
   settingsIcon = false;
+  filterIcon = false;
   currentUrl: string;
   backListener = '';
   isBackPressSubscribed = false;
@@ -53,7 +56,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router,
-    private signUpService: SignUpService,
+    private signUpService: SignUpService, private modal: NgbModal,
     public investmentAccountService: InvestmentAccountService) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
@@ -77,6 +80,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
+    this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
       this.investmentAccountService.getAllNotifications().subscribe((response) => {
@@ -167,5 +171,8 @@ canActivateNotification() {
     return false;
   }
   return true;
+}
+showFilterModalPopUp(data) {
+  this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
 }
 }

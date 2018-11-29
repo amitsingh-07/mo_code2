@@ -63,6 +63,7 @@ import { Formatter } from './shared/utils/formatter.util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+import { TransactionModalComponent } from './shared/modal/transaction-modal/transaction-modal.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -102,7 +103,8 @@ export function tokenGetterFn() {
     CallBackComponent,
     HomeComponent,
     UrlRedirectComponent,
-    TestMyInfoComponent
+    TestMyInfoComponent,
+    TransactionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +152,7 @@ export function tokenGetterFn() {
     HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent]
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent]
 })
 
 export class AppModule {
