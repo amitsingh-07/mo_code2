@@ -52,6 +52,7 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent
   },
+  /*
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
   },
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.RESET_PASSWORD,
     component: ResetPasswordComponent
   },
+  */
   { path: SIGN_UP_ROUTES.SUCCESS_MESSAGE,
     component: SuccessMessageComponent
   },

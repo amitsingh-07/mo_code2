@@ -62,6 +62,7 @@ import { RoutingService } from './shared/Services/routing.service';
 import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
+import { Util } from './shared/utils/util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
@@ -148,7 +149,7 @@ export function tokenGetterFn() {
       multi: true,
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
     }, Formatter, CurrencyPipe, RoutingService,
-    StateStoreService
+    StateStoreService, Util
   ],
   bootstrap: [AppComponent],
   entryComponents: [

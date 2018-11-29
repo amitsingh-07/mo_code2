@@ -151,7 +151,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   openExistingCoverageModal() {
     const ref = this.modal.open(ExistingCoverageModalComponent, {
-      centered: true
+      centered: true,
+      windowClass: 'guided-existing-coverage'
     });
     ref.componentInstance.data = this.protectionNeedsArray;
     ref.componentInstance.dataOutput.subscribe((emittedValue) => {

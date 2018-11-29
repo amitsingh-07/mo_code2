@@ -166,7 +166,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselNext() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('[data-type=\'' + this.state.activeRecommendationType + '\'');
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.right > containerBound.right) {
@@ -182,7 +182,7 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselPrev() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('[data-type=\'' + this.state.activeRecommendationType + '\'');
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.left < containerBound.left) {
