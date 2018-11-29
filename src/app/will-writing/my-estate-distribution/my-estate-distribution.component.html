@@ -38,7 +38,7 @@
                       </div>
                       <div class="col-5 mb15"  *ngIf="currentDist.selected === true">
                           <div class="form-control">   
-                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appCurrencyInput name="beneficiary_{{i+1}}" maxLength="3" type="text" class="input-control"
+                          <input id="beneficiary_{{i+1}}" (blur)="updateDistPercentage(i, $event)" appDistributePercent name="beneficiary_{{i+1}}" type="number" class="input-control"
                             value="{{currentDist.distPercentage}}" formControlName="percent" >
                           <i>%</i>
                         </div>

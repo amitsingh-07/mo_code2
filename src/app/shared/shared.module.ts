@@ -37,6 +37,7 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
 import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
+import { DistributePercentDirective } from './directives/distribute-percent.directive';
 import { FormatDatePipe } from './Pipes/date-format.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -61,11 +62,11 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
-    PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
+  exports: [CurrencyInputDirective, DistributePercentDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent,
+    SettingsWidgetComponent, PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, FormatDatePipe],
-  declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
-    OrderByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
+  declarations: [CurrencyInputDirective, DistributePercentDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+    PlanFilterPipe, OrderByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,
