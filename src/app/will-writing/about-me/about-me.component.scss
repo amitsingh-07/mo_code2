@@ -137,11 +137,13 @@
 .dropdown-control{
     .dropdown-menu{
         z-index: 998;
-        height: auto;
-       &.show{
-           margin-bottom: 65px;
-       }
-   }
+        max-height: 180px !important;
+        overflow: auto;
+        top: -184px !important;
+        &.show{
+           //margin-bottom: 65px;
+        }
+    }
 }
 
 .with-help-icon{
