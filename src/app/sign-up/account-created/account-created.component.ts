@@ -1,12 +1,12 @@
-import { IConfig, ConfigService } from './../../config/config.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import { WillWritingService } from 'src/app/will-writing/will-writing.service';
+
 import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { SignUpService } from '../sign-up.service';
+import { ConfigService, IConfig } from './../../config/config.service';
 import { GoogleAnalyticsService } from './../../shared/ga/google-analytics.service';
 import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 
