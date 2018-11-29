@@ -79,6 +79,12 @@
         "SUB_TITLE1": "A verification link has been sent to your email address.",
         "SUB_TITLE2": "Please verify your email address before logging in."    
     },
+    "ACCOUNT_UPDATED": {
+        "TITLE": "Account Updated!",
+        "SUB_TITLE1": "Mobile number updated successfully",
+        "SUB_TITLE2": "E-mail verification link has been sent to your email address. Please verify",
+        "EDIT_PROFILE": "Back to Edit Profile"
+    },
     "LOGIN": {
         "WELCOME_LBL": "Welcome to MoneyOwl!",
         "DESCRIPTION": "Please fill in your details so that our advisers can contact you.",
