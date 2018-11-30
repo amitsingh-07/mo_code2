@@ -7,6 +7,7 @@
         @include allmobiles {
             padding-top: 10px !important;
             background-color: #00a7a7;
+            padding-bottom: 40px;
         }
     }
     .intro-block__tab-container {
@@ -178,10 +179,10 @@
     }
     
     .edit-icon {
-        background-image: url(../../../assets/images/will-writing/edit-dark.svg);
+        //background-image: url(../../../assets/images/will-writing/edit-dark.svg);
         background-repeat: no-repeat;
         @include allmobiles {
-            background-image: url(../../../assets/images/will-writing/edit-white.svg);
+            //background-image: url(../../../assets/images/will-writing/edit-white.svg);
             background-color: #00a7a7;
             
         }
