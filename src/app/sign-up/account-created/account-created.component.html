@@ -5,6 +5,8 @@
       <img src="../../../assets/images/account-created-icon.svg" id="custModalImg1" />
       <div class="custom-modal--content">
         <p class="custom-modal--title" id="custModalTitle">{{'ACCOUNT_CREATED.TITLE' | translate}}</p>
+        <p *ngIf="!willWritingEnabled" class="custom-modal--desc" id="custModalDesc">{{'ACCOUNT_CREATED.SUB_TITLE1' | translate}} {{'ACCOUNT_CREATED.SUB_TITLE2' | translate}} </p>
+        <div *ngIf="willWritingEnabled">
         <div class="section">
           <div class="title">Insurance Users</div>
           <div>Please verify your email via the verification link sent to your email address.</div>
@@ -17,6 +19,7 @@
               <li>Verify your email via the verification link sent to your email address.</li>
               <li>Return to this window and log in to view your will.</li>
             </ol>
+          </div>
           </div>
         <button (click)="redirectToLogin()" type="button" class="btn btn__footer--fixed btn-primary width100">{{'COMMON.LOGIN' | translate}}</button>
       </div>
