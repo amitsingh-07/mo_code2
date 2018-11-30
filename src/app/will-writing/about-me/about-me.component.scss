@@ -135,15 +135,24 @@
 }
 
 .dropdown-control{
-    .dropdown-menu{
-        z-index: 998;
-        max-height: 180px !important;
-        overflow: auto;
-        top: -184px !important;
-        &.show{
-           //margin-bottom: 65px;
+    @include allmobiles {
+        .show {
+            &.dropdown {
+                border: 1px solid #00a7a7 !important;
+                border-radius:  6px;
+            }
+        }
+        .dropdown-menu{
+            z-index: 998;
+            max-height: 180px !important;
+            overflow: auto;
+            top: -184px !important;
+            &.show{
+               //margin-bottom: 65px;
+            }
         }
     }
+    
 }
 
 .with-help-icon{
