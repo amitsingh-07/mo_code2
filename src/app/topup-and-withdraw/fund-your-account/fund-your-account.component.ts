@@ -134,8 +134,8 @@ export class FundYourAccountComponent implements OnInit {
     },
     (err) => {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Error!';
-      ref.componentInstance.errorMessage = 'API Failed';
+      ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
     });
   }
 
