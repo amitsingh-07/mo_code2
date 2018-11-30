@@ -267,14 +267,10 @@ export class WillWritingService {
   }
 
   formatDob(value) {
-    const date = this.pad(value.getDate());
-    const month = this.pad(value.getMonth() + 1);
+    const date = ('0' + value.getDate()).slice(-2);
+    const month = ('0' + (value.getMonth() + 1)).slice(-2);
     const year = value.getFullYear().toString().substr(-2);
-    return `${date}/${month}/${year}`;
-  }
-
-  pad(n) {
-    return n < 10 ? '0' + n : n;
+    return (date + '/' + month + '/' + year);
   }
 
   /**

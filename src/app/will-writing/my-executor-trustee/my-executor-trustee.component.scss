@@ -134,8 +134,8 @@
         .btn-primary {
             color: #fff;
             background-color: #00a7a7;
-            padding-top:5px !important;
-            padding-bottom: 5px !important;
+            padding: 8px !important;
+            width: 109px !important;
         }
     }
     .add-trustees{
@@ -198,8 +198,8 @@
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        bottom: 5px;
-        right: -8px;
+        bottom: 2px;
+        right: -5px;
         border-radius: 0;
     }
 }
@@ -286,4 +286,7 @@
   }
 .save {
     justify-content: space-around !important;
+    .cancel-btn {
+        background-color: #f4fafb !important;
+    }
 }    
