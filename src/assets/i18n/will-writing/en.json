@@ -223,7 +223,8 @@
     },
     "CONFIRMATION": {
       "TITLE": "Confirmation",
-      "SUB_TITLE": "Please check that all details provided are accurate as they will be reflected in your will."
+      "SUB_TITLE": "Please check that all details provided are accurate as they will be reflected in your will.",
+      "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
     },
     "SIGN_UP": {
       "DESCRIPTION": "To view your will, please login to your account.",

@@ -7,7 +7,8 @@
         "TRY_AGAIN": "Try Again",
         "CAPTCHA": "Enter image text",
         "CAPTCHA_TITLE": "Enter the characters shown in the image",
-        "TRY_ANOTHER_TEXT": "Try another text"
+        "TRY_ANOTHER_TEXT": "Try another text",
+        "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",
