@@ -111,14 +111,24 @@
                 max-height:50px;
                 margin-bottom:10px;
                 font-size:14px;
+                &:last-child{
+                    margin-bottom:0px;
+                }
             }
             .sub-message{
+                display:block;
+                height:0px;
                 font-size:12px;
                 font-style:italic;
-                font-family:$muli-semi-bold;
+                font-family:$muli-bold;
                 padding:0px;
                 margin:-5px 0px 0px 0px;
                 color:$red-color;
+                transition:0.5s;
+                &.active{
+                    height:40px;
+                    margin:0px;
+                }
                 &.success{
                     color:$green-color;
                 }
@@ -126,6 +136,7 @@
             .sidepanel__sub-text{
                 font-size:9px;
                 line-height:1.1;
+                background-color:$white-color;
                 color:$dark-grey-color;
                 text-align: center;
                 margin-bottom:10px;

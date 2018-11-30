@@ -18,7 +18,7 @@
         <input type="text" class="form-control" placeholder="{{'SUBSCRIBE_SIDE.FIRST_NAME' | translate}}" formControlName="firstName"/>
         <input type="text" class="form-control" placeholder="{{'SUBSCRIBE_SIDE.LAST_NAME' | translate}}" formControlName="lastName"/>
         <input type="email" class="form-control" placeholder="{{'SUBSCRIBE_SIDE.EMAIL' | translate}}" formControlName="email"/>
-        <p *ngIf="!(subscribeMessage === '')" class="sub-message" [ngClass]="{'success': subscribeSuccess}">{{subscribeMessage}}</p>
+        <p class="sub-message" [ngClass]="{'success': subscribeSuccess, 'active': subscribeMessage !== ''}">{{subscribeMessage}}</p>
         <div class="sidepanel__sub-text">
           {{'SUBSCRIBE_SIDE.SUB_TEXT' | translate}}
           </div>
