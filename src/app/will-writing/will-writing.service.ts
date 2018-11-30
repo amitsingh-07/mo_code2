@@ -1,15 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SignUpService } from './../sign-up/sign-up.service';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
 import {
-  IAboutMe, IBeneficiary, IChild, IEligibility,
-  IExecTrustee, IGuardian, IPromoCode, ISpouse
+  IAboutMe,
+  IBeneficiary,
+  IChild,
+  IEligibility,
+  IExecTrustee,
+  IGuardian,
+  IPromoCode,
+  ISpouse,
 } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
@@ -267,10 +274,14 @@ export class WillWritingService {
   }
 
   formatDob(value) {
-    const date = ('0' + value.getDate()).slice(-2);
-    const month = ('0' + (value.getMonth() + 1)).slice(-2);
-    const year = value.getFullYear().toString().substr(-2);
-    return (date + '/' + month + '/' + year);
+    if (value) {
+      const dateValue = new Date(value);
+      const date = padNumber(dateValue.getDate());
+      const month = padNumber(dateValue.getMonth() + 1);
+      const year = dateValue.getFullYear().toString().substr(-2);
+      return `${date}/${month}/${year}`;
+    }
+    return value;
   }
 
   /**
