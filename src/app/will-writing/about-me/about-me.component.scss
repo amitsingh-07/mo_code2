@@ -60,16 +60,21 @@
             }
         }
         .direct-form-btn--radio{
-            width: auto;
-            min-width: auto;
-            margin-left: 15px;
+            min-width: 83px;
+            max-width: 83px;
+            margin: 0;
+            @include min400max425{
+                max-width: 90%;
+            }
             &.female{
-                margin-left: 10px;
+                @include allmobiles{
+                    margin-left: auto;
+                }
                 @include desktop{
-                    width: 77px;
+                    margin-left: auto;
                 }
                 @include tablet{
-                    width: 77px;
+                    margin-left: auto;
                 }
             }
             @include allmobiles{
@@ -122,6 +127,7 @@
         width: 300px;
         padding:0;
         padding-bottom: 11px;
+        font-size: 16px;
     }
 }
 .mobile-logo{
@@ -167,7 +173,7 @@
         background-repeat: no-repeat;
         position: absolute;
         bottom: 5px;
-        right: -8px;
+        right: -2px;
     }
 }
 
