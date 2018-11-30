@@ -154,19 +154,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   toggleRecentNotification() {
     this.isNotificationHidden = !this.isNotificationHidden;
     if (!this.isNotificationHidden) { // When Opened
-      const payload = this.constructPayloadForRead(this.recentMessages);
-      this.signUpService.markNotificationsRead(payload).subscribe((response) => {
-        
-      });
+      this.markNotificationsRead(this.recentMessages);
     } else { // When closed
       this.getRecentNotifications();
     }
   }
 
-  constructPayloadForRead(data) {
-    return {
-      messages: data
-    };
+  markNotificationsRead(messages) {
+    this.signUpService.markNotificationsRead(messages).subscribe((response) => {
+    });
   }
 
   viewAllNotifications() {

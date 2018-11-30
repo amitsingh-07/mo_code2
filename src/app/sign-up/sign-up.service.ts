@@ -320,7 +320,14 @@ export class SignUpService {
   }
 
   markNotificationsRead(data) {
-    return this.apiService.markNotificationsRead(data);
+    const payload = this.constructPayloadForRead(data);
+    return this.apiService.markNotificationsRead(payload);
+  }
+
+  constructPayloadForRead(data) {
+    return {
+      messages: data
+    };
   }
 
   deleteNotifications(data) {
