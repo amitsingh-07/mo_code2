@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService, IConfig } from './../config/config.service';
+import { SeoServiceService } from './../shared/Services/seo-service.service';
 
 import { FooterService } from '../shared/footer/footer.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
@@ -21,12 +22,16 @@ export class FAQComponent implements OnInit {
   isWillWritingEnabled = false;
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
-  constructor(private navbarService: NavbarService, private footerService: FooterService,
+  constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
               public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService) {
                 this.translate.use('en');
                 this.translate.get('COMMON').subscribe((result: string) => {
                   this.pageTitle = this.translate.instant('FAQ.TITLE');
                   this.sections = this.getFAQSections(this.translate.instant('FAQ.CONTENT'));
+                  this.seoService.setTitle(this.translate.instant('FAQ_GENERAL.TITLE'));
+                  this.seoService.setBaseSocialMetaTags(this.translate.instant('FAQ_GENERAL.TITLE'),
+                                                        this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
+                                                        this.translate.instant('FAQ_GENERAL.KEYWORDS'));
                 });
                 this.configService.getConfig().subscribe((config: IConfig) => {
                   console.log(config.willWritingEnabled);
