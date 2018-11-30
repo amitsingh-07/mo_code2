@@ -796,6 +796,9 @@ body.modal-open::-webkit-scrollbar {
     }
     .modal-body{
         width: 375px !important;
+        .modal-body-title {
+          width: 310px;
+        }
         .modal-body-message {
           @include allmobiles {
             padding: 0 !important;
