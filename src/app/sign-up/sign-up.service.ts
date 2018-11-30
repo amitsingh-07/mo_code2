@@ -311,14 +311,26 @@ export class SignUpService {
     return this.apiService.requestEditPassword(data);
   }
 
+  getRecentNotifications() {
+    return this.apiService.getRecentNotifications();
+  }
+
   getAllNotifications() {
     return this.apiService.getAllNotifications();
   }
 
-  setNotificationList(data) {
-    this.signUpFormData.notificationList = data;
-    this.commit();
+  markNotificationsRead(data) {
+    return this.apiService.markNotificationsRead(data);
   }
+
+  deleteNotifications(data) {
+    return this.apiService.deleteNotifications(data);
+  }
+
+  // setNotificationList(data) {
+  //   this.signUpFormData.notificationList = data;
+  //   this.commit();
+  // }
 
   getNotificationList() {
     return this.signUpFormData.notificationList;

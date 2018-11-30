@@ -24,8 +24,8 @@
 
       <!-- NOTIFICATION ICON -->
       <div *ngIf="isNotificationEnabled">
-        <button class="notification-icon hidden-lg" type="button" (click)="onSelect()">
-          <span class="notification-number">
+        <button class="notification-icon hidden-lg" type="button" (click)="toggleRecentNotification()">
+          <span class="notification-number" *ngIf="count">
             <span *ngIf="count <= notificationMaxLimit">{{ count }}</span>
             <span *ngIf="count > notificationMaxLimit">{{ notificationMaxLimit }}+</span>
           </span>

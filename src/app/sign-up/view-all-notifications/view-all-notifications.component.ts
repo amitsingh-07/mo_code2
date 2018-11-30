@@ -8,7 +8,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
@@ -25,6 +25,7 @@ export class ViewAllNotificationsComponent implements OnInit {
   ref;
   notificationCount: any;
   allMessages;
+
   constructor(
     public navbarService: NavbarService,
     public activeModal: NgbActiveModal,
@@ -40,24 +41,47 @@ export class ViewAllNotificationsComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
-    this.notifications = this.signUpService.getNotificationList();
+    this.notifications = this.getAllNotifications();
     this.notificationCount = this.notifications.length;
     console.log(this.notifications);
   }
-  hideNotification(notification) {
-    console.log(notification);
-    const index = this.notifications.indexOf(notification);
-    console.log(index);
-    this.notifications.splice(index, 1);
-    this.notificationCount = this.notifications.length;
+
+  getAllNotifications() {
+    this.signUpService.getAllNotifications().subscribe((response) => {
+      //this.signUpService.setNotificationList(response.objectList.notifications);
+      this.notifications = response.objectList.notifications;
+    });
   }
-  clearAll($event) {
+
+  clearNotification(message, notification) {
+    this.deleteNotification([message]);
+    const updatedNotificationList = notification.messages.filter((notificationMessage) => message !== notificationMessage);
+    notification.messages = updatedNotificationList;
+  }
+
+  clearAllNotifications() {
+    const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
+    this.deleteNotification(allMessages);
     this.notifications.splice(0);
-    this.notificationCount = this.notifications.length;
+  }
+
+  deleteNotification(messageList) {
+    const payload = this.constructDeleteNotificationRequest(messageList);
+    this.signUpService.deleteNotifications(payload).subscribe((response) => {
+
+    });
+  }
+
+  constructDeleteNotificationRequest(messages) {
+    return {
+      messageList: messages
+    };
   }
 
 }

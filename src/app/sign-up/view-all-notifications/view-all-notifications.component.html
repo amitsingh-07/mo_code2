@@ -1,4 +1,4 @@
-<app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAll($event)"></app-top-bar-with-clear-button>
+<app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAllNotifications($event)"></app-top-bar-with-clear-button>
 <div class="container-fluid"> 
 <div class="content">
     <div class="row">
@@ -6,14 +6,14 @@
         <!--Notifications container-->
         <div class="notifications-container" *ngFor="let notification of notifications">
           <!--Notifications Header-->
-          <div *ngIf="notificationCount > 0">
+          <div *ngIf="notification.messages.length > 0">
           <div class="notifications-container__header">
               {{notification.groupName}}
           </div>
           <!--Notifications Header //-->
           <!--Notifications lists-->
           <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of notification.messages">
-            <div class="notifications-container__lists--close" (click)="hideNotification(message)">X</div>
+            <div class="notifications-container__lists--close" (click)="clearNotification(message, notification)">X</div>
             <div class="notifications-container__lists--desc">
              {{message.message}} 
               <div class="notifications-container__lists--duration">
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-          <div *ngIf="notificationCount == 0" class="notifications-container__no-notification">
+          <div *ngIf="!notifications.length" class="notifications-container__no-notification">
             <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
             <p>No New Notification</p>
 

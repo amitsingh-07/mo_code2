@@ -661,6 +661,31 @@ export class ApiService {
       );
   }
 
+  // tslint:disable-next-line:no-identical-functions
+  getRecentNotifications() {
+    const url = '../assets/mock-data/notifications-recent.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // tslint:disable-next-line:no-identical-functions
+  markNotificationsRead(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  // tslint:disable-next-line:no-identical-functions
+  deleteNotifications(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
   // Verify PromoCode
   verifyPromoCode(promoCode) {
     return this.http.post(apiConstants.endpoint.willWriting.verifyPromoCode, promoCode)

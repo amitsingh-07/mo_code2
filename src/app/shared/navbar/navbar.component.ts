@@ -101,13 +101,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         this.isNotificationEnabled = false;
       }
       if (this.isNotificationEnabled) {
-        this.signUpService.getAllNotifications().subscribe((response) => {
-          this.signUpService.setNotificationList(response.objectList.notifications);
-          this.count = response.objectList.unreadCount;
-          const allMessages = this.signUpService.getAllMessagesByNotifications(response.objectList.notifications);
-          this.recentMessages = allMessages.slice(0, SIGN_UP_CONFIG.RECENT_NOTIFICATION_COUNT);
-          console.log(this.recentMessages);
-        });
+        this.getRecentNotifications();
       }
       this.cdr.detectChanges();
     });
@@ -149,13 +143,37 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.isNavbarCollapsed = true;
   }
 
-  onSelect() {
-    this.isNotificationHidden = !this.isNotificationHidden;
+  getRecentNotifications() {
+    this.signUpService.getRecentNotifications().subscribe((response) => {
+      //this.signUpService.setNotificationList(response.objectList.notifications);
+      this.count = response.objectList.unreadCount;
+      this.recentMessages = response.objectList.notifications[0].messages;
+    });
   }
+
+  toggleRecentNotification() {
+    this.isNotificationHidden = !this.isNotificationHidden;
+    if (!this.isNotificationHidden) { // When Opened
+      const payload = this.constructPayloadForRead(this.recentMessages);
+      this.signUpService.markNotificationsRead(payload).subscribe((response) => {
+        
+      });
+    } else { // When closed
+      this.getRecentNotifications();
+    }
+  }
+
+  constructPayloadForRead(data) {
+    return {
+      messages: data
+    };
+  }
+
   viewAllNotifications() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.VIEW_ALL_NOTIFICATIONS]);
     this.isNotificationHidden = true;
   }
+
   canActivateNotification() {
     const userInfo = this.signUpService.getUserProfileInfo();
     if (!(userInfo && userInfo.firstName)) {
