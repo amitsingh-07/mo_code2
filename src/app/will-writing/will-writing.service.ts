@@ -1,15 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SignUpService } from './../sign-up/sign-up.service';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
 import {
-  IAboutMe, IBeneficiary, IChild, IEligibility,
-  IExecTrustee, IGuardian, IPromoCode, ISpouse
+  IAboutMe,
+  IBeneficiary,
+  IChild,
+  IEligibility,
+  IExecTrustee,
+  IGuardian,
+  IPromoCode,
+  ISpouse
 } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
@@ -257,8 +264,7 @@ export class WillWritingService {
     for (const children of data) {
       children.relationship = WILL_WRITING_CONFIG.CHILD;
       children.pos = i;
-      let formattedValue: any = new Date(children.dob['year'] + '-' + children.dob['month'] + '-' + children.dob['day']);
-      formattedValue = this.formatDob(formattedValue);
+      const formattedValue = this.formatDob(children.dob);
       children.formatedDob = formattedValue;
       this.willWritingFormData.children.push(children);
       i++;
@@ -267,14 +273,14 @@ export class WillWritingService {
   }
 
   formatDob(value) {
-    const date = this.pad(value.getDate());
-    const month = this.pad(value.getMonth() + 1);
-    const year = value.getFullYear().toString().substr(-2);
-    return `${date}/${month}/${year}`;
-  }
-
-  pad(n) {
-    return n < 10 ? '0' + n : n;
+    if (value) {
+      const date = padNumber(value['day'].toString());
+      const month = padNumber(value['month'].toString());
+      const year = value['year'] + '';
+      const returnValue = `${date}/${month}/${year}`;
+      return returnValue;
+    }
+    return value;
   }
 
   /**

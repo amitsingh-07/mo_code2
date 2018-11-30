@@ -43,12 +43,15 @@
     }
     .faq-category__body{
         position: relative;
-        display:flex;
+        display:none;
         width:100%;
         justify-content:space-between;
         max-width:1024px;
         padding:45px 0px;
         margin:0px auto;
+        &.active{
+            display:flex;
+        }
         @include minMobilemaxPhablet{
             padding:30px 20px;
             flex-direction:column;

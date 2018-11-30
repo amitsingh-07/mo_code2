@@ -1,6 +1,8 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService, IConfig } from './../config/config.service';
+import { SeoServiceService } from './../shared/Services/seo-service.service';
 
 import { FooterService } from '../shared/footer/footer.service';
 import { NavbarService } from '../shared/navbar/navbar.service';
@@ -13,45 +15,64 @@ import { IFAQSection } from './faq.interface';
   styleUrls: ['./faq.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FAQComponent implements OnInit {
+export class FAQComponent implements OnInit, AfterViewInit {
   public pageTitle: string;
   public sections: any;
   public navBarElement: ElementRef;
+
   activeSection;
   isWillWritingEnabled = false;
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
-  constructor(private navbarService: NavbarService, private footerService: FooterService,
-              public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService) {
+  constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
+              public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService,
+              public route: ActivatedRoute) {
                 this.translate.use('en');
                 this.translate.get('COMMON').subscribe((result: string) => {
                   this.pageTitle = this.translate.instant('FAQ.TITLE');
                   this.sections = this.getFAQSections(this.translate.instant('FAQ.CONTENT'));
+                  this.seoService.setTitle(this.translate.instant('FAQ_GENERAL.TITLE'));
+                  this.seoService.setBaseSocialMetaTags(this.translate.instant('FAQ_GENERAL.TITLE'),
+                                                        this.translate.instant('FAQ_GENERAL.DESCRIPTION'),
+                                                        this.translate.instant('FAQ_GENERAL.KEYWORDS'));
                 });
                 this.configService.getConfig().subscribe((config: IConfig) => {
-                  console.log(config.willWritingEnabled);
                   this.isWillWritingEnabled = config.willWritingEnabled;
                   this.isInvestmentEnabled = config.investmentEnabled;
                   this.isComprehensiveEnabled = config.comprehensiveEnabled;
                 });
               }
 
-  // tslint:disable-next-line:member-ordering
-  @ViewChild('homeNavBar') HomeNavBar: ElementRef;
-  // tslint:disable-next-line:member-ordering
-  @ViewChild('homeNavInsurance') HomeNavInsurance: ElementRef;
-  // tslint:disable-next-line:member-ordering
-  @ViewChild('homeNavWill') HomeNavWill: ElementRef;
-  // tslint:disable-next-line:member-ordering
-  // @ViewChild('homeNavInvest') HomeNavInvest: ElementRef;
-  // tslint:disable-next-line:member-ordering
-  // @ViewChild('homeNavComprehensive') HomeNavComprehensive: ElementRef;
   ngOnInit() {
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(true);
-    this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
-    this.activeSection = 0;
+  }
+
+  ngAfterViewInit() {
+    this.route.fragment.subscribe((fragment) => {
+      this.activeSection = 0;
+      if (fragment) {
+        this.goToRoute(fragment);
+      }
+    });
+  }
+
+  goToRoute(fragment) {
+    if (fragment === 'insurance') {
+      this.activeSection = 0;
+    }
+    if (fragment === 'will-writing' && this.isWillWritingEnabled) {
+      this.activeSection = 1;
+    } else
+    if (fragment === 'investment' && this.isInvestmentEnabled) {
+      this.activeSection = 2;
+    } else
+    if (fragment === 'comprehensive' && this.isComprehensiveEnabled) {
+      this.activeSection = 3;
+    } else {
+      this.activeSection = 0;
+    }
   }
 
   toggleActive(event: any) {
@@ -120,29 +141,15 @@ export class FAQComponent implements OnInit {
   }
 
     goToSection(elementName) {
-      if (elementName === 'will') {
-        this.renderer.addClass(this.HomeNavWill.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-        // this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        // this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
+      if (elementName === 'insurance') {
+        this.activeSection = 0;
+      } else if (elementName === 'will') {
         this.activeSection = 1;
       } else if (elementName === 'investment') {
-        this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-        // this.renderer.addClass(this.HomeNavInvest.nativeElement, 'active');
-        // this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 2;
       } else if (elementName === 'comprehensive') {
-        this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
-        this.renderer.removeClass(this.HomeNavInsurance.nativeElement, 'active');
-        // this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        // this.renderer.addClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 3;
       } else {
-        this.renderer.removeClass(this.HomeNavWill.nativeElement, 'active');
-        this.renderer.addClass(this.HomeNavInsurance.nativeElement, 'active');
-        // this.renderer.removeClass(this.HomeNavInvest.nativeElement, 'active');
-        // this.renderer.removeClass(this.HomeNavComprehensive.nativeElement, 'active');
         this.activeSection = 0;
       }
 
