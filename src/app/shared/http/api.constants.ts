@@ -29,6 +29,8 @@ export let apiConstants = {
         userProfileInfo: 'account/account-microservice/api/getProfileSummary',
         editContactDeatails: 'account/account-microservice/api/updateAddress',
         editPassword: 'account/account-microservice/api/editPassword',
+        editProfile: 'account/account-microservice/api/customer/customerProfile',
+        editEmployerAddress: 'account/account-microservice/api/updateEmployment',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -71,7 +73,7 @@ export let apiConstants = {
         investment: {
             getUserAddress: 'account/account-microservice/api/customer/address',
             getUserBankList: 'account/account-microservice/api/customer/banks',
-            addNewBank: 'account/account-microservice/api/customer/bank'
+            addNewBank: 'account/account-microservice/api/customer/bank',
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',

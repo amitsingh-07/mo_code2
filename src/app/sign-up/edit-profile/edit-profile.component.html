@@ -325,7 +325,7 @@
               Employer Name
             </div>
             <div class="update-contact-value">
-              {{empolymentDetails.employerDetails.employerName }}
+              {{empolymentDetails.employerDetails.detailedEmployerDetails.employerName }}
             </div>
           </div>
           <div class="section-margin">
@@ -333,7 +333,7 @@
               Industry
             </div>
             <div class="update-contact-value">
-              {{empolymentDetails.employerDetails.industry.industry }}
+              {{empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
             </div>
           </div>
           <div class="section-margin">
@@ -341,7 +341,7 @@
               Employer Contact
             </div>
             <div class="update-contact-value">
-              {{empolymentDetails.employerDetails.employerContact }}
+              {{empolymentDetails.employerDetails.detailedEmployerDetails.employerContact }}
             </div>
           </div>
           <div class="section-margin">
@@ -373,7 +373,7 @@
                 Country
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.country.name}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.country.name}}
               </div>
             </div>
             <div class="section-margin" *ngIf="isSingaporeResident">
@@ -381,7 +381,7 @@
                 Postal Code
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.postalCode}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.postalCode}}
               </div>
             </div>
             <div class="section-margin">
@@ -389,7 +389,7 @@
                 Address Line 1
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.addressLine1}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine1}}
               </div>
             </div>
             <div class="section-margin">
@@ -397,7 +397,7 @@
                 Address Line 2
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.addressLine2}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine2}}
               </div>
             </div>
             <div class="section-margin" *ngIf="isSingaporeResident">
@@ -405,7 +405,7 @@
                Floor
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.floor}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.floor}}
               </div>
             </div>
             <div class="section-margin" *ngIf="isSingaporeResident">
@@ -413,7 +413,7 @@
                 Unit No
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.unitNumber}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.unitNumber}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isSingaporeResident">
@@ -421,7 +421,7 @@
                 City
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.city}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.city}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isSingaporeResident">
@@ -429,7 +429,7 @@
                 State
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.state}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.state}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isSingaporeResident">
@@ -437,7 +437,7 @@
                 Zip Code
               </div>
               <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.employerAddress.zipCode}}
+                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.zipCode}}
               </div>
             </div>
           </div>

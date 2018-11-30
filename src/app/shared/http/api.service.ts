@@ -596,7 +596,8 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions
   getEditProfileList() {
     const url = '../assets/mock-data/edit-profile.json';
-    return this.http.get(url)
+    //return this.http.get(url)
+    return this.http.get(apiConstants.endpoint.editProfile)
       .pipe( // tslint:disable-next-line
         catchError((error: HttpErrorResponse) => {
           if (error.error instanceof ErrorEvent) {
@@ -618,6 +619,20 @@ export class ApiService {
   // tslint:disable-next-line:no-identical-functions
   requestEditPassword(data) {
     return this.http.post(apiConstants.endpoint.editPassword, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  // tslint:disable-next-line:no-identical-functions
+  requestUpdateBank(data) {
+    return this.http.post(apiConstants.endpoint.investment.addNewBank, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  // tslint:disable-next-line:no-identical-functions
+  requestUpdateEmployerAddress(data) {
+    return this.http.post(apiConstants.endpoint.editEmployerAddress, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
