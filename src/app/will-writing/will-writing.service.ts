@@ -276,10 +276,7 @@ export class WillWritingService {
     if (value) {
       const date = padNumber(value['day'].toString());
       const month = padNumber(value['month'].toString());
-      let year = value['year'] + '';
-      if (year.length === 4) {
-        year = year.substring(2);
-      }
+      const year = value['year'] + '';
       const returnValue = `${date}/${month}/${year}`;
       return returnValue;
     }
