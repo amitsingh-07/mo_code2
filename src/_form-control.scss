@@ -1110,15 +1110,21 @@ input::placeholder {
     }
 
     .sub-message {
+      position: relative;
+      display:block;
       font-family: $muli-bold;
       color: $red-color;
       font-style:italic;
       font-size: 14px;
       letter-spacing: -0.1px;
       line-height: 1.2;
-      padding: 0px 0px 16px 0px;
       margin: 0px;
-
+      height: 0px;
+      transition:0.5s;
+      &.active{
+        height:auto;
+        padding: 0px 0px 16px 0px;
+      }
       &.success {
         color: $green-color;
       }
