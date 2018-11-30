@@ -264,8 +264,7 @@ export class WillWritingService {
     for (const children of data) {
       children.relationship = WILL_WRITING_CONFIG.CHILD;
       children.pos = i;
-      let formattedValue: any = new Date(children.dob['year'] + '-' + children.dob['month'] + '-' + children.dob['day']);
-      formattedValue = this.formatDob(formattedValue);
+      const formattedValue = this.formatDob(children.dob);
       children.formatedDob = formattedValue;
       this.willWritingFormData.children.push(children);
       i++;
@@ -275,11 +274,14 @@ export class WillWritingService {
 
   formatDob(value) {
     if (value) {
-      const dateValue = new Date(value);
-      const date = padNumber(dateValue.getDate());
-      const month = padNumber(dateValue.getMonth() + 1);
-      const year = dateValue.getFullYear().toString().substr(-2);
-      return `${date}/${month}/${year}`;
+      const date = padNumber(value['day'].toString());
+      const month = padNumber(value['month'].toString());
+      let year = value['year'] + '';
+      if (year.length === 4) {
+        year = year.substring(2);
+      }
+      const returnValue = `${date}/${month}/${year}`;
+      return returnValue;
     }
     return value;
   }
