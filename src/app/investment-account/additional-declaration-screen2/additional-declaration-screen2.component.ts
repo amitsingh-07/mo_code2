@@ -106,7 +106,6 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
 
   }
 
-
   getSourceList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.sourceOfIncomeList = data.objectList.investmentSource;
@@ -170,7 +169,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setAdditionDeclaration(form.getRawValue());
-      this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+      this.investmentAccountService.saveAdditionalDeclarations().subscribe((data) => {
         // CREATE INVESTMENT ACCOUNT
         console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
         this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
