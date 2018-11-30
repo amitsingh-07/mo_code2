@@ -16,7 +16,7 @@ import {
   IExecTrustee,
   IGuardian,
   IPromoCode,
-  ISpouse,
+  ISpouse
 } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
