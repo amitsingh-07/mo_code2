@@ -207,16 +207,25 @@
     }
 }
 .dropdown-control{
-     .dropdown-menu{
-        z-index: 999;
-        @include allmobiles {
-            max-height: 200px !important;
-            overflow: auto;
-            top: -205px !important;
-            &.show{
-                // margin-bottom: 85px;
+    @include allmobiles {
+        .show {
+            &.dropdown {
+                border: 1px solid #00a7a7 !important;
+                border-radius:  6px;
             }
         }
+    }
+     .dropdown-menu{
+        z-index: 999;
+        
+            @include allmobiles {
+                max-height: 200px !important;
+                overflow: auto;
+                top: -205px !important;
+                &.show{
+                    // margin-bottom: 85px;
+                }
+            }
         
     }
 }
