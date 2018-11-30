@@ -8,8 +8,18 @@
 
         <div class="col-lg-12 col-md-12">
           <form id="residentialAddress_address_form" name="addressForm" [formGroup]="addressForm">
+            
+              
             <!-- COUNTRY -->
             <div class="form-group">
+                <div class="flex-row">
+                    <div class="flex-col-12">
+                      <div class="res-title">
+                        Residential Address
+                      </div>
+  
+                      </div>
+                      </div>
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="residentialAddress-country-drpdown" id="residentialAddress-country-lbl">{{
@@ -282,6 +292,14 @@
             <div *ngIf="!addressForm.get('isMailingAddressSame').value" formGroupName="mailingAddress">
               <!-- COUNTRY -->
               <div class="form-group">
+                  <div class="flex-row">
+                      <div class="flex-col-12">
+                        <div class="res-title">
+                            Mailing Address
+                        </div>
+    
+                        </div>
+                        </div>
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="residentialAddress-mailcountry-drpdown" id="residentialAddress-mailcountry-lbl">{{
