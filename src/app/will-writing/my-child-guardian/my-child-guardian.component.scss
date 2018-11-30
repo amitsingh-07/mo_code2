@@ -43,8 +43,9 @@
         margin-top: 15px;
         font-family: $muli-regular;
         @include allmobiles{
-            width: 294px;
+            width: 268px;
             margin-top: 0;
+            font-size: 16px;
         }
     }
 }
