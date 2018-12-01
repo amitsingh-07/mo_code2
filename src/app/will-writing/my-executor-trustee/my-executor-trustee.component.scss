@@ -19,11 +19,7 @@
     font-size: 18px;
     letter-spacing: -0.3px;
     color: #2d8289;
-    margin-top: 5px;
     margin-bottom: 24px;
-    @include allmobiles {
-        margin-top: 10px;
-    }
     .title {
         font-family: $muli-bold;
         border-radius: 6px;
@@ -199,7 +195,7 @@
         background-repeat: no-repeat;
         position: absolute;
         bottom: 2px;
-        right: -5px;
+        right: -2px;
         border-radius: 0;
     }
 }

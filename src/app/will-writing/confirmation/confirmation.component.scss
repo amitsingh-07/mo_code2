@@ -162,6 +162,12 @@
             .col-lg-6{
                 &.col-md-6{
                     &.col-sm-12{
+                        &:first-child{
+                            padding-bottom: 20px;
+                            @include allmobiles{
+                                padding-bottom: 0;
+                            }
+                        }
                         &:nth-child(2n-1) {
                             border-right: 0.5px solid #009999;
                             padding-right: 0;

@@ -19,6 +19,7 @@ import { WillWritingService } from '../will-writing.service';
 export class ConfirmationComponent implements OnInit, OnDestroy {
   pageTitle: string;
   step: string;
+  duplicateError: string;
 
   willWritingFormData: WillWritingFormData = new WillWritingFormData();
   willWritingRoutePaths = WILL_WRITING_ROUTE_PATHS;
@@ -37,6 +38,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_4');
       this.pageTitle = this.translate.instant('WILL_WRITING.CONFIRMATION.TITLE');
+      this.duplicateError = this.translate.instant('WILL_WRITING.CONFIRMATION.DUPLICATE_ERROR');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -77,6 +79,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
       this.willWritingApiService.updateWill().subscribe((data) => {
         if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
           this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+        } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
+          this.willWritingService.openToolTipModal('', this.duplicateError);
         }
       });
     } else {
