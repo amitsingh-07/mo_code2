@@ -11,9 +11,9 @@ export const environment: IEnvironment = {
   myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',
   myInfoCallbackBaseUrl: 'https://bfa-uat.ntucbfa.com/myinfo',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
-  gtagPropertyId: 'AW-782920447',
+  gtagPropertyId: '',
   gaPropertyId: 'UA-125256446-1',
-  fbPropertyId: '1436376216665984',
+  fbPropertyId: '',
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
