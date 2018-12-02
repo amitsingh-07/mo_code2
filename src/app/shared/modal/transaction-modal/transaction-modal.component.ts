@@ -9,7 +9,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class TransactionModalComponent implements OnInit {
-  userInfoForm: FormGroup;
+  lifeProtectionForm: FormGroup;
+  formValues: any;
+  month = '';
+  monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July'];
+  year = '';
+  yearNames = ['2000' , '2001' , '2002'];
   constructor(
     public activeModal: NgbActiveModal, 
     private config: NgbDatepickerConfig, 
@@ -23,9 +28,18 @@ export class TransactionModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userInfoForm = this.formBuilder.group({
-      dob: [null, Validators.required]
-    });
+    //this.formValues.month = this.formValues.month;
+    // this.transactionFilterForm = this.formBuilder.group({
+    //   month: [this.formValues.month, Validators.required]
+    // });
+    // if (this.formValues.month !== undefined) {
+    //   this.selectMonth(this.formValues.month);
+    // }
   }
-
+  selectMonth(in_month) {
+    this.month = in_month;
+  }
+  selectYear(in_year) {
+    this.year = in_year;
+  }
 }
