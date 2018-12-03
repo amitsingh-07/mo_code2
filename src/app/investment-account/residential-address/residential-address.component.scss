@@ -18,7 +18,10 @@
 
   .inline-error{
     .btn{
-      &.btn-secondary{
+      &.btn-secondary{ &:active{
+        border: none !important;
+        color: #ffffff;
+      }
         background-color:#ff872f !important;
       }  
     }    
@@ -103,14 +106,21 @@
         float: right;
       }
 
-      &:focus {
-        background-color: #ff730c !important;
-        color: #fff !important;
+      &:hover{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
-
-      &:active {
-        background-color: #ff730c !important;
-        color: #fff !important;
+      &:focus{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
+      }
+   
+      &:active{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
 
     }
