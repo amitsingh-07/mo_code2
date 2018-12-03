@@ -6,6 +6,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
+import { AppService } from './../../app.service';
 
 @Component({
   selector: 'app-validate-your-will',
@@ -14,14 +15,18 @@ import { WillWritingApiService } from '../will-writing.api.service';
 })
 export class ValidateYourWillComponent implements OnInit, OnDestroy {
   pageTitle: string;
-  constructor(private translate: TranslateService,
-              public footerService: FooterService,
-              private router: Router,
-              public navbarService: NavbarService,
-              private willWritingApiService: WillWritingApiService) {
+  customerId: string;
+  constructor(
+    private translate: TranslateService,
+    public footerService: FooterService, private appService: AppService,
+    private router: Router,
+    public navbarService: NavbarService,
+    private willWritingApiService: WillWritingApiService) {
     this.translate.use('en');
     this.pageTitle = this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.TITLE');
     this.setPageTitle(this.pageTitle);
+    this.customerId = this.appService.getCustomerId();
+    console.log('customerId : ' + this.customerId);
   }
 
   ngOnInit() {
@@ -54,11 +59,15 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
 
     const blob = new Blob([data], { type: 'application/pdf' });
+    alert('navigator.userAgent :' + navigator.userAgent);
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      alert('IE');
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
-    } else if (isSafari && iOS || otherBrowsers || isSafari) {
+    } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
+      alert('(isSafari && iOS) || otherBrowsers || isSafari');
       this.downloadFile(data);
     } else {
+      alert('else');
       const reader: any = new FileReader();
       const out = new Blob([data], { type: 'application/pdf' });
       reader.onload = ((e) => {
@@ -69,7 +78,7 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
   }
 
   downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/pdf' });
+    const blob = new Blob([data], { type: 'application/octet-stream' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     document.body.appendChild(a);

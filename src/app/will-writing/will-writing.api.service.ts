@@ -207,4 +207,11 @@ export class WillWritingApiService {
         };
         return this.apiService.downloadWill(payload);
     }
+
+    downloadWillById(custId) {
+        const payload = {
+            customerId: custId
+        };
+        return this.apiService.downloadWill(payload);
+    }
 }
