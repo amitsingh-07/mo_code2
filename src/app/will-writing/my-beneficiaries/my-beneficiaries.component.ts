@@ -152,6 +152,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         this.resetForm();
       }
       this.isFormAltered = true;
+      this.addBeneficiaryForm.markAsDirty();
     }
   }
 
