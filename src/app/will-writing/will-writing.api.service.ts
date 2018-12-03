@@ -79,7 +79,7 @@ export class WillWritingApiService {
         const willProfileMembers: IWillProfileMembers[] = [];
 
         if (will.aboutMe.maritalStatus === WILL_WRITING_CONFIG.MARRIED) {
-            const beneficiary: any = this.willWritingService.checkBeneficiary(will.spouse[0].uin)[0];
+            const beneficiary = this.willWritingService.checkBeneficiary(will.spouse[0].uin)[0];
             willProfileMembers.push({
                 uin: will.spouse[0].uin,
                 name: will.spouse[0].name,
@@ -90,7 +90,7 @@ export class WillWritingApiService {
                 isAltGuardian: 'N',
                 isTrusteee: 'Y',
                 isAltTrusteee: 'N',
-                distribution: beneficiary.length > 1 ? beneficiary.distPercentage : 0
+                distribution: beneficiary ? beneficiary.distPercentage : 0
             });
         }
 
@@ -103,12 +103,12 @@ export class WillWritingApiService {
                     dob: children.dob['year'] + '' + padNumber(children.dob['month']) + '' + padNumber(children.dob['day']),
                     relationshipCode: this.relationship.get(children.relationship),
                     isFamily: 'Y',
-                    isBeneficiary: beneficiary ? 'Y' : 'N',
+                    isBeneficiary: beneficiary.length > 0 ? 'Y' : 'N',
                     isGuardian: 'N',
                     isAltGuardian: 'N',
                     isTrusteee: 'N',
                     isAltTrusteee: 'N',
-                    distribution: beneficiary.length ? beneficiary[0].distPercentage : 0
+                    distribution: beneficiary.length > 0 ? beneficiary[0].distPercentage : 0
                 });
             }
         }
