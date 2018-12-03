@@ -1,173 +1,13 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
-.btn-group--toggle {
-  &.tabs {
-    .btn {
-      border-radius: 0;
-      background-color: #ffffff;
-      font-family: $muli-bold;
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 1.22;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: #d2d2d2;
-      padding: 19px;
-
-      &.active {
-        color: #ff872f;
-        border-bottom: 6px solid #ff872f;
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: #ff872f;
-        border-bottom: 6px solid #ff872f;
-      }
-    }
-  }
-}
-
-
-.transactions {
+//Transaction Module Styles
+.transaction-panel {
+  height: 100vh;
   background: $white-color;
-  text-align: center;
-  font-family: $muli-regular;
-  color: #5e5e5e;
-
-  .record {
-    .record-date {
-      font-size: 14px;
-      letter-spacing: -0.1px;
-      text-align: center;
-      background-color: rgba(0, 167, 167, 0.11);
-      padding: 10px;
-      color: #00a7a7;
-    }
-
-    .record-data {
-      color: #00a7a7;
-
-      .record-title {
-        justify-content: space-between;
-        padding: 19px 20px 18px;
-        align-items: center;
-
-        div {
-          &:first-child {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-family: $muli-semi-bold;
-            align-items: baseline;
-            text-align: left;
-
-            span {
-              &:first-child {
-                font-size: 14px;
-                font-weight: 600;
-                color: #d0021b;
-              }
-            }
-          }
-
-          &:last-child {
-            color: #5e5e5e;
-            text-align: left;
-          }
-        }
-
-        i {
-          color: #00a7a7;
-          float: right;
-          font-size: 16px;
-          padding-left: 17px;
-        }
-      }
-
-      .record-details {
-        background-color: #f4fafb;
-
-        .flex-row {
-          justify-content: space-between;
-          padding: 0 20px 18px;
-          text-align: left;
-          line-height: 1.31;
-          letter-spacing: -0.2px;
-        }
-      }
-    }
-
-    .no-data {
-      font-size: 18px;
-      letter-spacing: -0.2px;
-      text-align: center;
-      color: #00a7a7;
-
-      img {
-        margin-bottom: 17.8px;
-      }
-    }
-  }
-
-  .history {
-    .buy {
-      .record-title {
-        div {
-          &:first-child {
-            span {
-              &:first-child {
-                color: #11b600;
-              }
-            }
-          }
-
-          &:last-child {
-            color: #00a7a7;
-          }
-        }
-      }
-    }
-  }
-
-  .statements {
-    .record-date {
-      color: #00a7a7;
-    }
-
-    .record-data {
-      font-size: 16px;
-      color: #ec681c;
-
-      .flex-row {
-        justify-content: space-between;
-        padding: 19px 20px 18px;
-
-        span {
-          &:first-child {
-            font-family: $muli-bold;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 1.28;
-            letter-spacing: -0.3px;
-            color: #00a7a7;
-          }
-        }
-
-        .download-link {
-          font-size: 16px;
-          color: #ec681c;
-        }
-      }
-    }
-  }
-
   .nav-item {
     width: 50%;
+    text-align: center;
   }
-
   .nav-tabs .nav-link {
     border: none;
     color: #d2d2d2;
@@ -180,8 +20,53 @@
       border-bottom: 6px solid #ff872f;
     }
   }
-
-  .card-header {
-    display: none;
+  .transaction-panel__history, .transaction-panel__statements {
+    color: $app-backgrnd-color; 
+    &--date {
+      font-size: 14px;
+      letter-spacing: -0.1px;
+      text-align: center;
+      background-color: rgba(0, 167, 167, 0.11);
+      padding: 10px;
+      color: $app-backgrnd-color;
+    }
+  }
+  .transaction-panel__history--details {
+    &--title {
+      font-size: 18px;
+      font-family: $muli-semi-bold;
+      padding: 20px;
+    }
+    &--title--sale {
+      font-size: 14px;
+      color: #d0021b;
+      text-transform: uppercase;
+      margin-right: 30px;
+    }
+    &--title--amount--sale {
+      font-size: 16px;
+      margin-right: 20px;
+      font-family: $muli-regular;
+      color: #5e5e5e;
+    }
+    &--desc {
+      background-color: rgba(0, 167, 167, 0.11); 
+      padding: 20px;
+      font-size: 16px;
+    }
+  }
+  .transaction-panel__statements {
+    &--details {
+      padding: 20px;
+      font-family: $muli-bold;
+      font-size: 18px;
+      border-bottom: 2px solid #f4fafb;
+      background: $white-color;
+    }
+    a.download-link {
+      color: #ec681c;
+      font-size: 16px;
+      font-family: $muli-regular;
+    }
   }
 }
