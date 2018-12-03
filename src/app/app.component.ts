@@ -7,7 +7,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { AppService } from './app.service';
 import { IComponentCanDeactivate } from './changes.guard';
-import { GoogleAnalyticsService } from './shared/ga/google-analytics.service';
+import { FBPixelService } from './shared/analytics/fb-pixel.service';
+import { GoogleAnalyticsService } from './shared/analytics/google-analytics.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { RoutingService } from './shared/Services/routing.service';
@@ -24,8 +25,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
 
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
-    private googleAnalyticsService: GoogleAnalyticsService, private modal: NgbModal, public route: Router,
-    public routingService: RoutingService, private location: Location) {
+    private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
+    private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location) {
     this.translate.setDefaultLang('en');
   }
 

@@ -1,9 +1,8 @@
-
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { throwError, Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
@@ -46,6 +45,12 @@ export class ApiService {
         return throwError('API returned error response');
       }
     }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
+
+  private handleSubscribeError(error: HttpErrorResponse) {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
@@ -171,7 +176,7 @@ export class ApiService {
     const payload = data;
     return this.http.post(apiConstants.endpoint.subscription.base, payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
+        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error))
       );
   }
 

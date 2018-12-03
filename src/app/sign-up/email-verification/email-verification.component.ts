@@ -16,6 +16,7 @@ import { SignUpService } from './../sign-up.service';
 export class EmailVerificationComponent implements OnInit {
   email: string;
   emailVerified: boolean;
+  willWritingEnabled = false;
   constructor(
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
@@ -25,6 +26,9 @@ export class EmailVerificationComponent implements OnInit {
     private authService: AuthenticationService, private configService: ConfigService
   ) {
     this.translate.use('en');
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.willWritingEnabled = config.willWritingEnabled;
+    });
   }
 
   /**

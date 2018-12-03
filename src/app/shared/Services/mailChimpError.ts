@@ -10,6 +10,10 @@ export class FormError {
                 errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         },
+        INVALID: {
+                errorTitle: 'Missing Fields',
+                errorMessage: 'Please enter a valid email'
+        },
         DEFAULT: {
                 errorTitle: 'Default',
                 errorMessage: 'Invalid Message'

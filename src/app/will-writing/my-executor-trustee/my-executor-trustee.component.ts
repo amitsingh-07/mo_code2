@@ -37,6 +37,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   relationship = '';
   relationshipList;
   submitted: boolean;
+  isFormAltered = false;
   formTitle: any = [];
 
   hasSpouse: boolean;
@@ -194,6 +195,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     }
   }
 
+  resetForm() {
+    this.isEdit = false;
+  }
+
   /**
    * validate aboutMeForm.
    * @param form - user personal detail.
@@ -211,8 +216,19 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  updateExecTrustee(form) {
+    if (this.validateExecTrusstee(form)) {
+      this.execTrusteeList[this.selectedIndex].name = form.value.executorTrustee[0].name;
+      this.execTrusteeList[this.selectedIndex].relationship = form.value.executorTrustee[0].relationship;
+      this.execTrusteeList[this.selectedIndex].uin = form.value.executorTrustee[0].uin;
+      this.addExeTrusteeForm.markAsDirty();
+      this.resetForm();
+      this.isFormAltered = true;
+    }
+  }
+
   save(form) {
-    if (!this.isEdit) {
+    if (!this.isEdit && !this.isFormAltered) {
       let i = 0;
       for (const execTrustee of form.value.executorTrustee) {
         execTrustee.isAlt = this.formTitle[i].isAlt;
@@ -258,14 +274,8 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         this.router.navigate([url]);
       }
     } else {
-      if (this.isEdit) {
-        if (this.addExeTrusteeForm.dirty) {
-          if (this.validateExecTrusstee(form)) {
-            this.openConfirmationModal(url, form);
-          }
-        } else {
-          this.router.navigate([url]);
-        }
+      if (this.isFormAltered) {
+        this.openConfirmationModal(url, form);
       } else {
         this.router.navigate([url]);
       }

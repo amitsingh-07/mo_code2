@@ -7,5 +7,7 @@ export const environment: IEnvironment = {
   myInfoClientId: 'PROD-201820691C-MONEYOWL-BFA',
   myInfoCallbackBaseUrl: 'https://moneyowl.com.sg/myinfo',
   myInfoAuthorizeUrl: 'https://myinfosg.api.gov.sg/v2/authorise',
-  gaPropertyId: 'UA-125256446-3'
+  gtagPropertyId: 'AW-782920447',
+  gaPropertyId: 'UA-125256446-3',
+  fbPropertyId: '1436376216665984',
 };
