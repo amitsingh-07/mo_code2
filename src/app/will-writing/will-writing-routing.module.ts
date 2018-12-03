@@ -19,6 +19,7 @@ import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-a
 import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
 import { WillWritingAccessGuard } from './will-writing-access-guard';
 import { WILL_WRITING_ROUTES } from './will-writing-routes.constants';
+import { DownloadWillComponent } from './download-will/download-will.component';
 
 const routes: Routes = [
   {
@@ -103,6 +104,11 @@ const routes: Routes = [
   {
     path: WILL_WRITING_ROUTES.VALIDATE_YOUR_WILL,
     component: ValidateYourWillComponent,
+    canActivate: [WillWritingAccessGuard]
+  },
+  {
+    path: WILL_WRITING_ROUTES.DOWNLOAD_WILL,
+    component: DownloadWillComponent,
     canActivate: [WillWritingAccessGuard]
   }
 ];
