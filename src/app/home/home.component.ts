@@ -16,6 +16,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
+import { FormError } from '../shared/Services/mailChimpError';
 import { AppService } from './../app.service';
 import { ConfigService, IConfig } from './../config/config.service';
 import { FooterService } from './../shared/footer/footer.service';
@@ -23,7 +24,6 @@ import { AuthenticationService } from './../shared/http/auth/authentication.serv
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { SubscribeMember } from './../shared/Services/subscribeMember';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,6 +32,7 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
 })
 
 export class HomeComponent implements OnInit, AfterViewInit {
+  private formError: any = new FormError();
   pageTitle: string;
   trustedSubTitle: any;
   trustedReasons: any;
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public mobileThreshold = 567;
   public initLoad = true;
   public navBarElement: ElementRef;
+  public emailPattern = '^[a-zA-Z0-9.!#$%&’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
   modalRef: NgbModalRef;
 
   subscribeForm: FormGroup;
@@ -105,6 +107,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           this.subscribeMessage = data;
           this.subscribeSuccess = true;
         }
+        setTimeout(() => {this.subscribeMessage = ''; }, 3000);
       }
     });
   }
@@ -137,7 +140,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.subscribeForm = new FormGroup({
       firstName: new FormControl(this.formValues.firstName),
       lastName: new FormControl(this.formValues.lastName),
-      email: new FormControl(this.formValues.email, [Validators.required]),
+      email: new FormControl(this.formValues.email, [Validators.required, Validators.pattern(this.emailPattern)]),
     });
     this.authService.clearSession();
     this.appService.startAppSession();
@@ -282,6 +285,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   subscribeMember() {
-    this.mailChimpApiService.registerUser(this.subscribeForm.value);
+    if ( this.subscribeForm.valid ) {
+      this.mailChimpApiService.registerUser(this.subscribeForm.value);
+    } else {
+      this.subscribeSuccess = false;
+      this.subscribeMessage = this.formError.subscribeFormErrors.INVALID.errorMessage;
+      setTimeout(() => {this.subscribeMessage = ''; }, 3000);
+    }
   }
 }

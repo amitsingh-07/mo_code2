@@ -152,7 +152,7 @@
             <input class="form-control" type="email" placeholder="{{'NEWSLETTER.PLACEHOLDER.EMAIL' | translate}}"
               formControlName="email" />
           </div>
-          <p *ngIf="!(subscribeMessage === '')" class="sub-message" [ngClass]="{'success': subscribeSuccess}">{{subscribeMessage}}</p>
+          <p class="sub-message" [ngClass]="{'success': subscribeSuccess, 'active': subscribeMessage !== ''}">{{subscribeMessage}}</p>
           <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">{{'NEWSLETTER.SUBSCRIBE' |
             translate}}</button>
         </div>

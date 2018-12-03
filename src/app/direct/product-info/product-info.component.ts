@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { ProtectionNeeds } from '../../guide-me/protection-needs/protection-needs';
-import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
+import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { ConfigService, IConfig } from './../../config/config.service';
