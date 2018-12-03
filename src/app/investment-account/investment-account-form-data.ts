@@ -131,4 +131,10 @@ export class InvestmentAccountFormData {
     MonthlyInvestmentAmount: number;
 
     callBackInvestmentAccount: boolean;
+
+    // Edit Bank
+    bank: any;
+    accountNumber: any;
+    bankUpdateId: any;
+    accountHolderName: any;
 }
