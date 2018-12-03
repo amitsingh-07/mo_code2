@@ -59,12 +59,12 @@
       "SUB_TITLE": "we went you to know what your getting involved in.",
       "WHY_WILL": "Here's everything you need to know",
       "WHY_WILL_CONTENT_1": "Will writing can be easy and straightforward. You don’t need a lawyer!",
-      "WHY_WILL_CONTENT_2": "Having a will ensures that your estate is distributed according to your wishes and avoids any potential disputes.",
+      "WHY_WILL_CONTENT_2": "Having a will ensures that your estate is distributed according to your wishes and avoids any potential dispute.",
       "WHY_WILL_CONTENT_3": "MoneyOwl’s step-by-step will writing process is simple, easy and safe. With unlimited edits, you can edit your will whenever you need.",
       "WHY_WILL_CONTENT_4": "To write a will, you should be…",
       "WHY_WILL_CONTENT_4A": "- 21 years old and above",
       "WHY_WILL_CONTENT_4B": "- Of sound mind",
-      "WHY_WILL_CONTENT_5": "Unfortunately we are unable to assist muslims in writing their will as the advice of a Syariah-trained lawyer is required.",
+      "WHY_WILL_CONTENT_5": "Unfortunately, we are unable to assist muslims in writing their will as the advice of a Syariah-trained lawyer is required.",
       "WHY_WILL_CONTENT_6": "Are you ready to write your will?",
       "FAQ_LINK_TITLE": "Find out more in FAQs",
       "OFFER_PERIOD": "FREE for a limited time only!",
@@ -219,7 +219,7 @@
         "NON_ALLOCATED_PERCENTAGE": "<span class='flex mr10'> Oops! You have a beneficiary that was not allocated any percentage of your estate.</span>",
         "MIN_ERROR": "Please enter a value between 1 to 100."
       },
-      "TOOLTIP_MESSAGE": "If any of your beneficiaries pass on before you, their portion of the estate will be redistributed to your other beneficiaries proportionately."
+      "TOOLTIP_MESSAGE": "If any of your beneficiaries passes on before you, his/her portion of the estate will be redistributed to your other beneficiaries proportionately."
     },
     "CONFIRMATION": {
       "TITLE": "Confirmation",
