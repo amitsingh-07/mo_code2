@@ -56,14 +56,12 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.getOccupationList();
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addInfoFormValues = this.investmentAccountService.getPepInfo();
-    // Need to fetch nationality and country when country is empty
-    const singaporeCountry = {"id":225,"countryCode":"SG","name":"SINGAPORE","phoneCode":"+65"};
     this.addInfoForm = new FormGroup({
       fName: new FormControl(this.addInfoFormValues.fName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       lName: new FormControl(this.addInfoFormValues.lName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
       pepoccupation: new FormControl(this.addInfoFormValues.pepoccupation, Validators.required),
-      pepCountry: new FormControl(singaporeCountry, Validators.required),
+      pepCountry: new FormControl(this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE), Validators.required),
       pepPostalCode: new FormControl(this.addInfoFormValues.pepPostalCode,
         [Validators.required , Validators.pattern(RegexConstants.NumericOnly)]),
       pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1,

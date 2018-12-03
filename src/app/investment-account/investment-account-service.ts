@@ -257,6 +257,13 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.singaporeanResident = singaporeanResident;
         this.commit();
     }
+
+    setNationalitiesCountries(nationalityList: any, countryList: any) {
+        this.investmentAccountFormData.nationalityList = nationalityList;
+        this.investmentAccountFormData.countryList = countryList;
+        this.commit();
+    }
+
     setPersonalInfo(data: PersonalInfo) {
         if (data.fullName) {
             this.investmentAccountFormData.fullName = data.fullName;

@@ -66,8 +66,23 @@ export class DashboardComponent implements OnInit {
   }
 
   goToDocUpload() {
-    this.investmentAccountService.setDataForDocUpload();
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+    this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
+      const nationalityList = data.objectList;
+      const countryList = this.getCountryList(data.objectList);
+      this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+      this.investmentAccountService.setDataForDocUpload();
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+    });
+  }
+
+  getCountryList(data) {
+    const countryList = [];
+    data.forEach((nationality) => {
+      nationality.countries.forEach((country) => {
+        countryList.push(country);
+      });
+    });
+    return countryList;
   }
 
 }
