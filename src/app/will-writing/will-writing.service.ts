@@ -414,11 +414,9 @@ export class WillWritingService {
       const dob = children.dob;
       const today = new Date();
       const birthDate = new Date(dob['year'], dob['month'], dob['day']);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
+      let diff = (today.getTime() - birthDate.getTime()) / 1000;
+      diff /= (60 * 60 * 24);
+      const age = Math.abs(Math.round(diff / 365.25));
       if (age < WILL_WRITING_CONFIG.CHILD_GUARDIAN_AGE) {
         return true;
       }
