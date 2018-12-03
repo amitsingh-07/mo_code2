@@ -56,8 +56,6 @@
         align-items: center;
 
         div {
-          text-align: right;
-
           &:first-child {
             display: flex;
             justify-content: space-between;
@@ -77,6 +75,7 @@
 
           &:last-child {
             color: #5e5e5e;
+            text-align: left;
           }
         }
 

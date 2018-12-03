@@ -14,7 +14,7 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 })
 export class TransactionComponent implements OnInit {
   pageTitle: string;
-  transactions: any;
+  transactionHistory: any;
   accountCreationDate: any;
   statementMonthsList: any;
   Object = Object;
@@ -33,13 +33,14 @@ export class TransactionComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.topupAndWithDrawService.getAllTransactions().subscribe((response) => {
       console.log(response);
-      this.transactions = response.objectList;
-      console.log(this.transactions);
+      this.transactionHistory = response.objectList;
+      console.log(this.transactionHistory);
     });
 
     // Statement
     this.accountCreationDate = new Date('2016-04-23');
     this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
+    
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title, null, false, false, true);

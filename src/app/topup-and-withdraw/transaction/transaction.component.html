@@ -4,17 +4,21 @@
       <ngb-tabset>
         <ngb-tab title="History">
           <ng-template ngbTabContent>
-            <div class="flex-row">
+            <div class="flex-row" *ngIf="transactionHistory">
               <div class="flex-col-12">
                 <div class="history">
-                  <div class="record" *ngFor="let transaction of transactions">
-                    <div class="record-date">{{transaction.description}}</div>
+                  <div class="record" *ngFor="let group of transactionHistory.transactionGroups">
+                    <div class="record-date">{{group.groupName}}</div>
                     <div class="flex-col record-data">
-                      <div class="flex-row record-title">
-                        <div class="flex-col-6"><span class="flex-col-3">{{transaction.description}}</span><span class="flex-col-9">Global
-                            Bonds</span></div>
-                        <div class="flex-col-6"><span>- $500.00</span><i class='fa right' [class.fa-chevron-down]="true"
+                      <div class="flex-row record-title" *ngFor="let transaction of group.transactions">
+                        <div class="flex-col-6"><span class="flex-col-3">{{transaction.transactionType.name}}</span><span class="flex-col-9">{{transaction.portfolio.name}}</span></div>
+                        <div class="flex-col-6"><span>{{transaction.amount}}</span><i class='fa right' [class.fa-chevron-down]="true"
                             [class.fa-chevron-up]="false"></i></div>
+                        
+                        <div class="flex-row" *ngFor="let fund of transaction.fundInvestmentSplit">
+                          <div class="flex-col-6">{{fund.fund.name}}</div>
+                          <div class="flex-col-6">{{fund.unitPrice}}</div>
+                        </div>    
                       </div>
                     </div>
                   </div>
@@ -25,6 +29,7 @@
         </div> -->
               </div>
             </div>
+
           </ng-template>
         </ngb-tab>
         <ngb-tab class="btn width100" title="Statements">

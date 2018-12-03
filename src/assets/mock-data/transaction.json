@@ -1,44 +1,65 @@
 {
+  "objectList": {
+    "transactionGroups": [{
+        "groupName": "22 August 2018",
+        "transactions": [{
+                "transactionType": {
+                    "id": 1,
+                    "name": "Buy"
+                },
+                "portfolio": {
+                    "id": 1,
+                    "name": "Growth",
+                    "portfolioId": "PID01234"
+                },
+                "fundInvestmentSplit": [{
+                    "id": 1,
+                    "fund": {
+                        "id": 1,
+                        "name": "Dimentional Global Shot"
+                    },
+                    "unitPrice": 100,
+                    "unit": 10
+                }],
+                "amount": 500,
+                "currency": {
+                    "id": 1,
+                    "name": "SGD"
+                }
+        },
+        {
+                "transactionType": {
+                    "id": 1,
+                    "name": "Sell"
+                },
+                "portfolio": {
+                    "id": 1,
+                    "name": "Growth",
+                    "portfolioId": "PID01234"
+                },
+                "fundInvestmentSplit": [{
+                    "id": 1,
+                    "fund": {
+                    "id": 1,
+                    "name": "Dimentional Global Shot"
+                    },
+                    "unitPrice": 100,
+                    "unit": 10
+                }],
+                "amount": 500,
+                "currency": {
+                    "id": 1,
+                    "name": "SGD"
+                }
+        }
+        ]
+    }]
+  },
   "responseMessage": {
     "responseCode": 6000,
     "responseDescription": "Successful response"
-  },
-  "objectList": [{
-    "id": 1,
-    "description": "this is a sample notification",
-    "message": "Notification 1",
-    "time" : "5 Mins ago"
-
-  }, {
-    "id": 2,
-    "description": "this is a sample notification",
-    "message": "Notification 2",
-    "time" : "10 Mins ago"
-  }, {
-    "id": 3,
-    "description": "this is a sample notification",
-    "message": "Notification 3",
-    "time" : "20 Mins ago"
-  }, {
-    "id": 4,
-    "description": "this is a sample notification",
-    "message": "Notification 4",
-    "time" : "25 Mins ago"
-  }, {
-    "id": 5,
-    "description": "this is a sample notification",
-    "message": "Notification 5",
-    "time" : "30 Mins ago"
-  }, {
-    "id": 6,
-    "description": "this is a sample notification",
-    "message": "Notification 6",
-    "time" : "30 Mins ago"
-  }, {
-      "id": 7,
-      "description": "this is a sample notification",
-      "message": "Notification 7",
-      "time" : "30 Mins ago"
-    }]
-
+  }
 }
+
+
+
