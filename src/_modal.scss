@@ -51,9 +51,11 @@ body.modal-open::-webkit-scrollbar {
   background: $module-fill-color;
   border-radius: 6px;
   padding: 20px;
+  padding-left: 25px;
 
   @include allmobiles {
     padding: 20px !important;
+    padding-left: 25px !important;
   }
 
   .form-group {
@@ -122,7 +124,7 @@ body.modal-open::-webkit-scrollbar {
   line-height: normal;
   letter-spacing: -0.2px;
   color: #009999;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-right: 10px;
   //padding: 0 15px 0 0;
 }
@@ -680,23 +682,36 @@ body.modal-open::-webkit-scrollbar {
         right: 20px !important;
       }
     }
+    @include allmobiles {
+      padding: 20px !important;
+      padding-left: 15px !important;
+    }
+  }
+  .modal-body-message {
+    padding: 0 !important
   }
   @include allmobiles {
     .modal-body-title {
       margin: -5px 0 10px 0 !important;
+      font-size: 24px !important;
     }
     .modal-body-message {
       margin-right:0 !important;
-      padding: 0 !important
+      padding: 0 !important;
+      font-size: 16px !important;
     }
     .modal-body {
       &.white-bg {
         .close {
-          top: 25px !important;
+          top: 30px !important;
           right: 20px !important;
         }
       }
     }
+  }
+
+  .section-container {
+    padding-right: 0 !important;
   }
   /* Important part */
   .modal-dialog {
@@ -710,10 +725,15 @@ body.modal-open::-webkit-scrollbar {
 
   .modal-body {
     overflow-y: auto;
+    width: 790px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 36px;
 
     @include allmobiles {
       height: 100vh;
-      padding-bottom: 220px !important;
+      width: 100vw;
+      padding-bottom: 270px !important;
     }
   }
 }
@@ -776,6 +796,9 @@ body.modal-open::-webkit-scrollbar {
     }
     .modal-body{
         width: 375px !important;
+        .modal-body-title {
+          width: 310px;
+        }
         .modal-body-message {
           @include allmobiles {
             padding: 0 !important;
@@ -787,7 +810,7 @@ body.modal-open::-webkit-scrollbar {
             right: 20px !important;
             @include allmobiles {
               top: 25px !important;
-              right: 15px !important;
+              right: 20px !important;
             }
           }
         }
@@ -795,5 +818,11 @@ body.modal-open::-webkit-scrollbar {
           width: 100vw !important;
         }      
     }
+}
+
+.guided-existing-coverage {
+  @include allmobiles{
+    max-height: 100% !important;
+  }
 }
 

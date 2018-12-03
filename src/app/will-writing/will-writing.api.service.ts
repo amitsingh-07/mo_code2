@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { AppService } from '../app.service';
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -99,7 +100,7 @@ export class WillWritingApiService {
                 willProfileMembers.push({
                     uin: children.uin,
                     name: children.name,
-                    dob: children.dob['year'] + '' + children.dob['month'] + '' + children.dob['day'],
+                    dob: children.dob['year'] + '' + padNumber(children.dob['month']) + '' + padNumber(children.dob['day']),
                     relationshipCode: this.relationship.get(children.relationship),
                     isFamily: 'Y',
                     isBeneficiary: beneficiary ? 'Y' : 'N',

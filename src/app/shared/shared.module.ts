@@ -29,6 +29,7 @@ import {
 } from './modal/recommendations-modal/recommendations-modal.component';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
+import { TruncatePipe } from './Pipes/truncate.pipe';
 import { StringToLinkFormatPipe } from './Pipes/string-to-link.pipe';
 import {
     PlanDetailsWidgetComponent
@@ -37,6 +38,8 @@ import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
 
 import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
+import { DistributePercentDirective } from './directives/distribute-percent.directive';
+import { FormatDatePipe } from './Pipes/date-format.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -60,11 +63,11 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+  exports: [CurrencyInputDirective,  PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent],
+    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
-    OrderByPipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
+    OrderByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,
@@ -74,6 +77,9 @@ export function createTranslateLoader(http: HttpClient) {
     TermsOfUseComponent,
     BreakdownBarComponent,
     BreakdownAccordionComponent,
-    PercentageInputDirective]
+    PercentageInputDirective,
+    TruncatePipe,
+    DistributePercentDirective
+  ]
 })
 export class SharedModule { }

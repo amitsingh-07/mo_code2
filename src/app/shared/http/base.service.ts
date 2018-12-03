@@ -3,14 +3,14 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
 import { ConfigService, IConfig } from '../../config/config.service';
+import { Util } from '../utils/util';
 import { CustomErrorHandlerService } from './custom-error-handler.service';
 import { HelperService } from './helper.service';
 import { HttpService } from './http.service';
@@ -22,6 +22,7 @@ import { IServerResponse } from './interfaces/server-response.interface';
 })
 export class BaseService {
   config$: Observable<IConfig>;
+  apiBaseUrl = '';
 
   constructor(
     public http: HttpService,
@@ -31,12 +32,13 @@ export class BaseService {
     public configService: ConfigService
   ) {
     this.config$ = this.configService.getConfig();
+    this.apiBaseUrl = Util.getApiBaseUrl();
   }
 
   get(url) {
     this.helperService.showLoader();
     return this.httpClient
-      .get<IServerResponse>(`${environment.apiBaseUrl}/${url}`)
+      .get<IServerResponse>(`${this.apiBaseUrl}/${url}`)
       .finally(() => {
         this.helperService.hideLoader();
       })
@@ -74,7 +76,7 @@ export class BaseService {
     }
 
     return this.httpClient
-      .post<IServerResponse>(`${environment.apiBaseUrl}/${url}${param}`, postBody)
+      .post<IServerResponse>(`${this.apiBaseUrl}/${url}${param}`, postBody)
       .finally(() => {
         this.helperService.hideLoader();
       });
@@ -90,7 +92,7 @@ export class BaseService {
     }
 
     return this.httpClient
-      .post(`${environment.apiBaseUrl}/${url}${param}`, postBody, { responseType: 'blob' })
+      .post(`${this.apiBaseUrl}/${url}${param}`, postBody, { responseType: 'blob' })
       .finally(() => {
         this.helperService.hideLoader();
       });

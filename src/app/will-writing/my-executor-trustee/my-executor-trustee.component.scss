@@ -17,19 +17,13 @@
     border-radius: 6px;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
-    margin-top: 5px;
     margin-bottom: 24px;
-    @include allmobiles {
-        margin-top: 10px;
-    }
     .title {
         font-family: $muli-bold;
         border-radius: 6px;
         font-size: 20px;
-        font-weight: bold;
         letter-spacing: -0.4px;
         color: #066360;
         padding: 20px !important;
@@ -38,6 +32,7 @@
     .flex-row{
         padding:0 20px 21px;
         justify-content: space-between;
+        line-height: normal;
     }
 }
 
@@ -64,7 +59,6 @@
 }
 .autofill-text{
     font-size: 36px;
-    font-weight: 600;
     letter-spacing: -0.4px;
     color: #fff;
     position: relative;
@@ -72,10 +66,10 @@
 
 .sub-title {
     font-size: 18px;
-    font-weight: 600;
     line-height: 1.22;
     letter-spacing: -0.2px;
     color: #fff;
+    font-family: $muli-regular;
     @include allmobiles{
         font-size: 16px;
         color: #333846;
@@ -112,7 +106,10 @@
         @extend .flex;
         justify-content: space-between;
         align-items: center;
-        padding: 13px 28px;
+        padding-left: 28px;
+        padding-right: 28px;
+        padding-top: 13px;
+        height: 76px;
         span{
             margin-bottom: 8px;
         }
@@ -133,8 +130,8 @@
         .btn-primary {
             color: #fff;
             background-color: #00a7a7;
-            padding-top:5px !important;
-            padding-bottom: 5px !important;
+            padding: 8px !important;
+            width: 109px !important;
         }
     }
     .add-trustees{
@@ -150,7 +147,7 @@
     cursor: pointer;
     background-repeat: no-repeat;
     position: absolute;
-    right: -3px;
+    right: -7px;
     bottom: 15px;
     background-color: #fff;
     border-radius: 50%;
@@ -197,8 +194,8 @@
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        bottom: 5px;
-        right: -8px;
+        bottom: 2px;
+        right: -2px;
         border-radius: 0;
     }
 }
@@ -223,6 +220,11 @@
 
 .message-block{
     margin-top: 21px;
+    @include allmobiles {
+        margin-top: 0;
+        padding-bottom: 30px;
+    }
+    
     .tooltip-message-img{
         position: relative;
         img{
@@ -232,11 +234,10 @@
     .tooltip-message{
         padding: 14px 9px 17px 20px;
         position: absolute;
-        bottom: 20%;
+        bottom: 21%;
         width: 274px;
         left: 14%;
         font-size: 14px;
-        font-weight: 600;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;
@@ -264,3 +265,27 @@
         border-radius: 4px;
     }
   }
+
+  .form-group-single-column .checkbox-button.two-label {
+      margin-bottom: 19px;
+      @include allmobiles {
+          margin-bottom: 24px;
+      }
+  }
+
+  .dropdown-menu {
+    z-index: 998;
+    height: auto;
+    &.show{
+        margin-bottom: 65px;
+    }
+  }
+.save {
+    justify-content: space-around !important;
+    .cancel-btn {
+        background-color: #f4fafb !important;
+    }
+}
+.mt27 {
+    margin-top: 27px !important;
+}

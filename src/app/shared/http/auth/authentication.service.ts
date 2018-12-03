@@ -1,11 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
-import { environment } from '../../../../environments/environment';
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
+import { Util } from '../../utils/util';
 import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { appConstants } from './../../../app.constants';
@@ -17,9 +16,13 @@ const APP_ENQUIRY_ID = 'app-enquiry-id';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+  apiBaseUrl = '';
   constructor(
     private http: HttpClient, public jwtHelper: JwtHelperService,
-    private cache: RequestCache) { }
+    private cache: RequestCache) {
+
+    this.apiBaseUrl = Util.getApiBaseUrl();
+  }
 
   private getAppSecretKey() {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
@@ -53,7 +56,7 @@ export class AuthenticationService {
       handleError = '';
     }
     const authenticateUrl = apiConstants.endpoint.authenticate;
-    return this.http.post<IServerResponse>(`${environment.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
+    return this.http.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
@@ -109,6 +112,13 @@ export class AuthenticationService {
 
   public getEnquiryId(): string {
     return sessionStorage.getItem(appConstants.APP_ENQUIRY_ID);
+  }
+
+  public getCaptchaUrl(): string {
+    const time = new Date().getMilliseconds();
+    const apiBaseUrl = Util.getApiBaseUrl();
+    return `${apiBaseUrl}/account/account-microservice/getCaptcha?code=`
+      + this.getSessionId() + '&time=' + time;
   }
 
 }

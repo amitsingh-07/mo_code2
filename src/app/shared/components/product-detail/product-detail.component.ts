@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
@@ -26,7 +28,9 @@ export class ProductDetailComponent implements OnInit {
   lblPayout;
   lblFeatures;
 
-  constructor(public activeModal: NgbActiveModal, public translate: TranslateService) {
+  constructor(
+    public activeModal: NgbActiveModal, public translate: TranslateService,
+    private router: Router) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.lblAboutPolicy = this.translate.instant('PRODUCT_DETAILS.LBL_ABOUT_POLICY');
@@ -50,6 +54,12 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(({ urlAfterRedirects }: NavigationEnd) => {
+        // dismiss all bootstrap modal dialog
+        this.activeModal.dismiss();
+      });
     this.items = [
       {
         title: this.lblAboutPolicy,

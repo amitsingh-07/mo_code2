@@ -44,13 +44,42 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
 
   downloadWill() {
     this.willWritingApiService.downloadWill().subscribe((data: any) => {
-      this.downloadFile(data);
+      this.saveAs(data);
     }, (error) => console.log(error));
   }
+
+  saveAs(data) {
+    const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
+
+    const blob = new Blob([data], { type: 'application/pdf' });
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
+    } else if (isSafari && iOS || otherBrowsers || isSafari) {
+      this.downloadFile(data);
+    } else {
+      const reader: any = new FileReader();
+      const out = new Blob([data], { type: 'application/pdf' });
+      reader.onload = ((e) => {
+        window.open(reader.result);
+      });
+      reader.readAsDataURL(out);
+    }
+  }
+
   downloadFile(data: any) {
     const blob = new Blob([data], { type: 'application/pdf' });
     const url = window.URL.createObjectURL(blob);
-    window.open(url);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'MoneyOwl Will Writing.pdf';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+
   }
 
 }

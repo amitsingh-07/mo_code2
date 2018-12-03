@@ -16,6 +16,7 @@
         height: 153px;
         object-fit: contain;
         margin: auto;
+        margin-bottom: 16px;
         img{
             padding-top: 19px;
         }
@@ -34,7 +35,7 @@
     flex-direction: column;
     justify-content: space-around;
     letter-spacing: -0.3px;
-    color: #626362;
+    color: #636363;
     padding: 30px 25px;
     div{
         margin-bottom: 15px;
@@ -123,7 +124,6 @@
     .offer-code{
         font-family: $muli-semi-bold;
         font-size: 18px;
-        font-weight: 600;
         line-height: 2.5;
         letter-spacing: -0.2px;
         text-align: center;
@@ -148,7 +148,6 @@
             border-radius: 6px;
             font-family: $muli-bold;
             font-size: 16px;
-            font-weight: bold;
             letter-spacing: -0.2px;
             text-align: center;
             color: #2d8289;
@@ -176,9 +175,12 @@
                 font-size: 16px;
                 span{
                     font-family: $muli-bold;
-                    font-weight: bold;
                     cursor: pointer;
                 }
+            }
+            .getOneNow {
+                font-family: $muli-bold;
+                cursor: pointer;
             }
         }
     }
@@ -198,7 +200,6 @@
         color: #00a7a7;
         @include allmobiles {
             font-size: 20px;
-            font-weight: bold;
             letter-spacing: -0.4px;
             text-align: center;
             color: #066360;

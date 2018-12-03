@@ -40,8 +40,8 @@
                         <div class="col-12 flex-row title">
                           <div class="col-8 pl0">{{ 'WILL_WRITING.MY_BENEFICIARY.FORM_HEADER' | translate}}</div>
                         </div>
-                        <div class="flex-row mb10">
-                          <div class="flex-col-5">
+                        <div class="flex-row">
+                          <div class="pl0 col-5">
                             <label for="name" id="addGuardianFormLbl1">
                               <div>
                                 <div>{{ 'WILL_WRITING.COMMON.NAME' | translate}}</div>
@@ -49,17 +49,17 @@
                               </div>
                             </label>
                           </div>
-                          <div class="flex-col-7">
+                          <div class="pr0 col-7">
                             <input type="text" [ngClass]="{'inline-error': submitted && addBen.name.invalid}" id="addGuardianFormInpt1"
                               class="form-control" #name formControlName="name">
                           </div>
                         </div>
-                        <div class="flex-row mb10">
-                          <div class="flex-col-5">
+                        <div class="flex-row">
+                          <div class="pl0 col-5">
                             <label for="name" id="addGuardianFormLbl3" class="relationship">{{ 'WILL_WRITING.COMMON.RELATIONSHIP' |
                               translate}}</label>
                           </div>
-                          <div class="flex-col-7">
+                          <div class="pr0 col-7">
                             <div class="dropdown-control" [ngClass]="{'inline-error': submitted && addBen.relationship.invalid}">
                               <div ngbDropdown id="relationshipDropDown">
                                 <button type="button" class="btn btn-dropdown" id="dropdownRelationship"
@@ -79,24 +79,24 @@
                             </div>
                           </div>
                         </div>
-                        <div class="flex-row mb10">
-                          <div class="flex-col-5">
+                        <div class="flex-row">
+                          <div class="pl0 col-5">
                             <label for="name" id="addGuardianFormLbl2">
                                 <div>{{ 'WILL_WRITING.ABOUT_ME.FORM.NRIC' | translate}}</div>
                                 <div class="with-help-icon">{{ 'WILL_WRITING.ABOUT_ME.FORM.NUMBER' | translate}} <span class="help-icon" (click)="openToolTipModal()"></span></div>
                             </label>
                           </div>
-                          <div class="flex-col-7">
+                          <div class="pr0 col-7">
                             <input type="text" [ngClass]="{'inline-error': submitted && addBen.uin.invalid}" id="addGuardianFormInpt2"
                               class="form-control" #uin formControlName="uin">
                           </div>
                         </div>
-                        <div class="flex-row mb10 add-beneficiary">
-                          <div class="flex-col-5">
+                        <div class="flex-row add-beneficiary">
+                          <div class="pl0 col-5">
                             <button type="button" (click)="resetForm()" class="btn width100">{{
                               'WILL_WRITING.COMMON.CANCEL' | translate}}</button>
                           </div>
-                          <div class="flex-col-5">
+                          <div class="pr0 col-5">
                             <button type="button" (click)="addBeneficiary(addBeneficiaryForm)" class="btn btn-primary width100">
                               <span *ngIf="isEdit">{{'WILL_WRITING.COMMON.SAVE' | translate}}</span>
                               <span *ngIf="!isEdit">{{'WILL_WRITING.COMMON.ADD' | translate}}</span>

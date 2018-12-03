@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   private loginFormError: any = new LoginFormError();
   private pageTitle: string;
   private description: string;
+  private duplicateError: string;
 
   loginForm: FormGroup;
   formValues: any;
@@ -59,6 +60,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     private _location: Location,
     private translate: TranslateService) {
     this.translate.use('en');
+    this.translate.get('COMMON').subscribe((result: string) => {
+      this.duplicateError = this.translate.instant('COMMON.DUPLICATE_ERROR');
+    });
     this.route.params.subscribe((params) => {
       this.heighlightMobileNumber = params.heighlightMobileNumber;
     });
@@ -68,7 +72,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
    * Initialize tasks.
    */
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(5);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
     this.authService.authenticate().subscribe((token) => {
@@ -156,6 +163,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                     if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
                       this.willWritingService.setIsWillCreated(true);
                       this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
+                    } else if (data.responseMessage && data.responseMessage.responseCode === 5006) {
+                      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+                      ref.componentInstance.errorTitle = '';
+                      ref.componentInstance.errorMessage = this.duplicateError;
                     }
                   });
                 } else {
@@ -222,8 +233,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   refreshCaptcha() {
-    const time = new Date().getMilliseconds();
-    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=`
-      + this.authService.getSessionId() + '&time=' + time;
+    this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }

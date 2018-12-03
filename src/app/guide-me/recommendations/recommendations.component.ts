@@ -1,17 +1,29 @@
-import { CurrencyPipe } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { CurrencyPipe, Location } from '@angular/common';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { NgbCarouselConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { SlickComponent } from 'ngx-slick';
+import { Subscription } from 'rxjs';
 
-import { Router } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '../../../../node_modules/@angular/router';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
+import { StateStoreService } from '../../shared/Services/state-store.service';
 import { GuideMeCalculateService } from '../guide-me-calculate.service';
 import { GuideMeApiService } from '../guide-me.api.service';
 import { GuideMeService } from '../guide-me.service';
 import { CreateAccountModelComponent } from './create-account-model/create-account-model.component';
+import { RecommendationsState } from './recommendations.state';
 
 @Component({
   selector: 'app-recommendations',
@@ -20,70 +32,98 @@ import { CreateAccountModelComponent } from './create-account-model/create-accou
   encapsulation: ViewEncapsulation.None,
   providers: [NgbCarouselConfig]
 })
-export class RecommendationsComponent implements IPageComponent, OnInit, AfterViewChecked {
+export class RecommendationsComponent implements IPageComponent, OnInit, AfterViewChecked, OnDestroy {
+  @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
+  @ViewChild('mobileHeaderMenu', { read: ElementRef }) mobileHeaderMenu: ElementRef<any>;
+
   pageTitle: string;
   subTitle: string;
 
-  modalRef: NgbModalRef;
-  resultsEmptyMessage = '';
-  recommendationPlans;
-  selectedPlans: any[] = [];
-  coverageAmount = '';
-  premiumFrom = '';
-  perMonth = '';
-  perYear = '';
-  premiumFrequency = '';
-
-  activeRecommendationType;
-  activeRecommendationList;
-  enquiryId;
-  protectionNeedTypes;
-
-  enableScroll = false;
-
-  prevActiveSlide;
-  nextActiveSlide;
-
-  public innerWidth: any;
-  currentSlide = 0;
   slideConfig = { slidesToShow: 1, slidesToScroll: 1, infinite: false };
+  modalRef: NgbModalRef;
 
-  @ViewChild('recommendationCarousel') recommendationCarousel: SlickComponent;
-  @ViewChild('mobileHeaderMenu', { read: ElementRef }) public mobileHeaderMenu: ElementRef<any>;
+  routeSubscription: Subscription;
+  state: RecommendationsState;
+  componentName: string;
 
   constructor(
     private carouselConfig: NgbCarouselConfig, private elRef: ElementRef,
     private translate: TranslateService, public navbarService: NavbarService,
     private guideMeApiService: GuideMeApiService, private calculateService: GuideMeCalculateService,
     private currency: CurrencyPipe, private guideMeService: GuideMeService,
-    private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router) {
+    private selectedPlansService: SelectedPlansService, public modal: NgbModal, private router: Router,
+    private stateStoreService: StateStoreService, private route: ActivatedRoute,
+    private location: Location) {
+
+    /* ************** STATE HANDLING - START ***************** */
+    this.componentName = this.route.routeConfig.component.name;
+
+    this.routeSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.stateStoreService.saveState(this.componentName, this.state);
+      } else if (event instanceof NavigationEnd) {
+
+      }
+    });
+    if (this.stateStoreService.has(this.componentName)) {
+      this.state = this.stateStoreService.getState(this.componentName);
+    } else {
+      this.state = new RecommendationsState();
+    }
+
+    this.location.subscribe((popStateEvent: PopStateEvent) => {
+      if (popStateEvent.type === 'popstate') {
+        const eventSubscription = this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+            this.stateStoreService.clearState(this.componentName);
+            eventSubscription.unsubscribe();
+
+          }
+        });
+      }
+    });
+    /* ************** STATE HANDLING - END ***************** */
+
     this.carouselConfig.wrap = false;
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('RECOMMENDATIONS.TITLE');
       this.subTitle = this.translate.instant('RECOMMENDATIONS.DESCRIPTION');
-      this.protectionNeedTypes = this.translate.instant('PROTECTION_NEED_TYPES');
-      this.perMonth = this.translate.instant('SUFFIX.PER_MONTH');
-      this.perYear = this.translate.instant('SUFFIX.PER_YEAR');
+      this.state.protectionNeedTypes = this.translate.instant('PROTECTION_NEED_TYPES');
+      this.state.perMonth = this.translate.instant('SUFFIX.PER_MONTH');
+      this.state.perYear = this.translate.instant('SUFFIX.PER_YEAR');
       this.setPageTitle(this.pageTitle, this.subTitle);
+      this.state.pageTitle = this.pageTitle;
+      this.state.subTitle = this.subTitle;
     });
   }
 
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(true);
     setTimeout(() => {
-      this.getRecommendationsFromServer();
+      if (!this.stateStoreService.has(this.componentName) && (!this.state || !this.state.enquiryId)) {
+        this.getRecommendationsFromServer();
+      }
     }, 500);
+
+    this.state.recommendationCarousel = this.recommendationCarousel;
+    this.state.mobileHeaderMenu = this.mobileHeaderMenu;
+  }
+
+  ngOnDestroy() {
+    if (this.routeSubscription instanceof Subscription) {
+      this.routeSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewChecked() {
-    this.enableScroll = true;
+    this.state.enableScroll = true;
   }
 
   afterChange(e) {
-    this.currentSlide = e.currentSlide;
-    this.activeRecommendationList = this.recommendationPlans[this.currentSlide];
-    this.activeRecommendationType = this.activeRecommendationList.protectionType;
+    this.state.currentSlide = e.currentSlide;
+    this.state.activeRecommendationList = this.state.recommendationPlans[this.state.currentSlide];
+    this.state.activeRecommendationType = this.state.activeRecommendationList.protectionType;
 
     this.updateCoverageDetails();
     switch (e.slick.currentDirection) {
@@ -102,21 +142,21 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
       (data) => {
         window.scrollTo(0, 0);
         if (data.responseMessage.responseCode === 6004) {
-          this.resultsEmptyMessage = data.responseMessage.responseDescription;
+          this.state.resultsEmptyMessage = data.responseMessage.responseDescription;
           return;
         }
-        this.resultsEmptyMessage = '';
-        this.recommendationPlans = data.objectList[0].productProtectionTypeList;
-        this.enquiryId = data.objectList[0].enquiryId;
-        this.activeRecommendationType = this.recommendationPlans[0].protectionType;
-        this.activeRecommendationList = this.recommendationPlans[0];
+        this.state.resultsEmptyMessage = '';
+        this.state.recommendationPlans = data.objectList[0].productProtectionTypeList;
+        this.state.enquiryId = data.objectList[0].enquiryId;
+        this.state.activeRecommendationType = this.state.recommendationPlans[0].protectionType;
+        this.state.activeRecommendationList = this.state.recommendationPlans[0];
         this.updateCoverageDetails();
       });
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.innerWidth = window.innerWidth;
+    this.state.innerWidth = window.innerWidth;
   }
 
   setPageTitle(title: string, subTitle: string) {
@@ -126,13 +166,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselNext() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'');
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.right > containerBound.right) {
-        this.mobileHeaderMenu.nativeElement.scrollTo(
+        this.state.mobileHeaderMenu.nativeElement.scrollTo(
           {
-            left: (this.mobileHeaderMenu.nativeElement.scrollLeft + bound.width),
+            left: (this.state.mobileHeaderMenu.nativeElement.scrollLeft + bound.width),
             behavior: 'smooth'
           });
       }
@@ -142,13 +182,13 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   moveCarouselPrev() {
     const container = this.elRef.nativeElement.querySelector('#mobileHeaderMenu');
     const containerBound = container.getBoundingClientRect();
-    const boundElement = container.querySelector('[data-type=\'' + this.activeRecommendationType + '\'');
+    const boundElement = container.querySelector('.' + this.state.activeRecommendationType.replace(' ', '-'));
     if (boundElement) {
       const bound = boundElement.getBoundingClientRect();
       if (bound.left < containerBound.left) {
-        this.mobileHeaderMenu.nativeElement.scrollTo(
+        this.state.mobileHeaderMenu.nativeElement.scrollTo(
           {
-            left: (this.mobileHeaderMenu.nativeElement.scrollLeft - bound.width),
+            left: (this.state.mobileHeaderMenu.nativeElement.scrollLeft - bound.width),
             behavior: 'smooth'
           });
       }
@@ -157,59 +197,59 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
 
   slideCarousel(event) {
     if (event.direction === 'left') {
-      this.prevActiveSlide = event.prev;
+      this.state.prevActiveSlide = event.prev;
     } else {
-      this.nextActiveSlide = event.prev;
+      this.state.nextActiveSlide = event.prev;
     }
-    this.activeRecommendationType = event.current;
-    this.activeRecommendationList = this.getCurrentRecommendationList();
+    this.state.activeRecommendationType = event.current;
+    this.state.activeRecommendationList = this.getCurrentRecommendationList();
     this.updateCoverageDetails();
   }
 
   jumpToSlide(recommendation, index) {
-    this.recommendationCarousel.slickGoTo(index);
-    this.activeRecommendationType = recommendation.protectionType;
-    this.activeRecommendationList = recommendation;
+    this.state.recommendationCarousel.slickGoTo(index);
+    this.state.activeRecommendationType = recommendation.protectionType;
+    this.state.activeRecommendationList = recommendation;
     this.updateCoverageDetails();
   }
 
   getCurrentRecommendationList() {
-    return this.recommendationPlans[this.currentSlide];
+    return this.state.recommendationPlans[this.state.currentSlide];
   }
 
   updateCoverageDetails() {
-    if (this.activeRecommendationList.productList[0]) {
-      const data = this.activeRecommendationList.productList[0];
-      this.premiumFrom = data.premium.premiumAmount;
+    if (this.state.activeRecommendationList.productList[0]) {
+      const data = this.state.activeRecommendationList.productList[0];
+      this.state.premiumFrom = data.premium.premiumAmount;
 
-      this.premiumFrequency = this.perMonth;
+      this.state.premiumFrequency = this.state.perMonth;
 
-      switch (this.activeRecommendationType) {
-        case this.protectionNeedTypes.LIFE_PROTECTION:
+      switch (this.state.activeRecommendationType) {
+        case this.state.protectionNeedTypes.LIFE_PROTECTION:
           //this.coverageAmount = this.calculateService.getLifeProtectionData().coverageAmount + '';
           break;
-        case this.protectionNeedTypes.CRITICAL_ILLNESS:
+        case this.state.protectionNeedTypes.CRITICAL_ILLNESS:
           //const criticalIllnessValues = this.calculateService.getCriticalIllnessData();
           //this.coverageAmount = criticalIllnessValues.coverageAmount + '';
           break;
-        case this.protectionNeedTypes.OCCUPATION_DISABILITY:
+        case this.state.protectionNeedTypes.OCCUPATION_DISABILITY:
           //const ocpData = this.calculateService.getOcpData();
           //this.coverageAmount = ocpData.coverageAmount + '';
           break;
-        case this.protectionNeedTypes.LONG_TERM_CARE:
-        case this.protectionNeedTypes.HOSPITAL_PLAN:
+        case this.state.protectionNeedTypes.LONG_TERM_CARE:
+        case this.state.protectionNeedTypes.HOSPITAL_PLAN:
           //const ltcData = this.calculateService.getLtcData();
           //this.coverageAmount = ltcData.monthlyPayout + '';
-          this.premiumFrom = data.premium.premiumAmountYearly;
-          this.premiumFrequency = this.perYear;
+          this.state.premiumFrom = data.premium.premiumAmountYearly;
+          this.state.premiumFrequency = this.state.perYear;
           break;
       }
 
-      this.coverageAmount = data.premium.sumAssured;
+      this.state.coverageAmount = data.premium.sumAssured;
 
     } else {
-      this.coverageAmount = '';
-      this.premiumFrom = '';
+      this.state.coverageAmount = '';
+      this.state.premiumFrom = '';
     }
   }
 
@@ -217,24 +257,35 @@ export class RecommendationsComponent implements IPageComponent, OnInit, AfterVi
   }
 
   selectPlan(data) {
-    const index: number = this.selectedPlans.indexOf(data.plan);
+    const index: number = this.state.selectedPlans.indexOf(data.plan);
     if (data.selected) {
       if (index === -1) {
-        this.selectedPlans.push(data.plan);
+        this.state.selectedPlans.push(data.plan);
       }
     } else {
       if (index !== -1) {
-        this.selectedPlans.splice(index, 1);
+        this.state.selectedPlans.splice(index, 1);
       }
     }
+    this.updatePlanData(data.plan);
+  }
+
+  updatePlanData(plan) {
+    this.state.recommendationPlans = this.state.recommendationPlans
+      .map((item) => {
+        if (item.id === plan.id) {
+          return plan;
+        }
+        return item;
+      });
   }
 
   proceed() {
-    this.selectedPlansService.setSelectedPlan(this.selectedPlans, this.enquiryId);
+    this.selectedPlansService.setSelectedPlan(this.state.selectedPlans, this.state.enquiryId);
     this.modalRef = this.modal.open(CreateAccountModelComponent, {
       windowClass: 'position-bottom',
       centered: true
     });
-    this.modalRef.componentInstance.data = this.selectedPlans.length;
+    this.modalRef.componentInstance.data = this.state.selectedPlans.length;
   }
 }

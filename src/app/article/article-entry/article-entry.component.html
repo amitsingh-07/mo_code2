@@ -16,7 +16,7 @@
     <div class="article-entry__content">
       <div class="page-header">
         <div class="art-tag__container">
-            <div class="art-tag__element" routerLink="/articles/category/{{art_tag | StringToLink}}" *ngFor="let art_tag of tags"><i class="material-icons">local_offer</i>{{art_tag}}</div>
+            <div class="art-tag__element" routerLink="/articles/category/{{art_tag | StringToLink}}" *ngFor="let art_tag of tags">{{art_tag}}</div>
           </div>
         <div class="page-header--inner">
           <h1>{{title}}</h1>
@@ -24,12 +24,14 @@
             <div class="author--img"> 
               <img src="assets/images/profile/{{author | StringToLink}}.jpg">
             </div>
+            <div class="author-ded">
             <div class="author--name">
-              By <a>{{author}}</a> 
+              <a>{{author}}</a> 
               </div>
             <div class="date">
-              {{date | date:'dd MMM yyyy'}}
+              {{date | date:'MMM dd, yyyy'}}
               </div>
+            </div>
           </div>
           </div>
       </div>
@@ -40,7 +42,7 @@
     <div class="article-entry__side-panel">
         <app-subscribe-side></app-subscribe-side>
         <div class="related-side">
-          <p class="related-side--title">Related Articles:</p>
+          <p class="related-side--title">{{'ARTICLE_INDIVIDUAL.RELATED_ARTICLES.LABEL' | translate}}</p>
           <div class="relate-side__card-container">
             <div class="relate-side__card" *ngFor="let relatedArticle of art_related">
               <div class="related-card__img">
@@ -48,7 +50,7 @@
                 </div>
               <div class="related-card__desc">
                 <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}"class="related-card--title">{{relatedArticle.art_title}}</a>
-                <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}">Read More <i class="material-icons">
+                <a routerLink="/articles/entry/{{relatedArticle.id}}" routerLink="/articles/entry/{{relatedArticle.id}}">{{'ARTICLE_INDIVIDUAL.RELATED_ARTICLES.READ_MORE' | translate}} <i class="material-icons">
                     keyboard_arrow_right
                     </i></a>
                 </div>

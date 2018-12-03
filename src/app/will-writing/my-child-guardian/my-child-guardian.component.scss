@@ -41,17 +41,17 @@
         line-height: 1.22;
         letter-spacing: -0.2px;
         margin-top: 15px;
-        font-family: $muli-semi-bold;
+        font-family: $muli-regular;
         @include allmobiles{
-            width: 294px;
+            width: 268px;
             margin-top: 0;
+            font-size: 16px;
         }
     }
 }
 
 .autofill-text{
     font-size: 36px;
-    font-weight: 600;
     letter-spacing: -0.4px;
     color: $white-color;
     position: relative; 
@@ -71,7 +71,6 @@
         background-color: #ffffff;
         font-family: $muli-semi-bold;
         font-size: 16px;
-        font-weight: 600;
         letter-spacing: -0.2px;
         text-align: center;
         color: #333846;
@@ -82,7 +81,6 @@
 .form-title{
     font-family: $muli-semi-bold;
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     padding: 9px 0 19px;
 }
@@ -92,7 +90,10 @@
         @extend .flex;
         justify-content: space-between;
         align-items: center;
-        padding: 13px 28px;
+        height: 76px;
+        padding-left: 28px;
+        padding-right: 28px;
+        padding-top: 13px;
         span{
             margin-bottom: 8px;
         }
@@ -104,13 +105,9 @@
         border-radius: 6px;
         box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
         font-size: 18px;
-        font-weight: 600;
         letter-spacing: -0.3px;
         line-height: normal;
         color: #2d8289;
-        @include allmobiles {
-            margin-top: 19px;
-        }
         .flex-row{
             padding: 0 19px 22px; 
             .form-control{
@@ -122,7 +119,6 @@
             background: $white-color;
             font-family: $muli-bold;
             font-size: 20px;
-            font-weight: bold;
             letter-spacing: -0.4px;
             color: #066360;
             margin-bottom: 19px;
@@ -146,7 +142,6 @@
                 color: #00a7a7;
                 font-family: $muli-semi-bold;
                 font-size: 16px;
-                font-weight: 600;
                 letter-spacing: -0.1px;
                 text-align: center;
         }
@@ -184,6 +179,7 @@
     letter-spacing: -0.1px;
     font-weight: 100;
     color: #2d8289;
+    padding-bottom: 16px !important
   }
 
   .title-cancel {
@@ -208,9 +204,9 @@
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        bottom: 5px;
+        bottom: 2px;
         border-radius: 0;
-        margin-right: -8px !important;
+        margin-right: 4px !important;
     }
 }
 
@@ -248,3 +244,22 @@
         border-radius: 4px;
     }
   }
+
+  .dropdown-control{
+    @include allmobiles {
+        .show {
+            &.dropdown {
+                border: 1px solid #00a7a7 !important;
+                border-radius:  6px;
+            }
+        }
+    }
+    .dropdown-menu{
+        @include allmobiles {
+            z-index: 998;
+            max-height: 180px !important;
+            overflow: auto;
+            top: -186px !important;
+        }
+    }
+}

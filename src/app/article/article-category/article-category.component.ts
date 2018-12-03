@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
+import { SeoServiceService } from './../../shared/Services/seo-service.service';
 import { ArticleApiService } from './../article.api.service';
 import { ArticleService } from './../article.service';
 import { IArticleElement } from './../articleElement.interface';
@@ -20,9 +22,10 @@ export class ArticleCategoryComponent implements OnInit {
   public category_id: number;
   public categoryList: IArticleCategory[];
   public articleListCategory: IArticleElement[];
-  constructor(public navbarService: NavbarService, public footerService: FooterService,
-              private articleService: ArticleService, private articleApiService: ArticleApiService,
+  constructor(public navbarService: NavbarService, public footerService: FooterService, public translate: TranslateService,
+              private articleService: ArticleService, private articleApiService: ArticleApiService, private seoService: SeoServiceService,
               private config: NgbDropdownConfig, private route: ActivatedRoute, private router: Router) {
+                this.translate.use('en');
               }
 
   ngOnInit() {
@@ -60,19 +63,28 @@ export class ArticleCategoryComponent implements OnInit {
   }
 
   getCategoryArticles(category_name: string) {
+    window.scroll(0, 0);
     this.category_id = +(this.articleService.getArticleId(category_name));
     if (this.category_id > -1) {
       this.category = this.articleService.getArticleTagName(this.category_id).tag_name;
       this.requestArticleData();
+      this.setSeoData();
     } else {
       if (this.category_id === -1) {
         this.category = 'All';
         this.requestArticleData();
+        this.setSeoData();
       } else {
         // Redirect away
         this.router.navigate(['/articles/category/all']);
       }
     }
+  }
+
+  setSeoData() {
+    this.translate.get('COMMON').subscribe((result) => {
+      this.seoService.setTitle(this.translate.instant('COMMON.PRE_TITLE') + this.category);
+    });
   }
 
   requestArticleData() {

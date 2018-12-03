@@ -5,22 +5,25 @@
       </div>
     <div class="sidepanel__form">
       <div class="sidepanel__form-header">
-        <div class="sidepanel-label">Join our mailing list and get wiser!</div>
+        <div *ngIf="!isWillWritingEnabled" class="sidepanel-label" innerHTML="{{'SUBSCRIBE_SIDE.TITLE' | translate}}"></div>
+        <div *ngIf="isWillWritingEnabled" class="sidepanel-label" innerHTML="{{'SUBSCRIBE_SIDE.PROMO_TITLE' | translate}}"></div>
         <div class="sidepanel-icon">
           <img src="../../../assets/images/owl--minier.svg"/>
           </div>
         </div>
+      <div *ngIf="isWillWritingEnabled" class="sidepanel__form-promo">
+        <div class="sidepanel-label" innerHTML="{{'SUBSCRIBE_SIDE.PROMO_SUB_TITLE' | translate}}"></div>
+        </div>
       <form class="sidepanel__form-inner" [formGroup]="subscribeSideForm">
-        <input type="text" class="form-control" placeholder="First Name" formControlName="firstName"/>
-        <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName"/>
-        <input type="email" class="form-control" placeholder="Email" formControlName="email"/>
+        <input type="text" class="form-control" placeholder="{{'SUBSCRIBE_SIDE.FIRST_NAME' | translate}}" formControlName="firstName"/>
+        <input type="text" class="form-control" placeholder="{{'SUBSCRIBE_SIDE.LAST_NAME' | translate}}" formControlName="lastName"/>
+        <input type="email" class="form-control" placeholder="{{'SUBSCRIBE_SIDE.EMAIL' | translate}}" formControlName="email"/>
         <p *ngIf="!(subscribeMessage === '')" class="sub-message" [ngClass]="{'success': subscribeSuccess}">{{subscribeMessage}}</p>
         <div class="sidepanel__sub-text">
-          Get exclusive access to promotions, personal finance 
-          tips and updates on the latest news. Don’t miss out!
+          {{'SUBSCRIBE_SIDE.SUB_TEXT' | translate}}
           </div>
         <button class="btn btn-primary" (click)="subscribeMember()">
-          Subscribe
+          {{'SUBSCRIBE_SIDE.SUBSCRIBE' | translate}}
           </button>
       </form>
       </div>

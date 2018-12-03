@@ -54,7 +54,6 @@ export class JwtInterceptor implements HttpInterceptor {
                 })
             });
         }
-
         return next.handle(request).do((event: HttpEvent<IServerResponse>) => {
             if (event instanceof HttpResponse) {
                 // do stuff with response if you want
@@ -92,7 +91,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     saveCache(request: HttpRequest<any>, event: HttpResponse<IServerResponse>) {
-        const apiPath = request.url.split(environment.apiBaseUrl + '/')[1];
+        const apiPath = request.url.split(window.location.host + '/')[1];
         if (!exceptionUrlList.has(apiPath)) {
             this.cache.put(request, event);
         }
