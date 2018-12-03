@@ -19,7 +19,7 @@ export class WillWritingApiService {
         ['sibling', 'SBL'],
         ['parent-in-law', 'PIL'],
         ['friend', 'F'],
-        ['others', 'O'],
+        ['relative', 'R'],
         ['spouse', 'S'],
         ['child', 'C'],
     ]);
