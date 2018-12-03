@@ -9,7 +9,7 @@
     "VIA_BANK": "Via Bank Transfer",
     "VIA_PAYNOW": "Via PayNow",
     "LOGIN_TO_NETBANKING_PAYNOW": "Log in to PayNow via internet banking or mobile banking app to make the fund transfer.",
-   "LOGIN_TO_NETBANKING_BANK": "Log in to your internet banking or mobile banking app to make the fund transfer.",
+    "LOGIN_TO_NETBANKING_BANK": "Log in to your internet banking or mobile banking app to make the fund transfer.",
     "TAKE_SCREENSHOT": "Take a Screenshot to do it later",
     "AMOUNT_TO_TRANSFER": "Amount to Transfer",
     "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
@@ -27,7 +27,9 @@
   "TOPUP": {
     "TITLE": "TOP UP",
     "SELECT_POTODOLIO": "1. Select Portfolio ",
-    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount "
+    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
+    "PLEASE_TOPUP": "Please top up"
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investment",

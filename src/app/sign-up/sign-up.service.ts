@@ -333,4 +333,8 @@ export class SignUpService {
     this.commit();
   }
 
+ getDashboardList() {            //call API for DashBoard
+    return this.apiService.getDashboardList();
+  }
+
 }

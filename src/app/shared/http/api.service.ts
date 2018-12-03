@@ -408,13 +408,22 @@ export class ApiService {
         })
       );
   }
-  getInvestmentOverview() {
-    //  const url = '../assets/mock-data/investment-overview.json';
-     return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
-     .pipe(
+  // tslint:disable-next-line:no-commented-code
+  getDashboardList() {
+    // tslint:disable-next-line:no-commented-code
+    const url = '../../../assets/mock-data/dashboard.json';
+    return this.http.getMock(url)
+      .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-    }
+  }
+getInvestmentOverview() {
+    //  const url = '../assets/mock-data/investment-overview.json';
+    return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   getIndustryList() {
     return this.http.get(apiConstants.endpoint.investmentAccount.lndustrylist)
       .pipe(
