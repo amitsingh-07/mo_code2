@@ -177,7 +177,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   editBeneficiary(relation: string, index: number, el) {
     if (relation === WILL_WRITING_CONFIG.SPOUSE || relation === WILL_WRITING_CONFIG.CHILD) {
       if (this.addBeneficiaryForm.dirty) {
-        this.pageTitleComponent.goBack();
+        this.pageTitleComponent.goBack(WILL_WRITING_ROUTE_PATHS.MY_FAMILY);
       } else {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
       }
