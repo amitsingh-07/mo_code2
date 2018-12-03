@@ -413,7 +413,7 @@ export class WillWritingService {
     for (const children of childrens) {
       const dob = children.dob;
       const today = new Date();
-      const birthDate = new Date(dob['year'], dob['month'], dob['day']);
+      const birthDate = new Date(dob['year'] + '/' + dob['month'] + '/' + dob['day']);
       let age = today.getFullYear() - birthDate.getFullYear();
       const m = today.getMonth() - birthDate.getMonth();
       if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {

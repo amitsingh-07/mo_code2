@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component,
+         ElementRef,
+         OnInit,
+         Renderer2,
+         ViewChild,
+         ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService, IConfig } from './../config/config.service';
@@ -15,7 +20,8 @@ import { IFAQSection } from './faq.interface';
   styleUrls: ['./faq.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FAQComponent implements OnInit, AfterViewInit {
+
+export class FAQComponent implements OnInit{
   public pageTitle: string;
   public sections: any;
   public navBarElement: ElementRef;
@@ -24,6 +30,9 @@ export class FAQComponent implements OnInit, AfterViewInit {
   isWillWritingEnabled = false;
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
+
+  @ViewChild('faqContainer') FaqElement: ElementRef;
+
   constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
               public translate: TranslateService, public renderer: Renderer2, private configService: ConfigService,
               public route: ActivatedRoute) {
@@ -40,6 +49,9 @@ export class FAQComponent implements OnInit, AfterViewInit {
                   this.isWillWritingEnabled = config.willWritingEnabled;
                   this.isInvestmentEnabled = config.investmentEnabled;
                   this.isComprehensiveEnabled = config.comprehensiveEnabled;
+                  this.route.fragment.subscribe((fragment) => {
+                    this.goToRoute(fragment);
+                  });
                 });
               }
 
@@ -47,15 +59,6 @@ export class FAQComponent implements OnInit, AfterViewInit {
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(true);
-  }
-
-  ngAfterViewInit() {
-    this.route.fragment.subscribe((fragment) => {
-      this.activeSection = 0;
-      if (fragment) {
-        this.goToRoute(fragment);
-      }
-    });
   }
 
   goToRoute(fragment) {
@@ -73,6 +76,7 @@ export class FAQComponent implements OnInit, AfterViewInit {
     } else {
       this.activeSection = 0;
     }
+    console.log(this.activeSection);
   }
 
   toggleActive(event: any) {
@@ -141,6 +145,7 @@ export class FAQComponent implements OnInit, AfterViewInit {
   }
 
     goToSection(elementName) {
+      console.log(elementName);
       if (elementName === 'insurance') {
         this.activeSection = 0;
       } else if (elementName === 'will') {
@@ -152,6 +157,6 @@ export class FAQComponent implements OnInit, AfterViewInit {
       } else {
         this.activeSection = 0;
       }
-
+      console.log(this.activeSection);
     }
 }
