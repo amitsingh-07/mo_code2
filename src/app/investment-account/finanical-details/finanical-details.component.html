@@ -27,7 +27,7 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button [disabled]="isDisabled()" ngbDropdownToggle class="btn btn-dropdown without-border grey" id="financial_details-annual_house_hold_drpdown"> 
-                        {{financialDetails.controls.annualHouseHoldIncomeRange.value ? financialDetails.controls.annualHouseHoldIncomeRange.value.name :'Select Range'}}
+                        {{financialDetails.controls.annualHouseHoldIncomeRange.value  ? financialDetails.controls.annualHouseHoldIncomeRange.value.name :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let annualHouseHoldIncome of annualHouseHoldIncomeRanges; let i = index;" (click)="setAnnualHouseHoldIncomeRange(annualHouseHoldIncome)"
@@ -44,14 +44,14 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="financial_details_number_of_house_members-lbl">{{'FINANCIAL_DETAILS.NUMBER_OF_HOUSE_HOLDERS' | translate}}  
-                  </label>
+                  <label for="employement_details_status" id="financial_details_number_of_house_members-lbl">{{'FINANCIAL_DETAILS.NUMBER_OF_HOUSE_HOLDERS' | translate}}
+                 </label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('numberOfHouseHoldMembers').valid && !financialDetails.get('numberOfHouseHoldMembers').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
-                        {{financialDetails.controls.numberOfHouseHoldMembers.value ? financialDetails.controls.numberOfHouseHoldMembers.value :'Select Number'}}
+                        {{(financialDetails.controls.numberOfHouseHoldMembers.value == '' || financialDetails.controls.numberOfHouseHoldMembers.value)  ? financialDetails.controls.numberOfHouseHoldMembers.value  :'Select Number'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let numberOfHouseHoldMembers of numberOfHouseHoldMembersList; let i = index;" (click)="setnumberOfHouseHoldMembers(numberOfHouseHoldMembers)"
