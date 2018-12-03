@@ -29,7 +29,7 @@
       "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
-        "MESSAGE": "<div class='pt5'>You may enter your NRIC, FIN, Birth Cert or Passport Number.</div>"
+        "MESSAGE": "<div class='pt5'>Please enter your details as follows:<br> <div class='flex space-btwn mt10'><div class='flex-col-6'>NRIC Number:</div><div class='flex-col-6'>Singapore Citizens/ Permanent Residents</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>FIN Number:</div><div class='flex-col-6'>Foreigners</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>Birth Cert Number:</div><div class='flex-col-6'>Children 15 years old and below</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>Passport Number:</div><div class='flex-col-6'>All others</div></div></div>"
       },
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
