@@ -70,8 +70,9 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    if (this.willWritingService.getBeneficiaryInfo().length > 0) {
-      this.beneficiaryList = this.willWritingService.getBeneficiaryInfo().slice();
+    const beneficiaryList = this.willWritingService.getBeneficiaryInfo();
+    if (beneficiaryList.length > 0) {
+      this.beneficiaryList = JSON.parse(JSON.stringify(beneficiaryList));
       this.selectedBeneficiaryLength = this.beneficiaryList.filter((beneficiary) => beneficiary.selected === true).length;
     } else {
       if (this.willWritingService.getSpouseInfo().length > 0) {
