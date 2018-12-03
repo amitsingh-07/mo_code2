@@ -190,7 +190,7 @@
 </div>
 
 
-<small><em class="md-grey-color">*With information from MoneyOwl and Comparefirst. Figures are compiled on 7 November 2018. </em>
+<small><em class="md-grey-color">*With information from MoneyOwl and Comparefirst. Figures are compiled on 3 December 2018. </em>
 <em class="md-grey-color">**Prices reflected in the table reflect ongoing existing promotions and discounts which are in the knowledge of. Data is generated based on date of birth on 1st November.</em>
 <em class="md-grey-color">***Prices are not reflected for certain products due to individual product specification limitations.</em><br><br>
 </small>
@@ -202,14 +202,17 @@
 		If you already know what you need, use MoneyOwl&rsquo;s <a href="https://www.moneyowl.com.sg/#/direct">insurance comparison tool here</a><br/>
 		<br/>
 	</p>
-
-
-<p>We have used the following parameters for these reasons:</p>
-
-<p><em><strong>S$500,000 life coverage:</strong></em> This amount could be used to provide for your dependents, existing loans or as a gift to your beneficiaries.</p>
-<br/>
-<p><em><strong>S$500,000 critical illness coverage:</strong></em> This amount allows you to recuperate in the event of an critical illness or provide for alternative treatment needs.</p>
-
+	<p>
+		Parameters:<br/>
+		<strong>S$500,000 life coverage:</strong> This amount could be used to provide for your dependents, exisiting loans and as a gift to your beneficiaries.<br/><br/>
+		<strong>S$500,000 critical illness coverage:</strong> This amount allows you to replace loss of income in the event of a critical illness and provide for alternative treatment needs.<br/><br/>
+		<strong>Coverage until 65 years old:</strong> There comes a time in our life when our dependents (E.g. spouse and children) are no longer dependent on us and our existing assets and savings would be sufficient to provide for them should any thing unexpected happen to us.
+						65 years old is a good estimate for how long one should cover ourselves with life insurance until.
+	</p>
+	<p><em><strong>S$1 million sum coverage:</strong></em> For those of us who are supporting our families, having S$1 million life coverage to provide for our dependents is not unthinkable. To find out how much you need, do feel free to <a href="https://www.moneyowl.com.sg/#/about-us/contact-us">drop us an enquiry</a>.</p>
+	<br/>
+	<p><em><strong>Coverage until 65 years old:</strong></em> There comes a time in our life when our dependents (Eg. spouse and children) are no longer dependent on us and our existing assets and savings would be sufficient to provide for them should anything unexpected happen to us. 65 years old is a good estimate for how long we should cover ourselves with life insurance until. <br><br>
+	</p>
 <p>For $1million term life insurance comparison table, <strong><a href="https://www.moneyowl.com.sg/#/articles/entry/20">click here</a></strong>.</p>
 <br>
 <p><strong>Credit Ratings Explained</strong></p>
