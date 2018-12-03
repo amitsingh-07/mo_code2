@@ -29,7 +29,7 @@
       "CONFIRM_IMPACT_MESSAGE": "By applying these changes, your previous draft will be overwritten and you will be redirected to rewrite your will. <br/>Would you like to proceed?",
       "ID_TOOLTIP": {
         "TITLE": "Identification Number",
-        "MESSAGE": "<div class='pt5'>You may enter your NRIC, FIN, Birth Cert or Passport Number.</div>"
+        "MESSAGE": "<div class='pt5'>Please enter your details as follows:<br> <div class='flex space-btwn mt10'><div class='flex-col-6'>NRIC Number:</div><div class='flex-col-6'>Singapore Citizens/ Permanent Residents</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>FIN Number:</div><div class='flex-col-6'>Foreigners</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>Birth Cert Number:</div><div class='flex-col-6'>Children 15 years old and below</div></div><div class='flex space-btwn mt10'><div class='flex-col-6'>Passport Number:</div><div class='flex-col-6'>All others</div></div></div>"
       },
       "RELATIONSHIP_LIST": [{
           "text": "Parent",
@@ -48,8 +48,8 @@
           "value": "friend"
         },
         {
-          "text": "Others",
-          "value": "others"
+          "text": "Relative",
+          "value": "relative"
         }
       ]
     },
@@ -119,7 +119,7 @@
       }
     },
     "MY_CHILDS_GUARDIAN": {
-      "TITLE_SPOUSE": "My Children's Guardians",
+      "TITLE_SPOUSE": "My Children's Guardian",
       "TITLE": "My Children's Guardian",
       "SUB_TITLE_WITHOUT_SPOUSE": "Your children under 21 years old would need a guardian to care for and protect their interests.",
       "SUB_TITLE_WITH_SPOUSE": "Your spouse will be the natural guardian of your children under 21 years old.",
@@ -130,7 +130,7 @@
       "ALTERNATIVE_SUB_TITLE": "Takes over the role as your children’s guardian in the event that your spouse passes on before you.",
       "GUARDIAN_SUB_TITLE": "We recommend you to appoint a family member, friend or someone you trust.",
       "FORM_TITLE_WITHOUT_SPOUSE": "My children’s guardian is",
-      "FORM_TITLE_WITH_SPOUSE": "My children’s guardians are",
+      "FORM_TITLE_WITH_SPOUSE": "My children’s guardian is",
       "TOOLTIP_TITLE": "Role Of A Guardian ",
       "TOOLTIP_MESSAGE": "<p>The role of a guardian is to raise your children after you have passed on, until they reach the age of 21.</p><p>Taking over your role as the “parent”, the guardian will have the ability to make decisions that affect your children, including their day-to-day care to their moral upbringing.</p><p>It is also important that you speak with your children’s guardian to seek their agreement.</p>"
     },
@@ -186,10 +186,10 @@
       "SUB_TITLE": "In the next step, please check that all details provided are accurate."
     },
     "MY_EXECUTOR_TRUSTEE": {
-      "TITLE": "My Executors & Trustees",
+      "TITLE": "My Executor & Trustee",
       "TITLE2": "My Executor & Trustee",
       "SUB_TITLE": "As this is a critical role in the execution of your will, please choose people that you trust.",
-      "FORM_TITLE": "My executors & trustees are",
+      "FORM_TITLE": "My executor & trustee is",
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",

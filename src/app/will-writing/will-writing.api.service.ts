@@ -19,7 +19,7 @@ export class WillWritingApiService {
         ['sibling', 'SBL'],
         ['parent-in-law', 'PIL'],
         ['friend', 'F'],
-        ['others', 'O'],
+        ['relative', 'R'],
         ['spouse', 'S'],
         ['child', 'C'],
     ]);
@@ -103,12 +103,12 @@ export class WillWritingApiService {
                     dob: children.dob['year'] + '' + padNumber(children.dob['month']) + '' + padNumber(children.dob['day']),
                     relationshipCode: this.relationship.get(children.relationship),
                     isFamily: 'Y',
-                    isBeneficiary: beneficiary ? 'Y' : 'N',
+                    isBeneficiary: beneficiary.length > 0 ? 'Y' : 'N',
                     isGuardian: 'N',
                     isAltGuardian: 'N',
                     isTrusteee: 'N',
                     isAltTrusteee: 'N',
-                    distribution: beneficiary ? beneficiary[0].distPercentage : 0
+                    distribution: beneficiary.length > 0 ? beneficiary[0].distPercentage : 0
                 });
             }
         }
