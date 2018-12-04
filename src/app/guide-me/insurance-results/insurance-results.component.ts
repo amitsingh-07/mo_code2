@@ -13,7 +13,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
+import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { Formatter } from '../../shared/utils/formatter.util';
@@ -151,7 +151,8 @@ export class InsuranceResultsComponent implements OnInit, IPageComponent, AfterV
 
   openExistingCoverageModal() {
     const ref = this.modal.open(ExistingCoverageModalComponent, {
-      centered: true
+      centered: true,
+      windowClass: 'guided-existing-coverage'
     });
     ref.componentInstance.data = this.protectionNeedsArray;
     ref.componentInstance.dataOutput.subscribe((emittedValue) => {

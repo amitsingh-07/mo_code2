@@ -41,6 +41,7 @@ export class OrderByPipe implements PipeTransform {
         return o;
     }
 
+    // tslint:disable-next-line:cognitive-complexity
     transform(input: any, [config = '+']): any {
 
         if (!Array.isArray(input)) { return input; }

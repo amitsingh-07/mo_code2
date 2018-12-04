@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   countryCodeOptions;
   heighlightMobileNumber;
   buttonTitle;
-  captchaSrc: any = '';
+  captchaSrc: any;
 
   constructor(
     // tslint:disable-next-line
@@ -61,9 +61,11 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(5);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
-    this.navbarService.setNavbarMode(1);
-    this.navbarService.setNavbarDirectGuided(false);
     this.buildForgotPasswordForm();
   }
 
@@ -100,6 +102,10 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
           // tslint:disable-next-line:triple-equals
         } else if (data.responseMessage.responseCode == 6000) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.FORGOT_PASSWORD_RESULT]);
+        } else {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorMessage = data.responseMessage.responseDescription;
+          this.refreshCaptcha();
         }
       });
     }
@@ -110,8 +116,6 @@ export class ForgotPasswordComponent implements OnInit, AfterViewInit {
 
   refreshCaptcha() {
     this.forgotPasswordForm.controls['captcha'].reset();
-    const time = new Date().getMilliseconds();
-    // tslint:disable-next-line:max-line-length
-    this.captchaSrc = `${environment.apiBaseUrl}/account/account-microservice/getCaptcha?code=` + this.authService.getSessionId() + '&time=' + time;
+    this.captchaSrc = this.authService.getCaptchaUrl();
   }
 }

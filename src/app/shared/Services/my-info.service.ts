@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
-import { GuideMeService } from './../../guide-me/guide-me.service';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -20,7 +19,9 @@ const SUCCESS = 1;
   providedIn: 'root'
 })
 export class MyInfoService {
+
   changeListener = new Subject();
+
   authApiUrl = environment.myInfoAuthorizeUrl;
   clientId = environment.myInfoClientId;
   private attributes = '';
@@ -51,7 +52,6 @@ export class MyInfoService {
       '&purpose=' + this.purpose +
       '&state=' + this.state +
       '&redirect_uri=' + this.redirectUrl;
-    //window.location.href = authoriseUrl;
     this.newWindow(authoriseUrl);
   }
 
@@ -70,9 +70,6 @@ export class MyInfoService {
         clearInterval(timer);
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
-        //   ]);
       }
     }, 500);
 
@@ -83,9 +80,6 @@ export class MyInfoService {
       if (value === 'FAILED') {
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
-        //   ]);
       } else {
         this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
         this.isMyInfoEnabled = false;
@@ -99,21 +93,13 @@ export class MyInfoService {
       windowRef.close();
       const params = new HttpParams({ fromString: values });
       if (window.sessionStorage.currentUrl && params && params.get('code')) {
-
         const myInfoAuthCode = params.get('code');
         this.setMyInfoValue(myInfoAuthCode);
         this.status = 'SUCCESS';
         this.changeListener.next(this.getMyinfoReturnMessage(SUCCESS, myInfoAuthCode));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'SUCCESS', time: new Date().getTime() }
-        //   ]);
-
       } else {
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
-        // this.router.navigate(
-        //   [window.sessionStorage.getItem('currentUrl').substring(2), { myinfo: 'FAILED', time: new Date().getTime() }
-        //   ]);
       }
       return 'MY_INFO';
     };
@@ -144,11 +130,12 @@ export class MyInfoService {
   }
 
   closeMyInfoPopup(error: boolean) {
+    this.isMyInfoEnabled = false;
     this.closeFetchPopup();
     if (error) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = 'Oops, Error!';
-      ref.componentInstance.errorMessage = 'We weren\'t able to fetch your data from MyInfo.';
+      ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
       ref.componentInstance.isError = true;
       ref.result.then(() => {
         this.goToMyInfo();

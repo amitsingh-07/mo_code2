@@ -1,9 +1,8 @@
-
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
@@ -22,6 +21,8 @@ const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
   providedIn: 'root'
 })
 export class ApiService {
+  private errorMessage = new BehaviorSubject({});
+  public newErrorMessage = this.errorMessage.asObservable();
 
   constructor(
     private configService: ConfigService,
@@ -161,24 +162,57 @@ export class ApiService {
       subject: data.subject,
       body: data.message
     };
-    this.authService.authenticate().subscribe((response) => { });
     return this.http.post(apiConstants.endpoint.aboutus.sendContactUs, payload, true)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
+  /* Subscribe Newsletter */
   subscribeNewsletter(data) {
     const payload = data;
-    return this.http.post(apiConstants.endpoint.subscription.base, payload)
+    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleError(error))
+        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error, data))
       );
   }
 
-  subscribeHandleError(error: HttpErrorResponse) {
-    console.log(error);
+  handleSubscribeError(error: HttpErrorResponse, data) {
+    error = new HttpErrorResponse({status: 500});
+    if (error.status === 500) {
+      this.subscribeNewsletterSingle(data).subscribe((in_data) => {
+        this.errorMessage.next(in_data);
+      });
+    } else {
+      const templateError = {
+        body: 'default',
+        detail: 'default',
+        status: 500
+      };
+      this.errorMessage.next(templateError);
+      return throwError('');
+    }
   }
+
+  subscribeNewsletterSingle(data) {
+    const payload = data;
+    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
+    );
+  }
+
+  throwSubscribeError(error: HttpErrorResponse) {
+    const templateError = {
+      body: 'default',
+      detail: 'default',
+      status: 500
+      };
+    this.errorMessage.next(templateError);
+    return throwError('');
+  }
+
+  /* MyInfo */
   getMyInfoData(data) {
     return this.http.post(apiConstants.endpoint.getMyInfoValues, data, true)
       .pipe(
@@ -260,7 +294,7 @@ export class ApiService {
   }
 
   verifyOTP(payload: IVerifyRequestOTP) {
-    return this.http.post(apiConstants.endpoint.verifyOTP, payload)
+    return this.http.post(apiConstants.endpoint.verifyOTP + '?handleError=true', payload)
       .pipe(
         // tslint:disable-next-line:no-identical-functions
         catchError((error: HttpErrorResponse) => {
@@ -700,84 +734,28 @@ export class ApiService {
   createWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.createWill, payload)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   updateWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.updateWill, payload)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   getWill(payload) {
     return this.http.post(apiConstants.endpoint.willWriting.getWill, payload)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
-  downloadWill(payload) {
-    return this.http.post(apiConstants.endpoint.willWriting.downloadWill, payload)
+  downloadWill(payload): Observable<any> {
+    return this.http.postForBlob(apiConstants.endpoint.willWriting.downloadWill, payload, false, false)
       .pipe(
-        // tslint:disable-next-line:no-identical-functions
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 

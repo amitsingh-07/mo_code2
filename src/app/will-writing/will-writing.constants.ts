@@ -6,6 +6,5 @@ export const WILL_WRITING_CONFIG = {
     CHILD_GUARDIAN_AGE: 21,
     MARRIED: 'married',
     CHILD: 'child',
-    SPOUSE: 'spouse',
-    OTHERS: 'others'
+    SPOUSE: 'spouse'
 };

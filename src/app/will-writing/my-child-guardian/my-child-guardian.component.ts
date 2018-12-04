@@ -138,7 +138,7 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
   editGuardian(relation: string, index: number) {
     if (relation === WILL_WRITING_CONFIG.SPOUSE) {
       if (this.addGuardianForm.dirty) {
-        this.pageTitleComponent.goBack();
+        this.pageTitleComponent.goBack(WILL_WRITING_ROUTE_PATHS.MY_FAMILY);
       } else {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
       }

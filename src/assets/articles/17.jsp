@@ -8,7 +8,7 @@
 <!-- <div class="text-center"><img src="../assets/images/filterbox.png" alt="Comparing a wide variety of products"></div>
 <br><br> -->
 
-<p>On top of term life and whole life plans, we compare stand-alone <a href="https://www.moneyowl.com.sg/#/direct/">Critical Illness, Disability Income, Long Term Care</a> and <a href="https://www.moneyowl.com.sg/#/direct">Annuities for retirement income</a>. The wide variety of products available on the comparison web portal means you are able to find the product which best suits your needs.  You can purchase your insurance needs from this one-stop shop with us. </p>
+<p>On top of term life and whole life plans, we compare stand-alone Critical Illness, Disability Income, Long Term Care and Annuities for retirement income. The wide variety of products available on the comparison web portal means you are able to find the product which best suits your needs.  You can purchase your insurance needs from this one-stop shop with us. </p>
 <br><br>
 <h3 class="primary-color"><strong>2. Premium Savings</strong></h3>
 <br><p><strong>50% Commission Rebates* and Promotions</strong></p>

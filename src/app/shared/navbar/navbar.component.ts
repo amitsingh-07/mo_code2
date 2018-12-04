@@ -13,6 +13,7 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
+import { ConfigService, IConfig  } from './../../config/config.service';
 import { NavbarService } from './navbar.service';
 
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
@@ -47,17 +48,29 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   count: any;
   totoalNotification: any;
   isNotificationEnabled: boolean;
+
+  isWillWritingEnabled = false;
+  isInvestmentEnabled = true;
+  isComprehensiveEnabled = true;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router,
+    private configService: ConfigService,
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
+    });
+
+    this.configService.getConfig().subscribe((moduleConfig: IConfig) => {
+      this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
+      this.isInvestmentEnabled = moduleConfig.investmentEnabled;
+      this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
     });
   }
 

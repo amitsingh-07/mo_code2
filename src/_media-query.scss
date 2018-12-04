@@ -27,7 +27,6 @@
     display: none !important;
   }
 }
-
 .hidden-lg {
   @include LargeDevice {
     display: none !important;
@@ -36,7 +35,14 @@
     display: none !important;
   }
 }
-
+.hidden-tablet{
+  @include tablet{
+    display: none !important;
+  }
+  @include minPhabletmaxTablet{
+    display: none !important;
+  }
+}
 .hidden-sm{
   @include ExtraSmallDevice {
     display: none !important;

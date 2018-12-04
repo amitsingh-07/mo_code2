@@ -46,7 +46,10 @@ export class PasswordComponent implements OnInit {
    */
   ngOnInit() {
     this.buildPasswordForm();
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(5);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
   }
 
