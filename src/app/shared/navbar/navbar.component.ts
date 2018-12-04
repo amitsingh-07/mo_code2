@@ -1,24 +1,22 @@
 import { Location } from '@angular/common';
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  Renderer2,
-  ViewChild
+    AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
+    ViewChild
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-
-import { ConfigService, IConfig  } from './../../config/config.service';
+import { ConfigService, IConfig } from '../../config/config.service';
+import {
+    INVESTMENT_ACCOUNT_ROUTE_PATHS
+} from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import {
+    TransactionModalComponent
+} from '../../shared/modal/transaction-modal/transaction-modal.component';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { NavbarService } from './navbar.service';
 
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
-import { SignUpService } from '../../sign-up/sign-up.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -31,12 +29,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   navbarMode: number;
   showNavShadow: boolean;
   showSearchBar = false;
-
+  modalRef: NgbModalRef;
   pageTitle: string;
   subTitle = '';
   helpIcon = false;
   closeIcon = false;
   settingsIcon = false;
+  filterIcon = false;
   currentUrl: string;
   backListener = '';
   isBackPressSubscribed = false;
@@ -59,6 +58,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router,
+    private modal: NgbModal,
     private configService: ConfigService,
     private signUpService: SignUpService,
     public investmentAccountService: InvestmentAccountService) {
@@ -90,6 +90,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.currentPageHelpIcon.subscribe((helpIcon) => this.helpIcon = helpIcon);
     this.navbarService.currentPageProdInfoIcon.subscribe((closeIcon) => this.closeIcon = closeIcon);
     this.navbarService.currentPageSettingsIcon.subscribe((settingsIcon) => this.settingsIcon = settingsIcon);
+    this.navbarService.currentPageFilterIcon.subscribe((filterIcon) => this.filterIcon = filterIcon);
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
       this.investmentAccountService.getAllNotifications().subscribe((response) => {
@@ -180,5 +181,8 @@ canActivateNotification() {
     return false;
   }
   return true;
+}
+showFilterModalPopUp(data) {
+  this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
 }
 }
