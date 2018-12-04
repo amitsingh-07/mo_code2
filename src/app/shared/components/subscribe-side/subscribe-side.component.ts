@@ -27,14 +27,13 @@ export class SubscribeSideComponent implements OnInit {
     this.translate.use('en');
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
       if (data !== '') {
-        if (data['errorMessage']) {
+        if ( !data.match('verification link')) {
           this.subscribeSuccess = false;
-          this.subscribeMessage = data['errorMessage'];
+          this.subscribeMessage = data;
         } else {
           this.subscribeMessage = data;
           this.subscribeSuccess = true;
         }
-        setTimeout(() => {this.subscribeMessage = ''; }, 3000);
       }
       this.configService.getConfig().subscribe((config: IConfig) => {
         this.isWillWritingEnabled = config.willWritingEnabled;
@@ -49,6 +48,10 @@ export class SubscribeSideComponent implements OnInit {
       lastName: new FormControl(this.formValues.lastName),
       email: new FormControl(this.formValues.email, [Validators.required, Validators.pattern(this.emailPattern)]),
     });
+    this.subscribeSideForm.valueChanges.subscribe(() => {
+      this.subscribeMessage = '';
+      this.subscribeSuccess = false;
+    });
   }
 
   subscribeMember() {
@@ -57,7 +60,6 @@ export class SubscribeSideComponent implements OnInit {
     } else {
       this.subscribeSuccess = false;
       this.subscribeMessage = this.formError.subscribeFormErrors.INVALID.errorMessage;
-      setTimeout(() => {this.subscribeMessage = ''; }, 3000);
     }
   }
 }

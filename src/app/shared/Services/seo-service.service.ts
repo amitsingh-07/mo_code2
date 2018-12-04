@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
 export class SeoServiceService {
   seo_credentials = {
                   default: {
-                    default_thumbnail: '/assets/image/'
+                    default_thumbnail: '/assets/images/'
                   },
                   facebook: {
                     facebook_admin: 'ID here'
                   },
                   twitter: {
-                  publisher_handle: '@moneyowlsg',
-                  creator_handle: '@moneyowlsg'
+                    publisher_handle: '@moneyowlsg',
+                    creator_handle: '@moneyowlsg'
                   }
                 };
 constructor(public meta: Meta, public title: Title, public router: Router) { }
@@ -26,7 +26,7 @@ setTitle(in_title: string) {
 
   // Meta Tag Features
 setBaseSocialMetaTags(in_title: string, description: string, keyword: string, thumbnailImageUrl?: string) {
-    const url = this.router.url;
+    const url = 'https://www.moneyowl.com.sg/#' + this.router.url;
     if (!thumbnailImageUrl) {
       thumbnailImageUrl = this.seo_credentials.default.default_thumbnail;
     }
@@ -49,7 +49,7 @@ setBaseSocialMetaTags(in_title: string, description: string, keyword: string, th
 setArticlesMetaTags(in_title: string, summary: string, thumbnailImageUrl: string, keyword: string,
                     author: string, published_time: string, primary_tag: string ) {
     // Set Base Meta Tag
-    this.setBaseSocialMetaTags(in_title, summary, thumbnailImageUrl, keyword);
+    this.setBaseSocialMetaTags(in_title, summary, keyword, thumbnailImageUrl);
     // Additional Article Based Meta Tagging
     this.meta.updateTag({ property: 'og:author', content: author});
     this.meta.updateTag({ property: 'og:type', content: 'article'});
