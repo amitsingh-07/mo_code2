@@ -152,7 +152,9 @@ export class UpdateUserIdComponent implements OnInit {
           this.updateUserIdForm.value.mobileNumber, this.updateUserIdForm.value.email);
         this.signUpService.setEditContact(true, this.updateMobile, this.updateEmail);
         this.signUpService.setRedirectUrl(SIGN_UP_ROUTE_PATHS.EDIT_PROFILE);
-        this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+        if (data.objectList[0] && data.objectList[0].customerRef) {
+          this.signUpService.setCustomerRef(data.objectList[0].customerRef);
+        }
         if (this.updateMobile) {
           this.router.navigate([SIGN_UP_ROUTE_PATHS.VERIFY_MOBILE]);
         } else {
