@@ -64,6 +64,12 @@
                 margin:15px 0px 15px 0px;
                 width:100%;
             }
+            &.halfwidth{
+                width:450px;
+                @include minMobilemaxPhablet{ 
+                    width:100%;
+                }
+            }
             &.fullwidth{
                 margin:0px;
                 width:100%;

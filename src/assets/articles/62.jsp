@@ -1,4 +1,4 @@
-<img src="/assets/articles/images/62/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Why write a will Resource Image">
+<img src="/assets/articles/images/62/thumbnail.jpg" class="pull-right halfwidth thumbnail" style=" padding:10px;" alt="Why write a will Resource Image">
 
 <p>
     Not many people have a will done and there are many reasons for that. Well, it could be due to cost, perceived complexity in will writing or even the thought that there is nothing much to distribute.
