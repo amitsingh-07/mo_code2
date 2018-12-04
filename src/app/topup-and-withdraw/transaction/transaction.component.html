@@ -7,21 +7,21 @@
             <div class="flex-row" *ngIf="transactionHistory">
               <div class="flex-col-12">
                 <div class="transaction-panel__history">
-                  <div *ngFor="let group of transactionHistory">
+                  <div *ngFor="let group of transactionHistory; let i = index">
                     <div class="transaction-panel__history--date">{{group.groupName}}</div>
 
                     <div class="transaction-panel__history--details">
-                      <div *ngFor="let transaction of group.value">
-                        <div class="flex-row transaction-panel__history--details--title">
+                      <div *ngFor="let transaction of group.value; let j = index">
+                        <div class="flex-row transaction-panel__history--details--title" (click)="expandCollapseAccordion(i, j)">
                           <div class="flex-col-6"><span class="transaction-panel__history--details--title--sale">{{transaction.transactionType.name}}</span><span>{{transaction.portfolio.name}}</span></div>
                           <div class="flex-col-6 text-right"><span class="transaction-panel__history--details--title--amount--sale">{{transaction.amount}}</span><i
-                              class='fa right mt5' [class.fa-chevron-down]="true" [class.fa-chevron-up]="false"></i></div>
+                              class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()" [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i></div>
                         </div>
                         
-                          <div class="flex-row transaction-panel__history--details--desc" *ngFor="let fund of transaction.fundInvestmentSplits">
-                            <div class="flex-col-6" *ngIf="fund.fund">{{fund.fund.name}}</div>
-                            <div class="flex-col-6 text-right">{{fund.unitPrice}}</div>
-                          </div>
+                        <div class="flex-row transaction-panel__history--details--desc" [class.show]="activeTransactionIndex === i.toString() + j.toString()" *ngFor="let fund of transaction.fundInvestmentSplits">
+                          <div class="flex-col-6" *ngIf="fund.fund">{{fund.fund.name}}</div>
+                          <div class="flex-col-6 text-right">{{fund.unitPrice}}</div>
+                        </div>
                         
                       </div>
                     </div>

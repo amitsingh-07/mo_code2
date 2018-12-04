@@ -53,6 +53,10 @@
       background-color: rgba(0, 167, 167, 0.11); 
       padding: 20px;
       font-size: 16px;
+      display:none;
+      &.show {
+        display:block;
+      }
     }
   }
   .transaction-panel__statements {
