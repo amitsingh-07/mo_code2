@@ -1,7 +1,8 @@
 import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+  TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +14,10 @@ import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { Formatter } from '../../shared/utils/formatter.util';
+
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
 
@@ -25,6 +29,11 @@ import { IEnquiryUpdate } from '../signup-types';
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
   insuranceEnquiry: any;
+  dashBoard;
+  portfolioParchased;
+  showPortffolioPurchased = false;
+  showNotPurchasedPortfolio = false;
+  showInvestmentDetailsSaved = false;
 
   constructor(
     private router: Router,
@@ -37,6 +46,7 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
+    this.getDashboardList();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     this.translate.use('en');
 
@@ -64,5 +74,21 @@ export class DashboardComponent implements OnInit {
   goToInvOverview() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
   }
+  goToUploadDocuments() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+  }
 
+  getDashboardList() {
+    this.signUpService.getDashboardList().subscribe((data) => {
+      this.dashBoard = data.objectList[0].investment;
+      if (this.dashBoard.account === 'PORTFOLIO_PURCHASED') {
+        this.showPortffolioPurchased = true;
+      } else if (this.dashBoard.account === undefined) {
+        this.showNotPurchasedPortfolio = true;
+      } else if (this.dashBoard.account === 'INVESTMENT_ACCOUNT_DETAILS_SAVED') {
+        this.showInvestmentDetailsSaved = true;
+      }
+
+    });
+  }
 }

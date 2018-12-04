@@ -22,5 +22,5 @@ export const RegexConstants = {
     NRIC: /^[STst][a-zA-Z0-9]{8}$/,
     SymbolNumber: /^[0-9*#+$@$!%?&]+$/,
     NumericOnly: /^[0-9]*$/,
-    SymbolAlphabets: /^[a-zA-Z!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/
+    SymbolAlphabets: /^[a-zA-Z\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/
 };

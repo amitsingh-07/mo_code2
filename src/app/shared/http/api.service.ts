@@ -408,13 +408,22 @@ export class ApiService {
         })
       );
   }
-  getInvestmentOverview() {
-    //  const url = '../assets/mock-data/investment-overview.json';
-     return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
-     .pipe(
+  // tslint:disable-next-line:no-commented-code
+  getDashboardList() {
+    // tslint:disable-next-line:no-commented-code
+    const url = '../../../assets/mock-data/dashboard.json';
+    return this.http.getMock(url)
+      .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-    }
+  }
+getInvestmentOverview() {
+    //  const url = '../assets/mock-data/investment-overview.json';
+    return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   getIndustryList() {
     return this.http.get(apiConstants.endpoint.investmentAccount.lndustrylist)
       .pipe(
@@ -573,17 +582,21 @@ export class ApiService {
   }
 
   getUserBankList() {
-    // tslint:disable-next-line:no-commented-code
-    // return this.http.get(apiConstants.endpoint.article.getArticleCategory)
-    const url = '../../../assets/mock-data/portfolioList.json';
-    return this.http.getMock(url)
+    return this.http.get(apiConstants.endpoint.investment.getUserBankList)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
+  getUserAddress() {
+    return this.http.get(apiConstants.endpoint.investment.getUserAddress)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   saveNewBank(data) {
-    return this.http.post(apiConstants.endpoint.resetPassword, data)
+    return this.http.post(apiConstants.endpoint.investment.addNewBank, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -635,14 +648,14 @@ export class ApiService {
   }
 
   buyPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio, data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   sellPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio, data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

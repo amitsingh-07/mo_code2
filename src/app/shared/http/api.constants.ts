@@ -19,7 +19,7 @@ export let apiConstants = {
         //getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoMock',
         signUp: 'account/account-microservice/api/signup',
-        updateUserId: 'account/account-microservice/api/update?handleError=true',
+        updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
         resendOTP: 'account/account-microservice/api/resendOTP',
         setPassword: 'account/account-microservice/api/setPassword',
@@ -67,6 +67,11 @@ export let apiConstants = {
             buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
             investmentoverview: 'invest/investment-microservice/portfolio/holdings'
+        },
+        investment: {
+            getUserAddress: 'account/account-microservice/api/customer/address',
+            getUserBankList: 'account/account-microservice/api/customer/banks',
+            addNewBank: 'account/account-microservice/api/customer/bank'
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',

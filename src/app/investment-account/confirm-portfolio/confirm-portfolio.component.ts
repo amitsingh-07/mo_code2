@@ -101,7 +101,10 @@ export class ConfirmPortfolioComponent implements OnInit {
   constructFundingParams(data) {
     const topupValues = {
       source: 'FUNDING',
-      portfolio: data.riskProfile,
+      portfolio: {
+        productName: data.portfolioName,
+        riskProfile: data.riskProfile
+      },
       oneTimeInvestment: data.initialInvestment,
       monthlyInvestment: data.monthlyInvestment,
       fundingType: '', // todo

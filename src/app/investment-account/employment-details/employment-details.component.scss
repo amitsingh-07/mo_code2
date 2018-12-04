@@ -23,15 +23,20 @@
   .employe-dropdown-control .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
-    height: calc(70vh);
+    height: 264px;
+    top: -270px !important;
       }
     
 .dropdown-item {
     white-space: normal;
-   
+    padding-bottom: 16px; 
 }
 .dropdown-control .btn-dropdown {
   padding-right: 27px;
+  max-height: 52px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -106,15 +111,21 @@
       &.right {
         float: right;
       }
-
-      &:focus {
-        background-color: #ff730c !important;
-        color: #fff !important;
+      &:hover{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
-
-      &:active {
-        background-color: #ff730c !important;
-        color: #fff !important;
+      &:focus{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
+      }
+   
+      &:active{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
 
     }

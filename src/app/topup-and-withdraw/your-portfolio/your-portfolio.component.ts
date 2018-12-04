@@ -22,7 +22,6 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 })
 export class YourPortfolioComponent implements OnInit {
   pageTitle: string;
-  setPageTitle: string;
   moreList: any;
   PortfolioValues;
   selectedDropDown;
@@ -38,16 +37,19 @@ export class YourPortfolioComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('TOPUP.TITLE');
-      //this.setPageTitle(this.pageTitle);
+      this.pageTitle = this.translate.instant('YOUR_PORTFOLIO.TITLE');
+      this.setPageTitle(this.pageTitle);
     });
 
   }
-  // setPageTitle(title: string) {
-  //   this.navbarService.setPageTitle(title);
-  // }
+  setPageTitle(title: string) {
+     this.navbarService.setPageTitle(title);
+   }
 
   ngOnInit() {
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarDirectGuided(true);
+    this.navbarService.setNavbarMode(2);
     this.getMoreList();
     this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
 

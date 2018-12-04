@@ -39,9 +39,8 @@ export class TopUpComponent implements OnInit {
   formValues;
   topForm: FormGroup;
   enteringAmount;
-  cashBalance = 1200;
+  cashBalance;
   fundDetails;
-
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -63,13 +62,12 @@ export class TopUpComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
-
-
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getPortfolioList();
+    this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
       this.investmentTypeList = data.objectList; // Getting the information from the API
       console.log(this.investmentTypeList);
@@ -77,11 +75,45 @@ export class TopUpComponent implements OnInit {
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
-      portfolio: [this.formValues.portfolio, Validators.required],
+      portfolio: [this.formValues.PortfolioValues, Validators.required],
       Investment: [this.formValues.Investment, Validators.required],
       oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
       MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
+    this.buildFormInvestment();
+
+    if (this.topForm.get('oneTimeInvestmentAmount')) {
+      this.topForm.get('oneTimeInvestmentAmount').valueChanges.subscribe((value) => {
+        this.validateAmonut(value);
+      });
+      this.topForm.get('oneTimeInvestmentAmount').setValue(this.formValues.oneTimeInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+    }
+  }
+  getPortfolioList() {
+    this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
+  }
+  setDropDownValue(key, value) {
+    this.topForm.controls[key].setValue(value);
+  }
+
+  validateAmonut(amount) {
+    if (amount > this.cashBalance) {
+      this.topupAmount = amount - this.cashBalance;
+      this.isAmountExceedBalance = true;
+    } else {
+      this.isAmountExceedBalance = false;
+    }
+  }
+
+  selectedInvestment(investmenttype) {
+    this.investment = investmenttype;
+    this.topupAndWithDrawService.setInvestmentValue(this.investment.value);
+    this.formValues.Investment = this.investment.name;
+    this.isAmountExceedBalance = false;
+    this.topupAmount = 0;
+    this.buildFormInvestment();
+  }
+  buildFormInvestment() {
     if (this.formValues.Investment === 'Monthly Investment') {
       this.topForm.addControl('MonthlyInvestmentAmount', new FormControl('', Validators.required));
       this.topForm.removeControl('oneTimeInvestmentAmount');
@@ -93,42 +125,6 @@ export class TopUpComponent implements OnInit {
       this.showOnetimeInvestmentAmount = true;
       this.showmonthlyInvestmentAmount = false;
     }
-  }
-  getPortfolioList() {
-    this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
-      this.portfolioList = data.objectList.riskProfileTypes;
-      console.log(this.portfolioList);
-    });
-  }
-  setDropDownValue(key, value) {
-    this.topForm.controls[key].setValue(value);
-  }
-
-  validateAmonut(amount) {
-    if (amount > this.cashBalance && this.investment.name === 'One-time Investment') {
-      this.topupAmount = amount - this.cashBalance;
-      this.isAmountExceedBalance = true;
-    } else {
-      this.isAmountExceedBalance = false;
-    }
-  }
-
-  buildFormInvestment() {
-    if (this.investment.name === 'One-time Investment') {
-      this.topForm.addControl('oneTimeInvestmentAmount', new FormControl('', Validators.required));
-      this.topForm.removeControl('MonthlyInvestmentAmount');
-      this.showOnetimeInvestmentAmount = true;
-      this.showmonthlyInvestmentAmount = false;
-    } else {
-      this.topForm.addControl('MonthlyInvestmentAmount', new FormControl('', Validators.required));
-      this.topForm.removeControl('oneTimeInvestmentAmount');
-      this.showOnetimeInvestmentAmount = false;
-      this.showmonthlyInvestmentAmount = true;
-    }
-  }
-  selectedInvestment(investmenttype) {
-    this.investment = investmenttype;
-    this.buildFormInvestment();
   }
 
   goToNext(form) {
