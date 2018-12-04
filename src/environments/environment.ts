@@ -5,7 +5,7 @@ import { IEnvironment } from './environment.interface';
 // The list of file replacements can be found in `angular.json`.
 
 export const environment: IEnvironment = {
-  production: true,
+  production: false,
   isDebugMode: false,
   apiBaseUrl: 'https://bfa-uat.ntucbfa.com',
   myInfoClientId: 'STG-201820691C-MONEYOWL-BFA',

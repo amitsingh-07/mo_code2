@@ -1,7 +1,6 @@
 <img src="/assets/articles/images/53/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Compare Term Life plus Critical Illness Insurance Image">
 
 		<p>In this comparison table, we compare all Term Life with Critical illness insurance plans in Singapore.</p>
-		<br/>
 		<p>While a hospitalisation plan helps to cover the costs of a hospital stay, a critical illness plan provides for post-hospitalisation treatment costs and alternative treatment needs in the event of a critical illness.<br/><br/> A lump sum payout from a critical illness plan in your insurance coverage can also play the role of replacing your income and allow you time for recuperation.</p>
 		<br>
 		<p>We consider the following example of a <strong>Male, Non-Smoker</strong>:</p>

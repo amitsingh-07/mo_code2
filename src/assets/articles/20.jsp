@@ -225,9 +225,9 @@
 	<br/>
 </p>
 <p>
-	<strong>Parameters:</strong>
+	<strong>Parameters:</strong><br/><br/>
 	<strong>S$1 million sum coverage:</strong>  This amount could be used to provide for your dependents, existing loans and as a gift to your beneficiaries.
-	For those of us with children, requiring S$1 million life coverage to provide for our dependents is not unthinkable.
+	For those of us with children, requiring S$1 million life coverage to provide for our dependents is not unthinkable.<br/><br/>
 	<strong>Coverage until 65 years old:</strong> There comes a time in our life when our dependents (E.g. spouse and children) are no longer dependent on us and our existing assets and savings would be sufficient to provide for them should anything unexpected happen to us.
 	65 years old is a good estimate for how long one should cover ourselves with life insurance until.
 </p>
