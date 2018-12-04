@@ -78,8 +78,9 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     this.navbarService.setNavbarMode(4);
     this.hasSpouse = this.willWritingService.getAboutMeInfo().maritalStatus === WILL_WRITING_CONFIG.MARRIED;
     this.hasChild = this.willWritingService.getAboutMeInfo().noOfChildren > 0;
-    if (this.willWritingService.getExecTrusteeInfo().length > 0) {
-      this.execTrusteeList = this.willWritingService.getExecTrusteeInfo();
+    const execTrusteeList = this.willWritingService.getExecTrusteeInfo();
+    if (execTrusteeList.length > 0) {
+      this.execTrusteeList = JSON.parse(JSON.stringify(execTrusteeList));
     } else if (this.hasSpouse) {
       const spouse: any = Object.assign({}, this.willWritingService.getSpouseInfo()[0]);
       spouse.isAlt = false;
@@ -173,7 +174,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   editExecTrustee(relation: string, index: number) {
     if (relation === WILL_WRITING_CONFIG.SPOUSE) {
       if (this.addExeTrusteeForm.dirty) {
-        this.pageTitleComponent.goBack();
+        this.pageTitleComponent.goBack(WILL_WRITING_ROUTE_PATHS.MY_FAMILY);
       } else {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
       }
