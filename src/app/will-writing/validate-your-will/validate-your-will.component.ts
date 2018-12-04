@@ -73,7 +73,7 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
   }
 
   downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/octet-stream' });
+    const blob = new Blob([data], { type: 'application/pdf' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     document.body.appendChild(a);
@@ -81,8 +81,14 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     a.href = url;
     a.download = 'MoneyOwl Will Writing.pdf';
     a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
+    // window.URL.revokeObjectURL(url);
+    // a.remove();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+
+  }
 
   }
 
