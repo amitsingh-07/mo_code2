@@ -26,7 +26,6 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     this.pageTitle = this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.TITLE');
     this.setPageTitle(this.pageTitle);
     this.customerId = this.appService.getCustomerId();
-    console.log('customerId : ' + this.customerId);
   }
 
   ngOnInit() {
