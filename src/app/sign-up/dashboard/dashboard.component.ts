@@ -1,18 +1,17 @@
-import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AppService } from '../../app.service';
+import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
+import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { ApiService } from '../../shared/http/api.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { Formatter } from '../../shared/utils/formatter.util';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
@@ -28,6 +27,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
     public navbarService: NavbarService, public footerService: FooterService, private selectedPlansService: SelectedPlansService) { }
@@ -63,6 +63,26 @@ export class DashboardComponent implements OnInit {
 
   goToInvOverview() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
+  }
+
+  goToDocUpload() {
+    this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
+      const nationalityList = data.objectList;
+      const countryList = this.getCountryList(data.objectList);
+      this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+      this.investmentAccountService.setDataForDocUpload();
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+    });
+  }
+
+  getCountryList(data) {
+    const countryList = [];
+    data.forEach((nationality) => {
+      nationality.countries.forEach((country) => {
+        countryList.push(country);
+      });
+    });
+    return countryList;
   }
 
 }

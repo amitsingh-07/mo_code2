@@ -33,7 +33,7 @@
                         <div class="time-lapse"><div (click) = "goToEngagement()">{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div><div class="flex-row"><span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span><span class="circle"></span></div></div>
                       </div>
                     </div>
-                    <div class="portfolio" *ngIf=true>
+                    <div class="portfolio" *ngIf=false>
                       <div class="portfolio_value">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
                         <div class="value">$76,286</div>
@@ -50,12 +50,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="warning col-12" *ngIf=false>
+                    <div class="warning col-12" *ngIf=true>
                       <div class="warning-txt">
                         <img src="assets/images/investment-account/inline-error.svg" />
                         <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div>
                       </div>
-                      <div class="flex mt15"><button type="button" class="btn btn-primary col-8">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button></div>
+                      <div class="flex mt15"><button type="button" class="btn btn-primary col-8" (click) = "goToDocUpload()">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button></div>
                     </div> 
                   </div>
                 </div>
