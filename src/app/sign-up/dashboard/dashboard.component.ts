@@ -70,7 +70,11 @@ export class DashboardComponent implements OnInit {
       const nationalityList = data.objectList;
       const countryList = this.getCountryList(data.objectList);
       this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
-      this.investmentAccountService.setDataForDocUpload();
+      const beneficialOwner = this.userProfileInfo.investementDetails
+        && this.userProfileInfo.investementDetails.beneficialOwner ? this.userProfileInfo.investementDetails.beneficialOwner : false;
+      const pep = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.isPoliticallyExposed ?
+        this.userProfileInfo.investementDetails.isPoliticallyExposed : false;
+      this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep);
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
     });
   }

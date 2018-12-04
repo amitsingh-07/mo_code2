@@ -26,7 +26,7 @@ export let apiConstants = {
         verifyEmail: 'account/account-microservice/api/verifyEmail',
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
-        userProfileInfo: 'account/account-microservice/api/getProfileSummary',
+        userProfileInfo: 'account/account-microservice/api/getCustomerProfileDetails',
         editContactDeatails: 'account/account-microservice/api/updateAddress',
         editPassword: 'account/account-microservice/api/editPassword',
         editProfile: 'account/account-microservice/api/customer/customerProfile',
