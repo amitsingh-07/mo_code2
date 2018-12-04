@@ -584,7 +584,7 @@ body{
                 display:inline-flex;
                 justify-content:center;
                 align-content:flex-start;
-                width:255px;
+                min-width:255px;
                 height:57px;
                 box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
                 span{
@@ -711,74 +711,54 @@ body{
     min-height:200px;
     justify-content:center;
     align-items:center;
-    .home__licensed-tab-section--inner{
+    flex-direction:column;
+    padding:80px 0px 70px 0px;
+    @include minMobilemaxPhablet{
+        padding:56px 0px 70px 0px;
+    }
+    .licensed-tab-section--title{
+        font-family:$muli-bold;
+        font-size:36px;
+        letter-spacing:-0.4px;
+        color:$teal-color;
+        margin-bottom:0px;
+        @include minMobilemaxPhablet{
+            font-size:28px;
+        }
+    }
+    .licensed-tab-section--more-btn{
+        position: relative;
+        display:block;
+        width:240px;
+        height:57px;
+        margin-top:36px;
+        @include minMobilemaxPhablet{
+            margin-top:10px;
+        }
+    }
+    .licensed-tab-section__inner-container{
         position: relative;
         display:flex;
         width:100%;
         max-width: 1024px;
         flex-direction:row;
-        justify-content: space-between;
-        @include minPhabletmaxTablet{
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            padding:20px 20px;
-        }
-        @include minMobilemaxPhablet{
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            padding:20px 20px;
-        }
-        @include min300max325{
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            padding:20px 20px;
-        }
+        flex-wrap:wrap;
+        justify-content: center;
     }
-    .licensed-tab__trust-container{
+    .licensed-tab-section__icon-container{
         position: relative;
         display:flex;
-        flex-direction:row;
-        max-width:335px;
-        .licensed-tab__text-container{
-            position: relative;
-            display:flex;
-            flex-direction:column;
-            justify-content: center;
-            margin-left:15px;
-            .primary{
-                font-family:$muli-bold;
-                font-size:15px;
-                letter-spacing:-0.2px;
-                color:$orange-color;
-                margin-bottom:0px;
-            }
-            .secondary{
-                font-family:$muli-regular;
-                font-size:28px;
-                line-height:1.07;
-                letter-spacing:-0.3px;
-                color: $teal-color;
-                margin-bottom:0px;
-                span{
-                    font-family: $muli-bold;
-                }
-            }
-
-        }
-    }
-    .licensed-tab__icon-container{
-        position: relative;
-        display:flex;
-        width:auto;
-        margin-top:30px;
+        width:100%;
+        padding:30px 90px 0px 90px;
         justify-content:space-between;
+        flex-wrap:wrap;
+        @include minPhabletmaxTablet{
+            justify-content: center;
+            padding:30px 15px 0px 15px;
+        }
         @include minMobilemaxPhablet{
-            overflow-x:auto;
-            width:100%;
-            padding:-15px 0px;
+            justify-content: center;
+            padding:30px 15px 0px 15px;
         }
         @include min300max325{
             overflow-x:auto;
@@ -789,23 +769,35 @@ body{
             position: relative;
             display: inline-flex;
             justify-content: flex-start;
+            align-items:center;
             flex-direction:column;
-            max-width:113px;
-            margin-right:25px;
-            &:last-child{
-                margin-right:0px;
+            max-width:150px;
+            min-width:120px;
+            @include minPhabletmaxTablet{
+                margin:0px 10px 30px 10px;
+                min-width:100px;
+            }
+            @include minMobilemaxPhablet{
+                margin:0px 10px 20px 10px;
+                min-width:150px;
             }
             img{
-                margin-bottom:15px;
+                width:100px;
+                height:100px;
+                @include minMobilemaxPhablet{
+                    width:90px;
+                    height:90px;
+                }
             }
             p{  
                 position: relative;
                 color:$teal-color;
-                font-size:13px;
-                font-family:$muli-bold;
-                letter-spacing: -0.1px;
+                font-size:16px;
+                font-family:$muli-regular;
+                letter-spacing: -0.2px;
                 text-align:center;
                 margin-bottom:0px;
+                margin-top:6px;
             }
         }
     }
@@ -815,7 +807,7 @@ body{
     position: relative;
     display:flex;
     width:100%;
-    background-color:#fcfcfc;
+    background-color:$lighter-aqua-color;
     justify-content:center;
     align-items:center;
     flex-direction:column;

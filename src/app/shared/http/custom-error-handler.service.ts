@@ -26,7 +26,7 @@ export class CustomErrorHandlerService {
         error: data.responseMessage.responseCode,
         message: data.responseMessage.responseDescription
       };
-      if (typeof showError === undefined || showError) {
+      if (typeof showError === 'undefined' || showError) {
         this.helper.showCustomErrorModal(error);
       }
       throw new Error(this.parseCustomServerErrorToString(error));

@@ -1,15 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { padNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
+
 import { ErrorModalComponent } from '../shared/modal/error-modal/error-modal.component';
 import { ToolTipModalComponent } from '../shared/modal/tooltip-modal/tooltip-modal.component';
 import { SignUpService } from './../sign-up/sign-up.service';
 import { WillWritingFormData } from './will-writing-form-data';
 import { WillWritingFormError } from './will-writing-form-error';
 import {
-  IAboutMe, IBeneficiary, IChild, IEligibility,
-  IExecTrustee, IGuardian, IPromoCode, ISpouse
+  IAboutMe,
+  IBeneficiary,
+  IChild,
+  IEligibility,
+  IExecTrustee,
+  IGuardian,
+  IPromoCode,
+  ISpouse
 } from './will-writing-types';
 import { WILL_WRITING_CONFIG } from './will-writing.constants';
 
@@ -257,11 +264,23 @@ export class WillWritingService {
     for (const children of data) {
       children.relationship = WILL_WRITING_CONFIG.CHILD;
       children.pos = i;
-      children.formatedDob = new Date(children.dob['year'] + '-' + children.dob['month'] + '-' + children.dob['day']);
+      const formattedValue = this.formatDob(children.dob);
+      children.formatedDob = formattedValue;
       this.willWritingFormData.children.push(children);
       i++;
     }
     this.commit();
+  }
+
+  formatDob(value) {
+    if (value) {
+      const date = padNumber(value['day'].toString());
+      const month = padNumber(value['month'].toString());
+      const year = value['year'] + '';
+      const returnValue = `${date}/${month}/${year}`;
+      return returnValue;
+    }
+    return value;
   }
 
   /**
@@ -394,7 +413,7 @@ export class WillWritingService {
     for (const children of childrens) {
       const dob = children.dob;
       const today = new Date();
-      const birthDate = new Date(dob['year'], dob['month'], dob['day']);
+      const birthDate = new Date(dob['year'] + '/' + dob['month'] + '/' + dob['day']);
       let age = today.getFullYear() - birthDate.getFullYear();
       const m = today.getMonth() - birthDate.getMonth();
       if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -415,7 +434,7 @@ export class WillWritingService {
   }
 
   openErrorModal(title: string, message: string, isMultipleForm: boolean, formName?: string) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal'});
+    const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal' });
     ref.componentInstance.errorTitle = title;
     if (!isMultipleForm) {
       ref.componentInstance.formName = formName;

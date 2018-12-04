@@ -142,7 +142,7 @@ export class CheckEligibilityComponent implements OnInit, OnDestroy {
   }
 
   openErrorModal() {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      const ref = this.modal.open(ErrorModalComponent, { centered: true, windowClass: 'will-custom-modal' });
       ref.componentInstance.errorTitle = this.errorModal.TITLE;
       ref.componentInstance.errorMessage = this.errorModal.MESSAGE;
       ref.componentInstance.navToHome = true;

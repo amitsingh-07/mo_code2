@@ -1,12 +1,15 @@
 <img src="/assets/articles/images/55/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="True Purpose of Using Term and Whole Life Insurance Image">
 
 <p>There was a recent article that discussed when it was suitable to Buy  Term and Invest the Rest (BTIR) and when to use <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" style="font-weight:600;" target="_blank">Whole Life Insurance</a>. </p>
+<br/>
 <p>Contrary to what many think, the purpose of buying <a href="https://www.moneyowl.com.sg/#/articles/entry/35" style="font-weight:bold;" target="_blank">term insurance</a> is not  so that one can invest the difference from the amount saved by buying a term  instead of a whole life.</p>
+<br/>
 <p>The main purpose of buying insurance is for protection and buying Term  Insurance is the best way to be sufficiently covered. Whether one should invest  the rest is a different discussion together. </p>
 <p>&nbsp;</p>
 <h2 class="primary-color"><strong>Why is Term Insurance the most appropriate?</strong></h2>
+<br/>
 <p>Most people are not against that the main purpose of insurance is for  protection, to transfer a potential financial risk loss to the insurer. There  are 2 main reasons why <a href="https://www.moneyowl.com.sg/#/articles/entry/35" style="font-weight:bold;" target="_blank">Term insurance</a> is the most appropriate to help us  achieve our purpose. </p>
-
+<br/>
 <p class="primary-color"><strong>a. Most of our top  priority needs are not permanent</strong></p>
 <div class="table-responsive" >
   <table class="table table-bordered table-condensed text-xs-center ">
@@ -82,6 +85,7 @@
 
 <p class="primary-color"><strong>b. Term Insurance is the  most affordable way to be fully covered</strong></p>
 <p>We illustrate with an example. For a 45-year-old male to be insured with  $1M life insurance coverage, a <a href="https://www.moneyowl.com.sg/#/articlce/entry/35" style="font-weight:bold;" target="_blank" title="Term Insurance">term insurance</a> policy would cost $2,913 while a  <a href="http://www.moneysense.gov.sg/understanding-financial-products/insurance/types-of-insurance/life-insurance/types-of-life-insurance/whole-life-insurance.aspx" target="_blank" title="Whole Life Insurance">whole life Insurance</a> would cost $29,162. </p>
+<br/>
 <p>Possible insurance plans for a 45 year-old  male to cover $1,000,000 Death/TPD </p>
 <div class="table-responsive" >
   <table class="table table-bordered table-condensed text-xs-center">
@@ -127,16 +131,23 @@
 <p>&nbsp;</p>
 <h2 class="primary-color"><strong>The Use of Whole Life Insurance</strong></h2>
 <p>As illustrated in our table of insurance needs, most of our high  priority planning needs are temporary can be taken care of using Term  Insurance. After we have sufficiently insured ourselves for the high  priorities, we can begin to look at our lower priorities. </p>
+<br/>
 <p>You should only consider whole life insurance if you want the option of  providing for alternative medicine. However you need to weigh this want against  other needs you may have such as providing for your own retirement and your  child&rsquo;s education.</p>
+<br/>
 <p>Use whole life insurance to help you manage your risk for your needs  that are permanent and not because for the reason that it is better than the  philosophy of "Buying Term and Investing the Rest". </p>
 
 <br>
 <h2 class="primary-color"><strong>On Investing</strong></h2>
 <p>The recent article also assumes that one could face a 30% drop in value  of one&rsquo;s <a href="https://www.investopedia.com/terms/p/portfolio-investment.asp" style="font-weight:600;" target="_blank">investment portfolio</a> near retirement age. </p>
+<br/>
 <p>This is unlikely to occur. </p>
+<br/>
 <p>Most retirees de-risk their investment portfolio nearing retirement.  During the worst of the financial crisis in October 2008, the US S&amp;P500  index total returns (inclusive of dividends) was -16.78%. If you were in a  conservative portfolio then, your portfolio would have dropped by -7.48%, a  drop which is easier to stomach. No one should experience a devastating drop in  the value of their entire investment portfolio near/during retirement. </p>
+<br/>
 <p>Alternatively, use a &ldquo;Bucket System&rdquo; for your retirement. For monies  that you need to draw-down in the short-term, they should be in safer  portfolios. (Eg. money market funds and funds with a large proportion in  bonds). For monies that you only need later (15-20 years&rsquo; time), you can invest  in more aggressive portfolios as you have time to ride the volatility of the  markets. </p>
+<br/>
 <p>We have written a series of articles on how one can manage their  investments and draw-down during retirement. Read the <a href="https://www.providend.com/retirewell-part-1/" target="_blank" title="9-part RetireWell Series">9-part RetireWell series</a> that was published in the Business Times over 10 months <a href="https://www.providend.com/retirewell-part-1/" target="_blank" title="RetireWell Part 1">here.</a></p>
+<br/>
 <p>If you are keen to grow your wealth, there are many instruments  available to do so. It is not necessary to use an insurance product. Before  investing in any product, consider the following factors:<br>
 </p>
 <ul class="bluedot">
@@ -149,7 +160,9 @@
 <br>
 <h2 class="primary-color"><strong>Insure the Right Way</strong></h2>
 <p>In the last protection gap study conducted by <a href="http://www.lia.org.sg/" style="font-weight:600;" target="_blank">Life Insurance Association  Singapore (LIA)</a>, the overall protection gap in Singapore as at the end of 2011  is S$462 billion. </p>
+<br/>
 <p>Despite paying a lot towards their insurance policies, many people in  Singapore are not sufficiently insured and are not insured for their top  priority needs.</p>
+<br/>
 <p>It is only when we understand the true purpose of how we use the  different types of insurance to meet our needs that we can spend smartly on  insurance and insure our loved ones and ourselves the right way.</p>
 <br>
 <!--

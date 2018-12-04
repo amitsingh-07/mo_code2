@@ -8,7 +8,7 @@
 .page-box{
     padding:0px 30px 40px 30px;
     @include minMobilemaxPhablet{
-        padding:0px 15px 50px 15px;
+        padding:0px 0px 50px 0px;
     }
 
     /* Article Colors */
@@ -44,7 +44,6 @@
     p{
         color:$black-color;
         font-size:1rem;
-        margin-bottom:0px;
     }
     small{
         display:block;
@@ -65,11 +64,21 @@
                 margin:15px 0px 15px 0px;
                 width:100%;
             }
+            &.halfwidth{
+                width:450px;
+                @include minMobilemaxPhablet{ 
+                    width:100%;
+                }
+            }
             &.fullwidth{
                 margin:0px;
                 width:100%;
             }           
         }
+    }
+    /*text color */
+    .text-white{
+        color:$white-color;
     }
 
     /* Table Styles */
@@ -78,6 +87,65 @@
         width:100%;
         min-height:0.1%;
         overflow-x:auto;
+    }
+    .table-teal{
+        border: 1px solid #cdeae6 !important;
+        td{
+            padding-left: 20px;
+            border: 1px solid #cdeae6 !important;
+            font-family: $muli-bold !important;
+            font-size: 15px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: -0.2px;
+            color: #000000;
+            padding: 18px;
+            &:first-child{
+                background-color:$white-color;
+            }
+            .sub {
+                font-family: $muli-regular !important;
+                font-size: 15px;
+                font-weight: normal;
+                letter-spacing: -0.2px;
+                color: #4a4a4a;
+            }
+        } 
+        .will-th {
+            background-color: #00a7a7;
+            color: #ffffff;
+            font-family: $muli-bold;
+            font-size: 18px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: -0.2px;
+            color: #ffffff;
+            padding: 18px 20px;
+            width: 324px;
+            border: 1px solid #cdeae6 !important;
+            &:last-child {
+                width: 340px
+            }
+        }
+        .distribute {
+            display: flex;
+            justify-content: space-between;
+            border: 0px !important;
+            .percentage {
+                color: #00a7a7;
+            }
+        }
+    }
+    .sub {
+        font-family: $muli-regular !important;
+        font-size: 15px;
+        font-weight: normal;
+        letter-spacing: -0.2px;
+        color: #4a4a4a;
     }
     .table{
         width:100%;
@@ -266,6 +334,10 @@
         background-color:$dark-teal-color;
         color:$white-color;
     }
+    .cell--teal{
+        background-color:$teal-color;
+        color:$white-color;
+    }
     /* Custom Border Styles */
     .border--clean{
         border:0px;
@@ -281,6 +353,7 @@
     }
     
 }
+
 /** Card Block **/
 .card-block{
     padding:10px;
@@ -293,7 +366,6 @@
     flex-direction:column;
     width:100%;
     height:auto;
-    border:1px solid $border-grey-color;
     overflow:hidden;
     background-color:$white-color;
     margin-bottom:15px;
@@ -318,7 +390,6 @@
         position: relative; 
         width:100%;
         height:auto;
-        border-bottom:1px solid $border-grey-color;
         img{
             display:block;
             width:100%;
@@ -326,16 +397,17 @@
         @include minMobilemaxPhablet{
             flex-basis:40%;
             border-bottom:unset;
-            border-right:1px solid $border-grey-color;
+            overflow:hidden;
         }
     }
 
     .related-card__desc{
         position: relative;
         display:block;
-        padding:10px;
+        padding:10px 0px 10px 0px;
         @include minMobilemaxPhablet{
             flex-basis:60%;
+            padding:0px 10px 10px 10px;
         }
         .related-card--title{
             position: relative;

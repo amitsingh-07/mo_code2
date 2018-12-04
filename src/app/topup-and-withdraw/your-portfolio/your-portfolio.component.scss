@@ -1,6 +1,9 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
+.portfolio-bg{
+    padding-top: 60px;
+}
 .background_img {
     object-fit: contain;
     position: relative;
@@ -25,9 +28,9 @@
     .flex-col-3{
         position: absolute;
         right: 21px;
-        top: 40px;
+        top: 80px;
         @include iphone5{
-            top:30px;
+            top:75px;
         }
     }
 }
@@ -62,29 +65,23 @@
     background-color: #276f75;
 }
 .container-fluid {
-    padding-top: -18px;
+    padding-top: -28px;
     @include allmobiles{
         padding-left: 20px !important;
         padding-right: 20px !important;
         position: relative;
         height: 100%;
         padding:  0px;
-        margin-top: -18px;
+        margin-top: -42px;
     }
     @include iphone6plus{
         margin-top: -42px;
     }
     @include iphone5{
-        margin-top: 10px;
+        margin-top: -30px;
     }
 }
-@media (max-width: 567px) and (min-width: 320px){
 
-.container-fluid {
-    
-
-}
-}
 
 .form-group-with-bg {
     box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);

@@ -71,8 +71,9 @@ export class SignUpApiService {
       selectedPlanData = { enquiryId: 0, plans: [] };
     }
     const formatDob = userInfo.dob;
-    const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;
     const investmentEnqId = Number(this.authService.getEnquiryId()); // Investment Enquiry ID
+    const customDob = formatDob ? formatDob.year + '-' + formatDob.month + '-' + formatDob.day : '';
+
     return {
       customer: {
         id: 0,

@@ -460,7 +460,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please enter Expected Amount Per Transaction.'
             }
         },
-        sources: {
+        source: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Source Of Investment Funds',
