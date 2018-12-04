@@ -349,6 +349,7 @@ export class InvestmentAccountService {
     }
     updateEmployerAddress(data) {
        const payload = this.constructEmploymentDetailsReqData(data);
+       console.log('Update Emp Payload' + payload);
        return this.apiService.requestUpdateEmployerAddress(payload);
     }
     constructEmploymentDetailsReqData(data): IEmployment {
@@ -843,6 +844,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
         this.investmentAccountFormData.nationalityList = nationalityList;
         this.investmentAccountFormData.countryList = countryList;
+       // this.investmentAccountFormData.resAddressProof = data.documentDetails.fileName;
         if (data.contactDetails.homeAddress.country) {
             this.investmentAccountFormData.country = data.contactDetails.homeAddress.country;
         }
@@ -912,37 +914,41 @@ export class InvestmentAccountService {
 
         if (data.employmentDetails.employmentStatus.name !== 'Unemployed') {
             this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
+            if (data.employmentDetails.employerDetails.detailedEmployerDetails) {
             if (data.employmentDetails.employerDetails.detailedEmployerDetails.employerName ) {
                 this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName ;
-            }
-            if (data.employmentDetails.occupation.occupation) {
-                this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
             }
             if ( data.employmentDetails.employerDetails.detailedEmployerDetails.industry) {
             this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.detailedEmployerDetails.industry;
             }
             if ( data.employmentDetails.employerDetails.detailedEmployerDetails.employerContact) {
-            this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.detailedEmployerDetails.employerContact;
+            this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.employerContact;
+            }
+        }
+            if (data.employmentDetails.occupation.occupation) {
+                this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
             }
             this.investmentAccountFormData.isEmployeAddresSame = isEmployeAddresSame;
 
             if (!isEmployeAddresSame) {
+                if (data.employmentDetails.employerDetails.detailedEmployerDetails) {
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empCountry = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.country;
+                this.investmentAccountFormData.empCountry = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.country;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empPostalCode = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.postalCode;
+                this.investmentAccountFormData.empPostalCode = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empAddress1 = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine1;
+                this.investmentAccountFormData.empAddress1 = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine2;
+                this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.unitNumber;
+                this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.city;
+                this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.city;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.state;
+                this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.state;
                 // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.zipCode;
+                this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode; // discussed and only one feild name is available in backend
+                }
             }
         } else {
             this.investmentAccountFormData.employmentStatus = data.employmentStatus;
