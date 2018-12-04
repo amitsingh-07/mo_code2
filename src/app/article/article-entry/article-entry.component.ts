@@ -77,7 +77,7 @@ export class ArticleEntryComponent implements OnInit {
       this.seoService.setTitle(this.translate.instant('COMMON.PRE_TITLE') + this.title);
       this.seoService.setArticlesMetaTags(this.translate.instant('COMMON.PRE_TITLE') + this.title,
                                           this.summary,
-                                          'https://www.moneyowl.com.sg/assets/articles/' + this.art_id + '/thumbnail.jpg',
+                                          'https://www.moneyowl.com.sg/assets/articles/images/' + this.art_id + '/thumbnail.jpg',
                                           this.keywords,
                                           this.author,
                                           date_string,
