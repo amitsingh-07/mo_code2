@@ -59,16 +59,33 @@ strong {
     }
   }
 }
-
-.input-group.date-picker {
-  .dropdown-menu.show {
-    @include allmobiles {
-      left: inherit !important;
-      right: 0px;
+.form-group{
+  &.date-picker-group{
+    margin: 0;
+    padding-bottom: 10px;
+    .flex-row{
+      margin-bottom: 0;
+    }
+    .input-group.date-picker {
+      max-height: 52px;
+      margin: 0;
+      .dropdown-menu.show {
+        @include allmobiles {
+          left: inherit !important;
+          right: 0px;
+        }
+      }
+    }
+    .input-group-append{
+      .btn-primary{
+        max-height: 52px;
+      }
     }
   }
 }
-
+hr{
+  margin-top: 0;
+}
 .get-started-image {
   @include tablet {
     width: 300px;
@@ -153,6 +170,7 @@ strong {
 .callout h5 {
   color: $teal-color;
   font-weight:bold;
+  letter-spacing: -0.2px;
 }
 
 .callout h5 .period-count{

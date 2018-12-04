@@ -442,13 +442,14 @@ export class ApiService {
         })
       );
   }
+
   getInvestmentOverview() {
     //  const url = '../assets/mock-data/investment-overview.json';
-     return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
-     .pipe(
+    return this.http.get(apiConstants.endpoint.investmentAccount.investmentoverview)
+      .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
-    }
+  }
   getIndustryList() {
     return this.http.get(apiConstants.endpoint.investmentAccount.lndustrylist)
       .pipe(

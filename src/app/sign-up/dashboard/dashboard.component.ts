@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,6 +25,10 @@ import { IEnquiryUpdate } from '../signup-types';
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
   insuranceEnquiry: any;
+  portfolioParchased;
+  showPortffolioPurchased = false;
+  showNotPurchasedPortfolio = false;
+  showInvestmentDetailsSaved = false;
 
   constructor(
     private router: Router,
@@ -38,6 +43,7 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    this.getDashboardList();
     this.translate.use('en');
 
     this.insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
@@ -64,6 +70,9 @@ export class DashboardComponent implements OnInit {
   goToInvOverview() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
   }
+  goToUploadDocuments() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+  }
 
   goToDocUpload() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
@@ -89,4 +98,24 @@ export class DashboardComponent implements OnInit {
     return countryList;
   }
 
+  getDashboardList() {
+      const investmentStatus = this.userProfileInfo.investementDetails
+      && this.userProfileInfo.investementDetails.account
+      && this.userProfileInfo.investementDetails.account.accountStatus ?
+      this.userProfileInfo.investementDetails.account.accountStatus : null;
+      switch (investmentStatus) {
+        case 'PORTFOLIO_PURCHASED': {
+          this.showPortffolioPurchased = true;
+          break;
+        }
+        case 'INVESTMENT_ACCOUNT_DETAILS_SAVED': {
+          this.showInvestmentDetailsSaved = true;
+          break;
+        }
+        default: {
+          this.showNotPurchasedPortfolio = true;
+          break;
+        }
+      }
+  }
 }
