@@ -2,6 +2,7 @@ import { ElementRef, Injectable, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +35,7 @@ export class NavbarService {
   private mobileModal = new BehaviorSubject('');
   private closeProdInfo = new BehaviorSubject('');
   private pageSettingsIcon = new BehaviorSubject(true);
+  private pageFilterIcon = new BehaviorSubject(true);
 
   currentPageTitle = this.pageTitle.asObservable();
   currentPageSubTitle = this.pageSubTitle.asObservable();
@@ -41,6 +43,7 @@ export class NavbarService {
   currentPageProdInfoIcon = this.pageProdInfoIcon.asObservable();
   currentMobileModalEvent = this.mobileModal.asObservable();
   currentPageSettingsIcon = this.pageSettingsIcon.asObservable();
+  currentPageFilterIcon = this.pageFilterIcon.asObservable();
 
   constructor() { }
 
@@ -89,7 +92,7 @@ export class NavbarService {
 
   /* Header Functions*/
   // Setting Page Title
-  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean) {
+  setPageTitle(title: string, subTitle?: string, helpIcon?: boolean, settingsIcon?: boolean, filterIcon?: boolean) {
     this.pageTitle.next(title);
     if (subTitle) {
       this.pageSubTitle.next(subTitle);
@@ -105,6 +108,11 @@ export class NavbarService {
       this.pageSettingsIcon.next(true);
     } else {
       this.pageSettingsIcon.next(false);
+    }
+    if (filterIcon) {
+      this.pageFilterIcon.next(true);
+    } else {
+      this.pageFilterIcon.next(false);
     }
   }
   // Showing Mobile PopUp Trigger

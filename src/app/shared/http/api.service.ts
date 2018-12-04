@@ -759,4 +759,11 @@ export class ApiService {
       );
   }
 
+  getTransactionHistory(from?, to?) {
+    const queryString = from ? '?fromDate=' + from + '&toDate=' + to : '';
+    return this.http.get(apiConstants.endpoint.investment.getTransactions + queryString)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 }
