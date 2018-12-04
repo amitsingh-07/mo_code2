@@ -1136,10 +1136,10 @@ export class InvestmentAccountService {
         return parseInt(sessionStorage.getItem(ACCOUNT_SUCCESS_COUNTER_KEY), 10);
     }
 
-    setDataForDocUpload() {
-        const nationality = {"nationalityCode":"SG","name":"SINGAPOREAN","listorder":1,"countries":[{"id":225,"countryCode":"SG","name":"SINGAPORE","phoneCode":"+65"}],"blocked":false};
-        const beneficialOwner = false;
-        const pep = true;
+    setDataForDocUpload(nationality, beneficialOwner, pep) {
+        // const nationality = {"nationalityCode":"SG","name":"SINGAPOREAN","listorder":1,"countries":[{"id":225,"countryCode":"SG","name":"SINGAPORE","phoneCode":"+65"}],"blocked":false};
+        // const beneficialOwner = false;
+        // const pep = true;
         this.investmentAccountFormData.nationality = nationality;
         this.investmentAccountFormData.nationalityCode = nationality.nationalityCode;
         this.investmentAccountFormData.beneficial = beneficialOwner;
