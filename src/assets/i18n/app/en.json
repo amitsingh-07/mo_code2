@@ -218,6 +218,12 @@
       },
       "ALL_RIGHTS_RESERVED": "© 2018 MoneyOwl Pte Ltd. All Rights Reserved."
     }
+  },
+  "COMMON_ERRORS": {
+    "API_FAILED": {
+      "TITLE": "Error !",
+      "DESC": "Oops. Something went wrong."
+    }
   }
 }
 

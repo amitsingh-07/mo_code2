@@ -54,15 +54,16 @@ export class TopupAndWithDrawService {
   getMoreList() {
     return this.apiService.getMoreList();
   }
+  
   doFinancialValidations(form) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals                              //TODO
-    if (Number(form.value.oneTimeInvestmentAmount) < 100 &&
+    if (Number(form.value.oneTimeInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
       form.value.Investment === 'One-time Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
       // tslint:disable-next-line:max-line-length                            //TODO
-    } else if (Number(form.value.MonthlyInvestmentAmount) < 50 &&
+    } else if (Number(form.value.MonthlyInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
       form.value.Investment === 'Monthly Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
@@ -98,6 +99,14 @@ export class TopupAndWithDrawService {
     this.topUpAndWithdrawFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
     this.topUpAndWithdrawFormData.Investment = data.Investment;
     this.topUpAndWithdrawFormData.topupportfolioamount = data.topupportfolioamount;
+    this.commit();
+  }
+  setInvestmentValue(minimumBalanceOfTopup) {
+    this.topUpAndWithdrawFormData.minimumBalanceOfTopup = minimumBalanceOfTopup;
+    this.commit();
+  }
+  getInvestmentValue(minimumBalanceOfTopup) {
+    this.topUpAndWithdrawFormData.minimumBalanceOfTopup = minimumBalanceOfTopup;
     this.commit();
   }
 

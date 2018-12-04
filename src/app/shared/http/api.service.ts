@@ -654,14 +654,14 @@ export class ApiService {
   }
 
   buyPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio, data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
   sellPortfolio(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio, data)
+    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
