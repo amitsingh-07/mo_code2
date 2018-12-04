@@ -36,7 +36,18 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.topupAndWithDrawService.getAllTransactionHistory().subscribe((response) => {
+    this.getTransactionHistory();
+
+    // Statement
+    this.accountCreationDate = new Date('2016-04-23');
+    this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
+  }
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title, null, false, false, true);
+  }
+
+  getTransactionHistory(from?, to?) {
+    this.topupAndWithDrawService.getTransactionHistory(from, to).subscribe((response) => {
       let mockresponse = {
         "objectList": [{
             "id": 2,
@@ -297,13 +308,6 @@ export class TransactionComponent implements OnInit {
       this.transactionHistory = response.objectList;
       this.transactionHistory = new GroupByPipe().transform(this.transactionHistory, 'displayCreatedDate');
     });
-
-    // Statement
-    this.accountCreationDate = new Date('2016-04-23');
-    this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
-  }
-  setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title, null, false, false, true);
   }
 
   getStatementLink(month) {
@@ -321,6 +325,10 @@ export class TransactionComponent implements OnInit {
     } else {
       this.activeTransactionIndex = null;
     }
+  }
+
+  filterTransactionHistory(from = '2018-12-01', to = '2018-12-03') {
+    this.getTransactionHistory(from, to);
   }
 
 }

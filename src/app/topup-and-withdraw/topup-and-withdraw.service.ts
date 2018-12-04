@@ -242,8 +242,8 @@ export class TopupAndWithDrawService {
     };
   }
 
-  getAllTransactionHistory() {
-    return this.apiService.getAllTransactionHistory();
+  getTransactionHistory(from?, to?) {
+    return this.apiService.getTransactionHistory(from, to);
   }
 
   getMonthListByPeriod(from, to) {
