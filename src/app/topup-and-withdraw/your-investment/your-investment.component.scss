@@ -2,10 +2,9 @@
 @import "../../../_mixins.scss";
 app-your-investment{
 
-    .investment-bg{
-        padding-top: 60px;
-        
-    }
+.investment-bg{
+    padding-top: 60px;  
+}
 .background_img {
     object-fit: contain;
     position: relative;
@@ -13,7 +12,7 @@ app-your-investment{
 }
 .user_content{
     position: absolute;
-    top: 12%;
+    top: 110px;
     .user_summary{
         font-family: $muli-regular;
         font-size: 18px;
@@ -24,8 +23,8 @@ app-your-investment{
     }
     .flex-col-3{
         position: absolute;
-        right: 22px;
-        top: 80px;
+        right: 29px;
+        top: 40px;
         @include iphone5{
             top: 30px;
         }
@@ -61,20 +60,17 @@ p{
     color: #fff;
     background-color: #276f75;
 }
-.container-fluid {
 
-    padding-top: -18px;
-}
-@include allmobiles{
-.container-fluid {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    position: relative;
-    height: 100%;
-    padding:  0px;
-    margin-top: -42px;
 
-}
+.container-fluid {
+    @include allmobiles{
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        position: relative;
+        height: 100%;
+        padding:  0px;
+        margin-top: -42px;
+    }
 }
 
 
@@ -108,9 +104,10 @@ p{
 .form-group-with-bg {
     box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
     background-color: #ffffff;
+    margin-bottom: 30px;
 .your_total_value{
     background-color: #276f75;
-    
+    padding: 20px 20px 17px;
 }
 }
 .total_values{
@@ -126,24 +123,19 @@ p{
   color: #ffffff;
 }
 .total_values_label{
-    
     font-family: $muli-regular;
     font-size: 16px;
-    
     line-height: 0.88;
     letter-spacing: -0.1px;
     text-align: center;
     color: #ffffff;
+    margin-top: 6px;
 }
 .start_investment_label{
-    
-    font-family: Muli;
     font-size: 13px;
-    
     line-height: 1.62;
     letter-spacing: -0.1px;
     color: #5e5e5e;
-
 }
 .start_investment_value{
    font-family: $muli-bold;
@@ -152,8 +144,6 @@ p{
   letter-spacing: -0.2px;
   text-align: right;
   color: #11b600;
-  padding-right: 16px;
-
 }
 
 .form-group-with-bg 
@@ -162,30 +152,26 @@ p{
       margin-bottom: 0px; 
 }
 .total_return_label{
-   
-    
     color: #5e5e5e;
     font-size: 16px;
     color: #2d8289;
 }
 .total_return_value{
-   font-family: $muli-regular;
+   font-family: $muli-bold;
     font-size: 18px;
     font-weight: bold;
     letter-spacing: -0.2px;
     text-align: right;
     color: #00a7a7;
-    padding-right: 17px;
+    word-break: break-all;
 }
 .your_portfolio_container{
     padding: 20px;
     align-items: baseline;
 }
 .your_portfolio_label{
-    
   font-family: $muli-regular;
   font-size: 21px;
-
   letter-spacing: -0.2px;
   color: #ffffff;
   padding-left: 12px;
@@ -205,7 +191,7 @@ p{
     align-items: center;
     justify-content: space-between;
     .flex-row{
-        align-items: center;
+        align-items: center !important;
         .conserve-icon{
             width: 35px;
             height: 35px;
@@ -222,12 +208,10 @@ p{
 .portfolio_heading{
 font-family: $muli-bold;
   font-size: 18px;
-  
   letter-spacing: -0.3px;
  color: #00a7a7;
   padding-left: 15px;
   max-width: 180px;
-  
 }
 .portfolio_value{
     font-family: $muli-bold;
@@ -235,15 +219,12 @@ font-family: $muli-bold;
     font-weight: bold;
     letter-spacing: -0.3px;
     color: #00a7a7;
-    padding: 0px 0px 0px 15px;
-    
 }
 .portfolio_label{
    font-size: 16px;
    line-height: 1.31;
    letter-spacing: -0.1px;
    color: #8a9ba9;
-   padding: 0px 0px 0px 15px;
 }
   .top_alert {
     position: relative;
