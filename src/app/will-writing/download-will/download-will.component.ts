@@ -20,7 +20,7 @@ export class DownloadWillComponent implements OnInit, OnDestroy {
     this.subscription = this.route.queryParams.subscribe((params) => {
       if (params['id']) {
         this.customerId = (params['id']);
-        if (!this.authService.isAuthenticated) {
+        if (this.authService.isAuthenticated) {
           this.authService.authenticate().subscribe((token) => {
             this.downloadWill();
           });
