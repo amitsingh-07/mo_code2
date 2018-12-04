@@ -15,11 +15,12 @@ export class MailchimpApiService {
   private formError: any = new FormError();
 
   private subscribeMessage = new BehaviorSubject('');
-
   public newSubscribeMessage = this.subscribeMessage.asObservable();
 
   constructor(private modal: NgbModal, public apiService: ApiService) {
-
+    this.apiService.newErrorMessage.subscribe((data) => {
+      this.handleSubscribeResponse(data);
+    });
   }
   private subscribeFormData: SubscribeMember = new SubscribeMember();
   error = '';
@@ -39,9 +40,8 @@ export class MailchimpApiService {
   }
 
   handleSubscribeResponse(data: any) {
-    console.log(data);
     if (data) {
-      if (data.status === 400) {
+      if (data.status === 400 || data.status === 500) {
         this.handleSubscribeError(data);
       } else
       if (data.status === 'pending') {
