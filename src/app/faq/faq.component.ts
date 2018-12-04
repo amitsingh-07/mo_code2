@@ -76,7 +76,6 @@ export class FAQComponent implements OnInit{
     } else {
       this.activeSection = 0;
     }
-    console.log(this.activeSection);
   }
 
   toggleActive(event: any) {
@@ -145,7 +144,6 @@ export class FAQComponent implements OnInit{
   }
 
     goToSection(elementName) {
-      console.log(elementName);
       if (elementName === 'insurance') {
         this.activeSection = 0;
       } else if (elementName === 'will') {
@@ -157,6 +155,5 @@ export class FAQComponent implements OnInit{
       } else {
         this.activeSection = 0;
       }
-      console.log(this.activeSection);
     }
 }

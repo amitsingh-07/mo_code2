@@ -100,14 +100,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
       if (data !== '') {
-        if (data['errorMessage']) {
+        if ( !data.match('verification link')) {
           this.subscribeSuccess = false;
-          this.subscribeMessage = data['errorMessage'];
+          this.subscribeMessage = data;
         } else {
           this.subscribeMessage = data;
           this.subscribeSuccess = true;
         }
-        setTimeout(() => {this.subscribeMessage = ''; }, 3000);
       }
     });
   }
@@ -141,6 +140,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       firstName: new FormControl(this.formValues.firstName),
       lastName: new FormControl(this.formValues.lastName),
       email: new FormControl(this.formValues.email, [Validators.required, Validators.pattern(this.emailPattern)]),
+    });
+    this.subscribeForm.valueChanges.subscribe(() => {
+      this.subscribeMessage = '';
+      this.subscribeSuccess = false;
     });
     this.authService.clearSession();
     this.appService.startAppSession();
@@ -290,7 +293,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     } else {
       this.subscribeSuccess = false;
       this.subscribeMessage = this.formError.subscribeFormErrors.INVALID.errorMessage;
-      setTimeout(() => {this.subscribeMessage = ''; }, 3000);
     }
   }
 }

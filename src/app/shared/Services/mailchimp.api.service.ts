@@ -15,11 +15,12 @@ export class MailchimpApiService {
   private formError: any = new FormError();
 
   private subscribeMessage = new BehaviorSubject('');
-
   public newSubscribeMessage = this.subscribeMessage.asObservable();
 
   constructor(private modal: NgbModal, public apiService: ApiService) {
-
+    this.apiService.newErrorMessage.subscribe((data) => {
+      this.handleSubscribeResponse(data);
+    });
   }
   private subscribeFormData: SubscribeMember = new SubscribeMember();
   error = '';
@@ -39,13 +40,11 @@ export class MailchimpApiService {
   }
 
   handleSubscribeResponse(data: any) {
-    console.log(data);
     if (data) {
-      if (data.status === 400) {
+      if (data.status === 400 || data.status === 500) {
         this.handleSubscribeError(data);
       } else
       if (data.status === 'pending') {
-        console.log('pending success');
         this.subscribeMessage.next('To confirm your subscription, please click on the verification link sent to your email.');
       }
     }
@@ -55,7 +54,20 @@ export class MailchimpApiService {
     const errorMap = this.formError.subscribeFormErrors;
     let message = '';
     try {
-      message = errorMap[data.status][data.title];
+      if ( errorMap[data.status] ) {
+        const errorList = errorMap[data.status];
+        const detail = data.detail;
+        errorList.forEach((element) => {
+          const regex = element.errorRegex;
+          const res = detail.match(regex);
+          if ( res ) {
+            message = element.errorMessage;
+          }
+        });
+        if (message === '') {
+          message = errorMap['DEFAULT'];
+        }
+      }
     } catch {
       message = errorMap['DEFAULT'];
     }
