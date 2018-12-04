@@ -1137,9 +1137,6 @@ export class InvestmentAccountService {
     }
 
     setDataForDocUpload(nationality, beneficialOwner, pep) {
-        // const nationality = {"nationalityCode":"SG","name":"SINGAPOREAN","listorder":1,"countries":[{"id":225,"countryCode":"SG","name":"SINGAPORE","phoneCode":"+65"}],"blocked":false};
-        // const beneficialOwner = false;
-        // const pep = true;
         this.investmentAccountFormData.nationality = nationality;
         this.investmentAccountFormData.nationalityCode = nationality.nationalityCode;
         this.investmentAccountFormData.beneficial = beneficialOwner;
