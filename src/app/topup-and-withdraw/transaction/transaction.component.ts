@@ -19,6 +19,7 @@ export class TransactionComponent implements OnInit {
   accountCreationDate: any;
   statementMonthsList: any;
   Object = Object;
+
   constructor(
     private router: Router,
     public navbarService: NavbarService,
@@ -49,10 +50,10 @@ export class TransactionComponent implements OnInit {
 
   getStatementLink(month) {
     const base_url = TOPUPANDWITHDRAW_CONFIG.STATEMENT.STATEMENT_BASE_PATH;
-    const fileName = month.monthName + '_' + month.year + '.pdf';
-    return base_url + fileName ;
+    const customerId = 'ngvdkf'; // todo
+    const sub_path = 'statements/' + customerId + '/';
+    const fileName = month.monthName.substring(0, 3).toLowerCase() + '_' + month.year + '.pdf';
+    return base_url + sub_path + fileName ;
   }
 
 }
-
-//export class NgbdTabsetBasic { }
