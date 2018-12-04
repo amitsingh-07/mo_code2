@@ -45,7 +45,6 @@ export class MailchimpApiService {
         this.handleSubscribeError(data);
       } else
       if (data.status === 'pending') {
-        console.log('pending success');
         this.subscribeMessage.next('To confirm your subscription, please click on the verification link sent to your email.');
       }
     }
@@ -55,7 +54,20 @@ export class MailchimpApiService {
     const errorMap = this.formError.subscribeFormErrors;
     let message = '';
     try {
-      message = errorMap[data.status][data.title];
+      if ( errorMap[data.status] ) {
+        const errorList = errorMap[data.status];
+        const detail = data.detail;
+        errorList.forEach((element) => {
+          const regex = element.errorRegex;
+          const res = detail.match(regex);
+          if ( res ) {
+            message = element.errorMessage;
+          }
+        });
+        if (message === '') {
+          message = errorMap['DEFAULT'];
+        }
+      }
     } catch {
       message = errorMap['DEFAULT'];
     }

@@ -51,6 +51,8 @@ export class ApiService {
   }
 
   private handleSubscribeError(error: HttpErrorResponse) {
+    console.log(error);
+    console.log('triggered');
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
