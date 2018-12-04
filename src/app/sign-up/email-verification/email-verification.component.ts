@@ -1,3 +1,4 @@
+import { ConfigService, IConfig } from './../../config/config.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -15,15 +16,19 @@ import { SignUpService } from './../sign-up.service';
 export class EmailVerificationComponent implements OnInit {
   email: string;
   emailVerified: boolean;
+  willWritingEnabled = false;
   constructor(
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService, private configService: ConfigService
   ) {
     this.translate.use('en');
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.willWritingEnabled = config.willWritingEnabled;
+    });
   }
 
   /**

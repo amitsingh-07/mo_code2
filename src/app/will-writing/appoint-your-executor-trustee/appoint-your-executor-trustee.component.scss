@@ -81,7 +81,6 @@
     .intro-block__content__title {
         font-family: $muli-semi-bold;
         font-size: 24px;
-        font-weight: 600;
         letter-spacing: -0.3px;
         text-align: center;
         color: #ffffff;
@@ -100,14 +99,14 @@
         text-align: center;
         color: #ffffff;
         @include allmobiles{
-            padding: 0 15px;
+            width: 303px;
+            margin: 0 auto;
         }
     }
     .btn {
        background-color: #fff;
         font-family: $muli;
         font-size: 22px;
-        font-weight: bold;
         letter-spacing: -0.2px;
         text-align: center;
         color: #066360; 

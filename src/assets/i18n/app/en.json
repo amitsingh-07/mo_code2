@@ -1,5 +1,6 @@
 {
   "COMMON": {
+    "PRE_TITLE": "MoneyOwl | ",
     "LBL_FILL_VIA_MY_INFO": "Auto fill forms via SingPass",
     "LBL_MY_INFO_HELP_DESC": "Tap here to fetch data",
     "LBL_PLAN_SELECTED": "Plan Selected",
@@ -198,6 +199,14 @@
         "LABEL": "Operating Hours",
         "CONTENT": "9am - 6pm, Mon - Fri",
         "EXCEPTION": "excluding Public Holidays"
+      },
+      "SOCIAL": {
+        "FACEBOOK": "Facebook",
+        "LINKEDIN": "LinkedIn"
+      },
+      "MAINTENANCE":{
+        "MSG1": "Dear users, our website will be undergoing a weekly scheduled maintenance every Wednesday, 10.30pm - 12.30am. ",
+        "MSG2": "Thank you for your patience and understanding!"
       }
     },
     "BOTTOM_SECTION": {
@@ -224,6 +233,16 @@
       "TITLE": "Error !",
       "DESC": "Oops. Something went wrong."
     }
+  },
+  "SUBSCRIBE_SIDE": {
+    "TITLE": "Join our Mailing List and get wiser!",
+    "PROMO_TITLE": "Join our Mailing List &",
+    "PROMO_SUB_TITLE": "Get Promo Code for FREE Will Writing!",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "EMAIL": "Email",
+    "SUB_TEXT": "Get exclusive access to promotions, personal finance tips and updates on the latest news. Don’t miss out!",
+    "SUBSCRIBE": "Subscribe"
   }
 }
 

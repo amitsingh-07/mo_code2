@@ -61,11 +61,14 @@ import { SuccessModalComponent } from './shared/modal/success-modal/success-moda
 import { ToolTipModalComponent } from './shared/modal/tooltip-modal/tooltip-modal.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RoutingService } from './shared/Services/routing.service';
+import { StateStoreService } from './shared/Services/state-store.service';
 import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
+import { Util } from './shared/utils/util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+import { TransactionModalComponent } from './shared/modal/transaction-modal/transaction-modal.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -108,6 +111,7 @@ export function tokenGetterFn() {
     HomeComponent,
     UrlRedirectComponent,
     TestMyInfoComponent,
+    TransactionModalComponent,
     FAQComponent
   ],
   imports: [
@@ -149,14 +153,15 @@ export function tokenGetterFn() {
       useClass: JwtInterceptor,
       multi: true,
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
-    }, Formatter, CurrencyPipe, RoutingService
+    }, Formatter, CurrencyPipe, RoutingService,
+    StateStoreService, Util
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent]
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent]
 })
 
 export class AppModule {

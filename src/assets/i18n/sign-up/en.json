@@ -14,7 +14,8 @@
             "RETRIEVE": "Retrieve",
             "VIEW_DETAILS": "View Details",
             "SAVE_AND_CONTINUE": "Save and Continue"
-          }
+        },
+        "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",

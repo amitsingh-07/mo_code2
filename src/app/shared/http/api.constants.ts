@@ -1,7 +1,7 @@
 export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 const ARTICLE_API_BASE_URL = 'product/insurance-product';
 const ABOUT_US_API_BASE_URL = 'product/insurance-product';
-const CONTACT_US_API_BASE_URL = 'account-microservice';
+const CONTACT_US_API_BASE_URL = 'account/account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 
@@ -26,9 +26,11 @@ export let apiConstants = {
         verifyEmail: 'account/account-microservice/api/verifyEmail',
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
-        userProfileInfo: 'account/account-microservice/api/getProfileSummary',
+        userProfileInfo: 'account/account-microservice/api/getCustomerProfileDetails',
         editContactDeatails: 'account/account-microservice/api/updateAddress',
         editPassword: 'account/account-microservice/api/editPassword',
+        editProfile: 'account/account-microservice/api/customer/customerProfile',
+        editEmployerAddress: 'account/account-microservice/api/updateEmployment',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -71,13 +73,14 @@ export let apiConstants = {
         investment: {
             getUserAddress: 'account/account-microservice/api/customer/address',
             getUserBankList: 'account/account-microservice/api/customer/banks',
-            addNewBank: 'account/account-microservice/api/customer/bank'
+            addNewBank: 'account/account-microservice/api/customer/bank',
+            getTransactions: INVESTMENT_API_BASE_URL + '/portfolio/transactions'
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
-            createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile',
+            createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile?handleError=true',
             getWill: WILL_WRITING_API_BASE_URL + 'api/wills/getWillProfile',
-            updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile',
+            updateWill: WILL_WRITING_API_BASE_URL + 'api/wills/updateWillProfile?handleError=true',
             downloadWill: WILL_WRITING_API_BASE_URL + 'api/wills/downloadWillDocument'
         }
     }

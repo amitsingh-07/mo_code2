@@ -206,14 +206,11 @@ app-compare-plans {
       @include allmobiles {
         font-size: 16px;
         text-align: center;
-        overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2; /* number of lines to show */
-          line-height: 20px;        /* fallback */
-          max-height: 40px; 
-        //min-height: 38px;
+        display: flex;
+        line-height: 20px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
       }
     }
 

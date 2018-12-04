@@ -1,0 +1,26 @@
+{
+    "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
+    },
+    "objectList": [
+        {
+            "investment": {
+                "account": "PORTFOLIO_PURCHASED",
+                "totalValue": 76286.0,
+                "totalReturns": 56286.0,
+                "investmentReturns": 9.98,
+                "Portfolios": [
+                    {
+                        "portfolioId": "xxxxx",
+                        " portfolioStatus ": "PURCHASED"
+                    },
+                    {
+                        "portfolioId": "xxxxx1",
+                        " portfolioStatus ": "PURCHASED"
+                    }
+                ]
+            }
+        }
+    ]
+}

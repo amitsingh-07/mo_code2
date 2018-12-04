@@ -36,10 +36,10 @@
               <div>
                 <input type="text" #promoCode formControlName="promoCode" placeholder="Enter your promo code" id="intro-promo-text-field" />
               </div>
-              <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}<span id="intro-get-now"
-                  (click)="getOneNow()">{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
+              <div id="intro-no-promocode">{{ 'WILL_WRITING.INTRODUCTION.NO_PROMOCODE' | translate}}</div>
+              <div>{{ 'WILL_WRITING.INTRODUCTION.SUBSCRIBE' | translate}}<span id="intro-get-now" (click)="getOneNow()" class='getOneNow'>{{ 'WILL_WRITING.INTRODUCTION.GET_NOW' | translate}}</span></div>
             </div>
-            <button type="button" [disabled]="!promoCodeForm.valid" (click)="save(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
+            <button type="button" [disabled]="!promoCodeForm.valid || isDisabled" (click)="save(promoCodeForm)" class="btn btn__footer--fixed btn-primary width100"
               id="intro-continue">{{ 'LABEL.CONTINUE' | translate}}</button>
           </div>
         </div>
