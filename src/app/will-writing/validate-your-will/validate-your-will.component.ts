@@ -26,7 +26,6 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     this.pageTitle = this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.TITLE');
     this.setPageTitle(this.pageTitle);
     this.customerId = this.appService.getCustomerId();
-    console.log('customerId : ' + this.customerId);
   }
 
   ngOnInit() {
@@ -59,15 +58,11 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     const otherBrowsers = /Android|Windows/.test(navigator.userAgent);
 
     const blob = new Blob([data], { type: 'application/pdf' });
-    alert('navigator.userAgent :' + navigator.userAgent);
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      alert('IE');
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
-      alert('(isSafari && iOS) || otherBrowsers || isSafari');
       this.downloadFile(data);
     } else {
-      alert('else');
       const reader: any = new FileReader();
       const out = new Blob([data], { type: 'application/pdf' });
       reader.onload = ((e) => {
@@ -78,7 +73,7 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
   }
 
   downloadFile(data: any) {
-    const blob = new Blob([data], { type: 'application/octet-stream' });
+    const blob = new Blob([data], { type: 'application/pdf' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     document.body.appendChild(a);
@@ -86,9 +81,13 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     a.href = url;
     a.download = 'MoneyOwl Will Writing.pdf';
     a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
+    // window.URL.revokeObjectURL(url);
+    // a.remove();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
 
   }
 
-}
+  }

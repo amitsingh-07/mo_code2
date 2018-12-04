@@ -108,8 +108,7 @@ const routes: Routes = [
   },
   {
     path: WILL_WRITING_ROUTES.DOWNLOAD_WILL,
-    component: DownloadWillComponent,
-    canActivate: [WillWritingAccessGuard]
+    component: DownloadWillComponent
   }
 ];
 
