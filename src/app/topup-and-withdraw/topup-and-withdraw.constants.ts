@@ -15,6 +15,6 @@ export let TOPUPANDWITHDRAW_CONFIG = {
         DEFAULT_WITHDRAW_MODE: 'BANK'
     },
     STATEMENT: {
-        STATEMENT_BASE_PATH: 'https://s3.ap-southeast-1.amazonaws.com/mo-ifast-bucket/investment/documents/'
+        STATEMENT_BASE_PATH: window.location.origin + '/assets/docs/portfolio/transaction/'
     }
 };
