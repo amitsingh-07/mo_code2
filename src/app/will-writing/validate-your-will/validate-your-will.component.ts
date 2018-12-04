@@ -60,7 +60,6 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
 
     const blob = new Blob([data], { type: 'application/pdf' });
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      alert('IE');
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
     } else if ((isSafari && iOS) || otherBrowsers || isSafari) {
       this.downloadFile(data);
