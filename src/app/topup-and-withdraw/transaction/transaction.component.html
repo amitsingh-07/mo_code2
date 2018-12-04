@@ -7,22 +7,25 @@
             <div class="flex-row" *ngIf="transactionHistory">
               <div class="flex-col-12">
                 <div class="transaction-panel__history">
-                  <div *ngFor="let group of transactionHistory.transactionGroups">
+                  <div *ngFor="let group of transactionHistory">
                     <div class="transaction-panel__history--date">{{group.groupName}}</div>
+
                     <div class="transaction-panel__history--details">
-                      <div *ngFor="let transaction of group.transactions">
-                      <div class="flex-row transaction-panel__history--details--title">
-                        <div class="flex-col-6"><span class="transaction-panel__history--details--title--sale">{{transaction.transactionType.name}}</span><span>{{transaction.portfolio.name}}</span></div>
-                        <div class="flex-col-6 text-right"><span class="transaction-panel__history--details--title--amount--sale">{{transaction.amount}}</span><i class='fa right mt5' [class.fa-chevron-down]="true"
-                            [class.fa-chevron-up]="false"></i></div> 
+                      <div *ngFor="let transaction of group.value">
+                        <div class="flex-row transaction-panel__history--details--title">
+                          <div class="flex-col-6"><span class="transaction-panel__history--details--title--sale">{{transaction.transactionType.name}}</span><span>{{transaction.portfolio.name}}</span></div>
+                          <div class="flex-col-6 text-right"><span class="transaction-panel__history--details--title--amount--sale">{{transaction.amount}}</span><i
+                              class='fa right mt5' [class.fa-chevron-down]="true" [class.fa-chevron-up]="false"></i></div>
+                        </div>
+                        
+                          <div class="flex-row transaction-panel__history--details--desc" *ngFor="let fund of transaction.fundInvestmentSplits">
+                            <div class="flex-col-6" *ngIf="fund.fund">{{fund.fund.name}}</div>
+                            <div class="flex-col-6 text-right">{{fund.unitPrice}}</div>
+                          </div>
+                        
                       </div>
-                      <div class="flex-row transaction-panel__history--details--desc" *ngFor="let fund of transaction.fundInvestmentSplit">
-                          <div class="flex-col-6">{{fund.fund.name}}</div>
-                          <div class="flex-col-6 text-right">{{fund.unitPrice}}</div>
-                        </div>   
                     </div>
                   </div>
-                </div>
                 </div>
                 <!-- <div class="no-data">
           <img src="../../../assets/images/investment-account/light_owl.svg"/>
@@ -37,23 +40,23 @@
           <ng-template ngbTabContent>
             <div class="flex-row">
               <div class="flex-col-12">
-                  <div class="transaction-panel__statements">
-                      <div *ngIf="statementMonthsList">
-                        <div *ngFor="let statementMonth of statementMonthsList">
-                            <div class="transaction-panel__statements--date">{{statementMonth.year}}</div>
-                          <div class="flex-row transaction-panel__statements--details" *ngFor="let month of statementMonth.months">
-                            <div class="flex-col-6">{{month.monthName}}</div>
-                            <div class="flex-col-6 text-right"><a class="download-link" target="_blank" download [href]="getStatementLink(month)">Download</a></div>
-                          </div>
-                        </div>
+                <div class="transaction-panel__statements">
+                  <div *ngIf="statementMonthsList">
+                    <div *ngFor="let statementMonth of statementMonthsList">
+                      <div class="transaction-panel__statements--date">{{statementMonth.year}}</div>
+                      <div class="flex-row transaction-panel__statements--details" *ngFor="let month of statementMonth.months">
+                        <div class="flex-col-6">{{month.monthName}}</div>
+                        <div class="flex-col-6 text-right"><a class="download-link" target="_blank" download [href]="getStatementLink(month)">Download</a></div>
                       </div>
                     </div>
-                    <div class="no-data" *ngIf="!statementMonthsList">
-                      <img src="../../../assets/images/investment-account/light_owl.svg" />
-                      <div>No Transaction Statements!</div>
-                    </div>
                   </div>
-                  </div>
+                </div>
+                <div class="no-data" *ngIf="!statementMonthsList">
+                  <img src="../../../assets/images/investment-account/light_owl.svg" />
+                  <div>No Transaction Statements!</div>
+                </div>
+              </div>
+            </div>
           </ng-template>
         </ngb-tab>
       </ngb-tabset>

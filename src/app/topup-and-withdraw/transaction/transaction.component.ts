@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -19,8 +20,10 @@ export class TransactionComponent implements OnInit {
   statementMonthsList: any;
   Object = Object;
   constructor(
-    private router: Router, public navbarService: NavbarService,
-    private translate: TranslateService, private topupAndWithDrawService: TopupAndWithDrawService) {
+    private router: Router,
+    public navbarService: NavbarService,
+    private translate: TranslateService,
+    private topupAndWithDrawService: TopupAndWithDrawService) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -31,16 +34,14 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.topupAndWithDrawService.getAllTransactions().subscribe((response) => {
-      console.log(response);
+    this.topupAndWithDrawService.getAllTransactionHistory().subscribe((response) => {
       this.transactionHistory = response.objectList;
-      console.log(this.transactionHistory);
+      this.transactionHistory = new GroupByPipe().transform(this.transactionHistory, 'displayCreatedDate');
     });
 
     // Statement
     this.accountCreationDate = new Date('2016-04-23');
     this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
-    
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title, null, false, false, true);

@@ -71,7 +71,8 @@ export let apiConstants = {
         investment: {
             getUserAddress: 'account/account-microservice/api/customer/address',
             getUserBankList: 'account/account-microservice/api/customer/banks',
-            addNewBank: 'account/account-microservice/api/customer/bank'
+            addNewBank: 'account/account-microservice/api/customer/bank',
+            getTransactions: INVESTMENT_API_BASE_URL + '/portfolio/transactions'
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',

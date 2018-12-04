@@ -766,12 +766,11 @@ export class ApiService {
       );
   }
 
-  getAllTransactions() {
-    const url = '../assets/mock-data/transaction.json';
-    return this.http.getMock(url)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+  getAllTransactionHistory() {
+    return this.http.get(apiConstants.endpoint.investment.getTransactions)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 }
 
