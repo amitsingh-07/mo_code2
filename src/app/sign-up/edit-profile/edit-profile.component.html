@@ -202,7 +202,7 @@
             Zip Code
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.zipCode}}
+            {{residentialAddress.postalCode}}
           </div>
         </div>
 
@@ -286,7 +286,7 @@
               Zip Code
             </div>
             <div class="update-contact-value">
-              {{residentialAddress.zipCode}}
+              {{residentialAddress.postalCode}}
             </div>
           </div>
         </div>
@@ -325,7 +325,7 @@
             <div class="update-contact-title">
               Employer Name
             </div>
-            <div class="update-contact-value">
+            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
               {{empolymentDetails.employerDetails.detailedEmployerDetails.employerName }}
             </div>
           </div>
@@ -333,7 +333,7 @@
             <div class="update-contact-title">
               Industry
             </div>
-            <div class="update-contact-value">
+            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
               {{empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
             </div>
           </div>
@@ -341,8 +341,8 @@
             <div class="update-contact-title">
               Employer Contact
             </div>
-            <div class="update-contact-value">
-              {{empolymentDetails.employerDetails.detailedEmployerDetails.employerContact }}
+            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
+              {{empolymentDetails.employerDetails.employerContact }}
             </div>
           </div>
           <div class="section-margin">
@@ -373,72 +373,72 @@
               <div class="update-contact-title">
                 Country
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.country.name}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
               </div>
             </div>
             <div class="section-margin" *ngIf="isSingaporeResident">
               <div class="update-contact-title">
                 Postal Code
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.postalCode}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
               </div>
             </div>
             <div class="section-margin">
               <div class="update-contact-title">
                 Address Line 1
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine1}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1}}
               </div>
             </div>
             <div class="section-margin">
               <div class="update-contact-title">
                 Address Line 2
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.addressLine2}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
               </div>
             </div>
             <div class="section-margin" *ngIf="isSingaporeResident">
               <div class="update-contact-title" >
                Floor
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.floor}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.floor}}
               </div>
             </div>
             <div class="section-margin" *ngIf="isSingaporeResident">
               <div class="update-contact-title" >
                 Unit No
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.unitNumber}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isSingaporeResident">
               <div class="update-contact-title">
                 City
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.city}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isSingaporeResident">
               <div class="update-contact-title">
                 State
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.state}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isSingaporeResident">
               <div class="update-contact-title">
                 Zip Code
               </div>
-              <div class="update-contact-value">
-                {{empolymentDetails.employerDetails.detailedEmployerDetails.detailedemployerAddress.zipCode}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
               </div>
             </div>
           </div>
