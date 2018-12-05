@@ -103,4 +103,4 @@
     <p>In <a href="https://www.moneyowl.com.sg/#/will-writing">MoneyOwl’s will writing process</a>, we will <a href="https://www.moneyowl.com.sg/#/home">guide you</a> in identifying your beneficiaries and the proportion of estate you intend to distribute, as well as guardians (if you have a young child), executors and trustees. For more advanced needs, you may wish to seek legal advice.</p> 
     <p>With <a href="https://www.moneyowl.com.sg/#/will-writing">MoneyOwl’s online will writing service</a>, you don't have to procrastinate any longer - it is easy, simple and fast. </p>
 </p>
-<a class="btn btn-primary text-white">Start your will writing journey today</a>
+<a class="btn btn-primary text-white" href="https://www.moneyowl.com.sg/#/will-writing">Start your will writing journey today</a>
