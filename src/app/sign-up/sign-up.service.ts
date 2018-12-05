@@ -306,7 +306,7 @@ export class SignUpService {
     // API Call here
     return this.apiService.getEditProfileList();
   }
-  constructEditPassword(oldpassword , newpassword) {
+  constructEditPassword(oldpassword, newpassword) {
     return {
       oldPassword: oldpassword,
       newPassword: newpassword
@@ -345,6 +345,49 @@ export class SignUpService {
     this.signUpFormData.OldMobileNumber = mobileNumber;
     this.signUpFormData.OldEmail = email;
     this.commit();
+  }
+
+  getRecentNotifications() {
+    return this.apiService.getRecentNotifications();
+  }
+
+  getAllNotifications() {
+    return this.apiService.getAllNotifications();
+  }
+
+  markNotificationsRead(data) {
+    const payload = this.constructPayloadForRead(data);
+    return this.apiService.markNotificationsRead(payload);
+  }
+
+  constructPayloadForRead(data) {
+    return {
+      messages: data
+    };
+  }
+
+  deleteNotifications(data) {
+    return this.apiService.deleteNotifications(data);
+  }
+
+  // setNotificationList(data) {
+  //   this.signUpFormData.notificationList = data;
+  //   this.commit();
+  // }
+
+  getNotificationList() {
+    return this.signUpFormData.notificationList;
+  }
+
+  getAllMessagesByNotifications(notifications) {
+    const messages = [];
+    const notificationMessageList = notifications.map((notification) => {
+      const messageList = notification.messages.map((message) => {
+        messages.push(message);
+      });
+    });
+    console.log(messages);
+    return messages;
   }
 
 }

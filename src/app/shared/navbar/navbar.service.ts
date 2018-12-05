@@ -2,7 +2,6 @@ import { ElementRef, Injectable, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 
-
 @Injectable({
   providedIn: 'root'
 })
