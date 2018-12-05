@@ -26,6 +26,9 @@ import { SIGN_UP_ROUTES } from './sign-up.routes.constants';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import {
+    ViewAllNotificationsComponent
+} from './view-all-notifications/view-all-notifications.component';
 
 const routes: Routes = [
   {
@@ -97,6 +100,10 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.ACCOUNT_UPDATED,
     component: AccountUpdatedComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: SIGN_UP_ROUTES.VIEW_ALL_NOTIFICATIONS,
+    component: ViewAllNotificationsComponent
   },
   { path: SIGN_UP_ROUTES.UPDATE_BANK,
     component: AddUpdateBankComponent,
