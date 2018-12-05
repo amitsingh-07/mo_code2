@@ -320,7 +320,7 @@ export class SignUpService {
   updateBankInfo(bank, fullName , accountNum , id) {
     // API Call here
     const data = this.constructUpdateBankPayload(bank, fullName , accountNum , id);
-    return this.apiService.requestUpdateBank(data);
+    return this.apiService.saveNewBank(data);
   }
   // tslint:disable-next-line:no-identical-functions
   constructUpdateBankPayload(bank , fullName , accountNum , id) {
