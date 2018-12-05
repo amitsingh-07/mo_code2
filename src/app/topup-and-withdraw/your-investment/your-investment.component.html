@@ -38,7 +38,7 @@
                     </div>
                   </div>
                   <div class="flex-col-5">
-                    <div class="total_return_value" for="total value" id="investment_overview_total_returns_value">{{investmentoverviewlist.data.totalReturns| currency:'USD':'symbol-narrow':'1.0-2'}}
+                    <div class="total_return_value txt-bold" for="total value" id="investment_overview_total_returns_value">{{investmentoverviewlist.data.totalReturns| currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div>
                   </div>
                 </div>
@@ -53,7 +53,7 @@
                   </div>
                 </div>
                 <hr>
-                <div class="flex-row mb-20">
+                <div class="flex-row">
                   <div class="flex-col-7">
                     <div class="total_return_label" for="tota" id="investment_overview_total_invested_lbl">{{'YOUR_INVESTMENT.TOTAL_INVESTED' | translate}}
                     </div>
@@ -108,11 +108,9 @@
                   <div class="portfolio_label" for="total return" id="investment_overview_portfolio_labl">{{'YOUR_INVESTMENT.PORTFOLIO_VALUES' | translate}}</div>
                   <div class="portfolio_value" for="total value" id="investment_overview_portfolio_value">{{portfolio.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                 </div>
-
-
                 <div class="flex-col-6">
-                  <div class="total_return_value pr10" for="name" id="investment_overview_portfolio_total_returns_labl">{{portfolio.totalReturns| currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                  <div class="start_investment_value pr10" for="name" id="investment_overview_portfolio_total_returns_value">+ {{portfolio.totalReturnsPercentage}}% </div>
+                  <div class="total_return_value txt-bold" for="name" id="investment_overview_portfolio_total_returns_labl">{{portfolio.totalReturns| currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                  <div class="start_investment_value" for="name" id="investment_overview_portfolio_total_returns_value">+ {{portfolio.totalReturnsPercentage}}% </div>
                 </div>
               </div>
 
