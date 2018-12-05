@@ -70,9 +70,6 @@ export class DashboardComponent implements OnInit {
   goToInvOverview() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ROOT]);
   }
-  goToUploadDocuments() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
-  }
 
   goToDocUpload() {
     this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
