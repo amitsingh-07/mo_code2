@@ -1,8 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserInfo } from './../../guide-me/get-started/get-started-form/user-info';
 
@@ -21,6 +21,8 @@ const SIGN_UP_MOCK_DATA = '../assets/mock-data/questions.json';
   providedIn: 'root'
 })
 export class ApiService {
+  private errorMessage = new BehaviorSubject({});
+  public newErrorMessage = this.errorMessage.asObservable();
 
   constructor(
     private configService: ConfigService,
@@ -45,14 +47,6 @@ export class ApiService {
         return throwError('API returned error response');
       }
     }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
-
-  private handleSubscribeError(error: HttpErrorResponse) {
-    console.log(error);
-    console.log('triggered');
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
@@ -174,17 +168,51 @@ export class ApiService {
       );
   }
 
+  /* Subscribe Newsletter */
   subscribeNewsletter(data) {
     const payload = data;
-    return this.http.post(apiConstants.endpoint.subscription.base, payload)
+    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error))
+        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error, data))
       );
   }
 
-  subscribeHandleError(error: HttpErrorResponse) {
-    console.log(error);
+  handleSubscribeError(error: HttpErrorResponse, data) {
+    error = new HttpErrorResponse({status: 500});
+    if (error.status === 500) {
+      this.subscribeNewsletterSingle(data).subscribe((in_data) => {
+        this.errorMessage.next(in_data);
+      });
+    } else {
+      const templateError = {
+        body: 'default',
+        detail: 'default',
+        status: 500
+      };
+      this.errorMessage.next(templateError);
+      return throwError('');
+    }
   }
+
+  subscribeNewsletterSingle(data) {
+    const payload = data;
+    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
+    );
+  }
+
+  throwSubscribeError(error: HttpErrorResponse) {
+    const templateError = {
+      body: 'default',
+      detail: 'default',
+      status: 500
+      };
+    this.errorMessage.next(templateError);
+    return throwError('');
+  }
+
+  /* MyInfo */
   getMyInfoData(data) {
     return this.http.post(apiConstants.endpoint.getMyInfoValues, data, true)
       .pipe(

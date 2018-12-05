@@ -4,7 +4,8 @@ export class FormError {
                 {
                         errorTitle: 'Forgotten Email Not Subscribed',
                         errorRegex: /permanently deleted/g,
-                        errorMessage: 'This email was blacklisted on our mailing list. Contact our system administrator for assistance'
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'We are unable to add your email to our mailing list. Please contact us at clientsupport@moneyowl.com.sg for assistance.'
                 },
                 {
                         errorTitle: 'Invalid Resource',
@@ -14,7 +15,14 @@ export class FormError {
                 {
                         errorTitle: 'Invalid Resource',
                         errorRegex: /not allowing more signups/g,
-                        errorMessage: 'this email has signed up to a lot of lists very recently; we are not allowing more signups for now'
+                        errorMessage: 'You’ve reached the maximum number of tries allowed. Please try again later.'
+                }
+        ],
+        500: [
+                {
+                        errorTitle: 'Unknow Error',
+                        errorRegex: /default/g,
+                        errorMessage: 'Oops! We are unable to connect right now. Please try again later.'
                 }
         ],
         INVALID: {
