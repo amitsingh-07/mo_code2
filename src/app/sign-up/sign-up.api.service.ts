@@ -71,8 +71,9 @@ export class SignUpApiService {
       selectedPlanData = { enquiryId: 0, plans: [] };
     }
     const formatDob = userInfo.dob;
-    const customDob = formatDob.year + '-' + formatDob.month + '-' + formatDob.day;
     const investmentEnqId = Number(this.authService.getEnquiryId()); // Investment Enquiry ID
+    const customDob = formatDob ? formatDob.year + '-' + formatDob.month + '-' + formatDob.day : '';
+
     return {
       customer: {
         id: 0,
@@ -101,14 +102,12 @@ export class SignUpApiService {
    */
   updateAccountBodyRequest(data) {
     return {
-      customer: {
-        email: data.email,
+        emailId: data.email,
         mobileNumber: data.mobileNumber,
-        notificationByEmail: true,
         countryCode: data.countryCode,
+        callbackUrl: environment.apiBaseUrl + '/#/account/email-verification',
+        notificationByEmail: true,
         notificationByPhone: true
-      },
-      sessionId: this.authService.getSessionId()
     };
   }
 
@@ -126,11 +125,12 @@ export class SignUpApiService {
   /**
    * form verify OTP request.
    */
-  verifyOTPBodyRequest(code): IVerifyRequestOTP {
+  verifyOTPBodyRequest(code, editProf): IVerifyRequestOTP {
     const custRef = this.signUpService.getCustomerRef();
     return {
       customerRef: custRef,
-      otp: code
+      otp: code,
+      editProfile: editProf
     };
   }
 
@@ -197,8 +197,8 @@ export class SignUpApiService {
    * verify one time password.
    * @param otp - one time password.
    */
-  verifyOTP(otp) {
-    const payload = this.verifyOTPBodyRequest(otp);
+  verifyOTP(otp, editProfile?) {
+    const payload = this.verifyOTPBodyRequest(otp, editProfile);
     return this.apiService.verifyOTP(payload);
   }
 

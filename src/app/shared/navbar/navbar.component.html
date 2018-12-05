@@ -6,19 +6,22 @@
           <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
           <span class="navbar__back-btn--mobile hidden-lg" (click)="goBack()"></span>
         </li>
-        <li *ngIf="(navbarMode == 4)" class="nav-item">
+        <li *ngIf="(navbarMode == 4 || navbarMode == 5)" class="nav-item">
           <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
         </li>
         <li class="navbar__logo--primary hidden-sm-md" routerLink="/">
         </li>
-        <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar__logo--tertiary hidden-lg"
+        <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5)" class="navbar__logo--tertiary hidden-lg"
           routerLink="/">
         </li>
         <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
         </li>
-        <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
+        <li *ngIf="(navbarMode == 2)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
           <p>Insurance Adviser</p>
-          <p *ngIf="(navbarMode == 2)" class="secondary">powered by DIYInsurance</p>
+          <p class="secondary">powered by DIYInsurance</p>
+        </li>
+        <li *ngIf="(navbarMode == 4)" class="navbar-item navbar__logo__subtitle hidden-sm-md">
+          <p style="cursor: default">Will Writing</p>
         </li>
       </div>
 
@@ -49,11 +52,12 @@
         </div>
         <div class="notification-tooltip__footer" (click)="viewAllNotifications()">View All Activity</div>
       </div>
-      
+
+
       <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button"
         (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar__menu-icon"></span>
+        <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon"></span>
       </button>
       <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
         <div class="navbar__title--mobile">{{pageTitle}}</div>
@@ -63,6 +67,9 @@
         </div>
         <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
           <div class="tooltip-icon"></div>
+        </div>
+        <div class="navbar__helpIcon--mobile-filter navbar_" *ngIf="filterIcon" (click)="showFilterModalPopUp()">
+          <div class="filter-icon"></div>
         </div>
         <div class="navbar__closeIcon" *ngIf="closeIcon" (click)="closeProdInfo()">
           <div class="close-icon"></div>
@@ -90,21 +97,21 @@
               <img src="./../../../assets/images/nav/nav-will-icon.svg" />
               <div class="navbar--text">
                 <span>Wills</span>
-                <span class="sub">(Coming Soon)</span>
+                <span *ngIf="!isWillWritingEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
             <button class="dropdown-item" [routerLink]="['/home']" fragment="invest">
               <img src="./../../../assets/images/nav/nav-invest-icon.svg" />
               <div class="navbar--text">
                 <span>Invest</span>
-                <span class="sub">(Coming Soon)</span>
+                <span *ngIf="!isInvestmentEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
             <button class="dropdown-item" [routerLink]="['/home']" fragment="comprehensive">
               <img src="./../../../assets/images/nav/nav-compre-icon.svg" />
               <div class="navbar--text">
                 <span>Comprehensive (integrating national schemes)</span>
-                <span class="sub">(Coming Soon)</span>
+                <span *ngIf="!isComprehensiveEnabled" class="sub">(Coming Soon)</span>
               </div>
             </button>
             <div class="tip"></div>
@@ -141,8 +148,8 @@
             <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">
               <div class="navbar--text">Customer Reviews</div>
             </button>
-            <button class="dropdown-item" [routerLink]="['/about-us/why-buy-from-moneyowl']">
-              <div class="navbar--text">Why Buy from MoneyOwl</div>
+            <button class="dropdown-item" [routerLink]="['/about-us/why-moneyowl']">
+              <div class="navbar--text">Why MoneyOwl</div>
             </button>
             <button class="dropdown-item" [routerLink]="['/about-us/contact-us']">
               <div class="navbar--text">Contact Us</div>

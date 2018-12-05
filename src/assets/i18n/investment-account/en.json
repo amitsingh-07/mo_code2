@@ -1,6 +1,7 @@
 {
   "COMMON": {
     "LABEL": {
+      "SUBMIT": "Submit",
       "CONTINUE": "Continue",
       "RETRIEVE": "Retrieve",
       "VIEW_DETAILS": "View Details",

@@ -8,43 +8,9 @@
       <div class="footer-link__btn" onclick="javascript:void($zopim.livechat.window.openPopout())">
         <span class="icon chat-icon"></span>
         <span>{{'FOOTER.TOP_SECTION.LIVE_CHAT.TITLE' | translate}}</span> 
-      </div>
-      
-      <!--
-      <div class="footer-link__btn">
-        <span class="icon direction-icon"></span>
-        <span>Get Directions</span> 
         </div>
-        -->
       </div>
     </div> 
-  <!--
-  <div class="footer__group secondary">
-    <div class="footer__group--inner">
-      <div class="footer__list">
-        <span class="title">Getting Started</span>
-        <a>Insurance SelfCheck</a>
-        <a>DIYInsurance Packages</a>
-        <a>Latest Promotions</a>
-        <a>FAQs</a>
-        <a>Club DIY</a>
-        </div>
-      <div class="footer__list">
-        <span class="title">Learn & Be Educated</span>
-        <a>DIYInsurance Articles</a>
-        <a>Life Stage Planning</a>
-        <a>Choosing the Right Endowment</a>
-        <a>Understanding the Reitrement Income</a>  
-      </div> 
-      <div class="footer__list">
-        <span class="title">Know More About Us</span>
-        <a>About DIYInsurance</a>
-        <a>Why Buy from Us?</a>
-        <a>Customer Reviews</a>  
-        </div>
-      </div>
-    </div>
-  -->
   <div class="footer__group tertiary">
       <div class="footer__group--inner">
         <div class="footer-address">
@@ -85,12 +51,22 @@
               <p>{{'FOOTER.MIDDLE_SECTION.OPERATING_HOURS.EXCEPTION' | translate}}</p>
             </div>
           </div>
-          <div class="footer-social">
-            <a class="social-btn" href="https://www.facebook.com/moneyowlsg/">
-              <span class="icon facebook-icon"></span>
-              <span>Facebook</span>
-              </a>
-            </div>
+        <div class="footer-social__container">
+            <div class="footer-social">
+                <a class="social-btn" href="https://www.facebook.com/moneyowlsg/">
+                  <span class="icon facebook-icon"></span>
+                  <span>Facebook</span>
+                  </a>
+                <a class="social-btn" href="https://www.linkedin.com/company/moneyowlsg">
+                  <span class="icon linkedin-icon"></span>
+                  <span>LinkedIn</span>
+                  </a>
+              </div>
+            <div *ngIf="isMaintenanceEnabled" class="footer-maintenance">
+              <p>{{'FOOTER.MIDDLE_SECTION.MAINTENANCE.MSG1' | translate }}</p>
+              <p>{{'FOOTER.MIDDLE_SECTION.MAINTENANCE.MSG2' | translate }}</p> 
+              </div>
+          </div> 
         </div>
     </div>
   <div class="footer__group quaternary">

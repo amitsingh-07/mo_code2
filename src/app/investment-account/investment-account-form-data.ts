@@ -103,7 +103,6 @@ export class InvestmentAccountFormData {
     earningsGenerated: string;
 
     // Additional declaration PEP
-    radioPep: any;
     fName: string;
     lName: string;
     cName: string;
@@ -132,4 +131,10 @@ export class InvestmentAccountFormData {
     MonthlyInvestmentAmount: number;
 
     callBackInvestmentAccount: boolean;
+
+    // Edit Bank
+    bank: any;
+    accountNumber: any;
+    bankUpdateId: any;
+    accountHolderName: any;
 }

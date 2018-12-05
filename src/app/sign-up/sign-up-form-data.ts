@@ -23,4 +23,11 @@ export class SignUpFormData {
 
     //notification list
     notificationList: any;
+    // Edit/Update Contact
+    OldCountryCode: string;
+    OldMobileNumber: string;
+    OldEmail: string;
+    editContact: boolean;
+    updateMobile: boolean;
+    updateEmail: boolean;
 }

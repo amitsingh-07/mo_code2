@@ -1,7 +1,9 @@
 <img src="/assets/articles/images/47/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Family with kids staking coins">
 
 <p>As the festive season of Chinese New Year approaches, and your children's excitement escalates, it is an opportune time for you to help your child cultivate a healthy relationship with money.</p>
+<br/>
 <p>With a significant sum stuffed in red packets each year, opening a savings account for the child is an effective way to start your child on the road to good saving habits and investments. While it encourages the concept of savings to the child, it also shows your child the benefits of compound interest and how they can put their money to better use.</p>
+<br/>
 <p>If you are a parent and are looking at setting up a bank account for your child, there are many available now. For your easy reference, we compiled the <strong>key features of 7 kids&rsquo; bank accounts</strong> in Singapore. </p>
 <br>
 
@@ -125,7 +127,7 @@
   </div>
 </div>
 
-<br>
+<br/>
 <p>Do remember to bring along your child’s birth certificate when you head to the bank. We hope this comparison gives you a good head start in selecting a suitable bank account for your child.</p>
     
 <p>Happy Saving for your little one!</p>

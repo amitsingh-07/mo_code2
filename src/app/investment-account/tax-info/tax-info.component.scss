@@ -44,7 +44,9 @@ letter-spacing: -0.3px;
     
 }
 .btn{
-    
+    &.btn-dropdown{
+      padding-right: 41px;
+    }
 }
 .fixed-btn--sm {
     color:#FFF;

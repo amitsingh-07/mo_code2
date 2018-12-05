@@ -13,12 +13,12 @@
     </div>
   <div class="learn-about__container">
     <div class="learn-about__section primary">
-      <h4>Getting Started</h4>
-      <p>New to personal finance? Take a look at these articles first</p>
+      <h4>{{'ARTICLE_MAIN.GETTING_STARTED.TITLE' | translate}}</h4>
+      <p>{{'ARTICLE_MAIN.GETTING_STARTED.SUB_TITLE' | translate}}</p>
       <div class="learn-about__get-started">
           <div class="get-started--card" *ngFor="let article of getStartedArticleList">
             <div class="art-tag__container">
-              <a class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}"><i class="material-icons">local_offer</i>{{tag}}</a>
+              <a class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}">{{tag}}</a>
               </div>
             <div class="article-card--img">
               <img src="./../../assets/articles/images/{{article.id}}/thumbnail.jpg"/>
@@ -26,8 +26,8 @@
             <div class="article-card--desc">
               <a class="art-title" routerLink="/articles/entry/{{article.id}}">{{article.art_title}}</a>
               <p class="art-desc">
-                <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
-                <span>{{article.art_date}}</span>
+                <span class="author"><a class="author-link">{{article.art_author}}</a></span>
+                <span class="date">{{article.art_date | date:'MMM dd, yyyy'}}</span>
               </p>
               </div>
             </div> 
@@ -36,11 +36,11 @@
     <div class="learn-about__section secondary">
       <div class="learn-about__recent-header">
         <div class="recent-header__group">
-        <h4>Latest Articles</h4>
-        <p>Stay updated for the latest updates</p>
+        <h4>{{'ARTICLE_MAIN.LATEST_ARTICLE.TITLE' | translate}}</h4>
+        <p>{{'ARTICLE_MAIN.LATEST_ARTICLE.SUB_TITLE' | translate}}</p>
         </div>
         <div class="recent-header__group hidden-sm-md">
-          <a routerLink="/articles/category/all">view all<i class="material-icons">keyboard_arrow_right</i></a>
+          <a routerLink="/articles/category/all">{{'ARTICLE_MAIN.LATEST_ARTICLE.VIEW_ALL' | translate}}<i class="material-icons">keyboard_arrow_right</i></a>
           </div>
         </div>
       <div class="learn-about__recent-articles">
@@ -51,17 +51,17 @@
           <div class="article-card--desc col-xl-7 col-lg-8 col-md-8 col-sm-7 col-xs-12">
             <a class="art-title" routerLink="/articles/entry/{{article.id}}">{{article.art_title}}</a>
             <p class="art-desc">
-              <span class="author">By <a class="author-link">{{article.art_author}}</a></span>
-              <span>{{article.art_date}}</span>
+              <span class="author"><a class="author-link">{{article.art_author}}</a></span>
+              <span class="date">{{article.art_date | date:'MMM dd, yyyy'}}</span>
               </p>
             <div class="art-tag__container latest-art">
-              <div class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}"><i class="material-icons">local_offer</i>{{tag}}</div>
+              <div class="art-tag__element" *ngFor="let tag of article.art_tags" routerLink="/articles/category/{{this.articleService.getTagNameToLink(tag)}}">{{tag}}</div>
               </div>
             </div>
           </div>
         </div>
       <div class="learn-about__recent-footer">
-        <button class="btn btn-primary" routerLink="/articles/category/all">View All</button>
+        <button class="btn btn-primary" routerLink="/articles/category/all">{{'ARTICLE_MAIN.LATEST_ARTICLE.VIEW_ALL' | translate}}</button>
         </div>
       </div>
     </div>

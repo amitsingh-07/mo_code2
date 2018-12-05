@@ -47,7 +47,7 @@ export class YourInvestmentComponent implements OnInit {
   showAlretPopUp = false;
   selected;
  
-  constructor(
+ constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
@@ -61,7 +61,7 @@ export class YourInvestmentComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('TOPUP.TITLE');
+      this.pageTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
       this.setPageTitle(this.pageTitle);
     });
 
@@ -71,7 +71,7 @@ export class YourInvestmentComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(2);
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -120,11 +120,12 @@ export class YourInvestmentComponent implements OnInit {
 
   }
   selectOption(option) {
-    this.selectedDropDown = option.name;
-    if (this.selectedDropDown === 'Withdraw Portfolio') {
+    if (option.id === 1) {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
+    } else if (option.id === 2) {
       this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
     } else {
-      console.log('Transaction History');  //TODO
+      console.log('Transaction History');
     }
   }
 

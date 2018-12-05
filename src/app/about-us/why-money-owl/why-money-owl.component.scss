@@ -1,0 +1,230 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.why-moneyowl__wrapper{
+    position: relative;
+    display:block;
+    background-color:$lighter-aqua-color;
+    .sub-navigation{
+        padding:0px 20px;
+        @include minPhabletmaxTablet{
+            padding:0px 20px;
+        }
+        @include minMobilemaxPhablet{
+            padding:0px 20px;
+        }
+    }
+    .banner{
+        position: relative;
+        display:flex;
+        width:100%;
+        justify-content: center;
+        min-height:400px;
+        padding:0px 20px;
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+            justify-content:flex-start;
+            min-height:unset;
+        }
+    }
+    .banner-bg{
+        position: absolute;
+        display:block;
+        max-width:1024px;
+        width:100%;
+        height:100%;
+        @include tablet{
+            right:20px;
+        }
+        @include minMobilemaxPhablet{
+            position: relative; 
+            height:200px;
+            margin-top:60px;
+            margin-bottom:40px;
+            order:2;
+        }
+        .banner-bg--image{
+            position: absolute;
+            display:block;
+            width:100%;
+            height:327px;
+            background-image:url('/assets/images/about-us/why-mo.svg');
+            background-repeat:no-repeat;
+            background-position:right;
+            background-size:contain;
+            margin-top:40px;
+            @include minPhabletmaxTablet{
+                height:calc(100% - 150px);
+                bottom:20px;
+            }
+            @include minMobilemaxPhablet{
+                background-position:bottom center;
+                height:207px;
+                margin-top:0px;
+            }
+        }
+    }
+    .banner__container{
+        position: relative;
+        display: inline-block;
+        width:100%;
+        max-width:1024px;
+        padding:80px 0px 65px 0px;
+        
+        @include minMobilemaxPhablet{
+            padding:20px 0px;
+            order:1;
+            margin-bottom:-80px;
+        }
+        .banner__text-container{
+            max-width:430px;
+            .banner--title{
+                font-family:$muli-bold;
+                font-size:40px;;
+                color:$teal-color;
+                margin-bottom:5px;
+                letter-spacing:-0.5px;
+                line-height:1;
+                @include minPhabletmaxTablet{
+                    font-size:3.0rem;
+                }
+                @include minMobilemaxPhablet{
+                    font-size:37px;
+                    text-align:center;
+                }
+            }
+            .banner--sub-title{
+                font-family:$muli-semi-bold;
+                color:$black-color;
+                opacity:0.9;
+                font-size:26px;
+                line-height:38px;
+                letter-spacing:-0.3px;
+                padding-bottom:60px;
+                @include minPhabletmaxTablet{
+                    font-size:1.3rem;
+                }
+                @include minMobilemaxPhablet{
+                    font-size:16px;
+                    text-align:center;
+                    letter-spacing:0px;
+                    line-height:1.2;
+                    padding:20px 0px;
+                }
+            }
+        }
+        
+    }
+}
+
+.why-moneyowl__content{
+    position: relative;
+    display:flex;
+    width:100%;
+    flex-direction:column; 
+    align-items:center;
+    background-color:$white-color;
+    padding:40px 30px;
+    @include minMobilemaxPhablet{ 
+        padding:40px 20px;
+    }
+    .why-moneyowl__section{
+        position: relative;
+        display:flex;
+        width:100%;
+        max-width:1024px;
+        padding:80px 0px;
+        justify-content:center;
+        align-items:center;
+        &:nth-child(even) {
+            .why-moneyowl__image{
+                order:2;
+                margin-left:75px;
+                @include minPhabletmaxTablet{
+                    margin-right:35px;
+                }
+            }
+            .why-moneyowl__description{
+                order:1;
+            }
+            @include minMobilemaxPhablet{
+                .why-moneyowl__image{
+                    margin-left:unset;
+                    order:1;
+                }
+                .why-moneyowl__description{
+                    order:2;
+                }
+            }
+        }
+        &:nth-child(odd) {
+            .why-moneyowl__image{
+                order:1;
+                margin-right:75px;
+                @include minPhabletmaxTablet{
+                    margin-right:35px;
+                }
+            }
+            .why-moneyowl__description{
+                order:2;
+            }
+            @include minMobilemaxPhablet{
+                .why-moneyowl__image{
+                    margin-right:unset;
+                    order:1;
+                }
+                .why-moneyowl__description{
+                    order:2;
+                }
+            }
+        }
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+        }
+        .why-moneyowl__image{
+            position: relative;
+            display:inline-block;
+            width:260px;
+            height:260px;
+            img{
+                height:100%;
+            }
+            @include minPhabletmaxTablet{
+                width:200px;
+                height:200px;
+            }
+            @include minMobilemaxPhablet{
+                width:170px;
+                height:170px;
+                }
+            }
+        .why-moneyowl__description{
+            position: relative;
+            display:inline-block;
+            .why-moneyowl__description--title{
+                font-family:$muli-bold;
+                font-size:36px;
+                color:$teal-color;
+                @include minMobilemaxPhablet{
+                    font-size:28px;
+                    line-height:1.29;
+                    text-align:center;
+                    margin:15px 0px 30px 0px;
+                }
+            }
+            .why-moneyowl__description--main{
+                font-family:$muli-regular;
+                font-size:18px; 
+                line-height:30px;
+                letter-spacing:-0.19px;
+                color:$dark-grey-color;
+                @include minMobilemaxPhablet{
+                    font-size:16px;
+                    line-height:23px;
+                    text-align:center;
+                }
+            }
+            
+        }
+    }
+}

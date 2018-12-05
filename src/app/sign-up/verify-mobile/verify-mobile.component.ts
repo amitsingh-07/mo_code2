@@ -1,4 +1,3 @@
-import { FooterService } from './../../shared/footer/footer.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,6 +8,8 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
+import { FooterService } from './../../shared/footer/footer.service';
+import { CustomErrorHandlerService } from './../../shared/http/custom-error-handler.service';
 import { SignUpApiService } from './../sign-up.api.service';
 import { SignUpService } from './../sign-up.service';
 
@@ -32,6 +33,7 @@ export class VerifyMobileComponent implements OnInit {
   isRetryEnabled: boolean;
   retryDuration = 30; // in seconds
   retrySecondsLeft;
+  editProfile: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,7 +43,7 @@ export class VerifyMobileComponent implements OnInit {
     private signUpApiService: SignUpApiService,
     private signUpService: SignUpService,
     private router: Router,
-    private translate: TranslateService) {
+    private translate: TranslateService, private errorHandler: CustomErrorHandlerService) {
     this.translate.use('en');
     this.translate.get('VERIFY_MOBILE').subscribe((result: any) => {
       this.errorModal['title'] = result.ERROR_MODAL.ERROR_TITLE;
@@ -57,8 +59,12 @@ export class VerifyMobileComponent implements OnInit {
     this.progressModal = false;
     this.showCodeSentText = false;
     this.mobileNumberVerified = false;
+    this.editProfile = this.signUpService.getAccountInfo().editContact;
     this.mobileNumber = this.signUpService.getMobileNumber();
-    this.navbarService.setNavbarDirectGuided(false);
+    this.navbarService.setNavbarVisibility(true);
+    this.navbarService.setNavbarMode(5);
+    this.navbarService.setNavbarMobileVisibility(false);
+    this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.buildVerifyMobileForm();
     this.startRetryCounter();
@@ -101,7 +107,7 @@ export class VerifyMobileComponent implements OnInit {
   verifyOTP(otp) {
     this.progressModal = true;
     this.mobileNumberVerifiedMessage = this.loading['verifying'];
-    this.signUpApiService.verifyOTP(otp).subscribe((data: any) => {
+    this.signUpApiService.verifyOTP(otp, this.editProfile).subscribe((data: any) => {
       if (data.responseMessage.responseCode === 6003) {
         this.mobileNumberVerified = true;
         this.mobileNumberVerifiedMessage = this.loading['verified'];
@@ -111,6 +117,10 @@ export class VerifyMobileComponent implements OnInit {
         const message = data.responseMessage.responseCode === 5007 ? this.errorModal['message'] : this.errorModal['expiredMessage'];
         const showErrorButton = data.responseMessage.responseCode === 5007 ? true : false;
         this.openErrorModal(title, message, showErrorButton);
+      } else {
+        this.progressModal = false;
+        this.errorHandler.handleCustomError(data, true);
+        this.startRetryCounter();
       }
     });
   }
@@ -133,14 +143,24 @@ export class VerifyMobileComponent implements OnInit {
    * redirect to password creation page.
    */
   redirectToPasswordPage() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
+    const redirect_url = this.signUpService.getRedirectUrl();
+    if (redirect_url && redirect_url === SIGN_UP_ROUTE_PATHS.EDIT_PROFILE) {
+      this.signUpService.clearRedirectUrl();
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.ACCOUNT_UPDATED]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.PASSWORD]);
+    }
   }
 
   /**
    * redirect to create account page.
    */
   editNumber() {
-    this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true }]);
+    if (this.editProfile) {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.UPDATE_USER_ID]);
+    } else {
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT, { editNumber: true }]);
+    }
   }
 
   /**
@@ -176,6 +196,11 @@ export class VerifyMobileComponent implements OnInit {
     ref.componentInstance.errorTitle = error.errorTitle;
     ref.componentInstance.errorMessage = error.errorMessage;
     ref.componentInstance.showErrorButton = showErrorButton;
+    ref.result.then(() => {
+      this.verifyMobileForm.reset();
+    }).catch((e) => {
+      this.verifyMobileForm.reset();
+    });
   }
 
   /**

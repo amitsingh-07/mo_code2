@@ -1,4 +1,4 @@
-<p>We know insurance is necessary but can be costly. At DIYinsurance we help you to be even more prudent by identifying what you probably need at various life stages. These are the key and essential areas you should focus first. If your budget allows, you can then consider other areas to enhance your insurance portfolio further.</p>
+<p>We know insurance is necessary but can be costly. At MoneyOwl we help you to be even more prudent by identifying what you probably need at various life stages. These are the key and essential areas you should focus first. If your budget allows, you can then consider other areas to enhance your insurance portfolio further.</p>
 <div class="table-responsive">
 	<table class="table" style="text-decoration:none;">
 	  <tr class="img-width--clear">
@@ -68,7 +68,7 @@
 <div class="hdivider"></div><div class="hdivider"></div>
 
 <div class="row">
-	<div class="col-lg-3 hidden-sm-md">
+	<div class="col-lg-3 hidden-sm-md hidden-tablet">
 		<img src="assets/articles/images/life_stage_age1.png" alt="Age timeline">
 	</div>
 

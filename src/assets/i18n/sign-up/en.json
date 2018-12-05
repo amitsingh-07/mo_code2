@@ -14,7 +14,8 @@
             "RETRIEVE": "Retrieve",
             "VIEW_DETAILS": "View Details",
             "SAVE_AND_CONTINUE": "Save and Continue"
-          }
+        },
+        "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",
@@ -78,6 +79,12 @@
         "TITLE": "Account Created!",
         "SUB_TITLE1": "A verification link has been sent to your email address.",
         "SUB_TITLE2": "Please verify your email address before logging in."    
+    },
+    "ACCOUNT_UPDATED": {
+        "TITLE": "Account Updated!",
+        "SUB_TITLE1": "Mobile number updated successfully",
+        "SUB_TITLE2": "E-mail verification link has been sent to your email address. Please verify",
+        "EDIT_PROFILE": "Back to Edit Profile"
     },
     "LOGIN": {
         "WELCOME_LBL": "Welcome to MoneyOwl!",

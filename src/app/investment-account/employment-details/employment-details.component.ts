@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -35,7 +36,7 @@ export class EmploymentDetailsComponent implements OnInit {
   employementstatus;
   showEmploymentControls: boolean;
   queryParams: any;
-  isEditProfile: boolean;
+  isEditProfile: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -221,8 +222,17 @@ export class EmploymentDetailsComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
+      if (this.isEditProfile === 'true') {
+        this.investmentAccountService.updateEmployerAddress(form.getRawValue()).subscribe((data) => {
+          if ( data.responseMessage.responseCode === 6000) {
+            // tslint:disable-next-line:max-line-length
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+          }
+        });
+      } else {
       this.investmentAccountService.setEmployeAddressFormData(form.getRawValue());
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FINANICAL_DETAILS]);
+      }
     }
   }
 

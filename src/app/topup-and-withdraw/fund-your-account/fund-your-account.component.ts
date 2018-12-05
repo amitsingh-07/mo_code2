@@ -8,10 +8,11 @@ import { InvestmentAccountService } from '../../investment-account/investment-ac
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import { HeaderService } from '../../shared/header/header.service';
 import { BankDetailsComponent } from '../../shared/modal/bank-details/bank-details.component';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import {
-  TOPUP_AND_WITHDRAW_ROUTE_PATHS
+    TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 
@@ -32,6 +33,7 @@ export class FundYourAccountComponent implements OnInit {
   bankDetails;
   paynowDetails;
   riskProfileImg: any;
+  fundaccountcontent: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -44,10 +46,10 @@ export class FundYourAccountComponent implements OnInit {
     public investmentAccountService: InvestmentAccountService) {
     this.translate.use('en');
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
-
     this.translate.get('COMMON').subscribe((result: string) => {
+      this.fundaccountcontent = this.translate.instant('FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK');
     });
-  }
+    }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -117,14 +119,29 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   buyPortfolio() {
-    this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((data) => {
-      if (data.responseMessage.responseCode >= 6000) { // success scenario
+    this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((response) => {
+      if (response.responseMessage.responseCode < 6000) {
+        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length ) {
+          this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
+        }
+      } else {
         if (!this.fundDetails.isAmountExceedBalance) {
           this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
         } else {
           this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
         }
       }
+    },
+    (err) => {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+      ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
     });
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 }

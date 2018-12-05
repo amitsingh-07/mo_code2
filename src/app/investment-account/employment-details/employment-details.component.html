@@ -18,7 +18,7 @@
             <!-- EMPLOyeMENT STATUS -->
             <div class="form-group">
               <div class="flex-row">
-                <div class="flex-col-5">
+                <div class="flex-col-5 pr5">
                   <label for="employement_details_status" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.EMPLOYEMEN_STATUS' | translate}}
                   </label>
                 </div>
@@ -41,7 +41,7 @@
             <!-- Company name -->
             <div *ngIf="showEmploymentControls">
               <div class="flex-row mb10">
-                <div class="flex-col-5">
+                <div class="flex-col-5 pr5">
                   <label for="name" id="employment_company_name">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}
                   </label>
                 </div>
@@ -53,7 +53,7 @@
               <!-- Industry -->
               <div class="form-group">
                 <div class="flex-row">
-                  <div class="flex-col-5">
+                  <div class="flex-col-5 pr5">
                     <label for="employement_details_status" id="employment_details_industry-lbl">{{ 'EMPLOYMENT_DETAILS.INDUSTRY' | translate}}
                     </label>
                   </div>
@@ -78,7 +78,7 @@
               <!-- Occupation -->
               <div class="form-group">
                 <div class="flex-row">
-                  <div class="flex-col-5">
+                  <div class="flex-col-5 pr5">
                     <label for="employement_details_occupation_lab" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.OCCUPATION' | translate}}
                     </label>
                   </div>
@@ -100,7 +100,7 @@
               </div>
 
               <div class="flex-row mb10">
-                <div class="flex-col-5">
+                <div class="flex-col-5 pr5">
                   <label for="name" id="employement_contact_number_Lbl">{{ 'EMPLOYMENT_DETAILS.CONTACT_NUMBER' | translate}}
                   </label>
                 </div>
@@ -130,7 +130,7 @@
                 <!-- COUNTRY -->
                 <div class="form-group">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailcountry-drpdown" id="employment_details-mailcountry-lbl">{{ 'EMPLOYMENT_DETAILS.COUNTRY' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -151,7 +151,7 @@
                 <!-- POSTAL CODE -->
                 <div class="form-group" *ngIf="isUserNationalitySingapore">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailpostalcode-drpdown" id="employment_details-mailpostalcode-lbl">{{ 'EMPLOYMENT_DETAILS.POSTAL_CODE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -176,7 +176,7 @@
                 <!-- ADDRESS 1 -->
                 <div class="form-group">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailaddress1-txt" id="employment_details-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -191,7 +191,7 @@
                 <!-- ADDRESS 2 -->
                 <div class="form-group">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailaddress2-txt" id="employment_details-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -205,7 +205,7 @@
                 <!-- UNIT NO -->
                 <div class="form-group" *ngIf="isUserNationalitySingapore">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailunitno-txt" id="employment_details-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -219,7 +219,7 @@
                 <!-- CITY -->
                 <div class="form-group" *ngIf="!isUserNationalitySingapore">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailcity-txt" id="employment_details-mailcity-lbl">{{'EMPLOYMENT_DETAILS.CITY' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -233,7 +233,7 @@
                 <!-- STATE -->
                 <div class="form-group" *ngIf="!isUserNationalitySingapore">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailstate-txt" id="employment_details-mailstate-lbl">{{'EMPLOYMENT_DETAILS.STATE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -247,7 +247,7 @@
                 <!-- ZIP CODE -->
                 <div class="form-group" *ngIf="!isUserNationalitySingapore">
                   <div class="flex-row">
-                    <div class="flex-col-5">
+                    <div class="flex-col-5 pr5">
                       <label for="employment_details-mailzipcode-txt" id="employment_details-mailzipcode-lbl">{{'EMPLOYMENT_DETAILS.ZIPCODE' | translate}}</label>
                     </div>
                     <div class="flex-col-7">
@@ -262,9 +262,9 @@
 
 
 
-            <button *ngIf="!isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+            <button *ngIf="isEditProfile === 'false'" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
-              <button *ngIf="isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
+              <button *ngIf="isEditProfile === 'true'" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
               id="getStrdBtn3">Apply Changes</button>
               
           </form>

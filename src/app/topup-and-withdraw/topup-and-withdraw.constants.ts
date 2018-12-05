@@ -13,5 +13,8 @@ export let TOPUPANDWITHDRAW_CONFIG = {
         PORTFOLIO_TO_BANK_TYPE_ID: 2,
         CASH_TO_BANK_TYPE_ID: 3,
         DEFAULT_WITHDRAW_MODE: 'BANK'
+    },
+    STATEMENT: {
+        STATEMENT_BASE_PATH: window.location.origin + '/assets/docs/portfolio/transaction/'
     }
 };

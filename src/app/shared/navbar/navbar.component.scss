@@ -144,3 +144,15 @@
   }
 
 }
+
+.navbar__helpIcon--mobile-filter {
+    position: absolute;
+    display: inline-block;
+    background-image: url(/assets/images/filter_icon.svg);
+    width: 20px;
+    height: 20px;
+    top: 22px;
+    right: 13px;
+    z-index: 1;
+    background-repeat: no-repeat;
+}

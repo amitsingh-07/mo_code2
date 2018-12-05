@@ -27,11 +27,13 @@
   "TOPUP": {
     "TITLE": "TOP UP",
     "SELECT_POTODOLIO": "1. Select Portfolio ",
-    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount "
+    "ENTER_INVERSTMENT_AMOUNT": "2. Enter Investment Amount ",
+    "CASH_ACCOUNT_BALANCE": "Cash Account Balance: ",
+    "PLEASE_TOPUP": "Please top up"
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investment",
-    "PROFILE_DEC":"Hey {{name}}, here's a performance summary of your {{total}} portfolios.",
+    "PROFILE_DEC": "Hey {{name}}, here's a performance summary of your {{total}} portfolios.",
     "TOTAL_VALUE": "Total Value",
     "TOTAL_RETURNS": "Total Returns ",
     "FROM_START_OF_INVESTMENT": "From start of investment",
@@ -72,7 +74,9 @@
     "MODAL": {
       "CONFIRM_WITHDRAWAL": {
         "TITLE": "Confirm Withdrawal",
-        "DESC": "You are withdrawing the following amount from your",
+        "DESC_PORTFOLIO_TO_CASH": "You are withdrawing the following amount from your portfolio to your cash account.",
+        "DESC_PORTFOLIO_TO_BANK": "You are withdrawing the following amount from your portfolio to your bank account.",
+        "DESC_CASH_TO_BANK": "You are withdrawing the following amount from your cash account to your bank account.",
         "PORTFOLIO": "portfolio",
         "CASH_ACCOUNT": "cash account",
         "BANK_ACCOUNT": "bank account",
@@ -91,8 +95,10 @@
   "WITHDRAW_PAYMENT_METHOD": {
     "TITLE": "Choose Payment Method",
     "SELECT": "Select",
-    "BY_BANK_TRANSFER": "By Bank Transfer",
-    "BY_CHEQUE": "By Cheque",
+    "BY_BANK_TRANSFER_LBL1": "By Bank",
+    "BY_BANK_TRANSFER_LBL2": "Transfer",
+    "BY_CHEQUE_LBL1": "By",
+    "BY_CHEQUE_LBL2": "Cheque",
     "ADD_BANK_ACCOUNT": "Add Bank Account",
     "CHEQUES_WILL_BE_POSTED_ADDRESS": "Cheque will be posted to this address",
     "CHEQUE_POSTED_ADDRESS_LINE1": "23 Keong Saik Road",

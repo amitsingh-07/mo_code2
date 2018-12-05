@@ -204,9 +204,9 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
   goToNext(form) {
     if (this.validateFamilyForm(form)) {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
-      url = (this.hasChild && this.willWritingService.getGuardianInfo().length === 0 &&
-        this.willWritingService.checkChildrenAge(form.value.children)) ?
-        WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : url;
+      url = (this.hasChild && this.willWritingService.checkChildrenAge(form.value.children)) ?
+        (url === WILL_WRITING_ROUTE_PATHS.CONFIRMATION && this.willWritingService.getGuardianInfo().length > 0) ?
+          url : WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : url;
       if ((this.hasChild && this.childrenFormValues.length !== this.willWritingService.getAboutMeInfo().noOfChildren) ||
         (this.hasSpouse && this.spouseFormValues.length === 0)) {
         if (this.save(form)) {

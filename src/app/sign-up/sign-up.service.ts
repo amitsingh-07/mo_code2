@@ -262,6 +262,13 @@ export class SignUpService {
     }
   }
 
+  setEditContact(editContact, mobileUpdate, emailUpdate) {
+    this.signUpFormData.editContact = editContact;
+    this.signUpFormData.updateMobile = mobileUpdate;
+    this.signUpFormData.updateEmail = emailUpdate;
+    this.commit();
+  }
+
   clearRedirectUrl() {
     sessionStorage.removeItem(REDIRECT_URL_KEY);
   }
@@ -309,6 +316,35 @@ export class SignUpService {
     // API Call here
     const data = this.constructEditPassword(this.cryptoService.encrypt(oldPassword), this.cryptoService.encrypt(newPassword));
     return this.apiService.requestEditPassword(data);
+  }
+  updateBankInfo(bank, fullName , accountNum , id) {
+    // API Call here
+    const data = this.constructUpdateBankPayload(bank, fullName , accountNum , id);
+    return this.apiService.requestUpdateBank(data);
+  }
+  // tslint:disable-next-line:no-identical-functions
+  constructUpdateBankPayload(bank , fullName , accountNum , id) {
+    const request = {};
+    request['id'] = id;
+    request['bank'] = bank;
+    request['accountName'] = fullName;
+    request['accountNumber'] = accountNum;
+    return request;
+  }
+
+  setContactDetails(countryCode, mobileNumber, email) {
+    this.signUpFormData.countryCode = countryCode;
+    this.signUpFormData.mobileNumber = mobileNumber;
+    this.signUpFormData.email = email;
+    this.commit();
+  }
+
+  setOldContactDetails(countryCode, mobileNumber, email) {
+    this.setContactDetails(countryCode, mobileNumber, email);
+    this.signUpFormData.OldCountryCode = countryCode;
+    this.signUpFormData.OldMobileNumber = mobileNumber;
+    this.signUpFormData.OldEmail = email;
+    this.commit();
   }
 
   getRecentNotifications() {
