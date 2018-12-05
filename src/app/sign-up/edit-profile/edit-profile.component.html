@@ -133,6 +133,7 @@
       </div>
       <div class="dots" #showHideContact>
         <div class="section-margin">
+            <div class="mailing-address-text ">Residential Address</div>
           <div class="update-contact-title">
             Country
           </div>
@@ -467,6 +468,18 @@
         <div class="dots" #showHideBank>
           <div class="flex-row" *ngIf="bankDetails">
 
+              <div class="flex-col-4">
+
+                  <div class="bank-account">
+                    Bank Name
+                  </div>
+                </div>
+                <div class="flex-col-8">
+                  <div class="bank-account-num">
+                    {{bankDetails.bank.name}}
+                  </div>
+                </div>
+
             <div class="flex-col-4">
 
               <div class="bank-account">
@@ -481,9 +494,7 @@
             <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
               Edit
             </button>
-            <div class="banking-details-text">
-              This banking details will only impact on investment products.
-            </div>
+           
           </div>
           
           <div class="flex-row" *ngIf="!bankDetails">
