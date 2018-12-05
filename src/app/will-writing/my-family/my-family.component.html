@@ -70,7 +70,7 @@
                       </div>
                       <div class="col-7 pr0">
                         <div class="datepicker-control">
-                          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': submitted && children.controls.dob.invalid}">
+                          <div class="input-group date-picker mb0 date-picker-above" [ngClass]="{'inline-error': submitted && children.controls.dob.invalid}">
                             <input readonly class="form-control" placeholder="DD/MM/YYYY" formControlName="dob" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                             <div class="input-group-append">
                               <button (click)="d.toggle()" class="btn btn-primary" type="button">

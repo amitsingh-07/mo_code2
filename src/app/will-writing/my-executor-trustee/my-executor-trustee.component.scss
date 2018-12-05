@@ -19,11 +19,7 @@
     font-size: 18px;
     letter-spacing: -0.3px;
     color: #2d8289;
-    margin-top: 5px;
     margin-bottom: 24px;
-    @include allmobiles {
-        margin-top: 10px;
-    }
     .title {
         font-family: $muli-bold;
         border-radius: 6px;
@@ -134,8 +130,8 @@
         .btn-primary {
             color: #fff;
             background-color: #00a7a7;
-            padding-top:5px !important;
-            padding-bottom: 5px !important;
+            padding: 8px !important;
+            width: 109px !important;
         }
     }
     .add-trustees{
@@ -198,8 +194,8 @@
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        bottom: 5px;
-        right: -8px;
+        bottom: 2px;
+        right: -2px;
         border-radius: 0;
     }
 }
@@ -284,4 +280,12 @@
         margin-bottom: 65px;
     }
   }
-        
+.save {
+    justify-content: space-around !important;
+    .cancel-btn {
+        background-color: #f4fafb !important;
+    }
+}
+.mt27 {
+    margin-top: 27px !important;
+}

@@ -18,7 +18,7 @@ export interface IChild {
     uin: string;
     dob: string;
     pos: number;
-    formatedDob: Date;
+    formatedDob: string;
 }
 
 export interface IGuardian {

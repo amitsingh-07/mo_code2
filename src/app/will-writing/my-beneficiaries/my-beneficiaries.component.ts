@@ -70,8 +70,9 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    if (this.willWritingService.getBeneficiaryInfo().length > 0) {
-      this.beneficiaryList = this.willWritingService.getBeneficiaryInfo().slice();
+    const beneficiaryList = this.willWritingService.getBeneficiaryInfo();
+    if (beneficiaryList.length > 0) {
+      this.beneficiaryList = JSON.parse(JSON.stringify(beneficiaryList));
       this.selectedBeneficiaryLength = this.beneficiaryList.filter((beneficiary) => beneficiary.selected === true).length;
     } else {
       if (this.willWritingService.getSpouseInfo().length > 0) {
@@ -152,6 +153,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         this.resetForm();
       }
       this.isFormAltered = true;
+      this.addBeneficiaryForm.markAsDirty();
     }
   }
 
@@ -176,7 +178,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   editBeneficiary(relation: string, index: number, el) {
     if (relation === WILL_WRITING_CONFIG.SPOUSE || relation === WILL_WRITING_CONFIG.CHILD) {
       if (this.addBeneficiaryForm.dirty) {
-        this.pageTitleComponent.goBack();
+        this.pageTitleComponent.goBack(WILL_WRITING_ROUTE_PATHS.MY_FAMILY);
       } else {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
       }

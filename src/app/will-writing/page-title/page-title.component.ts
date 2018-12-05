@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -24,6 +25,7 @@ export class PageTitleComponent implements OnInit {
     private _location: Location,
     private modal: NgbModal,
     private translate: TranslateService,
+    private router: Router,
     private willWritingService: WillWritingService
   ) {
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -34,14 +36,18 @@ export class PageTitleComponent implements OnInit {
   ngOnInit() {
   }
 
-  goBack() {
+  goBack(url?: string) {
     if (this.unsaved) {
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.unsavedMsg;
       ref.componentInstance.unSaved = true;
       ref.result.then((data) => {
         if (data === 'yes') {
-          this._location.back();
+          if (url) {
+            this.router.navigate([url]);
+          } else {
+            this._location.back();
+          }
         }
       });
     } else {

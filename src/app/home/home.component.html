@@ -73,6 +73,7 @@
         <button *ngIf="isWillWritingEnabled" class="btn btn-primary-dark home__section--btn" routerLink="/will-writing">
           <span>{{'WILL.LINK1' | translate}}</span>
         </button>
+
       </div>
       <div class="home__section--img secondary">
         <img class="human" src="assets/images/home-will.jpg" />
@@ -152,7 +153,7 @@
             <input class="form-control" type="email" placeholder="{{'NEWSLETTER.PLACEHOLDER.EMAIL' | translate}}"
               formControlName="email" />
           </div>
-          <p *ngIf="!(subscribeMessage === '')" class="sub-message" [ngClass]="{'success': subscribeSuccess}">{{subscribeMessage}}</p>
+          <p class="sub-message" [ngClass]="{'success': subscribeSuccess, 'active': subscribeMessage !== ''}">{{subscribeMessage}}</p>
           <button class="btn btn-primary-dark subscribe-btn" (click)="subscribeMember()">{{'NEWSLETTER.SUBSCRIBE' |
             translate}}</button>
         </div>

@@ -59,8 +59,8 @@
     margin-top: 130px;
     @include allmobiles {
         background-color: #f7f7f7;
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 18px;
+        padding-bottom: 18px;
         margin-top:0;
         padding-left: 23px;
     }
@@ -188,18 +188,20 @@
     color: #2d8289;
     margin-bottom: 17px;
     justify-content: space-between;
-    @include allmobiles {
-        margin-bottom: 37px;
-        .assetslbl {
-            margin-bottom: 25px;
+        @include allmobiles{
+            margin-bottom: 37px;
         }
-    }
-    .assetslbl {
-        @include allmobiles {
-            margin-bottom: 25px;
+        &.assetslbl {
+            @include allmobiles {
+                margin-bottom: 25px;
+            } 
         }
-        
-    }
+        &.religion {
+            @include allmobiles {
+             margin-bottom: 14px;
+            }
+        }
+         
 }
 .flex-row.section.assetslbl {
     @include allmobiles {
@@ -207,16 +209,25 @@
     }
 }
 .dropdown-control{
-     .dropdown-menu{
-        z-index: 999;
-        @include allmobiles {
-            height: auto !important;
-            max-height: 100px !important;
-            overflow: auto;
-            &.show{
-                //margin-bottom: 85px;
+    @include allmobiles {
+        .show {
+            &.dropdown {
+                border: 1px solid #00a7a7 !important;
+                border-radius:  6px;
             }
         }
+    }
+     .dropdown-menu{
+        z-index: 999;
+        
+            @include allmobiles {
+                max-height: 200px !important;
+                overflow: auto;
+                top: -205px !important;
+                &.show{
+                    // margin-bottom: 85px;
+                }
+            }
         
     }
 }
@@ -228,6 +239,9 @@
     color: #2d8289;
     padding-bottom: 24px;
     position: relative;
+    @include allmobiles {
+        margin-bottom: 18px;
+    }
     .help-icon{
         right: unset;
         margin-left: 10px;
@@ -266,4 +280,4 @@
 .form-group .flex-col-4 .label {
     line-height: normal;
         
-} 
+}

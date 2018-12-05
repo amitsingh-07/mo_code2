@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { UserInfo } from './../guide-me/get-started/get-started-form/user-info';
 import { HospitalPlan } from './../guide-me/hospital-plan/hospital-plan';
-import { GoogleAnalyticsService } from './../shared/ga/google-analytics.service';
+import { GoogleAnalyticsService } from './../shared/analytics/google-analytics.service';
 import { DirectFormData } from './direct-form-data';
 import { ICriticalIllness } from './product-info/critical-illness-form/critical-illness.interface';
 import { IEducation } from './product-info/education-form/education.interface';

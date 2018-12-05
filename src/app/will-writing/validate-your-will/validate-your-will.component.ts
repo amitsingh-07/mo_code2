@@ -6,6 +6,7 @@ import { FooterService } from '../../shared/footer/footer.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { WILL_WRITING_ROUTE_PATHS } from '../will-writing-routes.constants';
 import { WillWritingApiService } from '../will-writing.api.service';
+import { AppService } from './../../app.service';
 
 @Component({
   selector: 'app-validate-your-will',
@@ -14,14 +15,17 @@ import { WillWritingApiService } from '../will-writing.api.service';
 })
 export class ValidateYourWillComponent implements OnInit, OnDestroy {
   pageTitle: string;
-  constructor(private translate: TranslateService,
-              public footerService: FooterService,
-              private router: Router,
-              public navbarService: NavbarService,
-              private willWritingApiService: WillWritingApiService) {
+  customerId: string;
+  constructor(
+    private translate: TranslateService,
+    public footerService: FooterService, private appService: AppService,
+    private router: Router,
+    public navbarService: NavbarService,
+    private willWritingApiService: WillWritingApiService) {
     this.translate.use('en');
     this.pageTitle = this.translate.instant('WILL_WRITING.VALIDATE_YOUR_WILL.TITLE');
     this.setPageTitle(this.pageTitle);
+    this.customerId = this.appService.getCustomerId();
   }
 
   ngOnInit() {
@@ -56,15 +60,8 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     const blob = new Blob([data], { type: 'application/pdf' });
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob, 'MoneyOwl Will writing.pdf');
-    } else if (isSafari && iOS || otherBrowsers) {
-      this.downloadFile(data);
     } else {
-      const reader: any = new FileReader();
-      const out = new Blob([data], { type: 'application/pdf' });
-      reader.onload = ((e) => {
-        window.open(reader.result);
-      });
-      reader.readAsDataURL(out);
+      this.downloadFile(data);
     }
   }
 
@@ -77,9 +74,13 @@ export class ValidateYourWillComponent implements OnInit, OnDestroy {
     a.href = url;
     a.download = 'MoneyOwl Will Writing.pdf';
     a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
+    // window.URL.revokeObjectURL(url);
+    // a.remove();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
 
   }
 
-}
+  }

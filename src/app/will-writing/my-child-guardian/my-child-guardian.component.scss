@@ -43,8 +43,9 @@
         margin-top: 15px;
         font-family: $muli-regular;
         @include allmobiles{
-            width: 294px;
+            width: 268px;
             margin-top: 0;
+            font-size: 16px;
         }
     }
 }
@@ -107,9 +108,6 @@
         letter-spacing: -0.3px;
         line-height: normal;
         color: #2d8289;
-        @include allmobiles {
-            margin-top: 19px;
-        }
         .flex-row{
             padding: 0 19px 22px; 
             .form-control{
@@ -206,9 +204,9 @@
         cursor: pointer;
         background-repeat: no-repeat;
         position: absolute;
-        bottom: 5px;
+        bottom: 2px;
         border-radius: 0;
-        margin-right: -8px !important;
+        margin-right: 4px !important;
     }
 }
 
@@ -246,3 +244,22 @@
         border-radius: 4px;
     }
   }
+
+  .dropdown-control{
+    @include allmobiles {
+        .show {
+            &.dropdown {
+                border: 1px solid #00a7a7 !important;
+                border-radius:  6px;
+            }
+        }
+    }
+    .dropdown-menu{
+        @include allmobiles {
+            z-index: 998;
+            max-height: 180px !important;
+            overflow: auto;
+            top: -186px !important;
+        }
+    }
+}

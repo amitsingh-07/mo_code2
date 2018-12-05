@@ -1419,3 +1419,12 @@ a.link-white {
     }
   }
 }
+
+.date-picker-above {
+    .dropdown-menu.show {
+      @include allmobiles {
+        top: -272px !important;
+        z-index: 998 !important;
+      }
+    }
+}

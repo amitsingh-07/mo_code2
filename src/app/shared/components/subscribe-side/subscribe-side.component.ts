@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { TranslateService } from '@ngx-translate/core';
 import { MailchimpApiService } from '../../Services/mailchimp.api.service';
 import { ConfigService, IConfig } from './../../../config/config.service';
 import { SubscribeMember } from './../../Services/subscribeMember';
+
+import { FormError } from '../../Services/mailChimpError';
 
 @Component({
   selector: 'app-subscribe-side',
@@ -12,11 +14,12 @@ import { SubscribeMember } from './../../Services/subscribeMember';
   styleUrls: ['./subscribe-side.component.scss']
 })
 export class SubscribeSideComponent implements OnInit {
-
+  private formError: any = new FormError();
   subscribeSideForm: FormGroup;
   subscribeMessage = '';
   subscribeSuccess = false;
   formValues: SubscribeMember;
+  public emailPattern = '^[a-zA-Z0-9.!#$%&’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
 
   isWillWritingEnabled: boolean;
 
@@ -24,9 +27,9 @@ export class SubscribeSideComponent implements OnInit {
     this.translate.use('en');
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
       if (data !== '') {
-        if (data['errorMessage']) {
+        if ( !data.match('verification link')) {
           this.subscribeSuccess = false;
-          this.subscribeMessage = data['errorMessage'];
+          this.subscribeMessage = data;
         } else {
           this.subscribeMessage = data;
           this.subscribeSuccess = true;
@@ -43,11 +46,20 @@ export class SubscribeSideComponent implements OnInit {
     this.subscribeSideForm = new FormGroup({
       firstName: new FormControl(this.formValues.firstName),
       lastName: new FormControl(this.formValues.lastName),
-      email: new FormControl(this.formValues.email),
+      email: new FormControl(this.formValues.email, [Validators.required, Validators.pattern(this.emailPattern)]),
+    });
+    this.subscribeSideForm.valueChanges.subscribe(() => {
+      this.subscribeMessage = '';
+      this.subscribeSuccess = false;
     });
   }
 
   subscribeMember() {
-    this.mailChimpApiService.registerUser(this.subscribeSideForm.value);
+    if ( this.subscribeSideForm.valid ) {
+      this.mailChimpApiService.registerUser(this.subscribeSideForm.value);
+    } else {
+      this.subscribeSuccess = false;
+      this.subscribeMessage = this.formError.subscribeFormErrors.INVALID.errorMessage;
+    }
   }
 }
