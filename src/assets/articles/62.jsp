@@ -6,7 +6,7 @@
 </p>
 <p>
     Hence, people procrastinate and the will never gets done. But death is a fact of life. The only uncertainty is the timing and the manner it happens.
-    When it finally comes, how certain are you that your assets will be distributed efficiently to your intended beneficiaries and your young children probably cared for?
+    When it finally comes, how certain are you that your assets will be distributed efficiently to your intended beneficiaries and how will your young children be cared for?
     You can do that by writing a will and it is easier than you think.
 </p>
 <p>
@@ -27,18 +27,18 @@
     </p>
 <p>
     <h5>You appoint the right guardians to take care of your children who are below 21 years old</h5>
-    <p>If you have children, your biggest worry would be their welfare after you have passed on. Naturally, your spouse would be the guardian in your demise. However if your spouse is also not around then it is essential to make sure that your children are entrusted with guardians who will care for them and protect them as their own.
+    <p>If you have children, your biggest worry would be their welfare after you have passed on. Naturally, your spouse would be the guardian in your demise. However, if your spouse is also not around then it is essential to make sure that your children are entrusted with guardians who will care for them and protect them as their own.
     With your will, you get to make the decision to leave them in the right hands.</p>
     </p>
 <p>
     <h5>What happens if I pass on without a will?</h5>
     <p>If you pass on without having a will, the distribution of your assets would be determined by the Intestate Succession Act. Plus, it would be up to your loved ones to begin the entire process.</p>
     <p>For instance, one of your next-of-kin needs to step up to be an administrator, and apply for the Letter of Administration. After which, they would be the ones responsible for distributing the estate according to the Intestate Succession Act.</p>
-    <p>Oftentimes, it is unclear who should take up that role. Sometimes, no one is willing to step forward to be the administrator because of the complexities of the estate's liabilities.
+    <p>Oftentimes, it is unclear who should take up that role. Sometimes, no one is willing to step forward to be the administrator because of the complexity of the estate's liabilities.
         In other cases, there may be several people vying to be the administrator - likely for the wrong reasons - due to the sizeable estate at stake.</p>
     <p>The entire process would also take a lot longer to complete, as the administrator may not be ready with the required information  on the estate, may not have the time to administer the estate, or find it too complicated to execute it all altogether</p>
-    <p>What's more, if there are young children involved or if your estate's value is above a certain threshold, 2 sureties would be needed for the court to grant the Letter of Administration. The sureties must swear an affidavit certifying their worth is equal or more than the total value of your estate.</p>
-    <p>It is every parent's nightmare if both parents pass on at same time. It would be unclear whom should take on the responsibilities of guardianship for your children.</p>   
+    <p>What's more, if there are young children involved, or if your estate's value is above a certain threshold, 2 sureties would be needed for the court to grant the Letter of Administration. The sureties must swear an affidavit certifying their worth is equal or more than the total value of your estate.</p>
+    <p>It is every parent's nightmare if both parents pass on at the same time. It would be unclear whom should take on the responsibilities of guardianship for your children.</p>   
 </p>
 <p>
     <h5>This is how your estate is distributed without a will</h5>
