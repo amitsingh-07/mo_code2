@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   heighlightMobileNumber;
   captchaSrc: any = '';
   showCaptcha: boolean;
-  hideForgotPassword = false;
+  hideForgotPassword = true;
 
   constructor(
     // tslint:disable-next-line
