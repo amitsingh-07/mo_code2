@@ -13,7 +13,7 @@
                     <div class="transaction-panel__history--details">
                       <div *ngFor="let transaction of group.value; let j = index">
                         <div class="flex-row transaction-panel__history--details--title" (click)="expandCollapseAccordion(i, j)">
-                          <div class="flex-col-6"><span class="transaction-panel__history--details--title--sale">{{transaction.transactionType.name}}</span><span>{{transaction.portfolio.name}}</span></div>
+                          <div class="flex-col-6"><span class="transaction-panel__history--details--title--sale" *ngIf="transaction.transactionType">{{transaction.transactionType.name}}</span><span *ngIf="transaction.portfolio">{{transaction.portfolio.name}}</span></div>
                           <div class="flex-col-6 text-right"><span class="transaction-panel__history--details--title--amount--sale">{{transaction.amount}}</span><i
                               class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()" [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i></div>
                         </div>
