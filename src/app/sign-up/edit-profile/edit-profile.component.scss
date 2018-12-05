@@ -176,6 +176,7 @@
   }
   .section-margin{
    margin: 10px;
+   
   }
   .mailing-address{
     height: 66px;
@@ -296,7 +297,9 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #868686;
-    border: solid 0.5px #bbbbbb;
+    border-bottom: solid 0.5px #bbbbbb;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
   }
   .arrow {
     display:block;
@@ -333,4 +336,5 @@
   color: #a2cfcf;
   margin: 50px 30px 30px 30px;
 }
+
   
