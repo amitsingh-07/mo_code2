@@ -24,11 +24,12 @@
     right: 0 !important;
     overflow: auto;
     height: 264px;
-    top: -270px !important;
+    // top: -270px !important;
       }
     
 .dropdown-item {
     white-space: normal;
+    word-break: break-all;
     padding-bottom: 16px; 
 }
 .dropdown-control .btn-dropdown {
