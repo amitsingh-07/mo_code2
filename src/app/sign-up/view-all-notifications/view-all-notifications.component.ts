@@ -12,12 +12,7 @@ import {
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import {
-  AccountCreationErrorModalComponent
-} from '../account-creation-error-modal/account-creation-error-modal.component';
-import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
-import { InvestmentAccountService } from '../investment-account-service';
-import { TopBarWithClearButtonComponent } from '../top-bar-with-clear-button/top-bar-with-clear-button.component';
+import { SignUpService } from '../sign-up.service';
 
 @Component({
   selector: 'app-view-all-notifications',
@@ -29,12 +24,14 @@ export class ViewAllNotificationsComponent implements OnInit {
   notifications: any;
   ref;
   notificationCount: any;
+  allMessages;
+
   constructor(
     public navbarService: NavbarService,
     public activeModal: NgbActiveModal,
     private router: Router,
     private formBuilder: FormBuilder,
-    private investmentAccountService: InvestmentAccountService,
+    private signUpService: SignUpService,
     private modal: NgbModal,
     public authService: AuthenticationService,
     public readonly translate: TranslateService) {
@@ -44,27 +41,53 @@ export class ViewAllNotificationsComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
   }
+
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
+
   ngOnInit() {
-    this.investmentAccountService.getAllNotifications().subscribe((response) => {
-    console.log(response);
-    this.notifications = response.objectList;
-    console.log(this.notifications);
+    this.notifications = this.getAllNotifications();
     this.notificationCount = this.notifications.length;
+    console.log(this.notifications);
+  }
+
+  getAllNotifications() {
+    this.signUpService.getAllNotifications().subscribe((response) => {
+      this.notifications = response.objectList.notifications;
+      const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
+      this.markNotificationsRead(allMessages);
     });
   }
-  hideNotification(notification) {
-    console.log(notification);
-    const index = this.notifications.indexOf(notification);
-    console.log(index);
-    this.notifications.splice(index, 1);
-    this.notificationCount = this.notifications.length;
+
+  markNotificationsRead(messages) {
+    this.signUpService.markNotificationsRead(messages).subscribe((response) => {
+    });
   }
-  clearAll($event) {
+
+  clearNotification(message, notification) {
+    this.deleteNotification([message]);
+    const updatedNotificationList = notification.messages.filter((notificationMessage) => message !== notificationMessage);
+    notification.messages = updatedNotificationList;
+  }
+
+  clearAllNotifications() {
+    const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
+    this.deleteNotification(allMessages);
     this.notifications.splice(0);
-    this.notificationCount = this.notifications.length;
+  }
+
+  deleteNotification(messageList) {
+    const payload = this.constructDeleteNotificationRequest(messageList);
+    this.signUpService.deleteNotifications(payload).subscribe((response) => {
+
+    });
+  }
+
+  constructDeleteNotificationRequest(messages) {
+    return {
+      messageList: messages
+    };
   }
 
 }

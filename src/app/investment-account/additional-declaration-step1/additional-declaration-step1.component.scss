@@ -160,15 +160,22 @@ letter-spacing: -0.3px;
       &.right {
         float: right;
       }
-
-      &:focus {
-        background-color: #ff730c !important;
+      &:hover{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
-
-      &:active {
-        background-color: #ff730c !important;
+      &:focus{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
-
+   
+      &:active{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
+      }
     }
   }
 
