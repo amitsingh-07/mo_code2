@@ -42,8 +42,7 @@ const routes: Routes = [
     component: CreateAccountComponent
   },
   { path: SIGN_UP_ROUTES.VERIFY_MOBILE,
-    component: VerifyMobileComponent,
-    canActivate: [AuthGuard]
+    component: VerifyMobileComponent
   },
   { path: SIGN_UP_ROUTES.PASSWORD,
     component: PasswordComponent,
