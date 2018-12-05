@@ -44,13 +44,11 @@ import { ResidentialAddressComponent } from './residential-address/residential-a
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { SingPassComponent } from './sing-pass/sing-pass.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
-import { TopBarWithClearButtonComponent } from './top-bar-with-clear-button/top-bar-with-clear-button.component';
 import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
 import {
     UploadDocumentsLaterComponent
 } from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
-import { ViewAllNotificationsComponent } from './view-all-notifications/view-all-notifications.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -100,8 +98,6 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationSubmitComponent,
     UploadDocumentBOComponent,
     AccountCreationErrorModalComponent,
-    ViewAllNotificationsComponent,
-    TopBarWithClearButtonComponent,
     FundingIntroComponent
   ],
   entryComponents: [

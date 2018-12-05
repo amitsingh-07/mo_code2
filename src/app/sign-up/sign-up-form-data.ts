@@ -21,6 +21,8 @@ export class SignUpFormData {
     // User information after the login
     userProfileInfo: any;
 
+    //notification list
+    notificationList: any;
     // Edit/Update Contact
     OldCountryCode: string;
     OldMobileNumber: string;
