@@ -46,8 +46,6 @@ export class TransactionComponent implements OnInit {
     if(this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.account &&
         this.userProfileInfo.investementDetails.account.accountCreatedDate) {
           this.accountCreationDate = new Date(this.userProfileInfo.investementDetails.account.accountCreatedDate);
-    } else {
-      this.accountCreationDate = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
     }
     this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
   }
