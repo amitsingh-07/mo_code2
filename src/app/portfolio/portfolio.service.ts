@@ -82,7 +82,7 @@ export class PortfolioService {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['zero']);
       return this.personalFormError.formFieldErrors['financialValidations']['zero'];
       // tslint:disable-next-line:max-line-length
-    } else if (Number(this.removeCommas(form.value.initialInvestment)) <= 100 && Number(this.removeCommas(form.value.monthlyInvestment)) <= 50) {
+    } else if (Number(this.removeCommas(form.value.initialInvestment)) < 100 && Number(this.removeCommas(form.value.monthlyInvestment)) < 50) {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['more']);
       return this.personalFormError.formFieldErrors['financialValidations']['more'];
       // tslint:disable-next-line:max-line-length
