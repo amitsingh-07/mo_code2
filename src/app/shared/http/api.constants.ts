@@ -79,7 +79,7 @@ export let apiConstants = {
         },
         notification: {
             getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent'
-        }
+        },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
             createWill: WILL_WRITING_API_BASE_URL + 'api/wills/createWillProfile?handleError=true',
