@@ -74,12 +74,21 @@ export class FundYourAccountComponent implements OnInit {
       console.log(this.bankDetailsList);
     });
   }
-  showBankDetails() {
+  
+  showBankTransctionDetails() {
     const ref = this.modal.open(BankDetailsComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Select Your Bank';
-    ref.componentInstance.errorDescription = 'You will be transferring funds from:';
-    ref.componentInstance.bankDetailsLists = this.bankDetailsList;
-    console.log(this.bankDetailsList);
+    ref.componentInstance.errorTitle = 'Transfer Instructions';
+    ref.componentInstance.errorDescription = 'Sending money via Bank Transfer:';
+    ref.componentInstance.showBankTransctions = true; 
+    ref.componentInstance.setBankDetails = this.bankDetails;
+    return false;
+  }
+  showPayNowDetails(){
+    const ref = this.modal.open(BankDetailsComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Transfer Instructions';
+    ref.componentInstance.errorDescription = 'Sending money via PayNow:';
+    ref.componentInstance.showPayNow = true;
+    ref.componentInstance.setPaynowDetails = this.paynowDetails;
     return false;
   }
 
