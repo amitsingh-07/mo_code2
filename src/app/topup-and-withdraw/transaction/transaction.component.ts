@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -20,12 +21,14 @@ export class TransactionComponent implements OnInit {
   statementMonthsList: any;
   Object = Object;
   activeTransactionIndex;
+  userProfileInfo;
 
   constructor(
     private router: Router,
     public navbarService: NavbarService,
     private translate: TranslateService,
-    private topupAndWithDrawService: TopupAndWithDrawService) {
+    private topupAndWithDrawService: TopupAndWithDrawService,
+    private signUpService: SignUpService) {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -39,7 +42,13 @@ export class TransactionComponent implements OnInit {
     this.getTransactionHistory();
 
     // Statement
-    this.accountCreationDate = new Date('2016-04-23');
+    this.userProfileInfo = this.signUpService.getUserProfileInfo();
+    if(this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.account &&
+        this.userProfileInfo.investementDetails.account.accountCreatedDate) {
+          this.accountCreationDate = new Date(this.userProfileInfo.investementDetails.account.accountCreatedDate);
+    } else {
+      this.accountCreationDate = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+    }
     this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
   }
   setPageTitle(title: string) {
@@ -312,7 +321,7 @@ export class TransactionComponent implements OnInit {
 
   getStatementLink(month) {
     const base_url = TOPUPANDWITHDRAW_CONFIG.STATEMENT.STATEMENT_BASE_PATH;
-    const customerId = 'ngvdkf'; // todo
+    const customerId = this.userProfileInfo.id;
     const sub_path = 'statements/' + customerId + '/';
     const fileName = month.monthName.substring(0, 3).toLowerCase() + '_' + month.year + '.pdf';
     return base_url + sub_path + fileName ;

@@ -1,38 +1,37 @@
 <app-top-bar-with-clear-button [pageTitle]="pageTitle" (clearAll)="clearAllNotifications()"></app-top-bar-with-clear-button>
-<div class="container-fluid"> 
-<div class="content">
+<div class="container-fluid">
+  <div class="content">
     <div class="row">
       <div class="col-12">
         <!--Notifications container-->
         <div class="notifications-container" *ngFor="let notification of notifications">
           <!--Notifications Header-->
           <div *ngIf="notification.messages.length > 0">
-          <div class="notifications-container__header">
+            <div class="notifications-container__header">
               {{notification.groupName}}
-          </div>
-          <!--Notifications Header //-->
-          <!--Notifications lists-->
-          <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of notification.messages">
-            <div class="notifications-container__lists--close" (click)="clearNotification(message, notification)">X</div>
-            <div class="notifications-container__lists--desc">
-             {{message.message}} 
-              <div class="notifications-container__lists--duration">
-                {{message.time}} 
+            </div>
+            <!--Notifications Header //-->
+            <!--Notifications lists-->
+            <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of notification.messages">
+              <div class="notifications-container__lists--close" (click)="clearNotification(message, notification)">X</div>
+              <div class="notifications-container__lists--desc">
+                {{message.message}}
+                <div class="notifications-container__lists--duration">
+                  {{message.time}}
+                </div>
               </div>
             </div>
           </div>
+          <!--Notifications lists //-->
         </div>
-          <div *ngIf="!notifications.length" class="notifications-container__no-notification">
-            <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
-            <p>No New Notification</p>
 
-          </div>
+        <div *ngIf="!notifications || !notifications.length" class="notifications-container__no-notification">
+          <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
+          <p>No New Notification</p>
 
-         
-           <!--Notifications lists //-->
         </div>
         <!--Notifications container //-->
       </div>
     </div>
-</div>
+  </div>
 </div>
