@@ -118,8 +118,11 @@ button:active:focus {
       position: absolute;
       right: 10px;
       top: 15px;
-      padding: 5px;
-      font-size: 16px;
+      padding: 5px 10px;
+      font-family: $muli-regular;
+      font-size: 14px;
+      color: #8cd7d7;
+      border: 1px solid #8cd7d7;
     }
   }
 
