@@ -167,9 +167,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   getRecentNotifications() {
     this.signUpService.getRecentNotifications().subscribe((response) => {
-      //this.signUpService.setNotificationList(response.objectList.notifications);
-      this.count = response.objectList.unreadCount;
-      this.recentMessages = response.objectList.notifications[0].messages;
+      this.count = response.objectList[0].unreadCount;
+      this.recentMessages = response.objectList[0].notifications[0].messages;
     });
   }
 
