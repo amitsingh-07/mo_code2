@@ -29,6 +29,12 @@ export class MailchimpApiService {
   }
 
   registerUser(subscriber_data) {
+    if (subscriber_data.firstName === null) {
+      subscriber_data.firstName = '';
+    }
+    if (subscriber_data.lastName === null) {
+      subscriber_data.lastName = '';
+    }
     const payload = {
       emailAddress: subscriber_data.email,
       firstName: subscriber_data.firstName,

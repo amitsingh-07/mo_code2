@@ -178,20 +178,10 @@ export class ApiService {
   }
 
   handleSubscribeError(error: HttpErrorResponse, data) {
-    error = new HttpErrorResponse({status: 500});
-    if (error.status === 500) {
-      this.subscribeNewsletterSingle(data).subscribe((in_data) => {
-        this.errorMessage.next(in_data);
+    this.subscribeNewsletterSingle(data).subscribe((in_data) => {
+      this.errorMessage.next(in_data);
       });
-    } else {
-      const templateError = {
-        body: 'default',
-        detail: 'default',
-        status: 500
-      };
-      this.errorMessage.next(templateError);
-      return throwError('');
-    }
+    return throwError('');
   }
 
   subscribeNewsletterSingle(data) {
