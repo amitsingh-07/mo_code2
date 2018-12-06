@@ -21,7 +21,6 @@
     border-radius: 6px;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.25);
     font-size: 18px;
-    font-weight: 600;
     letter-spacing: -0.3px;
     color: #2d8289;
     margin-top: 70px;
@@ -34,7 +33,6 @@
         &.title{
             font-family: $muli-bold;
             font-size: 20px;
-            font-weight: bold;
             letter-spacing: -0.4px;
             color: #066360;
             border-radius: 6px;
@@ -56,9 +54,29 @@
         color:#00a7a7;
     }
     .direct-form-grp {
+        .btn-group--toggle{
+            .flex-row{
+                flex-wrap: nowrap;
+            }
+        }
         .direct-form-btn--radio{
-            width: unset;
-            min-width: unset;
+            min-width: 83px;
+            max-width: 83px;
+            margin: 0;
+            @include min400max425{
+                max-width: 90%;
+            }
+            &.female{
+                @include allmobiles{
+                    margin-left: auto;
+                }
+                @include desktop{
+                    margin-left: auto;
+                }
+                @include tablet{
+                    margin-left: auto;
+                }
+            }
             @include allmobiles{
                 background: $white-color;
                 color: #00a7a7;
@@ -91,14 +109,13 @@
 }
 .autofill-text{
     font-size: 36px;
-    font-weight: 600;
     letter-spacing: -0.4px;
     color: #ffffff;  
 }
 
 .sub-title {
+    font-family: $muli-regular;
     font-size: 18px;
-    font-weight: 600;
     line-height: 1.22;
     letter-spacing: -0.2px;
     color: #ffffff;
@@ -110,6 +127,7 @@
         width: 300px;
         padding:0;
         padding-bottom: 11px;
+        font-size: 16px;
     }
 }
 .mobile-logo{
@@ -123,13 +141,24 @@
 }
 
 .dropdown-control{
-    .dropdown-menu{
-        max-height: 200px;
-        overflow: auto;
-       &.show{
-           margin-bottom: 20px;
-       }
-   }
+    @include allmobiles {
+        .show {
+            &.dropdown {
+                border: 1px solid #00a7a7 !important;
+                border-radius:  6px;
+            }
+        }
+        .dropdown-menu{
+            z-index: 998;
+            max-height: 180px !important;
+            overflow: auto;
+            top: -184px !important;
+            &.show{
+               //margin-bottom: 65px;
+            }
+        }
+    }
+    
 }
 
 .with-help-icon{
@@ -144,7 +173,7 @@
         background-repeat: no-repeat;
         position: absolute;
         bottom: 5px;
-        right: -8px;
+        right: -2px;
     }
 }
 
@@ -157,4 +186,11 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #2d8289;
+  }
+
+  .inline-error{
+    .btn-dropdown{
+        border: none;
+        border-radius: 4px;
+    }
   }

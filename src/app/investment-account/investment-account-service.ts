@@ -213,7 +213,6 @@ export class InvestmentAccountService {
     }
     getPepInfo() {
         return {
-            radioPep: this.investmentAccountFormData.radioPep,
             fName: this.investmentAccountFormData.fName,
             lName: this.investmentAccountFormData.lName,
             cName: this.investmentAccountFormData.cName,
@@ -258,6 +257,13 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.singaporeanResident = singaporeanResident;
         this.commit();
     }
+
+    setNationalitiesCountries(nationalityList: any, countryList: any) {
+        this.investmentAccountFormData.nationalityList = nationalityList;
+        this.investmentAccountFormData.countryList = countryList;
+        this.commit();
+    }
+
     setPersonalInfo(data: PersonalInfo) {
         if (data.fullName) {
             this.investmentAccountFormData.fullName = data.fullName;
@@ -383,7 +389,6 @@ export class InvestmentAccountService {
     }
     // Additional info pep data
     setAdditionalInfoFormData(data) {
-        this.investmentAccountFormData.radioPep = data.radioPep;
         this.investmentAccountFormData.fName = data.fName;
         this.investmentAccountFormData.lName = data.lName;
         this.investmentAccountFormData.cName = data.cName;
@@ -413,6 +418,11 @@ export class InvestmentAccountService {
     // Upload Document
     uploadDocument(formData) {
         return this.apiService.uploadDocument(formData);
+    }
+
+    saveAdditionalDeclarations() {
+        const payload = this.additionalDeclarationsRequest();
+        return this.apiService.saveInvestmentAccount(payload);
     }
 
     saveInvestmentAccount() {
@@ -656,6 +666,22 @@ export class InvestmentAccountService {
         return this.apiService.updateInvestment(params);
     }
 
+    additionalDeclarationsRequest() {
+        const payload = this.getInvestmentAccountFormData();
+        const request = {} as ISaveInvestmentAccountRequest;
+        request.myInfoVerified = null;
+        request.isSingaporePR = null;
+        request.personalInfo = null;
+        request.residentialAddress = null;
+        request.mailingAddress = null;
+        request.employmentDetails = null;
+        request.householdDetails = null;
+        request.financialDetails = null;
+        request.taxDetails = null;
+        request.personalDeclarations = this.getPersonalDecReqData(payload);
+        return request;
+    }
+
     constructSaveInvestmentAccountRequest() {
         const payload = this.getInvestmentAccountFormData();
         const request = {} as ISaveInvestmentAccountRequest;
@@ -721,9 +747,9 @@ export class InvestmentAccountService {
     }
 
     getEmploymentDetailsReqData(data): IEmployment {
-        const empStatus = this.getEmploymentByName(data.employmentStatus);
+        const empStatus = (data.employmentStatus) ? this.getEmploymentByName(data.employmentStatus) : null;
         return {
-            employmentStatusId: empStatus.id,
+            employmentStatusId: (empStatus && empStatus.id) ? (empStatus.id) : null,
             industryId: (data.industry) ? data.industry.id : null,
             occupationId: (data.occupation) ? data.occupation.id : null,
             employerName: data.companyName,
@@ -770,7 +796,7 @@ export class InvestmentAccountService {
         return {
             taxCountryId: (data.taxCountry) ? data.taxCountry.id : null,
             tinNumber: (data.radioTin) ? data.tinNumber : null,
-            noTinReason: (!data.radioTin) ? data.noTinReason.id : null
+            noTinReason: (data.noTinReason && !data.radioTin) ? data.noTinReason.id : null
         };
     }
 
@@ -778,7 +804,7 @@ export class InvestmentAccountService {
         return {
             investmentSourceId: (data.sourceOfIncome) ? data.sourceOfIncome.id : null,
             beneficialOwner: data.radioBeneficial,
-            politicallyExposed: data.radioPEP,
+            politicallyExposed: data.pep,
             connectedToInvestmentFirm: data.radioEmploye,
             pepDeclaration: {
                 firstName: data.fName,
@@ -1114,5 +1140,13 @@ export class InvestmentAccountService {
 
     getAccountSuccussModalCounter() {
         return parseInt(sessionStorage.getItem(ACCOUNT_SUCCESS_COUNTER_KEY), 10);
+    }
+
+    setDataForDocUpload(nationality, beneficialOwner, pep) {
+        this.investmentAccountFormData.nationality = nationality;
+        this.investmentAccountFormData.nationalityCode = nationality.nationalityCode;
+        this.investmentAccountFormData.beneficial = beneficialOwner;
+        this.investmentAccountFormData.pep = pep;
+        this.commit();
     }
 }

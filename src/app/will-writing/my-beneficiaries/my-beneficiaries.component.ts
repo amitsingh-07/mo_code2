@@ -70,8 +70,9 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setNavbarMode(4);
-    if (this.willWritingService.getBeneficiaryInfo().length > 0) {
-      this.beneficiaryList = this.willWritingService.getBeneficiaryInfo().slice();
+    const beneficiaryList = this.willWritingService.getBeneficiaryInfo();
+    if (beneficiaryList.length > 0) {
+      this.beneficiaryList = JSON.parse(JSON.stringify(beneficiaryList));
       this.selectedBeneficiaryLength = this.beneficiaryList.filter((beneficiary) => beneficiary.selected === true).length;
     } else {
       if (this.willWritingService.getSpouseInfo().length > 0) {
@@ -149,9 +150,10 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
         this.beneficiaryList[this.selectedIndex].name = form.value.name;
         this.beneficiaryList[this.selectedIndex].relationship = form.value.relationship;
         this.beneficiaryList[this.selectedIndex].uin = form.value.uin;
-        this.isFormAltered = true;
         this.resetForm();
       }
+      this.isFormAltered = true;
+      this.addBeneficiaryForm.markAsDirty();
     }
   }
 
@@ -167,6 +169,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
 
   validateForm(index: number) {
     this.beneficiaryList[index].selected = !this.beneficiaryList[index].selected;
+    this.isFormAltered = true;
     if (this.beneficiaryList[index].selected === false) {
       this.beneficiaryList[index].distPercentage = 0;
     }
@@ -175,7 +178,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   editBeneficiary(relation: string, index: number, el) {
     if (relation === WILL_WRITING_CONFIG.SPOUSE || relation === WILL_WRITING_CONFIG.CHILD) {
       if (this.addBeneficiaryForm.dirty) {
-        this.pageTitleComponent.goBack();
+        this.pageTitleComponent.goBack(WILL_WRITING_ROUTE_PATHS.MY_FAMILY);
       } else {
         this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
       }
@@ -252,7 +255,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
     if (this.validateBeneficiaryForm()) {
       let url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
       if (this.willWritingService.getBeneficiaryInfo().length > 0) {
-        if (this.checkBeneficiaryData()) {
+        if (this.checkBeneficiaryData() && this.isFormAltered) {
           url = WILL_WRITING_ROUTE_PATHS.MY_ESTATE_DISTRIBUTION;
           const hasImpact = this.willWritingService.isUserLoggedIn();
           this.openConfirmationModal(url, hasImpact);

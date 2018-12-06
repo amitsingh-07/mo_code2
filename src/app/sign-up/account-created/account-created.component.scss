@@ -36,13 +36,13 @@
     width: 100%;
     height: 100%;
     position: absolute;
-  	top: 20%;
+  	top: 4%;
   	img {
-  		width: 15%;
+  		width: 13%;
   	}
       @include allmobiles {
         img {
-          width: 60%;
+          width: 80px;
         }
       }
     }
@@ -53,7 +53,11 @@
     letter-spacing: -0.4px;
     line-height: 0.56;
     margin-top: 30px;
-    margin-bottom: 25px;
+    margin-bottom: 31px;
+    @include allmobiles {
+      font-size: 20px;
+      letter-spacing: -0.2px;
+    }
   }
   .custom-modal--desc {
     color: $white-color;
@@ -74,4 +78,53 @@
 		width: 100%;
 	}
   }
+}
+
+.section {
+    border-radius: 6px;
+    background-color: #005960;
+    padding: 10px;
+    width: 588px;
+    padding-left: 44px;
+    padding-top: 15px; 
+    margin: 0 auto;
+    text-align: left;
+    font-family: $muli-regular;
+    font-size: 16px;
+    font-weight: normal !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+    color: #e8e8e8;
+    margin-bottom: 16px;
+    ol {
+      padding: 0 18px;
+      .instruction {
+        font-family: $muli-bold;
+        line-height: 1.57;
+      }
+    }
+    @include allmobiles {
+      font-size: 14px;
+      letter-spacing: -0.1px;
+      padding-left: 17px;
+      padding-top: 13px;
+      margin-bottom: 12px;
+      width: 326px
+    }
+    @include iphone5 {
+      width: 300px;
+    }
+    .title {
+      font-size: 18px;
+      color: #ffffff;
+      text-decoration: underline;
+      font-family: $muli-semi-bold;
+      @include allmobiles {
+        font-size: 14px;
+        letter-spacing: -0.1px;
+      }
+    }
+    
 }

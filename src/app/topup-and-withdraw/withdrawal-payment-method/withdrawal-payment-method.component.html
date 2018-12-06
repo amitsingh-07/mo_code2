@@ -11,12 +11,14 @@
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <button type="button" class="btn btn-primary width100 right-btn" [class.active]="bankForm.controls.withdrawMode.value === 'BANK'" (click)="selectMode('BANK')">
-                      {{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER' | translate}}
+                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER_LBL1' | translate}}</div>
+                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_BANK_TRANSFER_LBL2' | translate}}</div> 
                     </button>
                   </div>
                   <div class="flex-col-6">
                     <button type="button" class="btn btn-primary width100 left-btn" [class.active]="bankForm.controls.withdrawMode.value === 'CHEQUE'" (click)="selectMode('CHEQUE')">
-                      {{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE' | translate}}
+                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE_LBL1' | translate}}</div>
+                        <div>{{ 'WITHDRAW_PAYMENT_METHOD.BY_CHEQUE_LBL2' | translate}}</div> 
                     </button>
                   </div>
                 </div>

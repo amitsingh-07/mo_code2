@@ -156,7 +156,7 @@
 			  <tr>
 			    <td width="67" rowspan="2" valign="bottom" class=""><p align="center">&nbsp;</p>
 			      <p align="center">Age</p></td>
-                  <td width="85" rowspan="2" valign="bottom" class=""><p align="center">Current MediShield Premium</p></td>
+          <td width="85" rowspan="2" valign="bottom" class=""><p align="center">Current MediShield Premium</p></td>
 			    <td width="104" rowspan="2" valign="bottom" class=""><p align="center">MediShield Life Premium Before Subsidy</p></td>
 			    <td width="350" colspan="4" valign="bottom" class=""><p align="center">2015 MediShield Life Premium<br>
 			      <em>(staying in residence with AV =&lt;    $13,000)</em></p></td>
@@ -306,7 +306,7 @@
 		<br>
 		<p><strong>Observations & Remarks:</strong></p>
 		<ol>
-		  <li>The Pioneer Generation (see *) will end up paying less than the current <a href="https://www.medishieldlife.sg/" target="_blank" title="MediShield Life Premiums and Subsidies">MediShield premium</a></li>
+		  <li>The Pioneer Generation (see *) will end up paying less than the current MediShield premium</li>
       <li>During the first year of <a href="https://www.medishieldlife.sg/" target="_blank">MediShield Life</a> (2015), the maximum premium increase will be less than $30 per year for the lower-income and not more than $60 per year for the high income.</li>
 		  <li>After phasing out the Transitional Subsidies of 4 years (Year 2019), the premium will increase by an average of $36 to $128 per year for the lower-income and $80 to $300 per year for the high income.</li>
 		  <li>The above premium tables are for those staying in residence with an Annual Value (AV) less than $13,000. Those with an AV &gt; of more than $13,000 will receive lesser subsidies, hence a higher increase in premiums.</li>

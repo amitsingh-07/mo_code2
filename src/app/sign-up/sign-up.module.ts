@@ -10,6 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SecurePipe } from '../shared/Pipes/secure.pipe';
 import { AccountCreatedComponent } from './account-created/account-created.component';
+import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
 import { AuthGuardService } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -31,8 +32,14 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SignUpAccessGuard } from './sign-up-access-guard';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SuccessMessageComponent } from './success-message/success-message.component';
+import {
+    TopBarWithClearButtonComponent
+} from './top-bar-with-clear-button/top-bar-with-clear-button.component';
 import { UpdateUserIdComponent } from './update-user-id/update-user-id.component';
 import { VerifyMobileComponent } from './verify-mobile/verify-mobile.component';
+import {
+    ViewAllNotificationsComponent
+} from './view-all-notifications/view-all-notifications.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -76,6 +83,9 @@ export function createTranslateLoader(http: HttpClient) {
     EditPasswordComponent,
     EditResidentialAddressComponent,
     UpdateUserIdComponent,
+    ViewAllNotificationsComponent,
+    TopBarWithClearButtonComponent,
+    AccountUpdatedComponent,
     AddUpdateBankComponent
   ],
   providers: [SignUpAccessGuard, AuthGuardService]

@@ -120,13 +120,15 @@
 	<ol>
 	  	<li><strong><em>Are the returns good?</em></strong>
 		  	<p>Since your objective is savings, getting a good return should be your biggest consideration. All five plans provide projected returns of more than 3.5%, which is a good return for endowment plans.</p>
-	  	</li>
+			</li>
+			<br/>
 	  	<li>
 	  		<strong><em>Do you need the flexibility for some payouts before University age?</em></strong>
 	  		<p>Think about whether you would like to have the option of small payouts at significant milestones in your child's education journey to reward him/her with vacations or gifts, and whether you want these small payouts only closer to the University years (Aviva's MyEduPlan or Manulife's Educate) or even earlier (NTUC Income's VivoChild).</p>
 
 	  		<p>If you do not need to spend the money, these payouts can always be deposited with the insurer to earn a good interest (around 3%, subject to the insurer's discretion) and can be withdrawn anytime. Such liquidity is an advantage, but if it is not of paramount importance, you may consider AXA's Early Saver Plus or Tokio Marine's Kidstart plans.</p>
-	  	</li>
+			</li>
+			<br/>
 	  	<li>
 	  		<strong><em>How long are you willing and able to pay premiums for? </em></strong>
 	  		<p>NTUC Income Vivochild offers the best returns, but it requires you to save over a longer period. If you prefer to save over a shorter duration, the other 3 plans offer various options to choose from.</p>
@@ -135,7 +137,7 @@
 	<br>
 	<h3 class="primary-color"><strong>Our Verdict</strong></h3>
 	<p>Based on the above example, NTUC Income VivoChild seems to be the most attractive plan, because it offers the flexibility of payouts before University age as well as choice of premium duration, all while offering one of the highest returns of the five.</p>
-
+	<br/>
 	<p>Do note that the most suitable plan may differ for children of different profiles (Eg. age and gender). Have a chat with one of our experts for guidance. Also check out our <a href="https://www.moneyowl.com.sg/#/direct/" target="_blank" title="Compare Savings Plans Now">comparison tool</a> to compare the plans today!</p>
 <br>
 <!--

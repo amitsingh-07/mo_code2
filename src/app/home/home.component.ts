@@ -4,8 +4,6 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Input,
-  OnChanges,
   OnInit,
   Renderer2,
   ViewChild,
@@ -15,15 +13,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
+import { FormError } from '../shared/Services/mailChimpError';
 import { AppService } from './../app.service';
+import { ConfigService, IConfig } from './../config/config.service';
 import { FooterService } from './../shared/footer/footer.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
+import { SeoServiceService } from './../shared/Services/seo-service.service';
 import { SubscribeMember } from './../shared/Services/subscribeMember';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,7 +31,8 @@ import { SubscribeMember } from './../shared/Services/subscribeMember';
   encapsulation: ViewEncapsulation.None
 })
 
-export class HomeComponent implements OnInit, AfterViewInit{
+export class HomeComponent implements OnInit, AfterViewInit {
+  private formError: any = new FormError();
   pageTitle: string;
   trustedSubTitle: any;
   trustedReasons: any;
@@ -40,18 +41,23 @@ export class HomeComponent implements OnInit, AfterViewInit{
   public mobileThreshold = 567;
   public initLoad = true;
   public navBarElement: ElementRef;
+  public emailPattern = '^[a-zA-Z0-9.!#$%&’*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
   modalRef: NgbModalRef;
 
   subscribeForm: FormGroup;
   subscribeMessage = '';
   subscribeSuccess = false;
   formValues: SubscribeMember;
+  isWillWritingEnabled = false;
+  isInvestmentEnabled = true;
+  isComprehensiveEnabled = true;
 
   constructor(
     public navbarService: NavbarService, public footerService: FooterService, private meta: Meta, private title: Title,
     public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
     public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
-    private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService) {
+    private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService,
+    private seoService: SeoServiceService, private configService: ConfigService) {
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
@@ -79,18 +85,24 @@ export class HomeComponent implements OnInit, AfterViewInit{
 
     this.translate.get('HOME').subscribe((result: string) => {
       // Meta Tag and Title Methods
-      this.title.setTitle(this.translate.instant('GENERAL.TITLE'));
-      this.meta.addTag({name: 'description', content: this.translate.instant('GENERAL.META.GENERAL.META_DESCRIPTION')});
-      this.meta.addTag({name: 'keywords', content: this.translate.instant('GENERAL.META.GENERAL.META_KEYWORDS')});
-      this.meta.addTag({name: 'author', content: this.translate.instant('GENERAL.META.META_AUTHOR')});
-      this.meta.addTag({name: 'copyright', content: this.translate.instant('GENERAL.META.META_COPYRIGHT')});
+      this.seoService.setTitle(this.translate.instant('GENERAL.TITLE'));
+      this.seoService.setBaseSocialMetaTags(this.translate.instant('GENERAL.TITLE'),
+                                            this.translate.instant('GENERAL.META.META_DESCRIPTION'),
+                                            this.translate.instant('GENERAL.META.META_KEYWORDS'));
+      this.meta.addTag({ name: 'copyright', content: this.translate.instant('GENERAL.META.META_COPYRIGHT') });
+    });
+
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isWillWritingEnabled = config.willWritingEnabled;
+      this.isInvestmentEnabled = config.investmentEnabled;
+      this.isComprehensiveEnabled = config.comprehensiveEnabled;
     });
 
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
       if (data !== '') {
-        if (data['errorMessage']) {
+        if ( !data.match('verification link')) {
           this.subscribeSuccess = false;
-          this.subscribeMessage = data['errorMessage'];
+          this.subscribeMessage = data;
         } else {
           this.subscribeMessage = data;
           this.subscribeSuccess = true;
@@ -102,7 +114,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
   @ViewChild('banner') BannerElement: ElementRef;
   @ViewChild('homeNavBar') HomeNavBar: ElementRef;
   @ViewChild('subscribeFooter') SubscribeFooter: ElementRef;
-
+  @ViewChild('subscribeSection') SubscribeSection: ElementRef;
   /* Child Elements for Home NavBar */
   @ViewChild('homeNavInsurance') HomeNavInsurance: ElementRef;
   @ViewChild('homeNavWill') HomeNavWill: ElementRef;
@@ -127,7 +139,11 @@ export class HomeComponent implements OnInit, AfterViewInit{
     this.subscribeForm = new FormGroup({
       firstName: new FormControl(this.formValues.firstName),
       lastName: new FormControl(this.formValues.lastName),
-      email: new FormControl(this.formValues.email, [Validators.required]),
+      email: new FormControl(this.formValues.email, [Validators.required, Validators.pattern(this.emailPattern)]),
+    });
+    this.subscribeForm.valueChanges.subscribe(() => {
+      this.subscribeMessage = '';
+      this.subscribeSuccess = false;
     });
     this.authService.clearSession();
     this.appService.startAppSession();
@@ -136,7 +152,6 @@ export class HomeComponent implements OnInit, AfterViewInit{
   ngAfterViewInit() {
     this.navbarService.getNavbarDetails();
     this.cdr.detectChanges();
-
   }
 
   setPageTitle(title: string) {
@@ -144,6 +159,9 @@ export class HomeComponent implements OnInit, AfterViewInit{
   }
 
   goToRoute(fragment) {
+    if (fragment === 'subscribe') {
+      this.goToSection(this.SubscribeSection.nativeElement);
+    } else
     if (fragment === 'insurance') {
       this.goToSection(this.InsuranceElement.nativeElement);
     } else
@@ -255,12 +273,12 @@ export class HomeComponent implements OnInit, AfterViewInit{
     const selectedSection = elementName.getBoundingClientRect();
 
     const CurrentOffsetTop = selectedSection.top + window.pageYOffset - document.documentElement.clientTop
-                             - homeNavbarHeight - navbarHeight + 10;
+      - homeNavbarHeight - navbarHeight + 10;
 
     if (innerWidth > this.mobileThreshold) {
       const isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
       if (!isIEOrEdge) {
-        window.scrollTo({top: CurrentOffsetTop, behavior: 'smooth'});
+        window.scrollTo({ top: CurrentOffsetTop, behavior: 'smooth' });
       } else {
         elementName.scrollIntoView(true);
       }
@@ -270,6 +288,11 @@ export class HomeComponent implements OnInit, AfterViewInit{
   }
 
   subscribeMember() {
-    this.mailChimpApiService.registerUser(this.subscribeForm.value);
+    if ( this.subscribeForm.valid ) {
+      this.mailChimpApiService.registerUser(this.subscribeForm.value);
+    } else {
+      this.subscribeSuccess = false;
+      this.subscribeMessage = this.formError.subscribeFormErrors.INVALID.errorMessage;
+    }
   }
 }

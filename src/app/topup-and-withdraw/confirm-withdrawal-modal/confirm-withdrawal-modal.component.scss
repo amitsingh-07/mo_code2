@@ -22,6 +22,7 @@
 
     .amt {
       font-size: 22px;
+      font-family: $muli-bold;
       font-weight: bold;
       color: #00a7a7;
       margin-top:10px;
@@ -33,5 +34,9 @@
       margin-top:2px;
     }
   }
-
+  .btn{
+    &.btn-primary{
+      font-family: $muli-bold;
+    }
+  }
 }

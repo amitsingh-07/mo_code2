@@ -54,15 +54,16 @@ export class TopupAndWithDrawService {
   getMoreList() {
     return this.apiService.getMoreList();
   }
+  
   doFinancialValidations(form) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals                              //TODO
-    if (Number(form.value.oneTimeInvestmentAmount) < 100 &&
+    if (Number(form.value.oneTimeInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
       form.value.Investment === 'One-time Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['zero']);
       return this.topUPFormError.formFieldErrors['topupValidations']['zero'];
       // tslint:disable-next-line:max-line-length                            //TODO
-    } else if (Number(form.value.MonthlyInvestmentAmount) < 50 &&
+    } else if (Number(form.value.MonthlyInvestmentAmount) < this.topUpAndWithdrawFormData.minimumBalanceOfTopup &&
       form.value.Investment === 'Monthly Investment') {
       invalid.push(this.topUPFormError.formFieldErrors['topupValidations']['more']);
       return this.topUPFormError.formFieldErrors['topupValidations']['more'];
@@ -98,6 +99,14 @@ export class TopupAndWithDrawService {
     this.topUpAndWithdrawFormData.MonthlyInvestmentAmount = data.MonthlyInvestmentAmount;
     this.topUpAndWithdrawFormData.Investment = data.Investment;
     this.topUpAndWithdrawFormData.topupportfolioamount = data.topupportfolioamount;
+    this.commit();
+  }
+  setInvestmentValue(minimumBalanceOfTopup) {
+    this.topUpAndWithdrawFormData.minimumBalanceOfTopup = minimumBalanceOfTopup;
+    this.commit();
+  }
+  getInvestmentValue(minimumBalanceOfTopup) {
+    this.topUpAndWithdrawFormData.minimumBalanceOfTopup = minimumBalanceOfTopup;
     this.commit();
   }
 
@@ -212,8 +221,7 @@ export class TopupAndWithDrawService {
   constructSellPortfolioRequestParams(data) {
     const request = {};
     request['withdrawType'] = (data.withdrawType) ? data.withdrawType.value : null; // todo
-    //request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
-    request['portfolioId'] = 'PORTFOLIO00046';
+    request['portfolioId'] = (data.withdrawPortfolio) ? data.withdrawPortfolio.productCode : null;
     request['redemptionAmount'] = data.withdrawAmount;
     request['mode'] = data.withdrawMode; // todo
     if (request['mode'] === 'BANK') {
@@ -237,11 +245,46 @@ export class TopupAndWithDrawService {
       isPayMonthly = true;
     }
     return {
-      portfolioId: 'PORTFOLIO00046',
-      //portfolioId: data.portfolio.productCode,
+      portfolioId: data.portfolio.productCode,
       investmentAmount: Number(redeemAmount), // todo
       payMonthly: isPayMonthly
     };
+  }
+
+  getTransactionHistory(from?, to?) {
+    return this.apiService.getTransactionHistory(from, to);
+  }
+
+  getMonthListByPeriod(from, to) {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+    let durationMonths = [];
+    const fromYear = from.getFullYear();
+    const toYear = to.getFullYear();
+    const diffYear = (12 * (toYear - fromYear)) + to.getMonth();
+    for (let i = from.getMonth(); i <= diffYear; i++) {
+      durationMonths.unshift({
+        monthName: monthNames[i % 12],
+        year: Math.floor(fromYear + (i / 12))
+      });
+    }
+
+    // GROUPING
+    const groups = {};
+    for (const month of durationMonths) {
+      const groupName = month.year;
+      if (!groups[groupName]) {
+        groups[groupName] = [];
+      }
+      groups[groupName].push(month);
+    }
+    durationMonths = [];
+    for (let groupName in groups) {
+      durationMonths.unshift({ year: groupName, months: groups[groupName] });
+    }
+    console.log(durationMonths);
+
+    return durationMonths;
   }
 
 }

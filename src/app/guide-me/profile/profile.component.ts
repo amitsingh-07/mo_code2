@@ -6,7 +6,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { GoogleAnalyticsService } from '../../shared/ga/google-analytics.service';
+import { GoogleAnalyticsService } from '../../shared/analytics/google-analytics.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { IPageComponent } from '../../shared/interfaces/page-component.interface';

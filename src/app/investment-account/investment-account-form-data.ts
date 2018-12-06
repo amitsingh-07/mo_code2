@@ -103,7 +103,6 @@ export class InvestmentAccountFormData {
     earningsGenerated: string;
 
     // Additional declaration PEP
-    radioPep: any;
     fName: string;
     lName: string;
     cName: string;
