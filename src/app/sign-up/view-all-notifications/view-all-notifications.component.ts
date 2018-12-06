@@ -56,7 +56,7 @@ export class ViewAllNotificationsComponent implements OnInit {
     this.signUpService.getAllNotifications().subscribe((response) => {
       this.notifications = response.objectList.notifications;
       const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
-      this.markNotificationsRead(allMessages);
+      //this.markNotificationsRead(allMessages);
     });
   }
 
@@ -66,14 +66,20 @@ export class ViewAllNotificationsComponent implements OnInit {
   }
 
   clearNotification(message, notification) {
-    this.deleteNotification([message]);
-    const updatedNotificationList = notification.messages.filter((notificationMessage) => message !== notificationMessage);
-    notification.messages = updatedNotificationList;
+    //this.deleteNotification([message]);
+    const updatedMessagesList = notification.messages.filter((notificationMessage) => message !== notificationMessage);
+    if (updatedMessagesList.length) {
+      notification.messages = updatedMessagesList;
+    } else {
+      const updatedNotificationList = this.notifications.filter((currentNotification) => notification !== currentNotification);
+      this.notifications = updatedNotificationList;
+    }
+    console.log(this.notifications);
   }
 
   clearAllNotifications() {
     const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
-    this.deleteNotification(allMessages);
+    //this.deleteNotification(allMessages);
     this.notifications.splice(0);
   }
 
