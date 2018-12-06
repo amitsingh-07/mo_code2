@@ -74,6 +74,7 @@
         </div>
 
          <!-- RESIDENTIAL ADDRESS PROOF UPLOAD -->
+         
          <div class="row" *ngIf="!isUserNationalitySingapore">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
@@ -98,10 +99,11 @@
               name="proofOfResAddress" class="is-hidden">
           </div>
         </div>
+       
 
 
         <!-- MAILING ADDRESS PROOF UPLOAD -->
-        <div class="row">
+        <div class="row" *ngIf="!formValues.isMailingAddressSame">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
               <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING' | translate}}</span>
