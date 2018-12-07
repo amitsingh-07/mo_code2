@@ -2,6 +2,11 @@ export class FormError {
     subscribeFormErrors: object = {
         400: [
                 {
+                        errorTitle: 'Resource could not be validated',
+                        errorRegex: /could not be validated/g,
+                        errorMessage: 'Please enter your first name and last name in the fields above'
+                },
+                {
                         errorTitle: 'Forgotten Email Not Subscribed',
                         errorRegex: /permanently deleted/g,
                         // tslint:disable-next-line:max-line-length
@@ -16,6 +21,11 @@ export class FormError {
                         errorTitle: 'Invalid Resource',
                         errorRegex: /not allowing more signups/g,
                         errorMessage: 'You’ve reached the maximum number of tries allowed. Please try again later.'
+                },
+                {
+                        errorTitle: 'Invalid Email',
+                        errorRegex: /provide a valid email address/g,
+                        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         ],
         500: [
@@ -27,7 +37,7 @@ export class FormError {
         ],
         INVALID: {
                 errorTitle: 'Missing Fields',
-                errorMessage: 'Please enter a valid email'
+                errorMessage: 'Please enter a valid email address in the format yourname@example.com'
         },
         DEFAULT: {
                 errorTitle: 'Default',
