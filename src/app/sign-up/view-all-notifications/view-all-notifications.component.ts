@@ -13,6 +13,7 @@ import {
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-view-all-notifications',
@@ -23,7 +24,6 @@ export class ViewAllNotificationsComponent implements OnInit {
   pageTitle: string;
   notifications: any;
   ref;
-  notificationCount: any;
   allMessages;
 
   constructor(
@@ -48,25 +48,23 @@ export class ViewAllNotificationsComponent implements OnInit {
 
   ngOnInit() {
     this.notifications = this.getAllNotifications();
-    this.notificationCount = this.notifications.length;
-    console.log(this.notifications);
   }
 
   getAllNotifications() {
     this.signUpService.getAllNotifications().subscribe((response) => {
-      this.notifications = response.objectList.notifications;
+      this.notifications = response.objectList[0].notifications;
       const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
-      //this.markNotificationsRead(allMessages);
+      this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     });
   }
 
-  markNotificationsRead(messages) {
-    this.signUpService.markNotificationsRead(messages).subscribe((response) => {
+  updateNotifications(messages, type) {
+    this.signUpService.updateNotifications(messages, type).subscribe((response) => {
     });
   }
 
   clearNotification(message, notification) {
-    //this.deleteNotification([message]);
+    this.updateNotifications([message], SIGN_UP_CONFIG.NOTIFICATION.DELETE_PAYLOAD_KEY);
     const updatedMessagesList = notification.messages.filter((notificationMessage) => message !== notificationMessage);
     if (updatedMessagesList.length) {
       notification.messages = updatedMessagesList;
@@ -79,7 +77,7 @@ export class ViewAllNotificationsComponent implements OnInit {
 
   clearAllNotifications() {
     const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
-    //this.deleteNotification(allMessages);
+    this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.DELETE_PAYLOAD_KEY);
     this.notifications.splice(0);
   }
 

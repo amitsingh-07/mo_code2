@@ -78,7 +78,9 @@ export let apiConstants = {
             getTransactions: INVESTMENT_API_BASE_URL + '/portfolio/transactions'
         },
         notification: {
-            getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent'
+            getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent',
+            getAllNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/getNotification',
+            updateNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/updateNotification'
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',
