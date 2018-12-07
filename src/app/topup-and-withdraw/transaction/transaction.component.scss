@@ -43,6 +43,10 @@
       color: #d0021b;
       text-transform: uppercase;
       margin-right: 30px;
+
+      &.buy {
+        color:#11b600;
+      }
     }
     &--title--amount--sale {
       font-size: 16px;
