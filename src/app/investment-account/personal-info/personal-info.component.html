@@ -163,7 +163,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportIssuedCountry').enabled && !invPersonalInfoForm.get('passportIssuedCountry').valid && !invPersonalInfoForm.get('passportIssuedCountry').pristine}">
                     <div ngbDropdown>
-                      <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="passport-issued-country-drpdown"
+                      <button class="btn btn-dropdown without-border grey" id="passport-issued-country-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.passportIssuedCountry.value">
                             {{ 'PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}
