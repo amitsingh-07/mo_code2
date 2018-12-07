@@ -355,15 +355,27 @@ export class SignUpService {
     return this.apiService.getAllNotifications();
   }
 
-  markNotificationsRead(data) {
-    const payload = this.constructPayloadForRead(data);
-    return this.apiService.markNotificationsRead(payload);
+  updateNotifications(messages, type) {
+    const payload = this.constructPayloadUpdateNotifications(messages, type);
+    console.log('payload');
+    console.log(payload);
+    return this.apiService.updateNotifications(payload);
   }
 
-  constructPayloadForRead(data) {
+  constructPayloadUpdateNotifications(messages, type) {
+    const messageIdList = this.getMessageIdsFromMessages(messages);
     return {
-      messages: data
+      messageStatus: type,
+      messageIds: messageIdList
     };
+  }
+
+  getMessageIdsFromMessages(messages) {
+    if (messages === null) {
+      return null;
+    } else {
+      return messages.map( (message) =>  message.messageId);
+    }
   }
 
   deleteNotifications(data) {
