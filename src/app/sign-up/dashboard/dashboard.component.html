@@ -16,7 +16,7 @@
                   </span>
                 </div>
               </div>
-              <div class="advisor-profile-bg flex-col-6"*ngIf="false"  >
+              <div class="advisor-profile-bg flex-col-6" *ngIf="false">
                 <div>
                   <img src="assets/images/investment-account/agent.svg" />
                 </div>
@@ -27,17 +27,19 @@
               </div>
             </div>
           </div>
-          <div class="widgets flex-col-12" >
+          <div class="widgets flex-col-12">
             <div class="widget">
               <div class="widget-title">
-                <span>{{'DASHBOARD.INVESTMENT.TITLE' | translate}}</span>
-                <span class="view_all"  *ngIf="showPortffolioPurchased"  (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW_ALL' | translate}}</span>
+                <span *ngIf="showNotPurchasedPortfolio">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}</span>
+                <span *ngIf="showPortffolioPurchased">{{'DASHBOARD.INVESTMENT.TITLE_MY_INVESTMENT' | translate}}</span>
+                <span *ngIf="showInvestmentDetailsSaved">{{'DASHBOARD.INVESTMENT.TITLE_MY_INVESTMENT' | translate}}</span>
+                <span class="view_all" *ngIf="showPortffolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW_ALL' | translate}}</span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
-                  
+
                   <!-- NOT PARCHASED -->
-                  <div class="primary flex col-12" *ngIf="showNotPurchasedPortfolio" >
+                  <div class="primary flex col-12" *ngIf="showNotPurchasedPortfolio">
                     <div class="flex-col-4">
                       <img src="assets/images/investment-account/investment-portfolio.svg" />
                     </div>
@@ -58,17 +60,17 @@
                   <div class="portfolio" *ngIf="showPortffolioPurchased">
                     <div class="portfolio_value">
                       <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
-                      <div class="value">{{userProfileInfo.investementDetails.totalValue  | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      <div class="value">{{userProfileInfo.investementDetails.totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                     </div>
                     <div class="portfolio_graph"></div>
                     <div class="portfolio_footer">
                       <div class="flex-col col-7">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
-                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalInvested  | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
                       <div class="flex-col col-5">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalReturns  | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
                     </div>
                   </div>
