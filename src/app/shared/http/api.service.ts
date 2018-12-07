@@ -173,7 +173,7 @@ export class ApiService {
     const payload = data;
     return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error, data))
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 
