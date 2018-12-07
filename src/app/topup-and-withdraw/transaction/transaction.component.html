@@ -22,16 +22,17 @@
                           <div class="flex-col-8" *ngIf="fund.fund">{{fund.fund.name}}</div>
                           <div class="flex-col-4 text-right">{{fund.unitPrice}}</div>
                         </div>
-                        
+
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- <div class="no-data">
-          <img src="../../../assets/images/investment-account/light_owl.svg"/>
-          <div>No Transaction History!</div>
-        </div> -->
               </div>
+            </div>
+
+            <div class="no-data" *ngIf="!transactionHistory || !transactionHistory.length">
+              <img src="../../../assets/images/investment-account/light_owl.svg" />
+              <div>No Transaction History!</div>
             </div>
 
           </ng-template>
@@ -51,7 +52,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="no-data" *ngIf="!statementMonthsList">
+                <div class="no-data" *ngIf="!statementMonthsList || !statementMonthsList.length">
                   <img src="../../../assets/images/investment-account/light_owl.svg" />
                   <div>No Transaction Statements!</div>
                 </div>

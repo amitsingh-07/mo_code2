@@ -22,7 +22,44 @@
     "PROCESS_TIME_INFO": "Your request will be processed within 1 - 2 business days. We will notify you once your portfolio top up has been successful.",
     "RECIPENTS_NAME": "Recipent's Name",
     "BANK_NAME": "Bank Name",
-    "BANK_ACC_NO": "Bank Account No."
+    "BANK_ACC_NO": "Bank Account No.",
+    "MODAL": {
+      "SHOW_BANK_TRANSCTIONS": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "STEP_5": "STEP 5",
+        "RECIPENTS_NAME": "Recipent's Name",
+        "BANK_NAME": "Bank Name",
+        "BANK_ACC_NO": "Bank Account No.",
+        "REFERENCE_CODE": "Reference Code",
+        "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a <strong>Singapore registered bank.</strong>",
+        "LBL_STEP_2": "Select an account of your own (registered under your name) to transfer from and <strong>enter the amount</strong> to transfer.",
+        "LBL_STEP_3": "Enter transfer information.",
+        "LBL_STEP_4": "Verify and confirm the transaction details.",
+        "LBL_STEP_5":"Your request will be processed within <strong>1 - 2 business days.</strong> We will notify you once your portfolio top up has been successful.",
+        "SETUP_AUTO_DEPOSIT":"Set Up Auto-Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT":"Hey, you can save time when you set up auto-deposits through your bank! Find out how with your bank now!"
+      },
+      "SHOW_PAYNOW": {
+        "STEP_1": "STEP 1",
+        "STEP_2": "STEP 2",
+        "STEP_3": "STEP 3",
+        "STEP_4": "STEP 4",
+        "STEP_5": "STEP 5",
+        "UNIQUE_ENTITY_NO": "Unique Entity Number (UEN)",
+        "ENTITY_NAME": "Entity Name",
+        "REFERENCE_CODE": "Reference Code",
+        "LBL_STEP_1": "Log in to your internet banking or mobile banking app of a <strong>Singapore registered bank.</strong>",
+        "LBL_STEP_2": "Select an <strong>account of your own (registered under your name)</strong> to transfer from and <strong>enter the amount</strong> to transfer.",
+        "LBL_STEP_3": "Enter transfer information.",
+        "LBL_STEP_4": "Verify and confirm the transaction details.",
+        "LBL_STEP_5":"Your request will be processed within <strong>1 - 2 business days.</strong> We will notify you once your portfolio top up has been successful.",
+        "SETUP_AUTO_DEPOSIT":"Set Up Auto-Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT":"Hey, you can save time when you set up auto-deposits through your bank! Find out how with your bank now!"
+      }
+    }
   },
   "TOPUP": {
     "TITLE": "TOP UP",
@@ -33,14 +70,14 @@
   },
   "YOUR_INVESTMENT": {
     "TITLE": "Your Investment",
-    "PROFILE_DEC": "Hey {{name}}, here's a performance summary of your {{total}} portfolios.",
+    "PROFILE_DEC": "Hey {{name}}, here's a performance summary of your {{total}} portfolio(s).",
     "TOTAL_VALUE": "Total Value",
     "TOTAL_RETURNS": "Total Returns ",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "TOTAL_INVESTED": "Total Invested",
     "CASH_ACCOUNT_BALANCE": "Cash Account Balance",
     "TOTAL_OF": "Total of",
-    "YOUR_PORTFOLIOS": "Your Portfolios",
+    "YOUR_PORTFOLIOS": "Your Portfolio(s)",
     "PORTFOLIO_VALUES": "Portfolio Value",
     "NO_INVESTMENT_YET": "Your portfolio has not started.",
     "ADD_PORTFOLIO": "Add Portfolio",
