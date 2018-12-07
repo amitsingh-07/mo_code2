@@ -36,6 +36,8 @@ export class InvestmentAccountFormData {
     mailCity: string;
     mailState: string;
     mailZipCode: number;
+    resUploadedPath: string;
+    mailingUploadedPath: string;
 
     // SELECT NATIONLITY
     nationalityList: any;

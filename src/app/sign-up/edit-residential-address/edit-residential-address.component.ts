@@ -33,6 +33,7 @@ export class EditResidentialAddressComponent implements OnInit {
   showLoader;
   loaderTitle;
   loaderDesc;
+  isResidentialAddressAvail: boolean;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
@@ -65,6 +66,7 @@ export class EditResidentialAddressComponent implements OnInit {
     this.countries = this.investmentAccountService.getCountriesFormData();
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
+    this.isResidentialAddressAvail = this.formValues.resUploadedPath ? true : false;
 
   }
   getNationalityCountryList() {
@@ -304,11 +306,17 @@ getCountryList(data) {
   }
 
   getFileName(fileElem) {
-    const fileName = this.investmentAccountCommon.getFileName(fileElem);
+    let fileName;
+    if (this.isResidentialAddressAvail) {
+      fileName = this.formValues.resUploadedPath.split('/').pop();
+    } else {
+    fileName = this.investmentAccountCommon.getFileName(fileElem);
+    }
     return fileName;
   }
 
   clearFileSelection(control, event, thumbElem?) {
+    this.isResidentialAddressAvail = false;
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
   }
 

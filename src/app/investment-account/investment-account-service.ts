@@ -863,6 +863,7 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
+    
     // tslint:disable-next-line:cognitive-complexity
     setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident) {
         this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
@@ -870,7 +871,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
         this.investmentAccountFormData.nationalityList = nationalityList;
         this.investmentAccountFormData.countryList = countryList;
-       // this.investmentAccountFormData.resAddressProof = data.documentDetails.fileName;
+        this.investmentAccountFormData.resUploadedPath = data.documentDetails.fileName;
         if (data.contactDetails.homeAddress.country) {
             this.investmentAccountFormData.country = data.contactDetails.homeAddress.country;
         }

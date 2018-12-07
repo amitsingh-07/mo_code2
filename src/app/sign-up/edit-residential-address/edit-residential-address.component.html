@@ -252,7 +252,7 @@
                   </div>
                 </div>
                 <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}</div>
-                <div class="upload-file" [class.selected]="addressForm.controls.resAddressProof.value">
+                <div class="upload-file" [class.selected]="addressForm.controls.resAddressProof.value || isResidentialAddressAvail">
                   <button type="button" class="btn btn-primary" (click)="openFileDialog(resAddressProof)">
                     <span class="unselected-state">{{ 'UPLOAD_DOCUMENTS.CHOOSE_FILE' | translate}}</span>
                     <span class="selected-state">{{ 'UPLOAD_DOCUMENTS.UPLOADED' | translate}}</span>
