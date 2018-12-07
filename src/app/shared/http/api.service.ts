@@ -689,8 +689,7 @@ export class ApiService {
 
   // tslint:disable-next-line:no-identical-functions
   getRecentNotifications() {
-    const url = '../assets/mock-data/notifications-recent.json';
-    return this.http.getMock(url)
+    return this.http.get(apiConstants.endpoint.notification.getRecentNotifications)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

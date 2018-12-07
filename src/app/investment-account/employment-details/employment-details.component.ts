@@ -221,7 +221,7 @@ export class EmploymentDetailsComponent implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      if (this.isEditProfile === 'true') {
+      if (this.isEditProfile) {
         this.investmentAccountService.updateEmployerAddress(form.getRawValue()).subscribe((data) => {
           if ( data.responseMessage.responseCode === 6000) {
             // tslint:disable-next-line:max-line-length

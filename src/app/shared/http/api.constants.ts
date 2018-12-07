@@ -4,6 +4,7 @@ const ABOUT_US_API_BASE_URL = 'product/insurance-product';
 const CONTACT_US_API_BASE_URL = 'account/account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
+const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
 
 export let apiConstants = {
     endpoint: {
@@ -75,6 +76,9 @@ export let apiConstants = {
             getUserBankList: 'account/account-microservice/api/customer/banks',
             addNewBank: 'account/account-microservice/api/customer/bank',
             getTransactions: INVESTMENT_API_BASE_URL + '/portfolio/transactions'
+        },
+        notification: {
+            getRecentNotifications: NOTIFICATION_API_BASE_URL + '/api/notifications/recent'
         },
         willWriting: {
             verifyPromoCode: 'account/account-microservice/api/promocode/validatePromoCode',

@@ -6,7 +6,7 @@
         <div class="title mb10" id="fundDetailsTitle">{{fund.name}}</div>
        
         <div class="content">
-            <div  id="fundDetailsContent" [innerHTML]="fund.htmlDesc"></div>
+            <div  id="fundDetailsContent" *ngIf="fund.htmlDesc" [innerHTML]="fund.htmlDesc"></div>
 
                 <a download href="../../../assets/docs/portfolio/fund/{{fund.factSheetLink}}" class="btn btn__footer--fixed btn-primary width100" id="fundDetailsBtnOne" >{{'FUND_DETAILS.DOWNLOAD_FACTSHEET' | translate}}</a>
             

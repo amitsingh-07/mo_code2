@@ -1,5 +1,6 @@
 export let INVESTMENT_ACCOUNT_CONFIG = {
     SINGAPORE_NATIONALITY_CODE: 'SG',
+    SINGAPORE_COUNTRY_CODE: 'SG',
     personal_info: {
         min_age: 18,
         min_passport_expiry: 6 // in months

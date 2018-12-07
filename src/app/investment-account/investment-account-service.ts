@@ -13,7 +13,7 @@ import {
 import { PersonalInfo } from './personal-info/personal-info';
 
 const SESSION_STORAGE_KEY = 'app_inv_account_session';
-const ACCOUNT_SUCCESS_COUNTER_KEY = "investment_account_success_counter"
+const ACCOUNT_SUCCESS_COUNTER_KEY = 'investment_account_success_counter';
 
 @Injectable({
     providedIn: 'root'
@@ -53,6 +53,13 @@ export class InvestmentAccountService {
         const selectedNationality = this.investmentAccountFormData.nationalityCode.toUpperCase();
         return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE ||
             this.investmentAccountFormData.singaporeanResident);
+    }
+    isCountrySingapore(country) {
+        if (country) {
+            return (country.countryCode === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE);
+        } else {
+            return false;
+        }
     }
     getCountryFromNationalityCode(nationalityCode) {
         let country;
@@ -194,15 +201,6 @@ export class InvestmentAccountService {
     getInvestmentPeriod() {
         return this.apiService.getInvestmentPeriod();
     }
-    // getNationality() {
-    //     return {
-    //         nationalitylist: this.investmentAccountFormData.nationalityList,
-    //         nationality: this.investmentAccountFormData.nationality,
-    //         unitedStatesResident: this.investmentAccountFormData.unitedStatesResident,
-    //         singaporeanResident: this.investmentAccountFormData.singaporeanResident
-    //     };
-    // }
-
     getTaxInfo() {
         return {
             tinNumber: this.investmentAccountFormData.tinNumber,
@@ -685,7 +683,7 @@ export class InvestmentAccountService {
     constructSaveInvestmentAccountRequest() {
         const payload = this.getInvestmentAccountFormData();
         const request = {} as ISaveInvestmentAccountRequest;
-        request.myInfoVerified = true;
+        request.myInfoVerified = payload.isMyInfoEnabled;
         request.isSingaporePR = payload.singaporeanResident;
         request.personalInfo = this.getPersonalInfoReqData(payload);
         request.residentialAddress = this.getResidentialAddressReqData(payload);
