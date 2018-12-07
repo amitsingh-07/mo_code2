@@ -54,6 +54,13 @@ export class InvestmentAccountService {
         return (selectedNationality === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE ||
             this.investmentAccountFormData.singaporeanResident);
     }
+    isCountrySingapore(country) {
+        if (country) {
+            return (country.countryCode === INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_COUNTRY_CODE);
+        } else {
+            return false;
+        }
+    }
     getCountryFromNationalityCode(nationalityCode) {
         let country;
         const selectedNationality = this.investmentAccountFormData.nationalityList.filter(
