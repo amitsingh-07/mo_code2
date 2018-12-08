@@ -375,7 +375,7 @@ export class InvestmentAccountService {
             addressDetails = {
                 countryId: (data.empCountry) ? data.empCountry.id : null,
                 state: data.empState,
-                postalCode: (this.isSingaporeResident) ? data.empPostalCode : data.empZipCode,
+                postalCode: (this.isSingaporeResident()) ? data.empPostalCode : data.empZipCode,
                 addressLine1: data.empAddress1,
                 addressLine2: data.empAddress2,
                 unitNumber: data.empUnitNo,
@@ -718,7 +718,7 @@ export class InvestmentAccountService {
         return {
             countryId: (data.country) ? data.country.id : null,
             state: data.state,
-            postalCode: (this.isSingaporeResident) ? data.postalCode : data.zipCode,
+            postalCode: (this.isSingaporeResident()) ? data.postalCode : data.zipCode,
             addressLine1: data.address1,
             addressLine2: data.address2,
             unitNumber: data.unitNo,
@@ -733,7 +733,7 @@ export class InvestmentAccountService {
             addressDetails = {
                 countryId: (data.mailCountry) ? data.mailCountry.id : null,
                 state: data.mailState,
-                postalCode: (this.isSingaporeResident) ? data.mailPostalCode : data.mailZipCode,
+                postalCode: (this.isSingaporeResident()) ? data.mailPostalCode : data.mailZipCode,
                 addressLine1: data.mailAddress1,
                 addressLine2: data.mailAddress2,
                 unitNumber: data.unitNo,
@@ -763,7 +763,7 @@ export class InvestmentAccountService {
             addressDetails = {
                 countryId: (data.empCountry) ? data.empCountry.id : null,
                 state: data.empState,
-                postalCode: (this.isSingaporeResident) ? data.empPostalCode : data.empZipCode,
+                postalCode: (this.isSingaporeResident()) ? data.empPostalCode : data.empZipCode,
                 addressLine1: data.empAddress1,
                 addressLine2: data.empAddress2,
                 unitNumber: data.empUnitNo,

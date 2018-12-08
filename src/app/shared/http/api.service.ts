@@ -680,8 +680,7 @@ export class ApiService {
 
   // tslint:disable-next-line:no-identical-functions
   getAllNotifications() {
-    const url = '../assets/mock-data/notifications.json';
-    return this.http.getMock(url)
+    return this.http.get(apiConstants.endpoint.notification.getAllNotifications)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
@@ -696,8 +695,8 @@ export class ApiService {
   }
 
   // tslint:disable-next-line:no-identical-functions
-  markNotificationsRead(data) {
-    return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio, data)
+  updateNotifications(data) {
+    return this.http.post(apiConstants.endpoint.notification.updateNotifications, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

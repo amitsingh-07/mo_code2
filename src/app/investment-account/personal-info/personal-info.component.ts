@@ -102,6 +102,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       Validators.required],
       birthCountry: [{value: this.formValues.birthCountry,
         disabled: this.investmentAccountService.isDisabled('birthCountry')}, Validators.required],
+      passportIssuedCountry: [{value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
+        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
+        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')}, Validators.required],
       race: [{ value: this.formValues.race, disabled: this.investmentAccountService.isDisabled('race') },
       [Validators.required]]
     }, { validator: this.validateName() });

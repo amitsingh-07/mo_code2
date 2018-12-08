@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '../../../../node_modules/@angular/router';
 
-import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
+import { APP_JWT_TOKEN_KEY } from '../../shared/http/auth/authentication.service';
 import { SignUpService } from '../sign-up.service';
+import { SIGN_UP_ROUTE_PATHS } from './../sign-up.routes.constants';
 
 @Component({
   selector: 'app-account-updated',
@@ -27,6 +28,8 @@ export class AccountUpdatedComponent implements OnInit, AfterViewInit {
     this.formData = this.signUpService.getAccountInfo();
     this.updateMobile = this.formData.updateMobile ? this.formData.updateMobile : false;
     this.updateEmail = this.formData.updateEmail ? this.formData.updateEmail : false;
+    sessionStorage.removeItem(APP_JWT_TOKEN_KEY);
+    this.signUpService.clearData();
   }
 
   ngAfterViewInit() {
@@ -35,6 +38,10 @@ export class AccountUpdatedComponent implements OnInit, AfterViewInit {
 
   redirectToEditProfile() {
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+  }
+
+  redirectToLogin() {
+    this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
   }
 
 }
