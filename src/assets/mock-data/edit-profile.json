@@ -39,14 +39,14 @@
             "mailingAddress": {
                 "id": 132,
                 "country": {
-                    "id": null,
-                    "name": null,
-                    "nationality": null,
-                    "isBlocked": null,
-                    "phoneCode": null,
-                    "countryCode": null,
-                    "nationalityCode": null,
-                    "listOrder": null
+                    "id": 225,
+                    "name": "SINGAPORE",
+                    "nationality": "SINGAPOREAN",
+                    "isBlocked": false,
+                    "phoneCode": "+65",
+                    "countryCode": "SG",
+                    "nationalityCode": "SG",
+                    "listOrder": 1
                 },
                 "addressLine1": "sat36",
                 "addressLine2": "sat69",
