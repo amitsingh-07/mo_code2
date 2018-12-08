@@ -87,7 +87,7 @@ export class EditPasswordComponent implements OnInit {
       // tslint:disable-next-line:triple-equals
       if ( data.responseMessage.responseCode == 6000) {
         // tslint:disable-next-line:max-line-length
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }
     });
   }
