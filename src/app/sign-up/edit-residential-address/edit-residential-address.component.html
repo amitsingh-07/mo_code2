@@ -259,7 +259,7 @@
                   </button>
                   <label class="unselected-state">{{ 'UPLOAD_DOCUMENTS.NO_FILE_SELECTED' | translate}}</label>
                   <label class="selected-state" [innerHtml]="getFileName(resAddressProof)"></label>
-                  <div class="selected-state" (click)="clearFileSelection(addressForm.controls.resAddressProof, $event)">
+                  <div class="selected-state" (click)="clearFileSelection('Residential' , addressForm.controls.resAddressProof, $event)">
                     <img src="../assets/images/close-button.svg" alt="" />
                   </div>
                 </div>
@@ -465,14 +465,14 @@
                   </div>
                 </div>
                 <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}</div>
-                <div class="upload-file" [class.selected]="addressForm.controls.mailingAddress.controls.mailAdressProof.value">
+                <div class="upload-file" [class.selected]="addressForm.controls.mailingAddress.controls.mailAdressProof.value || isMailingAddressAvail">
                   <button type="button" class="btn btn-primary" (click)="openFileDialog(mailAdressProof)">
                     <span class="unselected-state">{{ 'UPLOAD_DOCUMENTS.CHOOSE_FILE' | translate}}</span>
                     <span class="selected-state">{{ 'UPLOAD_DOCUMENTS.UPLOADED' | translate}}</span>
                   </button>
                   <label class="unselected-state">{{ 'UPLOAD_DOCUMENTS.NO_FILE_SELECTED' | translate}}</label>
-                  <label class="selected-state" [innerHtml]="getFileName(mailAdressProof)"></label>
-                  <div class="selected-state" (click)="clearFileSelection(addressForm.controls.mailingAddress.controls.mailAdressProof, $event)">
+                  <label class="selected-state" [innerHtml]="getFileNameMailing(mailAdressProof)"></label>
+                  <div class="selected-state" (click)="clearFileSelection('Mailing' , addressForm.controls.mailingAddress.controls.mailAdressProof, $event)">
                     <img src="../assets/images/close-button.svg" alt="" />
                   </div>
                 </div>

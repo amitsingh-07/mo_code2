@@ -863,13 +863,14 @@ export class InvestmentAccountService {
     }
     
     // tslint:disable-next-line:cognitive-complexity
-    setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident) {
+    setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident , mailingProof , resProof) {
         this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
         this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
         this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
         this.investmentAccountFormData.nationalityList = nationalityList;
         this.investmentAccountFormData.countryList = countryList;
-        this.investmentAccountFormData.resUploadedPath = data.documentDetails.fileName;
+        this.investmentAccountFormData.resUploadedPath = resProof;
+        this.investmentAccountFormData.mailingUploadedPath = mailingProof;
         if (data.contactDetails.homeAddress.country) {
             this.investmentAccountFormData.country = data.contactDetails.homeAddress.country;
         }

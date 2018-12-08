@@ -34,6 +34,7 @@ export class EditResidentialAddressComponent implements OnInit {
   loaderTitle;
   loaderDesc;
   isResidentialAddressAvail: boolean;
+  isMailingAddressAvail: boolean;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
@@ -67,7 +68,7 @@ export class EditResidentialAddressComponent implements OnInit {
     this.addressForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
     this.addOrRemoveMailingAddress();
     this.isResidentialAddressAvail = this.formValues.resUploadedPath ? true : false;
-
+    this.isMailingAddressAvail =  this.formValues.mailingUploadedPath ? true : false;
   }
   getNationalityCountryList() {
         this.investmentAccountService.getNationalityCountryList().subscribe((data) => {
@@ -314,9 +315,23 @@ getCountryList(data) {
     }
     return fileName;
   }
+  getFileNameMailing(fileElem) {
+    let fileName;
+    if (this.isMailingAddressAvail) {
+      fileName = this.formValues.mailingUploadedPath.split('/').pop();
+    } else {
+    fileName = this.investmentAccountCommon.getFileName(fileElem);
+    }
+    return fileName;
+  }
 
-  clearFileSelection(control, event, thumbElem?) {
+  clearFileSelection(type , control, event, thumbElem?) {
+    if ( type === 'Residential') {
     this.isResidentialAddressAvail = false;
+    }
+    if ( type === 'Mailing') {
+      this.isMailingAddressAvail = false;
+      }
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
   }
 
