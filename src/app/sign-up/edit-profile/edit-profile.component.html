@@ -24,14 +24,14 @@
       <div class="flex-row pb10 mb20">
         <div class="flex-col-2">
           <div class="content-text">Gender</div>
-          <div class="grid-content-text">{{personalData.gender}}</div>
+          <div class="grid-content-text">{{personalData.gender  | titlecase}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
         </div>
         <div class="flex-col-4">
           <div class="content-text">Nationality</div>
-          <div class="grid-content-text">{{personalData.nationality}}</div>
+          <div class="grid-content-text">{{personalData.nationality  | titlecase}}</div>
         </div>
         <div class="flex-col-1">
           <div class="seperator"></div>
@@ -270,7 +270,7 @@
               City
             </div>
             <div class="update-contact-value">
-              {{residentialAddress.city}}
+              {{mailingAddress.city}}
             </div>
           </div>
           <div class="section-margin" *ngIf="!isSingaporeResident">
@@ -278,7 +278,7 @@
               State
             </div>
             <div class="update-contact-value">
-              {{residentialAddress.state}}
+              {{mailingAddress.state}}
             </div>
           </div>
           <div class="section-margin" *ngIf="!isSingaporeResident">
@@ -286,7 +286,7 @@
               Zip Code
             </div>
             <div class="update-contact-value">
-              {{residentialAddress.postalCode}}
+              {{mailingAddress.postalCode}}
             </div>
           </div>
         </div>
