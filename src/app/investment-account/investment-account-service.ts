@@ -721,6 +721,7 @@ export class InvestmentAccountService {
             postalCode: (this.isSingaporeResident()) ? data.postalCode : data.zipCode,
             addressLine1: data.address1,
             addressLine2: data.address2,
+            floor: data.floor,
             unitNumber: data.unitNo,
             townName: null, // todo - not available in client
             city: data.city
@@ -736,6 +737,7 @@ export class InvestmentAccountService {
                 postalCode: (this.isSingaporeResident()) ? data.mailPostalCode : data.mailZipCode,
                 addressLine1: data.mailAddress1,
                 addressLine2: data.mailAddress2,
+                floor: data.mailFloor,
                 unitNumber: data.unitNo,
                 townName: null, // todo - not available in client
                 city: data.mailCity
