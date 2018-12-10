@@ -34,14 +34,26 @@ letter-spacing: -0.3px;
         padding-bottom: 30px;
       }
 }
-.dropdown-control .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    // height: calc(70vh);
+.dropdown-control{
+  .dropdown-menu{
+    &.show {
+      right: 0 !important;
+      overflow: auto;
+      height: auto;
+      max-height: 264px;
     }
+  }
+}
 .dropdown-item {
-    white-space: normal;
-    
+  white-space: normal;
+  word-break: break-all;
+}
+.dropdown-control .btn-dropdown {
+  padding-right: 27px;
+  max-height: 52px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .btn{
     &.btn-dropdown{

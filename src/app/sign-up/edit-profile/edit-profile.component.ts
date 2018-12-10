@@ -189,11 +189,9 @@ export class EditProfileComponent implements OnInit {
     for (i = 0; i < uploadedDocuments.length; i++) {
     if ( uploadedDocuments[i].docType === 'MAILING_ADDRESS_PROOF' ) {
       mailingUrl = uploadedDocuments[i].fileName;
-      console.log ('Got mailing ' +  uploadedDocuments[i].fileName  );
     }
     if ( uploadedDocuments[i].docType === 'RESIDENTIAL_ADDRESS_PROOF' ) {
       ResUrl = uploadedDocuments[i].fileName;
-      console.log ('Got Res ' +  uploadedDocuments[i].fileName  );
     }
     }
     // tslint:disable-next-line:max-line-length
