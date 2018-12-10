@@ -947,7 +947,7 @@ export class InvestmentAccountService {
             if ( data.employmentDetails.employerDetails.detailedEmployerDetails.industry) {
             this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.detailedEmployerDetails.industry;
             }
-            if ( data.employmentDetails.employerDetails.detailedEmployerDetails.employerContact) {
+            if ( data.employmentDetails.employerDetails.employerContact) {
             this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.employerContact;
             }
         }
