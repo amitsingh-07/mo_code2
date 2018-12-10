@@ -6,7 +6,7 @@
 <p>&nbsp;</p>
 <p class="text-xs-center"><img border="0" width="100%"  style="max-width:631px" src="/assets/articles/images/45/srs_funds.jpg" alt="SRS Funds Pie Chart"></p>
 <p>&nbsp;</p>
-<p>As of 31st December 2016, total SRS contributions amounted to $7,200,000,000! And surprisingly, a third of these money sits in cash, which earns little interest.  </p>
+<p>As of December 2017, total SRS contributions amounted to $8,150,000,000! And surprisingly, a third (33%) of these money sits in cash, which earns little interest.  </p>
 <br/>
 <p>On top of enjoying tax savings with SRS, it is important to look at how you can grow your SRS funds. Since you are likely to only withdraw your SRS after retirement age to avoid penalties, you should make your SRS funds work harder since you have the benefit of time </p>
 <br>
@@ -117,11 +117,9 @@
 
 <br><br>
 <p><strong>Step 3: Compare the Products</strong></p>
-<p>Hopefully with Steps 1 &amp; 2, you have a better understanding of the features you are looking for. Now is the time to look for suitable products. One easy way is to use our MoneyOwl platform to compare.</p>
+<p>Hopefully with Steps 1 &amp; 2, you have a better understanding of the features you are looking for. Now is the time to look for suitable products. One easy way is to compare on MoneyOwl's platform.</p>
 <br/>
 <p>You will see a list of available products based on your selected criteria. A ranking of products is also provided to help you identify superior products. You can also drill in to understand the product&rsquo;s unique features and benefits. </p>
-<br/>
-<p>If you have further questions or require advice, please feel free to send a non-obligatory <strong>Quote Request</strong> and we will get back to assist you.</p>
 <br/>
 <p><a href="#/articles/entry/46">Click here</a> to find out about the best SRS-approved retirement plans you can use in our next article. </p>
 <br>
