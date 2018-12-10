@@ -861,14 +861,16 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
+    
     // tslint:disable-next-line:cognitive-complexity
-    setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident) {
+    setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident , mailingProof , resProof) {
         this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
         this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
         this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
         this.investmentAccountFormData.nationalityList = nationalityList;
         this.investmentAccountFormData.countryList = countryList;
-       // this.investmentAccountFormData.resAddressProof = data.documentDetails.fileName;
+        this.investmentAccountFormData.resUploadedPath = resProof;
+        this.investmentAccountFormData.mailingUploadedPath = mailingProof;
         if (data.contactDetails.homeAddress.country) {
             this.investmentAccountFormData.country = data.contactDetails.homeAddress.country;
         }
@@ -1075,7 +1077,7 @@ export class InvestmentAccountService {
         return {
             contactDetails: {
                 homeAddress: {
-                    country: data.country,
+                    country: data.country.id,
                     addressLine1: data.address1,
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
@@ -1085,7 +1087,7 @@ export class InvestmentAccountService {
                     city: data.city
                 },
                 mailingAddress: {
-                    country: data.mailingAddress.mailCountry,
+                    country: data.mailingAddress.mailCountry.id,
                     addressLine1: data.mailingAddress.mailAddress1,
                     addressLine2: data.mailingAddress.mailAddress2,
                     unitNumber: data.mailingAddress.mailUnitNo,
@@ -1103,7 +1105,7 @@ export class InvestmentAccountService {
             contactDetails: {
                 homeAddress: {
                     id: 1,
-                    country: data.country,
+                    country: data.country.id,
                     addressLine1: data.address1,
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
