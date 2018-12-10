@@ -170,6 +170,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   validateForm(index: number) {
     this.beneficiaryList[index].selected = !this.beneficiaryList[index].selected;
     this.isFormAltered = true;
+    this.addBeneficiaryForm.markAsDirty();
     if (this.beneficiaryList[index].selected === false) {
       this.beneficiaryList[index].distPercentage = 0;
     }
