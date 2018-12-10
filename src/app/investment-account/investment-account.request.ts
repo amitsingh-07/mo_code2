@@ -33,6 +33,7 @@ export interface IAddress {
     postalCode: string;
     addressLine1: string;
     addressLine2: string;
+    floor: string;
     unitNumber: string;
     townName: string;
     city: string;
