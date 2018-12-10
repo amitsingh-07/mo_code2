@@ -817,6 +817,7 @@ export class InvestmentAccountService {
                     postalCode: data.pepPostalCode,
                     addressLine1: data.pepAddress1,
                     addressLine2: data.pepAddress2,
+                    floor: null,
                     unitNumber: data.pepUnitNo,
                     townName: null, // todo not available in client
                     city: null // info - always empty
