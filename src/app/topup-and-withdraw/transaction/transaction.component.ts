@@ -45,12 +45,18 @@ export class TransactionComponent implements OnInit {
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
     if(this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.account &&
         this.userProfileInfo.investementDetails.account.accountCreatedDate) {
-          this.accountCreationDate = new Date(this.userProfileInfo.investementDetails.account.accountCreatedDate);
+          this.accountCreationDate = this.convertStringToDate(this.userProfileInfo.investementDetails.account.accountCreatedDate);
     }
-    this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(this.accountCreationDate, new Date());
+    this.statementMonthsList = this.topupAndWithDrawService.getMonthListByPeriod(
+      this.accountCreationDate, new Date());
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title, null, false, false, true);
+  }
+
+  convertStringToDate(dateStr) {
+    const dateArr = dateStr.split('-');
+    return new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
   }
 
   getTransactionHistory(from?, to?) {
