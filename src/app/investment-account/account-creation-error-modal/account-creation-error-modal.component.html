@@ -12,8 +12,7 @@
   
   <div class="modal-body-message" *ngFor="let error of errorList" id="errorModelMessage">
     <div class="error">
-        <div class="error-code">{{error.code}}</div>
-        <div class="error-desc">{{error.msg}}</div>
+        <div class="error-desc">{{error.msg}} ({{error.code}})</div>
     </div>
   </div>
 
