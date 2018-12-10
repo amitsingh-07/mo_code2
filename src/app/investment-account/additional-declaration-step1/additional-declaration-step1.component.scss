@@ -22,8 +22,9 @@
 }
 
 label {
-font-size: 18px;
-letter-spacing: -0.3px;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+  padding-right: 5px;
 }
 // .form-group {
 //     @include allmobiles {
@@ -127,28 +128,18 @@ letter-spacing: -0.3px;
       color: $inline-error-border-color !important;
     }
   }
-
-
- 
   .input-control {
     text-align: left;
   }
-
-  
-
- 
-
   .form-control {
+    max-height: 52px;
     &.with-button {
       padding: 0.50rem;
       padding-left: 0.8rem;
-
       input {
         margin-top: 6px;
       }
     }
-
-
   }
 
   .btn {
@@ -181,8 +172,6 @@ letter-spacing: -0.3px;
       }
     }
   }
-
-
   .white-bg-checkbox {
     background-color: $white-color;
     padding: 10px 18px 10px 18px;
@@ -209,8 +198,6 @@ letter-spacing: -0.3px;
       font-size: 16px;
     }
   }
-
-
   .autofill-link {
     border: 1px solid $secondary-action-color;
     padding: 23px 34px;
@@ -219,9 +206,7 @@ letter-spacing: -0.3px;
     margin-bottom: 20px;
     cursor: pointer;
     display: flex;
-
     .autofill-logo {
-
       width: 35%;
     }
 
@@ -241,7 +226,6 @@ letter-spacing: -0.3px;
       }  
     }    
   }
-  
     .inline-error-inv {
       color: $inline-error-border-color;
       border: 1px solid $inline-error-border-color !important;
@@ -260,5 +244,16 @@ letter-spacing: -0.3px;
           max-height: 264px;
         }
       }
+    }
+    .dropdown-item {
+      white-space: normal;
+      word-break: break-all;
+    }
+    .dropdown-control .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 }
