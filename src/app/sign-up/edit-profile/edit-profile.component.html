@@ -20,7 +20,7 @@
 
 
       <div class="heading">{{fullName }}</div>
-      <div class="nric-text">{{compinednricNum}}</div>
+      <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
       <div class="flex-row pb10 mb20">
         <div class="flex-col-2">
           <div class="content-text">Gender</div>
