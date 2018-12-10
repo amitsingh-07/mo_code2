@@ -200,6 +200,14 @@ export class EditProfileComponent implements OnInit {
     this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList, this.isMailingAddressSame, this.isSingaporeResident , mailingUrl , ResUrl);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
+  isCountrySIngapore(nationalityCode) {
+    if (nationalityCode === 'SG') {
+    return true;
+    } else {
+      return false;
+    }
+
+  }
   editBankDetails() {
     // tslint:disable-next-line:max-line-length accountName
     this.investmentAccountService.setEditProfileBankDetail(this.bankDetails.accountName, this.bankDetails.bank, this.bankDetails.accountNumber, this.bankDetails.id, false);

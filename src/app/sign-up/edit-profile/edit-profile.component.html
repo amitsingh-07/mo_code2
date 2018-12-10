@@ -141,7 +141,7 @@
             {{residentialAddress.country.name}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="isSingaporeResident">
+        <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
           <div class="update-contact-title">
             Postal Code
           </div>
@@ -165,7 +165,7 @@
             {{residentialAddress.addressLine2}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="isSingaporeResident">
+        <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
           <div class="update-contact-title">
             Floor
           </div>
@@ -173,7 +173,7 @@
             {{residentialAddress.floor}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="isSingaporeResident">
+        <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
           <div class="update-contact-title">
             Unit Number
           </div>
@@ -181,7 +181,7 @@
             {{residentialAddress.unitNumber}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="!isSingaporeResident">
+        <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
           <div class="update-contact-title">
             City
           </div>
@@ -189,7 +189,7 @@
             {{residentialAddress.city}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="!isSingaporeResident">
+        <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
           <div class="update-contact-title">
             State
           </div>
@@ -197,7 +197,7 @@
             {{residentialAddress.state}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="!isSingaporeResident">
+        <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
           <div class="update-contact-title">
             Zip Code
           </div>
@@ -225,7 +225,7 @@
               {{mailingAddress.country.name}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="isSingaporeResident">
+          <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
             <div class="update-contact-title">
               Postal Code
             </div>
@@ -249,7 +249,7 @@
               {{ mailingAddress.addressLine2}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="isSingaporeResident">
+          <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
             <div class="update-contact-title">
              Floor
             </div>
@@ -257,7 +257,7 @@
               {{mailingAddress.floor}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="isSingaporeResident">
+          <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
             <div class="update-contact-title">
               Unit Number
             </div>
@@ -265,7 +265,7 @@
               {{mailingAddress.unitNumber}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
             <div class="update-contact-title">
               City
             </div>
@@ -273,7 +273,7 @@
               {{mailingAddress.city}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
             <div class="update-contact-title">
               State
             </div>
@@ -281,7 +281,7 @@
               {{mailingAddress.state}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="!isSingaporeResident">
+          <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
             <div class="update-contact-title">
               Zip Code
             </div>
@@ -377,7 +377,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="isSingaporeResident">
+            <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title">
                 Postal Code
               </div>
@@ -401,7 +401,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="isSingaporeResident">
+            <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title" >
                Floor
               </div>
@@ -409,7 +409,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.floor}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="isSingaporeResident">
+            <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title" >
                 Unit No
               </div>
@@ -417,7 +417,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title">
                 City
               </div>
@@ -425,7 +425,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title">
                 State
               </div>
@@ -433,7 +433,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="!isSingaporeResident">
+            <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title">
                 Zip Code
               </div>

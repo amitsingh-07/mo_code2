@@ -84,7 +84,7 @@ export class YourInvestmentComponent implements OnInit {
 
   }
   addPortfolio() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
 
   }
   yourPortfolio(portfolio) {
