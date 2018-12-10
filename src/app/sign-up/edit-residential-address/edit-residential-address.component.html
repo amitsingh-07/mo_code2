@@ -29,7 +29,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(addressForm.controls.country)}">
                     <div ngbDropdown>
-                      <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                      <button class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
                         ngbDropdownToggle>{{addressForm.controls.country.value.name | titlecase}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -43,7 +43,7 @@
             </div>
 
             <!-- POSTAL CODE -->
-            <div class="form-group" *ngIf="isUserNationalitySingapore">
+            <div class="form-group" *ngIf="addressForm.get('postalCode')">
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="residentialAddress-postalcode-drpdown" id="residentialAddress-postalcode-lbl">{{
@@ -100,7 +100,7 @@
             </div>
 
             <!-- Floor -->
-            <div class="form-group" *ngIf="isUserNationalitySingapore">
+            <div class="form-group" *ngIf="addressForm.get('floor')">
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="residentialAddress-floor-txt" id="residentialAddress-floor-lbl">{{'RESIDENTIAL_ADDRESS.FLOOR'
@@ -115,7 +115,7 @@
             </div>
 
             <!-- UNIT NO -->
-            <div class="form-group" *ngIf="isUserNationalitySingapore">
+            <div class="form-group" *ngIf="addressForm.get('unitNo')">
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="residentialAddress-unitno-txt" id="residentialAddress-unitno-lbl">{{'RESIDENTIAL_ADDRESS.UNIT_NO'
@@ -130,7 +130,7 @@
             </div>
 
             <!-- CITY -->
-            <div class="form-group" *ngIf="!isUserNationalitySingapore">
+            <div class="form-group" *ngIf="addressForm.get('city')">
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="residentialAddress-city-txt" id="residentialAddress-city-lbl">{{'RESIDENTIAL_ADDRESS.CITY'
@@ -145,7 +145,7 @@
             </div>
 
             <!-- STATE -->
-            <div class="form-group" *ngIf="!isUserNationalitySingapore">
+            <div class="form-group" *ngIf="addressForm.get('state')">
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="residentialAddress-state-txt" id="residentialAddress-state-lbl">{{'RESIDENTIAL_ADDRESS.STATE'
@@ -160,7 +160,7 @@
             </div>
 
             <!-- ZIP CODE -->
-            <div class="form-group" *ngIf="!isUserNationalitySingapore">
+            <div class="form-group" *ngIf="addressForm.get('zipCode')">
               <div class="flex-row">
                 <div class="flex-col-5">
                   <label for="residentialAddress-zipcode-txt" id="residentialAddress-zipcode-lbl">{{'RESIDENTIAL_ADDRESS.ZIPCODE'
@@ -252,14 +252,14 @@
                   </div>
                 </div>
                 <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_RESIDENT_SUBTEXT' | translate}}</div>
-                <div class="upload-file" [class.selected]="addressForm.controls.resAddressProof.value">
+                <div class="upload-file" [class.selected]="addressForm.controls.resAddressProof.value || isResidentialAddressAvail">
                   <button type="button" class="btn btn-primary" (click)="openFileDialog(resAddressProof)">
                     <span class="unselected-state">{{ 'UPLOAD_DOCUMENTS.CHOOSE_FILE' | translate}}</span>
                     <span class="selected-state">{{ 'UPLOAD_DOCUMENTS.UPLOADED' | translate}}</span>
                   </button>
                   <label class="unselected-state">{{ 'UPLOAD_DOCUMENTS.NO_FILE_SELECTED' | translate}}</label>
                   <label class="selected-state" [innerHtml]="getFileName(resAddressProof)"></label>
-                  <div class="selected-state" (click)="clearFileSelection(addressForm.controls.resAddressProof, $event)">
+                  <div class="selected-state" (click)="clearFileSelection('Residential' , addressForm.controls.resAddressProof, $event)">
                     <img src="../assets/images/close-button.svg" alt="" />
                   </div>
                 </div>
@@ -309,7 +309,7 @@
                   <div class="flex-col-7">
                     <div class="dropdown-control">
                       <div ngbDropdown>
-                        <button [disabled]="isUserNationalitySingapore" class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                        <button  class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
                           ngbDropdownToggle>{{addressForm.controls.mailingAddress.controls.mailCountry.value.name |
                           titlecase}}
                         </button>
@@ -324,7 +324,7 @@
               </div>
 
               <!-- POSTAL CODE -->
-              <div class="form-group" *ngIf="isUserNationalitySingapore">
+              <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailPostalCode')">
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="residentialAddress-mailpostalcode-drpdown" id="residentialAddress-mailpostalcode-lbl">{{
@@ -380,7 +380,7 @@
               </div>
 
               <!-- Floor -->
-              <div class="form-group" *ngIf="isUserNationalitySingapore">
+              <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailFloor')">
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="residentialAddress-mailfloor-txt" id="residentialAddress-mailfloor-lbl">{{'RESIDENTIAL_ADDRESS.FLOOR'
@@ -395,7 +395,7 @@
               </div>
 
               <!-- UNIT NO -->
-              <div class="form-group" *ngIf="isUserNationalitySingapore">
+              <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailUnitNo')">
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="residentialAddress-mailunitno-txt" id="residentialAddress-mailunitno-lbl">{{'RESIDENTIAL_ADDRESS.UNIT_NO'
@@ -410,7 +410,7 @@
               </div>
 
               <!-- CITY -->
-              <div class="form-group" *ngIf="!isUserNationalitySingapore">
+              <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailCity')">
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="residentialAddress-mailcity-txt" id="residentialAddress-mailcity-lbl">{{'RESIDENTIAL_ADDRESS.CITY'
@@ -425,7 +425,7 @@
               </div>
 
               <!-- STATE -->
-              <div class="form-group" *ngIf="!isUserNationalitySingapore">
+              <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailState')">
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="residentialAddress-mailstate-txt" id="residentialAddress-mailstate-lbl">{{'RESIDENTIAL_ADDRESS.STATE'
@@ -440,7 +440,7 @@
               </div>
 
               <!-- ZIP CODE -->
-              <div class="form-group" *ngIf="!isUserNationalitySingapore">
+              <div class="form-group" *ngIf="addressForm.get('mailingAddress').get('mailZipCode')">
                 <div class="flex-row">
                   <div class="flex-col-5">
                     <label for="residentialAddress-mailzipcode-txt" id="residentialAddress-mailzipcode-lbl">{{'RESIDENTIAL_ADDRESS.ZIPCODE'
@@ -465,14 +465,14 @@
                   </div>
                 </div>
                 <div class="sub-title-desc">{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING_SUBTEXT' | translate}}</div>
-                <div class="upload-file" [class.selected]="addressForm.controls.mailingAddress.controls.mailAdressProof.value">
+                <div class="upload-file" [class.selected]="addressForm.controls.mailingAddress.controls.mailAdressProof.value || isMailingAddressAvail">
                   <button type="button" class="btn btn-primary" (click)="openFileDialog(mailAdressProof)">
                     <span class="unselected-state">{{ 'UPLOAD_DOCUMENTS.CHOOSE_FILE' | translate}}</span>
                     <span class="selected-state">{{ 'UPLOAD_DOCUMENTS.UPLOADED' | translate}}</span>
                   </button>
                   <label class="unselected-state">{{ 'UPLOAD_DOCUMENTS.NO_FILE_SELECTED' | translate}}</label>
-                  <label class="selected-state" [innerHtml]="getFileName(mailAdressProof)"></label>
-                  <div class="selected-state" (click)="clearFileSelection(addressForm.controls.mailingAddress.controls.mailAdressProof, $event)">
+                  <label class="selected-state" [innerHtml]="getFileNameMailing(mailAdressProof)"></label>
+                  <div class="selected-state" (click)="clearFileSelection('Mailing' , addressForm.controls.mailingAddress.controls.mailAdressProof, $event)">
                     <img src="../assets/images/close-button.svg" alt="" />
                   </div>
                 </div>

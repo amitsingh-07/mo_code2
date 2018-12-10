@@ -19,6 +19,7 @@ export class EditPasswordComponent implements OnInit {
 
   resetPasswordForm: FormGroup;
   formValues: any;
+  pageTitle: string;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -30,14 +31,19 @@ export class EditPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService) {
-    this.translate.use('en');
-    this.route.params.subscribe((params) => {
-    });
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe((result: string) => {
+        this.pageTitle = 'Change Password';
+        this.setPageTitle(this.pageTitle);
+      });
+  }
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
   }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(2);
     this.buildForgotPasswordForm();
   }
   buildForgotPasswordForm() {
@@ -81,7 +87,7 @@ export class EditPasswordComponent implements OnInit {
       // tslint:disable-next-line:triple-equals
       if ( data.responseMessage.responseCode == 6000) {
         // tslint:disable-next-line:max-line-length
-      this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       }
     });
   }
