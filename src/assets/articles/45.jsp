@@ -6,7 +6,7 @@
 <p>&nbsp;</p>
 <p class="text-xs-center"><img border="0" width="100%"  style="max-width:631px" src="/assets/articles/images/45/srs_funds.jpg" alt="SRS Funds Pie Chart"></p>
 <p>&nbsp;</p>
-<p>As of 31st December 2017, total SRS contributions amounted to $8,150,000,000! And surprisingly, a third (33%) of these money sits in cash, which earns little interest.  </p>
+<p>As of December 2017, total SRS contributions amounted to $8,150,000,000! And surprisingly, a third (33%) of these money sits in cash, which earns little interest.  </p>
 <br/>
 <p>On top of enjoying tax savings with SRS, it is important to look at how you can grow your SRS funds. Since you are likely to only withdraw your SRS after retirement age to avoid penalties, you should make your SRS funds work harder since you have the benefit of time </p>
 <br>
