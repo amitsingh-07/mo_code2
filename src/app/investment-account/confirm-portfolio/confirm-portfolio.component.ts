@@ -214,10 +214,8 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showInvestmentAccountErrorModal(errorList) {
     const errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE');
-    const errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.DESCRIPTION');
     const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
-    ref.componentInstance.errorMessage = errorMessage;
     ref.componentInstance.errorList = errorList;
   }
 
