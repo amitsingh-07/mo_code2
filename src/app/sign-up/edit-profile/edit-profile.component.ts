@@ -179,8 +179,25 @@ export class EditProfileComponent implements OnInit {
     return countryList;
   }
   editContactDetails() {
+    let uploadedDocuments ;
+    let mailingUrl;
+    let ResUrl ;
+    if (this.entireUserData.documentDetails) {
+    uploadedDocuments = this.entireUserData.documentDetails;
+    }
+    let i;
+    for (i = 0; i < uploadedDocuments.length; i++) {
+    if ( uploadedDocuments[i].docType === 'MAILING_ADDRESS_PROOF' ) {
+      mailingUrl = uploadedDocuments[i].fileName;
+      console.log ('Got mailing ' +  uploadedDocuments[i].fileName  );
+    }
+    if ( uploadedDocuments[i].docType === 'RESIDENTIAL_ADDRESS_PROOF' ) {
+      ResUrl = uploadedDocuments[i].fileName;
+      console.log ('Got Res ' +  uploadedDocuments[i].fileName  );
+    }
+    }
     // tslint:disable-next-line:max-line-length
-    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList, this.isMailingAddressSame, this.isSingaporeResident);
+    this.investmentAccountService.setEditProfileContactInfo(this.entireUserData, this.nationalityList, this.countryList, this.isMailingAddressSame, this.isSingaporeResident , mailingUrl , ResUrl);
     this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_RESIDENTIAL]);
   }
   editBankDetails() {
