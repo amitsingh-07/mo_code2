@@ -107,7 +107,7 @@ getCountryList(data) {
 buildForm(): FormGroup {
   return this.formBuilder.group({
     country: [{
-      value: this.getDefaultCountry(),
+      value: this.formValues.country,
       disabled: this.investmentAccountService.isDisabled('country')
     }, Validators.required],
     address1: [{ value: this.formValues.address1, disabled: this.investmentAccountService.isDisabled('address1') },

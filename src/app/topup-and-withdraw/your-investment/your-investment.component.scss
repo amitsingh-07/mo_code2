@@ -149,6 +149,7 @@ p{
 .flex-row:not(:last-child) {
       margin-bottom: 0px; 
 }
+
 .total_return_label{
     color: #5e5e5e;
     font-size: 16px;
@@ -204,15 +205,9 @@ p{
         margin-right: 5px;
     }
 }
-// .form-group-with-bg--content{
-//     .flex-row{
-//         .flex-col-6{
-//             &:last-child{
-//                 padding-right: 13px;
-//             }
-//         }
-//     }
-// }
+.form-group-with-bg--content{
+    padding: 20px 28px 20px 27px;
+}
 .portfolio_heading{
 font-family: $muli-bold;
   font-size: 18px;
@@ -242,11 +237,10 @@ font-family: $muli-bold;
 .btn-with-icon {
     border-radius: 6px;
     box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14) !important;
-   
     background-color: #00c5c4;
     font-family: $muli-bold;
     font-size: 21px;
-    font-weight: $muli-bold;
+    font-weight: bold;
     line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;

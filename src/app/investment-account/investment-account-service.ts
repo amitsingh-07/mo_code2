@@ -373,7 +373,7 @@ export class InvestmentAccountService {
         let addressDetails = null;
         if (!isEmployeAddresSame) {
             addressDetails = {
-                countryId: (data.empCountry) ? data.empCountry.id : null,
+                countryId: (data.empCountry.id) ? data.empCountry.id : null,
                 state: data.empState,
                 postalCode: (this.isSingaporeResident()) ? data.empPostalCode : data.empZipCode,
                 addressLine1: data.empAddress1,
@@ -1077,7 +1077,7 @@ export class InvestmentAccountService {
         return {
             contactDetails: {
                 homeAddress: {
-                    country: data.country.id,
+                    countryId: data.country.id,
                     addressLine1: data.address1,
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
@@ -1087,7 +1087,7 @@ export class InvestmentAccountService {
                     city: data.city
                 },
                 mailingAddress: {
-                    country: data.mailingAddress.mailCountry.id,
+                    countryId: data.mailingAddress.mailCountry.id,
                     addressLine1: data.mailingAddress.mailAddress1,
                     addressLine2: data.mailingAddress.mailAddress2,
                     unitNumber: data.mailingAddress.mailUnitNo,
@@ -1105,7 +1105,7 @@ export class InvestmentAccountService {
             contactDetails: {
                 homeAddress: {
                     id: 1,
-                    country: data.country.id,
+                    countryId: data.country.id,
                     addressLine1: data.address1,
                     addressLine2: data.address2,
                     unitNumber: data.unitNo,
