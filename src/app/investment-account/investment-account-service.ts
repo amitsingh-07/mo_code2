@@ -785,6 +785,7 @@ export class InvestmentAccountService {
 
     getFinancialDetailsReqData(data): IFinancial {
         return {
+            incomeRange: 'below30000',
             annualIncome: data.financialMonthlyIncome,
             percentageOfSaving: data.financialPercentageOfSaving,
             totalAssets: data.financialTotalAssets,
