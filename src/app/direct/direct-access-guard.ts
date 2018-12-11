@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { SelectedPlansService } from '../shared/Services/selected-plans.service';
 import { DIRECT_BASE_ROUTE, DIRECT_ROUTES } from './direct-routes.constants';
 import { DirectService } from './direct.service';
 
