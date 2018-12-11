@@ -97,4 +97,4 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 <p>I hope this article has been useful for you to understand the features and benefits SRS. In the next article, we share about options you can consider to grow your SRS. 
 	</p>
 	<br/>
-  <p>As we draw nearer to the end of the year, don't forget to contribute to your SRS <strong>31<sup>st</sup> December 2018</strong> to enjoy tax relief in Year of Assessment (YA) 2019!</p>
+  <p>As we draw nearer to the end of the year, don't forget to contribute to your SRS by <strong>31<sup>st</sup> December 2018</strong> to enjoy tax relief in Year of Assessment (YA) 2019!</p>
