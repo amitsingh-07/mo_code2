@@ -2,6 +2,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import { apiConstants, INVESTMENT_API_BASE_URL } from './api.constants';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -161,5 +162,4 @@ export class BaseService {
       return data;
     }
   }
-
 }

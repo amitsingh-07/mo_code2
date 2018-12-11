@@ -21,7 +21,7 @@ import {
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
-import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
+import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { INVESTMENT_ACCOUNT_ROUTES } from './investment-account-routes.constants';
 import {
     PersonalDeclarationComponent
@@ -135,8 +135,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: INVESTMENT_ACCOUNT_ROUTES.FUND_YOUR_ACCOUNT,
-    component: FundYourAccountComponent,
+    path: INVESTMENT_ACCOUNT_ROUTES.FUND_INTRO,
+    component: FundingIntroComponent,
     canActivate: [AuthGuard]
   }
 ];

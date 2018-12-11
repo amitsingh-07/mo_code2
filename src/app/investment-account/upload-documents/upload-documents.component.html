@@ -74,6 +74,7 @@
         </div>
 
          <!-- RESIDENTIAL ADDRESS PROOF UPLOAD -->
+         
          <div class="row" *ngIf="!isUserNationalitySingapore">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
@@ -94,14 +95,15 @@
                 <img src="../assets/images/close-button.svg" alt="" />
               </div>
             </div>
-            <input type="file" accept=".xlsx, .xls, .doc, .docx, .ppt, .pptx,.txt, .pdf" #resAddressProof formControlName="resAddressProof" (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
+            <input type="file" accept=".pdf" #resAddressProof formControlName="resAddressProof" (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
               name="proofOfResAddress" class="is-hidden">
           </div>
         </div>
+       
 
 
         <!-- MAILING ADDRESS PROOF UPLOAD -->
-        <div class="row">
+        <div class="row" *ngIf="!formValues.isMailingAddressSame">
           <div class="col-12 sub-title-block">
             <div class="sub-title">
               <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_MAILING' | translate}}</span>
@@ -121,7 +123,7 @@
                 <img src="../assets/images/close-button.svg" alt="" />
               </div>
             </div>
-            <input type="file" accept=".xlsx, .xls, .doc, .docx, .ppt, .pptx,.txt, .pdf" #mailAdressProof formControlName="mailAdressProof" (change)="fileSelected(uploadForm.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
+            <input type="file" accept=".pdf" #mailAdressProof formControlName="mailAdressProof" (change)="fileSelected(uploadForm.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
               name="proofOfMailAddress" class="is-hidden">
           </div>
         </div>

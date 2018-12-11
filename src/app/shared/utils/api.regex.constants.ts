@@ -19,5 +19,8 @@ export const RegexConstants = {
     UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{9}$/,
     ContactNumber: /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/,
     Email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-    NRIC: /^[STst][a-zA-Z0-9]{8}$/
+    NRIC: /^[STst][a-zA-Z0-9]{8}$/,
+    SymbolNumber: /^[0-9*#+$@$!%?&]+$/,
+    NumericOnly: /^[0-9]*$/,
+    SymbolAlphabets: /^[a-zA-Z\s!@#~$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/
 };

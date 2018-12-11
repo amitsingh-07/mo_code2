@@ -58,7 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
     PortfolioRecommendationComponent,
     CurrencyInputPortfolioDirective,
     WhatsTheRiskComponent,
-    FundDetailsComponent,
+    FundDetailsComponent
     ],
   providers: [CurrencyPipe]
 })

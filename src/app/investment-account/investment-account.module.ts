@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
+import { AccountCreationErrorModalComponent } from './account-creation-error-modal/account-creation-error-modal.component';
 import {
     AccountSetupCompletedComponent
 } from './account-setup-completed/account-setup-completed.component';
@@ -32,7 +33,7 @@ import {
 import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
-import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
+import { FundingIntroComponent } from './funding-intro/funding-intro.component';
 import { InvestmentAccountRoutingModule } from './investment-account-routing.module';
 import {
     PersonalDeclarationComponent
@@ -96,11 +97,13 @@ export function createTranslateLoader(http: HttpClient) {
     AccountSetupCompletedComponent,
     AdditionalDeclarationSubmitComponent,
     UploadDocumentBOComponent,
-    FundYourAccountComponent
+    AccountCreationErrorModalComponent,
+    FundingIntroComponent
   ],
   entryComponents: [
     EditInvestmentModalComponent,
-    FeesModalComponent
+    FeesModalComponent,
+    AccountCreationErrorModalComponent
   ],
   providers: [CurrencyPipe]
 })

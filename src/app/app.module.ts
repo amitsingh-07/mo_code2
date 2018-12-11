@@ -50,6 +50,8 @@ import { RequestCache } from './shared/http/http-cache.service';
 import { ConsoleLoggerService } from './shared/logger/console-logger.service';
 import { LoggerService } from './shared/logger/logger.service';
 import { ConfirmationModalComponent } from './shared/modal/confirmation-modal/confirmation-modal.component';
+
+import { BankDetailsComponent } from './shared/modal/bank-details/bank-details.component';
 import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 import { LoaderComponent } from './shared/modal/loader/loader.component';
 import { ModelWithButtonComponent } from './shared/modal/model-with-button/model-with-button.component';
@@ -66,6 +68,7 @@ import { Util } from './shared/utils/util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+import { TransactionModalComponent } from './shared/modal/transaction-modal/transaction-modal.component';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -89,6 +92,7 @@ export function tokenGetterFn() {
     MobileModalComponent,
     LoaderComponent,
     ErrorModalComponent,
+    BankDetailsComponent,
     ToolTipModalComponent,
     ModelWithButtonComponent,
     LifeProtectionModalComponent,
@@ -107,6 +111,7 @@ export function tokenGetterFn() {
     HomeComponent,
     UrlRedirectComponent,
     TestMyInfoComponent,
+    TransactionModalComponent,
     FAQComponent
   ],
   imports: [
@@ -153,10 +158,10 @@ export function tokenGetterFn() {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    HelpModalComponent, LoaderComponent, ErrorModalComponent, ToolTipModalComponent, ModelWithButtonComponent,
+    HelpModalComponent, LoaderComponent, ErrorModalComponent, BankDetailsComponent, ToolTipModalComponent, ModelWithButtonComponent,
     LifeProtectionModalComponent, MobileModalComponent, InsuranceResultModalComponent, PopupModalComponent,
     CreateAccountModelComponent, ExistingCoverageModalComponent, RecommendationsModalComponent,
-    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent]
+    SettingsWidgetComponent, ConfirmationModalComponent, TermsComponent, WillDisclaimerComponent, TransactionModalComponent]
 })
 
 export class AppModule {

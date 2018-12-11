@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="content">
+    <form id="myFinancialsForm" name="myFinancialsForm" [formGroup]="topForm">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="form-group-with-bg">
+            <div class="form-group-with-bg--header">
+              <div class="flex-row">
+                <div class="flex-col-12">
+                  <div class="form-group-with-bg--header-label" id="topup_select_portfolio">{{'TOPUP.SELECT_POTODOLIO' | translate}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group-with-bg--content">
+              <div class="flex-row">
+                <div class="flex-col-12">
+                  <div class="dropdown-control">
+                    <div ngbDropdown>
+                      <button class="btn btn-dropdown without-border grey" id="topup_portfolio_dropdwon_value" ngbDropdownToggle>
+                        {{topForm.controls.portfolio.value ? topForm.controls.portfolio.value.productName :'Select Portfolio'}}
+
+                      </button>
+                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown" >
+                        <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('portfolio',portfolio)"
+                          id="topup_portfolio_option-{{i}}">{{portfolio.productName}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row second-section">
+        <div class="col-lg-12 col-md-12">
+          <div class="form-group-with-bg">
+
+            <div class="form-group-with-bg--header">
+              <div class="flex-row">
+                <div class="flex-col-12">
+  
+                  <div class="form-group-with-bg--header-label" id="topup_portfolio_enter_amount">{{'TOPUP.ENTER_INVERSTMENT_AMOUNT' | translate}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group-with-bg--content">
+            
+              <!-- radio button -->
+              <div class="topup-radio-button hidden" *ngFor="let investmenttype of investmentTypeList; let i = index">
+                <input  id="tupup_radio_button_{{i+1}}" (change)="selectedInvestment(investmenttype)"   value="{{investmenttype.name}}"
+                formControlName="Investment"
+                  name="Investment" type="radio" class="field radio" tabindex="{{i+1}}" />
+                <label for="tupup_radio_button_{{i+1}}">
+                  <div id="topup_investmenttype_name" class="input-label-white mb10">{{investmenttype.name}}</div>
+                  <div id="topup_investmenttype_value" class="input-label-normal">Min. ${{investmenttype.value}}</div>
+                </label>
+              </div>
+
+
+              <!-- Onetimeinvestment -->
+              <div class="flex-row" *ngIf="showOnetimeInvestmentAmount">
+
+                <div class="flex-col-12">
+                  <div class="form-control">
+                    <i id="myFinancialDollerSymbThree">$</i>
+                    <div name="totalLiabilities">
+                      <input class="input-control" type="text" appCurrencyInput maxLength="7" #oneTimeInvestmentAmount value="0" formControlName="oneTimeInvestmentAmount"
+                        (keyup)="validateAmonut(topForm.controls.oneTimeInvestmentAmount.value)" id="onetime_investment">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Monthlyinvestment -->
+              <div class="flex-row mb10" *ngIf="showmonthlyInvestmentAmount">
+                <div class="flex-col-12">
+                  <div class="form-control form-control-right">
+                    <i id="topup_symb">$</i>
+                    <input type="text" class="input-control" appCurrencyInput maxLength="7 " #MonthlyInvestmentAmount value="0" formControlName="MonthlyInvestmentAmount" id="Monthlyinvestment">
+                    <i class="right year">/ mth</i>
+                  </div>
+                </div>
+              </div>
+              <!-- <p class="balance-amount mb10">Cash Account Balance: {{ balanceAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+              <p class="topupportfolio-amount mt5" *ngIf="topupportfolio">Please top up {{ topupportfolioamount | currency:'USD':'symbol-narrow':'1.0-2'}}</p> -->
+              <p  id="cash_account_balance" class="balance-amount mb10">{{'TOPUP.CASH_ACCOUNT_BALANCE' | translate}}{{cashBalance | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+              <p id="topup_amount" class="topupportfolio-amount"  *ngIf="isAmountExceedBalance" >{{'TOPUP.PLEASE_TOPUP' | translate}} {{topupAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</p>
+            </div>
+          </div>
+          <button type="button" (click)="goToNext(topForm)" class="btn btn__footer--fixed btn-primary width100" id="myFinancialGoNextBtn">{{ 'LABEL.CONTINUE' | translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

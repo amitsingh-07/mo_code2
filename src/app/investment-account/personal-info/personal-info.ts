@@ -7,4 +7,8 @@ export class PersonalInfo {
     passportExpiry: string;
     dob: string;
     gender: string;
+    salutation: any;
+    birthCountry: any;
+    passportIssuedCountry: any;
+    race: any;
 }

@@ -18,6 +18,11 @@ app-ci-assessment {
   }
 }
 
+.container-fluid{
+  padding-right: 15px !important;
+  padding-left: 23px !important;
+}
+
 #userInfoForm .col-sm-7 {
   opacity: 1 !important;
 }
@@ -59,16 +64,33 @@ strong {
     }
   }
 }
-
-.input-group.date-picker {
-  .dropdown-menu.show {
-    @include allmobiles {
-      left: inherit !important;
-      right: 0px;
+.form-group{
+  &.date-picker-group{
+    margin: 0;
+    padding-bottom: 10px;
+    .flex-row{
+      margin-bottom: 0;
+    }
+    .input-group.date-picker {
+      max-height: 52px;
+      margin: 0;
+      .dropdown-menu.show {
+        @include allmobiles {
+          left: inherit !important;
+          right: 0px;
+        }
+      }
+    }
+    .input-group-append{
+      .btn-primary{
+        max-height: 52px;
+      }
     }
   }
 }
-
+hr{
+  margin-top: 0;
+}
 .get-started-image {
   @include tablet {
     width: 300px;
@@ -107,7 +129,7 @@ strong {
 
 }
 .I-was-born-on {
-  font-family: Muli;
+  font-family: $muli-semi-bold;
   font-size: 18px;
   font-weight: 600;
   font-style: normal;
@@ -115,9 +137,10 @@ strong {
   line-height: normal;
   letter-spacing: -0.3px;
   color: #ffffff;
+  width: 74px;
 }
 .personalInfoInvestmentDesc, .personalInfoSliderDesc {
-  font-family: Muli;
+  font-family: $muli-regular;
   font-size: 18px;
   font-weight: normal;
   font-style: normal;
@@ -127,7 +150,7 @@ strong {
   color: #5e5e5e;
 }
 .Continue {
-  font-family: Muli;
+  font-family: $muli-bold !important;
   font-size: 22px;
   font-weight: bold;
   font-style: normal;
@@ -153,6 +176,8 @@ strong {
 .callout h5 {
   color: $teal-color;
   font-weight:bold;
+  letter-spacing: -0.2px;
+  font-family: $muli-bold;
 }
 
 .callout h5 .period-count{

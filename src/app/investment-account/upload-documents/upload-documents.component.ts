@@ -62,24 +62,27 @@ export class UploadDocumentsComponent implements OnInit {
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.uploadForm = this.isUserNationalitySingapore ? this.buildFormForSingapore() : this.buildFormForOtherCountry();
+    this.addOrRemoveMailingAddressproof();
   }
 
   buildFormForSingapore(): FormGroup {
     return this.formBuilder.group({
       nricFrontImage: [this.formValues.nricFrontImage, Validators.required],
-      nricBackImage: [this.formValues.nricBackImage, Validators.required],
-      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
+      nricBackImage: [this.formValues.nricBackImage, Validators.required]
     });
   }
 
   buildFormForOtherCountry(): FormGroup {
     return this.formBuilder.group({
       passportImage: [this.formValues.passportImage, Validators.required],
-      resAddressProof: [this.formValues.resAddressProof, Validators.required],
-      mailAdressProof: [this.formValues.mailAdressProof, Validators.required]
+      resAddressProof: [this.formValues.resAddressProof, Validators.required]
     });
   }
-
+  addOrRemoveMailingAddressproof() {
+    if (!(this.formValues.isMailingAddressSame)) {
+      this.uploadForm.addControl('mailAdressProof', new FormControl('', Validators.required));
+    }
+  }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);
   }
@@ -132,10 +135,13 @@ export class UploadDocumentsComponent implements OnInit {
 
   uploadDocument() {
     this.showUploadLoader();
-    this.investmentAccountService.uploadDocument(this.formData).subscribe((data) => {
-      if (data) {
+    this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
+      if (response) {
         this.hideUploadLoader();
-        this.redirectToNextPage();
+        // INTERIM SAVE
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          this.redirectToNextPage();
+        });
       }
     });
   }
@@ -180,7 +186,9 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = errorMessage;
       ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
       ref.componentInstance.primaryAction.subscribe(() => {
-        this.redirectToNextPage();
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+        });
       });
     } else {
       this.proceed(form);

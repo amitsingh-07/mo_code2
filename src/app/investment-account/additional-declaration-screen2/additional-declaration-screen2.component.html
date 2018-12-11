@@ -36,8 +36,8 @@
               </div>
               <div class="flex-col-7">
 
-                <div class="form-control form-control-right">
-                    <i class="right">$</i>
+                <div class="form-control">
+                    <i id="doller_syb">$</i>
                   <input type="text"  formControlName="expectedAmountPerTranction"   id="additional_declaration_Expected_amount_of_transaction_input"  class="input-control" appCurrencyInput maxLength="6" #otherIncome value="0">
                   
                 </div>
@@ -96,7 +96,7 @@
 
             <!-- three type -->
             
-            <div class="form-group"  *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Gift/Inheritanc'" >
+            <div class="form-group"  *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Gift/Inheritance'" >
               <div class="flex-row">
                 <div class="flex-col-12 mb10">
                   <div class="form-group-with-bg--content-label" for="name" id="additional_declaration_Gift_inheritanc_lab">{{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INHERITANCE_GIFT' | translate}}
@@ -169,7 +169,7 @@
 
 <!-- continue button -->
             <button type="button" id="additional_declaration_screen_two_Btn" (click)="goToNext(additionDeclarationtwo)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-              id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
+              id="getStrdBtn3">{{ 'COMMON.LABEL.SUBMIT' | translate}}</button>
           </form>
         </div>
       </div>

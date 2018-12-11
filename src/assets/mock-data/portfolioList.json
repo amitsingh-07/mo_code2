@@ -1,0 +1,25 @@
+{
+    "responseMessage": {
+      "responseCode": 6000,
+      "responseDescription": "Successful response"
+    },
+    "objectList": [{
+      "id": 1,
+     
+      "name": "growth"
+    }, {
+      "id": 2,
+      
+      "name": "low Risk"
+    }, 
+    {
+      "id": 5,
+     
+      "name": "High Risk"
+    }, {
+      "id": 6,
+      
+      "name": "Moderately"
+    }]
+  
+  }

@@ -20,26 +20,25 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
+import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
+import { DistributePercentDirective } from './directives/distribute-percent.directive';
 import {
     ConfirmationModalComponent
 } from './modal/confirmation-modal/confirmation-modal.component';
 import {
     RecommendationsModalComponent
 } from './modal/recommendations-modal/recommendations-modal.component';
+import { FormatDatePipe } from './Pipes/date-format.pipe';
+import { GroupByPipe } from './Pipes/group-by.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
-import { StringToLinkFormatPipe } from './Pipes/string-to-link.pipe';
 import {
     PlanDetailsWidgetComponent
 } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
-
-import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
-import { DistributePercentDirective } from './directives/distribute-percent.directive';
-import { FormatDatePipe } from './Pipes/date-format.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -65,9 +64,9 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [CurrencyInputDirective,  PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective],
+    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective, GroupByPipe],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
-    OrderByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
+    OrderByPipe, GroupByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,

@@ -10,6 +10,7 @@ export let appConstants = {
     loginPageUrl: GUIDE_ME_ROUTES.ROOT,
     accessTokenServer: '',
     MY_INFO_CALLBACK_URL: 'myinfo',
+    JOURNEY_TYPE_INVESTMENT: 'investment',
     JOURNEY_TYPE_DIRECT: 'DIRECT',
     JOURNEY_TYPE_GUIDED: 'GUIDED',
     JOURNEY_TYPE_WILL_WRITING: 'WILL_WRITING'

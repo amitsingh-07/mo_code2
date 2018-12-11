@@ -39,18 +39,23 @@ letter-spacing: -0.3px;
 .dropdown-control .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
-    height: calc(70vh);
-    }
+    max-height: 220px;
+    height: auto;
+}
 .dropdown-item {
     white-space: normal;
-    
+    word-break: break-all;
 }
-.btn{
-    // z-index: 1001;
-}
+.dropdown-control .btn-dropdown {
+    padding-right: 27px;
+    max-height: 52px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 .fixed-btn--sm {
     color:#FFF;
-    // flex-wrap: initial;
+   
    
 }
 .mr16{
@@ -65,10 +70,6 @@ letter-spacing: -0.3px;
   padding-left: 17px;
   padding-right: 14px;
 }
-
-// .QuestionLabel{
-//     width: 83%;
-// }
 }
 
 

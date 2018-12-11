@@ -4,7 +4,7 @@
       <div class="col-lg-12 col-md-12">
 
         <form id="personalInfoForm" name="personalInfoForm" [formGroup]="personalInfoForm">
-          <div class="form-group">
+          <div class="form-group date-picker-group">
             <div class="flex-row">
               <div class="flex-col-5">
                 <label for="name" class="I-was-born-on" id="personalInfoBornOnLabl">{{ 'PERSONAL_INFO.BORN_ON' | translate}}</label>
@@ -36,6 +36,7 @@
           <div class="form-group" style="position: relative;">
             <div class="form-group-with-bg--content">
               <div class="investmentSlider">
+                  <input type="hidden" id="sliderValueSetter" formControlName="sliderValueSetter" name="sliderValueSetter" />
                 <nouislider #piInvestmentSlider (slide)="onSliderChange($event)" [config]="ciSliderConfig" [tooltips]="false" [min]="sliderMinValue"
                   [max]="sliderMaxValue" [step]="1" [tooltips]="[ true ]" data-toggle="tooltip" id="personalInfoSlider" data-placement="bottom"></nouislider>
               </div>

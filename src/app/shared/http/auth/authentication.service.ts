@@ -28,7 +28,7 @@ export class AuthenticationService {
     return 'kH5l7sn1UbauaC46hT8tsSsztsDS5b/575zHBrNgQAA=';
   }
 
-  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string) {
+  login(userEmail: string, userPassword: string, captchaValue?: string, sessionId?: string, enqId?: string) {
     const authenticateBody = {
       email: (userEmail && this.isUserNameEmail(userEmail)) ? userEmail : '',
       mobile: (userEmail && !this.isUserNameEmail(userEmail)) ? userEmail : '',
@@ -37,6 +37,7 @@ export class AuthenticationService {
     };
     if (sessionId) { authenticateBody['sessionId'] = sessionId; }
     if (captchaValue) { authenticateBody['captchaValue'] = captchaValue; }
+    if (enqId) { authenticateBody['enquiryId'] = enqId; }
     const handleError = '?handleError=true';
     return this.doAuthenticate(authenticateBody, handleError);
   }

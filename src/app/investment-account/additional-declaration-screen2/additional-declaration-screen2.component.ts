@@ -5,24 +5,25 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
-
-import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
-
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
   ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import {
+  AccountCreationErrorModalComponent
+} from '../account-creation-error-modal/account-creation-error-modal.component';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 
 @Component({
   selector: 'app-additional-declaration-screen2',
   templateUrl: './additional-declaration-screen2.component.html',
-  styleUrls: ['./additional-declaration-screen2.component.scss']
-})
+  styleUrls: ['./additional-declaration-screen2.component.scss'],
+  encapsulation: ViewEncapsulation.None
+  })
 export class AdditionalDeclarationScreen2Component implements OnInit {
   pageTitle: string;
   sourceOfIncomeList;
@@ -74,7 +75,8 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.removeControl('investmentEarning');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
-    if (this.additionDeclarationtwo.controls.source.value && this.additionDeclarationtwo.controls.source.value.name === 'Gift/Inheritanc') {
+    if (this.additionDeclarationtwo.controls.source.value &&
+      this.additionDeclarationtwo.controls.source.value.name === 'Gift/Inheritance') {
       this.additionDeclarationtwo.addControl('inheritanceGiftFrom', this.formBuilder.group({
         inheritanceGift: [this.formValues.inheritanceGift, Validators.required]
       }));
@@ -94,6 +96,14 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       this.additionDeclarationtwo.removeControl('personalSavingForm');
       this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
+    if ((this.additionDeclarationtwo.controls.source.value.name === 'Business Profits') ||
+      (this.additionDeclarationtwo.controls.source.value.name === 'Sale of Real Estate') ||
+      (this.additionDeclarationtwo.controls.source.value.name === 'Salary')) {
+          this.additionDeclarationtwo.removeControl('personalSavingForm');
+          this.additionDeclarationtwo.removeControl('investmentEarnings');
+          this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
+    }
+
   }
 
   getSourceList() {
@@ -139,6 +149,14 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       }
     });
   }
+
+  showInvestmentAccountErrorModal(errorList) {
+    const errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE');
+    const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorList = errorList;
+  }
+
   goToNext(form) {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
@@ -148,10 +166,41 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
     } else {
-      this.investmentAccountService.setAdditionDeclaration(form.value);
-      this.investmentAccountService.createInvestmentAccount();
-      //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+      this.investmentAccountService.setAdditionDeclaration(form.getRawValue());
+      this.investmentAccountService.saveAdditionalDeclarations().subscribe((data) => {
+        // CREATE INVESTMENT ACCOUNT
+        console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
+        this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
+          if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
+            if (response.responseMessage.responseCode === 5018
+              || response.responseMessage.responseCode === 5019) {
+              const errorResponse = response.responseMessage.responseDescription;
+              this.showCustomErrorModal('Error!', errorResponse);
+            } else {
+              const errorResponse = response.objectList[response.objectList.length - 1];
+              const errorList = errorResponse.serverStatus.errors;
+              this.showInvestmentAccountErrorModal(errorList);
+            }
+          } else { // SUCCESS SCENARIO
+            if (response.objectList[response.objectList.length - 1]) {
+              if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
+              } else {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION_SUBMIT]);
+              }
+            }
+          }
+        });
+      });
     }
+  }
+
+  showCustomErrorModal(title, desc) {
+    const errorTitle = title;
+    const errorMessage = desc;
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = errorTitle;
+    ref.componentInstance.errorMessage = errorMessage;
   }
 
 }

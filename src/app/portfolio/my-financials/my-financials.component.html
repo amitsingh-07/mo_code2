@@ -21,8 +21,8 @@
             <div class="form-group-with-bg--content">
               <div class="flex-row">
                 <div class="flex-col-6">
-                    <div class="form-group-with-bg--content-label" for="name"  id="myFinancialMonthlyIncomeLbl">{{ 'MY_FINANCIALS.MONTHLY_INCOME_LBL' | translate}}
-                        <div class="form-group-with-bg--content-sub-label"  id="myFinancialMonthlyIncomeSubLbl">{{ 'MY_FINANCIALS.MONTHLY_INCOME_SUB_LBL' | translate}}
+                    <div class="form-group-with-bg--content-label" for="name"  id="myFinancialMonthlyIncomeParentLbl"><span id="myFinancialMonthlyIncomeLbl1">{{ 'MY_FINANCIALS.MONTHLY_INCOME_LBL' | translate}}</span>
+                        <div class="form-group-with-bg--content-sub-label"  id="myFinancialMonthlyIncomeLbl">{{ 'MY_FINANCIALS.MONTHLY_INCOME_SUB_LBL' | translate}}
                           
                         </div>
                       </div> 
@@ -55,7 +55,7 @@
 
               <div class="flex-row">
                 <div class="flex-col-6">
-                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl">{{ 'MY_FINANCIALS.TOTAL_ASSET_LBL' | translate}}
+                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialTotalAssetLbl"><span id="myFinancialTotalAssetsLbl1">{{ 'MY_FINANCIALS.TOTAL_ASSET_LBL' | translate}}</span>
                         <div class="form-group-with-bg--content-sub-label" id="myFinancialTotalAssetSubLbl">{{ 'MY_FINANCIALS.TOTAL_ASSET_SUB_LBL' | translate}}
                           
                           </div>
@@ -74,7 +74,7 @@
 
               <div class="flex-row">
                 <div class="flex-col-6">
-                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialLoansLbl">{{ 'MY_FINANCIALS.LOANS_LBL' | translate}}
+                    <div class="form-group-with-bg--content-label" for="name" id="myFinancialLoansLbl"><span id="myFinancialTotalLoansLbl1">{{ 'MY_FINANCIALS.LOANS_LBL' | translate}}</span>
                         <div class="form-group-with-bg--content-sub-label" id="myFinancialLoansSubLbl">{{ 'MY_FINANCIALS.LOANS_SUB_LBL' | translate}}
                           
                           </div>
@@ -110,13 +110,13 @@
                   <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="suffEmergencyFund">
                     <div class="flex-row">
                       <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10">
-                          <input ngbButton type="radio" value="yes" id="myFinancialYesBtn"> {{ 'MY_FINANCIALS.LABEL_YES' | translate}}
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr10" id="my_financial_yes_lab">
+                          <input ngbButton type="radio" value="yes" id="my_financial_yes_btn"> {{ 'MY_FINANCIALS.LABEL_YES' | translate}}
                         </label>
                       </div>
                       <div class="flex-col-6">
-                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm">
-                          <input ngbButton type="radio" value="no" (click)="showEmergencyFundModal()" id="myFinancialNoBtn"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
+                        <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm" id="my_financial_no_lab">
+                          <input ngbButton type="radio" value="no" (click)="showEmergencyFundModal()" id="my_financial_no_btn"> {{ 'MY_FINANCIALS.LABEL_NO' | translate}} </label>
                       </div>
                     </div>
                   </div>
@@ -140,7 +140,7 @@
             <div class="form-group-with-bg--header">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <div class="form-group-with-bg--header-label" id="MyFinacialInvestmentLbl">{{ 'MY_FINANCIALS.INVESTMENT_LBL' | translate}}
+                  <div class="form-group-with-bg--header-label" id="My_finacialInvestment_Lbl">{{ 'MY_FINANCIALS.INVESTMENT_LBL' | translate}}
 
                   </div>
                 </div>

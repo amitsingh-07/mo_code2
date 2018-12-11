@@ -1,4 +1,4 @@
-export interface ICreateInvestmentAccountRequest {
+export interface ISaveInvestmentAccountRequest {
     myInfoVerified: boolean;
     isSingaporePR: boolean;
     personalInfo: IPersonalInfo;
@@ -22,6 +22,9 @@ export interface IPersonalInfo {
     passportIssuedCountryId: number;
     dateOfBirth: string;
     gender: string;
+    salutation: any;
+    birthCountryId: any;
+    race: any;
 }
 
 export interface IAddress {
@@ -30,6 +33,7 @@ export interface IAddress {
     postalCode: string;
     addressLine1: string;
     addressLine2: string;
+    floor: string;
     unitNumber: string;
     townName: string;
     city: string;
