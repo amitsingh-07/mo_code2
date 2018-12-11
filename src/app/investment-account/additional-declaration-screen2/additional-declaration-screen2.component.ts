@@ -23,7 +23,7 @@ import { InvestmentAccountService } from '../investment-account-service';
   templateUrl: './additional-declaration-screen2.component.html',
   styleUrls: ['./additional-declaration-screen2.component.scss'],
   encapsulation: ViewEncapsulation.None
-  })
+})
 export class AdditionalDeclarationScreen2Component implements OnInit {
   pageTitle: string;
   sourceOfIncomeList;
@@ -56,7 +56,6 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.getSourceList();
     this.getGeneratedFrom();
-    this.getInvestmentPeriod();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     this.additionDeclarationtwo = this.formBuilder.group({
       expectedNumberOfTransation: [this.formValues.expectedNumberOfTransation, Validators.required],
@@ -88,7 +87,7 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     if (this.additionDeclarationtwo.controls.source.value &&
       this.additionDeclarationtwo.controls.source.value.name === 'Investment Earnings') {
       this.additionDeclarationtwo.addControl('investmentEarnings', this.formBuilder.group({
-        investmentPeriod: [this.formValues.investmentPeriod, Validators.required],
+        durationInvestment: [this.formValues.durationInvestment, Validators.required],
         earningsGenerated: [this.formValues.earningsGenerated, Validators.required],
 
       }));
@@ -99,9 +98,9 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
     if ((this.additionDeclarationtwo.controls.source.value.name === 'Business Profits') ||
       (this.additionDeclarationtwo.controls.source.value.name === 'Sale of Real Estate') ||
       (this.additionDeclarationtwo.controls.source.value.name === 'Salary')) {
-          this.additionDeclarationtwo.removeControl('personalSavingForm');
-          this.additionDeclarationtwo.removeControl('investmentEarnings');
-          this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
+      this.additionDeclarationtwo.removeControl('personalSavingForm');
+      this.additionDeclarationtwo.removeControl('investmentEarnings');
+      this.additionDeclarationtwo.removeControl('inheritanceGiftFrom');
     }
 
   }
@@ -115,15 +114,10 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
 
   getGeneratedFrom() {
     this.investmentAccountService.getGeneratedFrom().subscribe((data) => {
-      this.generatedList = data.objectList;
+      this.generatedList = data.objectList.earningsGenerated;
     });
   }
-  getInvestmentPeriod() {
-    this.investmentAccountService.getInvestmentPeriod().subscribe((data) => {
-      this.investmentPeriodList = data.objectList;
-    });
 
-  }
 
   selectInvestmentPeriod(key, value, nestedKey) {
     this.additionDeclarationtwo.controls[nestedKey]['controls'][key].setValue(value);
