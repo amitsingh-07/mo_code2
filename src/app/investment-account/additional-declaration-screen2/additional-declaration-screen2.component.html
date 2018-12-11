@@ -55,7 +55,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border" id="additional_declaration_sourse-drpdown" ngbDropdownToggle>
                         {{additionDeclarationtwo.controls.source.value ? additionDeclarationtwo.controls.source.value.name :'Select Source'}}
 
                       </button>
@@ -116,26 +116,18 @@
             <!--  four type -->
          
             <div  *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Investment Earnings'"  formGroupName="investmentEarnings">
-            <div class="form-group" >
-              <div class="flex-row">
-                <div class="flex-col-5">
-                  <label class="label-font" for="employement_details_status" id="additional_declaration_investment_period_lab"> {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.INVESTMENT_PERIOD' | translate}}
-                  </label>
-                </div>
-                <div class="flex-col-7">
-                  <div class="dropdown-control">
-                    <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="additional_declaration_investment_period_lab-drpdown" ngbDropdownToggle>
-                          <span *ngIf="!additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value">Select Investment  </span>
-                         <span *ngIf="additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value">{{additionDeclarationtwo.controls.investmentEarnings.controls.investmentPeriod.value.name }}  </span>
+           
+            <div class="flex-row mb10">
+              <div class="flex-col-5">
+                <div class="form-group-with-bg--content-label"   id="additional_declaration_Expected_number_of_transaction_lab" for="name">
+                  {{'ADDITIONAL_DECLARATIONS_SCREEN_TWO.DURATION_INVESTMENT' | translate}}</div>
+              </div>
+              <div class="flex-col-7">
 
-                      </button>
-                      <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let investmentPeriod of investmentPeriodList; let i = index;" (click)="selectInvestmentPeriod('investmentPeriod', investmentPeriod,'investmentEarnings')"
-                          id="additional_declaration_investment_period_lab-{{i}}">{{investmentPeriod.name | titlecase}}</button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="form-control form-control-right">
+
+                  <input type="text"    id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="durationInvestment"  class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
+                  <i class="right year">/year(s)</i>
                 </div>
               </div>
             </div>
@@ -149,7 +141,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="additional_declaration_earnings_generated_lab-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border" id="additional_declaration_earnings_generated_lab-drpdown" ngbDropdownToggle>
                          <span *ngIf="!additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value">Select Earnings</span>
                          <span *ngIf="additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value">{{additionDeclarationtwo.controls.investmentEarnings.controls.earningsGenerated.value.name }} </span>
 

@@ -1,6 +1,6 @@
 import { catchError } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute , Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,8 @@ import { SignUpService } from '../sign-up.service';
 @Component({
   selector: 'app-add-update-bank',
   templateUrl: './add-update-bank.component.html',
-  styleUrls: ['./add-update-bank.component.scss']
+  styleUrls: ['./add-update-bank.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddUpdateBankComponent implements OnInit {
   pageTitle;

@@ -121,24 +121,6 @@
                   <input type="text" formControlName="contactNumber" id="employement_status_company_name_input" class="form-control">
                 </div>
               </div>
-
-
-              <!-- button -->
-              <div class="form-group-single-column  mb10 flex-col" *ngIf="employementDetailsForm.get('isEmployeAddresSame')">
-                <div class="checkbox-button two-label">
-                  <input id="residentialAddress_mailingsame_radio" name="isEmployeAddresSame" (change)="addOrRemoveMailingAddress()"
-                    type="checkbox" class="field checkbox" formControlName="isEmployeAddresSame" value="true">
-                  <label for="residentialAddress_mailingsame_radio" id="employmentAddress_mailingsame_lbl">
-                    <div class="input-label-black" id="employment_details_optionhead_lbl">{{
-                      'EMPLOYMENT_DETAILS.EMPLOYERS_ADDRESS' | translate}}</div>
-                    <div class="input-label-normal" id="employment_details_optionhead_desc">{{
-                      'EMPLOYMENT_DETAILS.SAME_AS_MAILING_ADDRESS' | translate}}</div>
-                  </label>
-                </div>
-              </div>
-
-
-
               <div>
                 <div *ngIf="employementDetailsForm.get('employeaddress')" formGroupName="employeaddress">
                   <!-- COUNTRY -->

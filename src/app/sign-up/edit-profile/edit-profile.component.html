@@ -22,21 +22,26 @@
       <div class="heading">{{fullName }}</div>
       <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
       <div class="flex-row pb10 mb20">
-        <div class="flex-col-2">
-          <div class="content-text">Gender</div>
-          <div class="grid-content-text">{{personalData.gender  | titlecase}}</div>
+        <div class="flex-col-3 flex-row">
+          <div>
+            <div class="content-text">Gender</div>
+            <div class="grid-content-text">{{personalData.gender  | titlecase}}</div>
+          </div>   
+          <div class="seperator"></div>     
         </div>
-        <div class="flex-col-1">
+        <!-- <div class="flex-col-1">
+
+        </div> -->
+        <div class="flex-col-5 flex-row">
+          <div>
+            <div class="content-text">Nationality</div>
+            <div class="grid-content-text">{{personalData.nationality  | titlecase}}</div>
+          </div>
           <div class="seperator"></div>
         </div>
-        <div class="flex-col-4">
-          <div class="content-text">Nationality</div>
-          <div class="grid-content-text">{{personalData.nationality  | titlecase}}</div>
-        </div>
-        <div class="flex-col-1">
-          <div class="seperator"></div>
-        </div>
-        <div class="flex-col-4">
+        <!-- <div class="flex-col-1">
+        </div> -->
+        <div class="flex-col-4 flex-row">
           <div class="content-text">Date of Birth</div>
           <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
         </div>
@@ -400,15 +405,7 @@
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
               </div>
-            </div>
-            <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
-              <div class="update-contact-title" >
-               Floor
-              </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.floor}}
-              </div>
-            </div>
+            </div>           
             <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title" >
                 Unit No

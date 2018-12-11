@@ -71,7 +71,7 @@ export class EmploymentDetailsComponent implements OnInit {
     this.employementDetailsForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.employementDetailsForm.get('employmentStatus').value);
     this.observeEmploymentStatusChange();
-    this.addOrRemoveMailingAddress();
+    this.addOrRemoveMailingAddress(this.employementDetailsForm.get('employmentStatus').value);
     if (this.employementDetailsForm.get('employeaddress')) {
       this.observeEmpAddressCountryChange();
     }
@@ -97,15 +97,13 @@ export class EmploymentDetailsComponent implements OnInit {
       this.employementDetailsForm.addControl('industry', new FormControl(this.formValues.industry, Validators.required));
       this.employementDetailsForm.addControl('contactNumber', new FormControl(
         this.formValues.contactNumber, [Validators.required, Validators.pattern(RegexConstants.ContactNumber)]));
-      this.employementDetailsForm.addControl('isEmployeAddresSame', new FormControl(this.formValues.isEmployeAddresSame));
+      this.addOrRemoveMailingAddress(empStatus);
     } else {
       this.employementDetailsForm.removeControl('companyName');
       this.employementDetailsForm.removeControl('occupation');
       this.employementDetailsForm.removeControl('industry');
       this.employementDetailsForm.removeControl('contactNumber');
-      this.employementDetailsForm.removeControl('isEmployeAddresSame');
       this.employementDetailsForm.removeControl('employeaddress');
-      this.formValues.isEmployeAddresSame = true;
     }
   }
 
@@ -148,21 +146,19 @@ export class EmploymentDetailsComponent implements OnInit {
     return (!control.pristine && !control.valid);
   }
 
-  addOrRemoveMailingAddress() {
-    if (this.employementDetailsForm.controls.isEmployeAddresSame) {
-      if (!this.employementDetailsForm.controls.isEmployeAddresSame.value) {
-        this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
-          empCountry: [this.formValues.empCountry ? this.formValues.empCountry
-            : this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
-          Validators.required],
-          empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-          empAddress2: [this.formValues.empAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-        }));
-        this.addOrRemoveAdditionalControlsMailing(this.employementDetailsForm.get('employeaddress').get('empCountry').value);
-        this.observeEmpAddressCountryChange();
-      } else {
-        this.employementDetailsForm.removeControl('employeaddress');
-      }
+  addOrRemoveMailingAddress(empStatus) {
+    if (empStatus === 'Self Employed' || empStatus === 'Employed') {
+      this.employementDetailsForm.addControl('employeaddress', this.formBuilder.group({
+        empCountry: [this.formValues.empCountry ? this.formValues.empCountry
+          : this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE),
+        Validators.required],
+        empAddress1: [this.formValues.empAddress1, [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+        empAddress2: [this.formValues.empAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
+      }));
+      this.addOrRemoveAdditionalControlsMailing(this.employementDetailsForm.get('employeaddress').get('empCountry').value);
+      this.observeEmpAddressCountryChange();
+    } else {
+      this.employementDetailsForm.removeControl('employeaddress');
     }
   }
 
@@ -192,9 +188,9 @@ export class EmploymentDetailsComponent implements OnInit {
   }
 
   observeEmpAddressCountryChange() {
-      this.employementDetailsForm.get('employeaddress').get('empCountry').valueChanges.subscribe((value) => {
-        this.addOrRemoveAdditionalControlsMailing(value);
-      });
+    this.employementDetailsForm.get('employeaddress').get('empCountry').valueChanges.subscribe((value) => {
+      this.addOrRemoveAdditionalControlsMailing(value);
+    });
   }
 
   retrieveAddress(postalCode, address1Control, address2Control) {
