@@ -117,12 +117,7 @@
 
 <br><br>
 <p><strong>Step 3: Compare the Products</strong></p>
-<p>Hopefully with Steps 1 &amp; 2, you have a better understanding of the features you are looking for. Now is the time to look for suitable products. One easy way is to compare on MoneyOwl's platform.</p>
-<br/>
-<p>You will see a list of available products based on your selected criteria. A ranking of products is also provided to help you identify superior products. You can also drill in to understand the product&rsquo;s unique features and benefits. </p>
-<br/>
-<p><a href="#/articles/entry/46">Click here</a> to find out about the best SRS-approved retirement plans you can use in our next article. </p>
-<br>
+<p>Hopefully with Steps 1 &amp; 2, you have a better understanding of the features you are looking for. Now is the time to look for suitable products. One easy way is to compare with MoneyOwl. Please contact us at enquiry@moneyowl.com.sg if you have any questions, our Client Advisers will compare and recommend the best SRS-approved retirement plan that fits your needs.</p>
 <!--
 <div class="text-xs-center"><a href="https://www.moneyowl.com.sg/#/direct">
   <img src="/assets/images/banners/compare_ri_540w.png" alt="direct retirement plans"></a>

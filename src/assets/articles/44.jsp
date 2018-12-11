@@ -60,8 +60,8 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 	    <td width="312" valign="top"><p><strong>5% premature withdrawal penalty</strong> on the sum withdrawn will be imposed, unless withdrawal is made under exceptional circumstances </p></td>
 	  </tr>
 	  <tr>
-	    <td width="312" valign="top" style="background-color: #fff; font-weight: normal; text-align: center"><p>No further contributions to SRS is allowed after the 1st withdrawal is made.<strong></strong></p></td>
-	    <td width="312" valign="top"><p>Further contributions to SRS is still allowed</p></td>
+	    <td width="312" valign="top" style="background-color: #fff; font-weight: normal; text-align: center"><p>No further contributions to SRS are allowed after the 1st withdrawal is made.<strong></strong></p></td>
+	    <td width="312" valign="top"><p>Further contributions to SRS are still allowed</p></td>
 	  </tr>
 	</table>
 </div>
@@ -75,14 +75,14 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
   	<div class="card">	 
 	  <div class="card-block">
 	    <h4 class="card-title secondary-color">Step 1:</h4>
-	    <p class="card-text">Open a SRS account with <a href="https://www.dbs.com.sg/personal/investments/srs-and-cpf/supplementary-retirement-scheme" target="_blank">DBS</a>, <a href="https://www.ocbc.com/personal-banking/investments/supplementary-retirement-scheme.html" target="_blank">OCBC</a> or UOB and contribute cash to your SRS  account.</p>
+	    <p class="card-text">Open an SRS account with <a href="https://www.dbs.com.sg/personal/investments/srs-and-cpf/supplementary-retirement-scheme" target="_blank">DBS</a>, <a href="https://www.ocbc.com/personal-banking/investments/supplementary-retirement-scheme.html" target="_blank">OCBC</a> or UOB and contribute cash to your SRS  account.</p>
 	   </div>
 	</div>
 	
 	<div class="card">	 
 	  <div class="card-block">
 	    <h4 class="card-title secondary-color">Step 2:</h4>
-          <p class="card-text"><strong>You  can invest your SRS</strong> in shares, bonds, unit trusts, fixed deposits and  insurance products from financial institutions to gain a better return on your  monies contributed into your <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> account. Monies left in SRS account earn an  interest of 0.05% p.a currently as offered by the 3 banks. </p>
+          <p class="card-text"><strong>You  can invest your SRS</strong> in shares, bonds, unit trusts, fixed deposits and  insurance products from financial institutions to gain a better return on your monies contributed to your <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> account. Monies left in SRS account earn an  interest of 0.05% p.a currently as offered by the 3 banks. </p>
 	   </div>
 	</div>
 	
@@ -97,4 +97,4 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 <p>I hope this article has been useful for you to understand the features and benefits SRS. In the next article, we share about options you can consider to grow your SRS. 
 	</p>
 	<br/>
-  <p>As we draw nearer to the end of the year, don't forget to contribute to your SRS <strong>31st December 2018</strong> to enjoy tax relief in Year of Assessment (YA) 2019!</p>
+  <p>As we draw nearer to the end of the year, don't forget to contribute to your SRS <strong>31<sup>st</sup> December 2018</strong> to enjoy tax relief in Year of Assessment (YA) 2019!</p>
