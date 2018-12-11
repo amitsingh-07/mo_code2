@@ -179,7 +179,7 @@ export class EditProfileComponent implements OnInit {
     return countryList;
   }
   editContactDetails() {
-    let uploadedDocuments ;
+    let uploadedDocuments = [] ;
     let mailingUrl;
     let ResUrl ;
     if (this.entireUserData.documentDetails) {

@@ -2,10 +2,15 @@
 
 .withdraw {
 
+  .dropdown-control .btn-dropdown {
+    padding-right: 26px !important ;
+  }
+
   .dropdown-control .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
-    // height: calc(70vh);
+    
+    
     }
 
     .dropdown-item{

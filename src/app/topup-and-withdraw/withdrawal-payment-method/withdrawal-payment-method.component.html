@@ -43,7 +43,7 @@
               <div>Kelvin Goh</div>
             </div>
             -->
-            <div class="flex-col add_account mb20" (click)="showNewBankFormModal()">
+            <div class="flex-col add_account mb20" (click)="showNewBankFormModal()" *ngIf="hideAddBankAccount">
               <div class="flex-row"><img src="../../../assets/images/topupwithdraw/add_no-bg.svg" class="mr5" /><span>{{ 'WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT' | translate}}</span></div>
             </div>
           </div>

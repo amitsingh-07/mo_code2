@@ -4,23 +4,29 @@
       <ngb-tabset>
         <ngb-tab title="History">
           <ng-template ngbTabContent>
-            <div class="flex-row" *ngIf="transactionHistory"> 
+            <div class="flex-row" *ngIf="transactionHistory">
               <div class="flex-col-12">
                 <div class="transaction-panel__history white-bg">
-                  <div *ngFor="let group of transactionHistory; let i = index">
+                  <div *ngFor="let group of transactionHistory; let i = index" class="transaction-group">
                     <div class="transaction-panel__history--date">{{group.groupName}}</div>
 
                     <div class="transaction-panel__history--details">
                       <div *ngFor="let transaction of group.value; let j = index">
                         <div class="flex-row transaction-panel__history--details--title" (click)="expandCollapseAccordion(i, j)">
-                          <div class="flex-col-8"><span class="transaction-panel__history--details--title--sale" *ngIf="transaction.transactionType" [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'">{{transaction.transactionType.name}}</span><span *ngIf="transaction.portfolio">{{transaction.portfolio.name}}</span></div>
-                          <div class="flex-col-4 text-right"><span class="transaction-panel__history--details--title--amount--sale">{{transaction.amount}}</span><i
-                              class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()" [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i></div>
+                          <div class="flex-col-8"><span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--sale" *ngIf="transaction.transactionType"
+                              >{{transaction.transactionType.name}}</span><span
+                              *ngIf="transaction.portfolio">{{transaction.portfolio.name}}</span></div>
+                          <div class="flex-col-4 text-right"><span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--amount--sale"><span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span> {{transaction.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                            <i *ngIf="transaction.fundInvestmentSplits" class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()" [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i>
+                          </div>
                         </div>
-                        
-                        <div class="flex-row transaction-panel__history--details--desc" [class.show]="activeTransactionIndex === i.toString() + j.toString()" *ngFor="let fund of transaction.fundInvestmentSplits">
-                          <div class="flex-col-8" *ngIf="fund.fund">{{fund.fund.name}}</div>
-                          <div class="flex-col-4 text-right">{{fund.unitPrice}}</div>
+
+                        <div *ngFor="let fund of transaction.fundInvestmentSplits">
+                          <div *ngIf="fund.fund" class="flex-row transaction-panel__history--details--desc" [class.show]="activeTransactionIndex === i.toString() + j.toString()"
+                            >
+                            <div class="flex-col-8">{{fund.fund.name}}</div>
+                            <div class="flex-col-4 text-right">{{fund.unitPrice | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                          </div>
                         </div>
 
                       </div>

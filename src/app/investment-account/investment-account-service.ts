@@ -721,6 +721,7 @@ export class InvestmentAccountService {
             postalCode: (this.isSingaporeResident()) ? data.postalCode : data.zipCode,
             addressLine1: data.address1,
             addressLine2: data.address2,
+            floor: data.floor,
             unitNumber: data.unitNo,
             townName: null, // todo - not available in client
             city: data.city
@@ -736,6 +737,7 @@ export class InvestmentAccountService {
                 postalCode: (this.isSingaporeResident()) ? data.mailPostalCode : data.mailZipCode,
                 addressLine1: data.mailAddress1,
                 addressLine2: data.mailAddress2,
+                floor: data.mailFloor,
                 unitNumber: data.unitNo,
                 townName: null, // todo - not available in client
                 city: data.mailCity
@@ -783,6 +785,7 @@ export class InvestmentAccountService {
 
     getFinancialDetailsReqData(data): IFinancial {
         return {
+            incomeRange: 'below30000',
             annualIncome: data.financialMonthlyIncome,
             percentageOfSaving: data.financialPercentageOfSaving,
             totalAssets: data.financialTotalAssets,
@@ -815,6 +818,7 @@ export class InvestmentAccountService {
                     postalCode: data.pepPostalCode,
                     addressLine1: data.pepAddress1,
                     addressLine2: data.pepAddress2,
+                    floor: null,
                     unitNumber: data.pepUnitNo,
                     townName: null, // todo not available in client
                     city: null // info - always empty

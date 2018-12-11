@@ -7,76 +7,78 @@
   <div class="container-fluid">
     <form name="addInfoForm" [formGroup]="addInfoForm">
       <!-- PEP question -->
-      <div class="flex-row mb10">
-        <div class="flex-col-11 mt15">
-          <div class="tin_question_text" id="pep_Info_question-one">{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
+        <div class="flex-row mb10">
+          <div class="flex-col-11 mt15">
+            <div class="tin_question_text" id="pep_Info_question-one">{{ 'PERSONAL_DECLARATION.QUESTION2' | translate}}
+            </div>
+          </div>
+          <div class="flex-col-1">
+            <i class="tooltip-icon" id="pep_Info_myFinancialHelpIcon" (click)="showHelpModalPep()"></i>
           </div>
         </div>
-        <div class="flex-col-1">
-          <i class="tooltip-icon" id="pep_Info_myFinancialHelpIcon" (click)="showHelpModalPep()"></i>
-        </div>
-      </div>
       <!-- Button part -->
-      <div class="flex-row">
-        <div class="flex-col-12 mb10">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioPep">
-            <div class="flex-row">
-              <div class="flex-col-6">
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16 btn active">
-                  <input ngbButton type="radio" id="pep_Info_tin_yes" [value]=true> Yes
-                </label>
-              </div>
-              <div class="flex-col-6">
+        <div class="flex-row">
+          <div class="flex-col-12 mb10">
+            <div class="btn-group--toggle" ngbRadioGroup name="radioPep">
+              <div class="flex-row">
+                <div class="flex-col-6">
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16 btn active">
+                    <input ngbButton type="radio" id="pep_Info_tin_yes" [value]=true> Yes
+                  </label>
+                </div>
+                <div class="flex-col-6">
 
-                <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                  <input ngbButton type="radio" id="pep_Info_tin_no" disabled [value]=false>No</label>
+                  <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
+                    <input ngbButton type="radio" id="pep_Info_tin_no" disabled [value]=false>No</label>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
       <!-- Provide details of PEP  -->
-      <div class="flex-row">
-        <div class="flex-col-12">
-          <div class="tin_question_text" id="pep_Info_question-one">{{ 'ADDITIONAL_DECLARATION.PEP_INFO' | translate}}
+        <div class="flex-row">
+          <div class="flex-col-12">
+            <div class="tin_question_text" id="pep_Info_question-one">{{ 'ADDITIONAL_DECLARATION.PEP_INFO' | translate}}
+            </div>
           </div>
         </div>
-      </div>
       <!-- Starting the actual form design  -->
 
       <div class="form-group">
         <!-- first name -->
-        <div class="flex-row">
-          <div class="flex-col-5">
-            <label for="fName" id="pep_Info_invPersInfoLbl1">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
-          </div>
-          <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.fName)}">
-            <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #fName formControlName="fName">
-          </div>
-        </div>
-
-        <!-- last name -->
-        <div class="flex-row">
-          <div class="flex-col-5">
-            <label for="lName" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
-          </div>
-          <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.lName)}">
-            <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #lName formControlName="lName">
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="fName" id="pep_Info_invPersInfoLbl1">{{ 'PERSONAL_INFO.FIRST_NAME' | translate}}</label>
+            </div>
+            <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.fName)}">
+              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #fName formControlName="fName">
+            </div>
           </div>
         </div>
-
+        <div class="form-group">
+          <!-- last name -->
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="lName" id="invPersInfoLbl1">{{ 'PERSONAL_INFO.LAST_NAME' | translate}}</label>
+            </div>
+            <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.lName)}">
+              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #lName formControlName="lName">
+            </div>
+          </div>
+        </div>
         <!-- company name -->
-        <div class="flex-row">
-          <div class="flex-col-5">
-            <label for="cName" id="pep_Info_invPersInfoLbl1">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}</label>
-          </div>
-          <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}"
-          >
-            <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #cName formControlName="cName">
+        <div class="form-group">
+          <div class="flex-row">
+            <div class="flex-col-5">
+              <label for="cName" id="pep_Info_invPersInfoLbl1">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}</label>
+            </div>
+            <div class="flex-col-7" [ngClass]="{'inline-error':getInlineErrorStatus(addInfoForm.controls.cName)}"
+            >
+              <input type="text" id="pep_Info_invPersInfoInpt1" class="form-control" #cName formControlName="cName">
+            </div>
           </div>
         </div>
-
         <!-- Occupation -->
         <div class="form-group">
           <div class="flex-row">

@@ -405,15 +405,7 @@
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
               </div>
-            </div>
-            <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
-              <div class="update-contact-title" >
-               Floor
-              </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.floor}}
-              </div>
-            </div>
+            </div>           
             <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
               <div class="update-contact-title" >
                 Unit No

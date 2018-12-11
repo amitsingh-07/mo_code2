@@ -30,6 +30,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   banks;
   userBankList;
   userAddress;
+  hideAddBankAccount = true;
 
   constructor(
     public readonly translate: TranslateService,
@@ -71,6 +72,9 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.topupAndWithDrawService.getUserBankList().subscribe((data) => {
       if (data.responseMessage.responseCode >= 6000) {
         this.userBankList = data.objectList;
+        if (this.userBankList.length > 0) {
+          this.hideAddBankAccount = false;
+        }
       }
     });
   }
@@ -155,18 +159,18 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   saveWithdrawal() {
     this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe((response) => {
       if (response.responseMessage.responseCode < 6000) {
-        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length ) {
+        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
           this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
         }
       } else {
         this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
       }
     },
-    (err) => {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
-    });
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
+      });
   }
 
   showCustomErrorModal(title, desc) {
