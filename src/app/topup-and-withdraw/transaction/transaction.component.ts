@@ -110,9 +110,9 @@ export class TransactionComponent implements OnInit {
             },
             "transactionType": {
               "id": 68,
-              "name": "Sell",
-              "value": "Sell",
-              "key": "SELL"
+              "name": "Buy",
+              "value": "Buy",
+              "key": "Buy"
             },
             "paymentMethod": {
               "id": 70,
