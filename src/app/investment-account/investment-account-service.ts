@@ -196,7 +196,7 @@ export class InvestmentAccountService {
         return this.apiService.getAllDropdownList();
     }
     getGeneratedFrom() {
-        return this.apiService.getGeneratedFrom();
+        return this.apiService.getAllDropdownList();
     }
     getInvestmentPeriod() {
         return this.apiService.getInvestmentPeriod();
@@ -625,7 +625,7 @@ export class InvestmentAccountService {
 
             inheritanceGift: this.investmentAccountFormData.inheritanceGift,
             investmenteEarning: this.investmentAccountFormData.investmenteEarning,
-            investmentPeriod: this.investmentAccountFormData.investmentPeriod,
+            durationInvestment: this.investmentAccountFormData.durationInvestment,
             earningsGenerated: this.investmentAccountFormData.earningsGenerated,
 
         };
@@ -641,7 +641,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.inheritanceGift = data.inheritanceGiftFrom.inheritanceGift;
         }
         if (data.investmentEarnings) {
-            this.investmentAccountFormData.investmentPeriod = data.investmentEarnings.investmentPeriod;
+            this.investmentAccountFormData.durationInvestment = data.investmentEarnings.durationInvestment;
             this.investmentAccountFormData.earningsGenerated = data.investmentEarnings.earningsGenerated;
         }
         this.commit();
