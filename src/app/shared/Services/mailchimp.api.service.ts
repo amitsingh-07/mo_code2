@@ -71,11 +71,11 @@ export class MailchimpApiService {
           }
         });
         if (message === '') {
-          message = errorMap['DEFAULT'];
+          message = errorMap['DEFAULT'].errorMessage;
         }
       }
     } catch {
-      message = errorMap['DEFAULT'];
+      message = errorMap['DEFAULT'].errorMessage;
     }
     this.subscribeMessage.next(message);
   }
