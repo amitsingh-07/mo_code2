@@ -29,7 +29,7 @@ export class FormError {
                 },
                 {
                         errorTitle: 'Invalid Resource',
-                        errorRegex: /looks fake and invalid/g,
+                        errorRegex: /looks fake or invalid/g,
                         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         ],
@@ -46,7 +46,7 @@ export class FormError {
         },
         DEFAULT: {
                 errorTitle: 'Default',
-                errorMessage: 'Invalid Message'
+                errorMessage: 'Oops! We are unable to connect right now. Please try again later.'
         }
     };
 }
