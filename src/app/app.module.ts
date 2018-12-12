@@ -66,6 +66,7 @@ import { Util } from './shared/utils/util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
 // tslint:disable-next-line:max-line-length
 export function createTranslateLoader(http: HttpClient) {
@@ -149,7 +150,8 @@ export function tokenGetterFn() {
       multi: true,
       deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
     }, Formatter, CurrencyPipe, RoutingService,
-    StateStoreService, Util
+    StateStoreService, Util,
+    WillWritingEnableGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [
