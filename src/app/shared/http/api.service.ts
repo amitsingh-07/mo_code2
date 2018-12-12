@@ -173,33 +173,8 @@ export class ApiService {
     const payload = data;
     return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error, data))
+        catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
       );
-  }
-
-  handleSubscribeError(error: HttpErrorResponse, data) {
-    error = new HttpErrorResponse({status: 500});
-    if (error.status === 500) {
-      this.subscribeNewsletterSingle(data).subscribe((in_data) => {
-        this.errorMessage.next(in_data);
-      });
-    } else {
-      const templateError = {
-        body: 'default',
-        detail: 'default',
-        status: 500
-      };
-      this.errorMessage.next(templateError);
-      return throwError('');
-    }
-  }
-
-  subscribeNewsletterSingle(data) {
-    const payload = data;
-    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
-    );
   }
 
   throwSubscribeError(error: HttpErrorResponse) {

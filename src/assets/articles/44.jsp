@@ -15,7 +15,7 @@
 Assuming you have a taxable income of $72,000 before  tax-relief from SRS, <br>
 Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 = <strong>$2,790</strong>
-<br><br><p>If you contribute $15,300 in <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> by 31st  December 2017, you can claim $15,300 of tax relief in the Year of Assessment  (YA) 2018. <br>
+<br><br><p>If you contribute $15,300 in <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> by 31st  December 2018, you can claim $15,300 of tax relief in the Year of Assessment  (YA) 2019. <br>
   Your taxable income would be= $72,000 - $15,300 (tax relief  enjoyed) = $56,700<br>
   Tax payable on $56,700 =<strong> </strong>$550 (on first $40,000)* + $1169 (7% X $16,700)*<br>
 	= <strong>$1,719</strong></p>
@@ -41,7 +41,7 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 <p>There are some key areas about contributing and withdrawing  from your SRS account that would be useful for you to know if you are  considering to make use of it. </p>
 <br/>
 <p><strong><u>SRS Contributions</u></strong><br>
-    The current cap of contribution to <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> each year for  Singaporeans and PRs is $15,300. All SRS contributions must be made in cash and  contributions  can be made any time and any number of times in a year before 31 December each  year to enjoy tax reliefs in the Year of Assessment (YA) the next year. </p>
+    The current cap of contribution to <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> each year for  Singaporeans and PRs is $15,300 and $35,700 for foreigners. All SRS contributions must be made in cash and  contributions  can be made any time and any number of times in a year before 31 December each  year to enjoy tax reliefs in the Year of Assessment (YA) the next year. </p>
 <br/>
 <p><strong><u>SRS Withdrawals</u></strong></p>
 <div class="table-responsive">
@@ -60,14 +60,14 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 	    <td width="312" valign="top"><p><strong>5% premature withdrawal penalty</strong> on the sum withdrawn will be imposed, unless withdrawal is made under exceptional circumstances </p></td>
 	  </tr>
 	  <tr>
-	    <td width="312" valign="top" style="background-color: #fff; font-weight: normal; text-align: center"><p>No further contributions to SRS is allowed after the 1st withdrawal is made.<strong></strong></p></td>
-	    <td width="312" valign="top"><p>Further contributions to SRS is still allowed</p></td>
+	    <td width="312" valign="top" style="background-color: #fff; font-weight: normal; text-align: center"><p>No further contributions to SRS are allowed after the 1st withdrawal is made.<strong></strong></p></td>
+	    <td width="312" valign="top"><p>Further contributions to SRS are still allowed</p></td>
 	  </tr>
 	</table>
 </div>
 
-<small class="text-muted">**Retirement age is defined as statutory  retirement age that was prevailing when you made your first SRS contribution  (currently age 62).</small><br>
-<p>Since SRS is a scheme to encourage us to save for retirement,  you will notice there are benefits when withdrawing after reaching retirement  age and penalties imposed for withdrawals before retirement age. It is  important that you withdraw from our SRS account only when you have reached retirement  scheme if you intend on contribute to SRS. </p>
+<small class="text-muted">**Retirement age is defined as statutory retirement age that was prevailing when you made your first SRS contribution  (currently age 62).</small><br>
+<p>SRS withdrawals could be made in the form of investments. There is also a tax exemption of up to $400,000 for SRS funds deemed withdrawn upon demise, or withdrawn in full on the grounds of terminal illness.</p>
 <br>
 <h3 class="primary-color"><strong>How can I get started?</strong></h3>
 <br>
@@ -75,14 +75,14 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
   	<div class="card">	 
 	  <div class="card-block">
 	    <h4 class="card-title secondary-color">Step 1:</h4>
-	    <p class="card-text">Open a SRS account with <a href="https://www.dbs.com.sg/personal/investments/srs-and-cpf/supplementary-retirement-scheme" target="_blank">DBS</a>, <a href="https://www.ocbc.com/personal-banking/investments/supplementary-retirement-scheme.html" target="_blank">OCBC</a> or UOB and contribute cash to your SRS  account.</p>
+	    <p class="card-text">Open an SRS account with <a href="https://www.dbs.com.sg/personal/investments/srs-and-cpf/supplementary-retirement-scheme" target="_blank">DBS</a>, <a href="https://www.ocbc.com/personal-banking/investments/supplementary-retirement-scheme.html" target="_blank">OCBC</a> or UOB and contribute cash to your SRS  account.</p>
 	   </div>
 	</div>
 	
 	<div class="card">	 
 	  <div class="card-block">
 	    <h4 class="card-title secondary-color">Step 2:</h4>
-          <p class="card-text"><strong>You  can invest your SRS</strong> in shares, bonds, unit trusts, fixed deposits and  insurance products from financial institutions to gain a better return on your  monies contributed into your <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> account. Monies left in SRS account earn an  interest of 0.05% p.a currently as offered by the 3 banks. </p>
+          <p class="card-text"><strong>You  can invest your SRS</strong> in shares, bonds, unit trusts, fixed deposits and  insurance products from financial institutions to gain a better return on your monies contributed to your <a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> account. Monies left in SRS account earn an  interest of 0.05% p.a currently as offered by the 3 banks. </p>
 	   </div>
 	</div>
 	
@@ -97,8 +97,4 @@ Tax payable on $72,000 = $550 (on first $40,000)* + $2240  (7% X $32,000)* <br>
 <p>I hope this article has been useful for you to understand the features and benefits SRS. In the next article, we share about options you can consider to grow your SRS. 
 	</p>
 	<br/>
-  <p>As we draw nearer to the end of the year, don't forget to contribute to your SRS <strong>31st December 2017</strong> to enjoy tax relief in Year of Assessment (YA) 2018!</p>
-  <br><p><strong>Useful sources: </strong><br>
-  Visit the Supplementary Retirement Scheme Webpage by the Ministry of Finance for more details.</p>
-	<br/>
-<p><a href="http://www.mof.gov.sg/MOF-For/Individuals/Supplementary-Retirement-Scheme-SRS" target="_blank" title="Supplementary Retirement Scheme">SRS</a> reduces your taxable income by the same amount contributed to your SRS account. The contribution cap per years is S$15,300 for Singaporeans and PRs.</p>
+  <p>As we draw nearer to the end of the year, don't forget to contribute to your SRS by <strong>31<sup>st</sup> December 2018</strong> to enjoy tax relief in Year of Assessment (YA) 2019!</p>

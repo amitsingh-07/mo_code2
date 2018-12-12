@@ -13,6 +13,7 @@ import { TermsOfUseComponent } from './shared/components/terms-of-use/terms-of-u
 
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
 const routes: Routes = [
   {
@@ -20,21 +21,30 @@ const routes: Routes = [
       { component: UrlRedirectComponent, matcher: validateUrl },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: '9462test-myinfo', component: TestMyInfoComponent},
+      { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
       { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
-      { path: 'faq', component: FAQComponent},
+      { path: 'faq', component: FAQComponent },
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
 
+      { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
+      { path: 'investment-account', loadChildren: './investment-account/investment-account.module#InvestmentAccountModule' },
+      {
+        path: 'will-writing',
+        loadChildren: './will-writing/will-writing.module#WillWritingModule',
+        canActivate: [WillWritingEnableGuard],
+        canActivateChild: [WillWritingEnableGuard]
+      },
+
       // Legacy Routes
-      { path: 'terms-of-use', component: TermsOfUseComponent},
-      { path: 'privacy-policy', component: PrivacyPolicyComponent},
-      { path: 'disclosures', component: DisclosuresComponent},
-      { path: 'fair-dealing', component: FairDealingComponent}
+      { path: 'terms-of-use', component: TermsOfUseComponent },
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+      { path: 'disclosures', component: DisclosuresComponent },
+      { path: 'fair-dealing', component: FairDealingComponent }
     ]
   }
 ];
