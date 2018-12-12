@@ -105,9 +105,13 @@
                 font-weight: bold;
                 letter-spacing: -0.2px;
                 color: #00a7a7;
-                padding: 20px 15px;
+                padding: 20px 18px 11px;
                 display: flex;
                 justify-content: space-between;
+                img{
+                    margin-top: 5px;
+                    margin-left: 6px;
+                }   
                 .view_all{
                         font-family: $muli-regular;
                         font-size: 16px;
@@ -121,26 +125,21 @@
                 font-size: 14px;
                 font-weight: normal;
                 letter-spacing: -0.1px;
-                padding: 0 0 20px;
+                padding: 0 0 30px;
                 .scenarios{
+                    padding: 0 5px;
                     .primary{
                         align-items: center;
                     }
-                    .warning{
-                        .warning-txt{
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: flex-start;
-                            font-family: $muli-regular;
-                            font-size: 16px;
-                            line-height: 1.5;
-                            letter-spacing: -0.2px;
-                            color: #2d8289;
-                            img{
-                                margin-top: 5px;
-                                margin-right: 6px;
-                            }   
-                        }
+                    .warning-txt{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        font-family: $muli-regular;
+                        font-size: 16px;
+                        line-height: 1.5;
+                        letter-spacing: -0.2px;
+                        color: #2d8289;
                     }
                     .portfolio{
                         font-family: $muli-regular;
@@ -181,6 +180,15 @@
                                 }
                             }
                         }
+                    }
+                    .btn-primary{
+                        font-family: $muli-bold;
+                        font-size: 16px;
+                        font-weight: bold;
+                        letter-spacing: -0.1px;
+                        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
+                        background-color: #ff872f !important;
+                        margin: 18px 0 0;
                     }
                 }
                 .flex-col-8{
