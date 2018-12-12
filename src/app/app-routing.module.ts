@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
-      { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
+    { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
@@ -38,8 +38,10 @@ const routes: Routes = [
       {
         path: 'will-writing',
         loadChildren: './will-writing/will-writing.module#WillWritingModule',
+        /*
         canActivate: [WillWritingEnableGuard],
         canActivateChild: [WillWritingEnableGuard]
+        */
       },
 
       // Legacy Routes
