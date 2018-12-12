@@ -26,6 +26,11 @@ export class FormError {
                         errorTitle: 'Invalid Email',
                         errorRegex: /provide a valid email address/g,
                         errorMessage: 'Please enter a valid email address in the format yourname@example.com'
+                },
+                {
+                        errorTitle: 'Invalid Resource',
+                        errorRegex: /looks fake and invalid/g,
+                        errorMessage: 'Please enter a valid email address in the format yourname@example.com'
                 }
         ],
         500: [
