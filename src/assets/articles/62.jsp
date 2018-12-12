@@ -101,5 +101,5 @@
             </ul>
     </p>
     <p>In MoneyOwl’s will writing process, we will guide you in identifying your beneficiaries and the proportion of estate you intend to distribute, as well as guardians (if you have a young child), executors and trustees. For more advanced needs, you may wish to seek legal advice.</p> 
-    <p>With MoneyOwl’s online will writing service, you don't have to procrastinate any longer - it is easy, simple and fast. </p>
+    <p>With MoneyOwl’s online will writing service, you don't have to procrastinate any longer - it is easy, simple and fast. Do look forward to our will writing service soon.</p>
 </p>
