@@ -1062,10 +1062,10 @@ export class InvestmentAccountService {
         if (data.zipCode) {
             postalCode = data.zipCode;
         }
-        if (data.mailingAddress) {
+        if ( data.mailingAddress.mailPostalCode) {
             mailPostalCode = data.mailingAddress.mailPostalCode;
         }
-        if (data.mailingAddress) {
+        if ( data.mailingAddress.mailZipCode) {
             mailPostalCode = data.mailingAddress.mailZipCode;
         }
         if (!data.isMailingAddressSame) {
