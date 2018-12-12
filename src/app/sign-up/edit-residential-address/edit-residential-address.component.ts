@@ -306,8 +306,13 @@ buildForm(): FormGroup {
     } else {
       this.investmentAccountService.editResidentialAddressFormData(form.value).subscribe((data) => {
         console.log (data);
-        if (form.controls.resAddressProof.value || form.controls.mailingAddress.controls.mailAdressProof.value ) {
+        if (form.controls.resAddressProof && form.controls.resAddressProof.value ) {
         this.uploadDocument();
+        }
+        if (this.addressForm.controls.isMailingAddressSame.value !== true) {
+          if (form.controls.mail && form.controls.mailAdressProof.value ) {
+            this.uploadDocument();
+          }
         }
         this.router.navigate([SIGN_UP_ROUTE_PATHS.EDIT_PROFILE]);
       });

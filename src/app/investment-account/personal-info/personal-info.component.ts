@@ -178,11 +178,12 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   private validateName() {
     return (group: FormGroup) => {
       const name = group.controls['firstName'].value + ' ' + group.controls['lastName'].value;
+      const name1 = group.controls['lastName'].value + ' ' + group.controls['firstName'].value;
       const fullName = group.controls['fullName'].value;
-      if (fullName !== name) {
-        return group.controls['firstName'].setErrors({ nameMatch: true });
-      } else {
+      if (fullName.toUpperCase() === name.toUpperCase() || fullName.toUpperCase() === name1.toUpperCase()) {
         return group.controls['firstName'].setErrors(null);
+      } else {
+        return group.controls['firstName'].setErrors({ nameMatch: true });
       }
     };
   }

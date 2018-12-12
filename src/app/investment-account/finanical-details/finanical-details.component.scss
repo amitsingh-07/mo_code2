@@ -148,6 +148,27 @@
     
    
   }
+  .dropdown-control{
+    .dropdown-menu{
+      &.show {
+        right: 0 !important;
+        overflow: auto;
+        height: auto;
+        max-height: 264px;
+      }
+    }
+  }
+  .dropdown-item {
+    white-space: normal;
+    word-break: break-all;
+  }
+  .dropdown-control .btn-dropdown {
+    padding-right: 27px;
+    max-height: 52px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 .form-group-with-bg--content-label{
     font-size: 18px;
