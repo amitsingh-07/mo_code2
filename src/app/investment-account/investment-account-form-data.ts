@@ -26,6 +26,9 @@ export class InvestmentAccountFormData {
     state: string;
     zipCode: number;
     isMailingAddressSame: boolean;
+    others: string;
+    reason: string;
+    reasonId: string;
     mailCountry: string;
     mailCountryCode: string;
     mailPostalCode: number;
@@ -101,7 +104,7 @@ export class InvestmentAccountFormData {
     inheritanceGift: string;
     investmenteEarning: string;
     earningsGenerated: string;
-    durationInvestment: string;
+    durationInvestment: number;
 
     // Additional declaration PEP
     fName: string;

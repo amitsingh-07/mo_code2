@@ -74,6 +74,7 @@ export interface IPersonalDeclaration {
     politicallyExposed: boolean;
     connectedToInvestmentFirm: boolean;
     pepDeclaration: IPep;
+  
 }
 
 export interface IPep {
@@ -86,6 +87,6 @@ export interface IPep {
     expectedAmountPerTransaction: number;
     investmentSourceId: number;
     additionalInfo: string;
-    investmentPeriodId: number;
+    durationInvestment: number;
     earningSourceId: number;
 }

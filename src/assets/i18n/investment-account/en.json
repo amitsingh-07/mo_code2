@@ -44,6 +44,10 @@
     "CITY": "City",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
+    "REASON": "Reason",
+    "SELECT_REASON": "Select Reason",
+    "YOUR_MAILING_ADDRESS": "Your mailing address:",
+    "PLEASE_INDECATE_THE_REASON": "Please indicate the reason:",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
       "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
@@ -262,7 +266,7 @@
   "ADDITIONAL_DECLARATION_SUBMIT": {
     "TITLE": "Additional Declarations Submitted",
     "DESC": "We will get back to you on your application in 1 - 2 working days.",
-    "BACK" : "Back To Dashboard"
+    "BACK": "Back To Dashboard"
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
     "OPEN_MODAL_DATA": {
@@ -296,7 +300,7 @@
   "FUND_INTRO": {
     "TITLE": "Fund Your Account",
     "DESC": "In the next step, you can select the method to fund your account.",
-    "BACK" : "Proceed",
+    "BACK": "Proceed",
     "SUCCESS": "Investment Account Setup Successful"
   }
 }
