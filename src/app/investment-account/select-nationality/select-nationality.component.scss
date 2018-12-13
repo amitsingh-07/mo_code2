@@ -30,29 +30,31 @@ app-select-nationality{
 label {
 font-size: 18px;
 letter-spacing: -0.3px;
+padding-right: 10px;
 }
 .form-group {
     @include allmobiles {
         padding-bottom: 30px;
       }
 }
-.dropdown-control .dropdown-menu.show {
+.dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
-    max-height: 220px;
     height: auto;
-}
+    max-height: 264px;
+      }
+    
 .dropdown-item {
-    white-space: normal;
-    word-break: break-all;
+  white-space: normal;
+  word-break: break-all;
 }
 .dropdown-control .btn-dropdown {
-    padding-right: 27px;
-    max-height: 52px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  padding-right: 27px;
+  max-height: 52px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .fixed-btn--sm {
     color:#FFF;
    
