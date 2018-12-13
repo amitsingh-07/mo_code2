@@ -25,12 +25,26 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Race.'
             },
         },
+
         country: {
             required: {
                 errorTitle: 'Invalid Country',
                 errorMessage: 'Please select your Country.'
             },
         },
+        reason: {
+            required: {
+                errorTitle: 'Invalid Reason',
+                errorMessage: 'Please select Reason.'
+            },
+        },
+        others: {
+            required: {
+                errorTitle: 'Invalid Others',
+                errorMessage: 'Please enter Please indicate the reason.'
+            },
+        },
+
         mailCountry: {
             required: {
                 errorTitle: 'Invalid Country in mailing address',

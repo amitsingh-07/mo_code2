@@ -115,6 +115,12 @@ export class InvestmentAccountService {
     }
 
     setEmailingAddress(data) {
+        if (data.mailingAddress.reason) {
+            this.investmentAccountFormData.reason = data.mailingAddress.reason;
+        }
+        if (data.mailingAddress.others) {
+            this.investmentAccountFormData.others = data.mailingAddress.others;
+        }
         if (data.mailingAddress.mailCountry) {
             this.investmentAccountFormData.mailCountry = data.mailingAddress.mailCountry;
         }
@@ -198,6 +204,7 @@ export class InvestmentAccountService {
     getGeneratedFrom() {
         return this.apiService.getAllDropdownList();
     }
+    
     getInvestmentPeriod() {
         return this.apiService.getInvestmentPeriod();
     }
