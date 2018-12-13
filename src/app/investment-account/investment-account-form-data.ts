@@ -104,7 +104,7 @@ export class InvestmentAccountFormData {
     inheritanceGift: string;
     investmenteEarning: string;
     earningsGenerated: string;
-    durationInvestment: string;
+    durationInvestment: number;
 
     // Additional declaration PEP
     fName: string;
