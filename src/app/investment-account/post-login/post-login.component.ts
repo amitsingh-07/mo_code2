@@ -1,6 +1,6 @@
 import { InvestmentAccountService } from './../investment-account-service';
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -14,7 +14,8 @@ import { FooterService } from './../../shared/footer/footer.service';
 @Component({
   selector: 'app-post-login',
   templateUrl: './post-login.component.html',
-  styleUrls: ['./post-login.component.scss']
+  styleUrls: ['./post-login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PostLoginComponent implements OnInit {
   singPassLinkTitle;
