@@ -1,24 +1,59 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
+body{
+    background-color: #009b98 !important;
+}
 .post-login-dashboard{
+    @include allmobiles{
+        padding: 0 !important;
+    }
     .widget-block{
-        position: relative;
+        position: absolute;
+        width: 100%;
+        background: #00a7a7;
+        top:85px;
+        min-height: 230px;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        @include allmobiles{
+            padding: 0;
+            top: 0;
+            max-height: 169px;
+        }
     }
     .grass_bg {
-        width: 100%;
-        height: 100%;
+        width: 157px;
+        height: 113px;
         object-fit: contain;
         position: relative;
+        top: 91px;
+        right: -40px;
+        @include allmobiles{
+            top: 130px;
+            right: -34px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
     }
     .overlap-grass{
-        position: absolute;
-        top: 21px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        @include min300max325{
-            top: 0%;
+        justify-content: space-evenly;
+        padding: 0 40px;
+        @include allmobiles{
+            padding: 0;
+            padding-top: 35px;
+            justify-content: space-between;
+        }
+        @include iPadLandscape{
+            justify-content: space-between;
+            padding-left: 15px;
+        }
+        @include iPadProPortrait{
+            justify-content: space-between;
+            padding-left: 15px;
         }
     }
     .user-profile-bg{
@@ -28,9 +63,8 @@
         font-weight: 300;
         line-height: 1.3;
         letter-spacing: -0.2px;
-        @include min300max325{
-            padding: 10px 0px;
-            font-size: 20px;
+        @include allmobiles{
+            padding-top: 30px;
         }
         .user_name{
             font-family: $muli-bold;
@@ -74,26 +108,26 @@
         }
    }
     .widgets{
-        position: absolute;
-        top: 190px;
-        @include iphone5{
-            top: 168px;
+        position: relative;
+        top: 135px;
+        @include allmobiles{
+            top: 206px;
         }
-        @include min360{
-            top: 185px;
-        }
-        @include tablet{
-            top: 25%;
-        }
-        @include iPadLandscape{
-            top: 35%;
-        }
-        @include iPadProPortrait{
-            top: 30%;
-        }
-        @include iPadProLandscape{
-            top: 35%;
-        }
+        // @include min360{
+        //     top: 185px;
+        // }
+        // @include tablet{
+        //     top: 25%;
+        // }
+        // @include iPadLandscape{
+        //     top: 35%;
+        // }
+        // @include iPadProPortrait{
+        //     top: 30%;
+        // }
+        // @include iPadProLandscape{
+        //     top: 35%;
+        // }
         .widget{
             background: $white-color;
             margin: 0px 15px 20px;
