@@ -58,7 +58,7 @@
       font-size: 14px;
       color: #d0021b;
       text-transform: uppercase;
-      margin-right: 30px;
+      margin-right: 10px;
       &.buy {
         color: #11b600;
       }
@@ -106,5 +106,12 @@
 .no-transaction {
   color: $app-backgrnd-color;
   text-align: center;
-  padding-top: 20%;
+  font-size:18px;
+  height:100vh;
+
+  .no-content {
+    background-color:#f4fafb;
+    height: 100vh;
+    padding-top: 20%;
+  }
 }
