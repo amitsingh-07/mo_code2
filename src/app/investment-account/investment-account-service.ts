@@ -204,7 +204,7 @@ export class InvestmentAccountService {
     getGeneratedFrom() {
         return this.apiService.getAllDropdownList();
     }
-    
+
     getInvestmentPeriod() {
         return this.apiService.getInvestmentPeriod();
     }
@@ -359,9 +359,9 @@ export class InvestmentAccountService {
         this.commit();
     }
     updateEmployerAddress(data) {
-       const payload = this.constructEmploymentDetailsReqData(data);
-       console.log('Update Emp Payload' + payload);
-       return this.apiService.requestUpdateEmployerAddress(payload);
+        const payload = this.constructEmploymentDetailsReqData(data);
+        console.log('Update Emp Payload' + payload);
+        return this.apiService.requestUpdateEmployerAddress(payload);
     }
     constructEmploymentDetailsReqData(data): IEmployment {
         const empStatus = this.getEmploymentByName(data.employmentStatus);
@@ -372,11 +372,11 @@ export class InvestmentAccountService {
             employerName: data.companyName,
             contactNumber: data.contactNumber,
             unemployedReason: null, // todo not available in client
-            employerAddress: this.constructEmployerAddressReqData(data.employeaddress , data.isEmployeAddresSame)
+            employerAddress: this.constructEmployerAddressReqData(data.employeaddress, data.isEmployeAddresSame)
         };
     }
 
-    constructEmployerAddressReqData(data , isEmployeAddresSame): IAddress {
+    constructEmployerAddressReqData(data, isEmployeAddresSame): IAddress {
         let addressDetails = null;
         if (!isEmployeAddresSame) {
             addressDetails = {
@@ -747,7 +747,10 @@ export class InvestmentAccountService {
                 floor: data.mailFloor,
                 unitNumber: data.unitNo,
                 townName: null, // todo - not available in client
-                city: data.mailCity
+                city: data.mailCity,
+                reasonId: data.reason.id,
+                others: data.others
+
             };
         }
         return addressDetails;
@@ -872,9 +875,9 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
-    
+
     // tslint:disable-next-line:cognitive-complexity
-    setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident , mailingProof , resProof) {
+    setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident, mailingProof, resProof) {
         this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
         this.investmentAccountFormData.nationality = data.contactDetails.homeAddress.country;
         this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
@@ -952,16 +955,16 @@ export class InvestmentAccountService {
         if (data.employmentDetails.employmentStatus.name !== 'Unemployed') {
             this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
             if (data.employmentDetails.employerDetails.detailedEmployerDetails) {
-            if (data.employmentDetails.employerDetails.detailedEmployerDetails.employerName ) {
-                this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName ;
+                if (data.employmentDetails.employerDetails.detailedEmployerDetails.employerName) {
+                 this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName;
+                }
+                if (data.employmentDetails.employerDetails.detailedEmployerDetails.industry) {
+                    this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.detailedEmployerDetails.industry;
+                }
+                if (data.employmentDetails.employerDetails.employerContact) {
+                    this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.employerContact;
+                }
             }
-            if ( data.employmentDetails.employerDetails.detailedEmployerDetails.industry) {
-            this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.detailedEmployerDetails.industry;
-            }
-            if ( data.employmentDetails.employerDetails.employerContact) {
-            this.investmentAccountFormData.contactNumber = data.employmentDetails.employerDetails.employerContact;
-            }
-        }
             if (data.employmentDetails.occupation.occupation) {
                 this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
             }
@@ -969,22 +972,22 @@ export class InvestmentAccountService {
 
             if (!isEmployeAddresSame) {
                 if (data.employmentDetails.employerDetails.detailedEmployerDetails) {
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empCountry = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.country;
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empPostalCode = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode;
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empAddress1 = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1;
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2;
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber;
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.city;
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.state;
-                // tslint:disable-next-line:max-line-length
-                this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode; // discussed and only one feild name is available in backend
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empCountry = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.country;
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empPostalCode = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode;
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empAddress1 = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1;
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empAddress2 = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2;
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empUnitNo = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber;
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empCity = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.city;
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empState = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.state;
+                    // tslint:disable-next-line:max-line-length
+                    this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode; // discussed and only one feild name is available in backend
                 }
             }
         } else {
@@ -993,36 +996,36 @@ export class InvestmentAccountService {
         this.commit();
 
     }
-    setEditProfileBankDetail(Fullname , Bank , AccountNumber , id , isAddBank  ) {
-        if  ( isAddBank ) {
-            this.investmentAccountFormData.accountHolderName = Fullname ;
-            this.investmentAccountFormData.bank = Bank ;
-            this.investmentAccountFormData.accountNumber = AccountNumber ;
+    setEditProfileBankDetail(Fullname, Bank, AccountNumber, id, isAddBank) {
+        if (isAddBank) {
+            this.investmentAccountFormData.accountHolderName = Fullname;
+            this.investmentAccountFormData.bank = Bank;
+            this.investmentAccountFormData.accountNumber = AccountNumber;
 
         } else {
-        if ( Fullname) {
-        this.investmentAccountFormData.accountHolderName = Fullname ;
-        }
-        if ( Bank) {
-        this.investmentAccountFormData.bank = Bank ;
-        }
-        if ( AccountNumber) {
-        this.investmentAccountFormData.accountNumber = AccountNumber ;
-        }
-        if ( id) {
-            this.investmentAccountFormData.bankUpdateId = id ;
+            if (Fullname) {
+                this.investmentAccountFormData.accountHolderName = Fullname;
             }
-    }
+            if (Bank) {
+                this.investmentAccountFormData.bank = Bank;
+            }
+            if (AccountNumber) {
+                this.investmentAccountFormData.accountNumber = AccountNumber;
+            }
+            if (id) {
+                this.investmentAccountFormData.bankUpdateId = id;
+            }
+        }
         this.commit();
     }
     getBankInfo() {
         return {
-            fullName: this.investmentAccountFormData.accountHolderName ,
+            fullName: this.investmentAccountFormData.accountHolderName,
             bank: this.investmentAccountFormData.bank,
             accountNumber: this.investmentAccountFormData.accountNumber,
             id: this.investmentAccountFormData.bankUpdateId
         };
-      }
+    }
     // tslint:disable-next-line:no-identical-functions
     // tslint:disable-next-line:cognitive-complexity
     editResidentialAddressFormData(data) {
@@ -1048,13 +1051,13 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.unitNo = data.unitNo;
         }
         if (data.city) {
-        this.investmentAccountFormData.city = data.city;
+            this.investmentAccountFormData.city = data.city;
         }
         if (data.state) {
-        this.investmentAccountFormData.state = data.state;
+            this.investmentAccountFormData.state = data.state;
         }
         if (data.isMailingAddressSame) {
-        this.investmentAccountFormData.isMailingAddressSame = data.isMailingAddressSame;
+            this.investmentAccountFormData.isMailingAddressSame = data.isMailingAddressSame;
         }
         if (!data.isMailingAddressSame) {
             this.setEmailingAddress(data);
@@ -1076,15 +1079,15 @@ export class InvestmentAccountService {
             mailPostalCode = data.mailingAddress.mailZipCode;
         }
         if (!data.isMailingAddressSame) {
-            request = this.constructEditContactRequestMailingNotSame(data , postalCode , mailPostalCode );
+            request = this.constructEditContactRequestMailingNotSame(data, postalCode, mailPostalCode);
         } else {
-            request = this.constructEditContactRequest(data , postalCode);
+            request = this.constructEditContactRequest(data, postalCode);
         }
-        console.log (' Edit Residential Payload %@', request ) ;
+        console.log(' Edit Residential Payload %@', request);
         return this.apiService.requestEditContact(request);
     }
     // tslint:disable-next-line:no-identical-functions
-    constructEditContactRequestMailingNotSame(data , postalcode , mailPostalcode) {
+    constructEditContactRequestMailingNotSame(data, postalcode, mailPostalcode) {
         return {
             contactDetails: {
                 homeAddress: {
@@ -1104,14 +1107,14 @@ export class InvestmentAccountService {
                     unitNumber: data.mailingAddress.mailUnitNo,
                     postalCode: mailPostalcode,
                     state: data.mailingAddress.mailState,
-                    floor:  data.mailingAddress.mailFloor,
+                    floor: data.mailingAddress.mailFloor,
                     city: data.mailingAddress.mailCity,
                 }
             }
 
         };
     }
-    constructEditContactRequest(data , postalcode) {
+    constructEditContactRequest(data, postalcode) {
         return {
             contactDetails: {
                 homeAddress: {

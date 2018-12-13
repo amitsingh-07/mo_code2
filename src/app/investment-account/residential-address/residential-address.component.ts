@@ -74,7 +74,6 @@ export class ResidentialAddressComponent implements OnInit {
     }
     this.addOrRemoveOtherControl(this.addressForm.get('mailingAddress').get('reason').value);
   }
-
   getReasoneList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.reasonList = data.objectList.differentAddressReason;
