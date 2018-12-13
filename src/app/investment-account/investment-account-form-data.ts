@@ -36,7 +36,8 @@ export class InvestmentAccountFormData {
     mailCity: string;
     mailState: string;
     mailZipCode: number;
-
+    resUploadedPath: string;
+    mailingUploadedPath: string;
     // SELECT NATIONLITY
     nationalityList: any;
     countryList: any;
@@ -99,11 +100,10 @@ export class InvestmentAccountFormData {
     otherSources: string;
     inheritanceGift: string;
     investmenteEarning: string;
-    investmentPeriod: string;
     earningsGenerated: string;
+    durationInvestment: string;
 
     // Additional declaration PEP
-    radioPep: any;
     fName: string;
     lName: string;
     cName: string;
@@ -132,4 +132,10 @@ export class InvestmentAccountFormData {
     MonthlyInvestmentAmount: number;
 
     callBackInvestmentAccount: boolean;
+
+    // Edit Bank
+    bank: any;
+    accountNumber: any;
+    bankUpdateId: any;
+    accountHolderName: any;
 }

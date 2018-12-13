@@ -22,7 +22,7 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investm
 
 import { HostListener } from '@angular/core';
 
-
+import { ConsoleLoggerService } from '../../shared/logger/console-logger.service';
 
 import { SignUpService } from '../../sign-up/sign-up.service';
 
@@ -33,22 +33,21 @@ import { SignUpService } from '../../sign-up/sign-up.service';
   encapsulation: ViewEncapsulation.None
 })
 export class YourInvestmentComponent implements OnInit {
+  totalPortfolio;
+  welcomeInfo;
   investmentoverviewlist: any;
-  totalPortfolioValue;
   portfolioList;
   totalReturnss;
-  summaryValues;
-
+  selectedDropDown;
   pageTitle: string;
-  NumberPortfolio = 2;
   moreList: any;
   PortfolioValues;
   portfolios;
   userProfileInfo;
   showAlretPopUp = false;
   selected;
-  summary;
-  constructor(
+ 
+ constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
@@ -62,7 +61,7 @@ export class YourInvestmentComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('TOPUP.TITLE');
+      this.pageTitle = this.translate.instant('YOUR_INVESTMENT.TITLE');
       this.setPageTitle(this.pageTitle);
     });
 
@@ -72,7 +71,7 @@ export class YourInvestmentComponent implements OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(2);
     this.getMoreList();
     this.getInvestmentOverview();
     this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -85,7 +84,7 @@ export class YourInvestmentComponent implements OnInit {
 
   }
   addPortfolio() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
 
   }
   yourPortfolio(portfolio) {
@@ -99,14 +98,18 @@ export class YourInvestmentComponent implements OnInit {
   getInvestmentOverview() {
     this.topupAndWithDrawService.getInvestmentOverview().subscribe((data) => {
       this.investmentoverviewlist = data.objectList;
-      this.totalPortfolioValue = this.investmentoverviewlist.totalPortfolioValue;
-      this.portfolioList = this.investmentoverviewlist.portfolios;
+      this.portfolioList = this.investmentoverviewlist.data.portfolios;
+      this.totalPortfolio = this.portfolioList.length;
+      this.welcomeInfo = { name: this.userProfileInfo.firstName, total: this.totalPortfolio };
+      console.log(this.portfolioList);
+      console.log(this.investmentoverviewlist.data.totalValue);
+      this.topupAndWithDrawService.setUserPortfolioList(this.portfolioList);
+      this.topupAndWithDrawService.setUserCashBalance(this.investmentoverviewlist.data.cashAccountDetails.availableBalance);
     });
   }
   fundYourAccount() {
-    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
-
-  }
+    //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+ }
 
   alertPopUp(i) {
     this.selected = i;
@@ -115,6 +118,15 @@ export class YourInvestmentComponent implements OnInit {
   ClosedPopup() {
     this.showAlretPopUp = false;
 
+  }
+  selectOption(option) {
+    if (option.id === 1) {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TRANSACTION]);
+    } else if (option.id === 2) {
+      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL]);
+    } else {
+      console.log('Transaction History');
+    }
   }
 
 }

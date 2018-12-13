@@ -2,10 +2,28 @@
 
 .withdraw {
 
+  .dropdown-control .btn-dropdown {
+    padding-right: 26px !important ;
+  }
+
+  .dropdown-control .dropdown-menu.show {
+    right: 0 !important;
+    overflow: auto;
+    
+    
+    }
+
+    .dropdown-item{
+      white-space:normal;
+    }
+
   .amount-panel{
     padding: 30px;
     background-color:#276f75;
     border-radius: 6px;
+    .input-control{
+      font-size: 22px;
+    }
   }
 
   .withdrawal-amount-lbl{
@@ -19,5 +37,10 @@
     text-align: right;
     font-size: 14px;
     color: #98dfdf;
+    font-family: $muli-italic;
+  }
+  .btn__footer--fixed{
+    font-size: 22px;
+    font-family: $muli-bold;
   }
 }

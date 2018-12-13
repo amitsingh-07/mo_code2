@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <form id="bankForm" name="bankForm" [formGroup]="bankForm">
+    <div class="content">
+
+      <!-- Account Holder Name -->
+      <div class="form-group">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <label class="form-lbl">Account Holders Name</label>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <input type="text" class="input-control grey" formControlName="accountHolderName" value="Kevin Goe" id="account_holder">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- text description -->
+      <div class="flex-row">
+        <div class="flex-col-12">
+          <label class="desc-lbl">Due to regulations, you can only withdraw funds to an account under your legal name.</label>
+        </div>
+      </div>
+
+      <!-- Bank name  -->
+      <div class="form-group">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <label for="residentialAddress-country-drpdown" class="bank_text" id="residentialAddress-country-lbl">Bank
+              Name</label>
+          </div>
+          <div class="flex-col-6">
+            <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(bankForm.controls.bank)}">
+              <div ngbDropdown>
+                <button class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                  ngbDropdownToggle>
+                  <span *ngIf="!bankForm.controls.bank.value">Select Bank</span>
+                  <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.name | titlecase}}</span>
+                </button>
+                <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                  <button class="dropdown-item" *ngFor="let bank of banks; let i = index;" (click)="setDropDownValue('bank',bank, i)"
+                    id="residentialAddress-country-option-{{i}}">{{bank.name | titlecase}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account  -->
+      <div class="form-group">
+        <div class="flex-row">
+          <div class="flex-col-6">
+            <label class="form-lbl bank_text">Account </label>
+          </div>
+          <div class="flex-col-6">
+            <div class="form-control">
+              <input type="text" class="input-control grey" formControlName="accountNo" id="account">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </form>
+</div>
+<button (click)="applyChanges(bankForm)" type="button" class="btn btn__footer--fixed btn-primary width100" id="forgotPasswordButton">{{buttonTitle}}</button>

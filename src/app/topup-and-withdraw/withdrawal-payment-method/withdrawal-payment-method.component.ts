@@ -29,6 +29,8 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   formValues: any;
   banks;
   userBankList;
+  userAddress;
+  hideAddBankAccount = true;
 
   constructor(
     public readonly translate: TranslateService,
@@ -48,6 +50,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   ngOnInit() {
     this.getLookupList();
     this.getUserBankList();
+    this.getUserAddress();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.buildForm();
   }
@@ -61,20 +64,26 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
 
   getLookupList() {
     this.topupAndWithDrawService.getAllDropDownList().subscribe((data) => {
-      this.banks = [
-        { id: 1, name: 'HDFC' },
-        { id: 2, name: 'ICICI' },
-        { id: 2, name: 'HSBC' }
-      ];
+      this.banks = data.objectList.bankList;
     });
   }
 
   getUserBankList() {
     this.topupAndWithDrawService.getUserBankList().subscribe((data) => {
-      this.userBankList = [
-        { id: 1, accountName: 'Kelvin Goh', bankName: 'hdfc', bankLogo: 'http://images.com/s.png', accountNo: 43620283740923 },
-        { id: 2, accountName: 'Mark Smith', bankName: 'icici', bankLogo: 'http://images.com/s.png', accountNo: 634221232328462 }
-      ];
+      if (data.responseMessage.responseCode >= 6000) {
+        this.userBankList = data.objectList;
+        if (this.userBankList.length > 0) {
+          this.hideAddBankAccount = false;
+        }
+      }
+    });
+  }
+
+  getUserAddress() {
+    this.topupAndWithDrawService.getUserAddress().subscribe((data) => {
+      if (data.responseMessage.responseCode >= 6000) {
+        this.userAddress = data.objectList.mailingAddress ? data.objectList.mailingAddress : data.objectList.homeAddress;
+      }
     });
   }
 
@@ -87,6 +96,12 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   selectMode(mode) {
+    if (mode === 'BANK') {
+      this.bankForm.controls['withdrawBank'].setValidators([Validators.required]);
+    } else {
+      this.bankForm.controls['withdrawBank'].clearValidators();
+    }
+    this.bankForm.controls['withdrawBank'].updateValueAndValidity();
     this.bankForm.controls.withdrawMode.setValue(mode);
   }
 
@@ -133,16 +148,35 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     ref.componentInstance.saved.subscribe((data) => {
       ref.close();
       this.topupAndWithDrawService.saveNewBank(data).subscribe((response) => {
-        // todo
+        if (response.responseMessage.responseCode >= 6000) {
+          this.getUserBankList(); // refresh updated bank list
+        }
       });
     });
     this.dismissPopup(ref);
   }
 
   saveWithdrawal() {
-    this.topupAndWithDrawService.saveWithdrawalRequest(this.formValues).subscribe((response) => {
-      this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
-    });
+    this.topupAndWithDrawService.sellPortfolio(this.formValues).subscribe((response) => {
+      if (response.responseMessage.responseCode < 6000) {
+        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
+          this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
+        }
+      } else {
+        this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.WITHDRAWAL_SUCCESS]);
+      }
+    },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
+      });
+  }
+
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
   }
 
   goToNext(form) {

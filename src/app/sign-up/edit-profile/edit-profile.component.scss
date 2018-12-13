@@ -25,11 +25,11 @@
   margin-top: -100px;
   .seperator{
     border-right: 0.5px solid #2d8289;
-    padding: 0 7px;
-    height: 34px;
-    width: 8px;
-    position: absolute;
-    bottom: 43px;
+    // padding: 16px 7px;
+    height: 28px;
+    width: 2px;
+    margin-top: 10px;
+    margin-left: 10px;
   }
 }
   .edit-profile-section-bg{
@@ -92,6 +92,7 @@
     line-height: 1.33;
     letter-spacing: -0.2px;
     color: #2d8289;
+    word-break: break-all;
   }
   .form-group-heading {
     object-fit: contain;
@@ -175,6 +176,7 @@
   }
   .section-margin{
    margin: 10px;
+   
   }
   .mailing-address{
     height: 66px;
@@ -295,6 +297,44 @@
     line-height: normal;
     letter-spacing: -0.3px;
     color: #868686;
-    border: solid 0.5px #bbbbbb;
+    border-bottom: solid 0.5px #bbbbbb;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
   }
+  .arrow {
+    display:block;
+    border-style: solid;
+    border-color:#00a7a7;
+    border-width: 0 0 2px 2px;
+    width: 10px;
+    height: 10px;
+    line-height: 0;
+    font-size: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    float:right;
+    margin-top:6px;
+}
+.arrow.active {
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+  margin-top:10px;
+}
+.no-bank-account{
+  font-family: Muli-Italic;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #a2cfcf;
+  margin: 50px 30px 30px 30px;
+}
+
   

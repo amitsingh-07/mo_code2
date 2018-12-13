@@ -18,7 +18,10 @@
 
   .inline-error{
     .btn{
-      &.btn-secondary{
+      &.btn-secondary{ &:active{
+        border: none !important;
+        color: #ffffff;
+      }
         background-color:#ff872f !important;
       }  
     }    
@@ -27,7 +30,7 @@
 
   .dropdown-control {
     .btn-dropdown {
-      color: #00a7a7;
+      color: #00a7a7 !important;
     }
     border-radius: 6px;
     position: relative;
@@ -51,6 +54,7 @@
   label {
     font-size: 18px;
     font-family: $muli-semi-bold;
+    padding-right: 10px;
   }
 
   .input-control {
@@ -103,14 +107,21 @@
         float: right;
       }
 
-      &:focus {
-        background-color: #ff730c !important;
-        color: #fff !important;
+      &:hover{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
-
-      &:active {
-        background-color: #ff730c !important;
-        color: #fff !important;
+      &:focus{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
+      }
+   
+      &:active{
+        background-color: #ff872f !important;
+        border: none !important;
+        color: #ffffff !important;
       }
 
     }
@@ -175,4 +186,22 @@
   .dropdown-item {
     white-space: normal;
   }
+}
+.dropdown-menu.show {
+  right: 0 !important;
+  overflow: auto;
+  height: auto;
+  max-height: 264px;
+    }
+  
+.dropdown-item {
+white-space: normal;
+word-break: break-all;
+}
+.dropdown-control .btn-dropdown {
+padding-right: 27px;
+max-height: 52px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }

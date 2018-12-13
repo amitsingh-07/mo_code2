@@ -22,4 +22,18 @@ describe('YourPortfolioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render Top Up content', async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#topup_button').textContent).toContain('Total Returns');
+  }));
+
+  it('testing the Top Up button', async(() => {
+    spyOn(component, 'gotoTopUp');
+    const button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    fixture.whenStable().then(() => {
+      expect(component.gotoTopUp).toHaveBeenCalled();
+    });
+  }));
 });

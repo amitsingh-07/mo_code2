@@ -20,6 +20,10 @@ export class CreateAccountFormError {
                 mobileRange : {
                         errorTitle: 'Invalid Mobile Number',
                         errorMessage: 'Invalid Mobile Number'
+                },
+                notChanged : {
+                        errorTitle: 'Not Changed',
+                        errorMessage: 'Update Mobile Number / Email address'
                 }
         },
         firstName: {
@@ -135,6 +139,34 @@ export class CreateAccountFormError {
                         errorTitle: 'Invalid password',
                         // tslint:disable-next-line:max-line-length
                         errorMessage: 'Password should contain at least 1 Uppercase & 1 Lowercase & 1 Number & 1 Symbol & 8-20 Alphanumeric Characters  '
+                }
+        },
+        bank: {
+                required : {
+                        errorTitle: 'bank required',
+                        errorMessage: 'Please select your bank'
+                }
+        },
+        accountNo: {
+                required : {
+                        errorTitle: 'AccountNO required',
+                        errorMessage: 'Please enter your Account No'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Account No',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Account Number should be 1 to 15 numeric values'
+                }
+        },
+        accountHolderName: {
+                required : {
+                        errorTitle: 'Account Holder Name required',
+                        errorMessage: 'Please enter your Name'
+                },
+                pattern : {
+                        errorTitle: 'Invalid Name',
+                        // tslint:disable-next-line:max-line-length
+                        errorMessage: 'Please enter your name'
                 }
         },
     };

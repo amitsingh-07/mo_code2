@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { ConfigService, IConfig } from './../../config/config.service';
 import { FooterService } from './footer.service';
 
 @Component({
@@ -10,8 +11,14 @@ import { FooterService } from './footer.service';
 })
 export class FooterComponent implements OnInit, AfterViewInit {
   showFooter = false;
-  constructor(private footerService: FooterService, private cdr: ChangeDetectorRef, public readonly translate: TranslateService) {
-                this.translate.use('en');
+  isMaintenanceEnabled = false;
+  constructor(
+    private footerService: FooterService, private cdr: ChangeDetectorRef,
+    public readonly translate: TranslateService, private configService: ConfigService) {
+    this.translate.use('en');
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.isMaintenanceEnabled = config.maintenanceEnabled;
+    });
   }
 
   ngOnInit() {

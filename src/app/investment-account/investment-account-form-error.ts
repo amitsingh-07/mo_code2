@@ -460,7 +460,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please enter Expected Amount Per Transaction.'
             }
         },
-        sources: {
+        source: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Source Of Investment Funds',
@@ -481,11 +481,11 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please enter Gift Inheritance.'
             }
         },
-        investmentPeriod: {
+        durationInvestment: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Investment Period.',
-                errorMessage: 'Please select Investment Period.'
+                errorMessage: 'Please enter Duration investment held for?.'
             }
         },
         earningsGenerated: {

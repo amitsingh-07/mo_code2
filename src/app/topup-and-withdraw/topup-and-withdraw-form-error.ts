@@ -1,6 +1,30 @@
 export class TopUpAndWithdrawFormError {
     formFieldErrors: object = {
         errorTitle: 'Error !',
+        oneTimeInvestmentAmount: {
+            required: {
+                errorTitle: 'Invalid Investment Amount',
+                errorMessage: 'Please enter Investment Amount.'
+            },
+        },
+        MonthlyInvestmentAmount: {
+            required: {
+                errorTitle: 'Invalid Investment Amount',
+                errorMessage: 'Please enter Investment Amount.'
+            },
+        },
+        portfolio: {
+            required: {
+                errorTitle: 'Invalid Portfolio',
+                errorMessage: 'Please select a Portfolio.'
+            },
+        },
+        Investment: {
+            required: {
+                errorTitle: 'Invalid Investment Type',
+                errorMessage: 'Please select One-time or Monthly Investment.'
+            },
+        },
         withdrawType: {
             required: {
                 errorTitle: 'Invalid Withdraw Type',

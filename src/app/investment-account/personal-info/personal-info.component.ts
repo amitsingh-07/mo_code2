@@ -102,6 +102,9 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       Validators.required],
       birthCountry: [{value: this.formValues.birthCountry,
         disabled: this.investmentAccountService.isDisabled('birthCountry')}, Validators.required],
+      passportIssuedCountry: [{value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
+        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
+        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')}, Validators.required],
       race: [{ value: this.formValues.race, disabled: this.investmentAccountService.isDisabled('race') },
       [Validators.required]]
     }, { validator: this.validateName() });
@@ -175,11 +178,12 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   private validateName() {
     return (group: FormGroup) => {
       const name = group.controls['firstName'].value + ' ' + group.controls['lastName'].value;
+      const name1 = group.controls['lastName'].value + ' ' + group.controls['firstName'].value;
       const fullName = group.controls['fullName'].value;
-      if (fullName !== name) {
-        return group.controls['firstName'].setErrors({ nameMatch: true });
-      } else {
+      if (fullName.toUpperCase() === name.toUpperCase() || fullName.toUpperCase() === name1.toUpperCase()) {
         return group.controls['firstName'].setErrors(null);
+      } else {
+        return group.controls['firstName'].setErrors({ nameMatch: true });
       }
     };
   }

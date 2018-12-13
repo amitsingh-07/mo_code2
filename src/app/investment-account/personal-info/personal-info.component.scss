@@ -16,6 +16,7 @@
   label {
     font-size: 18px;
     font-family: $muli-semi-bold;
+    padding-right: 5px; 
   }
 
   .input-control {
@@ -51,8 +52,6 @@
         margin-top: 6px;
       }
     }
-
-
   }
 
   .btn {
@@ -110,4 +109,26 @@
       font-size: 16px;
     }
   }
+  .fixed-btn--sm{
+    color: #99dbdb;
+  }
+  
+  .dropdown-menu.show {
+    right: 0 !important;
+    overflow: auto;
+    height: auto;
+    max-height: 264px;
+      }
+    
+.dropdown-item {
+  white-space: normal;
+  word-break: break-all;
+}
+.dropdown-control .btn-dropdown {
+  padding-right: 27px;
+  max-height: 52px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 }

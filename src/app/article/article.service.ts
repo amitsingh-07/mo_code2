@@ -17,10 +17,11 @@ export class ArticleService {
       const tag_name = this.getArticleTagName(element.tagId).tag_name;
       articleTags.push(tag_name);
     });
-
     const thisArticleEntry = {
       artId: data.artId,
       title: data.title,
+      summary: data.summary,
+      keywords: data.keywords,
       date: data.date,
       author: data.profile.author,
       tag: articleTags,

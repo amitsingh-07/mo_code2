@@ -14,7 +14,8 @@
             "RETRIEVE": "Retrieve",
             "VIEW_DETAILS": "View Details",
             "SAVE_AND_CONTINUE": "Save and Continue"
-          }
+        },
+        "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
     },
     "CREATE_ACCOUNT": {
         "TITLE": "Create Your Account",
@@ -48,7 +49,7 @@
             "ERROR_MESSAGE": "Your OTP is expired. Please click on Request New Code link to get new OTP"
         },
         "LOADING": {
-            "VERIFYING" : "Verifying...",
+            "VERIFYING": "Verifying...",
             "VERIFIED": "Mobile Verified!",
             "SENDING": "Sending New OTP"
         }
@@ -58,7 +59,7 @@
         "SUB_TITLE": "You may use Mobile Number / Email Address as your Login ID.",
         "FORM": {
             "PASSWORD": "Password",
-            "CONFIRM_PASSWORD": "Confirm Password"            
+            "CONFIRM_PASSWORD": "Confirm Password"
         },
         "ERROR_MESSAGE": {
             "TITLE": "Password Criteria",
@@ -66,18 +67,24 @@
             "UPPER_LOWER": "At least 1 Uppercase & 1 Lowercase",
             "NUMBER_SYMBOL": "At least 1 Number & 1 Symbol",
             "MATCH": "Passwords do not match"
-        }     
+        }
     },
     "EMAIL_VERIFICATION": {
         "LOADING": {
-            "VERIFYING" : "Verifying...",
+            "VERIFYING": "Verifying...",
             "VERIFIED": "Email Verified!"
         }
     },
     "ACCOUNT_CREATED": {
         "TITLE": "Account Created!",
         "SUB_TITLE1": "A verification link has been sent to your email address.",
-        "SUB_TITLE2": "Please verify your email address before logging in."    
+        "SUB_TITLE2": "Please verify your email address before logging in."
+    },
+    "ACCOUNT_UPDATED": {
+        "TITLE": "Account Updated!",
+        "SUB_TITLE1": "Mobile number updated successfully",
+        "SUB_TITLE2": "E-mail verification link has been sent to your email address. Please verify",
+        "EDIT_PROFILE": "Back to Edit Profile"
     },
     "LOGIN": {
         "WELCOME_LBL": "Welcome to MoneyOwl!",
@@ -92,21 +99,19 @@
     },
     "FORGOTPASSWORD": {
         "SUBMIT": "Submit",
-        "EMAIL":"Email Address",
-        "BACK_TO":"Back To Login",
-        "EMAIL_SENT":"Email Sent!",
-        "CHECK_EMAIL":"Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
-        "DESCRIPTION":"Enter your email to receive your password reset instructions.",
-        "TITLE":"Forgot Password",
-        "EMAIL_NOT_FOUND":"Email Not Found",
-        "EMAIL_NOT_FOUND_DESC":"The email you’ve entered doesn’t seem to exist in our database. Please try again."
-
-
+        "EMAIL": "Email Address",
+        "BACK_TO": "Back To Login",
+        "EMAIL_SENT": "Email Sent!",
+        "CHECK_EMAIL": "Please check your email for a link to reset your password. If you do not receive it, check your spam folder.",
+        "DESCRIPTION": "Enter your email to receive your password reset instructions.",
+        "TITLE": "Forgot Password",
+        "EMAIL_NOT_FOUND": "Email Not Found",
+        "EMAIL_NOT_FOUND_DESC": "The email you’ve entered doesn’t seem to exist in our database. Please try again."
     },
     "PRELOGIN": {
-      "TITLE": "Are you an existing MoneyOwl user?",
-      "YES_LOGIN": "Yes, Log In Now",
-      "CREATE_ACCOUNT": "No, Create Account"
+        "TITLE": "Are you an existing MoneyOwl user?",
+        "YES_LOGIN": "Yes, Log In Now",
+        "CREATE_ACCOUNT": "No, Create Account"
     },
     "RESIDENTIAL_ADDRESS": {
         "TITLE": "Residential Address",
@@ -120,19 +125,19 @@
         "STATE": "State / Province / Region",
         "ZIPCODE": "Zip Code",
         "ERROR": {
-          "POSTAL_CODE_TITLE": "Error !",
-          "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
+            "POSTAL_CODE_TITLE": "Error !",
+            "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
         },
         "POSTALCODE_EMPTY_ERROR": {
-          "TITLE": "Invalid Postal Code",
-          "MESSAGE": "Please enter your postal code."
+            "TITLE": "Invalid Postal Code",
+            "MESSAGE": "Please enter your postal code."
         },
         "POSTALCODE_NOT_FOUND_ERROR": {
-          "TITLE": "Invalid Postal Code",
-          "MESSAGE": "Please enter valid postal code."
+            "TITLE": "Invalid Postal Code",
+            "MESSAGE": "Please enter valid postal code."
         }
-      },
-      "UPLOAD_DOCUMENTS": {
+    },
+    "UPLOAD_DOCUMENTS": {
         "TITLE": "Upload Documents",
         "PAGE_SUB_CAPTION": "Help us verify your identity and prevent fraud.",
         "PROOF_OF_IDENTITY": "Proof Of Identity",
@@ -149,33 +154,33 @@
         "UPLOADED": "Uploaded",
         "NO_FILE_SELECTED": "no file selected",
         "MODAL": {
-          "MAILING_ADDRESS_PROOF": {
-            "TITLE": "Proof Of Mailing Address",
-            "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
-          },
-          "RES_ADDRESS_PROOF": {
-            "TITLE": "Proof Of Residential Address",
-            "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
-          },
-          "UPLOAD_LATER": {
-            "TITLE": "Upload Documents Later?",
-            "MESSAGE": "<p>You may save your progress and log in later to upload your verification documents. However, this will delay the set up of your investment account.</p><p>Would you like to continue?</p>",
-            "CONFIRM_PROCEED": "Yes! Upload Later"
-          },
-          "UPLOADING_LOADER": {
-            "TITLE": "Uploading",
-            "MESSAGE": "Please be patient, upload may take a few minutes."
-          },
-          "FILE_SIZE_EXCEEDED": {
-            "TITLE": "Error !",
-            "MESSAGE": "File of size more than 2 MB is not allowed."
-          },
-          "FILE_TYPE_MISMATCH": {
-            "TITLE": "Error !",
-            "MESSAGE": "The selected file type is not allowed."
-          }
+            "MAILING_ADDRESS_PROOF": {
+                "TITLE": "Proof Of Mailing Address",
+                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current mailing address and be dated no more than 90 days prior to today’s date.</p></p>You may use utility bills, phone bills, credit card bills etc.</p>"
+            },
+            "RES_ADDRESS_PROOF": {
+                "TITLE": "Proof Of Residential Address",
+                "MESSAGE": "<p>This document must be from a billing organisation and clearly display your name, current residential address and be dated no more than 90 days prior to today’s date.You may use utility bills, phone bills, credit card bills etc.</p>"
+            },
+            "UPLOAD_LATER": {
+                "TITLE": "Upload Documents Later?",
+                "MESSAGE": "<p>You may save your progress and log in later to upload your verification documents. However, this will delay the set up of your investment account.</p><p>Would you like to continue?</p>",
+                "CONFIRM_PROCEED": "Yes! Upload Later"
+            },
+            "UPLOADING_LOADER": {
+                "TITLE": "Uploading",
+                "MESSAGE": "Please be patient, upload may take a few minutes."
+            },
+            "FILE_SIZE_EXCEEDED": {
+                "TITLE": "Error !",
+                "MESSAGE": "File of size more than 2 MB is not allowed."
+            },
+            "FILE_TYPE_MISMATCH": {
+                "TITLE": "Error !",
+                "MESSAGE": "The selected file type is not allowed."
+            }
         }
-      },
+    },
     "UPDATE_USER_ID": {
         "TITLE": "Update User ID",
         "YOUR_USER_ID": "Your User ID",
@@ -190,7 +195,8 @@
             "YOUR_ADVISOR": "Your Advisor"
         },
         "INVESTMENT": {
-            "TITLE": "Investment",
+            "TITLE_MY_INVESTMENT": "My Investment",
+            "TITLE_INVESTMENT": "Investment",
             "VIEW_ALL": "View all",
             "CREATE_YOUR_PORTFOLIO": "Create Your Portfolio",
             "CREATE_YOUR_PORTFOLIO_DESC": "Answer a few questions to  determine the portfolio most suited to you!",

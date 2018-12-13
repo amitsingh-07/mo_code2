@@ -1,6 +1,6 @@
 <div class="employement-details">
 
-  <div class="step-indicator-container" *ngIf="!isEditProfile" >
+  <div class="step-indicator-container" *ngIf="!isEditProfile">
     <div class="container-fluid">
       <app-step-indicator [count]="9" [activeStepIndex]="2"></app-step-indicator>
     </div>
@@ -19,19 +19,24 @@
             <div class="form-group">
               <div class="flex-row">
                 <div class="flex-col-5">
-                  <label for="employement_details_status" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.EMPLOYEMEN_STATUS' | translate}}
+                  <label for="employement_details_status" id="employement_details_status-lbl">{{
+                    'EMPLOYMENT_DETAILS.EMPLOYEMEN_STATUS' | translate}}
                   </label>
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                      <button *ngIf="!employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border grey"
+                        id="employement_details_status-drpdown" ngbDropdownToggle>
+                        Select
+                      </button>
+                      <button *ngIf="employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border grey"
+                        id="employement_details_status-drpdown" ngbDropdownToggle>
                         {{employementDetailsForm.controls.employmentStatus.value}}
-
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let empStatus of employementStatusList; let i = index;" (click)="setEmployementStatus('employmentStatus', empStatus.name)"
-                          id="employement_details-employment-option-{{i}}">{{empStatus.name}}</button>
+                        <button class="dropdown-item" *ngFor="let empStatus of employementStatusList; let i = index;"
+                          (click)="setEmployementStatus('employmentStatus', empStatus.name)" id="employement_details-employment-option-{{i}}">{{empStatus.name}}</button>
                       </div>
                     </div>
                   </div>
@@ -39,8 +44,8 @@
               </div>
             </div>
             <!-- Company name -->
-            <div *ngIf="showEmploymentControls">
-              <div class="flex-row mb10">
+            <div>
+              <div class="flex-row mb10" *ngIf="employementDetailsForm.get('companyName')">
                 <div class="flex-col-5">
                   <label for="name" id="employment_company_name">{{ 'EMPLOYMENT_DETAILS.COMPANY_NAME' | translate}}
                   </label>
@@ -51,19 +56,22 @@
               </div>
 
               <!-- Industry -->
-              <div class="form-group">
+              <div class="form-group" *ngIf="employementDetailsForm.get('industry')">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <label for="employement_details_status" id="employment_details_industry-lbl">{{ 'EMPLOYMENT_DETAILS.INDUSTRY' | translate}}
+                    <label for="employement_details_status" id="employment_details_industry-lbl">{{
+                      'EMPLOYMENT_DETAILS.INDUSTRY' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-7">
                     <div class="dropdown-control employe-dropdown-control" [ngClass]="{'inline-error': !employementDetailsForm.get('industry').valid && !employementDetailsForm.get('industry').pristine}">
                       <div ngbDropdown>
-                        <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                        <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown"
+                          ngbDropdownToggle>
 
                           <span *ngIf="!employementDetailsForm.controls.industry.value">Select Industry</span>
-                          <span *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry | titlecase}}</span>
+                          <span *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry
+                            | titlecase}}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of industryList let i = index;" (click)="setIndustryValue('industry',option,i)"
@@ -76,18 +84,21 @@
               </div>
 
               <!-- Occupation -->
-              <div class="form-group">
+              <div class="form-group" *ngIf="employementDetailsForm.get('occupation')">
                 <div class="flex-row">
                   <div class="flex-col-5">
-                    <label for="employement_details_occupation_lab" id="employement_details_status-lbl">{{ 'EMPLOYMENT_DETAILS.OCCUPATION' | translate}}
+                    <label for="employement_details_occupation_lab" id="employement_details_status-lbl">{{
+                      'EMPLOYMENT_DETAILS.OCCUPATION' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('occupation').enabled && !employementDetailsForm.get('occupation').valid && !employementDetailsForm.get('occupation').pristine}">
                     <div class="dropdown-control employe-dropdown-control">
                       <div ngbDropdown>
-                        <button [disabled]="isDisabled()" class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown" ngbDropdownToggle>
+                        <button [disabled]="isDisabled()" class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown"
+                          ngbDropdownToggle>
                           <span *ngIf="!employementDetailsForm.controls.occupation.value">Select Occupation</span>
-                          <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation | titlecase}}</span>
+                          <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation
+                            | titlecase}}</span>
                         </button>
                         <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                           <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue('occupation',option,i)"
@@ -99,9 +110,10 @@
                 </div>
               </div>
 
-              <div class="flex-row mb10">
+              <div class="flex-row mb10" *ngIf="employementDetailsForm.get('contactNumber')">
                 <div class="flex-col-5">
-                  <label for="name" id="employement_contact_number_Lbl">{{ 'EMPLOYMENT_DETAILS.CONTACT_NUMBER' | translate}}
+                  <label for="name" id="employement_contact_number_Lbl">{{ 'EMPLOYMENT_DETAILS.CONTACT_NUMBER' |
+                    translate}}
                   </label>
                 </div>
                 <div class="flex-col-7" [ngClass]="{'inline-error': !employementDetailsForm.get('contactNumber').valid && !employementDetailsForm.get('contactNumber').pristine}">
@@ -109,150 +121,144 @@
                   <input type="text" formControlName="contactNumber" id="employement_status_company_name_input" class="form-control">
                 </div>
               </div>
-
-
-              <!-- button -->
-              <div class="form-group-single-column  mb10 flex-col">
-                <div class="checkbox-button two-label">
-                  <input id="residentialAddress_mailingsame_radio" name="isEmployeAddresSame" (change)="addOrRemoveMailingAddress()" type="checkbox"
-                    class="field checkbox" formControlName="isEmployeAddresSame" value="true">
-                  <label for="residentialAddress_mailingsame_radio" id="employmentAddress_mailingsame_lbl">
-                    <div class="input-label-black" id="employment_details_optionhead_lbl">{{ 'EMPLOYMENT_DETAILS.EMPLOYERS_ADDRESS' | translate}}</div>
-                    <div class="input-label-normal" id="employment_details_optionhead_desc">{{ 'EMPLOYMENT_DETAILS.SAME_AS_MAILING_ADDRESS' | translate}}</div>
-                  </label>
-                </div>
-              </div>
-
-
-
-
-              <div *ngIf="!employementDetailsForm.get('isEmployeAddresSame').value" formGroupName="employeaddress">
-                <!-- COUNTRY -->
-                <div class="form-group">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailcountry-drpdown" id="employment_details-mailcountry-lbl">{{ 'EMPLOYMENT_DETAILS.COUNTRY' | translate}}</label>
-                    </div>
-                    <div class="flex-col-7">
-                      <div class="dropdown-control">
-                        <div ngbDropdown>
-                          <button class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown" ngbDropdownToggle>{{employementDetailsForm.controls.employeaddress.controls.empCountry.value.name | titlecase}}
-                          </button>
-                          <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                            <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('empCountry', country,'employeaddress')"
-                              id="employment_details-country-option-{{i}}">{{country.name| titlecase}}</button>
-                          </div>
-                        </div>
+              <div>
+                <div *ngIf="employementDetailsForm.get('employeaddress')" formGroupName="employeaddress">
+                  <!-- COUNTRY -->
+                  <div class="form-group">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailcountry-drpdown" id="employment_details-mailcountry-lbl">{{
+                          'EMPLOYMENT_DETAILS.COUNTRY' | translate}}</label>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- POSTAL CODE -->
-                <div class="form-group" *ngIf="isUserNationalitySingapore">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailpostalcode-drpdown" id="employment_details-mailpostalcode-lbl">{{ 'EMPLOYMENT_DETAILS.POSTAL_CODE' | translate}}</label>
-                    </div>
-                    <div class="flex-col-7">
-
-                      <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empPostalCode)}">
-                        <div class="postal-code-control">
-                          <div class="control" >
-                            <input type="text" class="input-control grey" formControlName="empPostalCode" id="employment_details-mailpostalcode-txt"
-                            />
-                          </div>
-                          <div class="col-5">
-                            <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
-                              class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                      <div class="flex-col-7">
+                        <div class="dropdown-control">
+                          <div ngbDropdown>
+                            <button class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                              ngbDropdownToggle>{{employementDetailsForm.controls.employeaddress.controls.empCountry.value.name
+                              | titlecase}}
                             </button>
+                            <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
+                              <button class="dropdown-item" *ngFor="let country of countries; let i = index;" (click)="setDropDownValue('empCountry', country,'employeaddress')"
+                                id="employment_details-country-option-{{i}}">{{country.name| titlecase}}</button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- ADDRESS 1 -->
-                <div class="form-group">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailaddress1-txt" id="employment_details-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1' | translate}}</label>
-                    </div>
-                    <div class="flex-col-7">
-                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress1)}">
-                        <input type="text" class="input-control grey" formControlName="empAddress1" id="employment_details-mailaddress1-txt" />
+                  <!-- POSTAL CODE -->
+                  <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empPostalCode')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailpostalcode-drpdown" id="employment_details-mailpostalcode-lbl">{{
+                          'EMPLOYMENT_DETAILS.POSTAL_CODE' | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+
+                        <div class="form-control with-button" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empPostalCode)}">
+                          <div class="postal-code-control">
+                            <div class="control">
+                              <input type="text" class="input-control grey" formControlName="empPostalCode" id="employment_details-mailpostalcode-txt" />
+                            </div>
+                            <div class="col-5">
+                              <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
+                                class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-
-                <!-- ADDRESS 2 -->
-                <div class="form-group">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailaddress2-txt" id="employment_details-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2' | translate}}</label>
-                    </div>
-                    <div class="flex-col-7">
-                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress2)}">
-                        <input type="text" class="input-control grey" formControlName="empAddress2" id="employment_details-mailaddress2-txt" />
+                  <!-- ADDRESS 1 -->
+                  <div class="form-group">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailaddress1-txt" id="employment_details-mailaddress1-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_1'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress1)}">
+                          <input type="text" class="input-control grey" formControlName="empAddress1" id="employment_details-mailaddress1-txt" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- UNIT NO -->
-                <div class="form-group" *ngIf="isUserNationalitySingapore">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailunitno-txt" id="employment_details-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO' | translate}}</label>
-                    </div>
-                    <div class="flex-col-7">
-                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empUnitNo)}">
-                        <input type="text" class="input-control grey" formControlName="empUnitNo" id="employment_details-mailunitno-txt" />
+
+                  <!-- ADDRESS 2 -->
+                  <div class="form-group">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailaddress2-txt" id="employment_details-mailaddress2-lbl">{{'EMPLOYMENT_DETAILS.ADDRESS_2'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress2)}">
+                          <input type="text" class="input-control grey" formControlName="empAddress2" id="employment_details-mailaddress2-txt" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- CITY -->
-                <div class="form-group" *ngIf="!isUserNationalitySingapore">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailcity-txt" id="employment_details-mailcity-lbl">{{'EMPLOYMENT_DETAILS.CITY' | translate}}</label>
-                    </div>
-                    <div class="flex-col-7">
-                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empCity)}">
-                        <input type="text" class="input-control grey" formControlName="empCity" id="employment_details-mailcity-txt" />
+                  <!-- UNIT NO -->
+                  <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empUnitNo')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailunitno-txt" id="employment_details-mailunitno-lbl">{{'EMPLOYMENT_DETAILS.UNIT_NO'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empUnitNo)}">
+                          <input type="text" class="input-control grey" formControlName="empUnitNo" id="employment_details-mailunitno-txt" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- STATE -->
-                <div class="form-group" *ngIf="!isUserNationalitySingapore">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailstate-txt" id="employment_details-mailstate-lbl">{{'EMPLOYMENT_DETAILS.STATE' | translate}}</label>
-                    </div>
-                    <div class="flex-col-7">
-                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empState)}">
-                        <input type="text" class="input-control grey" formControlName="empState" id="employment_details-mailstate-txt" />
+                  <!-- CITY -->
+                  <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empCity')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailcity-txt" id="employment_details-mailcity-lbl">{{'EMPLOYMENT_DETAILS.CITY'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empCity)}">
+                          <input type="text" class="input-control grey" formControlName="empCity" id="employment_details-mailcity-txt" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- ZIP CODE -->
-                <div class="form-group" *ngIf="!isUserNationalitySingapore">
-                  <div class="flex-row">
-                    <div class="flex-col-5">
-                      <label for="employment_details-mailzipcode-txt" id="employment_details-mailzipcode-lbl">{{'EMPLOYMENT_DETAILS.ZIPCODE' | translate}}</label>
+                  <!-- STATE -->
+                  <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empState')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailstate-txt" id="employment_details-mailstate-lbl">{{'EMPLOYMENT_DETAILS.STATE'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empState)}">
+                          <input type="text" class="input-control grey" formControlName="empState" id="employment_details-mailstate-txt" />
+                        </div>
+                      </div>
                     </div>
-                    <div class="flex-col-7">
-                      <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empZipCode)}">
-                        <input type="text" class="input-control grey" formControlName="empZipCode" id="employment_details-mailzipcode-txt" />
+                  </div>
+
+                  <!-- ZIP CODE -->
+                  <div class="form-group" *ngIf="employementDetailsForm.get('employeaddress').get('empZipCode')">
+                    <div class="flex-row">
+                      <div class="flex-col-5">
+                        <label for="employment_details-mailzipcode-txt" id="employment_details-mailzipcode-lbl">{{'EMPLOYMENT_DETAILS.ZIPCODE'
+                          | translate}}</label>
+                      </div>
+                      <div class="flex-col-7">
+                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empZipCode)}">
+                          <input type="text" class="input-control grey" formControlName="empZipCode" id="employment_details-mailzipcode-txt" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -262,11 +268,12 @@
 
 
 
-            <button *ngIf="!isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-              id="getStrdBtn3">{{ 'COMMON.LABEL.CONTINUE' | translate}}</button>
-              <button *ngIf="isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
-              id="getStrdBtn3">Apply Changes</button>
-              
+            <button *ngIf="!isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">{{
+              'COMMON.LABEL.CONTINUE' | translate}}</button>
+            <button *ngIf="isEditProfile" type="button" id="employment_details_btn" (click)="goToNext(employementDetailsForm)"
+              class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100" id="getStrdBtn3">Apply Changes</button>
+
           </form>
         </div>
       </div>

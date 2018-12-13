@@ -10,6 +10,7 @@ export class TopUpAndWithdrawFormData {
     topupValues: any;
     fundDetails: any;
     PortfolioValues: any;
+    minimumBalanceOfTopup: number;
 
     // withdraw
     withdrawType: any;
@@ -17,4 +18,8 @@ export class TopUpAndWithdrawFormData {
     withdrawPortfolio: any;
     withdrawMode: string;
     withdrawBank: any;
+
+    userPortfolios: any;
+    selectedPortfolioForTopup: any;
+    cashAccountBalance: number;
 }

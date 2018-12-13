@@ -9,10 +9,9 @@
             }
             .btn{
                 &.btn-primary{
-                    white-space:normal;
                     padding: 14px;
                     font-family: $muli-bold;
-                    font-size: 18px;
+                    font-size: 22px;
                     color: $white-color;
                     font-weight: bold;
                     line-height: 1.22;
@@ -138,4 +137,12 @@
             display:block;
         }
     }
+    .btn{
+        &.btn-primary{
+            &.btn__footer--fixed{
+                font-family: $muli-bold;
+            }
+        }
+    }
+   
 }

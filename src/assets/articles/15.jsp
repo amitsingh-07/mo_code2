@@ -1,5 +1,5 @@
 <img src="/assets/articles/images/15/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;">
-<p>When it comes to insurance, most  people are familiar with the standard benefits like <a href="https://www.moneyowl.com.sg/#/direct" target="_blank" title="Compare Protection Plans Now">death</a>, critical illnesses  (e.g. cancer, heart attack) and hospitalisation. Yes, these are indeed important  life risks that we ought to insure against. The financial impact can be  disastrous if we die too early, not leaving enough for dependants&rsquo; living  expenses or be saddled with huge medical bills from treatment of serious  illnesses. However, most people seem to have missed out one other important  risk factor: disability.<br><br>
+<p>When it comes to insurance, most  people are familiar with the standard benefits like death, critical illnesses  (e.g. cancer, heart attack) and hospitalisation. Yes, these are indeed important  life risks that we ought to insure against. The financial impact can be  disastrous if we die too early, not leaving enough for dependants&rsquo; living  expenses or be saddled with huge medical bills from treatment of serious  illnesses. However, most people seem to have missed out one other important  risk factor: disability.<br><br>
 
 If an accident or illness happens,  resulting in our being unable to work, we would have lost one of our biggest  assets - our income earning capacity. <br>
 </p><br>
@@ -46,7 +46,7 @@ If an accident or illness happens,  resulting in our being unable to work, we wo
 <ul class="bluedot">
 	<li>
 		<p><strong>Not easy  for insurance advisors to explain to consumers. </strong></p>
-        <p>Indeed Disability Income  policies are more complex than the  <a href="https://www.moneyowl.com.sg/#/direct" target="_blank" title="Compare Protection Plans Now">standard death and critical illness policies</a>. It is not easy to explain, in definite terms, to what extent the  disability must be before the income benefit continues to be payable after 2  years (see point b). </p>
+        <p>Indeed Disability Income  policies are more complex than the  standard death and critical illness policies. It is not easy to explain, in definite terms, to what extent the  disability must be before the income benefit continues to be payable after 2  years (see point b). </p>
 		<p>What is meant by a  reasonable occupation by virtue of &lsquo;training, education or experience?&rsquo; It is  too general and subjective to accept. In assessing claims, insurance companies rely  on their in-house objective judgement together with medical and other  professionals&rsquo; opinions. </p>
 		<p>Unfortunately, that  is the nature of such insurance. Important but difficult to explain. As such,  many advisors may prefer to avoid this insurance and go for those easier to  market.</p>
 	</li>

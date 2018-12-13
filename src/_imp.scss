@@ -57,6 +57,9 @@
   color: #e57300 !important;
 }
 
+.word-break {
+  word-break: break-all;
+}
 @include allmobiles{
   .sm-text-align-center{
     text-align:center !important;
@@ -196,6 +199,10 @@
 
 .pr0 {
   padding-right: 0 !important;
+}
+
+.pr5 {
+  padding-right: 5px !important;
 }
 
 .pr20 {

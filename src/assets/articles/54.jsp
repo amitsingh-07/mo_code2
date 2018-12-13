@@ -1,17 +1,23 @@
 <img src="/assets/articles/images/54/thumbnail.jpg" class="pull-right thumbnail" style=" padding:10px;" alt="Cost of Child's Future Education Image">
 
-	<p>The transition into parenthood is a time that  provides parents with immense joy. It is also the start of a long journey that  demands great sacrifice. </p><p>
+  <p>The transition into parenthood is a time that  provides parents with immense joy. It is also the start of a long journey that  demands great sacrifice. </p>
+  <br/>
+  <p>
   As a quote goes, &ldquo;<em>Until you become a parent, you can't begin to discover your capacity  for strength, love and fatigue</em>.&rdquo; </p>
-	<p>
+  <br/>
+  <p>
   Of the many heavy responsibilities that comes  with parenthood, it includes the financial demands of having a child. A report  in 2016 estimated that raising a child in Singapore would cost S$360,000 on  average and up to S$1milllion on the high end. A bulk of the amount is  attributed to the provision for a child&rsquo;s tertiary education tuition fees and  expenses. </p><p>
   And as the government increases the number of  university places to 40% of each cohort in 3 years&rsquo; time, everyone wants to get a university degree and everyone wants to plan for their children to attend University.</p>
+  <br/>
   <p>
   No doubt, the provision of children&rsquo;s university education cost is one of parents&rsquo; top worries. </p>
   <br><br>
 <h2 class="primary-color"><strong>Cost of University Education in 2017</strong></h2>
   <p>The entire cost of university education cost  is made up of 2 components; Tuition Fees and Cost of Living. </p>
+  <br/>
 <ol>
   <li>Tuition  fees: This is the amount a student has to pay throughout their candidature. The  fees are reviewed by the Universities every year and is charged at the rate prevailing  at the time one accepts his/her offer of admission</li>
+  <br/>
   <li>Cost  of living: It includes estimated cost of books, supplies, transportation,  meals, personal expenses and optional on-campus accommodation. </li>
 </ol>
 
@@ -76,8 +82,11 @@
 <h2 class="primary-color"><strong>Total  Cost of University Education in 2017 </strong></h2>
 <p>4 years Non-medicine course for a  Singaporean= $41,029+ ($6,000 x 4)<br>
   <strong>=$65,029</strong></p>
+  <br/>
 <p>As it stands, the total cost of University education costs $65,000 which is almost the cost of an entry level car! If a couple were to save $500 monthly towards their child's education, it would take them almost 11 years to reach this amount.</p>
+<br/>
 <p>Let's look at how tuition fees have increased  over the years and determine the education inflation rate. </p>
+<br/>
 <p>Based on our 1st table, we can derive  this: </p>
 <div class="table-responsive" >
       <table class="table table-bordered table-condensed text-xs-center">
@@ -157,12 +166,14 @@
 <h2  class="primary-color"><strong>The Total  Cost of University Education in 2035</strong></h2>
 <p>Non-medicine course (4 years) for a  Singaporean=<br>
   <strong>S$131,737</strong></p>
+  <br/>
 <p>Setting aside S$130,000 is not a simple  affair for most people. If you have intentions to save for your child's  overseas studies in Australia, United Kingdom or the United States of America,  the amount you need could be tripled!</p>
+<br/>
 <p> Saving for your child's tertiary education  demands you to plan as soon as possible so that you have a longer run way to  save and grow your savings. Start early so you have the greatest chance in  providing your child with this important opportunity that he/she may need. </p>
 
  
  <br>
-  <small><strong>Notes: </strong></small><br>
+  <small><strong>Notes: </strong></small>
  <small>
   Tuition  fees have been computed based on the average of the following courses. Non-medicine:  NUS (Arts and Social Sciences, Business and Law), NTU (Accountancy and Business  and others), SMU (Law &amp; all others). Medicine:  NUS</small>
 <br><br>

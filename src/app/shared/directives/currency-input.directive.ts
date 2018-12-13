@@ -8,6 +8,8 @@ import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angu
 
 export class CurrencyInputDirective implements AfterViewInit {
     @Input() maxLength;
+    @Input() decimalFormat;
+    @Input() allowDecimal;
     [x: string]: any;
 
     constructor(
@@ -20,7 +22,8 @@ export class CurrencyInputDirective implements AfterViewInit {
 
     @HostListener('keyup', ['$event'])
     onKeyUp(event: KeyboardEvent) {
-        this.el.nativeElement.value = this.el.nativeElement.value.replace(/[^0-9]/g, '');
+        const regPattern = this.allowDecimal ? /[^0-9.]/g : /[^0-9]/g;
+        this.el.nativeElement.value = this.el.nativeElement.value.replace(regPattern, '');
     }
 
     @HostListener('focus', ['$event'])
@@ -43,7 +46,7 @@ export class CurrencyInputDirective implements AfterViewInit {
         currentElement = currentElement.replace(new RegExp('[,]', 'g'), '');
         if (!isNaN(currentElement) && currentElement != null && currentElement !== '') {
             const Regexp = new RegExp('[' + this.currencySymbol + ',]', 'g');
-            currentElement = this.decimalPipe.transform((currentElement).replace(Regexp, ''));
+            currentElement = this.decimalPipe.transform((currentElement).replace(Regexp, ''), this.decimalFormat);
             this.el.nativeElement.value = currentElement === '' ? 0 : currentElement;
         } else {
             this.el.nativeElement.value = 0;

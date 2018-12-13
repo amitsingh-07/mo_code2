@@ -24,6 +24,7 @@
   label {
     font-size: 18px;
     font-family: $muli-semi-bold;
+    padding-right: 10px;
   }
 
   .input-control {
@@ -148,8 +149,34 @@
     
    
   }
+  .dropdown-menu.show {
+    right: 0 !important;
+    overflow: auto;
+    height: auto;
+    max-height: 264px;
+      }
+    
+      .dropdown-menu.show {
+        right: 0 !important;
+        overflow: auto;
+        height: auto;
+        max-height: 264px;
+          }
+        
+    .dropdown-item {
+      white-space: normal;
+      word-break: break-all;
+    }
+    .dropdown-control .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 }
 .form-group-with-bg--content-label{
     font-size: 18px;
-font-family: "Muli Semi Bold", sans-serif;
+    font-family: "Muli Semi Bold", sans-serif;
+    padding-right: 10px;
 }

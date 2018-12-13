@@ -1,36 +1,37 @@
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../../portfolio/portfolio-routes.constants';
 import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
 import {
-  BreakdownAccordionComponent
+    BreakdownAccordionComponent
 } from '../../shared/components/breakdown-accordion/breakdown-accordion.component';
 import {
-  BreakdownBarComponent
+    BreakdownBarComponent
 } from '../../shared/components/breakdown-bar/breakdown-bar.component';
 import { LoaderComponent } from '../../shared/components/loader/loader.component';
 import { HeaderService } from '../../shared/header/header.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+import { FundDetails } from '../../topup-and-withdraw/fund-your-account/fund-details';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 import {
-  AccountCreationErrorModalComponent
+    AccountCreationErrorModalComponent
 } from '../account-creation-error-modal/account-creation-error-modal.component';
-import { FundDetails } from '../fund-your-account/fund-details';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 import {
-  EditInvestmentModalComponent
+    EditInvestmentModalComponent
 } from './edit-investment-modal/edit-investment-modal.component';
 import { FeesModalComponent } from './fees-modal/fees-modal.component';
 
@@ -97,15 +98,18 @@ export class ConfirmPortfolioComponent implements OnInit {
     });
   }
 
-  constructFundingParams(data): FundDetails {
+  constructFundingParams(data) {
     const topupValues = {
+      source: 'FUNDING',
+      portfolio: {
+        productName: data.portfolioName,
+        riskProfile: data.riskProfile
+      },
       oneTimeInvestment: data.initialInvestment,
       monthlyInvestment: data.monthlyInvestment,
-      investmentAmount: 0,
-      fundingAmount: 0,
-      fundingType: '',
-      source: 'FUNDING',
-      portfolio: data.riskProfile.type
+      fundingType: '', // todo
+      isAmountExceedBalance: 0,
+      exceededAmount: 0
     };
     return topupValues;
   }
@@ -210,10 +214,8 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   showInvestmentAccountErrorModal(errorList) {
     const errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.TITLE');
-    const errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.ACCOUNT_CREATION_ERROR_MODAL.DESCRIPTION');
     const ref = this.modal.open(AccountCreationErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = errorTitle;
-    ref.componentInstance.errorMessage = errorMessage;
     ref.componentInstance.errorList = errorList;
   }
 
@@ -236,37 +238,35 @@ export class ConfirmPortfolioComponent implements OnInit {
     if (pepData == true) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
-      this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
-        // CREATE INVESTMENT ACCOUNT
-        console.log('Attempting to create ifast account');
-        this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
-          if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
-            if (response.responseMessage.responseCode === 5018
-              || response.responseMessage.responseCode === 5019) {
-              const errorResponse = response.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
+      // CREATE INVESTMENT ACCOUNT
+      console.log('Attempting to create ifast account');
+      this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
+        if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
+          if (response.responseMessage.responseCode === 5018
+            || response.responseMessage.responseCode === 5019) {
+            const errorResponse = response.responseMessage.responseDescription;
+            this.showCustomErrorModal('Error!', errorResponse);
+          } else {
+            const errorResponse = response.objectList[response.objectList.length - 1];
+            const errorList = errorResponse.serverStatus.errors;
+            this.showInvestmentAccountErrorModal(errorList);
+          }
+        } else { // SUCCESS SCENARIO
+          if (response.objectList[response.objectList.length - 1]) {
+            if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
+              this.investmentAccountService.setAccountSuccussModalCounter(0);
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
             } else {
-              const errorResponse = response.objectList[response.objectList.length - 1];
-              const errorList = errorResponse.serverStatus.errors;
-              this.showInvestmentAccountErrorModal(errorList);
-            }
-          } else { // SUCCESS SCENARIO
-            if (response.objectList[response.objectList.length - 1]) {
-              if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
-              } else {
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
-              }
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
             }
           }
-        },
-          (err) => {
-            const ref = this.modal.open(ErrorModalComponent, { centered: true });
-            ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
-            ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
-          });
-      });
+        }
+      },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+        });
     }
   }
 }
