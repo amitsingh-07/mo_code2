@@ -245,9 +245,9 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid NRIC Number',
                 errorMessage: 'Please enter NRIC Number.'
             },
-            pattern: {
+            nric: {
                 errorTitle: 'Invalid NRIC Number',
-                errorMessage: 'NRIC Number you have entered is in invalid format.'
+                errorMessage: 'NRIC Number you have entered is invalid.'
             }
         },
         passportNumber: {
