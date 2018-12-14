@@ -40,7 +40,8 @@
 
       <!-- TRANSFER DETAILS -->
       <div class="transfer-details">
-        <div *ngIf="!oneTimeSufficient()">
+
+        <div *ngIf=!oneTimeOrMonthlySufficient()>
           <div class="tab-links">
             <div class="tab-link-item active" [class.active]="activeMode == 'BANK'" (click)="selectFundingMethod('BANK')">
               {{ 'FUND_YOUR_ACCOUNT.VIA_BANK' | translate }}
@@ -83,9 +84,14 @@
                     </div>
 
                     <div *ngIf="fundDetails.monthlyInvestment">
-                      <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH'
-                      | translate }}
-
+                      <div *ngIf="fundDetails.isAmountExceedBalance">
+                        <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH'
+                        | translate }}
+                      </div>
+                      <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.monthlyInvestment">
+                        <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH'
+                        | translate }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -148,17 +154,26 @@
                   </div>
 
                   <div class="investment-values" *ngIf="fundDetails.source == 'TOPUP'">
-                    <div *ngIf="fundDetails.isAmountExceedBalance">
-                      <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
-                      </span>
+                    <div *ngIf="fundDetails.oneTimeInvestment">
+                      <div *ngIf="fundDetails.isAmountExceedBalance">
+                        <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+                        </span>
+                      </div>
+                      <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.oneTimeInvestment">
+                        <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME'
+                        | translate }})
+                      </div>
                     </div>
-                    <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.oneTimeInvestment">
-                      <span>{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;({{ 'FUND_YOUR_ACCOUNT.ONE_TIME'
-                      | translate }})
-                    </div>
-                    <div *ngIf="!fundDetails.isAmountExceedBalance &&  fundDetails.monthlyInvestment">
-                      <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH'
-                      | translate }}
+
+                    <div *ngIf="fundDetails.monthlyInvestment">
+                      <div *ngIf="fundDetails.isAmountExceedBalance">
+                        <span>{{fundDetails.exceededAmount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH'
+                        | translate }}
+                      </div>
+                      <div *ngIf="!fundDetails.isAmountExceedBalance && fundDetails.monthlyInvestment">
+                        <span>{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}</span>&nbsp;/ {{ 'FUND_YOUR_ACCOUNT.MONTH'
+                        | translate }}
+                      </div>
                     </div>
                   </div>
 

@@ -118,10 +118,9 @@ export class FundYourAccountComponent implements OnInit {
     this.paynowDetails = data.filter((transferType) => transferType.institutionType === 'PayNow')[0];
   }
 
-  oneTimeSufficient() {
-    return (this.fundDetails.fundingType === 'ONETIME' && !this.fundDetails.isAmountExceedBalance);
+  oneTimeOrMonthlySufficient() {
+    return (!this.fundDetails.isAmountExceedBalance);
   }
-
   goToNext() {
     // redirect to dashboard
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
