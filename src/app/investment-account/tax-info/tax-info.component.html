@@ -102,7 +102,7 @@
             </div>
             <div class="flex-col-8">
               <div class="dropdown-control" formGroupName="tinNumberText" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumberText.controls.tinNumber)}">
-                <input type="text" placeholder = {{singPlaceHolder}} id="invPersInfoInpt1" class="form-control" formControlName="tinNumber">
+                <input type="text" [placeholder] = "getPlaceholder( taxInfoItem.controls.taxCountry.value , taxInfoItem)" id="invPersInfoInpt1" class="form-control" formControlName="tinNumber">
               </div>
             </div>
           </div>

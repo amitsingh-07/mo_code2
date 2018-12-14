@@ -159,12 +159,16 @@ export class TaxInfoComponent implements OnInit {
     const control =  formGroup.controls['addTax'] as FormArray;
     control.removeAt(index);
   }
-  getPlaceholder(nationalityCode) {
-    if (nationalityCode === 'SG') {
-      return true;
-      } else {
-        return false;
-      }
+  getPlaceholder(country , taxInfoItem ) {
+    if ( taxInfoItem.controls.tinNumberText && country) {
+      if (country.countryCode === 'SG') {
+        return  'E.g S9840139C';
+        } else {
+         return  '';
+        }
+  } else {
+    return  '';
   }
 
+}
 }
