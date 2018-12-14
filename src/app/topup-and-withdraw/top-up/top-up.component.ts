@@ -88,6 +88,12 @@ export class TopUpComponent implements OnInit {
       });
       this.topForm.get('oneTimeInvestmentAmount').setValue(this.formValues.oneTimeInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
     }
+    if (this.topForm.get('MonthlyInvestmentAmount')) {
+      this.topForm.get('MonthlyInvestmentAmount').valueChanges.subscribe((value) => {
+        this.validateAmonut(value);
+      });
+      this.topForm.get('MonthlyInvestmentAmount').setValue(this.formValues.MonthlyInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+    }
   }
   getPortfolioList() {
     this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
@@ -104,6 +110,8 @@ export class TopUpComponent implements OnInit {
       this.isAmountExceedBalance = false;
     }
   }
+  // tslint
+  
 
   selectedInvestment(investmenttype) {
     this.investment = investmenttype;

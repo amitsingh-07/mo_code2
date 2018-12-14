@@ -44,6 +44,10 @@
     "CITY": "City",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
+    "REASON": "Reason",
+    "SELECT_REASON": "Select Reason",
+    "YOUR_MAILING_ADDRESS": "Your mailing address:",
+    "PLEASE_INDECATE_THE_REASON": "Please indicate the reason:",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
       "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
