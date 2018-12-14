@@ -58,6 +58,10 @@
         "LBL_STEP_5":"Your request will be processed within <strong>1 - 2 business days.</strong> We will notify you once your portfolio top up has been successful.",
         "SETUP_AUTO_DEPOSIT":"Set Up Auto-Deposit",
         "DESC_SETUP_AUTO_DEPOSIT":"Hey, you can save time when you set up auto-deposits through your bank! Find out how with your bank now!"
+      },
+      "SHOWPOPUP":{
+        "TITLE": "Recipient’s / Entity Name",
+        "MESSAGE": "iFast provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
       }
     }
   },
