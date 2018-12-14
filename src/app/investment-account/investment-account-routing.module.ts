@@ -5,6 +5,7 @@ import { AuthGuardService as AuthGuard } from '../sign-up/auth-guard.service';
 import {
     AccountSetupCompletedComponent
 } from './account-setup-completed/account-setup-completed.component';
+import { AccountSetupPendingComponent } from './account-setup-pending/account-setup-pending.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import {
     AdditionalDeclarationInfoComponent
@@ -15,9 +16,6 @@ import {
 import {
     AdditionalDeclarationStep1Component
 } from './additional-declaration-step1/additional-declaration-step1.component';
-import {
-    AdditionalDeclarationSubmitComponent
-} from './additional-declaration-submit/additional-declaration-submit.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
@@ -32,9 +30,6 @@ import { ResidentialAddressComponent } from './residential-address/residential-a
 import { SelectNationalityComponent } from './select-nationality/select-nationality.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
-import {
-    UploadDocumentsLaterComponent
-} from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 const routes: Routes = [
@@ -85,8 +80,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: INVESTMENT_ACCOUNT_ROUTES.UPLOAD_DOCUMENTS_LATER,
-    component: UploadDocumentsLaterComponent,
+    path: INVESTMENT_ACCOUNT_ROUTES.SETUP_PENDING,
+    component: AccountSetupPendingComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -122,11 +117,6 @@ const routes: Routes = [
   {
     path: INVESTMENT_ACCOUNT_ROUTES.SETUP_COMPLETED,
     component: AccountSetupCompletedComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: INVESTMENT_ACCOUNT_ROUTES.ADDITIONALDECLARATION_SUBMIT,
-    component: AdditionalDeclarationSubmitComponent,
     canActivate: [AuthGuard]
   },
   {

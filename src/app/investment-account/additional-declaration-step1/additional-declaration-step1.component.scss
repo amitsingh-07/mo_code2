@@ -91,6 +91,7 @@ label {
     width: 20px;
     cursor: pointer;
     display: block;
+    margin-top:3px;
   }
   .country_text {
     width: 100px;
@@ -113,7 +114,6 @@ label {
     line-height: normal;
     letter-spacing: -0.3px;
     color: $white-color;
-    margin-top: 12px;
     margin-bottom: 12px;
   }
   .disabled {
@@ -132,14 +132,16 @@ label {
     text-align: left;
   }
   .form-control {
-    max-height: 52px;
     &.with-button {
       padding: 0.50rem;
       padding-left: 0.8rem;
+
       input {
         margin-top: 6px;
       }
     }
+
+
   }
 
   .btn {
@@ -252,5 +254,36 @@ label {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .office-addr-lbl {
+    margin-top:25px;
+    margin-bottom:20px;
+    font-size:18px;
+  }
+
+  .postal-code-control {
+    display: flex;
+
+    div.control {
+      display: flex;
+      flex: 3;
+    }
+
+    div.button {
+      display: flex;
+      flex: 2;
+    }
+  }
+
+  .inline-error{
+    .btn{
+      &.btn-secondary{ &:active{
+        border: none !important;
+        color: #ffffff;
+      }
+        background-color:#ff872f !important;
+      }  
+    }    
   }
 }
