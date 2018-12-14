@@ -51,7 +51,35 @@
           "text": "Relative",
           "value": "relative"
         }
-      ]
+      ],
+      "RELATIONSHIP_LIST_EXEC": [{
+        "text": "Spouse",
+        "value": "spouse"
+      },
+      {
+        "text": "Child",
+        "value": "child"
+      }, {
+        "text": "Parent",
+        "value": "parent"
+      },
+      {
+        "text": "Sibling",
+        "value": "sibling"
+      },
+      {
+        "text": "Parent-in-law",
+        "value": "parent-in-law"
+      },
+      {
+        "text": "Friend",
+        "value": "friend"
+      },
+      {
+        "text": "Relative",
+        "value": "relative"
+      }
+    ]
     },
     "INTRODUCTION": {
       "PAGE_TITLE": "Introduction",

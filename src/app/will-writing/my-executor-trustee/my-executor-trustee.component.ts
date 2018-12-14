@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -39,6 +40,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   submitted: boolean;
   isFormAltered = false;
   formTitle: any = [];
+  errorMsg;
 
   hasSpouse: boolean;
   hasChild: boolean;
@@ -59,17 +61,19 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     private _location: Location,
     private modal: NgbModal,
     private router: Router,
+    private titlecasePipe: TitleCasePipe
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.step = this.translate.instant('WILL_WRITING.COMMON.STEP_3');
       this.pageTitle = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE');
-      this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST');
+      this.relationshipList = this.translate.instant('WILL_WRITING.COMMON.RELATIONSHIP_LIST_EXEC');
       this.tooltip['title'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_TITLE');
       this.tooltip['message'] = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.TOOLTIP_MESSAGE');
       this.confirmModal['hasNoImpact'] = this.translate.instant('WILL_WRITING.COMMON.CONFIRM');
       this.unsavedMsg = this.translate.instant('WILL_WRITING.COMMON.UNSAVED');
       this.toolTip = this.translate.instant('WILL_WRITING.COMMON.ID_TOOLTIP');
+      this.errorMsg = this.translate.instant('WILL_WRITING.MY_EXECUTOR_TRUSTEE.ERROR_MSG');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -81,10 +85,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     const execTrusteeList = this.willWritingService.getExecTrusteeInfo();
     if (execTrusteeList.length > 0) {
       this.execTrusteeList = JSON.parse(JSON.stringify(execTrusteeList));
-    } else if (this.hasSpouse) {
-      const spouse: any = Object.assign({}, this.willWritingService.getSpouseInfo()[0]);
-      spouse.isAlt = false;
-      this.execTrusteeList.push(spouse);
     }
     this.buildMainForm();
     this.headerSubscription();
@@ -123,21 +123,16 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     this.addExeTrusteeForm = this.formBuilder.group({
       executorTrustee: this.formBuilder.array([this.buildExecTrusteeForm()]),
     });
-    if (!this.hasSpouse && this.execTrusteeList.length !== this.maxExecTrustee) {
+    if (this.execTrusteeList.length !== this.maxExecTrustee) {
       for (let i = 1; i < this.maxExecTrustee; i++) {
         this.addExecTrusteeForm();
       }
     }
     if (this.execTrusteeList.length !== this.maxExecTrustee) {
-      if (this.hasSpouse) {
-        this.formTitle.push({ isAlt: true, relationship: '' });
-        this.formName.push('Alternative Executor & Trustee');
-      } else {
-        this.formTitle.push({ isAlt: false, relationship: '' });
-        this.formTitle.push({ isAlt: true, relationship: '' });
-        this.formName.push('Main Executor & Trustee');
-        this.formName.push('Alternative Executor & Trustee');
-      }
+      this.formTitle.push({ isAlt: false, relationship: '' });
+      this.formTitle.push({ isAlt: true, relationship: '' });
+      this.formName.push('Main Executor & Trustee');
+      this.formName.push('Alternative Executor & Trustee');
     }
   }
 
@@ -172,28 +167,20 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   }
 
   editExecTrustee(relation: string, index: number) {
-    if (relation === WILL_WRITING_CONFIG.SPOUSE) {
-      if (this.addExeTrusteeForm.dirty) {
-        this.pageTitleComponent.goBack(WILL_WRITING_ROUTE_PATHS.MY_FAMILY);
-      } else {
-        this.router.navigate([WILL_WRITING_ROUTE_PATHS.MY_FAMILY]);
-      }
-    } else {
-      this.selectedIndex = index;
-      this.isEdit = true;
-      const execTrustee = this.execTrusteeList[index];
-      this.formTitle[0] = {
-        isAlt: execTrustee.isAlt,
-        title: execTrustee.isAlt ? this.formTitleMsg['alt'] : this.formTitleMsg['main'],
-        relationship: ''
-      };
-      this.formName[0] = execTrustee.isAlt ? 'Alternative Executor & Trustee' : 'Main Executor & Trustee';
-      const execTrusteeForm = this.addExeTrusteeForm.get('executorTrustee')['controls'][0];
-      execTrusteeForm.controls['name'].setValue(execTrustee.name);
-      execTrusteeForm.controls['uin'].setValue(execTrustee.uin);
-      const ExecRelationship = this.relationshipList.filter((relationship) => relationship.value === execTrustee.relationship);
-      this.selectRelationship(ExecRelationship[0], 0);
-    }
+    this.selectedIndex = index;
+    this.isEdit = true;
+    const execTrustee = this.execTrusteeList[index];
+    this.formTitle[0] = {
+      isAlt: execTrustee.isAlt,
+      title: execTrustee.isAlt ? this.formTitleMsg['alt'] : this.formTitleMsg['main'],
+      relationship: ''
+    };
+    this.formName[0] = execTrustee.isAlt ? 'Alternative Executor & Trustee' : 'Main Executor & Trustee';
+    const execTrusteeForm = this.addExeTrusteeForm.get('executorTrustee')['controls'][0];
+    execTrusteeForm.controls['name'].setValue(execTrustee.name);
+    execTrusteeForm.controls['uin'].setValue(execTrustee.uin);
+    const ExecRelationship = this.relationshipList.filter((relationship) => relationship.value === execTrustee.relationship);
+    this.selectRelationship(ExecRelationship[0], 0);
   }
 
   resetForm() {
@@ -217,8 +204,80 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  checkExecTrustee(form) {
+    let execTrusteeList = [];
+    if (this.execTrusteeList) {
+      if (this.selectedIndex === 0) {
+        execTrusteeList.push(form.value.executorTrustee[0]);
+        execTrusteeList.push(this.execTrusteeList[1]);
+      } else {
+        execTrusteeList.push(this.execTrusteeList[0]);
+        execTrusteeList.push(form.value.executorTrustee[0]);
+      }
+    } else {
+      execTrusteeList = form.value.executorTrustee;
+    }
+    const errors: any = {};
+    errors.errorMessages = [];
+    if (execTrusteeList[0].uin === execTrusteeList[1].uin) {
+      errors.errorMessages.push({ formName: '', errors: [this.errorMsg.DUPLICATE_IDENTIFIER] });
+    } else if (execTrusteeList[0].relationship === WILL_WRITING_CONFIG.SPOUSE &&
+      execTrusteeList[1].relationship === WILL_WRITING_CONFIG.SPOUSE) {
+      errors.errorMessages.push({ formName: '', errors: [this.errorMsg.MULTIPLE_SPOUSE] });
+    } else {
+      let isSpouseValidated = false;
+      execTrusteeList.forEach((item, index) => {
+        const errorMsg = { formName: '', errors: [] };
+        const formName = index === 0 ? 'Main Executor & Trustee' : 'Alternative Executor & Trustee';
+        if (item.relationship === WILL_WRITING_CONFIG.SPOUSE) {
+          if (!this.hasSpouse) {
+            errorMsg.formName = formName;
+            const errorMessage = this.errorMsg.NO_SPOUSE.replace('<Marital Status>',
+              this.titlecasePipe.transform(this.willWritingService.getAboutMeInfo().maritalStatus));
+            errorMsg.errors.push(errorMessage);
+            isSpouseValidated = true;
+          } else if (this.willWritingService.getSpouseInfo().filter((spouse) => spouse.uin === item.uin).length === 0) {
+            errorMsg.formName = formName;
+            let errorMessage = this.errorMsg.RELATION_MISMATCH.replace('<Full Name>', this.titlecasePipe.transform(item.name));
+            errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+            errorMsg.errors.push(errorMessage);
+            isSpouseValidated = true;
+          }
+        } else if (item.relationship === WILL_WRITING_CONFIG.CHILD && !isSpouseValidated) {
+          const child = this.willWritingService.getChildrenInfo().filter((children) => children.uin === item.uin);
+          if (!this.hasChild) {
+            errorMsg.formName = formName;
+            let errorMessage = this.errorMsg.NO_CHILD.replace('<Full Name>', this.titlecasePipe.transform(item.name));
+            errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+            errorMsg.errors.push(errorMessage);
+          } else if (child.length === 0) {
+            errorMsg.formName = formName;
+            let errorMessage = this.errorMsg.RELATION_MISMATCH.replace('<Full Name>', this.titlecasePipe.transform(item.name));
+            errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+            errorMsg.errors.push(errorMessage);
+          } else {
+            if (this.willWritingService.checkChildrenAge(child)) {
+              errorMsg.formName = formName;
+              let errorMessage = this.errorMsg.CHILD_AGE.replace('<Full Name>', this.titlecasePipe.transform(item.name));
+              errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+              errorMsg.errors.push(errorMessage);
+            }
+          }
+        }
+        if (errorMsg.errors.length > 0) {
+          errors.errorMessages.push(errorMsg);
+        }
+      });
+    }
+    if (errors.errorMessages.length > 0) {
+      this.willWritingService.openErrorModal('', errors.errorMessages, true);
+      return false;
+    }
+    return true;
+  }
+
   updateExecTrustee(form) {
-    if (this.validateExecTrusstee(form)) {
+    if (this.validateExecTrusstee(form) && this.checkExecTrustee(form)) {
       this.execTrusteeList[this.selectedIndex].name = form.value.executorTrustee[0].name;
       this.execTrusteeList[this.selectedIndex].relationship = form.value.executorTrustee[0].relationship;
       this.execTrusteeList[this.selectedIndex].uin = form.value.executorTrustee[0].uin;
@@ -271,7 +330,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
   goToNext(form) {
     const url = this.fromConfirmationPage ? WILL_WRITING_ROUTE_PATHS.CONFIRMATION : WILL_WRITING_ROUTE_PATHS.REVIEW_YOUR_DETAILS;
     if (this.execTrusteeList.length !== this.maxExecTrustee) {
-      if (this.validateExecTrusstee(form) && this.save(form)) {
+      if (this.validateExecTrusstee(form) && this.checkExecTrustee(form) && this.save(form)) {
         this.router.navigate([url]);
       }
     } else {
