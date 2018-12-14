@@ -153,5 +153,8 @@
       "BANK_NAME": "Bank Name",
       "ACCOUNT_NO": "Account"
     }
+  },
+  "TRANSACTIONS": {
+    "TITLE": "Transactions"
   }
 }
