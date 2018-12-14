@@ -209,19 +209,6 @@ export class InvestmentAccountService {
             noTinReason: this.investmentAccountFormData.noTinReason
         };
     }
-    getPepInfo() {
-        return {
-            fName: this.investmentAccountFormData.fName,
-            lName: this.investmentAccountFormData.lName,
-            cName: this.investmentAccountFormData.cName,
-            pepoccupation: this.investmentAccountFormData.pepoccupation,
-            pepCountry: this.investmentAccountFormData.pepCountry,
-            pepPostalCode: this.investmentAccountFormData.pepPostalCode,
-            pepAddress1: this.investmentAccountFormData.pepAddress1,
-            pepAddress2: this.investmentAccountFormData.pepAddress2,
-            pepUnitNo: this.investmentAccountFormData.pepUnitNo
-        };
-    }
     getPepData() {
         const pepVal = this.investmentAccountFormData.pep;
         return pepVal;
@@ -395,7 +382,11 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.pepPostalCode = data.pepPostalCode;
         this.investmentAccountFormData.pepAddress1 = data.pepAddress1;
         this.investmentAccountFormData.pepAddress2 = data.pepAddress2;
+        this.investmentAccountFormData.pepFloor = data.pepFloor;
         this.investmentAccountFormData.pepUnitNo = data.pepUnitNo;
+        this.investmentAccountFormData.pepCity = data.pepCity;
+        this.investmentAccountFormData.pepState = data.pepState;
+        this.investmentAccountFormData.pepZipCode = data.pepZipCode;
         this.commit();
     }
 
@@ -814,14 +805,14 @@ export class InvestmentAccountService {
                 occupationId: (data.pepoccupation) ? data.pepoccupation.id : null,
                 pepAddress: {
                     countryId: (data.pepCountry) ? data.pepCountry.id : null,
-                    state: null, // info - always empty
-                    postalCode: data.pepPostalCode,
+                    state: data.pepState,
+                    postalCode: (this.isSingaporeResident()) ? data.pepPostalCode : data.pepZipCode,
                     addressLine1: data.pepAddress1,
                     addressLine2: data.pepAddress2,
-                    floor: null,
+                    floor: data.pepFloor,
                     unitNumber: data.pepUnitNo,
                     townName: null, // todo not available in client
-                    city: null // info - always empty
+                    city: data.pepCity
                 },
                 expectedNumberOfTransactions: data.expectedNumberOfTransation,
                 expectedAmountPerTransaction: data.expectedAmountPerTranction,
@@ -1152,5 +1143,14 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.beneficial = beneficialOwner;
         this.investmentAccountFormData.pep = pep;
         this.commit();
+    }
+
+    setAccountCreationStatus(status) {
+        this.investmentAccountFormData.accountCreationStatus = status;
+        this.commit();
+    }
+
+    getAccountCreationStatus() {
+        return this.investmentAccountFormData.accountCreationStatus;
     }
 }

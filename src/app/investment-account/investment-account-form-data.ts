@@ -112,7 +112,11 @@ export class InvestmentAccountFormData {
     pepPostalCode: number;
     pepAddress1: string;
     pepAddress2: string;
+    pepFloor: string;
     pepUnitNo: string;
+    pepCity: string;
+    pepState: string;
+    pepZipCode: string;
 
     // MyInfo
     isMyInfoEnabled: boolean;
@@ -138,4 +142,7 @@ export class InvestmentAccountFormData {
     accountNumber: any;
     bankUpdateId: any;
     accountHolderName: any;
+
+    // Account Creation Status
+    accountCreationStatus: string;
 }

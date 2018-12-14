@@ -115,7 +115,7 @@
             </div>
             <!--  four type -->
          
-            <div  *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Investment Earnings'"  formGroupName="investmentEarnings">
+            <div *ngIf="additionDeclarationtwo.controls.source.value && additionDeclarationtwo.controls.source.value.name == 'Investment Earnings'"  formGroupName="investmentEarnings">
            
             <div class="flex-row mb10">
               <div class="flex-col-5">
@@ -126,8 +126,8 @@
 
                 <div class="form-control form-control-right">
 
-                  <input type="text"    id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="durationInvestment"  class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
-                  <i class="right year">/year(s)</i>
+                  <input type="text" id="additional_declaration_Expected_number_of_transaction_lab_input"     formControlName="durationInvestment"  class="input-control" appCurrencyInput maxLength="2" #otherIncome value="0">
+                  <i class="right year">year(s)</i>
                 </div>
               </div>
             </div>

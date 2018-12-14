@@ -205,7 +205,7 @@
     "SOURCE_OF_INVESTMENT_FUND": "Source Of Investment Funds",
     "PERSONAL_SAVINGS": "Please indicate the employer that contributed most to your savings:",
     "DURATION_INVESTMENT": "Duration investment held for?",
-    "EARNINGS_GENERATED_FORM": "Earnings Generated From",
+    "EARNINGS_GENERATED_FORM": "Earnings Generated From?",
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
   "CONFIRM_PORTFOLIO": {
@@ -246,7 +246,7 @@
     }
   },
   "ADDITIONAL_DECLARATION": {
-    "TITLE": "Additional Declarations",
+    "TITLE": "Due Diligence Check",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_MORE_DETAILS": "As you are closely related to/ are a Politically Exposed Person, we need to ask you a few more questions."
@@ -260,9 +260,9 @@
     "FUND": "Fund My Portfolio"
   },
   "ADDITIONAL_DECLARATION_SUBMIT": {
-    "TITLE": "Additional Declarations Submitted",
+    "TITLE": "Your form has been submitted",
     "DESC": "We will get back to you on your application in 1 - 2 working days.",
-    "BACK" : "Back To Dashboard"
+    "BACK": "Back To Dashboard"
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
     "OPEN_MODAL_DATA": {
@@ -296,7 +296,22 @@
   "FUND_INTRO": {
     "TITLE": "Fund Your Account",
     "DESC": "In the next step, you can select the method to fund your account.",
-    "BACK" : "Proceed",
+    "BACK": "Proceed",
     "SUCCESS": "Investment Account Setup Successful"
+  },
+  "ACCOUNT_CREATION_STATUS": {
+    "ADDITIONAL_DECLARATION_SUBMITTED": {
+      "TITLE": "Your form has been submitted",
+      "DESC": "We will get back to you on your application in 1 - 2 working days."
+    },
+    "ACCOUNT_CREATION_PENDING": {
+      "TITLE": "Almost There!",
+      "DESC": "We will get back to you on your application in 1 - 2 working days."
+    },
+    "DOCUMENTS_PENDING": {
+      "TITLE": "Almost There!",
+      "DESC": "You may upload your verification documents later and your set up will be complete!"
+    }
   }
+
 }
