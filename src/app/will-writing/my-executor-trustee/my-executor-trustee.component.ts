@@ -206,7 +206,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   checkExecTrustee(form) {
     let execTrusteeList = [];
-    if (this.execTrusteeList) {
+    if (this.execTrusteeList.length > 0) {
       if (this.selectedIndex === 0) {
         execTrusteeList.push(form.value.executorTrustee[0]);
         execTrusteeList.push(this.execTrusteeList[1]);
