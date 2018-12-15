@@ -90,8 +90,7 @@ export class MyInfoService {
     window.success = (values) => {
       clearInterval(timer);
       window.success = () => null;
-      // Tod - Robo2 testing
-      //windowRef.close();
+      windowRef.close();
       const params = new HttpParams({ fromString: values });
       if (window.sessionStorage.currentUrl && params && params.get('code')) {
         const myInfoAuthCode = params.get('code');
