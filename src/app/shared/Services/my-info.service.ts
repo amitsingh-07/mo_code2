@@ -105,6 +105,11 @@ export class MyInfoService {
       }
       return 'MY_INFO';
     };
+
+    // Robo2 - MyInfo changes
+    window.addEventListener = (values) => {
+      console.log(values);
+    };
   }
 
   getMyinfoReturnMessage(status: number, code?: string): any {
