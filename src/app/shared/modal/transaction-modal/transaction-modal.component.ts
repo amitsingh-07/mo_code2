@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateParserFormatter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-transaction-modal',
   templateUrl: './transaction-modal.component.html',
-  styleUrls: ['./transaction-modal.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./transaction-modal.component.scss']
 })
 export class TransactionModalComponent implements OnInit {
   lifeProtectionForm: FormGroup;

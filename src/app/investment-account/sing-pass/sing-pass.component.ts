@@ -60,6 +60,7 @@ export class SingPassComponent implements OnInit {
     this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
     //this.myInfoService.goToMyInfo();
     //Todo - Hard coded UAT path for testing
-    window.location.href = 'https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2';
+    this.myInfoService.newWindow('https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2');
+    //window.location.href = 'https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2';
   }
 }
