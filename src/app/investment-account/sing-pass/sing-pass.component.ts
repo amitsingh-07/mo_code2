@@ -37,6 +37,15 @@ export class SingPassComponent implements OnInit {
     this.showConfirmation = false;
     this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
+    // Todo - Robo2 MyInfo changes
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
+          this.router.navigate(['myinfo'], { queryParams: { code: myinfoObj.authorizeCode}});
+        }
+      }
+    });
+    // Todo - End
   }
 
   openModal() {
@@ -60,6 +69,7 @@ export class SingPassComponent implements OnInit {
     this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
     //this.myInfoService.goToMyInfo();
     //Todo - Hard coded UAT path for testing
-    window.location.href = 'https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2';
+    this.myInfoService.newWindow('https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2');
+    //window.location.href = 'https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2';
   }
 }
