@@ -63,7 +63,9 @@ export class MyInfoService {
     const left = 0;
     const top = 0;
     // tslint:disable-next-line:max-line-length
-    const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+    // Todo - Robo2 changes
+    // const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+    const windowRef: Window = window.open(authoriseUrl);
 
     const timer = setInterval(() => {
       if (windowRef.closed) {
