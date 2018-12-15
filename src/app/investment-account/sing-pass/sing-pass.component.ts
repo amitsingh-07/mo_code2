@@ -37,15 +37,6 @@ export class SingPassComponent implements OnInit {
     this.showConfirmation = false;
     this.investmentData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.investmentData.isMyInfoEnabled ? false : true;
-    // Todo - Robo2 MyInfo changes
-    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
-      if (myinfoObj && myinfoObj !== '') {
-        if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
-          this.router.navigate(['myinfo'], { queryParams: { code: myinfoObj.authorizeCode}});
-        }
-      }
-    });
-    // Todo - End
   }
 
   openModal() {

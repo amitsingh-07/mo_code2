@@ -66,6 +66,7 @@ export class MyInfoService {
     // Todo - Robo2 changes
     // const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
     const windowRef: Window = window.open(authoriseUrl);
+    //const windowRef: Window = window.open(authoriseUrl, '_blank', 'width=700,height=500,left=200,top=100');
 
     const timer = setInterval(() => {
       if (windowRef.closed) {
@@ -107,9 +108,25 @@ export class MyInfoService {
     };
 
     // Robo2 - MyInfo changes
-    window.addEventListener = (values) => {
-      console.log(values);
-    };
+    // tslint:disable-next-line:only-arrow-functions
+    window.addEventListener('message', function(event) {
+      console.log('received: ' + event.data);
+      clearInterval(timer);
+      window.success = () => null;
+      windowRef.close();
+      robo2SetMyInfo(event.data);
+      return 'MY_INFO';
+    });
+    function robo2SetMyInfo(myInfoAuthCode) {
+      if (myInfoAuthCode) {
+        //this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode}});
+        window.location.href = 'https://bfa-uat2.ntucbfa.com/#/myinfo?code=' + myInfoAuthCode;
+      } else {
+        this.status = 'FAILED';
+        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+      }
+    }
+    // Robo2 - MyInfo changes - End
   }
 
   getMyinfoReturnMessage(status: number, code?: string): any {
