@@ -22,9 +22,7 @@ export class CallBackComponent implements OnInit {
     private guideMeService: GuideMeService) { }
 
   ngOnInit() {
-    // Robo2 changes
-    // if (window.sessionStorage.currentUrl && this.route.queryParams['value'] && this.route.queryParams['value']['code']) {
-    if (this.route.queryParams['value'] && this.route.queryParams['value']['code']) {
+    if (window.sessionStorage.currentUrl && this.route.queryParams['value'] && this.route.queryParams['value']['code']) {
       if (this.myInfoService.myInfoValue) {
         this.myInfoService.isMyInfoEnabled = false;
       } else {

@@ -58,9 +58,8 @@ export class SingPassComponent implements OnInit {
     this.showConfirmation = false;
     this.investmentAccountService.setCallBackInvestmentAccount();
     this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-    //this.myInfoService.goToMyInfo();
-    //Todo - Hard coded UAT path for testing
-    this.myInfoService.newWindow('https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2');
-    //window.location.href = 'https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2';
+    // this.myInfoService.goToMyInfo();
+    // Todo - Robo2 Hard coded UAT1 path for testing
+    this.myInfoService.goToUAT1MyInfo();
   }
 }
