@@ -74,13 +74,13 @@ export class TestMyInfoComponent implements OnInit {
         }
       }
     });
-    // Robo2 changes
-    // if (this.project === 'robo2') {
-    //   const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
-    //   'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
-    //   this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
-    //   this.myInfoService.goToMyInfo();
-    // }
+    // Todo - Robo2 MyInfo changes
+    if (this.project === 'robo2') {
+      const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
+      'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
+      this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
+      this.myInfoService.goToMyInfo();
+    }
   }
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.testMyInfoForm.value);
