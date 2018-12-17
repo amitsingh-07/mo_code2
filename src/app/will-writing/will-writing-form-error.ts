@@ -9,7 +9,7 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Full Name should be 2 - 40 characters long'
+                                        errorMessage: 'Full Name should be 2 - 100 characters long'
                                 }
                         },
                         uin: {
@@ -54,7 +54,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name should be 2 - 40 characters long'
+                                                errorMessage: 'Full Name should be 2 - 100 characters long'
                                         }
                                 },
                                 uin: {
@@ -77,7 +77,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name should be 2 - 40 characters long'
+                                                errorMessage: 'Full Name should be 2 - 100 characters long'
                                         }
                                 },
                                 uin: {
@@ -110,7 +110,7 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Full Name should be 2 - 40 characters long'
+                                        errorMessage: 'Full Name should be 2 - 100 characters long'
                                 }
                         },
                         uin: {
@@ -143,7 +143,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name should be 2 - 40 characters long'
+                                                errorMessage: 'Full Name should be 2 - 100 characters long'
                                         }
                                 },
                                 uin: {
