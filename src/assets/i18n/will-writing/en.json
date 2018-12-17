@@ -51,7 +51,35 @@
           "text": "Relative",
           "value": "relative"
         }
-      ]
+      ],
+      "RELATIONSHIP_LIST_EXEC": [{
+        "text": "Spouse",
+        "value": "spouse"
+      },
+      {
+        "text": "Child",
+        "value": "child"
+      }, {
+        "text": "Parent",
+        "value": "parent"
+      },
+      {
+        "text": "Sibling",
+        "value": "sibling"
+      },
+      {
+        "text": "Parent-in-law",
+        "value": "parent-in-law"
+      },
+      {
+        "text": "Friend",
+        "value": "friend"
+      },
+      {
+        "text": "Relative",
+        "value": "relative"
+      }
+    ]
     },
     "INTRODUCTION": {
       "PAGE_TITLE": "Introduction",
@@ -189,14 +217,23 @@
       "TITLE": "My Executor & Trustee",
       "TITLE2": "My Executor & Trustee",
       "SUB_TITLE": "As this is a critical role in the execution of your will, please choose people that you trust.",
+      "NOTE":"Note: The Executor and Trustee must be at least 21 years old.",
       "FORM_TITLE": "My executor & trustee is",
       "BOTTOM_INFO": "Generally, we advise you to appoint your spouse, a family member or trusted friend as executor & trustee.",
       "MAIN_EXEC_TRUSTEE": "Main Executor & Trustee",
       "ALT_EXEC_TRUSTEE": "Alternative Executor & Trustee",
       "ALT_EXEC_TRUSTEE_SUB_TITLE": "Takes over the role as your executor & trustee in the event that your main executor & trustee passes on before you.",
       "TOOLTIP_TITLE": "Role Of An Executor & Trustee",
-      "TOOLTIP_MESSAGE": "<p>After you have passed on, your executor and trustee are in charge of carrying out the wishes of your will. As the 2 roles tend to overlap, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes settling outstanding debts of your estate (using your assets) and distributing your estate according to your wishes.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p>",
-      "MESSAGE_TOOLTIP": "Generally, we advise you to appoint a family member or trusted friend as executor & trustee."
+      "TOOLTIP_MESSAGE": "<p>After you have passed on, your executor and trustee are in charge of carrying out the wishes of your will. As the 2 roles tend to overlap, it is common for someone to be appointed as both executor and trustee.</p><p>The role of an executor and trustee includes settling outstanding debts of your estate (using your assets) and distributing your estate according to your wishes.</p><p>As this person plays a critical role in executing your will, it is important that you speak with them to seek their agreement.</p><p class='note'>Note: The Executor and Trustee must be at least 21 years old.</p>",
+      "MESSAGE_TOOLTIP": "Generally, we advise you to appoint a family member or trusted friend as executor & trustee.",
+      "ERROR_MSG": {
+        "RELATION_MISMATCH": "<Full Name> (<ID>) is not one of your family members in About My Family section.",
+        "CHILD_AGE": "<Full Name> (<ID>) is below 21 years old.An Executor & Trustee must be at least 21 years old.",
+        "DUPLICATE_IDENTIFIER": "Duplicate Identification Number",
+        "MULTIPLE_SPOUSE": "Appointment of multiple spouses as Executor and Trustee is not allowed.",
+        "NO_SPOUSE": "Spouse cannot be appointed as Executor and Trustee due to conflicting marital status \"<Marital Status>\".Please amend your marital status OR select a different relationship option.",
+        "NO_CHILD": "The child, <Full Name> (<ID>), cannot be appointed as Executor and Trustee due to \"0 child\" is specified in About Me section.Please amend the number of children you have OR select a different relationship option."
+      }
     },
     "MY_BENEFICIARY": {
       "TITLE": "My Beneficiaries",
