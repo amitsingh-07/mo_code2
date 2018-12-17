@@ -26,7 +26,7 @@ export class InvestmentAccountFormData {
     state: string;
     zipCode: number;
     isMailingAddressSame: boolean;
-    others: string;
+    reasonForOthers: string;
     reason: string;
     reasonId: string;
     mailCountry: string;

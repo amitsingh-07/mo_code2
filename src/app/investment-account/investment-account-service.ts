@@ -118,8 +118,8 @@ export class InvestmentAccountService {
         if (data.mailingAddress.reason) {
             this.investmentAccountFormData.reason = data.mailingAddress.reason;
         }
-        if (data.mailingAddress.others) {
-            this.investmentAccountFormData.others = data.mailingAddress.others;
+        if (data.mailingAddress.reasonForOthers) {
+            this.investmentAccountFormData.reasonForOthers = data.mailingAddress.reasonForOthers;
         }
         if (data.mailingAddress.mailCountry) {
             this.investmentAccountFormData.mailCountry = data.mailingAddress.mailCountry;
@@ -749,7 +749,7 @@ export class InvestmentAccountService {
                 townName: null, // todo - not available in client
                 city: data.mailCity,
                 reasonId: data.reason.id,
-                others: data.others
+                reasonForOthers: data.reasonForOthers
 
             };
         }

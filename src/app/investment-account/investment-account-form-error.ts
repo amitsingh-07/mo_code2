@@ -38,9 +38,9 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select Reason.'
             },
         },
-        others: {
+        reasonForOthers: {
             required: {
-                errorTitle: 'Invalid Others',
+                errorTitle: 'Invalid reason For Others',
                 errorMessage: 'Please enter Please indicate the reason.'
             },
         },
