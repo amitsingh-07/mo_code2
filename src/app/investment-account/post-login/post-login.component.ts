@@ -47,7 +47,7 @@ export class PostLoginComponent implements OnInit {
   goBack() {
     this._location.back();
   }
-  noButClick() {
+  myInfoManual() {
     this.investmentAccountService.setMyInfoStatus(false);
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
   }

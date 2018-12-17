@@ -5,16 +5,10 @@
       <div class="col-lg-7 col-md-6">
         <div class="signup-wrapper">
           <h2 class="prelogin-wrapper__title order1 sm-order2 ml10 mb25" id="post_login_welcometxt_lbl">{{ 'POSTLOGIN.TITLE' | translate}} </h2>
-          <!--
-          <div class="signup-wrapper__description order2">
-              <p>{{ 'LOGIN.DESCRIPTION' | translate}}</p>
-            </div>
-            -->
           <div class="signup-wrapper__header-icon order3 sm-order1"><img id="pos_login_img" src="assets/images/createAccount-icon.svg" /></div>
         </div>
       </div>
       <div class="col-lg-5 col-md-6">
-        <!-- <form id="loginForm" name="loginForm" [formGroup]="loginForm"> -->
         <div class="widgets">
           <div class="widget">
             <div class="widget-title">Apply Using MyInfo</div>
@@ -26,11 +20,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="flex-row mb20">
-              <div class="flex-col-12 stretch">
-                  <button class="no-login-but" id="without_singpass_btn" (click)="noButClick()">{{ 'POSTLOGIN.PROCEED_WITHOUT' | translate}}</button> 
-              </div>
-            </div> -->
           </div>
           <div class="widget">
               <div class="widget-title">Apply Without MyInfo</div>
@@ -38,7 +27,7 @@
                 <div class="desc">Fill in your information manually. Takes at least 1 working day to get your account approved.</div>
                 <div class="flex-col-12 stretch">
                   <div class="flex-col-12">
-                      <div class="flex-col autofill-link postlogin">
+                      <div class="flex-col autofill-link postlogin" (click)="myInfoManual()">
                         <div class="autofill-text">Fill Form Manually</div>
                         <div class="autofill-estimation">Estimate about 10 mins</div>
                       </div>
