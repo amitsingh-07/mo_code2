@@ -55,6 +55,7 @@ export class InvestmentAccountFormData {
     radioTin: any;
     tinNumber: any;
     noTinReason: any;
+    taxObj: any;
 
     // EmployementDetails
 

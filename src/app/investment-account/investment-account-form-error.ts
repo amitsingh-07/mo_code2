@@ -208,6 +208,13 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Country.'
             }
         },
+        radioTin: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Answer',
+                errorMessage: 'Please select your answer.'
+            }
+        },
         noTinReason: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string

@@ -166,17 +166,57 @@ text-overflow: ellipsis;
         display: none;
       }
     }
-    .circle{
+
+    .thumb-close-icon {
       position: absolute;
-      padding: 5px;
-      width: 30px;
-      height: 30px;
-      background-color: #ffffff;
-      border-radius: 50%;
-      bottom: -14px;
-      left: 0;
+      padding: 1px 7px;
+      border-radius: 100%;
+      background-color: #fff;
+      bottom: -12px;
+      width: 25px;
+      height: 25px;
       right: 0;
+      left: 0;
       margin: 0 auto;
+      img {
+        width: 12px;
+        height: 12px;
+      }
     }
+    // .circle{
+    //   position: absolute;
+    //   padding: 5px;
+    //   width: 30px;
+    //   height: 30px;
+    //   background-color: #ffffff;
+    //   border-radius: 50%;
+    //   bottom: -14px;
+    //   left: 0;
+    //   right: 0;
+    //   margin: 0 auto;
+    //   background: url("/assets/images/close-button-dark.svg") !important;
+    //   width: 18px;
+    //   height: 18px;
+    //   img{
+    //     max-width: 100%;
+    //     height: auto;
+    //   }
+    //   .close {
+    //     width: 14px !important;
+    //     height: 14px !important;
+    //     background: url("../../../assets/images/close-button-dark.svg") !important;
+    //     background-repeat: no-repeat !important;
+    //     text-align: center;
+    //     vertical-align: middle;
+    //     position: absolute !important;
+    //     right: 15px !important;
+    //     top: 25px !important;
+    //     float: right;
+    //     position: relative;
+    //     top: 14px;
+    //     right: 5px;
+       
+    //   }
+    // }
   }
 }
