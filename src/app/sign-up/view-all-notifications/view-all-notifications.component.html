@@ -24,11 +24,9 @@
           </div>
           <!--Notifications lists //-->
         </div>
-
-        <div *ngIf="!allMessages || !allMessages.length" class="notifications-container__no-notification">
+        <div *ngIf="notifications && notifications.length <= 0" class="notifications-container__no-notification">
           <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
-          <p>No New Notification</p>
-
+          <p>{{ 'NOTIFICATIONS.EMPTY' | translate}}</p>
         </div>
         <!--Notifications container //-->
       </div>
