@@ -80,6 +80,7 @@ export class WillWritingApiService {
 
         if (will.aboutMe.maritalStatus === WILL_WRITING_CONFIG.MARRIED) {
             const beneficiary = this.willWritingService.checkBeneficiary(will.spouse[0].uin)[0];
+            const checkExecTrustee = this.willWritingService.checkExecTrustee(will.spouse[0].uin);
             willProfileMembers.push({
                 uin: will.spouse[0].uin,
                 name: will.spouse[0].name,
@@ -88,8 +89,8 @@ export class WillWritingApiService {
                 isBeneficiary: beneficiary ? 'Y' : 'N',
                 isGuardian: 'Y',
                 isAltGuardian: 'N',
-                isTrusteee: 'Y',
-                isAltTrusteee: 'N',
+                isTrusteee: checkExecTrustee.length > 0 ? checkExecTrustee[0].isAlt ? 'N' : 'Y' : 'N',
+                isAltTrusteee: checkExecTrustee.length > 0 ? checkExecTrustee[0].isAlt ? 'Y' : 'N' : 'N',
                 distribution: beneficiary ? beneficiary.distPercentage : 0
             });
         }
@@ -97,6 +98,7 @@ export class WillWritingApiService {
         if (will.aboutMe.noOfChildren > 0) {
             for (const children of will.children) {
                 const beneficiary = this.willWritingService.checkBeneficiary(children.uin);
+                const checkExecTrustee = this.willWritingService.checkExecTrustee(children.uin);
                 willProfileMembers.push({
                     uin: children.uin,
                     name: children.name,
@@ -106,8 +108,8 @@ export class WillWritingApiService {
                     isBeneficiary: beneficiary.length > 0 ? 'Y' : 'N',
                     isGuardian: 'N',
                     isAltGuardian: 'N',
-                    isTrusteee: 'N',
-                    isAltTrusteee: 'N',
+                    isTrusteee: checkExecTrustee.length > 0 ? checkExecTrustee[0].isAlt ? 'N' : 'Y' : 'N',
+                    isAltTrusteee: checkExecTrustee.length > 0 ? checkExecTrustee[0].isAlt ? 'Y' : 'N' : 'N',
                     distribution: beneficiary.length > 0 ? beneficiary[0].distPercentage : 0
                 });
             }

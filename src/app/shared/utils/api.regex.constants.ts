@@ -15,7 +15,7 @@ export const RegexConstants = {
     SixDigitNumber: /^[0-9]{6}$/,
     SixDigitPromo: /^[a-zA-Z0-9]{6}$/,
     OnlyAlphaWithoutLimit: /^[a-zA-Z\s]*$/,
-    NameWithSymbol: /^[a-zA-Z!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s]{2,100}$/,
+    NameWithSymbol: /^[a-zA-Z!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~\s]+$/,
     UIN: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{9}$/,
     ContactNumber: /^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/,
     Email: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,

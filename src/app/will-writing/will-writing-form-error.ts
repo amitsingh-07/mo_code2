@@ -9,6 +9,14 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
+                                        errorMessage: 'Full Name - invalid characters'
+                                },
+                                minlength: {
+                                        errorTitle: 'Invalid Name',
+                                        errorMessage: 'Full Name should be 2 - 100 characters long'
+                                },
+                                maxlength: {
+                                        errorTitle: 'Invalid Name',
                                         errorMessage: 'Full Name should be 2 - 100 characters long'
                                 }
                         },
@@ -54,6 +62,14 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
+                                                errorMessage: 'Full Name - invalid characters'
+                                        },
+                                        minlength: {
+                                                errorTitle: 'Invalid Name',
+                                                errorMessage: 'Full Name should be 2 - 100 characters long'
+                                        },
+                                        maxlength: {
+                                                errorTitle: 'Invalid Name',
                                                 errorMessage: 'Full Name should be 2 - 100 characters long'
                                         }
                                 },
@@ -76,6 +92,14 @@ export class WillWritingFormError {
                                                 errorMessage: 'Full Name (as per ID)'
                                         },
                                         pattern: {
+                                                errorTitle: 'Invalid Name',
+                                                errorMessage: 'Full Name - invalid characters'
+                                        },
+                                        minlength: {
+                                                errorTitle: 'Invalid Name',
+                                                errorMessage: 'Full Name should be 2 - 100 characters long'
+                                        },
+                                        maxlength: {
                                                 errorTitle: 'Invalid Name',
                                                 errorMessage: 'Full Name should be 2 - 100 characters long'
                                         }
@@ -110,6 +134,14 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
+                                        errorMessage: 'Full Name - invalid characters'
+                                },
+                                minlength: {
+                                        errorTitle: 'Invalid Name',
+                                        errorMessage: 'Full Name should be 2 - 100 characters long'
+                                },
+                                maxlength: {
+                                        errorTitle: 'Invalid Name',
                                         errorMessage: 'Full Name should be 2 - 100 characters long'
                                 }
                         },
@@ -142,6 +174,14 @@ export class WillWritingFormError {
                                                 errorMessage: 'Full Name (as per ID)'
                                         },
                                         pattern: {
+                                                errorTitle: 'Invalid Name',
+                                                errorMessage: 'Full Name - invalid characters'
+                                        },
+                                        minlength: {
+                                                errorTitle: 'Invalid Name',
+                                                errorMessage: 'Full Name should be 2 - 100 characters long'
+                                        },
+                                        maxlength: {
                                                 errorTitle: 'Invalid Name',
                                                 errorMessage: 'Full Name should be 2 - 100 characters long'
                                         }
