@@ -11,6 +11,7 @@ import { MyInfoService } from '../../shared/Services/my-info.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { NgbDateCustomParserFormatter } from '../../shared/utils/ngb-date-custom-parser-formatter';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
@@ -38,7 +39,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   salutaionList: any;
   countries: any;
   raceList: any;
-
+  investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
     private router: Router,
     private myInfoService: MyInfoService,
@@ -92,7 +93,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       lastName: [{ value: this.formValues.lastName, disabled: false },
       [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]],
       nricNumber: [{ value: this.formValues.nricNumber, disabled: this.investmentAccountService.isDisabled('nricNumber') },
-      [Validators.required, Validators.pattern(RegexConstants.NRIC)]],
+      [Validators.required, this.validateNric.bind(this)]],
       dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
       [Validators.required, this.validateMinimumAge]],
       gender: [{
@@ -100,11 +101,15 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         disabled: this.investmentAccountService.isDisabled('gender')
       },
       Validators.required],
-      birthCountry: [{value: this.formValues.birthCountry,
-        disabled: this.investmentAccountService.isDisabled('birthCountry')}, Validators.required],
-      passportIssuedCountry: [{value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
-        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
-        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')}, Validators.required],
+      birthCountry: [{
+        value: this.formValues.birthCountry,
+        disabled: this.investmentAccountService.isDisabled('birthCountry')
+      }, Validators.required],
+      passportIssuedCountry: [{
+        value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
+          this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
+        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
+      }, Validators.required],
       race: [{ value: this.formValues.race, disabled: this.investmentAccountService.isDisabled('race') },
       [Validators.required]]
     }, { validator: this.validateName() });
@@ -125,13 +130,17 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         value: this.formValues.gender ? this.formValues.gender : 'male',
         disabled: this.investmentAccountService.isDisabled('gender')
       }, Validators.required],
-      birthCountry: [{value: this.formValues.birthCountry,
-        disabled: this.investmentAccountService.isDisabled('birthCountry')}, Validators.required],
+      birthCountry: [{
+        value: this.formValues.birthCountry,
+        disabled: this.investmentAccountService.isDisabled('birthCountry')
+      }, Validators.required],
       passportNumber: [{ value: this.formValues.passportNumber, disabled: this.investmentAccountService.isDisabled('passportNumber') },
       [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]],
-      passportIssuedCountry: [{value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
-        this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
-        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')}, Validators.required],
+      passportIssuedCountry: [{
+        value: this.formValues.passportIssuedCountry ? this.formValues.passportIssuedCountry :
+          this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
+        disabled: this.investmentAccountService.isDisabled('passportIssuedCountry')
+      }, Validators.required],
       passportExpiry: [{
         value: this.formValues.passportExpiry,
         disabled: this.investmentAccountService.isDisabled('passportExpiry')
@@ -208,6 +217,17 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
         >= new Date(today.getFullYear(), today.getMonth() + INVESTMENT_ACCOUNT_CONFIG.personal_info.min_passport_expiry, today.getDate());
       if (!isMinExpiry) {
         return { isMinExpiry: true };
+      }
+    }
+    return null;
+  }
+
+  validateNric(control: AbstractControl) {
+    const value = control.value;
+    if (value !== undefined && (isNaN(value))) {
+      const isValidNric = this.investmentAccountCommon.isValidNric(value);
+      if (!isValidNric) {
+        return { nric: true };
       }
     }
     return null;

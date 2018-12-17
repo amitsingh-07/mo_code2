@@ -12,7 +12,7 @@ import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 import {
-    TOPUP_AND_WITHDRAW_ROUTE_PATHS
+  TOPUP_AND_WITHDRAW_ROUTE_PATHS
 } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-withdraw.service';
 
@@ -49,7 +49,7 @@ export class FundYourAccountComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.fundaccountcontent = this.translate.instant('FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK');
     });
-    }
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -74,16 +74,16 @@ export class FundYourAccountComponent implements OnInit {
       console.log(this.bankDetailsList);
     });
   }
-  
+
   showBankTransctionDetails() {
     const ref = this.modal.open(BankDetailsComponent, { centered: true });
     ref.componentInstance.errorTitle = 'Transfer Instructions';
     ref.componentInstance.errorDescription = 'Sending money via Bank Transfer:';
-    ref.componentInstance.showBankTransctions = true; 
+    ref.componentInstance.showBankTransctions = true;
     ref.componentInstance.setBankDetails = this.bankDetails;
     return false;
   }
-  showPayNowDetails(){
+  showPayNowDetails() {
     const ref = this.modal.open(BankDetailsComponent, { centered: true });
     ref.componentInstance.errorTitle = 'Transfer Instructions';
     ref.componentInstance.errorDescription = 'Sending money via PayNow:';
@@ -112,16 +112,19 @@ export class FundYourAccountComponent implements OnInit {
   selectFundingMethod(mode) {
     this.activeMode = mode;
   }
-
+  showPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('FUND_YOUR_ACCOUNT.MODAL.SHOWPOPUP.MESSAGE');
+  }
   setBankPayNowDetails(data) {
     this.bankDetails = data.filter((transferType) => transferType.institutionType === 'bank')[0];
     this.paynowDetails = data.filter((transferType) => transferType.institutionType === 'PayNow')[0];
   }
 
-  oneTimeSufficient() {
-    return (this.fundDetails.fundingType === 'ONETIME' && !this.fundDetails.isAmountExceedBalance);
+  oneTimeOrMonthlySufficient() {
+    return (!this.fundDetails.isAmountExceedBalance);
   }
-
   goToNext() {
     // redirect to dashboard
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
@@ -130,7 +133,7 @@ export class FundYourAccountComponent implements OnInit {
   buyPortfolio() {
     this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((response) => {
       if (response.responseMessage.responseCode < 6000) {
-        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length ) {
+        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
           this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
         }
       } else {
@@ -141,11 +144,11 @@ export class FundYourAccountComponent implements OnInit {
         }
       }
     },
-    (err) => {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
-      ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
-    });
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
+      });
   }
 
   showCustomErrorModal(title, desc) {

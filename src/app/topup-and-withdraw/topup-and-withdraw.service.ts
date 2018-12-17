@@ -20,6 +20,7 @@ export class TopupAndWithDrawService {
     this.getTopUpFormData();
     this.getTopupInvestmentList();
     this.topUpAndWithdrawFormData.withdrawMode = TOPUPANDWITHDRAW_CONFIG.WITHDRAW.DEFAULT_WITHDRAW_MODE;
+  // this.topUpAndWithdrawFormData.withdrawMode = TOPUPANDWITHDRAW_CONFIG.TOPUP.DEFAULT_TOPUP_MODE;
   }
   private topUpAndWithdrawFormData: TopUpAndWithdrawFormData = new TopUpAndWithdrawFormData();
   private investmentAccountFormData: InvestmentAccountFormData = new InvestmentAccountFormData();
@@ -44,7 +45,7 @@ export class TopupAndWithDrawService {
   }
 
   getTopupInvestmentList() {
-    return this.apiService.getTopupInvestmentList();
+    return this.apiService.getAllDropdownList();
 
   }
   getPortfolioList() {

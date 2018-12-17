@@ -24,5 +24,10 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
             fund_expense_ratio: '0.2% to 0.4%',
             total: '1% to 1.2%'
         }
+    },
+    status: {
+        additional_declaration_pending: 'additional_declaration_pending',
+        account_creation_pending: 'account_creation_pending',
+        documents_pending: 'documents_pending'
     }
 };

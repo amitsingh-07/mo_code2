@@ -24,7 +24,6 @@ export class ViewAllNotificationsComponent implements OnInit {
   pageTitle: string;
   notifications: any;
   ref;
-  allMessages;
 
   constructor(
     public navbarService: NavbarService,
@@ -47,13 +46,12 @@ export class ViewAllNotificationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.notifications = this.getAllNotifications();
+    this.getAllNotifications();
   }
 
   getAllNotifications() {
     this.signUpService.getAllNotifications().subscribe((response) => {
       this.notifications = response.objectList[0].notifications;
-      const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     });
   }
@@ -76,7 +74,6 @@ export class ViewAllNotificationsComponent implements OnInit {
   }
 
   clearAllNotifications() {
-    const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
     this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.DELETE_PAYLOAD_KEY);
     this.notifications.splice(0);
   }
