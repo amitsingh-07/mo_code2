@@ -69,7 +69,7 @@ export class TopUpComponent implements OnInit {
     this.getPortfolioList();
     this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
-      this.investmentTypeList = data.objectList; // Getting the information from the API
+      this.investmentTypeList = data.objectList.topupInvestment; // Getting the information from the API
       console.log(this.investmentTypeList);
     });
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
