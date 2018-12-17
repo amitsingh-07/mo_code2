@@ -118,8 +118,8 @@ export class InvestmentAccountService {
         if (data.mailingAddress.reason) {
             this.investmentAccountFormData.reason = data.mailingAddress.reason;
         }
-        if (data.mailingAddress.others) {
-            this.investmentAccountFormData.others = data.mailingAddress.others;
+        if (data.mailingAddress.reasonForOthers) {
+            this.investmentAccountFormData.reasonForOthers = data.mailingAddress.reasonForOthers;
         }
         if (data.mailingAddress.mailCountry) {
             this.investmentAccountFormData.mailCountry = data.mailingAddress.mailCountry;
@@ -674,6 +674,7 @@ export class InvestmentAccountService {
         request.householdDetails = null;
         request.financialDetails = null;
         request.taxDetails = null;
+        request.sameAsMailingAddress = null;
         request.personalDeclarations = this.getPersonalDecReqData(payload);
         return request;
     }
@@ -685,6 +686,7 @@ export class InvestmentAccountService {
         request.isSingaporePR = payload.singaporeanResident;
         request.personalInfo = this.getPersonalInfoReqData(payload);
         request.residentialAddress = this.getResidentialAddressReqData(payload);
+        request.sameAsMailingAddress = payload.isMailingAddressSame;
         request.mailingAddress = this.getMailingAddressReqData(payload);
         request.employmentDetails = this.getEmploymentDetailsReqData(payload);
         request.householdDetails = this.getHouseholdDetailsReqData(payload);
@@ -724,8 +726,8 @@ export class InvestmentAccountService {
             townName: null, // todo - not available in client
             city: data.city
         };
-    }
 
+    } 
     getMailingAddressReqData(data): IAddress {
         let addressDetails = null;
         if (!data.isMailingAddressSame) {
@@ -740,7 +742,7 @@ export class InvestmentAccountService {
                 townName: null, // todo - not available in client
                 city: data.mailCity,
                 reasonId: data.reason.id,
-                others: data.others
+                reasonForOthers: data.reasonForOthers
 
             };
         }
@@ -947,7 +949,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
             if (data.employmentDetails.employerDetails.detailedEmployerDetails) {
                 if (data.employmentDetails.employerDetails.detailedEmployerDetails.employerName) {
-                    this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName;
+                 this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName;
                 }
                 if (data.employmentDetails.employerDetails.detailedEmployerDetails.industry) {
                     this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.detailedEmployerDetails.industry;
@@ -1063,10 +1065,10 @@ export class InvestmentAccountService {
         if (data.zipCode) {
             postalCode = data.zipCode;
         }
-        if ( data.mailingAddress.mailPostalCode) {
+        if (data.mailingAddress.mailPostalCode) {
             mailPostalCode = data.mailingAddress.mailPostalCode;
         }
-        if ( data.mailingAddress.mailZipCode) {
+        if (data.mailingAddress.mailZipCode) {
             mailPostalCode = data.mailingAddress.mailZipCode;
         }
         if (!data.isMailingAddressSame) {
