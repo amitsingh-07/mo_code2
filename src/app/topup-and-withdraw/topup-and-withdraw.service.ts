@@ -45,7 +45,7 @@ export class TopupAndWithDrawService {
   }
 
   getTopupInvestmentList() {
-    return this.apiService.getTopupInvestmentList();
+    return this.apiService.getAllDropdownList();
 
   }
   getPortfolioList() {
