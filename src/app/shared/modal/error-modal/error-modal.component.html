@@ -10,12 +10,12 @@
       <span *ngIf="errorMessage" [innerHTML]="errorMessage"></span>
       <ng-container *ngIf="errorMessageList">
         <p class="label">{{formName  | titlecase}}</p>
-        <p *ngFor="let errorMessage of errorMessageList"><span>{{errorMessage}}</span></p>
+        <p *ngFor="let errorMessage of errorMessageList"><span [innerHTML]="errorMessage"></span></p>
       </ng-container>
       <ng-container *ngIf="multipleFormErrors">
         <div *ngFor="let errorMessage of multipleFormErrors">
           <p class="label">{{errorMessage.formName  | titlecase}}</p>
-          <p *ngFor="let error of errorMessage.errors"><span>{{error}}</span></p>
+          <p *ngFor="let error of errorMessage.errors"><span [innerHTML]="error"></span></p>
         </div>
       </ng-container>
       <span *ngIf="errorDescription" [innerHTML]="errorDescription"></span>
