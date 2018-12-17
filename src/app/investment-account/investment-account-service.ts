@@ -140,6 +140,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.mailState = data.mailingAddress.mailState;
     }
     setTaxInfoFormData(data) {
+        this.investmentAccountFormData.taxObj = data;
         this.investmentAccountFormData.taxCountry = data.taxCountry;
         this.investmentAccountFormData.radioTin = data.radioTin;
         if (data.tinNumberText) {

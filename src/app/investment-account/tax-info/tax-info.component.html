@@ -55,12 +55,12 @@
                 <div class="flex-row">
                   <div class="flex-col-6">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="tin_yes" [value]=true (change)="isTinNumberAvailChanged(true , taxInfoItem)"> {{ 'TAX_INFO.YES_lABEL' | translate}}
+                      <input ngbButton type="radio" id="tin_yes" [value]=true (change)="isTinNumberAvailChanged(true , taxInfoItem, null)"> {{ 'TAX_INFO.YES_lABEL' | translate}}
                     </label>
                   </div>
                   <div class="flex-col-6">
                     <label ngbButtonLabel class="btn-outline-primary fixed-btn--sm mr16">
-                      <input ngbButton type="radio" id="tin_no" [value]=false (change)="isTinNumberAvailChanged(false , taxInfoItem)">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
+                      <input ngbButton type="radio" id="tin_no" [value]=false (change)="isTinNumberAvailChanged(false , taxInfoItem, null)">{{ 'TAX_INFO.NO_LABEL' | translate}}</label>
                   </div>
                 </div>
               </div>
@@ -73,12 +73,12 @@
               <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.REASON_TEXT' | translate}}</label>
             </div>
             <div class="flex-col-8">
-              <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus( taxInfoItem.controls.reasonDropdown.controls.noTinReason)}">
+              <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus( taxInfoItem.controls.noTinReason)}">
                 <div ngbDropdown>
 
                   <button class="btn btn-dropdown" ngbDropdownToggle>
-                    <span *ngIf=" taxInfoItem.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{taxInfoItem.controls.reasonDropdown.controls.noTinReason.value.name | titlecase }}</span>
-                    <span *ngIf="! taxInfoItem.controls.reasonDropdown.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">Select</span>
+                    <span *ngIf=" taxInfoItem.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{taxInfoItem.controls.noTinReason.value.name | titlecase }}</span>
+                    <span *ngIf="! taxInfoItem.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">Select</span>
                     <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
                   </button>
@@ -101,16 +101,24 @@
               <label class="tin_question_text pb10" for="name" id="tax-info-reason_label">{{ 'TAX_INFO.TIN_TEXT' | translate}}</label>
             </div>
             <div class="flex-col-8">
-              <div class="dropdown-control" formGroupName="tinNumberText" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumberText.controls.tinNumber)}">
+              <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(taxInfoItem.controls.tinNumber)}">
                 <input type="text" [placeholder] = "getPlaceholder( taxInfoItem.controls.taxCountry.value , taxInfoItem)" id="invPersInfoInpt1" class="form-control" formControlName="tinNumber">
               </div>
             </div>
           </div>
 
-          <div class="circle" (click)="removeTaxForm(taxInfoForm , x)">x</div>
+          <!-- <div class="circle" (click)="removeTaxForm(taxInfoForm , x)">
+            <button type="button" class="close" aria-label="Close"  style="opacity: 1 !important">
+              <span aria-hidden="true"></span>
+            </button>
+          </div> -->
+          <div class="thumb-close-icon">
+              <img src="../../../assets/images/close-button.svg" alt="x" />
+          </div>
+          <!-- <img src="assets/images/close-button-dark.svg"> -->
         </div>
       </div>
-      <div class="add-tax-box" (click)="addTaxForm()">
+      <div class="add-tax-box" (click)="addTaxForm(null)">
         <div>Are you paying tax in another country?</div>
         <div class="add-tax-text">Add Tax Residence</div>
       </div>
