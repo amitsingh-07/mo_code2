@@ -58,6 +58,8 @@ export class SingPassComponent implements OnInit {
     this.showConfirmation = false;
     this.investmentAccountService.setCallBackInvestmentAccount();
     this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-    this.myInfoService.goToMyInfo();
+    // this.myInfoService.goToMyInfo();
+    // Todo - Robo2 Hard coded UAT1 path for testing
+    this.myInfoService.goToUAT1MyInfo();
   }
 }

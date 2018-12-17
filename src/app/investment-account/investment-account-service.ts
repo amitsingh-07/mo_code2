@@ -486,8 +486,8 @@ export class InvestmentAccountService {
         }
 
         // Monthly Household Income
-        if (data.householdincome && data.householdincome.householdRange) {
-            this.investmentAccountFormData.annualHouseHoldIncomeRange = data.householdincome.householdRange;
+        if (data.householdincome && data.householdincome.householdDetails) {
+            this.investmentAccountFormData.annualHouseHoldIncomeRange = data.householdincome.householdDetails;
             this.disableAttributes.push('annualHouseHoldIncomeRange');
         }
         this.investmentAccountFormData.disableAttributes = this.disableAttributes;
