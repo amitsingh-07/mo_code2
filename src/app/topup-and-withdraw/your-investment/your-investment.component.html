@@ -70,6 +70,8 @@
                   </div>
                   <div class="flex-col-5" *ngIf="investmentoverviewlist.data.cashAccountDetails">
                     <div class="total_return_value" for="name" id="investment_overview_investment_cash_labl">{{investmentoverviewlist.data.cashAccountDetails.availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
+                  <div class="flex-col-5">
+                    <div *ngIf="investmentoverviewlist.data.cashAccountDetails" class="total_return_value" for="name" id="investment_overview_investment_cash_labl">{{investmentoverviewlist.data.cashAccountDetails.availableBalance | currency:'USD':'symbol-narrow':'1.0-2'}}
                     </div> 
                   </div>
                   <div class="flex-col-5" *ngIf="!investmentoverviewlist.data.cashAccountDetails">

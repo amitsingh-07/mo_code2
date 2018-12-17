@@ -32,7 +32,7 @@ export class TransactionComponent implements OnInit {
 
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = 'Transaction';
+      this.pageTitle = this.translate.instant('TRANSACTIONS.TITLE');
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -110,7 +110,7 @@ export class TransactionComponent implements OnInit {
             },
             "transactionType": {
               "id": 68,
-              "name": "Buy",
+              "name": "Sell",
               "value": "Buy",
               "key": "Buy"
             },
@@ -193,7 +193,7 @@ export class TransactionComponent implements OnInit {
             },
             "transactionType": {
               "id": 68,
-              "name": "Sell",
+              "name": "Buy",
               "value": "Sell",
               "key": "SELL"
             },

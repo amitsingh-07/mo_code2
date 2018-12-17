@@ -5,11 +5,11 @@
     },
     "objectList": [{
       "id": 1,
-      "name": "Transaction History"
+      "name": "Transactions"
     },
     {
       "id": 2,
-     "name": "Withdraw Portfolio"
+     "name": "Withdrawal"
     }]
   
   }

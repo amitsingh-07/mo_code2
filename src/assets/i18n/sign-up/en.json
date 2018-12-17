@@ -216,5 +216,8 @@
             "GET_STARTED": "Get Started!",
             "TIME": "8mins"
         }
+    },
+    "NOTIFICATIONS": {
+      "EMPTY": "No New Notifications!"
     }
 }
