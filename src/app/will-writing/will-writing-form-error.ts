@@ -9,7 +9,7 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Full Name - invalid characters'
+                                        errorMessage: "Full Name - invalid characters. <br>Valid characters: a-z, A-Z, space and !\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~"
                                 },
                                 minlength: {
                                         errorTitle: 'Invalid Name',
@@ -62,7 +62,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name - invalid characters'
+                                                errorMessage: "Full Name - invalid characters. <br>Valid characters: a-z, A-Z, space and !\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~"
                                         },
                                         minlength: {
                                                 errorTitle: 'Invalid Name',
@@ -93,7 +93,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name - invalid characters'
+                                                errorMessage: "Full Name - invalid characters. <br>Valid characters: a-z, A-Z, space and !\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~"
                                         },
                                         minlength: {
                                                 errorTitle: 'Invalid Name',
@@ -134,7 +134,7 @@ export class WillWritingFormError {
                                 },
                                 pattern: {
                                         errorTitle: 'Invalid Name',
-                                        errorMessage: 'Full Name - invalid characters'
+                                        errorMessage: "Full Name - invalid characters. <br>Valid characters: a-z, A-Z, space and !\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~"
                                 },
                                 minlength: {
                                         errorTitle: 'Invalid Name',
@@ -175,7 +175,7 @@ export class WillWritingFormError {
                                         },
                                         pattern: {
                                                 errorTitle: 'Invalid Name',
-                                                errorMessage: 'Full Name - invalid characters'
+                                                errorMessage: "Full Name - invalid characters. <br>Valid characters: a-z, A-Z, space and !\"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~"
                                         },
                                         minlength: {
                                                 errorTitle: 'Invalid Name',
