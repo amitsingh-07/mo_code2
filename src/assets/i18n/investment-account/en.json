@@ -9,7 +9,7 @@
     }
   },
   "POSTLOGIN": {
-    "TITLE": "You are ready to set up your investment account!",
+    "TITLE": "Next, set up a MoneyOwl investment account!",
     "PROCEED": "Proceed with",
     "PROCEED_WITHOUT": "Proceed without SingPass"
   },
@@ -270,8 +270,14 @@
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
     "OPEN_MODAL_DATA": {
-      "TITLE": "Leave This Page",
-      "DESCRIPTION": "By signing in to SingPass, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>You will be redirected to SingPass MyInfo page. Would you like to proceed?"
+      "TITLE": "Autofill Forms via MyInfo",
+      "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
+      "BTN-TEXT": "Yes, Proceed"
+    },
+    "MYINFO_CONFIRM": {
+      "TITLE": "Login via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details.",
+      "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
@@ -282,7 +288,7 @@
       "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
     },
     "SING_PASS_CONFIRM": {
-      "TITLE": "The following details have been autofilled into the form.",
+      "TITLE": "The following details have been autofilled via MyInfo:",
       "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
     }

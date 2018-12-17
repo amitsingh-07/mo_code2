@@ -42,12 +42,12 @@ export class ModelWithButtonComponent implements OnInit {
 
   primaryActionSelected() {
     this.primaryAction.emit();
-    this.activeModal.dismiss('Cross click');
+    this.activeModal.close();
   }
 
   secondaryActionSelected() {
     this.secondaryAction.emit();
-    this.activeModal.dismiss('Cross click');
+    this.activeModal.close();
   }
 
 }
