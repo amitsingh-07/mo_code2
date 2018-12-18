@@ -15,6 +15,12 @@
   letter-spacing: -0.3px;
   text-align: center;
   color: #ffffff;
+
+  &.secondary-button {
+    background-color:#fff;
+    color:#00a7a7;
+  }
+  
 }
 
 .popup-header-icon {
@@ -40,3 +46,4 @@
   background-color: #0de0de;
   color: #fff;
 }
+

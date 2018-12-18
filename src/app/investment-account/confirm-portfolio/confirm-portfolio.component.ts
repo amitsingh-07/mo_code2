@@ -257,7 +257,8 @@ export class ConfirmPortfolioComponent implements OnInit {
               this.investmentAccountService.setAccountSuccussModalCounter(0);
               this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
             } else {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+              this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending);
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
             }
           }
         }
