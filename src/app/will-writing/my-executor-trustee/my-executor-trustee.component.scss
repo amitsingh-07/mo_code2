@@ -109,7 +109,7 @@
         padding-left: 28px;
         padding-right: 28px;
         padding-top: 13px;
-        height: 76px;
+        min-height: 76px;
         span{
             margin-bottom: 8px;
         }
@@ -300,4 +300,8 @@
         width: 297px;
         text-align: center;
     }
+}
+
+.input-label-black {
+    word-break: break-word;
 }

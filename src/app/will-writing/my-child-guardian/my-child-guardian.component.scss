@@ -90,7 +90,7 @@
         @extend .flex;
         justify-content: space-between;
         align-items: center;
-        height: 76px;
+        min-height: 76px;
         padding-left: 28px;
         padding-right: 28px;
         padding-top: 13px;
@@ -262,4 +262,8 @@
             top: -186px !important;
         }
     }
+}
+
+.input-label-black {
+    word-break: break-word;
 }
