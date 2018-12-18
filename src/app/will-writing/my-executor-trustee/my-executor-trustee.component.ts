@@ -184,6 +184,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   resetForm() {
     this.isEdit = false;
+    this.addExeTrusteeForm.reset();
   }
 
   /**
@@ -323,10 +324,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         this.execTrusteeList.push(execTrustee);
         i++;
       }
-    } else {
-      this.execTrusteeList[this.selectedIndex].name = form.value.executorTrustee[0].name;
-      this.execTrusteeList[this.selectedIndex].relationship = form.value.executorTrustee[0].relationship;
-      this.execTrusteeList[this.selectedIndex].uin = form.value.executorTrustee[0].uin;
     }
     this.willWritingService.setExecTrusteeInfo(this.execTrusteeList);
     return true;
