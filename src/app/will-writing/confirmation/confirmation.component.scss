@@ -134,6 +134,7 @@
         letter-spacing: -0.3px;
         color: #9e9e9e;
         padding-right: 0;
+        word-break: break-word;
         @include allmobiles {
             padding-left: 0px !important;
         }
@@ -144,6 +145,7 @@
         line-height: 1.5;
         letter-spacing: -0.2px;
         color: #2d8289;
+        word-break: break-word;
         @include allmobiles {
             display: flex;
         }
