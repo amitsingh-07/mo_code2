@@ -38,9 +38,9 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select Reason.'
             },
         },
-        others: {
+        reasonForOthers: {
             required: {
-                errorTitle: 'Invalid Others',
+                errorTitle: 'Invalid reason For Others',
                 errorMessage: 'Please enter Please indicate the reason.'
             },
         },
@@ -206,6 +206,13 @@ export class InvestmentAccountFormError {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Country',
                 errorMessage: 'Please select your Country.'
+            }
+        },
+        radioTin: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Answer',
+                errorMessage: 'Please select your answer.'
             }
         },
         noTinReason: {

@@ -95,5 +95,10 @@
   "RISK_PROFILE":{
     "TITLE": "Portfolio Recommendation",
     "BUTTON_TITLE": "View My Portfolio"
+  },
+  "PRELOGIN_MODAL": {
+    "DESC": "To Continue, please log in or create a MoneyOwl account.",
+    "LOG_IN": "Log In",
+    "CREATE_ACCOUNT": "Create Account"
   }
 }

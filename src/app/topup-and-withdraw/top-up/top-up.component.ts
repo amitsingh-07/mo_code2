@@ -76,7 +76,7 @@ export class TopUpComponent implements OnInit {
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.PortfolioValues, Validators.required],
-      Investment: [this.formValues.Investment, Validators.required],
+      Investment: [this.formValues.Investment ? this.formValues.Investment : 'One-time Investment', Validators.required],
       oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
       MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
@@ -103,6 +103,7 @@ export class TopUpComponent implements OnInit {
   }
 
   validateAmonut(amount) {
+   // this.cashBalance = this.cashBalance ? this.cashBalance : 0;
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
@@ -110,8 +111,6 @@ export class TopUpComponent implements OnInit {
       this.isAmountExceedBalance = false;
     }
   }
-  // tslint
-  
 
   selectedInvestment(investmenttype) {
     this.investment = investmenttype;

@@ -1,13 +1,14 @@
 export interface ISaveInvestmentAccountRequest {
     myInfoVerified: boolean;
     isSingaporePR: boolean;
+    sameAsMailingAddress: boolean;
     personalInfo: IPersonalInfo;
     residentialAddress: IAddress;
     mailingAddress: IAddress;
     employmentDetails: IEmployment;
     householdDetails: IHousehold;
     financialDetails: IFinancial;
-    taxDetails: ITax;
+    taxDetails: ITax[];
     personalDeclarations: IPersonalDeclaration;
 }
 
@@ -74,7 +75,6 @@ export interface IPersonalDeclaration {
     politicallyExposed: boolean;
     connectedToInvestmentFirm: boolean;
     pepDeclaration: IPep;
-  
 }
 
 export interface IPep {
@@ -87,6 +87,6 @@ export interface IPep {
     expectedAmountPerTransaction: number;
     investmentSourceId: number;
     additionalInfo: string;
-    durationInvestment: number;
+    investmentDuration: number;
     earningSourceId: number;
 }
