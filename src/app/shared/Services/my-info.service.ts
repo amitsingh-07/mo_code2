@@ -139,13 +139,11 @@ export class MyInfoService {
   getMyinfoReturnMessage(status: number, code?: string): any {
     if (status === SUCCESS) {
       return { status: 'SUCCESS', authorizeCode: code };
+    } else if (status === CANCELLED) {
+      return { status: 'CANCELLED' };
     } else {
       return { status: 'FAILED' };
     }
-  }
-
-  getMyinfoCancelMessage(status: string): any {
-      return { status: 'CANCELLED' };
   }
 
   openFetchPopup() {
@@ -160,7 +158,7 @@ export class MyInfoService {
     this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
     this.loadingModalRef.result.then(() => {
-      this.changeListener.next(this.getMyinfoCancelMessage('CANCELLED'));
+      this.changeListener.next(this.getMyinfoReturnMessage(CANCELLED));
       this.cancelMyInfo();
     }).catch((e) => {
     });

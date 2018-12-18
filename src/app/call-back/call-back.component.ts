@@ -34,7 +34,7 @@ export class CallBackComponent implements OnInit {
 
         // Investment account
         if (this.investmentAccountService.getCallBackInvestmentAccount()) {
-          const myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
+          this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
             this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
             this.myInfoService.isMyInfoEnabled = false;
             this.myInfoService.closeMyInfoPopup(false);
@@ -63,6 +63,13 @@ export class CallBackComponent implements OnInit {
   cancelMyInfo() {
     this.myInfoService.isMyInfoEnabled = false;
     this.myInfoService.closeMyInfoPopup(false);
-    this.myInfoSubscription.unsubscribe();
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+    if (window.sessionStorage.currentUrl) {
+      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 }
