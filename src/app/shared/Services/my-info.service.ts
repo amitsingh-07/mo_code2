@@ -144,6 +144,10 @@ export class MyInfoService {
     }
   }
 
+  getMyinfoCancelMessage(status: string): any {
+      return { status: 'CANCELLED' };
+  }
+
   openFetchPopup() {
     const ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',
@@ -156,6 +160,7 @@ export class MyInfoService {
     this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
     this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
     this.loadingModalRef.result.then(() => {
+      this.changeListener.next(this.getMyinfoCancelMessage('CANCELLED'));
       this.cancelMyInfo();
     }).catch((e) => {
     });
