@@ -1,5 +1,4 @@
 import { Location } from '@angular/common';
-import { TitleCasePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -60,8 +59,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     public navbarService: NavbarService,
     private _location: Location,
     private modal: NgbModal,
-    private router: Router,
-    private titlecasePipe: TitleCasePipe
+    private router: Router
   ) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -186,6 +184,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   resetForm() {
     this.isEdit = false;
+    this.addExeTrusteeForm.reset();
   }
 
   /**
@@ -207,17 +206,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   checkExecTrustee(form) {
     let execTrusteeList = [];
-    if (this.execTrusteeList.length > 0) {
-      if (this.selectedIndex === 0) {
-        execTrusteeList.push(form.value.executorTrustee[0]);
-        execTrusteeList.push(this.execTrusteeList[1]);
-      } else {
-        execTrusteeList.push(this.execTrusteeList[0]);
-        execTrusteeList.push(form.value.executorTrustee[0]);
-      }
-    } else {
-      execTrusteeList = form.value.executorTrustee;
-    }
+    execTrusteeList = this.execTrusteeList.length > 0 ? this.execTrusteeList : form.value.executorTrustee;
     const errors: any = {};
     errors.errorMessages = [];
     if (execTrusteeList[0].uin === execTrusteeList[1].uin) {
@@ -231,36 +220,50 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         const errorMsg = { formName: '', errors: [] };
         const formName = index === 0 ? 'Main Executor & Trustee' : 'Alternative Executor & Trustee';
         if (item.relationship === WILL_WRITING_CONFIG.SPOUSE) {
+          const spouseWithUin = this.checkNameUIN('uin', item.uin, 'spouse');
           if (!this.hasSpouse) {
             errorMsg.formName = formName;
-            const errorMessage = this.errorMsg.NO_SPOUSE.replace('<Marital Status>',
-              this.titlecasePipe.transform(this.willWritingService.getAboutMeInfo().maritalStatus));
+            const maritalStatus = this.willWritingService.getAboutMeInfo().maritalStatus;
+            const errorMessage = this.replaceStringValues('NO_SPOUSE', ['<Marital Status>'], [maritalStatus]);
             errorMsg.errors.push(errorMessage);
             isSpouseValidated = true;
-          } else if (this.willWritingService.getSpouseInfo().filter((spouse) => spouse.uin === item.uin).length === 0) {
+          } else if (spouseWithUin.length === 0) {
             errorMsg.formName = formName;
-            let errorMessage = this.errorMsg.RELATION_MISMATCH.replace('<Full Name>', this.titlecasePipe.transform(item.name));
-            errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+            const errorMessage = this.replaceStringValues('RELATION_MISMATCH', ['<Full Name>', '<ID>'], [item.name, item.uin]);
             errorMsg.errors.push(errorMessage);
             isSpouseValidated = true;
+          } else {
+            const spouse = this.checkNameUIN('name', item.name, 'spouse');
+            if (spouse.length === 0) {
+              errorMsg.formName = formName;
+              const errorMessage = this.replaceStringValues('NAME_NO_MATCH',
+                ['<Full Name>', '<ID>', '<Full Name Family section>', '<ID Family section>'],
+                [item.name, item.uin, spouseWithUin[0].name, spouseWithUin[0].uin]);
+              errorMsg.errors.push(errorMessage);
+              isSpouseValidated = true;
+            }
           }
         } else if (item.relationship === WILL_WRITING_CONFIG.CHILD && !isSpouseValidated) {
-          const child = this.willWritingService.getChildrenInfo().filter((children) => children.uin === item.uin);
+          const childWithUin = this.checkNameUIN('uin', item.uin);
           if (!this.hasChild) {
             errorMsg.formName = formName;
-            let errorMessage = this.errorMsg.NO_CHILD.replace('<Full Name>', this.titlecasePipe.transform(item.name));
-            errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+            const errorMessage = this.replaceStringValues('NO_CHILD', ['<Full Name>', '<ID>'], [item.name, item.uin]);
             errorMsg.errors.push(errorMessage);
-          } else if (child.length === 0) {
+          } else if (childWithUin.length === 0) {
             errorMsg.formName = formName;
-            let errorMessage = this.errorMsg.RELATION_MISMATCH.replace('<Full Name>', this.titlecasePipe.transform(item.name));
-            errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+            const errorMessage = this.replaceStringValues('RELATION_MISMATCH', ['<Full Name>', '<ID>'], [item.name, item.uin]);
             errorMsg.errors.push(errorMessage);
           } else {
-            if (this.willWritingService.checkChildrenAge(child)) {
+            const child = this.checkNameUIN('name', item.name);
+            if (child.length === 0) {
               errorMsg.formName = formName;
-              let errorMessage = this.errorMsg.CHILD_AGE.replace('<Full Name>', this.titlecasePipe.transform(item.name));
-              errorMessage = errorMessage.replace('<ID>', this.titlecasePipe.transform(item.uin));
+              const errorMessage = this.replaceStringValues('NAME_NO_MATCH',
+                ['<Full Name>', '<ID>', '<Full Name Family section>', '<ID Family section>'],
+                [item.name, item.uin, childWithUin[0].name, childWithUin[0].uin]);
+              errorMsg.errors.push(errorMessage);
+            } else if (this.willWritingService.checkChildrenAge(this.checkNameUIN('uin', item.uin))) {
+              errorMsg.formName = formName;
+              const errorMessage = this.replaceStringValues('CHILD_AGE', ['<Full Name>', '<ID>'], [item.name, item.uin]);
               errorMsg.errors.push(errorMessage);
             }
           }
@@ -277,8 +280,23 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     return true;
   }
 
+  replaceStringValues(error, stringToReplace, replaceValues) {
+    let errorMessage = this.errorMsg[error];
+    stringToReplace.forEach((item, index) => {
+      errorMessage = errorMessage.replace(item, replaceValues[index]);
+    });
+    return errorMessage;
+  }
+
+  checkNameUIN(name, value, type = 'child') {
+    if (type === 'spouse') {
+      return this.willWritingService.getSpouseInfo().filter((spouse) => spouse[name] === value);
+    }
+    return this.willWritingService.getChildrenInfo().filter((child) => child[name] === value);
+  }
+
   updateExecTrustee(form) {
-    if (this.validateExecTrusstee(form) && this.checkExecTrustee(form)) {
+    if (this.validateExecTrusstee(form)) {
       this.execTrusteeList[this.selectedIndex].name = form.value.executorTrustee[0].name;
       this.execTrusteeList[this.selectedIndex].relationship = form.value.executorTrustee[0].relationship;
       this.execTrusteeList[this.selectedIndex].uin = form.value.executorTrustee[0].uin;
@@ -296,10 +314,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
         this.execTrusteeList.push(execTrustee);
         i++;
       }
-    } else {
-      this.execTrusteeList[this.selectedIndex].name = form.value.executorTrustee[0].name;
-      this.execTrusteeList[this.selectedIndex].relationship = form.value.executorTrustee[0].relationship;
-      this.execTrusteeList[this.selectedIndex].uin = form.value.executorTrustee[0].uin;
     }
     this.willWritingService.setExecTrusteeInfo(this.execTrusteeList);
     return true;
@@ -336,7 +350,9 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       }
     } else {
       if (this.isFormAltered) {
-        this.openConfirmationModal(url, form);
+        if (this.checkExecTrustee(form)) {
+          this.openConfirmationModal(url, form);
+        }
       } else {
         this.router.navigate([url]);
       }
