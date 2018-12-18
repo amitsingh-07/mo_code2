@@ -60,6 +60,25 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
   }
+  constructFundingParams() {
+    const FundValues = {
+      source: 'FUNDING',
+      portfolio: {
+        productName: 'LOW RISK',
+        riskProfile: ''
+      },
+      oneTimeInvestment: 100,
+      monthlyInvestment: 100,
+      fundingType: '', // todo
+      isAmountExceedBalance: 0,
+      exceededAmount: 100
+    };
+    this.topupAndWithDrawService.setFundingDetails(FundValues);
+  }
+  goToFundYourAccount() {
+    this.constructFundingParams();
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
+  }
  gotoTopUp() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
   }

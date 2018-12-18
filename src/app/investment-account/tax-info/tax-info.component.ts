@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,8 @@ import { InvestmentAccountService } from '../investment-account-service';
 @Component({
   selector: 'app-tax-info',
   templateUrl: './tax-info.component.html',
-  styleUrls: ['./tax-info.component.scss']
+  styleUrls: ['./tax-info.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TaxInfoComponent implements OnInit {
   taxInfoForm: FormGroup;
