@@ -124,7 +124,7 @@
   "TAX_INFO": {
     "TITLE": "Tax Information",
     "TAX_MODEL_TITLE": "Taxpayer Identification No.",
-    "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
+    "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
     "COUNTRY_TEXT": "Country Of Tax Residence",
     "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
     "YES_lABEL": "Yes",

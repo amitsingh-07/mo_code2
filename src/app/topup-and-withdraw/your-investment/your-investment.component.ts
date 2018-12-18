@@ -104,7 +104,7 @@ export class YourInvestmentComponent implements OnInit {
       console.log(this.portfolioList);
       console.log(this.investmentoverviewlist.data.totalValue);
       this.topupAndWithDrawService.setUserPortfolioList(this.portfolioList);
-      if (this.investmentoverviewlist.data.cashAccountDetails){
+      if (this.investmentoverviewlist.data.cashAccountDetails) {
       this.topupAndWithDrawService.setUserCashBalance(this.investmentoverviewlist.data.cashAccountDetails.availableBalance);
       }
     });
