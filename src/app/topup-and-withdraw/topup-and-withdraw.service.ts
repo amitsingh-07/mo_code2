@@ -151,7 +151,11 @@ export class TopupAndWithDrawService {
     this.commit();
   }
   getUserCashBalance() {
-    return this.topUpAndWithdrawFormData.cashAccountBalance;
+    if (this.topUpAndWithdrawFormData.cashAccountBalance) {
+      return this.topUpAndWithdrawFormData.cashAccountBalance;
+    } else {
+      return 0;
+    }
   }
   // tslint:disable-next-line
   getFormErrorList(form) {

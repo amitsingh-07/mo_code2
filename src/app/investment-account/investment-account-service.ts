@@ -728,7 +728,7 @@ export class InvestmentAccountService {
             city: data.city
         };
 
-    } 
+    }
     getMailingAddressReqData(data): IAddress {
         let addressDetails = null;
         if (!data.isMailingAddressSame) {
@@ -837,7 +837,7 @@ export class InvestmentAccountService {
                 expectedAmountPerTransaction: data.expectedAmountPerTranction,
                 investmentSourceId: (data.source) ? data.source.id : null,
                 additionalInfo: this.getadditionalInfoDesc(data),
-                durationInvestment: data.durationInvestment,
+                investmentDuration: data.durationInvestment,
                 earningSourceId: (data.earningsGenerated) ? data.earningsGenerated.id : null
             }
         };
@@ -956,7 +956,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
             if (data.employmentDetails.employerDetails.detailedEmployerDetails) {
                 if (data.employmentDetails.employerDetails.detailedEmployerDetails.employerName) {
-                 this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName;
+                    this.investmentAccountFormData.companyName = data.employmentDetails.employerDetails.detailedEmployerDetails.employerName;
                 }
                 if (data.employmentDetails.employerDetails.detailedEmployerDetails.industry) {
                     this.investmentAccountFormData.industry = data.employmentDetails.employerDetails.detailedEmployerDetails.industry;

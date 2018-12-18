@@ -103,6 +103,7 @@ export class TopUpComponent implements OnInit {
   }
 
   validateAmonut(amount) {
+   // this.cashBalance = this.cashBalance ? this.cashBalance : 0;
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;
