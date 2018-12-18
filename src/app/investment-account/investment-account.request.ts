@@ -8,7 +8,7 @@ export interface ISaveInvestmentAccountRequest {
     employmentDetails: IEmployment;
     householdDetails: IHousehold;
     financialDetails: IFinancial;
-    taxDetails: ITax;
+    taxDetails: ITax[];
     personalDeclarations: IPersonalDeclaration;
 }
 

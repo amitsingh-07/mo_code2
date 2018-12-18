@@ -33,6 +33,8 @@ export class TaxInfoComponent implements OnInit {
   translator: any;
   addTax: FormArray;
   singPlaceHolder;
+  selectedCountries: any;
+  formCount: number;
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -73,12 +75,14 @@ export class TaxInfoComponent implements OnInit {
   }
 
   addTaxForm(data): void {
+      console.log('leng' + this.taxInfoForm.controls.addTax.value.length);
       const control = this.taxInfoForm.controls['addTax'] as FormArray;
       const newFormGroup = this.createForm(data);
       control.push(newFormGroup);
       if (data) {
         this.isTinNumberAvailChanged(data.radioTin, newFormGroup, data);
       }
+      this.formCount = this.taxInfoForm.controls.addTax.value.length;
   }
 
   createForm(data) {
@@ -105,7 +109,6 @@ export class TaxInfoComponent implements OnInit {
         this.singPlaceHolder = '';
       }
     }
-    //this.taxInfoForm.controls.taxCountry.setValue(country);
   }
 
   selectReason(reasonObj, taxInfoItem) {
@@ -147,11 +150,24 @@ export class TaxInfoComponent implements OnInit {
     this.taxInfoForm.controls[key].setValue(value);
   }
   getInlineErrorStatus(control) {
-    //return (!control.pristine && !control.valid);
+    return (!control.pristine && !control.valid);
   }
 
   goToNext(form) {
     console.log(form.getRawValue());
+    const taxObj = form.getRawValue();
+    const selCountryArr = [];
+    if (taxObj) { // Existing Value
+      taxObj.addTax.map((item) => {
+        selCountryArr.push(item.taxCountry.countryCode);
+      });
+    }
+    if (this.hasDuplicates(selCountryArr)) {
+      const ref = this.modal.open(ErrorModalComponent, { centered: true });
+      ref.componentInstance.errorTitle = 'Country can not be same';
+      ref.componentInstance.errorMessage = 'Please check your selected countries';
+      return false;
+    } else {
     if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form.controls.addTax);
@@ -164,19 +180,12 @@ export class TaxInfoComponent implements OnInit {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_DECLARATION]);
     }
   }
-
-
-  createFormExisting(data) {
-    let formGroup;
-    formGroup = this.formBuilder.group({
-      radioTin: new FormControl(data.radioTin, Validators.required),
-      taxCountry: new FormControl(data.taxCountry, Validators.required),
-    });
-    this.isTinNumberAvailChanged(data.radioTin, formGroup, data);
   }
+
   removeTaxForm(formGroup, index): void {
     const control = formGroup.controls['addTax'] as FormArray;
     control.removeAt(index);
+    this.formCount = this.taxInfoForm.controls.addTax.value.length;
   }
   getPlaceholder(country, taxInfoItem) {
     if (taxInfoItem.controls.tinNumber && country) {
@@ -189,5 +198,8 @@ export class TaxInfoComponent implements OnInit {
       return '';
     }
 
+  }
+  hasDuplicates(array) {
+    return (new Set(array)).size !== array.length;
   }
 }

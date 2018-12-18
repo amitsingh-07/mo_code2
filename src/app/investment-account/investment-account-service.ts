@@ -797,12 +797,18 @@ export class InvestmentAccountService {
         };
     }
 
-    getTaxDetailsReqData(data): ITax {
-        return {
-            taxCountryId: (data.taxCountry) ? data.taxCountry.id : null,
-            tinNumber: (data.radioTin) ? data.tinNumber : null,
-            noTinReason: (data.noTinReason && !data.radioTin) ? data.noTinReason.id : null
-        };
+    getTaxDetailsReqData(data) {
+        const taxInfo = [];
+        if (data.taxObj && data.taxObj.addTax) {
+            data.taxObj.addTax.map((item) => {
+                taxInfo.push({
+                    taxCountryId: (item.taxCountry) ? item.taxCountry.id : null,
+                    tinNumber: (item.radioTin) ? item.tinNumber : null,
+                    noTinReason: (item.noTinReason && !item.radioTin) ? item.noTinReason.id : null
+                });
+            });
+        }
+        return taxInfo;
     }
 
     getPersonalDecReqData(data): IPersonalDeclaration {
