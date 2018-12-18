@@ -206,17 +206,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   checkExecTrustee(form) {
     let execTrusteeList = [];
-    if (this.execTrusteeList.length > 0) {
-      if (this.selectedIndex === 0) {
-        execTrusteeList.push(form.value.executorTrustee[0]);
-        execTrusteeList.push(this.execTrusteeList[1]);
-      } else {
-        execTrusteeList.push(this.execTrusteeList[0]);
-        execTrusteeList.push(form.value.executorTrustee[0]);
-      }
-    } else {
-      execTrusteeList = form.value.executorTrustee;
-    }
+    execTrusteeList = this.execTrusteeList.length > 0 ? this.execTrusteeList : form.value.executorTrustee;
     const errors: any = {};
     errors.errorMessages = [];
     if (execTrusteeList[0].uin === execTrusteeList[1].uin) {
