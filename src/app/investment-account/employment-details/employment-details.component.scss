@@ -20,17 +20,16 @@
   .flex-row {
   align-items: center;
   }
-  .employe-dropdown-control .dropdown-menu.show {
+ .dropdown-menu.show {
     right: 0 !important;
     overflow: auto;
-    height: 264px;
-    // top: -270px !important;
+    height: auto;
+    max-height: 264px;
       }
     
 .dropdown-item {
-    white-space: normal;
-    word-break: break-all;
-    // padding-bottom: 16px; 
+  white-space: normal;
+  word-break: break-all;
 }
 .dropdown-control .btn-dropdown {
   padding-right: 27px;
@@ -39,7 +38,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 
 .inline-error{
   .btn{
@@ -61,6 +59,7 @@
  label {
     font-size: 18px;
     font-family: $muli-semi-bold;
+    padding-right: 10px;
   }
 
   .input-control {

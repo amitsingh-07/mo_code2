@@ -1,12 +1,13 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../http/api.service';
 import { ErrorModalComponent } from '../modal/error-modal/error-modal.component';
+import { ModelWithButtonComponent } from '../modal/model-with-button/model-with-button.component';
 
 const MYINFO_ATTRIBUTE_KEY = 'myinfo_person_attributes';
 declare var window: Window;
@@ -32,6 +33,7 @@ export class MyInfoService {
   loadingModalRef: NgbModalRef;
   isMyInfoEnabled = false;
   status;
+  windowRef: Window;
   constructor(
     private modal: NgbModal, private apiService: ApiService, private router: Router) { }
 
@@ -55,6 +57,12 @@ export class MyInfoService {
     this.newWindow(authoriseUrl);
   }
 
+  goToUAT1MyInfo() {
+    window.sessionStorage.setItem('currentUrl', window.location.hash.split(';')[0]);
+    const authoriseUrl = 'https://bfa-uat.ntucbfa.com/#/9462test-myinfo?project=robo2';
+    this.newWindow(authoriseUrl);
+  }
+
   newWindow(authoriseUrl): void {
     this.openFetchPopup();
     this.isMyInfoEnabled = true;
@@ -63,10 +71,12 @@ export class MyInfoService {
     const left = 0;
     const top = 0;
     // tslint:disable-next-line:max-line-length
-    const windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+    // Todo - Robo2 changes
+    // const this.this.windowRef: Window = window.open(authoriseUrl, 'SingPass', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + screenWidth + ', height=' + screenHeight + ', top=' + top + ', left=' + left);
+    this.windowRef = window.open(authoriseUrl);
 
     const timer = setInterval(() => {
-      if (windowRef.closed) {
+      if (this.windowRef.closed) {
         clearInterval(timer);
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
@@ -76,7 +86,7 @@ export class MyInfoService {
     window.failed = (value) => {
       clearInterval(timer);
       window.failed = () => null;
-      windowRef.close();
+      this.windowRef.close();
       if (value === 'FAILED') {
         this.status = 'FAILED';
         this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
@@ -90,7 +100,7 @@ export class MyInfoService {
     window.success = (values) => {
       clearInterval(timer);
       window.success = () => null;
-      windowRef.close();
+      this.windowRef.close();
       const params = new HttpParams({ fromString: values });
       if (window.sessionStorage.currentUrl && params && params.get('code')) {
         const myInfoAuthCode = params.get('code');
@@ -103,6 +113,27 @@ export class MyInfoService {
       }
       return 'MY_INFO';
     };
+
+    // Robo2 - MyInfo changes
+    // tslint:disable-next-line:only-arrow-functions
+    window.addEventListener('message', function(event) {
+      console.log('received: ' + event.data);
+      clearInterval(timer);
+      window.success = () => null;
+      // this.windowRef.close();
+      robo2SetMyInfo(event.data);
+      return 'MY_INFO';
+    });
+    function robo2SetMyInfo(myInfoAuthCode) {
+      if (myInfoAuthCode && myInfoAuthCode.indexOf('-') !== -1) {
+        //this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode}});
+        window.location.href = '/#/myinfo?code=' + myInfoAuthCode;
+      } else {
+        this.status = 'FAILED';
+        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+      }
+    }
+    // Robo2 - MyInfo changes - End
   }
 
   getMyinfoReturnMessage(status: number, code?: string): any {
@@ -120,9 +151,21 @@ export class MyInfoService {
       centered: true,
       windowClass: 'hide-close'
     };
-    this.loadingModalRef = this.modal.open(ErrorModalComponent, ngbModalOptions);
+    this.loadingModalRef = this.modal.open(ModelWithButtonComponent, ngbModalOptions);
     this.loadingModalRef.componentInstance.errorTitle = 'Fetching Data...';
     this.loadingModalRef.componentInstance.errorMessage = 'Please be patient while we fetch your required data from MyInfo.';
+    this.loadingModalRef.componentInstance.primaryActionLabel = 'Cancel';
+    this.loadingModalRef.result.then(() => {
+      this.cancelMyInfo();
+    }).catch((e) => {
+    });
+  }
+
+  cancelMyInfo() {
+    if (!this.windowRef.closed) {
+      this.windowRef.close();
+    }
+    this.loadingModalRef.close();
   }
 
   closeFetchPopup() {
@@ -138,7 +181,9 @@ export class MyInfoService {
       ref.componentInstance.errorMessage = 'We weren’t able to fetch your data from MyInfo.';
       ref.componentInstance.isError = true;
       ref.result.then(() => {
-        this.goToMyInfo();
+        // Todo - Robo2 MyInfo changes
+        // this.goToMyInfo();
+        this.goToUAT1MyInfo();
       }).catch((e) => {
       });
     }

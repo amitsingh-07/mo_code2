@@ -253,12 +253,15 @@
         "BANK_ACC": " Bank Account",
         "NO_BANK": "No bank added",
         "ADD_BANK":" Add Bank"
-        },
-        "ADD_BANK": {
-            "ACCOUNT_NAME": "Account Holders Name",
-            "DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
-            "BANK": "Bank Name",
-            "SELECT": "Select Bank",
-            "ACCOUNT": "Account"
-        }
+    },
+    "ADD_BANK": {
+        "ACCOUNT_NAME": "Account Holders Name",
+        "DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
+        "BANK": "Bank Name",
+        "SELECT": "Select Bank",
+        "ACCOUNT": "Account"
+    },
+    "NOTIFICATIONS": {
+      "EMPTY": "No New Notifications!"
+    }
 }

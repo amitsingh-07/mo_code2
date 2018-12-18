@@ -25,12 +25,26 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Race.'
             },
         },
+
         country: {
             required: {
                 errorTitle: 'Invalid Country',
                 errorMessage: 'Please select your Country.'
             },
         },
+        reason: {
+            required: {
+                errorTitle: 'Invalid Reason',
+                errorMessage: 'Please select Reason.'
+            },
+        },
+        reasonForOthers: {
+            required: {
+                errorTitle: 'Invalid reason For Others',
+                errorMessage: 'Please enter Please indicate the reason.'
+            },
+        },
+
         mailCountry: {
             required: {
                 errorTitle: 'Invalid Country in mailing address',
@@ -252,9 +266,9 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid NRIC Number',
                 errorMessage: 'Please enter NRIC Number.'
             },
-            pattern: {
+            nric: {
                 errorTitle: 'Invalid NRIC Number',
-                errorMessage: 'NRIC Number you have entered is in invalid format.'
+                errorMessage: 'NRIC Number you have entered is invalid.'
             }
         },
         passportNumber: {
@@ -488,11 +502,11 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please enter Gift Inheritance.'
             }
         },
-        investmentPeriod: {
+        durationInvestment: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Investment Period.',
-                errorMessage: 'Please select Investment Period.'
+                errorMessage: 'Please enter Duration investment held for.'
             }
         },
         earningsGenerated: {
@@ -506,14 +520,14 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Occupation',
-                errorMessage: 'Please select your Occupation.'
+                errorMessage: 'Please select Occupation.'
             }
         },
         fName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid First Name',
-                errorMessage: 'Please enter your First Name.'
+                errorMessage: 'Please enter First Name.'
             },
             pattern: {
                 errorTitle: 'Invalid First Name',
@@ -524,7 +538,7 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Last Name',
-                errorMessage: 'Please enter your Last Name.'
+                errorMessage: 'Please enter Last Name.'
             },
             pattern: {
                 errorTitle: 'Invalid Last Name',
@@ -535,21 +549,21 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Company Name',
-                errorMessage: 'Please enter your Company name.'
+                errorMessage: 'Please enter Company name.'
             }
         },
         pepCountry: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Country',
-                errorMessage: 'Please select your Country.'
+                errorMessage: 'Please select Country.'
             }
         },
         pepPostalCode: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Please enter your Postal Code.'
+                errorMessage: 'Please enter Postal Code.'
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
@@ -560,7 +574,7 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Address Line 1',
-                errorMessage: 'Please enter your Address Line 1.'
+                errorMessage: 'Please enter Address Line 1.'
             },
             pattern: {
                 errorTitle: 'Invalid Address1',
@@ -571,25 +585,61 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Address Line 2.',
-                errorMessage: 'Please enter your Address Line 2.'
+                errorMessage: 'Please enter Address Line 2.'
             },
             pattern: {
                 errorTitle: 'Invalid Address2',
                 errorMessage: 'Address2 should not contain  special characters.'
             }
         },
-
+        pepFloor: {
+            required: {
+                errorTitle: 'Invalid Floor',
+                errorMessage: 'Please enter Floor.'
+            }
+        },
         pepUnitNo: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Unit No.',
-                errorMessage: 'Please enter your Unit No.'
+                errorMessage: 'Please enter Unit No.'
             },
             pattern: {
                 errorTitle: 'Invalid Unit No.',
                 errorMessage: 'Unit No should not contain alphabet characters.'
             }
         },
+        pepCity: {
+            required: {
+                errorTitle: 'Invalid City',
+                errorMessage: 'Please enter City.'
+            },
+            pattern: {
+                errorTitle: 'Invalid City',
+                errorMessage: 'City should not contain numbers and special characters.'
+            }
+        },
+        pepState: {
+            required: {
+                errorTitle: 'Invalid State',
+                errorMessage: 'Please enter your State.'
+            },
+            pattern: {
+                errorTitle: 'Invalid State',
+                errorMessage: 'State should not contain numbers and special characters.'
+            }
+        },
+        pepZipCode: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Zip Code',
+                errorMessage: 'Please enter Zip Code.'
+            },
+            pattern: {
+                errorTitle: 'Invalid Zip Code',
+                errorMessage: 'Zip Code should not contain special characters.'
+            }
+        }
     };
 
 }

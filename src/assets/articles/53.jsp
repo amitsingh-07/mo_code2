@@ -208,10 +208,6 @@
 		<strong>Coverage until 65 years old:</strong> There comes a time in our life when our dependents (E.g. spouse and children) are no longer dependent on us and our existing assets and savings would be sufficient to provide for them should any thing unexpected happen to us.
 						65 years old is a good estimate for how long one should cover ourselves with life insurance until.
 	</p>
-	<p><em><strong>S$1 million sum coverage:</strong></em> For those of us who are supporting our families, having S$1 million life coverage to provide for our dependents is not unthinkable. To find out how much you need, do feel free to <a href="https://www.moneyowl.com.sg/#/about-us/contact-us">drop us an enquiry</a>.</p>
-	<br/>
-	<p><em><strong>Coverage until 65 years old:</strong></em> There comes a time in our life when our dependents (Eg. spouse and children) are no longer dependent on us and our existing assets and savings would be sufficient to provide for them should anything unexpected happen to us. 65 years old is a good estimate for how long we should cover ourselves with life insurance until. <br><br>
-	</p>
 <p>For $1million term life insurance comparison table, <strong><a href="https://www.moneyowl.com.sg/#/articles/entry/20">click here</a></strong>.</p>
 <br>
 <p><strong>Credit Ratings Explained</strong></p>

@@ -9,7 +9,7 @@
     }
   },
   "POSTLOGIN": {
-    "TITLE": "You are ready to set up your investment account!",
+    "TITLE": "Next, set up a MoneyOwl investment account!",
     "PROCEED": "Proceed with",
     "PROCEED_WITHOUT": "Proceed without SingPass"
   },
@@ -44,6 +44,10 @@
     "CITY": "City",
     "STATE": "State / Province / Region",
     "ZIPCODE": "Zip Code",
+    "REASON": "Reason",
+    "SELECT_REASON": "Select Reason",
+    "YOUR_MAILING_ADDRESS": "Your mailing address:",
+    "PLEASE_INDECATE_THE_REASON": "Please indicate the reason:",
     "ERROR": {
       "POSTAL_CODE_TITLE": "Error !",
       "POSTAL_CODE_DESC": "Online Retrieval is not successful due to network issue or host down."
@@ -196,7 +200,7 @@
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "ADDITIONAL_DECLARATIONS_SCREEN_TWO": {
-    "TITLE": "Additional Declarations",
+    "TITLE": "Due Diligence Check",
     "UPLOAD_DOCUMENTS_LATER_PAGE_HEADING": "Almost There!",
     "UPLOAD_DOCUMENTS__LATER_PAGE_DESC": "Please log in anytime to upload your verification documents and your set up will be complete!",
     "BACK_TO_DASHBOARD": "Back To Dashboard",
@@ -204,8 +208,8 @@
     "EXPECTED_AMOUNT_PER_TRANSATION": "Expected Amount Per Transaction",
     "SOURCE_OF_INVESTMENT_FUND": "Source Of Investment Funds",
     "PERSONAL_SAVINGS": "Please indicate the employer that contributed most to your savings:",
-    "INVESTMENT_PERIOD": "Investment Period",
-    "EARNINGS_GENERATED_FORM": "Earnings Generated From",
+    "DURATION_INVESTMENT": "Duration investment held for?",
+    "EARNINGS_GENERATED_FORM": "Earnings Generated From?",
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
   "CONFIRM_PORTFOLIO": {
@@ -246,7 +250,7 @@
     }
   },
   "ADDITIONAL_DECLARATION": {
-    "TITLE": "Additional Declarations",
+    "TITLE": "Due Diligence Check",
     "SELECT_OCCUPATION": "Select Occupation",
     "PEP_INFO": "Please provide the following details for the PEP",
     "PEP_MORE_DETAILS": "As you are closely related to/ are a Politically Exposed Person, we need to ask you a few more questions."
@@ -260,14 +264,20 @@
     "FUND": "Fund My Portfolio"
   },
   "ADDITIONAL_DECLARATION_SUBMIT": {
-    "TITLE": "Additional Declarations Submitted",
+    "TITLE": "Your form has been submitted",
     "DESC": "We will get back to you on your application in 1 - 2 working days.",
-    "BACK" : "Back To Dashboard"
+    "BACK": "Back To Dashboard"
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
     "OPEN_MODAL_DATA": {
-      "TITLE": "Leave This Page",
-      "DESCRIPTION": "By signing in to SingPass, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>You will be redirected to SingPass MyInfo page. Would you like to proceed?"
+      "TITLE": "Autofill Forms via MyInfo",
+      "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",
+      "BTN-TEXT": "Yes, Proceed"
+    },
+    "MYINFO_CONFIRM": {
+      "TITLE": "Login via MyInfo",
+      "DESCRIPTION": "You will now proceed to login via MyInfo and retrieve your details.",
+      "BTN-TEXT": "Let's go!"
     },
     "ERROR_MODAL_DATA": {
       "TITLE": "Oops, Error!",
@@ -278,7 +288,7 @@
       "DESCRIPTION": "Please be patient while we fetch your required data from MyInfo."
     },
     "SING_PASS_CONFIRM": {
-      "TITLE": "The following details have been autofilled into the form.",
+      "TITLE": "The following details have been autofilled via MyInfo:",
       "DESCRIPTION": "Nationality<br>Personal Details<br>Residential Details<br>Employment Details<br>Financial Details",
       "BTN-TEXT": "OK"
     }
@@ -296,7 +306,22 @@
   "FUND_INTRO": {
     "TITLE": "Fund Your Account",
     "DESC": "In the next step, you can select the method to fund your account.",
-    "BACK" : "Proceed",
+    "BACK": "Proceed",
     "SUCCESS": "Investment Account Setup Successful"
+  },
+  "ACCOUNT_CREATION_STATUS": {
+    "ADDITIONAL_DECLARATION_SUBMITTED": {
+      "TITLE": "Your form has been submitted",
+      "DESC": "We will get back to you on your application in 1 - 2 working days."
+    },
+    "ACCOUNT_CREATION_PENDING": {
+      "TITLE": "Almost There!",
+      "DESC": "We will get back to you on your application in 1 - 2 working days."
+    },
+    "DOCUMENTS_PENDING": {
+      "TITLE": "Almost There!",
+      "DESC": "You may upload your verification documents later and your set up will be complete!"
+    }
   }
+
 }

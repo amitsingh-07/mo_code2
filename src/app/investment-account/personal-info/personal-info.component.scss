@@ -113,19 +113,16 @@
     color: #99dbdb;
   }
   
-  .dropdown-control{
-    .dropdown-menu{
-      &.show {
-        right: 0 !important;
-        overflow: auto;
-        height: auto;
-        max-height: 264px;
+  .dropdown-menu.show {
+    right: 0 !important;
+    overflow: auto;
+    height: auto;
+    max-height: 264px;
       }
-    }
-  }
-  .dropdown-item {
-    white-space: normal;
-    word-break: break-all;
+    
+.dropdown-item {
+  white-space: normal;
+  word-break: break-all;
 }
 .dropdown-control .btn-dropdown {
   padding-right: 27px;

@@ -69,14 +69,14 @@ export class TopUpComponent implements OnInit {
     this.getPortfolioList();
     this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
-      this.investmentTypeList = data.objectList; // Getting the information from the API
+      this.investmentTypeList = data.objectList.topupInvestment; // Getting the information from the API
       console.log(this.investmentTypeList);
     });
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.PortfolioValues, Validators.required],
-      Investment: [this.formValues.Investment, Validators.required],
+      Investment: [this.formValues.Investment ? this.formValues.Investment : 'One-time Investment', Validators.required],
       oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
       MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
@@ -87,6 +87,12 @@ export class TopUpComponent implements OnInit {
         this.validateAmonut(value);
       });
       this.topForm.get('oneTimeInvestmentAmount').setValue(this.formValues.oneTimeInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+    }
+    if (this.topForm.get('MonthlyInvestmentAmount')) {
+      this.topForm.get('MonthlyInvestmentAmount').valueChanges.subscribe((value) => {
+        this.validateAmonut(value);
+      });
+      this.topForm.get('MonthlyInvestmentAmount').setValue(this.formValues.MonthlyInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
     }
   }
   getPortfolioList() {
