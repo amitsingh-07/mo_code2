@@ -19,6 +19,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() errorMessageHTML: any;
   @Input() primaryActionLabel: any;
   @Input() secondaryActionLabel: any;
+  @Input() secondaryActionDim: boolean;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
 
