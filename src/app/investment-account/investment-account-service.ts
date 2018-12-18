@@ -375,7 +375,7 @@ export class InvestmentAccountService {
             addressDetails = {
                 countryId: (data.empCountry.id) ? data.empCountry.id : null,
                 state: data.empState,
-                postalCode: (this.isSingaporeResident()) ? data.empPostalCode : data.empZipCode,
+                postalCode: (this.isCountrySingapore(data.empCountry)) ? data.empPostalCode : data.empZipCode,
                 addressLine1: data.empAddress1,
                 addressLine2: data.empAddress2,
                 unitNumber: data.empUnitNo,
@@ -718,7 +718,7 @@ export class InvestmentAccountService {
         return {
             countryId: (data.country) ? data.country.id : null,
             state: data.state,
-            postalCode: (this.isSingaporeResident()) ? data.postalCode : data.zipCode,
+            postalCode: (this.isCountrySingapore(data.country)) ? data.postalCode : data.zipCode,
             addressLine1: data.address1,
             addressLine2: data.address2,
             floor: data.floor,
@@ -734,7 +734,7 @@ export class InvestmentAccountService {
             addressDetails = {
                 countryId: (data.mailCountry) ? data.mailCountry.id : null,
                 state: data.mailState,
-                postalCode: (this.isSingaporeResident()) ? data.mailPostalCode : data.mailZipCode,
+                postalCode: (this.isCountrySingapore(data.mailCountry)) ? data.mailPostalCode : data.mailZipCode,
                 addressLine1: data.mailAddress1,
                 addressLine2: data.mailAddress2,
                 floor: data.mailFloor,
@@ -765,7 +765,7 @@ export class InvestmentAccountService {
             addressDetails = {
                 countryId: (data.empCountry) ? data.empCountry.id : null,
                 state: data.empState,
-                postalCode: (this.isSingaporeResident()) ? data.empPostalCode : data.empZipCode,
+                postalCode: (this.isCountrySingapore(data.empCountry)) ? data.empPostalCode : data.empZipCode,
                 addressLine1: data.empAddress1,
                 addressLine2: data.empAddress2,
                 unitNumber: data.empUnitNo,
@@ -815,7 +815,7 @@ export class InvestmentAccountService {
                 pepAddress: {
                     countryId: (data.pepCountry) ? data.pepCountry.id : null,
                     state: null, // info - always empty
-                    postalCode: data.pepPostalCode,
+                    postalCode: (this.isCountrySingapore(data.pepCountry)) ? data.pepPostalCode : data.pepZipCode,
                     addressLine1: data.pepAddress1,
                     addressLine2: data.pepAddress2,
                     floor: null,
@@ -865,7 +865,7 @@ export class InvestmentAccountService {
         });
         return '?' + params.toString();
     }
-    
+
     // tslint:disable-next-line:cognitive-complexity
     setEditProfileContactInfo(data, nationalityList, countryList, isMailingAddressSame, isSingaporeResident , mailingProof , resProof) {
         this.investmentAccountFormData.nationalityCode = data.contactDetails.homeAddress.country.nationalityCode;
