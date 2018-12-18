@@ -691,7 +691,7 @@ export class InvestmentAccountService {
         request.employmentDetails = this.getEmploymentDetailsReqData(payload);
         request.householdDetails = this.getHouseholdDetailsReqData(payload);
         request.financialDetails = this.getFinancialDetailsReqData(payload);
-        request.taxDetails = this.getTaxDetailsReqData(payload);
+        request.taxDetails = [this.getTaxDetailsReqData(payload)];
         request.personalDeclarations = this.getPersonalDecReqData(payload);
         return request;
     }
@@ -987,7 +987,7 @@ export class InvestmentAccountService {
 
     }
     setEditProfileBankDetail(Fullname , Bank , AccountNumber , id , isAddBank  ) {
-        ifÂ  ( isAddBank ) {
+        if  ( isAddBank ) {
             this.investmentAccountFormData.accountHolderName = Fullname ;
             this.investmentAccountFormData.bank = Bank ;
             this.investmentAccountFormData.accountNumber = AccountNumber ;
