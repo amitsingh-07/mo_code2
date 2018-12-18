@@ -57,6 +57,8 @@ export class EditProfileComponent implements OnInit {
     this.translate.use('en');
     this.route.params.subscribe((params) => {
     });
+    this.translate.get('COMMON').subscribe((result: string) => {
+    });
     this.getNationalityCountryList();
   }
 

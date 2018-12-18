@@ -150,7 +150,7 @@ export class TaxInfoComponent implements OnInit {
     this.taxInfoForm.controls[key].setValue(value);
   }
   getInlineErrorStatus(control) {
-    //return (!control.pristine && !control.valid);
+    return (!control.pristine && !control.valid);
   }
 
   goToNext(form) {
