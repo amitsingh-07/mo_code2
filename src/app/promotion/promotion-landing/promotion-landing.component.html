@@ -21,17 +21,50 @@
       </div>
     </div>
   </div>
-  <div class="customer-reviews__content">
-    <div class="customer-reviews__inner-content">
-      <div class="customer-review card card-block" *ngFor="let promotion of promotionList">
-        <h6 class="review">
+  <div class="promotion-header-container">
+    <div class="promotion-title">
+      <h6>Insurance Promotions</h6>
+      <p>More discounts and goodies in addition to receiving 50% rebate in agent’s commissions</p>
+    </div>
+  </div>
+  <div class="promotion-card__content">
+    <div class="promotion-card__inner-content">
+      <div class="promotion-card card card-block" *ngFor="let promotion of insurancePromotionList">
+        <div class="promotion-card--image">
+        </div>
+        <h4>
           {{promotion.title}}
-        </h6>
-        <div class="reviewer">
-          <p class="name"></p>
+        </h4>
+        <div class="summary">
+          <span>{{promotion.summary}}</span>
+        </div>
+        <div class="btn btn-primary-dark more-details-btn" (click)="goToPromotion(promotion.promoId)">
+          <span>More Details</span>
         </div>
       </div>
     </div>
-
   </div>
+  <div class="promotion-header-container">
+    <div class="promotion-title">
+      <h6>Wills Promotions</h6>
+      <p>Enjoy these special savings when managing your estate</p>
+    </div>
+  </div>
+  <div class="promotion-card__content">
+      <div class="promotion-card__inner-content">
+        <div class="promotion-card card card-block" *ngFor="let promotion of willsPromotionList">
+          <div class="promotion-card--image">
+          </div>
+          <h4>
+            {{promotion.title}}
+          </h4>
+          <div class="summary">
+            <span>{{promotion.summary}}</span>
+          </div>
+          <div class="btn btn-primary-dark more-details-btn" (click)="goToPromotion(promotion.promoId)">
+            <span>More Details</span>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

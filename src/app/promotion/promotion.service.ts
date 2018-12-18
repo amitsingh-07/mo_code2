@@ -21,7 +21,7 @@ export class PromotionService {
         promoId: 1,
         imgSrc: 'test',
         title: 'Title',
-        message: 'message'
+        summary: 'message'
     };
     return thisPromotion;
   }
