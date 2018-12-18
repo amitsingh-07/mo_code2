@@ -1,0 +1,209 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.promotion__wrapper{
+    position: relative;
+    display:block;
+    background-color:#119797;
+    .sub-navigation{
+        padding:0px 20px;
+        @include minPhabletmaxTablet{
+            padding:0px 20px;
+        }
+        @include minMobilemaxPhablet{
+            padding:0px 20px;
+        }
+        .sub-navigation--inner {
+            span {
+                color:$white-color;
+            }
+        }
+    }
+    .banner{
+        position: relative;
+        display:flex;
+        width:100%;
+        justify-content: center;
+        padding:0px 20px;
+        min-height: 335px;
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+            justify-content:flex-start;
+            min-height:unset;
+        }
+    }
+    .banner-bg{
+        position: absolute;
+        display:block;
+        max-width:1024px;
+        @include tablet{
+            right:20px;
+        }
+        @include minMobilemaxPhablet{
+            position: relative; 
+            height:200px;
+            margin-top:60px;
+            order:2;
+        }
+        .banner-bg--image{
+            position: absolute;
+            display:block;
+            transform: translate(-385px, -57px);
+            width:930px;
+            height:340px;
+            background-image:url('/assets/images/promotion/promo-header-img.svg');
+            background-repeat:no-repeat;
+            background-position:top right;
+            @include minPhabletmaxTablet{
+                height:calc(100% - 50px);
+            }
+            @include minMobilemaxPhablet{
+                background-position:center;
+                background-image:url('/assets/images/promotion/group-8.svg');
+            }
+        }
+    }
+    .banner-container{
+        position: relative;
+        display: inline-block;
+        width:100%;
+        max-width:1024px;
+        padding:110px 500.8px 63px 52.2px;
+        
+        @include minMobilemaxPhablet{
+            padding:20px 0px;
+            order:1;
+            margin-bottom:-80px;
+        }
+        .banner--title{
+            font-family:$muli-bold;
+            font-weight:bold;
+            font-size:3.5rem;
+            color:$white-color;
+            margin-bottom:5px;
+            line-height:1;
+            @include minPhabletmaxTablet{
+                font-size:3.0rem;
+            }
+            @include minMobilemaxPhablet{
+                font-size:2.0rem;
+            }
+        }
+    }
+
+    .banner-container-bottom{
+        position: absolute;
+        display: block;
+        width:100%;
+        bottom: 0%;
+        text-align: center;
+        border-style: solid none none none;
+        border-top-color: #00cece;
+        padding: 15px 0px 13px 0px;
+
+        @include minMobilemaxPhablet{
+            padding:20px 0px;
+            order:1;
+            margin-bottom:-80px;
+        }
+
+        .banner--bottom{
+            font-family:$muli-regular;
+            color:$white-color;
+            opacity:0.9;
+            font-size:1rem;
+            @include minPhabletmaxTablet{
+                font-size:1.3rem;
+            }
+            @include minMobilemaxPhablet{
+                font-size:1.2rem;
+            }
+        }
+    }
+}
+
+.customer-reviews__content{
+    position: relative;
+    display:flex;
+    background-color:$white-color;
+    min-height:500px;
+    width:100%;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px;
+
+    .customer-reviews__inner-content{
+        position: relative;
+        display:block;
+        column-count:3;
+        max-width:1140px;
+        width:100%;
+        @include minPhabletmaxTablet{
+            column-count:2;
+        }
+        @include minMobilemaxPhablet{
+            column-count:1;
+        }
+    }
+    
+    .customer-review{
+        position: relative;
+        display:inline-block;
+        width:100%;
+        justify-content:center;
+        align-items:center;
+        padding:40px;
+        margin-bottom:0.75rem;
+        border-radius:6px;
+        border:unset;
+        @include tablet{
+            padding:20px;
+        }
+        
+        h6{
+            font-family:$muli-regular;
+            color:$black-color;
+            opacity:0.9;
+            text-align:center;
+        }
+        .rating-container{
+            position: relative;
+            display:flex;
+            justify-content:center;
+            .rating--icon{
+                color:$orange-color;
+            }
+            .rating--text{
+                font-family:$muli-bold;
+                color:$teal-color;
+            }
+            @include min300max325{
+                flex-direction:column; 
+                .rating--text{
+                    align-items:center;
+                    text-align:center;
+                    line-height:1.0;
+                }
+                .rating--icon{
+                    line-height:1.0;
+                }
+            }
+        }
+        .reviewer{
+            position: relative;
+            display:inline-block;
+            width:100%;
+            margin-top:20px;
+            text-align:center;
+            .name{
+                position:relative;
+                display:inline-block;
+                line-height:1.1;
+                font-size:14px;
+                margin-bottom:3px;
+                text-align:center;
+                color:$dark-teal-color;
+            }
+        }   
+    }
+}

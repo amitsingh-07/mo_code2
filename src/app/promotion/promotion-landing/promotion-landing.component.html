@@ -1,0 +1,37 @@
+<div class="promotion__wrapper">
+  <div class="sub-navigation">
+    <div class="sub-navigation--inner pdlr">
+      <span routerLink="/">Home</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+      <span>Promotions</span>
+    </div>
+  </div>
+  <div class="banner" #banner>
+    <div class="banner-bg">
+      <div class="banner-bg--image"></div>
+    </div>
+    <div class="banner-container">
+      <div class="">
+        <h1 class="banner--title">Enjoy Greater Cost Savings</h1>
+      </div>
+    </div>
+    <div class="banner-container-bottom">
+      <div class="banner--bottom">
+        See all promotions below:
+      </div>
+    </div>
+  </div>
+  <div class="customer-reviews__content">
+    <div class="customer-reviews__inner-content">
+      <div class="customer-review card card-block" *ngFor="let promotion of promotionList">
+        <h6 class="review">
+          {{promotion.title}}
+        </h6>
+        <div class="reviewer">
+          <p class="name"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
