@@ -6,7 +6,7 @@
   </div>
   <div class="container-fluid">
     <form name="taxInfoForm" [formGroup]="taxInfoForm">
-      <div formArrayName="addTax" class="tax-form" *ngFor="let taxInfoItem of taxInfoForm.controls.addTax.controls; let x = index">
+      <div formArrayName="addTax" class="tax-form" *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
         <div [formGroupName]="x">
           <div class="flex-row">
             <div class="flex-col-4">
