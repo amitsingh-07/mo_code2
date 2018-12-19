@@ -2,6 +2,7 @@
 @import "../../../_mixins.scss";
 
 //Transaction Module Styles
+app-transaction{
 .transaction-panel {
   height: 100vh;
   background: $white-color;
@@ -114,4 +115,5 @@
     height: 100vh;
     padding-top: 20%;
   }
+}
 }

@@ -9,7 +9,8 @@ import { InvestmentAccountService } from '../../investment-account-service';
 @Component({
   selector: 'app-edit-investment-modal',
   templateUrl: './edit-investment-modal.component.html',
-  styleUrls: ['./edit-investment-modal.component.scss']
+  styleUrls: ['./edit-investment-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditInvestmentModalComponent implements OnInit {
 

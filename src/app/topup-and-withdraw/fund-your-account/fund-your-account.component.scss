@@ -1,6 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+app-fund-your-account{
 .fund-your-account {
 
   font-family: $muli;
@@ -272,4 +273,5 @@
     font-family: $muli-bold;
     font-size: 24px;
   }
+}
 }

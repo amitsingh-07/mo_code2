@@ -2,6 +2,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
+app-additional-declaration-info{
 .app-additional-declaration{
     .btn-proceed {
     width: 179px;
@@ -103,5 +104,6 @@
     letter-spacing: -0.2px;
     text-align: center;
     color: #ffffff;
+}
 }
 }

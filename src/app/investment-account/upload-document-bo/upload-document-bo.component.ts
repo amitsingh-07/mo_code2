@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-upload-document-bo',
   templateUrl: './upload-document-bo.component.html',
-  styleUrls: ['./upload-document-bo.component.scss']
+  styleUrls: ['./upload-document-bo.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UploadDocumentBOComponent implements OnInit {
   uploadForm: FormGroup;

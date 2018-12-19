@@ -1,6 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
+app-get-started-step2{
 .block__carousel-bar-container{
     position:relative;
     display:flex;
@@ -144,4 +145,5 @@
             }
         }
     }
+}
 }

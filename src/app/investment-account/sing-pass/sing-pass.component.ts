@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,8 @@ import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button
 @Component({
   selector: 'app-sing-pass',
   templateUrl: './sing-pass.component.html',
-  styleUrls: ['./sing-pass.component.scss']
+  styleUrls: ['./sing-pass.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SingPassComponent implements OnInit {
   @Input('label') label;

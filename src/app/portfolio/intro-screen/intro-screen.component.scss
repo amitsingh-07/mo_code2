@@ -1,5 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+
+app-intro-screen{
 .intro-block {
     .container-fluid {
         padding-top: 30px !important;
@@ -121,4 +123,5 @@
         text-align: center;
         color: #ffffff;
       }
+}
 }

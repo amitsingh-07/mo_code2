@@ -1,6 +1,6 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Injectable } from '@angular/core';
@@ -22,7 +22,8 @@ import { PortfolioFormData } from '../../portfolio/portfolio-form-data';
 @Component({
   selector: 'app-finanical-details',
   templateUrl: './finanical-details.component.html',
-  styleUrls: ['./finanical-details.component.scss']
+  styleUrls: ['./finanical-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FinanicalDetailsComponent implements OnInit {
   pageTitle: string;

@@ -7,7 +7,8 @@ import { RegexConstants } from 'src/app/shared/utils/api.regex.constants';
 @Component({
   selector: 'app-add-bank-modal',
   templateUrl: './add-bank-modal.component.html',
-  styleUrls: ['./add-bank-modal.component.scss']
+  styleUrls: ['./add-bank-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddBankModalComponent implements OnInit {
 

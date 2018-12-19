@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 @Component({
   selector: 'app-your-portfolio',
   templateUrl: './your-portfolio.component.html',
-  styleUrls: ['./your-portfolio.component.scss']
+  styleUrls: ['./your-portfolio.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class YourPortfolioComponent implements OnInit {
   pageTitle: string;

@@ -1,5 +1,5 @@
 @import '../../../variables';
-
+app-residential-address{
 .residential-address {
 
   .postal-code-control {
@@ -212,4 +212,5 @@ max-height: 52px;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+}
 }
