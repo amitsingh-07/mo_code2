@@ -235,8 +235,7 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   goToNext() {
     const pepData = this.investmentAccountService.getPepData();
-    // tslint:disable-next-line:triple-equals
-    if (pepData == true) {
+    if (pepData) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
       // CREATE INVESTMENT ACCOUNT

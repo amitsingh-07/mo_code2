@@ -93,7 +93,15 @@ export class PersonalDeclarationComponent implements OnInit {
       return false;
     } else {
       this.investmentAccountService.setPersonalDeclarationData(form.getRawValue());
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+      if (this.investmentAccountService.getMyInfoStatus()) {
+        if (this.personalDeclarationForm.controls.radioBeneficial.value) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+        } else {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        }
+      } else {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+      }
     }
   }
   markAllFieldsDirty(form) {

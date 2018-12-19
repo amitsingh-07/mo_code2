@@ -1172,4 +1172,8 @@ export class InvestmentAccountService {
     getAccountCreationStatus() {
         return this.investmentAccountFormData.accountCreationStatus;
     }
+
+    getMyInfoStatus() {
+        return this.investmentAccountFormData.isMyInfoEnabled;
+    }
 }
