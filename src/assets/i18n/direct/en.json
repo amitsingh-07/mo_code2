@@ -112,7 +112,7 @@
       },
       "SRS_SELECTED_PLANS": {
         "SINGLE_PREMIUM":"Single Premium",
-        "PAYOUT_START_AGE":"Payout Start Age",
+        "PAYOUT_START_AGE":"Payout Age",
         "PAYOUT_TYPE":"Payout Type",
         "SINGLE_PREMIUM_LIST":["Single Lump Sum", "Recurring Income"]
       },
