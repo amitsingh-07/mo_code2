@@ -1,5 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+
+app-get-started-step1{
 .step1-block {
     .container-fluid {
         padding-top: 30px !important;
@@ -33,4 +35,5 @@
             border-radius:0px;
         }
     }
+}
 }

@@ -1,6 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
 
+app-risk-profile{
 .hide-custom-modal {
     display: none;
   }
@@ -225,4 +226,5 @@
     height: auto;
     margin: auto;
     padding-top: 10vh;
+}
 }

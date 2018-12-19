@@ -1,6 +1,6 @@
 import { catchError } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-residential-address',
   templateUrl: './residential-address.component.html',
-  styleUrls: ['./residential-address.component.scss']
+  styleUrls: ['./residential-address.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ResidentialAddressComponent implements OnInit {
   addressForm: FormGroup;

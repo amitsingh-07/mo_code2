@@ -1,6 +1,6 @@
 import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +19,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-account-setup-pending',
   templateUrl: './account-setup-pending.component.html',
-  styleUrls: ['./account-setup-pending.component.scss']
+  styleUrls: ['./account-setup-pending.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AccountSetupPendingComponent implements OnInit {
 

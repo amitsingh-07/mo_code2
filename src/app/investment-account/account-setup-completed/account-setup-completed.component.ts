@@ -1,6 +1,6 @@
 import { TopupAndWithDrawService } from 'src/app/topup-and-withdraw/topup-and-withdraw.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,7 +21,8 @@ import { InvestmentAccountService } from '../investment-account-service';
 @Component({
   selector: 'app-account-setup-completed',
   templateUrl: './account-setup-completed.component.html',
-  styleUrls: ['./account-setup-completed.component.scss']
+  styleUrls: ['./account-setup-completed.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AccountSetupCompletedComponent implements OnInit {
   formValues;

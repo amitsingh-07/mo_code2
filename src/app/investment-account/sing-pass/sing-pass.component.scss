@@ -1,6 +1,6 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
+app-sing-pass{
 .autofill-link {
   border: 1px solid $secondary-action-color;
   padding: 15px 20px;
@@ -123,4 +123,5 @@
     letter-spacing: -0.2px;
     color: #000000;
   }
+}
 }

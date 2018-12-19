@@ -3,6 +3,7 @@
 body{
     background-color: #00a7a7;
 }
+app-tax-info{
 .app-tax-info{
     // .container-fluid {
     //     padding-top: 0px;
@@ -183,40 +184,6 @@ text-overflow: ellipsis;
         height: 12px;
       }
     }
-    // .circle{
-    //   position: absolute;
-    //   padding: 5px;
-    //   width: 30px;
-    //   height: 30px;
-    //   background-color: #ffffff;
-    //   border-radius: 50%;
-    //   bottom: -14px;
-    //   left: 0;
-    //   right: 0;
-    //   margin: 0 auto;
-    //   background: url("/assets/images/close-button-dark.svg") !important;
-    //   width: 18px;
-    //   height: 18px;
-    //   img{
-    //     max-width: 100%;
-    //     height: auto;
-    //   }
-    //   .close {
-    //     width: 14px !important;
-    //     height: 14px !important;
-    //     background: url("../../../assets/images/close-button-dark.svg") !important;
-    //     background-repeat: no-repeat !important;
-    //     text-align: center;
-    //     vertical-align: middle;
-    //     position: absolute !important;
-    //     right: 15px !important;
-    //     top: 25px !important;
-    //     float: right;
-    //     position: relative;
-    //     top: 14px;
-    //     right: 5px;
-       
-    //   }
-    // }
   }
+}
 }

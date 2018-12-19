@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +19,8 @@ import { TopupAndWithDrawService } from '../../topup-and-withdraw/topup-and-with
 @Component({
   selector: 'app-fund-your-account',
   templateUrl: './fund-your-account.component.html',
-  styleUrls: ['./fund-your-account.component.scss']
+  styleUrls: ['./fund-your-account.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FundYourAccountComponent implements OnInit {
 

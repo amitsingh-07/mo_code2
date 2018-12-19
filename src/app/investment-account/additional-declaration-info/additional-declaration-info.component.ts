@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,7 +10,8 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.con
 @Component({
   selector: 'app-additional-declaration-info',
   templateUrl: './additional-declaration-info.component.html',
-  styleUrls: ['./additional-declaration-info.component.scss']
+  styleUrls: ['./additional-declaration-info.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AdditionalDeclarationInfoComponent implements OnInit {
   pageTitle: string;

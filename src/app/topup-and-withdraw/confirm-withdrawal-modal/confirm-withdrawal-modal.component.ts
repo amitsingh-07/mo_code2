@@ -6,7 +6,8 @@ import { TOPUPANDWITHDRAW_CONFIG } from '../topup-and-withdraw.constants';
 @Component({
   selector: 'app-confirm-withdrawal-modal',
   templateUrl: './confirm-withdrawal-modal.component.html',
-  styleUrls: ['./confirm-withdrawal-modal.component.scss']
+  styleUrls: ['./confirm-withdrawal-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ConfirmWithdrawalModalComponent implements OnInit {
 

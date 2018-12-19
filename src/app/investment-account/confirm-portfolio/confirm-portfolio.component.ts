@@ -1,6 +1,6 @@
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +38,8 @@ import { FeesModalComponent } from './fees-modal/fees-modal.component';
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',
-  styleUrls: ['./confirm-portfolio.component.scss']
+  styleUrls: ['./confirm-portfolio.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ConfirmPortfolioComponent implements OnInit {
 
