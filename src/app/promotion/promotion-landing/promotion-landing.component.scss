@@ -100,7 +100,7 @@
         border-style: solid none none none;
         border-width: thin;
         border-top-color: #00cece;
-        padding: 15px 0px 13px 0px;
+        padding: 12px 0px 13px 0px;
 
         @include minMobilemaxPhablet{
             padding:20px 0px;
@@ -170,7 +170,6 @@
         .promotion-card--image {
             width:100%;
             height:170px;
-            background-image:url('/assets/images/promotion/promo-header-img.svg');
             background-repeat:no-repeat;
             background-size: contain;
         }
@@ -230,8 +229,9 @@
             color:$teal-color;
             opacity:0.9;
             text-align:left;
-            font-size: 40px;
+            font-size: 2rem;
             padding: 0px 20px;
+            letter-spacing: -0.4px;
         }
         p {
             align-content: flex-start;
@@ -239,7 +239,7 @@
             color: $teal-grey-color;
             opacity:0.9;
             text-align:left;
-            font-size: 21px;
+            font-size: 1.25rem;
             letter-spacing: -0.1px;
             padding: 0px 20px;
         }

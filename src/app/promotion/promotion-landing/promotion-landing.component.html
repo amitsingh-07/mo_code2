@@ -30,7 +30,7 @@
   <div class="promotion-card__content">
     <div class="promotion-card__inner-content">
       <div class="promotion-card card card-block" *ngFor="let promotion of insurancePromotionList">
-        <div class="promotion-card--image">
+        <div class="promotion-card--image" [ngStyle]="{'background-image': 'url(' + promotion.imgSrc + ')'}">
         </div>
         <h4>
           {{promotion.title}}
@@ -53,7 +53,7 @@
   <div class="promotion-card__content">
       <div class="promotion-card__inner-content">
         <div class="promotion-card card card-block" *ngFor="let promotion of willsPromotionList">
-          <div class="promotion-card--image">
+          <div class="promotion-card--image" [ngStyle]="{'background-image': 'url(' + promotion.imgSrc + ')'}">
           </div>
           <h4>
             {{promotion.title}}

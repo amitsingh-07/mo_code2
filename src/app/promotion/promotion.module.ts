@@ -8,6 +8,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { StringToLinkFormatPipe } from './../shared/Pipes/string-to-link.pipe';
 import { PromotionLandingComponent } from './promotion-landing/promotion-landing.component';
 import { PromotionRoutingModule } from './promotion-routing.module';
+import { PromotionPageComponent } from './promotion-page/promotion-page.component';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(
@@ -36,6 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
     ],
     declarations: [
         PromotionLandingComponent,
+        PromotionPageComponent,
         StringToLinkFormatPipe
     ]
 })

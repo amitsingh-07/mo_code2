@@ -1,0 +1,256 @@
+@import '../../../variables';
+@import '../../../mixins';
+
+.promotion-page__wrapper {
+
+    position: relative;
+    display:block;
+    background-color: transparent;
+
+    .sub-navigation{
+        padding:0px 20px;
+        background-image:url('/assets/images/promotion/promo-page-banner.jpg');
+        background-repeat:no-repeat;
+        background-position:bottom center;
+        background-size: cover;
+        @include minPhabletmaxTablet{
+            padding:0px 20px;
+        }
+        @include minMobilemaxPhablet{
+            padding:0px 20px;
+        }
+    }
+
+    .banner{
+        position: relative;
+        display:flex;
+        width:100%;
+        justify-content: center;
+        min-height: 335px;
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+            justify-content:flex-start;
+            min-height:unset;
+        }
+    }
+    
+    .banner-bg{
+        position: absolute;
+        display:block;
+        max-width:1024px;
+        @include tablet{
+            right:20px;
+        }
+        @include minMobilemaxPhablet{
+            position: relative; 
+            height:200px;
+            margin-top:60px;
+            order:2;
+        }
+        .banner-bg--image{
+            position: absolute;
+            display:block;
+            width:100%;
+            background-image:url('/assets/images/promotion/shutterstock-645696091-1@3x.jpg');
+            background-repeat:no-repeat;
+            background-position:bottom center;
+            background-size: cover;
+            @include minPhabletmaxTablet{
+                height:calc(100% - 50px);
+            }
+            @include minMobilemaxPhablet{
+                background-position:center;
+                background-image:url('/assets/images/promotion/group-8.svg');
+            }
+        }
+    }
+}
+
+.promotion-card__content{
+    position: relative;
+    display:flex;
+    background-color:$white-color;
+    width:100%;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px 20px 0px;
+
+    .promotion-card__inner-content{
+        position: relative;
+        display:flex;
+        column-count:3;
+        max-width:1000px;
+        width:100%;
+        align-content: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        @include minPhabletmaxTablet{
+            column-count:2;
+        }
+        @include minMobilemaxPhablet{
+            column-count:1;
+        }
+    }
+    
+    .promotion-card {
+        position: relative;
+        display:inline-block;
+        width:32%;
+        justify-content:center;
+        align-items:center;
+        margin-bottom:1.3rem;
+        border-style: solid;
+        border-width: thin;
+        border-color: $teal-color;
+        padding: 0px;
+
+        @include tablet{
+            padding:20px;
+        }
+
+        .promotion-card--image {
+            width:100%;
+            height:170px;
+            background-repeat:no-repeat;
+            background-size: contain;
+        }
+        
+        h4 {
+            font-family:$muli-bold;
+            color:$teal-color;
+            opacity:0.9;
+            text-align:center;
+            padding: 10px;
+        }
+
+        .more-details-btn {
+            width:88%; 
+            height:60px;
+            margin: 20px;
+            box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
+            padding: 10px;
+            bottom: 0;
+            span{
+                color:$white-color;
+                font-family:$muli-bold;
+                letter-spacing:-0.14px;
+                text-align:center;
+                font-size:20px;
+            }
+        }
+
+        .summary {
+            position: relative;
+            display:inline-block;
+            width:100%;
+            margin-top:20px;
+            text-align:center;
+            color: $teal-grey-color;
+            padding: 10px;
+            letter-spacing:-0.14px;
+            font-size:14px;
+        }   
+    }
+}
+
+.promotion-tag-container {
+
+    position: relative;
+    display:flex;
+    background-color:$white-color;
+    width:100%;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px 20px 0px;
+
+    .promotion-tag-inner-content {
+        max-width:1024px;
+        width: 100%;
+        padding: 0px 20px;
+        .promotion-page-tag {
+            width: 170px;
+            align-content: flex-start;
+            border-radius:4px;
+            background-color:#cdeae6;
+            border: 0px none; 
+            color:$teal-color;
+            font-size:14px;
+            font-family:$muli-bold;
+            padding:4px;
+            letter-spacing: -0.2px;
+            text-align: center;
+        }
+    }
+
+    
+}
+
+.promotion-page-container {
+
+    position: relative;
+    display:flex;
+    background-color:$white-color;
+    width:100%;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:10px 20px;
+
+    .promotion-element {
+        position: relative;
+        display: block;
+    }
+
+    .promotion-title {
+        max-width:1024px;
+        width:100%;
+        h6 {
+            align-content: flex-start;
+            font-family:$muli-bold;
+            color:$teal-color;
+            opacity:0.9;
+            text-align:left;
+            font-size: 2rem;
+            padding: 0px 20px;
+            letter-spacing: -0.4px;
+        }
+        .promotion-sub-title {
+            align-content: flex-start;
+            font-family:$muli-regular;
+            color: $black-color;
+            opacity:0.9;
+            text-align:left;
+            font-size: 1.25rem;
+            letter-spacing: -0.1px;
+            padding: 0px 20px;
+        }
+        .promotion-desc {
+            align-content: flex-start;
+            font-family:$muli-regular;
+            color: $dark-grey-color;
+            opacity:0.9;
+            text-align:left;
+            font-size: 1rem;
+            letter-spacing: -0.19px;
+            padding: 0px 20px;
+        }
+        .promotion-box-container {
+            border-style: solid;
+            border-width: thin;
+            border-color: $teal-color;
+            border-radius: 4px;
+            padding: 20px;
+            align-content: flex-start;
+            span {
+                font-family:$muli-regular;
+                color: $dark-grey-color;
+                opacity:0.9;
+                text-align:left;
+                font-size: 1rem;
+                letter-spacing: -0.19px;
+            }
+        }
+    }
+    
+    
+}

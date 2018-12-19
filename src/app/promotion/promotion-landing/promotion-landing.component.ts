@@ -30,35 +30,35 @@ export class PromotionLandingComponent implements OnInit {
 
     const thisPromotion1 = {
       promoId: 1,
-      imgSrc: 'test',
+      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
       title: '35% off Aviva IdealIncome',
       summary: 'Enjoy lifetime discount with Occupational Disability coverage!'
     };
 
     const thisPromotion2 = {
       promoId: 2,
-      imgSrc: 'test',
+      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
       title: 'Save $100 on Aviva MyCare & MyCare Plus',
       summary: 'Get S$100 off your first year\'s premium with long-term care coverage!'
     };
 
     const thisPromotion3 = {
       promoId: 3,
-      imgSrc: 'test',
+      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
       title: '5% off for coverage $1.1M & above',
       summary: 'Enjoy 5% lifetime discount on Aviva MyProtector Term Plan & attached riders!'
     };
 
     const thisPromotion4 = {
       promoId: 4,
-      imgSrc: 'test',
+      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
       title: 'Additional goodies with Aviva plans',
       summary: 'Treat yourself with shopping vouchers, dining treats or hotel stays!'
     };
 
     const thisPromotion5 = {
       promoId: 5,
-      imgSrc: 'test',
+      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
       title: 'Write your Will, for Free! (worth $150!)',
       summary: 'Subscribe to our mailing list & get a promo code to write for free! Limited offer.'
     };
