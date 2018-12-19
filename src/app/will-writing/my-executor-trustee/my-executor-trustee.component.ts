@@ -215,7 +215,6 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       execTrusteeList[1].relationship === WILL_WRITING_CONFIG.SPOUSE) {
       errors.errorMessages.push({ formName: '', errors: [this.errorMsg.MULTIPLE_SPOUSE] });
     } else {
-      let isSpouseValidated = false;
       execTrusteeList.forEach((item, index) => {
         const errorMsg = { formName: '', errors: [] };
         const formName = index === 0 ? 'Main Executor & Trustee' : 'Alternative Executor & Trustee';
@@ -226,12 +225,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
             const maritalStatus = this.willWritingService.getAboutMeInfo().maritalStatus;
             const errorMessage = this.replaceStringValues('NO_SPOUSE', ['<Marital Status>'], [maritalStatus]);
             errorMsg.errors.push(errorMessage);
-            isSpouseValidated = true;
           } else if (spouseWithUin.length === 0) {
             errorMsg.formName = formName;
             const errorMessage = this.replaceStringValues('RELATION_MISMATCH', ['<Full Name>', '<ID>'], [item.name, item.uin]);
             errorMsg.errors.push(errorMessage);
-            isSpouseValidated = true;
           } else {
             const spouse = this.checkNameUIN('name', item.name, 'spouse');
             if (spouse.length === 0) {
@@ -240,10 +237,9 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
                 ['<Full Name>', '<ID>', '<Full Name Family section>', '<ID Family section>'],
                 [item.name, item.uin, spouseWithUin[0].name, spouseWithUin[0].uin]);
               errorMsg.errors.push(errorMessage);
-              isSpouseValidated = true;
             }
           }
-        } else if (item.relationship === WILL_WRITING_CONFIG.CHILD && !isSpouseValidated) {
+        } else if (item.relationship === WILL_WRITING_CONFIG.CHILD) {
           const childWithUin = this.checkNameUIN('uin', item.uin);
           if (!this.hasChild) {
             errorMsg.formName = formName;
