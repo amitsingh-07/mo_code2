@@ -22,18 +22,24 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   srsApprovedPlansForm: FormGroup;
   formValues: any;
   payoutStartAge = '';
+  singlePremium = '';
   age;
-  payoutStartAgeList = Array(100).fill(0).map((x, i) => x += i * 1);
+  payoutStartAgeList = [62, 65, 67];
+  singlePremiumAmountList = ['10000', '15000', '20000', '30000', '40000', '50000', '60000', '70000', '80000'];
   payoutTypeList;
   payoutType;
   doberror = false;
+
+  dpMinDate;
+  dpMaxDate;
+
   constructor(
     private directService: DirectService, private modal: NgbModal,
     private parserFormatter: NgbDateParserFormatter, private translate: TranslateService,
     private formBuilder: FormBuilder, private config: NgbDatepickerConfig, private currencyPipe: CurrencyPipe) {
     const today: Date = new Date();
-    config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-    config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+    this.dpMinDate = { year: (today.getFullYear() - 55), month: (today.getMonth() + 1), day: today.getDate() };
+    this.dpMaxDate = { year: (today.getFullYear() - 30), month: (today.getMonth() + 1), day: today.getDate() };
     config.outsideDays = 'collapsed';
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
@@ -51,7 +57,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
       dob: [this.formValues.dob, Validators.required],
       singlePremium: [this.formValues.singlePremium, Validators.required],
       payoutStartAge: [this.formValues.payoutStartAge, Validators.required],
-      payoutType: [this.formValues.payoutType, Validators.required]
+      // payoutType: [this.formValues.payoutType, Validators.required]
     });
     if (this.formValues.payoutType !== undefined) {
       this.selectPayoutType(this.formValues.payoutType);
@@ -86,6 +92,10 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   selectPayoutStartAge(payoutStartAge) {
     this.payoutStartAge = payoutStartAge;
     this.srsApprovedPlansForm.controls.payoutStartAge.setValue(this.payoutStartAge);
+  }
+  selectSinglePremiumAmount(amount) {
+    this.singlePremium = amount;
+    this.srsApprovedPlansForm.controls.singlePremium.setValue(this.singlePremium);
   }
   dobErrorModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
