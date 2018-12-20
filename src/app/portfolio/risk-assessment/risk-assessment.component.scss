@@ -142,5 +142,61 @@ input[type='radio']:checked+label {
   }
 }
 
+  .table-view {
+    display:table;
+
+    .table-row {
+      display:table-row;
+
+      .table-cell {
+        display:table-cell;
+        border-right:1px solid #00a7a7;
+        border-bottom:1px solid #00a7a7;
+        background-color:#f2f9fa;
+        color:#007d7d;
+        padding:15px;
+        vertical-align: middle;
+        text-align: center;
+        font-family: $muli-semi-bold;
+        font-size:18px;
+
+        .col-head {
+          font-family: $muli-bold;
+          line-height: 23px;
+        }
+
+        label{
+          color:#313644;
+          font-size:18px;
+        }
+      }
+
+      &.table-head {
+        .table-cell {
+          background-color:#ffffff;
+          font-size:16px;
+          color:#313644;
+          font-family: $muli-regular;
+          line-height:15px;
+        }
+        .table-cell:first-child {
+          border-radius:6px 0px 0px 0px;
+        }
+        .table-cell:last-child {
+          border-radius:0px 6px 0px 0px;
+        }
+      }
+    }
+
+    .table-row:last-child {
+      .table-cell:first-child{
+        border-radius:0px 0px 0px 6px;
+      }
+      .table-cell:last-child{
+        border-radius:0px 0px 6px 0px;
+      }
+    }
+  }
+
 
 }
