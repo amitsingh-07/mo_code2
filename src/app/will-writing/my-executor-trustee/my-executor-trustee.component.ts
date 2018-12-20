@@ -270,7 +270,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       });
     }
     if (errors.errorMessages.length > 0) {
-      this.willWritingService.openErrorModal('', errors.errorMessages, true);
+      this.willWritingService.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
       return false;
     }
     return true;

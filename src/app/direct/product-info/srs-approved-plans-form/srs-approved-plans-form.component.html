@@ -1,100 +1,121 @@
 <form name="srsApprovedPlansForm" id="srsApprovedPlansForm" [formGroup]="srsApprovedPlansForm" class="flex-row ">
-    <div class="form-group direct-form">
-      <div class="flex-row">
-        <div class="flex-col-3">
-            <label for="name" id="getStrdLbl1">{{ 'PROFILE.GENDER.TITLE' | translate}}</label>
-          </div>
-        <div class="flex-col-8 direct-form-grp">
-          <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
-            <div class="flex-row mb0">
-              <div>
-                <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
-                  <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
-                </label>
-                </div>
-              <div>
-                <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
-                  <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
-                </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <div class="flex-row">
-        <div class="flex-col-3">
-          <label for="name" id="getStrdLbl4">{{ 'PROFILE.DOB.TITLE' | translate}}</label>
-          </div>
-        <div #usrFrmDp class="flex-col-8 direct-form-grp">
-          <div class="datepicker-control">
-              <div class="input-group date-picker mb0"  [ngClass]="{'inline-error': doberror && !srsApprovedPlansForm.get('dob').valid  && !srsApprovedPlansForm.get('dob').pristine}">
-                  <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob"
-                  name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-                  <div class="input-group-append">
-                    <button (click)="d.toggle()" class="btn btn-primary" type="button">
-                        <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="srsApprovedPlansForm.get('dob').valid || srsApprovedPlansForm.get('dob').pristine || !doberror" src="./assets/images/calendar-normal.svg"
-                        />
-                        <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !srsApprovedPlansForm.get('dob').valid && !srsApprovedPlansForm.get('dob').pristine" src="./assets/images/calendar-error.svg"
-                        />
-                    </button>
-                    </div>
-                  </div>
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="form-group direct-form second-form">
-         <div class="flex-row">
-        <div class="flex-col-3">
-           <label for="name" id="getStrLbl6">{{ 'SRS_SELECTED_PLANS.SINGLE_PREMIUM' | translate}}</label>
-        </div>
-        <div class="flex-col-8 direct-form-grp">
-           <div class="form-control">
-            <i>$</i>
-            <div name="singlePremium"><input  class="input-control" type="text" appCurrencyInput maxLength="5" #monthlySalary formControlName="singlePremium" value="0"></div>
-            </div>
-        </div>
-     </div>
-      <div class="flex-row">
-        <div class="flex-col-3">
-          <label for="name" id="getStrLbl6">{{ 'SRS_SELECTED_PLANS.PAYOUT_START_AGE' | translate}}</label>
-        </div>
-        <div class="flex-col-8 direct-form-grp">
-          <div class="dropdown-control">
-              <div ngbDropdown id="coverageAmtDropDown">
-                <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
-                  <span class="coverage_amt">{{payoutStartAge == '' ? 'Select' : payoutStartAge}}</span>
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button class="dropdown-item" (click)="selectPayoutStartAge('')">{{'COMMON.LBL_SELECT' | translate}}</button>
-                  <button type="button" class="dropdown-item" *ngFor="let payoutStartAge of payoutStartAgeList" (click)="selectPayoutStartAge(payoutStartAge)">
-                    {{payoutStartAge}}
-                  </button>
-                </div>
-              </div>
-            </div>
-        </div> 
+  <div class="form-group direct-form">
+    <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrdLbl1">{{ 'PROFILE.GENDER.TITLE' | translate}}</label>
       </div>
-      <div class="flex-row">
-        <div class="flex-col-3">
-          <label for="name" id="getStrLbl7">{{ 'SRS_SELECTED_PLANS.PAYOUT_TYPE' | translate}}</label>
-        </div>
-        <div class="flex-col-8 direct-form-grp">
-          <div class="dropdown-control">
-              <div ngbDropdown id="durationDropDown">
-                <button type="button" class="btn btn-dropdown" id="dropdownDuration" ngbDropdownToggle>
-                  <span class="duration">{{payoutType == ''?'Select': payoutType }}</span>
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownDuration">
-                  <button class="dropdown-item" (click)="selectPayoutType('')">{{'COMMON.LBL_SELECT' | translate}}</button>
-                  <button type="button" class="dropdown-item" *ngFor="let payoutType of payoutTypeList" (click)="selectPayoutType(payoutType)">
-                    {{payoutType}}
-                  </button>
-                </div>
-              </div>
+      <div class="flex-col-8 direct-form-grp">
+        <div class="btn-group--toggle" ngbRadioGroup name="radioGender" formControlName="gender">
+          <div class="flex-row mb0">
+            <div>
+              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl2">
+                <input ngbButton type="radio" value="male" id="getStrdInpt1"> {{ 'COMMON.LBL_MALE' | translate}}
+              </label>
+            </div>
+            <div>
+              <label ngbButtonLabel class="direct-form-btn--radio btn" id="getStrdLbl3">
+                <input ngbButton type="radio" value="female" id="getStrdInpt2"> {{ 'COMMON.LBL_FEMALE' | translate}}
+              </label>
             </div>
           </div>
         </div>
-      
+      </div>
     </div>
-  </form>
+    <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrdLbl4">{{ 'PROFILE.DOB.TITLE' | translate}}</label>
+      </div>
+      <div #usrFrmDp class="flex-col-8 direct-form-grp">
+        <div class="datepicker-control">
+          <div class="input-group date-picker mb0" [ngClass]="{'inline-error': doberror && !srsApprovedPlansForm.get('dob').valid  && !srsApprovedPlansForm.get('dob').pristine}">
+            <input readonly class="form-control" placeholder="DD / MM / YYYY" formControlName="dob" name="dp"
+              ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" [minDate]="dpMinDate" [maxDate]="dpMaxDate">
+            <div class="input-group-append">
+              <button (click)="d.toggle()" class="btn btn-primary" type="button">
+                <img class="date-picker-image--valid" id="getStrdImg1" *ngIf="srsApprovedPlansForm.get('dob').valid || srsApprovedPlansForm.get('dob').pristine || !doberror"
+                  src="./assets/images/calendar-normal.svg" />
+                <img class="date-picker-image--invalid" id="getStrdImg1" *ngIf="doberror && !srsApprovedPlansForm.get('dob').valid && !srsApprovedPlansForm.get('dob').pristine"
+                  src="./assets/images/calendar-error.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group direct-form second-form">
+    <!-- <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrLbl6">{{ 'SRS_SELECTED_PLANS.SINGLE_PREMIUM' | translate}}</label>
+      </div>
+      <div class="flex-col-8 direct-form-grp">
+        <div class="form-control">
+          <i>$</i>
+          <div name="singlePremium"><input class="input-control" type="text" appCurrencyInput maxLength="5"
+              #monthlySalary formControlName="singlePremium" value="0"></div>
+        </div>
+      </div>
+    </div> -->
+    <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrLbl6">{{ 'SRS_SELECTED_PLANS.SINGLE_PREMIUM' | translate}}</label>
+      </div>
+      <div class="flex-col-8 direct-form-grp">
+        <div class="dropdown-control">
+          <div ngbDropdown id="singlePremiumDropdown">
+            <button type="button" class="btn btn-dropdown" id="btnSinglePremiumDropdown" ngbDropdownToggle>
+              <span class="coverage_amt">{{singlePremium == '' ? 'Select' : singlePremium}}</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="btnSinglePremiumDropdown">
+              <button class="dropdown-item" (click)="selectSinglePremiumAmount('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+              <button type="button" class="dropdown-item" *ngFor="let singlePremiumAmount of singlePremiumAmountList" (click)="selectSinglePremiumAmount(singlePremiumAmount)">
+                {{singlePremiumAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrLbl6">{{ 'SRS_SELECTED_PLANS.PAYOUT_START_AGE' | translate}}</label>
+      </div>
+      <div class="flex-col-8 direct-form-grp">
+        <div class="dropdown-control">
+          <div ngbDropdown id="coverageAmtDropDown">
+            <button type="button" class="btn btn-dropdown" id="dropdownBasic1" ngbDropdownToggle>
+              <span class="coverage_amt">{{payoutStartAge == '' ? 'Select' : payoutStartAge}}</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" (click)="selectPayoutStartAge('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+              <button type="button" class="dropdown-item" *ngFor="let payoutStartAge of payoutStartAgeList" (click)="selectPayoutStartAge(payoutStartAge)">
+                {{payoutStartAge}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="flex-row">
+      <div class="flex-col-3">
+        <label for="name" id="getStrLbl7">{{ 'SRS_SELECTED_PLANS.PAYOUT_TYPE' | translate}}</label>
+      </div>
+      <div class="flex-col-8 direct-form-grp">
+        <div class="dropdown-control">
+          <div ngbDropdown id="durationDropDown">
+            <button type="button" class="btn btn-dropdown" id="dropdownDuration" ngbDropdownToggle>
+              <span class="duration">{{payoutType == ''?'Select': payoutType }}</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownDuration">
+              <button class="dropdown-item" (click)="selectPayoutType('')">{{'COMMON.LBL_SELECT' | translate}}</button>
+              <button type="button" class="dropdown-item" *ngFor="let payoutType of payoutTypeList" (click)="selectPayoutType(payoutType)">
+                {{payoutType}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</form>
