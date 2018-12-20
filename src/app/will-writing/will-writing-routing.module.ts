@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AboutMeComponent } from './about-me/about-me.component';
-import { AppointYourExecutorTrusteeComponent } from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
+import {
+  AppointYourExecutorTrusteeComponent
+} from './appoint-your-executor-trustee/appoint-your-executor-trustee.component';
 import { CheckEligibilityComponent } from './check-eligibility/check-eligibility.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { DistributeYourEstateComponent } from './distribute-your-estate/distribute-your-estate.component';
+import { DownloadWillComponent } from './download-will/download-will.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MyBeneficiariesComponent } from './my-beneficiaries/my-beneficiaries.component';
@@ -19,7 +22,6 @@ import { TellUsAboutYourselfComponent } from './tell-us-about-yourself/tell-us-a
 import { ValidateYourWillComponent } from './validate-your-will/validate-your-will.component';
 import { WillWritingAccessGuard } from './will-writing-access-guard';
 import { WILL_WRITING_ROUTES } from './will-writing-routes.constants';
-import { DownloadWillComponent } from './download-will/download-will.component';
 
 const routes: Routes = [
   {

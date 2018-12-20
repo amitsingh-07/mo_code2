@@ -123,7 +123,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     if (this.hasSpouse) {
       return this.formBuilder.group({
         name: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].name : '',
-        [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+        [Validators.required, Validators.minLength(2), Validators.maxLength(100),
+        Validators.pattern(RegexConstants.NameWithSymbol)]],
         uin: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].uin : '',
         [Validators.required, Validators.pattern(RegexConstants.UIN)]],
       });
@@ -136,7 +137,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       this.formName.push('My Child ' + (index + 1));
       return this.formBuilder.group({
         name: [this.childrenFormValues.length > index ?
-          this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+          this.childrenFormValues[index].name : '', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
+          Validators.pattern(RegexConstants.NameWithSymbol)]],
         uin: [this.childrenFormValues.length > index ?
           this.childrenFormValues[index].uin : '', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
         dob: [this.childrenFormValues.length > index ? this.childrenFormValues[index].dob : '', [Validators.required]]
