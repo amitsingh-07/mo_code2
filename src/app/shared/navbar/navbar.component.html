@@ -45,8 +45,8 @@
         <div class="hidden-lg">
         <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
-                    <li class="nav-item flex space-between" style="flex-direction: row">
-                            <a class="nav-link">User name</a>
+                    <li *ngIf="isLoggedIn" class="nav-item flex space-between" style="flex-direction: row">
+                            <a class="nav-link">{{userInfo.firstName}}</a>
                             <a class="nav-link" style="width: auto; padding-right: 15px;">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
                             </li>
                 <li class="nav-item" [routerLink]="['/']">
@@ -185,11 +185,11 @@
                                     </button> 
                             </div>
                             </li>
-                            <li class="nav-item dropdown" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
+                            <li *ngIf="isLoggedIn" class="nav-item dropdown" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
                                 <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i class="fa fa-user-circle-o" style="font-size: 20px; color: #00a7a7"></i></a>
                                 <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
                                     <button class="dropdown-item">
-                                        <div class="navbar--text">User Name</div>
+                                        <div class="navbar--text">{{userInfo.firstName}}</div>
                                         </button>
                                     <button class="dropdown-item">
                                         <div class="navbar--text">Logout</div>
