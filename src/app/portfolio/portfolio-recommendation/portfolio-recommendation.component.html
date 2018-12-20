@@ -63,13 +63,13 @@
     </div>
   </div>
 </div> -->
-<div class="container-fluid" >
+<div class="container-fluid">
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 portfolio-allocation-details__container">
       <div class="portfolio-allocation-details__content">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
           <div class="flex-col-12 portfolio-allocation-details__content__block">
-              Here’s your projected portfolio value for <strong>$120,000 one-time investment</strong> &amp;
+            Here’s your projected portfolio value for <strong>$120,000 one-time investment</strong> &amp;
             <strong>$800 monthly investment</strong> for 30 years.
           </div>
         </div>
@@ -79,48 +79,176 @@
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
           <div class="portfolio-type-details">
             <div class="portfolio-type-details-title">Conservative Portfolio</div>
-            <div class="portfolio-type-details-desc">Your investment returns may vary. The projected portfolio value ranges between $1,240,987 to $1,286,079. The average projected portfolio value is $1,263.385.</div>
+            <div class="portfolio-type-details-desc">Your investment returns may vary. The projected portfolio value
+              ranges between $1,240,987 to $1,286,079. The average projected portfolio value is $1,263.385.</div>
           </div>
           <div class="portfolio-graph-block">
-              <div class="portfolio-graph-container">
-                <img src="../../../assets/images/investment-account/green-graph.svg" />
-                <div class="flex-row time-lapse">
-                  <span>Now</span><span>30 years</span>
-                </div>
+            <div class="portfolio-graph-container">
+              <img src="../../../assets/images/investment-account/green-graph.svg" />
+              <div class="flex-row time-lapse">
+                <span>Now</span><span>30 years</span>
               </div>
-              <div class="flex-col portfolio-graph-indicator">
-                <div class="flex-row flex-col-10 indicators">
-                  <div class="flex-row"><span class="circle best"></span><span>Best</span></div>
-                  <div class="flex-row"><span class="circle median"></span><span>Median</span></div>
-                  <div class="flex-row"><span class="circle worst"></span><span>Worst</span></div>
-                </div>
-                <div class="flex-row capital"><span>. . .</span><span>Capital Invested</span></div>
-                <div class="desc">The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.</div>
+            </div>
+            <div class="flex-col portfolio-graph-indicator">
+              <div class="flex-row flex-col-10 indicators">
+                <div class="flex-row"><span class="circle best"></span><span>Best</span></div>
+                <div class="flex-row"><span class="circle median"></span><span>Median</span></div>
+                <div class="flex-row"><span class="circle worst"></span><span>Worst</span></div>
               </div>
+              <div class="flex-row capital"><span>. . .</span><span>Capital Invested</span></div>
+              <div class="desc">The graph shows the <strong>best, median and worst return</strong> that can be achieved
+                <strong>75% of the time</strong> over your investment period.</div>
+            </div>
           </div>
         </div>
       </div>
       <hr>
       <div class="portfolio-allocation-details__content">
-          <div class="flex-col-12 portfolio-allocation-details__content__desc">
-            <div class="flex-row review-edit"><span>Review My Inputs</span><span class="edit_button " (click)="showEditModal()"></span></div>
+        <div class="flex-col-12 portfolio-allocation-details__content__desc">
+          <div class="flex-row review-edit"><span>Review My Inputs</span><span class="edit_button " (click)="showEditModal()"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-col-12 asset-allocation">
+      <div class="title">Asset Allocation</div>
+      <!-- bonds -->
+      <div class="bond_container">
+        <div class="bonds_equity_block">
+          <div class="bond_progress_container">
+            <div class="flex-row equity_bar">
+              <div class="flex-row flex-col-8">
+                <span style="width: 40%; background-color: #ec681c; " class="bar"></span>
+                <span style="width: 60%; background-color: #c7e9e9; " class="bar"></span>
+              </div>
+              <div class="flex-col-4 pl20">40% Equities</div>
+            </div>
+            <div class="flex-row bond_bar">
+                <div class="flex-row flex-col-8">
+                  <span style="width: 60%; background-color: #76328e; " class="bar"></span>
+                  <span style="width: 40%; background-color: #c7e9e9; " class="bar"></span>
+                </div>
+                <div class="flex-col-4 pl20">60% Bonds</div>
+            </div>
           </div>
+          <div class="bonds_equity">
+            <div class="bonds_equity_title" (click)="acc2.toggle('toggle-1')" (click)="test('event2')">Equities<i class='fa right'
+                [class.fa-chevron-down]="event2" [class.fa-chevron-up]="!event2"></i></div>
+            <ngb-accordion #acc2="ngbAccordion">
+              <ngb-panel id="toggle-1" title="Second">
+                <ng-template ngbPanelContent>
+                  <div class="bond_desc">
+                    <div class="flex-row flex-col-12">
+                      <div class="rating_type">Number of Holdings</div>
+                      <div class="rating">
+                        <div class="flex-row"><span class="rating_value">8554</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bond_desc">
+                    <div class="flex-row flex-col-12">
+                      <div class="flex-col-5 rating_type">Class Allocation</div>
+                      <div class="flex-col-7 rating">
+                        <div class="flex-row"><span>Global Equity</span><span class="rating_value">88.5%</span></div>
+                        <div class="flex-row"><span>Emerging Equity</span><span class="rating_value">11.5%</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bond_desc">
+                    <div class="flex-row flex-col-12">
+                      <div class="flex-col-5 rating_type">Regional Allocation</div>
+                      <div class="flex-col-7 rating">
+                        <div class="flex-row"><span>North America</span><span class="rating_value">57.3%</span></div>
+                        <div class="flex-row"><span>Asia Pacific</span><span class="rating_value">21.1%</span></div>
+                        <div class="flex-row"><span>Europe</span><span class="rating_value">19.2%</span></div>
+                        <div class="flex-row"><span>Latin America</span><span class="rating_value">1.4%</span></div>
+                        <div class="flex-row"><span>Africa</span><span class="rating_value">0.8%</span></div>
+                        <div class="flex-row"><span>Middle East</span><span class="rating_value">0.3%</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bond_desc">
+                    <div class="flex-row flex-col-12">
+                      <div class="flex-col-5 rating_type">Sector Allocation</div>
+                      <div class="flex-col-7 rating">
+                        <div class="flex-row"><span>Financials</span><span class="rating_value">17.8%</span></div>
+                        <div class="flex-row"><span>Industrials</span><span class="rating_value">16.4%</span></div>
+                        <div class="flex-row"><span>Consumer Disc</span><span class="rating_value">13.3%</span></div>
+                        <div class="flex-row"><span>Info Technology</span><span class="rating_value">12.9%</span></div>
+                        <div class="flex-row"><span>Health Care</span><span class="rating_value">9.6%</span></div>
+                        <div class="flex-row"><span>Materials</span><span class="rating_value">7.0%</span></div>
+                        <div class="flex-row"><span>Energy</span><span class="rating_value">7.0%</span></div>
+                        <div class="flex-row"><span>Consumer Staples</span><span class="rating_value">6.7%</span></div>
+                        <div class="flex-row"><span>REITs</span><span class="rating_value">3.4%</span></div>
+                        <div class="flex-row"><span>Other</span><span class="rating_value">6.0%</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+          <div class="bonds_equity">
+            <div class="bonds_equity_title" (click)="acc.toggle('toggle-1')" (click)="test('event1')">Bonds<i class='fa right'
+                [class.fa-chevron-down]="event1" [class.fa-chevron-up]="!event1"></i></div>
+            <ngb-accordion #acc="ngbAccordion">
+              <ngb-panel id="toggle-1" title="First panel">
+                <ng-template ngbPanelContent>
+                  <div class="bond_desc">
+                    <div class="flex-row flex-col-12">
+                      <div class="rating_type">Number of Holdings</div>
+                      <div class="rating">
+                        <div class="flex-row"><span class="rating_value">202</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bond_desc">
+                    <div class="flex-row flex-col-12">
+                      <div class="flex-col-5 rating_type">Credit Rating Allocation</div>
+                      <div class="flex-col-7 rating">
+                        <div class="flex-row"><span>AAA</span><span class="rating_value">21.0%</span></div>
+                        <div class="flex-row"><span>AA</span><span class="rating_value">57.3%</span></div>
+                        <div class="flex-row"><span>A</span><span class="rating_value">21.7%</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bond_desc">
+                    <div class="flex-row flex-col-12">
+                      <div class="flex-col-5 rating_type">Regional Allocation</div>
+                      <div class="flex-col-7 rating">
+                        <div class="flex-row"><span>Europe</span><span class="rating_value">48.7%</span></div>
+                        <div class="flex-row"><span>North America</span><span class="rating_value">30.8%</span></div>
+                        <div class="flex-row"><span>Supranational</span><span class="rating_value">11.3%</span></div>
+                        <div class="flex-row"><span>Asia Pacific</span><span class="rating_value">9.3%</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+        </div>
+        <hr>
+        <button type="button" class="btn btn-view width100">View Fund Details</button>
       </div>
     </div>
     <div class="flex-col-12 annual-fees">
       <div class="title">Annual Fees</div>
       <div class="annual-fee-desc">
         <div class="flex-row">
-          <div class="flex-col"><span>Advisory Fees</span></div><div class="fee_value">0.65%</div>
+          <div class="flex-col"><span>Advisory Fees</span></div>
+          <div class="fee_value">0.65%</div>
         </div>
         <div class="flex-row">
-            <div class="flex-col"><span>Platform Fees</span><span class="text-lyt">(Paid to iFast)</span></div><div class="fee_value">0.15%</div>
+          <div class="flex-col"><span>Platform Fees</span><span class="text-lyt">(Paid to iFast)</span></div>
+          <div class="fee_value">0.15%</div>
         </div>
         <div class="flex-row">
-            <div class="flex-col"><span>Fund Expense Ratio</span><span class="text-lyt">(Paid to DFA)</span></div><div class="fee_value">0.2% to 0.4%</div>
+          <div class="flex-col"><span>Fund Expense Ratio</span><span class="text-lyt">(Paid to DFA)</span></div>
+          <div class="fee_value">0.2% to 0.4%</div>
         </div>
         <div class="flex-row">
-            <div class="flex-col"><span>Total</span></div><div class="fee_value">1% to 1.2%</div>
+          <div class="flex-col"><span>Total</span></div>
+          <div class="fee_value">1% to 1.2%</div>
         </div>
       </div>
     </div>
@@ -129,8 +257,9 @@
   <div class="row">
     <div class="flex-col-12 review-block">
       <div>Review your inputs or proceed to start investing in this portfolio.</div>
-      <div class="review-italic">Please note that your investment only starts after you have started funding your account.</div>
+      <div class="review-italic">Please note that your investment only starts after you have started funding your
+        account.</div>
     </div>
   </div>
-  <button type="button"  (click)="goToNext()" class="btn btn__footer--fixed btn-primary">Proceed</button>
+  <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary">Proceed</button>
 </div>

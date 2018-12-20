@@ -40,12 +40,12 @@ export class PortfolioRecommendationComponent implements OnInit {
   selectedRiskProfile: RiskProfile;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
-
   legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
-
   helpDate: any;
   editPortfolio: any;
   buttonTitle: any;
+  event1 = true;
+  event2 = true;
   constructor(
     private appService: AppService,
     private router: Router,
@@ -136,7 +136,11 @@ export class PortfolioRecommendationComponent implements OnInit {
       }
     }
   }
-
+ // accordian
+ test(event){
+  event === 'event1' ? this.event1 = !this.event1: '';
+  event === 'event2' ? this.event2 = !this.event2: '';
+}
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
