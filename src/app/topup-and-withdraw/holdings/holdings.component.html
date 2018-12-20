@@ -1,0 +1,49 @@
+<div class="app-holdings">
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index">
+        <!--Form Header-->
+        <div class="form-group-with-bg--header">
+          <div id="holdings_head_label">Global Core Equity Fund (SGD, ACC.)</div>
+        </div>
+        <!--Form Content-->
+        <div class="form-group-with-bg--content">
+          <div class="flex-row">
+            <div class="flex-col-8">
+              <div class="value_lab text_bold" for="total return" id="investment_overview_total_returns_labl">Total Value
+              </div>
+            </div>
+            <div class="flex-col-4">
+              <div class="value" for="total value" id="investment_overview_total_returns_value">$27,462.96
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class="flex-col-8">
+              <div class="value_lab " for="name" id="investment_overview_investment_start_labl">Number of Units
+              </div>
+            </div>
+            <div class="flex-col-4">
+              <div class="value" for="name" id="investment_overview_investment_start_value">1337
+              </div>
+            </div>
+          </div>
+         
+          <div class="flex-row">
+            <div class="flex-col-8">
+              <div class="value_lab" for="tota" id="investment_overview_total_invested_lbl">NAV
+              </div>
+            </div>
+            <div class="flex-col-4">
+              <div class="value" for="name" id="investment_overview_total_invested__value">$20.50
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

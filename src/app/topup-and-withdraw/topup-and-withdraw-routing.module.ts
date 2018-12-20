@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
+import { HoldingsComponent } from './holdings/holdings.component';
 import { TopUpComponent } from './top-up/top-up.component';
 import { TOPUP_AND_WITHDRAW_ROUTES } from './topup-and-withdraw-routes.constants';
 import { TopupRequestComponent } from './topup-request/topup-request.component';
@@ -42,11 +41,7 @@ const routes: Routes = [
     path: TOPUP_AND_WITHDRAW_ROUTES.YOUR_PORTFOLIO,
     component: YourPortfolioComponent
   },
-  {
-    path: TOPUP_AND_WITHDRAW_ROUTES.ASSET_ALLOCATION,
-    component: AssetAllocationComponent
-  },
-  {
+ {
     path: TOPUP_AND_WITHDRAW_ROUTES.WITHDRAWAL,
     component: WithdrawalTypeComponent
   },
@@ -59,7 +54,11 @@ const routes: Routes = [
     component: WithdrawalSuccessComponent
   },
   { path: TOPUP_AND_WITHDRAW_ROUTES.TRANSACTION,
-    component: TransactionComponent }
+    component: TransactionComponent
+  },
+  { path: TOPUP_AND_WITHDRAW_ROUTES.HOLDINGS,
+    component: HoldingsComponent
+  }
 
 ];
 
