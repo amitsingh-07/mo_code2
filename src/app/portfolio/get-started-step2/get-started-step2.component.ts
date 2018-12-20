@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -9,7 +9,8 @@ import { FooterService } from '../../shared/footer/footer.service';
 @Component({
   selector: 'app-get-started-step2',
   templateUrl: './get-started-step2.component.html',
-  styleUrls: ['./get-started-step2.component.scss']
+  styleUrls: ['./get-started-step2.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GetStartedStep2Component implements OnInit {
   title = this.translate.instant('GETSTARTED_STEP2.TITLE');

@@ -21,7 +21,7 @@
     </div>
 
     <div class="col-12" *ngIf="secondaryActionLabel">
-        <button type="button" class="action-button" (click)="secondaryActionSelected()" id="errorModeButton">
+        <button type="button" class="action-button" [class.secondary-button]="secondaryActionDim" (click)="secondaryActionSelected()" id="errorModeButton">
           {{secondaryActionLabel}}
         </button>
       </div>

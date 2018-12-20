@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-intro-screen',
   templateUrl: './intro-screen.component.html',
-  styleUrls: ['./intro-screen.component.scss']
+  styleUrls: ['./intro-screen.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class IntroScreenComponent implements OnInit {
   @Input() title: string;

@@ -1,0 +1,45 @@
+<div class="account-created-success-modal">
+  <div class="custom-modal-backdrop"></div>
+  <div class="custom-modal-wrapper">
+    <!-- <div class="custom-modal--icon"> -->
+    <!-- <img src="../../../assets/images/account-created-icon.svg" id="custModalImg1" /> -->
+    <div class="custom-modal-content">
+      <div>
+        <img src="../../../assets/images/investment-account/investment_Account_Created.svg" id="add_submit_custModalImg2" />
+      </div>
+
+      <!-- ACCOUNT CREATION PENDING -->
+      <div class="pl20 pr20" *ngIf="status === statuses.account_creation_pending">
+        <p class="custom-modal--title mt20" id="add_submit_custModalTitle">{{ 'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.TITLE' |
+          translate}}
+        </p>
+        <p class="custom-modal--desc" id="add_submit_custModalTitle">{{ 'ACCOUNT_CREATION_STATUS.ACCOUNT_CREATION_PENDING.DESC' |
+          translate}}
+        </p>
+      </div>
+
+      <!-- ADDITIONAL DECLARATION SUBMITTED -->
+      <div class="pl20 pr20" *ngIf="status === statuses.additional_declaration_pending">
+        <p class="custom-modal--title mt20" id="add_submit_custModalTitle">{{ 'ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.TITLE' |
+          translate}}
+        </p>
+        <p class="custom-modal--desc" id="add_submit_custModalTitle">{{ 'ACCOUNT_CREATION_STATUS.ADDITIONAL_DECLARATION_SUBMITTED.DESC' |
+          translate}}
+        </p>
+      </div>
+
+      <!-- DOCUMENTS PENDING -->
+      <div class="pl20 pr20" *ngIf="status === statuses.documents_pending">
+        <p class="custom-modal--title mt20" id="add_submit_custModalTitle">{{ 'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.TITLE' |
+          translate}}
+        </p>
+        <p class="custom-modal--desc" id="add_submit_custModalTitle">{{ 'ACCOUNT_CREATION_STATUS.DOCUMENTS_PENDING.DESC' |
+          translate}}
+        </p>
+      </div>
+
+      <button (click)="redirectToDashboard()" id="add_submit_button" type="button" class="btn btn__footer--fixed btn-primary width100">{{
+        'ADDITIONAL_DECLARATION_SUBMIT.BACK' | translate}}</button>
+    </div>
+  </div>
+</div>

@@ -44,7 +44,7 @@ export class TopupAndWithDrawService {
   }
 
   getTopupInvestmentList() {
-    return this.apiService.getTopupInvestmentList();
+    return this.apiService.getAllDropdownList();
 
   }
   getPortfolioList() {
@@ -54,7 +54,7 @@ export class TopupAndWithDrawService {
   getMoreList() {
     return this.apiService.getMoreList();
   }
-  
+
   doFinancialValidations(form) {
     const invalid = [];
     // tslint:disable-next-line:triple-equals                              //TODO
@@ -151,7 +151,11 @@ export class TopupAndWithDrawService {
     this.commit();
   }
   getUserCashBalance() {
-    return this.topUpAndWithdrawFormData.cashAccountBalance;
+    if (this.topUpAndWithdrawFormData.cashAccountBalance) {
+      return this.topUpAndWithdrawFormData.cashAccountBalance;
+    } else {
+      return 0;
+    }
   }
   // tslint:disable-next-line
   getFormErrorList(form) {

@@ -37,6 +37,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   notificationMaxLimit: number;
   isNotificationHidden = true;
   subTitle = '';
+  pageSuperTitle = '';
   helpIcon = false;
   closeIcon = false;
   settingsIcon = false;
@@ -100,6 +101,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.navbarService.isBackPressSubscribed.subscribe((subscribed) => {
       this.isBackPressSubscribed = subscribed;
     });
+    this.navbarService.currentPageSuperTitle.subscribe((superTitle) => this.pageSuperTitle = superTitle);
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
@@ -175,9 +177,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   toggleRecentNotification() {
     this.isNotificationHidden = !this.isNotificationHidden;
     if (!this.isNotificationHidden) { // When Opened
-      this.updateNotifications(this.recentMessages, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
+      if (this.recentMessages && this.recentMessages.length) {
+        this.updateNotifications(this.recentMessages, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
+      }
     } else { // When closed
-      // this.getRecentNotifications();
+      this.getRecentNotifications();
     }
   }
 

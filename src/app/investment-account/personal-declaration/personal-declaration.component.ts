@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,8 @@ import { IPageComponent } from './../../shared/interfaces/page-component.interfa
 @Component({
   selector: 'app-personal-declaration',
   templateUrl: './personal-declaration.component.html',
-  styleUrls: ['./personal-declaration.component.scss']
+  styleUrls: ['./personal-declaration.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PersonalDeclarationComponent implements OnInit {
   sourceOfIncomeList: any;

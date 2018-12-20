@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +24,8 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 @Component({
   selector: 'app-top-up',
   templateUrl: './top-up.component.html',
-  styleUrls: ['./top-up.component.scss']
+  styleUrls: ['./top-up.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TopUpComponent implements OnInit {
   pageTitle: string;
@@ -69,14 +70,14 @@ export class TopUpComponent implements OnInit {
     this.getPortfolioList();
     this.cashBalance = this.topupAndWithDrawService.getUserCashBalance();
     this.topupAndWithDrawService.getTopupInvestmentList().subscribe((data) => {
-      this.investmentTypeList = data.objectList; // Getting the information from the API
+      this.investmentTypeList = data.objectList.topupInvestment; // Getting the information from the API
       console.log(this.investmentTypeList);
     });
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
     this.topForm = this.formBuilder.group({
       portfolio: [this.formValues.PortfolioValues, Validators.required],
-      Investment: [this.formValues.Investment, Validators.required],
+      Investment: [this.formValues.Investment ? this.formValues.Investment : 'One-time Investment', Validators.required],
       oneTimeInvestmentAmount: [this.formValues.oneTimeInvestmentAmount, Validators.required],
       MonthlyInvestmentAmount: [this.formValues.MonthlyInvestmentAmount, Validators.required]
     });
@@ -88,6 +89,12 @@ export class TopUpComponent implements OnInit {
       });
       this.topForm.get('oneTimeInvestmentAmount').setValue(this.formValues.oneTimeInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
     }
+    if (this.topForm.get('MonthlyInvestmentAmount')) {
+      this.topForm.get('MonthlyInvestmentAmount').valueChanges.subscribe((value) => {
+        this.validateAmonut(value);
+      });
+      this.topForm.get('MonthlyInvestmentAmount').setValue(this.formValues.MonthlyInvestmentAmount); // SETTING VALUE TO MOCK CHANGE EVENT
+    }
   }
   getPortfolioList() {
     this.portfolioList = this.topupAndWithDrawService.getUserPortfolioList();
@@ -97,6 +104,7 @@ export class TopUpComponent implements OnInit {
   }
 
   validateAmonut(amount) {
+   // this.cashBalance = this.cashBalance ? this.cashBalance : 0;
     if (amount > this.cashBalance) {
       this.topupAmount = amount - this.cashBalance;
       this.isAmountExceedBalance = true;

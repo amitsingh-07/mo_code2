@@ -9,7 +9,8 @@ import { InvestmentAccountService } from '../../investment-account-service';
 @Component({
   selector: 'app-fees-modal',
   templateUrl: './fees-modal.component.html',
-  styleUrls: ['./fees-modal.component.scss']
+  styleUrls: ['./fees-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FeesModalComponent implements OnInit {
 

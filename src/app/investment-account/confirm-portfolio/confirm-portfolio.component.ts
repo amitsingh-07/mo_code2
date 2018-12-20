@@ -1,6 +1,6 @@
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +38,8 @@ import { FeesModalComponent } from './fees-modal/fees-modal.component';
 @Component({
   selector: 'app-confirm-portfolio',
   templateUrl: './confirm-portfolio.component.html',
-  styleUrls: ['./confirm-portfolio.component.scss']
+  styleUrls: ['./confirm-portfolio.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ConfirmPortfolioComponent implements OnInit {
 
@@ -257,7 +258,8 @@ export class ConfirmPortfolioComponent implements OnInit {
               this.investmentAccountService.setAccountSuccussModalCounter(0);
               this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_INTRO]);
             } else {
-              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_LATER]);
+              this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.account_creation_pending);
+              this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
             }
           }
         }

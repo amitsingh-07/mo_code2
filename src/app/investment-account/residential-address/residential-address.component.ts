@@ -1,6 +1,6 @@
 import { catchError } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-residential-address',
   templateUrl: './residential-address.component.html',
-  styleUrls: ['./residential-address.component.scss']
+  styleUrls: ['./residential-address.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ResidentialAddressComponent implements OnInit {
   addressForm: FormGroup;
@@ -25,6 +26,8 @@ export class ResidentialAddressComponent implements OnInit {
   formValues;
   countries;
   isUserNationalitySingapore;
+  reasonList;
+  showOtherTex = false;
 
   constructor(
     public readonly translate: TranslateService,
@@ -48,6 +51,7 @@ export class ResidentialAddressComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+    this.getReasoneList();  // API CALLING FOR REASONLIST
     this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
     if (this.formValues.isMyInfoEnabled) {
@@ -66,6 +70,18 @@ export class ResidentialAddressComponent implements OnInit {
     if (this.addressForm.get('mailingAddress')) {
       this.observeMailCountryChange();
     }
+    if (this.addressForm.get('mailingAddress')) {
+      this.observeReasonChange();
+    }
+    if (this.addressForm.get('mailingAddress')) {
+      this.addOrRemoveOtherControl(this.addressForm.get('mailingAddress').get('reason').value);
+    }
+  }
+  getReasoneList() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.reasonList = data.objectList.differentAddressReason;
+      console.log(this.reasonList);
+    });
   }
 
   buildForm(): FormGroup {
@@ -124,6 +140,7 @@ export class ResidentialAddressComponent implements OnInit {
   addOrRemoveMailingAddress() {
     if (this.addressForm.controls.isMailingAddressSame.value !== true) {
       this.addressForm.addControl('mailingAddress', this.formBuilder.group({
+        reason: [this.formValues.reason, Validators.required],
         mailCountry: [{
           value: this.formValues.mailCountry ? this.formValues.mailCountry :
             this.investmentAccountService.getCountryFromNationalityCode(this.formValues.nationalityCode),
@@ -136,8 +153,27 @@ export class ResidentialAddressComponent implements OnInit {
       }));
       this.addOrRemoveAdditionalControlsMailing(this.addressForm.get('mailingAddress').get('mailCountry').value);
       this.observeMailCountryChange();
+      this.observeReasonChange();
     } else {
       this.addressForm.removeControl('mailingAddress');
+    }
+  }
+  observeReasonChange() {
+    this.addressForm.get('mailingAddress').get('reason').valueChanges.subscribe((value) => {
+      this.addOrRemoveOtherControl(value);
+    });
+
+  }
+  addOrRemoveOtherControl(value) {
+    const mailFormGroup = this.addressForm.get('mailingAddress') as FormGroup;
+    if (value.name === 'Others, please specify') {
+      mailFormGroup.addControl('reasonForOthers', new FormControl({
+        value: this.formValues.reasonForOthers,
+        disabled: this.investmentAccountService.isDisabled('reasonForOthers')
+      }, Validators.required));
+
+    } else {
+      mailFormGroup.removeControl('reasonForOthers');
     }
   }
 
@@ -209,6 +245,9 @@ export class ResidentialAddressComponent implements OnInit {
     this.addressForm.controls[key].setValue(value);
   }
   setNestedDropDownValue(key, value, nestedKey) {
+    this.addressForm.controls[nestedKey]['controls'][key].setValue(value);
+  }
+  setReason(key, value, nestedKey) {
     this.addressForm.controls[nestedKey]['controls'][key].setValue(value);
   }
 

@@ -16,8 +16,8 @@
                           <div class="flex-col-8"><span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--sale" *ngIf="transaction.transactionType"
                               >{{transaction.transactionType.name}}</span><span
                               *ngIf="transaction.portfolio">{{transaction.portfolio.name}}</span></div>
-                          <div class="flex-col-4 text-right"><span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--amount--sale"><span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span> {{transaction.amount | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                            <i *ngIf="transaction.fundInvestmentSplits" class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()" [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i>
+                          <div class="flex-col-4 text-right"><span [class.buy]="transaction.transactionType.name.toUpperCase() === 'BUY'" class="transaction-panel__history--details--title--amount--sale"><span *ngIf="transaction.transactionType.name.toUpperCase() !== 'BUY'">-</span> {{transaction.amount | currency}}</span>
+                            <i *ngIf="transaction.fundInvestmentSplits && transaction.fundInvestmentSplits.length" class='fa right mt5' [class.fa-chevron-down]="activeTransactionIndex !== i.toString() + j.toString()" [class.fa-chevron-up]="activeTransactionIndex === i.toString() + j.toString()"></i>
                           </div>
                         </div>
 
@@ -25,7 +25,7 @@
                           <div *ngIf="fund.fund" class="flex-row transaction-panel__history--details--desc" [class.show]="activeTransactionIndex === i.toString() + j.toString()"
                             >
                             <div class="flex-col-8">{{fund.fund.name}}</div>
-                            <div class="flex-col-4 text-right">{{fund.unitPrice | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                            <div class="flex-col-4 text-right">{{fund.unitPrice | currency }}</div>
                           </div>
                         </div>
 
@@ -37,8 +37,10 @@
             </div>
 
             <div class="no-transaction" *ngIf="!transactionHistory || !transactionHistory.length">
+              <div class="no-content">
               <img src="../../../assets/images/investment-account/light_owl.svg" />
               <div class="mt15">No Transaction History!</div>
+            </div>
             </div>
 
           </ng-template>
@@ -58,10 +60,14 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="no-transaction" *ngIf="!statementMonthsList || !statementMonthsList.length">
-                  <img src="../../../assets/images/investment-account/light_owl.svg" />
-                  <div class="mt15">No Transaction Statements!</div>
+                    <div class="no-content">
+                    <img src="../../../assets/images/investment-account/light_owl.svg" />
+                    <div class="mt15">No Transaction Statements!</div>
+                  </div>
                 </div>
+
               </div>
             </div>
           </ng-template>

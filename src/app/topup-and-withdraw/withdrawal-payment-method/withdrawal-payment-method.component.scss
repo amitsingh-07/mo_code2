@@ -1,5 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
+app-withdrawal-payment-method{
 .withdraw {
     .btn-group--toggle{
         &.tabs{
@@ -145,4 +146,5 @@
         }
     }
    
+}
 }

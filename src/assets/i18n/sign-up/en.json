@@ -216,5 +216,52 @@
             "GET_STARTED": "Get Started!",
             "TIME": "8mins"
         }
+       
+    },
+    "EDIT_PROFILE": {
+        "TITLE": "Create Your Account",
+        "GENDER": "Gender",
+        "NATIONALITY": "Nationality",
+        "DOB": "Date of Birth",
+        "UPDATE_USER_ID" :"Update User ID",
+        "MOB" :"Mobile Number",
+        "EMAIL" :"Email Address",
+        "EDIT" :"Edit",
+        "CHANGE_PASS" :"Change Password",
+        "PASSWORD": "Password",
+        "UPDATE_CONTACT" :"Update Contact Details",
+        "RES_ADDRESS" :"Residential Address",
+        "COUNTRY" :"Country",
+        "POSTAL": "Postal Code",
+        "ADDRESS_1" : "Address Line 1",
+        "ADDRESS_2" : "Address Line 2",
+        "FLOOR" : "Floor",
+        "UNIT" : "Unit Number",
+        "CITY" : "City",
+        "STATE" : "State",
+        "ZIP" : "Zip Code",
+        "MAILING" : "Mailing Address",
+        "MAILING_SAME": "Same as Residential Address",
+        "UPDATE_EMP" : " Update Employment Details",
+        "EMP_STATUS": "Employer Status",
+        "EMP_NAME": "Employer Name",
+        "INDUSTRY": "Industry",
+        "EMP_CONTRACT": "Employer Contact",
+        "OCCUPATUION": "Occupation",
+        "UPDATE_BANK": "Update Bank Details",
+        "BANK": "Bank Name",
+        "BANK_ACC": " Bank Account",
+        "NO_BANK": "No bank added",
+        "ADD_BANK":" Add Bank"
+    },
+    "ADD_BANK": {
+        "ACCOUNT_NAME": "Account Holders Name",
+        "DESC": "Due to regulations, you can only withdraw funds to an account under your legal name.",
+        "BANK": "Bank Name",
+        "SELECT": "Select Bank",
+        "ACCOUNT": "Account"
+    },
+    "NOTIFICATIONS": {
+      "EMPTY": "No New Notifications!"
     }
 }

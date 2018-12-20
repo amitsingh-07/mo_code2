@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-additional-declaration-step1',
   templateUrl: './additional-declaration-step1.component.html',
-  styleUrls: ['./additional-declaration-step1.component.scss']
+  styleUrls: ['./additional-declaration-step1.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AdditionalDeclarationStep1Component implements OnInit {
   occupationList;
@@ -29,6 +30,8 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   addInfoForm: FormGroup;
   addInfoFormValues: any;
   countries: any;
+  isUserNationalitySingapore;
+
   constructor(
     public headerService: HeaderService,
     public navbarService: NavbarService,
@@ -53,23 +56,76 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
+    this.isUserNationalitySingapore = this.investmentAccountService.isSingaporeResident();
     this.getOccupationList();
     this.countries = this.investmentAccountService.getCountriesFormData();
-    this.addInfoFormValues = this.investmentAccountService.getPepInfo();
-    this.addInfoForm = new FormGroup({
+    this.addInfoFormValues = this.investmentAccountService.getInvestmentAccountFormData();
+    this.addInfoForm = this.buildForm();
+    this.addOrRemoveAdditionalControls(this.addInfoForm.get('pepCountry').value);
+    this.observeCountryChange();
+  }
+
+  buildForm() {
+    return new FormGroup({
       fName: new FormControl(this.addInfoFormValues.fName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       lName: new FormControl(this.addInfoFormValues.lName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),
       pepoccupation: new FormControl(this.addInfoFormValues.pepoccupation, Validators.required),
-      pepCountry: new FormControl(this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE), Validators.required),
-      pepPostalCode: new FormControl(this.addInfoFormValues.pepPostalCode,
-        [Validators.required , Validators.pattern(RegexConstants.NumericOnly)]),
+
+      pepCountry: new FormControl(this.getDefaultCountry(), Validators.required),
       pepAddress1: new FormControl(this.addInfoFormValues.pepAddress1,
         [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]),
-      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]),
-      pepUnitNo: new FormControl(this.addInfoFormValues.pepUnitNo, [Validators.required, Validators.pattern(RegexConstants.SymbolNumber)]),
+      pepAddress2: new FormControl(this.addInfoFormValues.pepAddress2, [Validators.pattern(RegexConstants.AlphanumericWithSpaces)])
     });
   }
+
+  addOrRemoveAdditionalControls(country) {
+    const isSingapore = this.investmentAccountService.isCountrySingapore(country);
+    if (isSingapore) {
+      this.addInfoForm.addControl('pepPostalCode', new FormControl(this.addInfoFormValues.pepPostalCode,
+        [Validators.required , Validators.pattern(RegexConstants.NumericOnly)]));
+      this.addInfoForm.addControl('pepFloor', new FormControl(
+        this.addInfoFormValues.pepFloor, Validators.required));
+      this.addInfoForm.addControl('pepUnitNo', new FormControl(this.addInfoFormValues.pepUnitNo,
+        [Validators.required, Validators.pattern(RegexConstants.SymbolNumber)]));
+
+      this.addInfoForm.removeControl('pepCity');
+      this.addInfoForm.removeControl('pepState');
+      this.addInfoForm.removeControl('pepZipCode');
+    } else {
+      this.addInfoForm.addControl('pepCity', new FormControl(
+        this.addInfoFormValues.pepCity, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
+      this.addInfoForm.addControl('pepState', new FormControl(
+        this.addInfoFormValues.pepState, [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
+      this.addInfoForm.addControl('pepZipCode', new FormControl(
+        this.addInfoFormValues.pepZipCode, [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
+
+      this.addInfoForm.removeControl('pepPostalCode');
+      this.addInfoForm.removeControl('pepFloor');
+      this.addInfoForm.removeControl('pepUnitNo');
+    }
+  }
+
+  getDefaultCountry() {
+    let defaultCountry;
+    if (this.isUserNationalitySingapore) {
+      defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(INVESTMENT_ACCOUNT_CONFIG.SINGAPORE_NATIONALITY_CODE);
+    } else {
+      if (this.addInfoFormValues.pepCountry) {
+        defaultCountry = this.addInfoFormValues.pepCountry;
+      } else {
+        defaultCountry = this.investmentAccountService.getCountryFromNationalityCode(this.addInfoFormValues.nationalityCode);
+      }
+    }
+    return defaultCountry;
+  }
+
+  observeCountryChange() {
+    this.addInfoForm.get('pepCountry').valueChanges.subscribe((value) => {
+      this.addOrRemoveAdditionalControls(value);
+    });
+  }
+
   getOccupationList() {
     this.investmentAccountService.getOccupationList().subscribe((data) => {
       this.occupationList = data.objectList;
@@ -79,8 +135,8 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.addInfoForm.controls.pepoccupation.setValue(value);
   }
 
-  setDropDownValue(value) {
-    this.addInfoForm.controls.pepCountry.setValue(value);
+  setDropDownValue(key, value) {
+    this.addInfoForm.controls[key].setValue(value);
   }
   showHelpModalPep() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });

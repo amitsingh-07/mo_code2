@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,8 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 @Component({
   selector: 'app-topup-request',
   templateUrl: './topup-request.component.html',
-  styleUrls: ['./topup-request.component.scss']
+  styleUrls: ['./topup-request.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TopupRequestComponent implements OnInit {
   status;
