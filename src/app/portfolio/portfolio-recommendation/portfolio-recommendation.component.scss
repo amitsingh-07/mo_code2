@@ -253,9 +253,24 @@ app-portfolio-recommendation {
           line-height: normal;
           letter-spacing: normal;
           color: #ffffff;
-          img{
-            max-width: 100%;
-            height: auto;
+          padding-top: 60px;
+          position: relative;
+          .graph{
+            width: 315px;
+            height: 205px;
+            margin: 0 auto;
+            img{
+              max-width: 100%;
+              height: auto;
+              margin: 0;
+            }
+          }
+          .graph_values{
+            position: absolute;
+            top: 0px;
+            span{
+              padding: 23px 10px 7px;
+            }
           }
           .time-lapse{
             justify-content: space-between;
@@ -365,11 +380,19 @@ app-portfolio-recommendation {
           color: #00a7a7;
           padding: 18px 0 12px;
           .equity_bar{
+            justify-content: space-between;
             align-items: center;
+            .flex-col-8{
+              max-width: 195px;
+            }
           }
           .bond_bar{
+            justify-content: space-between;
             align-items: center;
             padding-top: 16px;
+            .flex-col-8{
+              max-width: 195px;
+            }
           }
           .bar{
             height: 12px;
@@ -377,12 +400,12 @@ app-portfolio-recommendation {
         }
         .bonds_equity{
           margin-top: 10px;
-          margin-bottom: 32px;
           .bonds_equity_title{
             border-radius: 6px;
             // border-top-left-radius: 6px;
             // border-top-right-radius: 6px;
-            background-color: #2d8289;
+            background-color: #009999;
+            border: 1px solid #00a7a7;
             color: #ffffff;
             padding: 14px 20px 13px;
             font-family: $muli-bold;
@@ -401,6 +424,7 @@ app-portfolio-recommendation {
             }
             .card-body{
               padding: 0;
+              margin-bottom: 32px;
               border-bottom-left-radius: 6px;
               border-bottom-right-radius: 6px;
               border: 1px solid #50c2c2;
@@ -430,7 +454,7 @@ app-portfolio-recommendation {
               font-size: 14px;
               line-height: 1.64;
               letter-spacing: -0.1px;
-              padding: 10px 15px;
+              padding: 10px 9px;
               display: flex;
               flex-direction: column;
               justify-content: center;
