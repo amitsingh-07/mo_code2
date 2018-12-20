@@ -69,7 +69,8 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    const stepLabel = this.translate.instant('RISK_ASSESSMENT.STEP_2_LABEL');
+    this.navbarService.setPageTitle(title, undefined, undefined, undefined, undefined, stepLabel);
   }
 
   getQuestions() {

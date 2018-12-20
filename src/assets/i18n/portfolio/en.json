@@ -32,7 +32,8 @@
   "RISK_ASSESSMENT": {
     "TITLE": "Your Risk Willingness",
     "QUESTION_LBL": "Question",
-    "OF_LBL": "of"
+    "OF_LBL": "of",
+    "STEP_2_LABEL": "Step 2"
   },
   "MY_FINANCIALS": {
     "LABEL_YES": "Yes",
