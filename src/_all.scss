@@ -1428,3 +1428,9 @@ a.link-white {
       }
     }
 }
+
+@include allmobiles {
+  .collapse.navbar-collapse.show {
+    width: 100vw;
+  }
+}
