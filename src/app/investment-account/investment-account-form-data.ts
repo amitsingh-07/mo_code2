@@ -91,9 +91,9 @@ export class InvestmentAccountFormData {
     beneficial: any;
 
     // financial details
-    annualHouseHoldIncomeRange: string;
-    numberOfHouseHoldMembers: number;
-    salaryRange: string;
+    annualHouseHoldIncomeRange: any;
+    numberOfHouseHoldMembers: any;
+    salaryRange: any;
 
     source: string;
     expectedNumberOfTransation: number;
