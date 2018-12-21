@@ -183,7 +183,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  openConfirmationModal(url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, hasImpact: boolean, form: any, clearExecTrustee: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.unSaved = true;
     ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
@@ -192,6 +192,11 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     }
     ref.result.then((data) => {
       if (data === 'yes') {
+        if (clearExecTrustee) {
+          this.willWritingService.setFromConfirmPage(false);
+          this.willWritingService.clearExecTrustee = true;
+          url = (url === WILL_WRITING_ROUTE_PATHS.CONFIRMATION) ? WILL_WRITING_ROUTE_PATHS.MY_EXECUTOR_TRUSTEE : url;
+        }
         this.save(form);
         this.router.navigate([url]);
       }
@@ -216,8 +221,11 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         }
       } else {
         if (this.myFamilyForm.dirty) {
-          const hasImpact = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN && this.willWritingService.isUserLoggedIn()) ? true : false;
-          this.openConfirmationModal(url, hasImpact, form);
+          const clearExecTrustee = this.willWritingService.checkChildAgeExecTrustee(form) ||
+            this.willWritingService.checkUinExecTrustee(form);
+          const hasImpact = ((url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN || clearExecTrustee) &&
+            this.willWritingService.isUserLoggedIn()) ? true : false;
+          this.openConfirmationModal(url, hasImpact, form, clearExecTrustee);
         } else {
           this.router.navigate([url]);
         }
