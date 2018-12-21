@@ -137,7 +137,6 @@ app-your-portfolio{
 }
 }
 .total_values{
-   
   font-family: $muli-bold;
   font-size: 40px;
   font-weight: bold;
@@ -157,20 +156,8 @@ app-your-portfolio{
     color: #ffffff;
     margin-top: 6px;
 }
-.start_investment_label{
-    font-size: 13px;
-    line-height: 1.62;
-    letter-spacing: -0.1px;
-    color: #5e5e5e;
-}
-.start_investment_value{
-  font-family: $muli-bold;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: -0.2px;
-  text-align: right;
-  color: #11b600;
-}
+
+
 .total_return_label{
     color: #5e5e5e;
     font-size: 16px;
@@ -185,26 +172,24 @@ app-your-portfolio{
     color: #11b600;
     word-break: break-all;
 }
-.your_portfolio_container{
-    align-items: baseline;
-}
+
 .your_portfolio_label{
-    
   font-family: $muli-regular;
   font-size: 21px;
-
   letter-spacing: -0.2px;
   color: #ffffff;
-
+}
+.start_investment_label{
+    font-size: 13px;
+    line-height: 1.62;
+    letter-spacing: -0.1px;
+    color: #5e5e5e;
 }
 .your_portfolio_number{
-  
   font-family: $muli-regular;
   font-size: 15px;
-  
   letter-spacing: -0.3px;
   color: #ffffff;
-
 }
 .your_portfolio_value{
     background-color: #e7f3f3;
@@ -228,20 +213,13 @@ app-your-portfolio{
     }
 }
 .portfolio_heading{
-font-family: $muli-bold;
+  font-family: $muli-bold;
   font-size: 18px;
-  
   letter-spacing: -0.3px;
- color: #00a7a7;
+  color: #00a7a7;
   padding-left: 15px;
   
 }
-
-  .top_aler {
-    margin-left: 10px;
-    margin-top: 7px;
-}
-
 .btn-with-icon {
     border-radius: 6px;
     box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14) !important;
