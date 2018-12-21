@@ -1,4 +1,3 @@
-import { appConstants } from './../../app.constants';
 import { Location } from '@angular/common';
 import {
   AfterViewInit,
@@ -14,6 +13,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
+import { appConstants } from './../../app.constants';
 import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { SignUpService } from './../../sign-up/sign-up.service';
