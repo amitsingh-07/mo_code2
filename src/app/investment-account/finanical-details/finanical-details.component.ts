@@ -33,6 +33,7 @@ export class FinanicalDetailsComponent implements OnInit {
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
   annualHouseHoldIncomeRanges: any;
+  salaryRanges: any;
   numberOfHouseHoldMembersList = Array(11).fill(0).map((x, i) => i);
 
   constructor(
@@ -70,6 +71,7 @@ export class FinanicalDetailsComponent implements OnInit {
   getIncomeRangeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
+      this.salaryRanges = data.objectList.salaryRange;
     });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {

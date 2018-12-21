@@ -74,11 +74,11 @@
                   <div class="dropdown-control">
                     <div ngbDropdown>
                       <button class="btn btn-dropdown without-border grey" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
-                  {{(financialDetails.controls.salaryRange.value == '' || financialDetails.controls.salaryRange.value)  ? financialDetails.controls.salaryRange.value  :'Select Range'}}
+                  {{(financialDetails.controls.salaryRange.value == '' || financialDetails.controls.salaryRange.value)  ? financialDetails.controls.salaryRange.value.name  :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
-                        <button class="dropdown-item" *ngFor="let range of numberOfHouseHoldMembersList; let i = index;" (click)="setSalaryRange(range)"
-                          id="residentialAddress-country-option-{{i}}">{{range}}</button>
+                        <button class="dropdown-item" *ngFor="let range of salaryRanges; let i = index;" (click)="setSalaryRange(range)"
+                          id="residentialAddress-country-option-{{i}}">{{range.name}}</button>
                       </div>
                     </div>
                   </div>

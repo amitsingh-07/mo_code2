@@ -783,7 +783,7 @@ export class InvestmentAccountService {
 
     getFinancialDetailsReqData(data): IFinancial {
         return {
-            incomeRange: 'below30000'
+            incomeRange:  (data.salaryRange) ? data.salaryRange.id : null
         };
     }
 
