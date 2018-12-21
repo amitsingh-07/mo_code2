@@ -1,0 +1,41 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.annual-fees{
+    padding-top: 33px;
+    .title{
+      font-family: $muli-bold;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: -0.3px;
+      padding-bottom: 14px;
+    }
+    .annual-fee-desc{
+      border-radius: 6px;
+      box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.21);
+      background-color: #f4fafb;
+      padding: 26px;
+      font-family: $muli-regular;
+      font-size: 14px;
+      letter-spacing: -0.1px;
+      color: #000000;
+      .flex-row{
+        justify-content: space-between;
+        padding-bottom: 18px;
+        &:last-child{
+          font-family: $muli-bold;
+          padding-bottom: 0;
+        }
+        .flex-col{
+          .text-lyt{
+            font-size: 13px;
+            color: #5e5e5e;
+          }
+        }
+        .fee_value{
+          color: #00a7a7;
+          font-weight: bold;
+        }
+      }
+    }
+  }

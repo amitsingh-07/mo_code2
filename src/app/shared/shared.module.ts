@@ -39,6 +39,9 @@ import {
 } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
+import { AssetAllocationComponent } from './components/asset-allocation/asset-allocation.component';
+import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
+import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -64,7 +67,8 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [CurrencyInputDirective,  PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective, GroupByPipe],
+    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective, 
+    GroupByPipe, AssetAllocationComponent, AnnualFeesComponent, PortfolioInfoComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -78,7 +82,10 @@ export function createTranslateLoader(http: HttpClient) {
     BreakdownAccordionComponent,
     PercentageInputDirective,
     TruncatePipe,
-    DistributePercentDirective
+    DistributePercentDirective,
+    AssetAllocationComponent,
+    AnnualFeesComponent,
+    PortfolioInfoComponent
   ]
 })
 export class SharedModule { }

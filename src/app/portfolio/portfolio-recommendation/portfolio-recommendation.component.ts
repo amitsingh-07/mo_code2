@@ -136,11 +136,7 @@ export class PortfolioRecommendationComponent implements OnInit {
       }
     }
   }
- // accordian
- test(event){
-  event === 'event1' ? this.event1 = !this.event1: '';
-  event === 'event2' ? this.event2 = !this.event2: '';
-}
+ 
   viewFundDetails(fund) {
     this.portfolioService.setFund(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
