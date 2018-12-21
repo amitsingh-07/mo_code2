@@ -40,80 +40,109 @@
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
-
                   <!-- NOT PARCHASED -->
-                  <div class="primary flex col-12" *ngIf="showNotPurchasedPortfolio">
-                    <div class="flex-col-4">
-                      <img src="assets/images/investment-account/investment-portfolio.svg" />
-                    </div>
-                    <div class="flex-col-8">
-                      <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO' | translate}}</div>
-                      <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
-                      <div class="time-lapse">
-                        <div (click)="goToEngagement()">{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div>
-                        <div class="flex-row">
-                          <span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span>
-                          <span class="circle"></span>
+                  <div class="primary flex col-12">
+                      <!--  *ngIf="showNotPurchasedPortfolio" -->
+                      <div class="flex-col-4">
+                        <img src="assets/images/investment-account/investment-portfolio.svg" />
+                      </div>
+                      <div class="flex-col-8">
+                        <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO' | translate}}</div>
+                        <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                        <div class="time-lapse">
+                          <div (click)="goToEngagement()">{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div>
+                          <div class="flex-row">
+                            <span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span>
+                            <span class="circle"></span>
+                          </div>
                         </div>
                       </div>
                     </div>
+  
+                  <!-- No Investment Account  -->
+                  <div class="no_account col-12">
+                    <div class="warning-txt">
+                      <div class="flex-col-8">Answer a few questions to  determine the portfolio most suited to you!</div>
+                      <div class="flex-col-4"><div class="investment_icon"><img src="assets/images/investment-account/investment-icon.svg" /></div></div>
+                    </div>
+                    <div class="flex">
+                      <button type="button" class="btn btn-primary col-12"><div>Start Investing</div><div>Estimated 5-15 mins</div></button>
+                    </div>
                   </div>
-
+                  <!-- Has Investment Account but no portfolio -->
+                  <div class="no_portfolio col-12">
+                    <div class="warning-txt">
+                      <div class="flex-col-8">Answer a few questions to  determine the portfolio most suited to you!</div>
+                      <div class="flex-col-4"><div class="investment_icon"><img src="assets/images/investment-account/investment-icon.svg" /></div></div>
+                    </div>
+                    <div class="flex">
+                      <button type="button" class="btn btn-primary col-12"><div>Add Portfolio</div><div>Estimated 3 mins</div></button>
+                    </div>
+                  </div>
                   <!-- parchased portfolio -->
-                  <div class="portfolio" *ngIf="showPortffolioPurchased">
+                  <div class="portfolio">
+                    <!-- *ngIf="showPortffolioPurchased"  -->
                     <div class="portfolio_value">
                       <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
                       <div class="value">{{userProfileInfo.investementDetails.totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                     </div>
                     <div class="portfolio_graph"></div>
                     <div class="portfolio_footer">
-                      <div class="flex-col col-7">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
-                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                      </div>
                       <div class="flex-col col-5">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
                         <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
+                      <div class="flex-col col-7">
+                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
+                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                      </div>
                     </div>
                   </div>
-                  <!-- UPLOAD DOCUMENT LATER -->
-                  <div class="warning col-12" *ngIf="showInvestmentDetailsSaved">
+                  <!-- Pending Documents Upload -->
+                  <div class="warning col-12">
+                    <!--  *ngIf="showInvestmentDetailsSaved" -->
                     <div class="warning-txt">
-                      <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div>
+                      <!-- <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div> -->
+                      <div>To proceed, please upload your verification documents required.</div>
                     </div>
                     <div class="flex">
-                      <button type="button" (click)="goToDocUpload()" class="btn btn-primary col-8">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button>
+                      <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button>
                     </div>
                   </div>
-                  <!-- Verify -->
-                  <div class="Verify col-12">
+                  <!-- Pending Account Open -->
+                  <div class="pending col-12">
                     <div class="warning-txt">
-                      <div>Investment account set up unsuccessful. Please verify your inputs here.</div>
+                      <div>Your investment account set up verifcation is ongoing. </div>
+                    </div>
+                  </div>
+                  <!-- Unsuccessful Account -->
+                  <div class="verify col-12">
+                    <div class="warning-txt">
+                      <div>Your investment account set up is unsuccessful. Please verify your details.</div>
                     </div>
                     <div class="flex">
-                      <button type="button" (click)="goToDocUpload()" class="btn btn-primary col-8">Verify</button>
+                      <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">Verify Details</button>
                     </div>
                   </div>
-                  <!-- set-up -->
+                  <!-- No &amp; Incomplete Account -->
                   <div class="set-up col-12">
                     <div class="warning-txt">
-                      <div>To proceed with your investment, you will need to set-up your investment account.</div>
+                      <div>To proceed, please set up your investment account.</div>
                     </div>
                     <div class="flex">
-                      <button type="button" (click)="goToDocUpload()" class="btn btn-primary col-8">Set-Up Now</button>
+                      <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">Set Up Account</button>
                     </div>
                   </div>
-                  <!-- unsuccessful -->
-                  <div class="unsuccessful col-12">
-                    <div class="warning-txt">
-                      <div>Your investment account set up is unsuccessful. You may email enquiries@moneyowl.com.sg or call us at (65) 6329 9188 for further queries.</div>
-                    </div>
-                  </div>
-                  <!-- suspended -->
+                  <!-- Suspended Account -->
                   <div class="suspended col-12">
                     <div class="warning-txt">
-                      <div>Your account is suspended. You may email enquiries@moneyowl.com.sg or call us at (65) 6329 9188 for further queries.</div>
+                      <div>Your account has been suspended. Email us at <a href="#">enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.</div>
+                    </div>
+                  </div>
+                  <!-- Compliance Rejected Account or  -->
+                  <div class="compliance col-12">
+                    <div class="warning-txt">
+                      <div>Your investment account set up is unsuccessful. Email us at <a href="#">enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.</div>
                     </div>
                   </div>
                 </div>

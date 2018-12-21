@@ -142,6 +142,7 @@ body{
                 padding: 20px 18px 11px;
                 display: flex;
                 justify-content: space-between;
+                align-items: baseline;
                 img{
                     margin-top: 5px;
                     margin-left: 6px;
@@ -170,10 +171,24 @@ body{
                         justify-content: space-between;
                         align-items: flex-start;
                         font-family: $muli-regular;
-                        font-size: 16px;
+                        font-size: 15px;
                         line-height: 1.5;
                         letter-spacing: -0.2px;
                         color: #2d8289;
+                        .investment_icon{
+                            width: 85px;
+                            height: 70px;
+                            margin-right: 0;
+                            margin-left: auto; 
+                            img{
+                                max-width: 100%;
+                                height: auto;
+                                margin: 0;
+                            }
+                        }
+                        a{
+                            color: #ff9c39;
+                        }
                     }
                     .portfolio{
                         font-family: $muli-regular;
@@ -181,48 +196,63 @@ body{
                         line-height: 1.31;
                         letter-spacing: -0.1px;
                         color: #8a9ba9;
+                        padding: 0 12px;
                         .portfolio_value{
-                            padding: 0 19px;
+                            color: #2d8289;
                             .value{
-                                font-family: $muli-bold;
-                                font-size: 36px;
-                                font-weight: bold;
-                                font-style: normal;
-                                letter-spacing: -0.4px;
+                                font-size: 24px;
+                                letter-spacing: -0.3px;
                                 color: #00a7a7;
-                            }
-                        }
-                        .portfolio_graph{
-                            padding: 0 38px;
-                            margin-bottom: 11px;
-                            img{
-                                max-width: 100%;
+                                margin-bottom: 11px;
                             }
                         }
                         .portfolio_footer{
                             display: flex;
                             justify-content: space-between;
-                            border-top: 1px solid #00a7a7;
-                            padding: 7.9px 15px;
+                            border-top: 1px solid #c0c0c0;
+                            padding-top: 11px;
+                            color: #2d8289;
                             .flex-col{
-                                padding: 0 5px;
                                 justify-content: space-between;
+                                &.col-5{
+                                    .portfolio_footer_value{
+                                        color: #11b600;
+                                    }
+                                }
                                 .portfolio_footer_value{
-                                    font-size: 18px;
+                                    font-size: 16px;
                                     letter-spacing: -0.2px;
-                                    color: #5e5e5e;
+                                    color: #00a7a7;
+                                    padding-top: 3px;
                                 }
                             }
                         }
                     }
-                    .btn-primary{
+                    .btn-ghost{
                         font-family: $muli-bold;
-                        font-size: 16px;
+                        font-size: 18px;
                         font-weight: bold;
                         letter-spacing: -0.1px;
-                        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15) !important;
-                        background-color: #ff872f !important;
+                        box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.25) !important;
+                        border: 1px solid #00c5c4;
+                        background-color: #ffffff !important;
                         margin: 18px 0 0;
+                        color: #00a7a7;
+                    }
+                    .btn-primary{
+                        font-family: $muli-bold;
+                        font-size: 18px;
+                        font-weight: bold;
+                        letter-spacing: -0.1px;
+                        text-align: center;
+                        color: #ffffff;
+                        margin: 18px 0 0;
+                        div{
+                            &:last-child{
+                                font-family: $muli-regular;
+                                font-size: 13px;
+                            }
+                        }
                     }
                 }
                 .flex-col-8{
