@@ -1,6 +1,6 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
+app-your-portfolio{
 .portfolio-bg{
     padding-top: 60px;
 }
@@ -307,3 +307,4 @@ font-family: $muli-bold;
   hr{
     background-color: #98dfdf;
   }
+}

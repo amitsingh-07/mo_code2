@@ -23,6 +23,7 @@ import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { SignUpService } from '../../sign-up/sign-up.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 import { PortfolioService } from '../portfolio.service';
 import { RiskProfile } from '../risk-profile/riskprofile';
@@ -54,6 +55,7 @@ export class PortfolioRecommendationComponent implements OnInit {
     private currencyPipe: CurrencyPipe,
     public authService: AuthenticationService,
     public modal: NgbModal,
+    private signUpService: SignUpService,
     private portfolioService: PortfolioService) {
     this.translate.use('en');
     const self = this;
@@ -140,8 +142,28 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
 
+  showLoginOrSignupModal() {
+    const errorMessage = this.translate.instant('PRELOGIN_MODAL.DESC');
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.imgType = 1;
+    ref.componentInstance.errorMessageHTML = errorMessage;
+    ref.componentInstance.primaryActionLabel = this.translate.instant('PRELOGIN_MODAL.LOG_IN');
+    ref.componentInstance.secondaryActionLabel = this.translate.instant('PRELOGIN_MODAL.CREATE_ACCOUNT');
+    ref.componentInstance.secondaryActionDim = true;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      // Login
+      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
+    });
+    ref.componentInstance.secondaryAction.subscribe(() => {
+      // Sign up
+      this.signUpService.setRedirectUrl(INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN);
+      this.router.navigate([SIGN_UP_ROUTE_PATHS.CREATE_ACCOUNT]);
+    });
+  }
+
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-    this.router.navigate([ SIGN_UP_ROUTE_PATHS.PRELOGIN]);
+    this.showLoginOrSignupModal();
   }
 }

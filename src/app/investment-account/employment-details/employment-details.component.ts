@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-employment-details',
   templateUrl: './employment-details.component.html',
-  styleUrls: ['./employment-details.component.scss']
+  styleUrls: ['./employment-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EmploymentDetailsComponent implements OnInit {
   pageTitle: string;

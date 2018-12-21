@@ -19,6 +19,7 @@ export class ModelWithButtonComponent implements OnInit {
   @Input() errorMessageHTML: any;
   @Input() primaryActionLabel: any;
   @Input() secondaryActionLabel: any;
+  @Input() secondaryActionDim: boolean;
   @Output() primaryAction = new EventEmitter<any>();
   @Output() secondaryAction = new EventEmitter<any>();
 
@@ -42,12 +43,12 @@ export class ModelWithButtonComponent implements OnInit {
 
   primaryActionSelected() {
     this.primaryAction.emit();
-    this.activeModal.dismiss('Cross click');
+    this.activeModal.close();
   }
 
   secondaryActionSelected() {
     this.secondaryAction.emit();
-    this.activeModal.dismiss('Cross click');
+    this.activeModal.close();
   }
 
 }

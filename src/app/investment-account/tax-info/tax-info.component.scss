@@ -3,7 +3,8 @@
 body{
     background-color: #00a7a7;
 }
-.app-select-nationality{
+app-tax-info{
+.app-tax-info{
     // .container-fluid {
     //     padding-top: 0px;
     //     padding-bottom: 0px;
@@ -28,32 +29,30 @@ body{
 label {
 font-size: 18px;
 letter-spacing: -0.3px;
+padding-right: 10px;
 }
 .form-group {
     @include allmobiles {
         padding-bottom: 30px;
       }
 }
-.dropdown-control{
-  .dropdown-menu{
-    &.show {
-      right: 0 !important;
-      overflow: auto;
-      height: auto;
-      max-height: 264px;
+.dropdown-menu.show {
+  right: 0 !important;
+  overflow: auto;
+  height: auto;
+  max-height: 264px;
     }
-  }
-}
+  
 .dropdown-item {
-  white-space: normal;
-  word-break: break-all;
+white-space: normal;
+word-break: break-all;
 }
 .dropdown-control .btn-dropdown {
-  padding-right: 27px;
-  max-height: 52px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+padding-right: 27px;
+max-height: 52px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .btn{
     &.btn-dropdown{
@@ -110,9 +109,6 @@ letter-spacing: -0.3px;
     font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     color: #ffffff;
     margin: 0px 10px 0px 0px;
   }
@@ -141,5 +137,53 @@ letter-spacing: -0.3px;
       }  
     }    
   }
+  .add-tax-box{
+    padding: 30px 20px;
+    border-radius: 6px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    font-family:$muli-regular;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #000000;
+    margin-top: 23px;
+  }
+  
+  .add-tax-text{
+  font-family: $muli-bold;
+  font-size: 18px;
+  font-weight: bold;
+  color: #e57300;
+  padding-top: 10px;
+  }
+  .tax-form{
+    padding: 60px 0;
+    border-bottom: 1px solid #ffffff;
+    position: relative;
+    &:first-child{
+      padding-top: 0;
+      .thumb-close-icon{
+        display: none;
+      }
+    }
 
+    .thumb-close-icon {
+      position: absolute;
+      padding: 1px 7px;
+      border-radius: 100%;
+      background-color: #fff;
+      bottom: -12px;
+      width: 25px;
+      height: 25px;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      img {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+}
 }

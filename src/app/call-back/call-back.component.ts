@@ -15,6 +15,7 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account/investment
 export class CallBackComponent implements OnInit {
 
   data: any;
+  myInfoSubscription: any;
   constructor(
     private router: Router, private route: ActivatedRoute, private modal: NgbModal,
     private myInfoService: MyInfoService,
@@ -33,7 +34,7 @@ export class CallBackComponent implements OnInit {
 
         // Investment account
         if (this.investmentAccountService.getCallBackInvestmentAccount()) {
-          this.myInfoService.getMyInfoData().subscribe((data) => {
+          this.myInfoSubscription = this.myInfoService.getMyInfoData().subscribe((data) => {
             this.investmentAccountService.setMyInfoFormData(data.objectList[0]);
             this.myInfoService.isMyInfoEnabled = false;
             this.myInfoService.closeMyInfoPopup(false);
@@ -46,6 +47,27 @@ export class CallBackComponent implements OnInit {
           this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
         }
       }
+    } else {
+      this.router.navigate(['home']);
+    }
+
+    // Cancel MyInfo
+    this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
+      if (myinfoObj && myinfoObj !== '') {
+        if (myinfoObj.status && myinfoObj.status === 'CANCELLED' && this.myInfoService.isMyInfoEnabled) {
+          this.cancelMyInfo();
+        }
+      }
+    });
+  }
+  cancelMyInfo() {
+    this.myInfoService.isMyInfoEnabled = false;
+    this.myInfoService.closeMyInfoPopup(false);
+    if (this.myInfoSubscription) {
+      this.myInfoSubscription.unsubscribe();
+    }
+    if (window.sessionStorage.currentUrl) {
+      this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
     } else {
       this.router.navigate(['home']);
     }

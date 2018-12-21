@@ -10,15 +10,15 @@
       <span *ngIf="errorMessage" [innerHTML]="errorMessage" id="error_message_one"></span>
       <ng-container *ngIf="errorMessageList" id="error_message_list">
         <p class="label">{{formName  | titlecase}}</p>
-        <p *ngFor="let errorMessage of errorMessageList" id="error_message_list_one"><span>{{errorMessage}}</span></p>
+        <p *ngFor="let errorMessage of errorMessageList"><span [innerHTML]="errorMessage"></span></p>
       </ng-container>
-      <ng-container *ngIf="multipleFormErrors" id="error_message_multiple_form">
-        <div *ngFor="let errorMessage of multipleFormErrors" id="error_message_multiple_form_one">
-          <p class="label"  id="error_message_multiple_form_lbl">{{errorMessage.formName  | titlecase}}</p>
-          <p *ngFor="let error of errorMessage.errors" id="error_message_multiple_form_p"><span id="error_message_multiple_form_span">{{error}}</span></p>
+      <ng-container *ngIf="multipleFormErrors">
+        <div *ngFor="let errorMessage of multipleFormErrors">
+          <p class="label">{{errorMessage.formName  | titlecase}}</p>
+          <p *ngFor="let error of errorMessage.errors"><span [innerHTML]="error"></span></p>
         </div>
       </ng-container>
-      <span *ngIf="errorDescription" [innerHTML]="errorDescription" id="error_description"></span>
+      <span *ngIf="errorDescription hyperlink_color" [innerHTML]="errorDescription" id="error_description"></span>
       <div *ngIf="hasImpact" class="modal-body-title" [innerHTML]="hasImpact"></div>
     </div>
     <button *ngIf="showErrorButton" id="error_crose_click" (click)="activeModal.dismiss('Close click')" type="button" class="btn btn__footer--fixed btn-primary width100">Try Again</button>

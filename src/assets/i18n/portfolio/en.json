@@ -30,9 +30,10 @@
     "DESCRIPTION": "In the next step, we will assess your willingness to take risk."
   },
   "RISK_ASSESSMENT": {
-    "TITLE": "Assess Your Risk",
+    "TITLE": "Your Risk Willingness",
     "QUESTION_LBL": "Question",
-    "OF_LBL": "of"
+    "OF_LBL": "of",
+    "STEP_2_LABEL": "Step 2"
   },
   "MY_FINANCIALS": {
     "LABEL_YES": "Yes",
@@ -95,5 +96,10 @@
   "RISK_PROFILE":{
     "TITLE": "Portfolio Recommendation",
     "BUTTON_TITLE": "View My Portfolio"
+  },
+  "PRELOGIN_MODAL": {
+    "DESC": "To Continue, please log in or create a MoneyOwl account.",
+    "LOG_IN": "Log In",
+    "CREATE_ACCOUNT": "Create Account"
   }
 }

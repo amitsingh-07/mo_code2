@@ -13,6 +13,7 @@ import { HeaderService } from './../shared/header/header.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { SharedModule } from './../shared/shared.module';
 import { ComparePlansComponent } from './compare-plans/compare-plans.component';
+import { DirectAccessGuard } from './direct-access-guard';
 import { DirectResultsComponent } from './direct-results/direct-results.component';
 import { DirectRoutingModule } from './direct-routing.module';
 import { DirectComponent } from './direct.component';
@@ -62,7 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
     OcpDisabilityFormComponent, EditProductInfoComponent,
     ComparePlansComponent,
     SrsApprovedPlansFormComponent],
-  providers: [CurrencyPipe, TitleCasePipe, LoggedUserService],
+  providers: [CurrencyPipe, TitleCasePipe, LoggedUserService, DirectAccessGuard],
   entryComponents: [ProductDetailComponent, DirectResultsComponent]
 })
 export class DirectModule {

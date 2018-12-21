@@ -1,6 +1,6 @@
 @import '../../../variables';
 @import '../../../mixins';
-
+app-upload-documents{
 .upload-doc-nric {
   .step-indicator-container {
     background-color: #fff;
@@ -186,4 +186,5 @@
     }
   }
 
+}
 }

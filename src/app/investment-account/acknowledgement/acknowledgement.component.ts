@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,8 @@ import { InvestmentAccountService } from '../investment-account-service';
 @Component({
   selector: 'app-acknowledgement',
   templateUrl: './acknowledgement.component.html',
-  styleUrls: ['./acknowledgement.component.scss']
+  styleUrls: ['./acknowledgement.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AcknowledgementComponent implements OnInit {
   pageTitle: string;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,8 @@ import { ProfileIcons } from './profileIcons';
 @Component({
   selector: 'app-risk-profile',
   templateUrl: './risk-profile.component.html',
-  styleUrls: ['./risk-profile.component.scss']
+  styleUrls: ['./risk-profile.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RiskProfileComponent implements OnInit, AfterViewInit {
   animateStaticModal = false;

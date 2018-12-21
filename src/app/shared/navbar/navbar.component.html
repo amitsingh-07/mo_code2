@@ -28,7 +28,7 @@
       <!-- NOTIFICATION ICON -->
       <div *ngIf="isNotificationEnabled">
         <button class="notification-icon hidden-lg" type="button" (click)="toggleRecentNotification()">
-          <span class="notification-number" *ngIf="count">
+          <span class="notification-number" *ngIf="count && count > 0">
             <span *ngIf="count <= notificationMaxLimit">{{ count }}</span>
             <span *ngIf="count > notificationMaxLimit">{{ notificationMaxLimit }}+</span>
           </span>
@@ -60,6 +60,7 @@
         <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon"></span>
       </button>
       <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
+        <div class="navbar__title--mobile superTitle">{{pageSuperTitle}}</div>
         <div class="navbar__title--mobile">{{pageTitle}}</div>
         <div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
         <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
@@ -68,9 +69,11 @@
         <div class="navbar__helpIcon--mobile navbar__helpIcon--mobile-settings" *ngIf="settingsIcon" (click)="showMobilePopUp()">
           <div class="tooltip-icon"></div>
         </div>
+        <!--
         <div class="navbar__helpIcon--mobile-filter navbar_" *ngIf="filterIcon" (click)="showFilterModalPopUp()">
           <div class="filter-icon"></div>
         </div>
+        -->
         <div class="navbar__closeIcon" *ngIf="closeIcon" (click)="closeProdInfo()">
           <div class="close-icon"></div>
         </div>

@@ -1,21 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { MyInfoService } from '../../shared/Services/my-info.service';
 import { InvestmentAccountService } from '../investment-account-service';
+import { ModelWithButtonComponent } from 'src/app/shared/modal/model-with-button/model-with-button.component';
 
 @Component({
   selector: 'app-sing-pass',
   templateUrl: './sing-pass.component.html',
-  styleUrls: ['./sing-pass.component.scss']
+  styleUrls: ['./sing-pass.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SingPassComponent implements OnInit {
   @Input('label') label;
   @Input('position') position;
   modelTitle: string;
   modelMessge: string;
+  modelBtnText: string;
+  modelTitle1: string;
+  modelMessge1: string;
+  modelBtnText1: string;
   showConfirmation: boolean;
   showSingPass: boolean;
   investmentData: any;
@@ -30,6 +35,10 @@ export class SingPassComponent implements OnInit {
     this.translate.get('COMMON').subscribe((result: string) => {
       this.modelTitle = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.TITLE');
       this.modelMessge = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.DESCRIPTION');
+      this.modelBtnText = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.OPEN_MODAL_DATA.BTN-TEXT');
+      this.modelTitle1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.TITLE');
+      this.modelMessge1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.DESCRIPTION');
+      this.modelBtnText1 = this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.MYINFO_CONFIRM.BTN-TEXT');
     });
   }
 
@@ -40,24 +49,28 @@ export class SingPassComponent implements OnInit {
   }
 
   openModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     if (this.investmentData.nationality) {
-      const ref = this.modal.open(ErrorModalComponent, { centered: true });
       ref.componentInstance.errorTitle = this.modelTitle;
-      ref.componentInstance.errorDescription = this.modelMessge;
-      ref.componentInstance.isButtonEnabled = true;
-      ref.result.then(() => {
-        this.showConfirmation = true;
-      }).catch((e) => {
-      });
+      ref.componentInstance.errorMessageHTML = this.modelMessge;
+      ref.componentInstance.primaryActionLabel = this.modelBtnText;
     } else {
-      this.showConfirmation = true;
+      ref.componentInstance.errorTitle = this.modelTitle1;
+      ref.componentInstance.errorMessageHTML = this.modelMessge1;
+      ref.componentInstance.primaryActionLabel = this.modelBtnText1;
     }
+    ref.result.then(() => {
+      this.showConfirmation = true;
+    }).catch((e) => {
+    });
   }
 
   getMyInfo() {
     this.showConfirmation = false;
     this.investmentAccountService.setCallBackInvestmentAccount();
     this.myInfoService.setMyInfoAttributes(this.investmentAccountService.myInfoAttributes);
-    this.myInfoService.goToMyInfo();
+    // this.myInfoService.goToMyInfo();
+    // Todo - Robo2 Hard coded UAT1 path for testing
+    this.myInfoService.goToUAT1MyInfo();
   }
 }

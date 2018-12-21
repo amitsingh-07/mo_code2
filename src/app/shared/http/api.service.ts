@@ -173,33 +173,8 @@ export class ApiService {
     const payload = data;
     return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error, data))
+        catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
       );
-  }
-
-  handleSubscribeError(error: HttpErrorResponse, data) {
-    error = new HttpErrorResponse({status: 500});
-    if (error.status === 500) {
-      this.subscribeNewsletterSingle(data).subscribe((in_data) => {
-        this.errorMessage.next(in_data);
-      });
-    } else {
-      const templateError = {
-        body: 'default',
-        detail: 'default',
-        status: 500
-      };
-      this.errorMessage.next(templateError);
-      return throwError('');
-    }
-  }
-
-  subscribeNewsletterSingle(data) {
-    const payload = data;
-    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
-    );
   }
 
   throwSubscribeError(error: HttpErrorResponse) {
@@ -423,23 +398,9 @@ export class ApiService {
 
   getMoreList() {
     const url = '../assets/mock-data/moreList.json';
-    return this.http.get(url)
-      .pipe( // tslint:disable-next-line
-        catchError((error: HttpErrorResponse) => {
-          if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-            );
-            return this.httpClient.get<IServerResponse>(url);
-          }
-          // return an observable with a user-facing error message
-          return throwError('Something bad happened; please try again later.');
-        })
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
 

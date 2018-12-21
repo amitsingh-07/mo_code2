@@ -4,7 +4,7 @@
 .body {
   font-weight: 600;
 }
-
+app-my-financials{
 .fixed-btn--sm {
   border: 1px solid rgba(0, 135, 134, 0.4);
   color: #00a7a7;
@@ -47,6 +47,18 @@
   display: block;
 }
 
+
+
+.form-control {
+  &.form-control-right {
+    input {
+      padding-right: 20px;
+    }
+
+  }
+}
+}
+
 .modal {
   @include allmobiles {
 
@@ -56,16 +68,6 @@
         color: #5e5e5e;
         font-family: $muli-bold;
       }
-    }
-
-  }
-}
-
-
-.form-control {
-  &.form-control-right {
-    input {
-      padding-right: 20px;
     }
 
   }

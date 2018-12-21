@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -14,7 +14,8 @@ import {
 @Component({
   selector: 'app-funding-intro',
   templateUrl: './funding-intro.component.html',
-  styleUrls: ['./funding-intro.component.scss']
+  styleUrls: ['./funding-intro.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FundingIntroComponent implements OnInit, AfterViewInit {
   animateStaticModal = false;

@@ -1,6 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
 
+app-confirm-portfolio{
 .confirm-portfolio {
   .strong {
     font-weight: bold;
@@ -202,4 +203,5 @@
       margin-left:15px;
     }
   }
+}
 }

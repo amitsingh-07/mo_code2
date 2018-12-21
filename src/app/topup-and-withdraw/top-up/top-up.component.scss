@@ -1,5 +1,7 @@
 @import '../../../variables';
 @import '../../../mixins';
+
+app-top-up{
 .fixed-btn--sm {
     border: 1px solid rgba(0, 135, 134, 0.4);
     color: #00a7a7;
@@ -206,5 +208,4 @@
 .form-control.form-control-right input {
   padding-right: 46px;
 }
-
- 
+}

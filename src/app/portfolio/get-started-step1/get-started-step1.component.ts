@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,7 +11,8 @@ import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
 @Component({
   selector: 'app-get-started-step1',
   templateUrl: './get-started-step1.component.html',
-  styleUrls: ['./get-started-step1.component.scss']
+  styleUrls: ['./get-started-step1.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GetStartedStep1Component implements OnInit {
 

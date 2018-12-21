@@ -8,12 +8,13 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-  ModelWithButtonComponent
+    ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
+import { GroupByPipe } from '../../shared/Pipes/group-by.pipe';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
-import { SignUpService } from '../sign-up.service';
 import { SIGN_UP_CONFIG } from '../sign-up.constant';
+import { SignUpService } from '../sign-up.service';
 
 @Component({
   selector: 'app-view-all-notifications',
@@ -22,7 +23,6 @@ import { SIGN_UP_CONFIG } from '../sign-up.constant';
 })
 export class ViewAllNotificationsComponent implements OnInit {
   pageTitle: string;
-  notifications: any;
   ref;
   allMessages;
 
@@ -47,13 +47,14 @@ export class ViewAllNotificationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.notifications = this.getAllNotifications();
+    this.getAllNotifications();
   }
 
   getAllNotifications() {
     this.signUpService.getAllNotifications().subscribe((response) => {
-      this.notifications = response.objectList[0].notifications;
-      const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
+      const notifications = response.objectList[0].notifications;
+      this.allMessages = this.signUpService.getAllMessagesByNotifications(notifications);
+      this.allMessages = new GroupByPipe().transform(this.allMessages, 'time');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     });
   }
@@ -63,22 +64,20 @@ export class ViewAllNotificationsComponent implements OnInit {
     });
   }
 
-  clearNotification(message, notification) {
+  clearNotification(message, group) {
     this.updateNotifications([message], SIGN_UP_CONFIG.NOTIFICATION.DELETE_PAYLOAD_KEY);
-    const updatedMessagesList = notification.messages.filter((notificationMessage) => message !== notificationMessage);
+    const updatedMessagesList = group.value.filter((notificationMessage) => message !== notificationMessage);
     if (updatedMessagesList.length) {
-      notification.messages = updatedMessagesList;
+      group.value = updatedMessagesList;
     } else {
-      const updatedNotificationList = this.notifications.filter((currentNotification) => notification !== currentNotification);
-      this.notifications = updatedNotificationList;
+      const updatedNotificationList = this.allMessages.filter((currentNotification) => group !== currentNotification);
+      this.allMessages = updatedNotificationList;
     }
-    console.log(this.notifications);
   }
 
   clearAllNotifications() {
-    const allMessages = this.signUpService.getAllMessagesByNotifications(this.notifications);
     this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.DELETE_PAYLOAD_KEY);
-    this.notifications.splice(0);
+    this.allMessages.splice(0);
   }
 
   deleteNotification(messageList) {

@@ -13,6 +13,7 @@ import { AccountCreationErrorModalComponent } from './account-creation-error-mod
 import {
     AccountSetupCompletedComponent
 } from './account-setup-completed/account-setup-completed.component';
+import { AccountSetupPendingComponent } from './account-setup-pending/account-setup-pending.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import {
     AdditionalDeclarationInfoComponent
@@ -23,9 +24,6 @@ import {
 import {
     AdditionalDeclarationStep1Component
 } from './additional-declaration-step1/additional-declaration-step1.component';
-import {
-    AdditionalDeclarationSubmitComponent
-} from './additional-declaration-submit/additional-declaration-submit.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
 import {
     EditInvestmentModalComponent
@@ -45,9 +43,6 @@ import { SelectNationalityComponent } from './select-nationality/select-national
 import { SingPassComponent } from './sing-pass/sing-pass.component';
 import { TaxInfoComponent } from './tax-info/tax-info.component';
 import { UploadDocumentBOComponent } from './upload-document-bo/upload-document-bo.component';
-import {
-    UploadDocumentsLaterComponent
-} from './upload-documents-later/upload-documents-later.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -86,7 +81,6 @@ export function createTranslateLoader(http: HttpClient) {
     FinanicalDetailsComponent,
     UploadDocumentsComponent,
     PersonalDeclarationComponent,
-    UploadDocumentsLaterComponent,
     AdditionalDeclarationScreen2Component,
     ConfirmPortfolioComponent,
     EditInvestmentModalComponent,
@@ -95,7 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
     AdditionalDeclarationStep1Component,
     FeesModalComponent,
     AccountSetupCompletedComponent,
-    AdditionalDeclarationSubmitComponent,
+    AccountSetupPendingComponent,
     UploadDocumentBOComponent,
     AccountCreationErrorModalComponent,
     FundingIntroComponent

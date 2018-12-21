@@ -10,6 +10,7 @@ export let apiConstants = {
     endpoint: {
         authenticate: 'account/account-microservice/authenticate',
         login: 'login',
+        logout: 'account/account-microservice/api/logout',
         getProfileList: 'account/account-microservice/api/getProfileTypeList',
         getProtectionTypesList: 'insurance/insurance-needs-microservice/api/getProtectionTypesList',
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',
@@ -17,8 +18,8 @@ export let apiConstants = {
         getRiskAssessmentQuestions: 'investment-microservice/RiskAssessment',
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
-        //getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
-        getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoMock',
+        getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
+        //getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoMock',
         signUp: 'account/account-microservice/api/signup',
         updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',

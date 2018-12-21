@@ -4,31 +4,29 @@
     <div class="row">
       <div class="col-12">
         <!--Notifications container-->
-        <div class="notifications-container" *ngFor="let notification of notifications">
+        <div class="notifications-container" *ngFor="let group of allMessages">
           <!--Notifications Header-->
-          <div *ngIf="notification.messages.length > 0">
-            <div class="notifications-container__header">
-              {{notification.groupName}}
-            </div>
-            <!--Notifications Header //-->
-            <!--Notifications lists-->
-            <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of notification.messages">
-              <div class="notifications-container__lists--close" (click)="clearNotification(message, notification)">X</div>
-              <div class="notifications-container__lists--desc">
-                {{message.message}}
-                <div class="notifications-container__lists--duration">
-                  {{message.time}}
-                </div>
+
+          <div class="notifications-container__header">
+            {{group.groupName}}
+          </div>
+          <!--Notifications Header //-->
+          <!--Notifications lists-->
+          <div class="notifications-container__lists" [hidden]="IsHidden" *ngFor="let message of group.value">
+            <div class="notifications-container__lists--close" (click)="clearNotification(message, group)">X</div>
+            <div class="notifications-container__lists--desc">
+              {{message.message}}
+              <div class="notifications-container__lists--duration">
+                {{message.time}}
               </div>
             </div>
           </div>
+
           <!--Notifications lists //-->
         </div>
-
-        <div *ngIf="!allMessages || !allMessages.length" class="notifications-container__no-notification">
+        <div *ngIf="allMessages && allMessages.length <= 0" class="notifications-container__no-notification">
           <p class="pt50"><img src="./assets/images/noNotificationIcon.svg"> </p>
-          <p>No New Notification</p>
-
+          <p>{{ 'NOTIFICATIONS.EMPTY' | translate}}</p>
         </div>
         <!--Notifications container //-->
       </div>
