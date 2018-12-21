@@ -61,19 +61,7 @@ export class FinanicalDetailsComponent implements OnInit {
       annualHouseHoldIncomeRange: [{value: this.formValues.annualHouseHoldIncomeRange,
         disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')}, Validators.required],
       numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
-      financialMonthlyIncome: [this.formValues.financialMonthlyIncome ?
-        this.formValues.financialMonthlyIncome : this.FinancialFormData.monthlyIncome,
-        Validators.required],
-      financialPercentageOfSaving: [this.formValues.financialPercentageOfSaving
-        ? this.formValues.financialPercentageOfSaving : this.FinancialFormData.percentageOfSaving,
-      Validators.required],
-      financialTotalAssets: [this.formValues.financialTotalAssets
-        ? this.formValues.financialTotalAssets : this.FinancialFormData.totalAssets,
-      Validators.required],
-      financialTotalLiabilities: [this.formValues.financialTotalLiabilities
-        ? this.formValues.financialTotalLiabilities :
-        this.FinancialFormData.totalLiabilities,
-      Validators.required]
+      salaryRange: [this.formValues.salaryRange, Validators.required]
     });
   }
   setPageTitle(title: string) {
@@ -89,6 +77,9 @@ export class FinanicalDetailsComponent implements OnInit {
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
     this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(HouseHoldMembers);
+  }
+  setSalaryRange(range) {
+    this.financialDetails.controls['salaryRange'].setValue(range);
   }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);

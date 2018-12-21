@@ -93,10 +93,7 @@ export class InvestmentAccountFormData {
     // financial details
     annualHouseHoldIncomeRange: string;
     numberOfHouseHoldMembers: number;
-    financialMonthlyIncome: string;
-    financialPercentageOfSaving: string;
-    financialTotalAssets: string;
-    financialTotalLiabilities: string;
+    salaryRange: string;
 
     source: string;
     expectedNumberOfTransation: number;
