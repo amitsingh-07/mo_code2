@@ -16,11 +16,19 @@
         color: #00a7a7;
         padding: 18px 0 12px;
         .equity_bar{
-          align-items: center;
+          justify-content: space-between;
+            align-items: center;
+            .flex-col-8{
+              max-width: 195px;
+            }
         }
         .bond_bar{
-          align-items: center;
-          padding-top: 16px;
+          justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            .flex-col-8{
+              max-width: 195px;
+            }
         }
         .bar{
           height: 12px;
