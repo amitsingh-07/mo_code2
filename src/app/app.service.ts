@@ -43,6 +43,19 @@ export class AppService {
     return this.journeyType;
   }
 
+  clearJourneys() {
+    if (window.sessionStorage) {
+      // App data
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      // Direct Journey Data
+      sessionStorage.removeItem('app_direct_session');
+      // Guided Journey Data
+      sessionStorage.removeItem('app_guided_session');
+      // Insurance results
+      sessionStorage.removeItem('insurance_results_counter');
+    }
+  }
+
   startAppSession() {
     this.activeSession = 'active';
     this.commit(SESSION_KEY, this.activeSession);

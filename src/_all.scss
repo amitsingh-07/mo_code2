@@ -1428,3 +1428,12 @@ a.link-white {
       }
     }
 }
+
+@include allmobiles {
+  .collapse.navbar-collapse.show {
+    width: 100vw;
+  }
+}
+.navbar .navbar-collapse .nav-item {
+  margin-right: 15px;
+}
