@@ -223,8 +223,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         if (this.myFamilyForm.dirty) {
           const clearExecTrustee = this.willWritingService.checkChildAgeExecTrustee(form) ||
             this.willWritingService.checkUinExecTrustee(form);
-          const hasImpact = ((url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN || clearExecTrustee) &&
-            this.willWritingService.isUserLoggedIn()) ? true : false;
+          const hasImpact = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN && this.willWritingService.isUserLoggedIn()) ? true : false;
           this.openConfirmationModal(url, hasImpact, form, clearExecTrustee);
         } else {
           this.router.navigate([url]);
