@@ -84,9 +84,14 @@ app-your-portfolio{
     height: 10px;
     border: none;
     position: absolute;
-    top: 22px;
+    top: 24px;
     right: 13px;
     background-repeat: no-repeat;
+    @include iphone5{
+             top: 24px;
+            right: 5px;
+    }
+    
 }
 
 .dropdown-control .btn-dropdown.grey {
