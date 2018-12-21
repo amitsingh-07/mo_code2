@@ -47,7 +47,7 @@
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
                     <li *ngIf="isLoggedIn" class="nav-item flex space-between" style="flex-direction: row">
                             <a class="nav-link">{{userInfo.firstName}}</a>
-                            <a class="nav-link" style="width: auto; padding-right: 15px;">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
+                            <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()" href="javascript: void(0);">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
                             </li>
                 <li class="nav-item" [routerLink]="['/']">
                     <a class="nav-link">Home</a>
@@ -192,7 +192,7 @@
                                         <div class="navbar--text">{{userInfo.firstName}}</div>
                                         </button>
                                     <button class="dropdown-item">
-                                        <div class="navbar--text">Logout</div>
+                                        <div class="navbar--text" (click)="logout()" href="javascript: void(0);">Logout</div>
                                     </button>
                                 </div>
                                 </li>

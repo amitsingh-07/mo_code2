@@ -1,3 +1,4 @@
+import { appConstants } from './../../app.constants';
 import { Location } from '@angular/common';
 import {
   AfterViewInit,
@@ -10,9 +11,10 @@ import {
   ViewChild
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
+import { AppService } from './../../app.service';
 import { ConfigService, IConfig } from './../../config/config.service';
 import { SignUpService } from './../../sign-up/sign-up.service';
 import { NavbarService } from './navbar.service';
@@ -56,7 +58,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
-    private signUpService: SignUpService) {
+    private signUpService: SignUpService, private authService: AuthenticationService,
+    private appService: AppService) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -156,5 +159,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   hideMenu() {
     this.isNavbarCollapsed = true;
+  }
+
+  logout() {
+    this.authService.logout().subscribe((data) => {
+      this.signUpService.setUserProfileInfo(null);
+      this.isLoggedIn = false;
+      this.appService.clearData();
+      this.appService.startAppSession();
+      this.router.navigate([appConstants.homePageUrl]);
+    });
   }
 }
