@@ -64,7 +64,7 @@
         <div class="dropdown-control">
           <div ngbDropdown id="singlePremiumDropdown">
             <button type="button" class="btn btn-dropdown" id="btnSinglePremiumDropdown" ngbDropdownToggle>
-              <span class="coverage_amt">{{singlePremium == '' ? 'Select' : singlePremium}}</span>
+              <span class="coverage_amt">{{singlePremium == '' ? 'Select' : singlePremium  | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
             </button>
             <div ngbDropdownMenu aria-labelledby="btnSinglePremiumDropdown">
               <button class="dropdown-item" (click)="selectSinglePremiumAmount('')">{{'COMMON.LBL_SELECT' | translate}}</button>

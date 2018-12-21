@@ -111,8 +111,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   summarizeDetails() {
     let sum_string = '';
     sum_string += this.translate.instant('CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR') + this.srsApprovedPlansForm.value.singlePremium + ', ';
-    sum_string += 'Payout Age of' + this.payoutStartAge + ', ';
-    sum_string += this.payoutType;
+    sum_string += 'Payout Age of ' + this.payoutStartAge;
     return sum_string;
   }
 

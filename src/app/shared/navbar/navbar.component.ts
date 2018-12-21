@@ -10,10 +10,13 @@ import {
   ViewChild
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
-import { ConfigService, IConfig  } from './../../config/config.service';
+import { appConstants } from './../../app.constants';
+import { AppService } from './../../app.service';
+import { ConfigService, IConfig } from './../../config/config.service';
+import { SignUpService } from './../../sign-up/sign-up.service';
 import { NavbarService } from './navbar.service';
 
 @Component({
@@ -46,12 +49,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
 
+  isLoggedIn = false;
+  userInfo;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
-    private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService) {
+    private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
+    private signUpService: SignUpService, private authService: AuthenticationService,
+    private appService: AppService) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -61,6 +69,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
+    });
+
+    this.userInfo = this.signUpService.getUserProfileInfo();
+    if (this.userInfo && this.userInfo.firstName) {
+      this.isLoggedIn = true;
+    }
+
+    this.signUpService.userObservable$.subscribe((data) => {
+      if (data) {
+        this.userInfo = data;
+        if (this.userInfo && this.userInfo.firstName) {
+          this.isLoggedIn = true;
+        }
+      }
     });
   }
 
@@ -137,5 +159,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   hideMenu() {
     this.isNavbarCollapsed = true;
+  }
+
+  logout() {
+    this.authService.logout().subscribe((data) => {
+      this.signUpService.setUserProfileInfo(null);
+      this.isLoggedIn = false;
+      this.appService.clearData();
+      this.appService.startAppSession();
+      this.router.navigate([appConstants.homePageUrl]);
+    });
   }
 }
