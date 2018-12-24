@@ -10,6 +10,7 @@ export let apiConstants = {
     endpoint: {
         authenticate: 'account/account-microservice/authenticate',
         login: 'login',
+        logout: 'account/account-microservice/api/logout',
         getProfileList: 'account/account-microservice/api/getProfileTypeList',
         getProtectionTypesList: 'insurance/insurance-needs-microservice/api/getProtectionTypesList',
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',

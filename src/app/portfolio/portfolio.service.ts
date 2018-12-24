@@ -150,9 +150,6 @@ export class PortfolioService {
     },
     {
       questionOptionId: formData.riskAssessQuest4
-    },
-    {
-      questionOptionId: formData.riskAssessQuest5
     }];
     return {
       enquiryId: this.authService.getEnquiryId(),

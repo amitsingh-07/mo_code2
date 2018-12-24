@@ -8,7 +8,9 @@
           <div class="autofill-link">
             <div class="autofill-text hidden-sm-md">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.TITLE' | translate}} <span
                 class="help-icon" (click)="openToolTipModal()"></span></div>
-            <div class="sub-title mb20">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.SUB_TITLE' | translate}}</div>
+            <div class="note hidden-lg">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.NOTE' | translate }}</div>
+            <div class="sub-title mb10">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.SUB_TITLE' | translate }}</div>
+            <div class="note hidden-sm-md mb20">{{ 'WILL_WRITING.MY_EXECUTOR_TRUSTEE.NOTE' | translate }}</div>
             <div class="autofill-logo hidden-sm-md"><img class="img-fluid" src="assets/images/will-writing/my-executor-trustee.svg" /></div>
             <div class="autofill-logo mobile-logo hidden-lg mb5"><img class="img-fluid" src="assets/images/will-writing/owl-mobile.svg" /></div>
           </div>
@@ -23,7 +25,6 @@
                   <div class="input-label-normal">{{'WILL_WRITING.COMMON.MY' |
                     translate}} {{execTrustee.relationship | titlecase }}</div>
                 </label>
-                <span class="default" *ngIf="execTrustee.relationship === willWritingConfig.SPOUSE">Default</span>
                 <span (click)="editExecTrustee(execTrustee.relationship, i)" class="edit-icon"><img src="assets/images/will-writing/edit-dark.svg" /></span>
               </div>
             </div>
