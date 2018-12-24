@@ -46,6 +46,8 @@ export class PortfolioRecommendationComponent implements OnInit {
   buttonTitle: any;
   event1 = true;
   event2 = true;
+  userInputSubtext;
+
   constructor(
     private appService: AppService,
     private router: Router,
@@ -73,6 +75,11 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+    this.userInputSubtext = {
+      onetime: 22000,
+      monthly: 1200,
+      period: 5
+    };
   }
 
   setPageTitle(title: string) {

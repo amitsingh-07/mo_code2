@@ -3,10 +3,7 @@
     <div class="flex-col-12 portfolio-allocation-details__container">
       <div class="portfolio-allocation-details__content">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
-          <div class="flex-col-12 portfolio-allocation-details__content__block">
-            Here’s your projected portfolio value for <strong>$120,000 one-time investment</strong> &amp;
-            <strong>$800 monthly investment</strong> for 30 years.
-          </div>
+          <div class="flex-col-12 portfolio-allocation-details__content__block" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
         </div>
       </div>
       <hr>
@@ -14,26 +11,25 @@
       <hr>
       <div class="portfolio-allocation-details__content">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
-          <div class="flex-row review-edit"><span>Review My Inputs</span><span class="edit_button " (click)="showEditModal()"></span></div>
+          <div class="flex-row review-edit"><span>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button " (click)="showEditModal()"></span></div>
         </div>
       </div>
     </div>
     <div class="flex-col-12 asset-allocation">
-      <div class="title">Asset Allocation</div>
+      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
       <!-- bonds -->
       <app-asset-allocation></app-asset-allocation>
     </div>
     <div class="flex-col-12 annual-fees">
-      <div class="title">Annual Fees</div>
+      <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
       <app-annual-fees></app-annual-fees>
     </div>
-    <div class="faq_link"><a href="#">For more information, visit our FAQs.</a></div>
+    <div class="faq_link"><a href="#">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
   </div>
   <div class="row">
     <div class="flex-col-12 review-block">
-      <div>Review your inputs or proceed to start investing in this portfolio.</div>
-      <div class="review-italic">Please note that your investment only starts after you have started funding your
-        account.</div>
+      <div>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
+      <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
     </div>
   </div>
   <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary">Proceed</button>
