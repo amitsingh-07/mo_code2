@@ -3,12 +3,12 @@ import {
   AfterViewInit,
   Component,
   ComponentFactoryResolver,
+  OnDestroy,
   OnInit,
   Type,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation,
-  OnDestroy
+  ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -171,13 +171,15 @@ export class DirectComponent implements OnInit, AfterViewInit, IPageComponent, O
 
   removeComponent(componentClass: Type<any>) {
     // Find the component
-    const component = this.state.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
-    const componentIndex = this.state.components.indexOf(component);
+    if (this.state.components) {
+      const component = this.state.components.find((thisComponent) => thisComponent.instance instanceof componentClass);
+      const componentIndex = this.state.components.indexOf(component);
 
-    if (componentIndex !== -1) {
-      // Remove component from both view and array
-      this.state.container.remove(this.state.container.indexOf(component));
-      this.state.components.splice(componentIndex, 1);
+      if (componentIndex !== -1) {
+        // Remove component from both view and array
+        this.state.container.remove(this.state.container.indexOf(component));
+        this.state.components.splice(componentIndex, 1);
+      }
     }
   }
 

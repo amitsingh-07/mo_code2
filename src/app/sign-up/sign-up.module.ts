@@ -1,4 +1,5 @@
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -86,7 +87,8 @@ export function createTranslateLoader(http: HttpClient) {
     ViewAllNotificationsComponent,
     TopBarWithClearButtonComponent,
     AccountUpdatedComponent,
-    AddUpdateBankComponent
+    AddUpdateBankComponent,
+    TimeAgoPipe
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

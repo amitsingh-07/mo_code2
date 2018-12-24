@@ -49,6 +49,19 @@ export class CustomErrorHandlerService {
     this.router.navigate([appConstants.loginPageUrl]);
   }
 
+  /*
+    * Handle Subscribe errors.
+    */
+  public handleSubscribeError(httpError: HttpErrorResponse) {
+    if (httpError.error instanceof ErrorEvent) {
+      console.error('An error occured do nothing let it flow');
+    } else {
+      console.log('Do nothing let it flow');
+      }
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
+
   public handleError(httpError: HttpErrorResponse) {
     if (httpError.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

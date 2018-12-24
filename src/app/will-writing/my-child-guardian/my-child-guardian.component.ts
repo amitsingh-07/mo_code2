@@ -118,7 +118,8 @@ export class MyChildGuardianComponent implements OnInit, OnDestroy {
    */
   buildAddGuardianForm() {
     this.addGuardianForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
+      Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
       uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]]
     });
