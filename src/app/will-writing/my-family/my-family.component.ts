@@ -195,8 +195,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         if (clearExecTrustee) {
           this.willWritingService.setFromConfirmPage(false);
           this.willWritingService.clearExecTrustee = true;
-          url = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN || this.willWritingService.getGuardianInfo().length > 0) ?
-          WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+          url = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN) ? url : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
         }
         this.save(form);
         this.router.navigate([url]);
