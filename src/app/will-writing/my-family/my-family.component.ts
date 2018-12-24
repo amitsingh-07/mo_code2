@@ -195,7 +195,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         if (clearExecTrustee) {
           this.willWritingService.setFromConfirmPage(false);
           this.willWritingService.clearExecTrustee = true;
-          url = (url === WILL_WRITING_ROUTE_PATHS.CONFIRMATION) ? WILL_WRITING_ROUTE_PATHS.MY_EXECUTOR_TRUSTEE : url;
+          url = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN) ? url : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
         }
         this.save(form);
         this.router.navigate([url]);
@@ -223,7 +223,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         if (this.myFamilyForm.dirty) {
           const clearExecTrustee = this.willWritingService.checkChildAgeExecTrustee(form) ||
             this.willWritingService.checkUinExecTrustee(form);
-          const hasImpact = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN && this.willWritingService.isUserLoggedIn()) ? true : false;
+          const hasImpact = ((url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN || clearExecTrustee) &&
+            this.willWritingService.isUserLoggedIn()) ? true : false;
           this.openConfirmationModal(url, hasImpact, form, clearExecTrustee);
         } else {
           this.router.navigate([url]);
