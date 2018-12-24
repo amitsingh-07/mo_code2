@@ -194,7 +194,7 @@
               <!-- checkbox -->
               <div class="form-group-single-column mb0 flex-col-12">
                 <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
-                  <input id="1" type="checkbox" class="field checkbox" value="One-time Investment">
+                  <input id="1" type="checkbox" formControlName="firstChkBox" class="field checkbox" name="firstChkBox" (change)="firstChkBoxChange()">
                   <label for="1" id="c1">
                     <div class="input-label-black">One-time Investment</div>
 
@@ -225,7 +225,7 @@
 
                 <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
 
-                  <input id="2" type="checkbox" class="field checkbox" value="Monthly Investment">
+                  <input id="2" type="checkbox" formControlName="secondChkBox" class="field checkbox" name="secondChkBox" (change)="secondChkBoxChange()">
 
                   <label for="2" id="c2">
 
