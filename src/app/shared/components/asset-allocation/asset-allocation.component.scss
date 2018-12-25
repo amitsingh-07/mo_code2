@@ -18,18 +18,16 @@
         .equity_bar{
           justify-content: space-between;
             align-items: center;
-            .flex-col-8{
-              max-width: 195px;
-            }
-        }
-        .bond_bar{
-          justify-content: space-between;
-            align-items: center;
             padding-top: 16px;
+
             .flex-col-8{
               max-width: 195px;
             }
         }
+        .bar-container{
+          background-color:#c7e9e9;
+        }
+        
         .bar{
           height: 12px;
         }

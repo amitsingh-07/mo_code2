@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="portfolio">
   <div class="portfolio-allocation-details">
     <div class="flex-col-12 portfolio-allocation-details__container">
       <div class="portfolio-allocation-details__content">
@@ -7,7 +7,7 @@
         </div>
       </div>
       <hr>
-      <app-portfolio-info></app-portfolio-info>
+      <app-portfolio-info [portfolioName]="portfolio.portfolioName" [investmentDetail]="portfolio.investmentDetail" [projectedReturns]="portfolio.projectedReturns"></app-portfolio-info>
       <hr>
       <div class="portfolio-allocation-details__content">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
@@ -18,11 +18,11 @@
     <div class="flex-col-12 asset-allocation">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
       <!-- bonds -->
-      <app-asset-allocation></app-asset-allocation>
+      <app-asset-allocation [assets]="portfolio.assetAllocation" [colors]="colors"></app-asset-allocation>
     </div>
     <div class="flex-col-12 annual-fees">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
-      <app-annual-fees></app-annual-fees>
+      <app-annual-fees [feeDetails]="portfolio.annualFeeDetails"></app-annual-fees>
     </div>
     <div class="faq_link"><a href="#">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
   </div>

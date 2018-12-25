@@ -40,7 +40,7 @@ export class PortfolioRecommendationComponent implements OnInit {
   selectedRiskProfile: RiskProfile;
   breakdownSelectionindex: number = null;
   isAllocationOpen = false;
-  legendColors: string[] = ['#3cdacb', '#ec681c', '#76328e'];
+  colors: string[] = ['#ec681c', '#76328e', '#76328e'];
   helpDate: any;
   editPortfolio: any;
   buttonTitle: any;
@@ -75,11 +75,6 @@ export class PortfolioRecommendationComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.getPortfolioAllocationDetails();
     this.selectedRiskProfile = this.portfolioService.getRiskProfile();
-    this.userInputSubtext = {
-      onetime: 22000,
-      monthly: 1200,
-      period: 5
-    };
   }
 
   setPageTitle(title: string) {
@@ -113,9 +108,132 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
+    /*
     this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
       this.portfolio = data.objectList;
     });
+    */
+
+    this.portfolio = {
+    "portfolioId": "PO12345678",
+    "portfolioName": "Conservative Portfolio",
+    "investmentDetail": {
+      "monthlyInvestment": 200,
+      "initialInvestment": 10000,
+      "investmentPeriod": 30
+    },
+    "projectedReturns": [
+      1286079, 1286079, 1286079, 1286079
+    ],
+    "assetAllocation": [{
+      "type": "Equities",
+      "numberOfHoldings": 12345,
+      "allocationPercentage": 40,
+      "allocations": [{
+          "name": "Class Allocation",
+          "detail": [{
+              "name": "Global Equities",
+              "value": 88.5
+            },
+            {
+              "name": "Global Equities",
+              "value": 88.5
+            }
+          ]
+        },
+        {
+          "name": "Regional Allocation",
+          "detail": [{
+              "name": "Global Equities",
+              "value": 88.5
+            },
+            {
+              "name": "Global Equities",
+              "value": 88.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Bonds",
+      "numberOfHoldings": 12345,
+      "allocationPercentage": 60,
+      "allocations": [{
+          "name": "Class Allocation",
+          "detail": [{
+              "name": "Global Equities",
+              "value": 88.5
+            },
+            {
+              "name": "Global Equities",
+              "value": 88.5
+            }
+          ]
+        },
+        {
+          "name": "Regional Allocation",
+          "detail": [{
+              "name": "Global Equities",
+              "value": 88.5
+            },
+            {
+              "name": "Global Equities",
+              "value": 88.5
+            }
+          ]
+        }
+      ]
+    }],
+    "funds": [{
+        "percentage": "30",
+        "sector": "Global Equities",
+        "type": "Equity",
+        "name": "Global Core Equity Fund",
+        "id": "F1234",
+        "prospectus": "http://",
+        "fundFactSheet": "http://",
+        "description": "Some desc"
+      },
+      {
+        "percentage": "35",
+        "sector": "Bonds",
+        "type": "Equity",
+        "name": "Global Core Equity Fund",
+        "id": "F1234",
+        "prospectus": "http://",
+        "fundFactSheet": "http://",
+        "description": "Some desc"
+      },
+      {
+        "percentage": "35",
+        "sector": "Bonds",
+        "type": "Equity",
+        "name": "Global Core Equity Fund",
+        "id": "F1234",
+        "prospectus": "http://",
+        "fundFactSheet": "http://",
+        "description": "Some desc"
+      }
+    ],
+    "annualFeeDetails": [{
+      "name": "Advisory Fees",
+      "value": 0.65
+    },
+    {
+      "name": "Platform Fees",
+      "value": 0.65
+    },
+    {
+      "name": "Fund Expense Ratio",
+      "value": 0.65
+    }]
+    };
+    this.userInputSubtext = {
+      onetime: this.portfolio.investmentDetail.initialInvestment,
+      monthly: this.portfolio.investmentDetail.monthlyInvestment,
+      period: this.portfolio.investmentDetail.investmentPeriod
+    };
   }
 
   constructgetAllocationParams() {

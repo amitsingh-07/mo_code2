@@ -1,7 +1,7 @@
 <div class="portfolio-info-container">
   <div class="flex-col-12 portfolio-desc">
     <div class="portfolio-type-details">
-      <div class="portfolio-type-details-title">Conservative Portfolio</div>
+      <div class="portfolio-type-details-title">{{portfolioName}}</div>
       <div class="portfolio-type-details-desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.PORTFOLIO_PROJECTION_SUBTEXT' | translate:portfolioProjectionSubText">
         </div>
     </div>
@@ -10,14 +10,14 @@
         <div class="flex-col-12">
           <div class="graph"><img src="../../../assets/images/investment-account/recommend_graph.svg" /></div>
           <div class="flex-col graph_values">
-            <span>$1,286,079</span>
-            <span>$1,263,385 </span>
-            <span>$1,240,987 </span>
-            <span>$299,200 </span>
+            <span>{{projectedReturns[0] | currency}}</span>
+            <span>{{projectedReturns[1] | currency}}</span>
+            <span>{{projectedReturns[2] | currency}}</span>
+            <span>{{projectedReturns[3] | currency}}</span>
           </div>
         </div>
         <div class="flex-row time-lapse">
-          <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>30 {{ 'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</span>
+          <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{investmentDetail.investmentPeriod}} {{ 'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</span>
         </div>
       </div>
       <div class="flex-col portfolio-graph-indicator">

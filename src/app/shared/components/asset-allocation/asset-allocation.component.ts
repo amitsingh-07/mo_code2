@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-asset-allocation',
@@ -7,6 +7,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AssetAllocationComponent implements OnInit {
+  @Input('assets') assets;
+  @Input('colors') colors;
 
   event1 = true;
   event2 = true;
@@ -14,6 +16,7 @@ export class AssetAllocationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.colors);
   }
 
   // accordian
