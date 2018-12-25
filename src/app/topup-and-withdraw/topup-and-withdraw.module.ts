@@ -10,7 +10,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { SharedModule } from '../shared/shared.module';
+
+
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
+import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import {
     ConfirmWithdrawalModalComponent
 } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
@@ -27,6 +30,7 @@ import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-succ
 import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
+
 
 
 
@@ -70,7 +74,8 @@ export function createTranslateLoader(http: HttpClient) {
     WithdrawalSuccessComponent,
     WithdrawalPaymentMethodComponent,
     TransactionComponent,
-    HoldingsComponent
+    HoldingsComponent,
+   AssetAllocationComponent
   ],
   entryComponents: [
     ConfirmWithdrawalModalComponent,
