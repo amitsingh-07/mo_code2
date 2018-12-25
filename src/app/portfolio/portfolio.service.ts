@@ -7,6 +7,7 @@ import { IMyFinancials } from './my-financials/my-financials.interface';
 import { PersonalFormError } from './personal-info/personal-form-error';
 import { PersonalInfo } from './personal-info/personal-info';
 import { PortfolioFormData } from './portfolio-form-data';
+import { PORTFOLIO_CONFIG } from './portfolio.constants';
 import { RiskProfile } from './risk-profile/riskprofile';
 const PORTFOLIO_RECOMMENDATION_COUNTER_KEY = 'portfolio_recommendation-counter';
 const SESSION_STORAGE_KEY = 'app_engage_journey_session';
@@ -100,8 +101,40 @@ export class PortfolioService {
       return false;
     }
   }
+  doNewFinancialValidations(form) {
+    const invalid = [];
+    if (form.value.firstChkBox && form.value.secondChkBox ) {
+      // tslint:disable-next-line:max-line-length
+      if (Number(this.removeCommas(form.value.initialInvestment)) < PORTFOLIO_CONFIG.my_financials.min_initial_amount && Number(this.removeCommas(form.value.monthlyInvestment)) < PORTFOLIO_CONFIG.my_financials.min_monthly_amount) {
+        invalid.push(this.personalFormError.formFieldErrors['financialValidations']['one']);
+        return this.personalFormError.formFieldErrors['financialValidations']['one'];
+      } else if (Number(this.removeCommas(form.value.monthlyInvestment)) < PORTFOLIO_CONFIG.my_financials.min_monthly_amount) {
+        invalid.push(this.personalFormError.formFieldErrors['financialValidations']['two']);
+        return this.personalFormError.formFieldErrors['financialValidations']['two'];
+      } else if (Number(this.removeCommas(form.value.initialInvestment)) < PORTFOLIO_CONFIG.my_financials.min_initial_amount) {
+        invalid.push(this.personalFormError.formFieldErrors['financialValidations']['three']);
+        return this.personalFormError.formFieldErrors['financialValidations']['three'];
+      }
+    } else if (form.value.firstChkBox) {
+      if ( Number(this.removeCommas(form.value.initialInvestment)) < PORTFOLIO_CONFIG.my_financials.min_initial_amount ) {
+        invalid.push(this.personalFormError.formFieldErrors['financialValidations']['three']);
+        return this.personalFormError.formFieldErrors['financialValidations']['three'];
+      }
 
-  removeCommas(str) {
+    } else if (form.value.secondChkBox) {
+      if (Number(this.removeCommas(form.value.monthlyInvestment)) < PORTFOLIO_CONFIG.my_financials.min_monthly_amount ) {
+        invalid.push(this.personalFormError.formFieldErrors['financialValidations']['two']);
+        return this.personalFormError.formFieldErrors['financialValidations']['two'];
+      }
+
+    } else {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['four']);
+      return this.personalFormError.formFieldErrors['financialValidations']['four'];
+    }
+    return false;
+  }
+
+    removeCommas(str) {
   if(str.lenght>3)
   {
     while (str.search(',') >= 0) {

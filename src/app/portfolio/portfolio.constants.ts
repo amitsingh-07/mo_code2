@@ -25,7 +25,9 @@ export let PORTFOLIO_CONFIG = {
     min_investment_period: 3 // years
   },
   my_financials: {
-    sufficient_emergency_fund: 'yes'
+    sufficient_emergency_fund: 'yes',
+    min_monthly_amount: 50,
+    min_initial_amount: 100
   },
   risk_profile: {
     should_not_invest_id: 6

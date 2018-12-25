@@ -90,16 +90,20 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   secondChkBoxChange() {
     if (this.myFinancialsForm.controls.secondChkBox.value === true) {
       this.myFinancialsForm.controls.monthlyInvestment.enable() ;
+      this.myFinancialsForm.controls.monthlyInvestment.setValue(0);
     } else {
       this.myFinancialsForm.controls.monthlyInvestment.disable() ;
+      this.myFinancialsForm.controls.monthlyInvestment.setValue('');
     }
   }
 firstChkBoxChange() {
   if (this.myFinancialsForm.controls.firstChkBox.value === true) {
     this.myFinancialsForm.controls.initialInvestment.enable() ;
+    this.myFinancialsForm.controls.initialInvestment.setValue(0);
 
   } else {
     this.myFinancialsForm.controls.initialInvestment.disable() ;
+    this.myFinancialsForm.controls.initialInvestment.setValue('');
   }
 }
   goToNext(form) {
