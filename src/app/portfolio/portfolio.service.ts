@@ -53,8 +53,8 @@ export class PortfolioService {
   }
 
   setRiskProfile(data) {
-    this.portfolioFormData.riskProfileId = data.id;
-    this.portfolioFormData.riskProfileName = data.type;
+    this.portfolioFormData.riskProfileId = data.primaryRiskProfileId;
+    this.portfolioFormData.riskProfileName = data.primaryRiskProfileType;
     this.portfolioFormData.htmlDescription = data.htmlDesc;
     this.commit();
   }

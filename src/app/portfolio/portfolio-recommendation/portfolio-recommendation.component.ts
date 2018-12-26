@@ -108,11 +108,10 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
-    /*
     this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      this.portfolio = data.objectList;
+      // this.portfolio = data.objectList;
     });
-    */
+    
     const mockResponse = {
       "exception": null,
       "objectList": {
