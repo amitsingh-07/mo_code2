@@ -30,7 +30,7 @@
         <ngb-accordion #acc2="ngbAccordion">
           <ngb-panel id="toggle-1" title="Second">
             <ng-template ngbPanelContent>
-              <div class="bond_desc">
+              <div class="bond_desc" *ngIf="asset.numberOfHoldings">
                 <div class="flex-row flex-col-12">
                   <div class="rating_type">Number of Holdings</div>
                   <div class="rating">

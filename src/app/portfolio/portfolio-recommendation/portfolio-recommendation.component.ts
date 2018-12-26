@@ -134,10 +134,40 @@ export class PortfolioRecommendationComponent implements OnInit {
           "type": "Conservative",
           "order": 1
         },
-        "feeDetails": [],
+        "feeDetails": [
+          {
+              "id": 4,
+              "feeName": "Advisory Fees",
+              "percentage": "0.65%",
+              "comments": null,
+              "listing_order": 1
+          },
+          {
+              "id": 5,
+              "feeName": "Platform Fees",
+              "percentage": "0.15%",
+              "comments": "Paid to iFast",
+              "listing_order": 2
+          },
+          {
+              "id": 6,
+              "feeName": "Fund Expense Ratio",
+              "percentage": "0.2% to 0.4%",
+              "comments": "Paid to DFA",
+              "listing_order": 3
+          },
+          {
+              "id": 7,
+              "feeName": "Total",
+              "percentage": "1% to 1.2%",
+              "comments": null,
+              "listing_order": 4
+          }
+      ],
         "sectorAllocations": [{
             "id": 1,
             "name": "Emerging Markets Equity",
+            "allocationPercentage": 50,
             "sectorId": "SECTOR00012",
             "type": {
               "id": 1,
@@ -261,6 +291,7 @@ export class PortfolioRecommendationComponent implements OnInit {
           {
             "id": 2,
             "name": "Global Bonds",
+            "allocationPercentage": 50,
             "sectorId": "SECTOR00013",
             "type": {
               "id": 2,

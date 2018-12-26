@@ -16,6 +16,7 @@ export class AssetAllocationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.assets);
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
       allocation.groupedAllocationDetails = groupedAllocation;
