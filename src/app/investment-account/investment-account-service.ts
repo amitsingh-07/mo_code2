@@ -239,6 +239,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.pep = data.radioPEP;
         this.investmentAccountFormData.beneficial = data.radioBeneficial;
         this.commit();
+        return true;
     }
 
     setNationality(nationalityList: any, countryList: any, nationality: any, unitedStatesResident: any, singaporeanResident: any) {
@@ -429,6 +430,10 @@ export class InvestmentAccountService {
 
     createInvestmentAccount() {
         return this.apiService.createInvestmentAccount();
+    }
+
+    verifyAML() {
+        return this.apiService.verifyAML();
     }
 
     setFinancialFormData(data) {
@@ -644,6 +649,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.earningsGenerated = data.investmentEarnings.earningsGenerated;
         }
         this.commit();
+        return true;
     }
 
     setFundyourAccount(data) {
