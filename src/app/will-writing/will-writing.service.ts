@@ -512,7 +512,7 @@ export class WillWritingService {
       const children = this.getChildrenInfo();
       let i = 0;
       for (const item of children) {
-        const oldChildrenData = execTrusteeList.filter((data) => data.uin === item.uin);
+        const oldChildrenData = execTrusteeList.filter((data) => (data.uin).toLowerCase() === (item.uin).toLowerCase());
         if (oldChildrenData.length > 0) {
           return this.checkChildrenAge([form.value.children[i]]);
         }
@@ -528,7 +528,7 @@ export class WillWritingService {
     if (execTrusteeList.length > 0) {
       const myFamily = [...form.value.children, ...form.value.spouse];
       for (const item of myFamily) {
-        const oldChildrenData = execTrusteeList.filter((data) => data.uin === item.uin);
+        const oldChildrenData = execTrusteeList.filter((data) => (data.uin).toLowerCase() === (item.uin).toLowerCase());
         if (oldChildrenData.length > 0) {
           return true;
         }
