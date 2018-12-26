@@ -57,10 +57,6 @@ export interface IHousehold {
 
 export interface IFinancial {
     incomeRange: string;
-    annualIncome: number;
-    percentageOfSaving: number;
-    totalAssets: number;
-    totalLoans: number;
 }
 
 export interface ITax {

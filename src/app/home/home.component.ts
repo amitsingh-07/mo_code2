@@ -100,12 +100,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.mailChimpApiService.newSubscribeMessage.subscribe((data) => {
       if (data !== '') {
-        if ( !data.match('verification link')) {
-          this.subscribeSuccess = false;
+        console.log(data);
+        if (data.match('verification link')) {
+          this.subscribeSuccess = true;
           this.subscribeMessage = data;
         } else {
           this.subscribeMessage = data;
-          this.subscribeSuccess = true;
+          this.subscribeSuccess = false;
         }
       }
     });

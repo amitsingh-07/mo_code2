@@ -639,6 +639,13 @@ export class InvestmentAccountFormError {
                 errorTitle: 'Invalid Zip Code',
                 errorMessage: 'Zip Code should not contain special characters.'
             }
+        },
+        salaryRange: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid salary range',
+                errorMessage: 'Please select salary range.'
+            }
         }
     };
 

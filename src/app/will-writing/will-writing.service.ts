@@ -476,4 +476,8 @@ export class WillWritingService {
   checkBeneficiary(uin) {
     return this.getBeneficiaryInfo().filter((data) => data.uin === uin && data.selected === true);
   }
+
+  checkExecTrustee(uin) {
+    return this.getExecTrusteeInfo().filter((data) => data.uin === uin);
+  }
 }
