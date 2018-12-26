@@ -5,7 +5,7 @@
               <div class="flex-row flex-col-8 bar-container">
                 <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }" class="bar"></span>
               </div>
-              <div class="flex-col-4">{{asset.allocationPercentage}}% {{asset.type}}</div>
+              <div class="flex-col-4">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
             </div>
         <!--
         <div class="flex-row equity_bar">
@@ -25,7 +25,7 @@
         -->
       </div>
       <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
-        <div class="bonds_equity_title" (click)="acc2.toggle('toggle-1')" (click)="test('event2')">{{asset.type}}<i class='fa right'
+        <div class="bonds_equity_title" (click)="acc2.toggle('toggle-1')" (click)="test('event2')">{{asset.type.type}}<i class='fa right'
             [class.fa-chevron-down]="event2" [class.fa-chevron-up]="!event2"></i></div>
         <ngb-accordion #acc2="ngbAccordion">
           <ngb-panel id="toggle-1" title="Second">
@@ -38,13 +38,13 @@
                   </div>
                 </div>
               </div>
-              <div class="bond_desc" *ngFor="let allocation of asset.allocations;">
+              <div class="bond_desc" *ngFor="let allocation of asset.groupedAllocationDetails;">
                 <div class="flex-row flex-col-12">
                   <div class="flex-col-5 rating_type">{{allocation.name}}</div>
                   <div class="flex-col-7 rating">
-                    <div class="flex-row" *ngFor="let detail of allocation.detail;">
-                      <span>{{detail.name}}</span>
-                      <span class="rating_value">{{detail.value}}%</span>
+                    <div class="flex-row" *ngFor="let detail of allocation.value;">
+                      <span>{{detail.sectorRegion}}</span>
+                      <span class="rating_value">{{detail.percentage}}%</span>
                     </div>
                   </div>
                 </div>

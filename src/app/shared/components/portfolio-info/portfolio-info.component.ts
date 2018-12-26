@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -8,20 +9,18 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class PortfolioInfoComponent implements OnInit {
 
-  @Input('portfolioName') portfolioName;
-  @Input('projectedReturns') projectedReturns;
-  @Input('investmentDetail') investmentDetail;
+  @Input('portfolio') portfolio;
 
   portfolioProjectionSubText;
 
-  constructor() { }
+  constructor(private currencyPipe: CurrencyPipe) { }
 
   ngOnInit() {
 
     this.portfolioProjectionSubText = {
-      best: this.projectedReturns[0],
-      median: this.projectedReturns[1],
-      worst: this.projectedReturns[2]
+      best: this.currencyPipe.transform(this.portfolio.projectedReturnsHighEnd, 'USD', 'symbol-narrow', '1.0-2'),
+      median: this.currencyPipe.transform(this.portfolio.projectedReturnsMedian, 'USD', 'symbol-narrow', '1.0-2'),
+      worst: this.currencyPipe.transform(this.portfolio.projectedReturnsLowEnd, 'USD', 'symbol-narrow', '1.0-2'),
     };
   }
 

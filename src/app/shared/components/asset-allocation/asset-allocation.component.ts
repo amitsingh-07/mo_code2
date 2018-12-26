@@ -16,7 +16,24 @@ export class AssetAllocationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.colors);
+    this.assets.forEach((allocation) => {
+      const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
+      allocation.groupedAllocationDetails = groupedAllocation;
+    });
+    console.log(this.assets);
+  }
+
+  groupByProperty(targetObj) {
+    const assetKeys = Object.keys(targetObj);
+    const groupObjects = [];
+    for (const prop of assetKeys) {
+      const classObj = {
+        name: prop,
+        value: targetObj[prop]
+      };
+      groupObjects.push(classObj);
+    }
+    return groupObjects;
   }
 
   // accordian

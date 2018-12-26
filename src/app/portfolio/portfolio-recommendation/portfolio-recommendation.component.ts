@@ -113,126 +113,225 @@ export class PortfolioRecommendationComponent implements OnInit {
       this.portfolio = data.objectList;
     });
     */
-
-    this.portfolio = {
-    "portfolioId": "PO12345678",
-    "portfolioName": "Conservative Portfolio",
-    "investmentDetail": {
-      "monthlyInvestment": 200,
-      "initialInvestment": 10000,
-      "investmentPeriod": 30
-    },
-    "projectedReturns": [
-      1286079, 1286079, 1286079, 1286079
-    ],
-    "assetAllocation": [{
-      "type": "Equities",
-      "numberOfHoldings": 12345,
-      "allocationPercentage": 40,
-      "allocations": [{
-          "name": "Class Allocation",
-          "detail": [{
-              "name": "Global Equities",
-              "value": 88.5
-            },
-            {
-              "name": "Global Equities",
-              "value": 88.5
-            }
-          ]
+    const mockResponse = {
+      "exception": null,
+      "objectList": {
+        "investmentPeriod": 60,
+        "projectedValue": 0,
+        "portfolioId": "PORTFOLIO00057",
+        "portfolioName": "Test BFA DPMS",
+        "tenure": "60",
+        "projectedReturnsHighEnd": 1286079,
+        "projectedReturnsMedian": 1263385,
+        "projectedReturnsLowEnd": 1240987,
+        "portfolioType": null,
+        "portfolioStatus": "RECOMMENDED",
+        "portfolioMaturityYear": "2078",
+        "initialInvestment": 100,
+        "monthlyInvestment": 500,
+        "riskProfile": {
+          "id": 1,
+          "type": "Conservative",
+          "order": 1
         },
-        {
-          "name": "Regional Allocation",
-          "detail": [{
-              "name": "Global Equities",
-              "value": 88.5
+        "feeDetails": [],
+        "sectorAllocations": [{
+            "id": 1,
+            "name": "Emerging Markets Equity",
+            "sectorId": "SECTOR00012",
+            "type": {
+              "id": 1,
+              "type": "Equities"
             },
-            {
-              "name": "Global Equities",
-              "value": 88.5
+            "riskRating": 9,
+            "groupedAllocationDetails": {
+              "Class Allocation": [{
+                  "id": 5,
+                  "sectorTitle": "Class Allocation",
+                  "sectorRegion": "Emerging Markets",
+                  "percentage": 11.5
+                },
+                {
+                  "id": 4,
+                  "sectorTitle": "Class Allocation",
+                  "sectorRegion": "Developed Markets",
+                  "percentage": 88.5
+                }
+              ],
+              "Sector Allocation": [{
+                  "id": 18,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Energy",
+                  "percentage": 7
+                },
+                {
+                  "id": 12,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Financials",
+                  "percentage": 17.8
+                },
+                {
+                  "id": 21,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Other",
+                  "percentage": 6
+                },
+                {
+                  "id": 15,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Info Technology",
+                  "percentage": 12.9
+                },
+                {
+                  "id": 14,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Consumer Disc",
+                  "percentage": 13.3
+                },
+                {
+                  "id": 16,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Health Care",
+                  "percentage": 9.6
+                },
+                {
+                  "id": 17,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Materials",
+                  "percentage": 7
+                },
+                {
+                  "id": 13,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Industrials",
+                  "percentage": 16.4
+                },
+                {
+                  "id": 19,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "Consumer Staples",
+                  "percentage": 6.7
+                },
+                {
+                  "id": 20,
+                  "sectorTitle": "Sector Allocation",
+                  "sectorRegion": "REITs",
+                  "percentage": 3.4
+                }
+              ],
+              "Regional Allocation": [{
+                  "id": 9,
+                  "sectorTitle": "Regional Allocation",
+                  "sectorRegion": "Latin America",
+                  "percentage": 1.5
+                },
+                {
+                  "id": 11,
+                  "sectorTitle": "Regional Allocation",
+                  "sectorRegion": "Middle East",
+                  "percentage": 0.3
+                },
+                {
+                  "id": 7,
+                  "sectorTitle": "Regional Allocation",
+                  "sectorRegion": "Asia Pacific",
+                  "percentage": 21.3
+                },
+                {
+                  "id": 10,
+                  "sectorTitle": "Regional Allocation",
+                  "sectorRegion": "Africa",
+                  "percentage": 0.7
+                },
+                {
+                  "id": 6,
+                  "sectorTitle": "Regional Allocation",
+                  "sectorRegion": "North America",
+                  "percentage": 57.4
+                },
+                {
+                  "id": 8,
+                  "sectorTitle": "Regional Allocation",
+                  "sectorRegion": "Europe",
+                  "percentage": 18.8
+                }
+              ]
             }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "Bonds",
-      "numberOfHoldings": 12345,
-      "allocationPercentage": 60,
-      "allocations": [{
-          "name": "Class Allocation",
-          "detail": [{
-              "name": "Global Equities",
-              "value": 88.5
+          },
+          {
+            "id": 2,
+            "name": "Global Bonds",
+            "sectorId": "SECTOR00013",
+            "type": {
+              "id": 2,
+              "type": "Bonds"
             },
-            {
-              "name": "Global Equities",
-              "value": 88.5
+            "riskRating": 9,
+            "groupedAllocationDetails": {
+              "Credit Rating Allocation": [{
+                  "id": 24,
+                  "sectorTitle": "Credit Rating Allocation",
+                  "sectorRegion": "A",
+                  "percentage": 21.7
+                },
+                {
+                  "id": 22,
+                  "sectorTitle": "Credit Rating Allocation",
+                  "sectorRegion": "AAA",
+                  "percentage": 21
+                },
+                {
+                  "id": 23,
+                  "sectorTitle": "Credit Rating Allocation",
+                  "sectorRegion": "AA",
+                  "percentage": 57.3
+                }
+              ]
             }
-          ]
-        },
-        {
-          "name": "Regional Allocation",
-          "detail": [{
-              "name": "Global Equities",
-              "value": 88.5
-            },
-            {
-              "name": "Global Equities",
-              "value": 88.5
-            }
-          ]
-        }
-      ]
-    }],
-    "funds": [{
-        "percentage": "30",
-        "sector": "Global Equities",
-        "type": "Equity",
-        "name": "Global Core Equity Fund",
-        "id": "F1234",
-        "prospectus": "http://",
-        "fundFactSheet": "http://",
-        "description": "Some desc"
+          }
+        ],
+        "funds": [{
+            "id": "FI3018",
+            "name": "Fidelity ASEAN A SGD",
+            "type": "UT",
+            "sectorName": "Emerging Markets Equity",
+            "prospectusLink": null,
+            "percentage": 60,
+            "factSheetLink": "http://",
+            "htmlDesc": null
+          },
+          {
+            "id": "FI3018",
+            "name": "Fidelity ASEAN A SGD",
+            "type": "UT",
+            "sectorName": "Global Bonds",
+            "prospectusLink": null,
+            "percentage": 20,
+            "factSheetLink": "http://",
+            "htmlDesc": null
+          },
+          {
+            "id": "FI3018",
+            "name": "Fidelity ASEAN A SGD",
+            "type": "UT",
+            "sectorName": "Global Bonds",
+            "prospectusLink": null,
+            "percentage": 20,
+            "factSheetLink": "http://",
+            "htmlDesc": null
+          }
+        ]
       },
-      {
-        "percentage": "35",
-        "sector": "Bonds",
-        "type": "Equity",
-        "name": "Global Core Equity Fund",
-        "id": "F1234",
-        "prospectus": "http://",
-        "fundFactSheet": "http://",
-        "description": "Some desc"
-      },
-      {
-        "percentage": "35",
-        "sector": "Bonds",
-        "type": "Equity",
-        "name": "Global Core Equity Fund",
-        "id": "F1234",
-        "prospectus": "http://",
-        "fundFactSheet": "http://",
-        "description": "Some desc"
+      "responseMessage": {
+        "responseCode": 6000,
+        "responseDescription": "Successful response"
       }
-    ],
-    "annualFeeDetails": [{
-      "name": "Advisory Fees",
-      "value": 0.65
-    },
-    {
-      "name": "Platform Fees",
-      "value": 0.65
-    },
-    {
-      "name": "Fund Expense Ratio",
-      "value": 0.65
-    }]
     };
+    this.portfolio = mockResponse.objectList;
     this.userInputSubtext = {
-      onetime: this.portfolio.investmentDetail.initialInvestment,
-      monthly: this.portfolio.investmentDetail.monthlyInvestment,
-      period: this.portfolio.investmentDetail.investmentPeriod
+      onetime: this.currencyPipe.transform(this.portfolio.initialInvestment, 'USD', 'symbol-narrow', '1.0-2'),
+      monthly: this.currencyPipe.transform(this.portfolio.monthlyInvestment, 'USD', 'symbol-narrow', '1.0-2'),
+      period: this.portfolio.investmentPeriod
     };
   }
 

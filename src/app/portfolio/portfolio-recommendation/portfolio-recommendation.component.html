@@ -7,7 +7,7 @@
         </div>
       </div>
       <hr>
-      <app-portfolio-info [portfolioName]="portfolio.portfolioName" [investmentDetail]="portfolio.investmentDetail" [projectedReturns]="portfolio.projectedReturns"></app-portfolio-info>
+      <app-portfolio-info [portfolio]="portfolio"></app-portfolio-info>
       <hr>
       <div class="portfolio-allocation-details__content">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
@@ -18,7 +18,7 @@
     <div class="flex-col-12 asset-allocation">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
       <!-- bonds -->
-      <app-asset-allocation [assets]="portfolio.assetAllocation" [colors]="colors"></app-asset-allocation>
+      <app-asset-allocation [assets]="portfolio.sectorAllocations" [colors]="colors"></app-asset-allocation>
     </div>
     <div class="flex-col-12 annual-fees">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>

@@ -1,7 +1,7 @@
 <div class="portfolio-info-container">
   <div class="flex-col-12 portfolio-desc">
     <div class="portfolio-type-details">
-      <div class="portfolio-type-details-title">{{portfolioName}}</div>
+      <div class="portfolio-type-details-title">{{portfolio.portfolioName}}</div>
       <div class="portfolio-type-details-desc" [innerHTML]="'PORTFOLIO_RECOMMENDATION.PORTFOLIO_PROJECTION_SUBTEXT' | translate:portfolioProjectionSubText">
         </div>
     </div>
@@ -10,14 +10,14 @@
         <div class="flex-col-12">
           <div class="graph"><img src="../../../assets/images/investment-account/recommend_graph.svg" /></div>
           <div class="flex-col graph_values">
-            <span>{{projectedReturns[0] | currency}}</span>
-            <span>{{projectedReturns[1] | currency}}</span>
-            <span>{{projectedReturns[2] | currency}}</span>
-            <span>{{projectedReturns[3] | currency}}</span>
+            <span>{{portfolio.projectedReturnsHighEnd | currency : 'USD' : 'symbol-narrow' : '1.0-2'}}</span>
+            <span>{{portfolio.projectedReturnsMedian | currency : 'USD' : 'symbol-narrow' : '1.0-2'}}</span>
+            <span>{{portfolio.projectedReturnsLowEnd | currency : 'USD' : 'symbol-narrow' : '1.0-2'}}</span>
+            <span>{{portfolio.projectedReturnsHighEnd | currency : 'USD' : 'symbol-narrow' : '1.0-2'}}</span>
           </div>
         </div>
         <div class="flex-row time-lapse">
-          <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{investmentDetail.investmentPeriod}} {{ 'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</span>
+          <span>{{ 'PORTFOLIO_RECOMMENDATION.NOW' | translate}}</span><span>{{portfolio.investmentPeriod}} {{ 'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}</span>
         </div>
       </div>
       <div class="flex-col portfolio-graph-indicator">
