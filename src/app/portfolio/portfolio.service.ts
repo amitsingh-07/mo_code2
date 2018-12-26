@@ -76,32 +76,8 @@ export class PortfolioService {
     return this.personalFormError.formFieldErrors[formCtrlName][validation];
   }
 
+  // tslint:disable-next-line:cognitive-complexity
   doFinancialValidations(form) {
-    const invalid = [];
-    // tslint:disable-next-line:triple-equals
-    if (Number(this.removeCommas(form.value.initialInvestment)) == 0 && Number(this.removeCommas(form.value.monthlyInvestment)) == 0) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['zero']);
-      return this.personalFormError.formFieldErrors['financialValidations']['zero'];
-      // tslint:disable-next-line:max-line-length
-    } else if (Number(this.removeCommas(form.value.initialInvestment)) < 100 && Number(this.removeCommas(form.value.monthlyInvestment)) < 50) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['more']);
-      return this.personalFormError.formFieldErrors['financialValidations']['more'];
-      // tslint:disable-next-line:max-line-length
-    } else if (Number(this.removeCommas(form.value.initialInvestment)) > Number(this.removeCommas(form.value.totalAssets)) && Number(this.removeCommas(form.value.monthlyInvestment)) > Number(this.removeCommas(form.value.percentageOfSaving)) * Number(this.removeCommas(form.value.monthlyIncome))) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment']);
-      return this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment'];
-    } else if (Number(this.removeCommas(form.value.initialInvestment)) > Number(this.removeCommas(form.value.totalAssets))) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreasset']);
-      return this.personalFormError.formFieldErrors['financialValidations']['moreasset'];
-      // tslint:disable-next-line:max-line-length
-    } else if (Number(this.removeCommas(form.value.monthlyInvestment)) > Number(this.removeCommas(form.value.percentageOfSaving / 100)) * Number(this.removeCommas(form.value.monthlyIncome))) {
-      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreinvestment']);
-      return this.personalFormError.formFieldErrors['financialValidations']['moreinvestment'];
-    } else {
-      return false;
-    }
-  }
-  doNewFinancialValidations(form) {
     const invalid = [];
     if (form.value.firstChkBox && form.value.secondChkBox ) {
       // tslint:disable-next-line:max-line-length
@@ -131,9 +107,30 @@ export class PortfolioService {
       invalid.push(this.personalFormError.formFieldErrors['financialValidations']['four']);
       return this.personalFormError.formFieldErrors['financialValidations']['four'];
     }
-    return false;
+    // tslint:disable-next-line:triple-equals
+    if (Number(this.removeCommas(form.value.initialInvestment)) == 0 && Number(this.removeCommas(form.value.monthlyInvestment)) == 0) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['zero']);
+      return this.personalFormError.formFieldErrors['financialValidations']['zero'];
+      // tslint:disable-next-line:max-line-length
+    } else if (Number(this.removeCommas(form.value.initialInvestment)) < 100 && Number(this.removeCommas(form.value.monthlyInvestment)) < 50) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['more']);
+      return this.personalFormError.formFieldErrors['financialValidations']['more'];
+      // tslint:disable-next-line:max-line-length
+    } else if (Number(this.removeCommas(form.value.initialInvestment)) > Number(this.removeCommas(form.value.totalAssets)) && Number(this.removeCommas(form.value.monthlyInvestment)) > Number(this.removeCommas(form.value.percentageOfSaving)) * Number(this.removeCommas(form.value.monthlyIncome))) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment']);
+      return this.personalFormError.formFieldErrors['financialValidations']['moreassetandinvestment'];
+    } else if (Number(this.removeCommas(form.value.initialInvestment)) > Number(this.removeCommas(form.value.totalAssets))) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreasset']);
+      return this.personalFormError.formFieldErrors['financialValidations']['moreasset'];
+      // tslint:disable-next-line:max-line-length
+    } else if (Number(this.removeCommas(form.value.monthlyInvestment)) > Number(this.removeCommas(form.value.percentageOfSaving / 100)) * Number(this.removeCommas(form.value.monthlyIncome))) {
+      invalid.push(this.personalFormError.formFieldErrors['financialValidations']['moreinvestment']);
+      return this.personalFormError.formFieldErrors['financialValidations']['moreinvestment'];
+    } else {
+      return false;
+    }
   }
-
+  // tslint:disable-next-line:cognitive-complexity
     removeCommas(str) {
   if(str.lenght>3)
   {
