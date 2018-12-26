@@ -209,7 +209,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
     execTrusteeList = this.execTrusteeList.length > 0 ? this.execTrusteeList : form.value.executorTrustee;
     const errors: any = {};
     errors.errorMessages = [];
-    if (execTrusteeList[0].uin === execTrusteeList[1].uin) {
+    if ((execTrusteeList[0].uin).toLowerCase() === (execTrusteeList[1].uin).toLowerCase()) {
       errors.errorMessages.push({ formName: '', errors: [this.errorMsg.DUPLICATE_IDENTIFIER] });
     } else if (execTrusteeList[0].relationship === WILL_WRITING_CONFIG.SPOUSE &&
       execTrusteeList[1].relationship === WILL_WRITING_CONFIG.SPOUSE) {
@@ -286,9 +286,9 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   checkNameUIN(name, value, type = 'child') {
     if (type === 'spouse') {
-      return this.willWritingService.getSpouseInfo().filter((spouse) => spouse[name] === value);
+      return this.willWritingService.getSpouseInfo().filter((spouse) => spouse[name].toLowerCase() === value.toLowerCase());
     }
-    return this.willWritingService.getChildrenInfo().filter((child) => child[name] === value);
+    return this.willWritingService.getChildrenInfo().filter((child) => (child[name]).toLowerCase() === value.toLowerCase());
   }
 
   updateExecTrustee(form) {

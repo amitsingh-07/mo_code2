@@ -503,7 +503,7 @@ export class WillWritingService {
   }
 
   checkExecTrustee(uin) {
-    return this.getExecTrusteeInfo().filter((data) => data.uin === uin);
+    return this.getExecTrusteeInfo().filter((data) => (data.uin).toLowerCase() === uin.toLowerCase());
   }
 
   checkChildAgeExecTrustee(form) {
