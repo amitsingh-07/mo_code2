@@ -159,35 +159,21 @@ export class AdditionalDeclarationScreen2Component implements OnInit {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else {
-      this.investmentAccountService.setAdditionDeclaration(form.getRawValue());
-      this.investmentAccountService.saveAdditionalDeclarations().subscribe((data) => {
-        // CREATE INVESTMENT ACCOUNT
-        console.log('ATTEMPTING TO CREATE IFAST ACCOUNT');
-        this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
-          if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
-            if (response.responseMessage.responseCode === 5018
-              || response.responseMessage.responseCode === 5019) {
-              const errorResponse = response.responseMessage.responseDescription;
-              this.showCustomErrorModal('Error!', errorResponse);
-            } else {
-              const errorResponse = response.objectList[response.objectList.length - 1];
-              const errorList = errorResponse.serverStatus.errors;
-              this.showInvestmentAccountErrorModal(errorList);
-            }
-          } else { // SUCCESS SCENARIO
-            if (response.objectList[response.objectList.length - 1]) {
-              if (response.objectList[response.objectList.length - 1].data.status === 'confirmed') {
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_COMPLETED]);
-              } else {
-                this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.additional_declaration_pending);
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
-              }
-            }
-          }
-        });
-      });
+    } else if (this.investmentAccountService.setAdditionDeclaration(form.getRawValue())) {
+      this.saveAdditionalDeclarations();
     }
+  }
+
+  saveAdditionalDeclarations() {
+    this.investmentAccountService.saveAdditionalDeclarations().subscribe((data) => {
+      this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted);
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
+    },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+      });
   }
 
   showCustomErrorModal(title, desc) {

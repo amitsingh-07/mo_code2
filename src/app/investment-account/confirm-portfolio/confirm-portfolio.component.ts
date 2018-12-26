@@ -233,10 +233,36 @@ export class ConfirmPortfolioComponent implements OnInit {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
 
-  goToNext() {
+  verifyAML() {
     const pepData = this.investmentAccountService.getPepData();
-    // tslint:disable-next-line:triple-equals
-    if (pepData == true) {
+    this.investmentAccountService.verifyAML().subscribe((response) => {
+      this.investmentAccountService.setAccountCreationStatus(response.objectList.status);
+      if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
+        if (response.responseMessage.responseCode === 5018
+          || response.responseMessage.responseCode === 5019) {
+          const errorResponse = response.responseMessage.responseDescription;
+          this.showCustomErrorModal('Error!', errorResponse);
+        } else {
+          const errorResponse = response.objectList[response.objectList.length - 1];
+          const errorList = errorResponse.serverStatus.errors;
+          this.showInvestmentAccountErrorModal(errorList);
+        }
+      } else if (response.objectList.status === INVESTMENT_ACCOUNT_CONFIG.status.aml_cleared && !pepData) {
+        this.createInvestmentAccount();
+      } else {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
+      }
+    },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+      });
+  }
+
+  createInvestmentAccount() {
+    const pepData = this.investmentAccountService.getPepData();
+    if (pepData) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ADDITIONALDECLARATION]);
     } else {
       // CREATE INVESTMENT ACCOUNT

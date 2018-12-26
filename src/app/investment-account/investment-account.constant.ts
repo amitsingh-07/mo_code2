@@ -26,7 +26,12 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
         }
     },
     status: {
-        additional_declaration_pending: 'additional_declaration_pending',
+        aml_pending: 'PENDING',
+        aml_cleared: 'CLEARED',
+        aml_accepted : 'ACCEPTED',
+        aml_rejected : 'REJECTED',
+        aml_failed : 'FAILED',
+        ddc_submitted: 'ddc_submitted',
         account_creation_pending: 'account_creation_pending',
         documents_pending: 'documents_pending'
     }

@@ -213,8 +213,7 @@ export class UploadDocumentsComponent implements OnInit {
 
   redirectToNextPage() {
     const boStatus = this.investmentAccountService.getBOStatus();
-    // tslint:disable-next-line:triple-equals
-    if (boStatus == true) {
+    if (boStatus) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
     } else {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
