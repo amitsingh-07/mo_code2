@@ -54,7 +54,7 @@ export class ViewAllNotificationsComponent implements OnInit {
     this.signUpService.getAllNotifications().subscribe((response) => {
       const notifications = response.objectList[0].notifications;
       this.allMessages = this.signUpService.getAllMessagesByNotifications(notifications);
-      this.allMessages = new GroupByPipe().transform(this.allMessages, 'time');
+      this.allMessages = new GroupByPipe().transform(this.allMessages, 'date');
       this.updateNotifications(null, SIGN_UP_CONFIG.NOTIFICATION.READ_PAYLOAD_KEY);
     });
   }
