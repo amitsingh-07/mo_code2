@@ -16,8 +16,8 @@
             <div class="notifications-container__lists--close" (click)="clearNotification(message, group)">X</div>
             <div class="notifications-container__lists--desc">
               {{message.message}}
-              <div class="notifications-container__lists--duration">
-                {{message.time}}
+              <div class="notifications-container__lists--duration" *ngIf="message.time">
+                {{message.time | timeAgo}}
               </div>
             </div>
           </div>

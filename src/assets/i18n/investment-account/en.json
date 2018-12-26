@@ -116,10 +116,8 @@
     "TITLE": "Financial Details",
     "ANNUAL_HOUSEHOLD_INCOME": "Monthly Household Income",
     "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
-    "ANNUAL_INCOME": "Monthly Income",
-    "PERS_OF_INCOME_SAVED": "% Of Income Saved",
-    "TOTAL_ASSETS": "Total Assets",
-    "TOTAL_LOANS": "Total Loans"
+    "SALARY_RANGE": "Salary Range"
+
   },
   "TAX_INFO": {
     "TITLE": "Tax Information",
