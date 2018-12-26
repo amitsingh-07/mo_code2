@@ -395,6 +395,11 @@ export class SignUpService {
     const messages = [];
     const notificationMessageList = notifications.map((notification) => {
       const messageList = notification.messages.map((message) => {
+        let messageDate = '';
+        if (message.time) {
+          messageDate = message.time.split('T')[0];
+        }
+        message.date = messageDate;
         messages.push(message);
       });
     });
