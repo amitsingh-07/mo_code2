@@ -135,7 +135,7 @@ export class WillWritingService {
     const childrenList = this.getChildrenInfo();
     const execTrusteeList = this.getExecTrusteeInfo();
     childrenList.forEach((child, index) => {
-      const execIndex = execTrusteeList.findIndex((exec) => exec.uin === child.uin);
+      const execIndex = execTrusteeList.findIndex((exec) => (exec.uin).toLowerCase() === (child.uin).toLowerCase());
       if (execIndex > -1) {
         execTrusteeList[execIndex].name = data[index].name;
         execTrusteeList[execIndex].uin = data[index].uin;
