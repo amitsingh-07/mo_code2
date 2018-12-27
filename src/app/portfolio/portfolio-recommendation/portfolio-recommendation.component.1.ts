@@ -7,8 +7,8 @@ import { Token } from '@angular/compiler';
 import {
     AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbDateParserFormatter, NgbDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConstants } from '../../app.constants';
@@ -16,12 +16,8 @@ import { AppService } from '../../app.service';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
-import {
-    EditInvestmentModalComponent
-} from '../../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     ModelWithButtonComponent
@@ -62,7 +58,6 @@ export class PortfolioRecommendationComponent implements OnInit {
     public authService: AuthenticationService,
     public modal: NgbModal,
     private signUpService: SignUpService,
-    public investmentAccountService: InvestmentAccountService,
     private portfolioService: PortfolioService) {
     this.translate.use('en');
     const self = this;
@@ -93,42 +88,14 @@ export class PortfolioRecommendationComponent implements OnInit {
     return false;
   }
 
-  openEditInvestmentModal() {
-    const ref = this.modal.open(EditInvestmentModalComponent, {
-      centered: true
+  showEditModal() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
+    ref.componentInstance.errorMessage = this.editPortfolio.modalMessage;
+    ref.componentInstance.primaryActionLabel = this.buttonTitle;
+    ref.componentInstance.primaryAction.subscribe(() => {
+      this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
     });
-    ref.componentInstance.investmentData = {
-      oneTimeInvestment: this.portfolio.initialInvestment,
-      monthlyInvestment: this.portfolio.monthlyInvestment
-    };
-    ref.componentInstance.modifiedInvestmentData.subscribe((emittedValue) => {
-      // update form data
-      ref.close();
-      this.saveUpdatedInvestmentData(emittedValue);
-    });
-    this.dismissPopup(ref);
-  }
-
-  dismissPopup(ref: NgbModalRef) {
-    this.router.events.forEach((event) => {
-      if (event instanceof NavigationStart) {
-        ref.close();
-      }
-    });
-  }
-
-  saveUpdatedInvestmentData(updatedData) {
-    const params = this.constructUpdateInvestmentParams(updatedData);
-    this.investmentAccountService.updateInvestment(params).subscribe((data) => {
-      this.getPortfolioAllocationDetails();
-    });
-  }
-
-  constructUpdateInvestmentParams(data) {
-    return {
-      initialInvestment: data.oneTimeInvestment,
-      monthlyInvestment: data.monthlyInvestment
-    };
   }
 
   showWhatTheRisk() {
@@ -394,6 +361,10 @@ export class PortfolioRecommendationComponent implements OnInit {
         period: this.portfolio.investmentPeriod
       };
     });
+    
+    
+    //this.portfolio = mockResponse.objectList;
+    
   }
 
   constructgetAllocationParams() {

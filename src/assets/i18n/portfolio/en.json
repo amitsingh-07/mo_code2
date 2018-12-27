@@ -81,7 +81,11 @@
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Your Portfolio",
     "PORTFOLIO":"Portfolio",
-    
+    "EDIT_INVESTMENT": {
+      "TITLE": "Review My Inputs",
+      "ONE_TIME_INVESTMENT": "One-time Investment",
+      "MONTHLY_INVESTMENT": "Monthly Investment"
+    },
     "MODAL_TITLE": "Portfolio Recommendations",
     "MODAL_DESC":"In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
     "PROJECTED_PORTF_VALUE":"Projected Portfolio Value in",
