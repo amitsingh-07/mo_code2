@@ -38,9 +38,9 @@
         "LBL_STEP_2": "Select an account of your own (registered under your name) to transfer from and <strong>enter the amount</strong> to transfer.",
         "LBL_STEP_3": "Enter transfer information.",
         "LBL_STEP_4": "Verify and confirm the transaction details.",
-        "LBL_STEP_5":"Your request will be processed within <strong>1 - 2 business days.</strong> We will notify you once your portfolio top up has been successful.",
-        "SETUP_AUTO_DEPOSIT":"Set Up Auto-Deposit",
-        "DESC_SETUP_AUTO_DEPOSIT":"Hey, you can save time when you set up auto-deposits through your bank! Find out how with your bank now!"
+        "LBL_STEP_5": "Your request will be processed within <strong>1 - 2 business days.</strong> We will notify you once your portfolio top up has been successful.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto-Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "Hey, you can save time when you set up auto-deposits through your bank! Find out how with your bank now!"
       },
       "SHOW_PAYNOW": {
         "STEP_1": "STEP 1",
@@ -55,11 +55,11 @@
         "LBL_STEP_2": "Select an <strong>account of your own (registered under your name)</strong> to transfer from and <strong>enter the amount</strong> to transfer.",
         "LBL_STEP_3": "Enter transfer information.",
         "LBL_STEP_4": "Verify and confirm the transaction details.",
-        "LBL_STEP_5":"Your request will be processed within <strong>1 - 2 business days.</strong> We will notify you once your portfolio top up has been successful.",
-        "SETUP_AUTO_DEPOSIT":"Set Up Auto-Deposit",
-        "DESC_SETUP_AUTO_DEPOSIT":"Hey, you can save time when you set up auto-deposits through your bank! Find out how with your bank now!"
+        "LBL_STEP_5": "Your request will be processed within <strong>1 - 2 business days.</strong> We will notify you once your portfolio top up has been successful.",
+        "SETUP_AUTO_DEPOSIT": "Set Up Auto-Deposit",
+        "DESC_SETUP_AUTO_DEPOSIT": "Hey, you can save time when you set up auto-deposits through your bank! Find out how with your bank now!"
       },
-      "SHOWPOPUP":{
+      "SHOWPOPUP": {
         "TITLE": "Recipient’s / Entity Name",
         "MESSAGE": "iFast provides custodial services for MoneyOwl. For more information, please refer to our FAQ."
       }
@@ -97,11 +97,18 @@
     "TOTAL_RETURNS": "Total Returns",
     "FROM_START_OF_INVESTMENT": "From start of investment",
     "YEARLY_RETURNS": "Yearly Returns",
-    "TOTAL_INVESTED": "Total Invested",
-    "fUND_YOUR_ACCOUNT_MESSAGE": "Please complete fund transfer to start investing. If you have completed the fund transfer, it will be processed in 2 - 3 business days.",
-    "FUND_YOUR_ACCOUNT": "Fund Your Account",
+    "ANNUALIZED_RETURNS": "Annualized Returns",
+    "fUND_YOUR_ACCOUNT_MESSAGE": "Please complete fund transfer within xx days to start investing. If you have completed the fund transfer, it will be processed in 2 - 3 business days.",
+    "FUND_YOUR_ACCOUNT": "View Transfer Instructions",
     "PERFORMANCE": "Performance",
-    "ASSET_ALLOCATION": "Asset Allocation"
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "HOLDINGS": "Holdings",
+    "MODAL": {
+      "TOTAL_RETURNS": {
+        "TITLE": "Total Returns",
+        "MESSAGE": "The total returns are calculated by geometrically linking the periodic returns between all your transactions. This return is also known as the time-weighted return."
+      }
+    }
   },
   "WITHDRAW": {
     "TITLE": "Withdraw",
@@ -156,5 +163,14 @@
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions"
+  },
+  "HOLDINGS": {
+    "TITLE": "Holdings",
+    "TOTAL_VALUE": " Total Value",
+    "NUMBER_OF_VALUE": "Number of Units",
+    "NAV": "NAV"
+  },
+  "PORTFOLIO_RECOMMENDATION": {
+    "VIEW_FUND_DETAILS": "View Fund Details"
   }
 }

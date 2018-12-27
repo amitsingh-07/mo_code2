@@ -6,6 +6,7 @@
           <div class="container-fluid widget-block">
             <div class="overlap-grass">
               <div class="user-profile-bg flex-col-6">
+                 
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName}}</div>
                 <div>
@@ -24,41 +25,74 @@
                   <div>Peter Neo</div>
                 </div>
               </div>
-              <div class="grass_bg"><img id="edit_profile_bg_img"src="assets/images/grass.svg" /></div>
+              <div class="grass_bg">
+                <img id="edit_profile_bg_img" src="assets/images/grass.svg" />
+              </div>
             </div>
           </div>
           <div class="widgets">
             <div class="widget">
               <div class="widget-title">
-                <span class="flex" *ngIf="showNotPurchasedPortfolio">{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
-                  <img src="assets/images/investment-account/inline-error.svg" /></span>
-                <span class="flex" *ngIf="showPortffolioPurchased">{{'DASHBOARD.INVESTMENT.TITLE_MY_INVESTMENT' | translate}}
-                  <img src="assets/images/investment-account/inline-error.svg" /></span>
-                <span class="flex" *ngIf="showInvestmentDetailsSaved">{{'DASHBOARD.INVESTMENT.TITLE_MY_INVESTMENT' | translate}}
-                  <img src="assets/images/investment-account/inline-error.svg" /></span>
+                <span class="flex" >{{'DASHBOARD.INVESTMENT.TITLE_INVESTMENT' | translate}}
+                  <!-- <img src="assets/images/investment-account/inline-error.svg" /> -->
+                </span>
                 <span class="view_all" *ngIf="showPortffolioPurchased" (click)="goToInvOverview()">{{'DASHBOARD.INVESTMENT.VIEW_ALL' | translate}}</span>
               </div>
               <div class="widget-body">
                 <div class="scenarios flex-col-12">
-                  <!-- NOT PARCHASED -->
-                  <div class="primary flex col-12">
-                      <!--  *ngIf="showNotPurchasedPortfolio" -->
-                      <div class="flex-col-4">
-                        <img src="assets/images/investment-account/investment-portfolio.svg" />
+
+
+                   <!-- parchased portfolio -->
+                   <div class="portfolio" *ngIf="showPortffolioPurchased">
+                      <div class="portfolio_value">
+                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
+                        <div class="value">{{userProfileInfo.investementDetails.totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
-                      <div class="flex-col-8">
-                        <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO' | translate}}</div>
-                        <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
-                        <div class="time-lapse">
-                          <div (click)="goToEngagement()">{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div>
-                          <div class="flex-row">
-                            <span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span>
-                            <span class="circle"></span>
-                          </div>
+                      <div class="portfolio_graph"></div>
+                      <div class="portfolio_footer">
+                        <div class="flex-col col-5">
+                          <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
+                          <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        </div>
+                        <div class="flex-col col-7">
+                          <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
+                          <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                  
+                  <!-- NOT PARCHASED -->
+                  <div class="primary flex col-12" *ngIf="showNotPurchasedPortfolio">
+
+                    <div class="flex-col-4">
+                      <img src="assets/images/investment-account/investment-portfolio.svg" />
+                    </div>
+                    <div class="flex-col-8">
+                      <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO' | translate}}</div>
+                      <div>{{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                      <div class="time-lapse">
+                        <div (click)="goToEngagement()">{{'DASHBOARD.INVESTMENT.GET_STARTED' | translate}}</div>
+                        <div class="flex-row">
+                          <span>{{'DASHBOARD.INVESTMENT.TIME' | translate}}</span>
+                          <span class="circle"></span>
                         </div>
                       </div>
                     </div>
   
+
+                      <!-- Pending Documents Upload -->
+                  <div class="warning col-12" *ngIf="showInvestmentDetailsSaved">
+                   
+                      <div class="warning-txt">
+                        <!-- <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div> -->
+                        <div>To proceed, please upload your verification documents required.</div>
+                      </div>
+                      <div class="flex">
+                        <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button>
+                      </div>
+                    </div>
+                    
                   <!-- No Investment Account  -->
                   <div class="no_account col-12">
                     <div class="warning-txt">
@@ -79,44 +113,57 @@
                       <button type="button" class="btn btn-primary col-12"><div>Add Portfolio</div><div>Estimated 3 mins</div></button>
                     </div>
                   </div>
-                  <!-- parchased portfolio -->
-                  <div class="portfolio">
-                    <!-- *ngIf="showPortffolioPurchased"  -->
-                    <div class="portfolio_value">
-                      <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
-                      <div class="value">{{userProfileInfo.investementDetails.totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                    </div>
-                    <div class="portfolio_graph"></div>
-                    <div class="portfolio_footer">
-                      <div class="flex-col col-5">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                      </div>
-                      <div class="flex-col col-7">
-                        <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
-                        <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Pending Documents Upload -->
-                  <div class="warning col-12">
-                    <!--  *ngIf="showInvestmentDetailsSaved" -->
+
+                  <!-- No Investment Account  -->
+                  <div class="no_account col-12" *ngIf="false">
                     <div class="warning-txt">
-                      <!-- <div>{{'DASHBOARD.INVESTMENT.PENDING_DOC_UPLOAD_DESC' | translate}}</div> -->
-                      <div>To proceed, please upload your verification documents required.</div>
+                      <div class="flex-col-8">Answer a few questions to determine the portfolio most suited to you!</div>
+                      <div class="flex-col-4">
+                        <div class="investment_icon">
+                          <img src="assets/images/investment-account/investment-icon.svg" />
+                        </div>
+                      </div>
                     </div>
                     <div class="flex">
-                      <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button>
+                      <button type="button" class="btn btn-primary col-12">
+                        <div>Start Investing</div>
+                        <div>Estimated 5-15 mins</div>
+                      </button>
                     </div>
                   </div>
+
+                  <!-- Has Investment Account but no portfolio -->
+                  <div class="no_portfolio col-12" *ngIf="false">
+                    <div class="warning-txt">
+                      <div class="flex-col-8">Answer a few questions to determine the portfolio most suited to you!</div>
+                      <div class="flex-col-4">
+                        <div class="investment_icon">
+                          <img src="assets/images/investment-account/investment-icon.svg" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex">
+                      <button type="button" class="btn btn-primary col-12">
+                        <div>Add Portfolio</div>
+                        <div>Estimated 3 mins</div>
+                      </button>
+                    </div>
+                  </div>
+
+                 
+
+
+                
+
                   <!-- Pending Account Open -->
-                  <div class="pending col-12">
+                  <div class="pending col-12" *ngIf="false">
                     <div class="warning-txt">
                       <div>Your investment account set up verifcation is ongoing. </div>
                     </div>
                   </div>
+
                   <!-- Unsuccessful Account -->
-                  <div class="verify col-12">
+                  <div class="verify col-12" *ngIf="showUnsuccessfulAccount">
                     <div class="warning-txt">
                       <div>Your investment account set up is unsuccessful. Please verify your details.</div>
                     </div>
@@ -124,8 +171,9 @@
                       <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">Verify Details</button>
                     </div>
                   </div>
+
                   <!-- No &amp; Incomplete Account -->
-                  <div class="set-up col-12">
+                  <div class="set-up col-12" *ngIf="showSetupAccount">
                     <div class="warning-txt">
                       <div>To proceed, please set up your investment account.</div>
                     </div>
@@ -133,16 +181,20 @@
                       <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">Set Up Account</button>
                     </div>
                   </div>
+
                   <!-- Suspended Account -->
-                  <div class="suspended col-12">
+                  <div class="suspended col-12" *ngIf="showSuspendedAccount">
                     <div class="warning-txt">
-                      <div>Your account has been suspended. Email us at <a href="#">enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.</div>
+                      <div>Your account has been suspended. Email us at
+                        <a href="#">enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.</div>
                     </div>
                   </div>
+
                   <!-- Compliance Rejected Account or  -->
-                  <div class="compliance col-12">
+                  <div class="compliance col-12" *ngIf="showComplianceRejected">
                     <div class="warning-txt">
-                      <div>Your investment account set up is unsuccessful. Email us at <a href="#">enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.</div>
+                      <div>Your investment account set up is unsuccessful. Email us at
+                        <a href="#">enquiries@moneyowl.com.sg</a> or call us at (65) 6329 9188 for assistance.</div>
                     </div>
                   </div>
                 </div>

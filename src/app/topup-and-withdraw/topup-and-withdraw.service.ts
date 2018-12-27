@@ -47,6 +47,10 @@ export class TopupAndWithDrawService {
     return this.apiService.getAllDropdownList();
 
   }
+  getHoldingList() {
+    return this.apiService.getHoldingList();
+
+  }
   getPortfolioList() {
     return this.apiService.getPortfolioList();
 
@@ -257,6 +261,20 @@ export class TopupAndWithDrawService {
 
   getTransactionHistory(from?, to?) {
     return this.apiService.getTransactionHistory(from, to);
+  }
+
+  getPortfolioAllocationDetails(params) {
+    const urlParams = this.constructQueryParams(params);
+    return this.apiService.getPortfolioAllocationDetails(urlParams);
+  }
+
+  constructQueryParams(options) {
+    const objectKeys = Object.keys(options);
+    const params = new URLSearchParams();
+    Object.keys(objectKeys).map((e) => {
+      params.set(objectKeys[e], options[objectKeys[e]]);
+    });
+    return '?' + params.toString();
   }
 
   getMonthListByPeriod(from, to) {
