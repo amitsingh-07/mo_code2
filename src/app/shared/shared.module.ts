@@ -12,9 +12,12 @@ import {
 } from '../shared/components/breakdown-accordion/breakdown-accordion.component';
 import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
+import { AllocationComponent } from './components/allocation/allocation.component';
+import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
 import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
@@ -39,9 +42,6 @@ import {
 } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
-import { AssetAllocationComponent } from './components/asset-allocation/asset-allocation.component';
-import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
-import { PortfolioInfoComponent } from './components/portfolio-info/portfolio-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -68,7 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [CurrencyInputDirective,  PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective, 
-    GroupByPipe, AssetAllocationComponent, AnnualFeesComponent, PortfolioInfoComponent],
+    GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
@@ -83,7 +83,7 @@ export function createTranslateLoader(http: HttpClient) {
     PercentageInputDirective,
     TruncatePipe,
     DistributePercentDirective,
-    AssetAllocationComponent,
+    AllocationComponent,
     AnnualFeesComponent,
     PortfolioInfoComponent
   ]

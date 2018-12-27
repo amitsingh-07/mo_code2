@@ -108,10 +108,6 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
-    this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      // this.portfolio = data.objectList;
-    });
-    
     const mockResponse = {
       "exception": null,
       "objectList": {
@@ -357,12 +353,18 @@ export class PortfolioRecommendationComponent implements OnInit {
         "responseDescription": "Successful response"
       }
     };
-    this.portfolio = mockResponse.objectList;
-    this.userInputSubtext = {
-      onetime: this.currencyPipe.transform(this.portfolio.initialInvestment, 'USD', 'symbol-narrow', '1.0-2'),
-      monthly: this.currencyPipe.transform(this.portfolio.monthlyInvestment, 'USD', 'symbol-narrow', '1.0-2'),
-      period: this.portfolio.investmentPeriod
-    };
+    this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
+      this.portfolio = data.objectList;
+      this.userInputSubtext = {
+        onetime: this.currencyPipe.transform(this.portfolio.initialInvestment, 'USD', 'symbol-narrow', '1.0-2'),
+        monthly: this.currencyPipe.transform(this.portfolio.monthlyInvestment, 'USD', 'symbol-narrow', '1.0-2'),
+        period: this.portfolio.investmentPeriod
+      };
+    });
+    
+    
+    //this.portfolio = mockResponse.objectList;
+    
   }
 
   constructgetAllocationParams() {

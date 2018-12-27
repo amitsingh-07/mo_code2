@@ -14,11 +14,10 @@
         line-height: 1.44;
         letter-spacing: -0.3px;
         color: #00a7a7;
-        padding: 18px 0 12px;
+        padding: 0px 0 12px;
         .equity_bar{
           justify-content: space-between;
             align-items: center;
-            padding-top: 16px;
 
             .flex-col-8{
               max-width: 195px;
@@ -74,7 +73,9 @@
           border-bottom: 1px solid #00a7a7;
           &:first-child{
             .rating_type{
+              /*
               border-right: none;
+              */
             }
           }
           .rating_type{
