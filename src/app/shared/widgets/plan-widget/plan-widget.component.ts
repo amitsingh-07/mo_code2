@@ -175,9 +175,10 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         });
       }
       if (this.type.indexOf('srs') > -1) {
+        this.premiumAmount = this.data.premium.premiumAmountYearly;
         this.highlights.push({
           title: 'Payout Period:',
-          description: this.currency.transform(this.data.premium.retirementPayPeriodDisplay, 'USD', 'symbol', '1.0-0')
+          description: this.data.premium.retirementPayFeatureDisplay
         });
         this.highlights.push({
           title: 'Guaranteed Annual Payout:',
@@ -186,10 +187,6 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.highlights.push({
           title: 'Total Projected Payout:',
           description: this.currency.transform(this.data.premium.totalProjectedPayout475, 'USD', 'symbol', '1.0-0')
-        });
-        this.highlights.push({
-          title: 'Payout Feature:',
-          description: this.currency.transform(this.data.premium.retirementPayFeatureDisplay, 'USD', 'symbol', '1.0-0')
         });
       }
       this.highlights.push({ title: 'Needs Medical Underwriting:', description: this.data.underWritting });
