@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef, NgZone, OnDestroy, Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -6,7 +7,10 @@ import { ChangeDetectorRef, NgZone, OnDestroy, Pipe, PipeTransform } from '@angu
 })
 export class TimeAgoPipe implements PipeTransform, OnDestroy {
     private timer: number;
-    constructor(private changeDetectorRef: ChangeDetectorRef, private ngZone: NgZone) { }
+    constructor(
+        private changeDetectorRef: ChangeDetectorRef,
+        private ngZone: NgZone,
+        private datePipe: DatePipe) { }
     transform(value: string) {
         this.removeTimer();
         const d = new Date(value);
@@ -49,7 +53,7 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
         } else if (days <= 545) {
             return 'a year ago';
         } else { // (days > 545)
-            return years + ' years ago';
+            return this.datePipe.transform(d, 'dd MMMM yyyy');
         }
     }
     ngOnDestroy(): void {
