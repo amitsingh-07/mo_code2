@@ -29,6 +29,11 @@ import { RiskProfile } from '../../portfolio/risk-profile/riskprofile';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
+import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
+import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+
+
 @Component({
   selector: 'app-asset-allocation',
   templateUrl: './asset-allocation.component.html',
@@ -48,6 +53,7 @@ export class AssetAllocationComponent implements OnInit {
   event1 = true;
   event2 = true;
   userInputSubtext;
+  assetAllocation;
 
   constructor(
     private appService: AppService,
@@ -58,6 +64,7 @@ export class AssetAllocationComponent implements OnInit {
     private currencyPipe: CurrencyPipe,
     public authService: AuthenticationService,
     public modal: NgbModal,
+    public topupAndWithDrawService: TopupAndWithDrawService,
     private signUpService: SignUpService,
     private portfolioService: PortfolioService) {
     this.translate.use('en');
@@ -72,296 +79,20 @@ export class AssetAllocationComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+    this.assetAllocation = this.topupAndWithDrawService.getAssetAllocationValues();
+   console.log(this.assetAllocation);
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
 
-  showHelpModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.helpDate.modalTitle;
-    ref.componentInstance.errorMessage = this.helpDate.modalMessage;
-    return false;
-  }
 
-  showEditModal() {
-    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = this.editPortfolio.modalTitle;
-    ref.componentInstance.errorMessage = this.editPortfolio.modalMessage;
-    ref.componentInstance.primaryActionLabel = this.buttonTitle;
-    ref.componentInstance.primaryAction.subscribe(() => {
-      this.router.navigate([PORTFOLIO_ROUTE_PATHS.RISK_ASSESSMENT]);
-    });
-  }
 
-  showWhatTheRisk() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
-  }
 
-  showWhatFubdDetails() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.WHATS_THE_RISK]);
-  }
 
-  getPortfolioAllocationDetails() {
-    const params = this.constructgetAllocationParams();
-    const mockResponse = {
-      "exception": null,
-      "objectList": {
-        "investmentPeriod": 60,
-        "projectedValue": 0,
-        "portfolioId": "PORTFOLIO00057",
-        "portfolioName": "Test BFA DPMS",
-        "tenure": "60",
-        "projectedReturnsHighEnd": 1286079,
-        "projectedReturnsMedian": 1263385,
-        "projectedReturnsLowEnd": 1240987,
-        "portfolioType": null,
-        "portfolioStatus": "RECOMMENDED",
-        "portfolioMaturityYear": "2078",
-        "initialInvestment": 100,
-        "monthlyInvestment": 500,
-        "riskProfile": {
-          "id": 1,
-          "type": "Conservative",
-          "order": 1
-        },
-        "feeDetails": [
-          {
-            "id": 4,
-            "feeName": "Advisory Fees",
-            "percentage": "0.65%",
-            "comments": null,
-            "listing_order": 1
-          },
-          {
-            "id": 5,
-            "feeName": "Platform Fees",
-            "percentage": "0.15%",
-            "comments": "Paid to iFast",
-            "listing_order": 2
-          },
-          {
-            "id": 6,
-            "feeName": "Fund Expense Ratio",
-            "percentage": "0.2% to 0.4%",
-            "comments": "Paid to DFA",
-            "listing_order": 3
-          },
-          {
-            "id": 7,
-            "feeName": "Total",
-            "percentage": "1% to 1.2%",
-            "comments": null,
-            "listing_order": 4
-          }
-        ],
-        "sectorAllocations": [{
-          "id": 1,
-          "name": "Emerging Markets Equity",
-          "allocationPercentage": 50,
-          "sectorId": "SECTOR00012",
-          "type": {
-            "id": 1,
-            "type": "Equities"
-          },
-          "riskRating": 9,
-          "groupedAllocationDetails": {
-            "Class Allocation": [{
-              "id": 5,
-              "sectorTitle": "Class Allocation",
-              "sectorRegion": "Emerging Markets",
-              "percentage": 11.5
-            },
-            {
-              "id": 4,
-              "sectorTitle": "Class Allocation",
-              "sectorRegion": "Developed Markets",
-              "percentage": 88.5
-            }
-            ],
-            "Sector Allocation": [{
-              "id": 18,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Energy",
-              "percentage": 7
-            },
-            {
-              "id": 12,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Financials",
-              "percentage": 17.8
-            },
-            {
-              "id": 21,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Other",
-              "percentage": 6
-            },
-            {
-              "id": 15,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Info Technology",
-              "percentage": 12.9
-            },
-            {
-              "id": 14,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Consumer Disc",
-              "percentage": 13.3
-            },
-            {
-              "id": 16,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Health Care",
-              "percentage": 9.6
-            },
-            {
-              "id": 17,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Materials",
-              "percentage": 7
-            },
-            {
-              "id": 13,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Industrials",
-              "percentage": 16.4
-            },
-            {
-              "id": 19,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Consumer Staples",
-              "percentage": 6.7
-            },
-            {
-              "id": 20,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "REITs",
-              "percentage": 3.4
-            }
-            ],
-            "Regional Allocation": [{
-              "id": 9,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Latin America",
-              "percentage": 1.5
-            },
-            {
-              "id": 11,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Middle East",
-              "percentage": 0.3
-            },
-            {
-              "id": 7,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Asia Pacific",
-              "percentage": 21.3
-            },
-            {
-              "id": 10,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Africa",
-              "percentage": 0.7
-            },
-            {
-              "id": 6,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "North America",
-              "percentage": 57.4
-            },
-            {
-              "id": 8,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Europe",
-              "percentage": 18.8
-            }
-            ]
-          }
-        },
-        {
-          "id": 2,
-          "name": "Global Bonds",
-          "allocationPercentage": 50,
-          "sectorId": "SECTOR00013",
-          "type": {
-            "id": 2,
-            "type": "Bonds"
-          },
-          "riskRating": 9,
-          "groupedAllocationDetails": {
-            "Credit Rating Allocation": [{
-              "id": 24,
-              "sectorTitle": "Credit Rating Allocation",
-              "sectorRegion": "A",
-              "percentage": 21.7
-            },
-            {
-              "id": 22,
-              "sectorTitle": "Credit Rating Allocation",
-              "sectorRegion": "AAA",
-              "percentage": 21
-            },
-            {
-              "id": 23,
-              "sectorTitle": "Credit Rating Allocation",
-              "sectorRegion": "AA",
-              "percentage": 57.3
-            }
-            ]
-          }
-        }
-        ],
-        "funds": [{
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "sectorName": "Emerging Markets Equity",
-          "prospectusLink": null,
-          "percentage": 60,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        },
-        {
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "sectorName": "Global Bonds",
-          "prospectusLink": null,
-          "percentage": 20,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        },
-        {
-          "id": "FI3018",
-          "name": "Fidelity ASEAN A SGD",
-          "type": "UT",
-          "sectorName": "Global Bonds",
-          "prospectusLink": null,
-          "percentage": 20,
-          "factSheetLink": "http://",
-          "htmlDesc": null
-        }
-        ]
-      },
-      "responseMessage": {
-        "responseCode": 6000,
-        "responseDescription": "Successful response"
-      }
-    };
-    this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      this.portfolio = data.objectList;
-      console.log(this.portfolio);
-      this.userInputSubtext = {
-        onetime: this.currencyPipe.transform(this.portfolio.initialInvestment, 'USD', 'symbol-narrow', '1.0-2'),
-        monthly: this.currencyPipe.transform(this.portfolio.monthlyInvestment, 'USD', 'symbol-narrow', '1.0-2'),
-        period: this.portfolio.investmentPeriod
-      };
-    });
-  }
+
+
 
   constructgetAllocationParams() {
     const formData = this.portfolioService.getRiskProfile();

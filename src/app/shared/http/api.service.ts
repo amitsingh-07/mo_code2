@@ -410,6 +410,14 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getPortfolioHoldingList() {
+    const url = '../assets/mock-data/portfolioHoldingList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 
   getInvestmentOverview() {
     //  const url = '../assets/mock-data/investment-overview.json';

@@ -30,7 +30,7 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 })
 export class HoldingsComponent implements OnInit {
   pageTitle: string;
-  holdingList;
+  holidings;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -54,9 +54,7 @@ export class HoldingsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
-    this.topupAndWithDrawService.getHoldingList().subscribe((data) => {
-      this.holdingList = data.objectList; // Getting the information from the API
-      console.log(this.holdingList);
-    });
+    this.holidings = this.topupAndWithDrawService.getHoldingValues();
+    console.log(this.holidings);
   }
 }
