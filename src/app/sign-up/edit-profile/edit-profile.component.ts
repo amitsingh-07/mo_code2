@@ -25,6 +25,7 @@ export class EditProfileComponent implements OnInit {
   fullName: string;
   compinedName: string;
   compinednricNum: string;
+  compinedPassport: string;
   residentialAddress: any;
   compinedAddress: string;
   compinedMailingAddress: string;
@@ -114,6 +115,9 @@ export class EditProfileComponent implements OnInit {
       this.setFullName(this.personalData.firstName, this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
       this.setNric(this.personalData.nricNumber);
+      if ( this.personalData.passportNumber) {
+      this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+      }
       if (this.personalData) {
         this.isSingaporeResident = this.personalData.isSingaporeResident;
       }
