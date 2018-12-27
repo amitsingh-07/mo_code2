@@ -30,11 +30,11 @@ import { PortfolioService } from '../../portfolio/portfolio.service';
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 @Component({
-  selector: 'app-asset-allocation',
-  templateUrl: './asset-allocation.component.html',
-  styleUrls: ['./asset-allocation.component.scss']
+  selector: 'app-allocation',
+  templateUrl: './allocation.component.html',
+  styleUrls: ['./allocation.component.scss']
 })
-export class AssetAllocationComponent implements OnInit {
+export class AllocationComponent implements OnInit {
 
   pageTitle: string;
   portfolio;
@@ -63,10 +63,8 @@ export class AssetAllocationComponent implements OnInit {
     this.translate.use('en');
     const self = this;
     this.translate.get('COMMON').subscribe((result: string) => {
-      self.pageTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.TITLE');
-      self.editPortfolio = this.translate.instant('PORTFOLIO_RECOMMENDATION.editModel');
-      self.helpDate = this.translate.instant('PORTFOLIO_RECOMMENDATION.helpDate');
-      self.buttonTitle = this.translate.instant('PORTFOLIO_RECOMMENDATION.CONTINUE');
+      self.pageTitle = this.translate.instant('Asset Allocation');
+     
       this.setPageTitle(this.pageTitle);
     });
   }
@@ -75,7 +73,7 @@ export class AssetAllocationComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.getPortfolioAllocationDetails();
-    this.selectedRiskProfile = this.portfolioService.getRiskProfile();
+   // this.selectedRiskProfile = this.portfolioService.getRiskProfile();
   }
 
   setPageTitle(title: string) {
@@ -109,9 +107,9 @@ export class AssetAllocationComponent implements OnInit {
 
   getPortfolioAllocationDetails() {
     const params = this.constructgetAllocationParams();
-    this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      // this.portfolio = data.objectList;
-    });
+    // this.portfolioService.getPortfolioAllocationDetails(params).subscribe((data) => {
+    //   // this.portfolio = data.objectList;
+    // });
     
     const mockResponse = {
       "exception": null,

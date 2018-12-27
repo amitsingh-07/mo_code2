@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 
 
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
-import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
+import { AllocationComponent } from './allocation/allocation.component';
 import {
     ConfirmWithdrawalModalComponent
 } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
@@ -75,7 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
     WithdrawalPaymentMethodComponent,
     TransactionComponent,
     HoldingsComponent,
-   AssetAllocationComponent
+   AllocationComponent
   ],
   entryComponents: [
     ConfirmWithdrawalModalComponent,
