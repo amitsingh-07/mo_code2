@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-asset-allocation',
-  templateUrl: './asset-allocation.component.html',
-  styleUrls: ['./asset-allocation.component.scss'],
+  selector: 'app-allocation',
+  templateUrl: './allocation.component.html',
+  styleUrls: ['./allocation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AssetAllocationComponent implements OnInit {
+export class AllocationComponent implements OnInit {
   @Input('assets') assets;
   @Input('colors') colors;
 

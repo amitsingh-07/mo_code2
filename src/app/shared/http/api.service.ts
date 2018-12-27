@@ -547,6 +547,13 @@ export class ApiService {
       );
   }
 
+  verifyAML() {
+    return this.http.get(apiConstants.endpoint.investmentAccount.verifyAML)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
+  }
+
   // tslint:disable-next-line
   getTopupInvestmentList() {
     // tslint:disable-next-line:no-commented-code
