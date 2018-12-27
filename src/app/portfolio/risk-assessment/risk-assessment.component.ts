@@ -247,7 +247,7 @@ export class RiskAssessmentComponent implements IPageComponent, OnInit {
           "responseDescription": "Successful response"
         }
       };
-      this.questionsList = mockData.objectList;
+      this.questionsList = data.objectList;
       this.setCurrentQuestion();
     });
   }

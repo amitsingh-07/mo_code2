@@ -80,10 +80,10 @@
     "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Your Portfolio",
+    "PORTFOLIO":"Portfolio",
     
     "MODAL_TITLE": "Portfolio Recommendations",
     "MODAL_DESC":"In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
-    "PORTFOLIO":"Portfolio",
     "PROJECTED_PORTF_VALUE":"Projected Portfolio Value in",
     "CONTINUE":"Continue",
     "PROJECTED_RETURNS":"Projected Returns",
