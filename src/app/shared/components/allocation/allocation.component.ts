@@ -1,4 +1,9 @@
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
 
 @Component({
   selector: 'app-allocation',
@@ -8,12 +13,15 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class AllocationComponent implements OnInit {
   @Input('assets') assets;
+  @Input('funds') funds;
   @Input('colors') colors;
 
   event1 = true;
   event2 = true;
 
-  constructor() { }
+  constructor(
+    private portfolioService: PortfolioService,
+    private router: Router) { }
 
   ngOnInit() {
     console.log(this.assets);
@@ -35,6 +43,11 @@ export class AllocationComponent implements OnInit {
       groupObjects.push(classObj);
     }
     return groupObjects;
+  }
+
+  viewFundDetails() {
+    this.portfolioService.setFund(this.funds);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
 
   // accordian

@@ -11,14 +11,14 @@
       <hr>
       <div class="portfolio-allocation-details__content">
         <div class="flex-col-12 portfolio-allocation-details__content__desc">
-          <div class="flex-row review-edit"><span>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button " (click)="showEditModal()"></span></div>
+          <div class="flex-row review-edit"><span>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button" (click)="openEditInvestmentModal()"></span></div>
         </div>
       </div>
     </div>
     <div class="flex-col-12 asset-allocation">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
       <!-- bonds -->
-      <app-allocation [assets]="portfolio.sectorAllocations" [colors]="colors"></app-allocation>
+      <app-allocation [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
     </div>
     <div class="flex-col-12 annual-fees">
       <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>

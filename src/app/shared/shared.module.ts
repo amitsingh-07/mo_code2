@@ -12,6 +12,9 @@ import {
 } from '../shared/components/breakdown-accordion/breakdown-accordion.component';
 import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
+import {
+    EditInvestmentModalComponent
+} from '../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import { AllocationComponent } from './components/allocation/allocation.component';
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
@@ -70,7 +73,8 @@ export function createTranslateLoader(http: HttpClient) {
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective, 
     GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
-    OrderByPipe, GroupByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
+    OrderByPipe, GroupByPipe, FormatDatePipe , RecommendationsModalComponent, 
+    ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,
@@ -85,7 +89,11 @@ export function createTranslateLoader(http: HttpClient) {
     DistributePercentDirective,
     AllocationComponent,
     AnnualFeesComponent,
-    PortfolioInfoComponent
+    PortfolioInfoComponent,
+    EditInvestmentModalComponent
+  ],
+  entryComponents: [
+    EditInvestmentModalComponent
   ]
 })
 export class SharedModule { }
