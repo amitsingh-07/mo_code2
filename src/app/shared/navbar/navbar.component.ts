@@ -73,7 +73,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     this.userInfo = this.signUpService.getUserProfileInfo();
     if (this.userInfo && this.userInfo.firstName) {
-      this.isLoggedIn = true;
+      //this.isLoggedIn = true;
     }
 
     this.signUpService.userObservable$.subscribe((data) => {
@@ -84,7 +84,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         } else {
           this.userInfo = data;
           if (this.userInfo && this.userInfo.firstName) {
-            this.isLoggedIn = true;
+            //this.isLoggedIn = true;
           }
         }
       }
