@@ -29,7 +29,13 @@ export class PersonalFormError {
                         // tslint:disable-next-line:max-line-length
                         moreinvestment: { errorTitle: 'Information', errorMessage: 'Your monthly investment amount is more than your monthly income saved. Would you like to continue?' },
                         // tslint:disable-next-line:max-line-length
-                        moreassetandinvestment: { errorTitle: 'Information', errorMessage: 'Your investment amount is more than your total assets and your monthly investment amount is more than your monthly income saved. Would you like to continue?' }
+                        moreassetandinvestment: { errorTitle: 'Information', errorMessage: 'Your investment amount is more than your total assets and your monthly investment amount is more than your monthly income saved. Would you like to continue?' },
+                        // tslint:disable-next-line:max-line-length
+                        one: { errorTitle: 'Invalid Amount', errorMessage: 'One-time investment must be at least $100. Monthly investment must be at least $50.' },
+                        // tslint:disable-next-line:max-line-length
+                        two: { errorTitle: 'Invalid Amount', errorMessage: 'Monthly investment must be at least $50.' },
+                        three: { errorTitle: 'Invalid Amount', errorMessage: 'One-time investment must be at least $100.' },
+                        four: { errorTitle: 'Invalid Amount', errorMessage: ' Must select at least 1 checkbox to continue.' }
                         }
         };
 }

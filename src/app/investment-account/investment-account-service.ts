@@ -239,6 +239,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.pep = data.radioPEP;
         this.investmentAccountFormData.beneficial = data.radioBeneficial;
         this.commit();
+        return true;
     }
 
     setNationality(nationalityList: any, countryList: any, nationality: any, unitedStatesResident: any, singaporeanResident: any) {
@@ -431,25 +432,23 @@ export class InvestmentAccountService {
         return this.apiService.createInvestmentAccount();
     }
 
+    verifyAML() {
+        return this.apiService.verifyAML();
+    }
+
     setFinancialFormData(data) {
         if (data.annualHouseHoldIncomeRange) {
             this.investmentAccountFormData.annualHouseHoldIncomeRange = data.annualHouseHoldIncomeRange;
         }
         this.investmentAccountFormData.numberOfHouseHoldMembers = data.numberOfHouseHoldMembers;
-        this.investmentAccountFormData.financialMonthlyIncome = data.financialMonthlyIncome;
-        this.investmentAccountFormData.financialPercentageOfSaving = data.financialPercentageOfSaving;
-        this.investmentAccountFormData.financialTotalAssets = data.financialTotalAssets;
-        this.investmentAccountFormData.financialTotalLiabilities = data.financialTotalLiabilities;
+        this.investmentAccountFormData.salaryRange = data.salaryRange;
         this.commit();
     }
     getFinancialFormData() {
         return {
             annualHouseHoldIncomeRange: this.investmentAccountFormData.annualHouseHoldIncomeRange,
             numberOfHouseHoldMembers: this.investmentAccountFormData.numberOfHouseHoldMembers,
-            financialMonthlyIncome: this.investmentAccountFormData.financialMonthlyIncome,
-            financialPercentageOfSaving: this.investmentAccountFormData.financialPercentageOfSaving,
-            financialTotalAssets: this.investmentAccountFormData.financialTotalAssets,
-            financialTotalLiabilities: this.investmentAccountFormData.financialTotalLiabilities
+            salaryRange: this.investmentAccountFormData.salaryRange
         };
     }
 
@@ -644,6 +643,7 @@ export class InvestmentAccountService {
             this.investmentAccountFormData.earningsGenerated = data.investmentEarnings.earningsGenerated;
         }
         this.commit();
+        return true;
     }
 
     setFundyourAccount(data) {
@@ -789,11 +789,7 @@ export class InvestmentAccountService {
 
     getFinancialDetailsReqData(data): IFinancial {
         return {
-            incomeRange: 'below30000',
-            annualIncome: data.financialMonthlyIncome,
-            percentageOfSaving: data.financialPercentageOfSaving,
-            totalAssets: data.financialTotalAssets,
-            totalLoans: data.financialTotalLiabilities
+            incomeRange:  (data.salaryRange) ? data.salaryRange.id : null
         };
     }
 
@@ -1171,5 +1167,9 @@ export class InvestmentAccountService {
 
     getAccountCreationStatus() {
         return this.investmentAccountFormData.accountCreationStatus;
+    }
+
+    getMyInfoStatus() {
+        return this.investmentAccountFormData.isMyInfoEnabled;
     }
 }

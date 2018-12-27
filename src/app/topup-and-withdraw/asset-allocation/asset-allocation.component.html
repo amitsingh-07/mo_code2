@@ -1,8 +1,16 @@
-<div class="container-fluid">
-    <div class="content">
-      <div class="row">
+<div class="container-fluid app-asset-allocation" *ngIf="portfolio">
+  <div class="portfolio-allocation-details">
 
-        <div class="col-lg-12 col-md-12">
-          
-
-
+    <div class="flex-col-12 asset-allocation">
+      <!-- bonds -->
+      <app-allocation [assets]="portfolio.sectorAllocations" [colors]="colors"></app-allocation>
+    </div>
+    <div class="flex-col-12 annual-fees">
+      <div class="title">Annual Fees</div>
+      <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+    </div>
+    <div class="faq_link">
+      <a href="#">For more information, visit our FAQs.</a>
+    </div>
+  </div>
+</div>

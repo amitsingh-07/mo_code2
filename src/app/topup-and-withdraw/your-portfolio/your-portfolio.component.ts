@@ -26,7 +26,7 @@ export class YourPortfolioComponent implements OnInit {
   moreList: any;
   PortfolioValues;
   selectedDropDown;
- constructor(
+  constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
@@ -44,8 +44,8 @@ export class YourPortfolioComponent implements OnInit {
 
   }
   setPageTitle(title: string) {
-     this.navbarService.setPageTitle(title);
-   }
+    this.navbarService.setPageTitle(title);
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -71,7 +71,7 @@ export class YourPortfolioComponent implements OnInit {
       oneTimeInvestment: 100,
       monthlyInvestment: 100,
       fundingType: '', // todo
-      isAmountExceedBalance: 0,
+      isAmountExceedBalance: true,
       exceededAmount: 100
     };
     this.topupAndWithDrawService.setFundingDetails(FundValues);
@@ -80,8 +80,16 @@ export class YourPortfolioComponent implements OnInit {
     this.constructFundingParams();
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
- gotoTopUp() {
+  gotoTopUp() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
+  showTotalReturnPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE');
+  }
+  goToHoldings() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.HOLDINGS]);
   }
   selectOption(option) {
     if (option.id === 1) {

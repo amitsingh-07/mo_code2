@@ -116,10 +116,8 @@
     "TITLE": "Financial Details",
     "ANNUAL_HOUSEHOLD_INCOME": "Monthly Household Income",
     "NUMBER_OF_HOUSE_HOLDERS": "No. Of Household Members",
-    "ANNUAL_INCOME": "Monthly Income",
-    "PERS_OF_INCOME_SAVED": "% Of Income Saved",
-    "TOTAL_ASSETS": "Total Assets",
-    "TOTAL_LOANS": "Total Loans"
+    "SALARY_RANGE": "Salary Range"
+
   },
   "TAX_INFO": {
     "TITLE": "Tax Information",
@@ -212,7 +210,16 @@
     "EARNINGS_GENERATED_FORM": "Earnings Generated From?",
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
-  "PORTFOLIO_RECOMMENDATION": {
+  "CONFIRM_PORTFOLIO": {
+    "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
+    "PROJECTED_RETURNS": "Projected Returns",
+    "PROJECTED_VALUE": "Projected Value",
+    "YEAR": "Year",
+    "ONE_TIME_INVESTMENT": "one-time investment",
+    "AND": "&",
+    "MONTHLY_INVESTMENT": "monthly investment",
+    "FOR": "for",
+    "CONFIRM": "Confirm",
     "EDIT_INVESTMENT": {
       "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Investment",

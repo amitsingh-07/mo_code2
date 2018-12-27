@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -20,7 +20,8 @@ import { IEnquiryUpdate } from '../signup-types';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
@@ -29,6 +30,14 @@ export class DashboardComponent implements OnInit {
   showPortffolioPurchased = false;
   showNotPurchasedPortfolio = false;
   showInvestmentDetailsSaved = false;
+  showNoInvestmentAccount = false;
+  showAddportfolio = false;
+  showPendingAccountOpening = false;
+  showUnsuccessfulAccount = false;
+  showSuspendedAccount = false;
+  showComplianceRejected = false;
+  showSetupAccount = false;
+
 
   constructor(
     private router: Router,
@@ -96,23 +105,51 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashboardList() {
-      const investmentStatus = this.userProfileInfo.investementDetails
+    const investmentStatus = this.userProfileInfo.investementDetails
       && this.userProfileInfo.investementDetails.account
       && this.userProfileInfo.investementDetails.account.accountStatus ?
       this.userProfileInfo.investementDetails.account.accountStatus : null;
-      switch (investmentStatus) {
-        case 'PORTFOLIO_PURCHASED': {
-          this.showPortffolioPurchased = true;
-          break;
-        }
-        case 'INVESTMENT_ACCOUNT_DETAILS_SAVED': {
-          this.showInvestmentDetailsSaved = true;
-          break;
-        }
-        default: {
-          this.showNotPurchasedPortfolio = true;
-          break;
-        }
+    switch (investmentStatus) {
+      case 'PORTFOLIO_PURCHASED': {
+        this.showPortffolioPurchased = true;
+        break;
       }
+      case 'INVESTMENT_ACCOUNT_DETAILS_SAVED': {
+        this.showInvestmentDetailsSaved = true;
+        break;
+      }
+      case 'NO_INVESTMENT_ACCOUNT': {
+        this.showNoInvestmentAccount = true;
+        break;
+      }
+      case 'ADD_POERFOLIO': {
+        this.showAddportfolio = true;
+        break;
+      }
+      case 'PENDING_ACCOUNT_OPENING': {
+        this.showPendingAccountOpening = true;
+        break;
+      }
+      case 'UNSUCCESSFUL_ACCOUNT': {
+        this.showUnsuccessfulAccount = true;
+        break;
+      }
+      case 'SETUP_ACCOUNT': {
+        this.showSetupAccount = true;
+        break;
+      }
+      case 'SUSPENDED_ACCOUNT': {
+        this.showSuspendedAccount = true;
+        break;
+      }
+      case 'COMPLIANCE_REJECETD': {
+        this.showComplianceRejected = true;
+        break;
+      }
+      default: {
+        this.showNotPurchasedPortfolio = true;
+        break;
+      }
+    }
   }
 }

@@ -1,5 +1,4 @@
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SecurePipe } from '../shared/Pipes/secure.pipe';
+import { TimeAgoPipe } from '../shared/Pipes/time-ago.pipe';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';

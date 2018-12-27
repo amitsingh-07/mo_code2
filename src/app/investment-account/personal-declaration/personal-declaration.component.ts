@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -91,11 +92,30 @@ export class PersonalDeclarationComponent implements OnInit {
       ref.componentInstance.errorTitle = error.title;
       ref.componentInstance.errorMessageList = error.errorMessages;
       return false;
-    } else {
-      this.investmentAccountService.setPersonalDeclarationData(form.getRawValue());
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+    } else if (this.investmentAccountService.setPersonalDeclarationData(form.getRawValue())) {
+        this.saveInvestmentAccount();
     }
   }
+
+  saveInvestmentAccount() {
+    this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+      if (this.investmentAccountService.getMyInfoStatus()) {
+        if (this.personalDeclarationForm.controls.radioBeneficial.value) {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+        } else {
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
+        }
+      } else {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+      }
+    },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+      });
+  }
+
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
