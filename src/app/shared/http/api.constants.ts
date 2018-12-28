@@ -70,7 +70,8 @@ export let apiConstants = {
             getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
             buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
-            investmentoverview: 'invest/investment-microservice/portfolio/holdings'
+            investmentoverview: 'invest/investment-microservice/portfolio/holdings',
+            porfolioDetails: 'invest/investment-microservice/portfolios/detail'
         },
         investment: {
             getUserAddress: 'account/account-microservice/api/customer/address',
