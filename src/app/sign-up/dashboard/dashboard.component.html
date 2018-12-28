@@ -60,10 +60,21 @@
                         </div>
                       </div>
                     </div>
+                     <!--  STEP-1 PORTFOLIO -->
+                    <div class="no_account col-12" *ngIf="showNotPurchasedPortfolio">
+                      <div class="warning-txt">
+                        <div class="flex-col-8">Answer a few questions to  determine the portfolio most suited to you!</div>
+                        <div class="flex-col-4"><div class="investment_icon"><img src="assets/images/investment-account/investment-icon.svg" /></div></div>
+                      </div>
+                      <div class="flex">
+                        <button   (click)="goToEngagement()" type="button" class="btn btn-primary col-12"><div>Start Investing</div><div>Estimated 5-15 mins</div></button>
+                      </div>
+                    </div>
 
-                  
-                  <!-- NOT PARCHASED -->
-                  <div class="primary flex col-12" *ngIf="showNotPurchasedPortfolio">
+
+                    
+                  <!-- NOT PARCHASED  NOt need is old design-->
+                  <div class="primary flex col-12" *ngIf="false">
 
                     <div class="flex-col-4">
                       <img src="assets/images/investment-account/investment-portfolio.svg" />
@@ -94,15 +105,7 @@
                     </div>
                     
                   <!-- No Investment Account  -->
-                  <div class="no_account col-12" *ngIf="false">
-                    <div class="warning-txt">
-                      <div class="flex-col-8">Answer a few questions to  determine the portfolio most suited to you!</div>
-                      <div class="flex-col-4"><div class="investment_icon"><img src="assets/images/investment-account/investment-icon.svg" /></div></div>
-                    </div>
-                    <div class="flex">
-                      <button type="button" class="btn btn-primary col-12"><div>Start Investing</div><div>Estimated 5-15 mins</div></button>
-                    </div>
-                  </div>
+                 
                   <!-- Has Investment Account but no portfolio -->
                   <div class="no_portfolio col-12" *ngIf="false">
                     <div class="warning-txt">
