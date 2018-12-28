@@ -210,7 +210,7 @@
     "EARNINGS_GENERATED_FORM": "Earnings Generated From?",
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
-  "CONFIRM_PORTFOLIO": {
+  "PORTFOLIO_RECOMMENDATION": {
     "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
     "PROJECTED_RETURNS": "Projected Returns",
     "PROJECTED_VALUE": "Projected Value",
