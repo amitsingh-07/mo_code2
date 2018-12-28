@@ -60,9 +60,7 @@ export let apiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + 'industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + 'occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + 'optionListCollection',
-            //uploadDocument: 'account/account-microservice/saveInvestmentDetails',
             uploadDocument: 'account/account-microservice/saveDocuments',
-            //saveInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
             saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
@@ -70,7 +68,8 @@ export let apiConstants = {
             getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
             buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
-            investmentoverview: 'invest/investment-microservice/portfolio/holdings'
+            investmentoverview: 'invest/investment-microservice/portfolio/holdings',
+            porfolioDetails: 'invest/investment-microservice/portfolios/detail'
         },
         investment: {
             getUserAddress: 'account/account-microservice/api/customer/address',

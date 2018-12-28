@@ -58,8 +58,8 @@ export class TopupAndWithDrawService {
   getMoreList() {
     return this.apiService.getMoreList();
   }
-  getPortfolioHoldingList() {
-    return this.apiService.getPortfolioHoldingList();
+  getIndividualPortfolioDetails(portfolioId) {
+    return this.apiService.getIndividualPortfolioDetails(portfolioId);
   }
 
 
