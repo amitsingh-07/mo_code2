@@ -211,24 +211,17 @@
     "INHERITANCE_GIFT": "Please indicate from whom you inherited the wealth and the reason for receiving the wealth:"
   },
   "CONFIRM_PORTFOLIO": {
-    "TITLE": "Your Portfolio",
-    "PORTFOLIO_VALUE_FOR": "Here's your projected portfolio value for",
     "ASSET_ALLOCATION_BREAKDOWN": "Asset Allocation Breakdown",
     "PROJECTED_RETURNS": "Projected Returns",
-    "WHATS_THE_RISK": "What's the risk?",
     "PROJECTED_VALUE": "Projected Value",
-    "IN": "in",
     "YEAR": "Year",
-    "YEARS": "Years",
-    "CHECK_FEES": "Check out our competitive fees.",
     "ONE_TIME_INVESTMENT": "one-time investment",
     "AND": "&",
     "MONTHLY_INVESTMENT": "monthly investment",
     "FOR": "for",
     "CONFIRM": "Confirm",
     "EDIT_INVESTMENT": {
-      "TITLE": "My Investment Portfolio",
-      "INVESTMENT_PERIOD": "Investment Period",
+      "TITLE": "Review My Inputs",
       "ONE_TIME_INVESTMENT": "One-time Investment",
       "MONTHLY_INVESTMENT": "Monthly Investment"
     },
@@ -236,16 +229,26 @@
       "PROJECTED_RETURNS": {
         "TITLE": "Projected Returns",
         "MESSAGE": "This is an estimated percentage of gains that the portfolio will achieve. Do note that it is not guaranteed and the actual returns will depend on the actual performance of each asset."
-      },
-      "FEES": {
-        "TITLE": "MoneyOwl Fees",
-        "TABLE_HEAD": "Annual Fees Breakdown",
-        "MONEYOWL_FEES": "MoneyOwl Fees",
-        "PLATFORM_FEES": "Platform Fees",
-        "FUND_EXPENSE_RATIO": "Fund Expense Ratio",
-        "TOTAL": "Total"
       }
-    }
+    },
+    "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years",
+    "REVIEW_INPUTS": "Review My Inputs",
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "ANNUAL_FEES": "Annual Fees",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "REVIEW_SUB_TEXT": "Review your inputs or proceed to start investing in this portfolio.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have started funding your account.",
+    "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
+    "NOW": "Now",
+    "YEARS": "years",
+    "BEST": "Best",
+    "MEDIAN": "Median",
+    "WORST": "Worst",
+    "CAPITAL_INVESTED": "Capital Invested",
+    "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
+    "VIEW_FUND_DETAILS": "View Fund Details",
+    "TITLE": "Your Portfolio",
+    "PORTFOLIO":"Portfolio"
   },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Due Diligence Check",

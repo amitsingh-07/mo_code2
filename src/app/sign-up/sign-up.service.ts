@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -26,7 +27,8 @@ export class SignUpService {
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    public cryptoService: CryptoService) {
+    public cryptoService: CryptoService,
+    private datePipe: DatePipe) {
     this.getAccountInfo();
   }
 
@@ -395,6 +397,14 @@ export class SignUpService {
     const messages = [];
     const notificationMessageList = notifications.map((notification) => {
       const messageList = notification.messages.map((message) => {
+        let messageDate = '';
+        let messageMonth = '';
+        if (message.time) {
+          messageDate = message.time.split('T')[0];
+          messageMonth = this.datePipe.transform(messageDate, 'MMMM yyyy');
+        }
+        message.date = messageDate;
+        message.month = messageMonth;
         messages.push(message);
       });
     });

@@ -1,3 +1,44 @@
+
+<div class="container-fluid" *ngIf="portfolio">
+    <div class="portfolio-allocation-details">
+      <div class="flex-col-12 portfolio-allocation-details__container">
+        <div class="portfolio-allocation-details__content">
+          <div class="flex-col-12 portfolio-allocation-details__content__desc">
+            <div class="flex-col-12 portfolio-allocation-details__content__block" [innerHTML]="'PORTFOLIO_RECOMMENDATION.USER_INPUT_SUB_TEXT' | translate:userInputSubtext"></div>
+          </div>
+        </div>
+        <hr>
+        <app-portfolio-info [portfolio]="portfolio"></app-portfolio-info>
+        <hr>
+        <div class="portfolio-allocation-details__content">
+          <div class="flex-col-12 portfolio-allocation-details__content__desc">
+            <div class="flex-row review-edit"><span>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_INPUTS' | translate}}</span><span class="edit_button" (click)="openEditInvestmentModal()"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-col-12 asset-allocation">
+        <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ASSET_ALLOCATION' | translate}}</div>
+        <!-- bonds -->
+        <app-allocation [assets]="portfolio.sectorAllocations" [funds]="portfolio.funds" [colors]="colors"></app-allocation>
+      </div>
+      <div class="flex-col-12 annual-fees">
+        <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
+        <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
+      </div>
+      <div class="faq_link"><a href="#">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
+    </div>
+    <div class="row">
+      <div class="flex-col-12 review-block">
+        <div>{{ 'PORTFOLIO_RECOMMENDATION.REVIEW_SUB_TEXT' | translate}}</div>
+        <div class="review-italic">{{ 'PORTFOLIO_RECOMMENDATION.INVESTMENT_FUND_CONDITION' | translate}}</div>
+      </div>
+    </div>
+    <button type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-primary">Proceed</button>
+  </div>
+
+
+
+<!--
 <div class="confirm-portfolio">
   <div class="step-indicator-container">
     <div class="container-fluid">
@@ -62,7 +103,7 @@
         <div class="percentage" id="portfolio_projectedReturnsValue_lbl">{{portfolio.projectedReturns}}%</div>
       </div>
 
-      <!-- ALLOCATION -->
+      
       <div class="breakdown">
         <div class="title">
           {{'CONFIRM_PORTFOLIO.ASSET_ALLOCATION_BREAKDOWN' | translate}}
@@ -78,7 +119,6 @@
           </div>
         </div>
       </div>
-      <!-- / ALLOCATION -->
 
       <div class="fees-promo" (click)="showFeesModal()">
         <img src="../../../assets/images/investment-account/glassesowl.svg" alt="" />
@@ -91,3 +131,4 @@
     </div>
   </div>
 </div>
+-->

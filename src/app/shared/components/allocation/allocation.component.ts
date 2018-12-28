@@ -1,6 +1,10 @@
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
+
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+
+import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
 
 @Component({
   selector: 'app-allocation',
@@ -10,14 +14,16 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../../topup-and-withdraw/topu
 })
 export class AllocationComponent implements OnInit {
   @Input('assets') assets;
+  @Input('funds') funds;
   @Input('colors') colors;
 
   event1 = true;
   event2 = true;
 
   constructor(
-    private router: Router,
-  ) { }
+   
+    private portfolioService: PortfolioService,
+    private router: Router) { }
 
   ngOnInit() {
     console.log(this.assets);
@@ -41,13 +47,14 @@ export class AllocationComponent implements OnInit {
     return groupObjects;
   }
 
+  viewFundDetails() {
+    this.portfolioService.setFund(this.funds);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+  }
+
   // accordian
   test(event) {
     event === 'event1' ? this.event1 = !this.event1 : '';
     event === 'event2' ? this.event2 = !this.event2 : '';
   }
-  goToFundDetails() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_DETAILS]);
   }
-
-}

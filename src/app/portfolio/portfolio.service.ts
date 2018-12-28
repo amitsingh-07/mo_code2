@@ -56,7 +56,8 @@ export class PortfolioService {
   setRiskProfile(data) {
     this.portfolioFormData.riskProfileId = data.primaryRiskProfileId;
     this.portfolioFormData.riskProfileName = data.primaryRiskProfileType;
-    this.portfolioFormData.htmlDescription = data.htmlDesc;
+    debugger;
+    this.portfolioFormData.htmlDescription = data.htmlDescObject;
     this.commit();
   }
 
@@ -252,8 +253,8 @@ export class PortfolioService {
     return '?' + params.toString();
   }
 
-  setFund(fund) {
-    this.portfolioFormData.selectedFund = fund;
+  setFund(fundDetails) {
+    this.portfolioFormData.selectedFund = fundDetails;
     this.commit();
   }
   getSelectedFund() {
