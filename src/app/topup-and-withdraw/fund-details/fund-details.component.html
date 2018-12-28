@@ -1,6 +1,6 @@
 <div class="modal-body white-bg">
   <div class="modal-body-title" id="fund-details-title">{{'FUND_DETAILS.TITLE' | translate}}</div>
-  <button type="button" class="close" aria-label="Close" (click)="close()" id="fund-details-close_button">
+  <button type="button" class="close" aria-label="Close" (click)="goBack()" id="fund-details-close_button">
     <span aria-hidden="true"></span>
   </button>
   <!--  Bank Transfer: -->
@@ -10,7 +10,7 @@
         <img src="assets/images/dimensional.png" id="fund-details-img" />
       </div>
     </div>
-    <div *ngFor="let fund of fundDetails.funds; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}
+    <div *ngFor="let fund of fundDetails; let i = index; let j = index;" #i id="fund-details-{{i}}">{{fundDetails.fund}}
       <div (click)=showHide(i) id="fund-details-arrow">
         <div class="fund-heading" [class.active]="j === 0" id="fund-details-heading_{{i}}">
           {{fund.name}}

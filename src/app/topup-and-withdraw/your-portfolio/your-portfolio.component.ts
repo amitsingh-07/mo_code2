@@ -13,6 +13,7 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.con
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class YourPortfolioComponent implements OnInit {
   moreList: any;
   PortfolioValues;
   selectedDropDown;
-  portfolioholdings;
+  portfolio;
   HoldingValues;
   assetAllocationValues;
   constructor(
@@ -38,7 +39,8 @@ export class YourPortfolioComponent implements OnInit {
     public navbarService: NavbarService,
     private modal: NgbModal,
     private currencyPipe: CurrencyPipe,
-    public topupAndWithDrawService: TopupAndWithDrawService) {
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    public portfolioService: PortfolioService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_PORTFOLIO.TITLE');
@@ -56,7 +58,7 @@ export class YourPortfolioComponent implements OnInit {
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
     this.getPortfolioHoldingList();
-    this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+    //this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
 
   }
   getMoreList() {
@@ -67,12 +69,10 @@ export class YourPortfolioComponent implements OnInit {
   }
   getPortfolioHoldingList() {
     this.topupAndWithDrawService.getPortfolioHoldingList().subscribe((data) => {
-      this.portfolioholdings = data.objectList.data;
-      console.log(this.portfolioholdings);
-      this.HoldingValues = this.topupAndWithDrawService.setHoldingValues(this.portfolioholdings.portfolio.dpmsDetailsDisplay);
-      this.assetAllocationValues = this.topupAndWithDrawService.setAssetAllocationValues(this.portfolioholdings.portfolio);
-      console.log(this.portfolioholdings.portfolio);
-     });
+      this.portfolio = data.objectList.data;
+      this.topupAndWithDrawService.setHoldingValues(this.portfolio.portfolio.dpmsDetailsDisplay);
+      this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio.portfolio);
+    });
   }
 
   constructFundingParams() {

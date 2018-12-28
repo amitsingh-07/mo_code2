@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 @Component({
   selector: 'app-fund-details',
   templateUrl: './fund-details.component.html',
@@ -45,7 +46,9 @@ export class FundDetailsComponent implements OnInit {
     private router: Router,
     public navbarService: NavbarService,
     private modal: NgbModal,
-    public topupAndWithDrawService: TopupAndWithDrawService) {
+    private _location: Location,
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    public portfolioService: PortfolioService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('Fund Details');
@@ -55,7 +58,7 @@ export class FundDetailsComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
-    this.fundDetails = this.topupAndWithDrawService.getAssetAllocationValues();
+    this.fundDetails = this.portfolioService.getFundDetails();
     // this.reConstructFactSheetLinks();
   }
   setPageTitle(title: string) {
@@ -73,8 +76,9 @@ export class FundDetailsComponent implements OnInit {
       el.getElementsByClassName('fund-heading')[0].classList.add('active');
     }
   }
-  close() {
-    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ASSET_ALLOCATION]);
+
+  goBack() {
+    this._location.back();
   }
   // reConstructFactSheetLinks() {
   //   let factSheetLink;

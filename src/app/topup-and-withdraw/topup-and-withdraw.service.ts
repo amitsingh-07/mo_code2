@@ -140,6 +140,13 @@ export class TopupAndWithDrawService {
   getPortfolioValues() {
     return this.topUpAndWithdrawFormData.PortfolioValues;
   }
+  setSelectedPortfolio(portfolio) {
+    this.topUpAndWithdrawFormData.selectedPortfolio = portfolio;
+    this.commit();
+  }
+  getSelectedPortfolio() {
+    return this.topUpAndWithdrawFormData.selectedPortfolio;
+  }
   setUserPortfolioList(portfolioList) {
     this.topUpAndWithdrawFormData.userPortfolios = portfolioList;
     this.commit();

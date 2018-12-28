@@ -423,7 +423,7 @@ export class PortfolioRecommendationComponent implements OnInit {
   }
  
   viewFundDetails(fund) {
-    this.portfolioService.setFund(fund);
+    this.portfolioService.setFundDetails(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
 

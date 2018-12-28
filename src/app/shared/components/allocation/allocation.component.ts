@@ -21,7 +21,6 @@ export class AllocationComponent implements OnInit {
   event2 = true;
 
   constructor(
-   
     private portfolioService: PortfolioService,
     private router: Router) { }
 
@@ -48,7 +47,7 @@ export class AllocationComponent implements OnInit {
   }
 
   viewFundDetails() {
-    this.portfolioService.setFund(this.funds);
+    this.portfolioService.setFundDetails(this.funds);
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_DETAILS]);
   }
 

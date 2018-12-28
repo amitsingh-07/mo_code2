@@ -79,20 +79,12 @@ export class AssetAllocationComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.assetAllocation = this.topupAndWithDrawService.getAssetAllocationValues();
-   
+    this.assetAllocation = this.topupAndWithDrawService.getSelectedPortfolio();
   }
 
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-
-
-
-
-
-
-
 
   constructgetAllocationParams() {
     const formData = this.portfolioService.getRiskProfile();
@@ -118,11 +110,6 @@ export class AssetAllocationComponent implements OnInit {
         this.isAllocationOpen = false;
       }
     }
-  }
-
-  viewFundDetails(fund) {
-    this.portfolioService.setFund(fund);
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
   }
 
   showLoginOrSignupModal() {
