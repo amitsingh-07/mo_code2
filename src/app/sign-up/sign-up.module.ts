@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { InputFocusDirective } from '../shared/directives/input-focus.directive';
 import { SecurePipe } from '../shared/Pipes/secure.pipe';
+import { TimeAgoPipe } from '../shared/Pipes/time-ago.pipe';
 import { AccountCreatedComponent } from './account-created/account-created.component';
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
@@ -86,7 +87,8 @@ export function createTranslateLoader(http: HttpClient) {
     ViewAllNotificationsComponent,
     TopBarWithClearButtonComponent,
     AccountUpdatedComponent,
-    AddUpdateBankComponent
+    AddUpdateBankComponent,
+    TimeAgoPipe
   ],
   providers: [SignUpAccessGuard, AuthGuardService]
 })

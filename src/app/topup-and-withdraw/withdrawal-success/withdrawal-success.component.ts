@@ -1,6 +1,6 @@
 
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,8 @@ import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 @Component({
   selector: 'app-withdrawal-success',
   templateUrl: './withdrawal-success.component.html',
-  styleUrls: ['./withdrawal-success.component.scss']
+  styleUrls: ['./withdrawal-success.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class WithdrawalSuccessComponent implements OnInit {
   formValues;

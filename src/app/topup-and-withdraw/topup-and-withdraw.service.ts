@@ -47,6 +47,10 @@ export class TopupAndWithDrawService {
     return this.apiService.getAllDropdownList();
 
   }
+  getHoldingList() {
+    return this.apiService.getHoldingList();
+
+  }
   getPortfolioList() {
     return this.apiService.getPortfolioList();
 
@@ -54,6 +58,10 @@ export class TopupAndWithDrawService {
   getMoreList() {
     return this.apiService.getMoreList();
   }
+  getPortfolioHoldingList() {
+    return this.apiService.getPortfolioHoldingList();
+  }
+
 
   doFinancialValidations(form) {
     const invalid = [];
@@ -132,6 +140,13 @@ export class TopupAndWithDrawService {
   getPortfolioValues() {
     return this.topUpAndWithdrawFormData.PortfolioValues;
   }
+  setSelectedPortfolio(portfolio) {
+    this.topUpAndWithdrawFormData.selectedPortfolio = portfolio;
+    this.commit();
+  }
+  getSelectedPortfolio() {
+    return this.topUpAndWithdrawFormData.selectedPortfolio;
+  }
   setUserPortfolioList(portfolioList) {
     this.topUpAndWithdrawFormData.userPortfolios = portfolioList;
     this.commit();
@@ -156,6 +171,20 @@ export class TopupAndWithDrawService {
     } else {
       return 0;
     }
+  }
+  setHoldingValues(holdingList) {
+    this.topUpAndWithdrawFormData.holdingList = holdingList;
+    this.commit();
+  }
+  getHoldingValues() {
+    return this.topUpAndWithdrawFormData.holdingList;
+  }
+  setAssetAllocationValues(assetAllocationValues) {
+    this.topUpAndWithdrawFormData.assetAllocationValues = assetAllocationValues;
+    this.commit();
+  }
+  getAssetAllocationValues() {
+    return this.topUpAndWithdrawFormData.assetAllocationValues;
   }
   // tslint:disable-next-line
   getFormErrorList(form) {
@@ -257,6 +286,20 @@ export class TopupAndWithDrawService {
 
   getTransactionHistory(from?, to?) {
     return this.apiService.getTransactionHistory(from, to);
+  }
+
+  getPortfolioAllocationDetails(params) {
+    const urlParams = this.constructQueryParams(params);
+    return this.apiService.getPortfolioAllocationDetails(urlParams);
+  }
+
+  constructQueryParams(options) {
+    const objectKeys = Object.keys(options);
+    const params = new URLSearchParams();
+    Object.keys(objectKeys).map((e) => {
+      params.set(objectKeys[e], options[objectKeys[e]]);
+    });
+    return '?' + params.toString();
   }
 
   getMonthListByPeriod(from, to) {

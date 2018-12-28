@@ -1,6 +1,6 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Injectable } from '@angular/core';
@@ -22,7 +22,8 @@ import { PortfolioFormData } from '../../portfolio/portfolio-form-data';
 @Component({
   selector: 'app-finanical-details',
   templateUrl: './finanical-details.component.html',
-  styleUrls: ['./finanical-details.component.scss']
+  styleUrls: ['./finanical-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FinanicalDetailsComponent implements OnInit {
   pageTitle: string;
@@ -32,6 +33,7 @@ export class FinanicalDetailsComponent implements OnInit {
   annualHouseHoldIncomeRange: any;
   numberOfHouseHoldMembers: string;
   annualHouseHoldIncomeRanges: any;
+  salaryRanges: any;
   numberOfHouseHoldMembersList = Array(11).fill(0).map((x, i) => i);
 
   constructor(
@@ -60,19 +62,7 @@ export class FinanicalDetailsComponent implements OnInit {
       annualHouseHoldIncomeRange: [{value: this.formValues.annualHouseHoldIncomeRange,
         disabled: this.investmentAccountService.isDisabled('annualHouseHoldIncomeRange')}, Validators.required],
       numberOfHouseHoldMembers: [this.formValues.numberOfHouseHoldMembers, Validators.required],
-      financialMonthlyIncome: [this.formValues.financialMonthlyIncome ?
-        this.formValues.financialMonthlyIncome : this.FinancialFormData.monthlyIncome,
-        Validators.required],
-      financialPercentageOfSaving: [this.formValues.financialPercentageOfSaving
-        ? this.formValues.financialPercentageOfSaving : this.FinancialFormData.percentageOfSaving,
-      Validators.required],
-      financialTotalAssets: [this.formValues.financialTotalAssets
-        ? this.formValues.financialTotalAssets : this.FinancialFormData.totalAssets,
-      Validators.required],
-      financialTotalLiabilities: [this.formValues.financialTotalLiabilities
-        ? this.formValues.financialTotalLiabilities :
-        this.FinancialFormData.totalLiabilities,
-      Validators.required]
+      salaryRange: [this.formValues.salaryRange, Validators.required]
     });
   }
   setPageTitle(title: string) {
@@ -81,6 +71,7 @@ export class FinanicalDetailsComponent implements OnInit {
   getIncomeRangeList() {
     this.investmentAccountService.getAllDropDownList().subscribe((data) => {
       this.annualHouseHoldIncomeRanges = data.objectList.incomeRange;
+      this.salaryRanges = data.objectList.salaryRange;
     });
   }
   setAnnualHouseHoldIncomeRange(annualHouseHoldIncome) {
@@ -88,6 +79,9 @@ export class FinanicalDetailsComponent implements OnInit {
   }
   setnumberOfHouseHoldMembers(HouseHoldMembers) {
     this.financialDetails.controls['numberOfHouseHoldMembers'].setValue(HouseHoldMembers);
+  }
+  setSalaryRange(range) {
+    this.financialDetails.controls['salaryRange'].setValue(range);
   }
   getInlineErrorStatus(control) {
     return (!control.pristine && !control.valid);

@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +24,8 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 @Component({
   selector: 'app-top-up',
   templateUrl: './top-up.component.html',
-  styleUrls: ['./top-up.component.scss']
+  styleUrls: ['./top-up.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TopUpComponent implements OnInit {
   pageTitle: string;

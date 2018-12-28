@@ -1,0 +1,133 @@
+<div class="bond_container">
+    <div class="bonds_equity_block">
+      <div class="bond_progress_container">
+          <div class="flex-row equity_bar" *ngFor="let asset of assets; let i = index">
+              <div class="flex-row flex-col-8 bar-container">
+                <span [ngStyle]="{'background-color': colors[i], 'width': asset.allocationPercentage + '%'  }" class="bar"></span>
+              </div>
+              <div class="flex-col-4">{{asset.allocationPercentage}}% {{asset.type.type}}</div>
+            </div>
+        <!--
+        <div class="flex-row equity_bar">
+          <div class="flex-row flex-col-8">
+            <span style="width: 40%; background-color: #ec681c; " class="bar"></span>
+            <span style="width: 60%; background-color: #c7e9e9; " class="bar"></span>
+          </div>
+          <div class="flex-col-4">40% Equities</div>
+        </div>
+        <div class="flex-row bond_bar">
+            <div class="flex-row flex-col-8">
+              <span style="width: 60%; background-color: #76328e; " class="bar"></span>
+              <span style="width: 40%; background-color: #c7e9e9; " class="bar"></span>
+            </div>
+            <div class="flex-col-4">60% Bonds</div>
+        </div>
+        -->
+      </div>
+      <div class="bonds_equity" *ngFor="let asset of assets; let i = index">
+        <div class="bonds_equity_title" (click)="acc2.toggle('toggle-1')" (click)="test('event2')">{{asset.type.type}}<i class='fa right'
+            [class.fa-chevron-down]="event2" [class.fa-chevron-up]="!event2"></i></div>
+        <ngb-accordion #acc2="ngbAccordion">
+          <ngb-panel id="toggle-1" title="Second">
+            <ng-template ngbPanelContent>
+              <div class="bond_desc" *ngIf="asset.numberOfHoldings">
+                <div class="flex-row flex-col-12">
+                  <div class="rating_type">Number of Holdings</div>
+                  <div class="rating">
+                    <div class="flex-row"><span class="rating_value">{{asset.numberOfHoldings}}</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="bond_desc" *ngFor="let allocation of asset.groupedAllocationDetails;">
+                <div class="flex-row flex-col-12">
+                  <div class="flex-col-5 rating_type">{{allocation.name}}</div>
+                  <div class="flex-col-7 rating">
+                    <div class="flex-row" *ngFor="let detail of allocation.value;">
+                      <span>{{detail.sectorRegion}}</span>
+                      <span class="rating_value">{{detail.percentage}}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--
+              <div class="bond_desc">
+                <div class="flex-row flex-col-12">
+                  <div class="flex-col-5 rating_type">Regional Allocation</div>
+                  <div class="flex-col-7 rating">
+                    <div class="flex-row"><span>North America</span><span class="rating_value">57.3%</span></div>
+                    <div class="flex-row"><span>Asia Pacific</span><span class="rating_value">21.1%</span></div>
+                    <div class="flex-row"><span>Europe</span><span class="rating_value">19.2%</span></div>
+                    <div class="flex-row"><span>Latin America</span><span class="rating_value">1.4%</span></div>
+                    <div class="flex-row"><span>Africa</span><span class="rating_value">0.8%</span></div>
+                    <div class="flex-row"><span>Middle East</span><span class="rating_value">0.3%</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="bond_desc">
+                <div class="flex-row flex-col-12">
+                  <div class="flex-col-5 rating_type">Sector Allocation</div>
+                  <div class="flex-col-7 rating">
+                    <div class="flex-row"><span>Financials</span><span class="rating_value">17.8%</span></div>
+                    <div class="flex-row"><span>Industrials</span><span class="rating_value">16.4%</span></div>
+                    <div class="flex-row"><span>Consumer Disc</span><span class="rating_value">13.3%</span></div>
+                    <div class="flex-row"><span>Info Technology</span><span class="rating_value">12.9%</span></div>
+                    <div class="flex-row"><span>Health Care</span><span class="rating_value">9.6%</span></div>
+                    <div class="flex-row"><span>Materials</span><span class="rating_value">7.0%</span></div>
+                    <div class="flex-row"><span>Energy</span><span class="rating_value">7.0%</span></div>
+                    <div class="flex-row"><span>Consumer Staples</span><span class="rating_value">6.7%</span></div>
+                    <div class="flex-row"><span>REITs</span><span class="rating_value">3.4%</span></div>
+                    <div class="flex-row"><span>Other</span><span class="rating_value">6.0%</span></div>
+                  </div>
+                </div>
+              </div>
+            -->
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+      <!-- 
+      <div class="bonds_equity">
+        <div class="bonds_equity_title" (click)="acc.toggle('toggle-1')" (click)="test('event1')">Bonds<i class='fa right'
+            [class.fa-chevron-down]="event1" [class.fa-chevron-up]="!event1"></i></div>
+        <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel id="toggle-1" title="First panel">
+            <ng-template ngbPanelContent>
+              <div class="bond_desc">
+                <div class="flex-row flex-col-12">
+                  <div class="rating_type">Number of Holdings</div>
+                  <div class="rating">
+                    <div class="flex-row"><span class="rating_value">202</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="bond_desc">
+                <div class="flex-row flex-col-12">
+                  <div class="flex-col-5 rating_type">Credit Rating Allocation</div>
+                  <div class="flex-col-7 rating">
+                    <div class="flex-row"><span>AAA</span><span class="rating_value">21.0%</span></div>
+                    <div class="flex-row"><span>AA</span><span class="rating_value">57.3%</span></div>
+                    <div class="flex-row"><span>A</span><span class="rating_value">21.7%</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="bond_desc">
+                <div class="flex-row flex-col-12">
+                  <div class="flex-col-5 rating_type">Regional Allocation</div>
+                  <div class="flex-col-7 rating">
+                    <div class="flex-row"><span>Europe</span><span class="rating_value">48.7%</span></div>
+                    <div class="flex-row"><span>North America</span><span class="rating_value">30.8%</span></div>
+                    <div class="flex-row"><span>Supranational</span><span class="rating_value">11.3%</span></div>
+                    <div class="flex-row"><span>Asia Pacific</span><span class="rating_value">9.3%</span></div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    -->
+    </div>
+    <hr>
+   
+    <button type="button" class="btn btn-view width100" (click)="viewFundDetails()">{{ 'PORTFOLIO_RECOMMENDATION.VIEW_FUND_DETAILS' | translate}}</button>
+  </div>

@@ -1,6 +1,6 @@
 import { catchError } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-residential-address',
   templateUrl: './residential-address.component.html',
-  styleUrls: ['./residential-address.component.scss']
+  styleUrls: ['./residential-address.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ResidentialAddressComponent implements OnInit {
   addressForm: FormGroup;
@@ -93,7 +94,8 @@ export class ResidentialAddressComponent implements OnInit {
       [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [{ value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2') },
       [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+      isMailingAddressSame: [{value: this.formValues.isMailingAddressSame,
+        disabled: this.investmentAccountService.isDisabled('isMailingAddressSame')}]
     });
   }
 

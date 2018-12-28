@@ -70,8 +70,9 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       totalLiabilities: new FormControl(this.myFinancialsFormValues.totalLiabilities),
       initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
       monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
-      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund)
-
+      suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund),
+      firstChkBox: new FormControl(true),
+      secondChkBox: new FormControl(true)
     });
   }
 
@@ -86,7 +87,25 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     ref.componentInstance.errorDescription = this.helpData.modalDesc;
     return false;
   }
+  secondChkBoxChange() {
+    if (this.myFinancialsForm.controls.secondChkBox.value === true) {
+      this.myFinancialsForm.controls.monthlyInvestment.enable() ;
+      this.myFinancialsForm.controls.monthlyInvestment.setValue(0);
+    } else {
+      this.myFinancialsForm.controls.monthlyInvestment.disable() ;
+      this.myFinancialsForm.controls.monthlyInvestment.setValue('');
+    }
+  }
+firstChkBoxChange() {
+  if (this.myFinancialsForm.controls.firstChkBox.value === true) {
+    this.myFinancialsForm.controls.initialInvestment.enable() ;
+    this.myFinancialsForm.controls.initialInvestment.setValue(0);
 
+  } else {
+    this.myFinancialsForm.controls.initialInvestment.disable() ;
+    this.myFinancialsForm.controls.initialInvestment.setValue('');
+  }
+}
   goToNext(form) {
     if (!form.valid) {
       Object.keys(form.controls).forEach((key) => {

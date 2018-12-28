@@ -23,4 +23,10 @@ export class TopUpAndWithdrawFormData {
     userPortfolios: any;
     selectedPortfolioForTopup: any;
     cashAccountBalance: number;
+
+    // your portfolio
+    holdingList;
+    assetAllocationValues;
+
+    selectedPortfolio;
 }

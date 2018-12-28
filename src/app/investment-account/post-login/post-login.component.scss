@@ -1,5 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
+
+app-post-login{
 .back-btn {
 	background-image: url("../../../assets/images/back-web.svg");
     width: 43px;
@@ -123,3 +125,4 @@
         }         
       }
     }
+  }

@@ -38,7 +38,7 @@ export class FundDetailsComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
-    this.fund = this.portfolioService.getSelectedFund();
+    this.fund = this.portfolioService.getFundDetails();
     this.reConstructFactSheetLinks();
   }
 

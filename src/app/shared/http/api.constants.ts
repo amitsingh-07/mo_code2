@@ -1,7 +1,7 @@
 export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 const ARTICLE_API_BASE_URL = 'product/insurance-product';
 const ABOUT_US_API_BASE_URL = 'product/insurance-product';
-const CONTACT_US_API_BASE_URL = 'account/account-microservice';
+const ACCOUNT_API_BASE_URL = 'account/account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
@@ -10,6 +10,7 @@ export let apiConstants = {
     endpoint: {
         authenticate: 'account/account-microservice/authenticate',
         login: 'login',
+        logout: 'account/account-microservice/api/logout',
         getProfileList: 'account/account-microservice/api/getProfileTypeList',
         getProtectionTypesList: 'insurance/insurance-needs-microservice/api/getProtectionTypesList',
         getLongTermCareList: 'insurance/insurance-needs-microservice/api/getCareGiverList',
@@ -18,7 +19,6 @@ export let apiConstants = {
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
-        //getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoMock',
         signUp: 'account/account-microservice/api/signup',
         updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
@@ -42,7 +42,7 @@ export let apiConstants = {
         },
         aboutus: {
             getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/review/getAllReviews',
-            sendContactUs: CONTACT_US_API_BASE_URL + '/api/contactus'
+            sendContactUs: ACCOUNT_API_BASE_URL + '/api/contactus'
         },
         subscription: {
             base: SUBSCRIPTION_API_BASE_URL + '/api/mailinglist/subscribe'
@@ -66,6 +66,7 @@ export let apiConstants = {
             saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
+            verifyAML: ACCOUNT_API_BASE_URL + '/api/verifyAML?handleError=true',
             getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
             buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',

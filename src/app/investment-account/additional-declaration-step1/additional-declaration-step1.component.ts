@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-additional-declaration-step1',
   templateUrl: './additional-declaration-step1.component.html',
-  styleUrls: ['./additional-declaration-step1.component.scss']
+  styleUrls: ['./additional-declaration-step1.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AdditionalDeclarationStep1Component implements OnInit {
   occupationList;
@@ -66,6 +67,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
 
   buildForm() {
     return new FormGroup({
+      radioPEP: new FormControl({value: this.addInfoFormValues.pep, disabled: true}),
       fName: new FormControl(this.addInfoFormValues.fName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       lName: new FormControl(this.addInfoFormValues.lName, [Validators.required, Validators.pattern(RegexConstants.OnlyAlpha)]),
       cName: new FormControl(this.addInfoFormValues.cName, Validators.required),

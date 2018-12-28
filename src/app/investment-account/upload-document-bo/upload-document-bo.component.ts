@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-upload-document-bo',
   templateUrl: './upload-document-bo.component.html',
-  styleUrls: ['./upload-document-bo.component.scss']
+  styleUrls: ['./upload-document-bo.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UploadDocumentBOComponent implements OnInit {
   uploadForm: FormGroup;
@@ -96,7 +97,10 @@ export class UploadDocumentBOComponent implements OnInit {
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
       if (response) {
         this.hideUploadLoader();
-        this.redirectToNextPage();
+        // INTERIM SAVE
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          this.redirectToNextPage();
+        });
       }
     });
   }
@@ -133,7 +137,10 @@ export class UploadDocumentBOComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = errorMessage;
       ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
       ref.componentInstance.primaryAction.subscribe(() => {
-        this.redirectToNextPage();
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.documents_pending);
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
+        });
       });
     } else {
       this.proceed(form);

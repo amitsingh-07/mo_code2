@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
 } from '@angular/forms';
@@ -19,7 +19,8 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 @Component({
   selector: 'app-withdrawal-type',
   templateUrl: './withdrawal-type.component.html',
-  styleUrls: ['./withdrawal-type.component.scss']
+  styleUrls: ['./withdrawal-type.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class WithdrawalTypeComponent implements OnInit {
 

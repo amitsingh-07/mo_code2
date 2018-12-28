@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,19 +13,24 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.con
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
 
 @Component({
   selector: 'app-your-portfolio',
   templateUrl: './your-portfolio.component.html',
-  styleUrls: ['./your-portfolio.component.scss']
+  styleUrls: ['./your-portfolio.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class YourPortfolioComponent implements OnInit {
   pageTitle: string;
   moreList: any;
   PortfolioValues;
   selectedDropDown;
- constructor(
+  portfolio;
+  HoldingValues;
+  assetAllocationValues;
+  constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
@@ -34,7 +39,8 @@ export class YourPortfolioComponent implements OnInit {
     public navbarService: NavbarService,
     private modal: NgbModal,
     private currencyPipe: CurrencyPipe,
-    public topupAndWithDrawService: TopupAndWithDrawService) {
+    public topupAndWithDrawService: TopupAndWithDrawService,
+    public portfolioService: PortfolioService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('YOUR_PORTFOLIO.TITLE');
@@ -43,15 +49,16 @@ export class YourPortfolioComponent implements OnInit {
 
   }
   setPageTitle(title: string) {
-     this.navbarService.setPageTitle(title);
-   }
+    this.navbarService.setPageTitle(title);
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
-    this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+    this.getPortfolioHoldingList();
+    //this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
 
   }
   getMoreList() {
@@ -60,6 +67,14 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
   }
+  getPortfolioHoldingList() {
+    this.topupAndWithDrawService.getPortfolioHoldingList().subscribe((data) => {
+      this.portfolio = data.objectList.data;
+      this.topupAndWithDrawService.setHoldingValues(this.portfolio.portfolio.dpmsDetailsDisplay);
+      this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio.portfolio);
+    });
+  }
+
   constructFundingParams() {
     const FundValues = {
       source: 'FUNDING',
@@ -70,7 +85,7 @@ export class YourPortfolioComponent implements OnInit {
       oneTimeInvestment: 100,
       monthlyInvestment: 100,
       fundingType: '', // todo
-      isAmountExceedBalance: 0,
+      isAmountExceedBalance: true,
       exceededAmount: 100
     };
     this.topupAndWithDrawService.setFundingDetails(FundValues);
@@ -79,8 +94,19 @@ export class YourPortfolioComponent implements OnInit {
     this.constructFundingParams();
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
- gotoTopUp() {
+  gotoTopUp() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
+  showTotalReturnPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE');
+  }
+  goToHoldings() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.HOLDINGS]);
+  }
+  goToAssetAllocation() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ASSET_ALLOCATION]);
   }
   selectOption(option) {
     if (option.id === 1) {

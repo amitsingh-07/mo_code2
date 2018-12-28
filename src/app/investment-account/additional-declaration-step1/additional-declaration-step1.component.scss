@@ -1,6 +1,6 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-
+app-additional-declaration-step1{
 .app-add-step1{
     // .container-fluid {
     //     padding-top: 0px;
@@ -43,13 +43,14 @@ label {
 .btn{
     z-index: 1001;
 }
+
 .fixed-btn--sm {
     color:$white-color; 
-    border: 1px solid $white-color;
-    &.disabled{
-      border: 1px solid rgba(0, 135, 134, 0.4);
-      color: #99dbdb;
-    }
+    // border: 1px solid $white-color;
+    // &.disabled{
+    //   border: 1px solid rgba(0, 135, 134, 0.4);
+    //   color: #99dbdb;
+    // }
 }
 .mr16{
     margin-right: 5px !important;
@@ -286,4 +287,5 @@ label {
       }  
     }    
   }
+}
 }

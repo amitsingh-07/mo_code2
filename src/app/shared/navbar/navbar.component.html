@@ -45,7 +45,7 @@
             <li class="notification-tooltip__container--desc">
               <div class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
                 {{message.message}}
-                <div class="notification-tooltip__container--time">{{message.time}}</div>
+                <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}</div>
               </div>
             </li>
           </ul>
@@ -60,6 +60,7 @@
         <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon"></span>
       </button>
       <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
+        <div class="navbar__title--mobile superTitle">{{pageSuperTitle}}</div>
         <div class="navbar__title--mobile">{{pageTitle}}</div>
         <div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
         <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">

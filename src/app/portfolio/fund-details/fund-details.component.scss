@@ -7,28 +7,20 @@ body{
   padding: 80px 0 15px;
 }
 app-fund-details{
-
- 
-  
 .title{
   font-family: "Muli Semi Bold";
   font-size: 22px;
   font-weight: 600;
-  
-  
   color: #ffffff;
 }
 .content{
   font-family: $muli-regular;
   font-size: 16px;
-  
   line-height: 1.38;
-  
   color: #ffffff;
 }
 
 .btn__footer--fixed {
-  
   margin-top: 22px !important;
   font-family: $muli;
   @include allmobiles {

@@ -7,29 +7,31 @@
     </div>
   </div>
   <div class="modal-body white-bg">
-    <div class="modal-body-title">{{ 'CONFIRM_PORTFOLIO.EDIT_INVESTMENT.TITLE' | translate}}</div>
+    <div class="modal-body-title">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.TITLE' | translate}}</div>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true"></span>
     </button>
     <div class="form-group">
+      <!--
       <div class="flex-row">
         <div class="flex-col-6">
-          <label for="editInvestment-investmentYear-drpdown" id="editInvestment-investmentYear-lbl">{{ 'CONFIRM_PORTFOLIO.EDIT_INVESTMENT.INVESTMENT_PERIOD' | translate}}</label>
+          <label for="editInvestment-investmentYear-drpdown" id="editInvestment-investmentYear-lbl">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.INVESTMENT_PERIOD' | translate}}</label>
         </div>
         <div class="flex-col-6">
           <div class="dropdown-control">
             <div ngbDropdown>
               <button disabled class="btn btn-dropdown" id="editInvestment-investmentYear-drpdown" ngbDropdownToggle> 
                 {{editInvestmentForm.controls.investmentPeriod.value}}
-                {{ 'CONFIRM_PORTFOLIO.YEARS' | translate}}
+                {{ 'PORTFOLIO_RECOMMENDATION.YEARS' | translate}}
               </button>
             </div>
           </div>
         </div>
       </div>
+      -->
       <div class="flex-row">
         <div class="flex-col-6">
-          <label id="editInvestment-oneTimeInv-lbl" for="editInvestment-oneTimeInv-txt">{{ 'CONFIRM_PORTFOLIO.EDIT_INVESTMENT.ONE_TIME_INVESTMENT' | translate}}</label>
+          <label id="editInvestment-oneTimeInv-lbl" for="editInvestment-oneTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.ONE_TIME_INVESTMENT' | translate}}</label>
         </div>
         <div class="flex-col-6">
           <div class="form-control">
@@ -43,7 +45,7 @@
       </div>
       <div class="flex-row">
         <div class="flex-col-6">
-          <label id="editInvestment-monthlyTimeInv-lbl" for="editInvestment-monthlyTimeInv-txt">{{ 'CONFIRM_PORTFOLIO.EDIT_INVESTMENT.MONTHLY_INVESTMENT' | translate}}</label>
+          <label id="editInvestment-monthlyTimeInv-lbl" for="editInvestment-monthlyTimeInv-txt">{{ 'PORTFOLIO_RECOMMENDATION.EDIT_INVESTMENT.MONTHLY_INVESTMENT' | translate}}</label>
         </div>
         <div class="flex-col-6">
           <div class="form-control">

@@ -26,7 +26,6 @@ export class InvestmentAccountFormData {
     state: string;
     zipCode: number;
     isMailingAddressSame: boolean;
-    sameAsMailingAddress: boolean;
     reasonForOthers: string;
     reason: string;
     reasonId: string;
@@ -91,12 +90,9 @@ export class InvestmentAccountFormData {
     beneficial: any;
 
     // financial details
-    annualHouseHoldIncomeRange: string;
-    numberOfHouseHoldMembers: number;
-    financialMonthlyIncome: string;
-    financialPercentageOfSaving: string;
-    financialTotalAssets: string;
-    financialTotalLiabilities: string;
+    annualHouseHoldIncomeRange: any;
+    numberOfHouseHoldMembers: any;
+    salaryRange: any;
 
     source: string;
     expectedNumberOfTransation: number;

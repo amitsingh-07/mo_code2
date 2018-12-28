@@ -173,33 +173,8 @@ export class ApiService {
     const payload = data;
     return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
       .pipe(
-        catchError((error: HttpErrorResponse) => this.handleSubscribeError(error, data))
+        catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
       );
-  }
-
-  handleSubscribeError(error: HttpErrorResponse, data) {
-    error = new HttpErrorResponse({status: 500});
-    if (error.status === 500) {
-      this.subscribeNewsletterSingle(data).subscribe((in_data) => {
-        this.errorMessage.next(in_data);
-      });
-    } else {
-      const templateError = {
-        body: 'default',
-        detail: 'default',
-        status: 500
-      };
-      this.errorMessage.next(templateError);
-      return throwError('');
-    }
-  }
-
-  subscribeNewsletterSingle(data) {
-    const payload = data;
-    return this.http.post(apiConstants.endpoint.subscription.base + '?handleError=true', payload)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.throwSubscribeError(error))
-    );
   }
 
   throwSubscribeError(error: HttpErrorResponse) {
@@ -428,6 +403,21 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getHoldingList() {
+    const url = '../assets/mock-data/holding.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  getPortfolioHoldingList() {
+    const url = '../assets/mock-data/portfolioHoldingList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 
   getInvestmentOverview() {
     //  const url = '../assets/mock-data/investment-overview.json';
@@ -570,6 +560,13 @@ export class ApiService {
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
+  }
+
+  verifyAML() {
+    return this.http.get(apiConstants.endpoint.investmentAccount.verifyAML)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 
   // tslint:disable-next-line

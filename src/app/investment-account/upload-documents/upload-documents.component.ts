@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,8 @@ import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 @Component({
   selector: 'app-upload-documents',
   templateUrl: './upload-documents.component.html',
-  styleUrls: ['./upload-documents.component.scss']
+  styleUrls: ['./upload-documents.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UploadDocumentsComponent implements OnInit {
 
@@ -212,8 +213,7 @@ export class UploadDocumentsComponent implements OnInit {
 
   redirectToNextPage() {
     const boStatus = this.investmentAccountService.getBOStatus();
-    // tslint:disable-next-line:triple-equals
-    if (boStatus == true) {
+    if (boStatus) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
     } else {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);
