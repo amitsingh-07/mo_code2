@@ -24,9 +24,6 @@ export class CallBackComponent implements OnInit {
 
   ngOnInit() {
     if (window.sessionStorage.currentUrl && this.route.queryParams['value'] && this.route.queryParams['value']['code']) {
-      if (this.myInfoService.myInfoValue) {
-        this.myInfoService.isMyInfoEnabled = false;
-      } else {
         this.myInfoService.openFetchPopup();
         this.myInfoService.isMyInfoEnabled = true;
         this.data = this.route.queryParams['value'];
@@ -46,7 +43,6 @@ export class CallBackComponent implements OnInit {
         } else {
           this.router.navigate([window.sessionStorage.getItem('currentUrl').substring(2)]);
         }
-      }
     } else {
       this.router.navigate(['home']);
     }
