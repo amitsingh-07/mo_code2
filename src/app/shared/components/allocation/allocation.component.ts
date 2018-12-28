@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 
 @Component({
   selector: 'app-allocation',
@@ -13,7 +15,9 @@ export class AllocationComponent implements OnInit {
   event1 = true;
   event2 = true;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     console.log(this.assets);
@@ -41,6 +45,9 @@ export class AllocationComponent implements OnInit {
   test(event) {
     event === 'event1' ? this.event1 = !this.event1 : '';
     event === 'event2' ? this.event2 = !this.event2 : '';
+  }
+  goToFundDetails() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_DETAILS]);
   }
 
 }

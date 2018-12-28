@@ -80,7 +80,7 @@ export class AssetAllocationComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.assetAllocation = this.topupAndWithDrawService.getAssetAllocationValues();
-   console.log(this.assetAllocation);
+   
   }
 
   setPageTitle(title: string) {
