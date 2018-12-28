@@ -144,7 +144,7 @@ export class EditProfileComponent implements OnInit {
     this.compinedName = first.toUpperCase() + second.toUpperCase();
   }
   setNric(nric) {
-    this.compinednricNum = 'NRIC Number:' + nric;
+    this.compinednricNum = 'NRIC Number: ' + nric;
   }
   setAddres(address1, address2) {
     this.compinedAddress = address1 + ' ' + address2;
