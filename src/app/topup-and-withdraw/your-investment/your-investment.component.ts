@@ -90,7 +90,7 @@ export class YourInvestmentComponent implements OnInit {
   yourPortfolio(portfolio) {
     //this.PortfolioValues= portfolio;
     this.PortfolioValues = this.topupAndWithDrawService.setPortfolioValues(portfolio);
-    console.log(this.PortfolioValues);
+    this.topupAndWithDrawService.setHoldingValues(this.PortfolioValues.dpmsDetailsDisplay);
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO]);
   }
   selectSource(option) {

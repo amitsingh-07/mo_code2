@@ -29,6 +29,7 @@ export class YourPortfolioComponent implements OnInit {
   selectedDropDown;
   portfolio;
   HoldingValues;
+  holdingsDPMSData;
   assetAllocationValues;
   constructor(
     public readonly translate: TranslateService,
@@ -57,7 +58,7 @@ export class YourPortfolioComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
-    this.getPortfolioHoldingList();
+    this.getPortfolioHoldingList('PORTFOLIO00050');
     //this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
 
   }
@@ -67,11 +68,10 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
   }
-  getPortfolioHoldingList() {
-    this.topupAndWithDrawService.getPortfolioHoldingList().subscribe((data) => {
-      this.portfolio = data.objectList.data;
-      this.topupAndWithDrawService.setHoldingValues(this.portfolio.portfolio.dpmsDetailsDisplay);
-      this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio.portfolio);
+  getPortfolioHoldingList(portfolioId) {
+    this.topupAndWithDrawService.getIndividualPortfolioDetails(portfolioId).subscribe((data) => {
+      this.portfolio = data.objectList;
+      this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
     });
   }
 
