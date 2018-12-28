@@ -25,12 +25,10 @@ export class AllocationComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    console.log(this.assets);
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
       allocation.groupedAllocationDetails = groupedAllocation;
     });
-    console.log(this.assets);
   }
 
   groupByProperty(targetObj) {
