@@ -32,6 +32,7 @@ export class WillWritingService {
   private willWritingFormError: any = new WillWritingFormError();
   fromConfirmationPage;
   isWillCreated;
+  clearExecTrustee = false;
   constructor(
     private http: HttpClient,
     private modal: NgbModal,
@@ -105,9 +106,13 @@ export class WillWritingService {
     // update spouse in executor and trustee
     if (this.getExecTrusteeInfo().length > 0) {
       const spouseExecTrustee = this.getExecTrusteeInfo();
-      spouseExecTrustee[0].name = data.name;
-      spouseExecTrustee[0].uin = data.uin;
-      this.setExecTrusteeInfo(spouseExecTrustee);
+      const index = spouseExecTrustee.findIndex((execTrustee) =>
+        execTrustee.relationship === WILL_WRITING_CONFIG.SPOUSE);
+      if (index > -1) {
+        spouseExecTrustee[index].name = data.name;
+        spouseExecTrustee[index].uin = data.uin;
+        this.setExecTrusteeInfo(spouseExecTrustee);
+      }
     }
   }
 
@@ -124,6 +129,19 @@ export class WillWritingService {
       i++;
     }
     this.setBeneficiaryInfo(childrenBeneficiary);
+  }
+
+  updateExecTrusteeInfo(data) {
+    const childrenList = this.getChildrenInfo();
+    const execTrusteeList = this.getExecTrusteeInfo();
+    childrenList.forEach((child, index) => {
+      const execIndex = execTrusteeList.findIndex((exec) => (exec.uin).toLowerCase() === (child.uin).toLowerCase());
+      if (execIndex > -1) {
+        execTrusteeList[execIndex].name = data[index].name;
+        execTrusteeList[execIndex].uin = data[index].uin;
+      }
+    });
+    this.setExecTrusteeInfo(execTrusteeList);
   }
 
   /**
@@ -257,6 +275,13 @@ export class WillWritingService {
       }
       if (this.getGuardianInfo().length > 0 && !this.checkChildrenAge(data)) {
         this.willWritingFormData.guardian = [];
+      }
+      if (this.getExecTrusteeInfo().filter((execData) => execData.relationship === WILL_WRITING_CONFIG.CHILD).length > 0) {
+        this.updateExecTrusteeInfo(data);
+      }
+      if (this.clearExecTrustee) {
+        this.willWritingFormData.execTrustee = [];
+        this.clearExecTrustee = false;
       }
     }
     this.willWritingFormData.children = [];
@@ -478,6 +503,37 @@ export class WillWritingService {
   }
 
   checkExecTrustee(uin) {
-    return this.getExecTrusteeInfo().filter((data) => data.uin === uin);
+    return this.getExecTrusteeInfo().filter((data) => (data.uin).toLowerCase() === uin.toLowerCase());
+  }
+
+  checkChildAgeExecTrustee(form) {
+    const execTrusteeList = this.getExecTrusteeInfo().filter((data) => data.relationship === WILL_WRITING_CONFIG.CHILD);
+    if (execTrusteeList.length > 0) {
+      const children = this.getChildrenInfo();
+      let i = 0;
+      for (const item of children) {
+        const oldChildrenData = execTrusteeList.filter((data) => (data.uin).toLowerCase() === (item.uin).toLowerCase());
+        if (oldChildrenData.length > 0) {
+          return this.checkChildrenAge([form.value.children[i]]);
+        }
+        i++;
+      }
+    }
+    return false;
+  }
+
+  checkUinExecTrustee(form) {
+    const execTrusteeList = this.getExecTrusteeInfo().filter((data) => data.relationship !== WILL_WRITING_CONFIG.CHILD
+      && data.relationship !== WILL_WRITING_CONFIG.SPOUSE);
+    if (execTrusteeList.length > 0) {
+      const myFamily = [...form.value.children, ...form.value.spouse];
+      for (const item of myFamily) {
+        const oldChildrenData = execTrusteeList.filter((data) => (data.uin).toLowerCase() === (item.uin).toLowerCase());
+        if (oldChildrenData.length > 0) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

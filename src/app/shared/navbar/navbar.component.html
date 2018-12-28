@@ -24,7 +24,7 @@
                       </li>
                 </div>
             <button *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4)" class="navbar-toggler hidden-lg" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon"></span>
+                <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
                 </button>
             <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
                 <div class="navbar__title--mobile">{{pageTitle}}</div>
@@ -40,9 +40,15 @@
                 </div>
                 </ul> 
             </div>
-        
+
+
+        <div class="hidden-lg">
         <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
             <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
+                    <li *ngIf="isLoggedIn" class="nav-item flex space-between" style="flex-direction: row">
+                            <a class="nav-link txt-capitalize">{{userInfo.firstName}}</a>
+                            <a class="nav-link" style="width: auto; padding-right: 15px;" (click)="logout()" href="javascript: void(0);">Logout <i class="fa fa-sign-out" style="padding-left: 10px"></i></a>
+                            </li>
                 <li class="nav-item" [routerLink]="['/']">
                     <a class="nav-link">Home</a>
                     </li>
@@ -90,18 +96,6 @@
                 <li class="nav-item" [routerLink]="['/faq']">
                     <a class="nav-link">FAQs</a>
                     </li>
-                <!--
-                <li class="nav-item dropdown" ngbDropdown #id03="ngbDropdown" (mouseover)="openDropdown(id03);" (mouseleave)="closeDropdown.close(id03);">
-                    <a class="nav-link dropdown-toggle" id="id03" href="#" ngbDropdownToggle >Help</a>
-                    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="id03">
-                        <button class="dropdown-item">Life Insurance Calculator</button>
-                        <button class="dropdown-item">Critical Illness Calculator</button>
-                        <button class="dropdown-item">Savings Calculator</button>
-                        <button class="dropdown-item">Education Saving Calculator</button>
-                        <button class="dropdown-item">Retirement Income Calculator</button>
-                    </div>
-                    </li>
-                -->
                 <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
                     <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
                     <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
@@ -120,35 +114,94 @@
                     </div>
                     </li>
             </ul>
-            <!--
-            <ul class="navbar-nav search-wrapper space-between align-right" [ngClass]="{'open': showSearchBar}">
-                <li class="nav-item" [ngClass]="{'open': showSearchBar}">        
-                    <div class="navbar-search" [ngClass]="{'form-control': showSearchBar}">
-                        <div class="search-trigger" (click)="openSearchBar(true)">
-                            <img class="" src="../../../assets/images/search-icon.svg"/>
-                            <span class="hidden-lg">Search</span>
-                        </div>
-                        <div class="search-input" [ngClass]="{'open': showSearchBar}">
-                            <input type="text" placeholder="Enter your search here"/>
-                            <div class="close-btn" (click)="openSearchBar(false)">
-                                <img src="../../../assets/images/close.svg"/>
-                            </div> 
-                        </div>
-                    </div>            
-                    </li>
-                </ul>
-            -->
-            <!--
-            <ul class="navbar-nav secondary space-between">
-                 <li class="nav-item link-login" routerLink="signup">
-                    <a>
-                        <i class="material-icons hidden-lg">person</i>
-                        <span>Login</span>
-                        </a>
-                    </li>
-                </ul> 
-            -->
             </div>
+        </div>
+
+
+        <div class="hidden-sm-md">
+                <div *ngIf="(navbarMode == 1 || navbarMode == 3 )" [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarDefault" [ngClass]="{'searchOpen': showSearchBar}" #navbar>
+                    <ul class="navbar-nav primary hide" [ngClass]="{'hide': showSearchBar}">
+                        <li class="nav-item" [routerLink]="['/']">
+                            <a class="nav-link">Home</a>
+                            </li>
+                        <li class="nav-item dropdown" ngbDropdown #id01="ngbDropdown" (mouseover)="openDropdown(id01);" (mouseleave)="closeDropdown(id01);">
+                            <!--  (mouseleave)="closeDropdown(id01);"-->
+                            <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
+                            <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
+                                <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">
+                                    <img src="./../../../assets/images/nav/nav-insure-icon.svg"/>
+                                    <div class="navbar--text">
+                                        <span>Insure</span>
+                                        </div>
+                                </button>
+                                <button class="dropdown-item" [routerLink]="['/home']" fragment="will">
+                                    <img src="./../../../assets/images/nav/nav-will-icon.svg"/>
+                                    <div class="navbar--text">
+                                        <span>Wills</span>
+                                        <span *ngIf="!isWillWritingEnabled" class="sub">(Coming Soon)</span>
+                                        </div>
+                                    </button>
+                                <button class="dropdown-item" [routerLink]="['/home']" fragment="invest">
+                                    <img src="./../../../assets/images/nav/nav-invest-icon.svg"/>
+                                    <div class="navbar--text">
+                                        <span>Invest</span>
+                                        <span *ngIf="!isInvestmentEnabled" class="sub">(Coming Soon)</span>
+                                        </div>
+                                </button>
+                                <button class="dropdown-item" [routerLink]="['/home']" fragment="comprehensive">
+                                    <img src="./../../../assets/images/nav/nav-compre-icon.svg"/>
+                                    <div class="navbar--text">
+                                        <span>Comprehensive (integrating national schemes)</span>
+                                        <span *ngIf="!isComprehensiveEnabled" class="sub">(Coming Soon)</span>
+                                        </div>
+                                    </button>
+                                <div class="tip"></div>
+                                </div>
+                            </li>
+                        <li class="nav-item dropdown" ngbDropdown #id02="ngbDropdown" (mouseover)="openDropdown(id02);" (mouseleave)="closeDropdown(id02);">
+                            <a class="nav-link dropdown-toggle" id="id02" ngbDropdownToggle>Learn</a>
+                            <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id02">
+                                <button class="dropdown-item" [routerLink]="['/articles/learn-about-insurance']">Learn About Insurance</button>
+                                <button class="dropdown-item" [routerLink]="['/articles/category/all']">All Articles</button>
+                                </div>
+                            </li>
+                        <li class="nav-item" [routerLink]="['/faq']">
+                            <a class="nav-link">FAQs</a>
+                            </li>
+                        <li class="nav-item dropdown" ngbDropdown #id04="ngbDropdown" (mouseover)="openDropdown(id04);" (mouseleave)="closeDropdown(id04);">
+                            <a class="nav-link dropdown-toggle" id="id04" ngbDropdownToggle>About Us</a>
+                            <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id04">
+                                <button class="dropdown-item" [routerLink]="['/about-us']">
+                                    <div class="navbar--text">About Us</div>
+                                    </button>
+                                <button class="dropdown-item" [routerLink]="['/about-us/customer-reviews']">
+                                    <div class="navbar--text">Customer Reviews</div>
+                                    </button>
+                                <button class="dropdown-item" [routerLink]="['/about-us/why-moneyowl']">
+                                    <div class="navbar--text">Why MoneyOwl</div>
+                                    </button>
+                                <button class="dropdown-item" [routerLink]="['/about-us/contact-us']">
+                                    <div class="navbar--text">Contact Us</div>
+                                    </button> 
+                            </div>
+                            </li>
+                            <li *ngIf="isLoggedIn" class="nav-item dropdown" ngbDropdown #id05="ngbDropdown" (mouseover)="openDropdown(id05);" (mouseleave)="closeDropdown(id05);">
+                                <a class="nav-link dropdown-toggle last" Style="padding-right: 0" id="id05" ngbDropdownToggle><i class="fa fa-user-circle-o" style="font-size: 20px; color: #00a7a7"></i></a>
+                                <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id05">
+                                    <button class="dropdown-item">
+                                        <div class="navbar--text txt-capitalize">{{userInfo.firstName}}</div>
+                                        </button>
+                                    <button class="dropdown-item">
+                                        <div class="navbar--text" (click)="logout()" href="javascript: void(0);">Logout</div>
+                                    </button>
+                                </div>
+                                </li>
+                    </ul>
+                    </div>
+                </div>
+
+
+
         </div>
     </nav>
 <nav class="navbar--sub" [ngClass]="{'headerMode': (navbarMode == 2)}"></nav>

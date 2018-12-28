@@ -147,6 +147,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.subscribeSuccess = false;
     });
     this.authService.clearSession();
+    //this.appService.clearJourneys();
     this.appService.startAppSession();
   }
 

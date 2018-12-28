@@ -8,6 +8,7 @@ export let appConstants = {
     defaultContentTypeHeader: '',
     userLocalStorage: '',
     loginPageUrl: GUIDE_ME_ROUTES.ROOT,
+    homePageUrl: '',
     accessTokenServer: '',
     MY_INFO_CALLBACK_URL: 'myinfo',
     JOURNEY_TYPE_DIRECT: 'DIRECT',

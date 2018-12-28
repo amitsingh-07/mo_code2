@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
-import { catchError, share } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, shareReplay } from 'rxjs/operators';
 
 import { IProductCategory } from '../direct/product-info/product-category/product-category';
 import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
@@ -16,17 +16,29 @@ export interface IConfig {
   productCategory: IProductCategory[];
 }
 
+const CACHE_SIZE = 1;
+
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
+  private cache$: Observable <IConfig> = null;
   private configUrl = 'assets/config.json';
 
   constructor(private http: HttpClient) { }
 
   getConfig() {
+    if (!this.cache$) {
+      this.cache$ = this.readConfig().pipe(
+        shareReplay(CACHE_SIZE)
+      );
+    }
+    return this.cache$;
+  }
+
+  private readConfig() {
     return this.http.get<IConfig>(this.configUrl).pipe(
-      share(),
+      map((response) => response),
       catchError(this.handleError) // then handle the error
     );
   }

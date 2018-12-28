@@ -206,26 +206,15 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   checkExecTrustee(form) {
     let execTrusteeList = [];
-    if (this.execTrusteeList.length > 0) {
-      if (this.selectedIndex === 0) {
-        execTrusteeList.push(form.value.executorTrustee[0]);
-        execTrusteeList.push(this.execTrusteeList[1]);
-      } else {
-        execTrusteeList.push(this.execTrusteeList[0]);
-        execTrusteeList.push(form.value.executorTrustee[0]);
-      }
-    } else {
-      execTrusteeList = form.value.executorTrustee;
-    }
+    execTrusteeList = this.execTrusteeList.length > 0 ? this.execTrusteeList : form.value.executorTrustee;
     const errors: any = {};
     errors.errorMessages = [];
-    if (execTrusteeList[0].uin === execTrusteeList[1].uin) {
+    if ((execTrusteeList[0].uin).toLowerCase() === (execTrusteeList[1].uin).toLowerCase()) {
       errors.errorMessages.push({ formName: '', errors: [this.errorMsg.DUPLICATE_IDENTIFIER] });
     } else if (execTrusteeList[0].relationship === WILL_WRITING_CONFIG.SPOUSE &&
       execTrusteeList[1].relationship === WILL_WRITING_CONFIG.SPOUSE) {
       errors.errorMessages.push({ formName: '', errors: [this.errorMsg.MULTIPLE_SPOUSE] });
     } else {
-      let isSpouseValidated = false;
       execTrusteeList.forEach((item, index) => {
         const errorMsg = { formName: '', errors: [] };
         const formName = index === 0 ? 'Main Executor & Trustee' : 'Alternative Executor & Trustee';
@@ -236,12 +225,10 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
             const maritalStatus = this.willWritingService.getAboutMeInfo().maritalStatus;
             const errorMessage = this.replaceStringValues('NO_SPOUSE', ['<Marital Status>'], [maritalStatus]);
             errorMsg.errors.push(errorMessage);
-            isSpouseValidated = true;
           } else if (spouseWithUin.length === 0) {
             errorMsg.formName = formName;
             const errorMessage = this.replaceStringValues('RELATION_MISMATCH', ['<Full Name>', '<ID>'], [item.name, item.uin]);
             errorMsg.errors.push(errorMessage);
-            isSpouseValidated = true;
           } else {
             const spouse = this.checkNameUIN('name', item.name, 'spouse');
             if (spouse.length === 0) {
@@ -250,10 +237,9 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
                 ['<Full Name>', '<ID>', '<Full Name Family section>', '<ID Family section>'],
                 [item.name, item.uin, spouseWithUin[0].name, spouseWithUin[0].uin]);
               errorMsg.errors.push(errorMessage);
-              isSpouseValidated = true;
             }
           }
-        } else if (item.relationship === WILL_WRITING_CONFIG.CHILD && !isSpouseValidated) {
+        } else if (item.relationship === WILL_WRITING_CONFIG.CHILD) {
           const childWithUin = this.checkNameUIN('uin', item.uin);
           if (!this.hasChild) {
             errorMsg.formName = formName;
@@ -284,7 +270,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       });
     }
     if (errors.errorMessages.length > 0) {
-      this.willWritingService.openErrorModal('', errors.errorMessages, true);
+      this.willWritingService.openErrorModal('Oops! Please take note of the following:', errors.errorMessages, true);
       return false;
     }
     return true;
@@ -300,9 +286,9 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
 
   checkNameUIN(name, value, type = 'child') {
     if (type === 'spouse') {
-      return this.willWritingService.getSpouseInfo().filter((spouse) => spouse[name] === value);
+      return this.willWritingService.getSpouseInfo().filter((spouse) => spouse[name].toLowerCase() === value.toLowerCase());
     }
-    return this.willWritingService.getChildrenInfo().filter((child) => child[name] === value);
+    return this.willWritingService.getChildrenInfo().filter((child) => (child[name]).toLowerCase() === value.toLowerCase());
   }
 
   updateExecTrustee(form) {

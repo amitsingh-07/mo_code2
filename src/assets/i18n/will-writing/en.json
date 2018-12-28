@@ -261,8 +261,9 @@
     },
     "CONFIRMATION": {
       "TITLE": "Confirmation",
-      "SUB_TITLE": "Please check that all details provided are accurate as they will be reflected in your will.",
-      "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account."
+      "SUB_TITLE": "Please check that all details <i>(especially Full Name and Identification Number)</i> provided are accurate as they will be reflected in your will.",
+      "DUPLICATE_ERROR": "Oops! A will has already been drafted for this identification number. If you wish to edit or download your will, please log in to your account.",
+      "REMINDER": "<strong>Reminder</strong>: Please check that all details <i>(especially Full Name and Identification Number)</i> provided are accurate as they will be reflected in your will."
     },
     "SIGN_UP": {
       "DESCRIPTION": "To view your will, please login to your account.",
@@ -273,9 +274,9 @@
       "HERE_YOUR_WILL": "Here’s Your Will!",
       "TITLE": "Execute Your Will",
       "SUB_TITLE": "Yay, your will is ready to be viewed! Please follow the steps below to execute your will.",
-      "PRINT_YOUR_WILL": "Print Your Will",
+      "PRINT_YOUR_WILL": "Print and Review Your Will",
       "FIND_2_WITNESSES": "Find 2 Witnesses",
-      "SIGN_YOUR_WILL": "Sign Your Will",
+      "SIGN_YOUR_WILL": "Sign and Date Your Will",
       "KEEP_IT_SAFE": "Keep It In A Safe Place",
       "DOWNLOAD_WILL": "Download Will",
       "EDIT_YOUR_WILL": "Edit your will"

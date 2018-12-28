@@ -3,16 +3,15 @@ import { Route, RouterModule, Routes, UrlSegment, UrlSegmentGroup } from '@angul
 
 import { CallBackComponent } from './call-back/call-back.component';
 import { PendingChangesGuard } from './changes.guard';
-import { HomeComponent } from './home/home.component';
-
 import { FAQComponent } from './faq/faq.component';
+import { HomeComponent } from './home/home.component';
 import { DisclosuresComponent } from './shared/components/disclosures/disclosures.component';
 import { FairDealingComponent } from './shared/components/fair-dealing/fair-dealing.component';
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
 import { TermsOfUseComponent } from './shared/components/terms-of-use/terms-of-use.component';
-
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
+import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
 import { WillWritingEnableGuard } from './will-writing/will-writing-enable-guard';
 
 const routes: Routes = [
@@ -24,7 +23,7 @@ const routes: Routes = [
       { path: '9462test-myinfo', component: TestMyInfoComponent },
       { path: 'direct', loadChildren: './direct/direct.module#DirectModule' },
       { path: 'guideme', loadChildren: './guide-me/guide-me.module#GuideMeModule' },
-    { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
+      { path: 'account', loadChildren: './sign-up/sign-up.module#SignUpModule' },
       { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsModule' },
       { path: 'myinfo', component: CallBackComponent },
       { path: 'faq', component: FAQComponent },
@@ -38,10 +37,8 @@ const routes: Routes = [
       {
         path: 'will-writing',
         loadChildren: './will-writing/will-writing.module#WillWritingModule',
-        /*
         canActivate: [WillWritingEnableGuard],
-        canActivateChild: [WillWritingEnableGuard]
-        */
+        canActivateChild: [WillWritingChildEnableGuard]
       },
       { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule' },
 
