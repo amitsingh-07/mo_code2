@@ -49,7 +49,7 @@ export class AllocationComponent implements OnInit {
 
   viewFundDetails() {
     this.portfolioService.setFund(this.funds);
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_DETAILS]);
   }
 
   // accordian
