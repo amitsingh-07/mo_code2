@@ -58,6 +58,10 @@ export class TopupAndWithDrawService {
   getMoreList() {
     return this.apiService.getMoreList();
   }
+  getPortfolioHoldingList() {
+    return this.apiService.getPortfolioHoldingList();
+  }
+
 
   doFinancialValidations(form) {
     const invalid = [];
@@ -160,6 +164,20 @@ export class TopupAndWithDrawService {
     } else {
       return 0;
     }
+  }
+  setHoldingValues(holdingList) {
+    this.topUpAndWithdrawFormData.holdingList = holdingList;
+    this.commit();
+  }
+  getHoldingValues() {
+    return this.topUpAndWithdrawFormData.holdingList;
+  }
+  setAssetAllocationValues(assetAllocationValues) {
+    this.topUpAndWithdrawFormData.assetAllocationValues = assetAllocationValues;
+    this.commit();
+  }
+  getAssetAllocationValues() {
+    return this.topUpAndWithdrawFormData.assetAllocationValues;
   }
   // tslint:disable-next-line
   getFormErrorList(form) {

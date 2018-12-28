@@ -26,6 +26,9 @@ export class YourPortfolioComponent implements OnInit {
   moreList: any;
   PortfolioValues;
   selectedDropDown;
+  portfolioholdings;
+  HoldingValues;
+  assetAllocationValues;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -52,6 +55,7 @@ export class YourPortfolioComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
+    this.getPortfolioHoldingList();
     this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
 
   }
@@ -61,6 +65,16 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
   }
+  getPortfolioHoldingList() {
+    this.topupAndWithDrawService.getPortfolioHoldingList().subscribe((data) => {
+      this.portfolioholdings = data.objectList.data;
+      console.log(this.portfolioholdings);
+      this.HoldingValues = this.topupAndWithDrawService.setHoldingValues(this.portfolioholdings.portfolio.dpmsDetailsDisplay);
+      this.assetAllocationValues = this.topupAndWithDrawService.setAssetAllocationValues(this.portfolioholdings.portfolio);
+      console.log(this.portfolioholdings.portfolio);
+     });
+  }
+
   constructFundingParams() {
     const FundValues = {
       source: 'FUNDING',
@@ -90,6 +104,9 @@ export class YourPortfolioComponent implements OnInit {
   }
   goToHoldings() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.HOLDINGS]);
+  }
+  goToAssetAllocation() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ASSET_ALLOCATION]);
   }
   selectOption(option) {
     if (option.id === 1) {

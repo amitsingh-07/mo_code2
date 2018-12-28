@@ -2,6 +2,7 @@ import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../../topup-and-withdraw/topup-and-withdraw-routes.constants';
 
 import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
 
@@ -20,6 +21,7 @@ export class AllocationComponent implements OnInit {
   event2 = true;
 
   constructor(
+   
     private portfolioService: PortfolioService,
     private router: Router) { }
 
@@ -55,5 +57,4 @@ export class AllocationComponent implements OnInit {
     event === 'event1' ? this.event1 = !this.event1 : '';
     event === 'event2' ? this.event2 = !this.event2 : '';
   }
-
-}
+  }
