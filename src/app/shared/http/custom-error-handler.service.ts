@@ -17,7 +17,7 @@ const errorCodes = new Set([5007, 5009]);
 })
 export class CustomErrorHandlerService {
   constructor(
-    private auth: AuthenticationService, private helper: HelperService,
+    private helper: HelperService,
     private router: Router) { }
 
   public handleCustomError(data: IServerResponse, showError?: boolean) {
@@ -44,7 +44,6 @@ export class CustomErrorHandlerService {
       message: 'Your session has expired.'
     };
     this.helper.showCustomErrorModal(customError);
-    this.auth.clearSession();
     // navigate back to the login page
     this.router.navigate([appConstants.loginPageUrl]);
   }

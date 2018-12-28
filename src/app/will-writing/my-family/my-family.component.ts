@@ -123,7 +123,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     if (this.hasSpouse) {
       return this.formBuilder.group({
         name: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].name : '',
-        [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+        [Validators.required, Validators.minLength(2), Validators.maxLength(100),
+        Validators.pattern(RegexConstants.NameWithSymbol)]],
         uin: [this.spouseFormValues.length > 0 ? this.spouseFormValues[0].uin : '',
         [Validators.required, Validators.pattern(RegexConstants.UIN)]],
       });
@@ -136,7 +137,8 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
       this.formName.push('My Child ' + (index + 1));
       return this.formBuilder.group({
         name: [this.childrenFormValues.length > index ?
-          this.childrenFormValues[index].name : '', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+          this.childrenFormValues[index].name : '', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
+          Validators.pattern(RegexConstants.NameWithSymbol)]],
         uin: [this.childrenFormValues.length > index ?
           this.childrenFormValues[index].uin : '', [Validators.required, Validators.pattern(RegexConstants.UIN)]],
         dob: [this.childrenFormValues.length > index ? this.childrenFormValues[index].dob : '', [Validators.required]]
@@ -181,7 +183,7 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  openConfirmationModal(url: string, hasImpact: boolean, form: any) {
+  openConfirmationModal(url: string, hasImpact: boolean, form: any, clearExecTrustee: boolean) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.unSaved = true;
     ref.componentInstance.hasImpact = this.confirmModal['hasNoImpact'];
@@ -190,6 +192,11 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
     }
     ref.result.then((data) => {
       if (data === 'yes') {
+        if (clearExecTrustee) {
+          this.willWritingService.setFromConfirmPage(false);
+          this.willWritingService.clearExecTrustee = true;
+          url = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN) ? url : WILL_WRITING_ROUTE_PATHS.DISTRIBUTE_YOUR_ESTATE;
+        }
         this.save(form);
         this.router.navigate([url]);
       }
@@ -214,8 +221,11 @@ export class MyFamilyComponent implements OnInit, OnDestroy {
         }
       } else {
         if (this.myFamilyForm.dirty) {
-          const hasImpact = (url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN && this.willWritingService.isUserLoggedIn()) ? true : false;
-          this.openConfirmationModal(url, hasImpact, form);
+          const clearExecTrustee = this.willWritingService.checkChildAgeExecTrustee(form) ||
+            this.willWritingService.checkUinExecTrustee(form);
+          const hasImpact = ((url === WILL_WRITING_ROUTE_PATHS.MY_CHILD_GUARDIAN || clearExecTrustee) &&
+            this.willWritingService.isUserLoggedIn()) ? true : false;
+          this.openConfirmationModal(url, hasImpact, form, clearExecTrustee);
         } else {
           this.router.navigate([url]);
         }

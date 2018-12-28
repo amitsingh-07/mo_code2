@@ -20,6 +20,7 @@ export class ComparePlansComponent implements OnInit {
   cashValueTooltipData;
   underwritingTooltipData;
   frequencyFilter: string;
+  protectionType: string;
   constructor(
     public headerService: HeaderService, public directService: DirectService,
     public readonly translate: TranslateService, private _location: Location,
@@ -32,6 +33,7 @@ export class ComparePlansComponent implements OnInit {
       this.setPageTitle(this.pageTitle);
     });
     this.frequencyFilter = this.directService.getPremiumFrequencyFilter();
+    this.protectionType = this.directService.getProtectionType();
   }
 
   ngOnInit() {
@@ -66,5 +68,6 @@ export class ComparePlansComponent implements OnInit {
     ref.componentInstance.plan = plan;
     ref.componentInstance.isViewMode = true;
     ref.componentInstance.bestValue = plan.bestValue;
+    ref.componentInstance.protectionType = this.protectionType;
   }
 }

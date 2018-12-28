@@ -447,3 +447,7 @@ input[type=number] {
 input::-ms-clear {
   display: none !important;
 }
+
+.txt-capitalize {
+  text-transform: capitalize !important;
+}

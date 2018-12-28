@@ -119,7 +119,8 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
 
   buildBeneficiaryForm() {
     this.addBeneficiaryForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern(RegexConstants.NameWithSymbol)]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100),
+      Validators.pattern(RegexConstants.NameWithSymbol)]],
       relationship: ['', [Validators.required]],
       uin: ['', [Validators.required, Validators.pattern(RegexConstants.UIN)]]
     });
@@ -170,6 +171,7 @@ export class MyBeneficiariesComponent implements OnInit, OnDestroy {
   validateForm(index: number) {
     this.beneficiaryList[index].selected = !this.beneficiaryList[index].selected;
     this.isFormAltered = true;
+    this.addBeneficiaryForm.markAsDirty();
     if (this.beneficiaryList[index].selected === false) {
       this.beneficiaryList[index].distPercentage = 0;
     }

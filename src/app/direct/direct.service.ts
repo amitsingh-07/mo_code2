@@ -323,6 +323,18 @@ export class DirectService {
     this.commit();
   }
 
+  setProtectionType(type) {
+    this.directFormData.protectionType = type;
+    this.commit();
+  }
+
+  getProtectionType() {
+    if (!this.directFormData.protectionType) {
+      this.directFormData.protectionType = '';
+    }
+    return this.directFormData.protectionType;
+  }
+
   getSelectedPlans() {
     if (!this.directFormData.selectedPlans) {
       this.directFormData.selectedPlans = [];

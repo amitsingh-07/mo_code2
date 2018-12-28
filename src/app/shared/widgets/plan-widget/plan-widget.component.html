@@ -9,7 +9,7 @@
       <div class="col-md-8 col-md-push-3">
         <h4>{{productName}}</h4>
         <div class="grey subtitle--rider-name" *ngIf="data.rider && data.rider.riderName">with {{data.rider.riderName}}</div>
-        <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1">
+        <div class="mt10" [hidden]="type === 'retirement income plan' || type.indexOf('education fund') > -1 || type.indexOf('srs') > -1">
           <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
             <br class="hidden-lg" />
             <span [hidden]="data.premium.premiumFrequency == 'single'" class="text-small">{{ 'SUFFIX.PER_MONTH' |
@@ -27,7 +27,7 @@
       <div class="col-md-4 col-md-pull-9 hidden-sm-md insurer-logo">
         <img [src]="insurerLogo" [alt]="data.insurer.insurerName" />
       </div>
-      <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0">
+      <div class="row with-sub-sections col-md-12" [hidden]="type !== 'retirement income plan' && type.indexOf('education fund') < 0 && type.indexOf('srs') < 0">
         <h2>
           <div class="plan-value-main">{{data.premium.intrestRateOfReturn}}%
             <span class="text-small">{{ 'COMMON.LBL_PERCENTAGE_PER_ANNUM' | translate}}</span>
@@ -44,6 +44,19 @@
                 }}</span>
               <br />
               <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+            </h2>
+            <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
+              <br class="hidden-lg" />
+              <span>{{ 'SUFFIX.PER_YEAR' | translate }}</span>
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_PREMIUM' | translate}}</span>
+            </h2>
+          </div>
+          <div [hidden]="type.indexOf('srs') < 0" class="plan-value-sub hidden-sm-md">
+            <h2 [hidden]="frequencyType && frequencyType !== 'monthly'">{{premiumAmount | currency}}
+              <br class="hidden-lg" />
+              <br />
+              <span class="text-small">{{ 'COMMON.LBL_SINGLE_PREMIUM' | translate}}</span>
             </h2>
             <h2 [hidden]="!frequencyType || frequencyType !== 'yearly'">{{premiumAmountYearly | currency}}
               <br class="hidden-lg" />
