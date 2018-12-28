@@ -403,6 +403,21 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  getHoldingList() {
+    const url = '../assets/mock-data/holding.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  getPortfolioHoldingList() {
+    const url = '../assets/mock-data/portfolioHoldingList.json';
+    return this.http.getMock(url)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 
   getInvestmentOverview() {
     //  const url = '../assets/mock-data/investment-overview.json';
@@ -545,6 +560,13 @@ export class ApiService {
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
+  }
+
+  verifyAML() {
+    return this.http.get(apiConstants.endpoint.investmentAccount.verifyAML)
+    .pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error))
+    );
   }
 
   // tslint:disable-next-line

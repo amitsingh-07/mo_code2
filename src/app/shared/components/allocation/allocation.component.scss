@@ -1,0 +1,117 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.bond_container{
+    border-radius: 6px;
+    box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.14);
+    background-color: #f4fafb;
+    .bonds_equity_block{
+      padding: 15px;
+      .bond_progress_container{
+        font-family: $muli-semi-bold;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.44;
+        letter-spacing: -0.3px;
+        color: #00a7a7;
+        padding: 0px 0 12px;
+        .equity_bar{
+          justify-content: space-between;
+            align-items: center;
+
+            .flex-col-8{
+              max-width: 195px;
+            }
+        }
+        .bar-container{
+          background-color:#c7e9e9;
+        }
+        
+        .bar{
+          height: 12px;
+        }
+      }
+      .bonds_equity{
+        margin-top: 10px;
+        .bonds_equity_title{
+          border-radius: 6px;
+          // border-top-left-radius: 6px;
+          // border-top-right-radius: 6px;
+          background-color: #009999;
+          border: 1px solid #00a7a7;
+          color: #ffffff;
+          padding: 14px 20px 13px;
+          font-family: $muli-bold;
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .card{
+          border: none;
+          border-bottom-right-radius:6px;
+          border-bottom-left-radius:6px; 
+          .card-header {
+            display: none;
+            .btn{
+              color: #ffffff;
+            }
+          }
+          .card-body{
+            padding: 0;
+            margin-bottom: 32px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            border: 1px solid #50c2c2;
+            div{
+              &:last-child{
+                border-bottom: none;
+              }
+            }
+          }
+        }
+        .bond_desc{
+          color: #000000;
+          border-bottom: 1px solid #00a7a7;
+          &:first-child{
+            .rating_type{
+              /*
+              border-right: none;
+              */
+            }
+          }
+          .rating_type{
+            padding: 16px 17px 13px;
+            border-right: 1px solid #00a7a7;
+            display: flex;
+            align-items: center;
+          }
+          .rating{
+            font-family: $muli-regular;
+            font-size: 14px;
+            line-height: 1.64;
+            letter-spacing: -0.1px;
+            padding: 10px 9px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .flex-row{
+              justify-content: space-between;
+            }
+            .rating_value{
+              font-weight: bold;
+              color: #00a7a7;
+              font-family: $muli-bold;
+            } 
+          }
+        }
+      }
+    }
+    .btn-view{
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      color: #ff9c39;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background-color: #f4fafb;
+    }
+  }

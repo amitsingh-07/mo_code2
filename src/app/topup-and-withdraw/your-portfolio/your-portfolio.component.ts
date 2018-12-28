@@ -26,7 +26,10 @@ export class YourPortfolioComponent implements OnInit {
   moreList: any;
   PortfolioValues;
   selectedDropDown;
- constructor(
+  portfolioholdings;
+  HoldingValues;
+  assetAllocationValues;
+  constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
@@ -44,14 +47,15 @@ export class YourPortfolioComponent implements OnInit {
 
   }
   setPageTitle(title: string) {
-     this.navbarService.setPageTitle(title);
-   }
+    this.navbarService.setPageTitle(title);
+  }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
+    this.getPortfolioHoldingList();
     this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
 
   }
@@ -61,6 +65,16 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
   }
+  getPortfolioHoldingList() {
+    this.topupAndWithDrawService.getPortfolioHoldingList().subscribe((data) => {
+      this.portfolioholdings = data.objectList.data;
+      console.log(this.portfolioholdings);
+      this.HoldingValues = this.topupAndWithDrawService.setHoldingValues(this.portfolioholdings.portfolio.dpmsDetailsDisplay);
+      this.assetAllocationValues = this.topupAndWithDrawService.setAssetAllocationValues(this.portfolioholdings.portfolio);
+      console.log(this.portfolioholdings.portfolio);
+     });
+  }
+
   constructFundingParams() {
     const FundValues = {
       source: 'FUNDING',
@@ -71,7 +85,7 @@ export class YourPortfolioComponent implements OnInit {
       oneTimeInvestment: 100,
       monthlyInvestment: 100,
       fundingType: '', // todo
-      isAmountExceedBalance: 0,
+      isAmountExceedBalance: true,
       exceededAmount: 100
     };
     this.topupAndWithDrawService.setFundingDetails(FundValues);
@@ -80,8 +94,19 @@ export class YourPortfolioComponent implements OnInit {
     this.constructFundingParams();
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
- gotoTopUp() {
+  gotoTopUp() {
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP]);
+  }
+  showTotalReturnPopUp() {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.TITLE');
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_PORTFOLIO.MODAL.TOTAL_RETURNS.MESSAGE');
+  }
+  goToHoldings() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.HOLDINGS]);
+  }
+  goToAssetAllocation() {
+    this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.ASSET_ALLOCATION]);
   }
   selectOption(option) {
     if (option.id === 1) {
