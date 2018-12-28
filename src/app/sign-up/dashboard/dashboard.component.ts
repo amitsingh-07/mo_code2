@@ -89,8 +89,14 @@ export class DashboardComponent implements OnInit {
         && this.userProfileInfo.investementDetails.beneficialOwner ? this.userProfileInfo.investementDetails.beneficialOwner : false;
       const pep = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.isPoliticallyExposed ?
         this.userProfileInfo.investementDetails.isPoliticallyExposed : false;
-      this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep);
-      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+      const myInfoVerified = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.myInfoVerified ?
+      this.userProfileInfo.investementDetails.myInfoVerified : false;
+      this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
+      if (myInfoVerified && beneficialOwner) {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
+      } else {
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS]);
+      }
     });
   }
 

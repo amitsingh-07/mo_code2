@@ -553,10 +553,13 @@ export class InvestmentAccountService {
                 this.disableAttributes.push('postalCode');
             }
         }
-        // Email address
-        if (data.mailadd) {
-            this.setMyInfoEmailAddress(data);
-        }
+        // Set true for MyInfo flow
+        this.investmentAccountFormData.isMailingAddressSame = true;
+        this.disableAttributes.push('isMailingAddressSame');
+        // Email address details - Deferred now
+        // if (data.mailadd) {
+        //     this.setMyInfoEmailAddress(data);
+        // }
     }
 
     // MyInfo - Email Address
@@ -1152,11 +1155,12 @@ export class InvestmentAccountService {
         return parseInt(sessionStorage.getItem(ACCOUNT_SUCCESS_COUNTER_KEY), 10);
     }
 
-    setDataForDocUpload(nationality, beneficialOwner, pep) {
+    setDataForDocUpload(nationality, beneficialOwner, pep, myInfoVerified) {
         this.investmentAccountFormData.nationality = nationality;
         this.investmentAccountFormData.nationalityCode = nationality.nationalityCode;
         this.investmentAccountFormData.beneficial = beneficialOwner;
         this.investmentAccountFormData.pep = pep;
+        this.investmentAccountFormData.isMyInfoEnabled = myInfoVerified;
         this.commit();
     }
 
