@@ -73,14 +73,19 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     this.userInfo = this.signUpService.getUserProfileInfo();
     if (this.userInfo && this.userInfo.firstName) {
-      this.isLoggedIn = true;
+      //this.isLoggedIn = true;
     }
 
     this.signUpService.userObservable$.subscribe((data) => {
       if (data) {
-        this.userInfo = data;
-        if (this.userInfo && this.userInfo.firstName) {
-          this.isLoggedIn = true;
+        if (data === 'LOGGED_OUT') {
+          this.isLoggedIn = false;
+          this.clearLoginDetails();
+        } else {
+          this.userInfo = data;
+          if (this.userInfo && this.userInfo.firstName) {
+            //this.isLoggedIn = true;
+          }
         }
       }
     });
@@ -163,11 +168,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.authService.logout().subscribe((data) => {
-      this.signUpService.setUserProfileInfo(null);
-      this.isLoggedIn = false;
-      this.appService.clearData();
-      this.appService.startAppSession();
-      this.router.navigate([appConstants.homePageUrl]);
+      this.clearLoginDetails();
     });
+  }
+
+  clearLoginDetails() {
+    this.signUpService.setUserProfileInfo(null);
+    this.isLoggedIn = false;
+    this.appService.clearData();
+    this.appService.startAppSession();
+    this.router.navigate([appConstants.homePageUrl]);
   }
 }

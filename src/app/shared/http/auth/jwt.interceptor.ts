@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 
 import { environment } from '../../../../environments/environment.dev';
 import { appConstants } from '../../../app.constants';
+import { SignUpService } from '../../../sign-up/sign-up.service';
 import { apiConstants } from '../api.constants';
 import { CustomErrorHandlerService } from '../custom-error-handler.service';
 import { RequestCache } from '../http-cache.service';
@@ -25,7 +26,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     constructor(
         public auth: AuthenticationService, public cache: RequestCache,
-        public errorHandler: CustomErrorHandlerService, public router: Router) {
+        public errorHandler: CustomErrorHandlerService, public router: Router, private signUpService: SignUpService) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -82,6 +83,7 @@ export class JwtInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401 || err.status === 403) {
                     this.auth.clearSession();
+                    this.signUpService.logoutUser();
                     this.errorHandler.handleAuthError(err);
                 } else
                 if (err.message.match('I/O error on PUT request')) {

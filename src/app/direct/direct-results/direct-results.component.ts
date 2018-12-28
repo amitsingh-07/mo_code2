@@ -442,6 +442,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   compare() {
+    this.directService.setProtectionType(this.state.searchResult[0]['protectionType']);
     this.directService.setSelectedPlans(this.state.selectedComparePlans);
     this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
   }
