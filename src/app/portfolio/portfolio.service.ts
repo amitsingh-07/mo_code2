@@ -79,7 +79,7 @@ export class PortfolioService {
   // tslint:disable-next-line:cognitive-complexity
   doFinancialValidations(form) {
     const invalid = [];
-    if (form.value.firstChkBox && form.value.secondChkBox ) {
+    if (form.value.firstChkBox && form.value.secondChkBox) {
       // tslint:disable-next-line:max-line-length
       if (Number(this.removeCommas(form.value.initialInvestment)) < PORTFOLIO_CONFIG.my_financials.min_initial_amount && Number(this.removeCommas(form.value.monthlyInvestment)) < PORTFOLIO_CONFIG.my_financials.min_monthly_amount) {
         invalid.push(this.personalFormError.formFieldErrors['financialValidations']['one']);
@@ -92,13 +92,13 @@ export class PortfolioService {
         return this.personalFormError.formFieldErrors['financialValidations']['three'];
       }
     } else if (form.value.firstChkBox) {
-      if ( Number(this.removeCommas(form.value.initialInvestment)) < PORTFOLIO_CONFIG.my_financials.min_initial_amount ) {
+      if (Number(this.removeCommas(form.value.initialInvestment)) < PORTFOLIO_CONFIG.my_financials.min_initial_amount) {
         invalid.push(this.personalFormError.formFieldErrors['financialValidations']['three']);
         return this.personalFormError.formFieldErrors['financialValidations']['three'];
       }
 
     } else if (form.value.secondChkBox) {
-      if (Number(this.removeCommas(form.value.monthlyInvestment)) < PORTFOLIO_CONFIG.my_financials.min_monthly_amount ) {
+      if (Number(this.removeCommas(form.value.monthlyInvestment)) < PORTFOLIO_CONFIG.my_financials.min_monthly_amount) {
         invalid.push(this.personalFormError.formFieldErrors['financialValidations']['two']);
         return this.personalFormError.formFieldErrors['financialValidations']['two'];
       }
@@ -131,13 +131,14 @@ export class PortfolioService {
     }
   }
   // tslint:disable-next-line:cognitive-complexity
-    removeCommas(str) {
-  if(str.lenght>3)
-  {
-    while (str.search(',') >= 0) {
-      str = (str + '').replace(',', '');
+  removeCommas(str) {
+    if (str) {
+      if (str.length > 3) {
+        while (str.search(',') >= 0) {
+          str = (str + '').replace(',', '');
+        }
+      }
     }
-  }
     return str;
   }
 
