@@ -32,8 +32,9 @@
                 <div class="title">{{ 'UPLOAD_DOCUMENTS.FRONT_NRIC' | translate}}</div>
                 <div class="sub-text" *ngIf="!uploadForm.controls.nricFrontImage.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.nricFrontImage.value" [innerHtml]="getFileName(nricFront)"></div>
-                <input type="file" #nricFront formControlName="nricFrontImage" (change)="fileSelected(uploadForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb)"
+                <input type="file" #nricFront (change)="fileSelected(uploadForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb)"
                   name="nricFront" accept="image/*" class="is-hidden">
+                  <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="nricFrontHidden" formControlName="nricFrontImage"/>
               </div>
             </div>
 
@@ -49,8 +50,9 @@
                 <div class="title">{{ 'UPLOAD_DOCUMENTS.BACK_NRIC' | translate}}</div>
                 <div class="sub-text" *ngIf="!uploadForm.controls.nricBackImage.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.nricBackImage.value" [innerHtml]="getFileName(nricBack)"></div>
-                <input type="file" #nricBack formControlName="nricBackImage" (change)="fileSelected(uploadForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb )" name="nricBack"
+                <input type="file" #nricBack (change)="fileSelected(uploadForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb )" name="nricBack"
                   accept="image/*" class="is-hidden">
+                  <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="nricBackHidden" formControlName="nricBackImage"/>
               </div>
             </div>
 
@@ -66,8 +68,9 @@
                 <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}}</div>
                 <div class="sub-text" *ngIf="!uploadForm.controls.passportImage.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value" [innerHtml]="getFileName(passport)"></div>
-                <input type="file" #passport formControlName="passportImage" (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT', $event, passportThumb)"
+                <input type="file" #passport (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT', $event, passportThumb)"
                   name="passport" accept="image/*" class="is-hidden">
+                  <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="passportHidden" formControlName="passportImage"/>
               </div>
             </div>
           </div>
@@ -95,8 +98,9 @@
                 <img src="../assets/images/close-button.svg" alt="" />
               </div>
             </div>
-            <input type="file" accept=".pdf" #resAddressProof formControlName="resAddressProof" (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
+            <input type="file" accept=".pdf" #resAddressProof (change)="fileSelected(uploadForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
               name="proofOfResAddress" class="is-hidden">
+              <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="resAddressProofHidden" formControlName="resAddressProof"/>
           </div>
         </div>
        
@@ -123,8 +127,9 @@
                 <img src="../assets/images/close-button.svg" alt="" />
               </div>
             </div>
-            <input type="file" accept=".pdf" #mailAdressProof formControlName="mailAdressProof" (change)="fileSelected(uploadForm.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
+            <input type="file" accept=".pdf" #mailAdressProof (change)="fileSelected(uploadForm.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
               name="proofOfMailAddress" class="is-hidden">
+              <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="mailAdressProofHidden" formControlName="mailAdressProof"/>
           </div>
         </div>
 

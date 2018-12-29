@@ -84,6 +84,9 @@ export class UploadDocumentBOComponent implements OnInit {
         ref.componentInstance.errorTitle = errorTitle;
         ref.componentInstance.errorDescription = errorDesc;
         control.setValue('');
+    } else {
+      const selFile = fileElem.target.files[0];
+      control.setValue(selFile ? selFile.name : '');
     }
   }
 
