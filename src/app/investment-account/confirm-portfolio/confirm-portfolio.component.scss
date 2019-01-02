@@ -22,7 +22,6 @@ app-confirm-portfolio {
           padding: 0 15px;
           .portfolio-allocation-details__content__block{
             font-size: 14px;
-            font-weight: bold;
             line-height: 1.5;
             letter-spacing: -0.1px;
             text-align: center;
@@ -44,6 +43,7 @@ app-confirm-portfolio {
         font-size: 18px;
         font-weight: 600;
         letter-spacing: -0.2px;
+        color: #b3d6d6;
         .edit_button {
           background: url("../../../assets/images/edit_button.svg") no-repeat;
           cursor: pointer;

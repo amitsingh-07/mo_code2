@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,6 +12,7 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SelectedPlansService } from '../../shared/Services/selected-plans.service';
 import { Formatter } from '../../shared/utils/formatter.util';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../topup-and-withdraw/topup-and-withdraw-routes.constants';
+import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { IEnquiryUpdate } from '../signup-types';
@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private signUpApiService: SignUpApiService,
     private investmentAccountService: InvestmentAccountService,
     public readonly translate: TranslateService, private appService: AppService,
     private signUpService: SignUpService, private apiService: ApiService,
@@ -51,21 +52,24 @@ export class DashboardComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.navbarService.setNavbarMobileVisibility(true);
     this.footerService.setFooterVisibility(false);
-    this.userProfileInfo = this.signUpService.getUserProfileInfo();
-    this.getDashboardList();
     this.translate.use('en');
 
-    this.insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
-    if (this.insuranceEnquiry && this.insuranceEnquiry.plans && this.insuranceEnquiry.plans.length > 0) {
-      const payload: IEnquiryUpdate = {
-        customerId: this.appService.getCustomerId(),
-        enquiryId: Formatter.getIntValue(this.insuranceEnquiry.enquiryId),
-        selectedProducts: this.insuranceEnquiry.plans
-      };
-      this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
-        this.selectedPlansService.clearData();
-      });
-    }
+    this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
+      this.signUpService.setUserProfileInfo(userInfo.objectList);
+      this.userProfileInfo = this.signUpService.getUserProfileInfo();
+      this.getDashboardList();
+      this.insuranceEnquiry = this.selectedPlansService.getSelectedPlan();
+      if (this.insuranceEnquiry && this.insuranceEnquiry.plans && this.insuranceEnquiry.plans.length > 0) {
+        const payload: IEnquiryUpdate = {
+          customerId: this.appService.getCustomerId(),
+          enquiryId: Formatter.getIntValue(this.insuranceEnquiry.enquiryId),
+          selectedProducts: this.insuranceEnquiry.plans
+        };
+        this.apiService.updateInsuranceEnquiry(payload).subscribe((data) => {
+          this.selectedPlansService.clearData();
+        });
+      }
+    });
   }
 
   goToEngagement() {

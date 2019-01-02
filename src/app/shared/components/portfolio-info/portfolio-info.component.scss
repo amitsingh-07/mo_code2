@@ -61,10 +61,18 @@
 
     .graph_values {
       position: absolute;
-      top: -34px;
+      top: -24px;
 
       span {
         padding: 23px 10px 7px;
+        &:nth-child(2){
+          margin-top: 7px;
+        }
+        &:last-child{
+          padding: 0 10px;
+          margin-bottom: 4px;
+          margin-top: 8px;
+        }
       }
     }
     .time-lapse{

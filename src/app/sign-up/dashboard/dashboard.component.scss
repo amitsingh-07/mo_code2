@@ -19,7 +19,8 @@ body{
         @include allmobiles{
             padding: 0;
             top: 0;
-            max-height: 169px;
+            min-height: 200px;
+            max-height: 200px;
         }
     }
     .grass_bg {
@@ -30,8 +31,8 @@ body{
         top: 91px;
         right: -40px;
         @include allmobiles{
-            top: 130px;
-            right: -34px;
+            top: 65px;
+            right: -30px;
         }
         img{
             width: 100%;
@@ -57,15 +58,12 @@ body{
         }
     }
     .user-profile-bg{
-        padding: 0px 3px;
+        padding-left: 3px;
         font-family: $muli-light;
         font-size: 22px;
         font-weight: 300;
         line-height: 1.3;
         letter-spacing: -0.2px;
-        @include allmobiles{
-            padding-top: 30px;
-        }
         .user_name{
             font-family: $muli-bold;
             font-weight: bold;
@@ -111,7 +109,7 @@ body{
         position: relative;
         top: 135px;
         @include allmobiles{
-            top: 206px;
+            top: 166px;
         }
         // @include min360{
         //     top: 185px;

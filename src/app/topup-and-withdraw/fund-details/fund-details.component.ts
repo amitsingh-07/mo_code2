@@ -37,6 +37,7 @@ export class FundDetailsComponent implements OnInit {
   selected;
   showArrow = false;
   fund;
+  fundDetail: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -59,7 +60,7 @@ export class FundDetailsComponent implements OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(1);
     this.fundDetails = this.portfolioService.getFundDetails();
-    // this.reConstructFactSheetLinks();
+     // this.reConstructFactSheetLinks();
   }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
@@ -82,10 +83,15 @@ export class FundDetailsComponent implements OnInit {
   }
   // reConstructFactSheetLinks() {
   //   let factSheetLink;
-  //   let highlightSheetLink;
-  //   factSheetLink = this.fund.factSheetLink.split('|')[0];
-  //   highlightSheetLink = this.fund.factSheetLink.split('|')[1];
-  //   this.fund.factSheetLink = factSheetLink;
-  //   this.fund.highlightSheetLink = highlightSheetLink;
+  //   let prospectusLink;
+  //   this.fundDetails = this.portfolioService.getFundDetails();
+  //   const fundDetails = this.fundDetails;
+  //   for (const fundDetail of fundDetails) {
+  //     console.log(fundDetail);
+  //     factSheetLink = fundDetail.factSheetLink.split('|')[0];
+  //     prospectusLink = fundDetail.factSheetLink.split('|')[1];
+  //     console.log(factSheetLink);
+  //     console.log(prospectusLink);
+  //   }
   // }
 }
