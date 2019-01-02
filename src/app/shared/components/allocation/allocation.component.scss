@@ -49,6 +49,7 @@
           border: none;
           border-bottom-right-radius:6px;
           border-bottom-left-radius:6px; 
+          background-color: #f4fafb;
           .card-header {
             display: none;
             .btn{
@@ -100,6 +101,7 @@
               font-weight: bold;
               color: #00a7a7;
               font-family: $muli-bold;
+              text-align: right;
             } 
           }
         }
