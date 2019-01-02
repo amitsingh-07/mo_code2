@@ -51,7 +51,8 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     /* Building the form */
     this.formValues = this.directService.getSrsApprovedPlansForm();
-    this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : 0;
+    this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : '';
+    this.singlePremium = this.formValues.singlePremium;
     this.srsApprovedPlansForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],

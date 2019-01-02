@@ -150,6 +150,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
+  goToHome() {
+    this.router.navigate([appConstants.homePageUrl]);
+  }
+
   openDropdown(dropdown) {
     if (this.innerWidth > this.mobileThreshold) {
       dropdown.open();
