@@ -250,7 +250,7 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
             const errorMessage = this.replaceStringValues('RELATION_MISMATCH', ['<Full Name>', '<ID>'], [item.name, item.uin]);
             errorMsg.errors.push(errorMessage);
           } else {
-            const child = this.checkNameUIN('name', item.name);
+            const child = this.checkNameWithUIN(item.name, item.uin);
             if (child.length === 0) {
               errorMsg.formName = formName;
               const errorMessage = this.replaceStringValues('NAME_NO_MATCH',
@@ -289,6 +289,11 @@ export class MyExecutorTrusteeComponent implements OnInit, OnDestroy {
       return this.willWritingService.getSpouseInfo().filter((spouse) => spouse[name].toLowerCase() === value.toLowerCase());
     }
     return this.willWritingService.getChildrenInfo().filter((child) => (child[name]).toLowerCase() === value.toLowerCase());
+  }
+
+  checkNameWithUIN(name, uin) {
+    return this.willWritingService.getChildrenInfo().filter((child) => (child.name).toLowerCase() === name.toLowerCase() &&
+      (child.uin).toLowerCase() === uin.toLowerCase());
   }
 
   updateExecTrustee(form) {
