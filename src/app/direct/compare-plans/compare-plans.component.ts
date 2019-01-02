@@ -69,5 +69,6 @@ export class ComparePlansComponent implements OnInit {
     ref.componentInstance.isViewMode = true;
     ref.componentInstance.bestValue = plan.bestValue;
     ref.componentInstance.protectionType = this.protectionType;
+    ref.componentInstance.frequencyType = this.frequencyFilter;
   }
 }

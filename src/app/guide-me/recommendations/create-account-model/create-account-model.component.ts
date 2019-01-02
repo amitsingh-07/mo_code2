@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, ViewEncapsulation  } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs/operators';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../../sign-up/sign-up.routes.constants';
 import { SignUpService } from '../../../sign-up/sign-up.service';
@@ -14,13 +15,20 @@ import { GuideMeService } from '../../guide-me.service';
 })
 export class CreateAccountModelComponent implements OnInit {
   @Input() data;
-  constructor(public activeModal: NgbActiveModal,
-              public signUpService: SignUpService,
-              public guideMeService: GuideMeService,
-              private router: Router) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    public signUpService: SignUpService,
+    public guideMeService: GuideMeService,
+    private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.activeModal.dismiss();
+      }
+    });
   }
 
   ngOnInit() {
+
   }
 
   next(page) {

@@ -277,6 +277,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
 
   comparePlans() {
+    this.temp = this.data;
     this.isComparePlanSelected = this.temp.compareSelected;
     if (!this.isComparePlanSelected) {
       if (window.innerWidth <= this.mobileThreshold) {

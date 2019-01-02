@@ -1,3 +1,4 @@
+import { DirectService } from './../direct/direct.service';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -19,11 +20,14 @@ import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { FormError } from '../shared/Services/mailChimpError';
 import { AppService } from './../app.service';
 import { ConfigService, IConfig } from './../config/config.service';
+import { DIRECT_BASE_ROUTE } from './../direct/direct-routes.constants';
 import { FooterService } from './../shared/footer/footer.service';
 import { AuthenticationService } from './../shared/http/auth/authentication.service';
 import { NavbarService } from './../shared/navbar/navbar.service';
 import { SeoServiceService } from './../shared/Services/seo-service.service';
+import { StateStoreService } from './../shared/Services/state-store.service';
 import { SubscribeMember } from './../shared/Services/subscribeMember';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -57,7 +61,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     public el: ElementRef, private render: Renderer2, private mailChimpApiService: MailchimpApiService,
     public readonly translate: TranslateService, private modal: NgbModal, private router: Router, private cdr: ChangeDetectorRef,
     private route: ActivatedRoute, private authService: AuthenticationService, private appService: AppService,
-    private seoService: SeoServiceService, private configService: ConfigService) {
+    private seoService: SeoServiceService, private configService: ConfigService, private stateStoreService: StateStoreService,
+    private directService: DirectService) {
     navbarService.existingNavbar.subscribe((param: ElementRef) => {
       this.navBarElement = param;
       this.checkScrollStickyHomeNav();
@@ -87,8 +92,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       // Meta Tag and Title Methods
       this.seoService.setTitle(this.translate.instant('GENERAL.TITLE'));
       this.seoService.setBaseSocialMetaTags(this.translate.instant('GENERAL.TITLE'),
-                                            this.translate.instant('GENERAL.META.META_DESCRIPTION'),
-                                            this.translate.instant('GENERAL.META.META_KEYWORDS'));
+        this.translate.instant('GENERAL.META.META_DESCRIPTION'),
+        this.translate.instant('GENERAL.META.META_KEYWORDS'));
       this.meta.addTag({ name: 'copyright', content: this.translate.instant('GENERAL.META.META_COPYRIGHT') });
     });
 
@@ -164,18 +169,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (fragment === 'subscribe') {
       this.goToSection(this.SubscribeSection.nativeElement);
     } else
-    if (fragment === 'insurance') {
-      this.goToSection(this.InsuranceElement.nativeElement);
-    } else
-    if (fragment === 'will') {
-      this.goToSection(this.WillElement.nativeElement);
-    } else
-    if (fragment === 'invest') {
-      this.goToSection(this.InvestElement.nativeElement);
-    } else
-    if (fragment === 'comprehensive') {
-      this.goToSection(this.ComprehensiveElement.nativeElement);
-    }
+      if (fragment === 'insurance') {
+        this.goToSection(this.InsuranceElement.nativeElement);
+      } else
+        if (fragment === 'will') {
+          this.goToSection(this.WillElement.nativeElement);
+        } else
+          if (fragment === 'invest') {
+            this.goToSection(this.InvestElement.nativeElement);
+          } else
+            if (fragment === 'comprehensive') {
+              this.goToSection(this.ComprehensiveElement.nativeElement);
+            }
   }
 
   checkScrollStickyHomeNav() {
@@ -278,7 +283,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       - homeNavbarHeight - navbarHeight + 10;
 
     if (innerWidth > this.mobileThreshold) {
-      const isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
+      const isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent);
       if (!isIEOrEdge) {
         window.scrollTo({ top: CurrentOffsetTop, behavior: 'smooth' });
       } else {
@@ -289,8 +294,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  startDirectJourney() {
+    this.stateStoreService.clearAllStates();
+    this.directService.clearServiceData();
+    this.router.navigate([DIRECT_BASE_ROUTE]);
+  }
+
   subscribeMember() {
-    if ( this.subscribeForm.valid ) {
+    if (this.subscribeForm.valid) {
       this.mailChimpApiService.registerUser(this.subscribeForm.value);
     } else {
       this.subscribeSuccess = false;
