@@ -22,4 +22,8 @@ export class StateStoreService {
     clearState(name: string) {
         delete this.store[name];
     }
+
+    clearAllStates() {
+        this.store = new Object();
+    }
 }

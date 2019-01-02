@@ -62,6 +62,10 @@ export class DirectService {
     }
   }
 
+  clearServiceData() {
+    this.directFormData = {} as DirectFormData;
+  }
+
   getDirectFormData(): DirectFormData {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.directFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));

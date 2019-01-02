@@ -52,12 +52,12 @@ const routes: Routes = [
   { path: SIGN_UP_ROUTES.LOGIN,
     component: LoginComponent
   },
-  /*{ path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
+  { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent
   },
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD_RESULT,
     component: ForgotPasswordResultComponent
-  },*/
+  },
   { path: SIGN_UP_ROUTES.RESET_PASSWORD,
     component: ResetPasswordComponent
   },
