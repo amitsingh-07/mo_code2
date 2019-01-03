@@ -43,7 +43,7 @@ export class ApiService {
         // The response body may contain clues as to what went wrong,
         console.error(
           `Backend returned code ${error.status}, ` +
-          `body was: ${error.error}`);
+          `body was: ${JSON.stringify(error.error)}`);
         return throwError('API returned error response');
       }
     }
