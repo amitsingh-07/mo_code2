@@ -8,16 +8,13 @@
   }
   .white-bg
   {
-      background: white;
+    background:#ffffff;
   }
   .user-profile-bg{
-    background:white;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background:#ffffff;
+    border-radius: 8px;
     padding: 10px;
-    margin: 25px;
+    margin: 23px 19px;
     position: relative;
 
 }
@@ -33,14 +30,21 @@
   }
 }
   .edit-profile-section-bg{
-      background:white;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      padding: 10px;
-      margin: 25px;
-
+      background: #ffffff;
+      border-radius: 8px;
+      margin: 23px 19px;
+      .flex-row{
+        padding: 20px 17px;
+      }
+      .dots{
+        background-color: #f6f6f6; 
+        padding: 0 21px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        .flex-row{
+          padding: 0;
+        }
+      }
   }
   .heading
   {
@@ -95,35 +99,28 @@
     word-break: break-all;
   }
   .form-group-heading {
-    object-fit: contain;
     font-family: $muli-semi-bold;
     font-size: 18px;
     font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: -0.3px;
     color: #313644;
-    margin-bottom: 10px;
-    margin-left: 10px
-   
   }
   .dropdown-img {
     width: 16px;
     height: 10px;
     border: none;
   }
-  .password-placeholder{
-    object-fit: contain;
-    font-family: Muli;
-    font-size: 10px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.2px;
-    color: #5e5e5e;
-  }
+  // .password-placeholder{
+  //   object-fit: contain;
+  //   font-family: Muli;
+  //   font-size: 10px;
+  //   font-weight: 600;
+  //   font-style: normal;
+  //   font-stretch: normal;
+  //   line-height: normal;
+  //   letter-spacing: -0.2px;
+  //   color: #5e5e5e;
+  // }
   form-group-floating-label{
     border: 2px solid #add9d8
   }
@@ -175,14 +172,13 @@
   color: #2d8289;
   }
   .section-margin{
-   margin: 10px;
-   
+   padding-top: 13px;
   }
   .mailing-address{
     height: 66px;
     border-radius: 6px;
     background-color: #00c5c4;
-    margin: 20px 5px 10px;
+    margin: 20px 0px 10px;
     .flex-col{
       justify-content: center;
       font-weight: normal;
@@ -201,18 +197,16 @@
     height: 57px;
     border-radius: 6px;
     box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14);
-    background-color:white;
+    background-color:#ffffff;
     border: solid 1px #00a7a7;
     margin-top: 15px;
-    font-family: Muli;
-    font-size: 24px;
+    font-family: $muli-bold;
+    font-size: 22px;
     font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: -0.3px;
     text-align: center;
     color:#00a7a7;
+    margin-bottom: 21px;
   }
   .bank-details-heading
   {

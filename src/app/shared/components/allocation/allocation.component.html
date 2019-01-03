@@ -27,8 +27,8 @@
                 <div class="flex-col-5 rating_type">{{allocation.name}}</div>
                 <div class="flex-col-7 rating">
                   <div class="flex-row" *ngFor="let detail of allocation.value;">
-                    <span>{{detail.sectorRegion}}</span>
-                    <span class="rating_value">{{detail.percentage}}%</span>
+                    <span class="flex-col-8">{{detail.sectorRegion}}</span>
+                    <span class="rating_value flex-col-4">{{detail.percentage}}%</span>
                   </div>
                 </div>
               </div>

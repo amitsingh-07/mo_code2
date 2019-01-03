@@ -21,7 +21,7 @@ app-portfolio-recommendation {
           padding: 0 15px;
           .portfolio-allocation-details__content__block{
             font-size: 14px;
-            font-weight: bold;
+            // font-weight: bold;
             line-height: 1.5;
             letter-spacing: -0.1px;
             text-align: center;
@@ -43,13 +43,14 @@ app-portfolio-recommendation {
         font-size: 18px;
         font-weight: 600;
         letter-spacing: -0.2px;
+        color: #b3d6d6;
         .edit_button {
-          background: url("../../../assets/images/edit_button.svg") no-repeat;
+          background: url("../../../assets/images/edit-icon.svg") no-repeat;
           cursor: pointer;
           display: inline-flex;
           margin-left: 12px;
-          width: 18px;
-          height: 18px;
+          width: 23px;
+          height: 23px;
         }
       }
     }
