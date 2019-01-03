@@ -83,8 +83,8 @@ export class JwtInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 401 || err.status === 403) {
                     this.auth.clearSession();
-                    this.signUpService.logoutUser();
                     this.errorHandler.handleAuthError(err);
+                    this.signUpService.logoutUser();
                 } else
                 if (err.message.match('I/O error on PUT request')) {
                     this.errorHandler.handleSubscribeError(err);

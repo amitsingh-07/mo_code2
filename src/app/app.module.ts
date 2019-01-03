@@ -64,6 +64,7 @@ import { SharedModule } from './shared/shared.module';
 import { Formatter } from './shared/utils/formatter.util';
 import { Util } from './shared/utils/util';
 import { SettingsWidgetComponent } from './shared/widgets/settings-widget/settings-widget.component';
+import { SignUpService } from './sign-up/sign-up.service';
 import { TestMyInfoComponent } from './test-my-info/test-my-info.component';
 import { UrlRedirectComponent } from './url-redirect.component';
 import { WillWritingChildEnableGuard } from './will-writing/will-writing-child-enable-guard';
@@ -149,11 +150,12 @@ export function tokenGetterFn() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
-      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router]
+      deps: [AuthenticationService, RequestCache, CustomErrorHandlerService, Router, SignUpService]
     }, Formatter, CurrencyPipe, RoutingService,
     StateStoreService, Util,
     WillWritingEnableGuard,
-    WillWritingChildEnableGuard
+    WillWritingChildEnableGuard,
+    SignUpService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
