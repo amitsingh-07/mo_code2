@@ -284,6 +284,17 @@ export class TopupAndWithDrawService {
     };
   }
 
+  // MONTHLY INVESTMENT PAYLOAD
+
+  // monthlyInvestment(data) {
+  //   const payload = this.constructBuyPortfolioForMonthly(data);
+  //   //return this.apiService.monthlyInvestment(payload);
+  //   return this.apiService.buyPortfolio(payload);
+  // }
+
+  // constructBuyPortfolioForMonthly(data) {
+  // }
+
   getTransactionHistory(from?, to?) {
     return this.apiService.getTransactionHistory(from, to);
   }

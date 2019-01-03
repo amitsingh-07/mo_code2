@@ -31,9 +31,8 @@ export class UploadDocumentsComponent implements OnInit {
   countries;
   isUserNationalitySingapore;
   defaultThumb;
-  showLoader;
-  loaderTitle;
-  loaderDesc;
+  loaderVisible;
+  loaderInfo;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
@@ -49,7 +48,7 @@ export class UploadDocumentsComponent implements OnInit {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
-      this.showLoader = false;
+      this.loaderVisible = false;
     });
   }
 
@@ -205,13 +204,15 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   showUploadLoader() {
-    this.showLoader = true;
-    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
-    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
+    this.loaderVisible = true;
+    this.loaderInfo = {
+      title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
+      desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
+    };
   }
 
   hideUploadLoader() {
-    this.showLoader = false;
+    this.loaderVisible = false;
   }
 
   redirectToNextPage() {

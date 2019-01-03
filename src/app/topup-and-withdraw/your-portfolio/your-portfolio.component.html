@@ -22,10 +22,10 @@
   </div>
   <div class="container-fluid">
     <!-- Already fund portfolio -->
-      <div class="row" >
-        <!-- After API workinfg no to enable  -->
-    <!-- <div class="row" *ngIf="PortfolioValues.investmentAmount"> -->
-      <div class="col-lg-12 col-md-12">
+    <div class="row">
+      <!-- After API workinfg no to enable  -->
+      <!-- <div class="row" *ngIf="PortfolioValues.investmentAmount"> -->
+      <div class="col-lg-12 col-md-12" *ngIf="portfolio.investmentAmount">
         <div class="flex-row">
           <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
             <img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /> {{'YOUR_PORTFOLIO.TOP_UP' | translate}}
@@ -71,11 +71,9 @@
         </div>
       </div>
     </div>
-    <!-- not funded portfolio -->
-    <!-- After API need to enable -->
-    <div class="row" >
-    <!-- <div class="row" *ngIf="!PortfolioValues.investmentAmount"> -->
-      <div class="col-lg-12 col-md-12" *ngIf="false">
+    <!-- NOT FUNDED PORTFOLIO  -->
+    <div class="row">
+      <div class="col-lg-12 col-md-12" *ngIf="!portfolio.investmentAmount">
         <div class="flex-row mb20">
           <div class="fund-account">
             <div class="fund-account-information" id="errorModeButton">
@@ -113,11 +111,8 @@
         </div>
       </div>
     </div>
-    <!-- <button *ngIf="PortfolioValues.investmentAmount" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
-      {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
-      <img src="../../../assets/images/investment-account/forward.svg" alt="" />
-    </button> -->
-    <button  type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+
+    <button *ngIf="portfolio.investmentAmount" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
       {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
     </button>

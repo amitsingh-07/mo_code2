@@ -58,9 +58,8 @@ export class YourPortfolioComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
-    this.getPortfolioHoldingList('PORTFOLIO00050');
-    //this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-
+    this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+    this.getPortfolioHoldingList(this.PortfolioValues.productCode);   // SET THE PORTFOLIO ID
   }
   getMoreList() {
     this.topupAndWithDrawService.getMoreList().subscribe((data) => {
@@ -68,8 +67,8 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
   }
-  getPortfolioHoldingList(portfolioId) {
-    this.topupAndWithDrawService.getIndividualPortfolioDetails(portfolioId).subscribe((data) => {
+  getPortfolioHoldingList(portfolioid) {
+    this.topupAndWithDrawService.getIndividualPortfolioDetails(portfolioid).subscribe((data) => {
       this.portfolio = data.objectList;
       this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
     });
