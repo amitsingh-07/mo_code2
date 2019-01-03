@@ -26,7 +26,7 @@
         <div class="title">{{ 'PORTFOLIO_RECOMMENDATION.ANNUAL_FEES' | translate}}</div>
         <app-annual-fees [feeDetails]="portfolio.feeDetails"></app-annual-fees>
       </div>
-      <div class="faq_link"><a href="#">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
+      <div class="faq_link"><a target="_blank" [routerLink]="['/faq']">{{ 'PORTFOLIO_RECOMMENDATION.FAQ_DESC_TEXT' | translate}}</a></div>
     </div>
     <div class="row">
       <div class="flex-col-12 review-block">
