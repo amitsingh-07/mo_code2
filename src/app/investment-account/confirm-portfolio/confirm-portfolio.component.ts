@@ -49,9 +49,8 @@ export class ConfirmPortfolioComponent implements OnInit {
   countries;
   isUserNationalitySingapore;
   defaultThumb;
-  showLoader;
-  loaderTitle;
-  loaderDesc;
+  loaderVisible;
+  loaderInfo;
   formData: FormData = new FormData();
   portfolio;
   colors: string[] = ['#ec681c', '#76328e', '#76328e'];
@@ -94,262 +93,9 @@ export class ConfirmPortfolioComponent implements OnInit {
 
   getPortfolioDetails() {
     const params = this.constructgetPortfolioParams();
-    const mockData = {
-      "exception": null,
-      "objectList": {
-        "investmentPeriod": 65,
-        "projectedValue": 0.0,
-        "portfolioId": "PORTFOLIO00050",
-        "portfolioName": "Balanced",
-        "tenure": "65",
-        "projectedReturnsHighEnd": 1286079.0,
-        "projectedReturnsMedian": 1263385.0,
-        "projectedReturnsLowEnd": 1240987.0,
-        "portfolioType": null,
-        "portfolioStatus": "RECOMMENDED",
-        "portfolioMaturityYear": "2083",
-        "initialInvestment": 111.0,
-        "monthlyInvestment": 111.0,
-        "riskProfile": {
-          "id": 3,
-          "type": "Balanced",
-          "order": 1
-        },
-        "feeDetails": [{
-          "id": 9,
-          "feeName": "Advisory Fee",
-          "percentage": "0.65%",
-          "comments": null,
-          "listing_order": 1
-        }, {
-          "id": 10,
-          "feeName": "Platform Fee",
-          "percentage": "0.18%",
-          "comments": "Paid to iFAST",
-          "listing_order": 2
-        }, {
-          "id": 11,
-          "feeName": "Fund Management Expenses",
-          "percentage": "0.35%",
-          "comments": "Paid to DFA",
-          "listing_order": 3
-        }, {
-          "id": 12,
-          "feeName": "Total Fee",
-          "percentage": "1.18%",
-          "comments": null,
-          "listing_order": 4
-        }],
-        "sectorAllocations": [{
-          "id": 3,
-          "name": "Global Equities",
-          "sectorId": "SECTOR00014",
-          "type": {
-            "id": 3,
-            "type": "Global Equity"
-          },
-          "riskRating": 9.0,
-          "groupedAllocationDetails": {
-            "Class Allocation": [{
-              "id": 29,
-              "sectorTitle": "Class Allocation",
-              "sectorRegion": "Developed Markets",
-              "percentage": 88.5
-            }, {
-              "id": 30,
-              "sectorTitle": "Class Allocation",
-              "sectorRegion": "Emerging Markets",
-              "percentage": 11.5
-            }],
-            "Sector Allocation": [{
-              "id": 38,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Industrials",
-              "percentage": 16.4
-            }, {
-              "id": 46,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Other",
-              "percentage": 6.0
-            }, {
-              "id": 43,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Energy",
-              "percentage": 7.0
-            }, {
-              "id": 39,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Consumer Disc",
-              "percentage": 13.3
-            }, {
-              "id": 40,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Info Technology",
-              "percentage": 12.9
-            }, {
-              "id": 42,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Materials",
-              "percentage": 7.0
-            }, {
-              "id": 37,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Financials",
-              "percentage": 17.8
-            }, {
-              "id": 44,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Consumer Staples",
-              "percentage": 6.7
-            }, {
-              "id": 45,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "REITs",
-              "percentage": 3.4
-            }, {
-              "id": 41,
-              "sectorTitle": "Sector Allocation",
-              "sectorRegion": "Health Care",
-              "percentage": 9.6
-            }],
-            "Regional Allocation": [{
-              "id": 32,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Asia Pacific",
-              "percentage": 21.3
-            }, {
-              "id": 31,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "North America",
-              "percentage": 57.4
-            }, {
-              "id": 35,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Africa",
-              "percentage": 0.7
-            }, {
-              "id": 36,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Middle East",
-              "percentage": 0.3
-            }, {
-              "id": 33,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Europe",
-              "percentage": 18.8
-            }, {
-              "id": 34,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Latin America",
-              "percentage": 1.5
-            }]
-          },
-          "allocationPercentage": 60.0
-        }, {
-          "id": 2,
-          "name": "Global Bonds",
-          "sectorId": "SECTOR00013",
-          "type": {
-            "id": 2,
-            "type": "Bonds"
-          },
-          "riskRating": 9.0,
-          "groupedAllocationDetails": {
-            "Credit Rating Allocation": [{
-              "id": 24,
-              "sectorTitle": "Credit Rating Allocation",
-              "sectorRegion": "A",
-              "percentage": 21.7
-            }, {
-              "id": 22,
-              "sectorTitle": "Credit Rating Allocation",
-              "sectorRegion": "AAA",
-              "percentage": 21.0
-            }, {
-              "id": 23,
-              "sectorTitle": "Credit Rating Allocation",
-              "sectorRegion": "AA",
-              "percentage": 57.3
-            }],
-            "Regional Allocation": [{
-              "id": 28,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Asia Pacific",
-              "percentage": 9.3
-            }, {
-              "id": 25,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Europe",
-              "percentage": 48.7
-            }, {
-              "id": 27,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "Supranational",
-              "percentage": 11.3
-            }, {
-              "id": 26,
-              "sectorTitle": "Regional Allocation",
-              "sectorRegion": "North America",
-              "percentage": 30.8
-            }]
-          },
-          "allocationPercentage": 40.0
-        }],
-        "funds": [{
-          "id": "DIM035",
-          "name": "Dimensional Global Short Fixed Inc ACC-H SGD",
-          "type": "UT",
-          "sectorName": "Global Bonds",
-          "prospectusLink": null,
-          "percentage": 20,
-          "factSheetLink": "DIM035-FS.pdf|DIM035-P.pdf",
-          "htmlDesc": null
-        }, {
-          "id": "DIM036",
-          "name": "Dimensional Global Short Term Inv Gr Fixed Inc ACC-H SGD ",
-          "type": "UT",
-          "sectorName": "Global Bonds",
-          "prospectusLink": null,
-          "percentage": 20,
-          "factSheetLink": "DIM036-FS.pdf|DIM036-P.pdf",
-          "htmlDesc": null
-        }, {
-          "id": "DIM034",
-          "name": "Dimensional Global Core Equity ACC SGD",
-          "type": "UT",
-          "sectorName": "Global Equities",
-          "prospectusLink": null,
-          "percentage": 45,
-          "factSheetLink": "DIM034-FS.pdf|DIM034-P.pdf",
-          "htmlDesc": null
-        }, {
-          "id": "DIM037",
-          "name": "Dimensional Global Targeted Value ACC SGD",
-          "type": "UT",
-          "sectorName": "Global Equities",
-          "prospectusLink": null,
-          "percentage": 10,
-          "factSheetLink": "DIM037-FS.pdf|DIM037-P.pdf",
-          "htmlDesc": null
-        }, {
-          "id": "DIM033",
-          "name": "Dimensional EM Large Cap Core Equity ACC SGD",
-          "type": "UT",
-          "sectorName": "Global Equities",
-          "prospectusLink": null,
-          "percentage": 5,
-          "factSheetLink": "DIM033-FS.pdf|DIM033-P.pdf",
-          "htmlDesc": null
-        }]
-      },
-      "responseMessage": {
-        "responseCode": 6000,
-        "responseDescription": "Successful response"
-      }
-    };
     this.investmentAccountService.getPortfolioAllocationDetails(params).subscribe((data) => {
-      this.portfolio = mockData.objectList;
-      const fundingParams = this.constructFundingParams(mockData.objectList);
+      this.portfolio = data.objectList;
+      const fundingParams = this.constructFundingParams(data.objectList);
       this.topupAndWithDrawService.setFundingDetails(fundingParams);
       this.userInputSubtext = {
         onetime: this.currencyPipe.transform(this.portfolio.initialInvestment, 'USD', 'symbol-narrow', '1.0-2'),
@@ -524,7 +270,9 @@ export class ConfirmPortfolioComponent implements OnInit {
     } else {
       // CREATE INVESTMENT ACCOUNT
       console.log('Attempting to create ifast account');
+      this.showLoader();
       this.investmentAccountService.createInvestmentAccount().subscribe((response) => {
+        this.hideLoader();
         if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
           if (response.responseMessage.responseCode === 5018
             || response.responseMessage.responseCode === 5019) {
@@ -554,4 +302,17 @@ export class ConfirmPortfolioComponent implements OnInit {
         });
     }
   }
+
+  showLoader() {
+    this.loaderVisible = true;
+    this.loaderInfo = {
+      title: this.translate.instant('INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.TITLE'),
+      desc: this.translate.instant('INVESTMENT_ACCOUNT_COMMON.CREATING_ACCOUNT_LOADER.DESCRIPTION')
+    };
+  }
+
+  hideLoader() {
+    this.loaderVisible = false;
+  }
+
 }
