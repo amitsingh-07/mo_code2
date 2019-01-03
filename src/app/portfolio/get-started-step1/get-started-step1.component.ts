@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -19,7 +20,7 @@ export class GetStartedStep1Component implements OnInit {
   pageTitle: string;
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
   description = this.translate.instant('GETSTARTED_STEP1.CAPTION');
-  img = 'assets/images/checklist-icon.svg';
+  img = 'assets/images/portfolio/risk-step-1.svg';
   description2 =  this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
   tab = '1';
 
@@ -27,6 +28,7 @@ export class GetStartedStep1Component implements OnInit {
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     private router: Router,
+    private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
     public footerService: FooterService) {
@@ -45,7 +47,9 @@ export class GetStartedStep1Component implements OnInit {
     this.authService.authenticate().subscribe((token) => {
     });
   }
-
+  goBack() {
+    this._location.back();
+  }
   goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
   }
