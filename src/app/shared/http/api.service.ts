@@ -182,7 +182,7 @@ export class ApiService {
       body: 'default',
       detail: 'default',
       status: 500
-      };
+    };
     this.errorMessage.next(templateError);
     return throwError('');
   }
@@ -413,9 +413,9 @@ export class ApiService {
 
   getIndividualPortfolioDetails(portfolioId) {
     return this.http.get(apiConstants.endpoint.investmentAccount.porfolioDetails + '/' + portfolioId)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
 
@@ -564,9 +564,9 @@ export class ApiService {
 
   verifyAML() {
     return this.http.get(apiConstants.endpoint.investmentAccount.verifyAML)
-    .pipe(
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
   }
 
   // tslint:disable-next-line
@@ -646,14 +646,22 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
+ // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
   buyPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.buyPortfolio + '?handleError=true', data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
-
+  // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
+  monthlyInvestment(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment + '?handleError=true', data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  
+  // tslint:disable-next-line:no-identical-functions
   sellPortfolio(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.sellPortfolio + '?handleError=true', data)
       .pipe(
