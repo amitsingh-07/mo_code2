@@ -124,7 +124,8 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   oneTimeOrMonthlySufficient() {
-    return (!this.fundDetails.isAmountExceedBalance);
+    return ( (this.fundDetails.fundingType === 'ONETIME' || this.fundDetails.fundingType === 'MONTHLY')
+      && !this.fundDetails.isAmountExceedBalance);
   }
   goToNext() {
     // redirect to dashboard
