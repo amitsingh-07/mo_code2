@@ -174,73 +174,6 @@
               </div>
             </div>
 
-            <!-- Sat new code here  -->
-            <!-- <div class="upload-doc-nric">
-
-  <div class="col-12 sub-title-block">
-    <div class="sub-title">
-      <span>{{ 'UPLOAD_DOCUMENTS.PROOF_OF_IDENTITY' | translate}}
-        <span *ngIf="isUserNationalitySingapore">({{ 'UPLOAD_DOCUMENTS.NRIC' | translate}})</span>
-        <span *ngIf="!isUserNationalitySingapore">({{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}})</span>
-      </span>
-    </div>
-  </div>
-  <div class="upload-doc"> -->
-            <!-- FRONT IMAGE UPLOAD -->
-            <!-- <div class="upload-desc" *ngIf="isUserNationalitySingapore">
-      <div class="thumb-container" (click)="openFileDialog(nricFront)">
-        <div class="thumb-close-icon" (click)="clearFileSelection(addressForm.controls.nricFrontImage, $event, frontThumb)" *ngIf="addressForm.controls.nricFrontImage.value">
-          <img src="../../../assets/images/close-button.svg" alt="x" />
-        </div>
-        <img #frontThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
-      </div>
-      <div class="upload-content">
-        <div class="title">{{ 'UPLOAD_DOCUMENTS.FRONT_NRIC' | translate}}</div>
-        <div class="sub-text" *ngIf="!addressForm.controls.nricFrontImage.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
-        <div class="sub-text" *ngIf="addressForm.controls.nricFrontImage.value" [innerHtml]="getFileName(nricFront)"></div>
-        <input type="file" #nricFront formControlName="nricFrontImage" (change)="fileSelected(addressForm.controls.nricFrontImage, 'NRIC_FRONT', $event, frontThumb)"
-          name="nricFront" accept="image/*" class="is-hidden">
-      </div>
-    </div> -->
-
-            <!-- BACK IMAGE UPLOAD -->
-            <!-- <div class="upload-desc" *ngIf="isUserNationalitySingapore">
-      <div class="thumb-container" (click)="openFileDialog(nricBack)">
-        <div class="thumb-close-icon" (click)="clearFileSelection(addressForm.controls.nricBackImage, $event, backThumb)" *ngIf="addressForm.controls.nricBackImage.value">
-          <img src="../../../assets/images/close-button.svg" alt="x" />
-        </div>
-        <img #backThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
-      </div>
-      <div class="upload-content">
-        <div class="title">{{ 'UPLOAD_DOCUMENTS.BACK_NRIC' | translate}}</div>
-        <div class="sub-text" *ngIf="!addressForm.controls.nricBackImage.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
-        <div class="sub-text" *ngIf="addressForm.controls.nricBackImage.value" [innerHtml]="getFileName(nricBack)"></div>
-        <input type="file" #nricBack formControlName="nricBackImage" (change)="fileSelected(addressForm.controls.nricBackImage, 'NRIC_BACK', $event, backThumb )" name="nricBack"
-          accept="image/*" class="is-hidden">
-      </div>
-    </div> -->
-
-            <!-- PASSPORT IMAGE UPLOAD -->
-            <!-- <div class="upload-desc" *ngIf="!isUserNationalitySingapore">
-      <div class="thumb-container" (click)="openFileDialog(passport)">
-        <div class="thumb-close-icon" (click)="clearFileSelection(addressForm.controls.passportImage, $event, passportThumb)" *ngIf="addressForm.controls.passportImage.value">
-          <img src="../../../assets/images/close-button.svg" alt="x" />
-        </div>
-        <img #passportThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
-      </div>
-      <div class="upload-content">
-        <div class="title">{{ 'UPLOAD_DOCUMENTS.PASSPORT' | translate}}</div>
-        <div class="sub-text" *ngIf="!addressForm.controls.passportImage.value">{{ 'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
-        <div class="sub-text" *ngIf="addressForm.controls.passportImage.value" [innerHtml]="getFileName(passport)"></div>
-        <input type="file" #passport formControlName="passportImage" (change)="fileSelected(addressForm.controls.passportImage, 'PASSPORT', $event, passportThumb)"
-          name="passport" accept="image/*" class="is-hidden">
-      </div>
-    </div>
-  </div>
-
-</div> -->
-
-
             <!-- --------------Residential Address Proofs ------------------------- -->
             <!-- Residential ADDRESS PROOF UPLOAD -->
             <div class="row">
@@ -264,8 +197,9 @@
                   </div>
                 </div>
                 <input type="file" accept=".xlsx, .xls, .doc, .docx, .ppt, .pptx,.txt, .pdf" #resAddressProof
-                  formControlName="resAddressProof" (change)="fileSelected(addressForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
+                  (change)="fileSelected(addressForm.controls.resAddressProof, 'RESIDENTIAL_ADDRESS', $event)"
                   name="proofOfMailAddress" class="is-hidden">
+                  <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="resAddressProofHidden" formControlName="resAddressProof"/>
               </div>
             </div>
 
@@ -477,8 +411,9 @@
                   </div>
                 </div>
                 <input type="file" accept=".xlsx, .xls, .doc, .docx, .ppt, .pptx,.txt, .pdf" #mailAdressProof
-                  formControlName="mailAdressProof" (change)="fileSelected(addressForm.controls.mailingAddress.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
+                  (change)="fileSelected(addressForm.controls.mailingAddress.controls.mailAdressProof, 'MAILING_ADDRESS', $event)"
                   name="proofOfMailAddress" class="is-hidden">
+                  <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="mailAdressProofHidden" formControlName="mailAdressProof"/>
               </div>
             </div>
           </div>
