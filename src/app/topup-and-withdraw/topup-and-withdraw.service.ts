@@ -262,39 +262,37 @@ export class TopupAndWithDrawService {
     }
     return request;
   }
-
+// ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
     return this.apiService.buyPortfolio(payload);
   }
 
   constructBuyPortfolioParams(data) {
-    let redeemAmount: number;
-    let isPayMonthly = false;
-    if (data.oneTimeInvestment) {
-      redeemAmount = data.oneTimeInvestment;
-    } else {
-      redeemAmount = data.monthlyInvestment;
-      isPayMonthly = true;
-    }
+    let oneTimeInvestment: number;
+    oneTimeInvestment = data.oneTimeInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      investmentAmount: Number(redeemAmount), // todo
-      payMonthly: isPayMonthly
+      oneTimeInvestment: Number(oneTimeInvestment), // todo
+
     };
   }
 
   // MONTHLY INVESTMENT PAYLOAD
+  monthlyInvestment(data) {
+    const payload = this.constructBuyPortfolioForMonthly(data);
+    return this.apiService.monthlyInvestment(payload);
+  }
 
-  // monthlyInvestment(data) {
-  //   const payload = this.constructBuyPortfolioForMonthly(data);
-  //   //return this.apiService.monthlyInvestment(payload);
-  //   return this.apiService.buyPortfolio(payload);
-  // }
+  constructBuyPortfolioForMonthly(data) {
+    let monthlyInvestment: number;
+    monthlyInvestment = data.monthlyInvestment;
+    return {
+      portfolioId: data.portfolio.productCode,
+      monthlyInvestment: Number(monthlyInvestment), // todo
 
-  // constructBuyPortfolioForMonthly(data) {
-  // }
-
+    };
+  }
   getTransactionHistory(from?, to?) {
     return this.apiService.getTransactionHistory(from, to);
   }
