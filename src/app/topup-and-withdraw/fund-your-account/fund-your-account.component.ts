@@ -130,28 +130,48 @@ export class FundYourAccountComponent implements OnInit {
     // redirect to dashboard
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
-
+// tslint:disable-next-line
   buyPortfolio() {
-    this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((response) => {
-      if (response.responseMessage.responseCode < 6000) {
-        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
-          this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
-        }
-      } else {
-        if (!this.fundDetails.isAmountExceedBalance) {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
+    if (this.fundDetails.oneTimeInvestment) {
+      this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((response) => {
+        if (response.responseMessage.responseCode < 6000) {
+          if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
+            this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
+          }
         } else {
-          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
+          if (!this.fundDetails.isAmountExceedBalance) {
+            this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
+          } else {
+            this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
+          }
         }
-      }
-    },
-      (err) => {
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
-        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
-      });
+      },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
+        });
+    } else {
+      this.topupAndWithDrawService.monthlyInvestment(this.fundDetails).subscribe((response) => {
+        if (response.responseMessage.responseCode < 6000) {
+          if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
+            this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
+          }
+        } else {
+          if (!this.fundDetails.isAmountExceedBalance) {
+            this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
+          } else {
+            this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
+          }
+        }
+      },
+        (err) => {
+          const ref = this.modal.open(ErrorModalComponent, { centered: true });
+          ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+          ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
+        });
+    }
   }
-
   showCustomErrorModal(title, desc) {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
     ref.componentInstance.errorTitle = title;
