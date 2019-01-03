@@ -10,8 +10,7 @@ import {
 export class LoaderComponent implements OnInit, OnChanges {
 
   @Input() isVisible;
-  @Input() messageTitle;
-  @Input() messageDesc;
+  @Input() content;
   @ViewChild('anim') anim: ElementRef;
   interval;
   constructor() { }
