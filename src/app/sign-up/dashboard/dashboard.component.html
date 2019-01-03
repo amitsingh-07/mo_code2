@@ -46,17 +46,17 @@
                    <div class="portfolio" *ngIf="showPortffolioPurchased">
                       <div class="portfolio_value">
                         <div>{{'DASHBOARD.INVESTMENT.TOTAL_PORTFOLIO' | translate}}</div>
-                        <div class="value">{{userProfileInfo.investementDetails.totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                        <div class="value">{{totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                       </div>
                       <div class="portfolio_graph"></div>
                       <div class="portfolio_footer">
                         <div class="flex-col col-5">
                           <div>{{'DASHBOARD.INVESTMENT.TOTAL_RETURNS' | translate}}</div>
-                          <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                          <div class="portfolio_footer_value">{{totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                         </div>
                         <div class="flex-col col-7">
                           <div>{{'DASHBOARD.INVESTMENT.TOTAL_AMOUNT_INVESTED' | translate}}</div>
-                          <div class="portfolio_footer_value">{{userProfileInfo.investementDetails.totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+                          <div class="portfolio_footer_value">{{totalInvested | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
                         </div>
                       </div>
                     </div>
