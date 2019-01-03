@@ -96,7 +96,6 @@
         <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index">
           <!-- ALREADY  FUNDED PORTFOLIO -->
           <div *ngIf="portfolio.currentValue">
-            <!--Form Header-->
             <div class="form-group-with-bg--header your_portfolio_value">
               <div class="flex-row">
                 <div class="conserve-icon">
@@ -127,7 +126,6 @@
           <!-- NON-FUNDED PORTFOLIO  -->
           <div *ngIf=!portfolio.currentValue>
             <div class="form-group-with-bg--header your_portfolio_value">
-
               <div class="flex-row">
                 <div class="conserve-icon">
                   <img [src]="getImg(i)" alt="" />
@@ -157,9 +155,7 @@
                     (click)="yourPortfolio(portfolio)" />
                 </div>
               </div>
-
             </div>
-
             <div class="form-group-with-bg--content pb10">
               <div class="flex-row">
                 <div class="flex-col-12">
