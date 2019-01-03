@@ -54,4 +54,14 @@ export class AllocationComponent implements OnInit {
     event === 'event1' ? this.event1 = !this.event1 : '';
     event === 'event2' ? this.event2 = !this.event2 : '';
   }
+
+  showHidePanel(accordionEle, panelId, panelHeadEle) {
+    accordionEle.toggle(panelId);
+    if(panelHeadEle.currentTarget.classList.contains('active') ) { // Opened State
+      panelHeadEle.currentTarget.classList.remove('active');
+    } else { // Closed State
+      panelHeadEle.currentTarget.classList.add('active');
+    }
+
   }
+}
