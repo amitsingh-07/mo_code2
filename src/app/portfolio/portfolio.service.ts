@@ -39,7 +39,7 @@ export class PortfolioService {
   // GET PERSONAL INFO
   getPersonalInfo() {
     return {
-      dob: this.portfolioFormData.dob,
+      // dob: this.portfolioFormData.dob,
       investmentPeriod: this.portfolioFormData.investmentPeriod
     };
   }
@@ -143,7 +143,7 @@ export class PortfolioService {
   }
 
   setPersonalInfo(data: PersonalInfo) {
-    this.portfolioFormData.dob = data.dob;
+    // this.portfolioFormData.dob = data.dob;
     this.portfolioFormData.investmentPeriod = data.investmentPeriod;
     this.commit();
   }
@@ -223,7 +223,7 @@ export class PortfolioService {
       monthlyIncome: formData.monthlyIncome,
       initialInvestment: formData.initialInvestment,
       monthlyInvestment: formData.monthlyInvestment,
-      dateOfBirth: formData.dob.day + '-' + formData.dob.month + '-' + formData.dob.year,
+      // dateOfBirth: formData.dob.day + '-' + formData.dob.month + '-' + formData.dob.year,
       percentageOfSaving: formData.percentageOfSaving,
       totalAssets: formData.totalAssets,
       totalLiabilities: formData.totalLiabilities
