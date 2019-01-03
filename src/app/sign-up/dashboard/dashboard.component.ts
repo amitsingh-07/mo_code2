@@ -37,7 +37,9 @@ export class DashboardComponent implements OnInit {
   showSuspendedAccount = false;
   showComplianceRejected = false;
   showSetupAccount = false;
-
+  totalValue: any;
+  totalReturns: any;
+  totalInvested: any;
 
   constructor(
     private router: Router,
@@ -119,8 +121,18 @@ export class DashboardComponent implements OnInit {
       && this.userProfileInfo.investementDetails.account
       && this.userProfileInfo.investementDetails.account.accountStatus ?
       this.userProfileInfo.investementDetails.account.accountStatus : null;
+    if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
+      this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
+      this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
+      this.totalInvested = this.userProfileInfo.investementDetails.totalInvested ?
+        this.userProfileInfo.investementDetails.totalInvested : 0;
+    }
     switch (investmentStatus) {
       case 'PORTFOLIO_PURCHASED': {
+        this.showPortffolioPurchased = true;
+        break;
+      }
+      case 'ACCOUNT_CREATED': {
         this.showPortffolioPurchased = true;
         break;
       }
