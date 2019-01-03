@@ -36,6 +36,9 @@
     "STEP_2_LABEL": "Step 2"
   },
   "MY_FINANCIALS": {
+    "REVIEW_INPUT": "Review My Inputs",
+    "PROCEED_NEXT": "Proceed To Next Step",
+    "RETURN_HOME": "Return To Homepage",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
     "TITLE": "Get Started",
@@ -50,16 +53,16 @@
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
-    "INFO": "Information",
+    "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Financials",
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund!",
-      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
-      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>."    },
+      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>.In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."    },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   },
   "PORTFOLIO_RECOMMENDATION":{
