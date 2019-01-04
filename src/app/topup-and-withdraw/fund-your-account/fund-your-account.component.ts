@@ -77,7 +77,7 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   showBankTransctionDetails() {
-    const ref = this.modal.open(BankDetailsComponent, { centered: true });
+    const ref = this.modal.open(BankDetailsComponent, { centered: true, windowClass: 'full-height'});
     ref.componentInstance.errorTitle = 'Transfer Instructions';
     ref.componentInstance.errorDescription = 'Sending money via Bank Transfer:';
     ref.componentInstance.showBankTransctions = true;
@@ -85,7 +85,7 @@ export class FundYourAccountComponent implements OnInit {
     return false;
   }
   showPayNowDetails() {
-    const ref = this.modal.open(BankDetailsComponent, { centered: true });
+    const ref = this.modal.open(BankDetailsComponent, { centered: true, windowClass: 'full-height' });
     ref.componentInstance.errorTitle = 'Transfer Instructions';
     ref.componentInstance.errorDescription = 'Sending money via PayNow:';
     ref.componentInstance.showPayNow = true;
