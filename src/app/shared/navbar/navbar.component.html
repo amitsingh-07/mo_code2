@@ -43,10 +43,15 @@
         <div class="notification-tooltip__container">
           <ul class="pl0">
             <li class="notification-tooltip__container--desc">
+              <div *ngIf="recentMessages && recentMessages.length">
               <div class="notification-tooltip__container--message" *ngFor="let message of recentMessages">
                 {{message.message}}
-                <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}</div>
+                <div class="notification-tooltip__container--time" *ngIf="message.time">{{message.time | timeAgo}}</div>
               </div>
+            </div>
+            <div class="no-notification" *ngIf="!recentMessages || !recentMessages.length">
+                You have no new notifications.
+            </div>
             </li>
           </ul>
         </div>

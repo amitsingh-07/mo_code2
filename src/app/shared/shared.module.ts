@@ -15,6 +15,7 @@ import { PercentageInputDirective } from '../shared/directives/percentage-input.
 import {
     EditInvestmentModalComponent
 } from '../shared/modal/edit-investment-modal/edit-investment-modal.component';
+import { TimeAgoPipe } from '../shared/Pipes/time-ago.pipe';
 import { AllocationComponent } from './components/allocation/allocation.component';
 import { AnnualFeesComponent } from './components/annual-fees/annual-fees.component';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
@@ -70,7 +71,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [CurrencyInputDirective,  PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
-    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective, 
+    BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, TimeAgoPipe, FormatDatePipe, DistributePercentDirective, 
     GroupByPipe, AllocationComponent, AnnualFeesComponent, PortfolioInfoComponent],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
     OrderByPipe, GroupByPipe, FormatDatePipe , RecommendationsModalComponent, 
@@ -86,6 +87,7 @@ export function createTranslateLoader(http: HttpClient) {
     BreakdownAccordionComponent,
     PercentageInputDirective,
     TruncatePipe,
+    TimeAgoPipe,
     DistributePercentDirective,
     AllocationComponent,
     AnnualFeesComponent,
