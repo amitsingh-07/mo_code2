@@ -77,9 +77,14 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
 
   showEmergencyFundModal() {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
     ref.componentInstance.errorTitle = this.modalData.modalTitle;
     ref.componentInstance.errorMessage = this.modalData.modalMessage;
+    ref.componentInstance.primaryActionLabel = this.translator.RETURN_HOME;
+    ref.componentInstance.primaryAction.subscribe((emittedValue) => {
+      // tslint:disable-next-line:triple-equals
+      return false;
+    });
   }
   showHelpModal() {
     const ref = this.modal.open(ErrorModalComponent, { centered: true });
@@ -120,15 +125,16 @@ firstChkBoxChange() {
       ref.componentInstance.errorMessage = error.errorMessage;
       // tslint:disable-next-line:triple-equals
       if (error.errorTitle == this.translator.INFO) {
-        ref.componentInstance.primaryActionLabel = this.translator.LABEL_YES;
-        ref.componentInstance.secondaryActionLabel = this.translator.LABEL_NO;
+        ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;
+        ref.componentInstance.secondaryActionLabel = this.translator.PROCEED_NEXT;
+        ref.componentInstance.secondaryActionDim = true;
         ref.componentInstance.primaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-          this.saveAndProceed(form);
+          return false;
         });
         ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-          return false;
+         this.saveAndProceed(form);
         });
       } else {
         ref.componentInstance.ButtonTitle = this.translator.TRY_AGAIN;
