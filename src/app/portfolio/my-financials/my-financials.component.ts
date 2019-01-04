@@ -124,13 +124,13 @@ firstChkBoxChange() {
       ref.componentInstance.errorTitle = error.errorTitle;
       ref.componentInstance.errorMessage = error.errorMessage;
       // tslint:disable-next-line:triple-equals
-      if (error.errorTitle == this.translator.INFO) {
+      if (error.isButtons) {
         ref.componentInstance.primaryActionLabel = this.translator.REVIEW_INPUT;
         ref.componentInstance.secondaryActionLabel = this.translator.PROCEED_NEXT;
         ref.componentInstance.secondaryActionDim = true;
         ref.componentInstance.primaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
-          return false;
+          this.goBack();
         });
         ref.componentInstance.secondaryAction.subscribe((emittedValue) => {
           // tslint:disable-next-line:triple-equals
@@ -153,5 +153,8 @@ firstChkBoxChange() {
         this.authService.saveEnquiryId(data.objectList.enquiryId);
       }
     });
+  }
+  goBack() {
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
   }
 }

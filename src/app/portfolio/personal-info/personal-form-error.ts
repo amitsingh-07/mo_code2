@@ -25,16 +25,17 @@ export class PersonalFormError {
                         // tslint:disable-next-line:max-line-length
                         more: { errorTitle: 'Invalid Amount', errorMessage: 'Either One-Time Investment has to be more than $100 or Monthly Investment has to be more than $50' },
                         // tslint:disable-next-line:max-line-length
-                        moreasset: { errorTitle: 'Oops! Is this correct?', errorMessage: 'We noticed that your investment amount is more than your total assets. Would you like to review your inputs?' },
+                        moreasset: { errorTitle: 'Oops! Is this correct?', errorMessage: 'We noticed that your investment amount is more than your total assets. Would you like to review your inputs?' , isButtons: 'Yes' },
                         // tslint:disable-next-line:max-line-length
-                        moreinvestment: { errorTitle: 'Oops! Is this correct?', errorMessage: 'We noticed that your monthly investment amount is more than your total assets. Would you like to review your inputs?' },
+                        moreinvestment: { errorTitle: 'Oops! Is this correct?', errorMessage: 'We noticed that your monthly investment amount is more than your total assets. Would you like to review your inputs?' , isButtons: 'Yes' },
                         // tslint:disable-next-line:max-line-length
-                        moreassetandinvestment: { errorTitle: 'Oops! Is this correct?', errorMessage: 'Your investment amount is more than your total assets and your monthly investment amount is more than your monthly income saved. Would you like to continue?' },
+                        moreassetandinvestment: { errorTitle: 'Oops! Is this correct?', errorMessage: 'Your investment amount is more than your total assets and your monthly investment amount is more than your monthly income saved. Would you like to continue?' , isButtons: 'Yes' },
                         // tslint:disable-next-line:max-line-length
-                        one: { errorTitle: 'Invalid Amount', errorMessage: 'One-time investment must be at least $100. Monthly investment must be at least $50.' },
+                        one: { errorTitle: 'Oops! Review Investment<br>Amount', errorMessage: 'We require a one-time investment of at least $100 or a monthly investment of at least $50.<br><br>To continue, please review your investment amount.' },
                         // tslint:disable-next-line:max-line-length
-                        two: { errorTitle: 'Invalid Amount', errorMessage: 'Monthly investment must be at least $50.' },
-                        three: { errorTitle: 'Invalid Amount', errorMessage: 'One-time investment must be at least $100.' },
+                        two: { errorTitle: 'Oops! Review Monthly<br>Investment Amount', errorMessage: 'We require a monthly investment of at least $50.<br><br>To continue, please review your investment amount.' },
+                        // tslint:disable-next-line:max-line-length
+                        three: { errorTitle: 'Oops! Review One-time<br>Investment Amount', errorMessage: 'We require a one-time investment of at least $100.<br><br>To continue, please review your investment amount..' },
                         four: { errorTitle: 'Invalid Amount', errorMessage: ' Must select at least 1 checkbox to continue.' }
                         }
         };
