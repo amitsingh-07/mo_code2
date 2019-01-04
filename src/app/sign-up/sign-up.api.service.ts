@@ -249,6 +249,10 @@ export class SignUpApiService {
     return this.authService.login(userEmail, this.cryptoService.encrypt(userPassword), captcha, sessionId, invEnqId);
   }
 
+  logout() {
+    return this.authService.logout();
+  }
+
   getUserProfileInfo() {
     return this.apiService.getUserProfileInfo();
   }

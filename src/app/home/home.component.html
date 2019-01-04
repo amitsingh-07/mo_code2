@@ -55,7 +55,7 @@
         <div class="btn btn-primary-dark home__section--btn" routerLink="/guideme">
           <span>{{'INSURANCE.LINK1' | translate}}</span>
         </div>
-        <a class="home__section--subtext" routerLink="/direct">{{'INSURANCE.LINK2' | translate}}</a>
+        <a class="home__section--subtext" href="javascript: void(0);" (click)="startDirectJourney()">{{'INSURANCE.LINK2' | translate}}</a>
       </div>
       <div class="home__seperator primary">
         <img class="hidden-sm" src="assets/images/seperator1.svg" />

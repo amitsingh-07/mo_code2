@@ -51,7 +51,8 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     /* Building the form */
     this.formValues = this.directService.getSrsApprovedPlansForm();
-    this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : 0;
+    this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : '';
+    this.singlePremium = this.formValues.singlePremium;
     this.srsApprovedPlansForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],
@@ -111,8 +112,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   summarizeDetails() {
     let sum_string = '';
     sum_string += this.translate.instant('CRITICAL_ILLNESS.COVERAGE_AMT.DOLLAR') + this.srsApprovedPlansForm.value.singlePremium + ', ';
-    sum_string += 'Payout Age of' + this.payoutStartAge + ', ';
-    sum_string += this.payoutType;
+    sum_string += 'Payout Age of ' + this.payoutStartAge;
     return sum_string;
   }
 
