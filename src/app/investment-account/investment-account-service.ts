@@ -328,7 +328,13 @@ export class InvestmentAccountService {
             if (data.occupation) {
                 this.investmentAccountFormData.occupation = data.occupation;
             }
+            if (data.occupationForOthers) {
+                this.investmentAccountFormData.occupationForOthers = data.occupationForOthers;
+            }
             this.investmentAccountFormData.industry = data.industry;
+            if (data.industryForOthers) {
+                this.investmentAccountFormData.industryForOthers = data.industryForOthers;
+            }
             this.investmentAccountFormData.contactNumber = data.contactNumber;
             this.investmentAccountFormData.isEmployeAddresSame = data.isEmployeAddresSame;
 
