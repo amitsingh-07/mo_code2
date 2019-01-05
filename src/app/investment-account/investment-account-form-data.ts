@@ -62,7 +62,9 @@ export class InvestmentAccountFormData {
     employStatus: string;
     companyName: string;
     occupation: string;
+    occupationForOthers: string;
     industry: string;
+    industryForOthers: string;
     contactNumber: string;
     isEmployeAddresSame: boolean;
     empCountry: string;

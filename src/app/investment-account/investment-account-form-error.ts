@@ -329,11 +329,23 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Occupation.'
             }
         },
+        occupationForOthers: {
+            required: {
+                errorTitle: 'Invalid Occupation',
+                errorMessage: 'Please enter your occupation.'
+            }
+        },
         industry: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Industry',
                 errorMessage: 'Please select your Industry'
+            }
+        },
+        industryForOthers: {
+            required: {
+                errorTitle: 'Invalid Industry',
+                errorMessage: 'Please enter your Industry.'
             }
         },
         contactNumber: {
