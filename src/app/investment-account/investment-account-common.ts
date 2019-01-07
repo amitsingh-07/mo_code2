@@ -73,10 +73,11 @@ export class InvestmentAccountCommon {
     };
   }
 
-  clearFileSelection(control, event, thumbElem?) {
+  clearFileSelection(control, event, thumbElem?, fileElem?) {
     const defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
     event.stopPropagation();
     control.setValue('');
+    fileElem.value = '';
     if (thumbElem) {
       thumbElem.src = window.location.origin + '/assets/images/' + defaultThumb;
     }

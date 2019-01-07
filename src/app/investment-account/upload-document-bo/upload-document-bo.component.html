@@ -21,9 +21,9 @@
           <div class="upload-doc">
 
             <!-- PASSPORT IMAGE UPLOAD -->
-            <div class="upload-desc" >
-              <div class="thumb-container" (click)="openFileDialog(passport)">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, $event, passportThumb)"
+            <div class="upload-desc" (click)="openFileDialog(passport)">
+              <div class="thumb-container">
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, $event, passportThumb, passport)"
                   *ngIf="uploadForm.controls.passportImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>

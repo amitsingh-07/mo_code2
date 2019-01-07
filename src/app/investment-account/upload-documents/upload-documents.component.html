@@ -26,9 +26,9 @@
           </div>
           <div class="upload-doc">
             <!-- FRONT IMAGE UPLOAD -->
-            <div class="upload-desc" *ngIf="isUserNationalitySingapore">
-              <div class="thumb-container" (click)="openFileDialog(nricFront)">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricFrontImage, $event, frontThumb)" *ngIf="uploadForm.controls.nricFrontImage.value">
+            <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricFront)">
+              <div class="thumb-container">
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricFrontImage, $event, frontThumb, nricFront)" *ngIf="uploadForm.controls.nricFrontImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
                 <img #frontThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
@@ -44,9 +44,9 @@
             </div>
 
             <!-- BACK IMAGE UPLOAD -->
-            <div class="upload-desc" *ngIf="isUserNationalitySingapore">
-              <div class="thumb-container" (click)="openFileDialog(nricBack)">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricBackImage, $event, backThumb)" *ngIf="uploadForm.controls.nricBackImage.value">
+            <div class="upload-desc" *ngIf="isUserNationalitySingapore" (click)="openFileDialog(nricBack)">
+              <div class="thumb-container">
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.nricBackImage, $event, backThumb, nricBack)" *ngIf="uploadForm.controls.nricBackImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
                 <img #backThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
@@ -62,9 +62,9 @@
             </div>
 
             <!-- PASSPORT IMAGE UPLOAD -->
-            <div class="upload-desc" *ngIf="!isUserNationalitySingapore">
-              <div class="thumb-container" (click)="openFileDialog(passport)">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, $event, passportThumb)" *ngIf="uploadForm.controls.passportImage.value">
+            <div class="upload-desc" *ngIf="!isUserNationalitySingapore" (click)="openFileDialog(passport)">
+              <div class="thumb-container">
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, $event, passportThumb, passport)" *ngIf="uploadForm.controls.passportImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
                 <img #passportThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
@@ -92,9 +92,9 @@
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.resAddressProof.value">
 
-              <div class="upload-desc">
-                  <div class="thumb-container" (click)="openFileDialog(resAddressProof)">
-                    <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.resAddressProof, $event, resThumb)" *ngIf="uploadForm.controls.resAddressProof.value">
+              <div class="upload-desc" (click)="openFileDialog(resAddressProof)">
+                  <div class="thumb-container">
+                    <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.resAddressProof, $event, resThumb, resAddressProof)" *ngIf="uploadForm.controls.resAddressProof.value">
                       <img src="../../../assets/images/close-button.svg" alt="x" />
                     </div>
                     <img #resThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
@@ -128,9 +128,9 @@
           </div>
           <div class="upload-doc" [class.selected]="uploadForm.controls.mailAdressProof.value">
 
-              <div class="upload-desc">
-                  <div class="thumb-container" (click)="openFileDialog(mailAdressProof)">
-                    <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.mailAdressProof, $event, mailThumb)" *ngIf="uploadForm.controls.mailAdressProof.value">
+              <div class="upload-desc" (click)="openFileDialog(mailAdressProof)">
+                  <div class="thumb-container">
+                    <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.mailAdressProof, $event, mailThumb, mailAdressProof)" *ngIf="uploadForm.controls.mailAdressProof.value">
                       <img src="../../../assets/images/close-button.svg" alt="x" />
                     </div>
                     <img #mailThumb class="thumbnail image-fluid" src="../../../assets/images/{{defaultThumb}}" />
