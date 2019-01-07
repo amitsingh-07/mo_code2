@@ -13,9 +13,8 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
     },
     upload_documents: {
         default_thumb: 'cam-icon.svg',
-        max_file_size: 2, // in MB
-        image_file_types: ['JPG', 'JPEG', 'PNG', 'GIF', 'BMP'],
-        doc_file_types: ['PDF']
+        max_file_size: 10, // in MB
+        file_types: ['JPG', 'JPEG', 'PNG', 'GIF', 'BMP', 'PDF']
     },
     confirm_portfolio: {
         fees: {

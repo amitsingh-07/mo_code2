@@ -59,12 +59,11 @@ export class InvestmentAccountCommon {
     const fileSize: number = selectedFile.size / 1024 / 1024; // in MB
     const fileType = selectedFile.name.split('.')[1].toUpperCase();
     const isValidFileSize = fileSize <= INVESTMENT_ACCOUNT_CONFIG.upload_documents.max_file_size;
-    const isValidFileType = thumbElem ? INVESTMENT_ACCOUNT_CONFIG.upload_documents.image_file_types.includes(fileType)
-      : INVESTMENT_ACCOUNT_CONFIG.upload_documents.doc_file_types.includes(fileType);
+    const isValidFileType = INVESTMENT_ACCOUNT_CONFIG.upload_documents.file_types.includes(fileType);
     if (isValidFileSize && isValidFileType) {
       const payloadKey = this.getPayloadKey(controlname);
       formData.append(payloadKey, selectedFile);
-      if (thumbElem) {
+      if (fileType !== 'PDF') {
         this.setThumbnail(thumbElem, selectedFile);
       }
     }
