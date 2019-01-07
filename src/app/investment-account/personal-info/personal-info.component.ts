@@ -98,7 +98,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
       dob: [{ value: this.formValues.dob, disabled: this.investmentAccountService.isDisabled('dob') },
       [Validators.required, this.validateMinimumAge]],
       gender: [{
-        value: this.formValues.gender ? this.formValues.gender : 'male',
+        value: this.formValues.gender,
         disabled: this.investmentAccountService.isDisabled('gender')
       },
       Validators.required],

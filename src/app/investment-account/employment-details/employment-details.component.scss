@@ -39,7 +39,10 @@ app-employment-details{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.emp_add_lbl{
+  font-family: $muli-regular;
+padding: 21px 0 16px;
+}
 .inline-error{
   .btn{
     &.btn-secondary{

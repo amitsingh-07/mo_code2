@@ -122,7 +122,7 @@
   "TAX_INFO": {
     "TITLE": "Tax Information",
     "TAX_MODEL_TITLE": "Taxpayer Identification No.",
-    "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>This is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
+    "TAX_MODEL_DESC": "<p>For Singapore Tax Residents, please note that your NRIC/FIN No. is your Taxpayer Identification No.</p><p>Taxpayer Identification No. is a personal tax account number that has been assigned to you by the country that you are a tax resident of. For more information, please refer to <a  class=\"hyperlink_color\" target='_blank' href='http://www.oecd.org'>http://www.oecd.org</a>.</p>",
     "COUNTRY_TEXT": "Country Of Tax Residence",
     "TIN_QUESTION": "Do you have a Taxpayer Identification Number (TIN) for the above country?",
     "YES_lABEL": "Yes",
@@ -184,9 +184,9 @@
     "PEP_DESC": "Also known as a political figure, this person has been entrusted with a prominent role in governing bodies and/or state-owned enterprises.",
     "BENEFICIAL": "Beneficial Owner",
     "BENEFICIAL_DESC": "This person is the decision maker of the investment funds and has full control over the assets.",
-    "QUESTION1": "Are you a Director, Officer, Trading Representative or employee of a SGX Trading Member other than iFAST Financial Pvt Ltd?",
+    "QUESTION1": "Are you a director, officer, trading representative or employee of SGX trading?",
     "QUESTION2": "Are you a Politically Exposed Person (PEP), close associate of a PEP or family member of a PEP?",
-    "QUESTION3": "Do you have any beneficial owner?",
+    "QUESTION3": "Do you have any beneficial owners of this account?",
     "YES_lBL": "Yes",
     "NO_LBL": "No",
     "CONTINUE": "Continue"
