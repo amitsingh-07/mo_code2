@@ -5,7 +5,7 @@
     <div class="flex-row user_content flex-col-12">
       <div class="flex-col-8 user_portfolio" id="youe_portfolio_summary">
         <div>{{'YOUR_PORTFOLIO.PORTFOLIO' | translate}}</div>
-        <div id="your_portfolio_name">{{portfolio.portfolioName}}</div>
+        <div id="your_portfolio_name">{{portfolioValues.productName}}</div>
       </div>
       <div class="flex-col-3">
         <div class="dropdown-control ">
@@ -23,9 +23,7 @@
   <div class="container-fluid">
     <!-- Already fund portfolio -->
     <div class="row">
-      <!-- After API workinfg no to enable  -->
-      <!-- <div class="row" *ngIf="PortfolioValues.investmentAmount"> -->
-      <div class="col-lg-12 col-md-12" *ngIf="portfolio.investmentAmount">
+      <div class="col-lg-12 col-md-12" *ngIf="portfolioValues.currentValue">
         <div class="flex-row">
           <button type="button" class="btn-with-icon mb20" id="topup_button" (click)="gotoTopUp()">
             <img id="topup_img" src="../../../assets/images/investment-account/money-topup.svg" alt="" /> {{'YOUR_PORTFOLIO.TOP_UP' | translate}}
@@ -33,7 +31,7 @@
         </div>
         <div class="form-group-with-bg">
           <div class="form-group-with-bg--header your_total_value">
-            <div id="portdolio_value" class="total_values">{{portfolio.totalValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
+            <div id="portdolio_value" class="total_values">{{portfolioValues.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</div>
             <div id="portdolio_value_lab" class="total_values_label">{{'YOUR_PORTFOLIO.TOTAL_VALUE' | translate}}</div>
           </div>
           <!--Form Content-->
@@ -45,8 +43,8 @@
                 </div>
               </div>
               <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">34%
-                  <!-- +{{PortfolioValues.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}% -->
+                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">
+                  +{{totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}%
                 </div>
               </div>
             </div>
@@ -62,8 +60,8 @@
                 </div>
               </div>
               <div class="flex-col-5">
-                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">$4536
-                  <!-- +{{PortfolioValues.totalReturns | currency:'USD':'symbol-narrow':'1.0-2'}}% -->
+                <div id="your_portfolio_totalreturn_value" class="total_return_value" for="total value">
+                  +{{yearlyReturns | currency:'USD':'symbol-narrow':'1.0-2'}}%
                 </div>
               </div>
             </div>
@@ -73,7 +71,7 @@
     </div>
     <!-- NOT FUNDED PORTFOLIO  -->
     <div class="row">
-      <div class="col-lg-12 col-md-12" *ngIf="!portfolio.investmentAmount">
+      <div class="col-lg-12 col-md-12" *ngIf="!portfolioValues.currentValue">
         <div class="flex-row mb20">
           <div class="fund-account">
             <div class="fund-account-information" id="errorModeButton">
@@ -112,7 +110,7 @@
       </div>
     </div>
 
-    <button *ngIf="portfolio.investmentAmount" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
+    <button *ngIf="portfolioValues.currentValue" type="button" class="asset_allocation_btn mb20" id="holdings_btn" (click)="goToHoldings()">
       {{'YOUR_PORTFOLIO.HOLDINGS' | translate}}
       <img src="../../../assets/images/investment-account/forward.svg" alt="" />
     </button>

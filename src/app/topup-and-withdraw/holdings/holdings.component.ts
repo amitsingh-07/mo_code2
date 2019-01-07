@@ -31,6 +31,11 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 export class HoldingsComponent implements OnInit {
   pageTitle: string;
   holidings;
+  availableUnits: any;
+  currentValue: any;
+  investmentAmount: any;
+
+
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -55,64 +60,5 @@ export class HoldingsComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.holidings = this.topupAndWithDrawService.getHoldingValues();
-    this.holidings = [
-      {
-          "productName": "Discretionary Cash Account(SGD)",
-          "productCode": null,
-          "productType": "CA",
-          "availableUnits": null,
-          "investmentAmount": null,
-          "indicativePrice": null,
-          "currentValue": 2000.0,
-          "profit": null,
-          "nav": "2323",
-          "additionalProperties": {}
-      },
-      {
-          "productName": "Dimensional Global Core Equity Acc SGD",
-          "productCode": "DIM034",
-          "productType": "UT",
-          "availableUnits": 140.15,
-          "investmentAmount": 200.0,
-          "indicativePrice": 1.43,
-          "currentValue": 200.0,
-          "profit": 0.0,
-          "additionalProperties": {}
-      },
-      {
-          "productName": "Dimensional Global Short-Term Investment Grade Fixed Income Acc SGD-H",
-          "productCode": "DIM036",
-          "productType": "UT",
-          "availableUnits": 280.31,
-          "investmentAmount": 400.0,
-          "indicativePrice": 1.43,
-          "currentValue": 400.0,
-          "profit": 0.0,
-          "additionalProperties": {}
-      },
-      {
-          "productName": "Dimensional Global Short Fixed Income Acc SGD-H",
-          "productCode": "DIM035",
-          "productType": "UT",
-          "availableUnits": 280.31,
-          "investmentAmount": 400.0,
-          "indicativePrice": 1.43,
-          "currentValue": 400.0,
-          "profit": 0.0,
-          "additionalProperties": {}
-      },
-      {
-          "productName": "Transaction In Transition",
-          "productCode": null,
-          "productType": "-",
-          "availableUnits": null,
-          "investmentAmount": 0.0,
-          "indicativePrice": null,
-          "currentValue": 11400.0,
-          "profit": null,
-          "additionalProperties": {}
-      }
-  ];
-    console.log(this.holidings);
   }
 }
