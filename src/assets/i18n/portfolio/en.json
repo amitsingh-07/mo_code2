@@ -104,6 +104,11 @@
       "editModel": {
         "modalTitle": "Edit Portfolio",
         "modalMessage": "To make changes to your portfolio, you need to reassess your risk. Are you sure you want to continue?"  
+        },
+        "ERRORS": {
+          "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
+          "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
+          "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
         }
       
   },
