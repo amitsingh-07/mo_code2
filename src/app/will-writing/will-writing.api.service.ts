@@ -59,7 +59,7 @@ export class WillWritingApiService {
 
     checkProfileMembers(uin, list) {
         return list.filter((data) =>
-            data.uin === uin
+            (data.uin).toLowerCase() === uin.toLowerCase()
         );
     }
 

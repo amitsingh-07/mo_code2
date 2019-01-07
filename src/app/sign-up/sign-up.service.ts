@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -20,7 +21,8 @@ const CAPTCHA_SESSION_ID = 'captcha_session_id';
 })
 
 export class SignUpService {
-
+  private userSubject = new Subject();
+  userObservable$ = this.userSubject.asObservable();
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
   constructor(
@@ -254,8 +256,13 @@ export class SignUpService {
   }
 
   setUserProfileInfo(userInfo) {
+    this.userSubject.next(userInfo);
     this.signUpFormData.userProfileInfo = userInfo;
     this.commit();
+  }
+
+  logoutUser() {
+    this.userSubject.next('LOGGED_OUT');
   }
 
   setRedirectUrl(url) {

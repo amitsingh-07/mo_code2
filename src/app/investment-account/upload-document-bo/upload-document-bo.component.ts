@@ -29,10 +29,9 @@ export class UploadDocumentBOComponent implements OnInit {
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   defaultThumb;
-  showLoader;
+  loaderVisible;
   formValues;
-  loaderTitle;
-  loaderDesc;
+  loaderInfo;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -46,7 +45,7 @@ export class UploadDocumentBOComponent implements OnInit {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
-      this.showLoader = false;
+      this.loaderVisible = false;
     });
   }
 
@@ -122,13 +121,15 @@ export class UploadDocumentBOComponent implements OnInit {
     this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
   }
   showUploadLoader() {
-    this.showLoader = true;
-    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
-    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
+    this.loaderVisible = true;
+    this.loaderInfo = {
+      title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
+      desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
+    };
   }
 
   hideUploadLoader() {
-    this.showLoader = false;
+    this.loaderVisible = false;
   }
   goToNext(form) {
     if (!form.valid) {

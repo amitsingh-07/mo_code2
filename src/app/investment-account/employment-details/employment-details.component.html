@@ -83,6 +83,24 @@
                 </div>
               </div>
 
+              <!-- INDUSTRY for OTHERS -->
+              <div *ngIf="employementDetailsForm.controls.industry.value && 
+              employementDetailsForm.controls.industry.value.name =='Others'">
+                <div class="form-group">
+                  <div class="flex-row">
+                    <div class="flex-col-12">
+                      <label for="employement-industry-others-txt" id="employement-industry-others-lbl">
+                        {{'RESIDENTIAL_ADDRESS.PLEASE_INDECATE_THE_REASON' | translate}}</label>
+                    </div>
+                    <div class="flex-col-12">
+                      <div class="form-control">
+                        <input type="text" class="input-control grey" formControlName="industryForOthers" id="employement-industry-others-txt" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Occupation -->
               <div class="form-group" *ngIf="employementDetailsForm.get('occupation')">
                 <div class="flex-row">
@@ -104,6 +122,24 @@
                           <button class="dropdown-item" *ngFor="let option of occupationList; let i = index;" (click)="setOccupationValue('occupation',option,i)"
                             id="employement_details-occupation-option-{{i}}">{{ option.occupation | titlecase}}</button>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- OCCUPATION for OTHERS -->
+              <div *ngIf="employementDetailsForm.controls.occupation.value && 
+              employementDetailsForm.controls.occupation.value.name =='Others'">
+                <div class="form-group">
+                  <div class="flex-row">
+                    <div class="flex-col-12">
+                      <label for="employement-occupation-others-txt" id="employement-occupation-others-lbl">
+                        {{'RESIDENTIAL_ADDRESS.PLEASE_INDECATE_THE_REASON' | translate}}</label>
+                    </div>
+                    <div class="flex-col-12">
+                      <div class="form-control">
+                        <input type="text" class="input-control grey" formControlName="occupationForOthers" id="employement-occupation-others-txt" />
                       </div>
                     </div>
                   </div>

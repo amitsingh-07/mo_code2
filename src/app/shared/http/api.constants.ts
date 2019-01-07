@@ -67,6 +67,7 @@ export let apiConstants = {
             verifyAML: ACCOUNT_API_BASE_URL + '/api/verifyAML?handleError=true',
             getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
             buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
+            monthlyInvestment: INVESTMENT_API_BASE_URL + 'customer/InvestmentObjective/monthlyInvestment',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
             investmentoverview: 'invest/investment-microservice/portfolio/holdings',
             porfolioDetails: 'invest/investment-microservice/portfolios/detail'

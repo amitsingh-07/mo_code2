@@ -34,7 +34,7 @@ export class FundYourAccountComponent implements OnInit {
   bankDetails;
   paynowDetails;
   riskProfileImg: any;
-  fundaccountcontent: any;
+  fundAccountContent: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -48,7 +48,7 @@ export class FundYourAccountComponent implements OnInit {
     this.translate.use('en');
     this.fundDetails = this.topupAndWithDrawService.getFundingDetails();
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.fundaccountcontent = this.translate.instant('FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK');
+      this.fundAccountContent = this.translate.instant('FUND_YOUR_ACCOUNT.LOGIN_TO_NETBANKING_BANK');
     });
   }
 
@@ -124,14 +124,29 @@ export class FundYourAccountComponent implements OnInit {
   }
 
   oneTimeOrMonthlySufficient() {
-    return (!this.fundDetails.isAmountExceedBalance);
+    return ( (this.fundDetails.fundingType === 'ONETIME' || this.fundDetails.fundingType === 'MONTHLY')
+      && !this.fundDetails.isAmountExceedBalance);
   }
   goToNext() {
     // redirect to dashboard
     this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
   }
-
+  // tslint:disable-next-line
   buyPortfolio() {
+    if (this.fundDetails.oneTimeInvestment) {
+      this.topUpOneTime();
+
+    } else {
+      this.topUpMonthly();
+    }
+  }
+  showCustomErrorModal(title, desc) {
+    const ref = this.modal.open(ErrorModalComponent, { centered: true });
+    ref.componentInstance.errorTitle = title;
+    ref.componentInstance.errorMessage = desc;
+  }
+  // ONETIME INVESTMENT
+  topUpOneTime() {
     this.topupAndWithDrawService.buyPortfolio(this.fundDetails).subscribe((response) => {
       if (response.responseMessage.responseCode < 6000) {
         if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
@@ -151,10 +166,26 @@ export class FundYourAccountComponent implements OnInit {
         ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
       });
   }
-
-  showCustomErrorModal(title, desc) {
-    const ref = this.modal.open(ErrorModalComponent, { centered: true });
-    ref.componentInstance.errorTitle = title;
-    ref.componentInstance.errorMessage = desc;
+  // MONTHLY INVESTMENT
+  topUpMonthly() {
+    this.topupAndWithDrawService.monthlyInvestment(this.fundDetails).subscribe((response) => {
+      if (response.responseMessage.responseCode < 6000) {
+        if (response.objectList && response.objectList.serverStatus && response.objectList.serverStatus.errors.length) {
+          this.showCustomErrorModal('Error!', response.objectList.serverStatus.errors[0].msg);
+        }
+      } else {
+        if (!this.fundDetails.isAmountExceedBalance) {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/success']);
+        } else {
+          this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.TOPUP_REQUEST + '/pending']);
+        }
+      }
+    },
+      (err) => {
+        const ref = this.modal.open(ErrorModalComponent, { centered: true });
+        ref.componentInstance.errorTitle = this.translate.instant('COMMON_ERRORS.API_FAILED.TITLE');
+        ref.componentInstance.errorMessage = this.translate.instant('COMMON_ERRORS.API_FAILED.DESC');
+      });
   }
-}
+ // tslint:disable-next-line
+} 

@@ -302,6 +302,10 @@
     "GENERAL_ERROR": {
       "TITLE": "Error !",
       "DESCRIPTION": "Sorry, Something went wrong. Please try again."
+    },
+    "CREATING_ACCOUNT_LOADER": {
+      "TITLE": "Submitting your application",
+      "DESCRIPTION": "Please wait while we try to create account."
     }
   },
   "FUND_INTRO": {

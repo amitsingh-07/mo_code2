@@ -13,6 +13,7 @@ import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.con
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
 import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
+
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
 
@@ -58,9 +59,8 @@ export class YourPortfolioComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
-    this.getPortfolioHoldingList('PORTFOLIO00050');
-    //this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-
+    this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+    this.getPortfolioHoldingList(this.PortfolioValues.productCode);   // SET THE PORTFOLIO ID
   }
   getMoreList() {
     this.topupAndWithDrawService.getMoreList().subscribe((data) => {
@@ -68,30 +68,30 @@ export class YourPortfolioComponent implements OnInit {
       console.log(this.moreList);
     });
   }
-  getPortfolioHoldingList(portfolioId) {
-    this.topupAndWithDrawService.getIndividualPortfolioDetails(portfolioId).subscribe((data) => {
+  getPortfolioHoldingList(portfolioid) {
+    this.topupAndWithDrawService.getIndividualPortfolioDetails(portfolioid).subscribe((data) => {
       this.portfolio = data.objectList;
+      const fundingParams = this.constructFundingParams(this.portfolio);
       this.topupAndWithDrawService.setSelectedPortfolio(this.portfolio);
     });
   }
 
-  constructFundingParams() {
+  constructFundingParams(data) {
     const FundValues = {
       source: 'FUNDING',
       portfolio: {
-        productName: 'LOW RISK',
-        riskProfile: ''
+        productName: data.portfolioName,
+        riskProfile: data.riskProfile
       },
-      oneTimeInvestment: 100,
-      monthlyInvestment: 100,
+      oneTimeInvestment: data.initialInvestment,
+      monthlyInvestment: data.monthlyInvestment,
       fundingType: '', // todo
-      isAmountExceedBalance: true,
-      exceededAmount: 100
+      isAmountExceedBalance: 0,
+      exceededAmount: 0
     };
     this.topupAndWithDrawService.setFundingDetails(FundValues);
   }
   goToFundYourAccount() {
-    this.constructFundingParams();
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
   }
   gotoTopUp() {

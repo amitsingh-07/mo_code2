@@ -62,6 +62,10 @@ export class DirectService {
     }
   }
 
+  clearServiceData() {
+    this.directFormData = {} as DirectFormData;
+  }
+
   getDirectFormData(): DirectFormData {
     if (window.sessionStorage && sessionStorage.getItem(SESSION_STORAGE_KEY)) {
       this.directFormData = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
@@ -321,6 +325,18 @@ export class DirectService {
   setSelectedPlans(plan) {
     this.directFormData.selectedPlans = plan;
     this.commit();
+  }
+
+  setProtectionType(type) {
+    this.directFormData.protectionType = type;
+    this.commit();
+  }
+
+  getProtectionType() {
+    if (!this.directFormData.protectionType) {
+      this.directFormData.protectionType = '';
+    }
+    return this.directFormData.protectionType;
   }
 
   getSelectedPlans() {

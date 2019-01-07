@@ -51,4 +51,6 @@ export class DirectFormData {
     srsApprovedPlans: ISrsApprovedPlans;
 
     premiumFrequencyFilter: string;
+
+    protectionType: string;
 }
