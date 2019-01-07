@@ -66,6 +66,8 @@
     "EMPLOYEMEN_STATUS": "Employment Status",
     "COMPANY_NAME": "Company Name",
     "INDUSTRY": "Industry",
+    "OTHER_INDUSTRY": "Please enter an industry:",
+    "OTHER_OCCUPATION": "Please enter an occupation:",
     "OCCUPATION": "Occupation",
     "CONTACT_NUMBER": "Contact Number",
     "COUNTRY": "Country",
