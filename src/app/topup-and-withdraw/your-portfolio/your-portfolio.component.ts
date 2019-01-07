@@ -26,12 +26,14 @@ import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 export class YourPortfolioComponent implements OnInit {
   pageTitle: string;
   moreList: any;
-  PortfolioValues;
+  portfolioValues;
   selectedDropDown;
   portfolio;
   HoldingValues;
   holdingsDPMSData;
   assetAllocationValues;
+  yearlyReturns: any;
+  totalReturns: any;
   constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
@@ -59,8 +61,11 @@ export class YourPortfolioComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(true);
     this.navbarService.setNavbarMode(2);
     this.getMoreList();
-    this.PortfolioValues = this.topupAndWithDrawService.getPortfolioValues();
-    this.getPortfolioHoldingList(this.PortfolioValues.productCode);   // SET THE PORTFOLIO ID
+    this.portfolioValues = this.topupAndWithDrawService.getPortfolioValues();
+    this.totalReturns = this.portfolioValues.totalReturns ? this.portfolioValues.totalReturns : 0;
+    this.yearlyReturns = this.portfolioValues.yearlyReturns ? this.portfolioValues.yearlyReturns : 0;
+    console.log(this.portfolioValues + 'portfolio values ');
+    this.getPortfolioHoldingList(this.portfolioValues.productCode);   // SET THE PORTFOLIO ID
   }
   getMoreList() {
     this.topupAndWithDrawService.getMoreList().subscribe((data) => {
