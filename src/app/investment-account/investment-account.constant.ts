@@ -9,7 +9,7 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
         isMailingAddressSame: true
     },
     employmentDetails: {
-        isEmployeAddresSame: true
+
     },
     upload_documents: {
         default_thumb: 'cam-icon.svg',
