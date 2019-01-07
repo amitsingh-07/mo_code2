@@ -26,6 +26,7 @@ export let apiConstants = {
         verifyEmail: 'account/account-microservice/api/verifyEmail',
         resetPassword: 'account/account-microservice/api/resetPassword',
         forgotPassword: 'account/account-microservice/api/forgotPassword',
+        emailValidityCheck: 'account/account-microservice/api/emailValidityCheck',
         userProfileInfo: 'account/account-microservice/api/getProfileSummary',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',

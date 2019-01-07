@@ -182,7 +182,7 @@ export class ApiService {
       body: 'default',
       detail: 'default',
       status: 500
-      };
+    };
     this.errorMessage.next(templateError);
     return throwError('');
   }
@@ -280,6 +280,10 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
+  }
+
+  emailValidityCheck(payload) {
+    return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
   }
 
   setPassword(payload: ISetPassword) {
