@@ -5,15 +5,20 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../shared/shared.module';
-import { AccountCreationErrorModalComponent } from './account-creation-error-modal/account-creation-error-modal.component';
+import {
+    AccountCreationErrorModalComponent
+} from './account-creation-error-modal/account-creation-error-modal.component';
 import {
     AccountSetupCompletedComponent
 } from './account-setup-completed/account-setup-completed.component';
-import { AccountSetupPendingComponent } from './account-setup-pending/account-setup-pending.component';
+import {
+    AccountSetupPendingComponent
+} from './account-setup-pending/account-setup-pending.component';
 import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
 import {
     AdditionalDeclarationInfoComponent
@@ -64,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     SingPassComponent,
