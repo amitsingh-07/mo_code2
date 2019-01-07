@@ -84,17 +84,17 @@
               </div>
 
               <!-- INDUSTRY for OTHERS -->
-              <div *ngIf="employementDetailsForm.controls.industry.value && 
-              employementDetailsForm.controls.industry.value.name =='Others'">
+              <div *ngIf="employementDetailsForm.controls.industry && employementDetailsForm.controls.industry.value && 
+              employementDetailsForm.controls.industry.value.industry =='Others'">
                 <div class="form-group">
                   <div class="flex-row">
                     <div class="flex-col-12">
                       <label for="employement-industry-others-txt" id="employement-industry-others-lbl">
-                        {{'RESIDENTIAL_ADDRESS.PLEASE_INDECATE_THE_REASON' | translate}}</label>
+                        {{'EMPLOYMENT_DETAILS.OTHER_INDUSTRY' | translate}}</label>
                     </div>
                     <div class="flex-col-12">
                       <div class="form-control">
-                        <input type="text" class="input-control grey" formControlName="industryForOthers" id="employement-industry-others-txt" />
+                        <input type="text" class="input-control grey" formControlName="otherIndustry" id="employement-industry-others-txt" />
                       </div>
                     </div>
                   </div>
@@ -129,17 +129,17 @@
               </div>
 
               <!-- OCCUPATION for OTHERS -->
-              <div *ngIf="employementDetailsForm.controls.occupation.value && 
-              employementDetailsForm.controls.occupation.value.name =='Others'">
+              <div *ngIf="employementDetailsForm.controls.occupation && employementDetailsForm.controls.occupation.value && 
+              employementDetailsForm.controls.occupation.value.occupation =='Others'">
                 <div class="form-group">
                   <div class="flex-row">
                     <div class="flex-col-12">
                       <label for="employement-occupation-others-txt" id="employement-occupation-others-lbl">
-                        {{'RESIDENTIAL_ADDRESS.PLEASE_INDECATE_THE_REASON' | translate}}</label>
+                        {{'EMPLOYMENT_DETAILS.OTHER_OCCUPATION' | translate}}</label>
                     </div>
                     <div class="flex-col-12">
                       <div class="form-control">
-                        <input type="text" class="input-control grey" formControlName="occupationForOthers" id="employement-occupation-others-txt" />
+                        <input type="text" class="input-control grey" formControlName="otherOccupation" id="employement-occupation-others-txt" />
                       </div>
                     </div>
                   </div>

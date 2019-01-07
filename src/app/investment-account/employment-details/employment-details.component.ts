@@ -101,12 +101,14 @@ export class EmploymentDetailsComponent implements OnInit {
       this.addOrRemoveMailingAddress(empStatus);
       this.observeIndustryChange();
       this.observeOccupationChange();
+      this.addOtherIndustry(this.formValues.industry);
+      this.addOtherOccupation(this.formValues.occupation);
     } else {
       this.employementDetailsForm.removeControl('companyName');
       this.employementDetailsForm.removeControl('occupation');
-      this.employementDetailsForm.removeControl('occupationForOthers');
+      this.employementDetailsForm.removeControl('otherOccupation');
       this.employementDetailsForm.removeControl('industry');
-      this.employementDetailsForm.removeControl('industryForOthers');
+      this.employementDetailsForm.removeControl('otherIndustry');
       this.employementDetailsForm.removeControl('contactNumber');
       this.employementDetailsForm.removeControl('employeaddress');
     }
@@ -169,24 +171,32 @@ export class EmploymentDetailsComponent implements OnInit {
 
   observeIndustryChange() {
     this.employementDetailsForm.get('industry').valueChanges.subscribe((value) => {
-      if (value.name === 'Others') {
-        this.employementDetailsForm.addControl('industryForOthers',
-        new FormControl(this.formValues.industryForOthers, Validators.required));
-      } else {
-        this.employementDetailsForm.removeControl('industryForOthers');
-      }
+      this.addOtherIndustry(value);
     });
+  }
+
+  addOtherIndustry(value) {
+    if (value.industry === 'Others') {
+      this.employementDetailsForm.addControl('otherIndustry',
+      new FormControl(this.formValues.otherIndustry, Validators.required));
+    } else {
+      this.employementDetailsForm.removeControl('otherIndustry');
+    }
   }
 
   observeOccupationChange() {
     this.employementDetailsForm.get('occupation').valueChanges.subscribe((value) => {
-      if (value.name === 'Others') {
-        this.employementDetailsForm.addControl('occupationForOthers',
-        new FormControl(this.formValues.occupationForOthers, Validators.required));
-      } else {
-        this.employementDetailsForm.removeControl('occupationForOthers');
-      }
+      this.addOtherOccupation(value);
     });
+  }
+
+  addOtherOccupation(value) {
+    if (value.occupation === 'Others') {
+      this.employementDetailsForm.addControl('otherOccupation',
+      new FormControl(this.formValues.otherOccupation, Validators.required));
+    } else {
+      this.employementDetailsForm.removeControl('otherOccupation');
+    }
   }
 
   addOrRemoveAdditionalControlsMailing(country) {
