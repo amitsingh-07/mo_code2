@@ -248,7 +248,12 @@
     "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
     "VIEW_FUND_DETAILS": "View Fund Details",
     "TITLE": "Your Portfolio",
-    "PORTFOLIO":"Portfolio"
+    "PORTFOLIO":"Portfolio",
+    "ERRORS": {
+      "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
+      "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
+      "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
+    }
   },
   "ADDITIONAL_DECLARATION": {
     "TITLE": "Due Diligence Check",
