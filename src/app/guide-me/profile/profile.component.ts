@@ -66,10 +66,18 @@ export class ProfileComponent implements IPageComponent, OnInit {
     this.profileForm = new FormGroup({
       myProfile: new FormControl(this.profileFormValues.myProfile, Validators.required)
     });
-    this.authService.authenticate().subscribe((token) => {
-      this.guideMeApiService.getProfileList().subscribe((data) => this.profileList = data.objectList);
-    });
+    if (this.authService.isAuthenticated()) {
+      this.getProfileList();
+    } else {
+      this.authService.authenticate().subscribe((token) => {
+        this.getProfileList();
+      });
+    }
     this.footerService.setFooterVisibility(false);
+  }
+
+  getProfileList() {
+    this.guideMeApiService.getProfileList().subscribe((data) => this.profileList = data.objectList);
   }
 
   setPageTitle(title: string) {
