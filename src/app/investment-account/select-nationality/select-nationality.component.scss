@@ -55,6 +55,13 @@ padding-right: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.btn{
+    &:disabled{
+      color: #00a7a7 !important;
+      background-color: #d4eded !important;
+      opacity: 1 !important;
+    }
+  }
 .fixed-btn--sm {
     color:#FFF;
    

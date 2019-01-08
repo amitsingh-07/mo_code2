@@ -89,7 +89,6 @@ padding: 21px 0 16px;
     }
   }
 
-
   .form-control {
     &.with-button {
       padding: 0.50rem;
@@ -99,8 +98,28 @@ padding: 21px 0 16px;
         margin-top: 6px;
       }
     }
+    &:disabled{
+        color: #00a7a7 !important;
+        background-color: #d4eded !important;
+        opacity: 1 !important;
+    }
+  }
+    .input-group-append{
+      .btn-primary{
+        &:disabled{
+          color: #00a7a7 !important;
+          background-color: #d4eded !important;
+          opacity: 1 !important;
+        }
+      }
+    }
 
-
+  .btn{
+    &:disabled{
+      color: #00a7a7 !important;
+      background-color: #d4eded !important;
+      opacity: 1 !important;
+    }
   }
 
   .btn {
