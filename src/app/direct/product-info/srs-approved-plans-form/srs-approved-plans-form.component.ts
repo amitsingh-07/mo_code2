@@ -24,7 +24,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   payoutStartAge = '';
   singlePremium = '';
   age;
-  payoutStartAgeList = [62, 65, 67];
+  payoutStartAgeList = [62, 65, 69, 70];
   singlePremiumAmountList = ['10000', '15000', '20000', '30000', '40000', '50000', '60000', '70000', '80000'];
   payoutTypeList;
   payoutType;
