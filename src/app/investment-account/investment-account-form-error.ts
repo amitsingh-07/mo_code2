@@ -329,7 +329,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Occupation.'
             }
         },
-        occupationForOthers: {
+        otherOccupation: {
             required: {
                 errorTitle: 'Invalid Occupation',
                 errorMessage: 'Please enter your occupation.'
@@ -342,7 +342,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Industry'
             }
         },
-        industryForOthers: {
+        otherIndustry: {
             required: {
                 errorTitle: 'Invalid Industry',
                 errorMessage: 'Please enter your Industry.'
