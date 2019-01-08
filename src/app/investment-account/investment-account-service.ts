@@ -389,6 +389,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.lName = data.lName;
         this.investmentAccountFormData.cName = data.cName;
         this.investmentAccountFormData.pepoccupation = data.pepoccupation;
+        this.investmentAccountFormData.pepOtherOccupation = data.pepOtherOccupation;
         this.investmentAccountFormData.pepCountry = data.pepCountry;
         this.investmentAccountFormData.pepPostalCode = data.pepPostalCode;
         this.investmentAccountFormData.pepAddress1 = data.pepAddress1;
@@ -823,6 +824,7 @@ export class InvestmentAccountService {
                 lastName: data.lName,
                 companyName: data.cName,
                 occupationId: (data.pepoccupation) ? data.pepoccupation.id : null,
+                otherOccupation: (data.pepOtherOccupation) ? data.pepOtherOccupation : null,
                 pepAddress: {
                     countryId: (data.pepCountry) ? data.pepCountry.id : null,
                     state: data.pepState,

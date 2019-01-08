@@ -63,6 +63,7 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.addInfoForm = this.buildForm();
     this.addOrRemoveAdditionalControls(this.addInfoForm.get('pepCountry').value);
     this.observeCountryChange();
+    this.observeOccupationChange();
   }
 
   buildForm() {
@@ -81,6 +82,9 @@ export class AdditionalDeclarationStep1Component implements OnInit {
   }
 
   addOrRemoveAdditionalControls(country) {
+    if (this.addInfoFormValues.pepoccupation) {
+      this.addOtherOccupation(this.addInfoFormValues.pepoccupation);
+    }
     const isSingapore = this.investmentAccountService.isCountrySingapore(country);
     if (isSingapore) {
       this.addInfoForm.addControl('pepPostalCode', new FormControl(this.addInfoFormValues.pepPostalCode,
@@ -125,6 +129,21 @@ export class AdditionalDeclarationStep1Component implements OnInit {
     this.addInfoForm.get('pepCountry').valueChanges.subscribe((value) => {
       this.addOrRemoveAdditionalControls(value);
     });
+  }
+
+  observeOccupationChange() {
+    this.addInfoForm.get('pepoccupation').valueChanges.subscribe((value) => {
+      this.addOtherOccupation(value);
+    });
+  }
+
+  addOtherOccupation(value) {
+    if (value.occupation === 'Others') {
+      this.addInfoForm.addControl('pepOtherOccupation',
+      new FormControl(this.addInfoFormValues.pepOtherOccupation, Validators.required));
+    } else {
+      this.addInfoForm.removeControl('pepOtherOccupation');
+    }
   }
 
   getOccupationList() {
