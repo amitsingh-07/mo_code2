@@ -8,6 +8,7 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-get-started-step1',
@@ -21,7 +22,7 @@ export class GetStartedStep1Component implements OnInit {
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
   description = this.translate.instant('GETSTARTED_STEP1.CAPTION');
   img = 'assets/images/portfolio/risk-step-1.svg';
-  description2 =  this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
+  description2 = this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
   tab = '1';
 
   constructor(
@@ -31,7 +32,8 @@ export class GetStartedStep1Component implements OnInit {
     private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService) {
+    public footerService: FooterService,
+    public signUpService: SignUpService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
@@ -44,8 +46,12 @@ export class GetStartedStep1Component implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
-    this.authService.authenticate().subscribe((token) => {
-    });
+    const userInfo = this.signUpService.getUserProfileInfo();
+    if (!(userInfo && userInfo.firstName)) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
+
   }
   goBack() {
     this._location.back();
