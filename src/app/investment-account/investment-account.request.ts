@@ -43,7 +43,9 @@ export interface IAddress {
 export interface IEmployment {
     employmentStatusId: number;
     industryId: number;
+    otherIndustry: string;
     occupationId: number;
+    otherOccupation: string;
     employerName: string;
     contactNumber: string;
     unemployedReason: string;
