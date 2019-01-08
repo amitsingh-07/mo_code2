@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { AppService } from '../../app.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
@@ -26,17 +25,16 @@ import { IEnquiryUpdate } from '../signup-types';
 export class DashboardComponent implements OnInit {
   userProfileInfo: any;
   insuranceEnquiry: any;
-  portfolioParchased;
   showPortffolioPurchased = false;
   showNotPurchasedPortfolio = false;
   showInvestmentDetailsSaved = false;
   showNoInvestmentAccount = false;
   showAddportfolio = false;
-  showPendingAccountOpening = false;
-  showUnsuccessfulAccount = false;
+  showCddCheckOngoing = false;
   showSuspendedAccount = false;
-  showComplianceRejected = false;
+  showBlockedNationalityStatus = false;
   showSetupAccount = false;
+  showCddCheckFail = false;
   totalValue: any;
   totalReturns: any;
   totalInvested: any;
@@ -96,7 +94,7 @@ export class DashboardComponent implements OnInit {
       const pep = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.isPoliticallyExposed ?
         this.userProfileInfo.investementDetails.isPoliticallyExposed : false;
       const myInfoVerified = this.userProfileInfo.investementDetails && this.userProfileInfo.investementDetails.myInfoVerified ?
-      this.userProfileInfo.investementDetails.myInfoVerified : false;
+        this.userProfileInfo.investementDetails.myInfoVerified : false;
       this.investmentAccountService.setDataForDocUpload(this.userProfileInfo.nationality, beneficialOwner, pep, myInfoVerified);
       if (myInfoVerified && beneficialOwner) {
         this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
@@ -114,6 +112,9 @@ export class DashboardComponent implements OnInit {
       });
     });
     return countryList;
+  }
+  goToInvestmentAccount() {
+    this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
 
   getDashboardList() {
@@ -140,23 +141,11 @@ export class DashboardComponent implements OnInit {
         this.showInvestmentDetailsSaved = true;
         break;
       }
-      case 'NO_INVESTMENT_ACCOUNT': {
-        this.showNoInvestmentAccount = true;
+      case 'CDD_CHECK_PENDING': {
+        this.showCddCheckOngoing = true;
         break;
       }
-      case 'ADD_POERFOLIO': {
-        this.showAddportfolio = true;
-        break;
-      }
-      case 'PENDING_ACCOUNT_OPENING': {
-        this.showPendingAccountOpening = true;
-        break;
-      }
-      case 'UNSUCCESSFUL_ACCOUNT': {
-        this.showUnsuccessfulAccount = true;
-        break;
-      }
-      case 'SETUP_ACCOUNT': {
+      case 'RECOMMENDED': {
         this.showSetupAccount = true;
         break;
       }
@@ -164,8 +153,20 @@ export class DashboardComponent implements OnInit {
         this.showSuspendedAccount = true;
         break;
       }
-      case 'COMPLIANCE_REJECETD': {
-        this.showComplianceRejected = true;
+      case 'CDD_CHECK_FAILED': {
+        this.showCddCheckFail = true;
+        break;
+      }
+      case 'BLOCKED_NATIONALITY': {
+        this.showBlockedNationalityStatus = true;
+        break;
+      }
+      case 'EDD_CHECK_PENDING': {
+        this.showCddCheckOngoing = true;
+        break;
+      }
+      case 'ADD_POERFOLIO': {
+        this.showAddportfolio = true;
         break;
       }
       default: {
