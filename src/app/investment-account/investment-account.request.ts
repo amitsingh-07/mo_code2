@@ -80,6 +80,7 @@ export interface IPep {
     lastName: string;
     companyName: string;
     occupationId: number;
+    otherOccupation: string;
     pepAddress: IAddress;
     expectedNumberOfTransactions: number;
     expectedAmountPerTransaction: number;
