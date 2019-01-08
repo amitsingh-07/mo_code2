@@ -25,10 +25,6 @@ import {
     AdditionalDeclarationStep1Component
 } from './additional-declaration-step1/additional-declaration-step1.component';
 import { ConfirmPortfolioComponent } from './confirm-portfolio/confirm-portfolio.component';
-import {
-    EditInvestmentModalComponent
-} from './confirm-portfolio/edit-investment-modal/edit-investment-modal.component';
-import { FeesModalComponent } from './confirm-portfolio/fees-modal/fees-modal.component';
 import { EmploymentDetailsComponent } from './employment-details/employment-details.component';
 import { FinanicalDetailsComponent } from './finanical-details/finanical-details.component';
 import { FundingIntroComponent } from './funding-intro/funding-intro.component';
@@ -83,11 +79,9 @@ export function createTranslateLoader(http: HttpClient) {
     PersonalDeclarationComponent,
     AdditionalDeclarationScreen2Component,
     ConfirmPortfolioComponent,
-    EditInvestmentModalComponent,
     AcknowledgementComponent,
     AdditionalDeclarationInfoComponent,
     AdditionalDeclarationStep1Component,
-    FeesModalComponent,
     AccountSetupCompletedComponent,
     AccountSetupPendingComponent,
     UploadDocumentBOComponent,
@@ -95,8 +89,6 @@ export function createTranslateLoader(http: HttpClient) {
     FundingIntroComponent
   ],
   entryComponents: [
-    EditInvestmentModalComponent,
-    FeesModalComponent,
     AccountCreationErrorModalComponent
   ],
   providers: [CurrencyPipe]

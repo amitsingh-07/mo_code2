@@ -94,7 +94,8 @@ export class ResidentialAddressComponent implements OnInit {
       [Validators.required, Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
       address2: [{ value: this.formValues.address2, disabled: this.investmentAccountService.isDisabled('address2') },
       [Validators.pattern(RegexConstants.AlphanumericWithSpaces)]],
-      isMailingAddressSame: [this.formValues.isMailingAddressSame]
+      isMailingAddressSame: [{value: this.formValues.isMailingAddressSame,
+        disabled: this.investmentAccountService.isDisabled('isMailingAddressSame')}]
     });
   }
 

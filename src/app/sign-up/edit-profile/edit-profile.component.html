@@ -21,6 +21,7 @@
 
       <div class="heading">{{fullName }}</div>
       <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
+      <div *ngIf="!isSingaporeResident" class="nric-text">{{compinedPassport}}</div>
       <div class="flex-row pb10 mb20">
         <div class="flex-col-3 flex-row">
           <div>
@@ -66,7 +67,7 @@
         </div>
       </div>
     </div>
-    <div #showHideUser>
+    <div class="dots" #showHideUser>
       <div class="section-margin">
         <div class="update-contact-title">
           {{'EDIT_PROFILE.MOB' | translate}}

@@ -76,7 +76,7 @@
               </div>
               <div class="flex-col-5" *ngIf="!investmentoverviewlist.data.cashAccountDetails">
                 <div class="total_return_value" for="name" id="investment_overview_investment_cash_labl">
-                  $0  
+                  $0
                 </div>
               </div>
 
@@ -94,9 +94,8 @@
           </div>
         </div>
         <div class="form-group-with-bg" *ngFor="let portfolio of portfolioList; let i = index">
-          <!-- Already Fund Portfolio -->
-          <div *ngIf="portfolio.investmentAmount">
-            <!--Form Header-->
+          <!-- ALREADY  FUNDED PORTFOLIO -->
+          <div *ngIf="portfolio.currentValue">
             <div class="form-group-with-bg--header your_portfolio_value">
               <div class="flex-row">
                 <div class="conserve-icon">
@@ -124,13 +123,12 @@
 
             </div>
           </div>
-          <!-- NOT AT FUNDED -->
-          <div *ngIf=!portfolio.investmentAmount>
+          <!-- NON-FUNDED PORTFOLIO  -->
+          <div *ngIf=!portfolio.currentValue>
             <div class="form-group-with-bg--header your_portfolio_value">
-
               <div class="flex-row">
                 <div class="conserve-icon">
-                  <img id="investment_overview_portfolio_icon" src="../../../assets/images/investment-account/growth_icon.svg" alt="" />
+                  <img [src]="getImg(i)" alt="" />
                 </div>
                 <div class="portfolio_heading">{{portfolio.productName}} </div>
               </div>
@@ -152,14 +150,12 @@
                   <img id="close_icon" id="investment_overview_topup_icon" src="../../../assets/images/investment-account/topup-alert.svg"
                     alt="" (click)="alertPopUp(i)" />
                 </div>
-                <div class="forward_img" (click)="yourPortfolio()">
+                <div class="forward_img">
                   <img id="investment_overview_forward_icon_two" src="../../../assets/images/investment-account/forward_portfolio.svg" alt=""
                     (click)="yourPortfolio(portfolio)" />
                 </div>
               </div>
-
             </div>
-
             <div class="form-group-with-bg--content pb10">
               <div class="flex-row">
                 <div class="flex-col-12">
@@ -171,6 +167,5 @@
         </div>
         <button type="button" class="btn-with-icon mt10" id="add_portfolio" (click)="addPortfolio()">
           <img src="../../../assets/images/investment-account/plus_icon.svg" alt="" /> {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
-
       </div>
     </div>

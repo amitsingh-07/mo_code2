@@ -64,6 +64,7 @@ export class MyInfoService {
   }
 
   newWindow(authoriseUrl): void {
+    let self = this;
     this.openFetchPopup();
     this.isMyInfoEnabled = true;
     const screenWidth = screen.width;
@@ -120,20 +121,22 @@ export class MyInfoService {
       console.log('received: ' + event.data);
       clearInterval(timer);
       window.success = () => null;
-      // this.windowRef.close();
-      robo2SetMyInfo(event.data);
+      self.robo2SetMyInfo(event.data);
       return 'MY_INFO';
     });
-    function robo2SetMyInfo(myInfoAuthCode) {
-      if (myInfoAuthCode && myInfoAuthCode.indexOf('-') !== -1) {
-        //this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode}});
-        window.location.href = '/#/myinfo?code=' + myInfoAuthCode;
-      } else {
-        this.status = 'FAILED';
-        this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
+
+  }
+
+  robo2SetMyInfo(myInfoAuthCode) {
+    if (myInfoAuthCode && myInfoAuthCode.indexOf('-') !== -1) {
+      if (!this.windowRef.closed) {
+        this.windowRef.close();
       }
+      this.router.navigate(['myinfo'], { queryParams: { code: myInfoAuthCode}});
+    } else {
+      this.status = 'FAILED';
+      this.changeListener.next(this.getMyinfoReturnMessage(FAILED));
     }
-    // Robo2 - MyInfo changes - End
   }
 
   getMyinfoReturnMessage(status: number, code?: string): any {

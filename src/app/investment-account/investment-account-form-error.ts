@@ -329,11 +329,23 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Occupation.'
             }
         },
+        otherOccupation: {
+            required: {
+                errorTitle: 'Invalid Occupation',
+                errorMessage: 'Please enter your occupation.'
+            }
+        },
         industry: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Industry',
                 errorMessage: 'Please select your Industry'
+            }
+        },
+        otherIndustry: {
+            required: {
+                errorTitle: 'Invalid Industry',
+                errorMessage: 'Please enter your Industry.'
             }
         },
         contactNumber: {
@@ -638,6 +650,13 @@ export class InvestmentAccountFormError {
             pattern: {
                 errorTitle: 'Invalid Zip Code',
                 errorMessage: 'Zip Code should not contain special characters.'
+            }
+        },
+        salaryRange: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid salary range',
+                errorMessage: 'Please select salary range.'
             }
         }
     };

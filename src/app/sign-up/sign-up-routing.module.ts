@@ -5,6 +5,7 @@ import { AccountCreatedComponent } from './account-created/account-created.compo
 import { AccountUpdatedComponent } from './account-updated/account-updated.component';
 import { AddUpdateBankComponent } from './add-update-bank/add-update-bank.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { LoggedUserService as LoggedUserGuard } from './auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
@@ -58,7 +59,8 @@ const routes: Routes = [
     component: EmailVerificationComponent
   },
   { path: SIGN_UP_ROUTES.LOGIN,
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoggedUserGuard]
   },
   { path: SIGN_UP_ROUTES.FORGOT_PASSWORD,
     component: ForgotPasswordComponent

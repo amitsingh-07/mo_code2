@@ -25,6 +25,7 @@ export class EditProfileComponent implements OnInit {
   fullName: string;
   compinedName: string;
   compinednricNum: string;
+  compinedPassport: string;
   residentialAddress: any;
   compinedAddress: string;
   compinedMailingAddress: string;
@@ -38,7 +39,6 @@ export class EditProfileComponent implements OnInit {
   nationalityList: any;
   countryList: any;
   isMailingAddressSame: boolean;
-  isEmployeAddresSame: boolean;
   isSingaporeResident: boolean;
   hiddenAccountNum: any;
   constructor(
@@ -68,7 +68,6 @@ export class EditProfileComponent implements OnInit {
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
-    this.isEmployeAddresSame = true;
   }
   showHidePassword(el) {
     if (el.type === 'password') {
@@ -114,11 +113,13 @@ export class EditProfileComponent implements OnInit {
       this.setFullName(this.personalData.firstName, this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
       this.setNric(this.personalData.nricNumber);
+      if ( this.personalData.passportNumber) {
+      this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
+      }
       if (this.personalData) {
         this.isSingaporeResident = this.personalData.isSingaporeResident;
       }
       if (this.empolymentDetails.employerDetails.detailedemployerAddress) {
-        this.isEmployeAddresSame = false;
         this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
       }
     });
@@ -140,7 +141,7 @@ export class EditProfileComponent implements OnInit {
     this.compinedName = first.toUpperCase() + second.toUpperCase();
   }
   setNric(nric) {
-    this.compinednricNum = 'NRIC Number:' + nric;
+    this.compinednricNum = 'NRIC Number: ' + nric;
   }
   setAddres(address1, address2) {
     this.compinedAddress = address1 + ' ' + address2;
@@ -153,7 +154,7 @@ export class EditProfileComponent implements OnInit {
   }
   editEmployeDetails() {
     // tslint:disable-next-line:max-line-length
-    this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData, this.nationalityList, this.countryList, this.isEmployeAddresSame, this.isSingaporeResident);
+    this.investmentAccountService.setEditProfileEmployeInfo(this.entireUserData, this.nationalityList, this.countryList, this.isSingaporeResident);
     // tslint:disable-next-line:max-line-length
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS], { queryParams: { enableEditProfile: true }, fragment: 'loading' });
   }

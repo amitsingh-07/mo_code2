@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { ApiService } from '../shared/http/api.service';
 import { AuthenticationService } from '../shared/http/auth/authentication.service';
@@ -19,14 +21,16 @@ const CAPTCHA_SESSION_ID = 'captcha_session_id';
 })
 
 export class SignUpService {
-
+  private userSubject = new Subject();
+  userObservable$ = this.userSubject.asObservable();
   private signUpFormData: SignUpFormData = new SignUpFormData();
   private createAccountFormError: any = new CreateAccountFormError();
   constructor(
     private http: HttpClient,
     private apiService: ApiService,
     public authService: AuthenticationService,
-    public cryptoService: CryptoService) {
+    public cryptoService: CryptoService,
+    private datePipe: DatePipe) {
     this.getAccountInfo();
   }
 
@@ -252,8 +256,13 @@ export class SignUpService {
   }
 
   setUserProfileInfo(userInfo) {
+    this.userSubject.next(userInfo);
     this.signUpFormData.userProfileInfo = userInfo;
     this.commit();
+  }
+
+  logoutUser() {
+    this.userSubject.next('LOGGED_OUT');
   }
 
   setRedirectUrl(url) {
@@ -395,6 +404,14 @@ export class SignUpService {
     const messages = [];
     const notificationMessageList = notifications.map((notification) => {
       const messageList = notification.messages.map((message) => {
+        let messageDate = '';
+        let messageMonth = '';
+        if (message.time) {
+          messageDate = message.time.split('T')[0];
+          messageMonth = this.datePipe.transform(messageDate, 'MMMM yyyy');
+        }
+        message.date = messageDate;
+        message.month = messageMonth;
         messages.push(message);
       });
     });

@@ -29,10 +29,9 @@ export class UploadDocumentBOComponent implements OnInit {
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   defaultThumb;
-  showLoader;
+  loaderVisible;
   formValues;
-  loaderTitle;
-  loaderDesc;
+  loaderInfo;
   constructor(
     public readonly translate: TranslateService,
     private formBuilder: FormBuilder,
@@ -46,7 +45,7 @@ export class UploadDocumentBOComponent implements OnInit {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
-      this.showLoader = false;
+      this.loaderVisible = false;
     });
   }
 
@@ -62,10 +61,9 @@ export class UploadDocumentBOComponent implements OnInit {
       passportImage: new FormControl (this.formValues.passportImageBO, Validators.required),
       });
   }
+
   openFileDialog(elem) {
-    if (!elem.files.length) {
       elem.click();
-    }
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {
@@ -84,6 +82,9 @@ export class UploadDocumentBOComponent implements OnInit {
         ref.componentInstance.errorTitle = errorTitle;
         ref.componentInstance.errorDescription = errorDesc;
         control.setValue('');
+    } else {
+      const selFile = fileElem.target.files[0];
+      control.setValue(selFile ? selFile.name : '');
     }
   }
 
@@ -97,7 +98,10 @@ export class UploadDocumentBOComponent implements OnInit {
     this.investmentAccountService.uploadDocument(this.formData).subscribe((response) => {
       if (response) {
         this.hideUploadLoader();
-        this.redirectToNextPage();
+        // INTERIM SAVE
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          this.redirectToNextPage();
+        });
       }
     });
   }
@@ -112,17 +116,19 @@ export class UploadDocumentBOComponent implements OnInit {
     return fileName;
   }
 
-  clearFileSelection(control, event, thumbElem?) {
-    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
+  clearFileSelection(control, event, thumbElem?, fileElem?) {
+    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem, fileElem);
   }
   showUploadLoader() {
-    this.showLoader = true;
-    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
-    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
+    this.loaderVisible = true;
+    this.loaderInfo = {
+      title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
+      desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
+    };
   }
 
   hideUploadLoader() {
-    this.showLoader = false;
+    this.loaderVisible = false;
   }
   goToNext(form) {
     if (!form.valid) {
@@ -134,7 +140,10 @@ export class UploadDocumentBOComponent implements OnInit {
       ref.componentInstance.errorMessageHTML = errorMessage;
       ref.componentInstance.primaryActionLabel = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOAD_LATER.CONFIRM_PROCEED');
       ref.componentInstance.primaryAction.subscribe(() => {
-        this.redirectToNextPage();
+        this.investmentAccountService.saveInvestmentAccount().subscribe((data) => {
+          this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.documents_pending);
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SETUP_PENDING]);
+        });
       });
     } else {
       this.proceed(form);

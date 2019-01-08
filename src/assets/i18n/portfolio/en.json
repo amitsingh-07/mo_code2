@@ -36,6 +36,9 @@
     "STEP_2_LABEL": "Step 2"
   },
   "MY_FINANCIALS": {
+    "REVIEW_INPUT": "Review My Inputs",
+    "PROCEED_NEXT": "Proceed To Next Step",
+    "RETURN_HOME": "Return To Homepage",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
     "TITLE": "Get Started",
@@ -50,25 +53,45 @@
     "INITIAL_DEPOSIT_LBL": "One-Time Investment",
     "MONTHLY_DEPOSIT_LBL": "Monthly Investment",
     "BUTTON_LBL": "Continue",
-    "INFO": "Information",
+    "INFO": "Oops! Is this correct?",
     "TRY_AGAIN": "Try Again",
     "MY_FINANCIALS_LBL": "My Financials",
     "modalData": {
       "modalTitle": "Insufficient Emergency Fund!",
-      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover at least 3 months’ of living expenses."
+      "modalMessage": "Before you invest, we recommend that you have an emergency fund to cover <b> at least 3 months’ of living expenses</b>."
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
-      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>."    },
+      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>.In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."    },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   },
   "PORTFOLIO_RECOMMENDATION":{
-    "TITLE": "Your Portfolio",
+    "USER_INPUT_SUB_TEXT": "Here's your projected portfolio value for <strong> {{ onetime }} one-time investment </strong> &amp; <strong> {{ monthly }} monthly investment </strong> for {{ period }} years",
+    "REVIEW_INPUTS": "Review My Inputs",
+    "ASSET_ALLOCATION": "Asset Allocation",
+    "ANNUAL_FEES": "Annual Fees",
+    "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
+    "REVIEW_SUB_TEXT": "Review your inputs or proceed to start investing in this portfolio.",
+    "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have started funding your account.",
+    "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
+    "NOW": "Now",
+    "YEARS": "years",
+    "BEST": "Best",
+    "MEDIAN": "Median",
+    "WORST": "Worst",
+    "CAPITAL_INVESTED": "Capital Invested",
+    "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
+    "VIEW_FUND_DETAILS": "View Fund Details",
+    "TITLE": "Your Portfolio Details",
+    "PORTFOLIO":"Portfolio",
+    "EDIT_INVESTMENT": {
+      "TITLE": "Review My Inputs",
+      "ONE_TIME_INVESTMENT": "One-time Investment",
+      "MONTHLY_INVESTMENT": "Monthly Investment"
+    },
     "MODAL_TITLE": "Portfolio Recommendations",
     "MODAL_DESC":"In the next step, we will be showing you the recommended portfolio that is most suited to your profile.",
-    "PORTFOLIO":"Portfolio",
     "PROJECTED_PORTF_VALUE":"Projected Portfolio Value in",
-    "YEARS":"years",
     "CONTINUE":"Continue",
     "PROJECTED_RETURNS":"Projected Returns",
     "WHATS_THE_RISK":"What’s the risk?",
@@ -81,6 +104,11 @@
       "editModel": {
         "modalTitle": "Edit Portfolio",
         "modalMessage": "To make changes to your portfolio, you need to reassess your risk. Are you sure you want to continue?"  
+        },
+        "ERRORS": {
+          "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
+          "MINIMUM_MONTHLY_AMOUNT": "Please enter minimum Monthly amount.",
+          "ATLEAST_ONE_SHOULD_INVEST": "Either you have to invest One-time investment or Monthly Investment."
         }
       
   },
@@ -94,7 +122,7 @@
   
   },
   "RISK_PROFILE":{
-    "TITLE": "Portfolio Recommendation",
+    "TITLE": "Your Recommendation",
     "BUTTON_TITLE": "View My Portfolio"
   },
   "PRELOGIN_MODAL": {

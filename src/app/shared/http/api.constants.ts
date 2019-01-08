@@ -1,7 +1,7 @@
 export const INVESTMENT_API_BASE_URL = 'invest/investment-microservice/';
 const ARTICLE_API_BASE_URL = 'product/insurance-product';
 const ABOUT_US_API_BASE_URL = 'product/insurance-product';
-const CONTACT_US_API_BASE_URL = 'account/account-microservice';
+const ACCOUNT_API_BASE_URL = 'account/account-microservice';
 const SUBSCRIPTION_API_BASE_URL = 'product/insurance-product';
 const WILL_WRITING_API_BASE_URL = 'wills/wills-microservice/';
 const NOTIFICATION_API_BASE_URL = 'notification/notify-microservice';
@@ -19,7 +19,6 @@ export let apiConstants = {
         getRecommendations: 'recommend/recomm-microservice/api/getRecommendations',
         updateProductEnquiry: 'account/account-microservice/api/updateCustomerEnquiry',
         getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfo',
-        //getMyInfoValues: 'sginfo/myinfo-microservice/api/getMyInfoMock',
         signUp: 'account/account-microservice/api/signup',
         updateUserId: 'account/account-microservice/api/updatePersonalDetails?handleError=true',
         verifyOTP: 'account/account-microservice/api/verifyOTP',
@@ -43,7 +42,7 @@ export let apiConstants = {
         },
         aboutus: {
             getCustomerReviews: ABOUT_US_API_BASE_URL + '/api/review/getAllReviews',
-            sendContactUs: CONTACT_US_API_BASE_URL + '/api/contactus'
+            sendContactUs: ACCOUNT_API_BASE_URL + '/api/contactus'
         },
         subscription: {
             base: SUBSCRIPTION_API_BASE_URL + '/api/mailinglist/subscribe'
@@ -61,16 +60,17 @@ export let apiConstants = {
             lndustrylist: INVESTMENT_API_BASE_URL + 'industrylist',
             occupationlist: INVESTMENT_API_BASE_URL + 'occupationlist',
             allDropdownlist: INVESTMENT_API_BASE_URL + 'optionListCollection',
-            //uploadDocument: 'account/account-microservice/saveInvestmentDetails',
             uploadDocument: 'account/account-microservice/saveDocuments',
-            //saveInvestmentAccount: 'account/account-microservice/saveInvestmentAccountDetails',
             saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
+            verifyAML: ACCOUNT_API_BASE_URL + '/api/verifyAML?handleError=true',
             getFundTransferDetails: INVESTMENT_API_BASE_URL + 'getIFastBankDetails',
             buyPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/buy',
+            monthlyInvestment: INVESTMENT_API_BASE_URL + 'customer/InvestmentObjective/monthlyInvestment',
             sellPortfolio: INVESTMENT_API_BASE_URL + 'portfolio/sell',
-            investmentoverview: 'invest/investment-microservice/portfolio/holdings'
+            investmentoverview: 'invest/investment-microservice/portfolio/holdings',
+            porfolioDetails: 'invest/investment-microservice/portfolios/detail'
         },
         investment: {
             getUserAddress: 'account/account-microservice/api/customer/address',

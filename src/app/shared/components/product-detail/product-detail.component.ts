@@ -12,7 +12,7 @@ import { filter } from 'rxjs/operators';
 })
 export class ProductDetailComponent implements OnInit {
   @Input() plan: any;
-  @Input() protectionType = '';
+  @Input() protectionType: string;
   @Input() bestValue = false;
   @Input() isDirect;
   @Input() frequencyType;

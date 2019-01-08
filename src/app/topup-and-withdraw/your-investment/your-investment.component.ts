@@ -14,6 +14,8 @@ import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
+import { ProfileIcons } from '../../portfolio/risk-profile/profileIcons';
+
 import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 
 import { PORTFOLIO_ROUTE_PATHS, PORTFOLIO_ROUTES } from '../../portfolio/portfolio-routes.constants';
@@ -46,8 +48,9 @@ export class YourInvestmentComponent implements OnInit {
   userProfileInfo;
   showAlretPopUp = false;
   selected;
- 
- constructor(
+  riskProfileImg: any;
+
+  constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
@@ -88,9 +91,10 @@ export class YourInvestmentComponent implements OnInit {
 
   }
   yourPortfolio(portfolio) {
-    //this.PortfolioValues= portfolio;
     this.PortfolioValues = this.topupAndWithDrawService.setPortfolioValues(portfolio);
-    console.log(this.PortfolioValues);
+    if (portfolio.currentValue) {
+      this.topupAndWithDrawService.setHoldingValues(portfolio.dpmsDetailsDisplay);
+    }
     this.router.navigate([TOPUP_AND_WITHDRAW_ROUTE_PATHS.YOUR_PORTFOLIO]);
   }
   selectSource(option) {
@@ -101,17 +105,21 @@ export class YourInvestmentComponent implements OnInit {
       this.portfolioList = this.investmentoverviewlist.data.portfolios;
       this.totalPortfolio = this.portfolioList.length;
       this.welcomeInfo = { name: this.userProfileInfo.firstName, total: this.totalPortfolio };
-      console.log(this.portfolioList);
-      console.log(this.investmentoverviewlist.data.totalValue);
       this.topupAndWithDrawService.setUserPortfolioList(this.portfolioList);
       if (this.investmentoverviewlist.data.cashAccountDetails) {
-      this.topupAndWithDrawService.setUserCashBalance(this.investmentoverviewlist.data.cashAccountDetails.availableBalance);
+        this.topupAndWithDrawService.setUserCashBalance(this.investmentoverviewlist.data.cashAccountDetails.availableBalance);
       }
     });
   }
+
   fundYourAccount() {
     //this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.FUND_YOUR_ACCOUNT]);
- }
+  }
+
+  getImg(i) {
+    const riskProfileImg = ProfileIcons[i]['icon'];
+    return riskProfileImg;
+  }
 
   alertPopUp(i) {
     this.selected = i;

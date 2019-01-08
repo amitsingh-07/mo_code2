@@ -47,6 +47,10 @@ export class TopupAndWithDrawService {
     return this.apiService.getAllDropdownList();
 
   }
+  getHoldingList() {
+    return this.apiService.getHoldingList();
+
+  }
   getPortfolioList() {
     return this.apiService.getPortfolioList();
 
@@ -54,6 +58,10 @@ export class TopupAndWithDrawService {
   getMoreList() {
     return this.apiService.getMoreList();
   }
+  getIndividualPortfolioDetails(portfolioId) {
+    return this.apiService.getIndividualPortfolioDetails(portfolioId);
+  }
+
 
   doFinancialValidations(form) {
     const invalid = [];
@@ -132,6 +140,13 @@ export class TopupAndWithDrawService {
   getPortfolioValues() {
     return this.topUpAndWithdrawFormData.PortfolioValues;
   }
+  setSelectedPortfolio(portfolio) {
+    this.topUpAndWithdrawFormData.selectedPortfolio = portfolio;
+    this.commit();
+  }
+  getSelectedPortfolio() {
+    return this.topUpAndWithdrawFormData.selectedPortfolio;
+  }
   setUserPortfolioList(portfolioList) {
     this.topUpAndWithdrawFormData.userPortfolios = portfolioList;
     this.commit();
@@ -156,6 +171,20 @@ export class TopupAndWithDrawService {
     } else {
       return 0;
     }
+  }
+  setHoldingValues(holdingList) {
+    this.topUpAndWithdrawFormData.holdingList = holdingList;
+    this.commit();
+  }
+  getHoldingValues() {
+    return this.topUpAndWithdrawFormData.holdingList;
+  }
+  setAssetAllocationValues(assetAllocationValues) {
+    this.topUpAndWithdrawFormData.assetAllocationValues = assetAllocationValues;
+    this.commit();
+  }
+  getAssetAllocationValues() {
+    return this.topUpAndWithdrawFormData.assetAllocationValues;
   }
   // tslint:disable-next-line
   getFormErrorList(form) {
@@ -233,30 +262,53 @@ export class TopupAndWithDrawService {
     }
     return request;
   }
-
+// ONE-TIME INVESTMENT PAYLOAD
   buyPortfolio(data) {
     const payload = this.constructBuyPortfolioParams(data);
     return this.apiService.buyPortfolio(payload);
   }
 
   constructBuyPortfolioParams(data) {
-    let redeemAmount: number;
-    let isPayMonthly = false;
-    if (data.oneTimeInvestment) {
-      redeemAmount = data.oneTimeInvestment;
-    } else {
-      redeemAmount = data.monthlyInvestment;
-      isPayMonthly = true;
-    }
+    let oneTimeInvestment: number;
+    oneTimeInvestment = data.oneTimeInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      investmentAmount: Number(redeemAmount), // todo
-      payMonthly: isPayMonthly
+      oneTimeInvestment: Number(oneTimeInvestment), // todo
+
     };
   }
 
+  // MONTHLY INVESTMENT PAYLOAD
+  monthlyInvestment(data) {
+    const payload = this.constructBuyPortfolioForMonthly(data);
+    return this.apiService.monthlyInvestment(payload);
+  }
+
+  constructBuyPortfolioForMonthly(data) {
+    let monthlyInvestment: number;
+    monthlyInvestment = data.monthlyInvestment;
+    return {
+      portfolioId: data.portfolio.productCode,
+      monthlyInvestment: Number(monthlyInvestment), // todo
+
+    };
+  }
   getTransactionHistory(from?, to?) {
     return this.apiService.getTransactionHistory(from, to);
+  }
+
+  getPortfolioAllocationDetails(params) {
+    const urlParams = this.constructQueryParams(params);
+    return this.apiService.getPortfolioAllocationDetails(urlParams);
+  }
+
+  constructQueryParams(options) {
+    const objectKeys = Object.keys(options);
+    const params = new URLSearchParams();
+    Object.keys(objectKeys).map((e) => {
+      params.set(objectKeys[e], options[objectKeys[e]]);
+    });
+    return '?' + params.toString();
   }
 
   getMonthListByPeriod(from, to) {

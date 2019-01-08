@@ -43,7 +43,9 @@ export interface IAddress {
 export interface IEmployment {
     employmentStatusId: number;
     industryId: number;
+    otherIndustry: string;
     occupationId: number;
+    otherOccupation: string;
     employerName: string;
     contactNumber: string;
     unemployedReason: string;
@@ -57,10 +59,6 @@ export interface IHousehold {
 
 export interface IFinancial {
     incomeRange: string;
-    annualIncome: number;
-    percentageOfSaving: number;
-    totalAssets: number;
-    totalLoans: number;
 }
 
 export interface ITax {

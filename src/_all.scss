@@ -653,6 +653,11 @@ h6 {
     width: 24px;
     height: 24px;
   }
+
+  .navbar__menu-icon-close {
+    background-image: url(/assets/images/close.svg) !important;
+    opacity: 0.5;
+  }
 }
 
 .navbar-brand {
@@ -1427,4 +1432,17 @@ a.link-white {
         z-index: 998 !important;
       }
     }
+}
+
+@include allmobiles {
+  .collapse.navbar-collapse.show {
+    width: 100vw;
+  }
+}
+.navbar .navbar-collapse .nav-item {
+  margin-right: 15px;
+}
+
+.dropdown-toggle.last::after {
+  background-image: none !important;
 }

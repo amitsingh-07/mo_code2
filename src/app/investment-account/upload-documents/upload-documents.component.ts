@@ -31,9 +31,8 @@ export class UploadDocumentsComponent implements OnInit {
   countries;
   isUserNationalitySingapore;
   defaultThumb;
-  showLoader;
-  loaderTitle;
-  loaderDesc;
+  loaderVisible;
+  loaderInfo;
   formData: FormData = new FormData();
   investmentAccountCommon: InvestmentAccountCommon = new InvestmentAccountCommon();
   constructor(
@@ -49,7 +48,7 @@ export class UploadDocumentsComponent implements OnInit {
       this.pageTitle = this.translate.instant('UPLOAD_DOCUMENTS.TITLE');
       this.setPageTitle(this.pageTitle);
       this.defaultThumb = INVESTMENT_ACCOUNT_CONFIG.upload_documents.default_thumb;
-      this.showLoader = false;
+      this.loaderVisible = false;
     });
   }
 
@@ -126,6 +125,9 @@ export class UploadDocumentsComponent implements OnInit {
       ref.componentInstance.errorTitle = errorTitle;
       ref.componentInstance.errorDescription = errorDesc;
       control.setValue('');
+    } else {
+      const selFile = fileElem.target.files[0];
+      control.setValue(selFile ? selFile.name : '');
     }
   }
 
@@ -157,8 +159,8 @@ export class UploadDocumentsComponent implements OnInit {
     return fileName;
   }
 
-  clearFileSelection(control, event, thumbElem?) {
-    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
+  clearFileSelection(control, event, thumbElem?, fileElem?) {
+    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem, fileElem);
   }
 
   showProofOfMailingDetails() {
@@ -202,19 +204,20 @@ export class UploadDocumentsComponent implements OnInit {
   }
 
   showUploadLoader() {
-    this.showLoader = true;
-    this.loaderTitle = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE');
-    this.loaderDesc = this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE');
+    this.loaderVisible = true;
+    this.loaderInfo = {
+      title: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.TITLE'),
+      desc: this.translate.instant('UPLOAD_DOCUMENTS.MODAL.UPLOADING_LOADER.MESSAGE')
+    };
   }
 
   hideUploadLoader() {
-    this.showLoader = false;
+    this.loaderVisible = false;
   }
 
   redirectToNextPage() {
     const boStatus = this.investmentAccountService.getBOStatus();
-    // tslint:disable-next-line:triple-equals
-    if (boStatus == true) {
+    if (boStatus) {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.UPLOAD_DOCUMENTS_BO]);
     } else {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ACKNOWLEDGEMENT]);

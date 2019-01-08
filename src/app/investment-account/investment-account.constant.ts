@@ -9,13 +9,12 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
         isMailingAddressSame: true
     },
     employmentDetails: {
-        isEmployeAddresSame: true
+
     },
     upload_documents: {
         default_thumb: 'cam-icon.svg',
-        max_file_size: 2, // in MB
-        image_file_types: ['JPG', 'JPEG', 'PNG', 'GIF', 'BMP'],
-        doc_file_types: ['PDF']
+        max_file_size: 10, // in MB
+        file_types: ['JPG', 'JPEG', 'PNG', 'GIF', 'BMP', 'PDF']
     },
     confirm_portfolio: {
         fees: {
@@ -26,7 +25,12 @@ export let INVESTMENT_ACCOUNT_CONFIG = {
         }
     },
     status: {
-        additional_declaration_pending: 'additional_declaration_pending',
+        aml_pending: 'PENDING',
+        aml_cleared: 'CLEARED',
+        aml_accepted : 'ACCEPTED',
+        aml_rejected : 'REJECTED',
+        aml_failed : 'FAILED',
+        ddc_submitted: 'ddc_submitted',
         account_creation_pending: 'account_creation_pending',
         documents_pending: 'documents_pending'
     }
