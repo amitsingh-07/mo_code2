@@ -9,9 +9,9 @@
                 <li *ngIf="(navbarMode == 4 || navbarMode == 5)" class="nav-item">
                         <span class="navbar__back-btn--web hidden-sm-md" (click)="goBack()"></span>
                     </li>
-                <li class="navbar__logo--primary hidden-sm-md" routerLink="/">
+                <li class="navbar__logo--primary hidden-sm-md" (click)="goToHome()">
                     </li>
-                <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5)" class="navbar__logo--tertiary hidden-lg" routerLink="/">
+                <li *ngIf="(navbarMode == 1 || navbarMode == 3 || navbarMode == 4 || navbarMode == 5)" class="navbar__logo--tertiary hidden-lg" (click)="goToHome()">
                     </li>
                 <li *ngIf="(navbarMode == 2 || navbarMode == 4)" class="navbar__separator hidden-sm-md">
                     </li>
@@ -56,27 +56,27 @@
                     <!--  (mouseleave)="closeDropdown(id01);"-->
                     <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
                     <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">
+                        <button class="dropdown-item" (click)="goToHome()" fragment="insurance">
                             <img src="./../../../assets/images/nav/nav-insure-icon.svg"/>
                             <div class="navbar--text">
                                 <span>Insure</span>
                                 </div>
                         </button>
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="will">
+                        <button class="dropdown-item" (click)="goToHome()" fragment="will">
                             <img src="./../../../assets/images/nav/nav-will-icon.svg"/>
                             <div class="navbar--text">
                                 <span>Wills</span>
                                 <span *ngIf="!isWillWritingEnabled" class="sub">(Coming Soon)</span>
                                 </div>
                             </button>
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="invest">
+                        <button class="dropdown-item" (click)="goToHome()" fragment="invest">
                             <img src="./../../../assets/images/nav/nav-invest-icon.svg"/>
                             <div class="navbar--text">
                                 <span>Invest</span>
                                 <span *ngIf="!isInvestmentEnabled" class="sub">(Coming Soon)</span>
                                 </div>
                         </button>
-                        <button class="dropdown-item" [routerLink]="['/home']" fragment="comprehensive">
+                        <button class="dropdown-item" (click)="goToHome()" fragment="comprehensive">
                             <img src="./../../../assets/images/nav/nav-compre-icon.svg"/>
                             <div class="navbar--text">
                                 <span>Comprehensive (integrating national schemes)</span>
@@ -128,27 +128,27 @@
                             <!--  (mouseleave)="closeDropdown(id01);"-->
                             <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Services</a>
                             <div class="dropdown-menu right" ngbDropdownMenu aria-labelledby="id01">
-                                <button class="dropdown-item" [routerLink]="['/home']" fragment="insurance">
+                                <button class="dropdown-item" (click)="goToHome()" fragment="insurance">
                                     <img src="./../../../assets/images/nav/nav-insure-icon.svg"/>
                                     <div class="navbar--text">
                                         <span>Insure</span>
                                         </div>
                                 </button>
-                                <button class="dropdown-item" [routerLink]="['/home']" fragment="will">
+                                <button class="dropdown-item" (click)="goToHome()" fragment="will">
                                     <img src="./../../../assets/images/nav/nav-will-icon.svg"/>
                                     <div class="navbar--text">
                                         <span>Wills</span>
                                         <span *ngIf="!isWillWritingEnabled" class="sub">(Coming Soon)</span>
                                         </div>
                                     </button>
-                                <button class="dropdown-item" [routerLink]="['/home']" fragment="invest">
+                                <button class="dropdown-item" (click)="goToHome()" fragment="invest">
                                     <img src="./../../../assets/images/nav/nav-invest-icon.svg"/>
                                     <div class="navbar--text">
                                         <span>Invest</span>
                                         <span *ngIf="!isInvestmentEnabled" class="sub">(Coming Soon)</span>
                                         </div>
                                 </button>
-                                <button class="dropdown-item" [routerLink]="['/home']" fragment="comprehensive">
+                                <button class="dropdown-item" (click)="goToHome()" fragment="comprehensive">
                                     <img src="./../../../assets/images/nav/nav-compre-icon.svg"/>
                                     <div class="navbar--text">
                                         <span>Comprehensive (integrating national schemes)</span>

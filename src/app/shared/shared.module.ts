@@ -1,17 +1,15 @@
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
-import {
-    BreakdownAccordionComponent
-} from '../shared/components/breakdown-accordion/breakdown-accordion.component';
+import { BreakdownAccordionComponent } from '../shared/components/breakdown-accordion/breakdown-accordion.component';
 import { BreakdownBarComponent } from '../shared/components/breakdown-bar/breakdown-bar.component';
 import { PercentageInputDirective } from '../shared/directives/percentage-input.directive';
+import { SignUpService } from './../sign-up/sign-up.service';
 import { DisclosuresComponent } from './components/disclosures/disclosures.component';
 import { FairDealingComponent } from './components/fair-dealing/fair-dealing.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -20,26 +18,18 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { StepIndicatorComponent } from './components/step-indicator/step-indicator.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { TermsComponent } from './components/terms/terms.component';
+import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
 import { CurrencyInputDirective } from './directives/currency-input.directive';
-import {
-    ConfirmationModalComponent
-} from './modal/confirmation-modal/confirmation-modal.component';
-import {
-    RecommendationsModalComponent
-} from './modal/recommendations-modal/recommendations-modal.component';
+import { DistributePercentDirective } from './directives/distribute-percent.directive';
+import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
+import { RecommendationsModalComponent } from './modal/recommendations-modal/recommendations-modal.component';
+import { FormatDatePipe } from './Pipes/date-format.pipe';
 import { OrderByPipe } from './Pipes/order-by.pipe';
 import { PlanFilterPipe } from './Pipes/plan-filter.pipe';
 import { TruncatePipe } from './Pipes/truncate.pipe';
-import { StringToLinkFormatPipe } from './Pipes/string-to-link.pipe';
-import {
-    PlanDetailsWidgetComponent
-} from './widgets/plan-details-widget/plan-details-widget.component';
+import { PlanDetailsWidgetComponent } from './widgets/plan-details-widget/plan-details-widget.component';
 import { PlanWidgetComponent } from './widgets/plan-widget/plan-widget.component';
 import { SettingsWidgetComponent } from './widgets/settings-widget/settings-widget.component';
-
-import { WillDisclaimerComponent } from './components/will-disclaimer/will-disclaimer.component';
-import { DistributePercentDirective } from './directives/distribute-percent.directive';
-import { FormatDatePipe } from './Pipes/date-format.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -63,11 +53,11 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [CurrencyInputDirective,  PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
+  exports: [CurrencyInputDirective, PercentageInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent,
     PlanFilterPipe, OrderByPipe, ProductDetailComponent, PlanDetailsWidgetComponent, LoaderComponent,
     BreakdownBarComponent, BreakdownAccordionComponent, TruncatePipe, FormatDatePipe, DistributePercentDirective],
   declarations: [CurrencyInputDirective, PlanWidgetComponent, StepIndicatorComponent, SettingsWidgetComponent, PlanFilterPipe,
-    OrderByPipe, FormatDatePipe , RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
+    OrderByPipe, FormatDatePipe, RecommendationsModalComponent, ProductDetailComponent, PlanDetailsWidgetComponent,
     LoaderComponent, ConfirmationModalComponent,
     PrivacyPolicyComponent,
     FairDealingComponent,

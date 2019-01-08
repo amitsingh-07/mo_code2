@@ -21,6 +21,7 @@ import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes
 import { SignUpApiService } from '../sign-up.api.service';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { appConstants } from './../../app.constants';
 import { LoginFormError } from './login-form-error';
 
 @Component({
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   heighlightMobileNumber;
   captchaSrc: any = '';
   showCaptcha: boolean;
-  hideForgotPassword = true;
+  hideForgotPassword = false;
 
   constructor(
     // tslint:disable-next-line
@@ -157,7 +158,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
                 this.router.navigate([redirect_url]);
-              } else if (Object.keys(this.willWritingService.getWillWritingFormData()).length !== 0) {
+              } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+                this.willWritingService.getExecTrusteeInfo().length > 0) {
                 if (!this.willWritingService.getIsWillCreated()) {
                   this.willWritingApiService.createWill().subscribe((data) => {
                     if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
@@ -186,7 +188,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
-            if (data.objectList[0].sessionId) {
+            if (data.objectList[0] && data.objectList[0].sessionId) {
               this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
             } else if (data.objectList[0].attempt >= 3) {
               this.signUpService.setCaptchaShown();

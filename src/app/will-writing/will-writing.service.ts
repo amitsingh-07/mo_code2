@@ -526,7 +526,13 @@ export class WillWritingService {
     const execTrusteeList = this.getExecTrusteeInfo().filter((data) => data.relationship !== WILL_WRITING_CONFIG.CHILD
       && data.relationship !== WILL_WRITING_CONFIG.SPOUSE);
     if (execTrusteeList.length > 0) {
-      const myFamily = [...form.value.children, ...form.value.spouse];
+      let myFamily = [];
+      if (this.getSpouseInfo().length > 0) {
+        myFamily = [...form.value.spouse];
+      }
+      if (this.getChildrenInfo().length > 0) {
+        myFamily = [...myFamily, ...form.value.children];
+      }
       for (const item of myFamily) {
         const oldChildrenData = execTrusteeList.filter((data) => (data.uin).toLowerCase() === (item.uin).toLowerCase());
         if (oldChildrenData.length > 0) {

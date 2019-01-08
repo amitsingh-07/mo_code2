@@ -37,8 +37,10 @@ const routes: Routes = [
       {
         path: 'will-writing',
         loadChildren: './will-writing/will-writing.module#WillWritingModule',
+        /*
         canActivate: [WillWritingEnableGuard],
         canActivateChild: [WillWritingChildEnableGuard]
+        */
       },
       { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule' },
 
