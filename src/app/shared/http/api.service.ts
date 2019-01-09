@@ -554,6 +554,12 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  saveNationality(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.saveNationality, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
 
   createInvestmentAccount() {
     return this.http.get(apiConstants.endpoint.investmentAccount.createInvestmentAccount + '?handleError=true')

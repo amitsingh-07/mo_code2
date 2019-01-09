@@ -7,8 +7,8 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
-    IAddress, IEmployment, IFinancial, IHousehold, IPep, IPersonalDeclaration, IPersonalInfo,
-    ISaveInvestmentAccountRequest, ITax
+    IAddress, IEmployment, IFinancial, IHousehold, INationality, IPep, IPersonalDeclaration, IPersonalInfo,
+    ISaveInvestmentAccountRequest, ITax,
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 
@@ -431,6 +431,11 @@ export class InvestmentAccountService {
         return this.apiService.saveInvestmentAccount(payload);
     }
 
+    // Select Nationality
+    saveNationality(data) {
+        const payload = this.constructSaveNationalityRequest(data);
+        return this.apiService.saveNationality(payload);
+    }
     createInvestmentAccount() {
         return this.apiService.createInvestmentAccount();
     }
@@ -702,7 +707,12 @@ export class InvestmentAccountService {
         request.personalDeclarations = this.getPersonalDecReqData(payload);
         return request;
     }
-
+    // select Nationality
+    constructSaveNationalityRequest(data) {
+        return {
+            nationality: data.nationalityCode
+            };
+    }
     getPersonalInfoReqData(data): IPersonalInfo {
         return {
             nationalityCode: data.nationalityCode,
@@ -795,7 +805,7 @@ export class InvestmentAccountService {
 
     getFinancialDetailsReqData(data): IFinancial {
         return {
-            incomeRange:  (data.salaryRange) ? data.salaryRange.id : null
+            incomeRange: (data.salaryRange) ? data.salaryRange.id : null
         };
     }
 
