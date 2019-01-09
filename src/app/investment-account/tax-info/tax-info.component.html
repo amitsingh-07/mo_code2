@@ -6,7 +6,7 @@
   </div>
   <div class="container-fluid">
     <form name="taxInfoForm" [formGroup]="taxInfoForm">
-      <div formArrayName="addTax" class="tax-form" *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
+      <div formArrayName="addTax" class="tax-form" [ngClass]="{'brdr-btm':getBorder()}" *ngFor="let taxInfoItem of taxInfoForm.get('addTax')['controls']; let x = index">
         <div [formGroupName]="x">
           <div class="flex-row">
             <div class="flex-col-4">
@@ -50,7 +50,7 @@
           </div>
           <!-- Button part -->
           <div class="flex-row">
-            <div class="flex-col-12 mb20">
+            <div class="flex-col-12 mb15">
               <div class="btn-group--toggle" ngbRadioGroup name="radioTin" formControlName="radioTin">
                 <div class="flex-row">
                   <div class="flex-col-6">
@@ -113,7 +113,7 @@
             </button>
           </div> -->
           <div class="thumb-close-icon"  (click)="removeTaxForm(taxInfoForm , x)">
-              <img src="../../../assets/images/close-button.svg" alt="x" />
+              <img src="../../../assets/images/close.svg" alt="x" />
           </div>
           <!-- <img src="assets/images/close-button-dark.svg"> -->
         </div>
