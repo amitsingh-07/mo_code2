@@ -5,7 +5,7 @@ import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import { CurrencyPipe } from '@angular/common';
 import { Token } from '@angular/compiler';
 import {
-    AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
+  AfterContentInit, Component, HostListener, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -14,17 +14,17 @@ import { TranslateService } from '@ngx-translate/core';
 import { appConstants } from '../../app.constants';
 import { AppService } from '../../app.service';
 import {
-    INVESTMENT_ACCOUNT_ROUTE_PATHS
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { InvestmentAccountService } from '../../investment-account/investment-account-service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import {
-    EditInvestmentModalComponent
+  EditInvestmentModalComponent
 } from '../../shared/modal/edit-investment-modal/edit-investment-modal.component';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
-    ModelWithButtonComponent
+  ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { SignUpService } from '../../sign-up/sign-up.service';
@@ -126,8 +126,8 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   constructUpdateInvestmentParams(data) {
     return {
-      initialInvestment: data.oneTimeInvestment,
-      monthlyInvestment: data.monthlyInvestment
+      initialInvestment: parseFloat(data.oneTimeInvestment),
+      monthlyInvestment: parseFloat(data.monthlyInvestment)
     };
   }
 
@@ -176,7 +176,7 @@ export class PortfolioRecommendationComponent implements OnInit {
       }
     }
   }
- 
+
   viewFundDetails(fund) {
     this.portfolioService.setFundDetails(fund);
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
