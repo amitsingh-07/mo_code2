@@ -79,7 +79,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
 
     this.userInfo = this.signUpService.getUserProfileInfo();
-    if (this.userInfo && this.userInfo.firstName) {
+    if (this.authService.isSignedUser()) {
       this.isLoggedIn = true;
     }
 
@@ -90,7 +90,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
           this.clearLoginDetails();
         } else {
           this.userInfo = data;
-          if (this.userInfo && this.userInfo.firstName) {
+          if (this.authService.isSignedUser()) {
             this.isLoggedIn = true;
           }
         }
@@ -218,7 +218,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   canActivateNotification() {
-    if (!this.authService.isAuthenticated()) {
+    if (!this.authService.isSignedUser()) {
       return false;
     }
     return true;

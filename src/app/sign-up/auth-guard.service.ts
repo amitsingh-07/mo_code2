@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
-import { Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+
+import { AuthenticationService } from '../shared/http/auth/authentication.service';
 import { SIGN_UP_ROUTE_PATHS } from './sign-up.routes.constants';
 import { SignUpService } from './sign-up.service';
-import { AuthenticationService } from '../shared/http/auth/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
   }
   canActivate(): boolean {
     const userInfo = this.signUpService.getUserProfileInfo();
-    if (!this.authService.isAuthenticated()) {
+    if (!this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.LOGIN]);
       return false;
     }
@@ -36,7 +36,7 @@ export class LoggedUserService implements CanActivate {
   ) {
   }
   canActivate(): boolean {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isSignedUser()) {
       this.route.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
       return false;
     }
