@@ -110,6 +110,7 @@ export class InvestmentAccountFormData {
     lName: string;
     cName: string;
     pepoccupation: string;
+    pepOtherOccupation: string;
     pepCountry: string;
     pepPostalCode: number;
     pepAddress1: string;

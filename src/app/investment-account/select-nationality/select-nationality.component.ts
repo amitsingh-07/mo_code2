@@ -5,13 +5,19 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+
+
+
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+
 
 @Component({
     selector: 'app-select-nationality',
@@ -142,6 +148,7 @@ export class SelectNationalityComponent implements OnInit {
     }
 
     goToNext(form) {
+        this.saveNationality();
         if (this.blocked) {
             this.showErrorMessage(this.editModalData.modalTitle, this.editModalData.modalMessage);
         } else if (form.valid && form.controls.unitedStatesResident) {
@@ -153,9 +160,19 @@ export class SelectNationalityComponent implements OnInit {
             } else {
                 this.save(form);
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
-            }
+              }
         }
     }
+    saveNationality() {
+        this.investmentAccountService.saveNationality(this.nationality).subscribe((data) => {
+          this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted);
+        },
+          (err) => {
+            const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+          });
+      }
 
     isDisabled() {
         return this.investmentAccountService.isDisabled('nationality');

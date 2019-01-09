@@ -101,8 +101,12 @@ export class EmploymentDetailsComponent implements OnInit {
       this.addOrRemoveMailingAddress(empStatus);
       this.observeIndustryChange();
       this.observeOccupationChange();
-      this.addOtherIndustry(this.formValues.industry);
-      this.addOtherOccupation(this.formValues.occupation);
+      if (this.formValues.industry) {
+        this.addOtherIndustry(this.formValues.industry);
+      }
+      if (this.formValues.occupation) {
+        this.addOtherOccupation(this.formValues.occupation);
+      }
     } else {
       this.employementDetailsForm.removeControl('companyName');
       this.employementDetailsForm.removeControl('occupation');

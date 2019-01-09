@@ -4,5 +4,8 @@ export let SIGN_UP_CONFIG = {
     NOTIFICATION: {
         READ_PAYLOAD_KEY: 'READ',
         DELETE_PAYLOAD_KEY: 'DELETE'
+    },
+    INVESTMENT: {
+        RECOMMENDED: 'RECOMMENDED'
     }
 };
