@@ -61,10 +61,9 @@ export class UploadDocumentBOComponent implements OnInit {
       passportImage: new FormControl (this.formValues.passportImageBO, Validators.required),
       });
   }
+
   openFileDialog(elem) {
-    if (!elem.files.length) {
       elem.click();
-    }
   }
 
   fileSelected(control, controlname, fileElem, thumbElem?) {
@@ -117,8 +116,8 @@ export class UploadDocumentBOComponent implements OnInit {
     return fileName;
   }
 
-  clearFileSelection(control, event, thumbElem?) {
-    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
+  clearFileSelection(control, event, thumbElem?, fileElem?) {
+    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem, fileElem);
   }
   showUploadLoader() {
     this.loaderVisible = true;

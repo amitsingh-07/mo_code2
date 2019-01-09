@@ -28,7 +28,28 @@ app-upload-documents{
       top: 0px;
     }
   }
-
+  .doc-upload-instructions{
+    background: #009999;
+    padding: 11px 17px 12px 20px;
+    border-radius: 6px;
+    margin-bottom: 21px;
+    font-family: $muli-bold;
+    .sub-title {
+      font-size: 16px;
+      letter-spacing: -0.3px;
+      margin-bottom: 3px;
+    }
+    .file-logs{
+      font-size: 14px;
+      letter-spacing: -0.26px;
+      span{
+        &:first-child{
+          font-family: $muli-semi-bold;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
   .sub-title-block {
     display: flex;
     flex-direction: column;

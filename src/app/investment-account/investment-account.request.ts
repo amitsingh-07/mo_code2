@@ -1,6 +1,7 @@
 export interface ISaveInvestmentAccountRequest {
     myInfoVerified: boolean;
     isSingaporePR: boolean;
+    nationalityCode: string;
     sameAsMailingAddress: boolean;
     personalInfo: IPersonalInfo;
     residentialAddress: IAddress;
@@ -8,6 +9,7 @@ export interface ISaveInvestmentAccountRequest {
     employmentDetails: IEmployment;
     householdDetails: IHousehold;
     financialDetails: IFinancial;
+    nationalityList: INationality;
     taxDetails: ITax[];
     personalDeclarations: IPersonalDeclaration;
 }
@@ -27,6 +29,9 @@ export interface IPersonalInfo {
     birthCountryId: any;
     race: any;
 }
+export interface INationality {
+    nationalityCode: string;
+}
 
 export interface IAddress {
     countryId: number;
@@ -43,7 +48,9 @@ export interface IAddress {
 export interface IEmployment {
     employmentStatusId: number;
     industryId: number;
+    otherIndustry: string;
     occupationId: number;
+    otherOccupation: string;
     employerName: string;
     contactNumber: string;
     unemployedReason: string;
@@ -78,6 +85,7 @@ export interface IPep {
     lastName: string;
     companyName: string;
     occupationId: number;
+    otherOccupation: string;
     pepAddress: IAddress;
     expectedNumberOfTransactions: number;
     expectedAmountPerTransaction: number;

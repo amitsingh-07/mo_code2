@@ -1,5 +1,9 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { PORTFOLIO_CONFIG } from 'src/app/portfolio/portfolio.constants';
+
+import {
+  Component, EventEmitter, HostListener, Input, OnInit, Output, ViewEncapsulation
+} from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfigService } from '../../../config/config.service';
@@ -27,10 +31,48 @@ export class EditInvestmentModalComponent implements OnInit {
       oneTimeInvestment: new FormControl(this.investmentData.oneTimeInvestment),
       monthlyInvestment: new FormControl(this.investmentData.monthlyInvestment)
     });
+    this.editInvestmentForm.controls['oneTimeInvestment'].setValidators(
+      [this.validateAtleastOne.bind(this), this.validateInitialAmount]
+    );
+    this.editInvestmentForm.controls['monthlyInvestment'].setValidators(
+      [this.validateAtleastOne.bind(this), this.validateMonthlyAmount]
+    );
   }
 
-  dataUpdated() {
-    this.modifiedInvestmentData.emit(this.editInvestmentForm.value);
+  dataUpdated(form) {
+    if (form.valid) {
+      this.modifiedInvestmentData.emit(this.editInvestmentForm.value);
+    }
+  }
+
+  validateInitialAmount(control: AbstractControl) {
+    const value = parseInt(control.value, 10);
+    if (value !== undefined && value !== null) {
+      if (value > 0 && value < 100) {
+        return { minInitialAmount: true };
+      }
+    }
+    return null;
+  }
+
+  validateMonthlyAmount(control: AbstractControl) {
+    const value = parseInt(control.value, 10);
+    if (value !== undefined && value !== null) {
+      if (value > 0 && value < 50) {
+        return { minMonthlyAmount: true };
+      }
+    }
+    return null;
+  }
+
+  validateAtleastOne(control: AbstractControl) {
+    const value = parseInt(control.value, 10);
+    if ( this.editInvestmentForm.get('oneTimeInvestment').value > 0 ||
+      this.editInvestmentForm.get('monthlyInvestment').value > 0) {
+        return null;
+    } else {
+        return { atleastOne: true };
+    }
   }
 
 }

@@ -159,8 +159,8 @@ export class UploadDocumentsComponent implements OnInit {
     return fileName;
   }
 
-  clearFileSelection(control, event, thumbElem?) {
-    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem);
+  clearFileSelection(control, event, thumbElem?, fileElem?) {
+    this.investmentAccountCommon.clearFileSelection(control, event, thumbElem, fileElem);
   }
 
   showProofOfMailingDetails() {
