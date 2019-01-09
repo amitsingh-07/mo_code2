@@ -23,6 +23,7 @@ import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { appConstants } from './../../app.constants';
 import { LoginFormError } from './login-form-error';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-login',
@@ -181,7 +182,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 } else {
                   this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
                 }
-              } else if (investmentStatus === 'RECOMMENDED') {
+              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED) {
                 this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
