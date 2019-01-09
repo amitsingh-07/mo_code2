@@ -108,10 +108,10 @@ export class ResidentialAddressComponent implements OnInit {
         [Validators.required, Validators.pattern(RegexConstants.SixDigitNumber)]));
       this.addressForm.addControl('floor', new FormControl({
         value: this.formValues.floor, disabled: this.investmentAccountService.isDisabled('floor')
-      }, Validators.required));
+      }));
       this.addressForm.addControl('unitNo', new FormControl({
         value: this.formValues.unitNo, disabled: this.investmentAccountService.isDisabled('unitNo')
-      }, Validators.required));
+      }));
 
       this.addressForm.removeControl('city');
       this.addressForm.removeControl('state');
@@ -189,11 +189,11 @@ export class ResidentialAddressComponent implements OnInit {
       mailFormGroup.addControl('mailFloor', new FormControl({
         value: this.formValues.mailFloor,
         disabled: this.investmentAccountService.isDisabled('mailFloor')
-      }, Validators.required));
+      }));
       mailFormGroup.addControl('mailUnitNo', new FormControl({
         value: this.formValues.mailUnitNo,
         disabled: this.investmentAccountService.isDisabled('mailUnitNo')
-      }, Validators.required));
+      }));
 
       mailFormGroup.removeControl('mailCity');
       mailFormGroup.removeControl('mailState');

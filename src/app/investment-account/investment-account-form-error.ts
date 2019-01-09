@@ -104,30 +104,6 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Address Line 2 should not contain special characters in mailing address.'
             }
         },
-        floor: {
-            required: {
-                errorTitle: 'Invalid Floor',
-                errorMessage: 'Please enter your Floor.'
-            }
-        },
-        mailFloor: {
-            required: {
-                errorTitle: 'Invalid Floor',
-                errorMessage: 'Please enter your Floor in mailing address.'
-            }
-        },
-        unitNo: {
-            required: {
-                errorTitle: 'Invalid Unit No.',
-                errorMessage: 'Please enter your Unit No.'
-            }
-        },
-        mailUnitNo: {
-            required: {
-                errorTitle: 'Invalid Unit No. in mailing address.',
-                errorMessage: 'Please enter your Unit No. in mailing address.'
-            }
-        },
         city: {
             required: {
                 errorTitle: 'Invalid City',
