@@ -40,9 +40,6 @@ label {
     white-space: normal;
     
 }
-.btn{
-    z-index: 1001;
-}
 
 .fixed-btn--sm {
     color:$white-color; 
@@ -247,7 +244,7 @@ label {
       
   .dropdown-item {
     white-space: normal;
-    word-break: break-all;
+    word-break: break-word;
   }
   .dropdown-control .btn-dropdown {
     padding-right: 27px;
@@ -259,7 +256,7 @@ label {
 
   .office-addr-lbl {
     margin-top:25px;
-    margin-bottom:20px;
+    margin-bottom:24px;
     font-size:18px;
   }
 

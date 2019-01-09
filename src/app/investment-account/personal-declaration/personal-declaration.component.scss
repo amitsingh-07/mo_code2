@@ -45,7 +45,7 @@ padding-right: 10px;
     
 .dropdown-item {
   white-space: normal;
-  word-break: break-all;
+  word-break: break-word;
 }
 .dropdown-control .btn-dropdown {
   padding-right: 27px;
@@ -56,6 +56,10 @@ padding-right: 10px;
 }
 .btn{
     z-index: 1001;
+    &:disabled{
+      background-color: #3bbcbc;
+      color: #00a7a7;
+    }
 }
 .fixed-btn--sm {
     color:#FFF;
