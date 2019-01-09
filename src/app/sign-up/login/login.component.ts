@@ -4,14 +4,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../environments/environment';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -19,11 +18,11 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
 import { appConstants } from './../../app.constants';
 import { LoginFormError } from './login-form-error';
-import { SIGN_UP_CONFIG } from '../sign-up.constant';
 
 @Component({
   selector: 'app-login',
