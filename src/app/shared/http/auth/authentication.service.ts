@@ -104,7 +104,20 @@ export class AuthenticationService {
     }
     // return a boolean reflecting
     // whether or not the token is expired
-    return this.jwtHelper.isTokenExpired(token, 30 * 60);
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  public isSignedUser() {
+    // get the token
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    const decodedInfo = this.jwtHelper.decodeToken(token);
+    const isLoggedInToken = decodedInfo.roles.split(',').includes('ROLE_SIGNED_USER');
+    const isTokenExpired = this.jwtHelper.isTokenExpired(token);
+    return !isTokenExpired && isLoggedInToken;
   }
 
   saveEnquiryId(id) {

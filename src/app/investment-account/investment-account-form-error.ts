@@ -244,7 +244,7 @@ export class InvestmentAccountFormError {
             },
             nric: {
                 errorTitle: 'Invalid NRIC Number',
-                errorMessage: 'NRIC Number you have entered is invalid.'
+                errorMessage: 'The NRIC you have keyed in is invalid.'
             }
         },
         passportNumber: {
@@ -266,7 +266,7 @@ export class InvestmentAccountFormError {
             },
             isMinExpiry: {
                 errorTitle: 'Invalid Passport Expiry',
-                errorMessage: 'You need to have atleast 6 months of passport validity'
+                errorMessage: 'Your passport must have at least 6 months validity to proceed.'
             }
         },
         dob: {
@@ -277,7 +277,7 @@ export class InvestmentAccountFormError {
             },
             isMinAge: {
                 errorTitle: 'Invalid Date of Birth',
-                errorMessage: 'You must be 18 yrs and above to create an investment account.'
+                errorMessage: 'You have to be at least 18 years old to set up an investment account with MoneyOwl.'
             }
         },
         sourceOfIncome: {
