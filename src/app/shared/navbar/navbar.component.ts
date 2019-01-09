@@ -218,8 +218,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   canActivateNotification() {
-    const userInfo = this.signUpService.getUserProfileInfo();
-    if (!(userInfo && userInfo.firstName)) {
+    if (!this.authService.isAuthenticated()) {
       return false;
     }
     return true;

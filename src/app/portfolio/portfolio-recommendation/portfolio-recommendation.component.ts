@@ -204,10 +204,9 @@ export class PortfolioRecommendationComponent implements OnInit {
 
   goToNext() {
     this.appService.setJourneyType(appConstants.JOURNEY_TYPE_INVESTMENT);
-    const userInfo = this.signUpService.getUserProfileInfo();
-    if (!(userInfo && userInfo.firstName)) { // Not logged in
+    if (!this.authService.isAuthenticated()) {
       this.showLoginOrSignupModal();
-    } else { // logged in
+    } else {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
     }
   }

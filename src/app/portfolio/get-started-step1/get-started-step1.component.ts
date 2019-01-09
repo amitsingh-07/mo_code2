@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
+
 import { Location } from '@angular/common';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -8,7 +10,6 @@ import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { PORTFOLIO_ROUTE_PATHS } from '../portfolio-routes.constants';
-import { SignUpService } from 'src/app/sign-up/sign-up.service';
 
 @Component({
   selector: 'app-get-started-step1',
@@ -46,8 +47,7 @@ export class GetStartedStep1Component implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
-    const userInfo = this.signUpService.getUserProfileInfo();
-    if (!(userInfo && userInfo.firstName)) {
+    if (!this.authService.isAuthenticated()) {
       this.authService.authenticate().subscribe((token) => {
       });
     }
