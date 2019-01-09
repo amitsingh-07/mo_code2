@@ -431,9 +431,9 @@ export class InvestmentAccountService {
     }
 
     // Select Nationality
-    saveNationality() {
-        const payload = this.constructSaveNationalityRequest();
-        return this.apiService.saveInvestmentAccount(payload);
+    saveNationality(data) {
+        const payload = this.constructSaveNationalityRequest(data);
+        return this.apiService.saveNationality(payload);
     }
     createInvestmentAccount() {
         return this.apiService.createInvestmentAccount();
@@ -707,31 +707,10 @@ export class InvestmentAccountService {
         return request;
     }
     // select Nationality
-    constructSaveNationalityRequest() {
-        const payload = this.getInvestmentAccountFormData();
-        const request = {} as ISaveInvestmentAccountRequest;
-        request.nationalityList = this.getNationalityReqData(payload);
-        request.myInfoVerified = null;
-        request.isSingaporePR = null;
-        request.personalInfo = null;
-        request.residentialAddress = null;
-        request.mailingAddress = null;
-        request.employmentDetails = null;
-        request.householdDetails = null;
-        request.financialDetails = null;
-        request.taxDetails = null;
-        request.sameAsMailingAddress = null;
-        request.personalDeclarations = null;
-        return request;
-    }
-    getNationalityReqData(data): INationality {
+    constructSaveNationalityRequest(data) {
         return {
-            isBlocked: data.nationality.blocked,
-            nationality: data.nationality.name,
-            countryCode: data.nationality.countries[0].countryCode,
-            id: data.nationality.countries[0].id,
-            country: data.nationality.countries[0].name
-        };
+            nationality: data.nationalityCode
+            };
     }
     getPersonalInfoReqData(data): IPersonalInfo {
         return {

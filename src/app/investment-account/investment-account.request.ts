@@ -1,6 +1,7 @@
 export interface ISaveInvestmentAccountRequest {
     myInfoVerified: boolean;
     isSingaporePR: boolean;
+    nationalityCode: string;
     sameAsMailingAddress: boolean;
     personalInfo: IPersonalInfo;
     residentialAddress: IAddress;
@@ -29,13 +30,9 @@ export interface IPersonalInfo {
     race: any;
 }
 export interface INationality {
-    isBlocked: boolean;
-    nationality: string;
-    countryCode: string;
-    id: number;
-    country: string;
-
+    nationalityCode: string;
 }
+
 export interface IAddress {
     countryId: number;
     state: string;

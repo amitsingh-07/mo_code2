@@ -148,6 +148,7 @@ export class SelectNationalityComponent implements OnInit {
     }
 
     goToNext(form) {
+        this.saveNationality();
         if (this.blocked) {
             this.showErrorMessage(this.editModalData.modalTitle, this.editModalData.modalMessage);
         } else if (form.valid && form.controls.unitedStatesResident) {
@@ -158,14 +159,13 @@ export class SelectNationalityComponent implements OnInit {
                 this.showErrorMessage(this.editModalData1.modalTitle1, this.editModalData1.modalMessage1);
             } else {
                 this.save(form);
-                this. saveNationality();
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
               }
         }
     }
     saveNationality() {
-        this.investmentAccountService. saveNationality().subscribe((data) => {
+        this.investmentAccountService.saveNationality(this.nationality).subscribe((data) => {
           this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted);
-          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
         },
           (err) => {
             const ref = this.modal.open(ErrorModalComponent, { centered: true });
