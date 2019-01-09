@@ -154,6 +154,13 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             }
             this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
               this.signUpService.setUserProfileInfo(userInfo.objectList);
+
+              // Investment status
+              const investmentStatus = userInfo.objectList.investementDetails
+                && userInfo.objectList.investementDetails.account
+                && userInfo.objectList.investementDetails.account.accountStatus ?
+                userInfo.objectList.investementDetails.account.accountStatus : null;
+
               const redirect_url = this.signUpService.getRedirectUrl();
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
@@ -174,6 +181,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 } else {
                   this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
                 }
+              } else if (investmentStatus === 'RECOMMENDED') {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
               }
