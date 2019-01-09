@@ -8,6 +8,7 @@ export interface ISaveInvestmentAccountRequest {
     employmentDetails: IEmployment;
     householdDetails: IHousehold;
     financialDetails: IFinancial;
+    nationalityList: INationality;
     taxDetails: ITax[];
     personalDeclarations: IPersonalDeclaration;
 }
@@ -27,7 +28,14 @@ export interface IPersonalInfo {
     birthCountryId: any;
     race: any;
 }
+export interface INationality {
+    isBlocked: boolean;
+    nationality: string;
+    countryCode: string;
+    id: number;
+    country: string;
 
+}
 export interface IAddress {
     countryId: number;
     state: string;

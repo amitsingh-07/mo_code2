@@ -7,8 +7,8 @@ import { AuthenticationService } from '../shared/http/auth/authentication.servic
 import { InvestmentAccountFormData } from './investment-account-form-data';
 import { INVESTMENT_ACCOUNT_CONFIG } from './investment-account.constant';
 import {
-    IAddress, IEmployment, IFinancial, IHousehold, IPep, IPersonalDeclaration, IPersonalInfo,
-    ISaveInvestmentAccountRequest, ITax
+    IAddress, IEmployment, IFinancial, IHousehold, INationality, IPep, IPersonalDeclaration, IPersonalInfo,
+    ISaveInvestmentAccountRequest, ITax,
 } from './investment-account.request';
 import { PersonalInfo } from './personal-info/personal-info';
 
@@ -430,6 +430,11 @@ export class InvestmentAccountService {
         return this.apiService.saveInvestmentAccount(payload);
     }
 
+    // Select Nationality
+    saveNationality() {
+        const payload = this.constructSaveNationalityRequest();
+        return this.apiService.saveInvestmentAccount(payload);
+    }
     createInvestmentAccount() {
         return this.apiService.createInvestmentAccount();
     }
@@ -701,7 +706,33 @@ export class InvestmentAccountService {
         request.personalDeclarations = this.getPersonalDecReqData(payload);
         return request;
     }
-
+    // select Nationality
+    constructSaveNationalityRequest() {
+        const payload = this.getInvestmentAccountFormData();
+        const request = {} as ISaveInvestmentAccountRequest;
+        request.nationalityList = this.getNationalityReqData(payload);
+        request.myInfoVerified = null;
+        request.isSingaporePR = null;
+        request.personalInfo = null;
+        request.residentialAddress = null;
+        request.mailingAddress = null;
+        request.employmentDetails = null;
+        request.householdDetails = null;
+        request.financialDetails = null;
+        request.taxDetails = null;
+        request.sameAsMailingAddress = null;
+        request.personalDeclarations = null;
+        return request;
+    }
+    getNationalityReqData(data): INationality {
+        return {
+            isBlocked: data.nationality.blocked,
+            nationality: data.nationality.name,
+            countryCode: data.nationality.countries[0].countryCode,
+            id: data.nationality.countries[0].id,
+            country: data.nationality.countries[0].name
+        };
+    }
     getPersonalInfoReqData(data): IPersonalInfo {
         return {
             nationalityCode: data.nationalityCode,
@@ -794,7 +825,7 @@ export class InvestmentAccountService {
 
     getFinancialDetailsReqData(data): IFinancial {
         return {
-            incomeRange:  (data.salaryRange) ? data.salaryRange.id : null
+            incomeRange: (data.salaryRange) ? data.salaryRange.id : null
         };
     }
 

@@ -5,13 +5,19 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from '../../shared/header/header.service';
+
+
+
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
+import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import {
     ModelWithButtonComponent
 } from '../../shared/modal/model-with-button/model-with-button.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
+import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+
 
 @Component({
     selector: 'app-select-nationality',
@@ -152,10 +158,21 @@ export class SelectNationalityComponent implements OnInit {
                 this.showErrorMessage(this.editModalData1.modalTitle1, this.editModalData1.modalMessage1);
             } else {
                 this.save(form);
-                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
-            }
+                this. saveNationality();
+              }
         }
     }
+    saveNationality() {
+        this.investmentAccountService. saveNationality().subscribe((data) => {
+          this.investmentAccountService.setAccountCreationStatus(INVESTMENT_ACCOUNT_CONFIG.status.ddc_submitted);
+          this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.PERSONAL_INFO]);
+        },
+          (err) => {
+            const ref = this.modal.open(ErrorModalComponent, { centered: true });
+            ref.componentInstance.errorTitle = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.TITLE');
+            ref.componentInstance.errorMessage = this.translate.instant('INVESTMENT_ACCOUNT_COMMON.GENERAL_ERROR.DESCRIPTION');
+          });
+      }
 
     isDisabled() {
         return this.investmentAccountService.isDisabled('nationality');
