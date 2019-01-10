@@ -16,7 +16,7 @@
                 <div class="flex-col-8">
                   <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawType)}">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="withdraw-type-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border" id="withdraw-type-drpdown" ngbDropdownToggle>
                         <span *ngIf="!withdrawForm.controls.withdrawType.value">{{ 'WITHDRAW.SELECT_TYPE' | translate}}</span>
                         <span *ngIf="withdrawForm.controls.withdrawType.value">{{withdrawForm.controls.withdrawType.value.name}}</span>
                       </button>
@@ -42,7 +42,7 @@
                 <div class="flex-col-8">
                   <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(withdrawForm.controls.withdrawPortfolio)}">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="withdraw-portfolio-drpdown"
+                      <button class="btn btn-dropdown without-border" id="withdraw-portfolio-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!withdrawForm.controls.withdrawPortfolio.value">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
                           translate}}</span>
@@ -61,7 +61,7 @@
             </div>
 
             <!-- AMOUNT -->
-            <div class="amount-panel" *ngIf="withdrawForm.get('withdrawAmount')">
+            <!-- <div class="amount-panel" *ngIf="withdrawForm.get('withdrawAmount')">
               <label class="withdrawal-amount-lbl" for="withdraw-type-drpdown" id="withdraw-type-lbl">{{
                 'WITHDRAW.WITHDRAWAL_AMOUNT'
                 | translate}}
@@ -78,8 +78,33 @@
                 <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:
                   {{withdrawForm.controls.withdrawPortfolio.value.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
               </div>
-            </div>
+            </div> -->
 
+            <div class="form-group" *ngIf="withdrawForm.get('withdrawPortfolio')">
+                <div class="flex-row">
+                  <div class="flex-col-4">
+                    <label class="withdrawal-amount-lbl" for="withdraw-type-drpdown" id="withdraw-type-lbl">{{
+                      'WITHDRAW.WITHDRAWAL_AMOUNT'
+                      | translate}}
+                    </label>
+                  </div>
+                  <div class="flex-col-8">
+                      <div class="form-control">
+                        <i id="myFinancialDollarSybmOne">$</i>
+                        <div>
+                          <input class="input-control" type="text" id="myFinancialMonthlyIncomeInput" appCurrencyInput [allowDecimal]=true decimalFormat="1.2-2"
+                            maxLength="9" #monthlyIncome formControlName="withdrawAmount" value="0">
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cash-balance flex-row">
+                  <span *ngIf="!isFromPortfolio">{{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:</span> <span *ngIf="!isFromPortfolio">{{cashBalance | currency}}</span>
+                  <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:</span>
+                      <span *ngIf="isFromPortfolio">{{withdrawForm.controls.withdrawPortfolio.value.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                </div>
           </form>
         </div>
       </div>

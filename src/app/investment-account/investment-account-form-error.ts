@@ -415,8 +415,8 @@ export class InvestmentAccountFormError {
         annualHouseHoldIncomeRange: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
-                errorTitle: 'Invalid Annual Household Income',
-                errorMessage: 'Please select Annual Household Income.'
+                errorTitle: 'Invalid Monthly Household Income',
+                errorMessage: 'Please select Monthly Household Income.'
             }
         },
         numberOfHouseHoldMembers: {
