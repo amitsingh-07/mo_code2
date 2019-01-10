@@ -33,11 +33,12 @@ app-withdrawal-type{
   }
 
   .cash-balance {
-    margin-top: 10px;
-    text-align: right;
-    font-size: 14px;
-    color: #98dfdf;
-    font-family: $muli-italic;
+    border-top: 1px solid #ffffff; 
+    padding-top: 19px;
+    margin-top: 23px;
+    font-size: 16px;
+    color: #93e9e9;
+    justify-content: space-between;
   }
   .btn__footer--fixed{
     font-size: 22px;
