@@ -10,12 +10,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { SharedModule } from '../shared/shared.module';
-
-
 import { AddBankModalComponent } from './add-bank-modal/add-bank-modal.component';
 import { AssetAllocationComponent } from './asset-allocation/asset-allocation.component';
 import {
-  ConfirmWithdrawalModalComponent
+    ConfirmWithdrawalModalComponent
 } from './confirm-withdrawal-modal/confirm-withdrawal-modal.component';
 import { FundYourAccountComponent } from './fund-your-account/fund-your-account.component';
 import { HoldingsComponent } from './holdings/holdings.component';
@@ -24,17 +22,12 @@ import { TopupAndWithdrawRoutingModule } from './topup-and-withdraw-routing.modu
 import { TopupRequestComponent } from './topup-request/topup-request.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import {
-  WithdrawalPaymentMethodComponent
+    WithdrawalPaymentMethodComponent
 } from './withdrawal-payment-method/withdrawal-payment-method.component';
 import { WithdrawalSuccessComponent } from './withdrawal-success/withdrawal-success.component';
 import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.component';
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
-
-import { FundDetailsComponent } from './fund-details/fund-details.component';
-
-
-
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -76,8 +69,7 @@ export function createTranslateLoader(http: HttpClient) {
     WithdrawalPaymentMethodComponent,
     TransactionComponent,
     HoldingsComponent,
-    AssetAllocationComponent,
-    FundDetailsComponent
+    AssetAllocationComponent
   ],
   entryComponents: [
     ConfirmWithdrawalModalComponent,
