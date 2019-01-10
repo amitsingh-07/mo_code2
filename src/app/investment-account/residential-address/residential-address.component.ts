@@ -139,7 +139,7 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   addOrRemoveMailingAddress() {
-    if (this.addressForm.controls.isMailingAddressSame.value !== true) {
+    if (!this.addressForm.controls.isMailingAddressSame.value) {
       this.addressForm.addControl('mailingAddress', this.formBuilder.group({
         reason: [this.formValues.reason, Validators.required],
         mailCountry: [{
@@ -296,7 +296,9 @@ export class ResidentialAddressComponent implements OnInit {
   }
 
   goToNext(form) {
-    if (!form.valid) {
+    if (form.status === 'DISABLED') {
+      this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.EMPLOYMENT_DETAILS]);
+    } else if (!form.valid) {
       this.markAllFieldsDirty(form);
       const error = this.investmentAccountService.getFormErrorList(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
