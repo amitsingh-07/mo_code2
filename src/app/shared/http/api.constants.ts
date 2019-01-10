@@ -32,6 +32,7 @@ export let apiConstants = {
         editPassword: 'account/account-microservice/api/editPassword',
         editProfile: 'account/account-microservice/api/customer/customerProfile',
         editEmployerAddress: 'account/account-microservice/api/updateEmployment',
+        emailValidityCheck: 'account/account-microservice/api/emailValidityCheck',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',

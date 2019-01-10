@@ -189,8 +189,8 @@
 </div>
 
 
-<small><em class="md-grey-color">*With information from MoneyOwl and Comparefirst. Figures are compiled on 3 December 2018. </em>
-<em class="md-grey-color">**Prices reflected in the table reflect ongoing existing promotions and discounts which are in the knowledge of. Data is generated based on date of birth on 1st November.</em>
+<small><em class="md-grey-color">*With information from MoneyOwl and Comparefirst. Figures are compiled on 4 January 2019. </em>
+<em class="md-grey-color">**Prices reflected in the table reflect ongoing existing promotions and discounts which are in the knowledge of. Data is generated based on date of birth on 1st January.</em>
 <em class="md-grey-color">***Prices are not reflected for certain products due to individual product specification limitations.</em><br><br>
 </small>
 

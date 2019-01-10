@@ -257,4 +257,7 @@ export class SignUpApiService {
     return this.apiService.getUserProfileInfo();
   }
 
+  checkEmailValidity(payload) {
+    return this.apiService.emailValidityCheck(payload);
+  }
 }

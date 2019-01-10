@@ -158,7 +158,7 @@ export class PlanDetailsWidgetComponent implements DoCheck, OnInit, AfterViewChe
         this.premiumAmount = this.data.premium.premiumAmountYearly;
         this.highlights.push({
           title: 'Payout Period:',
-          description: this.data.premium.retirementPayFeatureDisplay
+          description: this.data.premium.retirementPayPeriodDisplay
         });
         this.highlights.push({
           title: 'Guaranteed Annual Payout:',
