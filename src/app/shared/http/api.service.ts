@@ -289,6 +289,10 @@ export class ApiService {
       );
   }
 
+  emailValidityCheck(payload) {
+    return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
+  }
+
   setPassword(payload: ISetPassword) {
     return this.http.post(apiConstants.endpoint.setPassword, payload)
       .pipe(

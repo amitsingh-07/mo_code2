@@ -177,11 +177,6 @@ export class PortfolioRecommendationComponent implements OnInit {
     }
   }
 
-  viewFundDetails(fund) {
-    this.portfolioService.setFundDetails(fund);
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
-  }
-
   showLoginOrSignupModal() {
     const errorMessage = this.translate.instant('PRELOGIN_MODAL.DESC');
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
