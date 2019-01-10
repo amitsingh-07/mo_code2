@@ -52,14 +52,6 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.getUserBankList();
     this.getUserAddress();
     this.formValues = this.topupAndWithDrawService.getTopUpFormData();
-    this.buildForm();
-  }
-
-  buildForm() {
-    this.bankForm = this.formBuilder.group({
-      withdrawMode: [this.formValues.withdrawMode, Validators.required],
-      withdrawBank: [this.formValues.withdrawBank, Validators.required]
-    });
   }
 
   getLookupList() {
@@ -91,20 +83,6 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     this.navbarService.setPageTitle(title);
   }
 
-  selectBank(bank) {
-    this.bankForm.controls.withdrawBank.setValue(bank);
-  }
-
-  selectMode(mode) {
-    if (mode === 'BANK') {
-      this.bankForm.controls['withdrawBank'].setValidators([Validators.required]);
-    } else {
-      this.bankForm.controls['withdrawBank'].clearValidators();
-    }
-    this.bankForm.controls['withdrawBank'].updateValueAndValidity();
-    this.bankForm.controls.withdrawMode.setValue(mode);
-  }
-
   markAllFieldsDirty(form) {
     Object.keys(form.controls).forEach((key) => {
       if (form.get(key).controls) {
@@ -125,7 +103,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     });
   }
 
-  showConfirmWithdrawModal(form) {
+  showConfirmWithdrawModal() {
     const ref = this.modal.open(ConfirmWithdrawalModalComponent, {
       centered: true
     });
@@ -133,7 +111,6 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     ref.componentInstance.withdrawType = this.formValues.withdrawType;
     ref.componentInstance.confirmed.subscribe((data) => {
       ref.close();
-      this.topupAndWithDrawService.setWithdrawalPaymentFormData(form.getRawValue());
       this.saveWithdrawal();
       // confirmed
     });
@@ -179,21 +156,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     ref.componentInstance.errorMessage = desc;
   }
 
-  goToNext(form) {
-    // If Bank Mode
-    if (this.bankForm.controls.withdrawMode.value === 'BANK') {
-      if (!form.valid) { // INVALID FORM
-        this.markAllFieldsDirty(form);
-        const error = this.topupAndWithDrawService.getFormErrorList(form);
-        const ref = this.modal.open(ErrorModalComponent, { centered: true });
-        ref.componentInstance.errorTitle = error.title;
-        ref.componentInstance.errorMessageList = error.errorMessages;
-        return false;
-      } else { // FORM VALID
-        this.showConfirmWithdrawModal(form);
-      }
-    } else { // If Cheque Mode
-      this.showConfirmWithdrawModal(form);
-    }
+  goToNext() {
+      this.showConfirmWithdrawModal();
   }
 }

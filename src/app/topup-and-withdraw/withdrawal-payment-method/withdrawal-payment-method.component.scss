@@ -50,13 +50,13 @@ app-withdrawal-payment-method{
         }
     }
     .available_accounts{
-        opacity: 0.7;
-        padding:10px 0px;
+       // opacity: 0.7;
+        padding:24px 0px 31px;
         border-radius: 6px;
         background-color: $white-color;
         font-family: $muli-regular;
         font-size: 16px;
-        color: #5e5e5e;
+        color: #00a7a7;
         margin-bottom: 10px;
         align-items: center;
         justify-content: center;
@@ -72,38 +72,59 @@ app-withdrawal-payment-method{
             max-height: 70px;
             max-width: 70px;
         }
+        .user_bank{
+            margin-bottom: 7px;
+        }
         .user_account{
             font-family: $muli-semi-bold;
             font-size: 24px;
             font-weight: 600;
             letter-spacing: -0.5px;
             text-align: center;
-            color: #00a7a7;
+            margin-bottom: 4px;
         }
-        &.selected{
-            opacity: 1 !important;
-            border: 2px solid #007d7d;
-            position: relative;
-            .selected_logo{
-                display: block;
-                position: absolute;
-                top: 15px;
-                right: 15px;
-                width: 28px;
-                height: 28px;
-            }
-        }  
+        .user_name{
+            color: #000000;
+        }
+        // &.selected{
+        //     opacity: 1 !important;
+        //     border: 2px solid #007d7d;
+        //     position: relative;
+        //     .selected_logo{
+        //         display: block;
+        //         position: absolute;
+        //         top: 15px;
+        //         right: 15px;
+        //         width: 28px;
+        //         height: 28px;
+        //     }
+        // }  
+    }
+    .bank-icon{
+        width: 71px;
+        height: 49px;
+        margin-bottom: 19px;
     }
     .add_account{
         align-items: center;
         justify-content: center;
         border-radius: 6px;
         border: 1px solid #98dfdf;
-        min-height: 137px;
-        font-family: $muli-regular;
+        font-family: $muli-bold;
         font-size: 18px;
-        letter-spacing: -0.2px;
-        color: #98dfdf;
+        letter-spacing: -0.18px;
+        color: $white-color;
+        padding: 55px 0;
+        .flex-row{
+            img{
+                margin-right: 10.4px;
+            }
+        }  
+    }
+    .label{
+        margin-top:11px;
+        padding: 0 23px;
+        text-align: center;
     }
     .cheque{
         font-family: $muli-regular;
@@ -132,7 +153,7 @@ app-withdrawal-payment-method{
         }
     }
     .tab-content{
-        display:none;
+        // display:none;
 
         &.active {
             display:block;

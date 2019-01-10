@@ -17,8 +17,6 @@ import { WithdrawalTypeComponent } from './withdrawal-type/withdrawal-type.compo
 import { YourInvestmentComponent } from './your-investment/your-investment.component';
 import { YourPortfolioComponent } from './your-portfolio/your-portfolio.component';
 
-import { FundDetailsComponent } from './fund-details/fund-details.component';
-
 const routes: Routes = [
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.ROOT,
@@ -69,11 +67,6 @@ const routes: Routes = [
   {
     path: TOPUP_AND_WITHDRAW_ROUTES.ASSET_ALLOCATION,
     component: AssetAllocationComponent
-  },
-  {
-    path: TOPUP_AND_WITHDRAW_ROUTES.FUND_DETAILS,
-    component: FundDetailsComponent,
-
   }
 
 ];
