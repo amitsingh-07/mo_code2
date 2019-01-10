@@ -32,6 +32,7 @@ export let apiConstants = {
         editPassword: 'account/account-microservice/api/editPassword',
         editProfile: 'account/account-microservice/api/customer/customerProfile',
         editEmployerAddress: 'account/account-microservice/api/updateEmployment',
+        emailValidityCheck: 'account/account-microservice/api/emailValidityCheck',
         article: {
             getRecentArticles: ARTICLE_API_BASE_URL + '/api/article/getTop8Articles',
             getArticleCategory: ARTICLE_API_BASE_URL + '/api/article/getCountForAllTags',
@@ -62,6 +63,7 @@ export let apiConstants = {
             allDropdownlist: INVESTMENT_API_BASE_URL + 'optionListCollection',
             uploadDocument: 'account/account-microservice/saveDocuments',
             saveInvestmentAccount: 'account/account-microservice/api/saveCustomerDetails',
+            saveNationality: 'invest/investment-microservice/customer/setNationality',
             updateInvestment: INVESTMENT_API_BASE_URL + 'api/UpdateCustomerInvestmentObjective',
             createInvestmentAccount: INVESTMENT_API_BASE_URL + 'createIFastAccount',
             verifyAML: ACCOUNT_API_BASE_URL + '/api/verifyAML?handleError=true',

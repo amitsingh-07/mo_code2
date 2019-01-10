@@ -62,9 +62,10 @@ export class InvestmentAccountFormData {
     employStatus: string;
     companyName: string;
     occupation: string;
+    otherOccupation: string;
     industry: string;
+    otherIndustry: string;
     contactNumber: string;
-    isEmployeAddresSame: boolean;
     empCountry: string;
     empPostalCode: number;
     empAddress1: string;
@@ -109,6 +110,7 @@ export class InvestmentAccountFormData {
     lName: string;
     cName: string;
     pepoccupation: string;
+    pepOtherOccupation: string;
     pepCountry: string;
     pepPostalCode: number;
     pepAddress1: string;

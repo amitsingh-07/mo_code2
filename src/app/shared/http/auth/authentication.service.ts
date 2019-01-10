@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
 import { Util } from '../../utils/util';
 import { apiConstants } from '../api.constants';
 import { IServerResponse } from '../interfaces/server-response.interface';
 import { appConstants } from './../../../app.constants';
+import { BaseService } from './../base.service';
 import { RequestCache } from './../http-cache.service';
 
 export const APP_JWT_TOKEN_KEY = 'app-jwt-token';
@@ -18,8 +20,8 @@ const APP_ENQUIRY_ID = 'app-enquiry-id';
 export class AuthenticationService {
   apiBaseUrl = '';
   constructor(
-    private http: HttpClient, public jwtHelper: JwtHelperService,
-    private cache: RequestCache) {
+    private httpClient: HttpClient, public jwtHelper: JwtHelperService,
+    private cache: RequestCache, private http: BaseService) {
 
     this.apiBaseUrl = Util.getApiBaseUrl();
   }
@@ -57,7 +59,7 @@ export class AuthenticationService {
       handleError = '';
     }
     const authenticateUrl = apiConstants.endpoint.authenticate;
-    return this.http.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
+    return this.httpClient.post<IServerResponse>(`${this.apiBaseUrl}/${authenticateUrl}${handleError}`, authenticateBody)
       .pipe(map((response) => {
         // login successful if there's a jwt token in the response
         if (response && response.objectList[0] && response.objectList[0].securityToken) {
@@ -102,7 +104,20 @@ export class AuthenticationService {
     }
     // return a boolean reflecting
     // whether or not the token is expired
-    return this.jwtHelper.isTokenExpired(token, 30 * 60);
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  public isSignedUser() {
+    // get the token
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    const decodedInfo = this.jwtHelper.decodeToken(token);
+    const isLoggedInToken = decodedInfo.roles.split(',').includes('ROLE_SIGNED_USER');
+    const isTokenExpired = this.jwtHelper.isTokenExpired(token);
+    return !isTokenExpired && isLoggedInToken;
   }
 
   saveEnquiryId(id) {
@@ -122,4 +137,24 @@ export class AuthenticationService {
       + this.getSessionId() + '&time=' + time;
   }
 
+  public logout() {
+    return this.http.get(apiConstants.endpoint.logout)
+      .pipe(
+        // tslint:disable-next-line:no-identical-functions
+        catchError((error: HttpErrorResponse) => {
+          if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+              `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+            );
+          }
+          // return an observable with a user-facing error message
+          return throwError('Something bad happened; please try again later.');
+        })
+      );
+  }
 }

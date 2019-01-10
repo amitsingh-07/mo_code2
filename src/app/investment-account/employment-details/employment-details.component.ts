@@ -99,10 +99,20 @@ export class EmploymentDetailsComponent implements OnInit {
       this.employementDetailsForm.addControl('contactNumber', new FormControl(
         this.formValues.contactNumber, [Validators.required, Validators.pattern(RegexConstants.ContactNumber)]));
       this.addOrRemoveMailingAddress(empStatus);
+      this.observeIndustryChange();
+      this.observeOccupationChange();
+      if (this.formValues.industry) {
+        this.addOtherIndustry(this.formValues.industry);
+      }
+      if (this.formValues.occupation) {
+        this.addOtherOccupation(this.formValues.occupation);
+      }
     } else {
       this.employementDetailsForm.removeControl('companyName');
       this.employementDetailsForm.removeControl('occupation');
+      this.employementDetailsForm.removeControl('otherOccupation');
       this.employementDetailsForm.removeControl('industry');
+      this.employementDetailsForm.removeControl('otherIndustry');
       this.employementDetailsForm.removeControl('contactNumber');
       this.employementDetailsForm.removeControl('employeaddress');
     }
@@ -160,6 +170,36 @@ export class EmploymentDetailsComponent implements OnInit {
       this.observeEmpAddressCountryChange();
     } else {
       this.employementDetailsForm.removeControl('employeaddress');
+    }
+  }
+
+  observeIndustryChange() {
+    this.employementDetailsForm.get('industry').valueChanges.subscribe((value) => {
+      this.addOtherIndustry(value);
+    });
+  }
+
+  addOtherIndustry(value) {
+    if (value.industry === 'Others') {
+      this.employementDetailsForm.addControl('otherIndustry',
+      new FormControl(this.formValues.otherIndustry, Validators.required));
+    } else {
+      this.employementDetailsForm.removeControl('otherIndustry');
+    }
+  }
+
+  observeOccupationChange() {
+    this.employementDetailsForm.get('occupation').valueChanges.subscribe((value) => {
+      this.addOtherOccupation(value);
+    });
+  }
+
+  addOtherOccupation(value) {
+    if (value.occupation === 'Others') {
+      this.employementDetailsForm.addControl('otherOccupation',
+      new FormControl(this.formValues.otherOccupation, Validators.required));
+    } else {
+      this.employementDetailsForm.removeControl('otherOccupation');
     }
   }
 

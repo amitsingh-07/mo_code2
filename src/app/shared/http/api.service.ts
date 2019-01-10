@@ -43,7 +43,7 @@ export class ApiService {
         // The response body may contain clues as to what went wrong,
         console.error(
           `Backend returned code ${error.status}, ` +
-          `body was: ${error.error}`);
+          `body was: ${JSON.stringify(error.error)}`);
         return throwError('API returned error response');
       }
     }
@@ -287,6 +287,10 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
+  }
+
+  emailValidityCheck(payload) {
+    return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
   }
 
   setPassword(payload: ISetPassword) {
@@ -550,6 +554,12 @@ export class ApiService {
 
   saveInvestmentAccount(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.saveInvestmentAccount, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveNationality(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.saveNationality, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

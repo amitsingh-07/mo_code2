@@ -35,7 +35,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
   sliderMinValue = 0;
   sliderMaxValue = 99;
   sliderDesc: string;
-  dob: string;
+  // dob: string;
   isSufficientInvYears = false;
 
   constructor(
@@ -53,9 +53,9 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('PERSONAL_INFO.TITLE');
       this.setPageTitle(this.pageTitle);
-      const today: Date = new Date();
-      config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
-      config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
+      // const today: Date = new Date();
+      // config.minDate = { year: (today.getFullYear() - 100), month: (today.getMonth() + 1), day: today.getDate() };
+      // config.maxDate = { year: today.getFullYear(), month: (today.getMonth() + 1), day: today.getDate() };
     });
   }
   ciSliderConfig: any = {
@@ -83,7 +83,7 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit, IPageCompon
     this.navbarService.setNavbarMode(2);
     this.formValues = this.portfolioService.getPersonalInfo();
     this.personalInfoForm = this.formBuilder.group({
-      dob: [this.formValues.dob, Validators.required],
+      // dob: [this.formValues.dob, Validators.required],
       investmentPeriod: ['', Validators.required],
       sliderValueSetter: ['']
     });

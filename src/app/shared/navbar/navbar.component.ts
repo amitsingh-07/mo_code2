@@ -1,5 +1,3 @@
-import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
-
 import { Location } from '@angular/common';
 import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
@@ -8,16 +6,16 @@ import {
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConfigService, IConfig } from '../../config/config.service';
-import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS
-} from '../../investment-account/investment-account-routes.constants';
-import { InvestmentAccountService } from '../../investment-account/investment-account-service';
+import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
+import { SIGN_UP_ROUTE_PATHS } from 'src/app/sign-up/sign-up.routes.constants';
 import {
   TransactionModalComponent
 } from '../../shared/modal/transaction-modal/transaction-modal.component';
 import { SIGN_UP_CONFIG } from '../../sign-up/sign-up.constant';
 import { SignUpService } from '../../sign-up/sign-up.service';
+import { appConstants } from './../../app.constants';
+import { AppService } from './../../app.service';
+import { ConfigService, IConfig } from './../../config/config.service';
 import { NavbarService } from './navbar.service';
 
 @Component({
@@ -57,17 +55,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   isInvestmentEnabled = true;
   isComprehensiveEnabled = true;
 
+  isLoggedIn = false;
+  userInfo;
+
   @ViewChild('navbar') NavBar: ElementRef;
   @ViewChild('navbarDropshadow') NavBarDropShadow: ElementRef;
   constructor(
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
-    private cdr: ChangeDetectorRef, private router: Router,
+    private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
+    private signUpService: SignUpService, private authService: AuthenticationService,
     private modal: NgbModal,
-    private configService: ConfigService,
-    private signUpService: SignUpService,
-    public investmentAccountService: InvestmentAccountService,
-  ) {
+    private appService: AppService) {
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -77,6 +76,25 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;
+    });
+
+    this.userInfo = this.signUpService.getUserProfileInfo();
+    if (this.authService.isSignedUser()) {
+      this.isLoggedIn = true;
+    }
+
+    this.signUpService.userObservable$.subscribe((data) => {
+      if (data) {
+        if (data === 'LOGGED_OUT') {
+          this.isLoggedIn = false;
+          this.clearLoginDetails();
+        } else {
+          this.userInfo = data;
+          if (this.authService.isSignedUser()) {
+            this.isLoggedIn = true;
+          }
+        }
+      }
     });
   }
 
@@ -151,6 +169,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
   }
 
+  goToHome() {
+    this.router.navigate([appConstants.homePageUrl]);
+  }
+
   openDropdown(dropdown) {
     if (this.innerWidth > this.mobileThreshold) {
       dropdown.open();
@@ -196,8 +218,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   canActivateNotification() {
-    const userInfo = this.signUpService.getUserProfileInfo();
-    if (!(userInfo && userInfo.firstName)) {
+    if (!this.authService.isSignedUser()) {
       return false;
     }
     return true;
@@ -205,5 +226,18 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   showFilterModalPopUp(data) {
     this.modalRef = this.modal.open(TransactionModalComponent, { centered: true });
+  }
+  logout() {
+    this.authService.logout().subscribe((data) => {
+      this.clearLoginDetails();
+    });
+  }
+
+  clearLoginDetails() {
+    this.signUpService.setUserProfileInfo(null);
+    this.isLoggedIn = false;
+    this.appService.clearData();
+    this.appService.startAppSession();
+    this.router.navigate([appConstants.homePageUrl]);
   }
 }

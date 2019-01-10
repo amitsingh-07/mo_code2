@@ -144,7 +144,7 @@
             {{'EDIT_PROFILE.COUNTRY' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.country.name}}
+            {{residentialAddress && residentialAddress.country && residentialAddress.country.name}}
           </div>
         </div>
         <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
@@ -152,7 +152,7 @@
             {{'EDIT_PROFILE.POSTAL' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.postalCode}}
+            {{residentialAddress && residentialAddress.postalCode}}
           </div>
         </div>
         <div class="section-margin">
@@ -160,7 +160,7 @@
             {{'EDIT_PROFILE.ADDRESS_1' | translate}}
           </div>
           <div class="update-contact-value">
-             {{ residentialAddress.addressLine1 }}
+             {{ residentialAddress && residentialAddress.addressLine1 }}
           </div>
         </div>
         <div class="section-margin">
@@ -168,7 +168,7 @@
             {{'EDIT_PROFILE.ADDRESS_2' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.addressLine2}}
+            {{residentialAddress && residentialAddress.addressLine2}}
           </div>
         </div>
         <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
@@ -176,7 +176,7 @@
             {{'EDIT_PROFILE.FLOOR' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.floor}}
+            {{residentialAddress && residentialAddress.floor}}
           </div>
         </div>
         <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
@@ -184,7 +184,7 @@
             {{'EDIT_PROFILE.UNIT' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.unitNumber}}
+            {{residentialAddress && residentialAddress.unitNumber}}
           </div>
         </div>
         <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
@@ -192,7 +192,7 @@
             {{'EDIT_PROFILE.CITY' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.city}}
+            {{residentialAddress && residentialAddress.city}}
           </div>
         </div>
         <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
@@ -200,7 +200,7 @@
             {{'EDIT_PROFILE.STATE' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.state}}
+            {{residentialAddress && residentialAddress.state}}
           </div>
         </div>
         <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
@@ -208,7 +208,7 @@
             {{'EDIT_PROFILE.ZIP' | translate}}
           </div>
           <div class="update-contact-value">
-            {{residentialAddress.postalCode}}
+            {{residentialAddress && residentialAddress.postalCode}}
           </div>
         </div>
 
@@ -228,7 +228,7 @@
               {{'EDIT_PROFILE.COUNTRY' | translate}}
             </div>
             <div class="update-contact-value">
-              {{mailingAddress.country.name}}
+              {{mailingAddress &&mailingAddress.country && mailingAddress.country.name}}
             </div>
           </div>
           <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
@@ -236,7 +236,7 @@
               {{'EDIT_PROFILE.POSTAL' | translate}}
             </div>
             <div class="update-contact-value">
-              {{mailingAddress.postalCode}}
+              {{mailingAddress && mailingAddress.postalCode}}
             </div>
           </div>
           <div class="section-margin">
@@ -244,7 +244,7 @@
               {{'EDIT_PROFILE.ADDRESS_1' | translate}}
             </div>
             <div class="update-contact-value">
-              {{ mailingAddress.addressLine1}}
+              {{ mailingAddress && mailingAddress.addressLine1}}
             </div>
           </div>
           <div class="section-margin">
@@ -252,7 +252,7 @@
               {{'EDIT_PROFILE.ADDRESS_2' | translate}}
             </div>
             <div class="update-contact-value">
-              {{ mailingAddress.addressLine2}}
+              {{mailingAddress && mailingAddress.addressLine2}}
             </div>
           </div>
           <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
@@ -260,7 +260,7 @@
               {{'EDIT_PROFILE.FLOOR' | translate}}
             </div>
             <div class="update-contact-value">
-              {{mailingAddress.floor}}
+              {{mailingAddress && mailingAddress.floor}}
             </div>
           </div>
           <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
@@ -268,7 +268,7 @@
               {{'EDIT_PROFILE.UNIT' | translate}}
             </div>
             <div class="update-contact-value">
-              {{mailingAddress.unitNumber}}
+              {{mailingAddress && mailingAddress.unitNumber}}
             </div>
           </div>
           <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
@@ -276,7 +276,7 @@
               {{'EDIT_PROFILE.CITY' | translate}}
             </div>
             <div class="update-contact-value">
-              {{mailingAddress.city}}
+              {{mailingAddress && mailingAddress.city}}
             </div>
           </div>
           <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
@@ -284,7 +284,7 @@
               {{'EDIT_PROFILE.STATE' | translate}}
             </div>
             <div class="update-contact-value">
-              {{mailingAddress.state}}
+              {{mailingAddress && mailingAddress.state}}
             </div>
           </div>
           <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
@@ -292,7 +292,7 @@
               {{'EDIT_PROFILE.ZIP' | translate}}
             </div>
             <div class="update-contact-value">
-              {{mailingAddress.postalCode}}
+              {{mailingAddress && mailingAddress.postalCode}}
             </div>
           </div>
         </div>
@@ -324,7 +324,7 @@
               {{'EDIT_PROFILE.EMP_STATUS' | translate}}
             </div>
             <div class="update-contact-value">
-              {{empolymentDetails.employmentStatus.name }}
+              {{empolymentDetails.employmentStatus && empolymentDetails.employmentStatus.name }}
             </div>
           </div>
           <div class="section-margin">
@@ -332,7 +332,7 @@
               {{'EDIT_PROFILE.EMP_NAME' | translate}}
             </div>
             <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
-              {{empolymentDetails.employerDetails.detailedEmployerDetails.employerName }}
+              {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.employerName }}
             </div>
           </div>
           <div class="section-margin">
@@ -340,7 +340,7 @@
               {{'EDIT_PROFILE.INDUSTRY' | translate}}
             </div>
             <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
-              {{empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
+              {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
             </div>
           </div>
           <div class="section-margin">
@@ -348,7 +348,7 @@
               {{'EDIT_PROFILE.EMP_CONTRACT' | translate}}
             </div>
             <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
-              {{empolymentDetails.employerDetails.employerContact }}
+              {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.employerContact }}
             </div>
           </div>
           <div class="section-margin">
@@ -356,7 +356,7 @@
               {{'EDIT_PROFILE.OCCUPATUION' | translate}}
             </div>
             <div class="update-contact-value">
-              {{empolymentDetails.occupation.occupation}}
+              {{empolymentDetails.occupation && empolymentDetails.occupation.occupation}}
             </div>
           </div>
 
@@ -380,7 +380,7 @@
                 {{'EDIT_PROFILE.COUNTRY' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
               </div>
             </div>
             <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
@@ -388,7 +388,7 @@
                 {{'EDIT_PROFILE.POSTAL' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
               </div>
             </div>
             <div class="section-margin">
@@ -396,7 +396,7 @@
                 {{'EDIT_PROFILE.ADDRESS_1' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1}}
               </div>
             </div>
             <div class="section-margin">
@@ -404,7 +404,7 @@
                 {{'EDIT_PROFILE.ADDRESS_2' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
               </div>
             </div>           
             <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
@@ -412,7 +412,7 @@
                 {{'EDIT_PROFILE.UNIT' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
@@ -420,7 +420,7 @@
                 {{'EDIT_PROFILE.CITY' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
@@ -428,7 +428,7 @@
                 {{'EDIT_PROFILE.STATE' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
               </div>
             </div>
             <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
@@ -436,7 +436,7 @@
                 {{'EDIT_PROFILE.ZIP' | translate}}
               </div>
               <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
+                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
               </div>
             </div>
           </div>
@@ -474,7 +474,7 @@
                 </div>
                 <div class="flex-col-8">
                   <div class="bank-account-num">
-                    {{bankDetails.bank.name}}
+                    {{ bankDetails.bank && bankDetails.bank.name}}
                   </div>
                 </div>
 

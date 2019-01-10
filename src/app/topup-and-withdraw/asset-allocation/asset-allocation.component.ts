@@ -33,7 +33,6 @@ import { TopUpAndWithdrawFormData } from '../topup-and-withdraw-form-data';
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
-
 @Component({
   selector: 'app-asset-allocation',
   templateUrl: './asset-allocation.component.html',

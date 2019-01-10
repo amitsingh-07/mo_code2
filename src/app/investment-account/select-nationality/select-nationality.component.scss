@@ -1,8 +1,7 @@
 @import "../../../_variables.scss";
 @import "../../../_mixins.scss";
-body{
-    background-color: #00a7a7;
-}
+
+
 app-select-nationality{
 
     .banner-image {
@@ -46,7 +45,7 @@ padding-right: 10px;
     
 .dropdown-item {
   white-space: normal;
-  word-break: break-all;
+  word-break: break-word;
 }
 .dropdown-control .btn-dropdown {
   padding-right: 27px;
@@ -55,6 +54,13 @@ padding-right: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.btn{
+    &:disabled{
+      color: #00a7a7 !important;
+      background-color: #d4eded !important;
+      opacity: 1 !important;
+    }
+  }
 .fixed-btn--sm {
     color:#FFF;
    

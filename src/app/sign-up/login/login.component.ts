@@ -4,14 +4,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../environments/environment';
 import { WillWritingService } from '../../will-writing/will-writing.service';
 import { AppService } from './../../app.service';
 import { FooterService } from './../../shared/footer/footer.service';
 
 import { WillWritingApiService } from 'src/app/will-writing/will-writing.api.service';
 import {
-  INVESTMENT_ACCOUNT_ROUTE_PATHS, INVESTMENT_ACCOUNT_ROUTES
+  INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
@@ -19,8 +18,10 @@ import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
 import { WILL_WRITING_ROUTE_PATHS } from '../../will-writing/will-writing-routes.constants';
 import { SignUpApiService } from '../sign-up.api.service';
+import { SIGN_UP_CONFIG } from '../sign-up.constant';
 import { SIGN_UP_ROUTE_PATHS } from '../sign-up.routes.constants';
 import { SignUpService } from '../sign-up.service';
+import { appConstants } from './../../app.constants';
 import { LoginFormError } from './login-form-error';
 
 @Component({
@@ -78,8 +79,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.navbarService.setNavbarShadowVisibility(false);
     this.footerService.setFooterVisibility(false);
     this.buildLoginForm();
-    this.authService.authenticate().subscribe((token) => {
-    });
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -153,11 +156,19 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             }
             this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
               this.signUpService.setUserProfileInfo(userInfo.objectList);
+
+              // Investment status
+              const investmentStatus = userInfo.objectList.investementDetails
+                && userInfo.objectList.investementDetails.account
+                && userInfo.objectList.investementDetails.account.accountStatus ?
+                userInfo.objectList.investementDetails.account.accountStatus : null;
+
               const redirect_url = this.signUpService.getRedirectUrl();
               if (redirect_url) {
                 this.signUpService.clearRedirectUrl();
                 this.router.navigate([redirect_url]);
-              } else if (Object.keys(this.willWritingService.getWillWritingFormData()).length !== 0) {
+              } else if (this.appService.getJourneyType() === appConstants.JOURNEY_TYPE_WILL_WRITING &&
+                this.willWritingService.getExecTrusteeInfo().length > 0) {
                 if (!this.willWritingService.getIsWillCreated()) {
                   this.willWritingApiService.createWill().subscribe((data) => {
                     if (data.responseMessage && data.responseMessage.responseCode >= 6000) {
@@ -172,6 +183,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 } else {
                   this.router.navigate([WILL_WRITING_ROUTE_PATHS.VALIDATE_YOUR_WILL]);
                 }
+              } else if (investmentStatus === SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED) {
+                this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
               } else {
                 this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
               }
@@ -186,7 +199,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             this.loginForm.controls['captchaValue'].reset();
             this.loginForm.controls['loginPassword'].reset();
             this.openErrorModal(data.responseMessage.responseDescription);
-            if (data.objectList[0].sessionId) {
+            if (data.objectList[0] && data.objectList[0].sessionId) {
               this.signUpService.setCaptchaSessionId(data.objectList[0].sessionId);
             } else if (data.objectList[0].attempt >= 3) {
               this.signUpService.setCaptchaShown();

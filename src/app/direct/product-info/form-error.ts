@@ -120,7 +120,7 @@ export class FormError {
                 singlePremium: {
                         required: {
                                 errorTitle: 'Invalid Single Premium Amount',
-                                errorMessage: 'Please enter a number greater than 0.'
+                                errorMessage: 'Please select a valid single premium amount.'
                         }
                 }
         };

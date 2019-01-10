@@ -1,3 +1,6 @@
+import { SignUpService } from 'src/app/sign-up/sign-up.service';
+
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,17 +22,19 @@ export class GetStartedStep1Component implements OnInit {
   pageTitle: string;
   title = this.translate.instant('INSURANCE_RESULTS.TITLE');
   description = this.translate.instant('GETSTARTED_STEP1.CAPTION');
-  img = 'assets/images/checklist-icon.svg';
-  description2 =  this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
+  img = 'assets/images/portfolio/risk-step-1.svg';
+  description2 = this.translate.instant('GETSTARTED_STEP1.DESCRIPTION');
   tab = '1';
 
   constructor(
     public readonly translate: TranslateService,
     public authService: AuthenticationService,
     private router: Router,
+    private _location: Location,
     public navbarService: NavbarService,
     public headerService: HeaderService,
-    public footerService: FooterService) {
+    public footerService: FooterService,
+    public signUpService: SignUpService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
       this.pageTitle = this.translate.instant('GETSTARTED_STEP1.TITLE');
@@ -42,10 +47,15 @@ export class GetStartedStep1Component implements OnInit {
   ngOnInit() {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
-    this.authService.authenticate().subscribe((token) => {
-    });
-  }
+    if (!this.authService.isAuthenticated()) {
+      this.authService.authenticate().subscribe((token) => {
+      });
+    }
 
+  }
+  goBack() {
+    this._location.back();
+  }
   goNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
   }

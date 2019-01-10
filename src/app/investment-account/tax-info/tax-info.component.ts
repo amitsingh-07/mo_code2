@@ -182,7 +182,14 @@ export class TaxInfoComponent implements OnInit {
     }
   }
   }
-
+  getBorder()
+  {
+    if(this.taxInfoForm.get('addTax')['controls'].length > 1)
+    {
+      return true;
+    }
+    return false;
+  }
   removeTaxForm(formGroup, index): void {
     const control = formGroup.controls['addTax'] as FormArray;
     control.removeAt(index);
