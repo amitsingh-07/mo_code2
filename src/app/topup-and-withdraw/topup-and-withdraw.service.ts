@@ -219,12 +219,6 @@ export class TopupAndWithDrawService {
     this.commit();
   }
 
-  setWithdrawalPaymentFormData(data) {
-    this.topUpAndWithdrawFormData.withdrawMode = data.withdrawMode;
-    this.topUpAndWithdrawFormData.withdrawBank = data.withdrawBank;
-    this.commit();
-  }
-
   getUserBankList() {
     return this.apiService.getUserBankList();
   }
