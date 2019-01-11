@@ -190,13 +190,13 @@
                   </div>
                 </div>
               </div> -->
-              <div class="checkbox_instruction">At least one of the following is required</div>
+              <div class="checkbox_instruction"> {{ 'MY_FINANCIALS.ATLEAST_ONE' | translate}}</div>
               <!-- checkbox -->
               <div class="form-group-single-column mb0 flex-col-12">
                 <div class="checkbox-button two-label flex-col-6 pl0 pr0 mb0">
                   <input id="1" type="checkbox" formControlName="firstChkBox" class="field checkbox" name="firstChkBox" (change)="firstChkBoxChange()">
                   <label for="1" id="c1">
-                    <div class="input-label-black">One-time Investment</div>
+                    <div class="input-label-black"> {{ 'MY_FINANCIALS.INITIAL_DEPOSIT_LBL' | translate}}</div>
 
                     <div class="input-label-normal">Min. $100</div>
 
@@ -229,7 +229,7 @@
 
                   <label for="2" id="c2">
 
-                    <div class="input-label-black">Monthly Investment</div>
+                    <div class="input-label-black">  {{ 'MY_FINANCIALS.MONTHLY_DEPOSIT_LBL' | translate}}</div> 
 
                     <div class="input-label-normal">Min. $50</div>
 
