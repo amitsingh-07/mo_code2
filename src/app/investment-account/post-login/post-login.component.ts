@@ -44,8 +44,8 @@ export class PostLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
-    this.footerService.setFooterVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
     this.formData = this.investmentAccountService.getInvestmentAccountFormData();
     this.showSingPass = this.formData.isMyInfoEnabled ? false : true;
   }
