@@ -1195,4 +1195,9 @@ export class InvestmentAccountService {
     getMyInfoStatus() {
         return this.investmentAccountFormData.isMyInfoEnabled;
     }
+
+    clearInvestmentAccountFormData() {
+        this.investmentAccountFormData.isMyInfoEnabled = false;
+        this.commit();
+    }
 }

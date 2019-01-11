@@ -42,6 +42,7 @@ export class AccountSetupPendingComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(false);
     this.footerService.setFooterVisibility(false);
     this.status = this.investmentAccountService.getAccountCreationStatus();
+    this.investmentAccountService.clearInvestmentAccountFormData();
     console.log(this.status);
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
