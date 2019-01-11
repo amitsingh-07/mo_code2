@@ -44,6 +44,11 @@ export class AuthenticationService {
   }
 
   authenticate() {
+    // Avoid duplicate authentication calls
+    if (this.isAuthenticated()) {
+      //return; 
+    }
+
     const authenticateBody = {
       email: '',
       mobile: '',

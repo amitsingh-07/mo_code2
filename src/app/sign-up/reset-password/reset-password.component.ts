@@ -103,7 +103,7 @@ export class ResetPasswordComponent implements OnInit {
     } else if (form.value.resetPassword1 !== form.value.confirmpassword) {
       const error = this.signUpService.currentFormError(form);
       const ref = this.modal.open(ErrorModalComponent, { centered: true });
-      ref.componentInstance.errorTitle = 'Password Should Match';
+      ref.componentInstance.errorTitle = 'Passwords do not match';
       return false;
     } else {
       this.signUpService.setResetPasswordInfo(form.value.confirmpassword, this.token).subscribe((data) => {
