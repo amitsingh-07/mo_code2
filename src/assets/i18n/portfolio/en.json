@@ -41,6 +41,7 @@
     "RETURN_HOME": "Return To Homepage",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
+    "ATLEAST_ONE": "At least one of the following is required",
     "TITLE": "Get Started",
     "MONTHLY_INCOME_LBL": "Monthly Income",
     "MONTHLY_INCOME_SUB_LBL":"(E.g. Salary, Bonus, Rental, Others)",
