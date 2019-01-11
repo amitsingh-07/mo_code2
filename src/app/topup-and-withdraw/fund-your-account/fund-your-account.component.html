@@ -18,8 +18,8 @@
           </div>
 
           <div *ngIf="fundDetails.source == 'FUNDING'">
-            <div *ngIf="fundDetails.oneTimeInvestment > 0" class="strong">{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}} (
-              <span>{{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }}</span>)</div>
+            <div *ngIf="fundDetails.oneTimeInvestment > 0" class="strong">{{fundDetails.oneTimeInvestment | currency:'USD':'symbol-narrow':'1.0-2'}} 
+              <span>({{ 'FUND_YOUR_ACCOUNT.ONE_TIME' | translate }})</span></div>
             <div *ngIf="fundDetails.monthlyInvestment > 0" class="strong">{{fundDetails.monthlyInvestment | currency:'USD':'symbol-narrow':'1.0-2'}}
               <span> / {{ 'FUND_YOUR_ACCOUNT.MONTH' | translate }}</span>
             </div>
@@ -234,6 +234,6 @@
 
       <button *ngIf="fundDetails.source == 'FUNDING'" type="button" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100"
         id="portfolioRecommendationNextBtn">
-        Okay, Got It!
+        Back to Dashboard
       </button>
 </div>

@@ -8,8 +8,8 @@
   },
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
-    "CAPTION": "Get Started",
-    "DESCRIPTION": "In the next step, we are going to assess your ability to take risk.",
+    "CAPTION": "Your Risk Ability",
+    "DESCRIPTION": "In the next step, we will assess your ability to take risk. Your inputs will determine the recommendations suggested.",
     "PROCEED": "Proceed"
   },
   "PERSONAL_INFO": {
@@ -26,8 +26,8 @@
   },
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
-    "CAPTION": "Assess Your Risk",
-    "DESCRIPTION": "In the next step, we will assess your willingness to take risk."
+    "CAPTION": "Your Risk Willingness",
+    "DESCRIPTION": "In the next step, we will assess your willingness to take risk based on your investment amount and period."
   },
   "RISK_ASSESSMENT": {
     "TITLE": "Your Risk Willingness",
@@ -41,6 +41,7 @@
     "RETURN_HOME": "Return To Homepage",
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
+    "ATLEAST_ONE": "At least one of the following is required",
     "TITLE": "Get Started",
     "MONTHLY_INCOME_LBL": "Monthly Income",
     "MONTHLY_INCOME_SUB_LBL": "(E.g. Salary, Bonus, Rental, Others)",
@@ -62,7 +63,7 @@
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
-      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>.In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
+      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
     },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   },
