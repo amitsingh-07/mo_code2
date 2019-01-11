@@ -864,6 +864,37 @@ button:active:focus {
     }
   }
 }
+// dropdown-listitems with 24px gap 
+.dropdown-control {
+  .dropdown{
+    .btn-dropdown {
+      padding-right: 27px;
+      max-height: 52px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .dropdown-menu {
+    &.show{
+      right: 0 !important;
+      overflow: auto;
+      height: auto;
+      max-height: 264px;
+      padding-top: 0;
+      padding-bottom: 0;
+      .dropdown-item {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        white-space: normal;
+        word-break: break-word;
+        &:hover{
+          background-color: #EAFAF9;
+        }
+      }
+    }
+  }
+}
 
 .btn-txt-wrap {
   display: inline-block;
