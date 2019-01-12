@@ -56,8 +56,10 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   }
 
   setPageTitle(title: string) {
-    this.navbarService.setPageTitle(title);
+    const stepLabel = this.translate.instant('MY_FINANCIALS.STEP_1_LABEL');
+    this.navbarService.setPageTitle(title, undefined, undefined, undefined, undefined, stepLabel);
   }
+
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
