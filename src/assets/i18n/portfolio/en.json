@@ -13,7 +13,8 @@
     "PROCEED": "Proceed"
   },
   "PERSONAL_INFO": {
-    "TITLE": "Get Started",
+    "TITLE": "Your Investment Period",
+    "STEP_1_LABEL": "Step 1",
     "YEARS": "Years",
     "BORN_ON": "I was born on",
     "SELECT_INVESTMENT_HEAD": "Select Investment Period",
@@ -42,7 +43,8 @@
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
     "ATLEAST_ONE": "At least one of the following is required",
-    "TITLE": "Get Started",
+    "TITLE": "Your Financials",
+    "STEP_1_LABEL": "Step 1",
     "MONTHLY_INCOME_LBL": "Monthly Income",
     "MONTHLY_INCOME_SUB_LBL": "(E.g. Salary, Bonus, Rental, Others)",
     "SAVED_INCOME_LBL": "% of My Income Saved",
