@@ -9,7 +9,7 @@ import {
   Renderer2,
   ViewChild
 } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, NavigationExtras } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
@@ -19,6 +19,7 @@ import { ConfigService, IConfig } from './../../config/config.service';
 import { SignUpService } from './../../sign-up/sign-up.service';
 import { NavbarService } from './navbar.service';
 
+import { DefaultErrors } from './../modal/error-modal/default-errors';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -27,6 +28,7 @@ import { NavbarService } from './navbar.service';
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
+  private browserError: boolean;
   showMobileNavbar = false;
   navbarMode: number;
   showNavShadow: boolean;
@@ -58,8 +60,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private navbarService: NavbarService, private _location: Location,
     private config: NgbDropdownConfig, private renderer: Renderer2,
     private cdr: ChangeDetectorRef, private router: Router, private configService: ConfigService,
-    private signUpService: SignUpService, private authService: AuthenticationService,
+    private signUpService: SignUpService, private authService: AuthenticationService, private defaultErrors: DefaultErrors,
     private appService: AppService) {
+    this.browserCheck();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -149,9 +152,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this._location.back();
     }
   }
-
-  goToHome() {
-    this.router.navigate([appConstants.homePageUrl]);
+  goToLink(fragment) {
+    console.log(fragment);
+  }
+  goToHome(in_fragment ?: string) {
+    if (in_fragment) {
+      const extra = {fragment: in_fragment} as NavigationExtras;
+      this.router.navigate([appConstants.homePageUrl], extra);
+    } else {
+      this.router.navigate([appConstants.homePageUrl]);
+    }
   }
 
   openDropdown(dropdown) {
@@ -182,5 +192,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.appService.clearData();
     this.appService.startAppSession();
     this.router.navigate([appConstants.homePageUrl]);
+  }
+
+  browserCheck() {
+    const ua = navigator.userAgent;
+    /* MSIE used to detect old browsers and Trident used to newer ones*/
+    const is_ie = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
+
+    if (is_ie) {
+      this.browserError = true;
+    } else {
+      this.browserError = false;
+    }
+  }
+  closeBrowserError() {
+    this.browserError = false;
   }
 }

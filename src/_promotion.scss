@@ -1,0 +1,133 @@
+@import './variables';
+@import './mixins';
+
+.promo-content__container{
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width:1024px;
+    font-family: $muli-regular;
+    font-size:18px;
+    color: $dark-grey-color;
+    flex-direction:column;
+    margin:0px 20px;
+    @include minMobilemaxPhablet{
+        margin: unset;
+        padding: 0 15px;
+    }
+}
+// Promotion Generic 3 Table
+.promo__summary{
+    position: relative;
+    display: block;
+    padding:40px 51px;
+    border-radius:6px;
+    border: 1px solid $teal-color;
+    @include minPhabletmaxTablet{
+        padding:20px 30px;
+    }
+    @include tablet{
+        padding:30px 20px;
+    }
+    @include minMobilemaxPhablet{
+        padding:20px;
+    }
+    .promo__inner-table{
+        position: relative;
+        display:flex;
+        width:100%;
+        justify-content: space-around;
+        @include minPhabletmaxTablet{
+            justify-content:space-between;
+        }
+        @include minMobilemaxPhablet{
+            flex-direction:column;
+            justify-content:flex-start;
+        }
+    }
+    
+    .promo-info__element{
+        position: relative;
+        display: block;
+        min-width:165px;
+        @include minMobilemaxPhablet{
+            margin:5px 0px;
+        }
+        .info--title{
+            font-family: $muli-bold;
+            font-size: 16px;
+            color:$dark-grey-color;
+            vertical-align:top;
+            line-height:1.1;
+        }
+        .info--details{
+            font-family: $muli-bold;
+            font-size: 24px;
+            color:$teal-color;
+            vertical-align: top;
+            line-height:1.1;
+        }
+    }
+}
+
+.promo__table{
+    position: relative;
+    width:100%;
+    overflow-x:auto;
+}
+.promo__inner-table{
+    width:100%;
+    min-width:450px; 
+    td{
+        padding:35px 22px;
+        border:1px solid rgba(0, 167, 167, 0.15);
+        color:$black-color;
+        &.cell--side-header{
+            color:$teal-color;
+            font-family: $muli-bold;
+            vertical-align: middle;
+            padding:18px 20px;
+            border: 1px solid $lighter-teal-color;
+        }
+        &.cell--header{
+            background-color:$teal-color;
+            color:$white-color;
+            font-family: $muli-bold;
+            vertical-align: top;
+            padding:18px 20px;
+            border: 1px solid $lighter-teal-color;
+        } 
+    }
+    .text--bold{
+        font-family: $muli-bold;
+    }
+    ul{
+        li{
+            list-style: disc;
+            margin:5px 0px;
+        }
+        p{
+            margin-left: -20px;
+            margin-bottom:0px;
+        }
+    }
+
+
+}
+
+
+
+// Terms and Conditions
+.tnc--title{
+    font-family:$muli-bold;
+    color:$dark-grey-color;
+    font-size:15px;
+}
+.tnc--ordered{
+    font-family:$muli-regular;
+    color:$dark-grey-color;
+    font-size:13px;
+    margin-block-start: 0px;
+    padding-inline-start: 20px;
+
+}

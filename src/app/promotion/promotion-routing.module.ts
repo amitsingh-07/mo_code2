@@ -6,8 +6,7 @@ import { PromotionPageComponent } from './promotion-page/promotion-page.componen
 
 const routes: Routes = [
   { path: '', component: PromotionLandingComponent},
-//   { path: 'category/:name', component: ArticleCategoryComponent},
-  { path: 'promopage/:id', component: PromotionPageComponent},
+  { path: ':id', component: PromotionPageComponent},
 ];
 
 @NgModule({

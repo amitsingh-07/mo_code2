@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 1,
+        "type": "Insurance",
+        "desc": "More discounts and goodies in addition to receiving 50% rebate in agent’s commissions"        
+    },
+    {
+        "id": 2,
+        "type": "Will",
+        "desc": "Enjoy these special savings when managing your estate"
+    },
+    {
+        "id": 3,
+        "type": "Investment",
+        "desc": "Invest Here"
+    }
+]

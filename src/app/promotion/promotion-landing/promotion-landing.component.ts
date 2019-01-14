@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 import { PromotionService } from '../promotion.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
-import { IPromotion } from './promotion-landing.interface';
+import { PromotionApiService } from './../promotion.api.service';
+
+import { IPromoCategory } from './promo-category.interface';
 
 @Component({
   selector: 'app-promotion-landing',
@@ -11,16 +15,28 @@ import { IPromotion } from './promotion-landing.interface';
   styleUrls: ['./promotion-landing.component.scss']
 })
 export class PromotionLandingComponent implements OnInit {
-  //   promotionList: IPromotion[];
-
-  insurancePromotionList = new Array();
-  willsPromotionList = new Array();
+  private promoList: IPromoCategory[];
+  private categoryList: string[];
+  public mobileThreshold = 567;
+  private categorySelect: number;
+  private categorySelectTxt: string;
 
   constructor(
-    public navbarService: NavbarService,
+    public navbarService: NavbarService, private router: Router,
     public footerService: FooterService,
     private translate: TranslateService,
-    private promotionService: PromotionService) { }
+    private promotionService: PromotionService,
+    private promotionApiService: PromotionApiService) {
+      this.selectCategory(0);
+    }
+
+  @HostListener('window:resize', [])
+  checkResize() {
+    if (window.innerWidth > this.mobileThreshold) {
+      // Reset to show everything;
+      this.selectCategory(0);
+      }
+    }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
@@ -28,49 +44,40 @@ export class PromotionLandingComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(true);
 
-    const thisPromotion1 = {
-      promoId: 1,
-      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
-      title: '35% off Aviva IdealIncome',
-      summary: 'Enjoy lifetime discount with Occupational Disability coverage!'
-    };
-
-    const thisPromotion2 = {
-      promoId: 2,
-      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
-      title: 'Save $100 on Aviva MyCare & MyCare Plus',
-      summary: 'Get S$100 off your first year\'s premium with long-term care coverage!'
-    };
-
-    const thisPromotion3 = {
-      promoId: 3,
-      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
-      title: '5% off for coverage $1.1M & above',
-      summary: 'Enjoy 5% lifetime discount on Aviva MyProtector Term Plan & attached riders!'
-    };
-
-    const thisPromotion4 = {
-      promoId: 4,
-      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
-      title: 'Additional goodies with Aviva plans',
-      summary: 'Treat yourself with shopping vouchers, dining treats or hotel stays!'
-    };
-
-    const thisPromotion5 = {
-      promoId: 5,
-      imgSrc: '/assets/images/promotion/shutterstock-645696091-1.jpg',
-      title: 'Write your Will, for Free! (worth $150!)',
-      summary: 'Subscribe to our mailing list & get a promo code to write for free! Limited offer.'
-    };
-
-    this.insurancePromotionList.push(thisPromotion1);
-    this.insurancePromotionList.push(thisPromotion2);
-    this.insurancePromotionList.push(thisPromotion3);
-    this.insurancePromotionList.push(thisPromotion4);
-    this.willsPromotionList.push(thisPromotion5);
+    this.promotionApiService.getPromoList().subscribe((promotions) => {
+      this.promotionApiService.getPromoCategory().subscribe((categories) => {
+        this.promoList = this.promotionService.processPromoList(promotions, categories);
+        this.genCategoryList();
+      });
+    });
   }
 
-  goToPromotion(promoId: number) {
-    console.log(promoId);
+  genCategoryList() {
+    this.categoryList = [];
+    this.categoryList.push('All');
+    this.promoList.forEach((category) => {
+      this.categoryList.push(category.title);
+    });
+  }
+  getCategory(index) {
+    if (this.categoryList) {
+      this.categorySelectTxt = this.categoryList[index];
+    } else {
+      this.categorySelectTxt = 'All';
+    }
+  }
+
+  selectCategory(index) {
+    this.categorySelect = index;
+    this.getCategory(this.categorySelect);
+  }
+
+  goToPromo(url) {
+    const urlSplit = url.split('#');
+    const newUrlSplit  = Object.assign([], urlSplit);
+    newUrlSplit.shift();
+    const base = urlSplit[0];
+    const extra = {fragment: newUrlSplit[0]} as NavigationExtras;
+    this.router.navigate([base], extra);
   }
 }

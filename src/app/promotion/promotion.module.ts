@@ -5,9 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-import { StringToLinkFormatPipe } from './../shared/Pipes/string-to-link.pipe';
-import { PromotionLandingComponent } from './promotion-landing/promotion-landing.component';
 import { PromotionRoutingModule } from './promotion-routing.module';
+
+import { PromotionLandingComponent } from './promotion-landing/promotion-landing.component';
+import { InsureLinkComponent } from './promotion-page/insure-link/insure-link.component';
 import { PromotionPageComponent } from './promotion-page/promotion-page.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -38,7 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
     declarations: [
         PromotionLandingComponent,
         PromotionPageComponent,
-        StringToLinkFormatPipe
+        InsureLinkComponent,
     ]
 })
 
