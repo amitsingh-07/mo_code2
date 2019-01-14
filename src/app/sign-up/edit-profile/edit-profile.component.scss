@@ -13,10 +13,10 @@
   .user-profile-bg{
     background:#ffffff;
     border-radius: 8px;
-    padding: 10px;
-    margin: 23px 19px;
+    padding: 26px 23px;
+    margin: 23px 16px;
     position: relative;
-
+    box-shadow: 0 12px 14px 2px rgba(0, 0, 0, 0.21);
 }
 .overlap-grass{
   margin-top: -100px;
@@ -41,6 +41,7 @@
         padding: 0 21px;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
+        margin: 0;
         .flex-row{
           padding: 0;
         }
@@ -162,14 +163,12 @@
     
   }
   .update-contact-value{
-    font-family:  $muli-regular;
-  font-size: 18px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.33;
-  letter-spacing: -0.2px;
-  color: #2d8289;
+    font-family:  $muli-semi-bold;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.18px;
+    color: #2d8289;
   }
   .section-margin{
    padding-top: 13px;
@@ -229,7 +228,7 @@
   line-height: normal;
   letter-spacing: -0.3px;
   color: #2d8289;
-  margin: 15px 10px;
+
   }
   .bank-account-num{
     font-family:$muli-semi-bold;
@@ -241,7 +240,7 @@
   letter-spacing: -0.3px;
   text-align: right;
   color: #00a7a7;
-  margin: 15px 10px;
+
   }
   .banking-details-text{
     object-fit: contain;
@@ -256,22 +255,31 @@
     color: #2d8289;
     margin: 10px 5px 10px 10px;
   }
+  .bank_details{
+    .dots{
+      .flex-row{
+        padding: 16px 0 0;
+      }
+    }
+  }
   .user-img{
     margin-top: -100px;
-
-
   }
   .circle{
     height: 86px;
-  width: 86px;
-  background-color: #00a7a7;
-  border-radius: 50%;
-  margin-top: -60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin:0px auto;
-  margin-top: -60px;
+    width: 86px;
+    background-color: #00a7a7;
+    border-radius: 50%;
+    margin-top: -60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0px auto;
+    margin-top: -60px;
+    font-size: 24px;
+    font-family: $muli-bold;
+    font-weight: 600;
+    letter-spacing: -0.25px;
   }
   .user-edit-img{
     
@@ -319,7 +327,7 @@
   margin-top:10px;
 }
 .no-bank-account{
-  font-family: Muli-Italic;
+  font-family: $muli-italic;
   font-size: 16px;
   font-weight: normal;
   font-style: italic;
