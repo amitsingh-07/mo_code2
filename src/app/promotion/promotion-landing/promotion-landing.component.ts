@@ -15,11 +15,11 @@ import { IPromoCategory } from './promo-category.interface';
   styleUrls: ['./promotion-landing.component.scss']
 })
 export class PromotionLandingComponent implements OnInit {
-  private promoList: IPromoCategory[];
-  private categoryList: string[];
+  public promoList: IPromoCategory[];
+  public categoryList: string[];
   public mobileThreshold = 567;
   private categorySelect: number;
-  private categorySelectTxt: string;
+  public categorySelectTxt: string;
 
   constructor(
     public navbarService: NavbarService, private router: Router,

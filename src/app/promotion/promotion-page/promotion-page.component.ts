@@ -21,9 +21,9 @@ export class PromotionPageComponent implements OnInit {
 
   //   promotionList: IPromotion[];
   private promoId: number;
-  private promoDetails = {} as IPromotion;
-  private promoContent = '';
-  private promoTnc = '';
+  public promoDetails = {} as IPromotion;
+  public promoContent = '';
+  public promoTnc = '';
 
   constructor(
     public navbarService: NavbarService, private route: ActivatedRoute,

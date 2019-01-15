@@ -28,7 +28,7 @@ import { DefaultErrors } from './../modal/error-modal/default-errors';
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
-  private browserError: boolean;
+  browserError: boolean;
   showMobileNavbar = false;
   navbarMode: number;
   showNavShadow: boolean;
