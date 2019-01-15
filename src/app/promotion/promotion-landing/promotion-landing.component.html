@@ -32,12 +32,12 @@
       <div class="promo-body__container">
         <div *ngFor="let promoCard of promoCategory.promotions" class="promo__card-element">
           <div class="promo-card__header">
-            <img class="promo-card--bg" src="/assets/promotions/images/{{promoCard.promoId}}/thumbnail.jpg"/>
-            <div class="promo-card--insurer">
-              <img src="">
-              </div>
+            <img class="promo-card--bg" src="{{promoCard.thumbnail}}"/>
           </div>
           <div class="promo-card__body">
+            <div *ngIf="!promoCard.external" class="promo-card--insurer">
+              <img src="{{promoCard.logo}}">
+              </div>
             <p class="promo-card--title">{{promoCard.title}}</p>
             <div class="promo-card--desc">
                 <p class="promo-card--summary">{{promoCard.desc}}</p>

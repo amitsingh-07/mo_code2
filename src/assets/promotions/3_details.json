@@ -3,10 +3,11 @@
     "type": 1,
     "owner": "Aviva",
     "title": "Enjoy a 5% perpetual premium discount for Aviva MyProtector Term Plan (Extended)",
-    "img": "/assets/images/promotion/shutterstock-645696091-1.jpg",
+    "thumbnail": "/assets/promotions/images/3/thumbnail.jpg",
+    "banner": "/assets/promotions/images/3/banner.jpg",
     "desc":  "5% premium discount for coverage above $1.1 mil.",
-    "date_created": "12 01 2018",
-    "date_expiry": "09 01 2018",
+    "date_created": "2019-01-15 00:00:00",
+    "date_expiry": "2018-03-31 23:59:59",
     "tag" : ["Insurance", "Protection"],
     "external": false
 }

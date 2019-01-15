@@ -44,6 +44,7 @@
         background-size:930px 340px;
         background-repeat:no-repeat;
         background-position:bottom right;
+        
         @include minPhabletmaxTablet{
             right:unset;
         }
@@ -288,23 +289,25 @@
                 height:auto;
             }
         }
-        
-        .promo-card--insurer{
-            position: absolute;
-            display:block;
-            width:10px;
-            height:10px;
-            border-radius:50%;
-            bottom:10px;
-        }
     }
     .promo-card__body{
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: space-between;
-        padding:30px 15px;
+        padding:10px 15px 30px 15px;
         flex-grow:1;
+        .promo-card--insurer{
+            position: relative;
+            display:block;
+            height:91px;
+            img{
+                position: absolute;
+                height:91px;
+                left:50%;
+                transform:translateX(-50%);
+            }
+        }
         .promo-card--title{
             font-family: $muli-bold;
             font-size:24px;

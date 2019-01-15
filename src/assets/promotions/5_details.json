@@ -1,12 +1,13 @@
 {
     "promoId": 5,
     "type": 1,
-    "owner": "Aviva",
+    "owner": "Manulife",
     "title": "Enjoy 15% Premium Discount for ManuProtect Decreasing",
-    "img": "/assets/images/promotion/shutterstock-645696091-1.jpg",
+    "thumbnail": "/assets/promotions/images/5/thumbnail.jpg",
+    "banner": "/assets/promotions/images/5/banner.jpg",
     "desc":  "15% premium discount for coverage of $1million and above",
-    "date_created": "12 01 2018",
-    "date_expiry": "09 01 2018",
+    "date_created": "2019-01-15 00:00:00",
+    "date_expiry": "2018-03-15 23:59:59",
     "tag" : ["Insurance", "Protection"],
     "external": false
 }

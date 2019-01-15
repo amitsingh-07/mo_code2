@@ -37,8 +37,6 @@ export class PromotionPageComponent implements OnInit {
     this.navbarService.setNavbarMode(1);
     this.footerService.setFooterVisibility(true);
 
-    this.promoDetails.img = '/assets/images/promotion/promo-page-banner.jpg';
-
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.promoId = params['id'];
@@ -56,7 +54,7 @@ export class PromotionPageComponent implements OnInit {
       const banner = this.BannerElement.nativeElement.childNodes[0];
       this.renderer.setStyle(banner,
                             'background-image',
-                            'url(' + this.promoDetails.img + ')'
+                            'url(' + this.promoDetails.banner + ')'
                             );
       // Getting promo content
       this.promotionApiService.getPromoContent(this.promoId).subscribe((content) => {
@@ -67,5 +65,9 @@ export class PromotionPageComponent implements OnInit {
         this.promoTnc = tnc;
       });
     });
+  }
+
+  getPartnerLogo(partner: string) {
+    return this.promotionService.getPartnerLogo(partner);
   }
 }

@@ -16,12 +16,14 @@
             position: absolute;
         }
         .sub-navigation--inner {
-            span{
-                color:$white-color;
-            }
-            
-            i{
-                color:$white-color;
+            @include minMobilemaxPhablet{
+                span{
+                    color:$white-color;
+                }
+                
+                i{
+                    color:$white-color;
+                }
             }
         }
     }
@@ -45,6 +47,7 @@
         width:100%;
         height:100%;
         background-size:cover;
+        background-position-y: -168px;
         @include tablet{
         }
         @include minMobilemaxPhablet{
@@ -67,6 +70,10 @@
         width:100%;
         max-width:1024px;
         margin:20px;
+        @include minMobilemaxPhablet{
+            margin:0px;
+            padding:35px 20px 30px 20px;
+        }
         .promo-tag__container{
             position: relative;
             display:flex;
@@ -87,27 +94,51 @@
                 line-height:1.1;
             }
         }
-        .promo--title{
+        .promo-title__container{
             position: relative;
-            display:block;
-            font-family: $muli-bold;
-            font-size:45px;
-            color:$teal-color;
-            letter-spacing:-0.47px;
+            display:flex;
+            justify-content:space-between;
             @include minMobilemaxPhablet{
-                text-align: center;
+                flex-direction:column;
+            }
+            .promo-title__inner-container{
+                .promo--title{
+                    position: relative;
+                    display:block;
+                    font-family: $muli-bold;
+                    font-size:45px;
+                    color:$teal-color;
+                    letter-spacing:-0.47px;
+                    @include minMobilemaxPhablet{
+                        text-align: center;
+                        font-size:40px;
+                    }
+                }
+                .promo--sub-title{
+                    font-family: $muli-regular;
+                    font-size: 30px;
+                    color:$black-color;
+                    @include minMobilemaxPhablet{
+                        font-size:22px;
+                        text-align:center;
+                        letter-spacing:-0.7px;
+                    }
+                }
+                @include minMobilemaxPhablet{
+                    order:2;
+                }
+            }
+            .promo-logo__container{
+                position: relative;
+                display:flex;
+                align-items:flex-start;
+                justify-content:center;
+                @include minMobilemaxPhablet{
+                    order:1;
+                }
             }
         }
-        .promo--sub-title{
-            font-family: $muli-regular;
-            font-size: 30px;
-            color:$black-color;
-            @include minMobilemaxPhablet{
-                font-size:22px;
-                text-align:center;
-                letter-spacing:-0.7px;
-            }
-        }
+       
     }
     
 }

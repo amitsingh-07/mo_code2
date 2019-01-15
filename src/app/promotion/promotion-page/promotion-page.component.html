@@ -19,12 +19,21 @@
                     Insurance Promotions
                     </div>
                 </div>
-            <h1 class="promo--title">
-                {{promoDetails.title}}
-                </h1>
-            <h2 class="promo--sub-title">
-                {{promoDetails.desc}}
-                </h2>
+            <div class="promo-title__container">
+                <div class="promo-title__inner-container">
+                    <h1 class="promo--title">
+                        {{promoDetails.title}}
+                        </h1>
+                    <h2 class="promo--sub-title">
+                        {{promoDetails.desc}}
+                        </h2>
+                    </div>
+                <div class="promo-logo__container">
+                    <img src="{{promoDetails.logo}}"/>
+                </div>
+
+            </div>
+            
             </div>
         </header>
     <section class="promo-body" [innerHtml]="promoContent">

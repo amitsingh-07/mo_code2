@@ -45,7 +45,7 @@ export class PromotionLandingComponent implements OnInit {
     this.footerService.setFooterVisibility(true);
 
     this.promotionApiService.getPromoList().subscribe((promotions) => {
-      this.promotionApiService.getPromoCategory().subscribe((categories) => {
+    this.promotionApiService.getPromoCategory().subscribe((categories) => {
         this.promoList = this.promotionService.processPromoList(promotions, categories);
         this.genCategoryList();
       });

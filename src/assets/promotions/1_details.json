@@ -1,12 +1,13 @@
 {
-    "promo_id": 1,
+    "promoId": 1,
     "type": 1,
     "owner": "Aviva",
-    "title": "Enjoy 35% premiums discount for Aviva IdealIncome (Extended)",
-    "img": "/assets/images/promotion/shutterstock-645696091-1.jpg",
-    "desc": "35% premium discount for monthly benefit $3000 or more.",
-    "date_created": "12 01 2018",
-    "date_expiry": "09 01 2018",
+    "title": "35% off Aviva IdealIncome",
+    "thumbnail": "/assets/promotions/images/1/thumbnail.jpg",
+    "banner": "/assets/promotions/images/1/banner.jpg",
+    "desc": "Enjoy lifetime discount with Occupational Disability coverage!",
+    "date_created": "2019-01-15 00:00:00",
+    "date_expiry": "2018-03-31 23:59:59",
     "tag" : ["Insurance", "Protection"],
     "external": false
-} 
+}
