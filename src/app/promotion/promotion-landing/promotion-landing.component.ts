@@ -39,6 +39,7 @@ export class PromotionLandingComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.translate.use('en');
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);

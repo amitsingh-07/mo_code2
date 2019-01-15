@@ -32,6 +32,7 @@ export class PromotionPageComponent implements OnInit {
     private promotionService: PromotionService, private promotionApiService: PromotionApiService) { }
 
   ngOnInit() {
+    this.translate.use('en');
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
