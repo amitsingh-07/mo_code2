@@ -1,0 +1,85 @@
+@import '../../../../variables';
+@import '../../../../mixins';
+
+.promo-link__inner-container{
+    position: relative;
+    display: flex;
+    width:100%;
+    max-width:568px;
+    padding-top:53px;
+    @include minMobilemaxPhablet{
+        flex-direction:column;
+        align-items:center;
+    }
+    .side-image{
+        position: relative; 
+        margin-right:23px;
+        height:210px;
+        width:205px;
+        z-index:1;
+        img{
+            position: absolute;
+            display:block;
+            transform:translateY(5px);
+        }
+        @include minMobilemaxPhablet{
+            width:128px;
+            height:unset;
+            margin-right:unset;
+            img{
+                position: relative;
+                width:100%;
+            }
+        }
+    }
+    .details__container{
+        padding-bottom:40px;
+        @include minMobilemaxPhablet{
+            text-align:center;
+            margin-top:18px;
+        }
+        p{
+            margin-bottom:0px;
+            line-height:1.1;
+        }
+        .sub-title{
+            font-family: $muli-regular;
+            font-size:16px;
+            letter-spacing:-0.17px;
+            color:$white-color;
+        }
+        .title{
+            font-family: $muli-bold;
+            font-size:24px;
+            letter-spacing:-0.3px;
+            color:$white-color;
+        }
+        .link--btn{
+            display:block;
+            padding:14px 37px;
+            background-color:$white-color;
+            color:$teal-color;
+            font-family:$muli-bold;
+            font-size:21px;
+            border-radius:6px;
+            box-shadow: 0 6px 7px 0 rgba(0, 0, 0, 0.14) !important;
+            border:0px;
+            margin:12px 0px;
+            cursor: pointer;
+            @include minMobilemaxPhablet{
+                display:inline-block;
+            }
+        }
+        .link{
+            display:block;
+            font-family:$muli-bold;
+            font-style: italic;
+            font-size: 21px;
+            letter-spacing:-0.61px;
+            color:$white-color;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }   
+}
