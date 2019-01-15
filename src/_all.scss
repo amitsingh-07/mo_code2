@@ -69,7 +69,11 @@ h6 {
   height: 84px;
   padding: 0px;
   box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
-
+  transition:0.5s;
+  &.browser-error{
+    height: calc(84px + 34px);
+    align-items:flex-start;
+  }
   >.container,
   >.container-fluid {
     display: flex;
@@ -149,7 +153,34 @@ h6 {
     width: 100%;
     max-width: 1024px;
     padding: 0px 20px;
-
+    transition:0.5s;
+    &.error{
+      max-width:100%;
+      background-color:$dark-teal-color;
+      color:$white-color;
+      padding:5px;
+      justify-content: center;
+      .navbar__inner-wrapper{
+        max-width:1024px;
+        width:100%;
+      }
+      span{
+        font-family: $muli-regular;
+        font-size:12px;
+        margin-right:10px;
+      }
+      .close-btn{
+        position: relative;
+        display:inline-block;
+        float:right;
+        background-image: url("/assets/images/close-btn-white.png");
+        background-size:12px;
+        width:12px;
+        height:12px;
+        top:6px;
+        cursor: pointer;
+      }
+    }
     @include minMobilemaxPhablet {
       padding: 0px;
       flex-direction: column;
