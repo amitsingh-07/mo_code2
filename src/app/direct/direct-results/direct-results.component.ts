@@ -424,7 +424,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   updateSelectedPlanData(plan) {
     this.state.selectedPlans = this.state.selectedPlans
       .map((item) => {
-        if (item.id === plan.id) {
+        if (item.id === plan.id && item.premium.ranking === plan.premium.ranking) {
           return plan;
         }
         return item;

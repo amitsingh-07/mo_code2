@@ -44,6 +44,11 @@ export class AuthenticationService {
   }
 
   authenticate() {
+    // Avoid duplicate authentication calls
+    if (this.isAuthenticated()) {
+      return;
+    }
+
     const authenticateBody = {
       email: '',
       mobile: '',
@@ -103,7 +108,7 @@ export class AuthenticationService {
     }
     // return a boolean reflecting
     // whether or not the token is expired
-    return this.jwtHelper.isTokenExpired(token, 30 * 60);
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   saveEnquiryId(id) {
