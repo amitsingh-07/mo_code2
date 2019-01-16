@@ -1202,6 +1202,11 @@ export class InvestmentAccountService {
         return this.investmentAccountFormData.isMyInfoEnabled;
     }
 
+    clearInvestmentAccountFormData() {
+        this.investmentAccountFormData.isMyInfoEnabled = false;
+        this.commit();
+    }
+
     getPropertyFromName(name, arrayKey) {
         const filteredObj = this.investmentAccountFormData.optionList[arrayKey].filter(
             (prop) => prop.name === name);
@@ -1360,6 +1365,5 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.investmenteEarning = this.getPropertyFromId(pepDetails.investmentSourceId, 'investmentSource');
         this.investmentAccountFormData.durationInvestment =  pepDetails.investmentPeriod;
         this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(pepDetails.earningsGeneratedFromId, 'earningsGenerated');
-        this.commit();
     }
 }

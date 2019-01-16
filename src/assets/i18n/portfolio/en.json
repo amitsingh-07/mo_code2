@@ -9,11 +9,12 @@
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
     "CAPTION": "Your Risk Ability",
-    "DESCRIPTION": "In the next step, we are going to assess your ability to take risk.",
+    "DESCRIPTION": "In the next step, we will assess your ability to take risk. Your inputs will determine the recommendations suggested.",
     "PROCEED": "Proceed"
   },
   "PERSONAL_INFO": {
-    "TITLE": "Get Started",
+    "TITLE": "Your Investment Period",
+    "STEP_1_LABEL": "Step 1",
     "YEARS": "Years",
     "BORN_ON": "I was born on",
     "SELECT_INVESTMENT_HEAD": "Select Investment Period",
@@ -21,8 +22,8 @@
     "I_WANT_INVEST_LBL": "I want to invest for",
     "RANGE_1_3_DESC": "<p>A very short investment period is not recommended.</p><p>Markets can be highly volatile in the short term. In the event of a market decline, your investments may not have sufficient time to recover.</p>",
     "RANGE_3_7_DESC": "<p>A relatively short investment period calls for a less volatile portfolio.</p><p>You are more likely to be affected by a market decline as there is a higher chance that your investments are unable to recover in the short term.</p>",
-    "RANGE_7_14_DESC": "<p>A moderately long investment period allows you to invest in a moderately volatile portfolio.</p><p>In the event of a market decline, your investments have more time and a higher chance to recover.</p>",
-    "RANGE_14_DESC": "<p>A long investment period allows you to invest in a more volatile portfolio.</p><p>You are less affected by market declines because you are able to hold on to your investment while the market recovers.</p>"
+    "RANGE_7_14_DESC": "<p>A <b>moderately long investment period</b> allows you to invest in a moderately volatile portfolio.</p><p>In the event of a market decline, your investments have <b>more time and a higher chance</b> to recover.</p>",
+    "RANGE_14_DESC": "<p>A <b>long investment period</b> allows you to invest in a more volatile portfolio.</p><p>You are less affected by market declines because you are able to hold on to your investment while the market recovers.</p>"
   },
   "GETSTARTED_STEP2": {
     "TITLE": "Step 2",
@@ -42,7 +43,8 @@
     "LABEL_YES": "Yes",
     "LABEL_NO": "No",
     "ATLEAST_ONE": "At least one of the following is required",
-    "TITLE": "Get Started",
+    "TITLE": "Your Financials",
+    "STEP_1_LABEL": "Step 1",
     "MONTHLY_INCOME_LBL": "Monthly Income",
     "MONTHLY_INCOME_SUB_LBL": "(E.g. Salary, Bonus, Rental, Others)",
     "SAVED_INCOME_LBL": "% of My Income Saved",
@@ -63,7 +65,7 @@
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
-      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>.In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
+      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
     },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   },

@@ -1,7 +1,7 @@
 {
   "useMyInfo": false,
   "willWritingEnabled": false,
-  "investmentEnabled": false,
+  "investmentEnabled": true,
   "comprehensiveEnabled": false,
   "maintenanceEnabled": true,
   "hospitalPlanData": [{

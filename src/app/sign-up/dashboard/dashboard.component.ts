@@ -153,6 +153,10 @@ export class DashboardComponent implements OnInit {
         this.showCddCheckOngoing = true;
         break;
       }
+      case 'MO_CHECK_PENDING': {
+        this.showCddCheckOngoing = true;
+        break;
+      }
       case 'RECOMMENDED': {
         this.showSetupAccount = true;
         break;
