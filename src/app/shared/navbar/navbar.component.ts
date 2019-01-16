@@ -189,6 +189,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   clearLoginDetails() {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
+    this.authService.clearAuthDetails();
     this.appService.clearData();
     this.appService.startAppSession();
     this.router.navigate([appConstants.homePageUrl]);
