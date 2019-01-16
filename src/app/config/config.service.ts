@@ -9,6 +9,8 @@ import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
 export interface IConfig {
   useMyInfo: boolean;
   maintenanceEnabled: boolean;
+  promotionEnabled: boolean;
+  articleEnabled: boolean;
   willWritingEnabled: boolean;
   investmentEnabled: boolean;
   comprehensiveEnabled: boolean;

@@ -3,6 +3,8 @@
   "willWritingEnabled": false,
   "investmentEnabled": false,
   "comprehensiveEnabled": false,
+  "promotionEnabled": true,
+  "articleEnabled": true,
   "maintenanceEnabled": true,
   "hospitalPlanData": [{
     "id": 0,
