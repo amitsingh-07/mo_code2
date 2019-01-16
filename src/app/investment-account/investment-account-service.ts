@@ -605,6 +605,11 @@ export class InvestmentAccountService {
         return { year: Number(dateArr[0]), month: Number(dateArr[1]), day: Number(dateArr[2]) };
     }
 
+    dateFormatFromApi(date: string) {
+        const dateArr: any = date.split(' ')[0].split('/');
+        return { year: Number(dateArr[2]), month: Number(dateArr[0]), day: Number(dateArr[1]) };
+    }
+
     isDisabled(fieldName): boolean {
         let disable: boolean;
         if (this.investmentAccountFormData.isMyInfoEnabled
@@ -711,7 +716,7 @@ export class InvestmentAccountService {
     constructSaveNationalityRequest(data) {
         return {
             nationality: data.nationalityCode
-            };
+        };
     }
     getPersonalInfoReqData(data): IPersonalInfo {
         return {
@@ -824,6 +829,7 @@ export class InvestmentAccountService {
     }
 
     getPersonalDecReqData(data): IPersonalDeclaration {
+        
         return {
             investmentSourceId: (data.sourceOfIncome) ? data.sourceOfIncome.id : null,
             beneficialOwner: data.radioBeneficial,
@@ -1194,5 +1200,166 @@ export class InvestmentAccountService {
 
     getMyInfoStatus() {
         return this.investmentAccountFormData.isMyInfoEnabled;
+    }
+
+    getPropertyFromName(name, arrayKey) {
+        const filteredObj = this.investmentAccountFormData.optionList[arrayKey].filter(
+            (prop) => prop.name === name);
+        return filteredObj[0];
+    }
+
+    getPropertyFromId(id, arrayKey) {
+        const filteredObj = this.investmentAccountFormData.optionList[arrayKey].filter(
+            (prop) => prop.id === id);
+        return filteredObj[0];
+    }
+
+    getNationalityFromNationalityCode(nationalityList, nationalityCode) {
+        const selectedNationality = nationalityList.filter(
+            (nationality) => nationality.nationalityCode === nationalityCode);
+        return selectedNationality[0].name;
+    }
+
+    /* VERIFY NOW - PART OF DASHBOARD */
+    setInvestmentAccountFormData(customerData) {
+        this.setNationalityFromApi(customerData.identityDetails, customerData.additionalDetails);
+        this.setPersonalInfoFromApi(customerData.identityDetails);
+        this.setResidentailAddressDetailsFromApi(customerData.identityDetails.customer);
+        this.setEmploymentDetailsFromApi(customerData.employmentInformation);
+        this.setFinancialDetailsFromApi(customerData.customer);
+        this.setTaxInfoFromApi(customerData.taxDetails);
+        this.setPersonalDeclarationFromApi(customerData.pepDetails, customerData.additionalDetails);
+        this.setDueDiligence1FromApi(customerData.pepDetails);
+        this.setDueDiligence2FromApi(customerData.pepDetails);
+    }
+    setNationalityFromApi(identityDetails, additionalDetails) {
+        this.investmentAccountFormData.nationalityCode = identityDetails.customer.nationalityCode;
+        this.investmentAccountFormData.nationality = this.getNationalityFromNationalityCode(this.investmentAccountFormData.nationalityList,
+            identityDetails.customer.nationalityCode);
+        this.investmentAccountFormData.unitedStatesResident = false; // TODO : VERIFY
+        this.investmentAccountFormData.singaporeanResident = additionalDetails.isSingaporePR;
+        this.commit();
+    }
+    setPersonalInfoFromApi(identityDetails) {
+        this.investmentAccountFormData.salutation = this.getPropertyFromName(identityDetails.customer.salutation, 'salutation');
+        /* NEED NOT TO BE SET ? TODO
+        this.investmentAccountFormData.fullName = data.test;
+        this.investmentAccountFormData.firstName = data.firstName;
+        this.investmentAccountFormData.lastName = data.lastName;
+        */
+        this.investmentAccountFormData.nricNumber = identityDetails.nricNumber;
+        this.investmentAccountFormData.dob = this.dateFormatFromApi(identityDetails.customer.dateOfBirth);
+        this.investmentAccountFormData.gender = identityDetails.customer.gender;
+        this.investmentAccountFormData.birthCountry = identityDetails.customer.countryOfBirth;
+        this.investmentAccountFormData.passportIssuedCountry = identityDetails.passportIssuedCountry;
+        this.investmentAccountFormData.race = this.getPropertyFromName(identityDetails.customer.race, 'race');
+        this.investmentAccountFormData.passportNumber = identityDetails.passportNumber;
+        this.investmentAccountFormData.passportExpiry = identityDetails.passportExpiryDate;
+        this.commit();
+    }
+    setResidentailAddressDetailsFromApi(customer) {
+        this.investmentAccountFormData.country = customer.homeAddress.country;
+        this.investmentAccountFormData.address1 = customer.homeAddress.addressLine1;
+        this.investmentAccountFormData.address2 = customer.homeAddress.addressLine2;
+        this.investmentAccountFormData.city = customer.homeAddress.city;
+        this.investmentAccountFormData.state = customer.homeAddress.state;
+        this.investmentAccountFormData.floor = customer.homeAddress.floor;
+        this.investmentAccountFormData.unitNo = customer.homeAddress.unitNumber;
+        this.investmentAccountFormData.isMailingAddressSame = customer.mailingAddress ? false : true;
+        this.investmentAccountFormData.reason = this.getPropertyFromId(customer.differentMailingAddressReasonId,
+            'differentAddressReason');
+        if (this.isCountrySingapore(customer.homeAddress.country)) {
+            this.investmentAccountFormData.postalCode = customer.homeAddress.postalCode;
+        } else {
+            this.investmentAccountFormData.zipCode = customer.homeAddress.postalCode;
+        }
+        if (customer.mailingAddress) {
+            this.investmentAccountFormData.mailCountry = customer.mailingAddress.country;
+            this.investmentAccountFormData.mailAddress1 = customer.mailingAddress.addressLine1;
+            this.investmentAccountFormData.mailAddress2 = customer.mailingAddress.addressLine2;
+            this.investmentAccountFormData.mailCity = customer.mailingAddress.city;
+            this.investmentAccountFormData.mailFloor = customer.mailingAddress.floor;
+            this.investmentAccountFormData.mailUnitNo = customer.mailingAddress.unitNumber;
+            if (this.isCountrySingapore(customer.mailingAddress.country)) {
+                this.investmentAccountFormData.mailPostalCode = customer.mailingAddress.mailPostalCode;
+            } else {
+                this.investmentAccountFormData.mailZipCode = customer.mailingAddress.mailZipCode;
+            }
+        }
+        this.commit();
+    }
+    setEmploymentDetailsFromApi(employmentInformation) {
+        const empStatusObj = this.getPropertyFromId(
+            employmentInformation.customerEmploymentDetails.employmentStatusId, 'employmentStatus');
+        this.investmentAccountFormData.employmentStatus = empStatusObj.name ;
+        this.investmentAccountFormData.companyName = employmentInformation.employerDetails.employerName;
+        this.investmentAccountFormData.industry = employmentInformation.employerDetails.industry;
+        this.investmentAccountFormData.otherIndustry = employmentInformation.employerDetails.otherIndustry;
+        this.investmentAccountFormData.occupation = employmentInformation.customerEmploymentDetails.occupation; // TODO : VERIFY
+        this.investmentAccountFormData.contactNumber = employmentInformation.employerAddress.contactNumber;
+        this.investmentAccountFormData.empCountry = employmentInformation.employerAddress.employerAddress.country;
+        this.investmentAccountFormData.empPostalCode = employmentInformation.employerAddress.employerAddress.postalCode;
+        this.investmentAccountFormData.empAddress1 = employmentInformation.employerAddress.employerAddress.addressLine1;
+        this.investmentAccountFormData.empAddress2 = employmentInformation.employerAddress.employerAddress.addressLine2;
+        this.investmentAccountFormData.empCity = employmentInformation.employerAddress.employerAddress.city;
+        this.investmentAccountFormData.empState = employmentInformation.employerAddress.employerAddress.state;
+        this.investmentAccountFormData.empUnitNo = employmentInformation.employerAddress.employerAddress.unitNumber;
+        this.commit();
+    }
+    setFinancialDetailsFromApi(customer) {
+        this.investmentAccountFormData.annualHouseHoldIncomeRange = customer.houseHoldDetail.houseHoldIncome; // TODO : VERIFY
+        this.investmentAccountFormData.numberOfHouseHoldMembers = customer.houseHoldDetail.numberOfMembers; // TODO : VERIFY
+        this.investmentAccountFormData.salaryRange = customer.test; // TODO : VERIFY
+        this.commit();
+    }
+    setTaxInfoFromApi(taxDetails) {
+        const taxList = [];
+        taxDetails.map((item) => {
+            const taxInfo = {
+                taxCountry: item.taxCountry,
+                radioTin: item.tinNumber ? true : false,
+                tinNumber: item.tinNumber,
+                noTinReason: item.noTinReason
+            };
+            taxList.push(taxInfo);
+        });
+        if (taxList && taxList.length > 0) {
+            this.investmentAccountFormData.taxObj =  {
+                addTax: taxList
+            };
+        }
+        this.commit();
+    }
+    setPersonalDeclarationFromApi(pepDetails, additionalDetails) {
+        this.investmentAccountFormData.sourceOfIncome = this.getPropertyFromId(pepDetails.investmentSourceId, 'investmentSource');
+        this.investmentAccountFormData.ExistingEmploye = additionalDetails.connectedToInvestmentFirm;
+        this.investmentAccountFormData.pep = additionalDetails.politicallyExposed;
+        this.investmentAccountFormData.beneficial = additionalDetails.beneficialOwner;
+        this.commit();
+    }
+    setDueDiligence1FromApi(pepDetails) {
+        this.investmentAccountFormData.fName = pepDetails.firstName;
+        this.investmentAccountFormData.lName = pepDetails.lastName;
+        this.investmentAccountFormData.cName = pepDetails.companyName;
+        this.investmentAccountFormData.pepoccupation = pepDetails.occupation;
+        this.investmentAccountFormData.pepOtherOccupation = pepDetails.otherOccupation;
+        this.investmentAccountFormData.pepCountry = pepDetails.pepAddress.country;
+        this.investmentAccountFormData.pepPostalCode = pepDetails.pepAddress.postalCode;
+        this.investmentAccountFormData.pepAddress1 = pepDetails.pepAddress.addressLine1;
+        this.investmentAccountFormData.pepAddress2 = pepDetails.pepAddress.addressLine2;
+        this.investmentAccountFormData.pepFloor = pepDetails.pepAddress.floor;
+        this.investmentAccountFormData.pepUnitNo = pepDetails.pepAddress.unitNumber;
+        this.investmentAccountFormData.pepCity = pepDetails.pepAddress.city;
+        this.investmentAccountFormData.pepState = pepDetails.pepAddress.state;
+        this.investmentAccountFormData.pepZipCode = pepDetails.pepAddress.postalCode;
+        this.commit();
+    }
+    setDueDiligence2FromApi(pepDetails) {
+        this.investmentAccountFormData.expectedNumberOfTransation = pepDetails.expectedNumberOfTransactions;
+        this.investmentAccountFormData.expectedAmountPerTranction = pepDetails.expectedAmountPerTransactions;
+        this.investmentAccountFormData.investmenteEarning = this.getPropertyFromId(pepDetails.investmentSourceId, 'investmentSource');
+        this.investmentAccountFormData.durationInvestment =  pepDetails.investmentPeriod;
+        this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(pepDetails.earningsGeneratedFromId, 'earningsGenerated');
+        this.commit();
     }
 }

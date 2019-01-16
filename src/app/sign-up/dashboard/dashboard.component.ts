@@ -54,6 +54,8 @@ export class DashboardComponent implements OnInit {
     this.footerService.setFooterVisibility(false);
     this.translate.use('en');
 
+    this.loadOptionListCollection();
+
     this.signUpApiService.getUserProfileInfo().subscribe((userInfo) => {
       this.signUpService.setUserProfileInfo(userInfo.objectList);
       this.userProfileInfo = this.signUpService.getUserProfileInfo();
@@ -69,6 +71,12 @@ export class DashboardComponent implements OnInit {
           this.selectedPlansService.clearData();
         });
       }
+    });
+  }
+
+  loadOptionListCollection() {
+    this.investmentAccountService.getAllDropDownList().subscribe((data) => {
+      this.investmentAccountService.setOptionList(data.objectList);
     });
   }
 
@@ -174,5 +182,17 @@ export class DashboardComponent implements OnInit {
         break;
       }
     }
+  }
+
+  verifyCustomerDetails() {
+    this.signUpService.getDetailedCustomerInfo().subscribe((customerData) => {
+      this.investmentAccountService.getNationalityCountryList().subscribe((nationalityData) => {
+        const nationalityList = nationalityData.objectList;
+        const countryList = this.getCountryList(nationalityData.objectList);
+        this.investmentAccountService.setNationalitiesCountries(nationalityList, countryList);
+        this.investmentAccountService.setInvestmentAccountFormData(customerData.objectList);
+        this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.SELECT_NATIONALITY]);
+      });
+    });
   }
 }

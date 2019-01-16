@@ -754,4 +754,12 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+
+  getDetailedCustomerInfo() {
+    return this.http.get(apiConstants.endpoint.detailCustomerSummary)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+
 }

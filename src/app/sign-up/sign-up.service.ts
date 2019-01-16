@@ -419,4 +419,9 @@ export class SignUpService {
     return messages;
   }
 
+  getDetailedCustomerInfo() {
+    // API Call here
+    return this.apiService.getDetailedCustomerInfo();
+  }
+
 }
