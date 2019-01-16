@@ -309,6 +309,8 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
       filterTypes: this.state.claimCriteria, allBtn: true
     };
 
+    this.directService.setPremiumFrequencyFilter('monthly');
+
     this.state.filters.push(premiumFrequency);
     this.state.filters.push(insurers);
     this.state.filters.push(insurersFinancialRating);
@@ -422,7 +424,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   updateSelectedPlanData(plan) {
     this.state.selectedPlans = this.state.selectedPlans
       .map((item) => {
-        if (item.id === plan.id) {
+        if (item.id === plan.id && item.premium.ranking === plan.premium.ranking) {
           return plan;
         }
         return item;
@@ -442,8 +444,10 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
   }
 
   compare() {
+    console.log(this.state.selectedComparePlans);
     this.directService.setProtectionType(this.state.searchResult[0]['protectionType']);
     this.directService.setSelectedPlans(this.state.selectedComparePlans);
+    console.log(this.state.selectedComparePlans);
     this.router.navigate([DIRECT_ROUTE_PATHS.COMPARE_PLANS]);
   }
 
@@ -451,7 +455,7 @@ export class DirectResultsComponent implements IPageComponent, OnInit, OnDestroy
     this.state.selectedComparePlans = this.state.selectedComparePlans
       // tslint:disable-next-line:no-identical-functions
       .map((item) => {
-        if (item.id === plan.id) {
+        if (item.id === plan.id && item.premium.ranking === plan.premium.ranking) {
           return plan;
         }
         return item;

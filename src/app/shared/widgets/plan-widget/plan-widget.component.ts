@@ -178,7 +178,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
         this.premiumAmount = this.data.premium.premiumAmountYearly;
         this.highlights.push({
           title: 'Payout Period:',
-          description: this.data.premium.retirementPayFeatureDisplay
+          description: this.data.premium.retirementPayPeriodDisplay
         });
         this.highlights.push({
           title: 'Guaranteed Annual Payout:',
@@ -277,6 +277,7 @@ export class PlanWidgetComponent implements DoCheck, OnInit, AfterViewChecked {
   }
 
   comparePlans() {
+    this.temp = this.data;
     this.isComparePlanSelected = this.temp.compareSelected;
     if (!this.isComparePlanSelected) {
       if (window.innerWidth <= this.mobileThreshold) {

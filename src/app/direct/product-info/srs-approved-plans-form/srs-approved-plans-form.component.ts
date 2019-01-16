@@ -24,7 +24,7 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   payoutStartAge = '';
   singlePremium = '';
   age;
-  payoutStartAgeList = [62, 65, 67];
+  payoutStartAgeList = [62, 64, 65, 69, 70];
   singlePremiumAmountList = ['10000', '15000', '20000', '30000', '40000', '50000', '60000', '70000', '80000'];
   payoutTypeList;
   payoutType;
@@ -51,7 +51,8 @@ export class SrsApprovedPlansFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     /* Building the form */
     this.formValues = this.directService.getSrsApprovedPlansForm();
-    this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : 0;
+    this.formValues.singlePremium = this.formValues.singlePremium ? this.formValues.singlePremium : '';
+    this.singlePremium = this.formValues.singlePremium;
     this.srsApprovedPlansForm = this.formBuilder.group({
       gender: [this.formValues.gender, Validators.required],
       dob: [this.formValues.dob, Validators.required],

@@ -42,7 +42,9 @@ const routes: Routes = [
         canActivateChild: [WillWritingChildEnableGuard]
         */
       },
-
+      /*
+      { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule' },
+      */
       // Legacy Routes
       { path: 'terms-of-use', component: TermsOfUseComponent },
       { path: 'privacy-policy', component: PrivacyPolicyComponent },

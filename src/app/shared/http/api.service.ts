@@ -43,7 +43,7 @@ export class ApiService {
         // The response body may contain clues as to what went wrong,
         console.error(
           `Backend returned code ${error.status}, ` +
-          `body was: ${error.error}`);
+          `body was: ${JSON.stringify(error.error)}`);
         return throwError('API returned error response');
       }
     }
@@ -140,6 +140,32 @@ export class ApiService {
     }
   }
 
+  // ---------------------------- PROMOTIONS MODULE --------------------------
+  getPromoList() {
+    const url = '../../../assets/mock-data/promoList.json';
+    return this.http.getMock(url);
+  }
+
+  getPromoCategory() {
+    const url = '/assets/promotions/promoType.json';
+    return this.http.getMock(url);
+  }
+
+  getPromoDetail(id: number) {
+    const url = '/assets/promotions/' + id + '_details.json';
+    return this.http.getMock(url);
+  }
+
+  getPromoContent(id: number) {
+    const url = '/assets/promotions/' + id + '.jsp';
+    return this.http.getArticle(url);
+  }
+
+  getPromoTnc(id: number) {
+    const url = '/assets/promotions/' + id + '_tnc.jsp';
+    return this.http.getArticle(url);
+  }
+
   // ---------------------------- ABOUT US MODULE ----------------------------
   getCustomerReviewList() {
     // tslint:disable-next-line:no-commented-code
@@ -182,7 +208,7 @@ export class ApiService {
       body: 'default',
       detail: 'default',
       status: 500
-      };
+    };
     this.errorMessage.next(templateError);
     return throwError('');
   }
@@ -280,6 +306,10 @@ export class ApiService {
           return throwError('Something bad happened; please try again later.');
         })
       );
+  }
+
+  emailValidityCheck(payload) {
+    return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
   }
 
   setPassword(payload: ISetPassword) {
