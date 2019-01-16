@@ -986,7 +986,7 @@ export class InvestmentAccountService {
             if (data.employmentDetails.occupation.occupation) {
                 this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
             }
-            if (data.employmentDetails.occupation.otherOccupation) {
+            if (data.employmentDetails.otherOccupation) {
                 this.investmentAccountFormData.otherOccupation = data.employmentDetails.otherOccupation;
             }
 
