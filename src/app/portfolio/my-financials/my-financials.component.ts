@@ -87,8 +87,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       // tslint:disable-next-line:max-line-length
       secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal)
     });
-    
   }
+  // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
     if (!this.oneTimeInvestmentChkBoxVal) {
       this.firstChkBoxChange();
