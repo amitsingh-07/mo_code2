@@ -7,4 +7,6 @@ export interface IMyFinancials {
     initialInvestment: number;
     monthlyInvestment: number;
     suffEmergencyFund: string;
+    oneTimeInvestmentChkBox: boolean;
+    monthlyInvestmentChkBox: boolean;
 }

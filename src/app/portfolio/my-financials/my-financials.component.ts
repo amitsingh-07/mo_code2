@@ -35,6 +35,8 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
   pageTitle: string;
   form: any;
   translator: any;
+  oneTimeInvestmentChkBoxVal: boolean;
+  monthlyInvestmentChkBoxVal: boolean;
 
   constructor(
     private router: Router,
@@ -62,7 +64,16 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarMode(2);
     this.myFinancialsFormValues = this.portfolioService.getMyFinancials();
-
+    // tslint:disable-next-line:max-line-length
+    this.oneTimeInvestmentChkBoxVal = this.myFinancialsFormValues.oneTimeInvestmentChkBox ;
+    // tslint:disable-next-line:max-line-length
+    this.monthlyInvestmentChkBoxVal = this.myFinancialsFormValues.monthlyInvestmentChkBox ;
+    if (typeof this.oneTimeInvestmentChkBoxVal === 'undefined') {
+      this.oneTimeInvestmentChkBoxVal = true;
+    }
+    if (typeof this.monthlyInvestmentChkBoxVal === 'undefined') {
+      this.monthlyInvestmentChkBoxVal = true;
+    }
     this.myFinancialsForm = new FormGroup({
       monthlyIncome: new FormControl(this.myFinancialsFormValues.monthlyIncome),
       percentageOfSaving: new FormControl(this.myFinancialsFormValues.percentageOfSaving),
@@ -71,9 +82,20 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
       initialInvestment: new FormControl(this.myFinancialsFormValues.initialInvestment, Validators.required),
       monthlyInvestment: new FormControl(this.myFinancialsFormValues.monthlyInvestment),
       suffEmergencyFund: new FormControl(PORTFOLIO_CONFIG.my_financials.sufficient_emergency_fund),
-      firstChkBox: new FormControl(true),
-      secondChkBox: new FormControl(true)
+      // tslint:disable-next-line:max-line-length
+      firstChkBox: new FormControl(this.oneTimeInvestmentChkBoxVal),
+      // tslint:disable-next-line:max-line-length
+      secondChkBox: new FormControl(this.monthlyInvestmentChkBoxVal)
     });
+    
+  }
+  ngAfterViewInit() {
+    if (!this.oneTimeInvestmentChkBoxVal) {
+      this.firstChkBoxChange();
+    }
+    if (!this.monthlyInvestmentChkBoxVal) {
+      this.secondChkBoxChange();
+    }
   }
 
   showEmergencyFundModal() {
