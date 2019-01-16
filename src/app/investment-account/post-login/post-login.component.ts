@@ -1,4 +1,3 @@
-import { InvestmentAccountService } from './../investment-account-service';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,10 +6,12 @@ import { TranslateService } from '@ngx-translate/core';
 import {
     INVESTMENT_ACCOUNT_ROUTE_PATHS
 } from '../../investment-account/investment-account-routes.constants';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
-import { FooterService } from './../../shared/footer/footer.service';
+import { InvestmentAccountService } from '../investment-account-service';
+
 @Component({
   selector: 'app-post-login',
   templateUrl: './post-login.component.html',
@@ -19,6 +20,8 @@ import { FooterService } from './../../shared/footer/footer.service';
 })
 export class PostLoginComponent implements OnInit {
   singPassLinkTitle;
+  formData;
+  showSingPass: boolean;
 
   constructor(
     // tslint:disable-next-line
@@ -41,8 +44,10 @@ export class PostLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navbarService.setNavbarDirectGuided(false);
-    this.footerService.setFooterVisibility(false);
+    this.navbarService.setNavbarMobileVisibility(true);
+    this.navbarService.setNavbarMode(1);
+    this.formData = this.investmentAccountService.getInvestmentAccountFormData();
+    this.showSingPass = this.formData.isMyInfoEnabled ? false : true;
   }
   goBack() {
     this._location.back();

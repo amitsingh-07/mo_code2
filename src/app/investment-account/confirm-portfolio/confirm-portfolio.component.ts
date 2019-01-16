@@ -231,11 +231,6 @@ export class ConfirmPortfolioComponent implements OnInit {
     ref.componentInstance.errorMessage = errorMessage;
   }
 
-  viewFundDetails(fund) {
-    this.portfolioService.setFundDetails(fund);
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
-  }
-
   verifyAML() {
     const pepData = this.investmentAccountService.getPepData();
     this.investmentAccountService.verifyAML().subscribe((response) => {

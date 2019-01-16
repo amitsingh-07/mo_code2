@@ -24,7 +24,7 @@ app-acknowledgement{
         }
       }
     .acknowledgement_text{
-            font-family: Muli;
+            font-family: $muli-regular;
             font-size: 16px;
             font-weight: normal;
             font-style: normal;
@@ -34,5 +34,60 @@ app-acknowledgement{
             color: #848484;
           
     }
+    .text-bold{
+      font-weight: bold;
+      color: #000000;
+    }
+    ol{
+      padding: 0;
+      margin: 0;
+      padding-left: 18px;
+      ul.list-none{
+        padding: 10px 0;
+        font-weight: normal;
+        color: #848484;
+        .flex{
+          span{
+            &:first-child{
+              padding-right: 5px;
+              padding-bottom: 10px;
+            }
+          }
+        }
+        strong {
+          font-family: $muli-bold;
+          color: #000000;
+        }
+      }
+      .inner-list{
+        li{
+          padding-left: 20px;
+        }
+      }
+     .list-style{
+       padding-left: 10px !important;
+       .flex{
+         align-items: center;
+       }
+        .disc{
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: #848484;
+          padding: 0 !important;
+        }
+      }
+      .flex{
+        justify-content: space-between;
+
+      }
+    }
+    .list-none{
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+    }
+    
 }
+
 }

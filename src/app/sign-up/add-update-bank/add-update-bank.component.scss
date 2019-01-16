@@ -35,20 +35,19 @@
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.34px;
     color: #ffffff;
-
   }
-  .desc-lbl
-  {
+  .desc-lbl{
     font-family: $muli-regular;
     font-size: 14px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.29;
-    letter-spacing: -0.1px;
+    letter-spacing: -0.14px;
     color: #ffffff;
+    margin-bottom: 18px;
   }
   .postal-code-control {
     display: flex;
@@ -127,6 +126,9 @@
 
 
   .form-control {
+    .input-control{
+      text-align: left;
+    }
     &.with-button {
       padding: 0.50rem;
       padding-left: 0.8rem;
@@ -135,8 +137,11 @@
         margin-top: 6px;
       }
     }
-
-
+    &:disabled{
+      color: #00a7a7 !important;
+      background-color: #d4eded !important;
+      opacity: 1 !important;
+  }
   }
 
   .btn {
@@ -207,7 +212,6 @@
     .autofill-logo {}
 
     .autofill-logo {
-
       width: 35%;
     }
 
@@ -418,7 +422,7 @@
       
   .dropdown-item {
     white-space: normal;
-    word-break: break-all;
+    word-break: break-word;
   }
   .dropdown-control .btn-dropdown {
     padding-right: 27px;

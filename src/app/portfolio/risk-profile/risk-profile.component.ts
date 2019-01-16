@@ -67,6 +67,9 @@ export class RiskProfileComponent implements OnInit, AfterViewInit {
   goToNext() {
     this.router.navigate([PORTFOLIO_ROUTE_PATHS.PORTFOLIO_RECOMMENDATION]);
   }
+  goToHomepage() {
+    this.router.navigate(['home']);
+  }
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }

@@ -289,6 +289,10 @@ export class ApiService {
       );
   }
 
+  emailValidityCheck(payload) {
+    return this.http.post(apiConstants.endpoint.emailValidityCheck + '?handleError=true', payload);
+  }
+
   setPassword(payload: ISetPassword) {
     return this.http.post(apiConstants.endpoint.setPassword, payload)
       .pipe(
@@ -550,6 +554,12 @@ export class ApiService {
 
   saveInvestmentAccount(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.saveInvestmentAccount, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
+  saveNationality(data) {
+    return this.http.post(apiConstants.endpoint.investmentAccount.saveNationality, data)
       .pipe(
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );

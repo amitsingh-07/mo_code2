@@ -17,7 +17,7 @@
         </div>
       </div>
       <!-- Button part -->
-      <div class="flex-row">
+      <div class="flex-row mb20">
         <div class="flex-col-12 mb10">
           <div class="btn-group--toggle" ngbRadioGroup name="radioPep" formControlName="radioPEP">
             <div class="flex-row">
@@ -78,7 +78,7 @@
           </div>
         </div>
         <!-- Occupation -->
-        <div class="form-group">
+        <div class="form-group mb30">
           <div class="flex-row">
             <div class="flex-col-5">
               <label for="employement_details_status" id="pep_Info_employement_details_status-lbl">{{
@@ -106,8 +106,25 @@
           </div>
         </div>
 
-        <div class="office-addr-lbl" id="office-addr-lbl">Your office address:</div>
+        <!-- OCCUPATION for OTHERS -->
+        <div *ngIf="addInfoForm.controls.pepoccupation && addInfoForm.controls.pepoccupation.value && 
+        addInfoForm.controls.pepoccupation.value.occupation =='Others'">
+          <div class="form-group">
+            <div class="flex-row">
+              <div class="flex-col-12">
+                <label for="employement-occupation-others-txt" id="employement-occupation-others-lbl">
+                  {{'EMPLOYMENT_DETAILS.OTHER_OCCUPATION' | translate}}</label>
+              </div>
+              <div class="flex-col-12">
+                <div>
+                  <input type="text" class="form-control input-control grey" formControlName="pepOtherOccupation" id="employement-occupation-others-txt" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="office-addr-lbl" id="office-addr-lbl">Your office address:</div>
         <!-- COUNTRY -->
         <div class="form-group">
           <div class="flex-row">

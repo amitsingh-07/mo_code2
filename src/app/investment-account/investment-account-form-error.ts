@@ -104,30 +104,6 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Address Line 2 should not contain special characters in mailing address.'
             }
         },
-        floor: {
-            required: {
-                errorTitle: 'Invalid Floor',
-                errorMessage: 'Please enter your Floor.'
-            }
-        },
-        mailFloor: {
-            required: {
-                errorTitle: 'Invalid Floor',
-                errorMessage: 'Please enter your Floor in mailing address.'
-            }
-        },
-        unitNo: {
-            required: {
-                errorTitle: 'Invalid Unit No.',
-                errorMessage: 'Please enter your Unit No.'
-            }
-        },
-        mailUnitNo: {
-            required: {
-                errorTitle: 'Invalid Unit No. in mailing address.',
-                errorMessage: 'Please enter your Unit No. in mailing address.'
-            }
-        },
         city: {
             required: {
                 errorTitle: 'Invalid City',
@@ -268,7 +244,7 @@ export class InvestmentAccountFormError {
             },
             nric: {
                 errorTitle: 'Invalid NRIC Number',
-                errorMessage: 'NRIC Number you have entered is invalid.'
+                errorMessage: 'The NRIC you have keyed in is invalid.'
             }
         },
         passportNumber: {
@@ -290,7 +266,7 @@ export class InvestmentAccountFormError {
             },
             isMinExpiry: {
                 errorTitle: 'Invalid Passport Expiry',
-                errorMessage: 'You need to have atleast 6 months of passport validity'
+                errorMessage: 'Your passport must have at least 6 months validity to proceed.'
             }
         },
         dob: {
@@ -301,7 +277,7 @@ export class InvestmentAccountFormError {
             },
             isMinAge: {
                 errorTitle: 'Invalid Date of Birth',
-                errorMessage: 'You must be 18 yrs and above to create an investment account.'
+                errorMessage: 'You have to be at least 18 years old to set up an investment account with MoneyOwl.'
             }
         },
         sourceOfIncome: {
@@ -329,7 +305,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Occupation.'
             }
         },
-        occupationForOthers: {
+        otherOccupation: {
             required: {
                 errorTitle: 'Invalid Occupation',
                 errorMessage: 'Please enter your occupation.'
@@ -342,7 +318,7 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Please select your Industry'
             }
         },
-        industryForOthers: {
+        otherIndustry: {
             required: {
                 errorTitle: 'Invalid Industry',
                 errorMessage: 'Please enter your Industry.'

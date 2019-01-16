@@ -32,8 +32,10 @@
           <div class="risk-profile-block__content__sub-title mb20" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.desc"></div>
           <div class="risk-profile-block__content__sub-title mb20" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.recommendationDesc"></div>
           <div class="risk-profile-block__content__sub-title mb20" id="riskProfileSubTitle" [innerHTML]="selectedRiskProfile.htmlDescription.riskAppetiteDesc"></div>
-          <button type="button" [disabled]="!canProceed()" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
+          <button type="button" *ngIf="canProceed()" (click)="goToNext()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
             id="riskProfileBtn">{{'RISK_PROFILE.BUTTON_TITLE' | translate}}</button>
+            <button type="button" *ngIf="!canProceed()" (click)="goToHomepage()" class="btn btn__footer--fixed btn-ftr-get-started btn-primary width100 btn-proceed"
+            id="riskProfileBtn">{{'RISK_PROFILE.RETURN_TO_HOMEPAGE' | translate}}</button>
         </div>
       </div>
     </div>

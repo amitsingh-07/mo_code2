@@ -84,17 +84,17 @@
               </div>
 
               <!-- INDUSTRY for OTHERS -->
-              <div *ngIf="employementDetailsForm.controls.industry.value && 
-              employementDetailsForm.controls.industry.value.name =='Others'">
+              <div *ngIf="employementDetailsForm.controls.industry && employementDetailsForm.controls.industry.value && 
+              employementDetailsForm.controls.industry.value.industry =='Others'">
                 <div class="form-group">
                   <div class="flex-row">
                     <div class="flex-col-12">
                       <label for="employement-industry-others-txt" id="employement-industry-others-lbl">
-                        {{'RESIDENTIAL_ADDRESS.PLEASE_INDECATE_THE_REASON' | translate}}</label>
+                        {{'EMPLOYMENT_DETAILS.OTHER_INDUSTRY' | translate}}</label>
                     </div>
                     <div class="flex-col-12">
-                      <div class="form-control">
-                        <input type="text" class="input-control grey" formControlName="industryForOthers" id="employement-industry-others-txt" />
+                      <div>
+                        <input type="text" class="form-control input-control grey" formControlName="otherIndustry" id="employement-industry-others-txt" />
                       </div>
                     </div>
                   </div>
@@ -129,17 +129,17 @@
               </div>
 
               <!-- OCCUPATION for OTHERS -->
-              <div *ngIf="employementDetailsForm.controls.occupation.value && 
-              employementDetailsForm.controls.occupation.value.name =='Others'">
+              <div *ngIf="employementDetailsForm.controls.occupation && employementDetailsForm.controls.occupation.value && 
+              employementDetailsForm.controls.occupation.value.occupation =='Others'">
                 <div class="form-group">
                   <div class="flex-row">
                     <div class="flex-col-12">
                       <label for="employement-occupation-others-txt" id="employement-occupation-others-lbl">
-                        {{'RESIDENTIAL_ADDRESS.PLEASE_INDECATE_THE_REASON' | translate}}</label>
+                        {{'EMPLOYMENT_DETAILS.OTHER_OCCUPATION' | translate}}</label>
                     </div>
                     <div class="flex-col-12">
-                      <div class="form-control">
-                        <input type="text" class="input-control grey" formControlName="occupationForOthers" id="employement-occupation-others-txt" />
+                      <div>
+                        <input type="text" class="form-control input-control grey" formControlName="otherOccupation" id="employement-occupation-others-txt" />
                       </div>
                     </div>
                   </div>
@@ -198,7 +198,7 @@
                             <div class="control">
                               <input type="text" class="input-control grey" formControlName="empPostalCode" id="employment_details-mailpostalcode-txt" />
                             </div>
-                            <div class="col-5">
+                            <div>
                               <button type="button" (click)="retrieveAddress(employementDetailsForm.controls.employeaddress.controls.empPostalCode.value, employementDetailsForm.controls.employeaddress.controls.empAddress1, employementDetailsForm.controls.employeaddress.controls.empAddress2)"
                                 class="btn btn-secondary right">{{ 'COMMON.LABEL.RETRIEVE' | translate}}
                               </button>
@@ -217,8 +217,8 @@
                           | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress1)}">
-                          <input type="text" class="input-control grey" formControlName="empAddress1" id="employment_details-mailaddress1-txt" />
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress1)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empAddress1" id="employment_details-mailaddress1-txt" />
                         </div>
                       </div>
                     </div>
@@ -233,8 +233,8 @@
                           | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress2)}">
-                          <input type="text" class="input-control grey" formControlName="empAddress2" id="employment_details-mailaddress2-txt" />
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empAddress2)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empAddress2" id="employment_details-mailaddress2-txt" />
                         </div>
                       </div>
                     </div>
@@ -248,8 +248,8 @@
                           | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empUnitNo)}">
-                          <input type="text" class="input-control grey" formControlName="empUnitNo" id="employment_details-mailunitno-txt" />
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empUnitNo)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empUnitNo" id="employment_details-mailunitno-txt" />
                         </div>
                       </div>
                     </div>
@@ -263,8 +263,8 @@
                           | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empCity)}">
-                          <input type="text" class="input-control grey" formControlName="empCity" id="employment_details-mailcity-txt" />
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empCity)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empCity" id="employment_details-mailcity-txt" />
                         </div>
                       </div>
                     </div>
@@ -278,8 +278,8 @@
                           | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empState)}">
-                          <input type="text" class="input-control grey" formControlName="empState" id="employment_details-mailstate-txt" />
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empState)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empState" id="employment_details-mailstate-txt" />
                         </div>
                       </div>
                     </div>
@@ -293,8 +293,8 @@
                           | translate}}</label>
                       </div>
                       <div class="flex-col-7">
-                        <div class="form-control" [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empZipCode)}">
-                          <input type="text" class="input-control grey" formControlName="empZipCode" id="employment_details-mailzipcode-txt" />
+                        <div [ngClass]="{'inline-error':getInlineErrorStatus(employementDetailsForm.controls.employeaddress.controls.empZipCode)}">
+                          <input type="text" class="form-control input-control grey" formControlName="empZipCode" id="employment_details-mailzipcode-txt" />
                         </div>
                       </div>
                     </div>

@@ -21,9 +21,9 @@
           <div class="upload-doc">
 
             <!-- PASSPORT IMAGE UPLOAD -->
-            <div class="upload-desc" >
-              <div class="thumb-container" (click)="openFileDialog(passport)">
-                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, $event, passportThumb)"
+            <div class="upload-desc" (click)="openFileDialog(passport)">
+              <div class="thumb-container">
+                <div class="thumb-close-icon" (click)="clearFileSelection(uploadForm.controls.passportImage, $event, passportThumb, passport)"
                   *ngIf="uploadForm.controls.passportImage.value">
                   <img src="../../../assets/images/close-button.svg" alt="x" />
                 </div>
@@ -35,7 +35,7 @@
                   'UPLOAD_DOCUMENTS.TAP_TO_UPLOAD' | translate}}</div>
                 <div class="sub-text" *ngIf="uploadForm.controls.passportImage.value" [innerHtml]="getFileName(passport)"></div>
                 <input type="file" #passport (change)="fileSelected(uploadForm.controls.passportImage, 'PASSPORT_BO', $event, passportThumb)"
-                  name="passport" accept="image/*" class="is-hidden">
+                  name="passport" accept="image/*, .pdf" class="is-hidden">
                   <!-- WORKAROUND FOR FILE UPLOAD HIDDEN CONTROL --><input type="hidden" name="passportHidden" formControlName="passportImage"/>
               </div>
             </div>

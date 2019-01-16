@@ -239,13 +239,14 @@
 
                 <div class="flex-col-6">
 
-                  <div class="form-control">
+                  <div class="form-control form-control-right">
 
                     <i id="myFinancialDollerSymbFour">$</i>
 
                     <div name="monthlyInvestment" [ngClass]="{'readonly': monthlyInvestment.value != 0}">
-                      <input class="input-control" id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment formControlName="monthlyInvestment"
+                      <input class="input-control " id="myFinancialMonthlyDepositInput" type="text" appCurrencyInputPortfolio maxLength="6" #monthlyInvestment formControlName="monthlyInvestment"
                         value="0">
+                        <i class="right">/mth</i>
                     </div>
 
                   </div>
