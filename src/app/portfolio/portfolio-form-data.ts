@@ -18,6 +18,8 @@ export class PortfolioFormData {
     initialInvestment: number;
     monthlyInvestment: number;
     suffEmergencyFund: string;
+    oneTimeInvestmentChkBox: boolean;
+    monthlyInvestmentChkBox: boolean;
 
     // RISK PROFILE
     riskProfileId: number;
