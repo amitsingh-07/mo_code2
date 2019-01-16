@@ -82,7 +82,6 @@
       line-height: 1.23;
       letter-spacing: -0.2px;
       padding-top: 9.8px; 
-      margin-bottom:35px;
       span{
         &:last-child{
           font-family: $muli-bold;
@@ -93,7 +92,7 @@
 }
 
 .portfolio-graph-indicator {
-  padding-top: 35px;
+  padding-top: 45px;
   font-family: $muli-italic;
   font-size: 14px;
   font-style: italic;
@@ -133,11 +132,10 @@
     justify-content: center;
     padding-top: 10px;
     padding-bottom: 31px;
-
+    align-items: center;
     span {
       &:first-child {
-        color: #ff9600;
-        padding-right: 5px;
+        padding-right: 9px;
       }
     }
   }
