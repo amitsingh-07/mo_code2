@@ -81,6 +81,13 @@ export class AuthenticationService {
     }
   }
 
+  clearAuthDetails() {
+    if (sessionStorage) {
+      sessionStorage.removeItem(appConstants.APP_JWT_TOKEN_KEY);
+      sessionStorage.removeItem(appConstants.APP_SESSION_ID_KEY);
+    }
+  }
+
   isUserNameEmail(username: string) {
     const emailPattern = new RegExp(RegexConstants.Email);
     return emailPattern.test(username);
