@@ -55,7 +55,8 @@
     <div *ngFor="let plan of plansData; let i = index;" class="col-sm-3 col-md-3 col-6 insurance-plan-widget-content"
       [ngClass]="{'hidden-sm-md': i > 1}">
       <div class="plan-content">
-        <span>{{plan.premium.durationName | titlecase}}</span>
+        <span *ngIf="protectionType.toLowerCase().indexOf('srs') < 0">{{plan.premium.durationName | titlecase}}</span>
+        <span *ngIf="protectionType.toLowerCase().indexOf('srs') > -1">{{plan.coverageDuration | titlecase}}</span>
       </div>
       <div class="heading">&nbsp;</div>
     </div>
