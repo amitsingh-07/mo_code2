@@ -6,6 +6,7 @@ import { GetStartedStep1Component } from './get-started-step1/get-started-step1.
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import { MyFinancialsComponent } from './my-financials/my-financials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PortfolioExistComponent } from './portfolio-exist/portfolio-exist.component';
 import {
     PortfolioRecommendationComponent
 } from './portfolio-recommendation/portfolio-recommendation.component';
@@ -18,6 +19,7 @@ import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component
 const routes: Routes = [
   { path: PORTFOLIO_ROUTES.ROOT, redirectTo: PORTFOLIO_ROUTES.GET_STARTED_STEP1, pathMatch: 'full' },
   { path: PORTFOLIO_ROUTES.GET_STARTED_STEP1, component: GetStartedStep1Component },
+  { path: PORTFOLIO_ROUTES.PORTFOLIO_EXIST, component: PortfolioExistComponent },
   { path: PORTFOLIO_ROUTES.PERSONAL_INFO, component: PersonalInfoComponent },
   { path: PORTFOLIO_ROUTES.MY_FINANCIALS, component: MyFinancialsComponent },
   { path: PORTFOLIO_ROUTES.GET_STARTED_STEP2, component: GetStartedStep2Component },

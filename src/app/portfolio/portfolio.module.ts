@@ -17,6 +17,7 @@ import { GetStartedStep2Component } from './get-started-step2/get-started-step2.
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { MyFinancialsComponent } from './my-financials/my-financials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PortfolioExistComponent } from './portfolio-exist/portfolio-exist.component';
 import {
     PortfolioRecommendationComponent
 } from './portfolio-recommendation/portfolio-recommendation.component';
@@ -60,7 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
     PortfolioRecommendationComponent,
     CurrencyInputPortfolioDirective,
     WhatsTheRiskComponent,
-    FundDetailsComponent
+    FundDetailsComponent,
+    PortfolioExistComponent
     ],
   providers: [CurrencyPipe]
 })
