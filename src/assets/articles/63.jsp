@@ -43,51 +43,51 @@
 </p>
 <br/>
 <div class="table-responsive">
-<table class="table table-bordered table-condensed text-xs-center">
+    <table class="table table-bordered table-condensed">
     <tr>
-        <th class='will-th'>&nbsp;</th>
-        <th class='will-th'>Earlier Plan a.k.a ElderShield400</th>
-        <th class='will-th'>Improved version a.k.a CareShield Life (to be launched in 2020)</th>
+        <th class='cell--teal'>&nbsp;</th>
+        <th class='cell--teal'>Earlier Plan a.k.a ElderShield400</th>
+        <th class='cell--teal'>Improved version a.k.a CareShield Life (to be launched in 2020)</th>
     </tr>
-    <tr>
-        <td>Monthly Payout</td>
-        <td>$400</td>
-        <td>$600 initially rising at 2% p.a till age 67</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Monthly Payout</td>
+        <td class="cell--clean-light-teal-border text-center">$400</td>
+        <td class="cell--clean-light-teal-border text-center">$600 initially rising at 2% p.a till age 67</td>
     </tr>
-    <tr>
-        <td>Joining Options</td>
-        <td>Optional - Can opt out and also exclude people with pre-existing disabilities</td>
-        <td>Univeral - Compulsory and include people with pre-existing disabilities</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Joining Options</td>
+        <td class="cell--clean-light-teal-border text-center">Optional - Can opt out and also exclude people with pre-existing disabilities</td>
+        <td class="cell--clean-light-teal-border text-center">Univeral - Compulsory and include people with pre-existing disabilities</td>
     </tr>
-    <tr>
-        <td>Period of cover</td>
-        <td>Lifetime</td>
-        <td>Lifetime</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Period of cover</td>
+        <td class="cell--clean-light-teal-border text-center">Lifetime</td>
+        <td class="cell--clean-light-teal-border text-center">Lifetime</td>
     </tr>
-    <tr>
-        <td>Joining age</td>
-        <td>From 40</td>
-        <td>From 30</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Joining age</td>
+        <td class="cell--clean-light-teal-border text-center">From 40</td>
+        <td class="cell--clean-light-teal-border text-center">From 30</td>
     </tr>
-    <tr>
-        <td>Premium paying period</td>
-        <td>Till 65</td>
-        <td>Till 67</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Premium paying period</td>
+        <td class="cell--clean-light-teal-border text-center">Till 65</td>
+        <td class="cell--clean-light-teal-border text-center">Till 67</td>
     </tr>
-    <tr>
-        <td>Payout Period</td>
-        <td>6 years</td>
-        <td>Lifetime as long as severely disabled</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Payout Period</td>
+        <td class="cell--clean-light-teal-border text-center">6 years</td>
+        <td class="cell--clean-light-teal-border text-center">Lifetime as long as severely disabled</td>
     </tr>
-    <tr>
-        <td>Premium can pay from Medisave account?</td>
-        <td>Yes</td>
-        <td>Yes</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Premium can pay from Medisave account?</td>
+        <td class="cell--clean-light-teal-border text-center">Yes</td>
+        <td class="cell--clean-light-teal-border text-center">Yes</td>
     </tr>
-    <tr>
-        <td>Administrator</td>
-        <td>NTUC Income, GE, Aviva</td>
-        <td>Government</td>
+    <tr class="borderbtm1">
+        <td class="cell--clean-light-teal-text">Administrator</td>
+        <td class="cell--clean-light-teal-border text-center">NTUC Income, GE, Aviva</td>
+        <td class="cell--clean-light-teal-border text-center">Government</td>
     </tr>
 </table>
 </div>
