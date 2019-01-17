@@ -1,0 +1,34 @@
+{
+  "COMPREHENSIVE": {
+    "GET_STARTED": "A step-by-step guide to help you plan your finances!",
+    "START": "Start Now",
+    "PHILOSOPHY_TITLE": " Our Philosophy",
+    "PHILOSOPHY_DESC": "when planning for your future, we show you the 'good enough' concept of what children education and retirement could like.(pls edit text)",
+    "PHOLOSOPHY_DESC_SUB": "your money will be used to first fund children education and later support your retirement. Let's see how it turns out",
+    "RESULT_TITLE": "What will you get?",
+    "RESULT_SUB_TITLE": "At the end of the session ,you will get:",
+    "RESULTS_FIRST": "Fun and interactive result that enables you to design your strategy to reach goals",
+    "RESULTS_SECOND": "You can also sign up for our advisory services to get additional help"
+  },
+  "COMPREHENSIVE_STEPS": {
+    "FIRST": "Step 1",
+    "FIRST_TITLE": "Understand What's On Your Shoulders",
+    "FIRST_DESC": "Fun fact :XXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX",
+    "SECOND": "Step 2",
+    "SECOND_TITLE": " Your Finances",
+    "THIRD": "Step 3",
+    "THIRD_TITLE": "Results!",
+    "PROCEED":"Proceed"
+  },
+
+  "SHOULDERS": {
+    "TITLE": "What's On Your Shoulders",
+    "DEPENDANTS":"Do you Have any dependants?",
+    "DEPENDANTS_DESC":"A dependant is children,parent,spouse or sibling whom i'm supporting",
+    "DEPENDANTS_YES":"",
+    "DEPENDANTS_NO":""
+
+  }
+
+
+}
