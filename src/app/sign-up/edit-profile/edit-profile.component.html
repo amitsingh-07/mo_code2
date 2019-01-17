@@ -332,9 +332,12 @@
             <div class="update-contact-title">
               {{'EDIT_PROFILE.INDUSTRY' | translate}}
             </div>
-            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
+            <div class="update-contact-value" *ngIf="!empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
               {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
             </div>
+            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
+                {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry }}
+              </div>
           </div>
           <div class="section-margin">
             <div class="update-contact-title">
@@ -348,9 +351,12 @@
             <div class="update-contact-title">
               {{'EDIT_PROFILE.OCCUPATUION' | translate}}
             </div>
-            <div class="update-contact-value">
+            <div class="update-contact-value"  *ngIf="!empolymentDetails.otherOccupation">
               {{empolymentDetails.occupation && empolymentDetails.occupation.occupation}}
             </div>
+            <div class="update-contact-value"  *ngIf="empolymentDetails.otherOccupation">
+                {{empolymentDetails.occupation && empolymentDetails.otherOccupation}}
+              </div>
           </div>
 
           <!-- <div class="mailing-address flex">

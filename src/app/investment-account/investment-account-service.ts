@@ -991,7 +991,7 @@ export class InvestmentAccountService {
             if (data.employmentDetails.occupation.occupation) {
                 this.investmentAccountFormData.occupation = data.employmentDetails.occupation;
             }
-            if (data.employmentDetails.occupation.otherOccupation) {
+            if (data.employmentDetails.otherOccupation) {
                 this.investmentAccountFormData.otherOccupation = data.employmentDetails.otherOccupation;
             }
 
@@ -1095,10 +1095,10 @@ export class InvestmentAccountService {
         if (data.zipCode) {
             postalCode = data.zipCode;
         }
-        if (data.mailingAddress.mailPostalCode) {
+        if (data.mailingAddress && data.mailingAddress.mailPostalCode) {
             mailPostalCode = data.mailingAddress.mailPostalCode;
         }
-        if (data.mailingAddress.mailZipCode) {
+        if (data.mailingAddress && data.mailingAddress.mailZipCode) {
             mailPostalCode = data.mailingAddress.mailZipCode;
         }
         if (!data.isMailingAddressSame) {
