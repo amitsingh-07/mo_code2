@@ -11,18 +11,11 @@
   <div *ngIf="personalData">
   <div class="overlap-grass">
     <div class="user-profile-bg">
-
-
       <div class="circle"> {{compinedName}} </div>
-
-
-      
-
-
       <div class="heading">{{fullName }}</div>
       <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
       <div *ngIf="!isSingaporeResident" class="nric-text">{{compinedPassport}}</div>
-      <div class="flex-row pb10 mb20">
+      <div class="flex-row">
         <div class="flex-col-3 flex-row">
           <div>
             <div class="content-text">{{'EDIT_PROFILE.GENDER' | translate}}</div>
@@ -339,9 +332,12 @@
             <div class="update-contact-title">
               {{'EDIT_PROFILE.INDUSTRY' | translate}}
             </div>
-            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
+            <div class="update-contact-value" *ngIf="!empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
               {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
             </div>
+            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
+                {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry }}
+              </div>
           </div>
           <div class="section-margin">
             <div class="update-contact-title">
@@ -355,9 +351,12 @@
             <div class="update-contact-title">
               {{'EDIT_PROFILE.OCCUPATUION' | translate}}
             </div>
-            <div class="update-contact-value">
+            <div class="update-contact-value"  *ngIf="!empolymentDetails.otherOccupation">
               {{empolymentDetails.occupation && empolymentDetails.occupation.occupation}}
             </div>
+            <div class="update-contact-value"  *ngIf="empolymentDetails.otherOccupation">
+                {{empolymentDetails.occupation && empolymentDetails.otherOccupation}}
+              </div>
           </div>
 
           <!-- <div class="mailing-address flex">
@@ -447,7 +446,7 @@
       </div>
     </div>
     <!-- Update bank details  -->
-    <div >
+    <div class="bank_details">
       <div class="edit-profile-section-bg" (click)=showHide(showHideBank)>
         <div class="flex-row">
           <div class="flex-col-11">
@@ -464,40 +463,36 @@
         </div>
 
         <div class="dots" #showHideBank>
-          <div class="flex-row" *ngIf="bankDetails">
-
+          <div *ngIf="bankDetails">
+            <div class="flex-row">
               <div class="flex-col-4">
-
                   <div class="bank-account">
                     {{'EDIT_PROFILE.BANK' | translate}}
                   </div>
+              </div>
+              <div class="flex-col-8">
+                <div class="bank-account-num">
+                  {{ bankDetails.bank && bankDetails.bank.name}}
                 </div>
-                <div class="flex-col-8">
-                  <div class="bank-account-num">
-                    {{ bankDetails.bank && bankDetails.bank.name}}
-                  </div>
-                </div>
-
-            <div class="flex-col-4">
-
-              <div class="bank-account">
-                {{'EDIT_PROFILE.BANK_ACC' | translate}}
               </div>
             </div>
-            <div class="flex-col-8">
-              <div class="bank-account-num">
-                {{bankDetails.accountNumber}}
+            <div class="flex-row">
+              <div class="flex-col-4">
+                <div class="bank-account">
+                  {{'EDIT_PROFILE.BANK_ACC' | translate}}
+                </div>
+              </div>
+              <div class="flex-col-8">
+                <div class="bank-account-num">
+                  {{bankDetails.accountNumber}}
+                </div>
               </div>
             </div>
+          </div>
             <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
               {{'EDIT_PROFILE.EDIT' | translate}}
             </button>
-           
-          </div>
-          
           <div class="flex-row" *ngIf="!bankDetails">
-
-              
               <div class="flex-col-12">
                 <div class="no-bank-account">
                   {{'EDIT_PROFILE.NO_BANK' | translate}}

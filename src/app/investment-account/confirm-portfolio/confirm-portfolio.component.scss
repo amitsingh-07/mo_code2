@@ -23,11 +23,11 @@ app-confirm-portfolio {
           .portfolio-allocation-details__content__block{
             font-size: 14px;
             line-height: 1.5;
-            letter-spacing: -0.1px;
+            letter-spacing: -0.14px;
             text-align: center;
             border-radius: 3px;
             background-color: #008b90;
-            padding: 18px 16px 8px;
+            padding: 20px 15px;
             strong{
               font-family: $muli-bold;
             }
@@ -74,14 +74,14 @@ app-confirm-portfolio {
     font-weight: 600;
     letter-spacing: -0.2px;
     text-align: center;
-    padding: 21px 0 19px;
+    padding: 21px 0 50px;
     a{
       color: #ffffff;
       text-decoration: underline;
     }
   }
   .review-block{
-    padding: 18px;
+    padding: 20px 35px; 
     background-color: #009999;
     font-family: $muli-bold;
     font-size: 18px;

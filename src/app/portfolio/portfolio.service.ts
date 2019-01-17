@@ -197,7 +197,9 @@ export class PortfolioService {
       totalLiabilities: this.portfolioFormData.totalLiabilities,
       initialInvestment: this.portfolioFormData.initialInvestment,
       monthlyInvestment: this.portfolioFormData.monthlyInvestment,
-      suffEmergencyFund: this.portfolioFormData.suffEmergencyFund
+      suffEmergencyFund: this.portfolioFormData.suffEmergencyFund,
+      oneTimeInvestmentChkBox: this.portfolioFormData.oneTimeInvestmentChkBox,
+      monthlyInvestmentChkBox: this.portfolioFormData.monthlyInvestmentChkBox
     };
   }
   setMyFinancials(formData) {
@@ -208,6 +210,8 @@ export class PortfolioService {
     this.portfolioFormData.initialInvestment = formData.initialInvestment;
     this.portfolioFormData.monthlyInvestment = formData.monthlyInvestment;
     this.portfolioFormData.suffEmergencyFund = formData.suffEmergencyFund;
+    this.portfolioFormData.oneTimeInvestmentChkBox = formData.firstChkBox;
+    this.portfolioFormData.monthlyInvestmentChkBox = formData.secondChkBox;
     this.commit();
   }
 

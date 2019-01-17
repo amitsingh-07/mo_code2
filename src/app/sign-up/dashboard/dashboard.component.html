@@ -10,10 +10,10 @@
                 <div>{{'DASHBOARD.PROFILE.WELCOME' | translate}}</div>
                 <div class="user_name">{{userProfileInfo.firstName}}</div>
                 <div>
-                  <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
                   <span class="user-edit-img" (click)="goToEditProfile()">
                     <img id="edit_profile_edit_img" src="assets/images/investment-account/edit-white.svg" />
                   </span>
+                  <span class="txt-lyt">{{'DASHBOARD.PROFILE.EDIT_PROFILE' | translate}}</span>
                 </div>
               </div>
               <div class="advisor-profile-bg flex-col-6" *ngIf="false">
@@ -99,7 +99,7 @@
                       <div>{{'DASHBOARD.INVESTMENT.CDD_CHECK_FAIL_DESC' | translate}}</div>
                     </div>
                     <div class="flex">
-                      <button type="button" (click)="goToInvestmentAccount()" class="btn btn-ghost col-12">
+                      <button type="button" (click)="verifyCustomerDetails()" class="btn btn-ghost col-12">
                         {{'DASHBOARD.INVESTMENT.VERIFY_DETAILS' | translate}}</button>
                     </div>
                   </div>
