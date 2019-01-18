@@ -24,6 +24,7 @@ import { PortfolioRoutingModule } from './portfolio-routing.module';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
+import { StartJourneyComponent } from './start-journey/start-journey.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -60,7 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
     PortfolioRecommendationComponent,
     CurrencyInputPortfolioDirective,
     WhatsTheRiskComponent,
-    FundDetailsComponent
+    FundDetailsComponent,
+    StartJourneyComponent
     ],
   providers: [CurrencyPipe]
 })
