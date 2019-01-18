@@ -40,6 +40,8 @@ export class StartJourneyComponent implements OnInit {
   setPageTitle(title: string) {
     this.navbarService.setPageTitle(title);
   }
-
+  goNext() {
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.GET_STARTED_STEP1]);
+  }
 
 }
