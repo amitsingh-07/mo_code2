@@ -135,7 +135,7 @@
     "RETURN_TO_HOMEPAGE": "Return To Homepage"
   },
   "PRELOGIN_MODAL": {
-    "DESC": "To Continue, please log in or create a MoneyOwl account.",
+    "DESC": "To continue, please log in or create a MoneyOwl account.",
     "LOG_IN": "Log In",
     "CREATE_ACCOUNT": "Create Account"
   }
