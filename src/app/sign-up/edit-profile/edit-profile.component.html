@@ -140,7 +140,7 @@
             {{residentialAddress && residentialAddress.country && residentialAddress.country.name}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
+        <div class="section-margin" *ngIf="isCountrySIngapore(resNationality)">
           <div class="update-contact-title">
             {{'EDIT_PROFILE.POSTAL' | translate}}
           </div>
@@ -164,7 +164,7 @@
             {{residentialAddress && residentialAddress.addressLine2}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
+        <div class="section-margin" *ngIf="isCountrySIngapore(resNationality)">
           <div class="update-contact-title">
             {{'EDIT_PROFILE.FLOOR' | translate}}
           </div>
@@ -172,7 +172,7 @@
             {{residentialAddress && residentialAddress.floor}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="isCountrySIngapore(residentialAddress.country.nationalityCode)">
+        <div class="section-margin" *ngIf="isCountrySIngapore(resNationality)">
           <div class="update-contact-title">
             {{'EDIT_PROFILE.UNIT' | translate}}
           </div>
@@ -180,7 +180,7 @@
             {{residentialAddress && residentialAddress.unitNumber}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
+        <div class="section-margin" *ngIf="!isCountrySIngapore(resNationality)">
           <div class="update-contact-title">
             {{'EDIT_PROFILE.CITY' | translate}}
           </div>
@@ -188,7 +188,7 @@
             {{residentialAddress && residentialAddress.city}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
+        <div class="section-margin" *ngIf="!isCountrySIngapore(resNationality)">
           <div class="update-contact-title">
             {{'EDIT_PROFILE.STATE' | translate}}
           </div>
@@ -196,7 +196,7 @@
             {{residentialAddress && residentialAddress.state}}
           </div>
         </div>
-        <div class="section-margin" *ngIf="!isCountrySIngapore(residentialAddress.country.nationalityCode)">
+        <div class="section-margin" *ngIf="!isCountrySIngapore(resNationality)">
           <div class="update-contact-title">
             {{'EDIT_PROFILE.ZIP' | translate}}
           </div>
@@ -224,7 +224,7 @@
               {{mailingAddress &&mailingAddress.country && mailingAddress.country.name}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
+          <div class="section-margin" *ngIf="isCountrySIngapore(mailNationality)">
             <div class="update-contact-title">
               {{'EDIT_PROFILE.POSTAL' | translate}}
             </div>
@@ -248,7 +248,7 @@
               {{mailingAddress && mailingAddress.addressLine2}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
+          <div class="section-margin" *ngIf="isCountrySIngapore(mailNationality)">
             <div class="update-contact-title">
               {{'EDIT_PROFILE.FLOOR' | translate}}
             </div>
@@ -256,7 +256,7 @@
               {{mailingAddress && mailingAddress.floor}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="isCountrySIngapore(mailingAddress.country.nationalityCode)">
+          <div class="section-margin" *ngIf="isCountrySIngapore(mailNationality)">
             <div class="update-contact-title">
               {{'EDIT_PROFILE.UNIT' | translate}}
             </div>
@@ -264,7 +264,7 @@
               {{mailingAddress && mailingAddress.unitNumber}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
+          <div class="section-margin" *ngIf="!isCountrySIngapore(mailNationality)">
             <div class="update-contact-title">
               {{'EDIT_PROFILE.CITY' | translate}}
             </div>
@@ -272,7 +272,7 @@
               {{mailingAddress && mailingAddress.city}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
+          <div class="section-margin" *ngIf="!isCountrySIngapore(mailNationality)">
             <div class="update-contact-title">
               {{'EDIT_PROFILE.STATE' | translate}}
             </div>
@@ -280,7 +280,7 @@
               {{mailingAddress && mailingAddress.state}}
             </div>
           </div>
-          <div class="section-margin" *ngIf="!isCountrySIngapore(mailingAddress.country.nationalityCode)">
+          <div class="section-margin" *ngIf="!isCountrySIngapore(mailNationality)">
             <div class="update-contact-title">
               {{'EDIT_PROFILE.ZIP' | translate}}
             </div>
@@ -382,7 +382,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
+            <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
               <div class="update-contact-title">
                 {{'EDIT_PROFILE.POSTAL' | translate}}
               </div>
@@ -406,7 +406,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
               </div>
             </div>           
-            <div class="section-margin" *ngIf="isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
+            <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
               <div class="update-contact-title" >
                 {{'EDIT_PROFILE.UNIT' | translate}}
               </div>
@@ -414,7 +414,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
+            <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
               <div class="update-contact-title">
                 {{'EDIT_PROFILE.CITY' | translate}}
               </div>
@@ -422,7 +422,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
+            <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
               <div class="update-contact-title">
                 {{'EDIT_PROFILE.STATE' | translate}}
               </div>
@@ -430,7 +430,7 @@
                 {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
               </div>
             </div>
-            <div class="section-margin" *ngIf="!isCountrySIngapore(empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode)">
+            <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
               <div class="update-contact-title">
                 {{'EDIT_PROFILE.ZIP' | translate}}
               </div>

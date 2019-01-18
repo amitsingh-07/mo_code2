@@ -41,6 +41,10 @@ export class EditProfileComponent implements OnInit {
   isMailingAddressSame: boolean;
   isSingaporeResident: boolean;
   hiddenAccountNum: any;
+  resNationality: any;
+  mailNationality: any;
+  employerNationality: any;
+  pageTitle: any;
   constructor(
     // tslint:disable-next-line
     private formBuilder: FormBuilder,
@@ -53,22 +57,27 @@ export class EditProfileComponent implements OnInit {
     private router: Router,
     public authService: AuthenticationService,
     public investmentAccountService: InvestmentAccountService,
-    private translate: TranslateService) {
-    this.translate.use('en');
-    this.route.params.subscribe((params) => {
-    });
-    this.translate.get('COMMON').subscribe((result: string) => {
-    });
-    this.getNationalityCountryList();
+    public readonly translate: TranslateService) {
+      this.translate.use('en');
+      this.translate.get('COMMON').subscribe(() => {
+        this.pageTitle = this.translate.instant('EDIT_PROFILE.CONFIRMATION');
+        this.setPageTitle(this.pageTitle);
+      });
+      this.getNationalityCountryList();
   }
 
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(1);
+    this.navbarService.setNavbarMode(2);
+    this.setPageTitle(this.pageTitle);
     this.buildForgotPasswordForm();
     this.getEditProfileData();
     this.isMailingAddressSame = true;
   }
+  setPageTitle(title: string) {
+    this.navbarService.setPageTitle(title);
+  }
+
   showHidePassword(el) {
     if (el.type === 'password') {
       el.type = 'text';
@@ -105,7 +114,7 @@ export class EditProfileComponent implements OnInit {
       if (data.objectList.customerBankDetail) {
         this.bankDetails = data.objectList.customerBankDetail[0];
       }
-      if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress) {
+      if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress)) {
         this.mailingAddress = data.objectList.contactDetails.mailingAddress;
         this.isMailingAddressSame = false;
       }
@@ -128,6 +137,16 @@ export class EditProfileComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
         this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
+      }
+      if ( this.residentialAddress && this.residentialAddress.country &&  this.residentialAddress.country.nationalityCode ) {
+      this.resNationality = this.residentialAddress.country.nationalityCode;
+      }
+      if ( this.mailingAddress && this.mailingAddress.country && this.mailingAddress.country.nationalityCode) {
+      this.mailNationality = this.mailingAddress.country.nationalityCode;
+      }
+      // tslint:disable-next-line:max-line-length
+      if ( this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress &&  this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress &&  this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode ) {
+      this.employerNationality = this.empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.nationalityCode;
       }
     });
   }
