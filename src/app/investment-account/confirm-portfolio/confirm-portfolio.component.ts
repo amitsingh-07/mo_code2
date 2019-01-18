@@ -234,7 +234,9 @@ export class ConfirmPortfolioComponent implements OnInit {
   verifyAML() {
     const pepData = this.investmentAccountService.getPepData();
     this.investmentAccountService.verifyAML().subscribe((response) => {
-      this.investmentAccountService.setAccountCreationStatus(response.objectList.status);
+      if (response.objectList && response.objectList.status) {
+        this.investmentAccountService.setAccountCreationStatus(response.objectList.status);
+      }
       if (response.responseMessage.responseCode < 6000) { // ERROR SCENARIO
         if (response.responseMessage.responseCode === 5018
           || response.responseMessage.responseCode === 5019) {
