@@ -32,6 +32,17 @@
   <!-- <button type="button"  *ngIf="forgotPassword" class="action-button"   id="errorModeButton2" (click)="activeModal.dismiss('Cross click')">
     {{ 'LABEL.TRY_AGAIN' | translate}} 
   </button> -->
-
-
+  <!-- yes - or - no -->
+  <div class="flex-row flex-col-12 space-btwn" *ngIf="yesOrNoButton">
+    <div class="toggle-btn">
+        <button type="button" class="action-button " (click)="yesButtonClick()" id="errorModeButton">
+            Yes
+          </button>
+    </div>
+    <div class="toggle-btn">
+        <button type="button" class="action-button secondary-button" (click)="noButtonClick()" id="errorModeButton">
+            No
+          </button>
+    </div>
+  </div>
 </div>

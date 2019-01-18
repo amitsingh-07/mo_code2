@@ -17,14 +17,15 @@ import { GetStartedStep2Component } from './get-started-step2/get-started-step2.
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { MyFinancialsComponent } from './my-financials/my-financials.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { PortfolioExistComponent } from './portfolio-exist/portfolio-exist.component';
 import {
     PortfolioRecommendationComponent
 } from './portfolio-recommendation/portfolio-recommendation.component';
 import { PortfolioRoutingModule } from './portfolio-routing.module';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
-import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 import { StartJourneyComponent } from './start-journey/start-journey.component';
+import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
@@ -62,6 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
     CurrencyInputPortfolioDirective,
     WhatsTheRiskComponent,
     FundDetailsComponent,
+    PortfolioExistComponent,
     StartJourneyComponent
     ],
   providers: [CurrencyPipe]
