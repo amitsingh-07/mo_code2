@@ -894,6 +894,12 @@ button:active:focus {
         word-break: break-word;
         &:hover{
           background-color: #EAFAF9;
+          border:none;
+        }
+        &:active{
+          background-color: #EAFAF9;
+          border:none;
+          color: #00a7a7;
         }
       }
     }
