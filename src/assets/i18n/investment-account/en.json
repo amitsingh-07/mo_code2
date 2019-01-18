@@ -238,7 +238,7 @@
     "ASSET_ALLOCATION": "Asset Allocation",
     "ANNUAL_FEES": "Annual Fees",
     "FAQ_DESC_TEXT": "For more information, visit our FAQs.",
-    "REVIEW_SUB_TEXT": "Review your inputs or proceed to start investing in this portfolio.",
+    "CONFIRM_SUB_TEXT": "By clicking on Confirm, you will add this portfolio to your account.",
     "INVESTMENT_FUND_CONDITION": "Please note that your investment only starts after you have started funding your account.",
     "PORTFOLIO_PROJECTION_SUBTEXT": "Your investment returns may vary. The projected portfolio value ranges between {{ worst }} to {{ best }}. The average projected portfolio value is {{ median }}.",
     "NOW": "Now",
@@ -249,7 +249,7 @@
     "CAPITAL_INVESTED": "Capital Invested",
     "GRAPH_SUB_TEXT": "The graph shows the <strong>best, median and worst return</strong> that can be achieved <strong>75% of the time</strong> over your investment period.",
     "VIEW_FUND_DETAILS": "View Fund Details",
-    "TITLE": "Your Portfolio",
+    "TITLE": "Confirm Portfolio",
     "PORTFOLIO":"Portfolio",
     "ERRORS": {
       "MINIMUM_INITIAL_AMOUNT": "Please enter minimum One-time amount.",
