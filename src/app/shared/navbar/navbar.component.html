@@ -62,7 +62,7 @@
                 <span *ngIf="(navbarMode == 1 || navbarMode == 3)" class="navbar__menu-icon" [ngClass]="{'navbar__menu-icon-close': !isNavbarCollapsed}"></span>
                 </button>
       <ul *ngIf="(navbarMode == 2)" class="navbar-header hidden-lg" [ngClass]="{'top': subTitle}">
-        <div class="navbar__title--mobile superTitle">{{pageSuperTitle}}</div>
+        <div class="navbar__title--mobile superTitle" *ngIf="pageSuperTitle">{{pageSuperTitle}}</div>
         <div class="navbar__title--mobile">{{pageTitle}}</div>
         <div *ngIf="subTitle" class="navbar__subtitle--mobile">{{subTitle}}</div>
         <div class="navbar__helpIcon--mobile" *ngIf="helpIcon" (click)="showMobilePopUp()">
