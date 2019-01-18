@@ -94,15 +94,18 @@ export class EditProfileComponent implements OnInit {
   getEditProfileData() {
     this.signUpService.getEditProfileInfo().subscribe((data) => {
       this.entireUserData = data.objectList;
+      if (data.objectList) {
+      if ( data.objectList.personalInformation ) {
       this.personalData = data.objectList.personalInformation;
-      if (data.objectList.contactDetails.homeAddress) {
+      }
+      if (data.objectList && data.objectList.contactDetails && data.objectList.contactDetails.homeAddress) {
         this.residentialAddress = data.objectList.contactDetails.homeAddress;
       }
       this.empolymentDetails = data.objectList.employmentDetails;
       if (data.objectList.customerBankDetail) {
         this.bankDetails = data.objectList.customerBankDetail[0];
       }
-      if (data.objectList.contactDetails.mailingAddress) {
+      if ((data.objectList.contactDetails && data.objectList.contactDetails.mailingAddress) {
         this.mailingAddress = data.objectList.contactDetails.mailingAddress;
         this.isMailingAddressSame = false;
       }
@@ -110,16 +113,20 @@ export class EditProfileComponent implements OnInit {
         this.contactDetails = data.objectList.contactDetails;
       }
       console.log(this.personalData);
+      if (this.personalData) {
       this.setFullName(this.personalData.firstName, this.personalData.lastName);
       this.setTwoLetterProfileName(this.personalData.firstName, this.personalData.lastName);
       this.setNric(this.personalData.nricNumber);
       if ( this.personalData.passportNumber) {
       this.compinedPassport = 'Passport: ' + this.personalData.passportNumber;
       }
-      if (this.personalData) {
+      if (this.personalData &&  this.personalData.isSingaporeResident) {
         this.isSingaporeResident = this.personalData.isSingaporeResident;
       }
-      if (this.empolymentDetails.employerDetails.detailedemployerAddress) {
+    }
+    }
+      // tslint:disable-next-line:max-line-length
+      if (this.empolymentDetails && this.empolymentDetails.employerDetails && this.empolymentDetails.employerDetails.detailedemployerAddress) {
         this.employerAddress = this.empolymentDetails.employerDetails.detailedemployerAddress;
       }
     });
