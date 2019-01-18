@@ -111,6 +111,8 @@ app-risk-profile{
 .risk-profile-block {
     .container-fluid {
         padding-top: 30px !important;
+        padding-left:0px !important;
+        padding-right:0px !important;
         @include allmobiles {
             padding-top: 10px !important;
         }
@@ -134,20 +136,20 @@ app-risk-profile{
         @include tablet {
             .banner-image img {
                 max-width:90%;
-                margin: 20px
+                margin: 5px;
             }
         }
         @include allmobiles {
             .banner-image img {
                 max-width:70%;
-                margin: 20px
+                margin: 5px;
 
             }
         }
         @include iPadProPortrait {
             .banner-image img {
                 max-width:80%;
-                margin: 20px
+                margin: 5px;
 
             }
         }
@@ -155,6 +157,7 @@ app-risk-profile{
     .risk-profile-block__content__desc {
         // margin-top: 100px;
         text-align: left;
+        padding: 0px 30px;
         @include allmobiles {
             //margin-top: 45px;            text-align: center;
         }
@@ -179,7 +182,7 @@ app-risk-profile{
         font-size: 24px;
         line-height: normal;
         letter-spacing: -0.3px;
-        color: $white-color;
+        color: $teal-color;
         font-weight: bold;
         text-align: center;
     }
@@ -191,6 +194,7 @@ app-risk-profile{
         line-height: 23px;
         letter-spacing: -0.2px;
         color: $white-color;
+        margin-bottom:30px;
 
        
     }
@@ -225,6 +229,29 @@ app-risk-profile{
     max-width: 100%;
     height: auto;
     margin: auto;
-    padding-top: 10vh;
+    // padding-top: 10vh;
+}
+
+.risk-head{
+    font-size:19px;
+    font-family: $muli;
+    font-weight: bold;
+    letter-spacing: -0.2px;
+    margin-bottom:10px;
+}
+
+.risk-profile-title-block {
+    background-color:#fff;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-bottom:37px;
+}
+.risk-profile-title-block.invert {
+    background: none;
+    padding-bottom: 0px;
+    
+    .risk-profile-block__content__title{
+        color:$white-color;
+    }
 }
 }

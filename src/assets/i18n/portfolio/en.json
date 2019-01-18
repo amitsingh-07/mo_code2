@@ -126,7 +126,9 @@
   "RISK_PROFILE": {
     "TITLE": "Your Recommendation",
     "BUTTON_TITLE": "View My Portfolio",
-    "RETURN_TO_HOMEPAGE": "Return To Homepage"
+    "RETURN_TO_HOMEPAGE": "Return To Homepage",
+    "YOUR_RISK_APPETITE": "Your Risk Appetite",
+    "YOUR_PORTFOLIO_RECOMMENDATION": "Your Portfolio Recommendation"
   },
   "PRELOGIN_MODAL": {
     "DESC": "To continue, please log in or create a MoneyOwl account.",
