@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FundDetailsComponent } from './fund-details/fund-details.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import { MyFinancialsComponent } from './my-financials/my-financials.component';
@@ -25,8 +24,7 @@ const routes: Routes = [
   { path: PORTFOLIO_ROUTES.RISK_ASSESSMENT + '/:id', component: RiskAssessmentComponent },
   { path: PORTFOLIO_ROUTES.RISK_PROFILE, component: RiskProfileComponent },
   { path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION, component: PortfolioRecommendationComponent },
-  { path: PORTFOLIO_ROUTES.WHATS_THE_RISK, component: WhatsTheRiskComponent },
-  { path: PORTFOLIO_ROUTES.FUND_DETAILS, component: FundDetailsComponent }
+  { path: PORTFOLIO_ROUTES.WHATS_THE_RISK, component: WhatsTheRiskComponent }
 ];
 
 @NgModule({

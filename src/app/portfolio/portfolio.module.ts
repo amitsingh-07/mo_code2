@@ -11,7 +11,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { SharedModule } from '../shared/shared.module';
-import { FundDetailsComponent } from './fund-details/fund-details.component';
 import { GetStartedStep1Component } from './get-started-step1/get-started-step1.component';
 import { GetStartedStep2Component } from './get-started-step2/get-started-step2.component';
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
@@ -59,8 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
     IntroScreenComponent,
     PortfolioRecommendationComponent,
     CurrencyInputPortfolioDirective,
-    WhatsTheRiskComponent,
-    FundDetailsComponent
+    WhatsTheRiskComponent
     ],
   providers: [CurrencyPipe]
 })
