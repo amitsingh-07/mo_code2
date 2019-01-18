@@ -13,7 +13,6 @@ import {
 import { PORTFOLIO_ROUTES } from './portfolio-routes.constants';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
-
 import { StartJourneyComponent } from './start-journey/start-journey.component';
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 

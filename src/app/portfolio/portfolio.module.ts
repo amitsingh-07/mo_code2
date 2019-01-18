@@ -1,6 +1,3 @@
-import { NouisliderModule } from 'ng2-nouislider';
-import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -8,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NouisliderModule } from 'ng2-nouislider';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 import { CurrencyInputPortfolioDirective } from '../shared/directives/currency-input-p.directive';
 import { SharedModule } from '../shared/shared.module';
