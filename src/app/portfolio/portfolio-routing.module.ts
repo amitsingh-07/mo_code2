@@ -14,10 +14,11 @@ import { PORTFOLIO_ROUTES } from './portfolio-routes.constants';
 import { RiskAssessmentComponent } from './risk-assessment/risk-assessment.component';
 import { RiskProfileComponent } from './risk-profile/risk-profile.component';
 
+import { StartJourneyComponent } from './start-journey/start-journey.component';
 import { WhatsTheRiskComponent } from './whats-the-risk/whats-the-risk.component';
 
 const routes: Routes = [
-  { path: PORTFOLIO_ROUTES.ROOT, redirectTo: PORTFOLIO_ROUTES.GET_STARTED_STEP1, pathMatch: 'full' },
+  { path: PORTFOLIO_ROUTES.ROOT, redirectTo: PORTFOLIO_ROUTES.START, pathMatch: 'full' },
   { path: PORTFOLIO_ROUTES.GET_STARTED_STEP1, component: GetStartedStep1Component },
   { path: PORTFOLIO_ROUTES.PORTFOLIO_EXIST, component: PortfolioExistComponent },
   { path: PORTFOLIO_ROUTES.PERSONAL_INFO, component: PersonalInfoComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: PORTFOLIO_ROUTES.RISK_PROFILE, component: RiskProfileComponent },
   { path: PORTFOLIO_ROUTES.PORTFOLIO_RECOMMENDATION, component: PortfolioRecommendationComponent },
   { path: PORTFOLIO_ROUTES.WHATS_THE_RISK, component: WhatsTheRiskComponent },
-  { path: PORTFOLIO_ROUTES.FUND_DETAILS, component: FundDetailsComponent }
+  { path: PORTFOLIO_ROUTES.FUND_DETAILS, component: FundDetailsComponent },
+  { path: PORTFOLIO_ROUTES.START, component: StartJourneyComponent }
 ];
 
 @NgModule({

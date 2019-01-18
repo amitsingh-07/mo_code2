@@ -6,6 +6,12 @@
       "VIEW_DETAILS": "View Details"
     }
   },
+  "START": {
+    "DESC1": "Investments can help to grow your savings beyond bank deposit rates.",
+    "DESC2": "But you need to be able to ride out the ups and downs and stay invested to capture this higher return.",
+    "DESC3": "In the following steps, we help you discover your Risk Appetite – your ability, willingness and need to take risks – and match you to a suitable portfolio.",
+    "GETSTARTED": "Get Started"
+  },
   "GETSTARTED_STEP1": {
     "TITLE": "Step 1",
     "CAPTION": "Your Risk Ability",
@@ -129,7 +135,7 @@
     "RETURN_TO_HOMEPAGE": "Return To Homepage"
   },
   "PRELOGIN_MODAL": {
-    "DESC": "To Continue, please log in or create a MoneyOwl account.",
+    "DESC": "To continue, please log in or create a MoneyOwl account.",
     "LOG_IN": "Log In",
     "CREATE_ACCOUNT": "Create Account"
   }

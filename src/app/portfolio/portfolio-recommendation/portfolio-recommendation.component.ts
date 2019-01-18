@@ -127,7 +127,8 @@ export class PortfolioRecommendationComponent implements OnInit {
   constructUpdateInvestmentParams(data) {
     return {
       initialInvestment: parseFloat(data.oneTimeInvestment),
-      monthlyInvestment: parseFloat(data.monthlyInvestment)
+      monthlyInvestment: parseFloat(data.monthlyInvestment),
+      enquiryId: this.authService.getEnquiryId()
     };
   }
 
@@ -204,5 +205,9 @@ export class PortfolioRecommendationComponent implements OnInit {
     } else {
       this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.POSTLOGIN]);
     }
+  }
+
+  investmentFAQ() {
+    this.router.navigate( ['/faq'], {fragment: 'investment'});
   }
 }

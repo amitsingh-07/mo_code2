@@ -876,6 +876,10 @@ button:active:focus {
     }
   }
   .dropdown-menu {
+    @include allmobiles{
+        // list on scroll
+        z-index: 999;
+    }
     &.show{
       right: 0 !important;
       overflow: auto;
@@ -883,6 +887,7 @@ button:active:focus {
       max-height: 264px;
       padding-top: 0;
       padding-bottom: 0;
+      margin-bottom: 70px;
       .dropdown-item {
         padding: 10px 14.4px;
         white-space: normal;
