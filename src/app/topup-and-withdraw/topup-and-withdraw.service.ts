@@ -279,11 +279,11 @@ export class TopupAndWithDrawService {
   }
 
   constructBuyPortfolioForMonthly(data) {
-    let monthlyInvestment: number;
-    monthlyInvestment = data.monthlyInvestment;
+    let monthlyInvestmentAmount: number;
+    monthlyInvestmentAmount = data.monthlyInvestment;
     return {
       portfolioId: data.portfolio.productCode,
-      monthlyInvestment: Number(monthlyInvestment), // todo
+      monthlyInvestmentAmount: Number(monthlyInvestmentAmount), // todo
 
     };
   }
