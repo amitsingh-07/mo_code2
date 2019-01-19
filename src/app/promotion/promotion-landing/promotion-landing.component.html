@@ -1,0 +1,55 @@
+<div class="promotion__wrapper">
+  <div class="sub-navigation">
+    <div class="sub-navigation--inner pdlr">
+      <span routerLink="/">{{'PROMO_BREADCRUMBS.HOME' | translate}}</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+      <span>{{'PROMO_BREADCRUMBS.PROMOTIONS' | translate}}</span>
+      </div>
+    </div>
+  <div class="banner">
+    <div class="banner-bg"></div>
+    <div class="banner-container">
+        <h1 class="banner--title">{{'PROMO_LANDING.TITLE' | translate}}</h1>
+      </div>
+    </div>
+  <div class="promo-category__container">
+    <div class="promo-category__inner-container"> 
+      <p>{{'PROMO_LANDING.CATEGORY_LABEL' | translate}}</p>
+      <div ngbDropdown>
+          <button class="" id="dropdownBasic1" ngbDropdownToggle>{{categorySelectTxt}}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button class="dropdown-item" *ngFor="let category of categoryList; let i = index" (click)="selectCategory(i)">{{category}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="promo-landing-content__container">
+    <div class="promo-content__inner-container" *ngFor="let promoCategory of promoList; let i = index" [ngClass]="{'active': (categorySelect == i+1 || categorySelect == 0)}">
+      <div class="promo-header__container">
+        <h2 class="title">{{promoCategory.title}} Promotions</h2>
+        <h3 class="sub-title">{{promoCategory.subTitle}}</h3>
+        </div>
+      <div class="promo-body__container">
+        <div *ngFor="let promoCard of promoCategory.promotions" class="promo__card-element">
+          <div class="promo-card__header">
+            <img class="promo-card--bg" src="{{promoCard.thumbnail}}"/>
+          </div>
+          <div class="promo-card__body">
+            <div *ngIf="!promoCard.external" class="promo-card--insurer">
+              <img src="{{promoCard.logo}}">
+              </div>
+            <p class="promo-card--title">{{promoCard.title}}</p>
+            <div class="promo-card--desc">
+                <p class="promo-card--summary">{{promoCard.desc}}</p>
+                <button *ngIf="promoCard.external" class="promo-card--btn" (click)="goToPromo(promoCard.url)">{{'PROMO_LANDING.MORE_DETAILS' | translate}}</button>
+                <button *ngIf="!promoCard.external" class="promo-card--btn" routerLink="/promotions/{{promoCard.promoId}}">
+                  {{'PROMO_LANDING.MORE_DETAILS' | translate}}
+                  </button>  
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div>

@@ -4,12 +4,14 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
+import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.component';
 
 import { AppService } from './app.service';
 import { IComponentCanDeactivate } from './changes.guard';
 import { FBPixelService } from './shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from './shared/analytics/google-analytics.service';
 import { LoggerService } from './shared/logger/logger.service';
+import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import { PopupModalComponent } from './shared/modal/popup-modal/popup-modal.component';
 import { RoutingService } from './shared/Services/routing.service';
 
@@ -26,7 +28,8 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   constructor(
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
     private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
-    private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location) {
+    private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
+    private defaultError: DefaultErrors) {
     this.translate.setDefaultLang('en');
   }
 
@@ -59,6 +62,7 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
   onActivate(event) {
     window.scroll(0, 0);
   }
+
 
   triggerPopup() {
     this.modalRef = this.modal.open(PopupModalComponent, {

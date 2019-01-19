@@ -26,8 +26,10 @@ import { HostListener } from '@angular/core';
 
 import { ConsoleLoggerService } from '../../shared/logger/console-logger.service';
 
+import {
+  ModelWithButtonComponent
+} from '../../shared/modal/model-with-button/model-with-button.component';
 import { SignUpService } from '../../sign-up/sign-up.service';
-
 @Component({
   selector: 'app-your-investment',
   templateUrl: './your-investment.component.html',
@@ -128,6 +130,21 @@ export class YourInvestmentComponent implements OnInit {
   ClosedPopup() {
     this.showAlretPopUp = false;
 
+  }
+  deletePortfolio() {
+    const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
+    ref.componentInstance.errorTitle = 'Delete Portfolio';
+    // tslint:disable-next-line:max-line-length
+    ref.componentInstance.errorMessage = 'Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?';
+    ref.componentInstance.yesOrNoButton = 'Yes';
+    ref.componentInstance.yesClickAction.subscribe(() => {
+    alert('Yes');
+
+  });
+    ref.componentInstance.noClickAction.subscribe(() => {
+    alert('No');
+
+  });
   }
   selectOption(option) {
     if (option.id === 1) {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { throwError } from 'rxjs';
+import { EMPTY, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
@@ -45,6 +45,11 @@ export class AuthenticationService {
   }
 
   authenticate() {
+    // Avoid duplicate authentication calls
+    if (this.isAuthenticated()) {
+      return EMPTY;
+    }
+
     const authenticateBody = {
       email: '',
       mobile: '',
@@ -74,6 +79,13 @@ export class AuthenticationService {
     if (sessionStorage) {
       sessionStorage.setItem(appConstants.APP_JWT_TOKEN_KEY, auth.securityToken);
       sessionStorage.setItem(appConstants.APP_SESSION_ID_KEY, auth.sessionId);
+    }
+  }
+
+  clearAuthDetails() {
+    if (sessionStorage) {
+      sessionStorage.removeItem(appConstants.APP_JWT_TOKEN_KEY);
+      sessionStorage.removeItem(appConstants.APP_SESSION_ID_KEY);
     }
   }
 
