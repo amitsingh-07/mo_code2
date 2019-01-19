@@ -9,4 +9,5 @@ export interface IEnvironment {
     gtagPropertyId: string;
     gaPropertyId: string;
     fbPropertyId: string;
+    projectG ?: boolean;
 }
