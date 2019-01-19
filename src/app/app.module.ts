@@ -1,3 +1,4 @@
+import { DefaultErrors } from './shared/modal/error-modal/default-errors';
 import 'hammerjs';
 
 import { CurrencyPipe, HashLocationStrategy, LocationStrategy, TitleCasePipe } from '@angular/common';
@@ -145,7 +146,7 @@ export function tokenGetterFn() {
   ],
   providers: [
     NgbActiveModal, AuthenticationService, CustomErrorHandlerService, RequestCache,
-    AppService, TitleCasePipe, PendingChangesGuard,
+    AppService, TitleCasePipe, PendingChangesGuard, DefaultErrors,
     ArticleService,
     { provide: LoggerService, useClass: ConsoleLoggerService },
     { provide: LocationStrategy, useClass: HashLocationStrategy },

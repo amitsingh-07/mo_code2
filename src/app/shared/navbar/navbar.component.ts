@@ -3,7 +3,7 @@ import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2,
   ViewChild
 } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
@@ -26,6 +26,7 @@ import { NavbarService } from './navbar.service';
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
+  browserError: boolean;
   showMobileNavbar = false;
   navbarMode: number;
   showNavShadow: boolean;
@@ -67,6 +68,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private signUpService: SignUpService, private authService: AuthenticationService,
     private modal: NgbModal,
     private appService: AppService) {
+    this.browserCheck();
     config.autoClose = true;
     this.navbarService.getNavbarEvent.subscribe((data) => {
       this.navbarService.setNavbarDetails(this.NavBar);
@@ -168,9 +170,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       this._location.back();
     }
   }
-
-  goToHome() {
-    this.router.navigate([appConstants.homePageUrl]);
+  goToLink(fragment) {
+    console.log(fragment);
+  }
+  goToHome(in_fragment?: string) {
+    if (in_fragment) {
+      const extra = { fragment: in_fragment } as NavigationExtras;
+      this.router.navigate([appConstants.homePageUrl], extra);
+    } else {
+      this.router.navigate([appConstants.homePageUrl]);
+    }
   }
 
   openDropdown(dropdown) {
@@ -236,8 +245,24 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   clearLoginDetails() {
     this.signUpService.setUserProfileInfo(null);
     this.isLoggedIn = false;
+    this.authService.clearAuthDetails();
     this.appService.clearData();
     this.appService.startAppSession();
     this.router.navigate([appConstants.homePageUrl]);
+  }
+
+  browserCheck() {
+    const ua = navigator.userAgent;
+    /* MSIE used to detect old browsers and Trident used to newer ones*/
+    const is_ie = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
+
+    if (is_ie) {
+      this.browserError = true;
+    } else {
+      this.browserError = false;
+    }
+  }
+  closeBrowserError() {
+    this.browserError = false;
   }
 }
