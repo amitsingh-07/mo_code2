@@ -9,6 +9,7 @@ export const environment: IEnvironment = {
   production: false,
   isDebugMode: true,
   apiBaseUrl: '',
+  apiBaseUrl2: '',
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
   myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
