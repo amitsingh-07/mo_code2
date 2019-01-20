@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { throwError } from 'rxjs';
+import { EMPTY, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { RegexConstants } from '../../../shared/utils/api.regex.constants';
@@ -46,7 +46,7 @@ export class AuthenticationService {
   authenticate() {
     // Avoid duplicate authentication calls
     if (this.isAuthenticated()) {
-      return;
+      return EMPTY;
     }
 
     const authenticateBody = {
