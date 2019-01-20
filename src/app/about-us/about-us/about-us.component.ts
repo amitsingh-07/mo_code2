@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-
 import { TranslateService } from '@ngx-translate/core';
+
+import { ConfigService } from './../../config/config.service';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
@@ -17,8 +18,13 @@ export class AboutUsComponent implements OnInit {
   public people: any;
 
   constructor(private navbarService: NavbarService, private footerService: FooterService, private seoService: SeoServiceService,
-              public translate: TranslateService, private title: Title, private meta: Meta) {
-              this.translate.use('en');
+              public translate: TranslateService, private title: Title, private meta: Meta, private configService: ConfigService) {
+
+              this.configService.getConfig().subscribe((config) => {
+                this.translate.setDefaultLang(config.language);
+                this.translate.use(config.language);
+              });
+
               this.translate.get('COMMON').subscribe((result: string) => {
                 // tslint:disable-next-line:no-duplicate-string
                 this.pageTitle = this.translate.instant('ABOUT_US.TITLE');

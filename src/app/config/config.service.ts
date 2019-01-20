@@ -7,6 +7,7 @@ import { IProductCategory } from '../direct/product-info/product-category/produc
 import { HospitalPlan } from '../guide-me/hospital-plan/hospital-plan';
 
 export interface IConfig {
+  language: string;
   useMyInfo: boolean;
   maintenanceEnabled: boolean;
   promotionEnabled: boolean;
