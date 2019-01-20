@@ -12,7 +12,9 @@ export const environment: IEnvironment = {
   myInfoClientId: 'STG2-MYINFO-SELF-TEST',
   myInfoCallbackBaseUrl: 'https://localhost:3001',
   myInfoAuthorizeUrl: 'https://myinfosgstg.api.gov.sg/test/v2/authorise',
-  gaPropertyId: 'UA-125256446-1'
+  gaPropertyId: 'UA-125256446-1',
+  adRollPropertyId: 'IJWYLBK7MZGF7JMIJ2CP3K',
+  adRollAdvId: 'J4Q6YE7JGFEZRKPTQGHN6D',
 };
 
 /*
