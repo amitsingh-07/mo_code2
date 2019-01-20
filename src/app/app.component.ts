@@ -8,6 +8,7 @@ import { ErrorModalComponent } from './shared/modal/error-modal/error-modal.comp
 
 import { AppService } from './app.service';
 import { IComponentCanDeactivate } from './changes.guard';
+import { ConfigService, IConfig } from './config/config.service';
 import { FBPixelService } from './shared/analytics/fb-pixel.service';
 import { GoogleAnalyticsService } from './shared/analytics/google-analytics.service';
 import { LoggerService } from './shared/logger/logger.service';
@@ -29,8 +30,11 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private log: LoggerService, private translate: TranslateService, private appService: AppService,
     private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
-    private defaultError: DefaultErrors) {
-    this.translate.setDefaultLang('en');
+    private defaultError: DefaultErrors, private configService: ConfigService) {
+    this.translate.setDefaultLang('g');
+    this.configService.getConfig().subscribe((config: IConfig) => {
+      this.translate.use(config.language);
+    });
   }
 
   ngOnInit() {
@@ -55,14 +59,13 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
             this.modalRef.close();
           }
         }
-      }
+    }
     });
   }
 
   onActivate(event) {
     window.scroll(0, 0);
   }
-
 
   triggerPopup() {
     this.modalRef = this.modal.open(PopupModalComponent, {

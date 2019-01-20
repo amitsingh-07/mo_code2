@@ -1,3 +1,4 @@
+import { ConfigService } from './../../config/config.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -23,11 +24,15 @@ export class PromotionLandingComponent implements OnInit {
 
   constructor(
     public navbarService: NavbarService, private router: Router,
-    public footerService: FooterService,
+    public footerService: FooterService, private configService: ConfigService,
     private translate: TranslateService,
     private promotionService: PromotionService,
     private promotionApiService: PromotionApiService) {
       this.selectCategory(0);
+      this.configService.getConfig().subscribe((config) => {
+        this.translate.setDefaultLang(config.language);
+        this.translate.use(config.language);
+      });
     }
 
   @HostListener('window:resize', [])
@@ -39,7 +44,6 @@ export class PromotionLandingComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.translate.use('en');
     this.navbarService.setNavbarMobileVisibility(true);
     this.navbarService.setNavbarVisibility(true);
     this.navbarService.setNavbarMode(1);
