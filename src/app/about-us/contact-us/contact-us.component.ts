@@ -29,7 +29,7 @@ export class ContactUsComponent implements OnInit {
   subjectPreset = 'Choose a Subject*';
 
   public subjectItems: any;
-  private sendSuccess = false;
+  public sendSuccess = false;
 
   constructor(
     public navbarService: NavbarService,
