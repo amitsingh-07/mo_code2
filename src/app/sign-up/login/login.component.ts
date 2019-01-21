@@ -158,10 +158,17 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
               this.signUpService.setUserProfileInfo(userInfo.objectList);
 
               // Investment status
-              const investmentStatus = userInfo.objectList.investementDetails
+              let investmentStatus = userInfo.objectList.investementDetails
                 && userInfo.objectList.investementDetails.account
                 && userInfo.objectList.investementDetails.account.accountStatus ?
                 userInfo.objectList.investementDetails.account.accountStatus : null;
+              if (investmentStatus === null || !investmentStatus) {
+                if (userInfo.objectList.investementDetails &&
+                  userInfo.objectList.investementDetails.portfolios &&
+                  userInfo.objectList.investementDetails.portfolios.length > 0) {
+                  investmentStatus = SIGN_UP_CONFIG.INVESTMENT.RECOMMENDED;
+                }
+              }
 
               const redirect_url = this.signUpService.getRedirectUrl();
               if (redirect_url) {

@@ -2,7 +2,7 @@
 @import '../../../../mixins';
 
 .annual-fees{
-    padding-top: 33px;
+    padding-top: 33px !important;
     .title{
       font-family: $muli-bold;
       font-size: 18px;

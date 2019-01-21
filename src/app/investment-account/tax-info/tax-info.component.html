@@ -77,7 +77,7 @@
                 <div ngbDropdown>
 
                   <button class="btn btn-dropdown" ngbDropdownToggle>
-                    <span *ngIf=" taxInfoItem.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{taxInfoItem.controls.noTinReason.value.name | titlecase }}</span>
+                    <span *ngIf=" taxInfoItem.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">{{taxInfoItem.controls.noTinReason.value.name}}</span>
                     <span *ngIf="! taxInfoItem.controls.noTinReason.value" class="dependent-count" id="tax_Info_dropdown_country">Select</span>
                     <!-- <span class="dependent-count" id="select_nationality_dropdown_defaltvalue">Select Country</span> -->
 
@@ -113,7 +113,7 @@
             </button>
           </div> -->
           <div class="thumb-close-icon"  (click)="removeTaxForm(taxInfoForm , x)">
-              <img src="../../../assets/images/close.svg" alt="x" />
+              <img src="../../../assets/images/close-button-dark.svg" alt="x" />
           </div>
           <!-- <img src="assets/images/close-button-dark.svg"> -->
         </div>

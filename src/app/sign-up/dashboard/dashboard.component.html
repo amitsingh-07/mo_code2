@@ -85,9 +85,7 @@
                       <button type="button" (click)="goToDocUpload()" class="btn btn-ghost col-12">{{'DASHBOARD.INVESTMENT.UPDATE' | translate}}</button>
                     </div>
                   </div>
-
-                 
-                  <!-- CDD CHECK IS ONGOING -->
+                  <!-- CDD CHECK IS ONGOING EDD ONGOING -->
                   <div class="pending col-12" *ngIf="showCddCheckOngoing">
                     <div class="warning-txt">
                       <div>{{'DASHBOARD.INVESTMENT.CDD_CHECK_ONGOING' | translate}}</div>
@@ -114,39 +112,47 @@
                     </div>
                   </div>
                   <!-- Suspended Account -->
-                  <div class="suspended col-12" *ngIf=false>
+                  <div class="suspended col-12" *ngIf=showSuspendedAccount>
                     <div class="warning-txt">
                       <div innerHTML="{{'DASHBOARD.INVESTMENT.SUSPENDED_INVESTMENT_ACCOUNT' | translate}}"> </div>
                     </div>
                   </div>
-                  <!-- Compliance Rejected Account or  -->
+                  <!--Blocked nationality -->
                   <div class="compliance col-12" *ngIf=showBlockedNationalityStatus>
                     <div class="warning-txt">
                       <div innerHTML="{{'DASHBOARD.INVESTMENT.UNSUCCESSFUL_INVESTMENT_ACCOUNT' | translate}}" div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-               <!-- THIS SENARIO IS NOT COVERED  -->
-               <div class="no_portfolio col-12" *ngIf="false">
-                  <div class="warning-txt">
-                    <div class="flex-col-8">
-                      {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
-                    <div class="flex-col-4">
-                      <div class="investment_icon">
-                        <img src="assets/images/investment-account/investment-icon.svg" />
+                  <!-- Compliance Rejected Account or EDD check fail  -->
+                  <div class="compliance col-12" *ngIf=showEddCheckFailStatus>
+                    <div class="warning-txt">
+                      <div innerHTML="{{'DASHBOARD.INVESTMENT.UNSUCCESSFUL_INVESTMENT_ACCOUNT' | translate}}" div>
                       </div>
                     </div>
                   </div>
-                  <div class="flex">
-                    <button type="button" class="btn btn-primary col-12">
-                      <div>{{'DASHBOARD.INVESTMENT.ADD_PORTFOLIO' | translate}}</div>
-                      <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_THREE_MINS' | translate}}</div>
-                    </button>
+
+                </div>
+              </div>
+
+              <!-- THIS SENARIO IS NOT COVERED  -->
+              <div class="no_portfolio col-12" *ngIf="false">
+                <div class="warning-txt">
+                  <div class="flex-col-8">
+                    {{'DASHBOARD.INVESTMENT.CREATE_YOUR_PORTFOLIO_DESC' | translate}}</div>
+                  <div class="flex-col-4">
+                    <div class="investment_icon">
+                      <img src="assets/images/investment-account/investment-icon.svg" />
+                    </div>
                   </div>
                 </div>
+                <div class="flex">
+                  <button type="button" class="btn btn-primary col-12">
+                    <div>{{'DASHBOARD.INVESTMENT.ADD_PORTFOLIO' | translate}}</div>
+                    <div>{{'DASHBOARD.INVESTMENT.ESTIMATED_THREE_MINS' | translate}}</div>
+                  </button>
+                </div>
+              </div>
               <!-- investmet end -->
               <div class="widget" *ngIf="false">
                 <div class="widget-title">
