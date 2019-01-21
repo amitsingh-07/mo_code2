@@ -141,7 +141,7 @@
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "WITHDRAW_PAYMENT_METHOD": {
-    "TITLE": "Choose Payment Method",
+    "TITLE": "Bank Details",
     "SELECT": "Select",
     "BY_BANK_TRANSFER_LBL1": "By Bank",
     "BY_BANK_TRANSFER_LBL2": "Transfer",
