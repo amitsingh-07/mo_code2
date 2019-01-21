@@ -26,11 +26,11 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button *ngIf="!employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border grey"
+                      <button *ngIf="!employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border"
                         id="employement_details_status-drpdown" ngbDropdownToggle>
                         Select
                       </button>
-                      <button *ngIf="employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border grey"
+                      <button *ngIf="employementDetailsForm.controls.employmentStatus.value" class="btn btn-dropdown without-border"
                         id="employement_details_status-drpdown" ngbDropdownToggle>
                         {{employementDetailsForm.controls.employmentStatus.value}}
                       </button>
@@ -66,9 +66,8 @@
                   <div class="flex-col-7">
                     <div class="dropdown-control employe-dropdown-control" [ngClass]="{'inline-error': !employementDetailsForm.get('industry').valid && !employementDetailsForm.get('industry').pristine}">
                       <div ngbDropdown>
-                        <button class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown"
+                        <button class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
                           ngbDropdownToggle>
-
                           <span *ngIf="!employementDetailsForm.controls.industry.value">Select Industry</span>
                           <span *ngIf="employementDetailsForm.controls.industry.value">{{employementDetailsForm.controls.industry.value.industry
                             | titlecase}}</span>
@@ -112,7 +111,7 @@
                   <div class="flex-col-7" [ngClass]="{'inline-error': employementDetailsForm.get('occupation').enabled && !employementDetailsForm.get('occupation').valid && !employementDetailsForm.get('occupation').pristine}">
                     <div class="dropdown-control employe-dropdown-control">
                       <div ngbDropdown>
-                        <button [disabled]="isDisabled()" class="btn btn-dropdown without-border grey" id="employement_details_status-drpdown"
+                        <button [disabled]="isDisabled()" class="btn btn-dropdown without-border" id="employement_details_status-drpdown"
                           ngbDropdownToggle>
                           <span *ngIf="!employementDetailsForm.controls.occupation.value">Select Occupation</span>
                           <span *ngIf="employementDetailsForm.controls.occupation.value">{{employementDetailsForm.controls.occupation.value.occupation
@@ -170,7 +169,7 @@
                       <div class="flex-col-7">
                         <div class="dropdown-control">
                           <div ngbDropdown>
-                            <button class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                            <button class="btn btn-dropdown without-border" id="residentialAddress-country-drpdown"
                               ngbDropdownToggle>{{employementDetailsForm.controls.employeaddress.controls.empCountry.value.name
                               | titlecase}}
                             </button>
