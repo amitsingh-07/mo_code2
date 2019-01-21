@@ -49,8 +49,6 @@
                         <span *ngIf="withdrawForm.controls.withdrawPortfolio.value">{{withdrawForm.controls.withdrawPortfolio.value.productName}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
-                        <button class="dropdown-item" (click)="setDropDownValue('withdrawPortfolio','')" id="withdraw-type-option-select">{{ 'WITHDRAW.SELECT_PORTFOLIO' |
-                            translate}}</button>
                         <button class="dropdown-item" *ngFor="let portfolio of portfolioList; let i = index;" (click)="setDropDownValue('withdrawPortfolio',portfolio)"
                           id="withdraw-portfolio-option-{{i}}">{{portfolio.productName}}</button>
                       </div>
