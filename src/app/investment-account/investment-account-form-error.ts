@@ -75,17 +75,36 @@ export class InvestmentAccountFormError {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
                 errorTitle: 'Invalid Address Line 1',
+                 // tslint:disable-next-line:no-duplicate-string
                 errorMessage: 'Enter Address Line 1'
             },
             pattern: {
                 errorTitle: 'Invalid Address Line 1',
-                errorMessage: 'Address Line 1 should not contain special characters.'
+                errorMessage: 'Address Line 1 should contain  alphanumeric and  Special characters.'
             }
         },
         address2: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Address Line 2',
+                 // tslint:disable-next-line:no-duplicate-string
+                errorMessage: 'Enter Address Line 2'
+            },
             pattern: {
                 errorTitle: 'Invalid Address Line 2',
-                errorMessage: 'Address Line 2 should not contain special characters.'
+                errorMessage: 'Address Line 2 should contain  alphanumeric and  Special characters.'
+            }
+        },
+        floor: {
+            pattern: {
+                errorTitle: 'Invalid  Floor',
+                errorMessage: 'Floor should contain Symbol and Number.'
+            }
+        },
+        unitNo: {
+            pattern: {
+                errorTitle: 'Invalid  unitNo',
+                errorMessage: 'Unit No. should contain Symbol and Number.'
             }
         },
         mailAddress1: {
@@ -95,13 +114,30 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid mail Address Line 1',
-                errorMessage: 'Address Line 1 should not contain special characters in mailing address.'
+                errorMessage: 'Address Line 1 should contain  alphanumeric and  Special characters in mailing address.'
             }
         },
         mailAddress2: {
+            required: {
+                errorTitle: 'Invalid Address Line 2 in mailing address',
+                errorMessage: 'Enter Address Line 2 in mailing address'
+            },
             pattern: {
                 errorTitle: 'Invalid mail Address Line 2',
-                errorMessage: 'Address Line 2 should not contain special characters in mailing address.'
+                errorMessage: 'Address Line 2 should contain  alphanumeric and  Special characters in mailing address.'
+            }
+        },
+        mailFloor: {
+            pattern: {
+                errorTitle: 'Invalid mailFloor',
+                errorMessage: 'Floor should contain Symbol and Number.'
+            }
+        },
+
+        mailUnitNo: {
+            pattern: {
+                errorTitle: 'Invalid  mailUnitNo',
+                errorMessage: 'Unit No. should contain Symbol and Number.'
             }
         },
         city: {
