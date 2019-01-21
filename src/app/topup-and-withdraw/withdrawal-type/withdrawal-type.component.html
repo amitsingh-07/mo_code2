@@ -21,7 +21,7 @@
                         <span *ngIf="withdrawForm.controls.withdrawType.value">{{withdrawForm.controls.withdrawType.value.name}}</span>
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="withdrawDropDown">
-                        <button class="dropdown-item" (click)="setDropDownValue('withdrawType','')" id="withdraw-type-option-select">{{ 'WITHDRAW.SELECT_TYPE' | translate}}</button>
+                        <!-- <button class="dropdown-item" (click)="setDropDownValue('withdrawType','')" id="withdraw-type-option-select">{{ 'WITHDRAW.SELECT_TYPE' | translate}}</button> -->
                         <button class="dropdown-item" *ngFor="let type of withdrawalTypes; let i = index;" (click)="setDropDownValue('withdrawType',type, i)"
                           id="withdraw-type-option-{{i}}">{{type.name}}</button>
                       </div>
@@ -98,13 +98,14 @@
                       </div>
                   </div>
                 </div>
+                <div class="cash-balance flex-row">
+                    <span *ngIf="!isFromPortfolio">{{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:</span> <span *ngIf="!isFromPortfolio">{{cashBalance | currency}}</span>
+                    <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:</span>
+                        <span *ngIf="isFromPortfolio">{{withdrawForm.controls.withdrawPortfolio.value.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
+                  </div>
               </div>
 
-              <div class="cash-balance flex-row">
-                  <span *ngIf="!isFromPortfolio">{{ 'WITHDRAW.CASH_ACCOUNT_BALANCE' | translate}}:</span> <span *ngIf="!isFromPortfolio">{{cashBalance | currency}}</span>
-                  <span *ngIf="isFromPortfolio">{{ 'WITHDRAW.PORTFOLIO_VALUE' | translate}}:</span>
-                      <span *ngIf="isFromPortfolio">{{withdrawForm.controls.withdrawPortfolio.value.currentValue | currency:'USD':'symbol-narrow':'1.0-2'}}</span>
-                </div>
+              
           </form>
         </div>
       </div>
