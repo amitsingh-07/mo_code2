@@ -26,7 +26,7 @@
                 <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('annualHouseHoldIncomeRange').valid && !financialDetails.get('annualHouseHoldIncomeRange').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button [disabled]="isDisabled()" ngbDropdownToggle class="btn btn-dropdown without-border grey" id="financial_details-annual_house_hold_drpdown"> 
+                      <button [disabled]="isDisabled()" ngbDropdownToggle class="btn btn-dropdown without-border" id="financial_details-annual_house_hold_drpdown"> 
                         {{financialDetails.controls.annualHouseHoldIncomeRange.value  ? financialDetails.controls.annualHouseHoldIncomeRange.value.name :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -50,7 +50,7 @@
                 <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('numberOfHouseHoldMembers').valid && !financialDetails.get('numberOfHouseHoldMembers').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
                   {{(financialDetails.controls.numberOfHouseHoldMembers.value == '' || financialDetails.controls.numberOfHouseHoldMembers.value)  ? financialDetails.controls.numberOfHouseHoldMembers.value  :'Select Number'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
@@ -73,7 +73,7 @@
                 <div class="flex-col-7" [ngClass]="{'inline-error': !financialDetails.get('salaryRange').valid && !financialDetails.get('salaryRange').pristine}">
                   <div class="dropdown-control">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
+                      <button class="btn btn-dropdown without-border" id="financial_details_number_of_house_members-drpdown" ngbDropdownToggle>
                   {{(financialDetails.controls.salaryRange.value == '' || financialDetails.controls.salaryRange.value)  ? financialDetails.controls.salaryRange.value.name  :'Select Range'}}
                       </button>
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">

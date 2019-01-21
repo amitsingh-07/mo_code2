@@ -58,7 +58,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Enter valid Postal Code'
+                errorMessage: 'The postal code you entered is invalid'
             }
         },
         mailPostalCode: {
@@ -68,7 +68,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Enter valid Postal Code'
+                errorMessage: 'The postal code you entered is invalid in mailing address'
             }
         },
         address1: {
@@ -152,7 +152,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Zip Code',
-                errorMessage: 'Zip Code should not contain special characters.'
+                errorMessage: 'Zip Code you entered is invalid.'
             }
         },
         mailZipCode: {
@@ -163,7 +163,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Zip Code in mailing address',
-                errorMessage: 'Zip Code should not contain special characters in mailing address.'
+                errorMessage: 'Zip Code you entered is invalid in mailing address.'
             }
         },
         tinNumber: {
@@ -174,7 +174,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid TIN Number',
-                errorMessage: 'TIN Number should not contain special characters.'
+                errorMessage: 'TIN Number you entered is invalid.'
             }
         },
         taxCountry: {
@@ -338,7 +338,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid  Contact Number',
-                errorMessage: 'Enter valid Contact Number'
+                errorMessage: 'Contact Number you entered is invalid.'
             }
         },
         empPostalCode: {
@@ -349,7 +349,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Postal Code',
-                errorMessage: 'Enter valid Postal Code'
+                errorMessage: 'The postal code you entered is invalid'
             }
         },
         empAddress1: {
@@ -631,7 +631,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Zip Code',
-                errorMessage: 'Zip Code should not contain special characters.'
+                errorMessage: 'Zip Code you entered is invalid.'
             }
         },
         salaryRange: {
