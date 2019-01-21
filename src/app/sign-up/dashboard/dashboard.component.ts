@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   showBlockedNationalityStatus = false;
   showSetupAccount = false;
   showCddCheckFail = false;
+  showEddCheckFailStatus = false;
   totalValue: any;
   totalReturns: any;
   totalInvested: any;
@@ -153,16 +154,8 @@ export class DashboardComponent implements OnInit {
         this.showCddCheckOngoing = true;
         break;
       }
-      case 'MO_CHECK_PENDING': {
-        this.showCddCheckOngoing = true;
-        break;
-      }
       case 'RECOMMENDED': {
         this.showSetupAccount = true;
-        break;
-      }
-      case 'SUSPENDED_ACCOUNT': {
-        this.showSuspendedAccount = true;
         break;
       }
       case 'CDD_CHECK_FAILED': {
@@ -175,6 +168,14 @@ export class DashboardComponent implements OnInit {
       }
       case 'EDD_CHECK_PENDING': {
         this.showCddCheckOngoing = true;
+        break;
+      }
+      case 'EDD_CHECK_FAILED': {
+        this.showEddCheckFailStatus = true;
+        break;
+      }
+      case 'SUSPENDED_ACCOUNT': {
+        this.showSuspendedAccount = true;
         break;
       }
       case 'ADD_POERFOLIO': {
