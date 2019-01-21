@@ -83,7 +83,7 @@
                       <input readonly (click)="toggleDate(dobInput, expiryInput)" class="form-control" placeholder="DD / MM / YYYY"
                         formControlName="dob" name="dp" ngbDatepicker #dobInput="ngbDatepicker" id="invPersInfoInpt7">
                       <div class="input-group-append">
-                        <button (click)="toggleDate(dobInput, expiryInput)" class="btn btn-primary" type="button" id="invPersInfoBtn1">
+                        <button (click)="toggleDate(dobInput, expiryInput)" [disabled]="!invPersonalInfoForm.get('dob').enabled" class="btn btn-primary" type="button" id="invPersInfoBtn1">
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('dob').valid || invPersonalInfoForm.get('dob').pristine"
                             src="./assets/images/calendar-normal.svg" />
                           <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine"
