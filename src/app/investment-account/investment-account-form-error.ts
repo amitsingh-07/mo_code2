@@ -329,6 +329,13 @@ export class InvestmentAccountFormError {
                 errorMessage: 'Select your Source of investment funds'
             }
         },
+        employmentStatus: {
+            required: {
+                // tslint:disable-next-line:no-duplicate-string
+                errorTitle: 'Invalid Source of Employment Status ',
+                errorMessage: 'Select Employment Status.'
+            }
+        },
         companyName: {
             required: {
                 // tslint:disable-next-line:no-duplicate-string
