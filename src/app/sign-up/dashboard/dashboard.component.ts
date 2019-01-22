@@ -116,12 +116,13 @@ export class DashboardComponent implements OnInit {
   getCountryList(data) {
     const countryList = [];
     data.forEach((nationality) => {
-      nationality.countries.forEach((country) => {
-        countryList.push(country);
-      });
-    });
+        if (!nationality.blocked) {
+        nationality.countries.forEach((country) => {
+            countryList.push(country);
+        });
+    }});
     return countryList;
-  }
+ }
   goToInvestmentAccount() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
