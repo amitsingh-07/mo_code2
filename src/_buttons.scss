@@ -887,13 +887,19 @@ button:active:focus {
       max-height: 264px;
       padding-top: 0;
       padding-bottom: 0;
-      margin-bottom: 70px;
+      margin-bottom: 100px;
       .dropdown-item {
         padding: 10px 14.4px;
         white-space: normal;
         word-break: break-word;
         &:hover{
           background-color: #EAFAF9;
+          border:none;
+        }
+        &:active{
+          background-color: #EAFAF9;
+          border:none;
+          color: #00a7a7;
         }
       }
     }

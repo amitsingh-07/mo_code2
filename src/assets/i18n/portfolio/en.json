@@ -71,7 +71,7 @@
     },
     "helpData": {
       "modalTitle": "Emergency Fund",
-      "modalDesc": "Emergency fund is money that <b>must</b> be set aside to <b>cover your living expenses</b> for a period of <b>at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
+      "modalDesc": "Emergency Fund is money that must be set aside to <b>cover your living expenses for a period of at least 3 months</b>. In the event of an emergency, such as a loss of income, the emergency fund helps cover some of your expenses."
     },
     "QUESTATION": "Do you have at least 3 months’ worth of Emergency Fund?"
   },
@@ -132,7 +132,9 @@
   "RISK_PROFILE": {
     "TITLE": "Your Recommendation",
     "BUTTON_TITLE": "View My Portfolio",
-    "RETURN_TO_HOMEPAGE": "Return To Homepage"
+    "RETURN_TO_HOMEPAGE": "Return To Homepage",
+    "YOUR_RISK_APPETITE": "Your Risk Appetite",
+    "YOUR_PORTFOLIO_RECOMMENDATION": "Your Portfolio Recommendation"
   },
   "PRELOGIN_MODAL": {
     "DESC": "To continue, please log in or create a MoneyOwl account.",

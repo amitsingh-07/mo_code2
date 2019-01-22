@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   showBlockedNationalityStatus = false;
   showSetupAccount = false;
   showCddCheckFail = false;
+  showEddCheckFailStatus = false;
   totalValue: any;
   totalReturns: any;
   totalInvested: any;
@@ -126,10 +127,17 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashboardList() {
-    const investmentStatus = this.userProfileInfo.investementDetails
+    let investmentStatus = this.userProfileInfo.investementDetails
       && this.userProfileInfo.investementDetails.account
       && this.userProfileInfo.investementDetails.account.accountStatus ?
       this.userProfileInfo.investementDetails.account.accountStatus : null;
+    if (investmentStatus === null || !investmentStatus) {
+      if (this.userProfileInfo.investementDetails &&
+        this.userProfileInfo.investementDetails.portfolios &&
+        this.userProfileInfo.investementDetails.portfolios.length > 0) {
+        investmentStatus = 'RECOMMENDED';
+      }
+    }
     if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
@@ -153,16 +161,12 @@ export class DashboardComponent implements OnInit {
         this.showCddCheckOngoing = true;
         break;
       }
-      case 'MO_CHECK_PENDING': {
-        this.showCddCheckOngoing = true;
-        break;
-      }
       case 'RECOMMENDED': {
         this.showSetupAccount = true;
         break;
       }
-      case 'SUSPENDED_ACCOUNT': {
-        this.showSuspendedAccount = true;
+      case 'ACCEPTED_NATIONALITY': {
+        this.showSetupAccount = true;
         break;
       }
       case 'CDD_CHECK_FAILED': {
@@ -175,6 +179,14 @@ export class DashboardComponent implements OnInit {
       }
       case 'EDD_CHECK_PENDING': {
         this.showCddCheckOngoing = true;
+        break;
+      }
+      case 'EDD_CHECK_FAILED': {
+        this.showEddCheckFailStatus = true;
+        break;
+      }
+      case 'SUSPENDED_ACCOUNT': {
+        this.showSuspendedAccount = true;
         break;
       }
       case 'ADD_POERFOLIO': {

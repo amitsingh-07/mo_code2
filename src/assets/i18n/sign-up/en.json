@@ -262,7 +262,8 @@
         "BANK": "Bank Name",
         "BANK_ACC": " Bank Account",
         "NO_BANK": "No bank added",
-        "ADD_BANK": " Add Bank"
+        "ADD_BANK": " Add Bank",
+        "CONFIRMATION": "Confirmation"
     },
     "ADD_BANK": {
         "ACCOUNT_NAME": "Account Holders Name",

@@ -22,7 +22,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': !invPersonalInfoForm.get('salutation').valid && !invPersonalInfoForm.get('salutation').pristine}">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="salutation-drpdown"
+                      <button class="btn btn-dropdown without-border" id="salutation-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.salutation.value">
                           {{'PERSONAL_INFO.SELECT_SALUTATION'  | translate}}
@@ -83,7 +83,7 @@
                       <input readonly (click)="toggleDate(dobInput, expiryInput)" class="form-control" placeholder="DD / MM / YYYY"
                         formControlName="dob" name="dp" ngbDatepicker #dobInput="ngbDatepicker" id="invPersInfoInpt7">
                       <div class="input-group-append">
-                        <button (click)="toggleDate(dobInput, expiryInput)" class="btn btn-primary" type="button" id="invPersInfoBtn1">
+                        <button (click)="toggleDate(dobInput, expiryInput)" [disabled]="!invPersonalInfoForm.get('dob').enabled" class="btn btn-primary" type="button" id="invPersInfoBtn1">
                           <img class="date-picker-image--valid" id="invPersInfoImg1" *ngIf="invPersonalInfoForm.get('dob').valid || invPersonalInfoForm.get('dob').pristine"
                             src="./assets/images/calendar-normal.svg" />
                           <img class="date-picker-image--invalid" id="invPersInfoImg1" *ngIf="!invPersonalInfoForm.get('dob').valid && !invPersonalInfoForm.get('dob').pristine"
@@ -127,7 +127,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="birth-country-drpdown"
+                      <button class="btn btn-dropdown without-border" id="birth-country-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.birthCountry.value">
                             {{'PERSONAL_INFO.SELECT_BIRTH_COUNTRY' | translate}}
@@ -163,7 +163,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportIssuedCountry').enabled && !invPersonalInfoForm.get('passportIssuedCountry').valid && !invPersonalInfoForm.get('passportIssuedCountry').pristine}">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="passport-issued-country-drpdown"
+                      <button class="btn btn-dropdown without-border" id="passport-issued-country-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.passportIssuedCountry.value">
                             {{ 'PERSONAL_INFO.SELECT_PASSPORT_ISSUED_COUNTRY' | translate }}
@@ -214,7 +214,7 @@
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('race').enabled && !invPersonalInfoForm.get('race').valid && !invPersonalInfoForm.get('race').pristine}">
                     <div ngbDropdown>
-                      <button class="btn btn-dropdown without-border grey" id="race-drpdown"
+                      <button class="btn btn-dropdown without-border" id="race-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.race.value">
                             {{ 'PERSONAL_INFO.SELECT_RACE' | translate }}

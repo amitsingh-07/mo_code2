@@ -1,10 +1,9 @@
+import { FundDetailsComponent } from 'src/app/portfolio/fund-details/fund-details.component';
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../../../topup-and-withdraw/topup-and-withdraw-routes.constants';
-
-import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.constants';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-allocation',
@@ -12,7 +11,7 @@ import { PORTFOLIO_ROUTE_PATHS } from '../../../portfolio/portfolio-routes.const
   styleUrls: ['./allocation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AllocationComponent implements OnInit {
+export class AllocationComponent implements OnInit, OnChanges {
   @Input('assets') assets;
   @Input('funds') funds;
   @Input('colors') colors;
@@ -22,9 +21,13 @@ export class AllocationComponent implements OnInit {
 
   constructor(
     private portfolioService: PortfolioService,
-    private router: Router) { }
+    private router: Router,
+    public modal: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
       allocation.groupedAllocationDetails = groupedAllocation;
@@ -44,15 +47,11 @@ export class AllocationComponent implements OnInit {
     return groupObjects;
   }
 
-  viewFundDetails() {
-    this.portfolioService.setFundDetails(this.funds);
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.FUND_DETAILS]);
-  }
 
-  // accordian
-  test(event) {
-    event === 'event1' ? this.event1 = !this.event1 : '';
-    event === 'event2' ? this.event2 = !this.event2 : '';
+  showFundDetails() {
+    this.portfolioService.setFundDetails(this.funds);
+    const ref = this.modal.open(FundDetailsComponent, { centered: true, windowClass: 'full-height' });
+    return false;
   }
 
   showHidePanel(accordionEle, panelId, panelHeadEle) {
@@ -62,6 +61,5 @@ export class AllocationComponent implements OnInit {
     } else { // Closed State
       panelHeadEle.currentTarget.classList.add('active');
     }
-
   }
 }
