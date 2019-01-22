@@ -240,7 +240,7 @@
                     },
                     {
                         "QUESTION": "How can I start investing?",
-                        "ANSWER": "<ol type=\"a\"><li>Visit <a href=\"https://www.moneyowl.com.sg\">www.moneyowl.com.sg</a> and start your investment journey to discover which portfolio is suitable for you</li><li>You will have to set up your MoneyOwl Account before setting up your Investment Account.</li><li>Transfer monies into your Investment Cash Account to start investing!</li><ul>"
+                        "ANSWER": "<ol class=\"text--normal\" type=\"a\"><li>Visit <a href=\"https://www.moneyowl.com.sg\">www.moneyowl.com.sg</a> and start your investment journey to discover which portfolio is suitable for you</li><li>You will have to set up your MoneyOwl Account before setting up your Investment Account.</li><li>Transfer monies into your Investment Cash Account to start investing!</li><ul>"
                     },
                     {
                         "QUESTION": "What is an Investment Cash Account?",
@@ -256,7 +256,7 @@
                     },
                     {
                         "QUESTION": "I am not a Singaporean/PR. Can I open an account?",
-                        "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p>Please note that this list may be updated from time to time.</p></ol>"
+                        "ANSWER": "<p>Yes, you can. However, please note that we do not accept applications from the following nationalities or tax residencies.</p><ol class=\"text--normal\" type=\"a\"><li>United States of America Citizen/Permanent Resident/Tax Resident</li><li>Citizens from Afghanistan, Angola, Bosnia, Democratic Republic of the Congo, Eritrea, Guinea Bissau, Haiti, Herzegovina, Iran, Iraq, Laos, Libya, North Korea, Somalia, South Sudan, Sudan, Syria, Turkmenistan, Uganda, Uzbekistan, Vanuatu, Venezuela and Yemen.</li><p>Please note that this list may be updated from time to time.</p></ol>"
                     },
                     {
                         "QUESTION": "Can I open multiple MoneyOwl Accounts?",

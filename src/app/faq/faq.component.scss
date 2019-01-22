@@ -416,3 +416,11 @@
     letter-spacing: -0.2px;
     color: #4a4a4a;
 }
+
+
+ol.text--normal{
+    li{
+        font-weight:normal !important;
+        font-family:$muli-regular;
+    }
+}
