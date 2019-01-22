@@ -191,7 +191,12 @@ hr{
 }
 
 }
-
+.btn{
+  &:disabled{
+     background-color: #3bbcbc;
+     color: #00a7a7;
+   }
+}
 .investmentSlider {
   .noUi-target {
     height: 50px !important;
