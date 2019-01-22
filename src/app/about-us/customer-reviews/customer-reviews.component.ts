@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FooterService } from './../../shared/footer/footer.service';
 import { NavbarService } from './../../shared/navbar/navbar.service';
 
+import { ConfigService } from 'src/app/config/config.service';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
 import { AboutUsApiService } from './../about-us.api.service';
 import { AboutUsService } from './../about-us.service';
@@ -17,10 +18,14 @@ import { ICustomerReview } from './customer-reviews.interface';
 export class CustomerReviewsComponent implements OnInit {
   customerReviewList: ICustomerReview[];
 
-  constructor(public navbarService: NavbarService, public footerService: FooterService,
+  constructor(public navbarService: NavbarService, public footerService: FooterService, private configService: ConfigService,
               public aboutUsApiService: AboutUsApiService, private aboutUsService: AboutUsService,
               private seoService: SeoServiceService, private translate: TranslateService) {
-                this.translate.use('en');
+
+                this.configService.getConfig().subscribe((config) => {
+                  this.translate.setDefaultLang(config.language);
+                  this.translate.use(config.language);
+                });
                 this.translate.get('COMMON').subscribe((result: string) => {
                   // meta tag and title
                   this.seoService.setTitle(this.translate.instant('CUSTOMER_REVIEWS.TITLE'));
