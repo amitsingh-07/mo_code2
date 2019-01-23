@@ -31,8 +31,9 @@ export class AppComponent implements IComponentCanDeactivate, OnInit, AfterViewI
     private facebookPixelService: FBPixelService, private googleAnalyticsService: GoogleAnalyticsService,
     private modal: NgbModal, public route: Router, public routingService: RoutingService, private location: Location,
     private defaultError: DefaultErrors, private configService: ConfigService) {
-    this.translate.setDefaultLang('g');
+    this.translate.setDefaultLang('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
+      this.translate.setDefaultLang(config.language);
       this.translate.use(config.language);
     });
   }
