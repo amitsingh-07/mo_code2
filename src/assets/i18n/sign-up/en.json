@@ -205,6 +205,7 @@
             "TIME": "8mins",
             "TOTAL_PORTFOLIO": "Total Portfolio Value",
             "TOTAL_AMOUNT_INVESTED": "Total Amount Invested",
+            "CASH_ACCOUNT_BALANCE":"Cash Account Balance",
             "TOTAL_RETURNS": "Total Returns",
             "PENDING_DOC_UPLOAD_DESC": "To proceed, please upload your verification documents required.",
             "UPDATE": "Update",
