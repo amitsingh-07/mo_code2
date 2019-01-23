@@ -27,6 +27,7 @@ export class FundDetailsComponent implements OnInit {
   showArrow = false;
   fund;
   fundDetail: any;
+  prospectusFile: any;
 
   constructor(
     public readonly translate: TranslateService,
@@ -58,8 +59,11 @@ export class FundDetailsComponent implements OnInit {
   }
 
   getFactSheetLink(fund) {
-    const factsheetFileName = fund.split('|')[1];
+    const factsheetFileName = fund.split('|')[0];
     return window.location.origin + '/assets/docs/portfolio/fund/' + factsheetFileName;
-
+  }
+  getProspectusLink(prospectus) {
+    const ProspectusName = prospectus.split('|')[1];
+    return window.location.origin + '/assets/docs/portfolio/fund/' + ProspectusName;
   }
 }
