@@ -17,13 +17,6 @@
         }
         .sub-navigation--inner {
             @include minMobilemaxPhablet{
-                span{
-                    color:$white-color;
-                }
-                
-                i{
-                    color:$white-color;
-                }
             }
         }
     }
