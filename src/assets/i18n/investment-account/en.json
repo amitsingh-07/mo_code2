@@ -277,6 +277,10 @@
     "BACK": "Back To Dashboard"
   },
   "INVESTMENT_ACCOUNT_MYINFO": {
+    "TAB_BUTTON": {
+      "LABEL": "Autofill Forms Via",
+      "TIME": "Estimate about 5 mins"
+    },
     "OPEN_MODAL_DATA": {
       "TITLE": "Autofill Forms via MyInfo",
       "DESCRIPTION": "By signing in to MyInfo, <strong>information that you have previously entered will be overwritten</strong>.<br/><br/>Would you like to proceed?",

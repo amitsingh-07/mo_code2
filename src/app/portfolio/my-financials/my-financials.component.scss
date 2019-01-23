@@ -96,6 +96,13 @@ app-my-financials {
       }
     }
   }
+
+  .btn{
+   &:disabled{
+      background-color: #3bbcbc;
+      color: #00a7a7;
+    }
+}
 }
 
 .modal {

@@ -19,6 +19,7 @@ import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
 
 
+
 @Component({
     selector: 'app-select-nationality',
     templateUrl: './select-nationality.component.html',
@@ -123,12 +124,13 @@ export class SelectNationalityComponent implements OnInit {
     getCountryList(data) {
         const countryList = [];
         data.forEach((nationality) => {
+            if (!nationality.blocked) {
             nationality.countries.forEach((country) => {
                 countryList.push(country);
             });
-        });
+        }});
         return countryList;
-    }
+     }
 
     save(form) {
         const singaporeanResident = form.controls.singaporeanResident ? form.controls.singaporeanResident.value : false;
