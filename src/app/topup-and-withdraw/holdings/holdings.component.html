@@ -39,11 +39,11 @@
                 <div class="value_lab" for="tota" id="investment_overview_total_invested_lbl">{{ 'HOLDINGS.NAV' | translate}}
                 </div>
               </div>
-              <div class="flex-col-4" *ngIf="holding.investmentAmount">
-                <div class="value" for="name" id="investment_overview_total_invested__value">{{holding.investmentAmount | currency:'USD':'symbol-narrow':'1.0-2'}}
+              <div class="flex-col-4" *ngIf="holding.indicativePrice">
+                <div class="value" for="name" id="investment_overview_total_invested__value">{{holding.indicativePrice | currency:'USD':'symbol-narrow':'1.0-2'}}
                 </div>
               </div>
-              <div class="flex-col-4"*ngIf="!holding.investmentAmount">
+              <div class="flex-col-4"*ngIf="!holding.indicativePrice">
                   <div class="value" for="name" id="investment_overview_total_invested__value">$0  <!-- todo -->
                     
                   </div>

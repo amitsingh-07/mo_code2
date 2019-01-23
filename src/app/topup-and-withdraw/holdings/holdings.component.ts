@@ -31,12 +31,9 @@ import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 export class HoldingsComponent implements OnInit {
   pageTitle: string;
   holidings;
-  availableUnits: any;
-  currentValue: any;
-  investmentAmount: any;
+  
 
-
-  constructor(
+ constructor(
     public readonly translate: TranslateService,
     public headerService: HeaderService,
     private formBuilder: FormBuilder,
