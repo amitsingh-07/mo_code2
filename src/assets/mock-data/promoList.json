@@ -37,31 +37,5 @@
         "date_expiry": "2019-03-31 23:59:59",
         "tag" : ["Insurance", "Protection"],
         "external": false
-    },
-    {
-        "promoId": 4,
-        "type": 1,
-        "owner": "Aviva",
-        "title": "Enjoy 20% perpetual premium discount with purchase of Aviva MyFamilyCover (Extended)",
-        "thumbnail": "/assets/promotions/images/4/thumbnail.jpg",
-        "banner": "/assets/promotions/images/4/banner.jpg",
-        "desc":  "20% premium discount with min. annual premium of $225",
-        "date_created": "2019-01-15 00:00:00",
-        "date_expiry": "2019-03-31 23:59:59",
-        "tag" : ["Insurance", "Protection"],
-        "external": false
-    },
-    {
-        "promoId": 5,
-        "type": 1,
-        "owner": "Manulife",
-        "title": "Enjoy 15% Premium Discount for ManuProtect Decreasing",
-        "thumbnail": "/assets/promotions/images/5/thumbnail.jpg",
-        "banner": "/assets/promotions/images/5/banner.jpg",
-        "desc":  "15% premium discount for coverage of $1million and above",
-        "date_created": "2019-01-15 00:00:00",
-        "date_expiry": "2019-03-15 23:59:59",
-        "tag" : ["Insurance", "Protection"],
-        "external": false
     }
 ]
