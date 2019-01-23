@@ -689,6 +689,14 @@ export class ApiService {
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
+  // tslint:disable-next-line:no-identical-functions ONETIME INVESTMENT API
+  deletePortfolio(data) {
+    // need to change the correct endpoint
+    return this.http.post(apiConstants.endpoint.investmentAccount.deletePortfolio + '?handleError=true', data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError(error))
+      );
+  }
   // tslint:disable-next-line:no-identical-functions MONTHLY INVESTMENT API
   monthlyInvestment(data) {
     return this.http.post(apiConstants.endpoint.investmentAccount.monthlyInvestment + '?handleError=true', data)

@@ -86,11 +86,13 @@
     "TOTAL_OF": "Total of",
     "YOUR_PORTFOLIOS": "Your Portfolio(s)",
     "PORTFOLIO_VALUES": "Portfolio Value",
-    "NO_INVESTMENT_YET": "Your portfolio has not started.",
+    "NO_INVESTMENT_YET": "Please transfer your money to your account to start investing.",
     "ADD_PORTFOLIO": "Add Portfolio",
     "MORE": "More",
     "REMEMBER": "Remember to top up your portfolio by",
-    "HOW_TO_FUND_YOUR_ACCOUNT": "How to fund your account?"
+    "HOW_TO_FUND_YOUR_ACCOUNT": "How to fund your account?",
+    "DELETE": "Delete Portfolio",
+    "DELETE_TXT": "Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?"
   },
   "YOUR_PORTFOLIO": {
     "TITLE": "Your Portfolio",
