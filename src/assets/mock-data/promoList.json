@@ -7,8 +7,8 @@
         "thumbnail": "/assets/promotions/images/1/thumbnail.jpg",
         "banner": "/assets/promotions/images/1/banner.jpg",
         "desc": "Enjoy lifetime discount with Occupational Disability coverage!",
-        "date_created": "2019-01-15 00:00:00",
-        "date_expiry": "2019-03-31 23:59:59",
+        "date_created": "1547481600000",
+        "date_expiry": "1554047999000",
         "tag" : ["Insurance", "Protection"],
         "external": false
     },
@@ -20,8 +20,8 @@
         "thumbnail": "/assets/promotions/images/2/thumbnail.jpg",
         "banner": "/assets/promotions/images/2/banner.jpg",
         "desc":  "Get S$100 off your first year's premium with long-term care coverage!",
-        "date_created": "2019-01-15 00:00:00",
-        "date_expiry": "2019-03-31 23:59:59",
+        "date_created": "1547481600000",
+        "date_expiry": "1554047999000",
         "tag" : ["Insurance", "Protection"],
         "external": false
     },
@@ -33,34 +33,8 @@
         "thumbnail": "/assets/promotions/images/3/thumbnail.jpg",
         "banner": "/assets/promotions/images/3/banner.jpg",
         "desc":  "5% premium discount for coverage above $1.1 mil.",
-        "date_created": "2019-01-15 00:00:00",
-        "date_expiry": "2019-03-31 23:59:59",
-        "tag" : ["Insurance", "Protection"],
-        "external": false
-    },
-    {
-        "promoId": 4,
-        "type": 1,
-        "owner": "Aviva",
-        "title": "Enjoy 20% perpetual premium discount with purchase of Aviva MyFamilyCover (Extended)",
-        "thumbnail": "/assets/promotions/images/4/thumbnail.jpg",
-        "banner": "/assets/promotions/images/4/banner.jpg",
-        "desc":  "20% premium discount with min. annual premium of $225",
-        "date_created": "2019-01-15 00:00:00",
-        "date_expiry": "2019-03-31 23:59:59",
-        "tag" : ["Insurance", "Protection"],
-        "external": false
-    },
-    {
-        "promoId": 5,
-        "type": 1,
-        "owner": "Manulife",
-        "title": "Enjoy 15% Premium Discount for ManuProtect Decreasing",
-        "thumbnail": "/assets/promotions/images/5/thumbnail.jpg",
-        "banner": "/assets/promotions/images/5/banner.jpg",
-        "desc":  "15% premium discount for coverage of $1million and above",
-        "date_created": "2019-01-15 00:00:00",
-        "date_expiry": "2019-03-15 23:59:59",
+        "date_created": "1547481600000",
+        "date_expiry": "1554047999000",
         "tag" : ["Insurance", "Protection"],
         "external": false
     }
