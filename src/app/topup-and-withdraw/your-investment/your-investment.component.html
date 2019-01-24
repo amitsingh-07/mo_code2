@@ -146,10 +146,12 @@
                     <div class="callout-arrow"></div>
                   </div>
                 </div>
+                 <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'RECOMMENDED'" -->
                 <div class="top_alert">
                   <img id="close_icon" id="investment_overview_topup_icon" src="../../../assets/images/investment-account/topup-alert.svg"
                     alt="" (click)="alertPopUp(i)" />
                 </div>
+                <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus !== 'EXPIRED'" -->
                 <div class="forward_img">
                   <img id="investment_overview_forward_icon_two" src="../../../assets/images/investment-account/forward_portfolio.svg" alt=""
                     (click)="yourPortfolio(portfolio)" />
@@ -159,11 +161,15 @@
             <div class="form-group-with-bg--content your_portfolio_value_content">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <div id="investment_not_yet_start">{{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}</div>
+                    <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'RECOMMENDED'" -->
+                  <div  id="investment_not_yet_start">{{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}</div>
+                  <div  *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'EXPIRED'" id="investment_not_yet_start">{{'YOUR_INVESTMENT.EXPIRED' | translate}}</div>
+                  <div  *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'PENDING'" id="investment_not_yet_start">{{'YOUR_INVESTMENT.IN_PROGRESS' | translate}}</div>
                 </div>
               </div>
               <hr>
-              <div class="portfolio_footer">
+              <!-- *ngIf="portfolio.portfolioStatus && portfolio.portfolioStatus === 'EXPIRED' ||  portfolio.portfolioStatus === 'RECOMMENDED' "  -->
+              <div class="portfolio_footer" >
                 <button type="button" (click)="deletePortfolio(portfolio)" class="btn btn-primary width100">{{'YOUR_INVESTMENT.DELETE' | translate}}</button>
               </div>
             </div>
