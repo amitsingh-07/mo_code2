@@ -1,3 +1,4 @@
+import { ConfigService } from './../../config/config.service';
 import { SeoServiceService } from './../../shared/Services/seo-service.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -28,7 +29,7 @@ export class ContactUsComponent implements OnInit {
   subjectPreset = 'Choose a Subject*';
 
   public subjectItems: any;
-  sendSuccess = false;
+  public sendSuccess = false;
 
   constructor(
     public navbarService: NavbarService,
@@ -38,14 +39,16 @@ export class ContactUsComponent implements OnInit {
     public translate: TranslateService,
     public authService: AuthenticationService,
     private formBuilder: FormBuilder,
+    private configService: ConfigService,
     private seoService: SeoServiceService
     ) {
-      this.authService.authenticate().subscribe((response) => {});
-      this.aboutUsApiService.getSubjectList().subscribe((data) => {
-        this.subjectItems = this.aboutUsService.getSubject(data);
-        console.log(this.subjectItems);
+      this.authService.authenticate();
+
+      this.configService.getConfig().subscribe((config) => {
+        this.translate.setDefaultLang(config.language);
+        this.translate.use(config.language);
       });
-      this.translate.use('en');
+
       this.translate.get('COMMON').subscribe((result: string) => {
         this.contactUsErrorMessage = this.translate.instant('ERROR.CONTACT_US.EMPTY_TEXT');
         // meta tag and title
@@ -64,8 +67,10 @@ export class ContactUsComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.sendSuccess = false;
     this.footerService.setFooterVisibility(true);
+    this.aboutUsApiService.getSubjectList().subscribe((data) => {
+      this.subjectItems = this.aboutUsService.getSubject(data);
+    });
   }
 
   selectSubject(in_subject) {
