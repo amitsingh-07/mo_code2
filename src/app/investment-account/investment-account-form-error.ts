@@ -344,7 +344,7 @@ export class InvestmentAccountFormError {
             },
             pattern: {
                 errorTitle: 'Invalid Company Name',
-                errorMessage: 'Company Name should not contain numbers and special characters'
+                errorMessage: 'Company Name should not contain special characters'
             }
         },
         occupation: {
