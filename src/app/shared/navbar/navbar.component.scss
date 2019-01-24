@@ -54,6 +54,8 @@ left: 15px;
 
 right: 15px;
 
+z-index: 9;
+
 box-shadow: 0 6px 14px 0 rgba(0,0,0,0.5);
 
 &__arrow {
@@ -184,4 +186,11 @@ border-bottom-right-radius: 6px;
     padding: 10px 20px;
     text-align: center;
     font-family: $muli;
+}
+
+.mobile-menu {
+    position: absolute;
+    top: 45px;
+    background-color: #fff;
+    z-index: 3;
 }

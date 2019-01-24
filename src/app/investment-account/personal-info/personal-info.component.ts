@@ -15,6 +15,7 @@ import { InvestmentAccountCommon } from '../investment-account-common';
 import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../investment-account-routes.constants';
 import { InvestmentAccountService } from '../investment-account-service';
 import { INVESTMENT_ACCOUNT_CONFIG } from '../investment-account.constant';
+import { FooterService } from 'src/app/shared/footer/footer.service';
 
 @Component({
   selector: 'app-inv-personal-info',
@@ -46,6 +47,7 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
     private myInfoService: MyInfoService,
     private formBuilder: FormBuilder,
     public navbarService: NavbarService,
+    public footerService: FooterService,
     private config: NgbDatepickerConfig,
     private modal: NgbModal,
     private signUpService: SignUpService,
@@ -67,7 +69,8 @@ export class PersonalInfoComponent implements IPageComponent, OnInit {
   }
   ngOnInit() {
     this.navbarService.setNavbarMobileVisibility(true);
-    this.navbarService.setNavbarMode(2);
+    this.navbarService.setNavbarMode(6);
+    this.footerService.setFooterVisibility(false);
     this.setOptionList();
     // get profile
     this.formValues = this.investmentAccountService.getInvestmentAccountFormData();
