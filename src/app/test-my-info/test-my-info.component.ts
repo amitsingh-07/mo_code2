@@ -21,6 +21,7 @@ export class TestMyInfoComponent implements OnInit {
   assetsTotal = 0;
   cpfValue;
   pageTitle: string;
+  project: string;
   constructor(
     private guideMeService: GuideMeService, private guideMeApiService: GuideMeApiService,
     public navbarService: NavbarService,
@@ -35,6 +36,8 @@ export class TestMyInfoComponent implements OnInit {
     });
   }
   ngOnInit() {
+    // Robo2 changes
+    this.project = this.route.snapshot.queryParams.project;
     this.testMyInfoForm = new FormGroup({
       cpf: new FormControl('')
     });
@@ -43,24 +46,41 @@ export class TestMyInfoComponent implements OnInit {
     this.myInfoService.changeListener.subscribe((myinfoObj: any) => {
       if (myinfoObj && myinfoObj !== '') {
         if (myinfoObj.status && myinfoObj.status === 'SUCCESS' && this.myInfoService.isMyInfoEnabled) {
-          this.myInfoService.getMyInfoData().subscribe((data) => {
-            if (data && data['objectList']) {
-              this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
-              this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
-              this.myInfoService.isMyInfoEnabled = false;
-              this.setFormTotalValue();
-              this.closeMyInfoPopup();
-              } else {
-                this.closeMyInfoPopup();
-              }
-          }, (error) => {
+          // Todo - Robo2 changes
+          if (this.project === 'robo2') {
             this.closeMyInfoPopup();
-          });
+            window.opener.postMessage(myinfoObj.authorizeCode, '*');
+            // tslint:disable-next-line:max-line-length
+            // window.location.href = 'https://bfa-uat2.ntucbfa.com/#/myinfo?code=' + myinfoObj.authorizeCode + '&scope=occupation%20mailadd%20passportnumber%20nationality%20dob%20name%20regadd%20passportexpirydate%20householdincome%20sex%20employment&iss=https%3A%2F%2Fstg-home.singpass.gov.sg%2Fconsent%2Foauth2%2Fconsent%2Fmyinfo-com&state=149&client_id=myinfo';
+          } else {
+            this.myInfoService.getMyInfoData().subscribe((data) => {
+              if (this.project === 'robo2') {
+                console.log(data);
+              } else if (data && data['objectList']) {
+                this.cpfValue = Math.floor(data['objectList'][0].cpfbalances.total);
+                this.testMyInfoForm.controls['cpf'].setValue(this.cpfValue);
+                this.myInfoService.isMyInfoEnabled = false;
+                this.setFormTotalValue();
+                this.closeMyInfoPopup();
+                } else {
+                  this.closeMyInfoPopup();
+                }
+            }, (error) => {
+              this.closeMyInfoPopup();
+            });
+         }
         } else {
           this.closeMyInfoPopup();
         }
       }
     });
+    // Todo - Robo2 MyInfo changes
+    if (this.project === 'robo2') {
+      const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
+      'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
+      this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
+      this.myInfoService.goToMyInfo();
+    }
   }
   setFormTotalValue() {
     this.assetsTotal = this.guideMeService.additionOfCurrency(this.testMyInfoForm.value);
@@ -92,7 +112,13 @@ export class TestMyInfoComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       //const myInfoAttributes = 'name,sex,race,nationality,dob,email,mobileno,regadd,housingtype,hdbtype,marital,edulevel,assessableincome,ownerprivate,assessyear,cpfcontributions,cpfbalances,passportnumber,passportexpirydate,mailadd,occupation,employment,householdincome';
       const myInfoAttributes = 'cpfbalances';
-      this.myInfoService.setMyInfoAttributes(myInfoAttributes);
+      if (this.project === 'robo2') {
+        const myInfoAttributes1 = ['nationality', 'name', 'passportnumber', 'passportexpirydate',
+        'dob', 'sex', 'regadd', 'mailadd', 'employment', 'occupation', 'householdincome'];
+        this.myInfoService.setMyInfoAttributes(myInfoAttributes1);
+      } else {
+        this.myInfoService.setMyInfoAttributes(myInfoAttributes);
+      }
       this.myInfoService.goToMyInfo();
     }).catch((e) => {
     });

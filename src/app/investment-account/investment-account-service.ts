@@ -362,10 +362,10 @@ export class InvestmentAccountService {
             otherIndustry: (data.otherIndustry) ? data.otherIndustry : null,
             occupationId: (data.occupation) ? data.occupation.id : null,
             otherOccupation: (data.otherOccupation) ? data.otherOccupation : null,
-            employerName: data.companyName,
-            contactNumber: data.contactNumber,
+            employerName: data.companyName ? data.companyName : null,
+            contactNumber: data.contactNumber ? data.contactNumber : null,
             unemployedReason: null, // todo not available in client
-            employerAddress: this.constructEmployerAddressReqData(data.employeaddress)
+            employerAddress: data.employeaddress ? this.constructEmployerAddressReqData(data.employeaddress) : null
         };
     }
 

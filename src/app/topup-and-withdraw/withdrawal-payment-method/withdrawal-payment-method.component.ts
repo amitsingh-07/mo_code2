@@ -42,9 +42,7 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
     public topupAndWithDrawService: TopupAndWithDrawService) {
     this.translate.use('en');
     this.translate.get('COMMON').subscribe((result: string) => {
-      this.pageTitle = this.translate.instant('WITHDRAW_PAYMENT_METHOD.TITLE');
-      this.setPageTitle(this.pageTitle);
-    });
+     });
   }
 
   ngOnInit() {
@@ -66,9 +64,18 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
         this.userBankList = data.objectList;
         if (this.userBankList.length > 0) {
           this.hideAddBankAccount = false;
-        }
-      }
+          }
+        this.pageTitle = this.getTitle();
+        this.setPageTitle(this.pageTitle);
+       }
     });
+  }
+
+  getTitle() {
+    let title = '';
+    title = (this.hideAddBankAccount) ? this.translate.instant('WITHDRAW_PAYMENT_METHOD.ADD_BANK_ACCOUNT')
+       : this.translate.instant('WITHDRAW_PAYMENT_METHOD.BANK_DETAIL');
+    return title;
   }
 
   getUserAddress() {
@@ -157,6 +164,6 @@ export class WithdrawalPaymentMethodComponent implements OnInit {
   }
 
   goToNext() {
-      this.showConfirmWithdrawModal();
+    this.showConfirmWithdrawModal();
   }
 }

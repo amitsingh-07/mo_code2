@@ -15,8 +15,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
   constructor(
     private footerService: FooterService, private cdr: ChangeDetectorRef,
     public readonly translate: TranslateService, private configService: ConfigService) {
-    this.translate.use('en');
     this.configService.getConfig().subscribe((config: IConfig) => {
+      this.translate.use(config.language);
       this.isMaintenanceEnabled = config.maintenanceEnabled;
     });
   }

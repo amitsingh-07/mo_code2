@@ -38,6 +38,12 @@
             },
             "Wills": {
                 "id": 13
+            },
+            "CareShield Life": {
+                "id": 14
+            },
+            "Long-term Care": {
+                "id": 15
             }
         }
     }
