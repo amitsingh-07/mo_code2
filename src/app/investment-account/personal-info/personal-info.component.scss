@@ -26,6 +26,9 @@ app-inv-personal-info{
         }
       }
    }
+    .fixed-btn--sm{
+      border-color: rgba(0, 135, 134, 0.4);
+    }
   }
 
   label {
@@ -147,24 +150,5 @@ app-inv-personal-info{
   .fixed-btn--sm{
     color: #99dbdb;
   }
-  
-  .dropdown-menu.show {
-    right: 0 !important;
-    overflow: auto;
-    height: auto;
-    max-height: 264px;
-      }
-    
-.dropdown-item {
-  white-space: normal;
-  word-break: break-word;
-}
-.dropdown-control .btn-dropdown {
-  padding-right: 27px;
-  max-height: 52px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 }
 }
