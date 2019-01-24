@@ -1,7 +1,7 @@
 import { FundDetailsComponent } from 'src/app/portfolio/fund-details/fund-details.component';
 import { PortfolioService } from 'src/app/portfolio/portfolio.service';
 
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./allocation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AllocationComponent implements OnInit {
+export class AllocationComponent implements OnInit, OnChanges {
   @Input('assets') assets;
   @Input('funds') funds;
   @Input('colors') colors;
@@ -25,6 +25,9 @@ export class AllocationComponent implements OnInit {
     public modal: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
     this.assets.forEach((allocation) => {
       const groupedAllocation = this.groupByProperty(allocation.groupedAllocationDetails);
       allocation.groupedAllocationDetails = groupedAllocation;

@@ -74,9 +74,8 @@ app-sing-pass{
 }
 
 .backdrop {
-  background: $black-color;
+  background:url('../../../assets/images/investment-account/transparent-black.png') repeat;
   position: fixed;
-  opacity: 0.95;
   width: 100%;
   height: 100%;
   z-index: 9999;
@@ -99,7 +98,7 @@ app-sing-pass{
   padding: 15px 34px;
   
   position: absolute;
-  top: 0px;
+  // top: 0px;
   left: 0px;
   z-index: 9999;
 }

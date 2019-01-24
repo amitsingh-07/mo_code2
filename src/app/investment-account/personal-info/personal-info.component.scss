@@ -13,6 +13,11 @@ app-inv-personal-info{
     }
   }
 
+  .btn-group--toggle{
+    label{
+      padding: .90rem;
+    }
+  }
 
   label {
     font-size: 18px;
@@ -112,7 +117,6 @@ app-inv-personal-info{
     font-family: $muli;
 
     label {
-
       padding: 0px 0 0px 35px;
     }
 

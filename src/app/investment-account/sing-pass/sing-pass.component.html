@@ -2,24 +2,29 @@
   <div class="flex-col autofill-link" [ngClass]="position" (click)="openModal()">
     <div class="flex-row flex-col-12">
       <div class="autofill-text" *ngIf="label">{{label}}</div>
-      <div class="autofill-text" *ngIf="!label">Autofill Forms Via</div>
+      <div class="autofill-text" *ngIf="!label">{{'INVESTMENT_ACCOUNT_MYINFO.TAB_BUTTON.LABEL'
+        | translate}}</div>
       <div class="autofill-logo"><img src="../../../assets/images/investment-account/myinfo-logo.svg" /></div>
     </div>
-    <div class="autofill-estimation">Estimate about 5 mins</div>
+    <div class="autofill-estimation">{{'INVESTMENT_ACCOUNT_MYINFO.TAB_BUTTON.TIME'
+      | translate}}</div>
   </div>
   <div class="loader-modal" *ngIf="showConfirmation">
-    <div class="backdrop"></div>
-    <div class="loader-content-wrapper">
-      <div class="loader-image mb15">
-        <img src="../../../assets/images/owl-lock.svg" id="owl-lock" />
-      </div>
-      <div class="loader-content">
-        <div id="singPassConfirmTitle" class="loader-title">{{ 'INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.TITLE' |
-          translate}}</div>
-        <div id="singPassConfirmDesc" class="loader-desc" [innerHTML]="this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.DESCRIPTION')"></div>
-      </div>
-      <button id="singPassConfirmBtn" (click)="getMyInfo()" type="button" class="btn btn-primary width100 mt20">{{'INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.BTN-TEXT'
-        | translate}}</button>
+    <div class="backdrop">
+        <div class="loader-content-wrapper">
+            <div class="loader-image mb15">
+              <img src="../../../assets/images/owl-lock.svg" id="owl-lock" />
+            </div>
+            <div class="loader-content">
+              <div id="singPassConfirmTitle" class="loader-title">{{ 'INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.TITLE' |
+                translate}}</div>
+              <div id="singPassConfirmDesc" class="loader-desc" [innerHTML]="this.translate.instant('INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.DESCRIPTION')"></div>
+            </div>
+            <button id="singPassConfirmBtn" (click)="getMyInfo()" type="button" class="btn btn-primary width100 mt20">{{'INVESTMENT_ACCOUNT_MYINFO.SING_PASS_CONFIRM.BTN-TEXT'
+              | translate}}</button>
+          </div>
+
     </div>
+    
   </div>
 </div>
