@@ -233,16 +233,19 @@ p{
                 font-size: 18px;
                 letter-spacing: -0.18px;
                 &:hover{
-                    background-color: #ffffff !important;
+                    background-color: #0de0de !important;
+                    border-color: #e4f8f8 !important;
+                    color: #ffffff !important;
                 }
                 &:active{
-                    background-color: #ffffff !important;
+                    background-color: #0de0de !important;
+                    border-color: #e4f8f8 !important;
+                    color: #ffffff !important;
                 }
                 &:focus{
-                    background-color: #ffffff !important;
-                }
-                &:visited{
-                    background-color: #ffffff !important;
+                    background-color: #0de0de !important;
+                    border-color: #e4f8f8 !important;
+                    color: #ffffff !important;
                 }
             }
         }
