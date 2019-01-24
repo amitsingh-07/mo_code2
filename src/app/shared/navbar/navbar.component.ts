@@ -9,7 +9,7 @@ import {
   Renderer2,
   ViewChild
 } from '@angular/core';
-import { NavigationEnd, Router, NavigationExtras } from '@angular/router';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/shared/http/auth/authentication.service';
 
@@ -47,8 +47,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   mobileThreshold = 567;
   isNavbarCollapsed = true;
 
+  isPromotionEnabled = false;
+  isArticleEnabled = false;
   isWillWritingEnabled = false;
-  isInvestmentEnabled = true;
+  isInvestmentEnabled = false;
   isComprehensiveEnabled = true;
 
   isLoggedIn = false;
@@ -69,6 +71,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
 
     this.configService.getConfig().subscribe((moduleConfig: IConfig) => {
+      this.isArticleEnabled = moduleConfig.articleEnabled;
+      this.isPromotionEnabled = moduleConfig.promotionEnabled;
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;

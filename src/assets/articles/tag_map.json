@@ -38,6 +38,12 @@
             },
             "13": {
                 "tag_name": "Wills"
+            },
+            "14": {
+                "tag_name": "CareShield Life"
+            },
+            "15": {
+                "tag_name": "Long-term Care"
             }
         }
     }

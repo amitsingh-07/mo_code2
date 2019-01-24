@@ -17,10 +17,10 @@ export class PromotionService {
     promotions.forEach((element) => {
       let newCategory = true;
       let catIndex: number;
-      const start_date = new Date(Date.parse(element.date_created));
-      const expiry_date = new Date(Date.parse(element.date_expiry));
+      const start_date = element.date_created;
+      const expiry_date = element.date_expiry;
       const today_date = currDate;
-      if (expiry_date > today_date && start_date < today_date) {
+      if (expiry_date >= today_date && start_date <= today_date) {
         currCategoryList.forEach((category, index) => {
           if (element.type === category) {
             catIndex = index;
