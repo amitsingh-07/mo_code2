@@ -17,6 +17,15 @@ app-inv-personal-info{
     label{
       padding: .90rem;
     }
+    .btn-outline-primary{
+        &.disabled{
+          cursor: not-allowed;
+          border-color: rgba(0, 135, 134, 0.4) !important;
+        &.active{
+          border: 1px solid #FFFFFF !important;
+        }
+      }
+   }
     .fixed-btn--sm{
       border-color: rgba(0, 135, 134, 0.4);
     }
@@ -108,7 +117,7 @@ app-inv-personal-info{
     }
   }
   input::placeholder {
-    color: #5e5e5e !important;
+  color: #5e5e5e !important;
    line-height: 1.25;
    letter-spacing: -0.2px;
   }
