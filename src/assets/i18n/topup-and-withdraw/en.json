@@ -141,13 +141,14 @@
     "BACK_TO_DASHBOARD": "Back To Dashboard"
   },
   "WITHDRAW_PAYMENT_METHOD": {
+    "ADD_BANK_ACCOUNT": "Add Bank Account",
+    "BANK_DETAIL": "Bank Details",
     "TITLE": "Bank Details",
     "SELECT": "Select",
     "BY_BANK_TRANSFER_LBL1": "By Bank",
     "BY_BANK_TRANSFER_LBL2": "Transfer",
     "BY_CHEQUE_LBL1": "By",
     "BY_CHEQUE_LBL2": "Cheque",
-    "ADD_BANK_ACCOUNT": "Add Bank Account",
     "CHEQUES_WILL_BE_POSTED_ADDRESS": "Cheque will be posted to this address",
     "CHEQUE_POSTED_ADDRESS_LINE1": "23 Keong Saik Road",
     "CHEQUE_POSTED_ADDRESS_LINE2": "Singapore 123456",
@@ -172,9 +173,8 @@
   },
   "PORTFOLIO_RECOMMENDATION": {
     "VIEW_FUND_DETAILS": "View Fund Details"
-},
+  },
   "FUND_DETAILS": {
     "TITLE": "Fund Details"
-    
   }
 }
