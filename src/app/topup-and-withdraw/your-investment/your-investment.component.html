@@ -156,16 +156,20 @@
                 </div>
               </div>
             </div>
-            <div class="form-group-with-bg--content pb10">
+            <div class="form-group-with-bg--content your_portfolio_value_content">
               <div class="flex-row">
                 <div class="flex-col-12">
-                  <p id="investment_not_yet_start">{{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}</p>
+                  <div id="investment_not_yet_start">{{'YOUR_INVESTMENT.NO_INVESTMENT_YET' | translate}}</div>
                 </div>
+              </div>
+              <hr>
+              <div class="portfolio_footer">
+                <button type="button" (click)="deletePortfolio(portfolio)" class="btn btn-primary width100">{{'YOUR_INVESTMENT.DELETE' | translate}}</button>
               </div>
             </div>
           </div>
         </div>
-        <button type="button" class="btn-with-icon mt10" id="add_portfolio" (click)="addPortfolio()">
+        <button  *ngIf="false" type="button" class="btn-with-icon mt10" id="add_portfolio" (click)="addPortfolio()">
           <img src="../../../assets/images/investment-account/plus_icon.svg" alt="" /> {{'YOUR_INVESTMENT.ADD_PORTFOLIO' | translate}} </button>
       </div>
     </div>
