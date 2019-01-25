@@ -9,114 +9,114 @@
 
   <!-- First Section with profile pic  -->
   <div *ngIf="personalData">
-  <div class="overlap-grass">
-    <div class="user-profile-bg">
-      <div class="circle"> {{compinedName}} </div>
-      <div class="heading">{{fullName }}</div>
-      <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
-      <div *ngIf="!isSingaporeResident" class="nric-text">{{compinedPassport}}</div>
-      <div class="flex-row">
-        <div class="flex-col-3 flex-row">
-          <div>
-            <div class="content-text">{{'EDIT_PROFILE.GENDER' | translate}}</div>
-            <div class="grid-content-text">{{personalData.gender  | titlecase}}</div>
-          </div>   
-          <div class="seperator"></div>     
-        </div>
-        <!-- <div class="flex-col-1">
+    <div class="overlap-grass">
+      <div class="user-profile-bg">
+        <div class="circle"> {{compinedName}} </div>
+        <div class="heading">{{fullName }}</div>
+        <div *ngIf="isSingaporeResident" class="nric-text">{{compinednricNum}}</div>
+        <div *ngIf="!isSingaporeResident" class="nric-text">{{compinedPassport}}</div>
+        <div class="flex-row">
+          <div class="flex-col-3 flex-row">
+            <div>
+              <div class="content-text">{{'EDIT_PROFILE.GENDER' | translate}}</div>
+              <div class="grid-content-text">{{personalData.gender | titlecase}}</div>
+            </div>
+            <div class="seperator"></div>
+          </div>
+          <!-- <div class="flex-col-1">
 
         </div> -->
-        <div class="flex-col-5 flex-row">
-          <div>
-            <div class="content-text">{{'EDIT_PROFILE.NATIONALITY' | translate}}</div>
-            <div class="grid-content-text">{{personalData.nationality  | titlecase}}</div>
+          <div class="flex-col-5 flex-row">
+            <div>
+              <div class="content-text">{{'EDIT_PROFILE.NATIONALITY' | translate}}</div>
+              <div class="grid-content-text">{{personalData.nationality | titlecase}}</div>
+            </div>
+            <div class="seperator"></div>
           </div>
-          <div class="seperator"></div>
-        </div>
-        <!-- <div class="flex-col-1">
+          <!-- <div class="flex-col-1">
         </div> -->
-        <div class="flex-col-4 flex-row">
-          <div class="content-text">{{'EDIT_PROFILE.DOB' | translate}}</div>
-          <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
+          <div class="flex-col-4 flex-row">
+            <div class="content-text">{{'EDIT_PROFILE.DOB' | translate}}</div>
+            <div class="grid-content-text">{{personalData.dateOfBirth}}</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Update user id section -->
+    <!-- Update user id section -->
 
-  <div class="edit-profile-section-bg">
-    <div class="flex-row" (click)=showHide(showHideUser) >
-      <div class="flex-col-11">
-        <div class="form-group-heading">
-          {{'EDIT_PROFILE.UPDATE_USER_ID' | translate}}
+    <div class="edit-profile-section-bg">
+      <div class="flex-row" (click)=showHide(showHideUser)>
+        <div class="flex-col-11">
+          <div class="form-group-heading">
+            {{'EDIT_PROFILE.UPDATE_USER_ID' | translate}}
+          </div>
         </div>
-      </div>
-      <div class="flex-col-1">
-        <div class="dropdown-img">
+        <div class="flex-col-1">
+          <div class="dropdown-img">
             <span id="showHideUser" class="arrow" [class.active]="showHideUser.style.display === 'block' || showHideUser.style.display === ''"></span>
 
-          <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) /> -->
+            <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideUser) /> -->
+          </div>
         </div>
       </div>
-    </div>
-    <div class="dots" #showHideUser>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          {{'EDIT_PROFILE.MOB' | translate}}
+      <div class="dots" #showHideUser>
+        <div class="section-margin">
+          <div class="update-contact-title">
+            {{'EDIT_PROFILE.MOB' | translate}}
+          </div>
+          <div class="update-contact-value">
+            {{personalData.mobileNumber}}
+          </div>
         </div>
-        <div class="update-contact-value">
-          {{personalData.mobileNumber}}
+        <div class="section-margin">
+          <div class="update-contact-title">
+            {{'EDIT_PROFILE.EMAIL' | translate}}
+          </div>
+          <div class="update-contact-value">
+            {{personalData.email}}
+          </div>
         </div>
+        <button type="button" class="edit-button" id="editEmployeButton" (click)="editUserDetails()">
+          {{'EDIT_PROFILE.EDIT' | translate}}
+        </button>
       </div>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          {{'EDIT_PROFILE.EMAIL' | translate}}
-        </div>
-        <div class="update-contact-value">
-          {{personalData.email}}
-        </div>
-      </div>
-      <button type="button" class="edit-button" id="editEmployeButton" (click)="editUserDetails()">
-        {{'EDIT_PROFILE.EDIT' | translate}}
-      </button>
-    </div>
 
-  </div>
-  <!-- Change Password Section  -->
-  <div class="edit-profile-section-bg">
-    <div class="flex-row" (click)=showHide(showHidePassword)>
-      <div class="flex-col-11">
-        <div class="form-group-heading">
-          {{'EDIT_PROFILE.CHANGE_PASS' | translate}}
+    </div>
+    <!-- Change Password Section  -->
+    <div class="edit-profile-section-bg">
+      <div class="flex-row" (click)=showHide(showHidePassword)>
+        <div class="flex-col-11">
+          <div class="form-group-heading">
+            {{'EDIT_PROFILE.CHANGE_PASS' | translate}}
+          </div>
+        </div>
+        <div class="flex-col-1">
+          <div class="dropdown-img">
+            <span id="showHidePassword" class="arrow" [class.active]="showHidePassword.style.display === 'block' || showHidePassword.style.display === ''"></span>
+            <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) /> -->
+          </div>
         </div>
       </div>
-      <div class="flex-col-1">
-        <div class="dropdown-img">
-            <span id="showHidePassword" class="arrow"  [class.active]="showHidePassword.style.display === 'block' || showHidePassword.style.display === ''"></span>
-          <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHidePassword) /> -->
+      <div class="dots" #showHidePassword>
+        <div class="section-margin">
+          <div class="update-contact-title">
+            {{'EDIT_PROFILE.PASSWORD' | translate}}
+          </div>
+          <div class="update-contact-value">
+            ******
+          </div>
         </div>
+        <button type="button" class="edit-button" id="editEmployeButton" (click)="editPassword()">
+          {{'EDIT_PROFILE.EDIT' | translate}}
+        </button>
       </div>
     </div>
-    <div class="dots" #showHidePassword>
-      <div class="section-margin">
-        <div class="update-contact-title">
-          {{'EDIT_PROFILE.PASSWORD' | translate}}
-        </div>
-        <div class="update-contact-value">
-          ******
-        </div>
-      </div>
-      <button type="button" class="edit-button" id="editEmployeButton" (click)="editPassword()">
-        {{'EDIT_PROFILE.EDIT' | translate}}
-      </button>
-    </div>
-  </div>
   </div>
 
   <!-- Update contact section  -->
   <div *ngIf="contactDetails">
-     <!-- remove  *ngIf="contactDetails === false" when contact details needs to display , hiding it temporarily -->
+    <!-- remove  *ngIf="contactDetails === false" when contact details needs to display , hiding it temporarily -->
     <div class="edit-profile-section-bg" *ngIf="contactDetails === false">
       <div class="flex-row" (click)=showHide(showHideContact)>
         <div class="flex-col-11">
@@ -126,14 +126,14 @@
         </div>
         <div class="flex-col-1">
           <div class="dropdown-img">
-              <span id="showHideContact" class="arrow"  [class.active]="showHideContact.style.display === 'block' || showHideContact.style.display === ''" ></span>
+            <span id="showHideContact" class="arrow" [class.active]="showHideContact.style.display === 'block' || showHideContact.style.display === ''"></span>
             <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideContact) /> -->
           </div>
         </div>
       </div>
       <div class="dots" #showHideContact>
         <div class="section-margin">
-            <div class="mailing-address-text ">  {{'EDIT_PROFILE.RES_ADDRESS' | translate}}</div>
+          <div class="mailing-address-text "> {{'EDIT_PROFILE.RES_ADDRESS' | translate}}</div>
           <div class="update-contact-title">
             {{'EDIT_PROFILE.COUNTRY' | translate}}
           </div>
@@ -154,7 +154,7 @@
             {{'EDIT_PROFILE.ADDRESS_1' | translate}}
           </div>
           <div class="update-contact-value">
-             {{ residentialAddress && residentialAddress.addressLine1 }}
+            {{ residentialAddress && residentialAddress.addressLine1 }}
           </div>
         </div>
         <div class="section-margin">
@@ -207,7 +207,7 @@
         </div>
 
         <div class="mailing-address flex" *ngIf="!mailingAddress">
-          <div >
+          <div>
             <img id="chk_img" class="chk-box-img" src="assets/images/edit-check.svg" />
           </div>
           <div class="flex-col">
@@ -216,7 +216,7 @@
           </div>
         </div>
         <div *ngIf="mailingAddress">
-<div class="mailing-address-text section-margin"> {{'EDIT_PROFILE.MAILING' | translate}}</div>
+          <div class="mailing-address-text section-margin"> {{'EDIT_PROFILE.MAILING' | translate}}</div>
           <div class="section-margin">
             <div class="update-contact-title">
               {{'EDIT_PROFILE.COUNTRY' | translate}}
@@ -307,7 +307,7 @@
           </div>
           <div class="flex-col-1">
             <div class="dropdown-img">
-                <span id="showHideEmp" class="arrow"  [class.active]="showHideEmp.style.display === 'block' || showHideEmp.style.display === ''"></span>
+              <span id="showHideEmp" class="arrow" [class.active]="showHideEmp.style.display === 'block' || showHideEmp.style.display === ''"></span>
               <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" (click)=showHide(showHideEmp) /> -->
             </div>
           </div>
@@ -319,48 +319,53 @@
             </div>
             <div class="update-contact-value">
               {{empolymentDetails.employmentStatus && empolymentDetails.employmentStatus.name }}
+            
             </div>
           </div>
-          <div class="section-margin">
-            <div class="update-contact-title">
-              {{'EDIT_PROFILE.EMP_NAME' | translate}}
-            </div>
-            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
-              {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.employerName }}
-            </div>
-          </div>
-          <div class="section-margin">
-            <div class="update-contact-title">
-              {{'EDIT_PROFILE.INDUSTRY' | translate}}
-            </div>
-            <div class="update-contact-value" *ngIf="!empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
-              {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
-            </div>
-            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
-                {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry && empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry }}
+          <div *ngIf="!(empolymentDetails.employmentStatus.name === 'Unemployed')">
+            <div class="section-margin">
+              <div class="update-contact-title">
+                {{'EDIT_PROFILE.EMP_NAME' | translate}}
               </div>
-          </div>
-          <div class="section-margin">
-            <div class="update-contact-title">
-              {{'EDIT_PROFILE.EMP_CONTRACT' | translate}}
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
+                {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.employerName
+                }}
+              </div>
             </div>
-            <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
-              {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.employerContact }}
+            <div class="section-margin">
+              <div class="update-contact-title">
+                {{'EDIT_PROFILE.INDUSTRY' | translate}}
+              </div>
+              <div class="update-contact-value" *ngIf="!empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
+                {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry
+                && empolymentDetails.employerDetails.detailedEmployerDetails.industry.industry }}
+              </div>
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry">
+                {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.detailedEmployerDetails && empolymentDetails.employerDetails.detailedEmployerDetails.industry
+                && empolymentDetails.employerDetails.detailedEmployerDetails.otherIndustry }}
+              </div>
             </div>
-          </div>
-          <div class="section-margin">
-            <div class="update-contact-title">
-              {{'EDIT_PROFILE.OCCUPATUION' | translate}}
+            <div class="section-margin">
+              <div class="update-contact-title">
+                {{'EDIT_PROFILE.EMP_CONTRACT' | translate}}
+              </div>
+              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedEmployerDetails">
+                {{empolymentDetails.employerDetails && empolymentDetails.employerDetails.employerContact }}
+              </div>
             </div>
-            <div class="update-contact-value"  *ngIf="!empolymentDetails.otherOccupation">
-              {{empolymentDetails.occupation && empolymentDetails.occupation.occupation}}
-            </div>
-            <div class="update-contact-value"  *ngIf="empolymentDetails.otherOccupation">
+            <div class="section-margin">
+              <div class="update-contact-title">
+                {{'EDIT_PROFILE.OCCUPATUION' | translate}}
+              </div>
+              <div class="update-contact-value" *ngIf="!empolymentDetails.otherOccupation">
+                {{empolymentDetails.occupation && empolymentDetails.occupation.occupation}}
+              </div>
+              <div class="update-contact-value" *ngIf="empolymentDetails.otherOccupation">
                 {{empolymentDetails.occupation && empolymentDetails.otherOccupation}}
               </div>
-          </div>
+            </div>
 
-          <!-- <div class="mailing-address flex">
+            <!-- <div class="mailing-address flex">
             <div *ngIf="!employerAddress">
               <img id="chk_img2" class="chk-box-img" src="assets/images/edit-check.svg" />
             </div>
@@ -373,70 +378,71 @@
               <div>Same as Mailing Address</div>
             </div>
           </div> -->
-          <!-- Have to add according to API -->
-          <div *ngIf="employerAddress">
-            <div class="section-margin">
-              <div class="update-contact-title">
-                {{'EDIT_PROFILE.COUNTRY' | translate}}
+            <!-- Have to add according to API -->
+            <div *ngIf="employerAddress">
+              <div class="section-margin">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.COUNTRY' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
+                </div>
               </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.country.name}}
+              <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.POSTAL' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
+                </div>
               </div>
-            </div>
-            <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
-              <div class="update-contact-title">
-                {{'EDIT_PROFILE.POSTAL' | translate}}
+              <div class="section-margin">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.ADDRESS_1' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1}}
+                </div>
               </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
+              <div class="section-margin">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.ADDRESS_2' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
+                </div>
               </div>
-            </div>
-            <div class="section-margin">
-              <div class="update-contact-title">
-                {{'EDIT_PROFILE.ADDRESS_1' | translate}}
+              <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.UNIT' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
+                </div>
               </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine1}}
+              <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.CITY' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
+                </div>
               </div>
-            </div>
-            <div class="section-margin">
-              <div class="update-contact-title">
-                {{'EDIT_PROFILE.ADDRESS_2' | translate}}
+              <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.STATE' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
+                </div>
               </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.addressLine2}}
-              </div>
-            </div>           
-            <div class="section-margin" *ngIf="isCountrySIngapore(employerNationality)">
-              <div class="update-contact-title" >
-                {{'EDIT_PROFILE.UNIT' | translate}}
-              </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.unitNumber}}
-              </div>
-            </div>
-            <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
-              <div class="update-contact-title">
-                {{'EDIT_PROFILE.CITY' | translate}}
-              </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.city}}
-              </div>
-            </div>
-            <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
-              <div class="update-contact-title">
-                {{'EDIT_PROFILE.STATE' | translate}}
-              </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.state}}
-              </div>
-            </div>
-            <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
-              <div class="update-contact-title">
-                {{'EDIT_PROFILE.ZIP' | translate}}
-              </div>
-              <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
-                {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
+              <div class="section-margin" *ngIf="!isCountrySIngapore(employerNationality)">
+                <div class="update-contact-title">
+                  {{'EDIT_PROFILE.ZIP' | translate}}
+                </div>
+                <div class="update-contact-value" *ngIf="empolymentDetails.employerDetails.detailedemployerAddress">
+                  {{empolymentDetails.employerDetails.detailedemployerAddress.employerAddress && empolymentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode}}
+                </div>
               </div>
             </div>
           </div>
@@ -457,7 +463,7 @@
           </div>
           <div class="flex-col-1">
             <div class="dropdown-img">
-                <span id="showHideBank" class="arrow"   [class.active]="showHideBank.style.display === 'block' || showHideBank.style.display === ''"></span>
+              <span id="showHideBank" class="arrow" [class.active]="showHideBank.style.display === 'block' || showHideBank.style.display === ''"></span>
               <!-- <img id="edit_profile_dropdown_img" class="dropdown-img" src="assets/images/dropdown-icon.svg" /> -->
             </div>
           </div>
@@ -467,9 +473,9 @@
           <div *ngIf="bankDetails">
             <div class="flex-row">
               <div class="flex-col-4">
-                  <div class="bank-account">
-                    {{'EDIT_PROFILE.BANK' | translate}}
-                  </div>
+                <div class="bank-account">
+                  {{'EDIT_PROFILE.BANK' | translate}}
+                </div>
               </div>
               <div class="flex-col-8">
                 <div class="bank-account-num">
@@ -490,21 +496,21 @@
               </div>
             </div>
             <button type="button" class="edit-button" id="editEmployeButton" (click)="editBankDetails()">
-                {{'EDIT_PROFILE.EDIT' | translate}}
-              </button>
+              {{'EDIT_PROFILE.EDIT' | translate}}
+            </button>
           </div>
-            
+
           <div class="flex-row" *ngIf="!bankDetails">
-              <div class="flex-col-12">
-                <div class="no-bank-account">
-                  {{'EDIT_PROFILE.NO_BANK' | translate}}
-                </div>
+            <div class="flex-col-12">
+              <div class="no-bank-account">
+                {{'EDIT_PROFILE.NO_BANK' | translate}}
               </div>
-              <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()">
-                {{'EDIT_PROFILE.ADD_BANK' | translate}}
-              </button>
-              
             </div>
+            <button type="button" class="edit-button" id="editEmployeButton" (click)="addBankDetails()">
+              {{'EDIT_PROFILE.ADD_BANK' | translate}}
+            </button>
+
+          </div>
 
         </div>
       </div>
