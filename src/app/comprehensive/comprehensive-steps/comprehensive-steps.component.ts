@@ -27,6 +27,6 @@ export class ComprehensiveStepsComponent implements OnInit {
     this.navbarService.setNavbarDirectGuided(false);
   }
   proceed() {
-    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.SHOULDERS]);
+    this.router.navigate([COMPREHENSIVE_ROUTE_PATHS.DEPENDANT_SELECTION]);
   }
 }

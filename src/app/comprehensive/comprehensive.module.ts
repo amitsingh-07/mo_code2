@@ -12,7 +12,12 @@ import { ComprehensiveRoutingModule } from './comprehensive-routing.module';
 import { ComprehensiveStepsComponent } from './comprehensive-steps/comprehensive-steps.component';
 import { ComprehensiveComponent } from './comprehensive/comprehensive.component';
 
-import { ShouldersComponent } from './shoulders/shoulders.component';
+import { DependantEducationListComponent } from './dependant-education-list/dependant-education-list.component';
+import { DependantEducationComponent } from './dependant-education/dependant-education.component';
+import { DependantSelectionComponent } from './dependant-selection/dependant-selection.component';
+import { DependantsDetailsComponent } from './dependants-details/dependants-details.component';
+import { EducationPreferenceComponent } from './education-preference/education-preference.component';
+import { MyEarningsComponent } from './my-earnings/my-earnings.component';
 export function createTranslateLoader(http: HttpClient) {
   return new MultiTranslateHttpLoader(
     http,
@@ -36,6 +41,10 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  declarations: [ComprehensiveComponent, ComprehensiveStepsComponent, ShouldersComponent]
+  declarations: [ComprehensiveComponent, ComprehensiveStepsComponent,
+    DependantSelectionComponent, DependantsDetailsComponent, DependantEducationComponent,
+    DependantEducationListComponent,
+    EducationPreferenceComponent,
+    MyEarningsComponent]
 })
 export class ComprehensiveModule { }

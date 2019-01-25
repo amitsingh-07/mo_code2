@@ -18,17 +18,60 @@
     "SECOND_TITLE": " Your Finances",
     "THIRD": "Step 3",
     "THIRD_TITLE": "Results!",
-    "PROCEED":"Proceed"
+    "PROCEED": "Proceed"
   },
 
-  "SHOULDERS": {
+  "DEPENDANT_SELECTION": {
     "TITLE": "What's On Your Shoulders",
-    "DEPENDANTS":"Do you Have any dependants?",
-    "DEPENDANTS_DESC":"A dependant is children,parent,spouse or sibling whom i'm supporting",
-    "DEPENDANTS_YES":"",
-    "DEPENDANTS_NO":""
+    "DEPENDANTS": "Do you Have any dependants?",
+    "DEPENDANTS_DESC": "A dependant is children,parent,spouse or sibling whom i'm supporting",
+    "DEPENDANT_YES": "Yes, I do",
+    "DEPENDANT_NO": "No,I don't"
+
+  },
+  "DEPENDANT_DETAILS": {
+    "ABOUT": "About Your Dependant",
+    "DESC": "Tell us who you need to take care of so that we can include these factors into your financial planning.",
+    "NAME": "Name",
+    "RELATIONSHIP": "Relationship",
+    "GENDER": "Gender",
+    "AGE_NEXT_BIRTHDAY": "Age Next Birthday",
+    "NATIONALITY": "Nationality",
+    "RELATIONSHIP_LIST": ["Spouse", "Child", "Parent", "sibling", "Parent-in-law", "Friend", "Relative"]
+  },
+  "DEPENDANT_EDUCATION": {
+    "ABOUT": "Do you want to save up for your child's university education?",
+    "OPTIONS": ["yes, I do", "No, but i need insurance payput to cover my child's education in case i pass away", "No, I don't"]
+  },
+  "ENDOWMENT_PLAN": {
+    "ABOUT": "Select which child has education endowment plan",
+    "MATRURITY_AMOUNT": "Maturity Amount",
+    "MATURITY_YEAR": "Maturity Year"
+  },
+  "EDUCATION_PREFERENCE": {
+    "HEADER": "Tell us about the education Preferences.",
+    "ABOUT": "About",
+    "YEARS_LATER": "Years later",
+    "LOCATION": "Location",
+    "COURSE_OF_STUDY": "Course of study",
+    "NATIONALITY": "Nationality"
+  },
+  "MY_EARNINGS": {
+    "HEADER": "What You Earn",
+    "ABOUT": "EVERY month, you fill Your bucket as you bring home an income",
+    "BUCKET_TITLE": "Your Annual Income Bucket",
+    "AMOUNT":"Amount",
+    "MONTHLY_SALARY":"Monthly Salary",
+    "EMPLOYMENT_TYPE":"Employment Type",
+    "ANNUAL_BONUS":"Annual Bonus",
+    "RENTAL_INCOME":"Rental Income",
+    "OTHER_WORK_INCOME":"Other Work Income",
+    "OTHER_MONTHLY_INCOME":"Other Monthly Income",
+    "ANNUAL_DIVIDENDS":"Annual Dividends",
+    "OTHER_ANNUAL_INCOME":"Other Annual Income"
 
   }
+
 
 
 }

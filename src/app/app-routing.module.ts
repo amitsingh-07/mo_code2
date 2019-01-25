@@ -29,6 +29,7 @@ const routes: Routes = [
       { path: 'faq', component: FAQComponent },
       { path: 'articles', loadChildren: './article/article.module#ArticleModule' },
       { path: 'learn', loadChildren: './article/article.module#ArticleModule' },
+      { path: 'comprehensive', loadChildren: './comprehensive/comprehensive.module#ComprehensiveModule'},
 
       /*
       { path: 'portfolio', loadChildren: './portfolio/portfolio.module#PortfolioModule' },
