@@ -116,13 +116,14 @@ export class DashboardComponent implements OnInit {
   getCountryList(data) {
     const countryList = [];
     data.forEach((nationality) => {
-        if (!nationality.blocked) {
+      if (!nationality.blocked) {
         nationality.countries.forEach((country) => {
-            countryList.push(country);
+          countryList.push(country);
         });
-    }});
+      }
+    });
     return countryList;
- }
+  }
   goToInvestmentAccount() {
     this.router.navigate([INVESTMENT_ACCOUNT_ROUTE_PATHS.ROOT]);
   }
@@ -142,8 +143,13 @@ export class DashboardComponent implements OnInit {
     if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
-      this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
-        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
+      if (this.userProfileInfo.investementDetails.cashAccountDetails) {
+        // this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
+        //   this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
+      } else {
+        this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails = 0;
+
+      }
     }
     switch (investmentStatus) {
       case 'PORTFOLIO_PURCHASED': {
