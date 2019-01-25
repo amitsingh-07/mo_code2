@@ -1,0 +1,13 @@
+@import '../../../variables';
+@import '../../../mixins';
+input[type='checkbox']+label {
+    margin: 0;
+    clear: none;
+    padding: 0px 0 0px 40px;
+    cursor: pointer;
+    background: url("../../../assets/images/check-box-normal.svg") left center no-repeat;
+  }
+  
+  input[type='checkbox']:checked+label {
+    background-image: url("../../../assets/images/check-box-select.svg");
+  }

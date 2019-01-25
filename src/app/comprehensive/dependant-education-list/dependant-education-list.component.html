@@ -1,0 +1,48 @@
+<div class="container-fluid max-width--1024 ">
+  <header> {{ 'ENDOWMENT_PLAN.ABOUT' | translate}}</header>
+  <form [formGroup]="endowmentListForm" id="endowmentListForm" name="endowmentListForm" class="endowmentListForm">
+    <div formArrayName="endowmentPlan" *ngFor="let educationPlan of endowmentListForm.controls.endowmentPlan.controls; let i = index;">
+
+      <div class="form-group" [formGroupName]="i">
+        <input type="checkbox" #endowmentplanShow id="checkbox-1" value="value-1"  class="field " formControlName="endowmentplanShow">
+      
+        
+        <p> {{educationPlan.get('name').value}}</p>
+        <p> {{educationPlan.get('age').value}} Years old</p>
+        <div [hidden]="educationPlan.get('endowmentplanShow').value">
+          <div class="flex-row">
+            <div class="col-5">
+              <label for="name" id="myDependantFormLb1">
+                <div>{{ 'ENDOWMENT_PLAN.MATRURITY_AMOUNT' | translate}}
+                </div>
+              </label>
+            </div>
+            <div class=" col-7">
+              <input type="text" [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityAmount.invalid}"
+                id="myFamilyFormInpt3" class="form-control" #maturityAmount formControlName="maturityAmount">
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class=" col-5">
+              <label for="name" id="myDependantFormLb2">
+                <div>{{ 'ENDOWMENT_PLAN.MATURITY_YEAR' | translate}}
+                </div>
+              </label>
+            </div>
+            <div class="col-7">
+              <input type="text" [ngClass]="{'inline-error': submitted && endowmentPlan.controls.maturityYear.invalid}"
+                id="myFamilyFormInpt4" class="form-control" #maturityYear formControlName="maturityYear">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+      'LABEL.CONTINUE' |
+      translate}}</button>
+  </form>
+
+
+</div>

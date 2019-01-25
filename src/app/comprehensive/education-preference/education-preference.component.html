@@ -1,0 +1,85 @@
+<div class="container-fluid max-width--1024 ">
+  <header> {{ 'EDUCATION_PREFERENCE.HEADER' | translate}}</header>
+  <form [formGroup]="EducationPreferenceForm" id="EducationPreferenceForm" name="EducationPreferenceForm" class="EducationPreferenceForm">
+    <div formArrayName="preference" *ngFor="let preferencePlan of EducationPreferenceForm.controls.preference.controls; let i = index;">
+
+      <div class="form-group" [formGroupName]="i">
+       
+
+        <p> {{preferencePlan.get('name').value}}</p>
+        <p>  {{ 'EDUCATION_PREFERENCE.ABOUT' | translate}} {{preferencePlan.get('age').value}}{{ 'EDUCATION_PREFERENCE.YEARS_LATER' | translate}} </p>
+     
+          <div class="flex-row">
+            <div class="col-5">
+              <label for="name" id="myDependantFormLb1">
+                <div>{{ 'EDUCATION_PREFERENCE.LOCATION' | translate}}
+                </div>
+              </label>
+            </div>
+            <div class=" col-7">
+              <input type="text" [ngClass]="{'inline-error': submitted && preference.controls.location.invalid}" id="myFamilyFormInpt3"
+                class="form-control" #maturityAmount formControlName="location">
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class=" col-5">
+              <label for="name" id="myDependantFormLb2">
+                <div>{{ 'EDUCATION_PREFERENCE.COURSE_OF_STUDY' | translate}}
+                </div>
+              </label>
+            </div>
+            <div class="col-7">
+              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.relationship.invalid}">
+                <div ngbDropdown id="relationshipDropDown">
+                  <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
+                    <span>{{'COMMON.LBL_SELECT' | translate}}</span>
+                    <span >{{relationship}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                    <button class="dropdown-item" (click)="selectRelationship('','')">Select</button>
+                    <button type="button" class="dropdown-item" *ngFor="let relation of relationShipList;"
+                      (click)="selectRelationship(relation, i)">
+                      {{relation}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-row">
+            <div class=" col-5">
+              <label for="name" id="myDependantFormLb2">
+                <div>{{ 'EDUCATION_PREFERENCE.NATIONALITY' | translate}}
+                </div>
+              </label>
+            </div>
+            <div class="col-7">
+              <div class="dropdown-control" [ngClass]="{'inline-error': submitted &&  dependant.controls.relationship.invalid}">
+                <div ngbDropdown id="relationshipDropDown">
+                  <button type="button" class="btn btn-dropdown" id="dropdownMaritalStatus" ngbDropdownToggle>
+                    <span>{{'COMMON.LBL_SELECT' | translate}}</span>
+                    <span >{{relationship}}</span>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownRelation">
+                    <button class="dropdown-item" (click)="selectRelationship('','')">Select</button>
+                    <button type="button" class="dropdown-item" *ngFor="let relation of relationShipList;"
+                      (click)="selectRelationship(relation, i)">
+                      {{relation}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+
+    </div>
+    <button type="button" (click)="goToNext(endowmentListForm)" class="btn btn-primary btn__footer--fixed width100" id="prfBtn1">{{
+      'LABEL.CONTINUE' |
+      translate}}</button>
+  </form>
+
+
+</div>
