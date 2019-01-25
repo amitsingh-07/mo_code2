@@ -969,9 +969,8 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.singaporeanResident = isSingaporeResident;
         this.investmentAccountFormData.nationalityList = nationalityList;
         this.investmentAccountFormData.countryList = countryList;
-
+        this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
         if (data.employmentDetails.employmentStatus.name !== 'Unemployed') {
-            this.investmentAccountFormData.employmentStatus = data.employmentDetails.employmentStatus.name;
             if (data.employmentDetails.employerDetails.detailedEmployerDetails) {
                 if (data.employmentDetails.employerDetails.detailedEmployerDetails.employerName) {
                     // tslint:disable-next-line:max-line-length
@@ -1013,8 +1012,6 @@ export class InvestmentAccountService {
                 // tslint:disable-next-line:max-line-length
                 this.investmentAccountFormData.empZipCode = data.employmentDetails.employerDetails.detailedemployerAddress.employerAddress.postalCode; // discussed and only one feild name is available in backend
             }
-        } else {
-            this.investmentAccountFormData.employmentStatus = data.employmentStatus;
         }
         this.commit();
 
@@ -1293,7 +1290,7 @@ export class InvestmentAccountService {
     setEmploymentDetailsFromApi(employmentInformation) {
         const empStatusObj = this.getPropertyFromId(
             employmentInformation.customerEmploymentDetails.employmentStatusId, 'employmentStatus');
-        this.investmentAccountFormData.employmentStatus = empStatusObj.name ;
+        this.investmentAccountFormData.employmentStatus = empStatusObj.name;
         this.investmentAccountFormData.companyName = employmentInformation.employerDetails.employerName;
         this.investmentAccountFormData.industry = employmentInformation.employerDetails.industry;
         this.investmentAccountFormData.otherIndustry = employmentInformation.employerDetails.otherIndustry;
@@ -1332,7 +1329,7 @@ export class InvestmentAccountService {
             taxList.push(taxInfo);
         });
         if (taxList && taxList.length > 0) {
-            this.investmentAccountFormData.taxObj =  {
+            this.investmentAccountFormData.taxObj = {
                 addTax: taxList
             };
         }
@@ -1370,7 +1367,7 @@ export class InvestmentAccountService {
         this.investmentAccountFormData.expectedNumberOfTransation = pepDetails.expectedNumberOfTransactions;
         this.investmentAccountFormData.expectedAmountPerTranction = pepDetails.expectedAmountPerTransactions;
         this.investmentAccountFormData.investmenteEarning = this.getPropertyFromId(pepDetails.investmentSourceId, 'investmentSource');
-        this.investmentAccountFormData.durationInvestment =  pepDetails.investmentPeriod;
+        this.investmentAccountFormData.durationInvestment = pepDetails.investmentPeriod;
         this.investmentAccountFormData.earningsGenerated = this.getPropertyFromId(pepDetails.earningsGeneratedFromId, 'earningsGenerated');
     }
 }
