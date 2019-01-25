@@ -90,7 +90,7 @@ export class EmploymentDetailsComponent implements OnInit {
         value: this.formValues.companyName,
         disabled: this.investmentAccountService.isDisabled('companyName')
       },
-        [Validators.required, Validators.pattern(RegexConstants.OnlyAlphaWithoutLimit)]));
+        [Validators.required, Validators.pattern(RegexConstants.Alphanumeric)]));
       this.employementDetailsForm.addControl('occupation', new FormControl({
         value: this.formValues.occupation,
         disabled: this.investmentAccountService.isDisabled('occupation')

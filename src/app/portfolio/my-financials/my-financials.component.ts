@@ -178,6 +178,6 @@ export class MyFinancialsComponent implements IPageComponent, OnInit {
     });
   }
   goBack() {
-    this.router.navigate([PORTFOLIO_ROUTE_PATHS.PERSONAL_INFO]);
+    this.router.navigate([PORTFOLIO_ROUTE_PATHS.MY_FINANCIALS]);
   }
 }

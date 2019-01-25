@@ -170,11 +170,13 @@
     flex-direction: column;
     background-color:$white-color;
     width:100%;
+    height:auto;
     justify-content:flex-start;
     align-items: center;
     padding-bottom:66px;
     @include minMobilemaxPhablet{
         padding-bottom:50px;
+        min-height: 1000px;
     }
 
     .promo-content__inner-container{
@@ -185,10 +187,12 @@
         flex-direction:column;
         justify-content:flex-start;
         padding:0 20px;
+        background-color: $white-color;
         @include minMobilemaxPhablet{
-            display:none;
+            display:flex;
+            min-height:500px;
             &.active{
-                display:flex;
+                display:flex !important;
             }
         }
         .promo-header__container{

@@ -1,4 +1,3 @@
-import { DirectService } from './../direct/direct.service';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -14,7 +13,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { DirectService } from './../direct/direct.service';
 
 import { MailchimpApiService } from '../shared/Services/mailchimp.api.service';
 import { FormError } from '../shared/Services/mailChimpError';
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.initLoad = false;
       }
     });
-    this.translate.use('en');
+
     this.translate.get('COMMON').subscribe((result: string) => {
       this.trustedSubTitle = this.translate.instant('TRUSTED.SUB_TITLE');
       this.trustedReasons = this.translate.instant('TRUSTED.REASONS');

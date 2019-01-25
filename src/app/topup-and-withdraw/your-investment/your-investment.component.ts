@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../shared/http/auth/authentication.ser
 import { ErrorModalComponent } from '../../shared/modal/error-modal/error-modal.component';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { RegexConstants } from '../../shared/utils/api.regex.constants';
+
 import { TOPUP_AND_WITHDRAW_ROUTE_PATHS } from '../topup-and-withdraw-routes.constants';
 import { TopupAndWithDrawService } from '../topup-and-withdraw.service';
 
@@ -25,6 +26,8 @@ import { INVESTMENT_ACCOUNT_ROUTE_PATHS } from '../../investment-account/investm
 import { HostListener } from '@angular/core';
 
 import { ConsoleLoggerService } from '../../shared/logger/console-logger.service';
+
+import { SIGN_UP_ROUTE_PATHS } from '../../sign-up/sign-up.routes.constants';
 
 import {
   ModelWithButtonComponent
@@ -131,19 +134,20 @@ export class YourInvestmentComponent implements OnInit {
     this.showAlretPopUp = false;
 
   }
-  deletePortfolio() {
+  deletePortfolio(portfolio) {
     const ref = this.modal.open(ModelWithButtonComponent, { centered: true });
-    ref.componentInstance.errorTitle = 'Delete Portfolio';
+    ref.componentInstance.errorTitle =  this.translate.instant('YOUR_INVESTMENT.TITLE');
     // tslint:disable-next-line:max-line-length
-    ref.componentInstance.errorMessage = 'Please do not delete if you have already initiated the fund transfer to your investment account, as it will take 1 to 5 working days for changes to be reflected in your investment overview. If you delete, your recommended portfolio will be lost and you will have to start the journey from the beginning. <br/><br/>Are you sure you wish to proceed to delete?';
+    ref.componentInstance.errorMessage = this.translate.instant('YOUR_INVESTMENT.DELETE_TXT');
     ref.componentInstance.yesOrNoButton = 'Yes';
     ref.componentInstance.yesClickAction.subscribe(() => {
-    alert('Yes');
-
+      this.topupAndWithDrawService.deletePortfolio(portfolio).subscribe((data) => {
+        if (data.responseMessage.responseCode === 6000) {
+          this.router.navigate([SIGN_UP_ROUTE_PATHS.DASHBOARD]);
+        }
+      });
   });
     ref.componentInstance.noClickAction.subscribe(() => {
-    alert('No');
-
   });
   }
   selectOption(option) {

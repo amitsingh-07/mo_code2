@@ -52,8 +52,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   count: any;
   isNotificationEnabled: boolean;
 
+  isPromotionEnabled = false;
+  isArticleEnabled = false;
   isWillWritingEnabled = false;
-  isInvestmentEnabled = true;
+  isInvestmentEnabled = false;
   isComprehensiveEnabled = true;
 
   isLoggedIn = false;
@@ -75,6 +77,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
 
     this.configService.getConfig().subscribe((moduleConfig: IConfig) => {
+      this.isArticleEnabled = moduleConfig.articleEnabled;
+      this.isPromotionEnabled = moduleConfig.promotionEnabled;
       this.isWillWritingEnabled = moduleConfig.willWritingEnabled;
       this.isInvestmentEnabled = moduleConfig.investmentEnabled;
       this.isComprehensiveEnabled = moduleConfig.comprehensiveEnabled;

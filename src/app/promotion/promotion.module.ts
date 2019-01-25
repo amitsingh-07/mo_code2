@@ -5,11 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
-import { PromotionRoutingModule } from './promotion-routing.module';
 
+import { PromotionEnableGuard } from './promotion-enable-guard';
 import { PromotionLandingComponent } from './promotion-landing/promotion-landing.component';
 import { InsureLinkComponent } from './promotion-page/insure-link/insure-link.component';
 import { PromotionPageComponent } from './promotion-page/promotion-page.component';
+import { PromotionRoutingModule } from './promotion-routing.module';
 
 export function createTranslateLoader(http: HttpClient) {
     return new MultiTranslateHttpLoader(
@@ -40,7 +41,8 @@ export function createTranslateLoader(http: HttpClient) {
         PromotionLandingComponent,
         PromotionPageComponent,
         InsureLinkComponent,
-    ]
+    ],
+    providers: [PromotionEnableGuard]
 })
 
 export class PromotionModule { }

@@ -126,7 +126,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('birthCountry').enabled && !invPersonalInfoForm.get('birthCountry').valid && !invPersonalInfoForm.get('birthCountry').pristine}">
-                    <div ngbDropdown>
+                    <div ngbDropdown placement="top-right">
                       <button class="btn btn-dropdown without-border" id="birth-country-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.birthCountry.value">
@@ -162,7 +162,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('passportIssuedCountry').enabled && !invPersonalInfoForm.get('passportIssuedCountry').valid && !invPersonalInfoForm.get('passportIssuedCountry').pristine}">
-                    <div ngbDropdown>
+                    <div ngbDropdown placement="top-right">
                       <button class="btn btn-dropdown without-border" id="passport-issued-country-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.passportIssuedCountry.value">
@@ -213,7 +213,7 @@
                 </div>
                 <div class="flex-col-7">
                   <div class="dropdown-control" [ngClass]="{'inline-error': invPersonalInfoForm.get('race').enabled && !invPersonalInfoForm.get('race').valid && !invPersonalInfoForm.get('race').pristine}">
-                    <div ngbDropdown>
+                    <div ngbDropdown placement="top-right">
                       <button class="btn btn-dropdown without-border" id="race-drpdown"
                         ngbDropdownToggle>
                         <span *ngIf="!invPersonalInfoForm.controls.race.value">
@@ -223,6 +223,7 @@
                             {{invPersonalInfoForm.controls.race.value.name | titlecase}}
                         </span>                        
                       </button>
+                      <!-- show-up -->
                       <div class="dropdown" ngbDropdownMenu aria-labelledby="courseDropdown">
                         <button class="dropdown-item" *ngFor="let race of raceList; let i = index;" (click)="setDropDownValue('race', race, i)"
                           id="race-option-{{i}}">{{race.name | titlecase}}</button>

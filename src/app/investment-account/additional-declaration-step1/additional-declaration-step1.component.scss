@@ -116,6 +116,7 @@ label {
   }
   .disabled {
     cursor: not-allowed;
+    border-color: rgba(0, 135, 134, 0.4);
   }
   .inline-error-inv {
     color: $inline-error-border-color;

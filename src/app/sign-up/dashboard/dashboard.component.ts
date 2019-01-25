@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
   showEddCheckFailStatus = false;
   totalValue: any;
   totalReturns: any;
-  totalInvested: any;
+  availableBalance: any;
 
   constructor(
     private router: Router,
@@ -142,8 +142,8 @@ export class DashboardComponent implements OnInit {
     if (investmentStatus === 'PORTFOLIO_PURCHASED' || investmentStatus === 'ACCOUNT_CREATED') {
       this.totalValue = this.userProfileInfo.investementDetails.totalValue ? this.userProfileInfo.investementDetails.totalValue : 0;
       this.totalReturns = this.userProfileInfo.investementDetails.totalReturns ? this.userProfileInfo.investementDetails.totalReturns : 0;
-      this.totalInvested = this.userProfileInfo.investementDetails.totalInvested ?
-        this.userProfileInfo.investementDetails.totalInvested : 0;
+      this.availableBalance = this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance ?
+        this.userProfileInfo.investementDetails.cashAccountDetails.availableBalance : 0;
     }
     switch (investmentStatus) {
       case 'PORTFOLIO_PURCHASED': {

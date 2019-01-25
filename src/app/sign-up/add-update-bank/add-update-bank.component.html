@@ -10,7 +10,7 @@
           </div>
           <div class="flex-col-6">
             <div>
-              <input type="text" class="form-control input-control grey" formControlName="accountHolderName" value="Kevin Goe" id="account_holder">
+              <input type="text" class="form-control input-control " formControlName="accountHolderName" value="Kevin Goe" id="account_holder">
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="flex-col-6">
             <div class="dropdown-control" [ngClass]="{'inline-error':getInlineErrorStatus(bankForm.controls.bank)}">
               <div ngbDropdown>
-                <button class="btn btn-dropdown without-border grey" id="residentialAddress-country-drpdown"
+                <button class="btn btn-dropdown without-border " id="residentialAddress-country-drpdown"
                   ngbDropdownToggle>
                   <span *ngIf="!bankForm.controls.bank.value"> {{'ADD_BANK.SELECT' | translate}}</span>
                   <span *ngIf="bankForm.controls.bank.value">{{bankForm.controls.bank.value.name | titlecase}}</span>
@@ -56,7 +56,7 @@
           </div>
           <div class="flex-col-6">
             <div>
-              <input type="text" class="form-control input-control grey" formControlName="accountNo" id="account">
+              <input type="text" class="form-control input-control " formControlName="accountNo" id="account">
             </div>
           </div>
         </div>
