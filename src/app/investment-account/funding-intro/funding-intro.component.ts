@@ -2,14 +2,14 @@ import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/co
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import {
+  TOPUP_AND_WITHDRAW_ROUTE_PATHS
+} from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
 import { AuthenticationService } from '../../shared/http/auth/authentication.service';
 import { NavbarService } from '../../shared/navbar/navbar.service';
 import { InvestmentAccountService } from '../investment-account-service';
-import {
-  TOPUP_AND_WITHDRAW_ROUTE_PATHS
-} from 'src/app/topup-and-withdraw/topup-and-withdraw-routes.constants';
 
 @Component({
   selector: 'app-funding-intro',
